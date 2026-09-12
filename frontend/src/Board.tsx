@@ -1,0 +1,65 @@
+import { Chessboard } from 'react-chessboard';
+import { useEffect, useRef, useState } from 'react';
+import type { LegalMove } from './api';
+
+export default function Board({fen, orientation, legalMoves = [], disabled, onMove}: {fen: string; orientation: 'white' | 'black'; legalMoves?: LegalMove[]; disabled?: boolean; onMove?: (from: string, to: string, promotion?: string) => void}) {
+  const [selected, setSelected] = useState<string | null>(null);
+  const [promotion, setPromotion] = useState<{from: string; to: string; choices: string[]} | null>(null);
+  const promotionTimer = useRef<number | undefined>(undefined);
+  useEffect(() => {
+    setSelected(null); setPromotion(null);
+    window.clearTimeout(promotionTimer.current);
+    return () => window.clearTimeout(promotionTimer.current);
+  }, [fen, disabled]);
+  const interactive = !disabled && !promotion;
+  const moves = interactive && selected ? legalMoves.filter(move => move.from_square === selected) : [];
+  const destinations = new Map(moves.map(move => [move.to_square, move]));
+  const selectable = (square: string) => legalMoves.some(move => move.from_square === square);
+  function choose(from: string, to: string, fromDrop = false) {
+    if (!interactive) return;
+    setSelected(null);
+    // Only display/submit moves supplied by the server. Grading revalidates them.
+    const matches = legalMoves.filter(move => move.from_square === from && move.to_square === to);
+    if (!matches.length) return;
+    const choices = matches.flatMap(move => move.promotion ? [move.promotion] : []);
+    if (choices.length) {
+      // Dnd-kit suppresses document clicks for 50 ms after a drag. Present the
+      // actionable dialog after that guard ends, so its first click is not lost.
+      if (fromDrop) promotionTimer.current = window.setTimeout(() => setPromotion({from, to, choices}), 70);
+      else setPromotion({from, to, choices});
+    }
+    else onMove?.(from, to);
+  }
+  return <div className="board-shell">
+    <Chessboard options={{
+      id: 'training-board', position: fen, boardOrientation: orientation,
+      allowDragging: interactive, animationDurationInMs: 130,
+      canDragPiece: ({square}) => !!square && selectable(square),
+      darkSquareStyle: {backgroundColor: '#78917c'}, lightSquareStyle: {backgroundColor: '#e9e8d9'},
+      boardStyle: {borderRadius: '3px'},
+      squareRenderer: ({square, children}) => <div className={`board-square-content${interactive && selected === square ? ' selected' : ''}`}>
+        {children}
+        {destinations.has(square) && <span aria-hidden="true" data-legal-destination={square}
+          className={`legal-move-marker ${destinations.get(square)!.capture ? 'capture' : 'quiet'}`}/>}
+      </div>,
+      onPieceDrag: ({square}) => {if (interactive) setSelected(square);},
+      onPieceDragCancel: () => setSelected(null),
+      onPieceDrop: ({sourceSquare, targetSquare}) => {
+        if (targetSquare) choose(sourceSquare, targetSquare, true);
+        else setSelected(null);
+        return false;
+      },
+      onSquareClick: ({square}) => {
+        if (!interactive) return;
+        if (selected === square) setSelected(null);
+        else if (selectable(square)) setSelected(square);
+        else if (selected) choose(selected, square);
+      },
+    }} />
+    {promotion && <div role="dialog" aria-modal="true" aria-label="Choose promotion" className="promotion">
+      <h3>Promote to</h3><div className="button-row">{[['q', 'Queen'], ['r', 'Rook'], ['b', 'Bishop'], ['n', 'Knight']].filter(([value]) => promotion.choices.includes(value)).map(([value, name]) =>
+        <button key={value} onClick={() => {onMove?.(promotion.from, promotion.to, value); setPromotion(null);}}>{name}</button>)}
+      <button onClick={() => setPromotion(null)}>Cancel</button></div>
+    </div>}
+  </div>;
+}

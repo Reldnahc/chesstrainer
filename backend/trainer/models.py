@@ -1,0 +1,281 @@
+import uuid
+from datetime import date, datetime, timezone
+
+from sqlalchemy import (
+    JSON,
+    DateTime,
+    ForeignKey,
+    Text,
+    UniqueConstraint,
+)
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+
+
+def now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def uid() -> str:
+    return uuid.uuid4().hex
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class ImportBatch(Base):
+    __tablename__ = "game_imports"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    filename: Mapped[str]
+    original_pgn: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class Game(Base):
+    __tablename__ = "games"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    fingerprint: Mapped[str] = mapped_column(unique=True)
+    white: Mapped[str]
+    black: Mapped[str]
+    learner_color: Mapped[bool]
+    pgn: Mapped[str] = mapped_column(Text)
+    played_on: Mapped[str | None]
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class ImportGame(Base):
+    __tablename__ = "import_games"
+    import_id: Mapped[str] = mapped_column(ForeignKey("game_imports.id"), primary_key=True)
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    # Preserve duplicate provenance without scheduling the game in another import job.
+    is_new: Mapped[bool] = mapped_column(default=True, server_default="1")
+
+
+class AnalysisJob(Base):
+    __tablename__ = "analysis_jobs"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    kind: Mapped[str] = mapped_column(default="analysis")
+    import_id: Mapped[str | None] = mapped_column(ForeignKey("game_imports.id"))
+    status: Mapped[str] = mapped_column(default="queued", index=True)
+    games_total: Mapped[int] = mapped_column(default=0)
+    games_processed: Mapped[int] = mapped_column(default=0)
+    positions_triaged: Mapped[int] = mapped_column(default=0)
+    deep_completed: Mapped[int] = mapped_column(default=0)
+    mistakes_identified: Mapped[int] = mapped_column(default=0)
+    classifications_completed: Mapped[int] = mapped_column(default=0)
+    cancel_requested: Mapped[bool] = mapped_column(default=False)
+    error: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class ChessComImport(Base):
+    __tablename__ = "chesscom_imports"
+    job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), primary_key=True)
+    username: Mapped[str]
+    time_class: Mapped[str]
+    months: Mapped[int]
+    max_games: Mapped[int]
+    start_date: Mapped[date | None]
+    end_date: Mapped[date | None]
+    archives_total: Mapped[int] = mapped_column(default=0)
+    archives_processed: Mapped[int] = mapped_column(default=0)
+    games_fetched: Mapped[int] = mapped_column(default=0)
+    games_imported: Mapped[int] = mapped_column(default=0)
+    duplicates: Mapped[int] = mapped_column(default=0)
+    filtered: Mapped[int] = mapped_column(default=0)
+    rejected: Mapped[int] = mapped_column(default=0)
+    errors: Mapped[list] = mapped_column(JSON, default=list)
+    fetch_completed: Mapped[bool] = mapped_column(default=False)
+
+
+class ChessComArchive(Base):
+    __tablename__ = "chesscom_archives"
+    job_id: Mapped[str] = mapped_column(ForeignKey("chesscom_imports.job_id"), primary_key=True)
+    url: Mapped[str] = mapped_column(primary_key=True)
+    games_selected: Mapped[int]
+    fetched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class EngineAnalysis(Base):
+    __tablename__ = "engine_analyses"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    cache_key: Mapped[str] = mapped_column(unique=True)
+    fen: Mapped[str]
+    engine_version: Mapped[str]
+    config: Mapped[dict] = mapped_column(JSON)
+    candidates: Mapped[list] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class Decision(Base):
+    __tablename__ = "decisions"
+    __table_args__ = (UniqueConstraint("game_id", "ply"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
+    ply: Mapped[int]
+    fen: Mapped[str]
+    position_key: Mapped[str] = mapped_column(index=True)
+    learner_color: Mapped[bool]
+    move_uci: Mapped[str]
+    move_san: Mapped[str]
+    before_analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
+    played_analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
+    loss_cp: Mapped[int | None]
+    mate_lost: Mapped[bool] = mapped_column(default=False)
+    allows_mate: Mapped[bool] = mapped_column(default=False)
+    meaningful: Mapped[bool] = mapped_column(default=False, index=True)
+    deep: Mapped[bool] = mapped_column(default=False)
+    facts: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class Skill(Base):
+    __tablename__ = "skills"
+    id: Mapped[str] = mapped_column(primary_key=True)
+    category: Mapped[str]
+    title: Mapped[str]
+
+
+class LLMRun(Base):
+    __tablename__ = "llm_runs"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    cache_key: Mapped[str] = mapped_column(unique=True)
+    decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"))
+    model: Mapped[str]
+    schema_version: Mapped[str]
+    prompt_version: Mapped[str]
+    status: Mapped[str]
+    response: Mapped[dict | None] = mapped_column(JSON)
+    confidence: Mapped[float | None]
+    error: Mapped[str | None]
+    input_tokens: Mapped[int] = mapped_column(default=0)
+    output_tokens: Mapped[int] = mapped_column(default=0)
+    attempts: Mapped[int] = mapped_column(default=1)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class SkillEvidence(Base):
+    __tablename__ = "skill_evidence"
+    __table_args__ = (UniqueConstraint("decision_id", "skill_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"), index=True)
+    skill_id: Mapped[str] = mapped_column(ForeignKey("skills.id"), index=True)
+    llm_run_id: Mapped[str] = mapped_column(ForeignKey("llm_runs.id"))
+    confidence: Mapped[float]
+    explanation: Mapped[str] = mapped_column(Text)
+
+
+class Course(Base):
+    __tablename__ = "courses"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    title: Mapped[str]
+    target_rating: Mapped[int]
+    active: Mapped[bool] = mapped_column(default=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class CourseUnit(Base):
+    __tablename__ = "course_units"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    course_id: Mapped[str] = mapped_column(ForeignKey("courses.id"))
+    skill_id: Mapped[str] = mapped_column(ForeignKey("skills.id"))
+    title: Mapped[str]
+    rationale: Mapped[str] = mapped_column(Text)
+    ordinal: Mapped[int]
+    provisional: Mapped[bool]
+
+
+class UnitEvidence(Base):
+    __tablename__ = "unit_evidence"
+    unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"), primary_key=True)
+    evidence_id: Mapped[str] = mapped_column(ForeignKey("skill_evidence.id"), primary_key=True)
+
+
+class Lesson(Base):
+    __tablename__ = "lessons"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"))
+    stage: Mapped[str]
+    ordinal: Mapped[int]
+    completed: Mapped[bool] = mapped_column(default=False)
+
+
+class Repertoire(Base):
+    __tablename__ = "repertoires"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    name: Mapped[str]
+    color: Mapped[bool]
+    pgn: Mapped[str] = mapped_column(Text)
+
+
+class Exercise(Base):
+    __tablename__ = "exercises"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    identity: Mapped[str] = mapped_column(unique=True)
+    source: Mapped[str]
+    decision_id: Mapped[str | None] = mapped_column(ForeignKey("decisions.id"))
+    repertoire_id: Mapped[str | None] = mapped_column(ForeignKey("repertoires.id"))
+    fen: Mapped[str]
+    orientation: Mapped[str]
+    explanation: Mapped[str] = mapped_column(Text, default="")
+    policy: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class ExerciseTag(Base):
+    __tablename__ = "exercise_tags"
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
+    tag: Mapped[str] = mapped_column(primary_key=True)
+
+
+class ExerciseAnswer(Base):
+    __tablename__ = "exercise_answers"
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
+    uci: Mapped[str] = mapped_column(primary_key=True)
+    san: Mapped[str]
+    grade: Mapped[str]
+    primary: Mapped[bool] = mapped_column(default=False)
+    analysis_id: Mapped[str | None] = mapped_column(ForeignKey("engine_analyses.id"))
+
+
+class SRSState(Base):
+    __tablename__ = "srs_states"
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
+    card: Mapped[dict] = mapped_column(JSON)
+    due: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
+    reviews: Mapped[int] = mapped_column(default=0)
+    lapses: Mapped[int] = mapped_column(default=0)
+
+
+class ReviewSession(Base):
+    __tablename__ = "review_sessions"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    failed: Mapped[bool] = mapped_column(default=False)
+    revealed: Mapped[bool] = mapped_column(default=False)
+    completed: Mapped[bool] = mapped_column(default=False)
+
+
+class Attempt(Base):
+    __tablename__ = "exercise_attempts"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"))
+    uci: Mapped[str]
+    grade: Mapped[str]
+    elapsed_ms: Mapped[int]
+
+
+class Review(Base):
+    __tablename__ = "reviews"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"), unique=True)
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
+    rating: Mapped[str]
+    response_ms: Mapped[int]
+    failed: Mapped[bool]
+    revealed: Mapped[bool]
+    policy_version: Mapped[str] = mapped_column(default="1")
+    scheduler_version: Mapped[str]
+    scheduler_log: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
