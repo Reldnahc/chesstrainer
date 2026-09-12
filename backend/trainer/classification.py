@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from sqlalchemy import select, update
 
 from trainer.chess_core import digest, position_key, valid_board
+from trainer.continuations import ContinuationEnd
 from trainer.diagnosis_types import Finding, Outcome
 from trainer.models import (
     ClassificationAnalysis,
@@ -18,13 +19,14 @@ from trainer.models import (
 from trainer.taxonomy import SKILLS, TAXONOMY_VERSION
 
 PROMPT_VERSION = "1"
-SCHEMA_VERSION = "2"
+SCHEMA_VERSION = "3"
 log = logging.getLogger(__name__)
 
 
 class Classification(BaseModel):
     model_config = ConfigDict(extra="forbid")
     parameters: dict[str, int] = Field(default_factory=dict)
+    continuations: dict[str, ContinuationEnd] = Field(default_factory=dict)
     findings: list[Finding] = Field(default_factory=list)
     outcomes: list[Outcome] = Field(default_factory=list)
     abstention_reasons: list[str] = Field(default_factory=list)

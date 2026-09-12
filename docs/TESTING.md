@@ -1,5 +1,7 @@
 # Testing
 
+Classification v3 continuation tests cover forward-only extension, actual recaptures instead of temporary gains, exact hard limits, quiet endpoints, insufficient lines, checks and promotions, mirrored colors, persisted endpoint metadata and the zero-extension configuration. The first stage passed 63 continuation/classifier/pattern/explanation tests; subsequent stages and rollout are tracked in DEVELOPMENT_PLAN.md.
+
 Suite counts and the latest deployment checks are recorded in DEVELOPMENT_PLAN.md. Username-import date coverage includes both whole UTC endpoint days, either open endpoint, lookback override, irrelevant-archive pruning, reversed-range rejection and active-job request identity. Browser tests submit explicit dates and verify Look back is disabled while dates are set.
 
 Incremental-import fixtures check 100 saved games plus 20 new games schedules exactly 20, duplicate entries do not consume the new-game limit, and duplicate-only imports create no analysis work. Native Stockfish plus an injected classifier verifies cancellation preserves the first response, retry never re-requests a completed decision, and a subsequent classification scan reuses all cached responses. Browser tests cover repeat PGN upload with no new job and repeat Chess.com fetch with zero analysis games. Fixtures use distinct per-device games where new analysis is expected.

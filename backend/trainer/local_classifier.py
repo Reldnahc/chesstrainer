@@ -9,44 +9,14 @@ import chess
 from trainer.chess_core import (
     Candidate,
     evaluation_loss,
-    legal_move,
-    material,
     position_key,
     valid_board,
 )
+from trainer.continuations import continuation_end, replay, settled_delta  # noqa: F401
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, Finding, Outcome
 from trainer.tactical_patterns import detect_patterns
 
-RULE_VERSION = "2"
-
-
-def replay(board, candidate):
-    boards = [board.copy()]
-    for uci in candidate.pv:
-        next_board = boards[-1].copy()
-        next_board.push(legal_move(next_board, uci))
-        boards.append(next_board)
-    return boards
-
-
-def balance(board, color):
-    return material(board, color) - material(board, not color)
-
-
-def settled_delta(boards, color, max_plies=16):
-    # Require the chosen endpoint to be quiet. Searching backward for a favorable
-    # earlier balance would mislabel sacrifices whose recapture is in the tail.
-    # Even a quiet endpoint is a finite-line outcome, not a forced material proof.
-    end = min(len(boards) - 1, max_plies)
-    if end < 3 or boards[end].is_check():
-        return None, end
-    values = [balance(b, color) for b in boards[end - 2 : end + 1]]
-    if len(set(values)) != 1 or any(
-        boards[p - 1].is_capture(boards[p].peek()) or boards[p].peek().promotion
-        for p in (end - 1, end)
-    ):
-        return None, end
-    return values[-1] - balance(boards[0], color), end
+RULE_VERSION = "3"
 
 
 class LocalClassifier:
@@ -57,6 +27,7 @@ class LocalClassifier:
     def __init__(self, settings=None):
         self.parameters = {
             "max_plies": settings.classification_max_plies if settings else 16,
+            "extension_plies": settings.classification_extension_plies if settings else 16,
             "min_loss_cp": settings.classification_min_loss_cp if settings else 150,
             "min_material": settings.classification_min_material if settings else 1,
         }
@@ -127,15 +98,20 @@ class LocalClassifier:
         limit = self.parameters["max_plies"]
         threshold = self.parameters["min_loss_cp"]
         material_threshold = self.parameters["min_material"]
-        best_delta, _ = settled_delta(best_boards, learner, limit)
-        actual_delta, _ = settled_delta(actual_boards, learner, limit)
+        endpoints = {
+            analysis: continuation_end(boards, learner, limit, self.parameters["extension_plies"])
+            for analysis, boards in ((best_id, best_boards), (actual_id, actual_boards))
+        }
+        best_delta = endpoints[best_id].material_delta
+        actual_delta = endpoints[actual_id].material_delta
         for direction, candidate, boards, analysis_id, first in (
             ("allowed_opponent_tactic", actual, actual_boards, actual_id, 2),
             ("missed_opportunity", best, best_boards, best_id, 1),
         ):
             if len(boards) <= first:
                 continue
-            delta, end = settled_delta(boards, learner, limit)
+            endpoint = endpoints[analysis_id]
+            delta, end = endpoint.material_delta, endpoint.end_ply
             # Require adverse engine outcome AND a material consequence avoided
             # by the alternative. Geometry or a centipawn drop alone is insufficient.
             supports = (
@@ -217,6 +193,7 @@ class LocalClassifier:
             outcomes=outcomes,
             abstention_reasons=reasons,
             parameters=self.parameters,
+            continuations=endpoints,
             primary_skill=skills[0] if skills else "unclassified",
             secondary_skills=skills[1:],
             confidence=1.0 if skills else 0.0,

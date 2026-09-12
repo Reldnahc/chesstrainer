@@ -47,6 +47,9 @@ def report(path, settings):
                             "game_id": decision.game_id,
                             "evidence": payload,
                             "outcomes": [o.model_dump() for o in result.outcomes],
+                            "continuations": {
+                                k: v.model_dump() for k, v in result.continuations.items()
+                            },
                             "abstention_reasons": result.abstention_reasons,
                             "findings": [f.model_dump() for f in result.findings],
                         }
