@@ -25,6 +25,7 @@ def test_bounded_probes_cache_resume_and_preserve_grading(settings, stockfish_pa
     settings.classification_probe_positions = 1
     settings.classification_probe_time = 0.05
     settings.classification_probe_depth = 12
+    settings.classification_probe_queries = 2
     app = create_app(settings, workers=False)
     with TestClient(app) as client:
         with app.state.sessions() as db:

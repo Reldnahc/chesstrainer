@@ -50,6 +50,7 @@ def report(path, settings):
                             "continuations": {
                                 k: v.model_dump() for k, v in result.continuations.items()
                             },
+                            "defense_checks": result.defense_checks,
                             "abstention_reasons": result.abstention_reasons,
                             "findings": [f.model_dump() for f in result.findings],
                         }

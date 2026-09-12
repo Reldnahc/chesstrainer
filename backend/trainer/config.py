@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     classification_probe_positions: int = Field(default=40, ge=1, le=500)
     classification_probe_depth: int = Field(default=22, ge=1, le=40)
     classification_probe_time: float = Field(default=2.0, gt=0, le=10)
+    classification_probe_queries: int = Field(default=6, ge=2, le=12)
     target_rating: int = Field(default=1500, ge=400, le=3000)
     acceptance_mode: Literal["best_only", "engine_tolerance", "practical", "custom"] = "practical"
     tolerance_cp: int = Field(default=50, ge=0, le=500)

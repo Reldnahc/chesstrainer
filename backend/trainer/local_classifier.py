@@ -12,7 +12,13 @@ from trainer.chess_core import (
     position_key,
     valid_board,
 )
-from trainer.continuations import continuation_end, replay, settled_delta  # noqa: F401
+from trainer.continuations import (  # noqa: F401
+    continuation_end,
+    extended_line,
+    replay,
+    settled_delta,
+)
+from trainer.defensive_probes import hypotheses, verify_defense
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, Finding, Outcome
 from trainer.move_causes import move_causes
 from trainer.tactical_patterns import detect_patterns
@@ -47,11 +53,15 @@ class LocalClassifier:
         actual = Candidate.model_validate(evidence["played_candidate"])
         if actual.uci != evidence["user_move"]["uci"]:
             raise ValueError("Actual analysis does not match learner move")
-        best_boards, actual_boards = replay(board, best), replay(board, actual)
+        best_id, actual_id = evidence["evidence_ids"]
+        probes = evidence.get("probes", [])
+        best, best_boards = extended_line(board, best, best_id, probes)
+        actual, actual_boards = extended_line(board, actual, actual_id, probes)
         loss = evaluation_loss(best.score, actual.score)
         found = []
         outcomes = []
         reasons = []
+        defense_checks = []
         learner = board.turn
 
         def add(skill, direction, analysis, boards, plies, squares, explanation, mate=False):
@@ -73,7 +83,6 @@ class LocalClassifier:
                 )
             )
 
-        best_id, actual_id = evidence["evidence_ids"]
         if loss.allows_mate:
             add(
                 "allowed_mate",
@@ -174,8 +183,39 @@ class LocalClassifier:
                     max_tactic_plies=self.parameters["tactic_plies"],
                 )
             )
+            for hypothesis in hypotheses(
+                boards, first, end, analysis_id, direction, self.parameters["tactic_plies"]
+            ):
+                probe = next((p for p in probes if p["query_key"] == hypothesis.key), None)
+                finding, status = (
+                    (None, "pending")
+                    if probe is None
+                    else verify_defense(hypothesis, boards, candidate, probe, self.parameters)
+                )
+                if finding and (supports or mate_support):
+                    found.append(finding)
+                elif finding:
+                    status = "outcome_unverified"
+                defense_checks.append(
+                    {
+                        "hypothesis_key": hypothesis.key,
+                        "kind": hypothesis.kind,
+                        "root_analysis_id": analysis_id,
+                        "at_ply": hypothesis.at_ply,
+                        "root_moves": hypothesis.root_moves,
+                        "status": status,
+                        "analysis_id": probe["analysis_id"] if probe else None,
+                    }
+                )
 
         for finding in found:
+            finding.verification_analysis_ids.extend(
+                p["analysis_id"]
+                for p in probes
+                if p["kind"] == "tail"
+                and p["root_analysis_id"] == finding.analysis_id
+                and max(finding.plies) > p["at_ply"]
+            )
             if finding.skill_id in {"allowed_mate", "missed_mate"}:
                 outcomes.append(
                     Outcome(
@@ -185,8 +225,18 @@ class LocalClassifier:
                         explanation=finding.explanation,
                     )
                 )
+        for outcome in outcomes:
+            outcome.supporting_analysis_ids = [
+                p["analysis_id"]
+                for p in probes
+                if p["kind"] == "tail"
+                and p["root_analysis_id"] == outcome.analysis_id
+                and outcome.end_ply > p["at_ply"]
+            ]
         if best_delta is None or actual_delta is None:
             reasons.append("continuation_unsettled")
+        if any(check["status"] == "pending" for check in defense_checks):
+            reasons.append("defense_probe_pending")
         if not outcomes:
             reasons.append("no_verified_material_or_mate_outcome")
         if not any(f.skill_id not in OUTCOME_SKILLS for f in found):
@@ -199,6 +249,7 @@ class LocalClassifier:
             abstention_reasons=reasons,
             parameters=self.parameters,
             continuations=endpoints,
+            defense_checks=defense_checks,
             primary_skill=skills[0] if skills else "unclassified",
             secondary_skills=skills[1:],
             confidence=1.0 if skills else 0.0,

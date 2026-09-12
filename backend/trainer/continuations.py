@@ -9,7 +9,7 @@ from typing import Literal
 import chess
 from pydantic import BaseModel
 
-from trainer.chess_core import Candidate, legal_move, material
+from trainer.chess_core import Candidate, legal_move, material, position_key, valid_board
 
 
 class ContinuationEnd(BaseModel):
@@ -75,3 +75,22 @@ def continuation_end(
 def settled_delta(boards, color, max_plies=16, extra_plies=16):
     endpoint = continuation_end(boards, color, max_plies, extra_plies)
     return endpoint.material_delta, endpoint.end_ply
+
+
+def extended_line(board, candidate, analysis_id, probes):
+    """Join explicitly linked native tails; keep the original root evaluation."""
+    boards = replay(board, candidate)
+    pv = list(candidate.pv)
+    for probe in sorted(
+        (p for p in probes if p["kind"] == "tail" and p["root_analysis_id"] == analysis_id),
+        key=lambda p: p["at_ply"],
+    ):
+        if probe["at_ply"] != len(pv) or position_key(valid_board(probe["fen"])) != position_key(
+            boards[-1]
+        ):
+            raise ValueError("Continuation probe does not match its saved parent endpoint")
+        extra = Candidate.model_validate(probe["candidate"])
+        continuation = replay(boards[-1], extra)
+        boards.extend(continuation[1:])
+        pv.extend(extra.pv)
+    return candidate.model_copy(update={"pv": pv}), boards

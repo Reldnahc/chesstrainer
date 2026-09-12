@@ -1,6 +1,6 @@
 # Local mistake classification
 
-## Classification v3 (implementation in progress)
+## Classification v3 (assessment and rollout pending)
 
 Saved-line inspection now extends forward from the initial 16-ply horizon by up to 16 additional plies, only when the chosen endpoint is unfinished. Audits record endpoint, extension and reason. It never substitutes an earlier favorable material balance.
 
@@ -8,7 +8,9 @@ Specific witnesses can span a connected tactical episode (default eight plies). 
 
 Before/after cause witnesses identify an abandoned sole unpinned defender, an immediate unfavorable capture/recapture, and a newly created attack from the opponent's previous move that remains unanswered. The latter saves and validates the preceding position/move. These are observed events in the saved continuation, not statements about the learner's intentions. Engine comparisons and material-outcome gates still apply. Taxonomy v3 adds abandoned_defender, deflection and trapped_piece (the latter awaits targeted verification); existing opponent_threat_recognition and avoiding_bad_trades now have local witnesses.
 
-On the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Accuracy assessment and targeted verification remain pending; see DEVELOPMENT_PLAN.md.
+On the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Accuracy assessment remains pending; see DEVELOPMENT_PLAN.md.
+
+Targeted native tests now corroborate relative pins, costly legal captures of forking pieces, and a conservative trapped-piece pattern. Geometric hypotheses remain unpublished until the matching query confirms a material gain and a compatible score in the best tested defensive continuation. A useful defensive resource, uncollected target, unsettled line or unsupported original outcome causes abstention. Trapped-piece candidates require every legal move of the piece to allow an immediate legal capture; the tested best escape must actually lose the piece. Other defensive resources and broader strategic traps remain outside this detector. Audits retain pending/confirmed/rejected check reasons and the additional analysis IDs.
 
 Fieldwork uses python-chess, local Stockfish and deterministic Python rules. There is no LLM connection, model key, paid classification, or external pedagogy payload. Historical model audits remain archived locally.
 
@@ -45,9 +47,11 @@ Findings retain rule/version, actor, direction, analysis ID, plies, UCI moves, a
 
 New meaningful decisions classify automatically. **Settings > Classify saved games** reuses saved engine evidence without starting Stockfish. Results, including abstentions, are cached by evidence, rules, parameters and taxonomy. Failed work preserves active labels; successful abstention replaces earlier labels. Rejected identical results stay rejected. Historical runs remain auditable.
 
-**Settings > Deepen unclear positions** optionally queues extra local Stockfish work. Default budget: 40 positions, two searches per position, at most 2 seconds / depth 22 each (first reached bound). Unknown outcomes have priority, then unclear mechanisms, with severity/recency ordering. The selected task list persists, so a cancelled/restarted job cannot silently expand its budget. Later jobs skip identical completed probes and can process another batch. Progress and cancel/retry are in Import.
+**Settings > Deepen unclear positions** optionally queues extra local Stockfish work. Default budget: 40 positions, at most six searches per position, each capped at 2 seconds / depth 22 (first reached bound). Two searches refresh best/actual root comparisons; remaining queries extend unfinished saved tails or test specific legal defenses. Concrete pending defensive questions take priority, followed by unknown outcomes and unclear mechanisms, with severity/recency ordering. The selected task list persists, so a cancelled/restarted job cannot silently expand its budget. Later jobs skip identical completed probes and can process another batch. Progress and cancel/retry are in Import.
 
 Each completed probe links separate immutable best/actual EngineAnalysis records through classification_analyses. Original Decision analysis IDs, ExerciseAnswer grades, policies and SRS states never change. Reclassification prefers the latest supplemental pair, including if it reduces confidence or coverage. More engine time does not guarantee a new label. The engine cache includes binary identity, settings, root moves and limits; both searches use the actual game history.
+
+Additional classification_probes rows link each tail/defense to its supplement, root analysis, exact ply, query identity and native result. Tail joins require the exact parent endpoint and legal replay; their local side-to-move score never replaces the original root evaluation. Hypothesis checks validate the requested legal move set, position, direction/perspective and witness. Completion links commit together after bounded work; cancellation leaves all completed native searches cached and safely reusable.
 
 ## Using findings
 

@@ -10,6 +10,7 @@ from trainer.continuations import ContinuationEnd
 from trainer.diagnosis_types import Finding, Outcome
 from trainer.models import (
     ClassificationAnalysis,
+    ClassificationProbe,
     ClassificationRun,
     Decision,
     EngineAnalysis,
@@ -28,6 +29,7 @@ class Classification(BaseModel):
     model_config = ConfigDict(extra="forbid")
     parameters: dict[str, int] = Field(default_factory=dict)
     continuations: dict[str, ContinuationEnd] = Field(default_factory=dict)
+    defense_checks: list[dict] = Field(default_factory=list)
     findings: list[Finding] = Field(default_factory=list)
     outcomes: list[Outcome] = Field(default_factory=list)
     abstention_reasons: list[str] = Field(default_factory=list)
@@ -81,6 +83,30 @@ def verified_payload(db, decision):
     played = db.get(
         EngineAnalysis, supplement.played_analysis_id if supplement else decision.played_analysis_id
     )
+    probes = []
+    if supplement:
+        for probe in db.scalars(
+            select(ClassificationProbe)
+            .where(ClassificationProbe.classification_analysis_id == supplement.id)
+            .order_by(
+                ClassificationProbe.root_analysis_id,
+                ClassificationProbe.at_ply,
+                ClassificationProbe.id,
+            )
+        ):
+            analysis = db.get(EngineAnalysis, probe.analysis_id)
+            probes.append(
+                {
+                    "kind": probe.kind,
+                    "root_analysis_id": probe.root_analysis_id,
+                    "at_ply": probe.at_ply,
+                    "query_key": probe.query_key,
+                    "analysis_id": analysis.id,
+                    "fen": analysis.fen,
+                    "config": analysis.config,
+                    "candidate": analysis.candidates[0],
+                }
+            )
     return {
         "decision_id": decision.id,
         "fen": decision.fen,
@@ -88,6 +114,7 @@ def verified_payload(db, decision):
         "evidence_ids": [before.id, played.id],
         "user_move": {"uci": decision.move_uci, "san": decision.move_san},
         "previous_move": previous,
+        "probes": probes,
         "best_candidates": before.candidates,
         "played_candidate": played.candidates[0],
         "loss": {
@@ -165,6 +192,10 @@ def classify_decision(db, decision, classifier, settings, *, write_lock=None):
                 for finding in result.findings:
                     if finding.analysis_id not in payload["evidence_ids"]:
                         raise ValueError("Finding references unrelated analysis")
+                    if not set(finding.verification_analysis_ids) <= {
+                        p["analysis_id"] for p in payload.get("probes", [])
+                    }:
+                        raise ValueError("Finding references unrelated verification")
             run.response = result.model_dump()
             run.confidence = result.confidence
             run.input_tokens = usage.get("input_tokens", 0)

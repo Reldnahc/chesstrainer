@@ -149,6 +149,23 @@ class ClassificationAnalysis(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
+class ClassificationProbe(Base):
+    """Immutable tail/defense evidence attached to a completed classification supplement."""
+
+    __tablename__ = "classification_probes"
+    __table_args__ = (UniqueConstraint("classification_analysis_id", "query_key"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    classification_analysis_id: Mapped[str] = mapped_column(
+        ForeignKey("classification_analyses.id"), index=True
+    )
+    root_analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
+    analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
+    kind: Mapped[str]
+    at_ply: Mapped[int]
+    query_key: Mapped[str]
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
 class ClassificationTask(Base):
     __tablename__ = "classification_tasks"
     job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), primary_key=True)

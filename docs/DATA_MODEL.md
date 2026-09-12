@@ -1,5 +1,7 @@
 # Data model
 
+Migration f83a90d16c24 adds classification_probes. Each immutable row links a completed classification_analyses supplement to a root engine analysis and a tail/defensive engine result, with query kind, root-relative ply and unique query key. Core links are relational; the native result retains its immutable candidate/configuration payload. No existing table is rewritten. Copy-migration verification preserved all 28 pre-existing data tables exactly.
+
 SQLAlchemy 2 mapped models, SQLite WAL/foreign keys/30-second busy timeout, and frozen Alembic initial revision 475ea36d42d5. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
 
 | Tables | Purpose |

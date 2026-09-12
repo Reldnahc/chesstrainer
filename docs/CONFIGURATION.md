@@ -4,6 +4,8 @@ Classification v3 adds `CLASSIFICATION_EXTENSION_PLIES` (default 16, range 0-32)
 
 `CLASSIFICATION_TACTIC_PLIES` (default 8, range 2-16) bounds connected tactical events attributed to the initial move. A quiet unrelated gap ends the episode even if the budget has room. Material outcome inspection may continue further without treating every later event as the original mistake's cause.
 
+`CLASSIFICATION_PROBE_QUERIES` (default 6, range 2-12) limits total native searches per selected position, including the two refreshed root comparisons. Remaining queries extend unresolved tails and test specific legal defenses. Each query also obeys `CLASSIFICATION_PROBE_DEPTH` and `CLASSIFICATION_PROBE_TIME`. The count, classifier parameters, engine binary and limits are included in the persisted job/cache identity. Changing these during a planned job requires a new job; completed native results remain cached.
+
 Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment overrides root .env; defaults apply last. Relative paths resolve from the server working directory. Run from repository root. Invalid recognized values fail startup with field-specific errors. Secrets are SecretStr values excluded from public serialization.
 
 | Variable | Default |

@@ -41,7 +41,7 @@ class Finding(BaseModel):
     squares: list[str]
     moves: list[str]
     explanation: str
-    verification: Literal["engine_mate", "verified_line"]
+    verification: Literal["engine_mate", "verified_line", "engine_defense"]
     cue: str = ""
     frame_ply: int = 0
     roles: dict[str, list[str]] = Field(default_factory=dict)
@@ -64,3 +64,4 @@ class Outcome(BaseModel):
     end_ply: int
     material_points: int | None = None
     explanation: str
+    supporting_analysis_ids: list[str] = Field(default_factory=list)
