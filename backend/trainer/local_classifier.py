@@ -19,11 +19,9 @@ from trainer.continuations import (  # noqa: F401
     settled_delta,
 )
 from trainer.defensive_probes import hypotheses, verify_defense
-from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, Finding, Outcome
+from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, RULE_VERSION, Finding, Outcome
 from trainer.move_causes import move_causes
 from trainer.tactical_patterns import detect_patterns
-
-RULE_VERSION = "3"
 
 
 class LocalClassifier:

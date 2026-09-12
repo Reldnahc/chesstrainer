@@ -2,7 +2,14 @@
 
 import chess
 
-from trainer.tactical_geometry import defenders, effective_attacks, names, valuable_targets, witness
+from trainer.tactical_geometry import (
+    defenders,
+    effective_attacks,
+    names,
+    piece_capture_ply,
+    valuable_targets,
+    witness,
+)
 
 
 def combinations(boards, plies, analysis_id, direction):
@@ -10,6 +17,37 @@ def combinations(boards, plies, analysis_id, direction):
     for ply in plies:
         before, after = boards[ply - 1], boards[ply]
         move, actor = after.peek(), before.turn
+        for target, victim in after.piece_map().items():
+            if (
+                victim.color == actor
+                or victim.piece_type == chess.KING
+                or not after.is_pinned(not actor, target)
+            ):
+                continue
+            pinners = [
+                s
+                for s in after.attackers(actor, target)
+                if target in chess.SquareSet(chess.between(s, after.king(not actor)))
+            ]
+            if move.to_square not in pinners:
+                continue
+            collection = piece_capture_ply(boards, target, ply, plies[-1])
+            if collection is not None:
+                found.append(
+                    witness(
+                        boards,
+                        analysis_id,
+                        direction,
+                        "pin",
+                        [ply, collection],
+                        {
+                            "attacker": names(pinners),
+                            "target": names([target]),
+                            "king": names([after.king(not actor)]),
+                        },
+                        f"{before.san(move)} pins the {chess.piece_name(victim.piece_type)} to its king. It can only move along the pin line, and it is lost in the shown continuation.",
+                    )
+                )
         for slider, piece in after.piece_map().items():
             if (
                 piece.color != actor
@@ -92,8 +130,8 @@ def combinations(boards, plies, analysis_id, direction):
                 after.is_check() or (after.is_capture(reply) and reply.to_square == move.to_square)
             )
             and not defenders(boards[ply + 1], capture.to_square, not actor)
+            and capture.to_square not in boards[ply + 1].attacks(reply.to_square)
             and reply.from_square != capture.to_square
-            and not before.is_capture(move)
         ):
             found.append(
                 witness(

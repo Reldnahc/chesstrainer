@@ -3,7 +3,7 @@
 import chess
 
 from trainer.chess_core import VALUES, legal_move, position_key, valid_board
-from trainer.tactical_geometry import defenders, effective_attacks, names, witness
+from trainer.tactical_geometry import defenders, effective_attacks, names, relative_pinners, witness
 
 
 def move_causes(boards, analysis_id, previous=None):
@@ -54,7 +54,32 @@ def move_causes(boards, analysis_id, previous=None):
                 if reply.from_square == opponent_move.to_square
                 else reply.from_square,
             )
-            if target in effective_attacks(before, reply.from_square) and not was_attacking:
+            old_attacker = (
+                opponent_move.from_square
+                if reply.from_square == opponent_move.to_square
+                else reply.from_square
+            )
+            removed_pins = set(relative_pinners(earlier, old_attacker)) - set(
+                relative_pinners(before, reply.from_square)
+            )
+            releases_capture = False
+            hypothetical = chess.Move(old_attacker, target, promotion=reply.promotion)
+            if was_attacking and hypothetical in earlier.legal_moves:
+                branch = earlier.copy()
+                branch.push(hypothetical)
+                releases_capture = any(
+                    chess.Move(slider, rear) in branch.legal_moves
+                    and branch.is_capture(chess.Move(slider, rear))
+                    for slider, rear in removed_pins
+                )
+            if target in effective_attacks(before, reply.from_square) and (
+                not was_attacking or releases_capture
+            ):
+                context = (
+                    f"The opponent's {earlier.san(opponent_move)} breaks a relative pin on the capturing piece."
+                    if releases_capture
+                    else f"The opponent's {earlier.san(opponent_move)} newly attacks your {chess.piece_name(victim.piece_type)} on {chess.square_name(target)}."
+                )
                 found.append(
                     witness(
                         boards,
@@ -63,7 +88,7 @@ def move_causes(boards, analysis_id, previous=None):
                         "opponent_threat_recognition",
                         [1, 2],
                         common,
-                        f"The opponent's {earlier.san(opponent_move)} newly attacks your {chess.piece_name(victim.piece_type)} on {chess.square_name(target)}. Your {before.san(move)} leaves it there, and {after.san(reply)} captures it in the shown line.",
+                        f"{context} Your {before.san(move)} leaves the target there, and {after.san(reply)} captures it in the shown line.",
                         frame=0,
                         context_fen=earlier.fen(),
                         context_move=opponent_move.uci(),

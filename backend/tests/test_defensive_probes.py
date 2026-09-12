@@ -11,6 +11,24 @@ from trainer.local_classifier import LocalClassifier
 PARAMETERS = LocalClassifier().parameters
 CASES = [
     (
+        "fork_capture",
+        "5rk1/3r2pp/8/3N4/8/8/4K3/3R3R w - - 0 1",
+        1,
+        ["d5f6", "g7f6", "h1g1", "g8h8", "d1d7", "f8a8", "d7c7", "a8f8"],
+        ["g7f6", "h1g1", "g8h8", "d1d7", "f8a8", "d7c7", "a8f8"],
+        200,
+        -200,
+    ),
+    (
+        "relative_pin_escape",
+        "3q2k1/4n3/8/3P2B1/8/8/8/6K1 w - - 0 1",
+        1,
+        ["d5d6", "g8f7", "d6e7", "d8e7", "g1f2", "f7g6"],
+        ["e7f5", "g5d8", "g8f7", "d8c7", "f7e6"],
+        200,
+        -600,
+    ),
+    (
         "relative_pin",
         "4q1k1/4n3/2p5/1B6/8/8/8/4R1K1 w - - 0 1",
         1,
@@ -113,13 +131,15 @@ def test_defensive_hypotheses_require_matched_evidence(case, black):
 
 
 def test_relative_pin_needs_collection_and_unfinished_branch_abstains():
-    boards, root, request, probe = prepared(CASES[0])
+    boards, root, request, probe = prepared(
+        next(case for case in CASES if case[0] == "relative_pin")
+    )
     probe["candidate"]["pv"] = probe["candidate"]["pv"][:2]
     assert verify_defense(request, boards, root, probe, PARAMETERS) == (None, "unsettled")
 
 
 def test_a_safe_piece_escape_prevents_trapped_hypothesis():
-    case = list(CASES[2])
+    case = list(next(case for case in CASES if case[0] == "trapped_piece"))
     case[1] = "5k2/7B/8/7p/8/8/8/K7 w - - 0 1"
     board = chess.Board(case[1])
     root = candidate(board, case[3], case[5])
@@ -130,7 +150,9 @@ def test_a_safe_piece_escape_prevents_trapped_hypothesis():
 
 
 def test_tail_requires_exact_parent_and_retains_root_score():
-    boards, root, request, probe = prepared(CASES[0])
+    boards, root, request, probe = prepared(
+        next(case for case in CASES if case[0] == "relative_pin")
+    )
     short = root.model_copy(update={"pv": root.pv[:1]})
     tail = {**probe, "kind": "tail", "at_ply": 1}
     joined, frames = extended_line(boards[0], short, "root", [tail])

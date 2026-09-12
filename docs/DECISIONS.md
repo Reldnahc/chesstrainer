@@ -130,3 +130,9 @@ Make extra engine work an opt-in capped job, using durable tasks and separate su
 Use focused batches from Weaknesses instead of reviving lessons. Topic-selected practice is not blind recall, so persist its sessions/timing separately and never update FSRS from it. Canonical position deduplication and source-game rotation keep batches useful. Ordinary mixed Review is unchanged.
 
 Measure coverage separately from accuracy. Export stratified human-label samples with game-separated development/holdout assignment; compute precision/recall only from explicitly exhaustive human annotations. Keep uncertain labels blank and do not claim independent accuracy from synthetic-score tests or engine legality alone.
+
+## 2026-09-12: preserve blind comparisons and verify audit corrections
+
+The first assistant assessment exposed both classifier and reviewer mistakes. Preserve original annotations and predictions; record independently checked reviewer corrections in a separate adjudication artifact. Evaluate code changes against exactly the frozen evidence, and describe the result as development diagnostics. Additional native searches change evidence fingerprints and require a fresh review. A small game-separated holdout and a reviewer who wrote the rules do not establish independent accuracy.
+
+Version 3.1 tightens causal witnesses while extending supported patterns: an equal initial trade cannot become a hanging-piece diagnosis because of later losses; incidental pawn cleanup is not a defender-removal lesson; a defender that stays geometrically aligned but becomes pinned is not deflected. Trace pinned victims and released relative pins explicitly. Capturable forks with later collection and persistent relative-pin threats require bounded native defensive queries. Reduced synthetic regressions capture these cases without publishing private games.

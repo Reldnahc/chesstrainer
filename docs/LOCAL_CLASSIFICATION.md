@@ -1,14 +1,14 @@
 # Local mistake classification
 
-## Classification v3 (assessment and rollout pending)
+## Classification v3.1
 
 Saved-line inspection now extends forward from the initial 16-ply horizon by up to 16 additional plies, only when the chosen endpoint is unfinished. Audits record endpoint, extension and reason. It never substitutes an earlier favorable material balance.
 
 Specific witnesses can span a connected tactical episode (default eight plies). Checks, exchanges, and collection of newly created threats connect events; a quiet unrelated gap stops attribution. This supports forks after exchanges, nonchecking discovered attacks, two-piece double attacks, and a conservative sole-defender deflection. Immediate undefended-capture labels are not added merely because a fork later collects its target.
 
-Before/after cause witnesses identify an abandoned sole unpinned defender, an immediate unfavorable capture/recapture, and a newly created attack from the opponent's previous move that remains unanswered. The latter saves and validates the preceding position/move. These are observed events in the saved continuation, not statements about the learner's intentions. Engine comparisons and material-outcome gates still apply. Taxonomy v3 adds abandoned_defender, deflection and trapped_piece (the latter awaits targeted verification); existing opponent_threat_recognition and avoiding_bad_trades now have local witnesses.
+Before/after cause witnesses identify an abandoned sole unpinned defender, an immediate unfavorable capture/recapture, and a newly created attack from the opponent's previous move that remains unanswered. A preceding move that removes a relative pin can also make a capture effective: the witness verifies that the earlier capture would legally expose the more valuable piece behind it. These rules save and validate the preceding position/move. They describe observed events in the saved continuation, not the learner's intentions. Engine comparisons and material-outcome gates still apply. Taxonomy v3 adds abandoned_defender, deflection and trapped_piece; existing opponent_threat_recognition and avoiding_bad_trades now have local witnesses.
 
-On the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Accuracy assessment remains pending; see DEVELOPMENT_PLAN.md.
+On the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Native enrichment and a blinded assistant assessment followed. See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for measured coverage, disagreements, fixes and evaluation limits.
 
 Targeted native tests now corroborate relative pins, costly legal captures of forking pieces, and a conservative trapped-piece pattern. Geometric hypotheses remain unpublished until the matching query confirms a material gain and a compatible score in the best tested defensive continuation. A useful defensive resource, uncollected target, unsettled line or unsupported original outcome causes abstention. Trapped-piece candidates require every legal move of the piece to allow an immediate legal capture; the tested best escape must actually lose the piece. Other defensive resources and broader strategic traps remain outside this detector. Audits retain pending/confirmed/rejected check reasons and the additional analysis IDs.
 
@@ -16,28 +16,31 @@ Fieldwork uses python-chess, local Stockfish and deterministic Python rules. The
 
 ## Outcomes, patterns and practice cues
 
-Rules v2 separate three things: an observable material/mate outcome, a supported tactical mechanism, and a short practice cue. An outcome does not imply that a specific mechanism was recognized. Weaknesses and Settings show current coverage separately for outcomes and patterns. Counts overlap and are not accuracy percentages.
+Rules separate three things: an observable material/mate outcome, a supported tactical mechanism, and a short practice cue. An outcome does not imply that a specific mechanism was recognized. Weaknesses and Settings show current coverage separately for outcomes and patterns. Counts overlap and are not accuracy percentages.
 
 | Finding | Required witness |
 |---|---|
 | Allowed / missed mate | Explicit learner-perspective mate transition versus the best alternative |
 | Material loss / missed material gain | Meaningful relative evaluation loss plus different material balances at usable endpoints of both saved lines |
-| Hanging piece / missed tactical capture | Immediate capture of an undefended non-pawn with a supported net gain |
-| Fork | Newly attacks at least two valuable targets; cannot be legally captured immediately; that same piece collects a target in the line |
-| Pin | Every geometric defender of the captured target is absolutely pinned and cannot legally recapture off its pin ray |
+| Hanging piece / missed tactical capture | Initial capture of an undefended non-pawn with an immediate material gain relative to the original position and a supported gain at the endpoint; later partial compensation is permitted |
+| Fork | Newly attacks multiple valuable targets; safe forker collects a target, or a matching native test corroborates the gain despite the best legal capture of the forker |
+| Pin | Absolutely pinned defenders cannot recapture; a newly pinned victim is traced to its capture; or a verified native recapture/escape exposes a more valuable rear piece |
 | Skewer | A slider checks the king along a ray with a valuable piece behind it, then that same slider captures the rear target |
-| Removing defender | Captures the target's sole geometric defender; the next relevant actor move captures the now-undefended target |
+| Removing defender | Captures the sole geometric defender before collecting its target; excludes free captures of more valuable defenders followed by incidental pawn cleanup |
 | Back rank | Legally replayed rook/queen checkmate on the home rank, with at least two adjacent inward squares occupied by the king's own pawns |
-| Discovered attack / double attack | Uncovered check / double check in a supported material or mating line |
-| Promotion awareness | Immediate promotion with a supported material gain |
+| Discovered attack / double attack | Uncovered/double check, or an opened attack that collects its target, optionally alongside a second valuable threat |
+| Deflection | A forcing response moves the sole defender off its geometric defense before the target is collected; checking captures qualify |
+| Trapped piece | All legal moves of the attacked piece allow an immediate legal capture; the best native-tested escape actually loses it with a supported material consequence |
+| Abandoned defender / opponent threat recognition / bad trade | Validated before/after capture witnesses described above |
+| Promotion awareness | Promotion within the connected episode with a supported material gain |
 
-Pin, skewer, removal and back-rank detectors examine the first relevant action and one immediate forcing follow-up. Nonchecking discoveries/double attacks, relative pins, overloads, broad positional causes, opening habits and inferred thought processes remain outside current detector scope. A taxonomy ID alone does not mean a detector exists.
+Detectors inspect the bounded connected episode, not arbitrary later tactics. One narrow relative-pin exception follows an already attacked target across a quiet gap only while that exact target and pin persist, and requires a native escape test. Overloads, economically ineffective multiple defenders, broad positional causes, opening habits and inferred thought processes remain outside current detector scope. A taxonomy ID alone does not mean a detector exists.
 
 ## Verification and limits
 
 All PV moves are replayed and validated by python-chess. Stockfish scores retain explicit centipawn/mate types and the learner's perspective. Already-lost mate positions are not newly labeled allowed mate; retaining a slower mate is not missed mate.
 
-Material rules default to at least 150 cp relative loss, at least one material point, and at most 16 plies. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, and unchanged last-three material balances. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
+Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, and unchanged last-three material balances. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
 
 Absolute evaluation no longer gates material findings: a player can lose a piece while still winning. Small evaluation preferences and compensated material without the configured evaluation loss do not qualify. Pinned forking pieces cannot claim off-ray targets. Geometry alone never proves a training-worthy mistake.
 
@@ -57,7 +60,7 @@ Additional classification_probes rows link each tail/defense to its supplement, 
 
 Weaknesses separates tactical patterns from material/mate outcomes, shows distinct positions and independent games, provides cues, and lets the learner browse every supporting decision. **Practice N positions** starts up to 12 distinct active positions, rotating through different games where possible. Practice has its own session provenance, raw attempts/first-response time and completion timestamp. It never updates FSRS, retirement, scheduled recall counts or due dates. Reloading the app returns to mixed Review; choosing the skill again starts a new batch and can resume an unfinished practice attempt.
 
-Show why runs the shared motif detectors on the exact answer's saved continuation, not a label copied from a different move in the source game. Pattern buttons jump to the witness frame and highlight attacker, target/king and defender/blocker squares. Cues appear after answering. Supplemental classification analyses do not replace the older evidence used to grade or explain an existing answer, so an enriched classification may have more detail than that answer's playback.
+Show why runs the shared motif detectors on the exact answer's saved continuation. Pattern buttons jump to the witness frame and highlight attacker, target/king and defender/blocker squares. Cues appear after answering. Supplemental classification branches and the preceding source-game context do not replace the evidence used to grade or explain an arbitrary review answer, so an enriched classification may have more detail than that answer's playback. Source-context and defensive-query evidence remains available in the classification audit.
 
 ## Configuration and evaluation
 

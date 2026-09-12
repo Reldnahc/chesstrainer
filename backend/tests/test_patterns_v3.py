@@ -44,7 +44,7 @@ def test_connected_combination_witnesses(skill, fen, best, actual, plies, black)
     assert finding.plies == plies
     assert finding.actor == ("black" if black else "white")
     assert finding.moves == [payload["best_candidates"][0]["pv"][p - 1] for p in plies]
-    assert finding.roles and finding.rule_id.endswith(":3")
+    assert finding.roles and finding.rule_id.endswith(f":{LocalClassifier.version}")
 
 
 @pytest.mark.parametrize("black", [False, True])

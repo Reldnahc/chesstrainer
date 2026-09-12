@@ -3,7 +3,7 @@
 import chess
 
 from trainer.chess_core import VALUES, material
-from trainer.diagnosis_types import CUES, Finding
+from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
 from trainer.tactical_geometry import tactical_plies, valuable_targets
 
 
@@ -68,7 +68,7 @@ def _detect_at(
         found.append(
             Finding(
                 skill_id=skill,
-                rule_id=f"{skill}:3",
+                rule_id=f"{skill}:{RULE_VERSION}",
                 direction=direction,
                 actor="white" if actor else "black",
                 analysis_id=analysis_id,
@@ -96,12 +96,21 @@ def _detect_at(
             - material(boards[0], actor)
             + material(boards[0], not actor)
         )
+        immediate_gain = (
+            material(after, actor)
+            - material(after, not actor)
+            - material(boards[0], actor)
+            + material(boards[0], not actor)
+        )
         if (
             first == origin_first
             and captured
             and captured.piece_type != chess.PAWN
             and not before.attackers(captured.color, move.to_square)
-            and gain >= VALUES[captured.piece_type]
+            and gain > 0
+            # An equal trade followed by an unrelated lost pawn is not a hung
+            # queen. Later compensation may reduce a real initial material loss.
+            and immediate_gain > 0
         ):
             add(
                 "hanging_piece"
@@ -236,6 +245,14 @@ def _detect_at(
                     and not remaining
                     and move.to_square != follow.to_square
                     and capture_board.is_capture(follow)
+                    and (
+                        VALUES[victim.piece_type] >= VALUES[captured.piece_type]
+                        or (
+                            boards[ply].is_capture(boards[ply + 1].peek())
+                            and boards[ply + 1].peek().to_square == move.to_square
+                            and VALUES[piece.piece_type] >= VALUES[captured.piece_type]
+                        )
+                    )
                 ):
                     add(
                         "removing_defender",

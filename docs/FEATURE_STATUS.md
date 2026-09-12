@@ -9,7 +9,7 @@ Current direction: Review and local mistake classification. The user's September
 | Chess.com | Username, mode/date filters, lookback, new-game limit and resumable archives | Completed public games only; no recurring sync or exact clock/increment filter |
 | Analysis | Triage/deep passes, MultiPV, actual move at same root, deterministic facts, compatible persistent cache | Bounded engine limits can miss tactics; subtle positional causes often unexplained |
 | Jobs | Persistent queue/progress, parallel engines/local rule workers, cancellation/cache/restart | One backend process |
-| Classification | Separated outcomes/patterns/cues, pawn/exchange losses, pins, skewers, defender removal, back-rank mates plus earlier rules; exact witnesses and audits | Conservative v2; nonchecking double/discovered attacks, relative pins, overloads and strategic causes remain unsupported |
+| Classification | Adaptive saved continuations, connected combinations, before/after causes, native tests for relative pins/fork defenses/trapped pieces, separated outcomes/patterns/cues and exact audits | Conservative v3.1; overloads, economically ineffective multiple defenders and broad strategic causes remain unsupported |
 | Weaknesses | Independent-game aggregation, separate pattern/outcome coverage, cues, all supporting examples and focused practice | No calibrated diagnostic accuracy; independent human benchmark outstanding |
 | Review | Cold board, tap/drag, backend legal markers, promotion, accepted alternatives, first-failure semantics | No multi-move graded sequence; deeper lines are playback |
 | Explanations | Automatic counter on failure, Try again, deeper Show me why; Reveal move plays answer; success explanation/playback | Witness buttons and square-role highlights where supported; quiet positional explanations remain limited |
@@ -21,7 +21,7 @@ Current direction: Review and local mistake classification. The user's September
 | Settings | Validated .env, current coverage, local backfill and capped optional deeper-evidence jobs | No full settings editor; restart after edits |
 | LAN/mobile | Same-origin frontend, configurable bind, optional token, compact four-screen mobile layout, expandable filters/settings/history, accessible evidence dialog, Windows firewall helper | Private LAN product, not secured for direct public hosting |
 | Data and backups | SQLite WAL, migrations, consistent backup/restore and preserved historical audits | CLI backup only; no cloud sync |
-| Quality | Rules/engine/API/browser tests, migration preservation, read-only stratified human-label export and annotation evaluator | Independent label precision/recall and long-term improvement evaluation outstanding |
+| Quality | Rules/engine/API/browser tests, migration preservation, blinded stratified export and frozen annotation comparison; first assistant assessment with preserved adjudications | Small development assessment shares implementation context; independent human accuracy and long-term improvement evaluation outstanding |
 
 ## What no longer needs a model
 
@@ -35,4 +35,6 @@ New-game limits exclude duplicates. Reimported games do not rerun analysis. Loca
 
 See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact scope/limits, [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) for milestones and checks, and [CLASSIFICATION_RESEARCH.md](CLASSIFICATION_RESEARCH.md) for the research behind this change.
 
-The deeper-evidence job prioritizes unknown outcomes and saves supplemental analysis links separately. Completed probe keys and persisted task lists support cancellation/restart without repeating completed searches or expanding the job budget. Existing grading evidence and schedules remain unchanged.
+The deeper-evidence job prioritizes concrete pending defensive questions, then unknown outcomes and saves supplemental analysis links separately. Completed probe keys and persisted task lists support cancellation/restart without repeating completed searches or expanding the job budget. Existing grading evidence and schedules remain unchanged.
+
+See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for coverage progression and the first blinded assistant comparison.
