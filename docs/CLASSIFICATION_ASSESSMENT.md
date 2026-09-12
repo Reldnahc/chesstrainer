@@ -14,6 +14,7 @@ The fixed starting collection contains 100 games and 395 meaningful learner deci
 | v3, after 40 selected positions received native enrichment | 278 | 117 |
 | v3.1 audit corrections, using exactly the same frozen engine evidence | 278 | 127 |
 | v3.1 after a further bounded 16-position native run on the copy | 280 | 130 |
+| Live v3.1 rollout, with one 40-position native batch | 278 | 130 |
 
 The first native batch persisted 46 additional tail/defensive results alongside its best/actual root comparisons. The second batch resolved the pending defensive questions. Its changed evidence was not scored with the old annotations. No original decision analysis reference, accepted answer or review schedule was replaced. Coverage is not label accuracy: recognizing a material outcome does not establish its tactical mechanism.
 
@@ -61,3 +62,9 @@ The CLI validates evidence fingerprints, prevents mixed human/assistant cohorts,
 The reviewer also wrote the rules, so hiding predictions does not remove shared implementation assumptions. Stratification deliberately overrepresents rare patterns, and this small sample is not an estimate of population accuracy. A finite quiet continuation can still omit a later recapture, and a selected native defensive branch does not prove every possible defense fails. Some unclear cases need a chess expert's adjudication.
 
 The next quality milestone is a larger, independent human-reviewed set of unseen games, reporting each mechanism's precision/recall and reviewing abstentions as well as positive labels. Long-term learner improvement is a separate product outcome. Do not present this assessment as proof that the classifier is fully accurate.
+
+## Live rollout verification
+
+The live service reclassified all 395 meaningful decisions and completed its configured 40-position enrichment batch with no job errors. Its evidence differs from the staged copied runs above; do not compare the frozen annotations against it as though the inputs were unchanged. Final live coverage is 278 outcomes and 130 specific-pattern positions, with 117 still unclassified and ten diagnostic defensive questions awaiting additional suitable evidence or query budget. The classified-job queue has no pending work.
+
+The migration preserved every existing row in 28 tables. After reclassification/enrichment, all learning data remains unchanged: 100 games, 2,780 decisions, 395 exercises, 1,602 answer rows, 59 completed recalls, 395 SRS states and 62 review sessions. All 6,419 original engine records are intact; enrichment adds separate records. Backend/native/API suite: 195 passed. Relevant desktop/mobile browser checks: 11 passed, one phone-only case skipped on desktop. Full independent human evaluation remains a separate milestone.

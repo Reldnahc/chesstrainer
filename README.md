@@ -1,6 +1,6 @@
 # Fieldwork — local chess practice
 
-A private chess curriculum engine built around decisions in your own games. Import Chess.com history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
+A private chess trainer built around decisions in your own games. Import Chess.com history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
 
 Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. Versioned Python detectors assign labels only when their evidence conditions pass. There is no LLM integration or API-key requirement. This is a local application, not a hosted service.
 
@@ -22,7 +22,7 @@ For a requirement-by-requirement comparison with the original product specificat
 * Optional LAN token and backup/restore. Repertoire training and manual-position entry have been removed from the interface.
 
 
-* Local rules v2 separate material/mate outcomes from specific tactical patterns, including pins, skewers, defender removal and back-rank mates. Weaknesses shows coverage and every supporting example.
+* Local rules v3.1 separate material/mate outcomes from specific patterns. Adaptive continuations, connected combinations, move causes and bounded native defense tests provide auditable witnesses. Weaknesses shows coverage and every supporting example.
 * Focused practice from a weakness uses up to 12 distinct positions and saves attempts separately, without changing your FSRS schedule. Show why highlights verified tactical witnesses on the board.
 * Settings can deepen a capped batch of unclear positions using local Stockfish. Completed probes are reused; original exercise answers stay intact.
 
@@ -129,7 +129,7 @@ Username import contacts Chess.com's public API from the backend, sending the re
 
 ## Documentation
 
-[Local classification](docs/LOCAL_CLASSIFICATION.md) / [Product](docs/PRODUCT.md) · [Architecture](docs/ARCHITECTURE.md) · [Analysis](docs/ANALYSIS_PIPELINE.md) · [Curriculum](docs/CURRICULUM_ENGINE.md) · [Data model](docs/DATA_MODEL.md) · [SRS](docs/SRS.md) · [Configuration](docs/CONFIGURATION.md) · [Testing](docs/TESTING.md) · [Plan](docs/DEVELOPMENT_PLAN.md) · [Decisions](docs/DECISIONS.md)
+[Local classification](docs/LOCAL_CLASSIFICATION.md) ? [Assessment results](docs/CLASSIFICATION_ASSESSMENT.md) / [Product](docs/PRODUCT.md) · [Architecture](docs/ARCHITECTURE.md) · [Analysis](docs/ANALYSIS_PIPELINE.md) · [Curriculum](docs/CURRICULUM_ENGINE.md) · [Data model](docs/DATA_MODEL.md) · [SRS](docs/SRS.md) · [Configuration](docs/CONFIGURATION.md) · [Testing](docs/TESTING.md) · [Plan](docs/DEVELOPMENT_PLAN.md) · [Decisions](docs/DECISIONS.md)
 
 ## Forking and licensing
 
@@ -137,4 +137,4 @@ Keep authority boundaries explicit, add deterministic fixtures for chess changes
 
 Project source is GPL-3.0-or-later; see [LICENSE](LICENSE). Python-chess is GPL-licensed; Stockfish is GPLv3 and installed separately, not bundled in source. Preserve relevant license notices and source obligations when redistributing GPL components. Other libraries retain their own licenses.
 
-For a private human-labeling sample and precision/recall tooling, see [Local classification evaluation](docs/LOCAL_CLASSIFICATION.md#configuration-and-evaluation). Coverage is measured separately from accuracy.
+For blinded human/assistant annotation, frozen comparisons and reviewer provenance, see [Local classification evaluation](docs/LOCAL_CLASSIFICATION.md#configuration-and-evaluation). Coverage is measured separately from accuracy.

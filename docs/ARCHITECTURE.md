@@ -4,7 +4,7 @@ React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ own
 
 ## Boundaries
 
-Classification v3 work is staged in DEVELOPMENT_PLAN.md: adaptive continuation evidence, connected tactical witnesses, separately cached defensive probes, then a blinded offline assessment. Engine evidence and deterministic geometry remain the authorities. Assistant-assisted review is a development activity with recorded provenance; it is not an application dependency or an automatic source of labels.
+Classification v3.1 implements adaptive continuation evidence, connected tactical witnesses and separately cached defensive probes. Engine evidence and deterministic geometry remain the authorities. The first blinded offline assistant assessment and its corrections are documented in CLASSIFICATION_ASSESSMENT.md. Assistant review is a development activity with recorded provenance; it is not an application dependency or an automatic source of labels.
 
 - `chess_core.py`: python-chess rules, canonical legal-position identity, deterministic facts and explicit score types.
 - `engine.py`: native UCI lifecycle, analysis limits and compatible persistent cache; no training policy.
@@ -13,7 +13,7 @@ Classification v3 work is staged in DEVELOPMENT_PLAN.md: adaptive continuation e
 - `jobs.py`, `pipeline.py`, `work_pool.py`: ordered persistent jobs, bounded engine/classification pools, cancellation and atomic progress.
 - `local_classifier.py`: versioned tactical/consequence detectors, witness plies/squares and abstention.
 - `classification.py`: validated labels, cache identity, immutable run responses and active evidence projection.
-- `curriculum.py`, `lessons.py`: saved course aggregation/progression; development paused. New imports/classification do not rebuild courses automatically.
+- `curriculum.py`, `lessons.py`: archived course/history helpers; live lesson routes are disabled. New imports/classification do not rebuild courses.
 - `reviews.py`, `explanations.py`, `scheduling.py`, `retirement.py`: backend grading, local consequence playback, FSRS and persistent retirement.
 - `models.py`, `db.py`, `api.py`: relational persistence, migrations, HTTP contracts and production static assets.
 
@@ -40,7 +40,7 @@ Review explanation playback runs inline in the existing practice panel and suppl
 Classification upgrade plan: keep deterministic evidence extraction, tactical detectors, classification persistence and review scheduling separate. Shared line detectors supply witness frames to both local classification and explanation playback. Supplemental analysis records reference immutable engine cache entries; they do not replace exercise authority. Focused practice is a separate ReviewSession mode, while normal mixed review retains FSRS ownership.
 
 
-## Implemented classification v2 boundaries
+## Implemented classification boundaries
 
 `diagnosis_types.py` defines immutable outcomes, findings, square roles and cues. `local_classifier.py` gates decision findings using comparative engine scores and quiet material endpoints. Shared `tactical_patterns.py` recognizes concrete geometric witnesses; `explanations.py` uses it only on the selected answer's own line. `coverage.py` separates current outcomes from specific mechanisms, independently of cumulative run counts.
 
@@ -49,3 +49,7 @@ Classification upgrade plan: keep deterministic evidence extraction, tactical de
 `practice.py` selects active evidence positions across games and deduplicates legal position keys. ReviewSession.mode and focus_skill_id distinguish these attempts from mixed recall. `record_once` cannot write a Review or SRSState for a focus session. First-response timing and completion timestamps are retained separately. ReviewExplanation receives backend witness roles; the browser only renders them.
 
 `classification_quality.py` provides local CSV sampling and human-annotation metrics through the read-only report script. It never creates gold labels or calls a model. Schema migration e6294af71b35 uses additive native SQLite changes and preserves historical data.
+
+`continuations.py` owns legal replay, bounded forward endpoint selection and exact tail joins. `tactical_geometry.py`, `tactical_patterns.py`, `combination_patterns.py` and `move_causes.py` derive bounded event witnesses. `defensive_probes.py` proposes legal counterfactual queries and verifies the matched native result. `enrichment.py` owns query planning, caps and persistence through additive classification_probes links; it cannot alter original grading references or schedules.
+
+Classification schema v3 records endpoints, previous-move context, defense-check status and supporting native analysis IDs. Rule version 3.1 is shared by all detector witnesses and cache metadata. Quality tools separate human/assistant cohorts and preserve evidence fingerprints; changed native evidence cannot inherit stale annotations.

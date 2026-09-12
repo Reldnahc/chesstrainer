@@ -67,3 +67,7 @@ classification_analyses links a decision to supplemental before/actual EngineAna
 ReviewSession adds mode (review by default), nullable focus_skill_id, first response_ms and completed_at. Old sessions get neutral defaults without rebuilding the referenced table. Focus sessions retain ordinary Attempt rows and failed/revealed/completed state but create no Review and never write SRSState. Historical rows are unchanged; absent historical timing is not fabricated.
 
 Classification response schema v2 adds outcomes, abstention reasons, witness frame_ply, square roles and practice cues. Historical responses remain readable through defaults. Relational SkillEvidence remains the current projection; outcomes and mechanism findings are distinguishable by the controlled skill sets. Backups automatically include new tables and columns.
+
+## Classification schema v3 and rule version 3.1
+
+Response schema v3 adds typed continuation endpoints, defense-check diagnostics, previous-move context on relevant findings and supporting analysis IDs on findings/outcomes. JSON stores immutable diagnostic payloads; classification_probes keeps the core supplemental engine relationships queryable. Older response schemas remain readable through default fields. Rule version is distinct from response-schema version and participates in classification/probe cache identity. Migration f83a90d16c24 was verified on both the copied and live database with every row of all 28 existing tables unchanged.
