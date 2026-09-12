@@ -6,10 +6,12 @@ import pytest
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.analysis import analyze_decision
+from trainer.classification import Classification, classify_decision
 from trainer.curriculum import build_course
 from trainer.engine import Stockfish
 from trainer.exercises import exercise_from_decision, import_repertoire, manual_exercise
 from trainer.imports import identify_learner, import_games, learner_decisions
+from trainer.local_classifier import LocalClassifier
 from trainer.models import (
     CourseUnit,
     ExerciseAnswer,
@@ -18,7 +20,6 @@ from trainer.models import (
     SkillEvidence,
     SRSState,
 )
-from trainer.pedagogy import Classification, classify_decision
 from trainer.reviews import reveal, start_review, submit_move
 from trainer.scheduling import FSRSScheduler, behavior_rating
 from trainer.taxonomy import seed_skills
@@ -76,7 +77,7 @@ def test_real_engine_vertical_slice_and_persistence(settings, sessions, stockfis
                 decision = analyze_decision(db, engine, settings, game, ply, board, move)
                 if decision.meaningful:
                     meaningful.append(decision)
-                    assert classify_decision(db, decision, MockClassifier(), settings)
+                    assert classify_decision(db, decision, LocalClassifier(settings), settings)
                     exercise = exercise_from_decision(db, decision, settings, scheduler)
             assert meaningful
             assert any(d.allows_mate for d in meaningful)

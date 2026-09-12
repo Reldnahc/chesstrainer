@@ -424,7 +424,7 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
         )
 
     with TestClient(create_app(settings, chesscom_factory=factory)) as client:
-        assert not client.get("/api/health").json()["classification_available"]
+        assert client.get("/api/health").json()["classification_available"]
         job_id = client.post(
             "/api/imports/chesscom", json={"username": "learner", "months": 0}
         ).json()["job_id"]

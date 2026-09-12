@@ -46,4 +46,20 @@ def create_app():
 
         return ChessComClient(settings, transport=httpx.MockTransport(handler))
 
-    return production_app(chesscom_factory=factory)
+    app = production_app(chesscom_factory=factory)
+
+    @app.post("/__test/review-explanation-fixture/{key}")
+    def explanation_fixture(key: str):
+        from explanation_fixtures import seed_review
+
+        with app.state.sessions() as db:
+            return seed_review(db, app.state.settings, key=key)
+
+    @app.post("/__test/classified-fixture/{key}")
+    def classified_fixture(key: str):
+        from test_focused_practice import seed_classified
+
+        with app.state.sessions() as db:
+            return seed_classified(db, app.state.settings, key=key)
+
+    return app

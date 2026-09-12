@@ -89,6 +89,7 @@ class Stockfish:
         root_moves: list[str] | None = None,
         multipv: int | None = None,
         reference: EngineAnalysis | None = None,
+        classification_probe: bool = False,
     ) -> EngineAnalysis:
         with self.lock:
             self.start()
@@ -114,8 +115,18 @@ class Stockfish:
                 "adapter_version": "2",
             }
             if reference:
+                if classification_probe:
+                    raise ValueError(
+                        "A classification probe cannot change grading reference limits"
+                    )
                 for name in ("threads", "hash_mb", "depth", "time", "nodes"):
                     config[name] = reference.config[name]
+            if classification_probe:
+                config.update(
+                    depth=self.settings.classification_probe_depth,
+                    time=self.settings.classification_probe_time,
+                    nodes=None,
+                )
             key = digest(
                 {"context": engine_context(board), "engine": self.version, "config": config}
             )

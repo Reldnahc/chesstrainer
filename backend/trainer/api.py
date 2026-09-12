@@ -12,29 +12,32 @@ from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 
 from trainer.chesscom import ChessComClient, ChessComRequest
+from trainer.classification import reject_run
 from trainer.config import Settings
-from trainer.curriculum import build_course, priorities
+from trainer.coverage import coverage
+from trainer.curriculum import priorities
 from trainer.db import database, migrate
 from trainer.engine import EngineUnavailable, Stockfish
-from trainer.exercises import import_repertoire, manual_exercise
+from trainer.exercises import manual_exercise
+from trainer.explanations import MoveExplanation, explain_review
 from trainer.imports import import_games
 from trainer.jobs import JobRunner
+from trainer.local_classifier import LocalClassifier
 from trainer.models import (
     AnalysisJob,
     ChessComImport,
-    Course,
-    CourseUnit,
+    ClassificationRun,
+    ClassificationTask,
     Decision,
     EngineAnalysis,
     Exercise,
-    Lesson,
-    LLMRun,
-    Repertoire,
     Review,
+    ReviewSession,
     SkillEvidence,
-    UnitEvidence,
+    TeachingRun,
 )
-from trainer.pedagogy import OpenAIClassifier
+from trainer.practice import focus_queue
+from trainer.retirement import retire_existing
 from trainer.reviews import queue, reveal, start_review, submit_move
 from trainer.scheduling import FSRSScheduler
 from trainer.taxonomy import seed_skills
@@ -65,11 +68,12 @@ def create_app(
     settings = settings or Settings()
     sql_engine, sessions = database(settings.database_path)
     scheduler = FSRSScheduler(settings)
-    if classifier is None and settings.llm_enabled and settings.openai_api_key.get_secret_value():
-        classifier = OpenAIClassifier(settings)
+    classifier = classifier if classifier is not None else LocalClassifier(settings)
     engine = engine_factory(settings, sessions)
-    review_lock = threading.Lock()
-    mutation_lock = threading.Lock()
+    # Serialize domain mutations across review/course/import boundaries; network calls
+    # release this lock, and reentrancy permits composed course operations.
+    mutation_lock = threading.RLock()
+    review_lock = mutation_lock
     runner = JobRunner(
         settings,
         sessions,
@@ -86,6 +90,7 @@ def create_app(
         migrate(sql_engine)
         with sessions() as db:
             seed_skills(db)
+            retire_existing(db, settings)
         try:
             engine.start()
             health.update(engine_available=True, engine_error=None, engine_version=engine.version)
@@ -143,16 +148,40 @@ def create_app(
                 | health
                 | {
                     "classification_available": classifier is not None,
-                    "llm_runs": db.scalar(select(func.count()).select_from(LLMRun)),
-                    "llm_attempts": db.scalar(select(func.coalesce(func.sum(LLMRun.attempts), 0))),
-                    "llm_failed": db.scalar(
-                        select(func.count()).select_from(LLMRun).where(LLMRun.status == "failed")
+                    "coverage": coverage(db),
+                    "classification_provider": "local_rules",
+                    "classification_version": classifier.version
+                    if hasattr(classifier, "version")
+                    else "test",
+                    "classification_runs": db.scalar(
+                        select(func.count())
+                        .select_from(ClassificationRun)
+                        .where(ClassificationRun.provider == "local_rules")
                     ),
-                    "llm_input_tokens": db.scalar(
-                        select(func.coalesce(func.sum(LLMRun.input_tokens), 0))
+                    "classification_failed": db.scalar(
+                        select(func.count())
+                        .select_from(ClassificationRun)
+                        .where(
+                            ClassificationRun.provider == "local_rules",
+                            ClassificationRun.status == "failed",
+                        )
                     ),
-                    "llm_output_tokens": db.scalar(
-                        select(func.coalesce(func.sum(LLMRun.output_tokens), 0))
+                    "classification_rejected": db.scalar(
+                        select(func.count())
+                        .select_from(ClassificationRun)
+                        .where(
+                            ClassificationRun.provider == "local_rules",
+                            ClassificationRun.status == "rejected",
+                        )
+                    ),
+                    "classification_abstained": db.scalar(
+                        select(func.count())
+                        .select_from(ClassificationRun)
+                        .where(
+                            ClassificationRun.provider == "local_rules",
+                            ClassificationRun.status == "completed",
+                            ClassificationRun.confidence == 0,
+                        )
                     ),
                 }
             )
@@ -225,6 +254,13 @@ def create_app(
             return [
                 {c.name: getattr(row, c.name) for c in AnalysisJob.__table__.columns}
                 | {
+                    "probe_total": db.scalar(
+                        select(func.count())
+                        .select_from(ClassificationTask)
+                        .where(ClassificationTask.job_id == row.id)
+                    )
+                    if row.kind == "enrichment"
+                    else None,
                     "activity": runner.activity(row.id),
                     "chesscom": {
                         c.name: getattr(sources[row.id], c.name)
@@ -255,6 +291,8 @@ def create_app(
             job = db.get(AnalysisJob, job_id)
             if job is None:
                 raise HTTPException(404, "Job not found")
+            if job.kind == "teaching":
+                raise HTTPException(410, "Model teaching generation has been removed.")
             if job.status not in {"failed", "cancelled"}:
                 raise HTTPException(409, "Only failed or cancelled jobs can be retried")
             job.status, job.cancel_requested, job.error = "queued", False, None
@@ -263,10 +301,6 @@ def create_app(
 
     @app.post("/api/classifications/retry")
     def retry_classifications():
-        if classifier is None:
-            raise HTTPException(
-                503, "Configure OPENAI_API_KEY and set LLM_ENABLED=true, then restart."
-            )
         with mutation_lock, sessions() as db:
             existing = db.scalar(
                 select(AnalysisJob).where(
@@ -286,14 +320,52 @@ def create_app(
         with sessions() as db:
             return queue(db, last_id)
 
+    @app.post("/api/classifications/enrich", status_code=202)
+    def enrich_classifications():
+        with mutation_lock, sessions() as db:
+            existing = db.scalar(
+                select(AnalysisJob).where(
+                    AnalysisJob.kind == "enrichment",
+                    AnalysisJob.status.in_(["queued", "running"]),
+                )
+            )
+            if existing:
+                return {"job_id": existing.id}
+            engine.start()
+            job = AnalysisJob(kind="enrichment")
+            db.add(job)
+            db.commit()
+            return {"job_id": job.id}
+
+    @app.get("/api/practice/queue")
+    def focused_queue(skill_id: str):
+        with sessions() as db:
+            return focus_queue(db, skill_id)
+
+    def require_review_exercise(db, exercise_id):
+        exercise = db.get(Exercise, exercise_id)
+        if exercise is not None and exercise.source == "repertoire":
+            raise HTTPException(
+                410, "This repertoire position is archived. Review your game mistakes instead."
+            )
+
     @app.post("/api/review/{exercise_id}/start")
-    def begin_review(exercise_id: str):
+    def begin_review(exercise_id: str, focus_skill_id: str | None = None):
         with review_lock, sessions() as db:
-            return start_review(db, exercise_id)
+            require_review_exercise(db, exercise_id)
+            return start_review(db, exercise_id, focus_skill_id=focus_skill_id)
+
+    def require_review_session(db, session_id):
+        session = db.get(ReviewSession, session_id)
+        if session is not None:
+            require_review_exercise(db, session.exercise_id)
+        if session is not None and session.lesson_item_id is not None:
+            raise HTTPException(410, "This lesson attempt is archived. Start a position in Review.")
 
     @app.post("/api/review/sessions/{session_id}/move")
     def move(session_id: str, data: MoveRequest):
         with review_lock, sessions() as db:
+            require_review_session(db, session_id)
             return submit_move(
                 db,
                 session_id,
@@ -306,19 +378,28 @@ def create_app(
     @app.post("/api/review/sessions/{session_id}/reveal")
     def show_move(session_id: str):
         with review_lock, sessions() as db:
+            require_review_session(db, session_id)
             return reveal(db, session_id, scheduler, settings)
+
+    @app.get("/api/review/sessions/{session_id}/explanation", response_model=MoveExplanation)
+    def review_explanation(session_id: str, attempt_id: str | None = None, solution: bool = False):
+        with review_lock, sessions() as db:
+            return explain_review(db, session_id, attempt_id, solution)
 
     @app.get("/api/weaknesses")
     def weaknesses():
         with sessions() as db:
             return {
                 "skills": priorities(db, settings),
+                "coverage": coverage(db),
                 "unclassified": db.scalar(
                     select(func.count())
                     .select_from(Decision)
                     .where(
                         Decision.meaningful.is_(True),
-                        ~Decision.id.in_(select(SkillEvidence.decision_id)),
+                        ~Decision.id.in_(
+                            select(SkillEvidence.decision_id).where(SkillEvidence.active.is_(True))
+                        ),
                     )
                 ),
                 "classification_available": classifier is not None,
@@ -331,7 +412,9 @@ def create_app(
             if decision is None:
                 raise HTTPException(404, "Decision not found")
             rows = db.scalars(
-                select(SkillEvidence).where(SkillEvidence.decision_id == decision_id)
+                select(SkillEvidence).where(
+                    SkillEvidence.decision_id == decision_id, SkillEvidence.active.is_(True)
+                )
             ).all()
             return {
                 "id": decision.id,
@@ -348,84 +431,71 @@ def create_app(
                         "skill": e.skill_id,
                         "explanation": e.explanation,
                         "confidence": e.confidence,
-                        "run_id": e.llm_run_id,
+                        "run_id": e.classification_run_id,
+                        "provider": db.get(ClassificationRun, e.classification_run_id).provider,
+                        "findings": [
+                            f
+                            for f in (
+                                db.get(ClassificationRun, e.classification_run_id).response or {}
+                            ).get("findings", [])
+                            if f["skill_id"] == e.skill_id
+                        ],
                     }
                     for e in rows
                 ],
             }
 
-    @app.get("/api/llm-runs/{run_id}")
-    def llm_run(run_id: str):
+    @app.get("/api/classification-runs/{run_id}")
+    def classification_run(run_id: str):
         with sessions() as db:
-            run = db.get(LLMRun, run_id)
+            run = db.get(ClassificationRun, run_id)
             if run is None:
                 raise HTTPException(404, "Classification run not found")
-            return {c.name: getattr(run, c.name) for c in LLMRun.__table__.columns}
+            return {c.name: getattr(run, c.name) for c in ClassificationRun.__table__.columns}
 
-    @app.get("/api/course")
-    def course():
+    @app.get("/api/course", include_in_schema=False)
+    @app.get("/api/course/revisions", include_in_schema=False)
+    @app.post("/api/course/rebuild", include_in_schema=False)
+    @app.post("/api/lessons/{lesson_id}/complete", include_in_schema=False)
+    @app.post("/api/course/units/{unit_id}/next", include_in_schema=False)
+    @app.post("/api/course/units/{unit_id}/extend", include_in_schema=False)
+    @app.post("/api/lesson-items/{item_id}/acknowledge", include_in_schema=False)
+    def archived_lessons():
+        raise HTTPException(
+            410, "Lessons have been removed. Use Review. Saved history is preserved."
+        )
+
+    @app.post("/api/classification-runs/{run_id}/reject")
+    def reject_classification(run_id: str):
+        with mutation_lock, runner.course_lock, sessions() as db:
+            result = reject_run(db, run_id)
+            return result
+
+    @app.post("/api/course/teaching")
+    def generate_lesson_teaching():
+        raise HTTPException(
+            410, "Model teaching generation has been removed. Saved lesson history is preserved."
+        )
+
+    @app.get("/api/teaching-runs/{run_id}")
+    def teaching_audit(run_id: str):
         with sessions() as db:
-            current = db.scalar(
-                select(Course).where(Course.active.is_(True)).order_by(Course.created_at.desc())
-            )
-            if current is None:
-                return {"course": None, "units": []}
-            units = db.scalars(
-                select(CourseUnit)
-                .where(CourseUnit.course_id == current.id)
-                .order_by(CourseUnit.ordinal)
-            ).all()
-            data = []
-            for unit in units:
-                decision_ids = db.scalars(
-                    select(SkillEvidence.decision_id)
-                    .join(UnitEvidence)
-                    .where(UnitEvidence.unit_id == unit.id)
-                ).all()
-                exercise_ids = db.scalars(
-                    select(Exercise.id).where(Exercise.decision_id.in_(decision_ids))
-                ).all()
-                lessons = db.scalars(
-                    select(Lesson).where(Lesson.unit_id == unit.id).order_by(Lesson.ordinal)
-                ).all()
-                data.append(
-                    {
-                        "id": unit.id,
-                        "title": unit.title,
-                        "rationale": unit.rationale,
-                        "provisional": unit.provisional,
-                        "decision_ids": decision_ids,
-                        "exercise_ids": exercise_ids,
-                        "lessons": [
-                            {"id": lesson.id, "stage": lesson.stage, "completed": lesson.completed}
-                            for lesson in lessons
-                        ],
-                    }
-                )
+            run = db.get(TeachingRun, run_id)
+            if run is None:
+                raise HTTPException(404, "Teaching run not found")
             return {
-                "course": {
-                    "id": current.id,
-                    "title": current.title,
-                    "target_rating": current.target_rating,
-                },
-                "units": data,
+                column.name: getattr(run, column.name) for column in TeachingRun.__table__.columns
             }
 
-    @app.post("/api/course/rebuild")
-    def rebuild_course():
-        with runner.course_lock, sessions() as db:
-            result = build_course(db, settings)
-            return {"course_id": result.id if result else None}
-
-    @app.post("/api/lessons/{lesson_id}/complete")
-    def complete_lesson(lesson_id: str):
-        with sessions() as db:
-            lesson = db.get(Lesson, lesson_id)
-            if lesson is None:
-                raise HTTPException(404, "Lesson not found")
-            lesson.completed = True
+    @app.post("/api/teaching-runs/{run_id}/reject")
+    def reject_teaching(run_id: str):
+        with mutation_lock, sessions() as db:
+            run = db.get(TeachingRun, run_id)
+            if run is None:
+                raise HTTPException(404, "Teaching run not found")
+            run.status = "rejected"
             db.commit()
-            return {"completed": True}
+            return {"rejected": True}
 
     @app.post("/api/exercises/manual")
     def add_manual(data: ManualRequest):
@@ -433,32 +503,12 @@ def create_app(
             exercise = manual_exercise(db, scheduler, **data.model_dump())
             return {"id": exercise.id}
 
-    @app.get("/api/repertoires")
-    def repertoires():
-        with sessions() as db:
-            return [
-                {
-                    "id": r.id,
-                    "name": r.name,
-                    "color": "white" if r.color else "black",
-                    "exercises": db.scalar(
-                        select(func.count())
-                        .select_from(Exercise)
-                        .where(Exercise.repertoire_id == r.id)
-                    ),
-                }
-                for r in db.scalars(select(Repertoire)).all()
-            ]
-
-    @app.post("/api/repertoires")
-    async def add_repertoire(
-        file: UploadFile = File(...),
-        name: str = Form(...),
-        side: Literal["white", "black"] = Form(...),
-    ):
-        pgn = await read_pgn(file)
-        with mutation_lock, sessions() as db:
-            return import_repertoire(db, scheduler, name[:200], pgn, side == "white")
+    @app.get("/api/repertoires", include_in_schema=False)
+    @app.post("/api/repertoires", include_in_schema=False)
+    def archived_repertoires():
+        raise HTTPException(
+            410, "Repertoire training has been removed. Saved history is preserved."
+        )
 
     @app.get("/api/stats")
     def stats():

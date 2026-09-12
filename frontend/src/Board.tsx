@@ -1,8 +1,9 @@
 import { Chessboard } from 'react-chessboard';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import type { LegalMove } from './api';
 
-export default function Board({fen, orientation, legalMoves = [], disabled, onMove}: {fen: string; orientation: 'white' | 'black'; legalMoves?: LegalMove[]; disabled?: boolean; onMove?: (from: string, to: string, promotion?: string) => void}) {
+export default function Board({fen, orientation, legalMoves = [], disabled, onMove, highlights = [], roles = {}}: {fen: string; orientation: 'white' | 'black'; legalMoves?: LegalMove[]; highlights?: string[]; roles?: Record<string, string[]>; disabled?: boolean; onMove?: (from: string, to: string, promotion?: string) => void}) {
+  const boardId = 'board-' + useId().replace(/[^a-zA-Z0-9_-]/g, '');
   const [selected, setSelected] = useState<string | null>(null);
   const [promotion, setPromotion] = useState<{from: string; to: string; choices: string[]} | null>(null);
   const promotionTimer = useRef<number | undefined>(undefined);
@@ -32,12 +33,14 @@ export default function Board({fen, orientation, legalMoves = [], disabled, onMo
   }
   return <div className="board-shell">
     <Chessboard options={{
-      id: 'training-board', position: fen, boardOrientation: orientation,
+      id: boardId, position: fen, boardOrientation: orientation,
       allowDragging: interactive, animationDurationInMs: 130,
       canDragPiece: ({square}) => !!square && selectable(square),
-      darkSquareStyle: {backgroundColor: '#78917c'}, lightSquareStyle: {backgroundColor: '#e9e8d9'},
-      boardStyle: {borderRadius: '3px'},
-      squareRenderer: ({square, children}) => <div className={`board-square-content${interactive && selected === square ? ' selected' : ''}`}>
+      darkSquareStyle: {backgroundColor: 'var(--board-dark)'}, lightSquareStyle: {backgroundColor: 'var(--board-light)'},
+      darkSquareNotationStyle: {color: '#f5f6f8', fontFamily: 'var(--mono)', fontWeight: 500},
+      lightSquareNotationStyle: {color: '#35404d', fontFamily: 'var(--mono)', fontWeight: 500},
+      boardStyle: {borderRadius: '2px'},
+      squareRenderer: ({square, children}) => <div title={Object.entries(roles).filter(([, squares]) => squares.includes(square)).map(([role]) => role.replaceAll('_', ' ')).join(', ')} data-pattern-square={Object.values(roles).some(squares => squares.includes(square)) ? square : undefined} className={`board-square-content${interactive && selected === square ? ' selected' : ''}${highlights.includes(square) ? ' playback-highlight' : ''}${Object.entries(roles).filter(([, squares]) => squares.includes(square)).map(([role]) => ` pattern-${role.includes('attacker') ? 'attacker' : role.includes('defender') || role.includes('blocker') ? 'defender' : 'target'}`).join('')}`}>
         {children}
         {destinations.has(square) && <span aria-hidden="true" data-legal-destination={square}
           className={`legal-move-marker ${destinations.get(square)!.capture ? 'capture' : 'quiet'}`}/>}

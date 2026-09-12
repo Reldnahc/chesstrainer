@@ -4,7 +4,6 @@ import threading
 from sqlalchemy import select, update
 
 from trainer.chesscom import ChessComClient, ChessComError, ImportCancelled, fetch_import
-from trainer.curriculum import build_course
 from trainer.engine import Stockfish
 from trainer.models import AnalysisJob, Game, ImportGame
 from trainer.pipeline import JobPipeline
@@ -32,7 +31,7 @@ class JobRunner:
         self.import_lock = import_lock if import_lock is not None else threading.Lock()
         self.stop_event = threading.Event()
         self.claim_lock = threading.Lock()
-        self.course_lock = threading.Lock()
+        self.course_lock = self.import_lock
         self.threads = []
         self.pipeline = None
         self.active_job_id = None
@@ -99,6 +98,8 @@ class JobRunner:
         try:
             with self.sessions() as db:
                 kind = db.get(AnalysisJob, job_id).kind
+            if kind == "teaching":
+                raise ValueError("Model teaching generation has been removed")
             if kind == "chesscom":
                 # Serialize all provider traffic even when multiple analysis workers run.
                 with self.chesscom_lock:
@@ -129,13 +130,14 @@ class JobRunner:
                 db.commit()
             self.active_job_id = job_id
             self.pipeline = JobPipeline(self, job_id, engine)
-            self.pipeline.run(game_ids, classification_only=kind == "classification")
+            if kind == "enrichment":
+                self.pipeline.run_enrichment()
+            else:
+                self.pipeline.run(game_ids, classification_only=kind == "classification")
             with self.course_lock, self.sessions() as db:
                 if self.cancelled(job_id):
                     self.finish_cancel(job_id)
                     return
-                if game_ids:
-                    build_course(db, self.settings)
                 job = db.get(AnalysisJob, job_id)
                 job.status = "completed"
                 db.commit()

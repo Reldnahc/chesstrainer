@@ -16,8 +16,7 @@ def settings(tmp_path):
         triage_time=0.05,
         deep_depth=12,
         deep_time=0.2,
-        llm_enabled=False,
-        llm_workers=1,
+        classification_workers=1,
     )
 
 

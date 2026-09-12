@@ -1,25 +1,42 @@
 import { test, expect } from '@playwright/test';
 
+test('redesigned screens fit the viewport and load local fonts and favicon', async ({page}, testInfo) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
+  expect(await page.evaluate(() => document.fonts.check('14px "IBM Plex Sans"'))).toBe(true);
+  const icon = await page.locator('link[rel="icon"]').getAttribute('href');
+  const response = await page.request.get(icon!);
+  expect(response.headers()['content-type']).toContain('image/svg+xml');
+  expect(await response.text()).toContain('<svg');
+  for (const tab of ['Review', 'Import', 'Weaknesses', 'Settings']) {
+    await page.getByRole('button', {name: tab, exact: true}).click();
+    await expect(page.getByRole('button', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
+    await expect(page.locator('main h1')).toBeVisible();
+    if (tab === 'Settings') await expect(page.getByRole('heading', {name: 'Chess analysis'})).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.screenshot({path: `test-results/redesign-${testInfo.project.name}-${tab.toLowerCase()}.png`, fullPage: true});
+  }
+});
+
 test('create a curated position, fail once, solve by tapping and retain after reload', async ({page}, testInfo) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', {name: 'Make the next good move.'})).toBeVisible();
-  await page.getByRole('button', {name: 'Repertoire', exact: true}).click();
-  await page.getByText('Add a manual position', {exact: true}).click();
-  await page.getByLabel('FEN', {exact: true}).fill('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-  await page.getByLabel('Expected move(s), UCI').fill(testInfo.project.name === 'mobile' ? 'd2d4' : 'e2e4');
-  const savedPosition = page.waitForResponse(response => response.url().endsWith('/api/exercises/manual') && response.request().method() === 'POST');
-  await page.getByRole('button', {name: 'Validate & add position'}).click();
-  const exerciseId = (await (await savedPosition).json()).id;
-  await expect(page.getByRole('status')).toHaveText('Position validated and added to your review queue.');
+  await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
+  const savedPosition = await page.request.post('/api/exercises/manual', {data: {
+    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+    moves: [testInfo.project.name === 'mobile' ? 'd2d4' : 'e2e4'],
+  }});
+  expect(savedPosition.ok()).toBe(true);
+  const exerciseId = (await savedPosition.json()).id;
   await page.goto(`/?exercise=${exerciseId}`);
-  await expect(page.getByRole('heading', {name: 'Read the board.'})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Find a good move.'})).toBeVisible();
   await expect(page.getByText('Also accepted:', {exact: false})).not.toBeVisible();
   await page.screenshot({path: `test-results/${testInfo.project.name}-review.png`, fullPage: true});
   const board = page.locator('.board-shell');
   const square = (name: string) => board.locator(`[data-square="${name}"]`);
   const markers = board.locator('[data-legal-destination]');
   await square('e2').click();
-  await expect(square('e2').locator('.board-square-content')).toHaveCSS('background-color', 'rgb(226, 199, 116)');
+  await expect(square('e2').locator('.board-square-content')).toHaveCSS('background-color', 'rgb(233, 165, 105)');
   await expect(markers).toHaveCount(2);
   await expect(board.locator('[data-legal-destination="e4"]')).toBeVisible();
   await square('e2').click();
@@ -29,16 +46,20 @@ test('create a curated position, fail once, solve by tapping and retain after re
   await expect(board.locator('[data-legal-destination="e4"]')).toHaveCount(0);
   await square('d5').click();
   await expect(markers).toHaveCount(0);
-  await expect(page.getByRole('button', {name: 'Show move'})).toBeVisible();
+  await expect(page.getByRole('button', {name: 'Reveal move'})).toBeVisible();
   await square('g1').click(); await square('f3').click();
   await expect(page.getByRole('status').filter({hasText: 'Try again'})).toContainText('Try again');
-  await expect(page.getByRole('button', {name: 'Show move'})).toBeVisible();
+  await expect(page.getByRole('button', {name: 'Reveal move'})).toBeVisible();
   await page.reload();
-  await expect(page.getByRole('heading', {name: 'Read the board.'})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Find a good move.'})).toBeVisible();
   const file = testInfo.project.name === 'mobile' ? 'd' : 'e';
   await square(`${file}2`).click(); await square(`${file}4`).click();
   await expect(page.getByText('Solved. This recall stays marked for relearning.')).toBeVisible();
-  await page.getByRole('button', {name: 'Next position'}).click();
+  await expect(page.getByRole('status').filter({hasText: 'Progress saved.'})).toContainText('Next review:');
+  expect(new URL(page.url()).searchParams.has('exercise')).toBe(false);
+  const nextQueue = page.waitForResponse(r => r.url().includes('/api/review/queue'));
+  await page.reload();
+  expect((await (await nextQueue).json()).map((item: {exercise_id: string}) => item.exercise_id)).not.toContain(exerciseId);
   await expect(page.getByText('Solved. This recall stays marked for relearning.')).not.toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
@@ -63,15 +84,13 @@ test('PGN upload form imports a learner game and reports real analysis', async (
 
 test('promotion choice and drag interaction are graded by the backend', async ({page}, testInfo) => {
   await page.goto('/');
-  await page.getByRole('button', {name: 'Repertoire', exact: true}).click();
-  await page.getByText('Add a manual position', {exact: true}).click();
-  await page.getByLabel('FEN', {exact: true}).fill('4k3/P7/8/8/8/8/8/4K3 w - - 0 1');
-  await page.getByLabel('Expected move(s), UCI').fill('a7a8n');
-  const saved = page.waitForResponse(r => r.url().endsWith('/api/exercises/manual') && r.request().method() === 'POST');
-  await page.getByRole('button', {name: 'Validate & add position'}).click();
-  const id = (await (await saved).json()).id;
+  const saved = await page.request.post('/api/exercises/manual', {data: {
+    fen: '4k3/P7/8/8/8/8/8/4K3 w - - 0 1', moves: ['a7a8n'],
+  }});
+  expect(saved.ok()).toBe(true);
+  const id = (await saved.json()).id;
   await page.goto('/?exercise=' + id);
-  await expect(page.getByRole('heading', {name: 'Read the board.'})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Find a good move.'})).toBeVisible();
   const board = page.locator('.board-shell');
   const source = board.locator('[data-square="a7"]');
   const target = board.locator('[data-square="a8"]');
@@ -128,6 +147,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   await page.getByLabel('Maximum new games').fill('25');
   const endDate = new Date().toISOString().slice(0, 10);
   const startDate = endDate.slice(0, 7) + '-01';
+  await page.getByText('Custom date range', {exact: true}).click();
   await page.getByLabel('From date').fill(startDate);
   await page.getByLabel('To date').fill(endDate);
   await expect(page.getByLabel('Look back')).toBeDisabled();
@@ -159,4 +179,459 @@ test('Chess.com missing username reports a retryable provider error', async ({pa
   await expect(job.locator('.badge')).toHaveText('failed', {timeout: 10000});
   await expect(job).toContainText('not found');
   await expect(job.getByRole('button', {name: 'Retry saved work'})).toBeVisible();
+});
+
+
+test('removed lesson links return to Review without starting a lesson', async ({page}) => {
+  const requests: string[] = [];
+  page.on('request', request => {if (request.url().includes('/api/course')) requests.push(request.url());});
+  await page.goto('/?unit=archived-unit');
+  await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
+  await expect(page.getByRole('navigation').getByRole('button')).toHaveCount(4);
+  await expect(page.getByRole('button', {name: 'Course', exact: true})).toHaveCount(0);
+  expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
+  expect(requests).toEqual([]);
+  await expect(page.getByRole('button', {name: 'Repertoire', exact: true})).toHaveCount(0);
+  await expect(page.getByText('Add a manual position', {exact: true})).toHaveCount(0);
+  expect((await page.request.get('/api/repertoires')).status()).toBe(410);
+  expect((await page.request.post('/api/repertoires')).status()).toBe(410);
+  expect((await page.request.post('/api/course/rebuild')).status()).toBe(410);
+});
+
+
+test('phone reviews keep board and next action in view through retries and details', async ({page}, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'Phone viewport regression');
+  for (const size of [{width: 390, height: 700}, {width: 375, height: 600}, {width: 360, height: 640}]) {
+    await page.setViewportSize(size);
+    const response = await page.request.post('/api/exercises/manual', {data: {
+      fen: '4k3/8/8/8/8/8/4P3/4K3 w - - 0 1', moves: ['e2e4'],
+      explanation: 'A detailed explanation. '.repeat(60),
+    }});
+    const {id} = await response.json();
+    await page.goto(`/?exercise=${id}`);
+    const board = page.locator('.board-shell');
+    const square = (name: string) => board.locator(`[data-square="${name}"]`);
+    const fits = async (action: string) => {
+      await expect(page.getByRole('button', {name: action, exact: true})).toBeInViewport({ratio: 1});
+      await expect(board).toBeInViewport({ratio: 1});
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    };
+    await fits('Reveal move');
+    await square('e2').tap(); await square('e3').tap();
+    await expect(page.getByRole('status').filter({hasText: 'Try again'})).toBeVisible();
+    await fits('Reveal move');
+    await square('e2').tap(); await square('e4').tap();
+    await expect(page.getByRole('button', {name: 'Next position', exact: true})).toBeVisible();
+    await fits('Next position');
+    await page.screenshot({path: `test-results/review-phone-${size.width}-${size.height}.png`});
+    await page.getByText('Answer & review details', {exact: true}).click();
+    await expect(page.getByText('A detailed explanation.', {exact: false})).toBeVisible();
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.getByRole('button', {name: 'Next position', exact: true}).click();
+    await expect(page.locator('.loading')).toHaveCount(0);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  }
+});
+
+
+test('retired review feedback replaces the next due date', async ({page}) => {
+  const response = await page.request.post('/api/exercises/manual', {data: {
+    fen: '4k3/8/8/8/8/8/4P3/3K4 w - - 0 1', moves: ['e2e4'],
+  }});
+  const {id} = await response.json();
+  // Contract-only UI fixture; backend retirement is tested through persisted API recalls.
+  await page.route('**/api/review/sessions/*/move', async route => {
+    const response = await route.fetch();
+    const result = await response.json();
+    await route.fulfill({response, json: {...result, retired: true, retired_interval_days: 163, next_due: null}});
+  });
+  await page.goto(`/?exercise=${id}`);
+  const board = page.locator('.board-shell');
+  await board.locator('[data-square="e2"]').click();
+  await board.locator('[data-square="e4"]').click();
+  await expect(page.getByRole('heading', {name: 'Position retired.'})).toBeVisible();
+  await expect(page.getByRole('status').filter({hasText: 'Progress saved.'})).toContainText('Retired from future reviews.');
+  await expect(page.getByText('Next review:', {exact: false})).toHaveCount(0);
+  await expect(page.getByRole('button', {name: 'Next position'})).toBeVisible();
+});
+
+
+test('wrong-answer feedback stays steady while checking and retrying', async ({page}, testInfo) => {
+  if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 375, height: 600});
+  const response = await page.request.post('/api/exercises/manual', {data: {
+    fen: '3k4/8/8/8/8/8/4P3/4K3 w - - 0 1', moves: ['e2e4'],
+  }});
+  const {id} = await response.json();
+  let release = () => {};
+  let requested = () => {};
+  let gate = Promise.resolve();
+  let arrived = Promise.resolve();
+  function hold() {
+    gate = new Promise<void>(resolve => {release = resolve;});
+    arrived = new Promise<void>(resolve => {requested = resolve;});
+  }
+  await page.route('**/api/review/sessions/*/move', async route => {
+    const response = await route.fetch();
+    requested();
+    await gate;
+    await route.fulfill({response});
+  });
+  await page.goto(`/?exercise=${id}`);
+  const board = page.locator('.board-shell');
+  const action = page.getByRole('button', {name: 'Reveal move', exact: true});
+  await expect(action).toBeEnabled();
+  const baseline = await action.boundingBox();
+  const originalBoard = await board.boundingBox();
+  const beforeReviews = (await (await page.request.get('/api/stats')).json()).reviews;
+  await expect(board).toHaveCSS('outline-style', 'none');
+  for (let attempt = 0; attempt < 2; attempt++) {
+    hold();
+    await board.locator('[data-square="e2"]').click();
+    await board.locator('[data-square="e3"]').click();
+    await arrived;
+    try {
+      await expect(page.getByRole('status').filter({hasText: 'Checking your move'})).toBeVisible();
+      await expect(board).toHaveCSS('outline-style', 'none');
+      expect((await action.boundingBox())!.y).toBeCloseTo(baseline!.y, 0);
+      await expect(page.getByRole('status').filter({hasText: 'Try again'})).toHaveCount(0);
+      if (testInfo.project.name === 'mobile') await expect(board).toBeInViewport({ratio: 1});
+    } finally {release();}
+    await expect(action).toBeEnabled();
+    await expect(page.getByRole('status').filter({hasText: 'Mistake. Try again.'})).toBeVisible();
+    await expect(board).toHaveCSS('outline-color', 'rgb(255, 98, 120)');
+    await expect(board).toHaveCSS('outline-width', '3px');
+    expect(await board.boundingBox()).toEqual(originalBoard);
+    expect(await board.evaluate(element => getComputedStyle(element, '::after').pointerEvents)).toBe('none');
+    expect((await action.boundingBox())!.y).toBeCloseTo(baseline!.y, 0);
+    await expect(board.locator('[data-square="e2"] [data-piece="wP"]')).toBeVisible();
+    await expect(board.locator('[data-square="e3"] [data-piece="wP"]')).toHaveCount(0);
+  }
+  await page.screenshot({path: `test-results/wrong-answer-stable-${testInfo.project.name}.png`});
+  await board.locator('[data-square="e2"]').click();
+  await board.locator('[data-square="e4"]').click();
+  await expect(page.getByRole('heading', {name: 'Good decision.'})).toBeVisible();
+  await expect(board).toHaveCSS('outline-style', 'none');
+  expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(beforeReviews + 1);
+});
+
+
+test('fast wrong answers never flash a loading message', async ({page}) => {
+  await page.clock.install();
+  await page.clock.pauseAt(new Date());
+  const response = await page.request.post('/api/exercises/manual', {data: {
+    fen: '2k5/8/8/8/8/8/4P3/4K3 w - - 0 1', moves: ['e2e4'],
+  }});
+  const {id} = await response.json();
+  await page.goto(`/?exercise=${id}`);
+  const board = page.locator('.board-shell');
+  const action = page.getByRole('button', {name: 'Reveal move', exact: true});
+  await expect(action).toBeEnabled();
+  await page.evaluate(() => {
+    const seen: string[] = [];
+    const target = document.querySelector('.practice-panel')!;
+    new MutationObserver(() => seen.push(target.textContent || '')).observe(target, {childList: true, subtree: true, characterData: true});
+    (window as unknown as {feedbackSeen: string[]}).feedbackSeen = seen;
+  });
+  await board.locator('[data-square="e2"]').click();
+  await board.locator('[data-square="e3"]').click();
+  await expect(page.getByRole('status').filter({hasText: 'Try again'})).toBeVisible();
+  await expect(action).toBeEnabled();
+  // Let any mistakenly surviving loading timer fire after the response.
+  await page.clock.runFor(500);
+  expect(await page.evaluate(() => (window as unknown as {feedbackSeen: string[]}).feedbackSeen.some(text => text.includes('Checking your move')))).toBe(false);
+  await expect(page.getByRole('status').filter({hasText: 'Try again'})).toBeVisible();
+});
+
+
+test('review explanations replay the submitted move and return without another recall', async ({page}, testInfo) => {
+  if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 375, height: 600});
+  const fixture = await (await page.request.post(`/__test/review-explanation-fixture/playback-${testInfo.project.name}`)).json();
+  const before = await (await page.request.get('/api/stats')).json();
+  await page.goto(`/?exercise=${fixture.exercise_id}`);
+  const board = page.locator('main .board-shell');
+  const play = async (uci: string) => {
+    await board.locator(`[data-square="${uci.slice(0,2)}"]`).click();
+    await board.locator(`[data-square="${uci.slice(2,4)}"]`).click();
+  };
+  await expect(page.getByRole('button', {name: "Show me why"})).toHaveCount(0);
+  await play(fixture.wrong);
+  await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
+  await expect(board.locator('[data-square="a1"] [data-piece="bQ"]')).toBeVisible();
+  await expect(board.locator('[data-square="a1"] [data-piece="wR"]')).toHaveCount(0);
+  await expect(page.getByRole('button', {name:'Try again', exact:true})).toBeInViewport({ratio: 1});
+  await expect(page.getByRole('button', {name:'Show me why', exact:true})).toBeInViewport({ratio: 1});
+  await expect(board).toHaveCSS('outline-color', 'rgb(255, 98, 120)');
+  await page.screenshot({path:`test-results/counter-reply-${testInfo.project.name}.png`});
+  await page.getByRole('button', {name:'Try again', exact:true}).click();
+  await expect(board).toHaveCSS('outline-style', 'none');
+  await expect(board.locator('[data-square="g1"] [data-piece="wK"]')).toBeVisible();
+  await expect(board.locator('[data-square="a1"] [data-piece="wR"]')).toBeVisible();
+  await play(fixture.wrong);
+  await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
+  const originalBoard = await board.boundingBox();
+  const originalHeader = await page.locator('header').boundingBox();
+  await page.getByRole('button', {name: "Show me why"}).click();
+  const dialog = page.getByRole('region', {name: 'Move explanation'});
+  await expect(dialog.getByText('In this line, White loses 5 points of material.', {exact: true})).toBeVisible();
+  await expect(board.locator('[data-square="f1"] [data-piece="wK"]')).toBeVisible();
+  await expect(dialog.locator('.explanation-caption')).toContainText("capturing White's rook");
+  await expect(board.locator('[data-square="a1"] .playback-highlight')).toBeVisible();
+  await expect(board).toBeInViewport({ratio: 1});
+  const returnButton = dialog.getByRole('button', {name: 'Back to attempt'});
+  await expect(returnButton).toBeInViewport({ratio: 1});
+  const shownBoard = await board.boundingBox();
+  expect(shownBoard).toEqual(originalBoard);
+  await expect(board).toHaveCSS('outline-style', 'none');
+  expect(await page.locator('header').boundingBox()).toEqual(originalHeader);
+  await expect(page.locator('.board-shell')).toHaveCount(1);
+  if (testInfo.project.name === 'mobile') expect((await returnButton.boundingBox())!.y).toBeGreaterThan(shownBoard!.y + shownBoard!.height);
+  await expect(board.locator('[data-square="a1"] [data-piece="bQ"]')).toBeVisible();
+  await page.screenshot({path:`test-results/review-explanation-${testInfo.project.name}.png`});
+  await dialog.getByRole('button', {name: 'Previous move', exact: true}).click();
+  await expect(dialog.locator('.explanation-caption')).toContainText('White plays Kf1');
+  await dialog.getByRole('button', {name: 'Back to attempt'}).click();
+  await expect(dialog).toHaveCount(0);
+  await expect(board.locator('[data-square="g1"] [data-piece="wK"]')).toBeVisible();
+  await expect(page.getByRole('status').filter({hasText:'Try again'})).toBeVisible();
+  expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before.reviews + 1);
+  await page.reload();
+  await page.getByRole('button', {name: "Show me why"}).click();
+  await expect(dialog.getByText('In this line, White loses 5 points of material.', {exact: true})).toBeVisible();
+  await dialog.getByRole('button', {name:'Back to attempt'}).click();
+  await play(fixture.alternative);
+  await expect(page.locator('.review-move')).toHaveText('Bxa5');
+  await expect(page.getByRole('button', {name:'Next position'})).toBeInViewport({ratio: 1});
+  await page.getByRole('button', {name:'Show why', exact:true}).click();
+  await expect(dialog.getByText('In this line, White gains 9 points of material.', {exact:true})).toBeVisible();
+  await expect(board.locator('[data-square="a5"] [data-piece="wB"]')).toBeVisible();
+  const backToReview = dialog.getByRole('button', {name:'Back to review'});
+  await expect(backToReview).toBeInViewport({ratio: 1});
+  const successBoard = await board.boundingBox();
+  if (testInfo.project.name === 'mobile') expect((await backToReview.boundingBox())!.y).toBeGreaterThan(successBoard!.y + successBoard!.height);
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
+  expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before.reviews + 1);
+});
+
+
+test('Reveal move plays the answer on the main board after a failed counter preview', async ({page}, testInfo) => {
+  const fixture = await (await page.request.post(`/__test/review-explanation-fixture/reveal-${testInfo.project.name}`)).json();
+  const before = await (await page.request.get('/api/stats')).json();
+  await page.goto(`/?exercise=${fixture.exercise_id}`);
+  const board = page.getByRole('region', {name: 'Chess position'});
+  await board.locator('[data-square="g1"]').click();
+  await board.locator('[data-square="f1"]').click();
+  await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
+  await page.getByRole('button', {name: 'Try again', exact: true}).click();
+  await page.getByRole('button', {name: 'Reveal move', exact: true}).click();
+  await expect(page.getByRole('heading', {name: 'Move revealed.'})).toBeVisible();
+  await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
+  await expect(board.locator('[data-square="a5"] [data-piece="bQ"]')).toHaveCount(0);
+  await expect(board.locator('[data-square="a1"] [data-piece="wR"]')).toHaveCount(0);
+  await expect(board.locator('[data-square="a5"] .playback-highlight')).toBeVisible();
+  await expect(board.locator('[data-square="a1"] .playback-highlight')).toBeVisible();
+  await page.getByRole('button', {name: 'Show why', exact: true}).click();
+  const dialog = page.getByRole('region', {name: 'Move explanation'});
+  await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
+  await dialog.getByRole('button', {name: 'Back to review'}).click();
+  await expect(board.locator('[data-square="a5"] [data-piece="wR"]')).toBeVisible();
+  expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before.reviews + 1);
+});
+
+
+test('local classification settings and evidence work without model connectivity', async ({page}, testInfo) => {
+  const imported = await (await page.request.post('/api/imports', {multipart: {
+    file: {name:'local-classification.pgn', mimeType:'text/plain', buffer:Buffer.from(`[Round "Local rules ${testInfo.project.name}"]\n[White "Rule Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1`)},
+    usernames:'Rule Learner', side:'auto',
+  }})).json();
+  await expect.poll(async () => (await (await page.request.get('/api/jobs')).json()).find((j:{id:string}) => j.id === imported.job_id)?.status, {timeout:30000}).toBe('completed');
+  await page.goto('/');
+  await page.getByRole('button', {name:'Settings', exact:true}).click();
+  await expect(page.getByRole('heading', {name:'Local mistake classification'})).toBeVisible();
+  await expect(page.getByRole('button', {name:'Classify saved games'})).toBeVisible();
+  await expect(page.getByText('API key', {exact:true})).toHaveCount(0);
+  const config = await (await page.request.get('/api/settings')).json();
+  expect(config.classification_provider).toBe('local_rules');
+  expect(config.openai_model).toBeUndefined();
+  await page.getByRole('button', {name:'Weaknesses', exact:true}).click();
+  const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name:'Allowed mate', exact:true})});
+  await weakness.getByText(/Browse supporting positions/).click();
+  await weakness.getByRole('button', {name:'Example 1', exact:true}).click();
+  const dialog = page.getByRole('dialog', {name:'Decision evidence'});
+  await expect(dialog.getByText('LOCAL RULE FINDING', {exact:true})).toBeVisible();
+  await dialog.getByRole('button', {name:'View classification audit'}).first().click();
+  await expect(dialog.locator('.audit')).toContainText('local_rules');
+  await expect(dialog.locator('.audit')).toContainText('allowed_opponent_tactic');
+  expect(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await dialog.evaluate(element => {element.scrollTop = element.scrollHeight;});
+  await expect(dialog.getByRole('button', {name: 'Close evidence'})).toBeInViewport({ratio: 1});
+  await page.screenshot({path: `test-results/evidence-${testInfo.project.name}.png`});
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(weakness.getByRole('button', {name:'Example 1', exact:true})).toBeFocused();
+});
+
+
+test('compact workspace keeps navigation reachable and secondary settings expandable', async ({page}, testInfo) => {
+  await page.goto('/');
+  if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 390, height: 700});
+  for (const tab of ['Import', 'Weaknesses', 'Settings']) {
+    await page.getByRole('navigation').getByRole('button', {name: tab, exact: true}).click();
+    await expect(page.locator('main h1')).toHaveText(tab === 'Import' ? 'Import games' : tab);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    if (testInfo.project.name === 'mobile') {
+      expect((await page.locator('header').boundingBox())!.height).toBeLessThanOrEqual(60);
+      await expect(page.locator('main h1')).toHaveCSS('font-size', '22px');
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      expect((await page.getByRole('navigation').boundingBox())!.y).toBeGreaterThanOrEqual(0);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  await expect(page.getByText('Engine path', {exact: true})).not.toBeVisible();
+  await page.getByText('Engine configuration', {exact: true}).click();
+  await expect(page.getByText('Engine path', {exact: true})).toBeVisible();
+  await page.getByText('Storage & connection', {exact: true}).click();
+  await expect(page.getByText('Database', {exact: true})).toBeVisible();
+  await page.getByRole('navigation').getByRole('button', {name: 'Import', exact: true}).click();
+  await expect(page.getByLabel('From date')).not.toBeVisible();
+  await page.getByText('Custom date range', {exact: true}).click();
+  await page.getByLabel('From date').fill('2026-01-01');
+  await expect(page.getByLabel('Look back')).toBeDisabled();
+  await page.getByRole('button', {name: 'Clear dates', exact: true}).click();
+  await expect(page.getByLabel('Look back')).toBeEnabled();
+  await expect(page.getByLabel('From date')).toHaveValue('');
+  if (testInfo.project.name === 'mobile') {
+    for (const width of [320, 360, 390, 430]) {
+      await page.setViewportSize({width, height: 700});
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
+  }
+});
+
+
+test('explanation loading and errors keep the header and original board in place', async ({page}, testInfo) => {
+  if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 375, height: 600});
+  const fixture = await (await page.request.post(`/__test/review-explanation-fixture/stable-${testInfo.project.name}`)).json();
+  await page.goto(`/?exercise=${fixture.exercise_id}`);
+  await page.getByRole('button', {name: 'Reveal move', exact: true}).click();
+  const board = page.locator('.board-shell');
+  await expect(page.getByRole('heading', {name: 'Move revealed.'})).toBeVisible();
+  const boardBefore = await board.boundingBox();
+  const headerBefore = await page.locator('header').boundingBox();
+  const titleBefore = await page.locator('.page-title').boundingBox();
+  await board.evaluate(element => element.setAttribute('data-preserved', 'yes'));
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => {release = resolve;});
+  await page.route('**/api/review/sessions/*/explanation?*', async route => {
+    await gate;
+    await route.fulfill({status: 503, contentType: 'application/json', body: JSON.stringify({detail: 'Saved explanation temporarily unavailable.'})});
+  });
+  const before = await (await page.request.get('/api/stats')).json();
+  await page.getByRole('button', {name: 'Show why', exact: true}).click();
+  const playback = page.getByRole('region', {name: 'Move explanation'});
+  await expect(playback.getByRole('status')).toContainText('Loading');
+  const stable = async () => {
+    await expect(page.locator('.board-shell')).toHaveCount(1);
+    await expect(board).toHaveAttribute('data-preserved', 'yes');
+    expect(await board.boundingBox()).toEqual(boardBefore);
+    expect(await page.locator('header').boundingBox()).toEqual(headerBefore);
+    expect(await page.locator('.page-title').boundingBox()).toEqual(titleBefore);
+    await expect(page.getByRole('navigation')).toBeInViewport({ratio: 1});
+  };
+  await stable();
+  release();
+  await expect(playback.getByRole('alert')).toContainText('temporarily unavailable');
+  await stable();
+  await page.keyboard.press('Escape');
+  await expect(playback).toHaveCount(0);
+  await expect(page.getByRole('button', {name: 'Show why', exact: true})).toBeFocused();
+  await stable();
+  expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before.reviews);
+});
+
+
+test('an unavailable grading request never marks the board as a mistake', async ({page}) => {
+  const response = await page.request.post('/api/exercises/manual', {data: {
+    fen: '1k6/8/8/8/8/8/4P3/4K3 w - - 0 1', moves: ['e2e4'],
+  }});
+  const {id} = await response.json();
+  await page.goto(`/?exercise=${id}`);
+  await page.route('**/api/review/sessions/*/move', route => route.fulfill({
+    status: 503, contentType: 'application/json', body: JSON.stringify({detail: 'Analysis unavailable. Please retry.'}),
+  }));
+  const before = (await (await page.request.get('/api/stats')).json()).reviews;
+  const board = page.locator('.board-shell');
+  await board.locator('[data-square="e2"]').click();
+  await board.locator('[data-square="e3"]').click();
+  await expect(page.getByRole('alert')).toContainText('Analysis unavailable');
+  await expect(board).toHaveCSS('outline-style', 'none');
+  await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toHaveCount(0);
+  expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before);
+});
+
+
+test('playback shows a repeated summary and move annotation only once', async ({page}, testInfo) => {
+  const fixture = await (await page.request.post(`/__test/review-explanation-fixture/duplicate-${testInfo.project.name}`)).json();
+  await page.goto(`/?exercise=${fixture.exercise_id}`);
+  await expect(page.getByRole('button', {name: 'Reveal move', exact: true})).toBeVisible();
+  await expect(page.getByRole('button', {name: 'Show move', exact: true})).toHaveCount(0);
+  let repeated = '';
+  await page.route('**/api/review/sessions/*/explanation?*', async route => {
+    const response = await route.fetch();
+    const payload = await response.json();
+    repeated = payload.frames[2].annotation;
+    payload.summary = repeated;
+    await route.fulfill({response, json: payload});
+  });
+  const board = page.locator('.board-shell');
+  await board.locator(`[data-square="${fixture.wrong.slice(0, 2)}"]`).click();
+  await board.locator(`[data-square="${fixture.wrong.slice(2, 4)}"]`).click();
+  await expect(page.getByRole('button', {name: 'Try again', exact: true})).toBeVisible();
+  await page.getByRole('button', {name: 'Show me why', exact: true}).click();
+  const playback = page.getByRole('region', {name: 'Move explanation'});
+  await expect(playback.locator('.explanation-caption')).toContainText('capturing');
+  await expect(playback.getByText(repeated, {exact: true})).toHaveCount(1);
+  await expect(playback.locator('.explanation-summary')).toHaveCount(0);
+  await playback.getByRole('button', {name: 'Previous move', exact: true}).click();
+  await expect(playback.locator('.explanation-summary')).toHaveText(repeated);
+  await expect(playback.locator('.explanation-caption')).toContainText('White plays');
+  await playback.getByRole('button', {name: 'Next move', exact: true}).click();
+  await expect(playback.getByText(repeated, {exact: true})).toHaveCount(1);
+  await expect(playback.locator('.explanation-summary')).toHaveCount(0);
+});
+
+
+test('focused practice highlights a verified pattern without scheduling a recall', async ({page}, testInfo) => {
+  const fixture = await (await page.request.post(`/__test/classified-fixture/focus-${testInfo.project.name}`)).json();
+  await page.goto('/');
+  await page.getByRole('navigation').getByRole('button', {name: 'Weaknesses', exact: true}).click();
+  await expect(page.getByText('mistakes have a specific tactical pattern.', {exact: false})).toBeVisible();
+  const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
+  const before = (await (await page.request.get('/api/stats')).json()).reviews;
+  await weakness.getByRole('button', {name: /Practice .* positions/}).click();
+  await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
+  await expect(page.getByText('practiced this session', {exact: true})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
+  await page.getByRole('button', {name: 'Reveal move', exact: true}).click();
+  await expect(page.getByText('Focused practice. Your review schedule is unchanged.')).toBeVisible();
+  const board = page.locator('.board-shell');
+  const box = await board.boundingBox();
+  await page.getByRole('button', {name: 'Show why', exact: true}).click();
+  await page.getByRole('button', {name: 'Show undefended capture', exact: true}).click();
+  await expect(board.locator('[data-pattern-square]')).toHaveCount(2);
+  await expect(board.locator('[data-pattern-square="a5"]')).toBeVisible();
+  await expect(board.locator('[data-square="a5"] [data-piece="bQ"]')).toBeVisible();
+  await expect(board.locator('[data-square="a1"] [data-piece="wR"]')).toBeVisible();
+  expect(await board.boundingBox()).toEqual(box);
+  await expect(page.getByText('Next time:', {exact: false})).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({path: `test-results/pattern-${testInfo.project.name}.png`, fullPage: true});
+  await page.getByRole('button', {name: 'Back to review', exact: true}).click();
+  await expect(board.locator('[data-pattern-square]')).toHaveCount(0);
+  expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before);
+  await page.getByRole('button', {name: 'Return to mixed review', exact: true}).click();
+  await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toHaveCount(0);
+  expect(fixture.exercise_id).toBeTruthy();
 });

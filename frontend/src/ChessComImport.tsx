@@ -36,15 +36,16 @@ export function ChessComImportForm({onQueued, fail}: {onQueued: () => void; fail
       </select></label>
       <label>Maximum new games<input type="number" min={1} max={1000} step={1} value={maxGames} onChange={e => setMaxGames(Number(e.target.value))} required/></label>
     </div>
-    <div className="import-options">
-      <label>From date<input aria-label="From date" type="date" value={startDate} max={endDate || undefined} onChange={e => setStartDate(e.target.value)}/></label>
-      <label>To date<input aria-label="To date" type="date" value={endDate} min={startDate || undefined} onChange={e => setEndDate(e.target.value)}/></label>
-    </div>
-    <p className="small import-intro">Optional dates replace Look back. Both dates include the whole day, using the game's completion time in UTC. Leave either date blank for an open-ended range.</p>
-    <p className="small import-intro">Newest unsaved games first within your filters. Saved games do not use up the limit or get analyzed again. Includes rated and unrated standard chess; recently finished games may take time to appear.</p>
+    <details className="import-extra"><summary>Custom date range{startDate || endDate ? ' (active)' : ''}</summary>
+      <div className="import-options">
+        <label>From date<input aria-label="From date" type="date" value={startDate} max={endDate || undefined} onChange={e => setStartDate(e.target.value)}/></label>
+        <label>To date<input aria-label="To date" type="date" value={endDate} min={startDate || undefined} onChange={e => setEndDate(e.target.value)}/></label>
+      </div><p className="small">Dates replace Look back and include the whole day in UTC. Leave either blank for an open-ended range.</p>
+      {(startDate || endDate) && <button type="button" className="text-button" onClick={() => {setStartDate(''); setEndDate('');}}>Clear dates</button>}
+    </details>
     <button className="primary" disabled={busy || !username.trim()}>{busy ? 'Queuing import…' : 'Fetch & analyze games'}<ArrowRight size={17}/></button>
     {message && <div role="status" className="notice">{message}</div>}
-    <p className="small muted import-intro">Your host contacts Chess.com’s public API using this username. Analysis runs locally and works with OpenAI turned off.</p>
+    <details className="import-extra"><summary>How imports work</summary><p className="small">Newest unsaved games first within your filters. Saved games do not use up the limit or get analyzed again. Includes rated and unrated standard chess; recently finished games may take time to appear.</p><p className="small">Your host contacts Chess.com's public API. Analysis and mistake classification run locally.</p></details>
   </form>;
 }
 
@@ -52,7 +53,7 @@ export function ImportJob({job, reload, fail}: {job: Job; reload: () => void; fa
   const source = job.chesscom;
   const fetching = source && !source.fetch_completed;
   return <article className="job panel">
-    <div className="row-between"><strong>{source ? `Chess.com · ${source.username}` : job.kind === 'classification' ? 'Skill classification' : 'Game analysis'}</strong><span className={`badge ${job.status}`}>{job.status}</span></div>
+    <div className="row-between"><strong>{source ? `Chess.com · ${source.username}` : job.kind === 'enrichment' ? 'Deeper classification evidence' : job.kind === 'teaching' ? 'Archived lesson summaries' : job.kind === 'classification' ? 'Skill classification' : 'Game analysis'}</strong><span className={`badge ${job.status}`}>{job.status}</span></div>
     {source && <>
       <p className="import-phase">{fetching ? 'Fetching public game archives' : 'Download complete · local analysis'}</p>
       {fetching && <progress aria-label="Archive download progress" value={source.archives_processed} max={Math.max(1, source.archives_total)}/>}
@@ -61,10 +62,12 @@ export function ImportJob({job, reload, fail}: {job: Job; reload: () => void; fa
       {source.fetch_completed && job.games_total === 0 && <p>{source.duplicates > 0 ? 'No new games found. Saved games were skipped; use Retry saved work on an earlier job to finish interrupted analysis.' : 'No matching games imported. Check the username, range and time control.'}</p>}
       {source.errors.length > 0 && <details><summary>Import issues ({source.rejected})</summary>{source.errors.map((error, index) => <p className="small" key={index}>{error.game ? `Game ${error.game}: ` : ''}{error.error}</p>)}</details>}
     </>}
-    {!fetching && <><progress aria-label="Analysis progress" value={job.games_processed} max={Math.max(1, job.games_total)}/><p>{job.games_processed} / {job.games_total} games · {job.positions_triaged} decisions</p><p className="small">{job.deep_completed} deep analyses · {job.mistakes_identified} practice-worthy moments · {job.classifications_completed} classifications</p></>}
+    {job.kind === 'teaching' && <><progress aria-label="Teaching progress" value={job.games_processed} max={Math.max(1, job.games_total)}/><p>{job.games_processed} / {job.games_total} units processed</p><p className="small">{job.classifications_completed} historical summaries. Generation has been removed.</p></>}
+    {!fetching && job.kind !== 'teaching' && job.kind !== 'enrichment' && <><progress aria-label="Analysis progress" value={job.games_processed} max={Math.max(1, job.games_total)}/><p>{job.games_processed} / {job.games_total} {job.kind === 'teaching' ? 'units' : 'games'} · {job.positions_triaged} decisions</p><p className="small">{job.deep_completed} deep analyses · {job.mistakes_identified} practice-worthy moments · {job.classifications_completed} positions classified or left unclassified</p></>}
+    {job.kind === 'enrichment' && <><progress aria-label="Deeper evidence progress" value={job.positions_triaged} max={Math.max(1, job.probe_total || 0)}/><p>{job.positions_triaged} / {job.probe_total || 0} selected positions processed</p><p className="small">Extra evidence is used for classification. Review answers and schedules stay unchanged. Cancel and retry preserve completed work.</p></>}
     {job.error && <p className="error-text">{job.error}</p>}
     {job.activity && <p className="small">Parallel work: {job.activity.games.active} game workers · {job.activity.classifications.active} classification workers · {job.activity.classifications.pending - job.activity.classifications.active} classification tasks waiting</p>}
-    {job.kind === 'classification' && <p className="small">Cancel keeps completed classifications. In-flight requests may finish first. Retry reuses saved results for the same model and evidence.</p>}
-    <div className="button-row">{['queued', 'running'].includes(job.status) && <button onClick={() => post(`/jobs/${job.id}/cancel`).then(reload).catch(fail)}>Cancel</button>}{['failed', 'cancelled'].includes(job.status) && <button onClick={() => post(`/jobs/${job.id}/retry`).then(reload).catch(fail)}>Retry saved work</button>}</div>
+    {job.kind === 'classification' && <p className="small">Cancel keeps completed work. Retry reuses saved results for the same rules, configuration and evidence.</p>}
+    <div className="button-row">{['queued', 'running'].includes(job.status) && <button onClick={() => post(`/jobs/${job.id}/cancel`).then(reload).catch(fail)}>Cancel</button>}{job.kind !== 'teaching' && ['failed', 'cancelled'].includes(job.status) && <button onClick={() => post(`/jobs/${job.id}/retry`).then(reload).catch(fail)}>Retry saved work</button>}</div>
   </article>;
 }

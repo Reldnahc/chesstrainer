@@ -11,6 +11,6 @@ export default defineConfig({
   webServer: {
     command: `"${python}" -m uvicorn browser_app:create_app --app-dir backend/tests --factory --host 127.0.0.1 --port 8765`,
     cwd: root, url: 'http://127.0.0.1:8765/api/health', reuseExistingServer: false,
-    env: {DATABASE_PATH: path.join(root, `data/ui-test-${Date.now()}.sqlite3`), LLM_ENABLED: 'false', LAN_ACCESS_TOKEN: ''},
+    env: {DATABASE_PATH: path.join(root, `data/ui-test-${Date.now()}.sqlite3`), LAN_ACCESS_TOKEN: ''},
   },
 });

@@ -45,7 +45,7 @@ No matching archives/games produces a completed import with zero games and an ex
 
 ## Privacy and configuration
 
-Only the requested username, archive paths and configured User-Agent go to Chess.com, from the host. No browser credentials or OpenAI secret are transmitted. The browser remembers the last successfully queued username in local storage. Games and learning data remain local, subject to separately enabled OpenAI classification.
+Only the requested username, archive paths and configured User-Agent go to Chess.com, from the host. No browser credentials or OpenAI secret are transmitted. The browser remembers the last successfully queued username in local storage. Games, classification and learning data remain local. Model connectivity has been removed.
 
 `CHESSCOM_TIMEOUT_SECONDS=20`, `CHESSCOM_MAX_RESPONSE_BYTES=25000000` (decompressed bytes per HTTP response), and `CHESSCOM_USER_AGENT` are centralized host settings. Default User-Agent identifies Fieldwork; users may append contact information. Runtime HTTPX is explicitly declared and pinned in the existing dependency lock.
 

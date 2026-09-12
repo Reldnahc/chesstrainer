@@ -11,11 +11,11 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.chess_core import Candidate, Score, position_key
+from trainer.classification import Classification
 from trainer.engine import EngineUnavailable, Stockfish
 from trainer.imports import import_games, learner_decisions
 from trainer.jobs import JobRunner
-from trainer.models import AnalysisJob, Decision, EngineAnalysis, Game, LLMRun
-from trainer.pedagogy import Classification
+from trainer.models import AnalysisJob, ClassificationRun, Decision, EngineAnalysis, Game
 from trainer.scheduling import FSRSScheduler
 from trainer.taxonomy import seed_skills
 
@@ -120,7 +120,7 @@ def test_llm_concurrency_cancel_and_resume_without_repeat_calls(
 ):
     settings.stockfish_path = "missing-for-classification-only"
     settings.stockfish_workers = 2
-    settings.llm_workers = 2
+    settings.classification_workers = 2
     job_id = saved_job(sessions, games, decisions)
     classifier = BlockingClassifier(2)
     with TestClient(create_app(settings, classifier=classifier)) as client:
@@ -137,7 +137,9 @@ def test_llm_concurrency_cancel_and_resume_without_repeat_calls(
         with sessions() as db:
             assert (
                 db.scalar(
-                    select(func.count()).select_from(LLMRun).where(LLMRun.status == "completed")
+                    select(func.count())
+                    .select_from(ClassificationRun)
+                    .where(ClassificationRun.status == "completed")
                 )
                 == 2
             )
@@ -229,7 +231,7 @@ def test_parallel_native_import_persists_every_decision_and_classification(
     settings, sessions, stockfish_path
 ):
     settings.stockfish_path = stockfish_path
-    settings.stockfish_workers = settings.llm_workers = 3
+    settings.stockfish_workers = settings.classification_workers = 3
     engines = []
 
     def engine_factory(*args):
@@ -271,7 +273,7 @@ def test_parallel_native_import_persists_every_decision_and_classification(
 
 def test_analysis_continues_while_model_request_is_waiting(settings, sessions, monkeypatch):
     settings.stockfish_path = "missing-fixture-engine"
-    settings.stockfish_workers = settings.llm_workers = 1
+    settings.stockfish_workers = settings.classification_workers = 1
     job_id = saved_job(sessions, games=1, kind="analysis")
     classifier = BlockingClassifier(1)
 

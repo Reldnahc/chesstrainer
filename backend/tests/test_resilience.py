@@ -1,7 +1,6 @@
 import importlib.util
 import time
 from pathlib import Path
-from types import SimpleNamespace
 
 import chess
 import pytest
@@ -10,18 +9,18 @@ from pydantic import SecretStr
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.chess_core import Candidate, Score
+from trainer.classification import Classification, classify_decision
 from trainer.exercises import manual_exercise
 from trainer.imports import import_games
 from trainer.jobs import JobRunner
 from trainer.models import (
     AnalysisJob,
+    ClassificationRun,
     Decision,
     EngineAnalysis,
     Game,
-    LLMRun,
     SkillEvidence,
 )
-from trainer.pedagogy import Classification, OpenAIClassifier, classify_decision
 from trainer.scheduling import FSRSScheduler
 from trainer.taxonomy import seed_skills
 
@@ -91,15 +90,15 @@ def test_classification_failure_retry_cache_and_evidence(settings, sessions, dec
         item = db.get(Decision, decision)
         classifier.fail = True
         assert not classify_decision(db, item, classifier, settings)
-        assert db.scalar(select(LLMRun)).status == "failed"
+        assert db.scalar(select(ClassificationRun)).status == "failed"
         assert db.get(EngineAnalysis, item.before_analysis_id)
         classifier.fail = False
         assert classify_decision(db, item, classifier, settings)
         assert classify_decision(db, item, classifier, settings)
         assert classifier.calls == 2
-        run = db.scalar(select(LLMRun))
+        run = db.scalar(select(ClassificationRun))
         assert run.attempts == 2 and run.response["decision_id"] == decision
-        assert db.scalar(select(SkillEvidence)).llm_run_id == run.id
+        assert db.scalar(select(SkillEvidence)).classification_run_id == run.id
 
 
 @pytest.mark.parametrize("confidence,wrong_id", [(0.3, False), (0.9, True)])
@@ -111,30 +110,6 @@ def test_unreliable_classification_cannot_create_skill(
     with sessions() as db:
         classify_decision(db, db.get(Decision, decision), classifier, settings)
         assert db.scalar(select(func.count()).select_from(SkillEvidence)) == 0
-
-
-def test_openai_adapter_structured_boundary(settings):
-    settings.openai_api_key = SecretStr("test-key-not-real")
-    classifier = OpenAIClassifier(settings)
-    seen = {}
-
-    def parse(**kwargs):
-        seen.update(kwargs)
-        return SimpleNamespace(
-            output_parsed=Classification(
-                decision_id="d",
-                primary_skill="unclassified",
-                secondary_skills=[],
-                confidence=0.2,
-                explanation="Insufficient evidence.",
-            ),
-            usage=None,
-        )
-
-    classifier.client = SimpleNamespace(responses=SimpleNamespace(parse=parse))
-    result, _ = classifier.classify({"decision_id": "d", "evidence_ids": ["a"]})
-    assert seen["store"] is False and seen["text_format"] is Classification
-    assert result.primary_skill == "unclassified"
 
 
 @pytest.mark.stockfish
@@ -156,7 +131,7 @@ def test_async_api_import_to_review_reload(settings, stockfish_path):
             time.sleep(0.1)
         assert job["status"] == "completed", job
         assert job["positions_triaged"] == 2 and job["mistakes_identified"] >= 1
-        assert client.get("/api/course").json()["units"]
+        assert client.get("/api/stats").json()["reviews"] == 0
         next_id = client.get("/api/review/queue").json()[0]["exercise_id"]
         session = client.post(f"/api/review/{next_id}/start").json()
         shown = client.post(f"/api/review/sessions/{session['session_id']}/reveal").json()
@@ -164,7 +139,7 @@ def test_async_api_import_to_review_reload(settings, stockfish_path):
         assert client.get("/api/stats").json()["reviews"] == 1
     with TestClient(create_app(settings, workers=False)) as client:
         assert client.get("/api/stats").json()["reviews"] == 1
-        assert client.get("/api/course").json()["units"]
+        assert client.get("/api/weaknesses").json()["skills"]
 
 
 @pytest.mark.stockfish
@@ -200,7 +175,9 @@ def test_cancel_classification_then_resume_calls_only_unfinished_evidence(
             assert job.status == "cancelled"
             assert (
                 db.scalar(
-                    select(func.count()).select_from(LLMRun).where(LLMRun.status == "completed")
+                    select(func.count())
+                    .select_from(ClassificationRun)
+                    .where(ClassificationRun.status == "completed")
                 )
                 == 1
             )
@@ -257,7 +234,6 @@ def test_backup_round_trip_has_no_secrets(settings, sessions, tmp_path):
     spec = importlib.util.spec_from_file_location("backup", Path("scripts/backup.py"))
     backup = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(backup)
-    settings.openai_api_key = SecretStr("NEVER-IN-BACKUP")
     settings.lan_access_token = SecretStr("PRIVATE-TOKEN")
     with sessions() as db:
         manual_exercise(db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white")

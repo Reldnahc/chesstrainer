@@ -5,10 +5,11 @@ import threading
 from sqlalchemy import select, update
 
 from trainer.analysis import analyze_decision
+from trainer.classification import classify_decision
+from trainer.enrichment import enrich_decision, plan_probes
 from trainer.exercises import exercise_from_decision
 from trainer.imports import learner_decisions
 from trainer.models import AnalysisJob, Decision, Game
-from trainer.pedagogy import classify_decision
 from trainer.work_pool import GameCompletion, WorkPool
 
 
@@ -24,7 +25,9 @@ class JobPipeline:
         self.games = WorkPool(
             1 if engine_override else self.settings.stockfish_workers, "chess", self.cancelled
         )
-        self.classifications = WorkPool(self.settings.llm_workers, "pedagogy", self.cancelled)
+        self.classifications = WorkPool(
+            self.settings.classification_workers, "pedagogy", self.cancelled
+        )
 
     def cancelled(self):
         return self.failed.is_set() or self.runner.cancelled(self.job_id)
@@ -75,8 +78,8 @@ class JobPipeline:
         finally:
             completion.finish(success)
 
-    def process_decision(self, db, decision, completion):
-        if decision.meaningful:
+    def process_decision(self, db, decision, completion, ensure_exercise=True):
+        if decision.meaningful and ensure_exercise:
             with self.runner.import_lock:
                 exercise_from_decision(db, decision, self.settings, self.runner.scheduler)
         self.bump(
@@ -104,7 +107,7 @@ class JobPipeline:
                     for decision in decisions:
                         if self.cancelled():
                             return
-                        self.process_decision(db, decision, completion)
+                        self.process_decision(db, decision, completion, ensure_exercise=False)
                 else:
                     game = db.get(Game, game_id)
                     for ply, board, move in learner_decisions(game):
@@ -136,6 +139,38 @@ class JobPipeline:
         errors = self.games.errors + self.classifications.errors
         if errors:
             raise errors[0]
+
+    def probe(self, task):
+        if self.cancelled():
+            return
+        if not enrich_decision(
+            self.sessions, task, self.engine(), self.runner.import_lock, self.cancelled
+        ):
+            return
+        with self.sessions() as db:
+            classified = classify_decision(
+                db,
+                task.decision_id,
+                self.runner.classifier,
+                self.settings,
+                write_lock=self.runner.import_lock,
+            )
+        self.bump(positions_triaged=1, deep_completed=1, classifications_completed=int(classified))
+
+    def run_enrichment(self):
+        try:
+            with self.runner.import_lock, self.sessions() as db:
+                tasks = plan_probes(db, self.job_id, self.settings, self.engine())
+            for task in tasks:
+                if not self.games.submit(self.probe, task):
+                    break
+        finally:
+            self.games.close()
+            self.classifications.close()
+            for engine in self.engines:
+                engine.close()
+        if self.games.errors:
+            raise self.games.errors[0]
 
     def snapshot(self):
         return {"games": self.games.snapshot(), "classifications": self.classifications.snapshot()}

@@ -48,7 +48,7 @@ Independent source-game recurrence establishes a course weakness. One example ca
 
 Exact dependency versions and compatibility results are recorded after installation/testing.
 
-## 008 ? Initial course scope (accepted)
+## 008 - Initial course scope (superseded by 018)
 Courses use deterministic priority/order and controlled titles. LLM supplies validated example classifications/explanations. Stage completion is user-marked and exercises enroll immediately in FSRS. These boundaries preserve a usable offline practice loop while richer lesson sequencing remains explicit future work.
 
 ## 009 ? Reproducible dependencies and source deployment (accepted)
@@ -62,3 +62,63 @@ Existing evidence links retain the original audit so archived course support sta
 
 ## 012 ? Backup and configuration
 The database never stores credentials. Online SQLite snapshots include WAL state; restore validates integrity and requires a new destination. Safe .env settings are included as reference JSON, with API key/LAN token values excluded. Settings UI is read-only for the initial release.
+
+## 017 - Training interface redesign
+
+Replace the original beige/green serif UI with a graphite, slate and orange visual system, IBM Plex Sans/Mono, compact navigation and a prominent board beside focused review controls. Fonts and the SVG app mark/favicon are local build assets to preserve offline use. CSS tokens also control the rendered chessboard so the theme stays consistent. Mobile keeps all six navigation destinations visible, uses stacked content and 16px form text to avoid input zoom. This is a presentation change; chess authority, grading and scheduling do not change.
+
+## 018 - Stable lesson sequences and distinct practice authority
+
+Keep an active course and stable unit identity across rebuilds. Store actual ordered lesson items and progress relationally; archive revision evidence/priority snapshots for explanation of updates. Course attempts share chess grading but never add FSRS recall events. Only new, unreviewed, unopened selected cards are withheld for course graduation; existing review history and unclassified offline practice remain available. A check uses first-attempt behavior, not a user-marked mastery checkbox.
+
+## Automatic retirement after long recall intervals
+
+User-requested policy: permanently retire a position from SRS once the calculated interval exceeds 100 days (configurable). Keep FSRS as the interval authority and persist retirement separately from eligibility, preserving all history. Use the scheduled interval, not age or time remaining. Previously saved lessons remain accessible for deliberate study but cannot reactivate a retired card. This supersedes the earlier default of indefinite occasional reviews.
+
+## Exact-attempt explanation authority
+
+Review explanations follow the submitted UCI and its saved engine candidate, including accepted alternatives. Reuse verified playback mechanics independently of lessons. Deterministic event captions and material/mate summaries provide both positive and negative explanations without paid OpenAI calls. Avoid inferring positional causes from a score or claiming that a single PV forces every reply. Use an explicit latest-attempt relationship rather than guessing from timestamps after reload. Keep explanation requests read-only and separate from SRS grading.
+
+## Replace LLM runtime with local classification
+
+The user explicitly superseded the original OpenAI requirement. Remove provider calls, SDK and settings; preserve historical classifications and teaching audits. New classifications use versioned local rules over saved Stockfish evidence. Unknown causes remain unclassified; do not infer thought processes from blunders. Store direction and concrete witness moves/squares. Native SQLite table/column renames preserve audit IDs and foreign keys without recreating learning-history tables. Historical model fields remain for export compatibility, with explicit legacy provenance. Classification backfills must not enroll new lesson cards or change SRS; course development stays paused.
+
+
+### Remove lessons from the active product (September 12, 2026)
+
+The user has rejected the current lesson experience. Course and lesson flows are removed, rather than kept as a paused tab. Historical database records remain for backups and a possible future redesign; old lesson APIs return HTTP 410 and cannot create or advance lessons. Nonretired cards withheld only for lessons become eligible for ordinary Review without resetting FSRS. Review, game imports, local mistake classification and repertoire remain the product. Mobile screens share Review's compact shell; less frequent controls and technical details use explicit disclosure instead of long default pages.
+
+
+### Remove repertoire from the product
+
+The user wants the application centered on reviewing mistakes from real games. Remove the Repertoire screen and manual-entry form. Repertoire APIs return 410 and existing repertoire cards no longer enter Review, including unfinished sessions. Archive through source filtering rather than deleting records, resetting FSRS or marking cards retired: removal is a product decision, not a successful recall. The manual exercise API remains for existing integrations and deterministic review fixtures; it has no navigation or form. No migration is necessary.
+
+
+### Inline review explanations
+
+Show why reuses the existing review board and page shell. Full-screen dialogs resized/repositioned the board and obscured navigation, which the user found distracting. Playback controls replace the practice controls in place; only verified board frames change. Loading/errors preserve the board, and Back/Escape restore focus without scrolling. Evidence audit dialogs remain separate.
+
+
+### Persistent wrong-move cue
+
+A backend-graded failure receives a steady red board outline/tint plus Mistake text. Avoid a timed flash or shake, which could be missed or create the distracting movement the user previously reported. The overlay does not intercept taps and preserves piece readability, counter playback and all board dimensions. It is presentation state only; no new grading or scheduling event is introduced.
+
+
+### Layered local diagnosis and focused practice
+
+Outcomes describe observed mate/material consequences. Motifs require additional chess geometry and a witnessed consequence in the selected engine line. Practice cues are deterministic advice, not assertions about the learner's thoughts. Coverage reports must distinguish outcomes, specific motifs and score-only context; no aggregate labeled percentage may imply measured accuracy.
+
+Additional Stockfish evidence for classification is bounded and separately linked, preserving original decisions and accepted answers. Focused practice has explicit session provenance and does not change FSRS; raw attempts remain usable for separate progress reporting. Saved and supplemental engine PVs remain finite continuations, never assertions that all replies are forced.
+
+
+## 2026-09-12: Classification usefulness v2
+
+Separate observable outcomes from specific mechanisms and static practice cues. Lower material-size gating to one point while retaining meaningful relative engine loss; a lost pawn or exchange can matter, including from a winning position. Inspect 16 plies by default. Require the actual selected endpoint to be quiet; do not inflate coverage by picking an earlier favorable prefix. Keep unknown causes explicit. Add motif rules only with legal positive/negative witnesses.
+
+Share line detectors between classification and explanations, but attach review findings only to the selected answer's exact saved analysis. Highlight witness squares after an answer. Do not copy source-game labels onto a different attempted move.
+
+Make extra engine work an opt-in capped job, using durable tasks and separate supplemental references. Cached completed work survives cancellation/restart. A changed binary or probe configuration cannot reuse a planned key. New classification evidence never replaces exercise acceptance policy or grading analyses.
+
+Use focused batches from Weaknesses instead of reviving lessons. Topic-selected practice is not blind recall, so persist its sessions/timing separately and never update FSRS from it. Canonical position deduplication and source-game rotation keep batches useful. Ordinary mixed Review is unchanged.
+
+Measure coverage separately from accuracy. Export stratified human-label samples with game-separated development/holdout assignment; compute precision/recall only from explicitly exhaustive human annotations. Keep uncertain labels blank and do not claim independent accuracy from synthetic-score tests or engine legality alone.

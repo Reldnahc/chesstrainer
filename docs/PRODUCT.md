@@ -1,13 +1,27 @@
 # Product
 
-This document describes the intended product. For implemented behavior and remaining gaps against the original specification, see [FEATURE_STATUS.md](FEATURE_STATUS.md). Course stages currently form a basic scaffold; their presence does not imply complete adaptive teaching or automatic graduation.
+Fieldwork is private chess practice built from the player's own games. Import games, identify practical mistakes with native Stockfish, review useful positions and retain them with FSRS. Defaults serve a beginner progressing toward 1500 rapid. Multiple sound answers are accepted; small engine preferences usually do not create exercises.
 
-A private, local-first chess curriculum engine: real games → verified decisions → recurring skill evidence → courses → position practice → FSRS retention. Defaults serve a beginner progressing toward 1500 rapid. Practical sound moves are accepted; tiny engine preferences are not diagnoses.
+Python-chess owns rules. Stockfish owns evaluations and verified alternatives. Python policy owns grading. Local, versioned detectors classify supported mistake mechanisms and consequences. Curated repertoire answers retain their authority. There is no LLM connectivity, model service or model API-key requirement.
 
-Python-chess owns rules. Native local Stockfish owns evaluation. Deterministic code owns provable board facts. An optional OpenAI classifier labels verified evidence, never chooses moves or creates chess truth. Curated repertoire moves have their own authority.
+Review is the primary product. It hides source, concept, previous moves, scores and answers before an attempt. A failed engine answer previews the opponent's counter; Try again restores the board and Show me why opens the deeper saved line. Success has a concise factual explanation and optional playback. Reveal move performs the saved answer. One failed recall is recorded per session. FSRS increases intervals, with permanent retirement above the configured 100-day threshold.
 
-Primary surfaces: Review, Course, Import, Weaknesses, Repertoire, Settings. Review hides source, concept, history, scores and answers until completion/reveal. Courses have diagnose, teach, drill and retain stages. A single mistake may create practice, but does not establish a recurring weakness.
+Local labels include allowed/missed mate, material consequences and a conservative subset of tactical motifs. Every finding links to engine evidence. Unclassified positions remain useful exercises. Repeated independent games support weakness priorities; a single error does not establish a recurring weakness or reveal the player's thought process.
 
-No accounts, cloud database, social features, synthetic positions or public hosting. Data lives in SQLite on the host. Explicit Chess.com username imports retrieve public completed games; deliberately enabled structured classification sends verified evidence to OpenAI. Missing OpenAI must never prevent import, engine analysis or existing reviews.
+Lesson development is paused. Existing course units and progress remain available, but imports and classification backfills do not generate new lessons or withhold new review cards. Model-written teaching generation is removed. A future lesson redesign should build on reliable classification and review rather than on generic prose.
 
-Initial acceptance target: import a learner-identified PGN; analyze local Stockfish evidence; classify through an injected mock or configured OpenAI adapter; build an evidence-linked unit; solve a backend-graded exercise; persist one FSRS recall event; reload successfully. Subsequent milestones extend this slice without compromising chess correctness.
+Primary screens are Review, Course, Import, Weaknesses, Repertoire and Settings. Data lives locally in SQLite. No accounts, cloud database, telemetry, social features or public hosting. Explicit Chess.com imports retrieve completed public games; PGN import and training work offline once Stockfish is installed.
+
+See [FEATURE_STATUS.md](FEATURE_STATUS.md) for implemented and missing features, and [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for detector scope and quality limits. The original OpenAI requirement was superseded by the user's September 12, 2026 decision to remove model connectivity.
+
+
+Current product scope: lessons and Course navigation have been removed at the user's request. The active loop is import games, analyze and classify locally, then practice in Review with FSRS. Saved lesson history is archived; a future lesson design requires separate work.
+
+
+Repertoire training and manual-position entry are also removed from the interface. The four active destinations are Review, Import, Weaknesses and Settings. Imports and local classification support review of meaningful mistakes from the learner's games. Historical repertoire positions are excluded from practice.
+
+
+The next classification iteration improves three connected uses: factual explanations after an answer, independent recurring-weakness evidence, and optional focused position practice. The cold mixed review board stays unlabeled. Outcome coverage and motif coverage are shown separately; focused attempts are distinguished from scheduled recalls.
+
+
+Classification v2 is available in the active review product. Weaknesses separates tactical mechanisms from material/mate outcomes, provides practice cues and all supporting examples, and starts focused batches of up to 12 distinct real positions. Focused practice is explicitly separate from scheduled recall: it preserves FSRS and retirement. Show why offers witness-frame square highlights when the exact answer's saved line supports a pattern. Settings provides an optional capped deeper-evidence job. No lessons, repertoire or LLM functionality is reintroduced.
