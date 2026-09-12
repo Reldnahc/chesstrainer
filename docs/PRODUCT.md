@@ -8,9 +8,11 @@ Review is the primary product. It hides source, concept, previous moves, scores 
 
 Local labels include allowed/missed mate, material consequences and a conservative subset of tactical motifs. Every finding links to engine evidence. Unclassified positions remain useful exercises. Repeated independent games support weakness priorities; a single error does not establish a recurring weakness or reveal the player's thought process.
 
-Lesson development is paused. Existing course units and progress remain available, but imports and classification backfills do not generate new lessons or withhold new review cards. Model-written teaching generation is removed. A future lesson redesign should build on reliable classification and review rather than on generic prose.
+Lessons and repertoire are removed from the active product. Their historical data is archived; the old APIs do not create or advance training. A future lesson redesign would need to build on reliable classification and review.
 
-Primary screens are Review, Course, Import, Weaknesses, Repertoire and Settings. Data lives locally in SQLite. No accounts, cloud database, telemetry, social features or public hosting. Explicit Chess.com imports retrieve completed public games; PGN import and training work offline once Stockfish is installed.
+Primary screens are Review, Import, Weaknesses and Settings. Data lives locally in SQLite. No accounts, cloud database, telemetry, social features or public hosting. Explicit Chess.com imports retrieve completed public games; PGN import and training work offline once Stockfish is installed.
+
+Classification improvements must make review explanations more useful while preserving auditable evidence. Measure specific causes separately from broad material/mate outcomes. Offline assistant review may help find bad labels, but it must be identified as assistant review and cannot establish independent accuracy or replace chess verification.
 
 See [FEATURE_STATUS.md](FEATURE_STATUS.md) for implemented and missing features, and [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for detector scope and quality limits. The original OpenAI requirement was superseded by the user's September 12, 2026 decision to remove model connectivity.
 

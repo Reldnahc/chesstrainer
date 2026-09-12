@@ -4,6 +4,8 @@ React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ own
 
 ## Boundaries
 
+Classification v3 work is staged in DEVELOPMENT_PLAN.md: adaptive continuation evidence, connected tactical witnesses, separately cached defensive probes, then a blinded offline assessment. Engine evidence and deterministic geometry remain the authorities. Assistant-assisted review is a development activity with recorded provenance; it is not an application dependency or an automatic source of labels.
+
 - `chess_core.py`: python-chess rules, canonical legal-position identity, deterministic facts and explicit score types.
 - `engine.py`: native UCI lifecycle, analysis limits and compatible persistent cache; no training policy.
 - `policy.py`: configurable acceptance policy over verified scores.

@@ -1,5 +1,13 @@
 # Decisions
 
+## 2026-09-12: Adaptive evidence and offline assistant assessment
+
+Improve local classification by following unfinished tactical continuations forward and testing specific defensive alternatives. A longer root search alone leaves the fixed-endpoint bottleneck intact. New searches must preserve history, use the compatible persistent engine cache, remain bounded/cancellable, and link separately from exercise grading evidence.
+
+Distinguish an observed event in a selected continuation from a verified defensive test. Neither implies a psychological diagnosis or that every engine reply is forced. Attribution to the learner's move needs an explicit before/after witness; distant unrelated exchanges are insufficient.
+
+The user authorized comparing classifications against the coding assistant. Export evidence without predicted labels, save annotations before revealing predictions, retain uncertainty and reviewer provenance, and report agreement on the reviewed subset. This is not independent human gold data because the reviewer also develops the rules. Keep all private packets local/ignored and do not add LLM connectivity to the application.
+
 ## 016 — Parallelize within one job with separate bounded pools (accepted)
 
 The old worker count only helped independent jobs; a single import and every model request remained serial. Keep one persisted-job coordinator, then analyze games across independent native Stockfish processes and classify saved decisions in a separate thread pool. This preserves local simplicity and ordered work within each game while overlapping CPU and network stages. Bound active-plus-queued tasks to twice each pool's configured worker count. Serialize short application writes, use atomic progress increments, share no sessions across threads, and drain in-flight work before completing/cancelling a job. Keep Chess.com requests serial and an independent interactive engine available. Cache compatibility excludes concurrency settings. Per-model batches and distributed workers are unnecessary for this improvement.

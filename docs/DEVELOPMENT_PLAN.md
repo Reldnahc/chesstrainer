@@ -1,5 +1,19 @@
 # Development plan
 
+## Active work: classification v3 and blinded assessment
+
+Requested September 12, 2026. Baseline: 100 games, 395 meaningful mistakes; 50 have a specific mechanism, 133 only an outcome, and 212 are unclassified. A read-only audit found an unsettled continuation gate in 196 unclassified positions. Reading forward beyond the existing cutoff exposes promising additional evidence; this is not an accuracy measurement.
+
+Implement and commit each verified stage:
+
+1. **Adaptive saved continuations — in progress.** Separate replay/endpoint selection from classification. Inspect forward from the configured initial horizon to a bounded quiet endpoint, record the endpoint and reason, never search backwards for a favorable material balance. Test captures, delayed recaptures, check, promotion, both colors and hard bounds.
+2. **Causes and combinations — pending.** Track piece identities/defenders and the learner's move; recognize supported mechanisms across connected tactical sequences. Add explicit witnesses for newly loose pieces, abandoned defenders, ignored existing captures, nonchecking discoveries and combinations. Keep unrelated later tactics and compensated exchanges out of causal labels.
+3. **Targeted engine verification — pending.** Extend unfinished tails and test relevant defensive alternatives with bounded, cached native searches. Persist separate evidence links and query provenance, retain cancel/restart behavior, and never modify original grading references or SRS. Difficult geometric hypotheses require corroboration before publication.
+4. **Blinded quality review — pending.** Export deterministic, private review packets without predictions, record reviewer provenance and uncertainty, compare annotations with frozen predictions only afterwards, and report outcome/mechanism results separately. An assistant review is a diagnostic agreement check, not independent human ground truth or population accuracy. No model runtime is reintroduced.
+5. **Rollout — pending.** Run backend/native/API regressions and relevant review checks, measure copied-data coverage, inspect disagreements, document limitations, back up the live database, reclassify saved evidence and verify the existing LAN service. Commit each finished unit; do not push unless requested.
+
+Reuse the existing engine cache, local worker queue, immutable classification runs, Weaknesses/playback UI and CSV quality tools. Add relational links if probes require new persistence. Risks: long lines can mix unrelated exchanges; an engine PV does not prove all replies forced; a geometric attack is not always a useful capture; self-review shares implementation context. Preserve explicit abstention and uncertainty instead of relaxing evidence requirements to meet a coverage target.
+
 See [FEATURE_STATUS.md](FEATURE_STATUS.md) for the current inventory mapped to the original specification, including partial features, local classification and outstanding validation. This plan tracks milestone sequencing; the feature inventory describes actual behavior.
 
 ## Repository assessment
