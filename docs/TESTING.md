@@ -1,5 +1,7 @@
 # Testing
 
+Blinded quality-tool tests verify omitted predictions/strata/hypothesis names, complete evidence fingerprints, frozen-report comparison, reviewer identity requirements, separate human/assistant cohorts, unknown-label rejection, no-overwrite behavior and exclusion of uncertain rows. These tests validate evaluation bookkeeping; they do not establish classifier accuracy.
+
 Classification v3 continuation tests cover forward-only extension, actual recaptures instead of temporary gains, exact hard limits, quiet endpoints, insufficient lines, checks and promotions, mirrored colors, persisted endpoint metadata and the zero-extension configuration. The first stage passed 63 continuation/classifier/pattern/explanation tests; subsequent stages and rollout are tracked in DEVELOPMENT_PLAN.md.
 
 Suite counts and the latest deployment checks are recorded in DEVELOPMENT_PLAN.md. Username-import date coverage includes both whole UTC endpoint days, either open endpoint, lookback override, irrelevant-archive pruning, reversed-range rejection and active-job request identity. Browser tests submit explicit dates and verify Look back is disabled while dates are set.

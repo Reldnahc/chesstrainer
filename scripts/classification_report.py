@@ -88,19 +88,39 @@ if __name__ == "__main__":
     )
     parser.add_argument("--sample-size", type=int, default=60)
     parser.add_argument(
+        "--blind",
+        action="store_true",
+        help="Hide predictions, strata and hypothesis names in the sample",
+    )
+    parser.add_argument(
+        "--from-report",
+        type=Path,
+        help="Use a frozen JSON report instead of re-reading the database",
+    )
+    parser.add_argument("--reviewer-kind", choices=["human", "assistant"], default="human")
+    parser.add_argument(
+        "--reviewer-id", help="Reviewer identity/provenance; required for assistant annotations"
+    )
+    parser.add_argument(
         "--annotations", type=Path, help="Evaluate a completed annotation CSV against this report"
     )
     args = parser.parse_args()
     settings = Settings()
-    result = report(args.database or settings.database_path, settings)
+    result = (
+        json.loads(args.from_report.read_text(encoding="utf-8"))
+        if args.from_report
+        else report(args.database or settings.database_path, settings)
+    )
     if args.sample:
         from trainer.classification_quality import export_sample
 
-        export_sample(result, args.sample, args.sample_size)
+        export_sample(result, args.sample, args.sample_size, blind=args.blind)
     if args.annotations:
         from trainer.classification_quality import evaluate_annotations
 
-        result["human_evaluation"] = evaluate_annotations(result, args.annotations)
+        result[f"{args.reviewer_kind}_evaluation"] = evaluate_annotations(
+            result, args.annotations, reviewer_kind=args.reviewer_kind, reviewer_id=args.reviewer_id
+        )
     if args.output:
         with args.output.open("x", encoding="utf-8") as output:
             json.dump(result, output, indent=2)
