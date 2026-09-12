@@ -1,10 +1,12 @@
 # Testing
 
-Current verified suite: 52 backend tests and 12 desktop/mobile browser tests. Username-import date coverage includes both whole UTC endpoint days, either open endpoint, lookback override, irrelevant-archive pruning, reversed-range rejection and active-job request identity. Browser tests submit explicit dates and verify Look back is disabled while dates are set.
+Current verified suite: 59 backend tests and 12 desktop/mobile browser tests. Username-import date coverage includes both whole UTC endpoint days, either open endpoint, lookback override, irrelevant-archive pruning, reversed-range rejection and active-job request identity. Browser tests submit explicit dates and verify Look back is disabled while dates are set.
 
 Incremental-import fixtures check 100 saved games plus 20 new games schedules exactly 20, duplicate entries do not consume the new-game limit, and duplicate-only imports create no analysis work. Native Stockfish plus an injected classifier verifies cancellation preserves the first response, retry never re-requests a completed decision, and a subsequent classification scan reuses all cached responses. Browser tests cover repeat PGN upload with no new job and repeat Chess.com fetch with zero analysis games. Fixtures use distinct per-device games where new analysis is expected.
 
 Legal-move payload fixtures cover pins, castling, en passant, white/black promotions and all legal starting moves (including rejected exercise answers). Browser coverage checks quiet dots, capture rings, selected-square styling, switching/deselecting pieces, invalid targets, dragging, promotion and clearing/reselecting after feedback. These tests use no live OpenAI calls.
+
+Concurrency fixtures verify overlapping OpenAI calls from one or multiple games, bounded worker counts, cancellation with cached retry, engine progress while classification waits, shared-cache coalescing across native processes, a native multi-game pipeline, and worker failure/shutdown followed by recovery. No paid requests are made.
 
 ## Commands
 
@@ -58,4 +60,4 @@ Confirm two learner decisions and a meaningful mistake. Without OpenAI, review w
 
 Verified in this workspace on Windows, Python 3.12.10, Node 24.19 and native Stockfish 18; dependency versions are locked. Final counts/status live in DEVELOPMENT_PLAN.md. Current upstream TestClient dependencies emit httpx/AnyIO deprecation warnings; tests run without blanket warning suppression.
 
-Live OpenAI, Linux/macOS execution, physical LAN devices and hundreds-of-games performance are not claimed by this initial automated verification. Test deployment-specific behavior explicitly.
+GitHub Actions run 34675280916 passed backend and frontend checks on Ubuntu. Real Terra responses have succeeded in a user-started job; live output quality, manual Linux/macOS installation, physical LAN devices and hundreds-of-games performance remain outside automated verification. Test deployment-specific behavior explicitly.

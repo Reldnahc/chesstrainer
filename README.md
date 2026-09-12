@@ -11,6 +11,7 @@ For a requirement-by-requirement comparison with the original product specificat
 * Single/multi-game PGN import, explicit learner matching, duplicate detection and original provenance. Only newly added games enter new analysis jobs.
 * Chess.com username import: completed public games, rapid by default, selectable time control, lookback or exact dates, and game limit; resumable archive downloads and automatic learner matching.
 * Persistent background jobs, progress, cancellation/retry and startup recovery. Finished classifications survive cancellation and are reused for matching evidence/model versions.
+* Independent bounded Stockfish and OpenAI pools process multiple games/positions within one import; configure `STOCKFISH_WORKERS` and `LLM_WORKERS`.
 * Two-pass local Stockfish analysis, MultiPV, explicit mate/centipawn scores and persistent compatible cache.
 * Structured OpenAI classification, controlled skills, confidence handling and audits; optional, with no fake production classifier.
 * Evidence-based priorities and basic diagnose/teach/drill/retain course units. Single-game evidence is marked exploratory.

@@ -23,7 +23,7 @@ Course generation aggregates independent evidence and prioritizes recurrence/sev
 | 0 | Inspect, design, document | Complete |
 | 1 | Configuration, migrations, rules, scores, engine/cache, correctness tests | Implemented and verified |
 | 2 | Learner PGN → queued native analysis → evidence | Implemented and verified |
-| 3 | Controlled audited LLM classification; mock tests | Implemented; live API untested |
+| 3 | Controlled audited LLM classification; mock tests | Implemented; live responses received, quality evaluation pending |
 | 4 | Evidence aggregation and basic course | Basic scaffold implemented and tested |
 | 5 | Board, move policy, persisted first-failure review | Implemented; desktop/mobile tests pass |
 | 6 | FSRS queue and behavior-based grades | Implemented and verified |
@@ -75,14 +75,18 @@ Validation: 52 backend tests and 12 desktop/mobile browser tests pass. Added a 1
 
 Deployment: created a local backup, applied the migration, verified no Alembic schema drift, and gracefully restarted the backend. The pre-existing user-started classification job resumed with saved responses retained. Actual Terra requests have returned successful responses during that user job; pedagogical quality evaluation remains outstanding.
 
-## Remaining product work
+## Bounded pipeline concurrency
 
-## Current work: bounded pipeline concurrency
-
-Assessment: STOCKFISH_WORKERS currently starts whole-job workers, so a single 100-game import remains serial. Each meaningful decision waits for its OpenAI request before Stockfish continues. Existing atomic per-decision evidence/cache persistence is reusable; progress increments and exercise creation need explicit concurrency handling.
+Initial assessment: STOCKFISH_WORKERS started whole-job workers, so a single 100-game import remained serial. Each meaningful decision waited for its OpenAI request before Stockfish continued. Existing atomic per-decision evidence/cache persistence is reusable; progress increments and exercise creation need explicit concurrency handling.
 
 Plan: use one persistent-job coordinator, a bounded pool analyzing games with independent Stockfish processes, and a separate bounded OpenAI pool accepting meaningful saved decisions. Allow multiple positions from one import and multiple classification requests at once. Preserve serial Chess.com downloads, per-call evidence/cache identity, short serialized application writes, atomic progress updates and cooperative cancellation. Stop submitting on cancellation and drain in-flight calls before final status. Verify overlap, configured caps, cancellation/cache reuse, native engine lifecycle and end-to-end persistence with deterministic fixtures before enabling local settings. No broker or distributed workers; no changes to analysis depth or move policy.
 
+Implemented the plan above. Verification: 59 backend tests pass, including native multi-process analysis, shared-cache coalescing, concurrent classification from a single game, cancellation/cache reuse and recovery after worker failure. Twelve desktop/mobile browser tests, production build and Ruff checks pass. No schema change is needed. Actual throughput improvement has not yet been benchmarked. Local deployment was gracefully restarted with four Stockfish workers (one thread each) and four classification workers; health and effective settings were verified. The prior classification job had completed before restart.
+
+Published source, tests and documentation at https://github.com/Reldnahc/chesstrainer. Private configuration/data and local runtimes remain ignored. GitHub Actions run 34675280916 passed both backend and frontend jobs on Ubuntu.
+
+## Remaining product work
+
 The usable first vertical slice is complete. Basic courses currently use controlled titles, deterministic ordering, user-marked stages and immediate SRS enrollment. Rich mixed-example teaching sequences, automatic stage/graduation criteria, LLM course-level prose/planning, model-version evidence reconciliation, larger-game-volume profiling, standalone wheel packaging and engine-upgrade reanalysis remain future work.
 
-Settings are centralized/read-only in UI and edited through .env, then restart. No physical LAN/mobile device or Linux/macOS run has been verified here. CI is provided but has not run remotely. Dragging and underpromotion now have dedicated browser coverage, including a regression for post-drag click suppression. No user account, public hosting, synthetic positions or cloud database was added.
+Settings are centralized/read-only in UI and edited through .env, then restart. No physical LAN/mobile device or Linux/macOS run has been verified here. The first public GitHub Actions run passed both backend and frontend jobs on Ubuntu. Dragging and underpromotion now have dedicated browser coverage, including a regression for post-drag click suppression. No user account, public hosting, synthetic positions or cloud database was added.

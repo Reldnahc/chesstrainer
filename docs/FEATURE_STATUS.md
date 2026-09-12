@@ -1,6 +1,6 @@
 # Feature status against the original specification
 
-Last reviewed: 2026-09-11. This is the current feature inventory and gap list. Section numbers refer to the original 53-section product specification. Update this file when behavior or verification changes; keep milestone sequencing in [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md).
+Last reviewed: 2026-09-12. This is the current feature inventory and gap list. Section numbers refer to the original 53-section product specification. Update this file when behavior or verification changes; keep milestone sequencing in [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md).
 
 **Current outcome:** the import → local analysis → meaningful exercise → review → FSRS loop works. Optional structured classification can supply skill evidence for basic courses. The full adaptive curriculum described in the original north star is not complete.
 
@@ -18,8 +18,8 @@ Status meanings: **Implemented** means a working capability exists, within the l
 | Analysis pipeline and cache | Implemented: bounded triage, deeper suspicious-position analysis, persistent evidence/candidates/PVs and compatible engine caching. Keys preserve rule state and additional draw/history context for engine work. | 13–14, 18, 34–35, 44–45 |
 | Practical grading | Implemented baseline: best_only, engine_tolerance, practical and custom settings, stored alternatives, separate policy from engine facts. Unlisted legal moves require local verification. Practical/custom currently use configured score thresholds and mate transitions; there is no sophisticated model of human move difficulty. | 15–16, 44–45 |
 | Rating target | Partial: configurable, default 1500; affects foundational-skill priority. The current rule is a coarse weight for targets up to 1600, not a comprehensive rating-specific curriculum. | 17, 46 |
-| Background work | Implemented: SQLite job states, progress, cancellation, retry, startup recovery and saved-work reuse. REST polling is used instead of optional WebSockets. Hundreds-of-games throughput and prolonged resource use have not been profiled. One server process is required. | 29–31, 49 |
-| Skill taxonomy and classifier | Implemented adapter: controlled IDs, strict structured output, confidence threshold, evidence linkage, audits and retry/cache behavior. Tests inject a mock; live OpenAI classification has not been validated. | 7, 19–20, 32 |
+| Background work | Implemented: SQLite job states, progress, cancellation, retry, startup recovery and saved-work reuse. Independent bounded Stockfish/game and OpenAI pools parallelize one import; active worker counts appear in progress. REST polling is used instead of optional WebSockets. Hundreds-of-games throughput and prolonged resource use have not been profiled. One server process is required. | 29–31, 49 |
+| Skill taxonomy and classifier | Implemented adapter: controlled IDs, strict structured output, confidence threshold, evidence linkage, audits and retry/cache behavior. Tests inject a mock; real Terra calls have succeeded, but explanation quality has not been evaluated. | 7, 19–20, 32 |
 | Weakness evidence | Partial: aggregation by independent games, bounded severity/recency/confidence and linked review failures/timing. Single-game evidence is explicitly exploratory. No comprehensive assessment of strengths, calibrated mastery model or structure-specific pattern discovery. | 21–22, 53 |
 | Personalized courses | Partial: evidence-linked units, rationale, deterministic priority/order and titles, per-example model explanation, persisted diagnose/teach/drill/retain stages. See the specific course gaps below. | 22–23, 53 |
 | Exercise sources | Implemented: learner mistakes, curated repertoire and manually entered positions. Synthetic positions are excluded. No dedicated source-priority selection policy or additional verified-source integrations yet. | 24 |
@@ -54,7 +54,7 @@ The limit counts **newly inserted valid games**, so duplicates do not consume it
 | Weakness priorities and basic course units | Existing evidence/courses remain usable; fresh unclassified data cannot establish new labeled weaknesses | Deterministic code aggregates classified evidence and creates basic units |
 | Cross-game model diagnosis, course-level planning/prose | Not implemented | Not implemented |
 
-The model currently classifies one meaningful decision per call; it does not independently choose lesson sequences, diagnose a whole game collection in one request or choose chess answers. Structured validation rejects invalid IDs/schema/evidence references, but does **not** prove that every sentence of an explanation is factually supported. Stronger semantic claim checks and real-model quality evaluation remain work to do. See [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md).
+The model currently classifies one meaningful decision per call, with configurable concurrent calls; it does not independently choose lesson sequences, diagnose a whole game collection in one request or choose chess answers. Structured validation rejects invalid IDs/schema/evidence references, but does **not** prove that every sentence of an explanation is factually supported. Stronger semantic claim checks and real-model quality evaluation remain work to do. See [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md).
 
 ## Largest gaps from the original learning experience
 
@@ -67,11 +67,11 @@ The model currently classifies one meaningful decision per call; it does not ind
 
 ## Verification boundary
 
-Last recorded checks: **52 backend tests and 12 desktop/mobile-emulated browser tests passed**, plus TypeScript/Vite build and Ruff. Incremental imports add new-game-only job scope, duplicate-limit and cancellation/cache regressions. Legal-move markers have special-move payload and desktop/mobile interaction coverage.
+Last recorded checks: **59 backend tests and 12 desktop/mobile-emulated browser tests passed**, plus TypeScript/Vite build and Ruff. Concurrency fixtures cover worker caps, overlapping requests, native engine/cache ownership, cancellation and recovery after failure. Incremental imports add new-game-only job scope, duplicate-limit and cancellation/cache regressions. Legal-move markers have special-move payload and desktop/mobile interaction coverage.
 
 The end-to-end fixture covers asynchronous PGN import → native Stockfish → injected classifier → course/exercise → persisted review → application reload. Browser tests cover interaction and both import sources using a test-only Chess.com HTTP fixture. A separate read-only live Chess.com smoke check succeeded; it imported no sample account games into the application database. The backup/restore fixture validates a local round trip and secret exclusion.
 
-Not yet verified: live OpenAI response quality/cost, hundreds-of-games performance, physical LAN/mobile use, Linux/macOS installation and remote CI execution. Passing fixtures do not establish complete chess-motif coverage or measurable rating improvement. Existing upstream TestClient deprecation warnings and a Windows pytest-cache permission warning are documented in the plan.
+Not yet verified: live OpenAI response quality/cost, hundreds-of-games performance, physical LAN/mobile use, manual Linux/macOS installation. The first public GitHub Actions run passed backend and frontend checks on Ubuntu. Passing fixtures do not establish complete chess-motif coverage or measurable rating improvement. Existing upstream TestClient deprecation warnings and a Windows pytest-cache permission warning are documented in the plan.
 
 ## Deliberately excluded, not forgotten
 
