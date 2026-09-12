@@ -13,6 +13,7 @@ from trainer.models import (
     ClassificationRun,
     Decision,
     EngineAnalysis,
+    Game,
     SkillEvidence,
     now,
 )
@@ -58,6 +59,16 @@ class Classifier(Protocol):
 
 
 def verified_payload(db, decision):
+    from trainer.imports import decision_board
+
+    previous = None
+    if decision.ply > 1:
+        source = decision_board(db.get(Game, decision.game_id), decision.ply)
+        if position_key(source) != position_key(valid_board(decision.fen)):
+            raise ValueError("Source game does not match decision position")
+        if source.move_stack:
+            move = source.pop()
+            previous = {"fen": source.fen(), "uci": move.uci()}
     supplement = db.scalar(
         select(ClassificationAnalysis)
         .where(ClassificationAnalysis.decision_id == decision.id)
@@ -76,6 +87,7 @@ def verified_payload(db, decision):
         "analysis_fens": [before.fen, played.fen],
         "evidence_ids": [before.id, played.id],
         "user_move": {"uci": decision.move_uci, "san": decision.move_san},
+        "previous_move": previous,
         "best_candidates": before.candidates,
         "played_candidate": played.candidates[0],
         "loss": {

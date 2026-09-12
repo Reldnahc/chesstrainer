@@ -14,6 +14,7 @@ from trainer.chess_core import (
 )
 from trainer.continuations import continuation_end, replay, settled_delta  # noqa: F401
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS, Finding, Outcome
+from trainer.move_causes import move_causes
 from trainer.tactical_patterns import detect_patterns
 
 RULE_VERSION = "3"
@@ -28,6 +29,7 @@ class LocalClassifier:
         self.parameters = {
             "max_plies": settings.classification_max_plies if settings else 16,
             "extension_plies": settings.classification_extension_plies if settings else 16,
+            "tactic_plies": settings.classification_tactic_plies if settings else 8,
             "min_loss_cp": settings.classification_min_loss_cp if settings else 150,
             "min_material": settings.classification_min_material if settings else 1,
         }
@@ -158,6 +160,8 @@ class LocalClassifier:
                     f"The saved continuation {'loses' if first == 2 else 'gains'} {amount} material points for you within {end} plies. This describes the engine line, not every possible reply.",
                 )
             mate_support = loss.allows_mate if first == 2 else loss.mate_lost
+            if first == 2 and supports:
+                found.extend(move_causes(boards, analysis_id, evidence.get("previous_move")))
             found.extend(
                 detect_patterns(
                     boards,
@@ -167,6 +171,7 @@ class LocalClassifier:
                     direction,
                     material_supported=supports,
                     mate_supported=mate_support,
+                    max_tactic_plies=self.parameters["tactic_plies"],
                 )
             )
 

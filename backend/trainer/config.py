@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     classification_workers: int = Field(default=2, ge=1, le=4)
     classification_max_plies: int = Field(default=16, ge=4, le=32)
     classification_extension_plies: int = Field(default=16, ge=0, le=32)
+    classification_tactic_plies: int = Field(default=8, ge=2, le=16)
     classification_min_loss_cp: int = Field(default=150, ge=50, le=1000)
     classification_min_material: int = Field(default=1, ge=1, le=9)
     classification_probe_positions: int = Field(default=40, ge=1, le=500)

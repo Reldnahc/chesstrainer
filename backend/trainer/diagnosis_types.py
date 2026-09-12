@@ -22,6 +22,11 @@ CUES = {
     "missed_material_gain": "Scan checks and captures for a practical material gain.",
     "allowed_mate": "Check the opponent's forcing checks before continuing your plan.",
     "missed_mate": "Look for forcing checks when the enemy king has few safe squares.",
+    "abandoned_defender": "Before moving a defender, check which pieces will lose its protection.",
+    "opponent_threat_recognition": "After their move, check newly attacked pieces before continuing your plan.",
+    "avoiding_bad_trades": "Count what you capture and what their recapture takes from you.",
+    "deflection": "Check whether a forcing exchange pulls a defender away from another target.",
+    "trapped_piece": "Before moving into an attack, check whether the piece has a safe way out.",
 }
 
 
@@ -40,6 +45,9 @@ class Finding(BaseModel):
     cue: str = ""
     frame_ply: int = 0
     roles: dict[str, list[str]] = Field(default_factory=dict)
+    context_fen: str | None = None
+    context_move: str | None = None
+    verification_analysis_ids: list[str] = Field(default_factory=list)
 
     @field_validator("skill_id")
     @classmethod

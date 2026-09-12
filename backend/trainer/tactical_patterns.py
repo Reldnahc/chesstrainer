@@ -4,6 +4,7 @@ import chess
 
 from trainer.chess_core import VALUES, material
 from trainer.diagnosis_types import CUES, Finding
+from trainer.tactical_geometry import tactical_plies, valuable_targets
 
 
 def names(squares):
@@ -11,7 +12,54 @@ def names(squares):
 
 
 def detect_patterns(
-    boards, first, end, analysis_id, direction, *, material_supported, mate_supported
+    boards,
+    first,
+    end,
+    analysis_id,
+    direction,
+    *,
+    material_supported,
+    mate_supported,
+    max_tactic_plies=8,
+):
+    from trainer.combination_patterns import combinations
+
+    plies = tactical_plies(boards, first, end, max_tactic_plies)
+    if not plies:
+        return []
+    found = []
+    for ply in plies:
+        found.extend(
+            _detect_at(
+                boards,
+                ply,
+                end,
+                analysis_id,
+                direction,
+                material_supported=material_supported,
+                mate_supported=mate_supported,
+                witness_end=plies[-1],
+                origin_first=first,
+            )
+        )
+    if material_supported:
+        found.extend(combinations(boards, plies, analysis_id, direction))
+    # A pattern can have multiple concrete witnesses, but duplicate tests of the
+    # same event must not manufacture extra evidence or duplicate playback buttons.
+    return list({(f.skill_id, tuple(f.plies), f.direction): f for f in found}.values())
+
+
+def _detect_at(
+    boards,
+    first,
+    end,
+    analysis_id,
+    direction,
+    *,
+    material_supported,
+    mate_supported,
+    witness_end,
+    origin_first,
 ):
     found = []
     actor = boards[first - 1].turn
@@ -20,7 +68,7 @@ def detect_patterns(
         found.append(
             Finding(
                 skill_id=skill,
-                rule_id=f"{skill}:2",
+                rule_id=f"{skill}:3",
                 direction=direction,
                 actor="white" if actor else "black",
                 analysis_id=analysis_id,
@@ -35,7 +83,7 @@ def detect_patterns(
             )
         )
 
-    # Limit causal attribution to the first action and its immediate forcing follow-up.
+    # Each action belongs to a bounded, connected tactical episode.
     before, after = boards[first - 1], boards[first]
     move = after.peek()
     piece = after.piece_at(move.to_square)
@@ -49,36 +97,27 @@ def detect_patterns(
             + material(boards[0], not actor)
         )
         if (
-            captured
+            first == origin_first
+            and captured
             and captured.piece_type != chess.PAWN
             and not before.attackers(captured.color, move.to_square)
             and gain >= VALUES[captured.piece_type]
         ):
             add(
-                "hanging_piece" if first == 2 else "missed_tactical_capture",
+                "hanging_piece"
+                if direction == "allowed_opponent_tactic"
+                else "missed_tactical_capture",
                 [first],
                 {"attacker": names([move.from_square]), "target": names([move.to_square])},
                 f"{san} captures an undefended {chess.piece_name(captured.piece_type)}. The shown continuation has a net material gain for the capturing side.",
                 frame=first - 1,
             )
-        targets = {
-            sq
-            for sq in after.attacks(move.to_square)
-            if (target := after.piece_at(sq))
-            and target.color != actor
-            and target.piece_type != chess.PAWN
-            and (
-                target.piece_type == chess.KING
-                or VALUES[target.piece_type] >= VALUES.get(piece.piece_type, 99)
-            )
-        }
-        if after.is_pinned(actor, move.to_square):
-            targets &= set(after.pin(actor, move.to_square))
+        targets = valuable_targets(after, move.to_square)
         can_take = any(
             m.to_square == move.to_square and after.is_capture(m) for m in after.legal_moves
         )
         collection = None
-        for follow in range(first + 2, end + 1, 2):
+        for follow in range(first + 2, witness_end + 1, 2):
             following = boards[follow].peek()
             if following.from_square == move.to_square:
                 if following.to_square in targets and boards[follow - 1].is_capture(following):
@@ -127,14 +166,10 @@ def detect_patterns(
                 f"{san} uncovers check from another piece in this verified continuation.",
             )
 
-    for ply in range(first, min(end, first + 2) + 1, 2):
+    for ply in [first]:
         before, after = boards[ply - 1], boards[ply]
         move = after.peek()
         piece = after.piece_at(move.to_square)
-        if ply > first:
-            initial = boards[first].peek()
-            if not (boards[first - 1].is_capture(initial) or boards[first].is_check()):
-                break
         san = before.san(move)
         captured = before.piece_at(move.to_square) if before.is_capture(move) else None
         if material_supported and captured:
@@ -168,7 +203,7 @@ def detect_patterns(
             # Absolute skewer: king must leave the ray; this same slider then takes
             # a more distant valuable piece. Unrelated checks cannot satisfy it.
             king = after.king(not actor)
-            for follow in range(ply + 2, min(end, ply + 2) + 1, 2):
+            for follow in range(ply + 2, min(witness_end, ply + 2) + 1, 2):
                 capture = boards[follow].peek()
                 victim = after.piece_at(capture.to_square)
                 if (
@@ -189,7 +224,7 @@ def detect_patterns(
                         },
                         f"{san} checks the king on the same line as the {chess.piece_name(victim.piece_type)} behind it. After the king moves, the same piece captures that target in the saved line.",
                     )
-        if material_supported and captured and ply + 2 <= end:
+        if material_supported and captured and ply + 2 <= witness_end:
             follow = boards[ply + 2].peek()
             victim = before.piece_at(follow.to_square)
             if victim and victim.color != actor and victim.piece_type != chess.KING:

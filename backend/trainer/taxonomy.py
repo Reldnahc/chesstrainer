@@ -1,4 +1,4 @@
-TAXONOMY_VERSION = "2"
+TAXONOMY_VERSION = "3"
 GROUPS = {
     "Tactical awareness": "hanging_piece opponent_threat_recognition fork pin skewer discovered_attack double_attack overloaded_defender removing_defender back_rank mating_pattern missed_tactical_capture",
     "Opening and development": "development king_safety castling center_control premature_queen_activity opening_repertoire",
@@ -8,7 +8,9 @@ GROUPS = {
     "Decision making": "opponent_plan_awareness calculation move_order forcing_moves defensive_resource",
     "Unclassified": "unclassified",
 }
-GROUPS["Tactical awareness"] += " allowed_mate missed_mate"
+GROUPS["Tactical awareness"] += (
+    " allowed_mate missed_mate abandoned_defender deflection trapped_piece"
+)
 SKILLS = {
     skill: {"category": group, "title": skill.replace("_", " ").capitalize()}
     for group, skills in GROUPS.items()

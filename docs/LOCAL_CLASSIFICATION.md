@@ -1,5 +1,15 @@
 # Local mistake classification
 
+## Classification v3 (implementation in progress)
+
+Saved-line inspection now extends forward from the initial 16-ply horizon by up to 16 additional plies, only when the chosen endpoint is unfinished. Audits record endpoint, extension and reason. It never substitutes an earlier favorable material balance.
+
+Specific witnesses can span a connected tactical episode (default eight plies). Checks, exchanges, and collection of newly created threats connect events; a quiet unrelated gap stops attribution. This supports forks after exchanges, nonchecking discovered attacks, two-piece double attacks, and a conservative sole-defender deflection. Immediate undefended-capture labels are not added merely because a fork later collects its target.
+
+Before/after cause witnesses identify an abandoned sole unpinned defender, an immediate unfavorable capture/recapture, and a newly created attack from the opponent's previous move that remains unanswered. The latter saves and validates the preceding position/move. These are observed events in the saved continuation, not statements about the learner's intentions. Engine comparisons and material-outcome gates still apply. Taxonomy v3 adds abandoned_defender, deflection and trapped_piece (the latter awaits targeted verification); existing opponent_threat_recognition and avoiding_bad_trades now have local witnesses.
+
+On the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Accuracy assessment and targeted verification remain pending; see DEVELOPMENT_PLAN.md.
+
 Fieldwork uses python-chess, local Stockfish and deterministic Python rules. There is no LLM connection, model key, paid classification, or external pedagogy payload. Historical model audits remain archived locally.
 
 ## Outcomes, patterns and practice cues

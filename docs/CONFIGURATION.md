@@ -2,6 +2,8 @@
 
 Classification v3 adds `CLASSIFICATION_EXTENSION_PLIES` (default 16, range 0-32). `CLASSIFICATION_MAX_PLIES` remains the initial saved-line horizon (default 16). If that endpoint is unfinished, read forward by at most the extension budget to a quiet endpoint. Zero disables extension. This uses saved moves and does not launch Stockfish. Each classification audit records its chosen endpoint and unresolved reason.
 
+`CLASSIFICATION_TACTIC_PLIES` (default 8, range 2-16) bounds connected tactical events attributed to the initial move. A quiet unrelated gap ends the episode even if the budget has room. Material outcome inspection may continue further without treating every later event as the original mistake's cause.
+
 Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment overrides root .env; defaults apply last. Relative paths resolve from the server working directory. Run from repository root. Invalid recognized values fail startup with field-specific errors. Secrets are SecretStr values excluded from public serialization.
 
 | Variable | Default |

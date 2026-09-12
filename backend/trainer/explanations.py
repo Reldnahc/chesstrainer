@@ -17,6 +17,7 @@ from trainer.models import (
     Game,
     ReviewSession,
 )
+from trainer.move_causes import move_causes
 from trainer.tactical_patterns import detect_patterns
 
 
@@ -228,6 +229,8 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
             material_supported=gain is not None and gain >= 1,
             mate_supported=mate_supported,
         )
+        if not accepted and gain is not None and gain >= 1:
+            findings.extend(move_causes(boards, analysis.id))
     return MoveExplanation(
         attempt_id=selected_attempt.id if selected_attempt else None,
         authority="stockfish",
