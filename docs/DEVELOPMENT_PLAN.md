@@ -18,9 +18,9 @@ Requested September 13, 2026. Starting assessment: a clean worktree; App.tsx con
 | Stage | Work | Status |
 |---|---|---|
 | 1 | Record API contracts; move cohesive endpoint groups into router factories; retain application lifecycle, locks, public request models and app.state compatibility | Complete: 61 focused tests; API schema and handler-body parity verified |
-| 2 | Separate existing frontend screens, evidence dialog and shared display/navigation helpers; preserve state ownership, markup and interaction timing | Planned |
+| 2 | Separate existing frontend screens, evidence dialog and shared display/navigation helpers; preserve state ownership, markup and interaction timing | Complete: compiled component parity, production build and full Playwright suite (39 passed, one phone-only desktop skip) |
 | 3 | Audit current documentation and workflows; distinguish active APIs from archived/tombstoned behavior; replace stale screenshots where needed | In progress |
-| 4 | Full backend/native/API suite, migrations, Ruff, TypeScript/Vite build and all Playwright projects; fix regressions; record results and commit | Planned |
+| 4 | Full backend/native/API suite, migrations, Ruff, TypeScript/Vite build and all Playwright projects; fix regressions; record results and commit | In progress: 197 backend tests and full Playwright/build pass; migration and final documentation checks remain |
 
 Backend directory: `backend/trainer/routes/` for imports, jobs, review, classification, workspace and compatibility routers; `api.py` remains the application composition root. HTTP middleware/error/static helpers stay in the interface layer. Router factories receive the existing resources explicitly; no new service framework or domain abstraction.
 
