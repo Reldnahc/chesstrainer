@@ -44,3 +44,13 @@ Primary source: [Lichess puzzler](https://github.com/ornicar/lichess-puzzler), [
 ## Adapter verification
 
 The pinned-source adapter passed 19 deterministic tests. Removing the witness observers reproduces every original function AST hash, and util.py/model.py/license bytes match upstream exactly. Across the complete frozen sample, all 12,000 theme sets matched the unmodified upstream execution; 17,468 concrete witness records had valid actor/frame/ply coordinates. No fabricated score, null setup move, global tracing or cross-worker observer state is used.
+
+## Application integration
+
+`lichess_patterns.py` reconstructs a python-chess PGN line and invokes the pinned predicates. `lichess_witnesses.py` translates their successful return sites into real move indices, board frames and square roles. `tactical_patterns.py` applies Fieldwork's existing connected-episode and outcome admission boundaries. `verified_patterns.py` retains the previous detailed collection witnesses and independently verified extensions; this preserves reviewed regressions and richer explanations without requiring every new upstream tag to satisfy the old recognition rules.
+
+Classifier version `4.0-lichess-8d9faff6` invalidates previous classification cache identities while retaining historical responses. Active weakness evidence still requires meaningful engine comparison and supported material/mate outcomes. Review explanations can annotate a motif present in the saved answer line without turning that observation into a new diagnosis or changing the answer grade. No Stockfish, grading, scheduling or database schema changes are involved.
+
+Missing pre-position context explicitly skips upstream hanging-piece recognition; no null setup move or invented score is supplied. The existing native capture evidence remains available. A quiet gap excludes unrelated later motifs from a decision's explanation. The reviewed safeguard against teaching pawn cleanup after a free queen capture as defender removal remains at the application attribution boundary.
+
+Integration tests demonstrate pin exploitation newly recognized by upstream for both colors, and double check visible in a line without asserting a mistake when the engine comparison supplies no meaningful loss. Existing classifier, explanation and wrong-label regression contracts continue to apply unchanged. Saved games are not automatically reclassified on startup; use Settings > Classify saved games after deploying the version.

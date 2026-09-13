@@ -18,7 +18,7 @@ from trainer.models import (
     ReviewSession,
 )
 from trainer.move_causes import move_causes
-from trainer.tactical_patterns import detect_patterns
+from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 
 class Frame(BaseModel):
@@ -228,6 +228,17 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
             direction,
             material_supported=gain is not None and gain >= 1,
             mate_supported=mate_supported,
+        )
+        # A check/fork/pin can be visible even when this finite PV has no
+        # settled material endpoint. It remains a factual playback annotation,
+        # never an additional grading event or automatically a weakness label.
+        detailed_skills = {finding.skill_id for finding in findings}
+        findings.extend(
+            finding
+            for finding in recognized_patterns(
+                boards, first, min(len(boards) - 1, 16), analysis.id, direction
+            )
+            if finding.skill_id not in detailed_skills
         )
         if not accepted and gain is not None and gain >= 1:
             findings.extend(move_causes(boards, analysis.id))

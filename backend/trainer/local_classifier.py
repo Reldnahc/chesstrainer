@@ -179,6 +179,7 @@ class LocalClassifier:
                     material_supported=supports,
                     mate_supported=mate_support,
                     max_tactic_plies=self.parameters["tactic_plies"],
+                    previous_move=evidence.get("previous_move") if first == 1 else None,
                 )
             )
             for hypothesis in hypotheses(

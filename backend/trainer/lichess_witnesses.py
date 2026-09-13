@@ -26,7 +26,7 @@ class MotifWitness:
 
 
 def names(squares):
-    return [chess.square_name(s) for s in sorted(set(squares)) if s is not None]
+    return [chess.square_name(s) for s in sorted({s for s in squares if s is not None})]
 
 
 def witness(theme, rule, context, puzzle, positions) -> MotifWitness | None:

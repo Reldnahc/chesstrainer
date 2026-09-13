@@ -6,7 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from trainer.taxonomy import SKILLS
 
-RULE_VERSION = "3.1"
+RULE_VERSION = "4.0-lichess-8d9faff6"
 
 OUTCOME_SKILLS = {"material_loss", "missed_material_gain", "allowed_mate", "missed_mate"}
 CUES = {
@@ -14,7 +14,7 @@ CUES = {
     "missed_tactical_capture": "Look for loose enemy pieces before choosing a quiet move.",
     "fork": "Check forcing moves that attack two valuable targets at once.",
     "pin": "Before moving a pinned piece, check what it exposes: your king or a more valuable piece.",
-    "skewer": "Watch for a check that exposes a valuable piece behind the king.",
+    "skewer": "Watch for an attack that exposes another valuable piece behind the first target.",
     "removing_defender": "Before exchanging a defender, check what it currently protects.",
     "discovered_attack": "Check what lines open when a blocking piece moves.",
     "double_attack": "Look for a move that creates two threats at once, including checks and opened lines.",
