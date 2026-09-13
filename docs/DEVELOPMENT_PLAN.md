@@ -18,8 +18,8 @@ Requested September 13, 2026. Build an offline streaming benchmark over an exter
 | Stage | Status |
 |---|---|
 | Theme semantics, streaming sampling and legal reconstruction | Complete: 27 deterministic tests, including compressed-frame validation |
-| Production adapter, metrics, reports and failure corpus | Planned |
-| Deterministic tests, initial external run and documentation | Planned |
+| Production adapter, metrics, reports and failure corpus | Complete: shared detector, subtype projections, separate initial-episode metric and complete JSONL context |
+| Deterministic tests, initial external run and documentation | In progress: adapter tests passing; full-dataset run and final documentation next |
 
 No product integration, classifier tuning, database/schema writes, model calls or missing-tag negative labels. Keep dataset and generated reports in ignored data. Complete and commit verified units incrementally.
 

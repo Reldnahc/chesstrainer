@@ -101,8 +101,9 @@ MAPPINGS = (
         "hangingPiece",
         "missed_tactical_capture",
         "approximate",
-        "Solver-side counterpart of hanging_piece: captures an undefended non-pawn "
+        "First solver capture, the positive-side counterpart of hanging_piece: an undefended non-pawn "
         "with immediate and retained gain. Insufficiently defended pieces are broader.",
+        "initial_capture",
     ),
     ThemeMapping(
         "deflection",

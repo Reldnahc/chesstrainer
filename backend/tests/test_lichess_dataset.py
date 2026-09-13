@@ -194,3 +194,27 @@ def test_truncated_zstandard_frame_is_rejected(tmp_path, cut):
     compressed.write_bytes(data[:-cut])
     with pytest.raises(DatasetError, match="Truncated"):
         sample(compressed)
+
+
+def test_optional_zstandard_dependency_error_is_actionable(tmp_path, monkeypatch):
+    import sys
+
+    path = tmp_path / "input.csv.zst"
+    path.write_bytes(b"not consumed without the decoder")
+    monkeypatch.setitem(sys.modules, "zstandard", None)
+    with pytest.raises(DatasetError, match="optional developer dependency"):
+        sample(path)
+
+
+@pytest.mark.parametrize("kind", ["utf8", "truncated_gzip", "invalid_gzip"])
+def test_unreadable_streams_do_not_produce_partial_samples(tmp_path, kind):
+    if kind == "utf8":
+        path = tmp_path / "input.csv"
+        path.write_bytes(FIXTURE.read_bytes() + b"\xff")
+    else:
+        path = tmp_path / "input.csv.gz"
+        path.write_bytes(
+            gzip.compress(FIXTURE.read_bytes())[:-5] if kind == "truncated_gzip" else b"not gzip"
+        )
+    with pytest.raises((DatasetError, OSError)):
+        sample(path)
