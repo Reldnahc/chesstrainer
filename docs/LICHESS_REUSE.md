@@ -54,3 +54,34 @@ Classifier version `4.0-lichess-8d9faff6` invalidates previous classification ca
 Missing pre-position context explicitly skips upstream hanging-piece recognition; no null setup move or invented score is supplied. The existing native capture evidence remains available. A quiet gap excludes unrelated later motifs from a decision's explanation. The reviewed safeguard against teaching pawn cleanup after a free queen capture as defender removal remains at the application attribution boundary.
 
 Integration tests demonstrate pin exploitation newly recognized by upstream for both colors, and double check visible in a line without asserting a mistake when the engine comparison supplies no meaningful loss. Existing classifier, explanation and wrong-label regression contracts continue to apply unchanged. Saved games are not automatically reclassified on startup; use Settings > Classify saved games after deploying the version.
+
+## Frozen comparison after integration
+
+Final replay: September 13, 2026; 12,000 theme-puzzle incidences, 1,000 per theme; all reconstructed, zero skips. It took 105.031 seconds. The exact sample SHA256 is e44fad1c330ce878f3b2ad9f0adcbe01685129a2ae6a54b73325938b5a86fef0. Original dataset/sample provenance remains in LICHESS_BENCHMARK_RESULTS.md.
+
+| Theme | v3.1 line detector | Raw upstream recognition | v4 Fieldwork admission |
+|---|---:|---:|---:|
+| backRankMate | 99.2% | 100.0% | 100.0% |
+| capturingDefender | 63.8% | 100.0% | 78.7% |
+| deflection | 76.7% | 100.0% | 94.8% |
+| discoveredAttack | 81.4% | 100.0% | 93.8% |
+| discoveredCheck | 65.9% | 74.6% | 66.0% |
+| doubleCheck | 94.0% | 100.0% | 94.0% |
+| fork | 71.3% | 100.0% | 98.2% |
+| hangingPiece | 99.2% | 99.9% | 99.2% |
+| pin | 39.7% | 99.9% | 86.1% |
+| promotion | 97.9% | 100.0% | 98.1% |
+| skewer | 87.9% | 100.0% | 92.8% |
+| underPromotion | 97.0% | 98.1% | 98.4% |
+
+Raw upstream matches the earlier unmodified predicate run. Fieldwork admission uses the original benchmark adapter: observed puzzle-line material/mate support and connected episodes, not full Stockfish-backed mistake classification. It also retains prior verified collection extensions. These columns are deliberately different measurements.
+
+The 12,000 incidences contain 999 v4 admission disagreements versus 2,260 in v3.1. Raw upstream has 275 disagreements. This is not precision; tags related to the reused generator cannot independently validate it. No ordinary false-positive metric is inferred from missing tags.
+
+Remaining restrictions are visible: defender removal still reaches only 78.7% after admission, pin 86.1%, and discoveredCheck 66.0%. The last theme excludes double check in both the projection and upstream single-discovery predicate. Underpromotion also differs: upstream rejects rook/bishop mating underpromotions while the application projects any admitted nonqueen promotion. No rule was changed to improve these figures.
+
+Reports live in ignored data/lichess-upstream/comparison-v4-final-seed0-1000: report.json, report.md, comparisons.jsonl and failures.jsonl. The standalone command in LICHESS_BENCHMARK.md reproduces the comparison from frozen samples. It streams records, preserves baseline context, validates counts and exports raw witnesses alongside current admission windows.
+
+## Source availability
+
+Original Fieldwork licensing is unchanged. NOTICE.md explains the combined GPL/AGPL source offer. npm run build and npm run dev prepare a Git-listed public-source snapshot; Settings links the ZIP served locally through the existing assets mount. Private data, environment secrets, dependencies and untracked files are excluded. Stage new public files and regenerate after source changes; exported snapshots also rebuild from their file manifest.

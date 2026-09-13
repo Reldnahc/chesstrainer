@@ -7,7 +7,8 @@ LIMITATIONS = [
     "Positive theme agreement only: absent tags are not negative ground truth. "
     "No precision, specificity or false-positive rate is estimated.",
     "Lichess tags are automated and player-refined external labels, not infallible human gold. "
-    "Earlier Fieldwork research inspected the upstream tagger; shared assumptions may correlate.",
+    "Fieldwork now reuses the pinned Lichess tagger: this is partly generator compatibility, "
+    "not an independent validation of the reused rules.",
     "This tests the shared line-pattern detector, not full mistake-classifier recall. "
     "No alternative-move scores or native defensive searches are available from this CSV.",
     "Visible material gains can be unsettled; terminal mate is verified by legal replay. "

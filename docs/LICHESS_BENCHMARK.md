@@ -6,7 +6,7 @@ Developer-only, offline evaluation of Fieldwork's deterministic tactical **line 
 
 The project owner is approximately 600 Elo; manual chess adjudication by the owner is not a viable validation strategy. We need an external test of whether a motif known to be present is recognized. Lichess supplies millions of tagged tactical positions, making a statement such as "Fieldwork recognized its fork motif in X% of 1,000 sampled Lichess fork puzzles" possible without relying on the owner's chess strength.
 
-The labels are external to this benchmark, but are not infallible expert annotations. Lichess generates tags automatically and refines them through player votes. Earlier Fieldwork design research inspected the upstream tagger, so shared assumptions can cause correlated errors.
+The labels are external to this benchmark, but are not infallible expert annotations. Lichess generates tags automatically and refines them through player votes. Since classifier v4, Fieldwork reuses the pinned upstream motif predicates. Agreement now partly measures compatibility with a related label generator; it is not independent validation of the reused rules. The v3.1 baseline remains preserved.
 
 Sources inspected September 13, 2026: [dataset, format and CC0 terms](https://database.lichess.org/#puzzles), [official theme definitions](https://github.com/lichess-org/lila/blob/master/translation/source/puzzleTheme.xml), [upstream tagger](https://github.com/ornicar/lichess-puzzler/blob/master/tagger/cook.py). The current exported dataset is authoritative for candidate tags; an older tagger checkout may not list every exported theme.
 
@@ -42,6 +42,7 @@ The output directory must be new; the default is data/lichess-benchmark/results.
 | detector.py | Adapt solver continuations to unchanged production detectors and preserve witness coordinates |
 | reports.py | Positive-only denominators, exact/approximate summaries and Markdown rendering |
 | runner.py | Orchestrate sampling/evaluation and write JSON/JSONL artifacts |
+| compare.py | Replay a frozen samples.jsonl through raw upstream recognition and current Fieldwork admission, preserving baseline records |
 | cli.py / __main__.py | Standalone developer commands; scripts/benchmark_lichess.py is the direct entry point |
 | requirements.txt | Optional pinned Zstandard decoder; no application dependency changes |
 
@@ -51,29 +52,29 @@ Production imports no benchmark code. The adapter does not instantiate applicati
 
 The executable source of truth is [themes.py](../scripts/lichess_benchmark/themes.py); --list-mappings and each report include its full semantics. Exact describes the **motif event**, not equality of every outcome/evidence gate. Approximate mappings deliberately expose narrower production witnesses rather than broadening rules to match a theme name.
 
-| Lichess theme | Fieldwork skill / witness | Relationship | Eligible | Semantic relationship and limits |
+| Lichess theme | Fieldwork skill | Relationship | Eligible | Semantic relationship and limits |
 |---|---|---|---|---|
-| fork | fork | Approximate | Yes | One piece attacks multiple targets. Fieldwork additionally requires valuable non-pawn targets, a new attack, an uncapturable forker and collection by that piece in the connected line. Native defensive-query extensions are not tested. |
-| pin | pin | Approximate | Yes | Lichess covers pins to more valuable pieces. This entry point recognizes exploited absolute pins: pinned defenders or a pinned victim collected in the line. Relative pins requiring native probes remain outside this test. |
-| skewer | skewer | Approximate | Yes | Fieldwork's subset is a slider checking a king, then the same slider capturing a non-pawn behind it on the next solver move. Broader relative skewers and uncollected threats need not match. |
-| capturingDefender | removing_defender | Approximate | Yes | Capture a defender, then collect its former target. Fieldwork requires the sole geometric defender, no remaining defenders, immediate follow-up collection and existing value safeguards. |
-| backRankMate | back_rank | Approximate | Yes | A king trapped on its home rank is broader than Fieldwork's actual rook/queen mate with at least two adjacent inward own-pawn blockers. Barriers formed by other pieces may miss. |
-| promotion | promotion_awareness | Approximate | Yes | Actual promotion with visible material support; a threatened, sacrificed or some mating promotion may not emit this witness. |
-| underPromotion | promotion_awareness, underpromotion subtype | Approximate | Yes | Only an emitted promotion to knight, bishop or rook counts. A queen-promotion witness cannot satisfy this mapping; the material gate still applies. |
-| discoveredAttack | discovered_attack | Approximate | Yes | Fieldwork emits an uncovered single check or a released slider attack followed by that slider collecting the target. Uncollected threats and discoveries emitted only as double_attack do not match. |
-| discoveredCheck | discovered_attack, single-check subtype | Approximate | Yes | Only an uncovered-single-check witness qualifies. A nonchecking discovery or double check is not credited merely because it shares related geometry. |
-| doubleCheck | double_attack, double-check subtype | Exact event | Yes | Both definitions require simultaneous checks from multiple pieces. The adapter requires the production checkers/king witness, excluding the nonchecking double_attack subtype. Outcome gates still apply. |
-| hangingPiece | missed_tactical_capture, initial-capture subtype | Approximate | Yes | Positive-side counterpart of hanging_piece: the first solver move captures an undefended non-pawn with immediate and retained gain. Lichess also describes insufficient defense; a later unrelated capture is not credited. |
-| deflection | deflection | Approximate | Yes | Fieldwork's subset requires a check response or recapture moving a sole defender, followed immediately by collection of the now-undefended target. |
-| trappedPiece | trapped_piece | Unsupported | No | Production requires native counterfactual escape/capture searches unavailable from the CSV. |
-| attraction | No equivalent | Unsupported | No | Luring a piece to a square is not necessarily removing its defensive duty. |
-| overloading | overloaded_defender | Unsupported | No | A taxonomy ID exists, but no production line detector emits it. |
-| interference | No equivalent | Unsupported | No | Blocking a line is not the same mechanism as capturing or deflecting a defender. |
-| xRayAttack | No equivalent | Unsupported | No | An attack/defense through a piece does not by itself establish a pin or skewer witness. |
-| advancedPawn | promotion_awareness rejected | Unsupported | No | An advanced pawn or promotion threat is not an actual promotion witness. |
-| mate | No equivalent | Unsupported | No | A mating solution alone cannot establish an allowed/missed-mate transition without alternative scores. |
-| defensiveMove | defensive_resource | Unsupported | No | The reserved taxonomy ID has no equivalent emitted line detector. |
-| sacrifice | No equivalent | Unsupported | No | A successful sacrifice is not evidence of a bad trade. |
+| fork | fork | approximate | Yes | Pinned Lichess fork recognition plus existing collection witnesses. Upstream tests valuable non-pawn targets and forker safety; Fieldwork outcome/episode gates remain. Native defensive-probe extensions are not exercised. |
+| pin | pin | approximate | Yes | Pinned Lichess absolute-pin predicates recognize restricted captures or escape; existing collection witnesses remain. Relative pins need native probes. Fieldwork outcome/episode gates remain. |
+| skewer | skewer | approximate | Yes | Pinned Lichess skewer predicate supports aligned front targets beyond kings, with same-slider collection; existing king-skewer witnesses remain. Fieldwork outcome/episode gates remain. |
+| capturingDefender | removing_defender | approximate | Yes | Pinned Lichess capture-of-defender predicate plus existing collection witnesses. Fieldwork retains its reviewed free-queen/pawn-cleanup attribution safeguard and outcome/episode gates. |
+| backRankMate | back_rank | approximate | Yes | Pinned Lichess actual back-rank mate with own-piece escape barriers, plus existing rook/queen-and-pawn witnesses. Terminal mate must appear in the bounded line. |
+| promotion | promotion_awareness | approximate | Yes | An actual promotion from the upstream predicate or existing retained-gain witness; promotion threats do not qualify. Fieldwork outcome/episode gates remain. |
+| underPromotion | promotion_awareness | approximate | Yes | Project actual knight/bishop/rook promotion witnesses from the broader promotion skill. The raw upstream under_promotion predicate excludes rook/bishop mating promotions; this projection can include them. Fieldwork outcome/episode gates remain. |
+| discoveredAttack | discovered_attack | approximate | Yes | Pinned Lichess uncovered single check or discovered line capture, plus existing collection witnesses. Quiet threats without collection may miss. Fieldwork outcome/episode gates remain. |
+| discoveredCheck | discovered_attack | approximate | Yes | Only the uncovered-single-check witness qualifies, not a nonchecking discovery or double check. This theme may not be exported separately. |
+| doubleCheck | double_attack | exact | Yes | Exact double-check event, selected from Fieldwork's broader double_attack skill. A nonchecking double attack cannot earn agreement. Adapter outcome gates still apply. |
+| hangingPiece | missed_tactical_capture | approximate | Yes | First solver capture, the positive-side counterpart of hanging_piece: upstream undefended-piece capture with real setup context or existing retained-gain witness. Fieldwork outcome gates remain; insufficiently defended pieces are broader. |
+| deflection | deflection | approximate | Yes | Pinned Lichess deflection sequences plus existing check/recapture and collection witnesses. Broader attraction is not substituted. Fieldwork outcome/episode gates remain. |
+| trappedPiece | trapped_piece | unsupported | No | Production requires native counterfactual escape/capture searches, absent from CSV. |
+| attraction | No equivalent | unsupported | No | Luring a piece to a square is not equivalent to removing its defensive duty. |
+| overloading | overloaded_defender | unsupported | No | No emitted production line detector for overloaded defenders. |
+| interference | No equivalent | unsupported | No | Blocking a line is not equivalent to capturing or deflecting its defender. |
+| xRayAttack | No equivalent | unsupported | No | Ray-through-piece motifs do not establish Fieldwork pin or skewer witnesses. |
+| advancedPawn | promotion_awareness | unsupported | No | An advanced pawn or promotion threat is not an actual promotion witness. |
+| mate | No equivalent | unsupported | No | A mating solution cannot establish allowed/missed mate without alternative scores. |
+| defensiveMove | defensive_resource | unsupported | No | No equivalent emitted line detector; the taxonomy ID alone is insufficient. |
+| sacrifice | No equivalent | unsupported | No | A successful sacrifice is not evidence of Fieldwork's avoiding_bad_trades label. |
 
 Other dataset themes are counted in input.theme_counts but have no mapping or agreement estimate. Unsupported mappings have candidate counts and zero sampled rows; their percentages remain null.
 
@@ -133,7 +134,7 @@ Before evaluation the report is incomplete. An unexpected detector exception pre
 
 ## Interpretation and next validation layer
 
-This can establish repeatable agreement on independently tagged positive examples under a documented line adapter. The [initial benchmark](LICHESS_BENCHMARK_RESULTS.md) reports 1,000 examples for each eligible theme, including weak motifs and unsettled endpoints.
+This can establish repeatable agreement on tagged positive examples under a documented line adapter. Since upstream reuse, those labels are related to the production recognizer and cannot serve as independent proof of its precision. The [initial benchmark](LICHESS_BENCHMARK_RESULTS.md) reports 1,000 examples for each eligible theme, including weak motifs and unsettled endpoints.
 
 It cannot establish:
 
@@ -142,7 +143,7 @@ It cannot establish:
 - Precision on real user mistakes or the psychologically correct reason a learner erred.
 - Strategic/positional diagnosis, long-term learning improvement or exact transfer from curated puzzles to arbitrary games.
 
-The next separate layer is blinded human review of stratified positive findings, primarily to estimate precision; [existing annotation tooling](LOCAL_CLASSIFICATION.md#configuration-and-evaluation) preserves reviewer provenance and uncertainty. Preserve this baseline and inspect disagreements before proposing any rule work. This task changes no classifier rules and does not optimize them against the dataset.
+The next separate layer is blinded human review of stratified positive findings, primarily to estimate precision; [existing annotation tooling](LOCAL_CLASSIFICATION.md#configuration-and-evaluation) preserves reviewer provenance and uncertainty. Preserve this baseline and inspect disagreements before proposing any rule work. The harness does not modify classifier rules. The separate v4 integration reuses pinned upstream conditions without tuning them against these failures.
 
 ## Tests
 
@@ -153,3 +154,23 @@ python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lic
 48 deterministic tests cover theme eligibility/subtypes, setup orientation, legal full replay, both colors, castling/en passant/promotion, shared-detector invocation, initial versus later episodes, seeded independent reservoirs, file fingerprints, denominator arithmetic, corpus reproducibility and malformed/unsupported/failing input.
 
 Tiny checked-in fixtures are explicitly synthetic, including deliberately inconsistent tags for miss-path tests. They establish harness contracts, not detector accuracy. Four compression tests skip clearly when optional zstandard is absent; no dataset download, database, engine or network is needed for these tests. Full application tests and results are documented in [TESTING](TESTING.md) and [VERIFICATION](VERIFICATION.md).
+
+## Frozen upstream versus application comparison
+
+After a baseline run, compare its exact saved sample without scanning or resampling the dataset:
+
+```sh
+python -m scripts.lichess_benchmark.compare --samples data/lichess-benchmark/baseline-v3.1-seed0-1000/samples.jsonl --output data/lichess-upstream/comparison-NEW
+```
+
+A completed report.json must accompany samples.jsonl. The command streams those records, fingerprints the sample bytes, verifies selected positive tags/counts, preserves malformed-row skips, and writes a new output directory. It supplies no alternative scores and never calls the full mistake classifier.
+
+- **Baseline** preserves the original record and its detector/mapping metadata.
+- **Raw upstream** calls the pinned predicates once over the entire legal solver line. It has no material/episode admission gate and no initial-episode metric.
+- **Fieldwork admission** calls the current shared line detector through the original benchmark's visible-outcome adapter, including retained collection/native-independent extensions and episode gates.
+
+report.json contains per-theme counts/percentages, separate exact/approximate macro and micro summaries, baseline provenance, all current detector/vendor source hashes and upstream commit. report.md compares the three percentages without claiming precision. comparisons.jsonl retains each baseline/current record and raw upstream themes/witnesses; failures.jsonl contains every incidence missed or skipped by either current path. Unexpected errors fail the report with reproducing context.
+
+Underpromotion is a deliberately visible semantic difference: raw upstream excludes rook/bishop mating underpromotions, whereas Fieldwork's witness projection recognizes any actual nonqueen promotion that passes its admission checks. Discovered-check projection requires a single uncovered check, excluding double check. Neither mapping was widened to flatter results.
+
+See [LICHESS_REUSE.md](LICHESS_REUSE.md) for the frozen 12,000-incidence comparison, remaining gaps and provenance. The comparison adds eight deterministic tests in test_lichess_comparison.py.

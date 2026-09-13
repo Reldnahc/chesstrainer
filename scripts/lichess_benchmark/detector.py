@@ -15,11 +15,15 @@ from trainer import (
     combination_patterns,
     continuations,
     diagnosis_types,
+    lichess_patterns,
+    lichess_witnesses,
     local_classifier,
     tactical_geometry,
     tactical_patterns,
     taxonomy,
+    verified_patterns,
 )
+from trainer._vendor.lichess_puzzler import COMMIT, cook, model, util
 from trainer.diagnosis_types import Finding
 from trainer.local_classifier import LocalClassifier
 
@@ -55,6 +59,12 @@ def detector_metadata() -> dict:
         continuations,
         diagnosis_types,
         local_classifier,
+        lichess_patterns,
+        lichess_witnesses,
+        verified_patterns,
+        cook,
+        model,
+        util,
         tactical_geometry,
         tactical_patterns,
         taxonomy,
@@ -62,6 +72,7 @@ def detector_metadata() -> dict:
     return {
         "entry_point": "trainer.tactical_patterns.detect_patterns",
         "rule_version": diagnosis_types.RULE_VERSION,
+        "upstream_commit": COMMIT,
         "parameters": LocalClassifier().parameters,
         "python_chess_version": chess.__version__,
         "source_sha256": {

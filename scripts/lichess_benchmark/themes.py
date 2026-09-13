@@ -3,7 +3,7 @@
 from dataclasses import asdict, dataclass
 from typing import Literal
 
-MAPPING_VERSION = "1"
+MAPPING_VERSION = "2"
 
 
 @dataclass(frozen=True)
@@ -27,59 +27,64 @@ MAPPINGS = (
         "fork",
         "fork",
         "approximate",
-        "Fieldwork requires valuable non-pawn targets, a newly created attack, "
-        "an uncapturable forker and collection by that piece in the bounded line. "
+        "Pinned Lichess fork recognition plus existing collection witnesses. Upstream tests "
+        "valuable non-pawn targets and forker safety; Fieldwork outcome/episode gates remain. "
         "Native defensive-probe extensions are not exercised.",
     ),
     ThemeMapping(
         "pin",
         "pin",
         "approximate",
-        "The line detector covers exploited absolute pins: pinned defenders or "
-        "a pinned victim collected in the line. Broader relative pins need native probes.",
+        "Pinned Lichess absolute-pin predicates recognize restricted captures or escape; "
+        "existing collection witnesses remain. Relative pins need native probes. "
+        "Fieldwork outcome/episode gates remain.",
     ),
     ThemeMapping(
         "skewer",
         "skewer",
         "approximate",
-        "Fieldwork requires a slider checking a king, then the same slider capturing "
-        "the non-pawn target behind it on the next solver move; other skewers are broader.",
+        "Pinned Lichess skewer predicate supports aligned front targets beyond kings, "
+        "with same-slider collection; existing king-skewer witnesses remain. "
+        "Fieldwork outcome/episode gates remain.",
     ),
     ThemeMapping(
         "capturingDefender",
         "removing_defender",
         "approximate",
-        "Fieldwork requires capture of the sole geometric defender, collection next, "
-        "no remaining defender and its existing material-value safeguards.",
+        "Pinned Lichess capture-of-defender predicate plus existing collection witnesses. "
+        "Fieldwork retains its reviewed free-queen/pawn-cleanup attribution safeguard "
+        "and outcome/episode gates.",
     ),
     ThemeMapping(
         "backRankMate",
         "back_rank",
         "approximate",
-        "Fieldwork requires actual rook/queen mate along the home rank and at least "
-        "two adjacent inward own-pawn blockers. Other own-piece barriers are broader.",
+        "Pinned Lichess actual back-rank mate with own-piece escape barriers, plus existing "
+        "rook/queen-and-pawn witnesses. Terminal mate must appear in the bounded line.",
     ),
     ThemeMapping(
         "promotion",
         "promotion_awareness",
         "approximate",
-        "An actual promotion witness with a visible retained material gain; "
-        "promotion threats, sacrificed promotions and some mating promotions do not qualify.",
+        "An actual promotion from the upstream predicate or existing retained-gain witness; "
+        "promotion threats do not qualify. Fieldwork outcome/episode gates remain.",
     ),
     ThemeMapping(
         "underPromotion",
         "promotion_awareness",
         "approximate",
-        "Only an emitted promotion witness to knight, bishop or rook qualifies. "
-        "The same material-gain restriction applies.",
+        "Project actual knight/bishop/rook promotion witnesses from the broader promotion skill. "
+        "The raw upstream under_promotion predicate excludes rook/bishop mating promotions; "
+        "this projection can include them. Fieldwork outcome/episode gates remain.",
         "underpromotion",
     ),
     ThemeMapping(
         "discoveredAttack",
         "discovered_attack",
         "approximate",
-        "Fieldwork supports uncovered single check or opening a slider line whose "
-        "valuable target that slider collects. Broader threats without collection may miss.",
+        "Pinned Lichess uncovered single check or discovered line capture, plus existing "
+        "collection witnesses. Quiet threats without collection may miss. "
+        "Fieldwork outcome/episode gates remain.",
     ),
     ThemeMapping(
         "discoveredCheck",
@@ -101,16 +106,17 @@ MAPPINGS = (
         "hangingPiece",
         "missed_tactical_capture",
         "approximate",
-        "First solver capture, the positive-side counterpart of hanging_piece: an undefended non-pawn "
-        "with immediate and retained gain. Insufficiently defended pieces are broader.",
+        "First solver capture, the positive-side counterpart of hanging_piece: upstream "
+        "undefended-piece capture with real setup context or existing retained-gain witness. "
+        "Fieldwork outcome gates remain; insufficiently defended pieces are broader.",
         "initial_capture",
     ),
     ThemeMapping(
         "deflection",
         "deflection",
         "approximate",
-        "Fieldwork requires a check response or recapture that moves a sole defender, "
-        "followed immediately by collection of the now-undefended target.",
+        "Pinned Lichess deflection sequences plus existing check/recapture and collection "
+        "witnesses. Broader attraction is not substituted. Fieldwork outcome/episode gates remain.",
     ),
     ThemeMapping(
         "trappedPiece",
