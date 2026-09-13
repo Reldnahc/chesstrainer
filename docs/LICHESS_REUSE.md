@@ -40,3 +40,7 @@ Primary source: [Lichess puzzler](https://github.com/ornicar/lichess-puzzler), [
 - Pinned-version quirks, including underpromotion and discovered-check theme differences, must be visible rather than hidden by mapping changes.
 - Witness instrumentation must leave every original detector decision unchanged. Existing wrong-label regressions must remain meaningful.
 - No loss of reviews, schedules, retired positions, original analyses or historical audits. No background reclassification of live data merely from importing a module.
+
+## Adapter verification
+
+The pinned-source adapter passed 19 deterministic tests. Removing the witness observers reproduces every original function AST hash, and util.py/model.py/license bytes match upstream exactly. Across the complete frozen sample, all 12,000 theme sets matched the unmodified upstream execution; 17,468 concrete witness records had valid actor/frame/ply coordinates. No fabricated score, null setup move, global tracing or cross-worker observer state is used.

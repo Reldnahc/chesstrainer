@@ -28,8 +28,12 @@ testpaths = ["backend/tests"]
 markers = ["stockfish: requires native Stockfish"]
 
 [tool.ruff]
+extend-exclude = ["backend/trainer/_vendor/lichess_puzzler"]
 line-length = 100
 target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.setuptools.package-data]
+"trainer._vendor.lichess_puzzler" = ["LICENSE", "UPSTREAM.json", "README.md"]

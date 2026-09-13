@@ -18,8 +18,8 @@ Requested September 13, 2026. [LICHESS_REUSE.md](LICHESS_REUSE.md) records the p
 | Stage | Status |
 |---|---|
 | Unmodified upstream comparison on frozen samples | Complete: 12,000 incidences, materially broader recognition |
-| Pinned source, witness adapter and parity tests | In progress |
-| Classifier/review integration and regression verification | Planned |
+| Pinned source, witness adapter and parity tests | Complete: 19 tests; all 12,000 upstream theme sets preserved |
+| Classifier/review integration and regression verification | In progress |
 | Final measurements, documentation and deployment status | Planned |
 
 Preserve Stockfish/grading/FSRS and historical data. Reuse actual upstream predicate logic, preserve its license, and distinguish recognized line motifs from supported mistake diagnoses.
