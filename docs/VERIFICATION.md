@@ -28,7 +28,7 @@ Tests use isolated databases. Migration preservation uses SQLite online backup f
 
 The complete frozen comparison is a partly generator-related compatibility measurement, not independent classifier precision. Remaining gaps and private failure corpora are documented in LICHESS_REUSE.md. Physical-phone and cross-platform install checks remain separate from emulation.
 
-Deployment: the built frontend is ready; live backend restart verification is recorded after the final code commit. No bulk reclassification is triggered by deployment.
+Deployment: restarted the idle LAN backend at 192.168.1.12:8000 after committing the verified code. Health reports Stockfish 18 and classifier 4.0-lichess-8d9faff6. Before/after fingerprints confirm unchanged games, decisions, exercises, accepted answers, review sessions, reviews and SRS states. No bulk reclassification was run; Settings > Classify saved games applies the new version to saved evidence without new engine analysis.
 
 ## Lichess benchmark tooling: September 13, 2026
 
