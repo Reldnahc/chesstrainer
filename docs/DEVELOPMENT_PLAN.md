@@ -11,16 +11,16 @@ Fieldwork is a private, review-centered chess trainer. The current navigation is
 - Classifier v3.1 is deployed. Its first assistant assessment is documented in [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md); independent human accuracy remains unmeasured.
 - Lessons, course UI, Repertoire and model connectivity are removed. Historical data, tombstone routes, teaching audits and the low-level manual exercise API are retained for compatibility.
 
-## Active maintenance pass: interface ownership and documentation
+## Completed maintenance pass: interface ownership and documentation
 
-Requested September 13, 2026. Starting assessment: a clean worktree; App.tsx contains 251 dense lines covering navigation, review, import, settings and evidence dialogs. api.py contains 531 lines covering application resources, access controls, all endpoint groups and static serving. Existing domain services, shared mutation lock, injected factories and test fixtures are reusable.
+Completed September 13, 2026. Starting assessment: a clean worktree; App.tsx contains 251 dense lines covering navigation, review, import, settings and evidence dialogs. api.py contains 531 lines covering application resources, access controls, all endpoint groups and static serving. Existing domain services, shared mutation lock, injected factories and test fixtures are reusable.
 
 | Stage | Work | Status |
 |---|---|---|
 | 1 | Record API contracts; move cohesive endpoint groups into router factories; retain application lifecycle, locks, public request models and app.state compatibility | Complete: 61 focused tests; API schema and handler-body parity verified |
 | 2 | Separate existing frontend screens, evidence dialog and shared display/navigation helpers; preserve state ownership, markup and interaction timing | Complete: compiled component parity, production build and full Playwright suite (39 passed, one phone-only desktop skip) |
-| 3 | Audit current documentation and workflows; distinguish active APIs from archived/tombstoned behavior; replace stale screenshots where needed | In progress |
-| 4 | Full backend/native/API suite, migrations, Ruff, TypeScript/Vite build and all Playwright projects; fix regressions; record results and commit | In progress: 197 backend tests and full Playwright/build pass; migration and final documentation checks remain |
+| 3 | Audit current documentation and workflows; distinguish active APIs from archived/tombstoned behavior; replace stale screenshots where needed | Complete: current guides corrected; original journal/course design preserved; six screenshots refreshed |
+| 4 | Full backend/native/API suite, migrations, Ruff, TypeScript/Vite build and all Playwright projects; fix regressions; record results and commit | Complete: all checks pass; full results and limits in VERIFICATION.md |
 
 Backend directory: `backend/trainer/routes/` for imports, jobs, review, classification, workspace and compatibility routers; `api.py` remains the application composition root. HTTP middleware/error/static helpers stay in the interface layer. Router factories receive the existing resources explicitly; no new service framework or domain abstraction.
 

@@ -1,58 +1,75 @@
 # Architecture
 
-React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ owns rules, engine evaluation, grading, local classification, reviews and scheduling. SQLAlchemy 2 and Alembic manage SQLite with foreign keys, WAL and a busy timeout. Run one application process; no Redis, external worker service or cloud database is needed.
+React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ owns chess rules, evaluation, grading, local classification, reviews and scheduling. SQLAlchemy 2 and Alembic manage SQLite with foreign keys, WAL and a busy timeout. Run one application process; no Redis, external worker service or cloud database is needed.
 
-## Boundaries
+## HTTP interface ownership
 
-Classification v3.1 implements adaptive continuation evidence, connected tactical witnesses and separately cached defensive probes. Engine evidence and deterministic geometry remain the authorities. The first blinded offline assistant assessment and its corrections are documented in CLASSIFICATION_ASSESSMENT.md. Assistant review is a development activity with recorded provenance; it is not an application dependency or an automatic source of labels.
+| Module | Responsibility |
+|---|---|
+| backend/trainer/api.py | Application composition, injected factories, per-app resources, shared mutation lock, lifespan and router registration |
+| backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
+| routes/workspace.py | Health, effective settings and statistics |
+| routes/imports.py | Bounded PGN upload and Chess.com import requests |
+| routes/jobs.py | Progress, cancellation and retry |
+| routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
+| routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
+| routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
 
-- `chess_core.py`: python-chess rules, canonical legal-position identity, deterministic facts and explicit score types.
-- `engine.py`: native UCI lifecycle, analysis limits and compatible persistent cache; no training policy.
-- `policy.py`: configurable acceptance policy over verified scores.
-- `imports.py`, `chesscom.py`: learner resolution, PGN provenance, deduplication and bounded serial public-game download.
-- `jobs.py`, `pipeline.py`, `work_pool.py`: ordered persistent jobs, bounded engine/classification pools, cancellation and atomic progress.
-- `local_classifier.py`: versioned tactical/consequence detectors, witness plies/squares and abstention.
-- `classification.py`: validated labels, cache identity, immutable run responses and active evidence projection.
-- `curriculum.py`, `lessons.py`: archived course/history helpers; live lesson routes are disabled. New imports/classification do not rebuild courses.
-- `reviews.py`, `explanations.py`, `scheduling.py`, `retirement.py`: backend grading, local consequence playback, FSRS and persistent retirement.
-- `models.py`, `db.py`: relational persistence and migrations.
-- `api.py`: application composition, per-app resources, shared mutation lock and startup/shutdown.
-- `routes/`: workspace, imports, jobs, review, classification and compatibility APIRouter factories, each receiving its existing resources explicitly.
-- `web.py`: LAN access middleware, exception responses, production assets and SPA fallback.
+Each router is an ordinary factory receiving its existing resources explicitly. Session factories, engine, scheduler, runner and locks belong to one app instance; there is no global dependency container. HTTP handlers delegate chess and scheduling behavior to existing domain functions.
 
-Within one job, STOCKFISH_WORKERS games run in parallel, each with its own native process and DB session. Moves within a game stay ordered. Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits at most twice its worker count. Producers stop on cancellation and started tasks finish saving; a game is complete after its classification tasks finish. Classification-only backfills use saved evidence and neither start background engines nor create/enroll exercises.
+The composition root retains migration/skill seeding/retirement reconciliation, engine health checks, worker startup and shutdown. Existing app.state settings/sessions/runner and the public MoveRequest/ManualRequest imports remain compatible. All mutations that previously shared the application lock still use that same lock.
 
-Short writes share a lock; rule computation runs outside it. Progress uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent searches. Interactive grading has its own engine. Startup recovers unfinished jobs; multiple Uvicorn processes are unsupported.
+## Frontend ownership
 
-Training identity ignores clocks but preserves legal en passant and castling. Engine cache identity also preserves rule clocks and move history. Scores are normalized to the learner with mate separate from centipawns. Classification caches include rules, parameters, taxonomy and saved evidence. Classification weights are not calibrated probabilities.
+| Module in frontend/src | Responsibility |
+|---|---|
+| App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
+| Review.tsx | Review/focus session state, answer/reveal actions, counter timer, queue transitions and board composition |
+| Import.tsx | Import source selection, PGN form and job polling/actions |
+| Settings.tsx | Effective settings display and local classification job controls |
+| EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
+| PageTitle.tsx / navigation.ts | Shared title display / existing exercise-and-legacy-unit URL cleanup |
+| api.ts | Same-origin HTTP client and response types |
 
-OpenAI runtime integration has been removed. No model SDK or model network calls remain. Historical classification and teaching audits are retained locally; model teaching-generation endpoints return 410. New audits explicitly identify local_rules provenance. See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md).
+Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review keeps its related state and timers together. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
-Production serves the frontend on the API origin. LAN binding and an optional shared token are configuration; do not expose directly to the internet. Only explicit Chess.com imports need outbound network access.
+Navigation is Review, Weaknesses, Import, Settings. Removed unit links return to Review. Production serves frontend assets on the API origin; the Vite development proxy targets 127.0.0.1:8000.
 
+## Domain boundaries
 
-Lesson removal: the web app exposes four destinations (Review, Import, Weaknesses, Settings). Lesson/course APIs are tombstones returning 410. Legacy domain modules and relational history remain for compatibility and archival tests, but no production route or job calls lesson generation/progression. A one-time migration releases nonretired lesson-held review cards while preserving their scheduler state.
+- chess_core.py: python-chess rules, legal-position identity, deterministic facts and explicit score types.
+- engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
+- policy.py: configurable move acceptance over verified scores.
+- imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.
+- jobs.py / pipeline.py / work_pool.py: persistent ordered jobs, bounded worker pools, cancellation and atomic progress.
+- classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence.
+- curriculum.py: **active weakness priorities**, alongside archived course grouping/sequence helpers. lessons.py contains archived progression helpers.
+- reviews.py / explanations.py / scheduling.py / retirement.py: move grading, verified playback, FSRS adapter and persistent retirement.
+- practice.py: distinct game-position selection and focused sessions separate from scheduled recall.
+- models.py / db.py: relational persistence, SQLite configuration and migrations.
 
+## Local execution and evidence
 
-Repertoire removal uses a source filter in both due and unfinished-session review queries. API guards reject repertoire starts/moves/reveals and repertoire list/import with HTTP 410. No database migration or SRS mutation is needed. Legacy parsing/domain helpers and the low-level manual exercise API remain for compatibility and deterministic fixtures, without a creation UI.
+One coordinator processes queued jobs in order. Within an analysis job, STOCKFISH_WORKERS games run in parallel, each with its own native process and database session. Moves within a game stay ordered. Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits at most twice its worker count. Cancellation stops new work and lets started tasks save; a game is complete after its classification tasks settle.
 
+Short writes share a lock; rule computation runs outside it. Progress uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent searches. Interactive grading has a separate serialized engine. Startup recovers unfinished jobs; multiple Uvicorn application processes are unsupported.
 
-Review explanation playback runs inline in the existing practice panel and supplies verified frames to the original Board component. It does not open a modal, remount the board, hide navigation or change page geometry. Explanation API and scheduling behavior are unchanged.
+Training identity ignores clocks but preserves legal en passant and castling. Engine cache identity also preserves rule clocks and move history. Scores are learner-relative with mate separate from centipawns. Classification caches include saved evidence, rules, parameters and taxonomy; classification weights are not calibrated probabilities.
 
+Classification-only backfills launch no background engines and cannot create/enroll exercises. Optional enrichment uses native workers and stores supplemental references separately from original grading evidence. Focus sessions save attempts/timing but cannot create Review rows or mutate SRSState.
 
-Classification upgrade plan: keep deterministic evidence extraction, tactical detectors, classification persistence and review scheduling separate. Shared line detectors supply witness frames to both local classification and explanation playback. Supplemental analysis records reference immutable engine cache entries; they do not replace exercise authority. Focused practice is a separate ReviewSession mode, while normal mixed review retains FSRS ownership.
+## Classification and audit modules
 
+diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. tactical_geometry.py, tactical_patterns.py, combination_patterns.py and move_causes.py derive bounded event witnesses. explanations.py uses witnesses only from the selected answer's own line.
 
-## Implemented classification boundaries
+defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 3.1 are separate version boundaries.
 
-`diagnosis_types.py` defines immutable outcomes, findings, square roles and cues. `local_classifier.py` gates decision findings using comparative engine scores and quiet material endpoints. Shared `tactical_patterns.py` recognizes concrete geometric witnesses; `explanations.py` uses it only on the selected answer's own line. `coverage.py` separates current outcomes from specific mechanisms, independently of cumulative run counts.
+classification_quality.py and the read-only report script support blinded exports and annotated comparisons. Human and assistant cohorts remain separate; changed evidence cannot inherit stale annotations. Offline assistant assessment is a development activity, not an application dependency or automatic label source. See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md).
 
-`enrichment.py` plans a persisted bounded batch and uses the existing native engine worker pool. Supplemental analysis references are separate from grading references. Completed searches use the normal durable cache; mismatched engine/settings after a restart require a new probe job. Classification-only backfills still launch no engines.
+## Archives, privacy and deployment
 
-`practice.py` selects active evidence positions across games and deduplicates legal position keys. ReviewSession.mode and focus_skill_id distinguish these attempts from mixed recall. `record_once` cannot write a Review or SRSState for a focus session. First-response timing and completion timestamps are retained separately. ReviewExplanation receives backend witness roles; the browser only renders them.
+Lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and audit access remain. No production job invokes lesson generation/progression.
 
-`classification_quality.py` provides local CSV sampling and human-annotation metrics through the read-only report script. It never creates gold labels or calls a model. Schema migration e6294af71b35 uses additive native SQLite changes and preserves historical data.
+OpenAI runtime integration is removed: no model SDK or network calls remain. Historical classification and teaching responses stay local. Only explicit Chess.com imports need outbound network access.
 
-`continuations.py` owns legal replay, bounded forward endpoint selection and exact tail joins. `tactical_geometry.py`, `tactical_patterns.py`, `combination_patterns.py` and `move_causes.py` derive bounded event witnesses. `defensive_probes.py` proposes legal counterfactual queries and verifies the matched native result. `enrichment.py` owns query planning, caps and persistence through additive classification_probes links; it cannot alter original grading references or schedules.
-
-Classification schema v3 records endpoints, previous-move context, defense-check status and supporting native analysis IDs. Rule version 3.1 is shared by all detector witnesses and cache metadata. Quality tools separate human/assistant cohorts and preserve evidence fingerprints; changed native evidence cannot inherit stale annotations.
+Production LAN binding and an optional shared token are configuration. Do not expose the application directly to the internet. The supported deployment is a source checkout with one Python process serving the built frontend; standalone wheel/static-asset packaging remains future work.

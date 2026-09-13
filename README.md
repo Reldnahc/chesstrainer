@@ -6,33 +6,25 @@ Python-chess owns rules; Stockfish owns evaluation; configurable Python policy o
 
 ## Implemented
 
-For a requirement-by-requirement comparison with the original product specification, see [Feature status and missing work](docs/FEATURE_STATUS.md). It distinguishes implemented features, partial behavior, unverified integrations and deliberate non-goals, including local classification coverage and its limits.
+See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the original specification and the limits of each feature.
 
-* Single/multi-game PGN import, explicit learner matching, duplicate detection and original provenance. Only newly added games enter new analysis jobs.
-* Chess.com username import: completed public games, rapid by default, selectable time control, lookback or exact dates, and game limit; resumable archive downloads and automatic learner matching.
-* Persistent background jobs, progress, cancellation/retry and startup recovery. Finished classifications survive cancellation and are reused for matching evidence/rule versions.
-* Independent bounded Stockfish and local classification pools process multiple games/positions within one import; configure `STOCKFISH_WORKERS` and `CLASSIFICATION_WORKERS`.
-* Two-pass local Stockfish analysis, MultiPV, explicit mate/centipawn scores and persistent compatible cache.
-* Local mate-transition, material-consequence, hanging-capture, fork, discovered/double-check and promotion detectors with auditable witness moves. Ambiguous cases remain unclassified.
-* Evidence-linked weakness groups; single-game evidence is marked exploratory. Lesson progression is archived pending a future redesign.
-* Classification rejection, versioned caches and historical audit preservation. New imports/backfills cannot create lessons. Previously lesson-held positions are available in Review.
-* Cold board review with drag/drop, tap-to-move, legal-move dots/capture rings, promotion selection and backend grading.
-* Show me why and Show why: annotated playback of the submitted move and saved engine replies, short factual explanations, and return-to-attempt without extra SRS events.
-* FSRS scheduling, one failed recall per session, continued retries and answer reveal. Positions retire permanently once their scheduled interval exceeds 100 days (configurable), with history preserved.
-* Optional LAN token and backup/restore. Repertoire training and manual-position entry have been removed from the interface.
+- Multi-game PGN import, explicit learner matching, duplicate detection and original provenance. Only newly added games enter new analysis jobs.
+- Chess.com username import with time-class filters, lookback or exact dates, and a new-game limit. Downloads resume from archive checkpoints.
+- Persistent jobs, progress, cancellation/retry and startup recovery. Bounded Stockfish and local classification pools reuse compatible completed work.
+- Two-pass native analysis, MultiPV, separate mate/centipawn scores and a durable cache. Practical grading accepts verified sound alternatives.
+- Local classification v3.1 separates material/mate outcomes from specific patterns, with auditable witnesses and explicit abstentions. Settings can deepen a capped batch of unclear positions without changing original exercise answers.
+- Evidence-linked weakness groups and focused practice of up to 12 distinct positions. Focused attempts are saved separately from FSRS.
+- Cold review with drag/drop, tap-to-move, legal-move dots/capture rings and promotion selection. Failures preview a verified counter; Show me why opens deeper playback. Reveal move plays the saved answer.
+- FSRS scheduling, one failed recall per session, continued retries and permanent retirement above a configurable interval threshold (100 days by default).
+- Same-origin LAN operation, an optional shared access token and CLI backup/restore.
 
-
-* Local rules v3.1 separate material/mate outcomes from specific patterns. Adaptive continuations, connected combinations, move causes and bounded native defense tests provide auditable witnesses. Weaknesses shows coverage and every supporting example.
-* Focused practice from a weakness uses up to 12 distinct positions and saves attempts separately, without changing your FSRS schedule. Show why highlights verified tactical witnesses on the board.
-* Settings can deepen a capped batch of unclear positions using local Stockfish. Completed probes are reused; original exercise answers stay intact.
-
-The interface has **Review**, **Weaknesses**, **Import**, and **Settings**, in that order. Review hides source, concepts, scores and answers until completion. See [development status](docs/DEVELOPMENT_PLAN.md) for remaining scope.
+Navigation is **Review, Weaknesses, Import, Settings**. The initial review board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Lessons, Repertoire and manual-position entry forms are removed. Historical records and compatibility APIs remain; see [Product](docs/PRODUCT.md#removed-and-archived).
 
 ![Desktop review interface](docs/screenshots/review-desktop.png)
 
-[Mobile review](docs/screenshots/review-mobile.png) / [Mobile settings](docs/screenshots/settings-mobile.png)
+[Mobile review](docs/screenshots/review-mobile.png) / [Mobile settings](docs/screenshots/settings-mobile.png) / [Desktop username import](docs/screenshots/import-desktop.png) / [Mobile username import](docs/screenshots/import-mobile.png)
 
-[Desktop username import](docs/screenshots/import-desktop.png) · [Mobile username import](docs/screenshots/import-mobile.png)
+Screenshots use isolated test positions and provider fixtures, not private game data.
 
 ## Prerequisites
 
@@ -72,17 +64,17 @@ cd ..
 python -m trainer
 ```
 
-Open **http://127.0.0.1:8000**. Startup applies Alembic migrations, seeds skills and checks Stockfish. Missing Stockfish produces an actionable status; curated practice still works. Data defaults to `data/trainer.sqlite3`.
+Open **http://127.0.0.1:8000**. Startup applies Alembic migrations, seeds skills and checks Stockfish. Missing Stockfish produces an actionable status. Saved answers and saved-evidence classification remain usable; new analysis and unlisted engine answers require the executable. Data defaults to `data/trainer.sqlite3`.
 
 Explicit migration commands are `alembic upgrade head` and `alembic check`. Run from a source checkout: migrations and frontend assets live beside the Python package; standalone wheel deployment is not supported yet.
 
 ## First session
 
-1. Open Import and enter your Chess.com username. Defaults fetch up to 100 rapid games from the current and preceding two calendar months. Change the range, time control or limit as needed, then click **Fetch & analyze games**. No login or API key is needed. Alternatively choose **PGN file** and identify your username(s); explicitly assign a side only when it is yours in every game.
-2. Watch progress; invalid/ambiguous games are reported separately. Completed work survives interruptions.
-3. Open Review. A meaningful error becomes practice; small preferences usually do not.
-4. Open Weaknesses to inspect supported recurring patterns. Use **Settings > Classify saved games** to backfill existing analyses locally. Some mistakes remain unclassified; they still work in Review.
-5. Import curated PGN lines or add a manual position under Repertoire.
+1. Open Import and enter your Chess.com username. Defaults fetch up to 100 **new** rapid games from the current and preceding two calendar months. Change time class, range or limit as needed, then click **Fetch & analyze games**. No login or API key is needed. Alternatively choose **PGN file**, identify your username(s), and explicitly assign a side only when it is yours in every game.
+2. Watch progress; invalid or ambiguous games are reported separately. Completed work survives interruptions. Retry an older cancelled job separately; a new import only queues new games.
+3. Open Review. Meaningful errors become practice; small engine preferences usually do not. Try a move, inspect the saved counter/playback when useful, and continue to the next position.
+4. Open Weaknesses to inspect supported recurring patterns and their evidence. Choose a skill for focused practice; those attempts do not change your scheduled recalls. Unclassified mistakes remain available in Review.
+5. Use **Settings > Classify saved games** to classify existing analyses locally, or **Deepen unclear positions** for optional bounded Stockfish evidence. No model setup is needed.
 
 ## Local network
 
@@ -100,7 +92,17 @@ Optionally set LAN_ACCESS_TOKEN and enter it in the browser. The token is kept i
 
 ## Development and tests
 
-Run `python -m trainer` at the root and `npm run dev` inside frontend in a second terminal. Vite proxies /api from port 5173 to 8000.
+The Vite proxy targets **127.0.0.1:8000**. Stop an existing backend using the same database before starting a development instance. If .env is configured for a LAN address or another port, override those values in the development backend terminal.
+
+PowerShell, with the virtual environment activated:
+
+```powershell
+$env:SERVER_HOST = '127.0.0.1'
+$env:SERVER_PORT = '8000'
+python -m trainer
+```
+
+Linux/macOS equivalent: `SERVER_HOST=127.0.0.1 SERVER_PORT=8000 python -m trainer`. In a second terminal, run `npm run dev` inside frontend and open http://127.0.0.1:5173. Production/LAN use serves the built frontend directly from the backend instead.
 
 ```sh
 python -m pytest -q
@@ -112,13 +114,15 @@ npx playwright install chromium
 npx playwright test
 ```
 
-Set STOCKFISH_PATH for integration tests; missing native Stockfish produces explicit skips. No application path calls an LLM. Tests include conservative detector fixtures and local classification through native Stockfish. Browser tests use a separate database under ignored data/. See [TESTING.md](docs/TESTING.md).
+Build before running tests that use frontend/dist; do not rebuild it during backend or browser suites. Set STOCKFISH_PATH for native integration tests; missing Stockfish produces explicit skips. Normal tests make no model or live Chess.com requests. Playwright uses an isolated database and both desktop and phone-emulated Chromium projects.
+
+[TESTING.md](docs/TESTING.md) includes isolated migration/schema-drift checks and platform-specific commands. [VERIFICATION.md](docs/VERIFICATION.md) records the latest complete results and limits.
 
 ## Backup and privacy
 
 ```sh
-python scripts/backup.py export backups/practice.zip
-python scripts/backup.py restore backups/practice.zip --destination data/restored.sqlite3
+python scripts/backup.py export data/backups/practice.zip
+python scripts/backup.py restore data/backups/practice.zip --destination data/restored.sqlite3
 ```
 
 Export uses SQLite's online backup API, including committed WAL state. Restore validates integrity/foreign keys and only writes to a **new** path. Stop the server, set DATABASE_PATH to the restored file and restart. Safe settings are included for reference; reapply them manually. API keys and LAN token values are excluded. Backups themselves contain private games.
@@ -129,7 +133,11 @@ Username import contacts Chess.com's public API from the backend, sending the re
 
 ## Documentation
 
-[Local classification](docs/LOCAL_CLASSIFICATION.md) ? [Assessment results](docs/CLASSIFICATION_ASSESSMENT.md) / [Product](docs/PRODUCT.md) · [Architecture](docs/ARCHITECTURE.md) · [Analysis](docs/ANALYSIS_PIPELINE.md) · [Curriculum](docs/CURRICULUM_ENGINE.md) · [Data model](docs/DATA_MODEL.md) · [SRS](docs/SRS.md) · [Configuration](docs/CONFIGURATION.md) · [Testing](docs/TESTING.md) · [Plan](docs/DEVELOPMENT_PLAN.md) · [Decisions](docs/DECISIONS.md)
+- [Product](docs/PRODUCT.md), [feature status](docs/FEATURE_STATUS.md) and [development plan](docs/DEVELOPMENT_PLAN.md)
+- [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/ANALYSIS_PIPELINE.md) and [data model](docs/DATA_MODEL.md)
+- [Local classification](docs/LOCAL_CLASSIFICATION.md), [assessment results](docs/CLASSIFICATION_ASSESSMENT.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
+- [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [Chess.com import](docs/CHESSCOM_IMPORT.md)
+- [Testing procedure](docs/TESTING.md), [latest verification](docs/VERIFICATION.md), [decisions](docs/DECISIONS.md) and [implementation history](docs/IMPLEMENTATION_HISTORY.md)
 
 ## Forking and licensing
 

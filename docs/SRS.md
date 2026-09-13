@@ -12,7 +12,7 @@ FSRSScheduler wraps maintained [py-fsrs](https://github.com/open-spaced-repetiti
 
 Easy is not assigned automatically. Illegal inputs never schedule recall. Server-measured raw milliseconds run from persisted session start to submission, before on-demand engine time; all legal attempts are preserved independently. Leaving a page open includes elapsed wall time. Hints are not currently implemented.
 
-First failure schedules Again immediately and leaves the session open on the original board. Retries add attempts but not additional reviews; session_id is unique in reviews. A later solution stays failed for scheduling. Reveal schedules Again if needed and closes the session. Completed submissions are idempotent. API mutations are serialized in the single server process.
+First failure schedules Again immediately and leaves the session open for retries. Retries add attempts but not additional reviews; session_id is unique in reviews. A later solution stays failed for scheduling. Reveal schedules Again if needed and closes the session. Completed submissions are idempotent. API mutations are serialized in the single server process.
 
 Unfinished sessions resume even if failure has moved their due date forward. Otherwise due/relearning material precedes new material, ordered by due date. Avoid the previous card when another is available. Explicit ordinary practice can revisit a card before due. Game exercises remain available independently of classification. Lessons no longer withhold cards; migration d17b63e02a48 releases nonretired lesson-held cards without resetting their schedule.
 
@@ -26,27 +26,24 @@ Completed feedback displays the saved next due time. A returning cold position i
 
 Historical lesson sessions have a lesson_item_id and never called FSRS. They are now archived and cannot accept moves or reveals through the API. Their attempts remain preserved separately from ordinary recalls.
 
-
 ## Long-term intervals and mobile feedback
 
 The application permanently retires a review card when its scheduled interval is **strictly greater than RETIRE_AFTER_DAYS (default 100)**. This is application policy layered on FSRS, which still computes intervals unchanged. The interval is the saved due date minus the card's last_review timestamp, not the card's age or remaining time until due. Exactly 100 days stays active. Retirement is applied in the same transaction as the recall and also reconciled for existing qualifying cards at startup.
 
-Retirement persists as retired_at and retired_interval_days. Due dates, serialized cards, attempts and reviews remain intact. Retired cards are excluded from automatic queues (including unfinished sessions) and new course example selection; direct ordinary review starts/submissions are rejected. Saved lesson access has been removed; historical attempts remain archived. Duplicate imports and course graduation do not reactivate it. Changing the threshold does not undo existing retirements. There is no automatic unretirement or retirement-count shortcut.
+Retirement persists as retired_at and retired_interval_days. Due dates, serialized cards, attempts and reviews remain intact. Retired cards are excluded from automatic queues (including unfinished sessions) and focused practice; direct review starts/submissions are rejected. Saved lesson access has been removed and historical attempts remain archived. Duplicate imports do not reactivate retired cards. Changing the threshold does not undo existing retirements. There is no automatic unretirement or retirement-count shortcut.
 
 Review now shows the saved next due time as a compact relative interval. Expand Answer & review details for its exact local date/time, explanation, alternatives and source evidence. Phone layouts prioritize the board and primary action, collapse optional text, and return to the top when loading the next position. Review timing still includes wall time from session start; leaving a tab open may count as a slow answer. Retired feedback shows retirement instead of a next-review date; the underlying historical due date remains stored.
 
 ## Explanation playback
 
-Show me why opens the exact failed move and its saved continuation. Closing Back to attempt restores the same session and original position. Show why after success explains the actual accepted move. Reveal move opens the primary saved answer for explanation only after reveal has already recorded Again. GET explanation requests and playback navigation never create attempts, reviews, retirements or scheduling updates; a previous first failure remains failed.
+Show me why opens the exact failed move and its saved continuation. Closing Back to attempt restores the same session and original position. Show why after success explains the actual accepted move. Reveal move records Again if needed, applies the primary saved answer on the board and makes its explanation available. GET explanation requests and playback navigation never create attempts, reviews, retirements or scheduling updates; a previous first failure remains failed.
 
-After a failed engine-derived attempt with a verified continuation, Review automatically previews the submitted move followed by the opponent's first PV reply. The board is read-only during this preview. Try again restores the original board without a new review event. Show me why opens deeper playback at the opponent's reply; the return action sits beneath the board alongside playback controls. Missing reply evidence and curated-only mismatches leave the original board available rather than inventing a counter. Reload resumes the original unfinished attempt.
-# Revealing an answer on the board
+After a failed engine-derived attempt with a verified continuation, Review automatically previews the submitted move followed by the opponent's first PV reply. The board is read-only during this preview. Try again restores the original board without a new review event. Show me why opens deeper playback at the opponent's reply; the return action sits beneath the board alongside playback controls. Missing reply evidence and manual-exercise answer mismatches leave the original board available rather than inventing a counter. Reload resumes the original unfinished attempt.
+## Revealing an answer on the board
 
 Reveal move applies the saved primary answer with python-chess and returns the resulting FEN and highlighted squares. The main board animates to that position, including captures, castling, en passant and promotion. Deeper explanation availability does not affect this playback. Revealing after a failed attempt still records only one Again event; returning from the explanation keeps the revealed board displayed.
 
-
 Archived repertoire positions are excluded from both due and unfinished-session queues. Direct API starts, moves and reveals return 410. Removing repertoire training does not change due dates, card state, eligibility, recall history or retirement; it is not treated as a memory outcome. Existing manual exercises remain reviewable.
-
 
 ## Focused practice is not a scheduled recall
 

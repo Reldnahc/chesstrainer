@@ -1,6 +1,6 @@
 # Mistake classification without an LLM
 
-Research date: September 12, 2026. Status: research record; a conservative initial replacement is now implemented. See LOCAL_CLASSIFICATION.md for current behavior. Application configuration, OpenAI connectivity and saved classifications were not changed during this investigation. Lesson development remains paused.
+Historical research record from September 12, 2026, before removal of the model runtime. Repository observations and proposed steps below describe that investigation, not current setup or remaining work. The replacement has since been implemented and upgraded; see [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for current behavior and [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) for priorities.
 
 ## Conclusion
 

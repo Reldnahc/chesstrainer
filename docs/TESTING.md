@@ -1,56 +1,89 @@
 # Testing
 
-Blinded quality-tool tests verify omitted predictions/strata/hypothesis names, complete evidence fingerprints, frozen-report comparison, reviewer identity requirements, separate human/assistant cohorts, unknown-label rejection, no-overwrite behavior and exclusion of uncertain rows. These tests validate evaluation bookkeeping; they do not establish classifier accuracy.
+Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
 
-Classification v3 continuation tests cover forward-only extension, actual recaptures instead of temporary gains, exact hard limits, quiet endpoints, insufficient lines, checks and promotions, mirrored colors, persisted endpoint metadata and the zero-extension configuration. The first stage passed 63 continuation/classifier/pattern/explanation tests; subsequent stages and rollout are tracked in DEVELOPMENT_PLAN.md.
+## Full verification
 
-Suite counts and the latest deployment checks are recorded in DEVELOPMENT_PLAN.md. Username-import date coverage includes both whole UTC endpoint days, either open endpoint, lookback override, irrelevant-archive pruning, reversed-range rejection and active-job request identity. Browser tests submit explicit dates and verify Look back is disabled while dates are set.
-
-Incremental-import fixtures check 100 saved games plus 20 new games schedules exactly 20, duplicate entries do not consume the new-game limit, and duplicate-only imports create no analysis work. Native Stockfish plus an injected classifier verifies cancellation preserves the first response, retry never re-requests a completed decision, and a subsequent classification scan reuses all cached responses. Browser tests cover repeat PGN upload with no new job and repeat Chess.com fetch with zero analysis games. Fixtures use distinct per-device games where new analysis is expected.
-
-Legal-move payload fixtures cover pins, castling, en passant, white/black promotions and all legal starting moves (including rejected exercise answers). Browser coverage checks quiet dots, capture rings, selected-square styling, switching/deselecting pieces, invalid targets, dragging, promotion and clearing/reselecting after feedback. No model API integration remains.
-
-Concurrency fixtures verify overlapping injected classification tasks from one or multiple games, bounded worker counts, cancellation with cached retry, engine progress while classification waits, shared-cache coalescing across native processes, a native multi-game pipeline, and worker failure/shutdown followed by recovery. No paid requests are made.
-
-Restart scheduling tests preserve exact serialized FSRS state, due timestamps and review counts across app recreation, exclude completed cards before due, and restore them at due. Browser tests verify next-review feedback and removal of a completed exercise URL on refresh.
-
-## Commands
-
-From an activated root checkout:
+From an activated source checkout, install the locked Python dependencies and frontend dependencies as described in [README.md](../README.md). Build first: backend static-serving tests and Playwright consume frontend/dist. Do not rebuild it while those suites are running.
 
 ```sh
-python -m pytest -q
-ruff check backend scripts
-ruff format --check backend scripts migrations
-alembic upgrade head
-alembic check
 cd frontend
 npm ci
 npm run build
 npx playwright install chromium
+cd ..
+python -m pytest -q
+ruff check backend scripts
+ruff format --check backend scripts migrations
+cd frontend
 npx playwright test
 ```
 
-PowerShell can use .venv/Scripts/python.exe, .venv/Scripts/ruff.exe, npm.cmd and npx.cmd without activation. PLAYWRIGHT_BROWSERS_PATH optionally selects an isolated browser install; TEST_PYTHON selects the browser test server's Python executable.
+Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Tests run serially against the production build and a test server on 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
 
-## Coverage
-Rules: valid FEN, legal SAN/UCI, null-move rejection, castling, promotion, en passant, material, canonical keys, clocks/castling/pinned en passant, repetition engine contexts, White/Black normalization and signed/terminal mate scores.
+PowerShell can use .venv/Scripts/python.exe, .venv/Scripts/ruff.exe, npm.cmd and npx.cmd without activation. PLAYWRIGHT_BROWSERS_PATH optionally selects an installed Chromium directory; TEST_PYTHON selects the browser test server's Python executable.
 
-Native integration: actual Stockfish startup, MultiPV, mate fixture, cache persistence and shutdown. Marked stockfish; missing executable explicitly skips. Set STOCKFISH_PATH; an ignored local .tools/stockfish install is also discovered.
+Set STOCKFISH_PATH for native tests. The test fixtures also discover a compatible ignored .tools/stockfish installation. Missing native Stockfish explicitly skips the marked integration tests; document those skips rather than reporting full chess integration coverage. Playwright's real analysis flows need a working native engine.
 
-Pipeline/API: multi-PGN import, learner ambiguity, dedupe, invalid-game isolation; schema/unknown skills/low confidence/unrelated evidence; failed classification retry and cache; provisional courses; repertoire variations/trained side; cold payloads, illegal/wrong/correct attempts, idempotent recall and reload; missing engine, LAN token and cross-origin rejection.
+If Windows denies shared temporary/cache directory access, use fresh paths inside ignored data, for example:
 
-The central integration test exercises a real background worker via HTTP: upload → native analysis → injected mock classification → course/exercise → review → application restart. Production uses LocalClassifier; injected fixtures exercise failure/concurrency boundaries without changing production chess authority.
+```powershell
+.venv/Scripts/python.exe -m pytest -q --basetemp data/verification/run-NEW -o cache_dir=data/verification/cache-NEW
+```
 
-Backup tests verify round trip, secret exclusion, integrity and refusal to overwrite. Windows tests caught and fixed explicit SQLite connection cleanup.
+## Migrations and data preservation
 
-Browser tests run the production build with a separate database under ignored data/. Desktop/mobile-emulated Chromium exercises manual entry, cold board, tapping, first failure, reload/retry, PGN analysis progress, native dragging and underpromotion selection. Screenshots/traces are retained in frontend/test-results. Mobile emulation is not physical-phone LAN verification.
+Use a disposable database for verification, never the live database by accident. From the root, POSIX shell:
 
-Chess.com regression tests use HTTPX MockTransport for public responses; they cover filters, learner matching, shared PGN deduplication, newest limits, partial download resume/cancel, retry limits, unsafe URLs, invalid accounts and native analysis without OpenAI. Playwright uses a test-only app factory in backend/tests/browser_app.py to inject provider HTTP fixtures; it still runs the real backend, SQLite, Stockfish and production frontend. Desktop/mobile tests exercise username form defaults, changed limits, import/analysis progress, repeated-import duplicates and provider-error feedback. No automated test contacts Chess.com. A separate live read-only API smoke check is documented in CHESSCOM_IMPORT.md.
+```sh
+DATABASE_PATH=data/verification/fresh-NEW.sqlite3 python -m alembic upgrade head
+DATABASE_PATH=data/verification/fresh-NEW.sqlite3 python -m alembic check
+```
 
-## Manual native fixture
+PowerShell equivalent, in a separate verification terminal:
 
-Import as Learner:
+```powershell
+$env:DATABASE_PATH = 'data/verification/fresh-NEW.sqlite3'
+.venv/Scripts/python.exe -m alembic upgrade head
+.venv/Scripts/python.exe -m alembic check
+```
+
+Choose a new filename to exercise the full chain. Also use the supported backup/restore CLI to create a consistent copy of existing data, point DATABASE_PATH at the restored copy, and repeat upgrade/check. Export from a terminal using the real database configuration before setting the verification override. Never migrate a raw copy of an open SQLite main file without its committed WAL state.
+
+Check SQLite integrity and foreign keys on both results. For a pass with no schema changes, compare every copied table's rows and schema before/after. Schema-changing work instead needs explicit migration preservation assertions, such as the existing lesson-release and classification migration tests. Keep all backups and reports in ignored data.
+
+## Coverage and authority
+
+| Area | Important contracts |
+|---|---|
+| Chess rules and scores | FEN/PGN validation, SAN/UCI, castling, en passant, both-color promotions, canonical keys, draw/history context, material, learner perspective and signed/terminal mate scores |
+| Native Stockfish | Startup/shutdown, MultiPV, tactical/mate fixtures, compatible persistent cache, concurrent cache coalescing and recovery |
+| Policy/review/FSRS | Multiple sound answers versus best-only, unlisted answer verification, no failure on unavailable grading, first-failure-once, reveal, restart/due behavior, retirement and raw timing |
+| Imports and jobs | Learner ambiguity, invalid-game isolation, cross-source duplicates, date/time-class limits, new-game budgets, resumable downloads, cancellation/retry and bounded engine/classification pools |
+| Local classification | Verified witness linkage, positive/negative/mirrored fixtures, abstention, rejected/cached results, adaptive endpoints, connected patterns, defensive probes and unchanged grading/SRS during enrichment |
+| HTTP interface | Frozen pre-refactor API schemas/methods/response contracts, independent app instances/resources, access token/origin rejection, cold payloads, errors and archival guards |
+| Data compatibility | Historical lesson/repertoire/audit preservation, archived route 410s, manual API, backup round trip/secret exclusion/integrity/no overwrite |
+| Quality tooling | Blinded packets, evidence fingerprints, frozen comparisons, reviewer provenance, human/assistant separation and exclusion of uncertain/invalid labels |
+
+The central native vertical test runs an actual background worker through HTTP: PGN import, learner analysis, LocalClassifier, persisted evidence/exercise, review and application restart. It does not require a course. Injected classifiers cover failures and concurrency separately.
+
+Synthetic legal positions and fabricated engine scores test detector and API contracts; they are not proof of objective chess quality. Real Stockfish tests separately verify UCI integration and tactical/defensive fixtures. Historical lesson helpers still have direct domain tests, but those tests do not imply an active lesson feature.
+
+## Browser coverage
+
+Desktop and phone-emulated Chromium cover all **four** navigation destinations, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, expandable settings, obsolete unit links and evidence dialog focus.
+
+Review journeys cover taps, drag/drop, legal dots/capture rings, promotion, failure/counter preview, Try again, Reveal move, solve/reload and saved scheduling. The phone-only test checks 390x700, 375x600 and 360x640 layouts; its desktop instance is intentionally skipped.
+
+Regression checks preserve header/title/board/control geometry through loading, wrong answers and inline explanation playback. They verify one board node, a visible red mistake cue, no flash on fast grading, cue clearing, no cue or recall on failed HTTP requests, deduplicated explanation text, and keyboard/focus restoration.
+
+Focused practice checks witness frames/square roles and unchanged recall counts. Chess.com tests submit dates, download mocked archives, run real analysis, repeat imports without analysis duplication, and show provider failures.
+
+Browser fixtures create manual exercises through the retained low-level API. There is no Repertoire/manual-entry screen or lesson browser journey. Test-only fixtures are in backend/tests/browser_app.py and are absent from production. Screenshots contain fixture data, not the user's games. Mobile emulation is not physical-phone LAN verification.
+
+## Manual native smoke flow
+
+Import this PGN as Learner:
 
 ```pgn
 [White "Learner"]
@@ -60,67 +93,20 @@ Import as Learner:
 1. f3 e5 2. g4 Qh4# 0-1
 ```
 
-Confirm two learner decisions and a meaningful mistake. Local classification should identify the allowed-mate transition. Inspect its weakness evidence and classification audit; no key or model setup is needed. Try an illegal move, fail legally, reload, then solve/reveal; exactly one recall remains Again. Import repertoire variations and check curated answer authority. Test underpromotion and dragging on a physical phone.
+Confirm two learner decisions and an engine-verified meaningful mistake. Local classification should identify the allowed-mate transition. Inspect Weaknesses and its audit; the evidence is provisional because it comes from one game.
 
-## Environment and limits
+Open Review, try an illegal input, make a legal failure, view the counter/deeper line, reload, then solve or reveal. The session should retain exactly one Again recall. Complete the session, reload, and check the saved due state. Reimporting the PGN should create no new analysis job. On a physical phone, also check board reachability, drag/tap interaction and LAN access.
 
-Verified in this workspace on Windows, Python 3.12.10, Node 24.19 and native Stockfish 18; dependency versions are locked. Final counts/status live in DEVELOPMENT_PLAN.md. Current upstream TestClient dependencies emit httpx/AnyIO deprecation warnings; tests run without blanket warning suppression.
+## Quality evaluation and limits
 
-GitHub Actions run 34675280916 passed backend and frontend checks on Ubuntu. Historical model runs are retained as data only; detector precision/recall, manual Linux/macOS installation, physical LAN devices and hundreds-of-games performance remain outside automated verification. Test deployment-specific behavior explicitly.
+For a read-only coverage report:
 
-Visual redesign checks visit all six screens at desktop and mobile sizes, verify active navigation semantics, absence of horizontal overflow, loaded local fonts and SVG favicon delivery. Existing board tests continue to cover taps, dragging, selection markers, promotion, failure/retry and review persistence. Full-page screenshots are generated under frontend/test-results for visual inspection.
+```sh
+python scripts/classification_report.py --database data/trainer.sqlite3 --output data/NEW-report.json
+```
 
-Lesson fixtures test cold multi-position sequences, server-enforced order, python-chess playback, first-failure check rounds, graduation without fabricated SRS recalls, restart/refresh continuity, related groups and fresh follow-up sequences. Versioned classification tests retain old audits while reconciling active evidence and rejecting unsupported results. Tests for removed paid generation were retired; local-only API tests assert that generation and legacy teaching-job retries return 410. Native end-to-end coverage includes actual game analysis through lesson completion and persisted review. Normal tests make no paid calls.
+The script opens SQLite read-only and runs no engines or network requests. Blinded sampling, annotation and frozen-comparison commands are documented in [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md#configuration-and-evaluation). Reports contain private evidence and belong in ignored data.
 
-Desktop/mobile course browser tests use a test-only fixture endpoint in browser_app.py; it is absent from production. Its synthetic engine records are for progression/UI verification only, and not chess truth. The real-engine vertical test covers chess integration separately. Teaching screenshots are UI fixtures, not a demonstrated model-quality evaluation.
+Passing tests establish implementation contracts, not population classifier accuracy or long-term chess improvement. The first [assistant assessment](CLASSIFICATION_ASSESSMENT.md) preserves uncertain cases and provenance; independent human/game-separated holdout evaluation remains outstanding.
 
-
-Mobile review regression: the phone-only Playwright flow checks the entire board and Show move/Next position buttons fit without scrolling at 390x700, 375x600 and 360x640, including a failed attempt, later solution, expanded long explanation and next-position scroll reset. Tests use an isolated database and do not submit reviews to the user's live data. `test_successive_due_recalls_expand_intervals_across_restarts` exercises six successful API recalls with persisted FSRS state, queue exclusion before due, and an established-card lapse.
-
-Retirement tests cover the strict 100-day boundary, actual successful FSRS recall retirement, idempotent duplicate completion, restart/reimport persistence, overdue-card startup reconciliation and stale unfinished-session rejection. Browser contract checks verify retirement replaces the next due date on desktop/mobile.
-
-Wrong-answer visual regressions hold real grading responses to verify control coordinates remain unchanged through two misses, only one feedback message appears, and the pawn stays at its original square. A separate controlled-clock test records DOM changes to ensure a fast failed response never flashes the checking message or leaves a delayed loading timer behind. Both run on desktop and phone against the isolated test database.
-
-Explanation tests cover candidate selection for accepted alternatives, negative learner-perspective material/mate scores for both colors, capture/promotion/castling/en-passant frames, illegal PV rejection, cross-session attempt rejection, pre-answer solution protection, curated mismatch wording, and no SRS mutation on playback. Desktop/mobile journeys exercise failure, reply playback, return, restart, accepted alternative, and dialog keyboard dismissal. Test explanation engine records carry synthetic scores for contract assertions; native engine integration remains covered separately.
-
-## Local classifier
-
-`test_local_classifier.py` covers fork/hanging direction and witness linkage for both colors; harmless, compensated, equal-loss and truncated lines; missing target collection; mate transitions including already-lost/still-winning mates; promotion; discovered/double check; malformed PV/actual move rejection; parameter changes; cached abstention/rejection; preserved SRS during backfill; and absence of provider configuration/paid job paths. Synthetic scores test rule logic only. The real-Stockfish vertical slice now uses LocalClassifier, and Chess.com worker tests exercise the default local runtime.
-
-Run `python scripts/classification_report.py --database data/trainer.sqlite3 --output data/NEW-report.json` for a read-only coverage report. It opens SQLite in mode=ro and runs no engines or network requests. Reports contain private decision IDs and witness moves; keep them in ignored data/. Coverage is not precision or recall. Independent human labeling, game-separated holdout evaluation and detector-specific error measurement remain outstanding.
-
-
-Lesson removal is covered by API 410 tests (including old lesson review-session IDs) and a whole-database migration snapshot comparison allowing only intended eligibility changes. Browser checks cover five navigation destinations, obsolete unit links, compact sticky mobile navigation, date disclosure/clear behavior, expandable settings, and widths 320-430 px. The import-analysis-classification-review-restart slice no longer requires a course.
-
-
-Repertoire removal has a restart test that snapshots every database table, covers a failed unfinished repertoire attempt and a retired repertoire card, checks queue exclusion and HTTP 410 guards, and requires all rows to remain identical. Browser review fixtures now use the existing manual API directly; drag/drop, promotion, legal markers, failure/reload and scheduling coverage no longer depends on the removed form. Navigation assertions require four tabs.
-
-
-Inline explanation regression checks compare exact header/title/board bounding boxes during loading, errors and playback, assert one unchanged board DOM node, exercise Escape/back focus restoration, and verify no additional recall events. Desktop and 375x600 phone layouts are covered; existing short-phone review controls remain in view.
-
-
-Wrong-move visual regression tests assert the red outline, pointer-transparent tint, identical board/button geometry, cue clearing on retry/success/playback, and one recall despite repeated misses. Failed grading HTTP requests must not activate a mistake cue or create a recall.
-
-
-Explanation text regression: a saved-response fixture makes the summary equal the reply annotation, matching the backend's fallback behavior. Playback must show that sentence once on the reply frame, retain distinct text on the preceding frame, and deduplicate again on advancing. Reveal button assertions use Reveal move.
-
-
-## Classification v2 verification
-
-New deterministic fixtures cover pin/skewer/sole-defender removal/back-rank positives, both-color witnesses, unpinned or extra defenders, unrelated checks, back-rank escape squares, pawn outcomes, compensated scores, unsettled captures and literal PV legality. These fixtures test contracts, not population accuracy.
-
-Focused-practice API/restart tests cover correct, failed-then-solved and revealed outcomes, skill validation, exact-line explanation linkage, first-response timestamps and unchanged serialized SRS. Real Stockfish tests cover bounded persisted probe selection, cancellation after the first search, cache reuse, immutable original grading references, idempotent replay and changed probe settings. Migration was checked against every existing row of a copied and then live database; Alembic metadata and foreign-key checks pass.
-
-Browser tests cover distinct outcome/pattern screens, all-example evidence browsing, focus practice, restored pieces at witness frames, square-role highlighting, unchanged recall counts, phone board/header geometry and the original import/review/reveal flows. Pattern controls sit beside playback so phone clicks do not scroll the board away.
-
-For an independent quality assessment, export a stratified CSV with `python scripts/classification_report.py --sample data/sample.csv --output data/report.json`. Complete expected labels and fully_labeled flags manually, then use --annotations. Outcomes/mechanisms and development/holdout metrics remain separate; unknown, incomplete, duplicate or changed evidence must not count as a successful automated label. Independent human annotation is still required. See LOCAL_CLASSIFICATION.md for the labeling contract.
-
-## Classification v3.1 verification
-
-Adaptive-endpoint fixtures cover forward-only extension, finite bounds, unfinished exchanges, check, promotion and both colors. Connected-pattern tests include deflection, discoveries and before/after causes. Reduced synthetic audit regressions cover incidental defender removal, equal queen trades versus hanging pieces with later compensation, capturing deflections, pinned defenders/victims and relative-pin release. No private source-game FEN is committed as a regression fixture.
-
-Native defensive fixtures cover capturable forks (including a different piece collecting the target), relative-pin recapture/escape queries and conservative trapped pieces. They verify real UCI results, query cache reuse, score perspective and process shutdown. Wrong evidence, useful defenses, safe escapes, uncollected targets and unfinished lines cause rejection or abstention. Job tests cover bounded query counts, exact tail joins, cancel/resume and unchanged original grading/SRS.
-
-The first offline assistant assessment reviewed 24 blinded packets, completed 22 and preserved two uncertain cases. Original labels, comparisons and separate adjudications remain private; aggregate results and limits are in CLASSIFICATION_ASSESSMENT.md. This evaluates real saved evidence but is not an independent human accuracy benchmark. New engine evidence requires new annotations. Build the frontend before running backend/browser suites; do not rebuild concurrently with tests using frontend/dist.
-
-Final v3.1 verification: 195 backend/native/API tests passed; 11 relevant desktop/mobile browser tests passed, with the phone-only case intentionally skipped on desktop. Production build, Ruff/formatting, Alembic schema-drift checks, live/copy integrity and foreign-key checks pass. A Windows shared temporary-directory permissions failure was resolved with fresh --basetemp and cache_dir paths under ignored data/.
+Record host/tool versions, skipped tests and warnings with results. Current TestClient dependencies emit httpx/AnyIO deprecation warnings; do not hide them with blanket suppression. Manual Linux/macOS installation, physical devices and larger-import performance need separate validation.

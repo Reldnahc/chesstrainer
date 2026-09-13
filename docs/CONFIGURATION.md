@@ -1,71 +1,82 @@
 # Configuration
 
-Classification v3 adds `CLASSIFICATION_EXTENSION_PLIES` (default 16, range 0-32). `CLASSIFICATION_MAX_PLIES` remains the initial saved-line horizon (default 16). If that endpoint is unfinished, read forward by at most the extension budget to a quiet endpoint. Zero disables extension. This uses saved moves and does not launch Stockfish. Each classification audit records its chosen endpoint and unresolved reason.
+Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment variables override root .env; defaults apply last. Relative paths resolve from the server working directory. Run from the repository root. Invalid recognized values fail startup with field-specific errors.
 
-`CLASSIFICATION_TACTIC_PLIES` (default 8, range 2-16) bounds connected tactical events attributed to the initial move. A quiet unrelated gap ends the episode even if the budget has room. Material outcome inspection may continue further without treating every later event as the original mistake's cause.
+Settings in the browser is read-only. Edit host configuration and restart the backend. Existing exercise policies and engine evidence keep their saved configuration. The optional LAN token is a SecretStr excluded from public serialization; only its configured status is returned.
 
-`CLASSIFICATION_PROBE_QUERIES` (default 6, range 2-12) limits total native searches per selected position, including the two refreshed root comparisons. Remaining queries extend unresolved tails and test specific legal defenses. Each query also obeys `CLASSIFICATION_PROBE_DEPTH` and `CLASSIFICATION_PROBE_TIME`. The count, classifier parameters, engine binary and limits are included in the persisted job/cache identity. Changing these during a planned job requires a new job; completed native results remain cached.
+## Active settings
 
-Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment overrides root .env; defaults apply last. Relative paths resolve from the server working directory. Run from repository root. Invalid recognized values fail startup with field-specific errors. Secrets are SecretStr values excluded from public serialization.
-
-| Variable | Default |
+| Variable | Default / bounds where useful |
 |---|---|
 | SERVER_HOST / SERVER_PORT | 127.0.0.1 / 8000 |
 | DATABASE_PATH | data/trainer.sqlite3 |
 | STOCKFISH_PATH | stockfish |
-| STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 / 1 |
-| TRIAGE_DEPTH / TRIAGE_TIME / TRIAGE_NODES | 10 / 0.15 / unset |
-| DEEP_DEPTH / DEEP_TIME / DEEP_NODES | 16 / 0.8 / unset |
+| STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..4 |
+| TRIAGE_DEPTH / TRIAGE_TIME / TRIAGE_NODES | 10 / 0.15 seconds / unset |
+| DEEP_DEPTH / DEEP_TIME / DEEP_NODES | 16 / 0.8 seconds / unset |
 | MULTIPV | 4 |
-| TARGET_RATING | 1500 |
-| ACCEPTANCE_MODE | practical |
+| TARGET_RATING | 1500 (400..3000) |
+| ACCEPTANCE_MODE | practical; also best_only, engine_tolerance, custom |
 | TOLERANCE_CP / PRACTICAL_TOLERANCE_CP | 50 / 100 |
 | MISTAKE_THRESHOLD_CP | 150 |
 | SLOW_ANSWER_SECONDS / DESIRED_RETENTION | 30 / 0.9 |
-| MIN_INDEPENDENT_GAMES | 2 |
+| RETIRE_AFTER_DAYS | 100 (1..36500) |
+| MIN_INDEPENDENT_GAMES | 2 (2..20) |
 | CLASSIFICATION_WORKERS | 2 (1..4) |
 | CLASSIFICATION_MAX_PLIES | 16 (4..32) |
+| CLASSIFICATION_EXTENSION_PLIES | 16 (0..32) |
+| CLASSIFICATION_TACTIC_PLIES | 8 (2..16) |
 | CLASSIFICATION_MIN_LOSS_CP | 150 (50..1000) |
 | CLASSIFICATION_MIN_MATERIAL | 1 (1..9 material points) |
 | CLASSIFICATION_PROBE_POSITIONS | 40 (1..500 per optional job) |
-| CLASSIFICATION_PROBE_DEPTH / CLASSIFICATION_PROBE_TIME | 22 / 2.0 seconds (time capped at 10) |
+| CLASSIFICATION_PROBE_DEPTH / CLASSIFICATION_PROBE_TIME | 22 / 2 seconds (depth 1..40, time greater than 0 and at most 10) |
+| CLASSIFICATION_PROBE_QUERIES | 6 (2..12) |
 | LAN_ACCESS_TOKEN | empty, optional shared bearer token |
 | MAX_IMPORT_BYTES | 10000000 |
 | CHESSCOM_TIMEOUT_SECONDS | 20 seconds per provider request |
 | CHESSCOM_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per response |
 | CHESSCOM_USER_AGENT | FieldworkChessTrainer/0.1 (local personal chess training) |
 
-Search stops at the first reached depth/time/node bound. Resource limits apply to each engine; interactive grading has a separate engine in addition to workers. Worker count is 1–4. No remote engine, GPU or cloud database is configured.
+See [.env.example](../.env.example) for a copyable starting point.
 
-STOCKFISH_WORKERS now controls parallel game analysis **within one import**, not simultaneous whole jobs. Each worker has its own Stockfish process; STOCKFISH_THREADS is CPU threads per process. For example, 4 workers × 1 thread allows up to four simultaneous background searches, plus the separate interactive engine. Hash memory is per process. Workers preserve per-position search limits; concurrency is not deeper analysis.
+## Engine and grading
 
-CLASSIFICATION_WORKERS limits concurrent local rule tasks; it does not start model requests or additional engines. The bounded queue holds at most twice the worker count. Rule limits are versioned with evidence in cache keys. Changing worker count alone does not invalidate results. MAX_PLIES limits material/tactical witness inspection; full saved lines are checked for legality. MIN_LOSS_CP and MIN_MATERIAL gate material motifs, while mate transitions remain explicit.
+Search stops at the first reached depth/time/node bound. STOCKFISH_WORKERS controls parallel games within one import; each owns a native process. STOCKFISH_THREADS and hash memory apply per process. Interactive grading has a separate engine in addition to background workers. Four workers with one thread permit four simultaneous background searches plus interactive grading; concurrency does not change per-position limits.
 
-Settings UI is read-only: edit .env and restart. Existing exercise grading policies and cached analyses retain their original configuration. Do not silently compare scores across incompatible engine settings.
+Missing Stockfish produces an actionable status without preventing UI startup. New analysis and unlisted engine answers need the executable. Existing stored answers and saved-evidence classification remain usable.
 
-Local classification is always available, including with no Stockfish executable when saved analyses exist. Missing engine status gives the configured path and corrective action without preventing UI startup. Unverifiable moves must not become failed recall. Old OPENAI_* and LLM_* environment values are ignored and never serialized or used; the application no longer reads a model API key.
+For unlisted answers, the saved analysis limits/resources and binary identity are required. An incompatible executable produces an unavailable response without a recall failure. Rebuilding old exercises under a new engine is a future operation.
 
+Policy and target-rating effects are documented in [ANALYSIS_PIPELINE.md](ANALYSIS_PIPELINE.md) and [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
 
-Chess.com import needs an internet connection on the host, with no Chess.com credentials. Username, time-class, calendar-month lookback or explicit From/To dates, and latest-game limit are selected per import in the UI and persisted in SQLite. Defaults are rapid / 3 months / 100 games. Dates override lookback and include whole UTC completion days; either endpoint may be left blank. User-Agent may include contact details; no secrets belong there. See CHESSCOM_IMPORT.md for provider retry/cache behavior.
+## Local classification
 
-The import limit counts **new valid games**, excluding duplicates and rejected PGNs. Repeated imports can backfill previously unsaved older games within the selected range; set From date to restrict that history. New imports do not retry old cancelled jobs automatically.
+CLASSIFICATION_WORKERS limits local rule tasks; it starts no model requests or additional engines. Each bounded pool admits at most twice its worker count. Worker count alone does not invalidate results.
 
-Set SERVER_HOST to the host's home-network IPv4 address for trusted LAN and optionally LAN_ACCESS_TOKEN for a shared access gate. One process owns jobs/review serialization. Do not expose directly to public internet; token access alone does not add transport encryption.
+MAX_PLIES is the initial saved-line horizon. If the endpoint is unfinished, EXTENSION_PLIES permits bounded forward reading to a quiet endpoint; zero disables extension. TACTIC_PLIES separately bounds connected tactical events attributable to the initial move, and a quiet unrelated gap ends the episode early. Full saved lines are checked for legality. These settings inspect existing evidence without launching Stockfish. MIN_LOSS_CP and MIN_MATERIAL gate material findings; mate transitions remain explicit.
 
-For unlisted engine answers, saved analysis limits/resources are reused. If the executable identity differs, grading reports unavailable and asks for the original Stockfish path; existing stored answers remain usable. Rebuilding old exercises under a new engine is a future operation.
+Settings can explicitly queue deeper evidence for at most PROBE_POSITIONS decisions. PROBE_QUERIES counts all searches per selected decision, including two refreshed root comparisons. Remaining searches extend unresolved tails and test specific legal defenses. Each uses PROBE_DEPTH/TIME, MultiPV 1 and STOCKFISH_WORKERS; deep node limits do not apply.
 
-## Archived lesson policy
+The task list, classifier parameters, engine binary and search limits participate in persisted job/cache identity. Completed native work is reused. Changing that configuration during a planned job requires a new job. Enrichment never rewrites original exercise answers or schedules.
 
-COURSE_MAX_UNITS defaults to 6 (1..12), plus an optional mixed unit. LESSON_MAX_POSITIONS defaults to 8 (2..20) as the candidate selection budget. Stages use up to 2 diagnostic, 3 teaching, 5 drill and 3 check examples. LESSON_CHECK_PASS_FRACTION defaults to 0.8 (greater than zero, at most 1), rounded up to a whole number of clean answers. These are pedagogical heuristics; changing the selection budget affects new sequences, while changing the pass fraction affects the next check completion. Existing sequences and SRS history are preserved.
+No model key is read. Old OPENAI_* and LLM_* values are ignored, unused and never serialized. Local classification is available even without Stockfish when compatible saved evidence exists.
 
+## Scheduling and imports
 
-## Windows phone access
+A saved FSRS interval strictly greater than RETIRE_AFTER_DAYS permanently retires an exercise. Startup reconciles existing qualifying states. Changing the threshold never reactivates retired cards. SLOW_ANSWER_SECONDS affects automatic Hard versus Good; raw timing remains stored independently. See [SRS.md](SRS.md).
 
-For a single home-network interface, set `SERVER_HOST` to its LAN IPv4 address, restart, and use `http://<host LAN IPv4>:<SERVER_PORT>` on desktop and phone. Run `scripts/allow-lan.ps1 -LocalAddress <host LAN IPv4>` in administrator PowerShell to allow TCP 8000 to that address on Private networks from LocalSubnet only. Pass `-Port` for a different port. The helper does not change network profiles or router port forwarding. Keep the host awake and use non-isolated Wi-Fi. If DHCP changes the address, update the binding and firewall rule.
+Chess.com username, time class, calendar-month lookback or explicit dates, and new-game limit are selected per import and saved in SQLite. Defaults are rapid / 3 months / 100 new games. Date bounds include whole UTC completion days and override lookback. Duplicates and rejected games do not consume the new-game limit; repeated imports can backfill older unsaved games in the selected range. Retry old cancelled jobs separately.
 
-`RETIRE_AFTER_DAYS=100` controls automatic permanent review retirement. A saved FSRS interval strictly greater than this positive integer (1..36500) retires the exercise. Existing qualifying cards are reconciled on startup. Changing the value never reactivates already-retired cards. Settings displays the effective threshold.
+Chess.com import requires internet access on the host and no account credentials. User-Agent may include contact details; never put secrets there. See [CHESSCOM_IMPORT.md](CHESSCOM_IMPORT.md).
 
+## Local and LAN operation
 
-The mobile Settings screen is read-only; engine, grading, classification and storage details expand on demand. Legacy course/lesson configuration fields remain for archived domain compatibility and do not enable lessons in the application.
+Use one backend process. For LAN access, bind SERVER_HOST to the host's home-network IPv4 address and optionally configure LAN_ACCESS_TOKEN. Open http://HOST-LAN-IP:SERVER_PORT from the same trusted network. Binding 0.0.0.0 instead listens on every IPv4 interface. The token is a shared access gate and does not add transport encryption; do not expose the app directly to the public internet.
 
-Optional deeper classification jobs perform up to CLASSIFICATION_PROBE_QUERIES searches per selected position, including two root comparisons, using CLASSIFICATION_PROBE_DEPTH/TIME, MultiPV 1 and STOCKFISH_WORKERS. They do not inherit deep node limits. Each job persists its capped selection, resumes cached work, and skips identical completed probes on later jobs. Enrichment is explicitly started in Settings and never changes saved exercise grading references or FSRS.
+On Windows, run scripts/allow-lan.ps1 with -LocalAddress in administrator PowerShell. It permits TCP 8000 at that address from LocalSubnet on Private networks only; pass -Port for another port. It does not change network profiles or router forwarding. Keep the host awake, avoid isolated Wi-Fi, and update binding/firewall if DHCP changes the address.
+
+The Vite development proxy specifically targets 127.0.0.1:8000. Override SERVER_HOST and SERVER_PORT in the development backend terminal as shown in [README.md](../README.md#development-and-tests); a backend bound only to its LAN address will not answer that proxy.
+
+## Archived settings
+
+COURSE_MAX_UNITS (6, range 1..12), LESSON_MAX_POSITIONS (8, range 2..20) and LESSON_CHECK_PASS_FRACTION (0.8, greater than zero and at most 1) remain validated for archived domain compatibility. They do not enable a course screen, create sequences, resume lesson progression or schedule teaching jobs. Historical stage behavior is documented only in [archive/COURSE_DESIGN.md](archive/COURSE_DESIGN.md).
