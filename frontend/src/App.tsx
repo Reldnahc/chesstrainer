@@ -9,8 +9,8 @@ import appMark from './assets/fieldwork.svg';
 import { ChessComImportForm, ImportJob } from './ChessComImport';
 
 const tabs = [
-  ['Review', Focus], ['Import', FileUp],
-  ['Weaknesses', Flag], ['Settings', Settings2],
+  ['Review', Focus], ['Weaknesses', Flag],
+  ['Import', FileUp], ['Settings', Settings2],
 ] as const;
 type Tab = typeof tabs[number][0];
 const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';

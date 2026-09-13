@@ -10,7 +10,7 @@ Local labels include allowed/missed mate, material consequences and a conservati
 
 Lessons and repertoire are removed from the active product. Their historical data is archived; the old APIs do not create or advance training. A future lesson redesign would need to build on reliable classification and review.
 
-Primary screens are Review, Import, Weaknesses and Settings. Data lives locally in SQLite. No accounts, cloud database, telemetry, social features or public hosting. Explicit Chess.com imports retrieve completed public games; PGN import and training work offline once Stockfish is installed.
+Primary screens are Review, Weaknesses, Import and Settings, in that order on desktop and mobile. Data lives locally in SQLite. No accounts, cloud database, telemetry, social features or public hosting. Explicit Chess.com imports retrieve completed public games; PGN import and training work offline once Stockfish is installed.
 
 Classification improvements must make review explanations more useful while preserving auditable evidence. Measure specific causes separately from broad material/mate outcomes. Offline assistant review may help find bad labels, but it must be identified as assistant review and cannot establish independent accuracy or replace chess verification.
 
@@ -20,7 +20,7 @@ See [FEATURE_STATUS.md](FEATURE_STATUS.md) for implemented and missing features,
 Current product scope: lessons and Course navigation have been removed at the user's request. The active loop is import games, analyze and classify locally, then practice in Review with FSRS. Saved lesson history is archived; a future lesson design requires separate work.
 
 
-Repertoire training and manual-position entry are also removed from the interface. The four active destinations are Review, Import, Weaknesses and Settings. Imports and local classification support review of meaningful mistakes from the learner's games. Historical repertoire positions are excluded from practice.
+Repertoire training and manual-position entry are also removed from the interface. The four active destinations are Review, Weaknesses, Import and Settings. Imports and local classification support review of meaningful mistakes from the learner's games. Historical repertoire positions are excluded from practice.
 
 
 Classification supports three connected uses: factual explanations after an answer, independent recurring-weakness evidence, and optional focused position practice. The cold mixed review board stays unlabeled. Outcome coverage and motif coverage are shown separately; focused attempts are distinguished from scheduled recalls.

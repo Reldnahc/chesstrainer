@@ -26,7 +26,7 @@ For a requirement-by-requirement comparison with the original product specificat
 * Focused practice from a weakness uses up to 12 distinct positions and saves attempts separately, without changing your FSRS schedule. Show why highlights verified tactical witnesses on the board.
 * Settings can deepen a capped batch of unclear positions using local Stockfish. Completed probes are reused; original exercise answers stay intact.
 
-The interface has **Review**, **Import**, **Weaknesses**, and **Settings**. Review hides source, concepts, scores and answers until completion. See [development status](docs/DEVELOPMENT_PLAN.md) for remaining scope.
+The interface has **Review**, **Weaknesses**, **Import**, and **Settings**, in that order. Review hides source, concepts, scores and answers until completion. See [development status](docs/DEVELOPMENT_PLAN.md) for remaining scope.
 
 ![Desktop review interface](docs/screenshots/review-desktop.png)
 
