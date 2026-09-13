@@ -17,7 +17,7 @@ Requested September 13, 2026. Build an offline streaming benchmark over an exter
 
 | Stage | Status |
 |---|---|
-| Theme semantics, streaming sampling and legal reconstruction | Planned |
+| Theme semantics, streaming sampling and legal reconstruction | Complete: 27 deterministic tests, including compressed-frame validation |
 | Production adapter, metrics, reports and failure corpus | Planned |
 | Deterministic tests, initial external run and documentation | Planned |
 
