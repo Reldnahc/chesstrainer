@@ -1,5 +1,7 @@
 # Decisions
 
+Read older entries as historical decisions. Current product scope is in PRODUCT.md and FEATURE_STATUS.md; later removals supersede earlier descriptions of lessons, Repertoire and model connectivity.
+
 ## 2026-09-12: Adaptive evidence and offline assistant assessment
 
 Improve local classification by following unfinished tactical continuations forward and testing specific defensive alternatives. A longer root search alone leaves the fixed-endpoint bottleneck intact. New searches must preserve history, use the compatible persistent engine cache, remain bounded/cancellable, and link separately from exercise grading evidence.
@@ -136,3 +138,11 @@ Measure coverage separately from accuracy. Export stratified human-label samples
 The first assistant assessment exposed both classifier and reviewer mistakes. Preserve original annotations and predictions; record independently checked reviewer corrections in a separate adjudication artifact. Evaluate code changes against exactly the frozen evidence, and describe the result as development diagnostics. Additional native searches change evidence fingerprints and require a fresh review. A small game-separated holdout and a reviewer who wrote the rules do not establish independent accuracy.
 
 Version 3.1 tightens causal witnesses while extending supported patterns: an equal initial trade cannot become a hanging-piece diagnosis because of later losses; incidental pawn cleanup is not a defender-removal lesson; a defender that stays geometrically aligned but becomes pinned is not deflected. Trace pinned victims and released relative pins explicitly. Capturable forks with later collection and persistent relative-pin threats require bounded native defensive queries. Reduced synthetic regressions capture these cases without publishing private games.
+
+## 2026-09-13: cohesive interface modules and current documentation
+
+Keep create_app as the composition root for database sessions, shared mutation lock, scheduler, injected engine/classifier factories and worker lifecycle. Extract endpoint groups through ordinary APIRouter factories with explicit existing resources. Preserve app.state compatibility and request-model imports; avoid global routers holding one application's mutable dependencies. HTTP middleware and static delivery remain interface concerns. No domain or schema behavior changes.
+
+Keep navigation, connection and shared errors in App. Move the existing Review, Import, Settings and evidence display into cohesive frontend modules, with shared PageTitle and exercise-link cleanup helpers. Preserve hook/state lifetimes, board identity, DOM structure and interaction timers; do not introduce a router library or new state framework.
+
+Separate the current roadmap from the earlier deployment/validation journal. IMPLEMENTATION_HISTORY preserves that journal as historical context; VERIFICATION records current checks and TESTING provides repeatable commands. Current guides must distinguish active review/weakness workflows, retained low-level APIs and archived/tombstoned lesson/repertoire behavior. Historical statements are not current setup instructions.
