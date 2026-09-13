@@ -447,3 +447,8 @@ body:has(dialog[open]) { overflow: hidden; }
   .coverage-summary { font-size: 13px; }
   .pattern-findings .text-button { min-height: 44px; }
 }
+
+/* Keep return and motif controls together without displacing the review board. */
+.explanation-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: start; margin: 8px 0; }
+.explanation-actions > .explanation-back { width: auto; margin: 0; flex: 1 0 auto; }
+.explanation-actions > .pattern-tools { margin: 0; flex: 1 1 auto; }

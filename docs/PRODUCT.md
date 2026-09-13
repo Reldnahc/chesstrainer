@@ -19,7 +19,7 @@ FSRS increases intervals after successful recall. An interval strictly above the
 
 Python-chess owns rules. Stockfish owns evaluations and verified alternatives. Python policy owns grading. Local detectors assign labels only when their evidence conditions pass. The retained low-level manual exercise API validates curated moves with python-chess; saved manual answers define those exercises' acceptance.
 
-Classification supports factual feedback, recurring-weakness evidence and focused practice. Independent games support recurrence; one error does not establish a recurring weakness or reveal what the player was thinking. Classification v3.1 retains auditable witnesses, optional native defense checks and explicit abstentions. Coverage and accuracy are separate measurements. The first [assistant assessment](CLASSIFICATION_ASSESSMENT.md) is not an independent human benchmark or proof of improvement over time.
+Classification supports factual feedback, recurring-weakness evidence and focused practice. Independent games support recurrence; one error does not establish a recurring weakness or reveal what the player was thinking. Classification v4 reuses pinned Lichess motif recognition and retains auditable witnesses, optional native defense checks and explicit abstentions. Coverage and accuracy are separate measurements. The first [assistant assessment](CLASSIFICATION_ASSESSMENT.md) is not an independent human benchmark or proof of improvement over time.
 
 ## Removed and archived
 

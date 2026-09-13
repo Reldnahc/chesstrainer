@@ -13,7 +13,7 @@ npm run build
 npx playwright install chromium
 cd ..
 python -m pytest -q
-ruff check backend scripts
+ruff check backend scripts migrations
 ruff format --check backend scripts migrations
 cd frontend
 npx playwright test
@@ -122,3 +122,11 @@ The 48 tests use tiny synthetic CSV/position fixtures, including deliberately in
 The first actual dataset run scanned 6,100,952 rows and tested 12,000 theme-puzzle incidences. Missing tags are never negatives, and the adapter's observed material gains are not native engine truth. Blinded human precision and full-classifier recall remain separate validation tasks.
 
 Record host/tool versions, skipped tests and warnings with results. Current TestClient dependencies emit httpx/AnyIO deprecation warnings; do not hide them with blanket suppression. Manual Linux/macOS installation, physical devices and larger-import performance need separate validation.
+
+### Pinned Lichess reuse and source availability
+
+test_lichess_reuse.py checks predicate AST parity against original upstream fingerprints, unchanged supporting files, legal replay, both colors, missing setup context, witness coordinates and concurrent observer isolation. test_lichess_integration.py checks newly recognized pin exploitation and separates a visible motif from an unsupported mistake diagnosis. Existing wrong-label regressions remain unchanged.
+
+test_lichess_comparison.py verifies frozen sample/provenance preservation, metrics, failure context, malformed rows and unexpected-error handling. test_source_archive.py checks private-file exclusion, reproducible source archives, path validation and rebuilding an exported snapshot without Git. Browser tests verify the Settings source link returns a ZIP through the production static mount.
+
+Raw upstream parity across the frozen sample is a compatibility test, not an accuracy estimate. Source packaging does not add a runtime network dependency.

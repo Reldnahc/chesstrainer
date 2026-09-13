@@ -152,6 +152,12 @@ export default function SettingsScreen({
           </section>
           <section className="panel settings-panel">
             <h2>Workspace</h2>
+            <p className="small">
+              <a href="/assets/fieldwork-source.zip" download>
+                Download source code
+              </a>{" "}
+              (GPL/AGPL, including the Lichess tactical tagger).
+            </p>
             <p>Games, reviews and progress are saved on your host computer.</p>
             <details>
               <summary>Storage & connection</summary>

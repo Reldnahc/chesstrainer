@@ -1,6 +1,34 @@
 # Verification status
 
-The repeatable procedure is in [TESTING.md](TESTING.md). The latest developer-tooling pass is below; the preceding full interface/frontend/migration pass is retained separately with its original scope and results.
+The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
+
+## Pinned Lichess integration: September 13, 2026
+
+| Check | Result |
+|---|---|
+| Upstream predicate/source parity | 19 deterministic tests; every original function AST preserved after removing observers; supporting files/license match original hashes |
+| Full frozen upstream output parity | All 12,000 theme sets match unmodified upstream; 17,468 valid witness records |
+| Final frozen comparison | 12,000 incidences, zero reconstruction skips; per-theme raw/admitted results and limits in LICHESS_REUSE.md |
+| Full backend/native/API suite | **280 passed**, no skips, 26.05 seconds; Stockfish 18 |
+| Full Playwright suite | **39 passed, 1 intentional skip**, 49.3 seconds; desktop and phone-emulated Chromium |
+| TypeScript / Vite build | Passed, including the local public-source archive |
+| Ruff | Repository-wide lint and format checks passed; original vendored source intentionally excluded |
+| Fresh and copied Alembic verification | Head f83a90d16c24; no schema drift; all copied rows/schema unchanged across 30 tables |
+| SQLite integrity | Both databases ok; zero foreign-key violations |
+| Documentation and source ZIP | Local Markdown file links resolve; archive integrity and public-file/license inclusion verified |
+| Git whitespace | Passed |
+
+Existing classifier and wrong-label regression assertions were retained. New pin-exploitation cases pass for both colors; a raw double-check observation does not assert a mistake without meaningful engine evidence. No grading, native engine, FSRS or schema logic changed. Two older migration imports were reordered for repository-wide Ruff.
+
+Browser verification caught and fixed a real regression: extra motif buttons could push the return control below a short phone viewport. Return and motif actions now share a compact wrapping row below the board/playback controls, preserving board/header geometry and focused-practice reachability. Existing viewport assertions remain intact. The new download assertion accepts the two platform ZIP MIME types and still checks successful HTTP delivery and ZIP content.
+
+The first browser invocation lacked the installed Chromium path; the final complete run used .tools/playwright through PLAYWRIGHT_BROWSERS_PATH. The source build now selects the checkout virtual environment instead of the broken Windows python alias, with SOURCE_PYTHON override. Two existing TestClient deprecation warnings, terminal-color warnings and expected provider-failure fixture logs remain unsuppressed.
+
+Tests use isolated databases. Migration preservation uses SQLite online backup from a read-only live connection; only the copy was migrated. Source archives exclude private data, secrets and untracked files. No LLM runtime or network dependency was added. Native grading and recall histories remain protected by the full regression suite.
+
+The complete frozen comparison is a partly generator-related compatibility measurement, not independent classifier precision. Remaining gaps and private failure corpora are documented in LICHESS_REUSE.md. Physical-phone and cross-platform install checks remain separate from emulation.
+
+Deployment: the built frontend is ready; live backend restart verification is recorded after the final code commit. No bulk reclassification is triggered by deployment.
 
 ## Lichess benchmark tooling: September 13, 2026
 

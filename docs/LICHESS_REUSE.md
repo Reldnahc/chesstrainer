@@ -15,9 +15,9 @@ The upstream Python predicates inspect python-chess PGN nodes and return boolean
 ## Incremental plan
 
 1. Run the unmodified pinned predicates on the frozen 12,000-incidence sample; preserve results. Complete.
-2. Vendor the relevant source with license/provenance and minimal package integration. Add witness reporting without changing predicate conditions; verify structural and output parity with upstream. Adapt legal saved lines, including missing setup context, without fabricated moves or scores.
-3. Connect upstream recognition to the classifier and explanation paths. Preserve outcome verification and original review grading; keep an explicit distinction between motif occurrence and a player's mistake. Retain useful existing causal/native evidence and historical compatibility.
-4. Run deterministic regressions, benchmark comparisons and full application verification. Document final behavior, measured gaps and deployment status. Commit verified stages.
+2. Complete: vendor the relevant source with license/provenance and minimal package integration. Add witness reporting without changing predicate conditions; verify structural and output parity with upstream. Adapt legal saved lines, including missing setup context, without fabricated moves or scores.
+3. Complete: connect upstream recognition to the classifier and explanation paths. Preserve outcome verification and original review grading; keep an explicit distinction between motif occurrence and a player's mistake. Retain useful existing causal/native evidence and historical compatibility.
+4. Complete: run deterministic regressions, benchmark comparisons and full application verification. Document final behavior, measured gaps and deployment status. Commit verified stages.
 
 ## Initial upstream comparison
 
@@ -85,3 +85,5 @@ Reports live in ignored data/lichess-upstream/comparison-v4-final-seed0-1000: re
 ## Source availability
 
 Original Fieldwork licensing is unchanged. NOTICE.md explains the combined GPL/AGPL source offer. npm run build and npm run dev prepare a Git-listed public-source snapshot; Settings links the ZIP served locally through the existing assets mount. Private data, environment secrets, dependencies and untracked files are excluded. Stage new public files and regenerate after source changes; exported snapshots also rebuild from their file manifest.
+
+Final application verification: 280 backend/native/API tests passed; 39 Playwright tests passed with one intentional phone-only desktop skip; migration preservation, repository Ruff and production build passed. See VERIFICATION.md for deployment status and the mobile control regression caught and fixed during testing.

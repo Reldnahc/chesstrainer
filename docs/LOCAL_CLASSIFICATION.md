@@ -1,6 +1,12 @@
 # Local mistake classification
 
-## Classification v3.1
+## Classification v4: pinned Lichess recognition
+
+Version 4.0-lichess-8d9faff6 reuses the actual Lichess puzzler motif predicates, pinned to commit 8d9faff694ba3a8598abc5465347209af3f90a82. Their chess conditions are preserved; an adapter reconstructs legal PGN nodes and records exact successful moves/squares. No API, remote service or LLM is involved. See [reuse, provenance and measurements](LICHESS_REUSE.md).
+
+Recognition and mistake admission are separate. A pin or double check can be present in a line without a settled material outcome. Review can show that factual motif; an active weakness finding still needs Fieldwork's existing engine comparison, material/mate support and relevant episode. Earlier rich collection witnesses and independently verified native extensions remain; upstream recognition adds motifs those narrower witnesses missed.
+
+The following outcome, continuation and native-probe infrastructure remains from v3.1.
 
 Saved-line inspection now extends forward from the initial 16-ply horizon by up to 16 additional plies, only when the chosen endpoint is unfinished. Audits record endpoint, extension and reason. It never substitutes an earlier favorable material balance.
 
@@ -8,7 +14,7 @@ Specific witnesses can span a connected tactical episode (default eight plies). 
 
 Before/after cause witnesses identify an abandoned sole unpinned defender, an immediate unfavorable capture/recapture, and a newly created attack from the opponent's previous move that remains unanswered. A preceding move that removes a relative pin can also make a capture effective: the witness verifies that the earlier capture would legally expose the more valuable piece behind it. These rules save and validate the preceding position/move. They describe observed events in the saved continuation, not the learner's intentions. Engine comparisons and material-outcome gates still apply. Taxonomy v3 adds abandoned_defender, deflection and trapped_piece; existing opponent_threat_recognition and avoiding_bad_trades now have local witnesses.
 
-On the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Native enrichment and a blinded assistant assessment followed. See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for measured coverage, disagreements, fixes and evaluation limits.
+In the historical v3.1 assessment, on the isolated 395-position baseline, adaptive endpoints produced 265 outcomes / 68 pattern positions; connected sequences and move causes increased pattern coverage to 103. No engine searches were added for these stages. Native enrichment and a blinded assistant assessment followed. See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for measured coverage, disagreements, fixes and evaluation limits.
 
 Targeted native tests now corroborate relative pins, costly legal captures of forking pieces, and a conservative trapped-piece pattern. Geometric hypotheses remain unpublished until the matching query confirms a material gain and a compatible score in the best tested defensive continuation. A useful defensive resource, uncollected target, unsettled line or unsupported original outcome causes abstention. Trapped-piece candidates require every legal move of the piece to allow an immediate legal capture; the tested best escape must actually lose the piece. Other defensive resources and broader strategic traps remain outside this detector. Audits retain pending/confirmed/rejected check reasons and the additional analysis IDs.
 
@@ -22,17 +28,17 @@ Rules separate three things: an observable material/mate outcome, a supported ta
 |---|---|
 | Allowed / missed mate | Explicit learner-perspective mate transition versus the best alternative |
 | Material loss / missed material gain | Meaningful relative evaluation loss plus different material balances at usable endpoints of both saved lines |
-| Hanging piece / missed tactical capture | Initial capture of an undefended non-pawn with an immediate material gain relative to the original position and a supported gain at the endpoint; later partial compensation is permitted |
-| Fork | Newly attacks multiple valuable targets; safe forker collects a target, or a matching native test corroborates the gain despite the best legal capture of the forker |
-| Pin | Absolutely pinned defenders cannot recapture; a newly pinned victim is traced to its capture; or a verified native recapture/escape exposes a more valuable rear piece |
-| Skewer | A slider checks the king along a ray with a valuable piece behind it, then that same slider captures the rear target |
-| Removing defender | Captures the sole geometric defender before collecting its target; excludes free captures of more valuable defenders followed by incidental pawn cleanup |
-| Back rank | Legally replayed rook/queen checkmate on the home rank, with at least two adjacent inward squares occupied by the king's own pawns |
-| Discovered attack / double attack | Uncovered/double check, or an opened attack that collects its target, optionally alongside a second valuable threat |
-| Deflection | A forcing response moves the sole defender off its geometric defense before the target is collected; checking captures qualify |
+| Hanging piece / missed tactical capture | Initial undefended non-pawn capture from Lichess with real setup context, or existing immediate/retained-gain witness; mistake outcome gates still apply |
+| Fork | Lichess valuable-target/safe-forker predicate, existing detailed collection witness, or separately confirmed native defensive test; connected episode and outcome gates still apply |
+| Pin | Lichess absolute pin prevents capture or escape; existing pinned-defender/victim witnesses and native-confirmed relative-pin extensions remain |
+| Skewer | Lichess aligned front-target/rear-capture sequence, including front targets other than kings; existing king-skewer collection witnesses remain |
+| Removing defender | Lichess capture-of-defender sequence or existing sole-defender witness; reviewed value safeguards exclude incidental pawn cleanup after a free queen |
+| Back rank | Lichess actual back-rank checkmate with own-piece escape barriers, or existing rook/queen and own-pawn witness |
+| Discovered attack / double attack | Lichess single discovery, discovered capture or double check; existing collected-line and nonchecking double-attack witnesses remain |
+| Deflection | Lichess deflection sequence or existing forcing-response/sole-defender collection witness |
 | Trapped piece | All legal moves of the attacked piece allow an immediate legal capture; the best native-tested escape actually loses it with a supported material consequence |
 | Abandoned defender / opponent threat recognition / bad trade | Validated before/after capture witnesses described above |
-| Promotion awareness | Promotion within the connected episode with a supported material gain |
+| Promotion awareness | Actual promotion in the connected episode; supported material/mate outcome required for active weakness evidence |
 
 Detectors inspect the bounded connected episode, not arbitrary later tactics. One narrow relative-pin exception follows an already attacked target across a quiet gap only while that exact target and pin persist, and requires a native escape test. Overloads, economically ineffective multiple defenders, broad positional causes, opening habits and inferred thought processes remain outside current detector scope. A taxonomy ID alone does not mean a detector exists.
 
@@ -42,7 +48,7 @@ All PV moves are replayed and validated by python-chess. Stockfish scores retain
 
 Material rules default to at least 150 cp relative loss, at least one material point, and a 16-ply initial horizon with up to 16 further saved plies when unfinished. Both lines need a quiet endpoint: no check, no capture/promotion in the last two plies, and unchanged last-three material balances. Do not search backward for an earlier favorable balance when the endpoint is unsettled. Values are pawn 1, minor piece 3, rook 5, queen 9. These are finite-line outcomes, not proof that every reply is forced or every exchange has ended.
 
-Absolute evaluation no longer gates material findings: a player can lose a piece while still winning. Small evaluation preferences and compensated material without the configured evaluation loss do not qualify. Pinned forking pieces cannot claim off-ray targets. Geometry alone never proves a training-worthy mistake.
+Absolute evaluation no longer gates material findings: a player can lose a piece while still winning. Small evaluation preferences and compensated material without the configured evaluation loss do not qualify. Native hypotheses retain their pin and defense checks. An upstream motif tag alone never proves a training-worthy mistake.
 
 Findings retain rule/version, actor, direction, analysis ID, plies, UCI moves, affected squares, witness frame, named square roles and explanation/cue. Outcomes retain the analysis and endpoint. Abstention reasons include continuation_unsettled, no_verified_material_or_mate_outcome and mechanism_unclassified; these can coexist with partial findings.
 
@@ -60,7 +66,7 @@ Additional classification_probes rows link each tail/defense to its supplement, 
 
 Weaknesses separates tactical patterns from material/mate outcomes, shows distinct positions and independent games, provides cues, and lets the learner browse every supporting decision. **Practice N positions** starts up to 12 distinct active positions, rotating through different games where possible. Practice has its own session provenance, raw attempts/first-response time and completion timestamp. It never updates FSRS, retirement, scheduled recall counts or due dates. Reloading the app returns to mixed Review; choosing the skill again starts a new batch and can resume an unfinished practice attempt.
 
-Show why runs the shared motif detectors on the exact answer's saved continuation. Pattern buttons jump to the witness frame and highlight attacker, target/king and defender/blocker squares. Cues appear after answering. Supplemental classification branches and the preceding source-game context do not replace the evidence used to grade or explain an arbitrary review answer, so an enriched classification may have more detail than that answer's playback. Source-context and defensive-query evidence remains available in the classification audit.
+Show why runs the shared motif detectors on the exact answer's saved continuation. It can display raw upstream motif observations even when that line lacks a settled material endpoint; those annotations do not create weakness evidence or alter grading. Pattern buttons jump to the witness frame and highlight attacker, target/king and defender/blocker squares. Cues appear after answering. Supplemental classification branches and the preceding source-game context do not replace the evidence used to grade or explain an arbitrary review answer, so an enriched classification may have more detail than that answer's playback. Source-context and defensive-query evidence remains available in the classification audit.
 
 ## Configuration and evaluation
 
@@ -76,6 +82,6 @@ Freeze the report before annotation and compare afterwards with `python scripts/
 
 `python scripts/classification_report.py --annotations data/sample.csv --output data/evaluated.json` reports precision/recall separately for outcomes and mechanisms, including split metrics. Only explicitly completed annotations count. Unknown labels, duplicate decisions and changed evidence are rejected. Empty denominators stay unknown. The stratified subset is not an unweighted population accuracy estimate. Independent human labels and long-term improvement measurements are still outstanding; fixtures and coverage do not establish accuracy.
 
-The separate [Lichess benchmark](LICHESS_BENCHMARK.md) evaluates positive-theme agreement of the shared line-pattern detector on an offline external dataset. It supplies legal solver continuations and explicitly weaker visible-outcome support, not fabricated engine scores or native defensive probes. Missing Lichess tags never become negative labels. [Initial per-theme results](LICHESS_BENCHMARK_RESULTS.md) expose uneven recognition and distinguish initial-episode attribution from recognition later in a solution. This complements the human precision workflow above; it does not replace it or measure full-classifier recall.
+The separate [Lichess benchmark](LICHESS_BENCHMARK.md) evaluates positive-theme agreement of the shared line-pattern detector on an offline external dataset. It supplies legal solver continuations and explicitly weaker visible-outcome support, not fabricated engine scores or native defensive probes. Missing Lichess tags never become negative labels. [Initial per-theme results](LICHESS_BENCHMARK_RESULTS.md) expose uneven recognition and distinguish initial-episode attribution from recognition later in a solution. After v4 reuse, agreement partly measures compatibility with a related upstream label generator, not independent validation of those rules. This complements the human precision workflow above; it does not replace it or measure full-classifier recall.
 
 UI examples from isolated fixtures: [phone pattern playback](screenshots/classification-pattern-mobile.png) and [desktop pattern playback](screenshots/classification-pattern-desktop.png).

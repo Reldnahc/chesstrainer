@@ -13,7 +13,16 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
     await page.getByRole('button', {name: tab, exact: true}).click();
     await expect(page.getByRole('button', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
-    if (tab === 'Settings') await expect(page.getByRole('heading', {name: 'Chess analysis'})).toBeVisible();
+    if (tab === 'Settings') {
+      await expect(page.getByRole('heading', {name: 'Chess analysis'})).toBeVisible();
+      const source = page.getByRole('link', {name: 'Download source code'});
+      await expect(source).toHaveAttribute('href', '/assets/fieldwork-source.zip');
+      const download = await page.request.get((await source.getAttribute('href'))!);
+      expect(download.ok()).toBe(true);
+      // Windows' MIME registry also uses application/x-zip-compressed.
+      expect(download.headers()['content-type']).toMatch(/^application\/(?:zip|x-zip-compressed)(?:;|$)/);
+      expect((await download.body()).subarray(0, 2).toString()).toBe('PK');
+    }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({path: `test-results/redesign-${testInfo.project.name}-${tab.toLowerCase()}.png`, fullPage: true});
   }

@@ -158,3 +158,15 @@ Stream the complete local input and sample each theme before chess validation, w
 The initial run uses 1,000 uniformly sampled positives per eligible theme from the complete local file. Preserve its aggregate baseline separately from the roadmap; store raw reports and data under ignored data. Per-theme any-episode and initial-episode agreement prevent later solution events from being mistaken for original-mistake attribution. Hanging-piece agreement is specifically tied to the first solver capture.
 
 Treat a corrupt/truncated compressed stream as a failed scan, not a smaller dataset. The optional Zstandard adapter checks completed frames explicitly because the library's ordinary stream reader can silently accept a truncated final frame. The decoder remains a standalone developer dependency; it is not part of application installation/runtime.
+
+## 2026-09-13: reuse pinned Lichess predicates with separate mistake admission
+
+The external baseline exposed substantial recall gaps in custom motif recognition. Direct comparison showed that the actual public Lichess tagger recognizes many of those motifs. Vendor commit 8d9faff694ba3a8598abc5465347209af3f90a82 with original hashes/license and minimal import/logging/return-observer changes. Structural predicate parity and frozen output parity protect upstream semantics. Do not tune its predicates against the benchmark.
+
+Convert saved legal continuations into python-chess PGN nodes, preserving solver perspective and real preceding-move context. Missing setup context explicitly skips the upstream hanging-piece predicate. Never fabricate a null setup move or engine score. Record return-site witness coordinates without implementing a second recognizer.
+
+Keep motif recognition separate from engine-supported mistake attribution. Preserve existing outcome/connected-episode checks, rich collection witnesses, reviewed attribution safeguards and native counterfactual extensions. Review may describe an observed motif without inventing a material claim. Version the classifier cache; retain historical audits, original answers and schedules. Deployment alone does not trigger bulk reclassification.
+
+The original Fieldwork source remains GPL-3.0-or-later. Preserve the upstream AGPL license and provide the combined corresponding source through a build-generated local download in Settings. Source archives only include eligible public source from Git or an exported manifest; private data and secrets are excluded. Rebuild after changes and preserve this source offer in forks.
+
+After reuse, high agreement with Lichess-related labels is partly generator compatibility, not independent accuracy. Preserve the old baseline and report raw recognition separately from Fieldwork-admitted witnesses. Full-classifier precision still needs separate real-game review.

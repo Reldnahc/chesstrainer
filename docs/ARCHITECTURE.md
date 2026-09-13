@@ -60,9 +60,9 @@ Classification-only backfills launch no background engines and cannot create/enr
 
 ## Classification and audit modules
 
-diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. tactical_geometry.py, tactical_patterns.py, combination_patterns.py and move_causes.py derive bounded event witnesses. explanations.py uses witnesses only from the selected answer's own line.
+diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py, tactical_geometry.py, combination_patterns.py and move_causes.py retain detailed collection witnesses and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
 
-defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 3.1 are separate version boundaries.
+defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.0-lichess-8d9faff6 are separate version boundaries.
 
 classification_quality.py and the read-only report script support blinded exports and annotated comparisons. Human and assistant cohorts remain separate; changed evidence cannot inherit stale annotations. Offline assistant assessment is a development activity, not an application dependency or automatic label source. See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md).
 
@@ -73,3 +73,5 @@ Lesson/course and repertoire product routes are tombstones. Due/unfinished-sessi
 OpenAI runtime integration is removed: no model SDK or network calls remain. Historical classification and teaching responses stay local. Only explicit Chess.com imports need outbound network access.
 
 Production LAN binding and an optional shared token are configuration. Do not expose the application directly to the internet. The supported deployment is a source checkout with one Python process serving the built frontend; standalone wheel/static-asset packaging remains future work.
+
+The frontend build generates a public-source snapshot with scripts/source_archive.py, served by the existing /assets mount and linked in Settings. Git-listed public source and licenses are included; private data, secrets and untracked files are excluded. See NOTICE.md and LICHESS_REUSE.md for the GPL/AGPL combination and source-offer workflow.

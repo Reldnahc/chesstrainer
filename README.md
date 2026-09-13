@@ -2,7 +2,7 @@
 
 A private chess trainer built around decisions in your own games. Import Chess.com history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
 
-Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. Versioned Python detectors assign labels only when their evidence conditions pass. There is no LLM integration or API-key requirement. This is a local application, not a hosted service.
+Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. This is a local application, not a hosted service.
 
 ## Implemented
 
@@ -12,7 +12,7 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 - Chess.com username import with time-class filters, lookback or exact dates, and a new-game limit. Downloads resume from archive checkpoints.
 - Persistent jobs, progress, cancellation/retry and startup recovery. Bounded Stockfish and local classification pools reuse compatible completed work.
 - Two-pass native analysis, MultiPV, separate mate/centipawn scores and a durable cache. Practical grading accepts verified sound alternatives.
-- Local classification v3.1 separates material/mate outcomes from specific patterns, with auditable witnesses and explicit abstentions. Settings can deepen a capped batch of unclear positions without changing original exercise answers.
+- Local classification v4 reuses the pinned Lichess tactical tagger and separates material/mate outcomes from specific patterns, with auditable witnesses and explicit abstentions. Settings can deepen a capped batch of unclear positions without changing original exercise answers.
 - Evidence-linked weakness groups and focused practice of up to 12 distinct positions. Focused attempts are saved separately from FSRS.
 - Cold review with drag/drop, tap-to-move, legal-move dots/capture rings and promotion selection. Failures preview a verified counter; Show me why opens deeper playback. Reveal move plays the saved answer.
 - FSRS scheduling, one failed recall per session, continued retries and permanent retirement above a configurable interval threshold (100 days by default).
@@ -54,7 +54,7 @@ STOCKFISH_PATH=C:/tools/stockfish/stockfish-windows-x86-64-avx2.exe
 CLASSIFICATION_WORKERS=2
 ```
 
-Classification runs locally after analysis. Restart after editing configuration. Settings displays effective values without exposing the optional LAN token.
+Classification runs locally after analysis; the vendored Lichess code makes no network requests. Restart after editing configuration. Settings displays effective values without exposing the optional LAN token.
 
 ```sh
 cd frontend
@@ -63,6 +63,8 @@ npm run build
 cd ..
 python -m trainer
 ```
+
+The build also prepares **Settings > Download source code**, including the pinned tagger and licenses. Build from a Git checkout (stage newly added public source files first) or an exported source snapshot. The helper uses the checkout's .venv Python; set SOURCE_PYTHON to use another executable. Games, databases, secrets and untracked files are excluded.
 
 Open **http://127.0.0.1:8000**. Startup applies Alembic migrations, seeds skills and checks Stockfish. Missing Stockfish produces an actionable status. Saved answers and saved-evidence classification remain usable; new analysis and unlisted engine answers require the executable. Data defaults to `data/trainer.sqlite3`.
 
@@ -106,7 +108,7 @@ Linux/macOS equivalent: `SERVER_HOST=127.0.0.1 SERVER_PORT=8000 python -m traine
 
 ```sh
 python -m pytest -q
-ruff check backend scripts
+ruff check backend scripts migrations
 ruff format --check backend scripts migrations
 cd frontend
 npm run build
@@ -118,7 +120,7 @@ Build before running tests that use frontend/dist; do not rebuild it during back
 
 [TESTING.md](docs/TESTING.md) includes isolated migration/schema-drift checks and platform-specific commands. [VERIFICATION.md](docs/VERIFICATION.md) records completed results and limits.
 
-Developer-only [Lichess benchmark tooling](docs/LICHESS_BENCHMARK.md) streams a local puzzle dataset to measure positive-theme agreement with the shared tactical detector. It does not add puzzle training to the app or infer precision from missing tags. The [initial external baseline](docs/LICHESS_BENCHMARK_RESULTS.md) preserves per-theme results and limitations.
+Developer-only [Lichess benchmark tooling](docs/LICHESS_BENCHMARK.md) streams a local puzzle dataset to measure positive-theme agreement with the shared tactical detector. It does not add puzzle training to the app or infer precision from missing tags. The [initial external baseline](docs/LICHESS_BENCHMARK_RESULTS.md) preserves per-theme results and limitations. [Lichess reuse](docs/LICHESS_REUSE.md) records the pinned implementation and frozen before/after comparison; agreement with related upstream labels is not independent precision.
 
 ## Backup and privacy
 
@@ -145,6 +147,6 @@ Username import contacts Chess.com's public API from the backend, sending the re
 
 Keep authority boundaries explicit, add deterministic fixtures for chess changes, update living documents and use Alembic revisions for schema changes. Never commit .env, private databases/PGNs, binaries or dependency folders. requirements.lock and frontend/package-lock.json pin tested dependencies.
 
-Project source is GPL-3.0-or-later; see [LICENSE](LICENSE). Python-chess is GPL-licensed; Stockfish is GPLv3 and installed separately, not bundled in source. Preserve relevant license notices and source obligations when redistributing GPL components. Other libraries retain their own licenses.
+Original Fieldwork source remains GPL-3.0-or-later; see [LICENSE](LICENSE). The vendored Lichess tagger is AGPL-3.0. The combined application includes a local source download and carries the applicable AGPL obligations; see [NOTICE.md](NOTICE.md) and [upstream provenance](backend/trainer/_vendor/lichess_puzzler/README.md). Python-chess is GPL-licensed; Stockfish is GPLv3 and installed separately, not bundled in source. Preserve relevant license notices and source obligations when redistributing GPL components. Other libraries retain their own licenses.
 
 For blinded human/assistant annotation, frozen comparisons and reviewer provenance, see [Local classification evaluation](docs/LOCAL_CLASSIFICATION.md#configuration-and-evaluation). Coverage is measured separately from accuracy.

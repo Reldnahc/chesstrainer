@@ -40,8 +40,10 @@ export default function ReviewExplanation({sessionId, attemptId, solution, compl
         <span>{index === 0 ? 'Start' : `${index} / ${data.frames.length - 1} - ${frame.san}`}</span>
         <button aria-label="Next move" disabled={index === data.frames.length - 1} onClick={() => setIndex(i => i + 1)}><ChevronRight size={20}/></button>
       </div>
-      {!!data.findings?.length && <div className="button-row pattern-tools">{data.findings.map((item, i) => <button key={`${item.skill_id}-${i}`} className="text-button" aria-pressed={selectedFinding === i && index === item.frame_ply} onClick={() => {setSelectedFinding(i); setIndex(item.frame_ply);}}>Show {item.skill_id === 'missed_tactical_capture' ? 'undefended capture' : item.skill_id.replaceAll('_', ' ')}</button>)}</div>}
+      <div className="explanation-actions">
       {returnControl}
+      {!!data.findings?.length && <div className="button-row pattern-tools">{data.findings.map((item, i) => <button key={`${item.skill_id}-${i}`} className="text-button" aria-pressed={selectedFinding === i && index === item.frame_ply} onClick={() => {setSelectedFinding(i); setIndex(item.frame_ply);}}>Show {item.skill_id === 'missed_tactical_capture' ? 'undefended capture' : item.skill_id.replaceAll('_', ' ')}</button>)}</div>}
+      </div>
       {data.summary.trim() !== frame.annotation.trim() && <p className="explanation-summary">{data.summary}</p>}
       <p className="explanation-caption" aria-live="polite">{frame.annotation}</p>
       {finding && <div className="pattern-findings">
