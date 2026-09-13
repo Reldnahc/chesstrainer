@@ -148,3 +148,9 @@ Keep navigation, connection and shared errors in App. Move the existing Review, 
 Separate the current roadmap from the earlier deployment/validation journal. IMPLEMENTATION_HISTORY preserves that journal as historical context; VERIFICATION records current checks and TESTING provides repeatable commands. Current guides must distinguish active review/weakness workflows, retained low-level APIs and archived/tombstoned lesson/repertoire behavior. Historical statements are not current setup instructions.
 
 Formatting the extracted frontend modules improves readability without adding a formatter dependency. Health/settings/import response types replace the moved untyped state; remaining legacy payload types are deferred. The frozen HTTP contract and per-app isolation tests protect the ownership change. Current weakness-priority documentation keeps the filename CURRICULUM_ENGINE.md for existing links, with the complete older course design explicitly archived.
+
+## 2026-09-13: external positive-theme benchmark boundary
+
+Use Lichess's tagged solution lines to evaluate the existing line-pattern detector, without fabricating the alternative-move scores required by full mistake classification. Solver-side windows use visible material deltas or terminal mate as explicit benchmark-only outcome support. Preserve the production episode bounds and report unsettled endpoints, initial-episode recognition and valid misses.
+
+Stream the complete local input and sample each theme before chess validation, with independent seeded reservoirs. Separate exact and approximate mappings; native-defense-only or semantically unrelated themes are unsupported. Missing tags are never negative ground truth. Keep benchmark adapters and optional compression dependencies under scripts, preserve production code, and export reproducible failure records.

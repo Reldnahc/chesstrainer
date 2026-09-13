@@ -11,6 +11,18 @@ Fieldwork is a private, review-centered chess trainer. The current navigation is
 - Classifier v3.1 is deployed. Its first assistant assessment is documented in [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md); independent human accuracy remains unmeasured.
 - Lessons, course UI, Repertoire and model connectivity are removed. Historical data, tombstone routes, teaching audits and the low-level manual exercise API are retained for compatibility.
 
+## Active developer tooling: Lichess positive-theme benchmark
+
+Requested September 13, 2026. Build an offline streaming benchmark over an external tagged dataset, reusing the production line detector without altering application behavior. [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) records the evaluation boundary and limitations.
+
+| Stage | Status |
+|---|---|
+| Theme semantics, streaming sampling and legal reconstruction | Planned |
+| Production adapter, metrics, reports and failure corpus | Planned |
+| Deterministic tests, initial external run and documentation | Planned |
+
+No product integration, classifier tuning, database/schema writes, model calls or missing-tag negative labels. Keep dataset and generated reports in ignored data. Complete and commit verified units incrementally.
+
 ## Completed maintenance pass: interface ownership and documentation
 
 Completed September 13, 2026. Starting assessment: a clean worktree; App.tsx contains 251 dense lines covering navigation, review, import, settings and evidence dialogs. api.py contains 531 lines covering application resources, access controls, all endpoint groups and static serving. Existing domain services, shared mutation lock, injected factories and test fixtures are reusable.
