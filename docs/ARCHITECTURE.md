@@ -15,7 +15,10 @@ Classification v3.1 implements adaptive continuation evidence, connected tactica
 - `classification.py`: validated labels, cache identity, immutable run responses and active evidence projection.
 - `curriculum.py`, `lessons.py`: archived course/history helpers; live lesson routes are disabled. New imports/classification do not rebuild courses.
 - `reviews.py`, `explanations.py`, `scheduling.py`, `retirement.py`: backend grading, local consequence playback, FSRS and persistent retirement.
-- `models.py`, `db.py`, `api.py`: relational persistence, migrations, HTTP contracts and production static assets.
+- `models.py`, `db.py`: relational persistence and migrations.
+- `api.py`: application composition, per-app resources, shared mutation lock and startup/shutdown.
+- `routes/`: workspace, imports, jobs, review, classification and compatibility APIRouter factories, each receiving its existing resources explicitly.
+- `web.py`: LAN access middleware, exception responses, production assets and SPA fallback.
 
 Within one job, STOCKFISH_WORKERS games run in parallel, each with its own native process and DB session. Moves within a game stay ordered. Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits at most twice its worker count. Producers stop on cancellation and started tasks finish saving; a game is complete after its classification tasks finish. Classification-only backfills use saved evidence and neither start background engines nor create/enroll exercises.
 

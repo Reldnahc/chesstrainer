@@ -1,0 +1,68 @@
+"""PGN uploads and filtered Chess.com import requests."""
+
+from pathlib import Path
+from typing import Literal
+
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from sqlalchemy import select
+
+from trainer.chesscom import ChessComRequest
+from trainer.imports import import_games
+from trainer.models import AnalysisJob, ChessComImport
+
+
+def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
+    router = APIRouter()
+
+    async def read_pgn(file):
+        content = await file.read(settings.max_import_bytes + 1)
+        await file.close()
+        if len(content) > settings.max_import_bytes:
+            raise HTTPException(413, "PGN exceeds configured MAX_IMPORT_BYTES")
+        try:
+            return content.decode("utf-8-sig")
+        except UnicodeDecodeError:
+            raise HTTPException(422, "Save PGN as UTF-8 before importing")
+
+    @router.post("/api/imports")
+    async def upload_pgn(
+        file: UploadFile = File(...),
+        usernames: str = Form(""),
+        side: Literal["auto", "white", "black"] = Form("auto"),
+    ):
+        pgn = await read_pgn(file)
+        with mutation_lock, sessions() as db:
+            return import_games(
+                db,
+                Path(file.filename or "games.pgn").name,
+                pgn,
+                usernames.split(","),
+                None if side == "auto" else side,
+            )
+
+    @router.post("/api/imports/chesscom", status_code=202)
+    def import_chesscom(data: ChessComRequest):
+        with mutation_lock, sessions() as db:
+            existing = db.scalar(
+                select(AnalysisJob)
+                .join(ChessComImport)
+                .where(
+                    AnalysisJob.status.in_(["queued", "running"]),
+                    ChessComImport.username == data.username,
+                    ChessComImport.time_class == data.time_class,
+                    ChessComImport.months == data.months,
+                    ChessComImport.max_games == data.max_games,
+                    ChessComImport.start_date == data.start_date,
+                    ChessComImport.end_date == data.end_date,
+                )
+            )
+            if existing:
+                return {"job_id": existing.id, "status": existing.status}
+            job = AnalysisJob(kind="chesscom")
+            db.add(job)
+            db.flush()
+            db.add(ChessComImport(job_id=job.id, **data.model_dump()))
+            db.commit()
+            return {"job_id": job.id, "status": job.status}
+
+    return router

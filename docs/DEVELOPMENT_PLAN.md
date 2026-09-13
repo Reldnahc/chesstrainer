@@ -17,7 +17,7 @@ Requested September 13, 2026. Starting assessment: a clean worktree; App.tsx con
 
 | Stage | Work | Status |
 |---|---|---|
-| 1 | Record API contracts; move cohesive endpoint groups into router factories; retain application lifecycle, locks, public request models and app.state compatibility | Planned |
+| 1 | Record API contracts; move cohesive endpoint groups into router factories; retain application lifecycle, locks, public request models and app.state compatibility | Complete: 61 focused tests; API schema and handler-body parity verified |
 | 2 | Separate existing frontend screens, evidence dialog and shared display/navigation helpers; preserve state ownership, markup and interaction timing | Planned |
 | 3 | Audit current documentation and workflows; distinguish active APIs from archived/tombstoned behavior; replace stale screenshots where needed | In progress |
 | 4 | Full backend/native/API suite, migrations, Ruff, TypeScript/Vite build and all Playwright projects; fix regressions; record results and commit | Planned |

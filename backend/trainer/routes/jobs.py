@@ -1,0 +1,74 @@
+"""Saved job progress and cancellation/retry controls."""
+
+from fastapi import APIRouter, HTTPException
+from sqlalchemy import func, select
+
+from trainer.models import AnalysisJob, ChessComImport, ClassificationTask
+
+
+def create_router(*, sessions, runner) -> APIRouter:
+    router = APIRouter()
+
+    @router.get("/api/jobs")
+    def jobs():
+        with sessions() as db:
+            rows = db.scalars(
+                select(AnalysisJob).order_by(AnalysisJob.created_at.desc()).limit(50)
+            ).all()
+            sources = {
+                source.job_id: source
+                for source in db.scalars(
+                    select(ChessComImport).where(
+                        ChessComImport.job_id.in_([row.id for row in rows])
+                    )
+                )
+            }
+            return [
+                {c.name: getattr(row, c.name) for c in AnalysisJob.__table__.columns}
+                | {
+                    "probe_total": db.scalar(
+                        select(func.count())
+                        .select_from(ClassificationTask)
+                        .where(ClassificationTask.job_id == row.id)
+                    )
+                    if row.kind == "enrichment"
+                    else None,
+                    "activity": runner.activity(row.id),
+                    "chesscom": {
+                        c.name: getattr(sources[row.id], c.name)
+                        for c in ChessComImport.__table__.columns
+                    }
+                    if row.id in sources
+                    else None,
+                }
+                for row in rows
+            ]
+
+    @router.post("/api/jobs/{job_id}/cancel")
+    def cancel_job(job_id: str):
+        with sessions() as db:
+            job = db.get(AnalysisJob, job_id)
+            if job is None:
+                raise HTTPException(404, "Job not found")
+            if job.status in {"queued", "running"}:
+                job.cancel_requested = True
+                if job.status == "queued":
+                    job.status = "cancelled"
+                db.commit()
+            return {"status": job.status}
+
+    @router.post("/api/jobs/{job_id}/retry")
+    def retry_job(job_id: str):
+        with sessions() as db:
+            job = db.get(AnalysisJob, job_id)
+            if job is None:
+                raise HTTPException(404, "Job not found")
+            if job.kind == "teaching":
+                raise HTTPException(410, "Model teaching generation has been removed.")
+            if job.status not in {"failed", "cancelled"}:
+                raise HTTPException(409, "Only failed or cancelled jobs can be retried")
+            job.status, job.cancel_requested, job.error = "queued", False, None
+            db.commit()
+            return {"status": job.status}
+
+    return router
