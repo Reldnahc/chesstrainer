@@ -11,17 +11,17 @@ Fieldwork is a private, review-centered chess trainer. The current navigation is
 - Classifier v3.1 is deployed. Its first assistant assessment is documented in [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md); independent human accuracy remains unmeasured.
 - Lessons, course UI, Repertoire and model connectivity are removed. Historical data, tombstone routes, teaching audits and the low-level manual exercise API are retained for compatibility.
 
-## Active developer tooling: Lichess positive-theme benchmark
+## Completed developer tooling: Lichess positive-theme benchmark
 
-Requested September 13, 2026. Build an offline streaming benchmark over an external tagged dataset, reusing the production line detector without altering application behavior. [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) records the evaluation boundary and limitations.
+Completed September 13, 2026. Offline streaming benchmark over an external tagged dataset, reusing the production line detector without altering application behavior. [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) records the evaluation boundary and limitations.
 
 | Stage | Status |
 |---|---|
-| Theme semantics, streaming sampling and legal reconstruction | Complete: 27 deterministic tests, including compressed-frame validation |
+| Theme semantics, streaming sampling and legal reconstruction | Complete: independent reservoirs, compressed-frame validation and legal replay |
 | Production adapter, metrics, reports and failure corpus | Complete: shared detector, subtype projections, separate initial-episode metric and complete JSONL context |
-| Deterministic tests, initial external run and documentation | In progress: adapter tests passing; full-dataset run and final documentation next |
+| Deterministic tests, initial external run and documentation | Complete: 48 harness tests, 245 full backend tests; 1,000 positives per eligible theme across the full dataset; baseline and limitations documented |
 
-No product integration, classifier tuning, database/schema writes, model calls or missing-tag negative labels. Keep dataset and generated reports in ignored data. Complete and commit verified units incrementally.
+No product integration, classifier tuning, database/schema writes, model calls or missing-tag negative labels. Dataset and generated reports stay in ignored data. [Initial results](LICHESS_BENCHMARK_RESULTS.md) preserve the measured per-theme gaps; independent human precision remains separate.
 
 ## Completed maintenance pass: interface ownership and documentation
 
@@ -42,7 +42,7 @@ Constraints: no product, classifier, engine, grading, scheduling or schema chang
 
 ## Remaining work after maintenance
 
-1. **Independent classification quality.** Review unseen games with human labels, include abstentions, keep game-separated holdouts, and report per-mechanism precision/recall separately from coverage. A larger labeled sample is needed before stronger accuracy claims.
+1. **Independent classification quality.** Inspect external benchmark disagreements without fitting rules to the sample. Review stratified real-game positive findings blindly with human labels to estimate precision; include abstentions in any separate recall study and keep game-separated holdouts. The completed puzzle benchmark measures shared line-detector positive agreement, not full-classifier recall or real-game precision.
 2. **Practical improvement measurement.** Evaluate retention and recurring mistakes across new games; do not equate a label or recall interval with chess mastery.
 3. **Reliability and scale.** Profile larger imports on representative hosts, verify manual Linux/macOS installation and physical-phone LAN behavior, and document resource tradeoffs.
 4. **Code health.** Reassess remaining large review interaction code, loose frontend API types, query duplication and archived domain boundaries when a concrete maintenance task justifies changes.

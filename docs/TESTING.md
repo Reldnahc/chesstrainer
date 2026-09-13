@@ -63,7 +63,7 @@ Check SQLite integrity and foreign keys on both results. For a pass with no sche
 | Local classification | Verified witness linkage, positive/negative/mirrored fixtures, abstention, rejected/cached results, adaptive endpoints, connected patterns, defensive probes and unchanged grading/SRS during enrichment |
 | HTTP interface | Frozen pre-refactor API schemas/methods/response contracts, independent app instances/resources, access token/origin rejection, cold payloads, errors and archival guards |
 | Data compatibility | Historical lesson/repertoire/audit preservation, archived route 410s, manual API, backup round trip/secret exclusion/integrity/no overwrite |
-| Quality tooling | Blinded packets, evidence fingerprints, frozen comparisons, reviewer provenance, human/assistant separation and exclusion of uncertain/invalid labels |
+| Quality tooling | Blinded packets, evidence fingerprints, frozen comparisons, reviewer provenance, human/assistant separation and exclusion of uncertain/invalid labels; external positive-theme mappings, solver reconstruction, reproducible reservoirs, witness linkage, metrics and disagreement exports |
 
 The central native vertical test runs an actual background worker through HTTP: PGN import, learner analysis, LocalClassifier, persisted evidence/exercise, review and application restart. It does not require a course. Injected classifiers cover failures and concurrency separately.
 
@@ -108,5 +108,17 @@ python scripts/classification_report.py --database data/trainer.sqlite3 --output
 The script opens SQLite read-only and runs no engines or network requests. Blinded sampling, annotation and frozen-comparison commands are documented in [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md#configuration-and-evaluation). Reports contain private evidence and belong in ignored data.
 
 Passing tests establish implementation contracts, not population classifier accuracy or long-term chess improvement. The first [assistant assessment](CLASSIFICATION_ASSESSMENT.md) preserves uncertain cases and provenance; independent human/game-separated holdout evaluation remains outstanding.
+
+### Offline Lichess benchmark
+
+Use [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) for local CSV/compression setup, theme semantics and sampling commands. This developer tool tests the production line detector without a database, engine, server, model or network. It adds no application puzzle feature. [The initial external baseline](LICHESS_BENCHMARK_RESULTS.md) is a separate measurement from passing synthetic tests.
+
+```sh
+python -m pytest -q backend/tests/test_lichess_dataset.py backend/tests/test_lichess_benchmark.py
+```
+
+The 48 tests use tiny synthetic CSV/position fixtures, including deliberately incorrect tags for the miss path. They cover both colors, setup-versus-solver replay, special moves, detector/subtype invocation, initial versus later episodes, per-theme sample independence, reproducibility, positive denominators, corpus context and corrupt/truncated input. No full dataset is checked in or downloaded by tests. Four Zstandard tests skip with a clear reason if its optional developer dependency is absent; all other harness tests still run.
+
+The first actual dataset run scanned 6,100,952 rows and tested 12,000 theme-puzzle incidences. Missing tags are never negatives, and the adapter's observed material gains are not native engine truth. Blinded human precision and full-classifier recall remain separate validation tasks.
 
 Record host/tool versions, skipped tests and warnings with results. Current TestClient dependencies emit httpx/AnyIO deprecation warnings; do not hide them with blanket suppression. Manual Linux/macOS installation, physical devices and larger-import performance need separate validation.

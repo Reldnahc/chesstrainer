@@ -116,7 +116,9 @@ npx playwright test
 
 Build before running tests that use frontend/dist; do not rebuild it during backend or browser suites. Set STOCKFISH_PATH for native integration tests; missing Stockfish produces explicit skips. Normal tests make no model or live Chess.com requests. Playwright uses an isolated database and both desktop and phone-emulated Chromium projects.
 
-[TESTING.md](docs/TESTING.md) includes isolated migration/schema-drift checks and platform-specific commands. [VERIFICATION.md](docs/VERIFICATION.md) records the latest complete results and limits.
+[TESTING.md](docs/TESTING.md) includes isolated migration/schema-drift checks and platform-specific commands. [VERIFICATION.md](docs/VERIFICATION.md) records completed results and limits.
+
+Developer-only [Lichess benchmark tooling](docs/LICHESS_BENCHMARK.md) streams a local puzzle dataset to measure positive-theme agreement with the shared tactical detector. It does not add puzzle training to the app or infer precision from missing tags. The [initial external baseline](docs/LICHESS_BENCHMARK_RESULTS.md) preserves per-theme results and limitations.
 
 ## Backup and privacy
 
@@ -135,7 +137,7 @@ Username import contacts Chess.com's public API from the backend, sending the re
 
 - [Product](docs/PRODUCT.md), [feature status](docs/FEATURE_STATUS.md) and [development plan](docs/DEVELOPMENT_PLAN.md)
 - [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/ANALYSIS_PIPELINE.md) and [data model](docs/DATA_MODEL.md)
-- [Local classification](docs/LOCAL_CLASSIFICATION.md), [assessment results](docs/CLASSIFICATION_ASSESSMENT.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
+- [Local classification](docs/LOCAL_CLASSIFICATION.md), [assistant assessment](docs/CLASSIFICATION_ASSESSMENT.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
 - [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [Chess.com import](docs/CHESSCOM_IMPORT.md)
 - [Testing procedure](docs/TESTING.md), [latest verification](docs/VERIFICATION.md), [decisions](docs/DECISIONS.md) and [implementation history](docs/IMPLEMENTATION_HISTORY.md)
 

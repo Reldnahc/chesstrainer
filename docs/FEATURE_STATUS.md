@@ -21,7 +21,7 @@ Current direction: Review and local mistake classification. The user's September
 | Settings | Validated .env, current coverage, local backfill and capped optional deeper-evidence jobs | No full settings editor; restart after edits |
 | LAN/mobile | Same-origin frontend, configurable bind, optional token, compact four-screen mobile layout, expandable filters/settings/history, accessible evidence dialog, Windows firewall helper | Private LAN product, not secured for direct public hosting |
 | Data and backups | SQLite WAL, migrations, consistent backup/restore and preserved historical audits | CLI backup only; no cloud sync |
-| Quality | Rules/engine/API/browser tests, frozen HTTP contracts, independent app instances, migration preservation, blinded stratified export and frozen annotation comparison; first assistant assessment with preserved adjudications | Small development assessment shares implementation context; independent human accuracy and long-term improvement evaluation outstanding |
+| Quality | Rules/engine/API/browser tests, frozen HTTP contracts, independent app instances, migration preservation, blinded stratified export and frozen annotation comparison; first assistant assessment with preserved adjudications; offline Lichess positive-theme benchmark and per-theme failure corpus | External puzzle agreement tests the line detector only; initial recognition is uneven. Independent human precision, full-classifier recall and long-term improvement remain unmeasured |
 
 ## What no longer needs a model
 
@@ -37,4 +37,4 @@ See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact scope/limits, [
 
 The deeper-evidence job prioritizes concrete pending defensive questions, then unknown outcomes and saves supplemental analysis links separately. Completed probe keys and persisted task lists support cancellation/restart without repeating completed searches or expanding the job budget. Existing grading evidence and schedules remain unchanged.
 
-See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for coverage progression and the first blinded assistant comparison.
+See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for coverage progression and the first blinded assistant comparison. [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) documents the developer-only external positive-label test, with [initial results](LICHESS_BENCHMARK_RESULTS.md). It is not a Lichess import/training product feature.
