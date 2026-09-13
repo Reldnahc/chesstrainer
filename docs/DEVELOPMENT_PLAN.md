@@ -11,6 +11,19 @@ Fieldwork is a private, review-centered chess trainer. The current navigation is
 - Classifier v3.1 is deployed. Its first assistant assessment is documented in [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md); independent human accuracy remains unmeasured.
 - Lessons, course UI, Repertoire and model connectivity are removed. Historical data, tombstone routes, teaching audits and the low-level manual exercise API are retained for compatibility.
 
+## Active classifier work: reuse Lichess recognition
+
+Requested September 13, 2026. [LICHESS_REUSE.md](LICHESS_REUSE.md) records the pinned source, direct comparison and implementation plan.
+
+| Stage | Status |
+|---|---|
+| Unmodified upstream comparison on frozen samples | Complete: 12,000 incidences, materially broader recognition |
+| Pinned source, witness adapter and parity tests | In progress |
+| Classifier/review integration and regression verification | Planned |
+| Final measurements, documentation and deployment status | Planned |
+
+Preserve Stockfish/grading/FSRS and historical data. Reuse actual upstream predicate logic, preserve its license, and distinguish recognized line motifs from supported mistake diagnoses.
+
 ## Completed developer tooling: Lichess positive-theme benchmark
 
 Completed September 13, 2026. Offline streaming benchmark over an external tagged dataset, reusing the production line detector without altering application behavior. [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) records the evaluation boundary and limitations.
