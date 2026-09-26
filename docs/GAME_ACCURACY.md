@@ -51,12 +51,13 @@ Already-completed reviews get scores when reopened, including when Stockfish is
 unavailable. Ratings, branch exploration and board orientation cannot modify the
 original-game scores. No aggregate is stored in a second table or database.
 
-## Planned display
+## Display
 
-Show one decimal place next to each player's name, using stable space that does
-not change board size when analysis finishes. An em dash explains incomplete or
-unavailable results accessibly. Accuracy belongs to the original game even while
-the player explores a variation.
+Each player's name has an accuracy readout showing one decimal place, using stable
+space that does not change board size when analysis finishes. An em dash has an
+accessible explanation for incomplete or unavailable results. Accuracy belongs to
+the original game even while the player explores a variation. Flipping the board
+moves each score with its player.
 
 ## Verification
 
@@ -66,3 +67,5 @@ tests cover saturation, uncertainty, the harmonic floor, both zero-mate outcomes
 color symmetry at window-size boundaries, custom FENs and incomplete evidence.
 Native review tests verify equality between detail and incremental responses,
 rating independence, paused reviews, and reopening saved results without an engine.
+Browser checks cover completion through incremental polling, placeholders, rounding,
+stable board/readout geometry, flipping, branching and reopening on desktop/mobile.

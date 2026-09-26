@@ -17,12 +17,14 @@ type Report = {
 };
 type Position = { fen: string; legal_moves: LegalMove[]; turn: "white" | "black"; result: string | null; termination: string | null; san: string };
 type Frame = Position & { uci: string | null; number: number; actor: "white" | "black" | null; report: Report | null };
+type Accuracy = { version: string; white: number; black: number };
 type Game = {
   id: string; white: string; black: string; played_on: string | null; result: string;
   orientation: "white" | "black"; rating: number; white_rating: number | null; black_rating: number | null; frames: Frame[];
   job: { id: string; status: string; completed: number; total: number; error: string | null; cancel_requested: boolean } | null;
+  accuracy: Accuracy | null;
 };
-type ReviewProgress = { job: Game["job"]; moves: { ply: number; report: Report }[] };
+type ReviewProgress = { job: Game["job"]; accuracy: Accuracy | null; moves: { ply: number; report: Report }[] };
 type Item = { id: string; white: string; black: string; played_on: string | null; result: string; status: string };
 type Branch = { id: number; root: number; moves: string[]; sans: string[]; returnPly: number; };
 type Cursor = { ply: number; branch: number | null; step: number };
@@ -41,6 +43,22 @@ function strength(score: Score) {
 }
 function Badge({ label }: { label: string }) {
   return <span className={`game-badge label-${label.toLowerCase()}`}><b><MoveSymbol label={label}/></b>{label}</span>;
+}
+function PlayerRow({ name, color, accuracy, complete, status }: {
+  name: string; color: "white" | "black"; accuracy: Accuracy | null; complete: boolean; status: string;
+}) {
+  const value = accuracy?.[color];
+  const description = value != null ? "Original-game accuracy out of 100, using Lichess's method."
+    : complete ? "Accuracy unavailable. Both players need moves with complete analysis."
+    : "Accuracy will appear when the full game review finishes.";
+  return <div className="game-player">
+    <div className="game-player-identity"><strong className="game-player-name" title={name}>{name}</strong>
+      <output className="game-accuracy" aria-label={`${color === "white" ? "White" : "Black"} accuracy`} title={description}>
+        <span>Accuracy</span><b>{value == null ? "—" : value.toFixed(1)}</b><span className="sr-only">{description}</span>
+      </output>
+    </div>
+    <span className="game-player-status" title={status}>{status}</span>
+  </div>;
 }
 function CoachAvatar() {
   return <svg className="game-coach-avatar" viewBox="0 0 80 100" role="img" aria-label="Your chess coach">
@@ -186,7 +204,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
         // Advance only over reports actually received, not a newer progress count.
         for (const move of progress.moves) receivedPly.current = Math.max(receivedPly.current, move.ply);
         const reports = new Map(progress.moves.map(move => [move.ply, move.report]));
-        setGame(current => current ? { ...current, job: progress.job, frames: current.frames.map((frame, index) => reports.has(index) ? { ...frame, report: reports.get(index)! } : frame) } : current);
+        setGame(current => current ? { ...current, job: progress.job, accuracy: progress.accuracy, frames: current.frames.map((frame, index) => reports.has(index) ? { ...frame, report: reports.get(index)! } : frame) } : current);
       } catch (e) { if (active) setError((e as Error).message); }
       finally { if (active) timer = window.setTimeout(update, 750); }
     };
@@ -334,7 +352,8 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     {error && <p className="notice error" role="alert">{error}<button onClick={() => setError("")}>Dismiss</button></p>}
     <div className="game-review-layout">
       <section ref={boardArea} className="game-board-area" aria-label="Game board and navigation">
-        <div className="game-player"><span>{playerName(orientation === "white" ? "black" : "white")}</span><span>{branch ? "Exploring a variation" : "Original game"}</span></div>
+        <PlayerRow name={playerName(orientation === "white" ? "black" : "white")} color={orientation === "white" ? "black" : "white"}
+          accuracy={game.accuracy} complete={game.job?.status === "completed"} status={branch ? "Exploring a variation" : "Original game"}/>
         <div className="game-board-with-eval">
           <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>
           <Board fen={displayed.fen} orientation={orientation} legalMoves={frame?.legal_moves || []} disabled={!frame || moving} onMove={play}
@@ -343,7 +362,8 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
             roles={explaining ? cues!.roles : undefined}
             arrows={explaining ? cues!.arrows.map(a => ({ ...a, color: a.kind === "move" ? "#b8d69be6" : a.kind === "reply" ? "#ffb17be6" : "#ff7187db" })) : []}/>
         </div>
-        <div className="game-player"><strong>{playerName(orientation === "white" ? "white" : "black")}</strong><span>{frame?.termination ? `${frame.result} · ${frame.termination}` : `${frame?.turn || displayed.turn} to move`}</span></div>
+        <PlayerRow name={playerName(orientation)} color={orientation} accuracy={game.accuracy} complete={game.job?.status === "completed"}
+          status={frame?.termination ? `${frame.result} · ${frame.termination}` : `${frame?.turn || displayed.turn} to move`}/>
         <div className="game-board-controls" role="group" aria-label="Game navigation">
           <button className="game-return" aria-label="Back to game" title="Back to game (Escape)" disabled={!branch} onClick={() => branch && navigate(branch.returnPly)}><CornerUpLeft size={16}/><span>Game</span></button>
           <button aria-label="First move" disabled={current === 0} onClick={() => { setExplanationKey(null); if (branch) setCursor(c => ({ ...c, step: 0 })); else navigate(0); }}><ChevronsLeft size={19}/></button>

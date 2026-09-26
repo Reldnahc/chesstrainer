@@ -13,7 +13,7 @@ Current direction: Review and local mistake classification. The user's September
 | Classification | Pinned Lichess tactical recognition, adaptive saved continuations, connected combinations, before/after causes, native tests for relative pins/fork defenses/trapped pieces, separated outcomes/patterns/cues and exact audits | Version 4 with unchanged mistake-evidence gates; overloads, economically ineffective multiple defenders and broad strategic causes remain unsupported |
 | Weaknesses | Independent-game aggregation, separate pattern/outcome coverage, cues, all supporting examples and focused practice | No calibrated diagnostic accuracy; independent human benchmark outstanding |
 | Review | Cold board, tap/drag, backend legal markers, promotion, accepted alternatives, first-failure semantics | No multi-move graded sequence; deeper lines are playback |
-| Full-game review | Games library, both-color resumable analysis, eight move labels, responsive evaluation timeline, stable illustrated coach, rated branching variations, immediate arrows and witness highlights, animated moves, compact notation and integrated return-to-game navigation | Finite engine evidence; conservative Brilliant/Great rules; only Blunder severity varies by rating; branches last while the game is open; no accuracy percentage or voice |
+| Full-game review | Games library, both-color resumable analysis, Lichess accuracy for both players, eight move labels, responsive evaluation timeline, stable illustrated coach, rated branching variations, immediate arrows and witness highlights, animated moves, compact notation and integrated return-to-game navigation | Finite engine evidence; conservative Brilliant/Great rules; only Blunder severity varies by rating; branches last while the game is open; accuracy requires a complete review with both sides having moved; no voice |
 | Explanations | Automatic counter on failure, Try again, deeper Show me why; Reveal move plays answer; success explanation/playback | Witness buttons and square-role highlights where supported; quiet positional explanations remain limited |
 | Focused practice | Up to 12 distinct real positions per selected weakness, separate session/attempt/time records, no FSRS writes | A new batch can repeat earlier practice; reload returns to mixed review |
 | SRS | FSRS, automatic Again/Hard/Good, raw response times, persistent due queue, permanent retirement above configured 100 days | No personal parameter optimization; elapsed time includes idle/tab time |
@@ -62,6 +62,11 @@ each player. Both saved-game and variation labels use the moving player's Elo;
 missing or invalid headers use the review fallback (1000 by default). Completed
 reviews have no report-control panel or manual label-update action. Start, pause
 and resume controls appear only while analysis remains unfinished.
+
+Completed reviews show Lichess accuracy beside each player's name, independent of
+Elo. Saved evaluations supply the scores without more engine work. The readouts
+reserve their space during review and keep the original game's values in variations.
+See [Game accuracy](GAME_ACCURACY.md) for the pinned method and completeness rules.
 
 On desktop the board uses the available viewport height, with only compact
 player rows and move controls around it. The title, coach, compact notation and

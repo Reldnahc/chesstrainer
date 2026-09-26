@@ -38,6 +38,9 @@ test('progress merges only new reports without reloading the board or duplicatin
   const {id} = await (await page.request.post(`/__test/game-review-fixture/progress-${info.project.name}`)).json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   let fullLoads = 0, analyses = 0;
+  const accuracy = {version: 'lichess-2e653ad1-1', white: 86.432, black: 100};
+  let finishReview: () => void = () => {};
+  const completionGate = new Promise<void>(resolve => { finishReview = resolve; });
   const cursors: number[] = [];
   const moveReport = (ply: number) => {
     const frame = game.frames[ply];
@@ -46,7 +49,7 @@ test('progress merges only new reports without reloading the board or duplicatin
       white_score: candidate.score, depth: 16, engine_version: 'Progress fixture', board_cues: null}};
   };
   await page.route(`**/api/games/${id}`, route => { fullLoads++; return route.fulfill({json: game}); });
-  await page.route(`**/api/games/${id}/review*`, route => {
+  await page.route(`**/api/games/${id}/review*`, async route => {
     if (route.request().method() === 'POST') {
       game.job = {id: 'progress-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
       return route.fulfill({json: {job_id: game.job.id, status: game.job.status}});
@@ -56,20 +59,43 @@ test('progress merges only new reports without reloading the board or duplicatin
     const plies = after === 0 ? [1] : after === 1 ? [2, 3] : [4];
     // The count may advance between the server's report and count queries.
     const job = {...game.job, status: after === 3 ? 'completed' : 'running', completed: after === 0 ? 2 : plies.at(-1)};
-    return route.fulfill({json: {job, moves: plies.map(moveReport)}});
+    if (after === 3) {
+      await completionGate;
+      game.job = job;
+      game.accuracy = accuracy;
+      for (const ply of [1, 2, 3, 4]) game.frames[ply].report = moveReport(ply).report;
+    }
+    return route.fulfill({json: {job, moves: plies.map(moveReport), accuracy: after === 3 ? accuracy : null}});
   });
   await page.route(`**/api/games/${id}/analyze`, route => {
     analyses++;
     return route.fulfill({json: {report: null, score: null, best_move: null}});
   });
   await page.goto(`/games/${id}?ply=2`);
+  const whiteScore = page.getByLabel('White accuracy').locator('b');
+  const blackScore = page.getByLabel('Black accuracy').locator('b');
+  await expect(whiteScore).toHaveText('—');
+  await expect(page.getByLabel('White accuracy')).toHaveAttribute('title', /full game review finishes/);
+  await page.evaluate(() => document.fonts.ready);
+  const boardBefore = await page.locator('.board-shell').boundingBox();
+  const readoutBefore = await blackScore.boundingBox();
+  finishReview();
   await expect(page.locator('.game-summary > summary')).toContainText('complete game');
+  await expect(whiteScore).toHaveText('86.4');
+  await expect(blackScore).toHaveText('100.0');
+  expect(await page.locator('.board-shell').boundingBox()).toEqual(boardBefore);
+  expect(await blackScore.boundingBox()).toEqual(readoutBefore);
   await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'First move', exact: true}).click();
   await expect(page.getByLabel('Evaluation for White: +0.25')).toBeVisible();
   expect(cursors).toEqual([0, 1, 3]);
   expect(fullLoads).toBe(2);
+  expect(analyses).toBe(0);
+  await page.reload();
+  await expect(whiteScore).toHaveText('86.4');
+  await expect(blackScore).toHaveText('100.0');
+  expect(cursors).toEqual([0, 1, 3]);
   expect(analyses).toBe(0);
 });
 
@@ -91,6 +117,14 @@ test('review both players, explain in place, and branch without changing the gam
   await expect(page.getByRole('heading', {name: 'Game report', exact: true})).toHaveCount(0);
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   expect(game.job.completed).toBe(4);
+  const whiteScore = page.getByLabel('White accuracy').locator('b');
+  const blackScore = page.getByLabel('Black accuracy').locator('b');
+  await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
+  await expect(blackScore).toHaveText(game.accuracy.black.toFixed(1));
+  await page.getByRole('button', {name: 'Flip board', exact: true}).click();
+  await expect(page.locator('.game-player').first().getByLabel('White accuracy')).toBeVisible();
+  await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
+  await page.getByRole('button', {name: 'Flip board', exact: true}).click();
   if (testInfo.project.name === 'desktop') {
     const board = (await page.locator('.game-board-controls').boundingBox())!;
     const square = (await page.locator('.board-shell').boundingBox())!;
@@ -157,6 +191,8 @@ test('review both players, explain in place, and branch without changing the gam
   await expect(page.locator('.game-speech .game-badge')).toBeVisible();
   await expect(page.locator('.game-variation-row .game-badge')).toHaveCount(4, {timeout: 30_000});
   await expect(page.getByLabel(/^Move rating:/)).toBeVisible();
+  await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
+  await expect(blackScore).toHaveText(game.accuracy.black.toFixed(1));
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({path: `test-results/game-review-${testInfo.project.name}.png`, fullPage: true});
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
@@ -179,6 +215,8 @@ test('review both players, explain in place, and branch without changing the gam
   await page.getByRole('link', {name: 'All games', exact: true}).click();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await expect(page.locator('.game-summary > summary')).toBeVisible();
+  await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
+  await expect(blackScore).toHaveText(game.accuracy.black.toFixed(1));
   expect(starts).toHaveLength(1);
 });
 
