@@ -17,7 +17,19 @@ test('review both players, follow coach lines, and branch without changing the g
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   expect(game.job.completed).toBe(4);
   if (testInfo.project.name === 'desktop') {
-    const board = (await page.locator('.game-graph').boundingBox())!;
+    const board = (await page.locator('.game-board-controls').boundingBox())!;
+    const square = (await page.locator('.board-shell').boundingBox())!;
+    expect(square.width).toBeGreaterThan(580);
+    expect(square.y).toBeLessThan(110);
+    const sidebar = (await page.locator('.game-review-sidebar').boundingBox())!;
+    expect(sidebar.x).toBeGreaterThan(square.x + square.width);
+    await page.setViewportSize({width: 1600, height: 768});
+    await expect.poll(async () => (await page.locator('.game-review-sidebar').boundingBox())!.width).toBeGreaterThan(sidebar.width + 200);
+    expect(Math.abs((await page.locator('.board-shell').boundingBox())!.width - square.width)).toBeLessThan(2);
+    await page.setViewportSize({width: 1366, height: 900});
+    await expect.poll(async () => (await page.locator('.board-shell').boundingBox())!.width).toBeGreaterThan(square.width + 100);
+    await page.setViewportSize({width: 1366, height: 768});
+
     await page.screenshot({path: 'test-results/review-compact.png', fullPage: true});
     expect(board.y + board.height).toBeLessThanOrEqual(768);
   }

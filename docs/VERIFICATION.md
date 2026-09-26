@@ -167,3 +167,11 @@ Passing suites do not establish independent classifier accuracy or long-term che
 - All six desktop/mobile review browser tests passed; completed reviews have
   neither a Game report heading nor an Update labels action.
 - Production build, targeted Ruff checks and git diff whitespace checks passed.
+
+## Board-first desktop layout
+
+Production build and all six review browser tests passed. At 1366x768 the board
+is over 580px square, begins within 110px of the screen top, and its controls fit
+in the viewport. Widening to 1600px grows the sidebar while preserving board size;
+increasing height to 900px grows the board. The evaluation chart remains available
+in the right panel. Desktop screenshot inspected; mobile review tests also pass.

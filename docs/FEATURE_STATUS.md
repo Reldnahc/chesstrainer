@@ -62,3 +62,9 @@ each player. Both saved-game and variation labels use the moving player's Elo;
 missing or invalid headers use the review fallback (1000 by default). Completed
 reviews have no report-control panel or manual label-update action. Start, pause
 and resume controls appear only while analysis remains unfinished.
+
+On desktop the board uses the available viewport height, with only compact
+player rows and move controls around it. The title, branch-return action and
+evaluation timeline live in the right panel, which fills the remaining width
+rather than having a fixed width. Resizing accounts for the application and
+account bars; narrow windows may limit the board width to keep the panel usable.

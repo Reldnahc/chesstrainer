@@ -89,6 +89,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   const [cursor, setCursor] = useState<Cursor>({ ply: 0, branch: null, step: 0 });
   const [branches, setBranches] = useState<Branch[]>([]);
   const nextId = useRef(1);
+  const boardArea = useRef<HTMLElement>(null);
   const [orientation, setOrientation] = useState<"white" | "black">("white");
   const [busy, setBusy] = useState(false), [moving, setMoving] = useState(false);
   const [training, setTraining] = useState("");
@@ -129,6 +130,22 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     load().then(data => { if (mounted.current) { setOrientation(data.orientation); } }).catch(e => { if (mounted.current) setError(e.message); });
     return () => { mounted.current = false; };
   }, [load]);
+  useEffect(() => {
+    const area = boardArea.current;
+    if (!area) return;
+    const resize = () => {
+      const chrome = [...area.querySelectorAll<HTMLElement>('.game-player, .game-board-controls')]
+        .reduce((height, element) => height + element.getBoundingClientRect().height, 0);
+      const top = area.getBoundingClientRect().top + window.scrollY;
+      // The evaluation strip adds 35px to the square board's width.
+      area.parentElement!.style.setProperty('--review-board-width', `${Math.max(240, window.innerHeight - top - chrome - 24) + 35}px`);
+    };
+    resize();
+    const observer = new ResizeObserver(resize);
+    for (const element of document.querySelectorAll('.app-header, .account-bar')) observer.observe(element);
+    window.addEventListener('resize', resize);
+    return () => { observer.disconnect(); window.removeEventListener('resize', resize); };
+  }, [!!game]);
   const running = game?.job && ["queued", "running"].includes(game.job.status);
   useEffect(() => {
     if (!running) return;
@@ -280,11 +297,9 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   const displayed = frame || (branchPosition?.value ?? game.frames[cursor.ply]);
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return <div className="game-workspace">
-    <div className="game-heading"><button className="text-button" onClick={onBack}><ArrowLeft size={16}/>All games</button><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></div>
     {error && <p className="notice error" role="alert">{error}<button onClick={() => setError("")}>Dismiss</button></p>}
     <div className="game-review-layout">
-      <section className="game-board-area" aria-label="Game board and navigation">
-        <div className="game-mode-bar">{branch ? <><GitBranch size={16}/><span>{line?.title || "Your variation"}</span><button className="primary" onClick={() => returnRef.current()}><ArrowLeft size={16}/>Back to game</button></> : <><span>GAME REVIEW</span><small>Move a piece to try an idea</small></>}</div>
+      <section ref={boardArea} className="game-board-area" aria-label="Game board and navigation">
         <div className="game-player"><span>{playerName(orientation === "white" ? "black" : "white")}</span><span>{branch ? "Exploring a variation" : "Original game"}</span></div>
         <div className="game-board-with-eval">
           <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>
@@ -302,9 +317,11 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
           <button aria-label="Last move" disabled={current === maximum} onClick={() => branch ? setCursor(c => ({ ...c, step: maximum })) : navigate(last)}><ChevronsRight size={19}/></button>
           <button aria-label="Flip board" onClick={() => setOrientation(v => v === "white" ? "black" : "white")}><FlipVertical2 size={17}/></button>
         </div>
-        <EvaluationGraph frames={game.frames} selected={cursor.ply} onSelect={navigate}/>
       </section>
       <aside className="game-review-sidebar">
+    <div className="game-heading"><button className="text-button" onClick={onBack}><ArrowLeft size={16}/>All games</button><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></div>
+        <div className="game-mode-bar">{branch ? <><GitBranch size={16}/><span>{line?.title || "Your variation"}</span><button className="primary" onClick={() => returnRef.current()}><ArrowLeft size={16}/>Back to game</button></> : <><span>GAME REVIEW</span><small>Move a piece to try an idea</small></>}</div>
+
         <section className="game-coach" aria-label="Chess coach"><CoachAvatar/><div className="game-speech">
           <div key={`${analysisKey}:${report?.label}`} className="game-coach-label"><strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>{report ? <Badge label={report.label}/> : actor && !errorAtPosition ? <span className="game-rating-pending" role="status">Checking move...</span> : null}</div>
           <p aria-live="polite">{lineFrame ? currentFinding?.explanation || lineFrame.annotation : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : cursor.ply === 0 && !branch ? (game?.job?.status === "completed" ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea." : "Start a review for the full story, or move a piece to try your own line.") : "I'm checking this move and the opponent's strongest reply…")}</p>
@@ -331,6 +348,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
           {training && <p role="status" className="small">{training}</p>}
           </details>
         </section>
+        <EvaluationGraph frames={game.frames} selected={cursor.ply} onSelect={navigate}/>
         {!!game.job?.completed && <details className="game-summary"><summary>Move quality · {game.job.status === "completed" ? "complete game" : "analyzed moves so far"}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><Badge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>}
         <div className="game-move-heading"><h2>Moves</h2><button onClick={() => {
           const next = game.frames.findIndex((f, i) => i > cursor.ply && f.report && bad.has(f.report.label));

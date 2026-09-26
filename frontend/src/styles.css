@@ -641,3 +641,23 @@ main:has(.game-workspace) { max-width: 1240px; padding: 12px 24px 20px; min-heig
 .game-rating-pending { font-size: 12px; color: var(--muted); }
 
 .game-progress.review-tools { padding: 0; margin: 0; }
+
+/* Size the square from available height; the sidebar receives the remaining width. */
+@media (min-width: 761px) {
+  main:has(.game-workspace) { max-width: none; padding: 12px 20px; }
+  .game-review-layout, body:has(.account-bar) .game-review-layout {
+    grid-template-columns: minmax(0, var(--review-board-width, calc(100dvh - 130px))) minmax(280px, 1fr);
+    gap: 20px;
+  }
+  .game-review-sidebar { max-height: calc(100dvh - 84px); }
+  body:has(.account-bar) .game-review-sidebar { max-height: calc(100dvh - 150px); }
+  .game-heading { flex-wrap: wrap; }
+  .game-heading h1 { font-size: 15px; }
+  .game-heading > span { margin-left: auto; }
+  .game-graph { margin: 10px 0; }
+  .game-graph svg { max-height: 70px; }
+}
+@media (max-width: 760px) {
+  .game-heading { order: -2; }
+  .game-mode-bar { order: -1; }
+}
