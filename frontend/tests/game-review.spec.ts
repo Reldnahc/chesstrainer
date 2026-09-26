@@ -167,8 +167,12 @@ test('review both players, explain in place, and branch without changing the gam
     }
     expect((await page.locator('.game-coach').boundingBox())!.y).toBeLessThan((await page.locator('.game-graph').boundingBox())!.y);
   }
-  await page.keyboard.press('Escape');
+  const originalMove = page.locator('.game-graph-node[data-ply="2"]');
+  if (testInfo.project.name === 'mobile') await originalMove.tap();
+  else await originalMove.click();
   await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
+  await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName(/^1\.\.\. e5/);
+  await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=2$`));
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
@@ -176,6 +180,64 @@ test('review both players, explain in place, and branch without changing the gam
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await expect(page.locator('.game-summary > summary')).toBeVisible();
   expect(starts).toHaveLength(1);
+});
+
+test('dense evaluation dots resize and select the matching ply by pointer and keyboard', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/graph-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  const source = game.frames.slice(1);
+  // Repeat display frames to exercise a long timeline without a long engine job.
+  const moves = Array.from({length: 120}, (_, index) => {
+    const frame = source[index % source.length];
+    const candidate = {uci: frame.uci, san: frame.san, score: {kind: 'cp', value: Math.sin(index / 8) * 400}, pv: []};
+    return {...frame, number: Math.floor(index / 2) + 1, report: {
+      label: 'Good', coach: `Coaching for ply ${index + 1}.`, best: candidate, actual: candidate,
+      white_score: candidate.score, depth: 1, engine_version: 'Timeline fixture',
+    }};
+  });
+  game.frames = [game.frames[0], ...moves.slice(0, 4)];
+  game.job = {status: 'completed', completed: 4, total: 4};
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.goto(`/games/${id}?ply=1`);
+  await expect(page.locator('.game-graph-node')).toHaveCount(4);
+  const dotWidth = () => page.locator('.game-graph-node[data-ply="2"]').evaluate(dot => dot.getBoundingClientRect().width);
+  const shortWidth = await dotWidth();
+  game.frames = [game.frames[0], ...moves];
+  game.job = {status: 'completed', completed: 120, total: 120};
+  await page.reload();
+  await expect(page.locator('.game-graph-node')).toHaveCount(120);
+  await expect.poll(dotWidth).toBeLessThan(shortWidth);
+  await page.setViewportSize({width: 1366, height: 768});
+  const wideWidth = await dotWidth();
+  await page.setViewportSize({width: 360, height: 844});
+  await expect.poll(dotWidth).toBeLessThan(wideWidth);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+
+  const dot = (ply: number) => page.locator(`.game-graph-node[data-ply="${ply}"]`);
+  if (info.project.name === 'mobile') await dot(99).tap();
+  else await dot(99).click();
+  await expect(dot(99)).toHaveAttribute('aria-current', 'step');
+  await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=99$`));
+  await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('50. g4, Good');
+  await expect(page.locator('.game-coach-message')).toHaveText('Coaching for ply 99.');
+  await page.keyboard.press('ArrowRight');
+  await expect(dot(100)).toBeFocused();
+  await expect(page.locator('.game-coach-message')).toHaveText('Coaching for ply 100.');
+  await page.keyboard.press('Home');
+  await expect(dot(1)).toHaveAttribute('aria-current', 'step');
+  await page.keyboard.press('End');
+  await expect(dot(120)).toHaveAttribute('aria-current', 'step');
+
+  // A tap well above a tiny dot still selects its horizontal position.
+  const plot = page.locator('.game-graph svg');
+  const target = await dot(60).evaluate(dot => ({x: Number(dot.getAttribute('cx')), y: 2}));
+  if (info.project.name === 'mobile') await plot.tap({position: target});
+  else await plot.click({position: target});
+  await expect(page.locator('.game-coach-message')).toHaveText('Coaching for ply 60.');
+  await expect(page.locator('.game-move-counter')).toHaveText('60 / 120');
+  await expect(page.getByText('Review tools & details', {exact: true})).toHaveCount(0);
+  await expect(page.getByRole('button', {name: 'Find training mistakes'})).toHaveCount(0);
+  await page.screenshot({path: `test-results/evaluation-dense-${info.project.name}.png`, fullPage: true});
 });
 
 test('stale engine responses never replace the selected move and failures remain playable', async ({page}, testInfo) => {

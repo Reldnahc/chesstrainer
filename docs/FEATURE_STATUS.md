@@ -66,9 +66,10 @@ and resume controls appear only while analysis remains unfinished.
 On desktop the board uses the available viewport height, with only compact
 player rows and move controls around it. The title, coach, compact notation and
 evaluation timeline live in the right panel, which fills the remaining width
-rather than having a fixed width. Resizing accounts for the application and
-account bars; narrow windows may limit the board width to keep the panel usable.
+rather than having a fixed width. Resizing accounts for the shared header;
+narrow windows may limit the board width to keep the panel usable.
 The coach's message scrolls within a stable bubble and its actions keep a reserved
 row, so changes in wording, loading, errors or tactical evidence do not move the
-notation. The graph fills its panel at every width. Secondary review and training
-controls follow the graph instead of interrupting the coach and moves.
+notation. The graph fills its panel at every width, with dots sized to the space
+per ply. Clicking or tapping a dot or the graph selects the corresponding original
+game position. Review progress and the move-quality summary follow the graph.

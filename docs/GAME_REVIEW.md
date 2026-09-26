@@ -33,11 +33,15 @@ when explanation cues are already hidden. Variations are not saved across leavin
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
 The sidebar orders coaching, compact notation and variations, evaluation, then
-review tools. The evaluation graph spans the available panel width, with 12px
-move dots and a 24px selected dot. Its padding keeps edge dots visible. The coach
-keeps its label, message area, and action row in stable slots; longer explanations
-scroll inside the bubble. Analysis details and training controls are grouped
-under **Review tools & details**. On phones the coach appears directly below the
+review progress and the move-quality summary. Evaluation dots scale with the graph
+width and the game's ply count, up to 12px normally and 24px for the selected move.
+The selected dot stays at least 6px wide, and padding keeps edge dots visible.
+Click or tap a dot, or anywhere along the graph, to return to that ply in the
+original game. Arrow keys navigate reviewed dots when a dot is focused; Home/End
+select the first/last reviewed move. The slider also navigates every ply, including
+positions still being reviewed. The coach keeps its label, message area, and action
+row in stable slots; longer explanations scroll inside the bubble.
+On phones the coach appears directly below the
 board controls, with full-size touch targets and normal page scrolling. Mobile
 navigation buttons share the available row width. The move counter reserves space
 for three-digit steps and totals, keeping the controls still as those numbers grow.

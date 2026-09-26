@@ -96,7 +96,6 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const [orientation, setOrientation] = useState<"white" | "black">("white");
   const [busy, setBusy] = useState(false), [moving, setMoving] = useState(false);
   const [reviewStarting, setReviewStarting] = useState(true);
-  const [training, setTraining] = useState("");
   const [error, setError] = useState("");
   const [branchPosition, setBranchPosition] = useState<{ key: string; value: Position } | null>(null);
   const [, setAnalysisRevision] = useState(0);
@@ -396,17 +395,6 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
           {game.job?.error && <p className="small" role="alert">{game.job.error}</p>}
         </section>
         <details className="game-summary"><summary>Move quality{game.job?.status === "completed" ? " · complete game" : ""}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><Badge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>
-        <details className="review-options"><summary>Review tools & details</summary>
-          <p>{report ? `${report.engine_version} · depth ${report.depth}. White evaluation: ${scoreText(report.white_score)}.` : "Select a reviewed move to see its analysis details."}</p>
-          <p>Arrows show the played move or immediate engine reply and supported threats. They do not prove that every defense loses material.</p>
-          <div className="button-row"><button disabled={busy} onClick={async () => {
-            setBusy(true);
-            try { await post(`/games/${encodeURIComponent(id)}/train`); setTraining("Training analysis queued. Follow progress in Import."); }
-            catch (e) { setError((e as Error).message); }
-            finally { setBusy(false); }
-          }}>Find training mistakes</button></div>
-          {training && <p role="status" className="small">{training}</p>}
-          </details>
         </div>
       </aside>
     </div>
@@ -427,16 +415,46 @@ function EvaluationGraph({ frames, selected, onSelect }: { frames: Frame[]; sele
     return () => observer.disconnect();
   }, []);
   const padding = 14;
-  const x = (i: number) => padding + i / Math.max(1, frames.length - 1) * (width - padding * 2);
+  const last = frames.length - 1;
+  const spacing = (width - padding * 2) / Math.max(1, last);
+  // Use the whole game so dots keep their size as review results arrive.
+  const radius = Math.min(6, spacing * .35);
+  const selectedRadius = Math.max(3, radius * 2);
+  const x = (i: number) => padding + i * spacing;
   const y = (score: Score) => height / 2 - strength(score) * (height / 2 - padding);
+  const points = frames.flatMap((frame, ply) => frame.report ? [{frame, ply, report: frame.report}] : []);
+  const tabStop = frames[selected]?.report ? selected : points[0]?.ply;
+  const selectPoint = (ply: number) => {
+    onSelect(ply);
+    plot.current?.querySelector<SVGCircleElement>(`[data-ply="${ply}"]`)?.focus({preventScroll: true});
+  };
   return <div className="game-graph"><div className="row-between"><strong>Game evaluation</strong><span>White ↑ · Black ↓</span></div>
-    <svg ref={plot} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="img" aria-label="Evaluation across analyzed game moves">
-      <line x1="0" x2={width} y1={height / 2} y2={height / 2} stroke="#44484f" strokeDasharray="4 4"/>
-      {frames.map((f, i) => f.report && <g key={i}>
-        {i > 0 && frames[i - 1].report && <line x1={x(i - 1)} y1={y(frames[i - 1].report!.white_score)} x2={x(i)} y2={y(f.report.white_score)} stroke="#b8cfc2" strokeWidth="2"/>}
-        <circle cx={x(i)} cy={y(f.report.white_score)} r={i === selected ? 12 : 6} fill={bad.has(f.report.label) ? "#ff8059" : "#b8cfc2"}/>
-      </g>)}<line x1={x(selected)} x2={x(selected)} y1="0" y2={height} stroke="#ff8059" opacity=".6"/>
-    </svg><input type="range" min="0" max={frames.length - 1} value={selected} onChange={e => onSelect(Number(e.target.value))} aria-label="Navigate evaluation timeline"/>
-    {!frames.some(f => f.report) && <p className="small">The timeline fills as your game is reviewed.</p>}
+    <svg ref={plot} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group" aria-label="Evaluation across analyzed game moves" onClick={event => {
+      const bounds = event.currentTarget.getBoundingClientRect();
+      const position = (event.clientX - bounds.left) * width / bounds.width;
+      selectPoint(Math.max(0, Math.min(last, Math.round((position - padding) / spacing))));
+    }}>
+      <g pointerEvents="none" aria-hidden="true">
+        <line x1="0" x2={width} y1={height / 2} y2={height / 2} stroke="#44484f" strokeDasharray="4 4"/>
+        {points.map(({ply, report}) => ply > 0 && frames[ply - 1].report && <line key={ply} x1={x(ply - 1)} y1={y(frames[ply - 1].report!.white_score)} x2={x(ply)} y2={y(report.white_score)} stroke="#b8cfc2" strokeWidth="1.5"/>)}
+        <line x1={x(selected)} x2={x(selected)} y1="0" y2={height} stroke="#ff8059" opacity=".6"/>
+      </g>
+      {points.map(({frame, ply, report}, index) => <circle key={ply} className="game-graph-node" data-ply={ply}
+        cx={x(ply)} cy={y(report.white_score)} r={ply === selected ? selectedRadius : radius}
+        fill={bad.has(report.label) ? "#ff8059" : "#b8cfc2"}
+        role="button" tabIndex={ply === tabStop ? 0 : -1} aria-current={ply === selected ? "step" : undefined}
+        aria-label={`${frame.number}${frame.actor === "white" ? "." : "..."} ${frame.san}, ${report.label}, evaluation ${scoreText(report.white_score)}`}
+        onClick={event => {
+          if (event.detail === 0) { event.stopPropagation(); selectPoint(ply); }
+        }}
+        onKeyDown={event => {
+          const target = event.key === "ArrowLeft" ? points[Math.max(0, index - 1)]
+            : event.key === "ArrowRight" ? points[Math.min(points.length - 1, index + 1)]
+            : event.key === "Home" ? points[0] : event.key === "End" ? points.at(-1)
+            : event.key === "Enter" || event.key === " " ? points[index] : null;
+          if (target) { event.preventDefault(); event.stopPropagation(); selectPoint(target.ply); }
+        }}><title>{frame.number}{frame.actor === "white" ? "." : "..."} {frame.san} · {scoreText(report.white_score)}</title></circle>)}
+    </svg><input type="range" min="0" max={last} value={selected} onChange={e => onSelect(Number(e.target.value))} aria-label="Navigate evaluation timeline"/>
+    {!points.length && <p className="small">The timeline fills as your game is reviewed.</p>}
   </div>;
 }
