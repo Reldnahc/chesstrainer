@@ -128,6 +128,8 @@ An observed motif is not automatically proof of inevitable material loss. Existi
 line-qualified language is retained. Unknown positional reasons get neutral feedback
 and an engine continuation rather than an invented pin, fork or strategic claim.
 There is no LLM, voice service, rating-sensitive engine evaluation, or accuracy score.
+The researched next step is described in the [game accuracy proposal](GAME_ACCURACY_PLAN.md);
+it has not been implemented.
 
 Public definitions consulted during planning:
 [Chess.com Great/Brilliant](https://www.chess.com/article/view/how-to-play-a-brilliant-move),
