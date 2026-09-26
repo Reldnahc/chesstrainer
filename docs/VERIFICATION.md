@@ -2,6 +2,28 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Game-review UX: September 26, 2026
+
+- Targeted backend/native review suite: **26 passed**, including current-board
+  mate, fork, pin and capture cues, rejecting late witness overlays, saved reports,
+  manual variations and practice isolation.
+- Game-review browser suite: **8 passed** across desktop and phone Chromium.
+  Checks stable coach/notation geometry through short and long messages, errors
+  and explanations; graph width at 360–1920px; source-game preservation; manual
+  branching and queued ratings; and explanation dismissal without a move tree.
+- Shared-board regression subset: **8 passed** for promotion/dragging, legal
+  capture markers, cold-review explanation playback and focused-practice cues.
+- TypeScript/Vite build and targeted Ruff checks pass. Desktop and phone layouts
+  were also inspected in the local browser using a disposable synthetic game.
+- Existing reviews derive their annotations when read; no migration or bulk
+  reanalysis is required. This pass does not publish or deploy the new image.
+
+One initial phone geometry assertion compared viewport coordinates across an
+intentional browser scroll; it now compares document coordinates. Sandboxed
+Windows runs required stopping their isolated test server after the tests ended;
+host-permission runs clean up normally. Existing TestClient and terminal-color
+deprecation warnings remain.
+
 ## Full-game review: September 25, 2026
 
 - Full backend/native/API suite: **293 passed**, including both-color reports,

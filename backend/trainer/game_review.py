@@ -11,6 +11,7 @@ from trainer.continuations import replay, settled_delta
 from trainer.explanations import replay_line
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.move_causes import move_causes
+from trainer.review_cues import review_cues
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 VERSION = "game-review-1"
@@ -227,7 +228,14 @@ def public_report(report, rating):
         reply = report["actual_line"]["frames"][2]
         if label in {"Mistake", "Miss", "Blunder", "Inaccuracy"}:
             coach = reason + " " + reply["annotation"]
-    return report | {"label": label, "reason": reason, "coach": coach}
+    return report | {
+        "label": label,
+        "reason": reason,
+        "coach": coach,
+        "board_cues": review_cues(
+            report["actual_line"], mistake=label in {"Mistake", "Miss", "Blunder", "Inaccuracy"}
+        ),
+    }
 
 
 def run_review(runner, job_id, engine_override=None):

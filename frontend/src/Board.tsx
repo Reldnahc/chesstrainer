@@ -1,8 +1,8 @@
-import { Chessboard } from 'react-chessboard';
+import { Chessboard, type Arrow } from 'react-chessboard';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { LegalMove } from './api';
 
-export default function Board({fen, orientation, legalMoves = [], disabled, onMove, highlights = [], roles = {}, animated = false, quality}: {animated?: boolean; quality?: { square: string; label: string; symbol: string }; fen: string; orientation: 'white' | 'black'; legalMoves?: LegalMove[]; highlights?: string[]; roles?: Record<string, string[]>; disabled?: boolean; onMove?: (from: string, to: string, promotion?: string) => void}) {
+export default function Board({fen, orientation, legalMoves = [], disabled, onMove, highlights = [], roles = {}, arrows, animated = false, quality}: {arrows?: Arrow[]; animated?: boolean; quality?: { square: string; label: string; symbol: string }; fen: string; orientation: 'white' | 'black'; legalMoves?: LegalMove[]; highlights?: string[]; roles?: Record<string, string[]>; disabled?: boolean; onMove?: (from: string, to: string, promotion?: string) => void}) {
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -40,7 +40,7 @@ export default function Board({fen, orientation, legalMoves = [], disabled, onMo
   }
   return <div className="board-shell">
     <Chessboard options={{
-      id: boardId, position: fen, boardOrientation: orientation,
+      id: boardId, position: fen, boardOrientation: orientation, arrows,
       allowDragging: interactive, animationDurationInMs: animated ? 280 : 130, showAnimations: !reducedMotion,
       canDragPiece: ({square}) => !!square && selectable(square),
       darkSquareStyle: {backgroundColor: 'var(--board-dark)'}, lightSquareStyle: {backgroundColor: 'var(--board-light)'},

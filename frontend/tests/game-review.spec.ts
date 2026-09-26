@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('review both players, follow coach lines, and branch without changing the game', async ({page}, testInfo) => {
+test('review both players, explain in place, and branch without changing the game', async ({page}, testInfo) => {
   test.setTimeout(90_000);
   if (testInfo.project.name === "desktop") await page.setViewportSize({width: 1366, height: 768});
   const fixture = await page.request.post(`/__test/game-review-fixture/${testInfo.project.name}`);
@@ -11,7 +11,7 @@ test('review both players, follow coach lines, and branch without changing the g
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
   await page.getByRole('button', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: 'Start game review', exact: true}).click();
-  await expect(page.locator('.game-summary > summary')).toBeVisible({timeout: 60_000});
+  await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
   await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toHaveCount(0);
   await expect(page.getByRole('heading', {name: 'Game report', exact: true})).toHaveCount(0);
   const game = await (await page.request.get(`/api/games/${id}`)).json();
@@ -50,12 +50,21 @@ test('review both players, follow coach lines, and branch without changing the g
   expect(await page.evaluate(() => window.scrollY)).toBe(scrollBefore);
   await expect(page.locator('.game-speech')).toContainText('Blunder');
   await expect(page.locator('.game-speech')).toContainText('forced checkmate');
+  const coach = (await page.locator('.game-speech').boundingBox())!;
+  const notation = (await page.locator('.game-notation').boundingBox())!;
+  const notationTop = notation.y + await page.evaluate(() => window.scrollY);
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
-  await expect(page.getByText('Played-move line', {exact: false})).toBeVisible();
-  await page.getByRole('button', {name: 'Last move', exact: true}).click();
-  await expect(page.locator('.game-player').last()).toContainText('checkmate');
-  await page.getByRole('button', {name: 'Back to game', exact: true}).click();
+  await expect(page.locator('.game-speech')).toContainText('Qh4#');
+  await expect(page.getByRole('button', {name: 'Hide why', exact: true})).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.board-shell [data-pattern-square="h4"]')).toBeVisible();
+  await expect(page.locator('.game-player').last()).toContainText('black to move');
+  await expect(page.locator('.game-variation-row')).toHaveCount(0);
+  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
+  expect((await page.locator('.game-speech').boundingBox())!.height).toBe(coach.height);
+  expect((await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY)).toBe(notationTop);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.board-shell [data-pattern-square]')).toHaveCount(0);
   await page.getByRole('button', {name: 'Previous move', exact: true}).click();
   const square = (name: string) => page.locator(`.board-shell [data-square="${name}"]`);
   await square('e2').click();
@@ -68,7 +77,7 @@ test('review both players, follow coach lines, and branch without changing the g
   await page.getByRole('button', {name: 'Previous move', exact: true}).click();
   await expect(page.locator('.game-player').last()).toContainText('black to move');
   await square('g8').click(); await square('f6').click();
-  await expect(page.locator('.game-variation-row')).toHaveCount(2); // Coach previews are not saved as user variations.
+  await expect(page.locator('.game-variation-row')).toHaveCount(2);
   await expect(page.locator('.game-speech')).toContainText('Black · Nf6', {timeout: 30_000});
   await expect(page.locator('.game-speech .game-badge')).toBeVisible();
   await expect(page.locator('.game-variation-row .game-badge')).toHaveCount(4, {timeout: 30_000});
@@ -84,7 +93,7 @@ test('review both players, follow coach lines, and branch without changing the g
     expect((await page.locator('.game-coach').boundingBox())!.y).toBeLessThan((await page.locator('.game-graph').boundingBox())!.y);
   }
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).not.toBeVisible();
+  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
@@ -108,15 +117,65 @@ test('stale engine responses never replace the selected move and failures remain
   await page.getByRole('button', {name: '1. f3', exact: true}).click();
   await page.waitForRequest(r => r.url().endsWith('/analyze') && r.postDataJSON().ply === 1);
   await page.getByRole('button', {name: '1... e5', exact: true}).click();
+  const speechHeight = (await page.locator('.game-speech').boundingBox())!.height;
+  const notationTop = (await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY);
   release();
   await expect(page.getByText('Engine unavailable at ply 2', {exact: true})).toBeVisible();
   await expect(page.getByText('Engine unavailable at ply 1', {exact: true})).not.toBeVisible();
+  expect((await page.locator('.game-speech').boundingBox())!.height).toBe(speechHeight);
+  expect((await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY)).toBe(notationTop);
   await page.locator('.board-shell [data-square="d2"]').click();
   await expect(page.locator('[data-legal-destination="d4"]')).toBeVisible();
 });
 
+test('long coaching and immediate cues keep notation still, and the timeline fills the panel', async ({page}, testInfo) => {
+  const response = await page.request.post(`/__test/game-review-fixture/layout-${testInfo.project.name}`);
+  const {id} = await response.json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  const longText = 'The pinned knight cannot leave its king exposed, so the bishop can capture its target. '.repeat(14);
+  for (let i = 1; i < game.frames.length; i++) {
+    const f = game.frames[i];
+    const candidate = {uci: f.uci, san: f.san, score: {kind: 'cp', value: i * 100}, pv: []};
+    f.report = {label: 'Good', reason: '', coach: i === 1 ? longText : 'A sound move.',
+      best: candidate, actual: candidate, white_score: candidate.score, depth: 1, engine_version: 'Layout fixture',
+      board_cues: {fen: f.fen, caption: longText, roles: {target: ['e1']}, arrows: [{startSquare: 'h4', endSquare: 'e1', kind: 'threat'}]},
+    };
+  }
+  game.job = {status: 'completed', completed: 4, total: 4};
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.goto('/');
+  await page.getByRole('button', {name: 'Games', exact: true}).click();
+  await page.getByRole('button', {name: new RegExp(`Review-layout-${testInfo.project.name} vs CoachFixture`)}).click();
+  await page.getByRole('button', {name: '1... e5, Good', exact: true}).click();
+  const dimensions = async () => ({
+    height: (await page.locator('.game-speech').boundingBox())!.height,
+    notationTop: (await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY),
+    graphTop: (await page.locator('.game-graph').boundingBox())!.y + await page.evaluate(() => window.scrollY),
+  });
+  const before = await dimensions();
+  await page.getByRole('button', {name: '1. f3, Good', exact: true}).click();
+  await expect(page.locator('.game-coach-message')).toContainText('pinned knight');
+  expect(await dimensions()).toEqual(before);
+  expect(await page.locator('.game-coach-message').evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
+  await page.getByRole('button', {name: 'Show why', exact: true}).click();
+  expect(await dimensions()).toEqual(before);
+  await page.getByRole('button', {name: 'Flip board', exact: true}).click();
+  await expect(page.locator('.board-shell [data-pattern-square="e1"]')).toBeVisible();
+  for (const width of testInfo.project.name === 'desktop' ? [1024, 1366, 1920] : [360, 390]) {
+    await page.setViewportSize({width, height: testInfo.project.name === 'desktop' ? 768 : 844});
+    const graph = await page.locator('.game-graph svg').evaluate(svg => {
+      const bounds = svg.getBoundingClientRect();
+      const dots = [...svg.querySelectorAll('circle')];
+      return {width: bounds.width, right: dots.at(-1)!.getBoundingClientRect().right - bounds.left, height: bounds.height};
+    });
+    expect(graph.right / graph.width).toBeGreaterThan(.95);
+    expect(graph.height).toBe(56);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  }
+});
 
-test('coach previews stay short and rapid variation moves finish rating after returning', async ({page}, testInfo) => {
+
+test('explanations never create a move tree and rapid variations finish rating after returning', async ({page}, testInfo) => {
   const response = await page.request.post(`/__test/game-review-fixture/queued-${testInfo.project.name}`);
   const {id} = await response.json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();
@@ -136,6 +195,7 @@ test('coach previews stay short and rapid variation moves finish rating after re
       label: moves.length === 2 ? 'Mistake' : 'Good', reason: 'Test reason', coach: 'Test coaching',
       best: candidate, actual: candidate, white_score: candidate.score,
       actual_line: line, best_line: line, depth: 1, engine_version: 'Test engine',
+      board_cues: {fen: frames[1].fen, caption: 'Black can play e5.', roles: {reply: ['e5']}, arrows: [{startSquare: 'e7', endSquare: 'e5', kind: 'reply'}]},
     }}});
   });
   await page.goto('/');
@@ -143,9 +203,9 @@ test('coach previews stay short and rapid variation moves finish rating after re
   await page.getByRole('button', {name: new RegExp(`Review-queued-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: '1. f3', exact: true}).click();
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
-  await expect(page.getByRole('group', {name: 'Coach continuation'}).getByRole('button')).toHaveCount(2);
-  await page.getByRole('button', {name: 'Last move', exact: true}).click();
-  await expect(page.locator('.game-player').last()).toContainText('white to move');
+  await expect(page.getByRole('group', {name: 'Coach continuation'})).toHaveCount(0);
+  await expect(page.locator('.board-shell [data-pattern-square="e5"]')).toBeVisible();
+  await expect(page.locator('.game-player').last()).toContainText('black to move');
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', {name: '1. f3', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-variation-row')).toHaveCount(0);
@@ -161,7 +221,7 @@ test('coach previews stay short and rapid variation moves finish rating after re
   await expect(page.locator('.game-variation-row')).toContainText('d4');
   await expect(page.locator('.game-variation-row')).toContainText('Good');
   await expect(page.locator('.game-variation-row')).toContainText('Mistake');
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).not.toBeVisible();
+  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
   await page.locator('.game-variation-row button').last().click();
   await expect(page.locator('.game-speech')).toContainText('Black');
   await expect(page.locator('.game-speech .game-badge')).toHaveText(/Mistake/);

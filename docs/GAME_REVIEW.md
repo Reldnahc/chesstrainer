@@ -8,15 +8,25 @@ The existing training policy is unchanged.
 
 Open **Games**, choose an imported game, and select **Start game review**. The coach
 and timeline fill as analysis finishes. Select a move, use the arrow keys/buttons,
-or select **Next mistake**. **Show why** and the tactical witness buttons open
-playable continuations; **Show [move]** opens the stronger alternative.
+or select **Next mistake**. **Show why** overlays arrows and tactical square
+highlights on the current board without moving pieces, changing the selected
+move, requesting more analysis, or creating a variation. **Hide why** or Escape
+clears those cues. The best alternative remains visible in the coach footer.
+Only the played position and immediate reply supply visual cues; later engine
+continuations are not projected onto the current board.
 
 Move any legal piece to start a variation. Undo and choose a different move to fork
-it; the variations list keeps both lines while this game remains open. **Return to
-game** restores the original branch point. Variations are not saved across leaving
+it; the variations list keeps both lines while this game remains open. **Game**
+in the board navigation restores the original branch point. Escape does the same
+when explanation cues are already hidden. Variations are not saved across leaving
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
-On phones the coach appears directly below the board controls.
+The sidebar orders coaching, compact notation and variations, evaluation, then
+review tools. The evaluation graph spans the available panel width. The coach
+keeps its label, message area, and action row in stable slots; longer explanations
+scroll inside the bubble. Analysis details and training controls are grouped
+under **Review tools & details**. On phones the coach appears directly below the
+board controls, with full-size touch targets and normal page scrolling.
 
 ## Analysis and persistence
 

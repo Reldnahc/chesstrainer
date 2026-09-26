@@ -40,7 +40,7 @@ The composition root retains migration/skill seeding/retirement reconciliation, 
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
 | Review.tsx | Review/focus session state, answer/reveal actions, counter timer, queue transitions and board composition |
-| GameReview.tsx | Game library, illustrated coach, timeline, move selection, in-session variation branches and stale-response isolation |
+| GameReview.tsx | Game library, stable coach, in-place board cues, responsive timeline, compact notation, in-session variation branches and stale-response isolation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
 | Settings.tsx | Effective settings display and local classification job controls |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
@@ -57,6 +57,7 @@ Navigation is Review, Games, Weaknesses, Import, Settings. Removed unit links re
 - engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
 - policy.py: configurable move acceptance over verified scores.
 - game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
+- review_cues.py: projects saved immediate witnesses into current-board arrows and square roles without new engine searches; skips later witnesses and checks attack geometry with python-chess. Cues are derived when reports are read, so existing reviews need no reanalysis.
 - imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.
 - jobs.py / pipeline.py / work_pool.py: persistent ordered jobs, bounded worker pools, cancellation and atomic progress.
 - classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence.
