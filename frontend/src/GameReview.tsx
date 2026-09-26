@@ -3,6 +3,9 @@ import { ArrowLeft, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Corn
 import { api, post, type LegalMove } from "./api";
 import Board from "./Board";
 import MoveSymbol from "./MoveSymbol";
+import MoveBadge from "./MoveBadge";
+import ReviewCoach from "./ReviewCoach";
+import ReviewWorkspace from "./ReviewWorkspace";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
@@ -41,9 +44,6 @@ function scoreText(score: Score | null | undefined) {
 function strength(score: Score) {
   return score.kind === "mate" ? (score.value > 0 || score.mate_given ? 1 : -1) : Math.tanh(score.value / 400);
 }
-function Badge({ label }: { label: string }) {
-  return <span className={`game-badge label-${label.toLowerCase()}`}><b><MoveSymbol label={label}/></b>{label}</span>;
-}
 function PlayerRow({ name, color, accuracy, complete, status }: {
   name: string; color: "white" | "black"; accuracy: Accuracy | null; complete: boolean; status: string;
 }) {
@@ -59,18 +59,6 @@ function PlayerRow({ name, color, accuracy, complete, status }: {
     </div>
     <span className="game-player-status" title={status}>{status}</span>
   </div>;
-}
-function CoachAvatar() {
-  return <svg className="game-coach-avatar" viewBox="0 0 80 100" role="img" aria-label="Your chess coach">
-    <path d="M9 100V82Q10 65 30 65H50Q70 65 71 82V100" fill="#5d7770" />
-    <path d="m29 67 11 15 11-15-3-9H32Z" fill="#edb38a" />
-    <ellipse cx="40" cy="39" rx="24" ry="29" fill="#f2c5a0" />
-    <path d="M16 37Q8 5 35 6Q67 0 65 39L57 29Q43 33 29 19L22 38Z" fill="#dad4ca" />
-    <path d="M20 52Q40 73 60 52Q54 77 40 74Q24 72 20 52" fill="#dad4ca" />
-    <g fill="none" stroke="#393c42" strokeWidth="2.5"><rect x="23" y="35" width="14" height="11" rx="4"/><rect x="43" y="35" width="14" height="11" rx="4"/><path d="M37 39h6M33 55q7 6 14 0"/></g>
-    <circle cx="30" cy="40" r="1.5" fill="#393c42"/><circle cx="50" cy="40" r="1.5" fill="#393c42"/>
-    <path d="m27 70 13 12-9 10-10-19m32-3L40 82l9 10 10-19" fill="#849e94"/>
-  </svg>;
 }
 
 export default function GamesScreen({ page, selected, initialPly }: { page: number; selected: string | null; initialPly: number }) {
@@ -105,7 +93,6 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const [cursor, setCursor] = useState<Cursor>({ ply: initialPly, branch: null, step: 0 });
   const [branches, setBranches] = useState<Branch[]>([]);
   const nextId = useRef(1);
-  const boardArea = useRef<HTMLElement>(null);
   const [orientation, setOrientation] = useState<"white" | "black">("white");
   const [busy, setBusy] = useState(false), [moving, setMoving] = useState(false);
   const [reviewStarting, setReviewStarting] = useState(true);
@@ -162,23 +149,6 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   useEffect(() => {
     if (game) document.title = `${game.white} vs ${game.black} · Fieldwork`;
   }, [game?.white, game?.black]);
-  useEffect(() => {
-    const area = boardArea.current;
-    if (!area) return;
-    const resize = () => {
-      const chrome = [...area.querySelectorAll<HTMLElement>('.game-player, .game-board-controls')]
-        .reduce((height, element) => height + element.getBoundingClientRect().height, 0);
-      const top = area.getBoundingClientRect().top + window.scrollY;
-      // The evaluation strip adds 35px to the square board's width.
-      area.parentElement!.style.setProperty('--review-board-width', `${Math.max(240, window.innerHeight - top - chrome - 24) + 35}px`);
-      area.parentElement!.style.setProperty('--review-height', `${Math.max(520, window.innerHeight - top - 12)}px`);
-    };
-    resize();
-    const observer = new ResizeObserver(resize);
-    for (const element of document.querySelectorAll('.app-header')) observer.observe(element);
-    window.addEventListener('resize', resize);
-    return () => { observer.disconnect(); window.removeEventListener('resize', resize); };
-  }, [!!game]);
   const running = game?.job && ["queued", "running"].includes(game.job.status);
   useEffect(() => {
     if (!game || openedReview.current) return;
@@ -345,21 +315,20 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     : "I'm reviewing both sides. The move ratings will appear as they're ready. You can explore the board while you wait.";
   return <div className="game-workspace">
     {error && <p className="notice error" role="alert">{error}<button onClick={() => setError("")}>Dismiss</button></p>}
-    <div className="game-review-layout">
-      <section ref={boardArea} className="game-board-area" aria-label="Game board and navigation">
-        <PlayerRow name={playerName(orientation === "white" ? "black" : "white")} color={orientation === "white" ? "black" : "white"}
-          accuracy={game.accuracy} complete={game.job?.status === "completed"} status={branch ? "Exploring a variation" : "Original game"}/>
-        <div className="game-board-with-eval">
-          <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>
-          <Board fen={displayed.fen} orientation={orientation} legalMoves={frame?.legal_moves || []} disabled={!frame || moving} onMove={play}
+    <ReviewWorkspace
+      boardLabel="Game board and navigation"
+      heading={<><Link className="button-link text-button" href={libraryHref}><ArrowLeft size={16}/>All games</Link><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></>}
+      aboveBoard={<PlayerRow name={playerName(orientation === "white" ? "black" : "white")} color={orientation === "white" ? "black" : "white"}
+          accuracy={game.accuracy} complete={game.job?.status === "completed"} status={branch ? "Exploring a variation" : "Original game"}/>}
+      belowBoard={<PlayerRow name={playerName(orientation)} color={orientation} accuracy={game.accuracy} complete={game.job?.status === "completed"}
+          status={frame?.termination ? `${frame.result} · ${frame.termination}` : `${frame?.turn || displayed.turn} to move`}/>}
+      evaluation={<div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>}
+      board={<Board fen={displayed.fen} orientation={orientation} legalMoves={frame?.legal_moves || []} disabled={!frame || moving} onMove={play}
             highlights={currentUci ? [currentUci.slice(0, 2), currentUci.slice(2, 4)] : []}
-            animated quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label } : undefined}
+            quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label } : undefined}
             roles={explaining ? cues!.roles : undefined}
-            arrows={explaining ? cues!.arrows.map(a => ({ ...a, color: a.kind === "move" ? "#b8d69be6" : a.kind === "reply" ? "#ffb17be6" : "#ff7187db" })) : []}/>
-        </div>
-        <PlayerRow name={playerName(orientation)} color={orientation} accuracy={game.accuracy} complete={game.job?.status === "completed"}
-          status={frame?.termination ? `${frame.result} · ${frame.termination}` : `${frame?.turn || displayed.turn} to move`}/>
-        <div className="game-board-controls" role="group" aria-label="Game navigation">
+            arrows={explaining ? cues!.arrows.map(a => ({ ...a, color: a.kind === "move" ? "#b8d69be6" : a.kind === "reply" ? "#ffb17be6" : "#ff7187db" })) : []}/>}
+      boardControls={<div className="game-board-controls" role="group" aria-label="Game navigation">
           <button className="game-return" aria-label="Back to game" title="Back to game (Escape)" disabled={!branch} onClick={() => branch && navigate(branch.returnPly)}><CornerUpLeft size={16}/><span>Game</span></button>
           <button aria-label="First move" disabled={current === 0} onClick={() => { setExplanationKey(null); if (branch) setCursor(c => ({ ...c, step: 0 })); else navigate(0); }}><ChevronsLeft size={19}/></button>
           <button aria-label="Previous move" disabled={current === 0} onClick={() => navigateRef.current(-1)}><ChevronLeft size={19}/></button>
@@ -367,22 +336,22 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
           <button aria-label="Next move" disabled={current === maximum} onClick={() => navigateRef.current(1)}><ChevronRight size={19}/></button>
           <button aria-label="Last move" disabled={current === maximum} onClick={() => { setExplanationKey(null); if (branch) setCursor(c => ({ ...c, step: maximum })); else navigate(last); }}><ChevronsRight size={19}/></button>
           <button aria-label="Flip board" onClick={() => setOrientation(v => v === "white" ? "black" : "white")}><FlipVertical2 size={17}/></button>
-        </div>
-      </section>
-      <aside className="game-review-sidebar">
-    <div className="game-heading"><Link className="button-link text-button" href={libraryHref}><ArrowLeft size={16}/>All games</Link><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></div>
-        <section className="game-coach" aria-label="Chess coach"><CoachAvatar/><div className="game-speech">
-          <div key={`${analysisKey}:${report?.label}`} className="game-coach-label"><strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>{report ? <Badge label={report.label}/> : actor && !errorAtPosition ? <span className="game-rating-pending" role="status">Checking move...</span> : null}</div>
-          <div className="game-coach-message" tabIndex={0} aria-label="Coach explanation"><p aria-live="polite">{explaining ? cues!.caption : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : !actor ? coachIntro : "I'm checking this move and the opponent's strongest reply…")}</p>
-          {errorAtPosition && <p role="alert">{errorAtPosition}</p>}</div>
-          <div className="game-coach-actions">
+        </div>}
+    >
+        <ReviewCoach
+          title={<strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>}
+          badge={report ? <MoveBadge label={report.label}/> : actor && !errorAtPosition ? <span className="game-rating-pending" role="status">Checking move...</span> : null}
+          actions={<>
             <button aria-pressed={explaining} disabled={!cues && !errorAtPosition} onClick={() => {
               if (errorAtPosition) { setAnalysisError(null); setRetry(n => n + 1); }
               else setExplanationKey(explaining ? null : key);
             }}>{errorAtPosition ? "Retry analysis" : explaining ? "Hide why" : "Show why"}</button>
             <span title={bestMove ? `Best move: ${bestMove}` : undefined}>{bestMove ? <>Best: <strong>{bestMove}</strong></> : "Move a piece to explore"}</span>
-          </div>
-        </div></section>
+          </>}
+        >
+          <p aria-live="polite">{explaining ? cues!.caption : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : !actor ? coachIntro : "I'm checking this move and the opponent's strongest reply…")}</p>
+          {errorAtPosition && <p role="alert">{errorAtPosition}</p>}
+        </ReviewCoach>
         <section className="game-notation" aria-label="Moves and variations">
         <div className="game-move-heading"><h2>Moves</h2><button onClick={() => {
           const next = game.frames.findIndex((f, i) => i > cursor.ply && f.report && bad.has(f.report.label));
@@ -396,7 +365,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
             <span className="game-move-number">{f.number}{f.actor === "white" ? "." : "…"}</span><strong>{f.san}</strong>{f.report && <span className={`game-move-symbol label-${f.report.label.toLowerCase()}`} title={f.report.label}><MoveSymbol label={f.report.label}/></span>}
           </button>;
         })}</div>
-        {!!branches.length && <details className="game-variations" open><summary>Variations ({branches.length})</summary>{branches.map(b => <div key={b.id} className="game-variation-row"><span>#{b.id} · ply {b.root}</span>{b.sans.map((san, index) => <button key={index} aria-pressed={branch?.id === b.id && cursor.step === index + 1} onClick={() => { setCursor({ ply: b.root, branch: b.id, step: index + 1 }); setExplanationKey(null); }}>{san}{cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)?.report ? <Badge label={cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)!.report!.label}/> : <span className="muted" aria-label="Not yet rated">…</span>}</button>)}</div>)}</details>}
+        {!!branches.length && <details className="game-variations" open><summary>Variations ({branches.length})</summary>{branches.map(b => <div key={b.id} className="game-variation-row"><span>#{b.id} · ply {b.root}</span>{b.sans.map((san, index) => <button key={index} aria-pressed={branch?.id === b.id && cursor.step === index + 1} onClick={() => { setCursor({ ply: b.root, branch: b.id, step: index + 1 }); setExplanationKey(null); }}>{san}{cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)?.report ? <MoveBadge label={cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)!.report!.label}/> : <span className="muted" aria-label="Not yet rated">…</span>}</button>)}</div>)}</details>}
         </div></section>
         <EvaluationGraph frames={game.frames} selected={cursor.ply} onSelect={navigate}/>
         <div className="game-review-tools">
@@ -409,10 +378,9 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
           </>}
           {game.job?.error && <p className="small" role="alert">{game.job.error}</p>}
         </section>
-        <details className="game-summary"><summary>Move quality{game.job?.status === "completed" ? " · complete game" : ""}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><Badge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>
+        <details className="game-summary"><summary>Move quality{game.job?.status === "completed" ? " · complete game" : ""}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><MoveBadge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>
         </div>
-      </aside>
-    </div>
+    </ReviewWorkspace>
   </div>;
 }
 

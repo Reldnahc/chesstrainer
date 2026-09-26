@@ -130,10 +130,10 @@ test('review both players, explain in place, and branch without changing the gam
     const square = (await page.locator('.board-shell').boundingBox())!;
     expect(square.width).toBeGreaterThan(580);
     expect(square.y).toBeLessThan(110);
-    const sidebar = (await page.locator('.game-review-sidebar').boundingBox())!;
+    const sidebar = (await page.locator('.review-sidebar').boundingBox())!;
     expect(sidebar.x).toBeGreaterThan(square.x + square.width);
     await page.setViewportSize({width: 1600, height: 768});
-    await expect.poll(async () => (await page.locator('.game-review-sidebar').boundingBox())!.width).toBeGreaterThan(sidebar.width + 200);
+    await expect.poll(async () => (await page.locator('.review-sidebar').boundingBox())!.width).toBeGreaterThan(sidebar.width + 200);
     expect(Math.abs((await page.locator('.board-shell').boundingBox())!.width - square.width)).toBeLessThan(2);
     await page.setViewportSize({width: 1366, height: 900});
     await expect.poll(async () => (await page.locator('.board-shell').boundingBox())!.width).toBeGreaterThan(square.width + 100);
@@ -157,20 +157,20 @@ test('review both players, explain in place, and branch without changing the gam
   await page.keyboard.press('ArrowLeft');
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect(await page.evaluate(() => window.scrollY)).toBe(scrollBefore);
-  await expect(page.locator('.game-speech')).toContainText('Blunder');
-  await expect(page.locator('.game-speech')).toContainText('forced checkmate');
-  const coach = (await page.locator('.game-speech').boundingBox())!;
+  await expect(page.locator('.coach-speech')).toContainText('Blunder');
+  await expect(page.locator('.coach-speech')).toContainText('forced checkmate');
+  const coach = (await page.locator('.coach-speech').boundingBox())!;
   const notation = (await page.locator('.game-notation').boundingBox())!;
   const notationTop = notation.y + await page.evaluate(() => window.scrollY);
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
-  await expect(page.locator('.game-speech')).toContainText('Qh4#');
+  await expect(page.locator('.coach-speech')).toContainText('Qh4#');
   await expect(page.getByRole('button', {name: 'Hide why', exact: true})).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.board-shell [data-pattern-square="h4"]')).toBeVisible();
   await expect(page.locator('.game-player').last()).toContainText('black to move');
   await expect(page.locator('.game-variation-row')).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
-  expect((await page.locator('.game-speech').boundingBox())!.height).toBe(coach.height);
+  expect((await page.locator('.coach-speech').boundingBox())!.height).toBe(coach.height);
   expect((await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY)).toBe(notationTop);
   await page.keyboard.press('Escape');
   await expect(page.locator('.board-shell [data-pattern-square]')).toHaveCount(0);
@@ -180,16 +180,16 @@ test('review both players, explain in place, and branch without changing the gam
   await expect(page.locator('[data-legal-destination="e4"]')).toBeVisible();
   await square('e4').click();
   await expect(page.getByText('Exploring a variation', {exact: true})).toBeVisible();
-  await expect(page.locator('.game-speech')).toContainText('White · e4', {timeout: 30_000});
+  await expect(page.locator('.coach-speech')).toContainText('White · e4', {timeout: 30_000});
   await square('b8').click(); await square('c6').click();
   await expect(page.locator('.game-player').last()).toContainText('white to move');
   await page.getByRole('button', {name: 'Previous move', exact: true}).click();
   await expect(page.locator('.game-player').last()).toContainText('black to move');
   await square('g8').click(); await square('f6').click();
   await expect(page.locator('.game-variation-row')).toHaveCount(2);
-  await expect(page.locator('.game-speech')).toContainText('Black · Nf6', {timeout: 30_000});
-  await expect(page.locator('.game-speech .game-badge')).toBeVisible();
-  await expect(page.locator('.game-variation-row .game-badge')).toHaveCount(4, {timeout: 30_000});
+  await expect(page.locator('.coach-speech')).toContainText('Black · Nf6', {timeout: 30_000});
+  await expect(page.locator('.coach-speech .move-badge')).toBeVisible();
+  await expect(page.locator('.game-variation-row .move-badge')).toHaveCount(4, {timeout: 30_000});
   await expect(page.getByLabel(/^Move rating:/)).toBeVisible();
   await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
   await expect(blackScore).toHaveText(game.accuracy.black.toFixed(1));
@@ -197,11 +197,11 @@ test('review both players, explain in place, and branch without changing the gam
   await page.screenshot({path: `test-results/game-review-${testInfo.project.name}.png`, fullPage: true});
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   if (testInfo.project.name === 'mobile') {
-    const boardWidth = (await page.locator('.game-board-with-eval').boundingBox())!.width;
+    const boardWidth = (await page.locator('.review-board-row').boundingBox())!.width;
     for (const selector of ['.game-progress', '.game-move-list']) {
       expect((await page.locator(selector).boundingBox())!.width).toBeGreaterThanOrEqual(boardWidth - 2);
     }
-    expect((await page.locator('.game-coach').boundingBox())!.y).toBeLessThan((await page.locator('.game-graph').boundingBox())!.y);
+    expect((await page.locator('.review-coach').boundingBox())!.y).toBeLessThan((await page.locator('.game-graph').boundingBox())!.y);
   }
   const originalMove = page.locator('.game-graph-node[data-ply="2"]');
   if (testInfo.project.name === 'mobile') await originalMove.tap();
@@ -257,10 +257,10 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   await expect(dot(99)).toHaveAttribute('aria-current', 'step');
   await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=99$`));
   await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('50. g4, Good');
-  await expect(page.locator('.game-coach-message')).toHaveText('Coaching for ply 99.');
+  await expect(page.locator('.coach-message')).toHaveText('Coaching for ply 99.');
   await page.keyboard.press('ArrowRight');
   await expect(dot(100)).toBeFocused();
-  await expect(page.locator('.game-coach-message')).toHaveText('Coaching for ply 100.');
+  await expect(page.locator('.coach-message')).toHaveText('Coaching for ply 100.');
   await page.keyboard.press('Home');
   await expect(dot(1)).toHaveAttribute('aria-current', 'step');
   await page.keyboard.press('End');
@@ -271,7 +271,7 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   const target = await dot(60).evaluate(dot => ({x: Number(dot.getAttribute('cx')), y: 2}));
   if (info.project.name === 'mobile') await plot.tap({position: target});
   else await plot.click({position: target});
-  await expect(page.locator('.game-coach-message')).toHaveText('Coaching for ply 60.');
+  await expect(page.locator('.coach-message')).toHaveText('Coaching for ply 60.');
   await expect(page.locator('.game-move-counter')).toHaveText('60 / 120');
   await expect(page.getByText('Review tools & details', {exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Find training mistakes'})).toHaveCount(0);
@@ -294,12 +294,12 @@ test('stale engine responses never replace the selected move and failures remain
   await page.getByRole('button', {name: '1. f3', exact: true}).click();
   await page.waitForRequest(r => r.url().endsWith('/analyze') && r.postDataJSON().ply === 1);
   await page.getByRole('button', {name: '1... e5', exact: true}).click();
-  const speechHeight = (await page.locator('.game-speech').boundingBox())!.height;
+  const speechHeight = (await page.locator('.coach-speech').boundingBox())!.height;
   const notationTop = (await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY);
   release();
   await expect(page.getByText('Engine unavailable at ply 2', {exact: true})).toBeVisible();
   await expect(page.getByText('Engine unavailable at ply 1', {exact: true})).not.toBeVisible();
-  expect((await page.locator('.game-speech').boundingBox())!.height).toBe(speechHeight);
+  expect((await page.locator('.coach-speech').boundingBox())!.height).toBe(speechHeight);
   expect((await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY)).toBe(notationTop);
   await page.locator('.board-shell [data-square="d2"]').click();
   await expect(page.locator('[data-legal-destination="d4"]')).toBeVisible();
@@ -325,15 +325,15 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
   await page.getByRole('link', {name: new RegExp(`Review-layout-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: '1... e5, Good', exact: true}).click();
   const dimensions = async () => ({
-    height: (await page.locator('.game-speech').boundingBox())!.height,
+    height: (await page.locator('.coach-speech').boundingBox())!.height,
     notationTop: (await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY),
     graphTop: (await page.locator('.game-graph').boundingBox())!.y + await page.evaluate(() => window.scrollY),
   });
   const before = await dimensions();
   await page.getByRole('button', {name: '1. f3, Good', exact: true}).click();
-  await expect(page.locator('.game-coach-message')).toContainText('pinned knight');
+  await expect(page.locator('.coach-message')).toContainText('pinned knight');
   expect(await dimensions()).toEqual(before);
-  expect(await page.locator('.game-coach-message').evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
+  expect(await page.locator('.coach-message').evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
   expect(await dimensions()).toEqual(before);
   await page.getByRole('button', {name: 'Flip board', exact: true}).click();
@@ -395,14 +395,14 @@ test('explanations never create a move tree and rapid variations finish rating a
   await expect(page.locator('.game-player').last()).toContainText('white to move');
   await page.keyboard.press('Escape');
   release();
-  await expect(page.locator('.game-variation-row .game-badge')).toHaveCount(2);
+  await expect(page.locator('.game-variation-row .move-badge')).toHaveCount(2);
   await expect(page.locator('.game-variation-row')).toContainText('d4');
   await expect(page.locator('.game-variation-row')).toContainText('Good');
   await expect(page.locator('.game-variation-row')).toContainText('Mistake');
   await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
   await page.locator('.game-variation-row button').last().click();
-  await expect(page.locator('.game-speech')).toContainText('Black');
-  await expect(page.locator('.game-speech .game-badge')).toHaveText(/Mistake/);
+  await expect(page.locator('.coach-speech')).toContainText('Black');
+  await expect(page.locator('.coach-speech .move-badge')).toHaveText(/Mistake/);
   await page.emulateMedia({reducedMotion: 'reduce'});
   await expect(page.locator('.board-quality')).toHaveCSS('animation-name', 'none');
 });

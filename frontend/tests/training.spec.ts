@@ -1,4 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Locator } from '@playwright/test';
+
+// Mobile review scrolls naturally; compare document geometry across feedback,
+// independently of the scrolling needed to tap an action beneath the board.
+const documentBox = (locator: Locator) => locator.evaluate(element => {
+  const {x, y, width, height} = element.getBoundingClientRect();
+  return {x: x + scrollX, y: y + scrollY, width, height};
+});
 
 test('redesigned screens fit the viewport and load local fonts and favicon', async ({page}, testInfo) => {
   await page.goto('/');
@@ -14,7 +21,7 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
     await expect(page.getByRole('link', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
     if (tab === 'Settings') {
-      await expect(page.getByRole('heading', {name: 'Chess analysis'})).toBeVisible();
+      await expect(page.getByRole('heading', {name: 'Training', exact: true})).toBeVisible();
       const source = page.getByRole('link', {name: 'Download source code'});
       await expect(source).toHaveAttribute('href', '/assets/fieldwork-source.zip');
       const download = await page.request.get((await source.getAttribute('href'))!);
@@ -213,7 +220,7 @@ test('removed lesson links return to Review without starting a lesson', async ({
 });
 
 
-test('phone reviews keep board and next action in view through retries and details', async ({page}, testInfo) => {
+test('phone reviews keep a full-width board and reachable actions through retries and details', async ({page}, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Phone viewport regression');
   for (const size of [{width: 390, height: 700}, {width: 375, height: 600}, {width: 360, height: 640}]) {
     await page.setViewportSize(size);
@@ -226,8 +233,12 @@ test('phone reviews keep board and next action in view through retries and detai
     const board = page.locator('.board-shell');
     const square = (name: string) => board.locator(`[data-square="${name}"]`);
     const fits = async (action: string) => {
-      await expect(page.getByRole('button', {name: action, exact: true})).toBeInViewport({ratio: 1});
+      const button = page.getByRole('button', {name: action, exact: true});
+      await button.evaluate(element => element.scrollIntoView({block: 'center'}));
+      await expect(button).toBeInViewport({ratio: 1});
+      await page.evaluate(() => window.scrollTo(0, 0));
       await expect(board).toBeInViewport({ratio: 1});
+      expect((await documentBox(board)).width).toBeGreaterThan(size.width - 60);
       expect(await page.evaluate(() => window.scrollY)).toBe(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     };
@@ -296,7 +307,7 @@ test('wrong-answer feedback stays steady while checking and retrying', async ({p
   const action = page.getByRole('button', {name: 'Reveal move', exact: true});
   await expect(action).toBeEnabled();
   const baseline = await action.boundingBox();
-  const originalBoard = await board.boundingBox();
+  const originalBoard = await documentBox(board);
   const beforeReviews = (await (await page.request.get('/api/stats')).json()).reviews;
   await expect(board).toHaveCSS('outline-style', 'none');
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -315,7 +326,7 @@ test('wrong-answer feedback stays steady while checking and retrying', async ({p
     await expect(page.getByRole('status').filter({hasText: 'Mistake. Try again.'})).toBeVisible();
     await expect(board).toHaveCSS('outline-color', 'rgb(255, 98, 120)');
     await expect(board).toHaveCSS('outline-width', '3px');
-    expect(await board.boundingBox()).toEqual(originalBoard);
+    expect(await documentBox(board)).toEqual(originalBoard);
     expect(await board.evaluate(element => getComputedStyle(element, '::after').pointerEvents)).toBe('none');
     expect((await action.boundingBox())!.y).toBeCloseTo(baseline!.y, 0);
     await expect(board.locator('[data-square="e2"] [data-piece="wP"]')).toBeVisible();
@@ -368,13 +379,13 @@ test('review explanations replay the submitted move and return without another r
     await board.locator(`[data-square="${uci.slice(0,2)}"]`).click();
     await board.locator(`[data-square="${uci.slice(2,4)}"]`).click();
   };
-  await expect(page.getByRole('button', {name: "Show me why"})).toHaveCount(0);
+  await expect(page.getByRole('button', {name: "Show me why"})).toBeDisabled();
   await play(fixture.wrong);
   await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
   await expect(board.locator('[data-square="a1"] [data-piece="bQ"]')).toBeVisible();
   await expect(board.locator('[data-square="a1"] [data-piece="wR"]')).toHaveCount(0);
-  await expect(page.getByRole('button', {name:'Try again', exact:true})).toBeInViewport({ratio: 1});
-  await expect(page.getByRole('button', {name:'Show me why', exact:true})).toBeInViewport({ratio: 1});
+  await expect(page.getByRole('button', {name:'Try again', exact:true})).toBeVisible();
+  await expect(page.getByRole('button', {name:'Show me why', exact:true})).toBeVisible();
   await expect(board).toHaveCSS('outline-color', 'rgb(255, 98, 120)');
   await page.screenshot({path:`test-results/counter-reply-${testInfo.project.name}.png`});
   await page.getByRole('button', {name:'Try again', exact:true}).click();
@@ -383,7 +394,7 @@ test('review explanations replay the submitted move and return without another r
   await expect(board.locator('[data-square="a1"] [data-piece="wR"]')).toBeVisible();
   await play(fixture.wrong);
   await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
-  const originalBoard = await board.boundingBox();
+  const originalBoard = await documentBox(board);
   const originalHeader = await page.locator('header').boundingBox();
   await page.getByRole('button', {name: "Show me why"}).click();
   const dialog = page.getByRole('region', {name: 'Move explanation'});
@@ -391,15 +402,15 @@ test('review explanations replay the submitted move and return without another r
   await expect(board.locator('[data-square="f1"] [data-piece="wK"]')).toBeVisible();
   await expect(dialog.locator('.explanation-caption')).toContainText("capturing White's rook");
   await expect(board.locator('[data-square="a1"] .playback-highlight')).toBeVisible();
-  await expect(board).toBeInViewport({ratio: 1});
+  if (testInfo.project.name === 'desktop') await expect(board).toBeInViewport({ratio: 1});
   const returnButton = dialog.getByRole('button', {name: 'Back to attempt'});
   await expect(returnButton).toBeInViewport({ratio: 1});
-  const shownBoard = await board.boundingBox();
+  const shownBoard = await documentBox(board);
   expect(shownBoard).toEqual(originalBoard);
   await expect(board).toHaveCSS('outline-style', 'none');
   expect(await page.locator('header').boundingBox()).toEqual(originalHeader);
   await expect(page.locator('.board-shell')).toHaveCount(1);
-  if (testInfo.project.name === 'mobile') expect((await returnButton.boundingBox())!.y).toBeGreaterThan(shownBoard!.y + shownBoard!.height);
+  if (testInfo.project.name === 'mobile') expect((await documentBox(returnButton))!.y).toBeGreaterThan(shownBoard!.y + shownBoard!.height);
   await expect(board.locator('[data-square="a1"] [data-piece="bQ"]')).toBeVisible();
   await page.screenshot({path:`test-results/review-explanation-${testInfo.project.name}.png`});
   await dialog.getByRole('button', {name: 'Previous move', exact: true}).click();
@@ -415,14 +426,14 @@ test('review explanations replay the submitted move and return without another r
   await dialog.getByRole('button', {name:'Back to attempt'}).click();
   await play(fixture.alternative);
   await expect(page.locator('.review-move')).toHaveText('Bxa5');
-  await expect(page.getByRole('button', {name:'Next position'})).toBeInViewport({ratio: 1});
+  await expect(page.getByRole('button', {name:'Next position'})).toBeVisible();
   await page.getByRole('button', {name:'Show why', exact:true}).click();
   await expect(dialog.getByText('In this line, White gains 9 points of material.', {exact:true})).toBeVisible();
   await expect(board.locator('[data-square="a5"] [data-piece="wB"]')).toBeVisible();
   const backToReview = dialog.getByRole('button', {name:'Back to review'});
   await expect(backToReview).toBeInViewport({ratio: 1});
-  const successBoard = await board.boundingBox();
-  if (testInfo.project.name === 'mobile') expect((await backToReview.boundingBox())!.y).toBeGreaterThan(successBoard!.y + successBoard!.height);
+  const successBoard = await documentBox(board);
+  if (testInfo.project.name === 'mobile') expect((await documentBox(backToReview))!.y).toBeGreaterThan(successBoard!.y + successBoard!.height);
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
   expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
@@ -534,9 +545,9 @@ test('explanation loading and errors keep the header and original board in place
   await page.getByRole('button', {name: 'Reveal move', exact: true}).click();
   const board = page.locator('.board-shell');
   await expect(page.getByRole('heading', {name: 'Move revealed.'})).toBeVisible();
-  const boardBefore = await board.boundingBox();
+  const boardBefore = await documentBox(board);
   const headerBefore = await page.locator('header').boundingBox();
-  const titleBefore = await page.locator('.page-title').boundingBox();
+  const titleBefore = await documentBox(page.locator('.review-workspace-heading'));
   await board.evaluate(element => element.setAttribute('data-preserved', 'yes'));
   let release!: () => void;
   const gate = new Promise<void>(resolve => {release = resolve;});
@@ -551,9 +562,9 @@ test('explanation loading and errors keep the header and original board in place
   const stable = async () => {
     await expect(page.locator('.board-shell')).toHaveCount(1);
     await expect(board).toHaveAttribute('data-preserved', 'yes');
-    expect(await board.boundingBox()).toEqual(boardBefore);
+    expect(await documentBox(board)).toEqual(boardBefore);
     expect(await page.locator('header').boundingBox()).toEqual(headerBefore);
-    expect(await page.locator('.page-title').boundingBox()).toEqual(titleBefore);
+    expect(await documentBox(page.locator('.review-workspace-heading'))).toEqual(titleBefore);
     await expect(page.getByRole('navigation')).toBeInViewport({ratio: 1});
   };
   await stable();
@@ -635,14 +646,14 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await page.getByRole('button', {name: 'Reveal move', exact: true}).click();
   await expect(page.getByText('Focused practice. Your review schedule is unchanged.')).toBeVisible();
   const board = page.locator('.board-shell');
-  const box = await board.boundingBox();
+  const box = await documentBox(board);
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
   await page.getByRole('button', {name: 'Show undefended capture', exact: true}).click();
   await expect(board.locator('[data-pattern-square]')).toHaveCount(2);
   await expect(board.locator('[data-pattern-square="a5"]')).toBeVisible();
   await expect(board.locator('[data-square="a5"] [data-piece="bQ"]')).toBeVisible();
   await expect(board.locator('[data-square="a1"] [data-piece="wR"]')).toBeVisible();
-  expect(await board.boundingBox()).toEqual(box);
+  expect(await documentBox(board)).toEqual(box);
   await expect(page.getByText('Next time:', {exact: false})).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({path: `test-results/pattern-${testInfo.project.name}.png`, fullPage: true});

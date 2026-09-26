@@ -2,15 +2,10 @@ import { Chessboard, type Arrow } from 'react-chessboard';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { LegalMove } from './api';
 import MoveSymbol from './MoveSymbol';
+import { MOVE_DURATION_MS, useReducedMotion } from './reviewMotion';
 
-export default function Board({fen, orientation, legalMoves = [], disabled, onMove, highlights = [], roles = {}, arrows, animated = false, quality}: {arrows?: Arrow[]; animated?: boolean; quality?: { square: string; label: string }; fen: string; orientation: 'white' | 'black'; legalMoves?: LegalMove[]; highlights?: string[]; roles?: Record<string, string[]>; disabled?: boolean; onMove?: (from: string, to: string, promotion?: string) => void}) {
-  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const change = () => setReducedMotion(query.matches);
-    query.addEventListener('change', change);
-    return () => query.removeEventListener('change', change);
-  }, []);
+export default function Board({fen, orientation, legalMoves = [], disabled, onMove, highlights = [], roles = {}, arrows, quality, feedback}: {arrows?: Arrow[]; quality?: { square: string; label: string; accessibleLabel?: string }; feedback?: 'retry'; fen: string; orientation: 'white' | 'black'; legalMoves?: LegalMove[]; highlights?: string[]; roles?: Record<string, string[]>; disabled?: boolean; onMove?: (from: string, to: string, promotion?: string) => void}) {
+  const reducedMotion = useReducedMotion();
   const boardId = 'board-' + useId().replace(/[^a-zA-Z0-9_-]/g, '');
   const [selected, setSelected] = useState<string | null>(null);
   const [promotion, setPromotion] = useState<{from: string; to: string; choices: string[]} | null>(null);
@@ -39,10 +34,10 @@ export default function Board({fen, orientation, legalMoves = [], disabled, onMo
     }
     else onMove?.(from, to);
   }
-  return <div className="board-shell">
+  return <div className="board-shell" data-feedback={feedback}>
     <Chessboard options={{
       id: boardId, position: fen, boardOrientation: orientation, arrows,
-      allowDragging: interactive, animationDurationInMs: animated ? 280 : 130, showAnimations: !reducedMotion,
+      allowDragging: interactive, animationDurationInMs: MOVE_DURATION_MS, showAnimations: !reducedMotion,
       canDragPiece: ({square}) => !!square && selectable(square),
       darkSquareStyle: {backgroundColor: 'var(--board-dark)'}, lightSquareStyle: {backgroundColor: 'var(--board-light)'},
       darkSquareNotationStyle: {color: '#f5f6f8', fontFamily: 'var(--mono)', fontWeight: 500},
@@ -50,7 +45,7 @@ export default function Board({fen, orientation, legalMoves = [], disabled, onMo
       boardStyle: {borderRadius: '2px'},
       squareRenderer: ({square, children}) => <div title={Object.entries(roles).filter(([, squares]) => squares.includes(square)).map(([role]) => role.replaceAll('_', ' ')).join(', ')} data-pattern-square={Object.values(roles).some(squares => squares.includes(square)) ? square : undefined} className={`board-square-content${interactive && selected === square ? ' selected' : ''}${highlights.includes(square) ? ' playback-highlight' : ''}${Object.entries(roles).filter(([, squares]) => squares.includes(square)).map(([role]) => ` pattern-${role.includes('attacker') ? 'attacker' : role.includes('defender') || role.includes('blocker') ? 'defender' : 'target'}`).join('')}`}>
         {children}
-        {quality?.square === square && <span key={fen + quality.label} className={`board-quality label-${quality.label.toLowerCase()}`} aria-label={`Move rating: ${quality.label}`}><MoveSymbol label={quality.label}/></span>}
+        {quality?.square === square && <span key={fen + quality.label} className={`board-quality label-${quality.label.toLowerCase()}`} aria-label={quality.accessibleLabel || `Move rating: ${quality.label}`}><MoveSymbol label={quality.label}/></span>}
         {destinations.has(square) && <span aria-hidden="true" data-legal-destination={square}
           className={`legal-move-marker ${destinations.get(square)!.capture ? 'capture' : 'quiet'}`}/>}
       </div>,

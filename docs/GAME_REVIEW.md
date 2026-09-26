@@ -135,6 +135,18 @@ Thresholds are explicit initial policy, not calibrated human performance estimat
 
 ## Coach evidence
 
+`ReviewWorkspace` renders both game review and SRS, including their board slots,
+viewport sizing, responsive columns, header and sidebar. One sizing calculation
+and stylesheet control both screens; a browser regression checks matching board,
+heading and coach geometry across desktop and phone widths.
+
+The coach illustration and stable speech-bubble slots are shared with SRS and its
+explanation playback through `ReviewCoach`. `MoveBadge`/`MoveSymbol`, the common
+`Board`, `reviewMotion.ts` and `review-presentation.css` own the feedback icons,
+colors, piece transitions and reduced-motion behavior for both review modes.
+SRS keeps its own acceptance semantics and only shows chess feedback after an
+attempt or reveal; sharing presentation does not run full-game grading in SRS.
+
 The coach uses shared pinned Lichess predicates and Fieldwork causal witnesses.
 Positive moves inspect the mover's line; concessions inspect the opponent's reply.
 Before/after witnesses can identify an unanswered attack, abandoned defender or

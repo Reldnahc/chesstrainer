@@ -32,7 +32,40 @@ The application permanently retires a review card when its scheduled interval is
 
 Retirement persists as retired_at and retired_interval_days. Due dates, serialized cards, attempts and reviews remain intact. Retired cards are excluded from automatic queues (including unfinished sessions) and focused practice; direct review starts/submissions are rejected. Saved lesson access has been removed and historical attempts remain archived. Duplicate imports do not reactivate retired cards. Changing the threshold does not undo existing retirements. There is no automatic unretirement or retirement-count shortcut.
 
-Review now shows the saved next due time as a compact relative interval. Expand Answer & review details for its exact local date/time, explanation, alternatives and source evidence. Phone layouts prioritize the board and primary action, collapse optional text, and return to the top when loading the next position. Review timing still includes wall time from session start; leaving a tab open may count as a slow answer. Retired feedback shows retirement instead of a next-review date; the underlying historical due date remains stored.
+Review now shows the saved next due time as a compact relative interval. Expand Answer & review details for its exact local date/time, explanation, alternatives and source evidence. Phone layouts use the full available board width, allow vertical scrolling to the coach and details, and return to the top when loading the next position. Review timing still includes wall time from session start; leaving a tab open may count as a slow answer. Retired feedback shows retirement instead of a next-review date; the underlying historical due date remains stored.
+
+## Shared review presentation
+
+SRS and game review render through `ReviewWorkspace`, which owns the board
+columns, metadata/control slots, header placement, sidebar and responsive sizing.
+The board has the same size and position at the same viewport in both modes;
+there is no separate SRS width limit or sizing calculation. The evaluation gutter
+stays empty in SRS so a cold exercise cannot reveal a score. The title is beside
+the board on desktop and above it on phones, using the same header slot as Games.
+Browser regression checks compare the actual board, heading and coach geometry
+between both modes at three desktop and two phone sizes.
+
+SRS, focused practice and explanation playback use the same `ReviewCoach`,
+`MoveBadge`, `MoveSymbol` and `Board` components as full-game review. Shared styles
+live in `frontend/src/review-presentation.css`; `reviewMotion.ts` owns the 280 ms
+piece duration, reply delay and live reduced-motion preference. The opponent's
+counter starts after the attempted move finishes. Reduced motion disables piece
+transitions and badge entrance animations in both modes.
+
+The shared header keeps the SRS title and session count on one row. The coach
+reserves title, scrollable message and action slots across checking, retries,
+success and explanation playback. Show me why is present but disabled until a
+saved attempt exists. Explanation loading preserves the sidebar height to avoid
+clamping a phone's scroll position. No additional analysis is requested for these
+visual effects.
+
+Training badges say Accepted, Retry or Revealed, based on the existing response;
+they do not infer the full-game eight-label classification or an FSRS rating.
+Destination badges and highlights appear only after confirmed feedback, on the
+corresponding attempted, accepted or revealed move. The opponent's automatic
+reply does not inherit the learner's Retry badge. Source, answers, scores and
+tactical witnesses remain hidden on a cold board. Scheduling and first-failure
+semantics are unchanged.
 
 ## Explanation playback
 

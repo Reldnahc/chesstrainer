@@ -87,7 +87,7 @@ export default function App() {
       <main
         id="main-content"
         tabIndex={-1}
-        className={tab === "Review" ? "review-page" : "workspace-page"}
+        className={tab === "Review" || (tab === "Games" && route.gameId) ? "review-page" : "workspace-page"}
       >
         {error && (
           <div role="alert" className="notice error">

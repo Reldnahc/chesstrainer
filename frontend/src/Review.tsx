@@ -14,8 +14,11 @@ import {
 } from "./api";
 import Board from "./Board";
 import MoveStatus from "./MoveStatus";
+import MoveBadge from "./MoveBadge";
+import ReviewCoach from "./ReviewCoach";
 import ReviewExplanation from "./ReviewExplanation";
-import PageTitle from "./PageTitle";
+import { COUNTER_REPLY_DELAY_MS } from "./reviewMotion";
+import ReviewWorkspace from "./ReviewWorkspace";
 import { clearExerciseLink } from "./navigation";
 const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 export default function ReviewScreen({
@@ -45,6 +48,7 @@ export default function ReviewScreen({
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [submittedMove, setSubmittedMove] = useState<string | null>(null);
   const [done, setDone] = useState(0);
   const [last, setLast] = useState<string | null>(null);
   const [explaining, setExplaining] = useState(false);
@@ -52,6 +56,15 @@ export default function ReviewScreen({
   const [explanationFrame, setExplanationFrame] =
     useState<ExplanationFrame | null>(null);
   const explanationOpener = useRef<HTMLButtonElement | null>(null);
+  const practicePanel = useRef<HTMLDivElement | null>(null);
+  const [explanationMinHeight, setExplanationMinHeight] = useState(0);
+  function openExplanation() {
+    window.clearTimeout(previewTimer.current);
+    // Keep the document height while playback loads. Otherwise a phone scrolled
+    // to the action row jumps upward when the review details disappear.
+    setExplanationMinHeight(practicePanel.current?.getBoundingClientRect().height || 0);
+    setExplaining(true);
+  }
   const closeExplanation = useCallback(() => {
     setExplaining(false);
     setExplanationFrame(null);
@@ -70,7 +83,7 @@ export default function ReviewScreen({
     window.clearTimeout(previewTimer.current);
     if (feedback?.counter_reply && !feedback.completed) {
       setPreview("attempt");
-      previewTimer.current = window.setTimeout(() => setPreview("reply"), 400);
+      previewTimer.current = window.setTimeout(() => setPreview("reply"), COUNTER_REPLY_DELAY_MS);
     } else setPreview(null);
     return () => window.clearTimeout(previewTimer.current);
   }, [feedback]);
@@ -89,6 +102,7 @@ export default function ReviewScreen({
     async (id?: string | null, previous?: string | null) => {
       setLoading(true);
       setFeedback(null);
+      setSubmittedMove(null);
       setExplaining(false);
       setExplanationFrame(null);
       setMistakeCue(false);
@@ -139,6 +153,7 @@ export default function ReviewScreen({
         { from_square: from, to_square: to, promotion: promotion || null },
       );
       setFeedback(result);
+      setSubmittedMove(from + to + (promotion || ""));
       setMistakeCue(!result.completed);
       if (result.completed) {
         practiced.current.add(position.exercise_id);
@@ -170,29 +185,28 @@ export default function ReviewScreen({
       setBusy(false);
     }
   }
+  const moveUci = feedback?.reveal_frame?.uci || submittedMove;
+  // Training acceptance is not a full-game engine rating. Only show confirmed
+  // feedback, and only on the board position containing that attempted move.
+  const feedbackLabel = feedback?.grade === "revealed" ? "Revealed"
+    : feedback?.completed ? "Accepted" : feedback || position?.failed ? "Retry" : null;
+  const quality = !explaining && !busy && moveUci && feedbackLabel && (feedback?.completed || preview === "attempt")
+    ? { square: moveUci.slice(2, 4), label: feedbackLabel, accessibleLabel: `Move feedback: ${feedbackLabel}` } : undefined;
+  const heading = <>
+    <h1>Your move.</h1>
+    {focusSkill && <span className="sr-only">FOCUSED PRACTICE</span>}
+    <span className="review-session-count"><b>{done}</b> <span>{focusSkill ? "practiced this session" : "reviewed this session"}</span></span>
+  </>;
   return (
     <>
-      <PageTitle
-        eyebrow={focusSkill ? "FOCUSED PRACTICE" : "TRAINING / REVIEW"}
-        title="Your move."
-        description="Build better decisions, one position at a time."
-      >
-        <div className="session-count">
-          <strong>{done}</strong>
-          <span>
-            {focusSkill ? "practiced this session" : "reviewed this session"}
-          </span>
-        </div>
-      </PageTitle>
       {loading ? (
-        <div className="panel loading">Loading your practice…</div>
+        <><div className="review-workspace-heading">{heading}</div><div className="panel loading">Loading your practice…</div></>
       ) : (
-        <div className={`review-layout${position ? " review-session" : ""}`}>
-          <section
-            className={`board-area${mistakeCue && !explaining ? " review-mistake" : ""}`}
-            aria-label="Chess position"
-          >
-            <div className="board-topline">
+        <div className="review-session">
+          <ReviewWorkspace
+            heading={heading}
+            boardLabel="Chess position"
+            aboveBoard={<div className="review-position-status">
               <span>
                 <span
                   className={`turn-dot ${position?.fen.split(" ")[1] === "b" ? "black" : ""}`}
@@ -218,8 +232,13 @@ export default function ReviewScreen({
                   ? `${Math.max(0, due - (feedback?.completed ? 1 : 0))}${due === 30 ? "+" : ""} IN QUEUE`
                   : "NO POSITION LOADED"}
               </span>
-            </div>
-            <Board
+            </div>}
+            belowBoard={<div className="review-board-hint">
+              {position
+                ? "Select a piece to see legal moves. Tap a destination or drag."
+                : "Import a game to turn real decisions into useful practice."}
+            </div>}
+            board={<Board
               key={position?.session_id || "empty"}
               fen={
                 explanationFrame?.fen ||
@@ -229,10 +248,13 @@ export default function ReviewScreen({
                   : position?.fen || START)
               }
               roles={explanationFrame?.roles}
+              quality={quality}
+              feedback={mistakeCue && !explaining ? "retry" : undefined}
               highlights={
                 explanationFrame?.highlights ||
                 previewFrame?.highlights ||
-                feedback?.reveal_frame?.highlights
+                feedback?.reveal_frame?.highlights ||
+                (feedback?.completed && moveUci ? [moveUci.slice(0, 2), moveUci.slice(2, 4)] : [])
               }
               orientation={position?.orientation || "white"}
               legalMoves={position?.legal_moves}
@@ -244,15 +266,9 @@ export default function ReviewScreen({
                 explaining
               }
               onMove={answer}
-            />
-            <div className="board-caption">
-              {position
-                ? "Select a piece to see legal moves. Tap a destination or drag."
-                : "Import a game to turn real decisions into useful practice."}
-              <span className="board-coordinate-note">POSITION PRACTICE</span>
-            </div>
-          </section>
-          <aside className="practice-panel">
+            />}
+          >
+          <div ref={practicePanel} className="practice-panel" style={explaining ? { minHeight: explanationMinHeight } : undefined}>
             {explaining && position ? (
               <ReviewExplanation
                 sessionId={position.session_id}
@@ -290,124 +306,60 @@ export default function ReviewScreen({
                 <div className="aside-note">
                   <ShieldCheck size={19} />
                   <p>
-                    Stockfish analyzes on your computer. Local classification
-                    groups supported tactical patterns.
+                    Practice useful decisions from your own games, with
+                    feedback grounded in saved chess analysis.
                   </p>
                 </div>
               </>
             ) : (
               <>
-                <div className="review-result-heading">
-                  <h2>
-                    {feedback?.completed
-                      ? feedback.retired
-                        ? "Position retired."
-                        : feedback.grade === "revealed"
-                          ? "Move revealed."
-                          : "Good decision."
-                      : mistakeCue
-                        ? "Mistake."
-                        : preview
-                          ? preview === "attempt"
-                            ? "Your attempted move"
-                            : "Opponent's best reply"
-                          : "Find a good move."}
-                  </h2>
-                  {feedback?.completed && (
-                    <strong className="review-move">
-                      {feedback.submitted_san ||
-                        feedback.answers
-                          ?.filter((a) => a.primary)
-                          .map((a) => a.san)
-                          .join(", ")}
-                    </strong>
-                  )}
-                </div>
-                {feedback?.completed && (
-                  <p className="review-message">
-                    <span>
-                      {feedback.message ||
-                        "Study the move, then try the next position."}
-                    </span>
-                    {feedback.explanation_summary && (
-                      <span
-                        className="review-reason"
-                        title={feedback.explanation_summary}
-                      >
-                        {feedback.explanation_summary}
-                      </span>
+                <ReviewCoach
+                  title={<h2>{feedback?.completed
+                    ? feedback.retired ? "Position retired." : feedback.grade === "revealed" ? "Move revealed." : "Good decision."
+                    : mistakeCue ? "Mistake." : "Find a good move."}</h2>}
+                  badge={!busy && feedbackLabel ? <MoveBadge label={feedbackLabel}/> : undefined}
+                  actions={<div className="review-actions">
+                    {feedback?.completed ? (
+                      <button className="primary review-action" disabled={busy} onClick={() => load(null, last)}>
+                        Next position <ArrowRight size={17}/>
+                      </button>
+                    ) : preview ? (
+                      <button className="primary review-action" onClick={retry}>Try again</button>
+                    ) : (
+                      <button className="secondary review-action" disabled={busy} onClick={show}>Reveal move</button>
                     )}
-                  </p>
-                )}
-                {!feedback?.completed &&
-                  (previewFrame ? (
-                    <div
-                      className="move-status counter-caption"
-                      role="status"
-                      aria-live="polite"
-                      aria-atomic="true"
-                    >
-                      <span>
-                        <strong>Mistake.</strong> {previewFrame.annotation}
-                      </span>
-                    </div>
-                  ) : (
-                    <MoveStatus
-                      busy={busy}
-                      failed={
-                        position.failed || !!(feedback && !feedback.completed)
-                      }
-                    />
-                  ))}
-                {feedback?.completed && feedback.retired && (
-                  <p className="review-due" role="status">
-                    Progress saved. Retired from future reviews.
-                  </p>
-                )}
-                {feedback?.completed && feedback.next_due && (
-                  <p className="review-due" role="status">
-                    Progress saved. Next review:{" "}
-                    <time
-                      dateTime={feedback.next_due}
-                      title={new Date(feedback.next_due).toLocaleString()}
-                    >
-                      {relativeDue(feedback.next_due)}
-                    </time>
-                    .
-                  </p>
-                )}
-                <div className="review-actions">
-                  {feedback?.completed ? (
-                    <button
-                      className="primary review-action"
-                      disabled={busy}
-                      onClick={() => load(null, last)}
-                    >
-                      Next position <ArrowRight size={17} />
-                    </button>
-                  ) : preview ? (
-                    <button className="primary review-action" onClick={retry}>
-                      Try again
-                    </button>
-                  ) : (
-                    <button
-                      className="secondary review-action"
-                      disabled={busy}
-                      onClick={show}
-                    >
-                      Reveal move
-                    </button>
-                  )}
-                  {(feedback || position.last_attempt_id) && (
                     <button
                       ref={explanationOpener}
                       className="secondary review-why"
-                      disabled={busy}
-                      onClick={() => setExplaining(true)}
+                      disabled={busy || !(feedback || position.last_attempt_id)}
+                      onClick={openExplanation}
                     >
                       {feedback?.completed ? "Show why" : "Show me why"}
                     </button>
-                  )}
+                  </div>}
+                >
+                  {feedback?.completed ? (
+                    <div role="status" aria-live="polite" aria-atomic="true">
+                      <p><strong className="review-move">{feedback.submitted_san || feedback.answers?.filter(a => a.primary).map(a => a.san).join(", ")}</strong></p>
+                      <p>{feedback.message || "Study the move, then try the next position."}</p>
+                      {feedback.explanation_summary && <p>{feedback.explanation_summary}</p>}
+                    </div>
+                  ) : previewFrame ? (
+                    <div role="status" aria-live="polite" aria-atomic="true">
+                      <p>{previewFrame.annotation}</p>
+                      {preview === "reply" && feedback?.explanation_summary !== previewFrame.annotation && <p>{feedback?.explanation_summary}</p>}
+                    </div>
+                  ) : <MoveStatus busy={busy} failed={position.failed || !!(feedback && !feedback.completed)}/>}
+                </ReviewCoach>
+                <div className="review-schedule">
+                  {feedback?.completed && feedback.retired ? (
+                    <p className="review-due" role="status">Progress saved. Retired from future reviews.</p>
+                  ) : feedback?.completed && feedback.next_due ? (
+                    <p className="review-due" role="status">
+                      Progress saved. Next review:{" "}
+                      <time dateTime={feedback.next_due} title={new Date(feedback.next_due).toLocaleString()}>{relativeDue(feedback.next_due)}</time>.
+                    </p>
+                  ) : null}
                 </div>
                 {focusSkill && (
                   <>
@@ -514,7 +466,8 @@ export default function ReviewScreen({
                 </details>
               </>
             )}
-          </aside>
+          </div>
+          </ReviewWorkspace>
         </div>
       )}
     </>
