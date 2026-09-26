@@ -463,7 +463,7 @@ test('local classification settings and evidence work without model connectivity
   await expect.poll(async () => (await (await page.request.get('/api/jobs')).json()).find((j:{id:string}) => j.id === imported.job_id)?.status, {timeout:30000}).toBe('completed');
   await page.goto('/');
   await page.getByRole('link', {name:'Settings', exact:true}).click();
-  await expect(page.getByRole('heading', {name:'Local mistake classification'})).toBeVisible();
+  await expect(page.getByRole('heading', {name:'Training', exact:true})).toBeVisible();
   await expect(page.getByRole('button', {name:'Classify saved games'})).toBeVisible();
   await expect(page.getByText('API key', {exact:true})).toHaveCount(0);
   const config = await (await page.request.get('/api/settings')).json();
@@ -488,7 +488,7 @@ test('local classification settings and evidence work without model connectivity
 });
 
 
-test('compact workspace keeps navigation reachable and secondary settings expandable', async ({page}, testInfo) => {
+test('compact workspace keeps navigation reachable and settings focused on user actions', async ({page}, testInfo) => {
   await page.goto('/');
   if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 390, height: 700});
   for (const tab of ['Import', 'Weaknesses', 'Settings']) {
@@ -503,11 +503,13 @@ test('compact workspace keeps navigation reachable and secondary settings expand
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
-  await expect(page.getByText('Engine path', {exact: true})).not.toBeVisible();
-  await page.getByText('Engine configuration', {exact: true}).click();
-  await expect(page.getByText('Engine path', {exact: true})).toBeVisible();
-  await page.getByText('Storage & connection', {exact: true}).click();
-  await expect(page.getByText('Database', {exact: true})).toBeVisible();
+  await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toBeVisible();
+  await expect(page.getByRole('button', {name: 'Deepen unclear positions', exact: true})).toBeEnabled();
+  await expect(page.getByRole('link', {name: 'Download source code'})).toHaveAttribute('href', '/assets/fieldwork-source.zip');
+  for (const label of ['Engine path', 'Engine configuration', 'Storage & connection', 'Database', 'Training policy']) {
+    await expect(page.getByText(label, {exact: true})).toHaveCount(0);
+  }
+  await expect(page.locator('.app-header')).not.toContainText(/Local|Private account/);
   await page.getByRole('navigation').getByRole('link', {name: 'Import', exact: true}).click();
   await expect(page.getByLabel('From date')).not.toBeVisible();
   await page.getByText('Custom date range', {exact: true}).click();

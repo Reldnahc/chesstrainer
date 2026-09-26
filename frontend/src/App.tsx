@@ -82,9 +82,6 @@ export default function App() {
               </Link>
             ))}
           </nav>
-          <span className="local-label">
-            <span className="status-dot" /> {account ? "Private account" : "Local"}
-          </span>
         </div>
       </header>
       <main
@@ -154,7 +151,7 @@ export default function App() {
                 fail={fail}
               />
             )}
-            {tab === "Settings" && <SettingsScreen fail={fail} />}
+            {tab === "Settings" && <SettingsScreen health={health} fail={fail} />}
             {!tab && <section className="panel"><h1>Page not found</h1><p>This address does not match a page in Fieldwork.</p><Link className="button-link primary" href={pagePaths.Games}>Go to your games</Link></section>}
           </>
         )}

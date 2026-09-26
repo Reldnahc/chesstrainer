@@ -40,7 +40,9 @@ Click or tap a dot, or anywhere along the graph, to return to that ply in the
 original game. Arrow keys navigate reviewed dots when a dot is focused; Home/End
 select the first/last reviewed move. The slider also navigates every ply, including
 positions still being reviewed. The coach keeps its label, message area, and action
-row in stable slots; longer explanations scroll inside the bubble.
+row in stable slots; longer explanations scroll inside the bubble. The illustrated
+coach is 50% larger at each screen size. Best-move markers use a centered SVG star
+on the board, in coaching, and in notation.
 On phones the coach appears directly below the
 board controls, with full-size touch targets and normal page scrolling. Mobile
 navigation buttons share the available row width. The move counter reserves space

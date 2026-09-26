@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, CornerUpLeft, FlipVertical2 } from "lucide-react";
 import { api, post, type LegalMove } from "./api";
 import Board from "./Board";
+import MoveSymbol from "./MoveSymbol";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import Link from "./Link";
@@ -27,7 +28,6 @@ type Branch = { id: number; root: number; moves: string[]; sans: string[]; retur
 type Cursor = { ply: number; branch: number | null; step: number };
 type Analysis = { report: Report | null; score: Score | null; best_move: string | null };
 const labels = ["Brilliant", "Great", "Best", "Good", "Inaccuracy", "Mistake", "Miss", "Blunder"];
-const symbols: Record<string, string> = { Brilliant: "!!", Great: "!", Best: "★", Good: "✓", Inaccuracy: "?!", Mistake: "?", Miss: "↗", Blunder: "??" };
 const bad = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
 const dateText = (date: string | null) => date && !date.includes("?") ? date : "Date unknown";
 
@@ -40,7 +40,7 @@ function strength(score: Score) {
   return score.kind === "mate" ? (score.value > 0 || score.mate_given ? 1 : -1) : Math.tanh(score.value / 400);
 }
 function Badge({ label }: { label: string }) {
-  return <span className={`game-badge label-${label.toLowerCase()}`}><b>{symbols[label]}</b>{label}</span>;
+  return <span className={`game-badge label-${label.toLowerCase()}`}><b><MoveSymbol label={label}/></b>{label}</span>;
 }
 function CoachAvatar() {
   return <svg className="game-coach-avatar" viewBox="0 0 80 100" role="img" aria-label="Your chess coach">
@@ -339,7 +339,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
           <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>
           <Board fen={displayed.fen} orientation={orientation} legalMoves={frame?.legal_moves || []} disabled={!frame || moving} onMove={play}
             highlights={currentUci ? [currentUci.slice(0, 2), currentUci.slice(2, 4)] : []}
-            animated quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label, symbol: symbols[report.label] } : undefined}
+            animated quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label } : undefined}
             roles={explaining ? cues!.roles : undefined}
             arrows={explaining ? cues!.arrows.map(a => ({ ...a, color: a.kind === "move" ? "#b8d69be6" : a.kind === "reply" ? "#ffb17be6" : "#ff7187db" })) : []}/>
         </div>
@@ -378,7 +378,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
         <div className="game-move-list" aria-label="Game moves">{game.frames.slice(1).map((f, index) => {
           const ply = index + 1;
           return <button key={ply} ref={element => { if (element) moveButtons.current.set(ply, element); else moveButtons.current.delete(ply); }} aria-current={!branch && cursor.ply === ply ? "step" : undefined} onClick={() => navigate(ply)} aria-label={`${f.number}${f.actor === "white" ? "." : "..."} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}>
-            <span className="game-move-number">{f.number}{f.actor === "white" ? "." : "…"}</span><strong>{f.san}</strong>{f.report && <span className={`game-move-symbol label-${f.report.label.toLowerCase()}`} title={f.report.label}>{symbols[f.report.label]}</span>}
+            <span className="game-move-number">{f.number}{f.actor === "white" ? "." : "…"}</span><strong>{f.san}</strong>{f.report && <span className={`game-move-symbol label-${f.report.label.toLowerCase()}`} title={f.report.label}><MoveSymbol label={f.report.label}/></span>}
           </button>;
         })}</div>
         {!!branches.length && <details className="game-variations" open><summary>Variations ({branches.length})</summary>{branches.map(b => <div key={b.id} className="game-variation-row"><span>#{b.id} · ply {b.root}</span>{b.sans.map((san, index) => <button key={index} aria-pressed={branch?.id === b.id && cursor.step === index + 1} onClick={() => { setCursor({ ply: b.root, branch: b.id, step: index + 1 }); setExplanationKey(null); }}>{san}{cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)?.report ? <Badge label={cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)!.report!.label}/> : <span className="muted" aria-label="Not yet rated">…</span>}</button>)}</div>)}</details>}
