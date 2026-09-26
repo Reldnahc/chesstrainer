@@ -4,6 +4,20 @@ Game review complements cold practice. It reviews both colors and arbitrary lega
 variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
 The existing training policy is unchanged.
 
+## Using the workspace
+
+Open **Games**, choose an imported game, and select **Start game review**. The coach
+and timeline fill as analysis finishes. Select a move, use the arrow keys/buttons,
+or select **Next mistake**. **Show why** and the tactical witness buttons open
+playable continuations; **Show [move]** opens the stronger alternative.
+
+Move any legal piece to start a variation. Undo and choose a different move to fork
+it; the variations list keeps both lines while this game remains open. **Return to
+game** restores the original branch point. Variations are not saved across leaving
+the game or reloading. Engine failures leave legal board exploration available.
+Late engine responses cannot replace coaching for a different selected position.
+On phones the coach appears directly below the board controls.
+
 ## Analysis and persistence
 
 The Games API lists imported PGNs and replays their actual starting position.

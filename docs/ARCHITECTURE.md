@@ -12,6 +12,7 @@ React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ own
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
+| routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
 
@@ -25,6 +26,7 @@ The composition root retains migration/skill seeding/retirement reconciliation, 
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
 | Review.tsx | Review/focus session state, answer/reveal actions, counter timer, queue transitions and board composition |
+| GameReview.tsx | Game library, illustrated coach, timeline, move selection, in-session variation branches and stale-response isolation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
 | Settings.tsx | Effective settings display and local classification job controls |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
@@ -33,13 +35,14 @@ The composition root retains migration/skill seeding/retirement reconciliation, 
 
 Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review keeps its related state and timers together. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
-Navigation is Review, Weaknesses, Import, Settings. Removed unit links return to Review. Production serves frontend assets on the API origin; the Vite development proxy targets 127.0.0.1:8000.
+Navigation is Review, Games, Weaknesses, Import, Settings. Removed unit links return to Review. Production serves frontend assets on the API origin; the Vite development proxy targets 127.0.0.1:8000.
 
 ## Domain boundaries
 
 - chess_core.py: python-chess rules, legal-position identity, deterministic facts and explicit score types.
 - engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
 - policy.py: configurable move acceptance over verified scores.
+- game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
 - imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.
 - jobs.py / pipeline.py / work_pool.py: persistent ordered jobs, bounded worker pools, cancellation and atomic progress.
 - classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence.

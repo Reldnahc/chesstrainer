@@ -15,10 +15,11 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 - Local classification v4 reuses the pinned Lichess tactical tagger and separates material/mate outcomes from specific patterns, with auditable witnesses and explicit abstentions. Settings can deepen a capped batch of unclear positions without changing original exercise answers.
 - Evidence-linked weakness groups and focused practice of up to 12 distinct positions. Focused attempts are saved separately from FSRS.
 - Cold review with drag/drop, tap-to-move, legal-move dots/capture rings and promotion selection. Failures preview a verified counter; Show me why opens deeper playback. Reveal move plays the saved answer.
+- Full-game review in **Games**: saved analysis for both players, move-quality labels, an evaluation timeline, an illustrated tactical coach, and playable branching variations. Pause/resume preserves completed analysis; game review never changes scheduled practice. See [Game review](docs/GAME_REVIEW.md) for scoring and evidence limits.
 - FSRS scheduling, one failed recall per session, continued retries and permanent retirement above a configurable interval threshold (100 days by default).
 - Same-origin LAN operation, an optional shared access token and CLI backup/restore.
 
-Navigation is **Review, Weaknesses, Import, Settings**. The initial review board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Lessons, Repertoire and manual-position entry forms are removed. Historical records and compatibility APIs remain; see [Product](docs/PRODUCT.md#removed-and-archived).
+Navigation is **Review, Games, Weaknesses, Import, Settings**. The initial cold review board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Lessons, Repertoire and manual-position entry forms are removed. Historical records and compatibility APIs remain; see [Product](docs/PRODUCT.md#removed-and-archived).
 
 ![Desktop review interface](docs/screenshots/review-desktop.png)
 

@@ -48,6 +48,18 @@ def create_app():
 
     app = production_app(chesscom_factory=factory)
 
+    @app.post("/__test/game-review-fixture/{key}")
+    def game_review_fixture(key: str):
+        from sqlalchemy import select
+        from trainer.imports import import_games
+        from trainer.models import Game
+
+        with app.state.sessions() as db:
+            white = f"Review-{key}"
+            pgn = f'[White "{white}"]\n[Black "CoachFixture"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
+            import_games(db, "review-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            return {"id": db.scalar(select(Game.id).where(Game.white == white))}
+
     @app.post("/__test/review-explanation-fixture/{key}")
     def explanation_fixture(key: str):
         from explanation_fixtures import seed_review

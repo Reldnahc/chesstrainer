@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   FileUp,
+  BookOpen,
   Flag,
   Focus,
   LockKeyhole,
@@ -10,6 +11,7 @@ import {
 } from "lucide-react";
 import { api, type Health } from "./api";
 import ReviewScreen from "./Review";
+import GamesScreen from "./GameReview";
 import ImportScreen from "./Import";
 import SettingsScreen from "./Settings";
 import WeaknessScreen from "./Weaknesses";
@@ -18,6 +20,7 @@ import { clearExerciseLink } from "./navigation";
 import appMark from "./assets/fieldwork.svg";
 const tabs = [
   ["Review", Focus],
+  ["Games", BookOpen],
   ["Weaknesses", Flag],
   ["Import", FileUp],
   ["Settings", Settings2],
@@ -151,6 +154,7 @@ export default function App() {
               />
             )}
             {tab === "Import" && <ImportScreen health={health} fail={fail} />}
+            {tab === "Games" && <GamesScreen onImport={() => navigate("Import")} />}
             {tab === "Weaknesses" && (
               <WeaknessScreen
                 onPractice={(skill) => {

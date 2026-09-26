@@ -6,7 +6,9 @@ Fieldwork is private chess practice built from the player's own games. Import ga
 
 Import PGNs or completed public Chess.com games, analyze the learner's decisions locally, save verified evidence, and turn meaningful mistakes into review positions. Versioned local rules classify supported consequences and tactical mechanisms. A position can remain unclassified and still be useful in Review.
 
-The four screens are **Review, Weaknesses, Import and Settings**, in that order on desktop and mobile.
+The five screens are **Review, Games, Weaknesses, Import and Settings**, in that order on desktop and mobile.
+
+- **Games** browses imported games, runs resumable analysis of both colors, and shows move-quality labels, a timeline and an illustrated tactical coach. The board accepts variations at any point, with undo, saved in-session branches and a return to the original game. Coach evidence and variation analysis never count as scheduled recalls. See [Game review](GAME_REVIEW.md) for scoring rules and limits.
 
 - **Review** starts with an unlabeled board. The backend supplies legal moves and grades answers. A failed engine answer previews the opponent's saved counter; Try again restores the board and Show me why opens deeper playback. Success offers factual feedback and optional Show why. Reveal move performs the saved answer. Repeated retries create only one failed recall per session.
 - **Weaknesses** separates material/mate outcomes from tactical patterns, shows supporting decisions and practice cues, and starts focused batches of up to 12 distinct positions. Focused attempts are stored separately and never change FSRS.

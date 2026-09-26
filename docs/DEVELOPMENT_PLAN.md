@@ -1,11 +1,12 @@
 # Development plan
 
-Fieldwork is a private, review-centered chess trainer. The current navigation is Review, Weaknesses, Import and Settings. Product behavior and known limits live in [PRODUCT.md](PRODUCT.md) and [FEATURE_STATUS.md](FEATURE_STATUS.md); this document tracks current work and remaining priorities.
+Fieldwork is a private, review-centered chess trainer. The current navigation is Review, Games, Weaknesses, Import and Settings. Product behavior and known limits live in [PRODUCT.md](PRODUCT.md) and [FEATURE_STATUS.md](FEATURE_STATUS.md); this document tracks current work and remaining priorities.
 
 ## Current state
 
 - PGN and filtered Chess.com imports feed persistent local analysis jobs, native Stockfish and versioned local mistake classification.
 - Review supports multiple sound answers, legal-move interaction, failure counters, reveal and verified line playback. Focused practice is separate from scheduled recall.
+- Games supports both-color review, an illustrated evidence-backed coach, move labels and playable variations. Further explanation coverage and label calibration require independently reviewed positions; [GAME_REVIEW.md](GAME_REVIEW.md) records the initial rules and limits.
 - FSRS retains completed work across restart and permanently retires positions above the configured interval threshold.
 - SQLite migrations, compatible engine/rule caches, cancellation/retry, LAN operation and backup/restore are implemented.
 - Classifier v4 reuses pinned Lichess motif recognition with retained Fieldwork evidence gates. [LICHESS_REUSE.md](LICHESS_REUSE.md) records the frozen comparison; the earlier assistant assessment remains historical and independent human precision is still unmeasured.

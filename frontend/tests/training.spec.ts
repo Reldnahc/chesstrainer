@@ -9,7 +9,7 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
   const response = await page.request.get(icon!);
   expect(response.headers()['content-type']).toContain('image/svg+xml');
   expect(await response.text()).toContain('<svg');
-  for (const tab of ['Review', 'Import', 'Weaknesses', 'Settings']) {
+  for (const tab of ['Review', 'Games', 'Import', 'Weaknesses', 'Settings']) {
     await page.getByRole('button', {name: tab, exact: true}).click();
     await expect(page.getByRole('button', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
@@ -196,7 +196,7 @@ test('removed lesson links return to Review without starting a lesson', async ({
   page.on('request', request => {if (request.url().includes('/api/course')) requests.push(request.url());});
   await page.goto('/?unit=archived-unit');
   await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
-  await expect(page.getByRole('navigation').getByRole('button')).toHaveCount(4);
+  await expect(page.getByRole('navigation').getByRole('button')).toHaveCount(5);
   await expect(page.getByRole('button', {name: 'Course', exact: true})).toHaveCount(0);
   expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
   expect(requests).toEqual([]);
