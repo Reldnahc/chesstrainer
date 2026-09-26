@@ -12,7 +12,7 @@ from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, Import
 
 
 class ReviewRequest(BaseModel):
-    rating: int = Field(default=1000, ge=400, le=3000)
+    rating: int | None = Field(default=None, ge=400, le=3000)
 
 
 class VariationRequest(BaseModel):
@@ -136,7 +136,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review:
-                review.rating = data.rating
+                if data.rating is not None:
+                    review.rating = data.rating
                 job = db.get(AnalysisJob, review.job_id)
                 if job.status in {"failed", "cancelled"}:
                     job.status, job.cancel_requested, job.error = "queued", False, None
@@ -144,7 +145,7 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                 job = AnalysisJob(kind="game_review", games_total=1)
                 db.add(job)
                 db.flush()
-                db.add(GameReview(game_id=game_id, job_id=job.id, rating=data.rating))
+                db.add(GameReview(game_id=game_id, job_id=job.id, rating=data.rating or 1000))
             db.commit()
             return {"job_id": job.id, "status": job.status}
 

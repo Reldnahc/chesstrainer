@@ -1,17 +1,52 @@
 import { test, expect } from '@playwright/test';
 
+test('opening starts once, failures allow retry, pause sticks and reopening resumes', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/autostart-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  let starts = 0;
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  await page.route(`**/api/games/${id}/review`, route => {
+    starts++;
+    if (starts === 1) return route.fulfill({status: 503, json: {detail: 'Temporary engine failure'}});
+    game.job = {id: 'auto-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
+    return route.fulfill({json: {job_id: game.job.id, status: game.job.status}});
+  });
+  await page.route('**/api/jobs/auto-review/cancel', route => {
+    game.job.status = 'cancelled';
+    return route.fulfill({json: {ok: true}});
+  });
+  await page.goto('/games');
+  await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
+  expect(starts).toBe(0);
+  await page.getByRole('link', {name: new RegExp(`Review-autostart-${info.project.name} vs CoachFixture`)}).click();
+  await expect(page.getByRole('alert')).toContainText('Temporary engine failure');
+  await page.getByRole('button', {name: '1. f3', exact: true}).click();
+  expect(starts).toBe(1);
+  await page.getByRole('button', {name: 'Retry review', exact: true}).click();
+  await page.getByRole('button', {name: 'Pause review', exact: true}).click();
+  await expect(page.getByRole('button', {name: 'Resume review', exact: true})).toBeEnabled();
+  await page.getByRole('button', {name: 'Next move', exact: true}).click();
+  expect(starts).toBe(2);
+  await page.reload();
+  await expect(page.getByRole('button', {name: 'Pause review', exact: true})).toBeEnabled();
+  expect(starts).toBe(3);
+});
+
 test('review both players, explain in place, and branch without changing the game', async ({page}, testInfo) => {
   test.setTimeout(90_000);
   if (testInfo.project.name === "desktop") await page.setViewportSize({width: 1366, height: 768});
   const fixture = await page.request.post(`/__test/game-review-fixture/${testInfo.project.name}`);
   expect(fixture.ok()).toBe(true);
   const {id} = await fixture.json();
+  const starts: string[] = [];
+  page.on('request', request => { if (request.url().endsWith(`/games/${id}/review`)) starts.push(request.url()); });
   await page.goto('/');
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
-  await page.getByRole('button', {name: 'Start game review', exact: true}).click();
   await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
+  expect(starts).toHaveLength(1);
   await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toHaveCount(0);
   await expect(page.getByRole('heading', {name: 'Game report', exact: true})).toHaveCount(0);
   const game = await (await page.request.get(`/api/games/${id}`)).json();
@@ -100,9 +135,11 @@ test('review both players, explain in place, and branch without changing the gam
   await page.getByRole('link', {name: 'All games', exact: true}).click();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await expect(page.locator('.game-summary > summary')).toBeVisible();
+  expect(starts).toHaveLength(1);
 });
 
 test('stale engine responses never replace the selected move and failures remain playable', async ({page}, testInfo) => {
+  await page.route('**/api/games/*/review', route => route.fulfill({status: 503, json: {detail: 'Review unavailable in this failure fixture'}}));
   await page.request.post(`/__test/game-review-fixture/stale-${testInfo.project.name}`);
   let release: () => void = () => {};
   const gate = new Promise<void>(resolve => {release = resolve;});
@@ -176,6 +213,7 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
 
 
 test('explanations never create a move tree and rapid variations finish rating after returning', async ({page}, testInfo) => {
+  await page.route('**/api/games/*/review', route => route.fulfill({status: 503, json: {detail: 'Review unavailable in this variation fixture'}}));
   const response = await page.request.post(`/__test/game-review-fixture/queued-${testInfo.project.name}`);
   const {id} = await response.json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();

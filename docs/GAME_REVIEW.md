@@ -13,8 +13,12 @@ so refreshing or returning from another screen restores that position. **All gam
 opens the library, retaining its page when the game was opened from a later page.
 Normal arrow keys move through the game; Alt+Left/Right remain browser shortcuts.
 
-Open **Games**, choose an imported game, and select **Start game review**. The coach
-and timeline fill as analysis finishes. Select a move, use the arrow keys/buttons,
+Open **Games** and choose an imported game. Its review starts automatically; an
+unfinished review resumes when reopened, and a completed review reuses saved
+results. Merely browsing the library or syncing games does not start analysis.
+**Pause review** stays paused while the game remains open. If starting or analysis
+fails, **Retry review** lets you retry explicitly without an automatic retry loop.
+The coach and timeline fill as analysis finishes. Select a move, use the arrow keys/buttons,
 or select **Next mistake**. **Show why** overlays arrows and tactical square
 highlights on the current board without moving pieces, changing the selected
 move, requesting more analysis, or creating a variation. **Hide why** or Escape

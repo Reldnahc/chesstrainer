@@ -107,6 +107,8 @@ def test_library_variations_special_moves_and_missing_engine(settings):
         second = client.post(f"/api/games/{game}/review", json={"rating": 1500}).json()
         assert first == second
         assert client.get(f"/api/games/{game}").json()["rating"] == 1500
+        assert client.post(f"/api/games/{game}/review", json={}).json() == first
+        assert client.get(f"/api/games/{game}").json()["rating"] == 1500
 
 
 @pytest.mark.stockfish

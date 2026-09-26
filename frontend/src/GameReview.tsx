@@ -94,6 +94,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const boardArea = useRef<HTMLElement>(null);
   const [orientation, setOrientation] = useState<"white" | "black">("white");
   const [busy, setBusy] = useState(false), [moving, setMoving] = useState(false);
+  const [reviewStarting, setReviewStarting] = useState(true);
   const [training, setTraining] = useState("");
   const [error, setError] = useState("");
   const [branchPosition, setBranchPosition] = useState<{ key: string; value: Position } | null>(null);
@@ -101,6 +102,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const [analysisError, setAnalysisError] = useState<{ key: string; message: string } | null>(null);
   const [retry, setRetry] = useState(0);
   const [explanationKey, setExplanationKey] = useState<string | null>(null);
+  const openedReview = useRef(false);
   const mounted = useRef(true);
   const activeKey = useRef("");
   const inFlight = useRef<Promise<unknown> | null>(null);
@@ -157,6 +159,13 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     return () => { observer.disconnect(); window.removeEventListener('resize', resize); };
   }, [!!game]);
   const running = game?.job && ["queued", "running"].includes(game.job.status);
+  useEffect(() => {
+    if (!game || openedReview.current) return;
+    openedReview.current = true;
+    if (!game.job || ["failed", "cancelled"].includes(game.job.status)) void start();
+    else setReviewStarting(false);
+    // Opening is the trigger. Pausing or failing while open must not restart a job.
+  }, [game?.id]);
   useEffect(() => {
     if (!running) return;
     let active = true;
@@ -268,13 +277,13 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     finally { if (mounted.current) setMoving(false); }
   }
   async function start() {
-    setBusy(true); setError("");
+    setBusy(true); setReviewStarting(true); setError("");
     try {
       await post(`/games/${encodeURIComponent(id)}/review`, {});
       cache.current.clear(); setAnalysisRevision(value => value + 1);
       await load();
     } catch (e) { setError((e as Error).message); }
-    finally { setBusy(false); }
+    finally { setBusy(false); setReviewStarting(false); }
   }
   async function cancel() {
     if (!game?.job) return;
@@ -295,6 +304,11 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const summary = labels.map(label => ({ label, white: game.frames.filter(f => f.actor === "white" && f.report?.label === label).length, black: game.frames.filter(f => f.actor === "black" && f.report?.label === label).length }));
   const displayed = frame || (branchPosition?.value ?? game.frames[cursor.ply]);
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
+  const coachIntro = game.job?.status === "completed"
+    ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea."
+    : game.job?.status === "cancelled" ? "Your review is paused. Resume it below, or move a piece to explore."
+    : game.job?.status === "failed" || (!game.job && !reviewStarting) ? "The review couldn't finish. Retry below, or explore the board while you wait."
+    : "I'm reviewing both sides. The move ratings will appear as they're ready. You can explore the board while you wait.";
   return <div className="game-workspace">
     {error && <p className="notice error" role="alert">{error}<button onClick={() => setError("")}>Dismiss</button></p>}
     <div className="game-review-layout">
@@ -323,7 +337,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     <div className="game-heading"><Link className="button-link text-button" href={libraryHref}><ArrowLeft size={16}/>All games</Link><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></div>
         <section className="game-coach" aria-label="Chess coach"><CoachAvatar/><div className="game-speech">
           <div key={`${analysisKey}:${report?.label}`} className="game-coach-label"><strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>{report ? <Badge label={report.label}/> : actor && !errorAtPosition ? <span className="game-rating-pending" role="status">Checking move...</span> : null}</div>
-          <div className="game-coach-message" tabIndex={0} aria-label="Coach explanation"><p aria-live="polite">{explaining ? cues!.caption : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : !actor ? (game.job?.status === "completed" ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea." : "Start a review for the full story, or move a piece to try your own line.") : "I'm checking this move and the opponent's strongest reply…")}</p>
+          <div className="game-coach-message" tabIndex={0} aria-label="Coach explanation"><p aria-live="polite">{explaining ? cues!.caption : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : !actor ? coachIntro : "I'm checking this move and the opponent's strongest reply…")}</p>
           {errorAtPosition && <p role="alert">{errorAtPosition}</p>}</div>
           <div className="game-coach-actions">
             <button aria-pressed={explaining} disabled={!cues && !errorAtPosition} onClick={() => {
@@ -353,7 +367,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
         <section className="game-progress">
           {game.job?.status !== "completed" && <>
           <div className="row-between"><span>{game.job ? `${game.job.completed}/${game.job.total} moves reviewed` : `${last} moves to review`}</span>
-          {running ? <button disabled={busy || game.job?.cancel_requested} onClick={cancel}>Pause review</button> : <button className="primary" disabled={busy} onClick={start}>{game.job ? "Resume review" : "Start game review"}</button>}</div>
+          {running ? <button disabled={busy || game.job?.cancel_requested} onClick={cancel}>Pause review</button> : <button className="primary" disabled={busy || reviewStarting} onClick={start}>{reviewStarting ? "Starting review…" : !game.job || game.job.status === "failed" ? "Retry review" : "Resume review"}</button>}</div>
           {game.job && <progress value={game.job.completed} max={game.job.total || 1} aria-label="Game review progress"/>}
           {running && <p role="status">{game.job?.cancel_requested ? "Finishing the current move…" : game.job?.status === "queued" ? "Review queued. You can explore while you wait." : "Reviewing both sides…"}</p>}
           </>}

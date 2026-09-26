@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({page}) => {
   // Navigation must work independently of Stockfish availability or analysis.
+  await page.route('**/api/games/*/review', route => route.fulfill({status: 503, json: {detail: 'Review unavailable in this navigation fixture'}}));
   await page.route('**/api/games/*/analyze', route => route.fulfill({json: {report: null, score: null, best_move: null}}));
 });
 
