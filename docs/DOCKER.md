@@ -58,7 +58,7 @@ installations additionally require `ACCOUNTS_ENABLED=true` for accounts. See
 | `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines; busy requests wait. |
 | `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
 | `STOCKFISH_HASH_MB` | `64` | RAM in MB per engine for temporary search-position tables, not disk storage. |
-| `STOCKFISH_WORKERS` | `1` | Concurrent games per background job (1–4). Account mode also obeys the shared slot limit. |
+| `STOCKFISH_WORKERS` | `1` | Concurrent games per training import, or moves within a game review (1–4). Reviews are also capped by `ENGINE_SLOTS`; account mode obeys the shared host-wide pool. |
 | `DATABASE_PATH` | `/data/trainer.sqlite3` | Persistent SQLite file; normally keep unchanged. |
 | `STOCKFISH_PATH` | `/usr/games/stockfish` | Bundled engine binary; normally keep unchanged. |
 | `SERVER_HOST` | `0.0.0.0` | Bind inside the container; Docker's published address controls host exposure. |
@@ -71,7 +71,10 @@ MB estimates search-table RAM, plus app/engine overhead. Local mode uses separat
 interactive engines and job workers: `ENGINE_SLOTS` is not a global local-mode limit.
 CPU pinning determines where work can run; these settings determine how much work is
 scheduled. Defaults do not auto-scale with pinning. Signup and recent-game fetching
-run no analysis. Use only one app instance/Uvicorn worker per database.
+run no analysis. Opening an individual game starts or resumes its review. For faster
+reviews on a host with available CPUs, raise `STOCKFISH_WORKERS` (up to 4) while
+budgeting engine slots, threads and memory together. Use only one app instance/Uvicorn
+worker per database.
 
 ## Optional Compose
 

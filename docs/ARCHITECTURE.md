@@ -90,6 +90,16 @@ The Vite development proxy targets 127.0.0.1:8000.
 
 One coordinator processes queued jobs in order. Within an analysis job, STOCKFISH_WORKERS games run in parallel, each with its own native process and database session. Moves within a game stay ordered. Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits at most twice its worker count. Cancellation stops new work and lets started tasks save; a game is complete after its classification tasks settle.
 
+Full-game review jobs instead parallelize independent move evidence, with at most
+`min(STOCKFISH_WORKERS, ENGINE_SLOTS)` outstanding moves. The coordinator commits
+their reports and progress together in game order, supplying the preceding score
+for Great labels. It reuses saved reports and drains active work on cancellation.
+This uses the existing account engine pool and does not change search/cache policy.
+The UI starts/resumes once per game opening and receives incremental display reports
+from `GET /api/games/:id/review?after=N`; the cursor advances only through reports
+actually received. Ordinary mainline browsing uses those reports instead of starting
+duplicate searches while the job runs; manual variations remain interactive.
+
 Short writes share a lock; rule computation runs outside it. Progress uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent searches. Interactive grading has a separate serialized engine. Startup recovers unfinished jobs; multiple Uvicorn application processes are unsupported.
 
 Training identity ignores clocks but preserves legal en passant and castling. Engine cache identity also preserves rule clocks and move history. Scores are learner-relative with mate separate from centipawns. Classification caches include saved evidence, rules, parameters and taxonomy; classification weights are not calibrated probabilities.

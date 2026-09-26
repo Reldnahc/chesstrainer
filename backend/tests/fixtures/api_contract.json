@@ -394,6 +394,52 @@
             }
           }
         }
+      },
+      "get": {
+        "summary": "Review Progress",
+        "operationId": "review_progress_api_games__game_id__review_get",
+        "parameters": [
+          {
+            "name": "game_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Game Id"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "After"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/games/{game_id}/position": {
@@ -1608,11 +1654,17 @@
       "ReviewRequest": {
         "properties": {
           "rating": {
-            "type": "integer",
-            "maximum": 3000.0,
-            "minimum": 400.0,
-            "title": "Rating",
-            "default": 1000
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 3000.0,
+                "minimum": 400.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating"
           }
         },
         "type": "object",

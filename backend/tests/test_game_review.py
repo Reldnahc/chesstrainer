@@ -9,7 +9,7 @@ from trainer.api import create_app
 from trainer.chess_core import Score
 from trainer.game_review import analyze_move, classify
 from trainer.imports import import_games
-from trainer.models import Decision, Exercise, Game, GameReviewMove, Review
+from trainer.models import AnalysisJob, Decision, Exercise, Game, GameReviewMove, Review
 
 
 def quality(best=0, actual=0, **changes):
@@ -82,6 +82,9 @@ def test_library_variations_special_moves_and_missing_engine(settings):
         assert client.get("/api/games/missing").status_code == 404
         game = seed(app)
         detail = client.get(f"/api/games/{game}").json()
+        assert client.get(f"/api/games/{game}/review").json() == {"job": None, "moves": []}
+        assert client.get(f"/api/games/{game}/review?after=-1").status_code == 422
+        assert client.get("/api/games/missing/review").status_code == 404
         assert len(detail["frames"]) == 5
         assert detail["frames"][-1]["result"] == "0-1"
         assert detail["frames"][-1]["legal_moves"] == []
@@ -112,10 +115,12 @@ def test_library_variations_special_moves_and_missing_engine(settings):
 
 
 @pytest.mark.stockfish
+@pytest.mark.parametrize("workers", [1, 3])
 def test_full_game_native_analysis_resume_restart_and_training_isolation(
-    settings, stockfish_path, monkeypatch
+    settings, stockfish_path, monkeypatch, workers
 ):
     settings.stockfish_path = stockfish_path
+    settings.stockfish_workers = workers
     app = create_app(settings, workers=False)
     with TestClient(app) as client:
         from trainer.routes import games as routes
@@ -155,6 +160,15 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
             == 200
         )
         assert ratings[-1] == 1800
+        updates = client.get(f"/api/games/{game}/review?after=2").json()
+        assert updates["job"] == detail["job"]
+        assert [move["ply"] for move in updates["moves"]] == [3, 4]
+        assert ratings[-2:] == [700, 1800]
+        for move in updates["moves"]:
+            assert "actual_line" not in move["report"]
+            for key, value in move["report"].items():
+                assert value == detail["frames"][move["ply"]]["report"][key]
+        assert client.get(f"/api/games/{game}/review?after=4").json()["moves"] == []
         with app.state.sessions() as db:
             for model in (Decision, Exercise, Review):
                 assert db.scalar(select(func.count()).select_from(model)) == 0
@@ -225,8 +239,10 @@ def test_variations_preserve_special_moves_and_setup_positions(settings, fen, mo
 
 
 @pytest.mark.stockfish
-def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monkeypatch):
+@pytest.mark.parametrize("workers", [1, 3])
+def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monkeypatch, workers):
     settings.stockfish_path = stockfish_path
+    settings.stockfish_workers = workers
     app = create_app(settings, workers=False)
     with TestClient(app) as client:
         game = seed(app)
@@ -244,7 +260,7 @@ def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monk
         app.state.runner.run_job(job)
         detail = client.get(f"/api/games/{game}").json()
         assert detail["job"]["status"] == "cancelled"
-        assert detail["job"]["completed"] == 1
+        assert 1 <= detail["job"]["completed"] <= workers
         first_report = detail["frames"][1]["report"]
         monkeypatch.setattr(app.state.runner, "cancelled", original)
         client.post(f"/api/games/{game}/review", json={})
@@ -253,6 +269,116 @@ def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monk
         assert detail["job"]["status"] == "completed"
         assert detail["job"]["completed"] == 4
         assert detail["frames"][1]["report"] == first_report
+
+
+def test_parallel_review_preserves_order_history_and_engine_budget(settings, monkeypatch):
+    import threading
+
+    settings.stockfish_workers = 4
+    settings.engine_slots = 2
+    app = create_app(settings, workers=False, start_engine=False)
+    engines, finished, histories = [], [], {}
+    lock, pair, second_done = threading.Lock(), threading.Barrier(2), threading.Event()
+    active = peak = 0
+
+    class Engine:
+        def __init__(self, *_):
+            self.closed = False
+            engines.append(self)
+
+        def close(self):
+            self.closed = True
+
+    def analyze(engine, board, move):
+        nonlocal active, peak
+        ply = len(board.move_stack) + 1
+        with lock:
+            active += 1
+            peak = max(peak, active)
+            histories[ply] = [m.uci() for m in board.move_stack]
+        try:
+            if ply <= 2:
+                pair.wait(5)
+            if ply == 1:
+                assert second_done.wait(5)
+            with lock:
+                finished.append(ply)
+            if ply == 2:
+                second_done.set()
+            return {"best": {"score": {"kind": "cp", "value": ply * 100}}}
+        finally:
+            with lock:
+                active -= 1
+
+    monkeypatch.setattr("trainer.game_review.analyze_move", analyze)
+    app.state.runner.engine_factory = Engine
+    with TestClient(app) as client:
+        game = seed(app)
+        job_id = client.post(f"/api/games/{game}/review", json={}).json()["job_id"]
+        app.state.runner.run_job(job_id)
+        with app.state.sessions() as db:
+            job = db.get(AnalysisJob, job_id)
+            assert job.status == "completed", job.error
+            assert job.positions_triaged == 4
+            rows = db.scalars(select(GameReviewMove).order_by(GameReviewMove.ply)).all()
+            assert [row.ply for row in rows] == [1, 2, 3, 4]
+            assert rows[0].report["previous_score"] is None
+            for row in rows[1:]:
+                assert row.report["previous_score"] == {
+                    "kind": "cp",
+                    "value": -(row.ply - 1) * 100,
+                    "mate_given": False,
+                }
+        assert finished[:2] == [2, 1]
+        assert peak == 2 and len(engines) == 2
+        assert histories[4] == ["f2f3", "e7e5", "g2g4"]
+        assert all(engine.closed for engine in engines)
+
+
+def test_parallel_review_failure_keeps_committed_work_and_closes_engines(settings, monkeypatch):
+    from trainer.engine import EngineUnavailable
+
+    settings.stockfish_workers = 2
+    app = create_app(settings, workers=False, start_engine=False)
+    engines, calls = [], []
+    failing = True
+
+    class Engine:
+        def __init__(self, *_):
+            self.closed = False
+            engines.append(self)
+
+        def close(self):
+            self.closed = True
+
+    def analyze(engine, board, move):
+        ply = len(board.move_stack) + 1
+        calls.append(ply)
+        if failing and ply == 2:
+            raise EngineUnavailable("Fixture search failed")
+        return {"best": {"score": {"kind": "cp", "value": ply * 100}}}
+
+    monkeypatch.setattr("trainer.game_review.analyze_move", analyze)
+    app.state.runner.engine_factory = Engine
+    with TestClient(app) as client:
+        game = seed(app)
+        job_id = client.post(f"/api/games/{game}/review", json={}).json()["job_id"]
+        app.state.runner.run_job(job_id)
+        with app.state.sessions() as db:
+            job = db.get(AnalysisJob, job_id)
+            assert (job.status, job.error) == ("failed", "Fixture search failed")
+            assert db.scalar(select(func.count()).select_from(GameReviewMove)) == 1
+            first = db.get(GameReviewMove, (game, 1)).report
+        assert all(engine.closed for engine in engines)
+        failing = False
+        client.post(f"/api/games/{game}/review", json={})
+        app.state.runner.run_job(job_id)
+        with app.state.sessions() as db:
+            assert db.get(AnalysisJob, job_id).status == "completed"
+            assert db.scalar(select(func.count()).select_from(GameReviewMove)) == 4
+            assert db.get(GameReviewMove, (game, 1)).report == first
+        assert calls.count(1) == 1
+        assert all(engine.closed for engine in engines)
 
 
 def test_review_migration_matches_models(sessions):

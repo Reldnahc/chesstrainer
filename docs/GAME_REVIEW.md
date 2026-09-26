@@ -50,6 +50,24 @@ readable without Stockfish. Interactive variations use a separate, serialized na
 engine request so they do not occupy the recall engine. Variations are legal-replayed
 from the selected game ply, preserving history, castling, promotion and en passant.
 
+Reviews analyze independent moves concurrently using `STOCKFISH_WORKERS`, capped
+by `ENGINE_SLOTS`. Account mode also shares its host-wide engine pool with all other
+requests. At most one move per review worker is in flight or queued. Results commit
+in game order, attaching the preceding position's score before labels are exposed;
+this preserves Great-move comparisons. Pause stops adding work and saves the active
+batch before settling. Resume reuses committed moves, and failures close workers.
+Search depth, time, node limits and classification rules are unchanged. With the
+default of one worker, analysis stays serial; increasing workers permits parallel
+positions, while increasing threads assigns more CPU threads to each position.
+
+The browser polls `/api/games/<id>/review?after=<last-received-ply>` every 750 ms
+while running, with at most one progress request in flight. Responses contain only
+new display reports and job status, leaving the board and exploration state intact.
+Full witness lines remain available from the game detail endpoint. Original-game
+positions already covered by the running review do not start duplicate interactive
+searches. The initial board reuses the first report's pre-move evaluation; manually
+played variations still receive their own analysis immediately.
+
 Both players use the configured deep search limits with two principal variations.
 Moves outside those candidates receive a restricted-root search. Reports retain
 engine/version/depth, typed mate/centipawn scores, evidence IDs, candidate lines,

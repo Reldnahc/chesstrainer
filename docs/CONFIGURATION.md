@@ -43,6 +43,12 @@ See [.env.example](../.env.example) for a copyable starting point.
 
 Search stops at the first reached depth/time/node bound. STOCKFISH_WORKERS controls parallel games within one import; each owns a native process. STOCKFISH_THREADS and hash memory apply per process. Interactive grading has a separate engine in addition to background workers. Four workers with one thread permit four simultaneous background searches plus interactive grading; concurrency does not change per-position limits.
 
+Full-game reviews use STOCKFISH_WORKERS for parallel moves within the selected
+game, capped by ENGINE_SLOTS. Results are saved in move order so comparisons with
+the preceding move remain correct. Account mode additionally enforces the shared
+host-wide engine pool. The default of one worker remains serial; hosts with spare
+CPU capacity can increase it to 2–4 without lowering the review's search limits.
+
 Missing Stockfish produces an actionable status without preventing UI startup. New analysis and unlisted engine answers need the executable. Existing stored answers and saved-evidence classification remain usable.
 
 For unlisted answers, the saved analysis limits/resources and binary identity are required. An incompatible executable produces an unavailable response without a recall failure. Rebuilding old exercises under a new engine is a future operation.

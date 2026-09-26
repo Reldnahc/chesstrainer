@@ -213,3 +213,45 @@ in the right panel. Desktop screenshot inspected; mobile review tests also pass.
   shared compact header and board layout remain intact.
 - Tests used isolated fixture databases. No database schema, engine policy,
   reverse-proxy configuration or running Unraid deployment changed.
+
+## Automatic game reviews and faster progress - September 26, 2026
+
+Opening a game now starts or resumes its review once. Completed reports are reused;
+pause remains paused while the game stays open, and failures expose an explicit
+retry. Parallel move searches keep full repetition history and commit in game order
+so Great-move comparisons retain the preceding score. Progress returns only new
+display reports, and mainline browsing avoids duplicate interactive searches while
+the review runs. Manually played variations still receive analysis.
+
+A local native-Stockfish benchmark used a synthetic 24-ply Ruy Lopez game, a fresh
+empty database for each run, depth 16, a 0.8-second search cap, one engine thread,
+64 MB hash per engine and no node cap:
+
+| Review implementation | Workers | Elapsed time |
+| --- | --- | --- |
+| Previous sequential loop | 4 configured, 1 used | 10.000 s |
+| Bounded parallel implementation | 1 | 10.077 s |
+| Bounded parallel implementation | 4 | 3.435 s |
+
+The four-worker run was about 2.9 times faster in this single local benchmark;
+this is not a universal latency guarantee. Per-position search limits and move
+classification rules are unchanged. The default remains one worker; parallel
+speedups require increasing `STOCKFISH_WORKERS` within the available engine budget.
+
+The full game response was 299,991 bytes. Incremental progress with two new move
+reports was 1,982 bytes, and a no-change response was 145 bytes. Polling is single
+flight, waits 750 ms between responses, and advances its cursor by reports received
+even if the job's completed count races ahead. Tests and benchmarks use isolated
+databases; no schema migration or running Unraid deployment was changed.
+
+- Full backend suite: 329 passed, including native one/three-worker reviews,
+  pause/resume, out-of-order search completion, engine-budget enforcement,
+  preserved repetition history, worker-failure cleanup, incremental reports and
+  account isolation. The API snapshot includes the new progress route and optional
+  fallback rating; no other contract changes were present.
+- Full desktop/phone browser suite: 60 passed, two intentional device-specific
+  skips. Separate account suite: two passed. New checks cover automatic startup,
+  retry, pause/reopen, completed reuse, incremental ratings without board reloads,
+  a racing progress count and avoiding duplicate original-position searches.
+- TypeScript/Vite production build, targeted Ruff lint/format checks, Unraid XML
+  parsing and Git whitespace checks passed.

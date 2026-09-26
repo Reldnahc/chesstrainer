@@ -21,6 +21,7 @@ type Game = {
   orientation: "white" | "black"; rating: number; white_rating: number | null; black_rating: number | null; frames: Frame[];
   job: { id: string; status: string; completed: number; total: number; error: string | null; cancel_requested: boolean } | null;
 };
+type ReviewProgress = { job: Game["job"]; moves: { ply: number; report: Report }[] };
 type Item = { id: string; white: string; black: string; played_on: string | null; result: string; status: string };
 type Branch = { id: number; root: number; moves: string[]; sans: string[]; returnPly: number; };
 type Cursor = { ply: number; branch: number | null; step: number };
@@ -103,6 +104,8 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const [retry, setRetry] = useState(0);
   const [explanationKey, setExplanationKey] = useState<string | null>(null);
   const openedReview = useRef(false);
+  const loadVersion = useRef(0);
+  const receivedPly = useRef(0);
   const mounted = useRef(true);
   const activeKey = useRef("");
   const inFlight = useRef<Promise<unknown> | null>(null);
@@ -119,17 +122,23 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const frame = branch ? (branchPosition?.key === key ? branchPosition.value : null) : game?.frames[cursor.ply];
   const currentAnalysis = cache.current.get(analysisKey);
   const report = saved || currentAnalysis?.report;
-  const score = report?.white_score || currentAnalysis?.score;
+  const startingReport = !branch && cursor.ply === 0 ? game?.frames[1]?.report : null;
+  const startingScore = startingReport ? { ...startingReport.best.score, value: startingReport.best.score.value * (game?.frames[0].turn === "white" ? 1 : -1) } : null;
+  const score = report?.white_score || currentAnalysis?.score || startingScore;
+  const bestMove = report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
   const cues = report?.board_cues?.fen === frame?.fen ? report?.board_cues : null;
   const explaining = explanationKey === key && !!cues;
   const actor = (branch ? cursor.step > 0 : cursor.ply > 0) && frame?.san ? (frame.turn === "white" ? "Black" : "White") : null;
-  const load = useCallback(() => api<Game>(`/games/${encodeURIComponent(id)}`).then(data => {
-    if (mounted.current) {
+  const load = useCallback(async () => {
+    const version = ++loadVersion.current;
+    const data = await api<Game>(`/games/${encodeURIComponent(id)}`);
+    if (mounted.current && version === loadVersion.current) {
+      receivedPly.current = data.frames.reduce((last, frame, index) => frame.report ? index : last, 0);
       setCursor(value => ({ ...value, ply: Math.min(value.ply, data.frames.length - 1) }));
       setGame(data);
     }
     return data;
-  }), [id]);
+  }, [id]);
   useEffect(() => {
     mounted.current = true;
     load().then(data => { if (mounted.current) { setOrientation(data.orientation); } }).catch(e => { if (mounted.current) setError(e.message); });
@@ -169,9 +178,22 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   useEffect(() => {
     if (!running) return;
     let active = true;
-    const timer = window.setInterval(() => { if (active) load().catch(e => { if (active) setError(e.message); }); }, 1800);
-    return () => { active = false; window.clearInterval(timer); };
-  }, [running, load]);
+    let timer: number | undefined;
+    const update = async () => {
+      const version = loadVersion.current;
+      try {
+        const progress = await api<ReviewProgress>(`/games/${encodeURIComponent(id)}/review?after=${receivedPly.current}`);
+        if (!active || version !== loadVersion.current) return;
+        // Advance only over reports actually received, not a newer progress count.
+        for (const move of progress.moves) receivedPly.current = Math.max(receivedPly.current, move.ply);
+        const reports = new Map(progress.moves.map(move => [move.ply, move.report]));
+        setGame(current => current ? { ...current, job: progress.job, frames: current.frames.map((frame, index) => reports.has(index) ? { ...frame, report: reports.get(index)! } : frame) } : current);
+      } catch (e) { if (active) setError((e as Error).message); }
+      finally { if (active) timer = window.setTimeout(update, 750); }
+    };
+    void update();
+    return () => { active = false; window.clearTimeout(timer); };
+  }, [running, id]);
   useEffect(() => {
     if (!branch) return;
     let active = true;
@@ -205,7 +227,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     return work;
   }
   useEffect(() => {
-    if (!game || saved || !frame) return;
+    if (!game || saved || startingReport || !frame || (!branch && (running || reviewStarting))) return;
     let active = true;
     const timer = window.setTimeout(async () => {
       if (inFlight.current) await inFlight.current;
@@ -214,7 +236,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     return () => { active = false; window.clearTimeout(timer); };
     // The position key includes the full repetition history.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, key, !!frame, !!saved, retry, game?.rating]);
+  }, [id, key, !!frame, !!saved, !!startingReport, retry, game?.rating, running, reviewStarting]);
   useEffect(() => {
     if (branch) return;
     const button = moveButtons.current.get(cursor.ply);
@@ -344,7 +366,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
               if (errorAtPosition) { setAnalysisError(null); setRetry(n => n + 1); }
               else setExplanationKey(explaining ? null : key);
             }}>{errorAtPosition ? "Retry analysis" : explaining ? "Hide why" : "Show why"}</button>
-            <span title={report ? `Best move: ${report.best.san}` : undefined}>{report ? <>Best: <strong>{report.best.san}</strong></> : currentAnalysis?.best_move ? <>Best: <strong>{currentAnalysis.best_move}</strong></> : "Move a piece to explore"}</span>
+            <span title={bestMove ? `Best move: ${bestMove}` : undefined}>{bestMove ? <>Best: <strong>{bestMove}</strong></> : "Move a piece to explore"}</span>
           </div>
         </div></section>
         <section className="game-notation" aria-label="Moves and variations">
@@ -369,7 +391,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
           <div className="row-between"><span>{game.job ? `${game.job.completed}/${game.job.total} moves reviewed` : `${last} moves to review`}</span>
           {running ? <button disabled={busy || game.job?.cancel_requested} onClick={cancel}>Pause review</button> : <button className="primary" disabled={busy || reviewStarting} onClick={start}>{reviewStarting ? "Starting review…" : !game.job || game.job.status === "failed" ? "Retry review" : "Resume review"}</button>}</div>
           {game.job && <progress value={game.job.completed} max={game.job.total || 1} aria-label="Game review progress"/>}
-          {running && <p role="status">{game.job?.cancel_requested ? "Finishing the current move…" : game.job?.status === "queued" ? "Review queued. You can explore while you wait." : "Reviewing both sides…"}</p>}
+          {running && <p role="status">{game.job?.cancel_requested ? "Finishing active moves…" : game.job?.status === "queued" ? "Review queued. You can explore while you wait." : "Reviewing both sides…"}</p>}
           </>}
           {game.job?.error && <p className="small" role="alert">{game.job.error}</p>}
         </section>

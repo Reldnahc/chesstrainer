@@ -1,6 +1,9 @@
 """Evidence-backed game coaching. Never writes training decisions or recall history."""
 
 import io
+from collections import deque
+from concurrent.futures import ThreadPoolExecutor
+from queue import Queue
 
 import chess
 import chess.pgn
@@ -244,31 +247,85 @@ def run_review(runner, job_id, engine_override=None):
         game = db.get(Game, review.game_id)
         parsed = parsed_game(game)
         moves = list(parsed.mainline_moves())
-    engine = engine_override or runner.engine_factory(runner.settings, runner.sessions)
+        saved = {
+            row.ply: row.report
+            for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
+        }
+    missing = len(moves) - len(saved)
+    workers = (
+        1
+        if engine_override
+        else min(runner.settings.stockfish_workers, runner.settings.engine_slots, max(1, missing))
+    )
+    engines = (
+        [engine_override]
+        if engine_override
+        else [
+            runner.engine_factory(runner.settings, runner.sessions)
+            for _ in range(workers)
+            if missing
+        ]
+    )
+    available = Queue()
+    for engine in engines:
+        available.put(engine)
+
+    def analyze(board, move):
+        if runner.cancelled(job_id):
+            return None
+        engine = available.get()
+        try:
+            # Evidence for a move is independent of the preceding move's score.
+            # Attach that score in game order below, before exposing any labels.
+            return analyze_move(engine, board, move)
+        finally:
+            available.put(engine)
+
+    executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="game-review")
     try:
         board = parsed.board()
+        pending = deque()
+        next_ply = 1
         previous = None
-        for ply, move in enumerate(moves, 1):
-            if runner.cancelled(job_id):
-                break
-            with runner.sessions() as db:
-                saved = db.get(GameReviewMove, (game.id, ply))
-                report = saved.report if saved else None
+
+        def fill():
+            nonlocal next_ply
+            # Bound both running work and queued boards. Cancellation never leaves
+            # a whole game's searches waiting in the executor.
+            while next_ply <= len(moves) and len(pending) < workers:
+                if runner.cancelled(job_id):
+                    break
+                move = moves[next_ply - 1]
+                future = (
+                    None
+                    if next_ply in saved
+                    else executor.submit(analyze, board.copy(stack=True), move)
+                )
+                pending.append((next_ply, future))
+                board.push(move)
+                next_ply += 1
+
+        fill()
+        while pending:
+            ply, future = pending.popleft()
+            report = future.result() if future else saved[ply]
             if report is None:
-                report = analyze_move(engine, board, move, previous)
-                with runner.import_lock, runner.sessions() as db:
+                break
+            with runner.import_lock, runner.sessions() as db:
+                if future:
+                    report["previous_score"] = previous.model_dump() if previous else None
                     db.add(GameReviewMove(game_id=game.id, ply=ply, report=report))
-                    db.commit()
-            previous = Score.model_validate(report["best"]["score"]).negate()
-            board.push(move)
-            with runner.sessions() as db:
                 job = db.get(AnalysisJob, job_id)
                 job.positions_triaged = ply
                 job.games_processed = int(ply == len(moves))
                 db.commit()
+            previous = Score.model_validate(report["best"]["score"]).negate()
+            fill()
     finally:
+        executor.shutdown(wait=True, cancel_futures=True)
         if not engine_override:
-            engine.close()
+            for engine in engines:
+                engine.close()
 
 
 def branch_board(game, ply, moves):

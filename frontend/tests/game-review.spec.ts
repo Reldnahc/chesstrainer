@@ -6,7 +6,8 @@ test('opening starts once, failures allow retry, pause sticks and reopening resu
   let starts = 0;
   await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
   await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
-  await page.route(`**/api/games/${id}/review`, route => {
+  await page.route(`**/api/games/${id}/review*`, route => {
+    if (route.request().method() === 'GET') return route.fulfill({json: {job: game.job, moves: []}});
     starts++;
     if (starts === 1) return route.fulfill({status: 503, json: {detail: 'Temporary engine failure'}});
     game.job = {id: 'auto-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
@@ -33,6 +34,45 @@ test('opening starts once, failures allow retry, pause sticks and reopening resu
   expect(starts).toBe(3);
 });
 
+test('progress merges only new reports without reloading the board or duplicating searches', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/progress-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  let fullLoads = 0, analyses = 0;
+  const cursors: number[] = [];
+  const moveReport = (ply: number) => {
+    const frame = game.frames[ply];
+    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 25}};
+    return {ply, report: {label: 'Good', reason: '', coach: 'A sound move.', best: candidate, actual: candidate,
+      white_score: candidate.score, depth: 16, engine_version: 'Progress fixture', board_cues: null}};
+  };
+  await page.route(`**/api/games/${id}`, route => { fullLoads++; return route.fulfill({json: game}); });
+  await page.route(`**/api/games/${id}/review*`, route => {
+    if (route.request().method() === 'POST') {
+      game.job = {id: 'progress-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
+      return route.fulfill({json: {job_id: game.job.id, status: game.job.status}});
+    }
+    const after = Number(new URL(route.request().url()).searchParams.get('after'));
+    cursors.push(after);
+    const plies = after === 0 ? [1] : after === 1 ? [2, 3] : [4];
+    // The count may advance between the server's report and count queries.
+    const job = {...game.job, status: after === 3 ? 'completed' : 'running', completed: after === 0 ? 2 : plies.at(-1)};
+    return route.fulfill({json: {job, moves: plies.map(moveReport)}});
+  });
+  await page.route(`**/api/games/${id}/analyze`, route => {
+    analyses++;
+    return route.fulfill({json: {report: null, score: null, best_move: null}});
+  });
+  await page.goto(`/games/${id}?ply=2`);
+  await expect(page.locator('.game-summary > summary')).toContainText('complete game');
+  await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
+  await expect(page.locator('.game-move-symbol')).toHaveCount(4);
+  await page.getByRole('button', {name: 'First move', exact: true}).click();
+  await expect(page.getByLabel('Evaluation for White: +0.25')).toBeVisible();
+  expect(cursors).toEqual([0, 1, 3]);
+  expect(fullLoads).toBe(2);
+  expect(analyses).toBe(0);
+});
+
 test('review both players, explain in place, and branch without changing the game', async ({page}, testInfo) => {
   test.setTimeout(90_000);
   if (testInfo.project.name === "desktop") await page.setViewportSize({width: 1366, height: 768});
@@ -40,7 +80,7 @@ test('review both players, explain in place, and branch without changing the gam
   expect(fixture.ok()).toBe(true);
   const {id} = await fixture.json();
   const starts: string[] = [];
-  page.on('request', request => { if (request.url().endsWith(`/games/${id}/review`)) starts.push(request.url()); });
+  page.on('request', request => { if (request.method() === 'POST' && request.url().endsWith(`/games/${id}/review`)) starts.push(request.url()); });
   await page.goto('/');
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();

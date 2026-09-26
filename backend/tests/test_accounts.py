@@ -77,6 +77,7 @@ def test_sessions_isolation_csrf_and_restart(settings):
         assert client.get("/api/games").json()["total"] == 0
         assert client.get("/api/jobs").json() == []
         assert client.get(f"/api/games/{game}").status_code == 404
+        assert client.get(f"/api/games/{game}/review?after=0").status_code == 404
         bob_headers = ORIGIN | {"X-CSRF-Token": bob["csrf"]}
         assert (
             client.post(f"/api/games/{game}/review", json={}, headers=bob_headers).status_code

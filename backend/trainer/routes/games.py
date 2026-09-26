@@ -29,6 +29,21 @@ def pgn_rating(parsed, color):
         return None
 
 
+def job_progress(job, completed, total):
+    return (
+        {
+            "id": job.id,
+            "status": job.status,
+            "completed": completed,
+            "total": total,
+            "error": job.error,
+            "cancel_requested": job.cancel_requested,
+        }
+        if job
+        else None
+    )
+
+
 def create_router(*, sessions, settings, engine_factory, mutation_lock):
     router = APIRouter()
     # Interactive searches use a separate engine from recall grading and import jobs.
@@ -118,17 +133,56 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                 "white_rating": pgn_rating(parsed, True),
                 "black_rating": pgn_rating(parsed, False),
                 "frames": frames,
-                "job": {
-                    "id": job.id,
-                    "status": job.status,
-                    "completed": len(saved),
-                    "total": len(frames) - 1,
-                    "error": job.error,
-                    "cancel_requested": job.cancel_requested,
-                }
-                if job
-                else None,
+                "job": job_progress(job, len(saved), len(frames) - 1),
             }
+
+    @router.get("/api/games/{game_id}/review")
+    def review_progress(game_id: str, after: int = Query(0, ge=0)):
+        with sessions() as db:
+            game = require_game(db, game_id)
+            review = db.get(GameReview, game_id)
+            if review is None:
+                return {"job": None, "moves": []}
+            job = db.get(AnalysisJob, review.job_id)
+            parsed = parsed_game(game)
+            starting_color = parsed.board().turn
+            total = sum(1 for _ in parsed.mainline_moves())
+            rows = db.scalars(
+                select(GameReviewMove)
+                .where(GameReviewMove.game_id == game_id, GameReviewMove.ply > after)
+                .order_by(GameReviewMove.ply)
+            ).all()
+            completed = db.scalar(
+                select(func.count())
+                .select_from(GameReviewMove)
+                .where(GameReviewMove.game_id == game_id)
+            )
+            moves = []
+            for row in rows:
+                color = starting_color if row.ply % 2 else not starting_color
+                report = public_report(row.report, pgn_rating(parsed, color) or review.rating)
+                # Board positions are loaded once. Progress needs new display
+                # fields, not repeated full witness lines or legal-move lists.
+                moves.append(
+                    {
+                        "ply": row.ply,
+                        "report": {
+                            key: report[key]
+                            for key in (
+                                "label",
+                                "reason",
+                                "coach",
+                                "best",
+                                "actual",
+                                "white_score",
+                                "depth",
+                                "engine_version",
+                                "board_cues",
+                            )
+                        },
+                    }
+                )
+            return {"job": job_progress(job, completed, total), "moves": moves}
 
     @router.post("/api/games/{game_id}/review")
     def begin_review(game_id: str, data: ReviewRequest):
