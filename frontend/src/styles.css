@@ -64,7 +64,7 @@ select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); 
 
 /* One compact application bar, with the same destinations on every device. */
 .app-header { background: #191a1d; border-bottom: 1px solid var(--line); }
-.header-inner { width: var(--page-width); min-width: min(100%, 920px); margin: auto; min-height: 56px; padding: 0 var(--page-inline-padding); display: flex; align-items: center; gap: 48px; }
+.header-inner { width: var(--page-width); margin: auto; min-height: 56px; padding: 0 var(--page-inline-padding); display: flex; align-items: center; gap: 48px; }
 .brand { display: flex; gap: 11px; align-items: center; text-decoration: none; flex-shrink: 0; font-size: 23px; line-height: 1; letter-spacing: -.8px; font-weight: 600; }
 .brand img { display: block; }
 .brand-sub { display: block; font-size: 10px; letter-spacing: .35px; font-weight: 400; color: var(--muted); margin-top: 7px; }
@@ -204,6 +204,10 @@ footer > span:last-child { display: flex; align-items: center; gap: 8px; }
   .practice-panel h2 { font-size: 25px; }
   .board-coordinate-note { display: none; }
   .stages { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .header-inner { gap: 16px; }
+  .brand-wordmark { display: none; }
 }
 @media (max-width: 760px) {
   :root { --page-width: 100%; --page-inline-padding: 12px; }

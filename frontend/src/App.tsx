@@ -65,7 +65,7 @@ export default function App() {
             aria-label="Fieldwork home"
           >
             <img src={appMark} width="34" height="34" alt="" />
-            <span>
+            <span className="brand-wordmark">
               fieldwork<span className="brand-sub">Chess training</span>
             </span>
           </Link>
