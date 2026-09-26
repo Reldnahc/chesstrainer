@@ -1,5 +1,6 @@
 """Adversarial multi-account requests and durable sessions in one database."""
 
+import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select, update
 from trainer.accounts import COOKIE, Accounts
@@ -13,6 +14,34 @@ ORIGIN = {"Origin": "http://testserver"}
 PGN = '[White "Learner"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'
 
 
+@pytest.mark.parametrize("origin", ["", "   "])
+def test_blank_origin_uses_local_workspace_without_exposing_accounts(settings, origin):
+    settings.accounts_enabled = True  # The container default must not force login.
+    settings.public_origin = origin
+    engine, local_sessions = database(settings.database_path)
+    migrate(engine)
+    alice = Accounts(settings.database_path).create("alice", "testing-password")
+    with account_sessions(engine, alice["id"])() as db:
+        import_games(db, "private", PGN, [], "white")
+        private_game = db.scalar(select(Game.id))
+    engine.dispose()
+
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        assert client.get("/api/auth/me").json() == {"enabled": False, "user": None}
+        assert not app.state.settings.accounts_enabled
+        assert client.get("/api/games").json()["total"] == 0
+        assert client.get(f"/api/games/{private_game}").status_code == 404
+        response = client.post(
+            "/api/imports", files={"file": ("local.pgn", PGN)}, data={"side": "white"}
+        )
+        assert response.status_code == 200, response.text
+        local_game = client.get("/api/games").json()["items"][0]["id"]
+        assert local_game != private_game
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        assert client.get("/api/games").json()["items"][0]["id"] == local_game
+
+
 def signup(client, name):
     response = client.post(
         "/api/auth/signup", json={"username": name, "password": "testing-password"}, headers=ORIGIN
@@ -23,6 +52,7 @@ def signup(client, name):
 
 def test_sessions_isolation_csrf_and_restart(settings):
     settings.accounts_enabled = True
+    settings.public_origin = ORIGIN["Origin"]
     settings.session_secure = False
     settings.stockfish_path = "missing-no-signup-engine"
     app = create_app(settings, workers=False)

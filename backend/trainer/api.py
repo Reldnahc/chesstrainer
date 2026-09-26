@@ -41,6 +41,12 @@ def create_app(
     provider_lock=None,
 ):
     settings = settings or Settings()
+    # An unset public address deliberately selects the reserved local workspace,
+    # including in Docker where accounts are enabled by default.
+    settings = settings.model_copy(update={
+        "public_origin": settings.public_origin.strip().rstrip("/"),
+        "accounts_enabled": settings.accounts_enabled and bool(settings.public_origin.strip()),
+    })
     if settings.accounts_enabled:
         from trainer.multiuser import create_multiuser_app
 

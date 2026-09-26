@@ -6,6 +6,11 @@ Python-chess owns rules; Stockfish owns evaluation; configurable Python policy o
 
 Shared hosting: [Unraid Docker setup](docs/UNRAID.md) and [accounts/data migration](docs/ACCOUNTS.md).
 
+Leave `PUBLIC_ORIGIN` blank for local single-user operation without login. Everyone
+who can reach that instance shares its local games and progress. For shared hosting
+with separate accounts, set `ACCOUNTS_ENABLED=true` (already the Docker image default)
+and `PUBLIC_ORIGIN=https://your-chess-hostname`. Restart after changing modes.
+
 ## Implemented
 
 See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the original specification and the limits of each feature.

@@ -1,6 +1,14 @@
 # Accounts and one shared database
 
-`ACCOUNTS_ENABLED=true` enables self-service username/password accounts. Cloudflare
+Self-service username/password accounts require `ACCOUNTS_ENABLED=true` and a
+nonblank `PUBLIC_ORIGIN`. A blank or whitespace-only `PUBLIC_ORIGIN` selects local
+single-user mode without login, even when `ACCOUNTS_ENABLED=true` in Docker.
+Everyone who can reach that instance shares the reserved `local` workspace. Existing
+named accounts remain stored and private; clearing the origin does not merge or
+expose their games. Restart the server/container after changing modes. The optional
+legacy `LAN_ACCESS_TOKEN` still applies in local mode if explicitly configured.
+
+Cloudflare
 Access and the existing reverse proxy remain independent outer access controls.
 The app authenticates its own users; it does not trust Cloudflare email headers.
 

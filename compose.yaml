@@ -10,7 +10,8 @@ services:
       - "${APPDATA_PATH:-/mnt/user/appdata/fieldwork}:/data"
     environment:
       ACCOUNTS_ENABLED: "true"
-      PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:?Set PUBLIC_ORIGIN to your HTTPS chess hostname}"
+      # Blank selects local single-user mode without login.
+      PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:-}"
       SESSION_SECURE: "true"
       DATABASE_PATH: /data/trainer.sqlite3
       STOCKFISH_PATH: /usr/games/stockfish

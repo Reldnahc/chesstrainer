@@ -7,6 +7,22 @@ accounts, sessions, games and progress. Neither a second database service nor a
 replacement proxy is needed. Cloudflare Access stays outside the app; users sign
 up and sign in to Fieldwork independently.
 
+## Local or shared mode
+
+- **Local only, no login:** leave `PUBLIC_ORIGIN` empty. Open the mapped LAN HTTP
+  address (for example `http://YOUR-UNRAID-IP:18000` if host port 18000 maps to
+  container port 8000). Everyone who can reach it shares one local workspace.
+  No cookie configuration is needed because local mode does not use account sessions.
+- **Separate accounts:** set `PUBLIC_ORIGIN=https://your-chess-hostname` and keep
+  `ACCOUNTS_ENABLED=true` and `SESSION_SECURE=true`. Use that HTTPS address to sign in.
+
+Restart after changing the origin. Blank/whitespace-only values override
+`ACCOUNTS_ENABLED=true` and select local mode. Named accounts are not exposed or
+merged into the local workspace when switching modes. Keep no-login mode on a
+trusted local network. An explicitly configured `LAN_ACCESS_TOKEN` still gates it.
+Unraid's **WebUI** field controls its Open WebUI shortcut separately: set it to your
+LAN URL for local mode or your HTTPS hostname for account mode.
+
 ## Published image and configuration
 
 Pushes to `main` (or a manual run of `.github/workflows/docker.yml`) build and
@@ -77,7 +93,7 @@ from a source checkout. The default Compose deployment uses the published image.
 ## Attach your proxy
 
 Point your existing proxy at port **8000** and preserve the public `Host` header.
-`PUBLIC_ORIGIN` must exactly match the HTTPS address used in the browser, with no
+In account mode, `PUBLIC_ORIGIN` must exactly match the HTTPS address used in the browser, with no
 path. HTTPS terminates at your proxy; the internal upstream remains HTTP. Secure
 session cookies and the explicit public origin work without trusting arbitrary
 forwarded headers. Apply your Cloudflare Access policy to that hostname as usual.

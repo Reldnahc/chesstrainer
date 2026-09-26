@@ -11,6 +11,7 @@ from trainer.models import AnalysisJob, ChessComImport, EngineAnalysis, Game, Im
 
 def test_sync_fetches_recent_games_without_engine_and_preserves_explicit_analysis(settings):
     settings.accounts_enabled = True
+    settings.public_origin = "http://testserver"
     settings.session_secure = False
     current = datetime.now(timezone.utc)
     root = "https://api.chess.com/pub/player/learner/games"
