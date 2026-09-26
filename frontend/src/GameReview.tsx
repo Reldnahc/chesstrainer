@@ -349,7 +349,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
           <button className="game-return" aria-label="Back to game" title="Back to game (Escape)" disabled={!branch} onClick={() => branch && navigate(branch.returnPly)}><CornerUpLeft size={16}/><span>Game</span></button>
           <button aria-label="First move" disabled={current === 0} onClick={() => { setExplanationKey(null); if (branch) setCursor(c => ({ ...c, step: 0 })); else navigate(0); }}><ChevronsLeft size={19}/></button>
           <button aria-label="Previous move" disabled={current === 0} onClick={() => navigateRef.current(-1)}><ChevronLeft size={19}/></button>
-          <span>{current} / {maximum}</span>
+          <span className="game-move-counter"><span>{current}</span> / <span>{maximum}</span></span>
           <button aria-label="Next move" disabled={current === maximum} onClick={() => navigateRef.current(1)}><ChevronRight size={19}/></button>
           <button aria-label="Last move" disabled={current === maximum} onClick={() => { setExplanationKey(null); if (branch) setCursor(c => ({ ...c, step: maximum })); else navigate(last); }}><ChevronsRight size={19}/></button>
           <button aria-label="Flip board" onClick={() => setOrientation(v => v === "white" ? "black" : "white")}><FlipVertical2 size={17}/></button>

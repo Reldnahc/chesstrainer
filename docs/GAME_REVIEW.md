@@ -38,7 +38,9 @@ move dots and a 24px selected dot. Its padding keeps edge dots visible. The coac
 keeps its label, message area, and action row in stable slots; longer explanations
 scroll inside the bubble. Analysis details and training controls are grouped
 under **Review tools & details**. On phones the coach appears directly below the
-board controls, with full-size touch targets and normal page scrolling.
+board controls, with full-size touch targets and normal page scrolling. Mobile
+navigation buttons share the available row width. The move counter reserves space
+for three-digit steps and totals, keeping the controls still as those numbers grow.
 
 ## Analysis and persistence
 

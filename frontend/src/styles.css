@@ -488,7 +488,9 @@ main:has(.game-workspace) { max-width: none; min-height: 0; padding: 12px 20px; 
 .game-eval-bar > div { position: absolute; bottom: 0; width: 100%; background: #dddeda; transition: height .25s; }
 .game-eval-bar > span { position: absolute; bottom: 6px; left: 50%; writing-mode: vertical-rl; transform: translateX(-50%); background: #30343a; color: #fff; padding: 4px 2px; border-radius: 3px; font: 11px var(--mono); }
 .game-board-controls { display: flex; justify-content: center; gap: 5px; align-items: center; margin: 4px 0 6px; }
-.game-board-controls > span { font: 12px var(--mono); min-width: 54px; text-align: center; }
+.game-move-counter { flex: 0 0 9ch; font: 12px var(--mono); white-space: nowrap; text-align: center; }
+.game-move-counter > span { display: inline-block; width: 3ch; text-align: right; }
+.game-move-counter > span:last-child { text-align: left; }
 .game-board-controls button { min-height: 36px; min-width: 36px; padding: 6px; }
 .game-board-controls .game-return { margin-right: auto; gap: 5px; padding-inline: 8px; font-size: 12px; }
 .game-board-controls .game-return:not(:disabled) { color: var(--accent); border-color: var(--accent); }
@@ -576,9 +578,11 @@ main:has(.game-workspace) { max-width: none; min-height: 0; padding: 12px 20px; 
   .game-player { min-height: 27px; }
   .game-board-with-eval { grid-template-columns: 22px minmax(0, 1fr); gap: 5px; }
   .game-board-controls { gap: 2px; }
-  .game-board-controls button { min-height: 44px; min-width: 32px; padding: 5px; }
-  .game-board-controls > span { min-width: 42px; font-size: 11px; }
-  .game-board-controls .game-return { padding-inline: 5px; }
+  .game-board-controls button { flex: 1 1 0; min-height: 44px; min-width: 0; padding: 5px; }
+  .game-move-counter { font-size: 11px; }
+  .game-board-controls .game-return { margin-right: 0; padding-inline: 5px; }
+  .game-board-controls .game-return > svg { display: none; }
+  .game-board-controls button:last-child { margin-left: 0; }
   .game-coach { margin: 10px 0 14px; gap: 8px; }
   .game-coach-avatar { width: 35px; min-width: 35px; }
   .game-speech { height: 228px; grid-template-rows: 34px minmax(0, 1fr) 44px; padding: 10px; }
