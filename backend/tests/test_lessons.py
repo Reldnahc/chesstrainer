@@ -77,9 +77,12 @@ def test_lesson_release_migration_preserves_scheduling_and_history(settings, ses
         unrelated_id = unrelated.id
     engine, _ = database(settings.database_path)
     config = Config("alembic.ini")
-    with engine.begin() as connection:
+    with engine.connect() as connection:
+        connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
+        connection.commit()
         config.attributes["connection"] = connection
         command.downgrade(config, "c42d1738a9bf")
+        connection.commit()
 
     def snapshot(connection):
         tables = [

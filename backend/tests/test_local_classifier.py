@@ -227,9 +227,12 @@ def test_native_migration_preserves_legacy_audits_and_learning_history(settings)
             seed_lesson(db, settings, count=3)
     engine, _ = database(settings.database_path)
     config = Config("alembic.ini")
-    with engine.begin() as connection:
+    with engine.connect() as connection:
+        connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
+        connection.commit()
         config.attributes["connection"] = connection
         command.downgrade(config, "b91a0673de42")
+        connection.commit()
     tables = [
         "games",
         "decisions",

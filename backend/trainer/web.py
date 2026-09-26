@@ -17,8 +17,12 @@ def configure_http(app: FastAPI, settings: Settings):
     async def local_access(request: Request, call_next):
         if request.url.path.startswith("/api/"):
             token = settings.lan_access_token.get_secret_value()
-            if token and not secrets.compare_digest(
-                request.headers.get("authorization", ""), f"Bearer {token}"
+            if (
+                token
+                and request.url.path != "/api/auth/me"
+                and not secrets.compare_digest(
+                    request.headers.get("authorization", ""), f"Bearer {token}"
+                )
             ):
                 return JSONResponse(
                     {"detail": "Enter the configured LAN access token."}, status_code=401

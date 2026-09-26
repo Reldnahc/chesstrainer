@@ -27,9 +27,24 @@ def create_app(
     workers=True,
     engine_factory=Stockfish,
     chesscom_factory=ChessComClient,
+    start_engine=True,
+    session_factory=None,
 ):
     settings = settings or Settings()
-    sql_engine, sessions = database(settings.database_path)
+    if settings.accounts_enabled:
+        from trainer.multiuser import create_multiuser_app
+
+        return create_multiuser_app(
+            settings,
+            workers=workers,
+            engine_factory=engine_factory,
+            chesscom_factory=chesscom_factory,
+            classifier=classifier,
+        )
+    if session_factory is None:
+        sql_engine, sessions = database(settings.database_path)
+    else:
+        sql_engine, sessions = None, session_factory
     scheduler = FSRSScheduler(settings)
     classifier = classifier if classifier is not None else LocalClassifier(settings)
     engine = engine_factory(settings, sessions)
@@ -50,12 +65,14 @@ def create_app(
 
     @asynccontextmanager
     async def lifespan(app):
-        migrate(sql_engine)
+        if sql_engine is not None:
+            migrate(sql_engine)
         with sessions() as db:
             seed_skills(db)
             retire_existing(db, settings)
         try:
-            engine.start()
+            if start_engine:
+                engine.start()
             health.update(engine_available=True, engine_error=None, engine_version=engine.version)
         except EngineUnavailable as exc:
             health.update(engine_available=False, engine_error=str(exc))
@@ -64,12 +81,18 @@ def create_app(
         yield
         runner.stop()
         engine.close()
-        sql_engine.dispose()
+        if sql_engine is not None:
+            sql_engine.dispose()
 
     app = FastAPI(title="Local Chess Trainer", lifespan=lifespan)
     app.state.sessions, app.state.runner, app.state.settings = sessions, runner, settings
 
     configure_http(app, settings)
+
+    @app.get("/api/auth/me")
+    def local_identity():
+        return {"enabled": False, "user": None}
+
     app.include_router(
         workspace.create_router(
             settings=settings, sessions=sessions, health=health, classifier=classifier

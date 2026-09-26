@@ -10,6 +10,10 @@ class Settings(BaseSettings):
     server_host: str = "127.0.0.1"
     server_port: int = Field(default=8000, ge=1, le=65535)
     database_path: Path = Path("data/trainer.sqlite3")
+    accounts_enabled: bool = False
+    session_secure: bool = True
+    public_origin: str = ""
+    engine_slots: int = Field(default=4, ge=1, le=32)
     stockfish_path: str = "stockfish"
     stockfish_threads: int = Field(default=1, ge=1, le=32)
     stockfish_hash_mb: int = Field(default=64, ge=16, le=4096)

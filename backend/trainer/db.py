@@ -3,7 +3,6 @@ from pathlib import Path
 from alembic import command
 from alembic.config import Config
 from sqlalchemy import create_engine, event
-from sqlalchemy.orm import sessionmaker
 
 
 def database(path: Path):
@@ -21,13 +20,26 @@ def database(path: Path):
         cursor.execute("PRAGMA busy_timeout=30000")
         cursor.close()
 
-    return engine, sessionmaker(engine, expire_on_commit=False)
+    from trainer.ownership import account_sessions
+
+    return engine, account_sessions(engine)
 
 
 def migrate(engine):
     root = Path(__file__).resolve().parents[2]
     config = Config(str(root / "alembic.ini"))
     config.set_main_option("script_location", str(root / "migrations"))
-    with engine.begin() as connection:
-        config.attributes["connection"] = connection
-        command.upgrade(config, "head")
+    with engine.connect() as connection:
+        # SQLite batch migrations rebuild referenced tables. Disable FK checks only
+        # on this migration connection, then validate the resulting complete graph.
+        connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
+        connection.commit()
+        try:
+            with connection.begin():
+                config.attributes["connection"] = connection
+                command.upgrade(config, "head")
+                if connection.exec_driver_sql("PRAGMA foreign_key_check").first():
+                    raise ValueError("Migration produced an invalid foreign-key reference")
+        finally:
+            connection.exec_driver_sql("PRAGMA foreign_keys=ON")
+            connection.commit()

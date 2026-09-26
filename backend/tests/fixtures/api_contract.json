@@ -5,6 +5,22 @@
     "version": "0.1.0"
   },
   "paths": {
+    "/api/auth/me": {
+      "get": {
+        "summary": "Local Identity",
+        "operationId": "local_identity_api_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/health": {
       "get": {
         "summary": "Get Health",

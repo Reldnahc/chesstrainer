@@ -23,7 +23,29 @@ class Base(DeclarativeBase):
     pass
 
 
-class ImportBatch(Base):
+class User(Base):
+    __tablename__ = "users"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    username: Mapped[str] = mapped_column(unique=True)
+    password: Mapped[str]
+    admin: Mapped[bool] = mapped_column(default=False)
+    disabled: Mapped[bool] = mapped_column(default=False)
+    chesscom_username: Mapped[str] = mapped_column(default="")
+    created: Mapped[float]
+
+
+class AuthSession(Base):
+    __tablename__ = "auth_sessions"
+    digest: Mapped[str] = mapped_column(primary_key=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    expires: Mapped[float]
+
+
+class Owned:
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), default="local", index=True)
+
+
+class ImportBatch(Owned, Base):
     __tablename__ = "game_imports"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     filename: Mapped[str]
@@ -31,10 +53,11 @@ class ImportBatch(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class Game(Base):
+class Game(Owned, Base):
     __tablename__ = "games"
+    __table_args__ = (UniqueConstraint("user_id", "fingerprint"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    fingerprint: Mapped[str] = mapped_column(unique=True)
+    fingerprint: Mapped[str]
     white: Mapped[str]
     black: Mapped[str]
     learner_color: Mapped[bool]
@@ -43,7 +66,7 @@ class Game(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class ImportGame(Base):
+class ImportGame(Owned, Base):
     __tablename__ = "import_games"
     import_id: Mapped[str] = mapped_column(ForeignKey("game_imports.id"), primary_key=True)
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
@@ -51,7 +74,7 @@ class ImportGame(Base):
     is_new: Mapped[bool] = mapped_column(default=True, server_default="1")
 
 
-class AnalysisJob(Base):
+class AnalysisJob(Owned, Base):
     __tablename__ = "analysis_jobs"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     kind: Mapped[str] = mapped_column(default="analysis")
@@ -68,7 +91,7 @@ class AnalysisJob(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class ChessComImport(Base):
+class ChessComImport(Owned, Base):
     __tablename__ = "chesscom_imports"
     job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), primary_key=True)
     username: Mapped[str]
@@ -88,7 +111,7 @@ class ChessComImport(Base):
     fetch_completed: Mapped[bool] = mapped_column(default=False)
 
 
-class ChessComArchive(Base):
+class ChessComArchive(Owned, Base):
     __tablename__ = "chesscom_archives"
     job_id: Mapped[str] = mapped_column(ForeignKey("chesscom_imports.job_id"), primary_key=True)
     url: Mapped[str] = mapped_column(primary_key=True)
@@ -107,21 +130,21 @@ class EngineAnalysis(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class GameReview(Base):
+class GameReview(Owned, Base):
     __tablename__ = "game_reviews"
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
     job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), unique=True)
     rating: Mapped[int]
 
 
-class GameReviewMove(Base):
+class GameReviewMove(Owned, Base):
     __tablename__ = "game_review_moves"
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
     ply: Mapped[int] = mapped_column(primary_key=True)
     report: Mapped[dict] = mapped_column(JSON)
 
 
-class Decision(Base):
+class Decision(Owned, Base):
     __tablename__ = "decisions"
     __table_args__ = (UniqueConstraint("game_id", "ply"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
@@ -150,20 +173,21 @@ class Skill(Base):
     title: Mapped[str]
 
 
-class ClassificationAnalysis(Base):
+class ClassificationAnalysis(Owned, Base):
     """Supplemental engine evidence; never replaces exercise grading evidence."""
 
     __tablename__ = "classification_analyses"
+    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"), index=True)
-    cache_key: Mapped[str] = mapped_column(unique=True)
+    cache_key: Mapped[str]
     job_id: Mapped[str | None] = mapped_column(ForeignKey("analysis_jobs.id"))
     before_analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
     played_analysis_id: Mapped[str] = mapped_column(ForeignKey("engine_analyses.id"))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class ClassificationProbe(Base):
+class ClassificationProbe(Owned, Base):
     """Immutable tail/defense evidence attached to a completed classification supplement."""
 
     __tablename__ = "classification_probes"
@@ -180,19 +204,20 @@ class ClassificationProbe(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class ClassificationTask(Base):
+class ClassificationTask(Owned, Base):
     __tablename__ = "classification_tasks"
     job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), primary_key=True)
     decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"), primary_key=True)
     cache_key: Mapped[str]
 
 
-class ClassificationRun(Base):
+class ClassificationRun(Owned, Base):
     __tablename__ = "classification_runs"
+    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
     provider: Mapped[str] = mapped_column(default="legacy_llm", server_default="legacy_llm")
     version: Mapped[str] = mapped_column(default="legacy", server_default="legacy")
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    cache_key: Mapped[str] = mapped_column(unique=True)
+    cache_key: Mapped[str]
     decision_id: Mapped[str] = mapped_column(ForeignKey("decisions.id"))
     model: Mapped[str]
     schema_version: Mapped[str]
@@ -207,7 +232,7 @@ class ClassificationRun(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class SkillEvidence(Base):
+class SkillEvidence(Owned, Base):
     __tablename__ = "skill_evidence"
     __table_args__ = (UniqueConstraint("decision_id", "skill_id"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
@@ -219,7 +244,7 @@ class SkillEvidence(Base):
     active: Mapped[bool] = mapped_column(default=True, server_default="1")
 
 
-class Course(Base):
+class Course(Owned, Base):
     __tablename__ = "courses"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     title: Mapped[str]
@@ -228,7 +253,7 @@ class Course(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class CourseUnit(Base):
+class CourseUnit(Owned, Base):
     __tablename__ = "course_units"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     course_id: Mapped[str] = mapped_column(ForeignKey("courses.id"))
@@ -241,13 +266,13 @@ class CourseUnit(Base):
     active: Mapped[bool] = mapped_column(default=True, server_default="1")
 
 
-class UnitEvidence(Base):
+class UnitEvidence(Owned, Base):
     __tablename__ = "unit_evidence"
     unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"), primary_key=True)
     evidence_id: Mapped[str] = mapped_column(ForeignKey("skill_evidence.id"), primary_key=True)
 
 
-class Lesson(Base):
+class Lesson(Owned, Base):
     __tablename__ = "lessons"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"))
@@ -258,7 +283,7 @@ class Lesson(Base):
     last_check_correct: Mapped[int] = mapped_column(default=0, server_default="0")
 
 
-class CourseRevision(Base):
+class CourseRevision(Owned, Base):
     __tablename__ = "course_revisions"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     course_id: Mapped[str] = mapped_column(ForeignKey("courses.id"), index=True)
@@ -267,7 +292,7 @@ class CourseRevision(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class LessonItem(Base):
+class LessonItem(Owned, Base):
     __tablename__ = "lesson_items"
     __table_args__ = (UniqueConstraint("lesson_id", "ordinal"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
@@ -278,11 +303,12 @@ class LessonItem(Base):
     clean: Mapped[bool] = mapped_column(default=False)
 
 
-class TeachingRun(Base):
+class TeachingRun(Owned, Base):
     __tablename__ = "teaching_runs"
+    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     unit_id: Mapped[str] = mapped_column(ForeignKey("course_units.id"), index=True)
-    cache_key: Mapped[str] = mapped_column(unique=True)
+    cache_key: Mapped[str]
     model: Mapped[str]
     schema_version: Mapped[str]
     prompt_version: Mapped[str]
@@ -297,7 +323,7 @@ class TeachingRun(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class Repertoire(Base):
+class Repertoire(Owned, Base):
     __tablename__ = "repertoires"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     name: Mapped[str]
@@ -305,10 +331,11 @@ class Repertoire(Base):
     pgn: Mapped[str] = mapped_column(Text)
 
 
-class Exercise(Base):
+class Exercise(Owned, Base):
     __tablename__ = "exercises"
+    __table_args__ = (UniqueConstraint("user_id", "identity"),)
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
-    identity: Mapped[str] = mapped_column(unique=True)
+    identity: Mapped[str]
     source: Mapped[str]
     decision_id: Mapped[str | None] = mapped_column(ForeignKey("decisions.id"))
     repertoire_id: Mapped[str | None] = mapped_column(ForeignKey("repertoires.id"))
@@ -319,13 +346,13 @@ class Exercise(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class ExerciseTag(Base):
+class ExerciseTag(Owned, Base):
     __tablename__ = "exercise_tags"
     exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
     tag: Mapped[str] = mapped_column(primary_key=True)
 
 
-class ExerciseAnswer(Base):
+class ExerciseAnswer(Owned, Base):
     __tablename__ = "exercise_answers"
     exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
     uci: Mapped[str] = mapped_column(primary_key=True)
@@ -335,7 +362,7 @@ class ExerciseAnswer(Base):
     analysis_id: Mapped[str | None] = mapped_column(ForeignKey("engine_analyses.id"))
 
 
-class SRSState(Base):
+class SRSState(Owned, Base):
     __tablename__ = "srs_states"
     exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
     card: Mapped[dict] = mapped_column(JSON)
@@ -347,7 +374,7 @@ class SRSState(Base):
     retired_interval_days: Mapped[float | None]
 
 
-class ReviewSession(Base):
+class ReviewSession(Owned, Base):
     __tablename__ = "review_sessions"
     last_attempt_id: Mapped[str | None] = mapped_column(
         ForeignKey("exercise_attempts.id", use_alter=True, name="fk_review_sessions_last_attempt")
@@ -365,7 +392,7 @@ class ReviewSession(Base):
     completed: Mapped[bool] = mapped_column(default=False)
 
 
-class Attempt(Base):
+class Attempt(Owned, Base):
     __tablename__ = "exercise_attempts"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"))
@@ -374,7 +401,7 @@ class Attempt(Base):
     elapsed_ms: Mapped[int]
 
 
-class Review(Base):
+class Review(Owned, Base):
     __tablename__ = "reviews"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)
     session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"), unique=True)

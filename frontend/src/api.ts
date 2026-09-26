@@ -1,8 +1,15 @@
+let accountMode = false;
+let csrf = "";
+export function setAccountSession(enabled: boolean, token?: string | null) {
+  accountMode = enabled;
+  csrf = token || "";
+}
 export async function api<T = any>(
   path: string,
   options: RequestInit = {},
 ): Promise<T> {
   const headers = new Headers(options.headers);
+  if (csrf) headers.set("X-CSRF-Token", csrf);
   const token = sessionStorage.getItem("lan-token");
   if (token) headers.set("Authorization", `Bearer ${token}`);
   if (options.body && !(options.body instanceof FormData))
@@ -10,8 +17,8 @@ export async function api<T = any>(
   const response = await fetch(`/api${path}`, { ...options, headers });
   const result = await response.json();
   if (!response.ok) {
-    if (response.status === 401)
-      window.dispatchEvent(new Event("connection-required"));
+    if (response.status === 401 && !path.startsWith("/auth/"))
+      window.dispatchEvent(new Event(accountMode ? "account-required" : "connection-required"));
     throw new Error(
       typeof result.detail === "string"
         ? result.detail
