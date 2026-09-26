@@ -60,7 +60,9 @@ def test_restart_preserves_schedule_until_due(settings, monkeypatch, outcome):
 
 
 def test_restart_avoids_last_completed_card_but_resumes_unfinished(settings, monkeypatch):
-    clock = [datetime(2026, 9, 12, 12, tzinfo=timezone.utc)]
+    # FSRS initializes untouched cards with the real clock. Start here too so
+    # the unreviewed card is due when this test advances one day after recall.
+    clock = [datetime.now(timezone.utc)]
     monkeypatch.setattr(reviews, "now", lambda: clock[0])
     settings.stockfish_path = "missing-test-engine"
     with TestClient(create_app(settings, workers=False)) as client:
