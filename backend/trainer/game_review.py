@@ -163,7 +163,9 @@ def analyze_move(engine, board, move, previous_score=None):
     # A sacrifice must really offer a non-pawn piece at a net material cost.
     # Test acceptance explicitly, as well as the unrestricted opponent search.
     sacrifice = None
-    if not poor and numeric(actual.score) >= -50 and numeric(best.score) < 300:
+    alternatives = [c for c in candidates if c.uci != move.uci()]
+    already_winning_without_sacrifice = any(numeric(c.score) >= 300 for c in alternatives)
+    if not poor and numeric(actual.score) >= -50 and not already_winning_without_sacrifice:
         tactical = actual_line["findings"] or actual.score.outcome() == 1
         if tactical:
             baseline = material(board, board.turn) - material(board, not board.turn)

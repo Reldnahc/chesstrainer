@@ -531,7 +531,7 @@ body:has(dialog[open]) { overflow: hidden; }
 .game-variation-row button[aria-pressed=true] { border-color: var(--accent); }
 @media (max-width: 1000px) { .game-review-layout { gap: 18px; grid-template-columns: minmax(0, 1fr) minmax(290px, 1fr); } .game-coach-avatar { width: 45px; min-width: 45px; } .game-coach { gap: 10px; } }
 @media (max-width: 760px) {
-  .game-review-layout { display: flex; flex-direction: column; gap: 0; }
+  .game-review-layout { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   .game-board-area, .game-review-sidebar { display: contents; }
   .game-coach { order: 1; margin-top: 15px; }
   .game-patterns { order: 2; }

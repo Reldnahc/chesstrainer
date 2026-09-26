@@ -2,6 +2,32 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Full-game review: September 25, 2026
+
+- Full backend/native/API suite: **293 passed**, including both-color reports,
+  independent practice history, saved review reopening without an engine, cancel/resume,
+  setup positions, promotion, en passant, castling, typed mate scores, Great criteria,
+  Elo-only Blunder severity, positive fork evidence and a mating queen sacrifice.
+- Full Playwright suite: **43 passed, 1 intentional skip** across desktop and phone
+  Chromium. Includes coach playback, legal variation branching, undo/return, source
+  game preservation, viewport fit and rejection of late analysis responses.
+- TypeScript/Vite build and repository-wide Ruff lint/format checks passed.
+- Fresh Alembic migration to **04af728d913e** matches SQLAlchemy metadata with no drift.
+  The migration adds independent game-review tables; training tables are unchanged.
+- The dated recall-restart fixture now starts at the real initialization time used by
+  FSRS instead of leaving untouched cards in the future relative to a frozen past clock.
+
+Review rules and conservative evidence limits are documented in [GAME_REVIEW.md](GAME_REVIEW.md).
+Tests use isolated databases and synthetic positions. Private games, generated reports,
+native engines and test screenshots remain uncommitted. No live database migration,
+server restart, public deployment or bulk reanalysis was performed. Start the application
+normally to apply the additive migration and use **Games**.
+
+Existing TestClient deprecation and terminal-color warnings remain. Expected provider
+error fixtures still log `job_failed`; these are not test failures. The initial browser
+run required updating the old four-tab navigation assertion to five. Browser tests run
+with host process permissions so Playwright can tear down its isolated Windows server.
+
 ## Pinned Lichess integration: September 13, 2026
 
 | Check | Result |

@@ -1,6 +1,7 @@
 """Whole-game review must explain both colors without changing training data."""
 
 import chess
+import chess.pgn
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
@@ -154,3 +155,83 @@ def test_native_positive_fork_coaching(settings, sessions, stockfish_path):
             assert chess.Board(frame["fen"]).is_valid()
     finally:
         engine.close()
+
+
+@pytest.mark.stockfish
+def test_brilliant_sacrifice_can_create_a_forced_mate(settings, sessions, stockfish_path):
+    from trainer.engine import Stockfish
+
+    settings.stockfish_path = stockfish_path
+    engine = Stockfish(settings, sessions)
+    try:
+        # Qg8+ Rxg8 Nf7#: a sound queen sacrifice, not an ordinary queen trade.
+        board = chess.Board("q4r1k/6pp/4Q2N/8/8/8/8/2K5 w - - 0 1")
+        assert board.is_valid()
+        report = analyze_move(engine, board, chess.Move.from_uci("e6g8"))
+        assert report["actual"]["score"]["kind"] == "mate"
+        assert report["sacrifice"] is not None, report["second_score"]
+        assert classify(report, 1000)[0] == "Brilliant"
+    finally:
+        engine.close()
+
+
+@pytest.mark.parametrize(
+    "fen,moves,piece,square",
+    [
+        ("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1", ["e1g1"], "K", "g1"),
+        ("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1", ["e5d6"], "P", "d6"),
+        ("4k3/P7/8/8/8/8/8/4K3 w - - 0 1", ["a7a8n"], "N", "a8"),
+        ("4k3/8/8/8/8/8/p7/4K3 b - - 0 12", ["a2a1q"], "q", "a1"),
+    ],
+)
+def test_variations_preserve_special_moves_and_setup_positions(settings, fen, moves, piece, square):
+    from trainer.game_review import branch_board
+
+    board = chess.Board(fen)
+    pgn = chess.pgn.Game.from_board(board)
+    pgn.add_variation(next(iter(board.legal_moves)))
+    game = Game(pgn=str(pgn))
+    result = branch_board(game, 0, moves)
+    assert result.piece_at(chess.parse_square(square)).symbol() == piece
+    assert result.root().fen() == board.fen()
+    assert len(result.move_stack) == 1
+
+
+@pytest.mark.stockfish
+def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monkeypatch):
+    settings.stockfish_path = stockfish_path
+    app = create_app(settings, workers=False)
+    with TestClient(app) as client:
+        game = seed(app)
+        job = client.post(f"/api/games/{game}/review", json={}).json()["job_id"]
+        original = app.state.runner.cancelled
+
+        def pause_after_one(job_id):
+            with app.state.sessions() as db:
+                count = db.scalar(select(func.count()).select_from(GameReviewMove))
+            if count:
+                client.post(f"/api/jobs/{job_id}/cancel")
+            return original(job_id)
+
+        monkeypatch.setattr(app.state.runner, "cancelled", pause_after_one)
+        app.state.runner.run_job(job)
+        detail = client.get(f"/api/games/{game}").json()
+        assert detail["job"]["status"] == "cancelled"
+        assert detail["job"]["completed"] == 1
+        first_report = detail["frames"][1]["report"]
+        monkeypatch.setattr(app.state.runner, "cancelled", original)
+        client.post(f"/api/games/{game}/review", json={})
+        app.state.runner.run_job(job)
+        detail = client.get(f"/api/games/{game}").json()
+        assert detail["job"]["status"] == "completed"
+        assert detail["job"]["completed"] == 4
+        assert detail["frames"][1]["report"] == first_report
+
+
+def test_review_migration_matches_models(sessions):
+    from alembic.autogenerate import compare_metadata
+    from alembic.migration import MigrationContext
+    from trainer.models import Base
+
+    with sessions.kw["bind"].connect() as connection:
+        assert compare_metadata(MigrationContext.configure(connection), Base.metadata) == []

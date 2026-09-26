@@ -13,7 +13,11 @@ test('review both players, follow coach lines, and branch without changing the g
   await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toBeVisible({timeout: 60_000});
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   expect(game.job.completed).toBe(4);
-  await page.getByRole('button', {name: '2. g4, Blunder', exact: true}).click();
+  await page.getByRole('button', {name: 'Last move', exact: true}).click();
+  const scrollBefore = await page.evaluate(() => window.scrollY);
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
+  expect(await page.evaluate(() => window.scrollY)).toBe(scrollBefore);
   await expect(page.locator('.game-speech')).toContainText('Blunder');
   await expect(page.locator('.game-speech')).toContainText('forced checkmate');
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
@@ -38,6 +42,13 @@ test('review both players, follow coach lines, and branch without changing the g
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({path: `test-results/game-review-${testInfo.project.name}.png`, fullPage: true});
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  if (testInfo.project.name === 'mobile') {
+    const boardWidth = (await page.locator('.game-board-with-eval').boundingBox())!.width;
+    for (const selector of ['.game-progress', '.game-move-list']) {
+      expect((await page.locator(selector).boundingBox())!.width).toBeGreaterThanOrEqual(boardWidth - 2);
+    }
+    expect((await page.locator('.game-coach').boundingBox())!.y).toBeLessThan((await page.locator('.game-graph').boundingBox())!.y);
+  }
   await page.getByRole('button', {name: 'Return to game', exact: true}).click();
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');

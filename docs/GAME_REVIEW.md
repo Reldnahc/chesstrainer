@@ -60,7 +60,7 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
 - Brilliant: a sound move below 50 cp loss with a tactical witness or winning mate,
   a non-pawn sacrifice at an immediate net material cost, and an explicit native
   acceptance test leaving at least -50 cp. The unrestricted played line must also
-  retain at least -50 cp, and the best root score must be below +300 cp. At most
+  retain at least -50 cp, and the strongest alternative must be below +300 cp. At most
   two legal non-pawn capture candidates are probed. Ordinary equal trades do not
   qualify. Recognition is deliberately conservative and can miss sacrifices.
 

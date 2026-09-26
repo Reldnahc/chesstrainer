@@ -163,7 +163,14 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, key, !!frame, !!saved, retry, game?.rating]);
   useEffect(() => {
-    if (!branch) moveButtons.current.get(cursor.ply)?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    if (branch) return;
+    const button = moveButtons.current.get(cursor.ply);
+    const list = button?.parentElement;
+    if (!button || !list) return;
+    // Scroll the notation pane only; navigating must never pull the board off screen.
+    const row = button.getBoundingClientRect(), pane = list.getBoundingClientRect();
+    if (row.top < pane.top) list.scrollTop -= pane.top - row.top;
+    else if (row.bottom > pane.bottom) list.scrollTop += row.bottom - pane.bottom;
   }, [cursor.ply, !!branch]);
 
   function navigate(ply: number) { setCursor({ ply, branch: null, step: 0 }); setLineView(null); setError(""); }
@@ -214,9 +221,9 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     const inVariation = branch && path.length > 0;
     const prefix = inVariation ? path.slice(0, -1) : [];
     const base = inVariation ? root : Math.max(0, root - 1);
-    const moves = [...prefix, ...selected.frames.slice(1).map(f => f.uci!)];
-    const sans = [...(inVariation ? branch.sans.slice(0, cursor.step - 1) : []), ...selected.frames.slice(1).map(f => f.san)];
-    const branchId = addBranch(base, moves, sans, prefix.length + (finding ? finding.frame_ply : Math.min(1, selected.frames.length - 1)));
+    const moves = [...prefix, ...selected.frames.slice(1).map(f => f.uci!)].slice(0, 128);
+    const sans = [...(inVariation ? branch.sans.slice(0, cursor.step - 1) : []), ...selected.frames.slice(1).map(f => f.san)].slice(0, 128);
+    const branchId = addBranch(base, moves, sans, Math.min(moves.length, prefix.length + (finding ? finding.frame_ply : Math.min(1, selected.frames.length - 1))));
     setLineView({ branch: branchId, offset: prefix.length, line: selected, finding, title: which === "best" ? "Better-move line" : "Played-move line" });
   }
   async function start() {
@@ -251,7 +258,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
       <section className="game-board-area" aria-label="Game board and navigation">
         <div className="game-player"><span>{orientation === "white" ? game.black : game.white}</span><span>{branch ? "Exploring a variation" : "Original game"}</span></div>
         <div className="game-board-with-eval">
-          <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%` }} /><span>{scoreText(score)}</span></div>
+          <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>
           <Board fen={displayed.fen} orientation={orientation} legalMoves={frame?.legal_moves || []} disabled={!frame || moving} onMove={play}
             highlights={lineFrame?.highlights || (currentUci ? [currentUci.slice(0, 2), currentUci.slice(2, 4)] : [])}
             roles={currentFinding?.frame_ply === lineIndex ? currentFinding.roles : undefined}/>
