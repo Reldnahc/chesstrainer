@@ -107,6 +107,20 @@ class EngineAnalysis(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
+class GameReview(Base):
+    __tablename__ = "game_reviews"
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), unique=True)
+    rating: Mapped[int]
+
+
+class GameReviewMove(Base):
+    __tablename__ = "game_review_moves"
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    ply: Mapped[int] = mapped_column(primary_key=True)
+    report: Mapped[dict] = mapped_column(JSON)
+
+
 class Decision(Base):
     __tablename__ = "decisions"
     __table_args__ = (UniqueConstraint("game_id", "ply"),)

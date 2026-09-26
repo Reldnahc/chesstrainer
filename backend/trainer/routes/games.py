@@ -1,0 +1,180 @@
+"""Game library, resumable whole-game review and legal variation analysis."""
+
+import threading
+
+from fastapi import APIRouter, HTTPException, Query
+from pydantic import BaseModel, Field
+from sqlalchemy import func, select
+
+from trainer.chess_core import Score
+from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
+from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
+
+
+class ReviewRequest(BaseModel):
+    rating: int = Field(default=1000, ge=400, le=3000)
+
+
+class VariationRequest(BaseModel):
+    ply: int = Field(default=0, ge=0)
+    moves: list[str] = Field(default_factory=list, max_length=128)
+
+
+def create_router(*, sessions, settings, engine_factory, mutation_lock):
+    router = APIRouter()
+    # Interactive searches use a separate engine from recall grading and import jobs.
+    # One short-lived process per request avoids orphan processes on shutdown.
+    variation_lock = threading.Lock()
+
+    def require_game(db, game_id):
+        game = db.get(Game, game_id)
+        if game is None:
+            raise HTTPException(404, "Game not found")
+        return game
+
+    @router.get("/api/games")
+    def games(offset: int = Query(0, ge=0), limit: int = Query(30, ge=1, le=100)):
+        with sessions() as db:
+            rows = db.scalars(
+                select(Game).order_by(Game.created_at.desc(), Game.id).offset(offset).limit(limit)
+            ).all()
+            items = []
+            for game in rows:
+                parsed = parsed_game(game)
+                review = db.get(GameReview, game.id)
+                job = db.get(AnalysisJob, review.job_id) if review else None
+                items.append(
+                    {
+                        "id": game.id,
+                        "white": game.white,
+                        "black": game.black,
+                        "played_on": game.played_on,
+                        "result": parsed.headers.get("Result", "*"),
+                        "status": job.status if job else "not_started",
+                    }
+                )
+            return {"items": items, "total": db.scalar(select(func.count()).select_from(Game))}
+
+    @router.get("/api/games/{game_id}")
+    def game_detail(game_id: str):
+        with sessions() as db:
+            game = require_game(db, game_id)
+            parsed = parsed_game(game)
+            board = parsed.board()
+            review = db.get(GameReview, game_id)
+            job = db.get(AnalysisJob, review.job_id) if review else None
+            rating = review.rating if review else 1000
+            saved = {
+                row.ply: public_report(row.report, rating)
+                for row in db.scalars(
+                    select(GameReviewMove).where(GameReviewMove.game_id == game_id)
+                )
+            }
+            frames = [
+                position(board)
+                | {
+                    "san": "Start",
+                    "uci": None,
+                    "number": board.fullmove_number,
+                    "actor": None,
+                    "report": None,
+                }
+            ]
+            for ply, move in enumerate(parsed.mainline_moves(), 1):
+                san, number, actor = board.san(move), board.fullmove_number, board.turn
+                board.push(move)
+                frames.append(
+                    position(board)
+                    | {
+                        "san": san,
+                        "uci": move.uci(),
+                        "number": number,
+                        "actor": "white" if actor else "black",
+                        "report": saved.get(ply),
+                    }
+                )
+            return {
+                "id": game.id,
+                "white": game.white,
+                "black": game.black,
+                "played_on": game.played_on,
+                "result": parsed.headers.get("Result", "*"),
+                "orientation": "white" if game.learner_color else "black",
+                "rating": rating,
+                "frames": frames,
+                "job": {
+                    "id": job.id,
+                    "status": job.status,
+                    "completed": len(saved),
+                    "total": len(frames) - 1,
+                    "error": job.error,
+                    "cancel_requested": job.cancel_requested,
+                }
+                if job
+                else None,
+            }
+
+    @router.post("/api/games/{game_id}/review")
+    def begin_review(game_id: str, data: ReviewRequest):
+        with mutation_lock, sessions() as db:
+            require_game(db, game_id)
+            review = db.get(GameReview, game_id)
+            if review:
+                review.rating = data.rating
+                job = db.get(AnalysisJob, review.job_id)
+                if job.status in {"failed", "cancelled"}:
+                    job.status, job.cancel_requested, job.error = "queued", False, None
+            else:
+                job = AnalysisJob(kind="game_review", games_total=1)
+                db.add(job)
+                db.flush()
+                db.add(GameReview(game_id=game_id, job_id=job.id, rating=data.rating))
+            db.commit()
+            return {"job_id": job.id, "status": job.status}
+
+    @router.post("/api/games/{game_id}/position")
+    def variation_position(game_id: str, data: VariationRequest):
+        with sessions() as db:
+            game = require_game(db, game_id)
+            board = branch_board(game, data.ply, data.moves)
+        san = None
+        if board.move_stack:
+            before = board.copy(stack=True)
+            move = before.pop()
+            san = before.san(move)
+        return position(board) | {"san": san}
+
+    @router.post("/api/games/{game_id}/analyze")
+    def analyze_variation(game_id: str, data: VariationRequest):
+        with sessions() as db:
+            game = require_game(db, game_id)
+            board = branch_board(game, data.ply, data.moves)
+            review = db.get(GameReview, game_id)
+            rating = review.rating if review else 1000
+        with variation_lock:
+            engine = engine_factory(settings, sessions)
+            try:
+                if not board.move_stack:
+                    if board.is_game_over():
+                        return {"report": None, "score": None, "best_move": None}
+                    result = engine.analyze(board, deep=True, multipv=2)
+                    best = result.candidates[0]
+                    score = Score.model_validate(best["score"])
+                    return {
+                        "report": None,
+                        "best_move": best["san"],
+                        "score": (score if board.turn else score.negate()).model_dump(),
+                    }
+                move = board.pop()
+                previous_score = None
+                if board.move_stack:
+                    previous = board.copy(stack=True)
+                    previous.pop()
+                    result = engine.analyze(previous, deep=True, multipv=2)
+                    previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
+                report = public_report(analyze_move(engine, board, move, previous_score), rating)
+                return {"report": report, "score": report["white_score"], "best_move": None}
+            finally:
+                engine.close()
+
+    return router

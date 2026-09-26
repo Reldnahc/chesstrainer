@@ -12,7 +12,7 @@ from trainer.engine import EngineUnavailable, Stockfish
 from trainer.jobs import JobRunner
 from trainer.local_classifier import LocalClassifier
 from trainer.retirement import retire_existing
-from trainer.routes import classification, compatibility, imports, jobs, review, workspace
+from trainer.routes import classification, compatibility, games, imports, jobs, review, workspace
 from trainer.routes.compatibility import ManualRequest as ManualRequest
 from trainer.routes.review import MoveRequest as MoveRequest
 from trainer.scheduling import FSRSScheduler
@@ -79,6 +79,14 @@ def create_app(
         imports.create_router(settings=settings, sessions=sessions, mutation_lock=mutation_lock)
     )
     app.include_router(jobs.create_router(sessions=sessions, runner=runner))
+    app.include_router(
+        games.create_router(
+            sessions=sessions,
+            settings=settings,
+            engine_factory=engine_factory,
+            mutation_lock=mutation_lock,
+        )
+    )
     app.include_router(
         review.create_router(
             settings=settings,

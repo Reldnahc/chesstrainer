@@ -98,6 +98,17 @@ class JobRunner:
         try:
             with self.sessions() as db:
                 kind = db.get(AnalysisJob, job_id).kind
+            if kind == "game_review":
+                from trainer.game_review import run_review
+
+                run_review(self, job_id, engine)
+                if self.cancelled(job_id):
+                    self.finish_cancel(job_id)
+                else:
+                    with self.sessions() as db:
+                        db.get(AnalysisJob, job_id).status = "completed"
+                        db.commit()
+                return
             if kind == "teaching":
                 raise ValueError("Model teaching generation has been removed")
             if kind == "chesscom":
