@@ -377,14 +377,15 @@ function EvaluationGraph({ frames, selected, onSelect }: { frames: Frame[]; sele
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
-  const x = (i: number) => 8 + i / Math.max(1, frames.length - 1) * (width - 16);
-  const y = (score: Score) => height / 2 - strength(score) * (height / 2 - 8);
+  const padding = 14;
+  const x = (i: number) => padding + i / Math.max(1, frames.length - 1) * (width - padding * 2);
+  const y = (score: Score) => height / 2 - strength(score) * (height / 2 - padding);
   return <div className="game-graph"><div className="row-between"><strong>Game evaluation</strong><span>White ↑ · Black ↓</span></div>
     <svg ref={plot} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="img" aria-label="Evaluation across analyzed game moves">
       <line x1="0" x2={width} y1={height / 2} y2={height / 2} stroke="#44484f" strokeDasharray="4 4"/>
       {frames.map((f, i) => f.report && <g key={i}>
         {i > 0 && frames[i - 1].report && <line x1={x(i - 1)} y1={y(frames[i - 1].report!.white_score)} x2={x(i)} y2={y(f.report.white_score)} stroke="#b8cfc2" strokeWidth="2"/>}
-        <circle cx={x(i)} cy={y(f.report.white_score)} r={i === selected ? 4 : 2} fill={bad.has(f.report.label) ? "#ff8059" : "#b8cfc2"}/>
+        <circle cx={x(i)} cy={y(f.report.white_score)} r={i === selected ? 12 : 6} fill={bad.has(f.report.label) ? "#ff8059" : "#b8cfc2"}/>
       </g>)}<line x1={x(selected)} x2={x(selected)} y1="0" y2={height} stroke="#ff8059" opacity=".6"/>
     </svg><input type="range" min="0" max={frames.length - 1} value={selected} onChange={e => onSelect(Number(e.target.value))} aria-label="Navigate evaluation timeline"/>
     {!frames.some(f => f.report) && <p className="small">The timeline fills as your game is reviewed.</p>}

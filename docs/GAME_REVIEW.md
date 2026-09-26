@@ -22,7 +22,8 @@ when explanation cues are already hidden. Variations are not saved across leavin
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
 The sidebar orders coaching, compact notation and variations, evaluation, then
-review tools. The evaluation graph spans the available panel width. The coach
+review tools. The evaluation graph spans the available panel width, with 12px
+move dots and a 24px selected dot. Its padding keeps edge dots visible. The coach
 keeps its label, message area, and action row in stable slots; longer explanations
 scroll inside the bubble. Analysis details and training controls are grouped
 under **Review tools & details**. On phones the coach appears directly below the
