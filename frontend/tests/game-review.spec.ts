@@ -7,9 +7,9 @@ test('review both players, explain in place, and branch without changing the gam
   expect(fixture.ok()).toBe(true);
   const {id} = await fixture.json();
   await page.goto('/');
-  await page.getByRole('button', {name: 'Games', exact: true}).click();
+  await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
-  await page.getByRole('button', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
+  await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: 'Start game review', exact: true}).click();
   await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
   await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toHaveCount(0);
@@ -97,8 +97,8 @@ test('review both players, explain in place, and branch without changing the gam
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
-  await page.getByRole('button', {name: 'All games', exact: true}).click();
-  await page.getByRole('button', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
+  await page.getByRole('link', {name: 'All games', exact: true}).click();
+  await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await expect(page.locator('.game-summary > summary')).toBeVisible();
 });
 
@@ -112,8 +112,8 @@ test('stale engine responses never replace the selected move and failures remain
     await route.fulfill({status: 503, contentType: 'application/json', body: JSON.stringify({detail: `Engine unavailable at ply ${body.ply}`})});
   });
   await page.goto('/');
-  await page.getByRole('button', {name: 'Games', exact: true}).click();
-  await page.getByRole('button', {name: new RegExp(`Review-stale-${testInfo.project.name} vs CoachFixture`)}).click();
+  await page.getByRole('link', {name: 'Games', exact: true}).click();
+  await page.getByRole('link', {name: new RegExp(`Review-stale-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: '1. f3', exact: true}).click();
   await page.waitForRequest(r => r.url().endsWith('/analyze') && r.postDataJSON().ply === 1);
   await page.getByRole('button', {name: '1... e5', exact: true}).click();
@@ -144,8 +144,8 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
   game.job = {status: 'completed', completed: 4, total: 4};
   await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
   await page.goto('/');
-  await page.getByRole('button', {name: 'Games', exact: true}).click();
-  await page.getByRole('button', {name: new RegExp(`Review-layout-${testInfo.project.name} vs CoachFixture`)}).click();
+  await page.getByRole('link', {name: 'Games', exact: true}).click();
+  await page.getByRole('link', {name: new RegExp(`Review-layout-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: '1... e5, Good', exact: true}).click();
   const dimensions = async () => ({
     height: (await page.locator('.game-speech').boundingBox())!.height,
@@ -199,8 +199,8 @@ test('explanations never create a move tree and rapid variations finish rating a
     }}});
   });
   await page.goto('/');
-  await page.getByRole('button', {name: 'Games', exact: true}).click();
-  await page.getByRole('button', {name: new RegExp(`Review-queued-${testInfo.project.name} vs CoachFixture`)}).click();
+  await page.getByRole('link', {name: 'Games', exact: true}).click();
+  await page.getByRole('link', {name: new RegExp(`Review-queued-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: '1. f3', exact: true}).click();
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
   await expect(page.getByRole('group', {name: 'Coach continuation'})).toHaveCount(0);

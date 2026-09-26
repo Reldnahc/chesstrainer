@@ -4,6 +4,8 @@ import { api, post, type LegalMove } from "./api";
 import Board from "./Board";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
+import Link from "./Link";
+import { gamesPath, navigate as navigatePage, pagePaths, rememberGamePly } from "./navigation";
 
 type Score = { kind: "cp" | "mate"; value: number; mate_given?: boolean };
 type Candidate = { uci: string; san: string; pv: string[]; score: Score };
@@ -52,13 +54,14 @@ function CoachAvatar() {
   </svg>;
 }
 
-export default function GamesScreen({ onImport }: { onImport: () => void }) {
+export default function GamesScreen({ page, selected, initialPly }: { page: number; selected: string | null; initialPly: number }) {
   const [items, setItems] = useState<Item[]>([]);
-  const [offset, setOffset] = useState(0), [total, setTotal] = useState(0);
-  const [selected, setSelected] = useState<string | null>(null);
+  const offset = (page - 1) * 30;
+  const [total, setTotal] = useState(0);
   const [revision, setRevision] = useState(0);
   const [error, setError] = useState(""), [loading, setLoading] = useState(true);
   useEffect(() => {
+    if (selected) return;
     let active = true;
     setLoading(true); setError("");
     api<{ items: Item[]; total: number }>(`/games?offset=${offset}`).then(data => {
@@ -66,26 +69,26 @@ export default function GamesScreen({ onImport }: { onImport: () => void }) {
     }).catch(e => { if (active) setError(e.message); }).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
   }, [offset, selected, revision]);
-  if (selected) return <GameWorkspace key={selected} id={selected} onBack={() => setSelected(null)} />;
+  if (selected) return <GameWorkspace key={selected} id={selected} initialPly={initialPly} libraryHref={gamesPath(page)} />;
   return <>
     <PageTitle eyebrow="EVERY MOVE HAS A STORY" title="Your games" description="Review the turning points. Follow the ideas. Try a different move.">
-      <button className="primary" onClick={onImport}>Import games</button>
+      <Link className="button-link primary" href={pagePaths.Import}>Import games</Link>
     </PageTitle>
     <GameSync onChanged={() => setRevision(value => value + 1)} />
     {error && <p role="alert" className="notice error">{error}</p>}
-    {loading ? <p role="status">Loading your games…</p> : !items.length ? <section className="panel"><h2>Your next insight starts with a game.</h2><p>Import a PGN or your Chess.com games to review both sides with your local coach.</p><button onClick={onImport}>Go to Import</button></section> : <div className="game-library">
-      {items.map(item => <button key={item.id} className="game-library-item" onClick={() => setSelected(item.id)}>
+    {loading ? <p role="status">Loading your games…</p> : !items.length ? <section className="panel"><h2>{page > 1 ? "No games on this page." : "Your next insight starts with a game."}</h2>{page > 1 ? <Link className="button-link" href={gamesPath()}>Back to your games</Link> : <><p>Import a PGN or your Chess.com games to review both sides with your local coach.</p><Link className="button-link" href={pagePaths.Import}>Go to Import</Link></>}</section> : <div className="game-library">
+      {items.map(item => <Link key={item.id} className="button-link game-library-item" href={gamesPath(page, item.id)}>
         <span><strong>{item.white} <span className="muted">vs</span> {item.black}</strong><small>{dateText(item.played_on)} · {item.result}</small></span>
         <span className="game-library-status">{item.status === "completed" ? "Open review" : item.status === "not_started" ? "Review game" : item.status.replaceAll("_", " ")} <ChevronRight size={18}/></span>
-      </button>)}
+      </Link>)}
     </div>}
-    {total > 30 && <div className="game-pagination"><button disabled={offset === 0} onClick={() => setOffset(n => Math.max(0, n - 30))}>Previous games</button><span>{offset + 1}–{Math.min(offset + 30, total)} of {total}</span><button disabled={offset + 30 >= total} onClick={() => setOffset(n => n + 30)}>More games</button></div>}
+    {total > 30 && items.length > 0 && <div className="game-pagination"><button disabled={offset === 0} onClick={() => navigatePage(gamesPath(page - 1))}>Previous games</button><span>{offset + 1}–{Math.min(offset + 30, total)} of {total}</span><button disabled={offset + 30 >= total} onClick={() => navigatePage(gamesPath(page + 1))}>More games</button></div>}
   </>;
 }
 
-function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
+function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly: number; libraryHref: string }) {
   const [game, setGame] = useState<Game | null>(null);
-  const [cursor, setCursor] = useState<Cursor>({ ply: 0, branch: null, step: 0 });
+  const [cursor, setCursor] = useState<Cursor>({ ply: initialPly, branch: null, step: 0 });
   const [branches, setBranches] = useState<Branch[]>([]);
   const nextId = useRef(1);
   const boardArea = useRef<HTMLElement>(null);
@@ -118,8 +121,11 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   const cues = report?.board_cues?.fen === frame?.fen ? report?.board_cues : null;
   const explaining = explanationKey === key && !!cues;
   const actor = (branch ? cursor.step > 0 : cursor.ply > 0) && frame?.san ? (frame.turn === "white" ? "Black" : "White") : null;
-  const load = useCallback(() => api<Game>(`/games/${id}`).then(data => {
-    if (mounted.current) setGame(data);
+  const load = useCallback(() => api<Game>(`/games/${encodeURIComponent(id)}`).then(data => {
+    if (mounted.current) {
+      setCursor(value => ({ ...value, ply: Math.min(value.ply, data.frames.length - 1) }));
+      setGame(data);
+    }
     return data;
   }), [id]);
   useEffect(() => {
@@ -127,6 +133,12 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     load().then(data => { if (mounted.current) { setOrientation(data.orientation); } }).catch(e => { if (mounted.current) setError(e.message); });
     return () => { mounted.current = false; };
   }, [load]);
+  useEffect(() => {
+    if (game && !branch) rememberGamePly(id, cursor.ply);
+  }, [id, !!game, cursor.ply, !!branch]);
+  useEffect(() => {
+    if (game) document.title = `${game.white} vs ${game.black} · Fieldwork`;
+  }, [game?.white, game?.black]);
   useEffect(() => {
     const area = boardArea.current;
     if (!area) return;
@@ -154,7 +166,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   useEffect(() => {
     if (!branch) return;
     let active = true;
-    post<Position>(`/games/${id}/position`, { ply: root, moves: path }).then(value => {
+    post<Position>(`/games/${encodeURIComponent(id)}/position`, { ply: root, moves: path }).then(value => {
       if (active) setBranchPosition({ key, value });
     }).catch(e => { if (active) setError(e.message); });
     return () => { active = false; };
@@ -170,7 +182,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     const work = (inFlight.current || Promise.resolve()).then(async () => {
       if (!mounted.current) return;
       try {
-        const value = await post<Analysis>(`/games/${id}/analyze`, { ply, moves });
+        const value = await post<Analysis>(`/games/${encodeURIComponent(id)}/analyze`, { ply, moves });
         if (!mounted.current) return;
         cache.current.set(requestKey, value);
         setAnalysisRevision(value => value + 1);
@@ -218,6 +230,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement;
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
       if (target.closest("input,select,textarea,[contenteditable=true]")) return;
       if (event.key === "Escape") { event.preventDefault(); returnRef.current(); }
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
@@ -245,7 +258,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     if (moves.length > 128) { setError("This variation has reached 128 moves. Return to the game to start another."); return; }
     setMoving(true); setError("");
     try {
-      const next = await post<Position>(`/games/${id}/position`, { ply: root, moves });
+      const next = await post<Position>(`/games/${encodeURIComponent(id)}/position`, { ply: root, moves });
       if (!mounted.current || activeKey.current !== requestKey) return;
       addBranch(root, moves, [...(branch ? branch.sans.slice(0, cursor.step) : []), next.san], moves.length, true);
       setBranchPosition({ key: `${root}:${moves.join(",")}`, value: next });
@@ -257,7 +270,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   async function start() {
     setBusy(true); setError("");
     try {
-      await post(`/games/${id}/review`, {});
+      await post(`/games/${encodeURIComponent(id)}/review`, {});
       cache.current.clear(); setAnalysisRevision(value => value + 1);
       await load();
     } catch (e) { setError((e as Error).message); }
@@ -270,7 +283,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     catch (e) { setError((e as Error).message); }
     finally { setBusy(false); }
   }
-  if (!game) return <><button onClick={onBack}><ArrowLeft size={16}/>All games</button><p role={error ? "alert" : "status"}>{error || "Opening game…"}</p></>;
+  if (!game) return <><Link className="button-link text-button" href={libraryHref}><ArrowLeft size={16}/>All games</Link><p role={error ? "alert" : "status"}>{error || "Opening game…"}</p></>;
   const playerName = (color: "white" | "black") => {
     const elo = color === "white" ? game.white_rating : game.black_rating;
     return `${game[color]}${elo ? ` (${elo})` : ""}`;
@@ -307,7 +320,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
         </div>
       </section>
       <aside className="game-review-sidebar">
-    <div className="game-heading"><button className="text-button" onClick={onBack}><ArrowLeft size={16}/>All games</button><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></div>
+    <div className="game-heading"><Link className="button-link text-button" href={libraryHref}><ArrowLeft size={16}/>All games</Link><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></div>
         <section className="game-coach" aria-label="Chess coach"><CoachAvatar/><div className="game-speech">
           <div key={`${analysisKey}:${report?.label}`} className="game-coach-label"><strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>{report ? <Badge label={report.label}/> : actor && !errorAtPosition ? <span className="game-rating-pending" role="status">Checking move...</span> : null}</div>
           <div className="game-coach-message" tabIndex={0} aria-label="Coach explanation"><p aria-live="polite">{explaining ? cues!.caption : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : !actor ? (game.job?.status === "completed" ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea." : "Start a review for the full story, or move a piece to try your own line.") : "I'm checking this move and the opponent's strongest reply…")}</p>
@@ -352,7 +365,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
           <p>Arrows show the played move or immediate engine reply and supported threats. They do not prove that every defense loses material.</p>
           <div className="button-row"><button disabled={busy} onClick={async () => {
             setBusy(true);
-            try { await post(`/games/${id}/train`); setTraining("Training analysis queued. Follow progress in Import."); }
+            try { await post(`/games/${encodeURIComponent(id)}/train`); setTraining("Training analysis queued. Follow progress in Import."); }
             catch (e) { setError((e as Error).message); }
             finally { setBusy(false); }
           }}>Find training mistakes</button></div>

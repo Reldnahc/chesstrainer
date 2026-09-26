@@ -38,6 +38,10 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 
 Navigation is **Review, Games, Weaknesses, Import, Settings**. The initial cold review board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Lessons, Repertoire and manual-position entry forms are removed. Historical records and compatibility APIs remain; see [Product](docs/PRODUCT.md#removed-and-archived).
 
+Pages and individual games have their own URLs, with browser Back/Forward,
+bookmarks and new-tab links. Refreshing a game review preserves the selected
+move; stepping through moves does not add browser-history entries.
+
 ![Desktop review interface](docs/screenshots/review-desktop.png)
 
 [Mobile review](docs/screenshots/review-mobile.png) / [Mobile settings](docs/screenshots/settings-mobile.png) / [Desktop username import](docs/screenshots/import-desktop.png) / [Mobile username import](docs/screenshots/import-mobile.png)

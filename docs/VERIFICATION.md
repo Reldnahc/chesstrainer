@@ -197,3 +197,19 @@ is over 580px square, begins within 110px of the screen top, and its controls fi
 in the viewport. Widening to 1600px grows the sidebar while preserving board size;
 increasing height to 900px grows the board. The evaluation chart remains available
 in the right panel. Desktop screenshot inspected; mobile review tests also pass.
+
+## Browser navigation - September 26, 2026
+
+- TypeScript/Vite production build passed.
+- Full Chromium desktop/phone UI suite: 56 passed, two intentional device-specific
+  skips. Account suite: two passed, including login directly into a bookmarked
+  game/move and rejecting that same game URL for a different account.
+- Checks cover Back/Forward through screens and game reviews, refresh/direct
+  paths, modifier-click opening a separate tab, active-link history deduplication,
+  selected-move restoration without per-move history entries, paginated library
+  scroll restoration, invalid/missing links, legacy exercise/unit links and
+  focused-practice history. Existing training and game-review interactions pass.
+- Desktop review and phone library screenshots were visually inspected. The
+  shared compact header and board layout remain intact.
+- Tests used isolated fixture databases. No database schema, engine policy,
+  reverse-proxy configuration or running Unraid deployment changed.

@@ -44,12 +44,32 @@ The composition root retains migration/skill seeding/retirement reconciliation, 
 | Import.tsx | Import source selection, PGN form and job polling/actions |
 | Settings.tsx | Effective settings display and local classification job controls |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
-| PageTitle.tsx / navigation.ts | Shared title display / existing exercise-and-legacy-unit URL cleanup |
+| PageTitle.tsx | Shared title display |
+| navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
 | api.ts | Same-origin HTTP client and response types |
 
 Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review keeps its related state and timers together. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
-Navigation is Review, Games, Weaknesses, Import, Settings. Removed unit links return to Review. Production serves frontend assets on the API origin; the Vite development proxy targets 127.0.0.1:8000.
+Navigation is Review, Games, Weaknesses, Import, Settings. A small History API
+router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and
+`/settings`. Screen/game links push history entries; `popstate` restores the
+destination. The root URL aliases `/review` with `replaceState`, preserving old
+`?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
+starting a lesson. Unknown paths show a recoverable not-found screen.
+
+`?focus=<skill>` selects focused practice, `?page=N` records the library page
+(also retained on game links), and `?ply=N` records a game's selected half-move.
+Move selection and completed-exercise URL cleanup replace the current entry
+without remounting the view or adding history. Variations stay in memory while
+the URL retains their original-game return point. Scroll positions are kept per
+history entry; restoration waits for asynchronously loaded page content and
+yields to user scrolling. Links retain native new-tab behavior and browser
+keyboard shortcuts are not intercepted by the game board.
+
+Production already serves `index.html` for frontend paths on the API origin,
+including direct game URLs; `/api/` and `/assets/` retain their existing handling.
+No reverse-proxy rewrite is needed when forwarding the whole site to the app.
+The Vite development proxy targets 127.0.0.1:8000.
 
 ## Domain boundaries
 

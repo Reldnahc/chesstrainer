@@ -6,6 +6,13 @@ The existing training policy is unchanged.
 
 ## Using the workspace
 
+Each game opens at `/games/<id>`. Browser Back returns to the previous page and
+Forward reopens the review. You can bookmark a game or open its library link in
+another tab. Selecting a move records `?ply=<half-move>` in the same history entry,
+so refreshing or returning from another screen restores that position. **All games**
+opens the library, retaining its page when the game was opened from a later page.
+Normal arrow keys move through the game; Alt+Left/Right remain browser shortcuts.
+
 Open **Games**, choose an imported game, and select **Start game review**. The coach
 and timeline fill as analysis finishes. Select a move, use the arrow keys/buttons,
 or select **Next mistake**. **Show why** overlays arrows and tactical square

@@ -10,6 +10,11 @@ The five screens are **Review, Games, Weaknesses, Import and Settings**, in that
 All screens share the compact navigation header, including the Games library and
 game-review workspace. Desktop uses the same 56px navigation row throughout;
 phones retain the compact sticky navigation with full-size touch targets.
+Each screen and game has its own URL. Browser Back/Forward, bookmarks, refresh,
+and opening navigation or game links in a new tab work normally. Returning to the
+Games library restores its page and scroll position; returning to a game restores
+the selected move. Moving through a game updates the current URL without adding
+a browser-history stop for each move.
 
 - **Games** browses imported games, runs resumable analysis of both colors, and shows move-quality labels, a timeline and an illustrated tactical coach. The board accepts variations at any point, with undo, saved in-session branches and a return to the original game. Coach evidence and variation analysis never count as scheduled recalls. See [Game review](GAME_REVIEW.md) for scoring rules and limits.
 

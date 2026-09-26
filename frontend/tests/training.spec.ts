@@ -10,8 +10,8 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
   expect(response.headers()['content-type']).toContain('image/svg+xml');
   expect(await response.text()).toContain('<svg');
   for (const tab of ['Review', 'Games', 'Import', 'Weaknesses', 'Settings']) {
-    await page.getByRole('button', {name: tab, exact: true}).click();
-    await expect(page.getByRole('button', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
+    await page.getByRole('link', {name: tab, exact: true}).click();
+    await expect(page.getByRole('link', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
     if (tab === 'Settings') {
       await expect(page.getByRole('heading', {name: 'Chess analysis'})).toBeVisible();
@@ -75,7 +75,7 @@ test('create a curated position, fail once, solve by tapping and retain after re
 
 test('PGN upload form imports a learner game and reports real analysis', async ({page}, testInfo) => {
   await page.goto('/');
-  await page.getByRole('button', {name: 'Import', exact: true}).click();
+  await page.getByRole('link', {name: 'Import', exact: true}).click();
   await page.getByRole('button', {name: 'PGN file', exact: true}).click();
   await page.getByText('Or paste PGN text', {exact: true}).click();
   await page.getByLabel('PGN', {exact: true}).fill(`[Round "${testInfo.project.name}"]\n[White "UI learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1`);
@@ -148,7 +148,7 @@ test('legal capture rings exclude pinned moves and stay usable after a failed an
 test('Chess.com username import fetches, analyzes and deduplicates without OpenAI', async ({page}, testInfo) => {
   const username = `ui-import-${testInfo.project.name}`;
   await page.goto('/');
-  await page.getByRole('button', {name: 'Import', exact: true}).click();
+  await page.getByRole('link', {name: 'Import', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Import from Chess.com'})).toBeVisible();
   await expect(page.getByLabel('Time control', {exact: true})).toHaveValue('rapid');
   await expect(page.getByLabel('Look back')).toHaveValue('3');
@@ -185,7 +185,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
 
 test('Chess.com missing username reports a retryable provider error', async ({page}) => {
   await page.goto('/');
-  await page.getByRole('button', {name: 'Import', exact: true}).click();
+  await page.getByRole('link', {name: 'Import', exact: true}).click();
   await page.getByLabel('Chess.com username', {exact: true}).fill('missing-player');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
   await page.getByRole('button', {name: 'Fetch & analyze games'}).click();
@@ -201,7 +201,7 @@ test('removed lesson links return to Review without starting a lesson', async ({
   page.on('request', request => {if (request.url().includes('/api/course')) requests.push(request.url());});
   await page.goto('/?unit=archived-unit');
   await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
-  await expect(page.getByRole('navigation').getByRole('button')).toHaveCount(5);
+  await expect(page.getByRole('navigation').getByRole('link')).toHaveCount(5);
   await expect(page.getByRole('button', {name: 'Course', exact: true})).toHaveCount(0);
   expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
   expect(requests).toEqual([]);
@@ -462,14 +462,14 @@ test('local classification settings and evidence work without model connectivity
   }})).json();
   await expect.poll(async () => (await (await page.request.get('/api/jobs')).json()).find((j:{id:string}) => j.id === imported.job_id)?.status, {timeout:30000}).toBe('completed');
   await page.goto('/');
-  await page.getByRole('button', {name:'Settings', exact:true}).click();
+  await page.getByRole('link', {name:'Settings', exact:true}).click();
   await expect(page.getByRole('heading', {name:'Local mistake classification'})).toBeVisible();
   await expect(page.getByRole('button', {name:'Classify saved games'})).toBeVisible();
   await expect(page.getByText('API key', {exact:true})).toHaveCount(0);
   const config = await (await page.request.get('/api/settings')).json();
   expect(config.classification_provider).toBe('local_rules');
   expect(config.openai_model).toBeUndefined();
-  await page.getByRole('button', {name:'Weaknesses', exact:true}).click();
+  await page.getByRole('link', {name:'Weaknesses', exact:true}).click();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name:'Allowed mate', exact:true})});
   await weakness.getByText(/Browse supporting positions/).click();
   await weakness.getByRole('button', {name:'Example 1', exact:true}).click();
@@ -492,7 +492,7 @@ test('compact workspace keeps navigation reachable and secondary settings expand
   await page.goto('/');
   if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 390, height: 700});
   for (const tab of ['Import', 'Weaknesses', 'Settings']) {
-    await page.getByRole('navigation').getByRole('button', {name: tab, exact: true}).click();
+    await page.getByRole('navigation').getByRole('link', {name: tab, exact: true}).click();
     await expect(page.locator('main h1')).toHaveText(tab === 'Import' ? 'Import games' : tab);
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
     if (testInfo.project.name === 'mobile') {
@@ -508,7 +508,7 @@ test('compact workspace keeps navigation reachable and secondary settings expand
   await expect(page.getByText('Engine path', {exact: true})).toBeVisible();
   await page.getByText('Storage & connection', {exact: true}).click();
   await expect(page.getByText('Database', {exact: true})).toBeVisible();
-  await page.getByRole('navigation').getByRole('button', {name: 'Import', exact: true}).click();
+  await page.getByRole('navigation').getByRole('link', {name: 'Import', exact: true}).click();
   await expect(page.getByLabel('From date')).not.toBeVisible();
   await page.getByText('Custom date range', {exact: true}).click();
   await page.getByLabel('From date').fill('2026-01-01');
@@ -620,11 +620,13 @@ test('playback shows a repeated summary and move annotation only once', async ({
 test('focused practice highlights a verified pattern without scheduling a recall', async ({page}, testInfo) => {
   const fixture = await (await page.request.post(`/__test/classified-fixture/focus-${testInfo.project.name}`)).json();
   await page.goto('/');
-  await page.getByRole('navigation').getByRole('button', {name: 'Weaknesses', exact: true}).click();
+  await page.getByRole('navigation').getByRole('link', {name: 'Weaknesses', exact: true}).click();
   await expect(page.getByText('mistakes have a specific tactical pattern.', {exact: false})).toBeVisible();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
   const before = (await (await page.request.get('/api/stats')).json()).reviews;
   await weakness.getByRole('button', {name: /Practice .* positions/}).click();
+  await expect(page).toHaveURL(/\/review\?focus=/);
+  const focusedUrl = page.url();
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
   await expect(page.getByText('practiced this session', {exact: true})).toBeVisible();
   await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
@@ -646,6 +648,14 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(board.locator('[data-pattern-square]')).toHaveCount(0);
   expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before);
   await page.getByRole('button', {name: 'Return to mixed review', exact: true}).click();
+  await expect(page).toHaveURL('/review');
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toHaveCount(0);
+  await page.goBack();
+  await expect(page).toHaveURL(focusedUrl);
+  await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
+  await expect(page.getByRole('button', {name: 'Return to mixed review', exact: true})).toBeVisible();
+  await page.goBack();
+  await expect(page).toHaveURL('/weaknesses');
+  await expect(weakness).toBeVisible();
   expect(fixture.exercise_id).toBeTruthy();
 });

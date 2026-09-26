@@ -16,7 +16,8 @@ import ImportScreen from "./Import";
 import SettingsScreen from "./Settings";
 import WeaknessScreen from "./Weaknesses";
 import EvidenceDialog from "./EvidenceDialog";
-import { clearExerciseLink } from "./navigation";
+import { navigate, pagePaths, useRoute } from "./navigation";
+import Link from "./Link";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
 const tabs = [
@@ -26,18 +27,14 @@ const tabs = [
   ["Import", FileUp],
   ["Settings", Settings2],
 ] as const;
-type Tab = (typeof tabs)[number][0];
 export default function App() {
   const account = useAccount();
-  const [tab, setTab] = useState<Tab>("Review");
-  const [focusSkill, setFocusSkill] = useState<string | null>(null);
+  const route = useRoute();
+  const { tab, focusSkill, exercise } = route;
   const [error, setError] = useState("");
   const [connection, setConnection] = useState(false);
   const [token, setToken] = useState("");
   const [health, setHealth] = useState<Health | null>(null);
-  const [exercise, setExercise] = useState<string | null>(() =>
-    new URLSearchParams(window.location.search).get("exercise"),
-  );
   const [evidenceId, setEvidenceId] = useState<string | null>(null);
   const [refresh, setRefresh] = useState(0);
   const fail = useCallback(
@@ -45,21 +42,16 @@ export default function App() {
     [],
   );
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).has("unit"))
-      clearExerciseLink();
     const connect = () => setConnection(true);
     window.addEventListener("connection-required", connect);
     api<Health>("/health").then(setHealth).catch(fail);
     return () => window.removeEventListener("connection-required", connect);
   }, [refresh, fail]);
-  function navigate(next: Tab) {
-    setFocusSkill(null);
-    clearExerciseLink();
-    setTab(next);
+  useEffect(() => {
     setError("");
-    setExercise(null);
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }
+    setEvidenceId(null);
+    document.title = `${route.gameId ? "Game review" : tab ?? "Page not found"} · Fieldwork`;
+  }, [route, tab]);
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -67,31 +59,27 @@ export default function App() {
       </a>
       <header className="app-header">
         <div className="header-inner">
-          <a
+          <Link
             className="brand"
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("Review");
-            }}
+            href={pagePaths.Review}
             aria-label="Fieldwork home"
           >
             <img src={appMark} width="34" height="34" alt="" />
             <span>
               fieldwork<span className="brand-sub">Chess training</span>
             </span>
-          </a>
+          </Link>
           <nav aria-label="Main navigation">
             {tabs.map(([name, Icon]) => (
-              <button
+              <Link
                 key={name}
+                href={pagePaths[name]}
                 aria-current={tab === name ? "page" : undefined}
-                className={tab === name ? "nav-item active" : "nav-item"}
-                onClick={() => navigate(name)}
+                className={tab === name ? "button-link nav-item active" : "button-link nav-item"}
               >
                 <Icon size={17} strokeWidth={1.7} />
                 <span>{name}</span>
-              </button>
+              </Link>
             ))}
           </nav>
           <span className="local-label">
@@ -146,28 +134,28 @@ export default function App() {
           <>
             {tab === "Review" && (
               <ReviewScreen
-                key={`${refresh}-${focusSkill}`}
+                key={`${refresh}-${route.href}`}
                 focusSkill={focusSkill}
-                onExitFocus={() => navigate("Review")}
+                onExitFocus={() => navigate(pagePaths.Review)}
                 requested={exercise}
-                onImport={() => navigate("Import")}
+                onImport={() => navigate(pagePaths.Import)}
                 fail={fail}
                 onEvidence={setEvidenceId}
               />
             )}
             {tab === "Import" && <ImportScreen health={health} fail={fail} />}
-            {tab === "Games" && <GamesScreen onImport={() => navigate("Import")} />}
+            {tab === "Games" && <GamesScreen key={route.href} page={route.page} selected={route.gameId} initialPly={route.ply} />}
             {tab === "Weaknesses" && (
               <WeaknessScreen
                 onPractice={(skill) => {
-                  navigate("Review");
-                  setFocusSkill(skill);
+                  navigate(`${pagePaths.Review}?focus=${encodeURIComponent(skill)}`);
                 }}
                 onEvidence={setEvidenceId}
                 fail={fail}
               />
             )}
             {tab === "Settings" && <SettingsScreen fail={fail} />}
+            {!tab && <section className="panel"><h1>Page not found</h1><p>This address does not match a page in Fieldwork.</p><Link className="button-link primary" href={pagePaths.Games}>Go to your games</Link></section>}
           </>
         )}
       </main>

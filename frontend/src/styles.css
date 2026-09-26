@@ -34,14 +34,15 @@ body { margin: 0; }
 button, input, select, textarea { font: inherit; }
 button, a, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; }
-button {
+button, .button-link {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   min-height: 42px; padding: 10px 16px; border: 1px solid #44484f;
   border-radius: 6px; background: var(--raised); color: #e8eaee;
   font-size: 13px; font-weight: 500; cursor: pointer;
   transition: background .15s, border-color .15s, color .15s;
+  text-decoration: none;
 }
-button:hover { background: #30343a; border-color: #69707c; }
+button:hover, .button-link:hover { background: #30343a; border-color: #69707c; }
 button:disabled { opacity: .45; cursor: default; }
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible,
 select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
