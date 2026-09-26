@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { post, type Job } from './api';
+import { useAccount } from './AccountGate';
 
 export function ChessComImportForm({onQueued, fail}: {onQueued: () => void; fail: (e: unknown) => void}) {
-  const [username, setUsername] = useState(() => localStorage.getItem('chesscom-username') || '');
+  const account = useAccount();
+  const [username, setUsername] = useState(() => account?.chesscom_username || (!account ? localStorage.getItem('chesscom-username') : '') || '');
+  const [analyze, setAnalyze] = useState(false);
   const [timeClass, setTimeClass] = useState('rapid');
   const [months, setMonths] = useState(3);
   const [maxGames, setMaxGames] = useState(100);
@@ -15,9 +18,9 @@ export function ChessComImportForm({onQueued, fail}: {onQueued: () => void; fail
   async function submit(event: React.FormEvent) {
     event.preventDefault(); setBusy(true); setMessage('');
     try {
-      await post('/imports/chesscom', {username: username.trim(), time_class: timeClass, months, max_games: maxGames, start_date: startDate || null, end_date: endDate || null});
-      localStorage.setItem('chesscom-username', username.trim());
-      setMessage(`Import queued for ${username.trim()}. Fetching and analysis continue in the background.`);
+      await post('/imports/chesscom', {username: username.trim(), time_class: timeClass, analyze, months, max_games: maxGames, start_date: startDate || null, end_date: endDate || null});
+      if (!account) localStorage.setItem('chesscom-username', username.trim());
+      setMessage(`Import queued for ${username.trim()}. ${analyze ? "Fetching and training analysis continue in the background." : "Games will appear in Games without engine analysis."}`);
       onQueued();
     } catch (e) {fail(e);} finally {setBusy(false);}
   }
@@ -36,6 +39,7 @@ export function ChessComImportForm({onQueued, fail}: {onQueued: () => void; fail
       </select></label>
       <label>Maximum new games<input type="number" min={1} max={1000} step={1} value={maxGames} onChange={e => setMaxGames(Number(e.target.value))} required/></label>
     </div>
+    <label><input type="checkbox" checked={analyze} onChange={e => setAnalyze(e.target.checked)} />Also analyze these games for training</label>
     <details className="import-extra"><summary>Custom date range{startDate || endDate ? ' (active)' : ''}</summary>
       <div className="import-options">
         <label>From date<input aria-label="From date" type="date" value={startDate} max={endDate || undefined} onChange={e => setStartDate(e.target.value)}/></label>
@@ -53,7 +57,7 @@ export function ImportJob({job, reload, fail}: {job: Job; reload: () => void; fa
   const source = job.chesscom;
   const fetching = source && !source.fetch_completed;
   return <article className="job panel">
-    <div className="row-between"><strong>{source ? `Chess.com · ${source.username}` : job.kind === 'game_review' ? 'Full-game review' : job.kind === 'enrichment' ? 'Deeper classification evidence' : job.kind === 'teaching' ? 'Archived lesson summaries' : job.kind === 'classification' ? 'Skill classification' : 'Game analysis'}</strong><span className={`badge ${job.status}`}>{job.status}</span></div>
+    <div className="row-between"><strong>{source ? `Chess.com · ${source.username}` : job.kind === 'sync' ? 'Recent-game sync' : job.kind === 'chesscom_fetch' ? 'Fetch games' : job.kind === 'training' ? 'Training analysis' : job.kind === 'game_review' ? 'Full-game review' : job.kind === 'enrichment' ? 'Deeper classification evidence' : job.kind === 'teaching' ? 'Archived lesson summaries' : job.kind === 'classification' ? 'Skill classification' : 'Game analysis'}</strong><span className={`badge ${job.status}`}>{job.status}</span></div>
     {source && <>
       <p className="import-phase">{fetching ? 'Fetching public game archives' : 'Download complete · local analysis'}</p>
       {fetching && <progress aria-label="Archive download progress" value={source.archives_processed} max={Math.max(1, source.archives_total)}/>}

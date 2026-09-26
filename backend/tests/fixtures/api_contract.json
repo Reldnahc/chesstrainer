@@ -231,6 +231,36 @@
         }
       }
     },
+    "/api/sync": {
+      "get": {
+        "summary": "Get Sync",
+        "operationId": "get_sync_api_sync_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Begin Sync",
+        "operationId": "begin_sync_api_sync_post",
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/games": {
       "get": {
         "summary": "Games",
@@ -393,6 +423,43 @@
         },
         "responses": {
           "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/games/{game_id}/train": {
+      "post": {
+        "summary": "Train Game",
+        "operationId": "train_game_api_games__game_id__train_post",
+        "parameters": [
+          {
+            "name": "game_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Game Id"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -1052,6 +1119,11 @@
             ],
             "title": "Side",
             "default": "auto"
+          },
+          "analyze": {
+            "type": "boolean",
+            "title": "Analyze",
+            "default": true
           }
         },
         "type": "object",
@@ -1062,6 +1134,11 @@
       },
       "ChessComRequest": {
         "properties": {
+          "analyze": {
+            "type": "boolean",
+            "title": "Analyze",
+            "default": true
+          },
           "username": {
             "type": "string",
             "maxLength": 50,

@@ -66,4 +66,25 @@ the service if you also need to interrupt that account's already-running analysi
 There is no email delivery dependency or web admin dashboard in this version.
 The existing SQLite backup/restore tool includes all accounts and their data in
 one snapshot. Treat backups as private: they include password hashes and sessions.
-Schema downgrade is intentionally refused; restore a pre-upgrade snapshot instead.
+Once accounts exist, schema downgrade is refused; restore a pre-upgrade snapshot instead.
+
+## Recent games
+
+Save a Chess.com username in Games or Settings. It is stored on the account, not
+in that browser. While either page is visible it checks sync progress every 15
+seconds and requests a provider refresh at most once per minute. Multiple devices
+share the same checkpoint/cooldown. Hidden pages do not poll. A failed provider
+request leaves saved games available and displays an error.
+
+Automatic sync fetches at most the latest 50 completed standard-chess games in
+the current/previous month, across all time controls. It does not backfill all
+history, analyze games, create training cards, or change review schedules. The
+Games library sorts by play time, with unknown dates last. Chess.com's published
+API is cached; refresh does not guarantee immediate availability after a game.
+
+Manual imports default to fetching only in the UI. Select **Also analyze these
+games for training** to run the existing pipeline. Within any saved game, **Start
+game review** runs the coach/report and **Find training mistakes** queues that
+game for training, even if it was fetched earlier. Interactive exploration still
+analyzes the position you visit. The HTTP import API retains its previous
+`analyze=true` default for existing clients; the UI explicitly sends its selection.

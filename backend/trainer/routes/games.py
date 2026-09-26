@@ -8,7 +8,7 @@ from sqlalchemy import func, select
 
 from trainer.chess_core import Score
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
-from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
+from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ImportBatch, ImportGame
 
 
 class ReviewRequest(BaseModel):
@@ -36,7 +36,10 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
     def games(offset: int = Query(0, ge=0), limit: int = Query(30, ge=1, le=100)):
         with sessions() as db:
             rows = db.scalars(
-                select(Game).order_by(Game.created_at.desc(), Game.id).offset(offset).limit(limit)
+                select(Game)
+                .order_by(Game.played_at.desc(), Game.created_at.desc(), Game.id)
+                .offset(offset)
+                .limit(limit)
             ).all()
             items = []
             for game in rows:
@@ -143,6 +146,30 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             move = before.pop()
             san = before.san(move)
         return position(board) | {"san": san}
+
+    @router.post("/api/games/{game_id}/train", status_code=202)
+    def train_game(game_id: str):
+        with mutation_lock, sessions() as db:
+            require_game(db, game_id)
+            active = db.scalar(
+                select(AnalysisJob)
+                .join(ImportGame, ImportGame.import_id == AnalysisJob.import_id)
+                .where(
+                    ImportGame.game_id == game_id,
+                    AnalysisJob.kind == "training",
+                    AnalysisJob.status.in_(["queued", "running"]),
+                )
+            )
+            if active:
+                return {"job_id": active.id, "status": active.status}
+            batch = ImportBatch(filename="Selected game training", original_pgn="")
+            db.add(batch)
+            db.flush()
+            db.add(ImportGame(import_id=batch.id, game_id=game_id, is_new=True))
+            job = AnalysisJob(kind="training", import_id=batch.id, games_total=1)
+            db.add(job)
+            db.commit()
+            return {"job_id": job.id, "status": job.status}
 
     @router.post("/api/games/{game_id}/analyze")
     def analyze_variation(game_id: str, data: VariationRequest):

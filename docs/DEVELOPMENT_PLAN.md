@@ -4,6 +4,10 @@ Fieldwork is a private, review-centered chess trainer. The current navigation is
 
 ## Current state
 
+- Shared hosting: self-service accounts, independent device sessions and private
+  ownership in one database. Recent Chess.com games sync without engine work;
+  manual imports and individual saved games can request analysis explicitly.
+
 - PGN and filtered Chess.com imports feed persistent local analysis jobs, native Stockfish and versioned local mistake classification.
 - Review supports multiple sound answers, legal-move interaction, failure counters, reveal and verified line playback. Focused practice is separate from scheduled recall.
 - Games supports both-color review, an illustrated evidence-backed coach, move labels and playable variations. Further explanation coverage and label calibration require independently reviewed positions; [GAME_REVIEW.md](GAME_REVIEW.md) records the initial rules and limits.

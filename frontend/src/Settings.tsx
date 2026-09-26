@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api, post, type WorkspaceSettings } from "./api";
 import { CoverageSummary } from "./Weaknesses";
 import PageTitle from "./PageTitle";
+import GameSync from "./GameSync";
 export default function SettingsScreen({
   fail,
 }: {
@@ -35,6 +36,7 @@ export default function SettingsScreen({
         title="Settings"
         description="Your engine, practice preferences and local workspace."
       />
+      <GameSync />
       {data && (
         <div className="settings-grid">
           <section className="panel settings-panel">

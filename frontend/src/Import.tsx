@@ -58,6 +58,7 @@ export default function ImportScreen({
   const [jobs, setJobs] = useState<Job[]>([]),
     [result, setResult] = useState<PgnImportResult | null>(null);
   const [busy, setBusy] = useState(false);
+  const [analyze, setAnalyze] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const reload = useCallback(
     () => api<Job[]>("/jobs").then(setJobs).catch(fail),
@@ -76,6 +77,7 @@ export default function ImportScreen({
       body.append("file", file || new File([text], "pasted-games.pgn"));
       body.append("usernames", names);
       body.append("side", side);
+      body.append("analyze", String(analyze));
       setResult(
         await api<PgnImportResult>("/imports", { method: "POST", body }),
       );
@@ -118,6 +120,7 @@ export default function ImportScreen({
             <ChessComImportForm onQueued={reload} fail={fail} />
           ) : (
             <form className="panel form-panel" onSubmit={submit}>
+              <label><input type="checkbox" checked={analyze} onChange={e => setAnalyze(e.target.checked)} />Also analyze these games for training</label>
               <h2>Import PGN</h2>
               <PgnInput {...{ file, setFile, text, setText }} />
               <label>

@@ -63,6 +63,7 @@ class Game(Owned, Base):
     learner_color: Mapped[bool]
     pgn: Mapped[str] = mapped_column(Text)
     played_on: Mapped[str | None]
+    played_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 

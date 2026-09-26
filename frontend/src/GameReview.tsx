@@ -3,6 +3,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Flip
 import { api, post, type LegalMove, type ExplanationFrame } from "./api";
 import Board from "./Board";
 import PageTitle from "./PageTitle";
+import GameSync from "./GameSync";
 
 type Score = { kind: "cp" | "mate"; value: number; mate_given?: boolean };
 type Finding = { skill_id: string; explanation: string; frame_ply: number; roles: Record<string, string[]> };
@@ -56,6 +57,7 @@ export default function GamesScreen({ onImport }: { onImport: () => void }) {
   const [items, setItems] = useState<Item[]>([]);
   const [offset, setOffset] = useState(0), [total, setTotal] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
+  const [revision, setRevision] = useState(0);
   const [error, setError] = useState(""), [loading, setLoading] = useState(true);
   useEffect(() => {
     let active = true;
@@ -64,12 +66,13 @@ export default function GamesScreen({ onImport }: { onImport: () => void }) {
       if (active) { setItems(data.items); setTotal(data.total); }
     }).catch(e => { if (active) setError(e.message); }).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
-  }, [offset, selected]);
+  }, [offset, selected, revision]);
   if (selected) return <GameWorkspace key={selected} id={selected} onBack={() => setSelected(null)} />;
   return <>
     <PageTitle eyebrow="EVERY MOVE HAS A STORY" title="Your games" description="Review the turning points. Follow the ideas. Try a different move.">
       <button className="primary" onClick={onImport}>Import games</button>
     </PageTitle>
+    <GameSync onChanged={() => setRevision(value => value + 1)} />
     {error && <p role="alert" className="notice error">{error}</p>}
     {loading ? <p role="status">Loading your games…</p> : !items.length ? <section className="panel"><h2>Your next insight starts with a game.</h2><p>Import a PGN or your Chess.com games to review both sides with your local coach.</p><button onClick={onImport}>Go to Import</button></section> : <div className="game-library">
       {items.map(item => <button key={item.id} className="game-library-item" onClick={() => setSelected(item.id)}>
@@ -89,6 +92,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   const [orientation, setOrientation] = useState<"white" | "black">("white");
   const [rating, setRating] = useState(1000);
   const [busy, setBusy] = useState(false), [moving, setMoving] = useState(false);
+  const [training, setTraining] = useState("");
   const [error, setError] = useState("");
   const [branchPosition, setBranchPosition] = useState<{ key: string; value: Position } | null>(null);
   const [analysis, setAnalysis] = useState<{ key: string; value: Analysis } | null>(null);
@@ -291,6 +295,13 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
           {game.job && <progress value={game.job.completed} max={game.job.total || 1} aria-label="Game review progress"/>}
           {running ? <div className="row-between"><p role="status">{game.job?.cancel_requested ? "Finishing the current move…" : game.job?.status === "queued" ? "Review queued. You can explore while you wait." : "Reviewing both sides…"}</p><button disabled={busy || game.job?.cancel_requested} onClick={cancel}>Pause review</button></div> : <div className="button-row"><button className="primary" disabled={busy} onClick={start}>{game.job?.status === "completed" ? "Update labels" : game.job ? "Resume review" : "Start game review"}</button></div>}
           {game.job?.error && <p className="small" role="alert">{game.job.error}</p>}
+          <div className="button-row"><button disabled={busy} onClick={async () => {
+            setBusy(true);
+            try { await post(`/games/${id}/train`); setTraining("Training analysis queued. Follow progress in Import."); }
+            catch (e) { setError((e as Error).message); }
+            finally { setBusy(false); }
+          }}>Find training mistakes</button></div>
+          {training && <p role="status" className="small">{training}</p>}
           <details><summary>Blunder sensitivity</summary><label>Player rating<select value={rating} disabled={!!running} onChange={e => setRating(Number(e.target.value))}>{Array.from(new Set([600, 1000, 1500, 2000, 2500, game.rating])).sort((a,b) => a-b).map(n => <option key={n} value={n}>{n}</option>)}</select></label><p className="small">Only the Blunder label changes with rating. Decisive pawn losses still count. Applies to both players; use {game.job?.status === "completed" ? "Update labels" : "Start / Resume review"} to save.</p></details>
         </section>
         {!!game.job?.completed && <details className="game-summary"><summary>Move quality · {game.job.status === "completed" ? "complete game" : "analyzed moves so far"}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><Badge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>}

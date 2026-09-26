@@ -2,7 +2,9 @@
 
 A private chess trainer built around decisions in your own games. Import Chess.com history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
 
-Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. This is a local application, not a hosted service.
+Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. The application can run locally or be self-hosted for friends with private accounts in one SQLite database.
+
+Shared hosting and account migration: [Accounts](docs/ACCOUNTS.md).
 
 ## Implemented
 
@@ -17,7 +19,8 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 - Cold review with drag/drop, tap-to-move, legal-move dots/capture rings and promotion selection. Failures preview a verified counter; Show me why opens deeper playback. Reveal move plays the saved answer.
 - Full-game review in **Games**: saved analysis for both players, move-quality labels, an evaluation timeline, an illustrated tactical coach, and playable branching variations. Pause/resume preserves completed analysis; game review never changes scheduled practice. See [Game review](docs/GAME_REVIEW.md) for scoring and evidence limits.
 - FSRS scheduling, one failed recall per session, continued retries and permanent retirement above a configurable interval threshold (100 days by default).
-- Same-origin LAN operation, an optional shared access token and CLI backup/restore.
+- Same-origin LAN operation, optional shared access token, or self-service accounts with private data and persistent device sessions. CLI backup/restore covers the single database.
+- Remembered Chess.com usernames and automatic recent-game fetching without engine analysis. Start full review or training analysis explicitly from a saved game.
 
 Navigation is **Review, Games, Weaknesses, Import, Settings**. The initial cold review board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Lessons, Repertoire and manual-position entry forms are removed. Historical records and compatibility APIs remain; see [Product](docs/PRODUCT.md#removed-and-archived).
 

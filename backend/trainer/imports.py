@@ -1,5 +1,6 @@
 import io
 import logging
+from datetime import datetime, timezone
 
 import chess
 import chess.pgn
@@ -77,6 +78,17 @@ def fingerprint(game, color):
     )
 
 
+def played_at(game):
+    headers = game.headers
+    value = (
+        headers.get("UTCDate", headers.get("Date", "")) + " " + headers.get("UTCTime", "00:00:00")
+    )
+    try:
+        return datetime.strptime(value, "%Y.%m.%d %H:%M:%S").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
+
 def import_games(
     db,
     filename: str,
@@ -88,12 +100,14 @@ def import_games(
     queue_analysis: bool = True,
     commit: bool = True,
     max_new_games: int | None = None,
+    retain_original: bool = True,
+    completed_times: dict[str, datetime] | None = None,
 ):
     if batch is None:
         batch = ImportBatch(filename=filename, original_pgn=pgn)
         db.add(batch)
         db.flush()
-    else:
+    elif retain_original:
         batch.original_pgn += ("\n\n" if batch.original_pgn else "") + pgn
     errors, imported, duplicates, processed = [], 0, 0, 0
     linked = set(db.scalars(select(ImportGame.game_id).where(ImportGame.import_id == batch.id)))
@@ -132,6 +146,7 @@ def import_games(
                     chess.pgn.StringExporter(headers=True, variations=False, comments=False)
                 ),
                 played_on=parsed.headers.get("Date"),
+                played_at=played_at(parsed),
             )
             db.add(game)
             db.flush()
@@ -139,6 +154,8 @@ def import_games(
         if game.id not in linked:
             db.add(ImportGame(import_id=batch.id, game_id=game.id, is_new=existing is None))
             linked.add(game.id)
+        if completed_times and key in completed_times:
+            game.played_at = completed_times[key]
     if not linked and not errors:
         errors.append({"game": 0, "error": "No games found in this PGN"})
     job = None

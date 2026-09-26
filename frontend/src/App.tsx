@@ -18,6 +18,7 @@ import WeaknessScreen from "./Weaknesses";
 import EvidenceDialog from "./EvidenceDialog";
 import { clearExerciseLink } from "./navigation";
 import appMark from "./assets/fieldwork.svg";
+import { useAccount } from "./AccountGate";
 const tabs = [
   ["Review", Focus],
   ["Games", BookOpen],
@@ -27,6 +28,7 @@ const tabs = [
 ] as const;
 type Tab = (typeof tabs)[number][0];
 export default function App() {
+  const account = useAccount();
   const [tab, setTab] = useState<Tab>("Review");
   const [focusSkill, setFocusSkill] = useState<string | null>(null);
   const [error, setError] = useState("");
@@ -93,7 +95,7 @@ export default function App() {
             ))}
           </nav>
           <span className="local-label">
-            <span className="status-dot" /> Local
+            <span className="status-dot" /> {account ? "Private account" : "Local"}
           </span>
         </div>
       </header>
@@ -175,7 +177,7 @@ export default function App() {
           TRAINING
         </span>
         <span>
-          <ShieldCheck size={14} /> Games & practice stay on this computer
+          <ShieldCheck size={14} /> {account ? "Games & practice are private to your account" : "Games & practice stay on this computer"}
         </span>
       </footer>
       {evidenceId && (

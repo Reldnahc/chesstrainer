@@ -53,7 +53,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     <button disabled={busy} onClick={() => { setSignup(!signup); setError(""); }}>{signup ? "Already have an account? Sign in" : "New here? Create an account"}</button>
   </section></main>;
   return <AccountContext.Provider value={identity.user}>
-    <div className="account-bar"><span>Signed in as <strong>{identity.user.username}</strong></span><button disabled={busy} onClick={() => logout()}>Sign out</button><button disabled={busy} onClick={() => logout(true)}>Sign out all devices</button>{error && <span role="alert">{error}</span>}</div>
+    <div className="account-bar"><span>Signed in as <strong>{identity.user.username}</strong></span><button disabled={busy} onClick={() => logout()}>Sign out</button><details><summary>Sessions</summary><button disabled={busy} onClick={() => logout(true)}>Sign out all devices</button></details>{error && <span role="alert">{error}</span>}</div>
     <div key={identity.user.id}>{children}</div>
   </AccountContext.Provider>;
 }

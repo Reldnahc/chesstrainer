@@ -5,8 +5,9 @@ Current direction: Review and local mistake classification. The user's September
 | Area | Implemented | Missing / limits |
 |---|---|---|
 | Chess authority | python-chess, native Stockfish, separate practical acceptance policy, explicit mate/perspective types | No tablebases or synthetic positions |
+| Accounts | Self-service signup, persistent device sessions, account ownership in one SQLite database, host password recovery | No email recovery or web admin dashboard |
 | Game import | Multi-PGN, learner matching, provenance, deduplication, partial errors | Standard chess only |
-| Chess.com | Username, mode/date filters, lookback, new-game limit and resumable archives | Completed public games only; no recurring sync or exact clock/increment filter |
+| Chess.com | Username, mode/date filters, lookback, new-game limit and resumable archives | Completed public games only; automatic recent-game sync for accounts; cached upstream data; no exact clock/increment filter |
 | Analysis | Triage/deep passes, MultiPV, actual move at same root, deterministic facts, compatible persistent cache | Bounded engine limits can miss tactics; subtle positional causes often unexplained |
 | Jobs | Persistent queue/progress, parallel engines/local rule workers, cancellation/cache/restart | One backend process |
 | Classification | Pinned Lichess tactical recognition, adaptive saved continuations, connected combinations, before/after causes, native tests for relative pins/fork defenses/trapped pieces, separated outcomes/patterns/cues and exact audits | Version 4 with unchanged mistake-evidence gates; overloads, economically ineffective multiple defenders and broad strategic causes remain unsupported |

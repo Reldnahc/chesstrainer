@@ -29,6 +29,7 @@ def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
         file: UploadFile = File(...),
         usernames: str = Form(""),
         side: Literal["auto", "white", "black"] = Form("auto"),
+        analyze: bool = Form(True),
     ):
         pgn = await read_pgn(file)
         with mutation_lock, sessions() as db:
@@ -38,6 +39,7 @@ def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
                 pgn,
                 usernames.split(","),
                 None if side == "auto" else side,
+                queue_analysis=analyze,
             )
 
     @router.post("/api/imports/chesscom", status_code=202)
@@ -48,6 +50,7 @@ def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
                 .join(ChessComImport)
                 .where(
                     AnalysisJob.status.in_(["queued", "running"]),
+                    AnalysisJob.kind == ("chesscom" if data.analyze else "chesscom_fetch"),
                     ChessComImport.username == data.username,
                     ChessComImport.time_class == data.time_class,
                     ChessComImport.months == data.months,
@@ -58,10 +61,10 @@ def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
             )
             if existing:
                 return {"job_id": existing.id, "status": existing.status}
-            job = AnalysisJob(kind="chesscom")
+            job = AnalysisJob(kind="chesscom" if data.analyze else "chesscom_fetch")
             db.add(job)
             db.flush()
-            db.add(ChessComImport(job_id=job.id, **data.model_dump()))
+            db.add(ChessComImport(job_id=job.id, **data.model_dump(exclude={"analyze"})))
             db.commit()
             return {"job_id": job.id, "status": job.status}
 

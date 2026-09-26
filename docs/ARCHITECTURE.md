@@ -4,6 +4,20 @@ React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ own
 
 ## HTTP interface ownership
 
+Shared hosting uses one database with explicit `user_id` ownership across private
+tables. Account-bound ORM sessions enforce reads and writes for both HTTP routes
+and background workers. The shared engine cache and skill taxonomy are global;
+account credentials and revocable device sessions live in that same SQLite file.
+See [ACCOUNTS.md](ACCOUNTS.md) for migration and recovery.
+
+Recent-game sync uses a separate fetch-only worker lane. It remembers the account's
+Chess.com username, checks at most once a minute while Games/Settings is visible,
+and fetches up to 50 completed games from the current and previous month. Repeated
+checks reuse a checkpoint rather than accumulating duplicate raw PGNs or gradually
+backfilling older games. Game ordering uses completion time from Chess.com, with
+PGN UTC date/time as the upload fallback. Sync never invokes the analysis pipeline.
+Whole-game review and training analysis are separately requested from the game.
+
 | Module | Responsibility |
 |---|---|
 | backend/trainer/api.py | Application composition, injected factories, per-app resources, shared mutation lock, lifespan and router registration |

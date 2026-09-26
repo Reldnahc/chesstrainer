@@ -12,13 +12,14 @@ import httpx
 from pydantic import BaseModel, Field, field_validator, model_validator
 from sqlalchemy import select
 
-from trainer.imports import import_games
+from trainer.imports import fingerprint, identify_learner, import_games, parse_games
 from trainer.models import AnalysisJob, ChessComArchive, ChessComImport, ImportBatch, ImportGame
 
 BASE_URL = "https://api.chess.com/pub/player/"
 
 
 class ChessComRequest(BaseModel):
+    analyze: bool = Field(default=True, exclude=True)
     username: str = Field(min_length=1, max_length=50, pattern=r"^[a-zA-Z0-9_-]+$")
     time_class: Literal["rapid", "blitz", "bullet", "daily", "all"] = "rapid"
     months: int = Field(default=3, ge=0, le=120)
@@ -195,6 +196,7 @@ def fetch_import(job_id, sessions, settings, client, cancelled, import_lock):
             request.max_games,
             request.time_class,
         )
+        sync = job.kind == "sync"
         anchor = job.created_at
         start_date, end_date = request.start_date, request.end_date
         if job.import_id is None:
@@ -213,13 +215,15 @@ def fetch_import(job_id, sessions, settings, client, cancelled, import_lock):
         client.check_cancel(cancelled)
         with sessions() as db:
             request = db.get(ChessComImport, job_id)
-            if request.games_imported >= limit:
+            used = request.games_fetched if sync else request.games_imported
+            if used >= limit:
                 break
             if db.get(ChessComArchive, (job_id, url)):
                 continue
-            remaining = limit - request.games_imported
+            remaining = limit - used
         games = client.games(url, cancelled)
         selected, filtered, rejected, errors = [], 0, 0, []
+        completed_times = {}
 
         # Monthly API order is oldest first; do not depend on it being perfectly sorted.
         def end_time(game):
@@ -263,6 +267,15 @@ def fetch_import(job_id, sessions, settings, client, cancelled, import_lock):
                 filtered += 1
                 continue
             selected.append(game["pgn"])
+            for _, parsed, error in parse_games(game["pgn"]):
+                if parsed is not None and not error:
+                    try:
+                        color = identify_learner(parsed, [username], None)
+                    except ValueError:
+                        continue
+                    completed_times[fingerprint(parsed, color)] = datetime.fromtimestamp(
+                        end_time(game), timezone.utc
+                    )
         client.check_cancel(cancelled)
         # Import and archive checkpoint commit together; restart cannot double-count a month.
         with import_lock, sessions() as db:
@@ -273,13 +286,15 @@ def fetch_import(job_id, sessions, settings, client, cancelled, import_lock):
                 result = import_games(
                     db,
                     f"Chess.com/{username}",
-                    "\n\n".join(selected),
+                    "\n\n".join(selected[:remaining] if sync else selected),
                     [username],
                     None,
                     batch=db.get(ImportBatch, job.import_id),
                     queue_analysis=False,
                     commit=False,
                     max_new_games=remaining,
+                    retain_original=not sync,
+                    completed_times=completed_times,
                 )
                 processed = result["processed"]
                 request.games_imported += result["imported"]

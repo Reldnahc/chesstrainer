@@ -19,6 +19,7 @@ from trainer.accounts import (
     password_hash,
     password_matches,
 )
+from trainer.chesscom import ChessComRequest
 from trainer.db import database, migrate
 from trainer.engine_pool import EnginePool
 from trainer.ownership import account_sessions
@@ -28,6 +29,10 @@ from trainer.web import serve_frontend
 class Credentials(BaseModel):
     username: str = Field(min_length=3, max_length=32)
     password: str = Field(min_length=10, max_length=128)
+
+
+class Profile(BaseModel):
+    chesscom_username: str = Field(default="", max_length=50)
 
 
 def create_multiuser_app(settings, *, workers, engine_factory, chesscom_factory, classifier):
@@ -40,6 +45,7 @@ def create_multiuser_app(settings, *, workers, engine_factory, chesscom_factory,
     opening = asyncio.Lock()
     stack = AsyncExitStack()
     password_lock = threading.Lock()
+    provider_lock = threading.Lock()
     attempts = {}
     attempts_lock = threading.Lock()
     # A real dummy hash makes unknown usernames take the same password-check path.
@@ -66,6 +72,7 @@ def create_multiuser_app(settings, *, workers, engine_factory, chesscom_factory,
                     classifier=classifier,
                     start_engine=False,
                     session_factory=account_sessions(sql_engine, user["id"]),
+                    provider_lock=provider_lock,
                 )
                 await stack.enter_async_context(tenant.router.lifespan_context(tenant))
                 tenants[user["id"]] = tenant
@@ -193,6 +200,18 @@ def create_multiuser_app(settings, *, workers, engine_factory, chesscom_factory,
             COOKIE, path="/", secure=settings.session_secure, httponly=True, samesite="lax"
         )
         return {"ok": True}
+
+    @app.post("/api/auth/profile")
+    def profile(data: Profile, request: Request):
+        name = data.chesscom_username.strip()
+        if name:
+            name = ChessComRequest(username=name).username
+        with accounts.connect() as db:
+            db.execute(
+                "UPDATE users SET chesscom_username=? WHERE id=?", (name, request.state.user["id"])
+            )
+        user = accounts.by_name(request.state.user["username"])
+        return {"user": accounts.public(user)}
 
     @app.post("/api/auth/logout-all")
     def logout_all(request: Request, response: Response):

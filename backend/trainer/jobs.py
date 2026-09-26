@@ -46,20 +46,31 @@ class JobRunner:
     def start(self):
         self.recover()
         # Jobs remain ordered; parallelism is inside each job across its games/decisions.
-        thread = threading.Thread(target=self.loop, name="job-coordinator", daemon=True)
-        thread.start()
-        self.threads.append(thread)
+        for sync_only in (False, True):
+            thread = threading.Thread(
+                target=self.loop,
+                args=(sync_only,),
+                name="sync-coordinator" if sync_only else "job-coordinator",
+                daemon=True,
+            )
+            thread.start()
+            self.threads.append(thread)
 
     def stop(self):
         self.stop_event.set()
         for thread in self.threads:
             thread.join()
 
-    def claim(self):
+    def claim(self, sync_only=False):
         with self.claim_lock, self.sessions() as db:
             job = db.scalar(
                 select(AnalysisJob)
                 .where(AnalysisJob.status == "queued")
+                .where(
+                    AnalysisJob.kind.in_(["sync", "chesscom_fetch"])
+                    if sync_only
+                    else AnalysisJob.kind.not_in(["sync", "chesscom_fetch"])
+                )
                 .order_by(AnalysisJob.created_at)
             )
             if job is None:
@@ -85,9 +96,9 @@ class JobRunner:
         with self.sessions() as db:
             return self.stop_event.is_set() or db.get(AnalysisJob, job_id).cancel_requested
 
-    def loop(self):
+    def loop(self, sync_only=False):
         while not self.stop_event.is_set():
-            job_id = self.claim()
+            job_id = self.claim(sync_only)
             if job_id:
                 self.run_job(job_id)
             else:
@@ -111,7 +122,7 @@ class JobRunner:
                 return
             if kind == "teaching":
                 raise ValueError("Model teaching generation has been removed")
-            if kind == "chesscom":
+            if kind in {"chesscom", "chesscom_fetch", "sync"}:
                 # Serialize all provider traffic even when multiple analysis workers run.
                 with self.chesscom_lock:
                     client = self.chesscom_factory(self.settings)
@@ -126,6 +137,14 @@ class JobRunner:
                         )
                     finally:
                         client.close()
+                if kind in {"sync", "chesscom_fetch"}:
+                    if self.cancelled(job_id):
+                        self.finish_cancel(job_id)
+                    else:
+                        with self.sessions() as db:
+                            db.get(AnalysisJob, job_id).status = "completed"
+                            db.commit()
+                    return
             with self.sessions() as db:
                 job = db.get(AnalysisJob, job_id)
                 kind = job.kind
@@ -171,8 +190,9 @@ class JobRunner:
             if engine:
                 engine.close()
         finally:
-            self.pipeline = None
-            self.active_job_id = None
+            if self.active_job_id == job_id:
+                self.pipeline = None
+                self.active_job_id = None
 
     def activity(self, job_id):
         pipeline = self.pipeline
