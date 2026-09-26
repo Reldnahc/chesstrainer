@@ -56,3 +56,9 @@ continuations, not proofs that every defense fails. Every manually played
 variation move is analyzed through a serialized, deduplicated queue, even when
 the user plays ahead or returns to the game before its rating arrives. Browsing
 positions remains debounced. Variations are retained while that game is open.
+
+Player Elo is read from the PGN WhiteElo/BlackElo headers and displayed beside
+each player. Both saved-game and variation labels use the moving player's Elo;
+missing or invalid headers use the review fallback (1000 by default). Completed
+reviews have no report-control panel or manual label-update action. Start, pause
+and resume controls appear only while analysis remains unfinished.

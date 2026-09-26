@@ -20,6 +20,15 @@ class VariationRequest(BaseModel):
     moves: list[str] = Field(default_factory=list, max_length=128)
 
 
+def pgn_rating(parsed, color):
+    """Use the rating recorded for the moving side, never the opponent's rating."""
+    try:
+        value = int(parsed.headers.get("WhiteElo" if color else "BlackElo", ""))
+        return value if 0 < value <= 4000 else None
+    except (ValueError, TypeError):
+        return None
+
+
 def create_router(*, sessions, settings, engine_factory, mutation_lock):
     router = APIRouter()
     # Interactive searches use a separate engine from recall grading and import jobs.
@@ -68,7 +77,7 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             job = db.get(AnalysisJob, review.job_id) if review else None
             rating = review.rating if review else 1000
             saved = {
-                row.ply: public_report(row.report, rating)
+                row.ply: row.report
                 for row in db.scalars(
                     select(GameReviewMove).where(GameReviewMove.game_id == game_id)
                 )
@@ -93,7 +102,9 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                         "uci": move.uci(),
                         "number": number,
                         "actor": "white" if actor else "black",
-                        "report": saved.get(ply),
+                        "report": public_report(saved[ply], pgn_rating(parsed, actor) or rating)
+                        if ply in saved
+                        else None,
                     }
                 )
             return {
@@ -104,6 +115,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                 "result": parsed.headers.get("Result", "*"),
                 "orientation": "white" if game.learner_color else "black",
                 "rating": rating,
+                "white_rating": pgn_rating(parsed, True),
+                "black_rating": pgn_rating(parsed, False),
                 "frames": frames,
                 "job": {
                     "id": job.id,
@@ -176,6 +189,7 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
         with sessions() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
+            parsed = parsed_game(game)
             review = db.get(GameReview, game_id)
             rating = review.rating if review else 1000
         with variation_lock:
@@ -193,6 +207,7 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                         "score": (score if board.turn else score.negate()).model_dump(),
                     }
                 move = board.pop()
+                rating = pgn_rating(parsed, board.turn) or rating
                 previous_score = None
                 if board.move_stack:
                     previous = board.copy(stack=True)

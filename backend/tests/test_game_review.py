@@ -110,16 +110,33 @@ def test_library_variations_special_moves_and_missing_engine(settings):
 
 
 @pytest.mark.stockfish
-def test_full_game_native_analysis_resume_restart_and_training_isolation(settings, stockfish_path):
+def test_full_game_native_analysis_resume_restart_and_training_isolation(
+    settings, stockfish_path, monkeypatch
+):
     settings.stockfish_path = stockfish_path
     app = create_app(settings, workers=False)
     with TestClient(app) as client:
-        game = seed(app)
+        from trainer.routes import games as routes
+
+        ratings = []
+        original = routes.public_report
+
+        def record_rating(report, rating):
+            ratings.append(rating)
+            return original(report, rating)
+
+        monkeypatch.setattr(routes, "public_report", record_rating)
+        game = seed(
+            app,
+            '[White "Learner"]\n[Black "Opponent"]\n[WhiteElo "700"]\n[BlackElo "1800"]\n\n1. f3 e5 2. g4 Qh4# 0-1',
+        )
         job = client.post(f"/api/games/{game}/review", json={"rating": 800}).json()["job_id"]
         app.state.runner.run_job(job)
         detail = client.get(f"/api/games/{game}").json()
         assert detail["job"]["status"] == "completed", detail["job"]
         assert detail["job"]["completed"] == 4
+        assert ratings == [700, 1800, 700, 1800]
+        assert (detail["white_rating"], detail["black_rating"]) == (700, 1800)
         assert all(f["report"] for f in detail["frames"][1:])
         assert detail["frames"][3]["report"]["label"] == "Blunder"
         assert detail["frames"][4]["report"]["white_score"]["kind"] == "mate"
@@ -128,6 +145,14 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(setting
             f"/api/games/{game}/analyze", json={"ply": 2, "moves": ["g2g4"]}
         ).json()
         assert branch["report"]["label"] == "Blunder"
+        assert ratings[-1] == 700
+        assert (
+            client.post(
+                f"/api/games/{game}/analyze", json={"ply": 1, "moves": ["c7c5"]}
+            ).status_code
+            == 200
+        )
+        assert ratings[-1] == 1800
         with app.state.sessions() as db:
             for model in (Decision, Exercise, Review):
                 assert db.scalar(select(func.count()).select_from(model)) == 0
@@ -235,3 +260,25 @@ def test_review_migration_matches_models(sessions):
 
     with sessions.kw["bind"].connect() as connection:
         assert compare_metadata(MigrationContext.configure(connection), Base.metadata) == []
+
+
+@pytest.mark.parametrize(
+    "value,expected",
+    [
+        ("700", 700),
+        ("1800", 1800),
+        ("?", None),
+        ("", None),
+        ("0", None),
+        ("-20", None),
+        ("50000", None),
+    ],
+)
+def test_pgn_rating_missing_or_invalid_does_not_borrow_opponent(value, expected):
+    from trainer.routes.games import pgn_rating
+
+    parsed = chess.pgn.Game()
+    parsed.headers["WhiteElo"] = value
+    parsed.headers["BlackElo"] = "2100"
+    assert pgn_rating(parsed, chess.WHITE) == expected
+    assert pgn_rating(parsed, chess.BLACK) == 2100

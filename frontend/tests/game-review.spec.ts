@@ -11,7 +11,9 @@ test('review both players, follow coach lines, and branch without changing the g
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
   await page.getByRole('button', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
   await page.getByRole('button', {name: 'Start game review', exact: true}).click();
-  await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toBeVisible({timeout: 60_000});
+  await expect(page.locator('.game-summary > summary')).toBeVisible({timeout: 60_000});
+  await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toHaveCount(0);
+  await expect(page.getByRole('heading', {name: 'Game report', exact: true})).toHaveCount(0);
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   expect(game.job.completed).toBe(4);
   if (testInfo.project.name === 'desktop') {
@@ -76,7 +78,7 @@ test('review both players, follow coach lines, and branch without changing the g
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
   await page.getByRole('button', {name: 'All games', exact: true}).click();
   await page.getByRole('button', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
-  await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toBeVisible();
+  await expect(page.locator('.game-summary > summary')).toBeVisible();
 });
 
 test('stale engine responses never replace the selected move and failures remain playable', async ({page}, testInfo) => {

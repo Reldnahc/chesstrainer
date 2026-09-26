@@ -17,7 +17,7 @@ type Position = { fen: string; legal_moves: LegalMove[]; turn: "white" | "black"
 type Frame = Position & { uci: string | null; number: number; actor: "white" | "black" | null; report: Report | null };
 type Game = {
   id: string; white: string; black: string; played_on: string | null; result: string;
-  orientation: "white" | "black"; rating: number; frames: Frame[];
+  orientation: "white" | "black"; rating: number; white_rating: number | null; black_rating: number | null; frames: Frame[];
   job: { id: string; status: string; completed: number; total: number; error: string | null; cancel_requested: boolean } | null;
 };
 type Item = { id: string; white: string; black: string; played_on: string | null; result: string; status: string };
@@ -90,7 +90,6 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   const [branches, setBranches] = useState<Branch[]>([]);
   const nextId = useRef(1);
   const [orientation, setOrientation] = useState<"white" | "black">("white");
-  const [rating, setRating] = useState(1000);
   const [busy, setBusy] = useState(false), [moving, setMoving] = useState(false);
   const [training, setTraining] = useState("");
   const [error, setError] = useState("");
@@ -127,7 +126,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   }), [id]);
   useEffect(() => {
     mounted.current = true;
-    load().then(data => { if (mounted.current) { setOrientation(data.orientation); setRating(data.rating); } }).catch(e => { if (mounted.current) setError(e.message); });
+    load().then(data => { if (mounted.current) { setOrientation(data.orientation); } }).catch(e => { if (mounted.current) setError(e.message); });
     return () => { mounted.current = false; };
   }, [load]);
   const running = game?.job && ["queued", "running"].includes(game.job.status);
@@ -255,7 +254,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   async function start() {
     setBusy(true); setError("");
     try {
-      await post(`/games/${id}/review`, { rating });
+      await post(`/games/${id}/review`, {});
       cache.current.clear(); setAnalysisRevision(value => value + 1);
       await load();
     } catch (e) { setError((e as Error).message); }
@@ -269,6 +268,10 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     finally { setBusy(false); }
   }
   if (!game) return <><button onClick={onBack}><ArrowLeft size={16}/>All games</button><p role={error ? "alert" : "status"}>{error || "Opening game…"}</p></>;
+  const playerName = (color: "white" | "black") => {
+    const elo = color === "white" ? game.white_rating : game.black_rating;
+    return `${game[color]}${elo ? ` (${elo})` : ""}`;
+  };
   const last = game.frames.length - 1;
   const current = branch ? cursor.step : cursor.ply;
   const maximum = branch ? branch.moves.length : last;
@@ -282,7 +285,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     <div className="game-review-layout">
       <section className="game-board-area" aria-label="Game board and navigation">
         <div className="game-mode-bar">{branch ? <><GitBranch size={16}/><span>{line?.title || "Your variation"}</span><button className="primary" onClick={() => returnRef.current()}><ArrowLeft size={16}/>Back to game</button></> : <><span>GAME REVIEW</span><small>Move a piece to try an idea</small></>}</div>
-        <div className="game-player"><span>{orientation === "white" ? game.black : game.white}</span><span>{branch ? "Exploring a variation" : "Original game"}</span></div>
+        <div className="game-player"><span>{playerName(orientation === "white" ? "black" : "white")}</span><span>{branch ? "Exploring a variation" : "Original game"}</span></div>
         <div className="game-board-with-eval">
           <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>
           <Board fen={displayed.fen} orientation={orientation} legalMoves={frame?.legal_moves || []} disabled={!frame || moving} onMove={play}
@@ -290,7 +293,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
             animated quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label, symbol: symbols[report.label] } : undefined}
             roles={currentFinding?.frame_ply === lineIndex ? currentFinding.roles : undefined}/>
         </div>
-        <div className="game-player"><strong>{orientation === "white" ? game.white : game.black}</strong><span>{frame?.termination ? `${frame.result} · ${frame.termination}` : `${frame?.turn || displayed.turn} to move`}</span></div>
+        <div className="game-player"><strong>{playerName(orientation === "white" ? "white" : "black")}</strong><span>{frame?.termination ? `${frame.result} · ${frame.termination}` : `${frame?.turn || displayed.turn} to move`}</span></div>
         <div className="game-board-controls" role="group" aria-label="Game navigation">
           <button aria-label="First move" disabled={current === 0} onClick={() => branch ? setCursor(c => ({ ...c, step: 0 })) : navigate(0)}><ChevronsLeft size={19}/></button>
           <button aria-label="Previous move" disabled={current === 0} onClick={() => navigateRef.current(-1)}><ChevronLeft size={19}/></button>
@@ -312,19 +315,21 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
           {errorAtPosition && <><p className="small" role="alert">{errorAtPosition}</p><button onClick={() => { setAnalysisError(null); setRetry(n => n + 1); }}><RefreshCw size={14}/>Retry analysis</button></>}
         </div></section>
         {report && <div className="game-patterns">{report.actual_line.findings.filter(f => f.frame_ply <= 4).slice(0, 2).map((f, i) => <button key={i} onClick={() => showLine("actual", f)}>Show {f.skill_id.replaceAll("_", " ")}</button>)}<details><summary>Analysis details</summary><p>{report.engine_version} · depth {report.depth}. White evaluation: {scoreText(report.white_score)}.</p><p>Lines show strong engine replies. A tactic visible in a line does not prove every defense loses material.</p></details></div>}
-        <section className={`game-progress panel${game.job?.status === "completed" ? " report-complete" : ""}`}>
+        <section className={`game-progress${game.job?.status === "completed" ? " review-tools" : " panel"}`}>
+          {game.job?.status !== "completed" && <>
           <div className="row-between"><h2>Game report</h2><span>{game.job ? `${game.job.completed}/${game.job.total} moves` : `${last} moves`}</span></div>
           {game.job && <progress value={game.job.completed} max={game.job.total || 1} aria-label="Game review progress"/>}
-          {running ? <div className="row-between"><p role="status">{game.job?.cancel_requested ? "Finishing the current move…" : game.job?.status === "queued" ? "Review queued. You can explore while you wait." : "Reviewing both sides…"}</p><button disabled={busy || game.job?.cancel_requested} onClick={cancel}>Pause review</button></div> : <div className="button-row"><button className="primary" disabled={busy} onClick={start}>{game.job?.status === "completed" ? "Update labels" : game.job ? "Resume review" : "Start game review"}</button></div>}
+          {running ? <div className="row-between"><p role="status">{game.job?.cancel_requested ? "Finishing the current move…" : game.job?.status === "queued" ? "Review queued. You can explore while you wait." : "Reviewing both sides…"}</p><button disabled={busy || game.job?.cancel_requested} onClick={cancel}>Pause review</button></div> : <div className="button-row"><button className="primary" disabled={busy} onClick={start}>{game.job ? "Resume review" : "Start game review"}</button></div>}
+          </>}
           {game.job?.error && <p className="small" role="alert">{game.job.error}</p>}
-          <details className="review-options"><summary>Review settings & training</summary><div className="button-row"><button disabled={busy} onClick={async () => {
+          <details className="review-options"><summary>Training</summary><div className="button-row"><button disabled={busy} onClick={async () => {
             setBusy(true);
             try { await post(`/games/${id}/train`); setTraining("Training analysis queued. Follow progress in Import."); }
             catch (e) { setError((e as Error).message); }
             finally { setBusy(false); }
           }}>Find training mistakes</button></div>
           {training && <p role="status" className="small">{training}</p>}
-          <details><summary>Blunder sensitivity</summary><label>Player rating<select value={rating} disabled={!!running} onChange={e => setRating(Number(e.target.value))}>{Array.from(new Set([600, 1000, 1500, 2000, 2500, game.rating])).sort((a,b) => a-b).map(n => <option key={n} value={n}>{n}</option>)}</select></label><p className="small">Only the Blunder label changes with rating. Decisive pawn losses still count. Applies to both players; use {game.job?.status === "completed" ? "Update labels" : "Start / Resume review"} to save.</p></details></details>
+          </details>
         </section>
         {!!game.job?.completed && <details className="game-summary"><summary>Move quality · {game.job.status === "completed" ? "complete game" : "analyzed moves so far"}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><Badge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>}
         <div className="game-move-heading"><h2>Moves</h2><button onClick={() => {

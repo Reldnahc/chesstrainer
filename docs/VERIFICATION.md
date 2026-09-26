@@ -158,3 +158,12 @@ Passing suites do not establish independent classifier accuracy or long-term che
 - Desktop and phone screenshots were visually inspected. Shared-board training,
   legal moves, promotions and dragging passed the full browser suite.
 - No engine classification policy, database schema or hosting configuration changed.
+
+## PGN ratings and completed-review controls
+
+- All 20 backend game-review tests passed, including distinct PGN ratings for
+  White/Black in saved reports and interactive variations, plus invalid/missing
+  Elo handling without borrowing the opponent's rating.
+- All six desktop/mobile review browser tests passed; completed reviews have
+  neither a Game report heading nor an Update labels action.
+- Production build, targeted Ruff checks and git diff whitespace checks passed.
