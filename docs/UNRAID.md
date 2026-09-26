@@ -7,11 +7,19 @@ accounts, sessions, games and progress. Neither a second database service nor a
 replacement proxy is needed. Cloudflare Access stays outside the app; users sign
 up and sign in to Fieldwork independently.
 
-## Build and configure
+## Published image and configuration
 
-From a checkout on Unraid, set these Compose variables in `.env` (never commit it):
+Pushes to `main` (or a manual run of `.github/workflows/docker.yml`) build and
+publish `ghcr.io/reldnahc/chesstrainer:latest` and a full commit-SHA tag through
+GitHub Actions, using its built-in `GITHUB_TOKEN`. This matches the AI Jeopardy
+speech services. No separate registry password secret is required. The workflow
+publishes images; it does not connect to or restart Unraid.
+
+For Compose, copy `compose.yaml` to Unraid and set these variables in `.env`
+(never commit it). No source checkout or local image build is required:
 
 ```dotenv
+IMAGE_TAG=latest
 PUBLIC_ORIGIN=https://chess.your-domain.example
 APPDATA_PATH=/mnt/user/appdata/fieldwork
 PUID=99
@@ -24,12 +32,12 @@ STOCKFISH_HASH_MB=128
 STOCKFISH_WORKERS=2
 ```
 
-Create the appdata folder owned by your configured UID/GID, then build:
+Create the appdata folder owned by your configured UID/GID, then pull:
 
 ```sh
 mkdir -p /mnt/user/appdata/fieldwork
 chown 99:100 /mnt/user/appdata/fieldwork
-docker compose build
+docker compose pull
 ```
 
 The build context excludes local databases, backups, binaries, dependencies and
@@ -39,39 +47,32 @@ existing footer; Stockfish is installed from Debian's package repository, with
 its license at `/usr/share/doc/stockfish/copyright` and matching Debian source
 packages available from that distribution.
 
-## Bring over your existing account data
+## Start with a fresh database
 
-Stop the Windows app and create a consistent backup:
-
-```powershell
-.venv\Scripts\python.exe scripts/backup.py export backups/before-shared-hosting.zip
-```
-
-Restore that backup to a **new file**, using the existing restore command, then
-copy the resulting `trainer.sqlite3` into your Unraid appdata folder. Do not copy
-only a running SQLite main file without its WAL. Alternatively mount the backup
-folder into a one-off container and use `python scripts/backup.py restore` there.
-
-Before starting the service or letting friends register, claim your existing data:
+This deployment starts fresh; no Windows data migration is required.
 
 ```sh
-docker compose run --rm fieldwork python -m trainer.accounts claim-local YOUR_USERNAME
+docker compose run --rm fieldwork python -m trainer.accounts create-admin YOUR_USERNAME
 docker compose up -d
 ```
 
-The command prompts twice for your password, migrates the database and assigns
-the retained local workspace to your administrator identity. It never overwrites
-the original Windows database. If this is a fresh database without old data,
-`create-admin YOUR_USERNAME` creates an administrator with an empty workspace.
-Regular signup always creates an ordinary account with no access to existing data.
+The first command prompts for your administrator password. Friends can sign up
+normally after passing your existing Cloudflare Access gate. Each account can
+sign in on multiple devices and save its Chess.com username.
 
-Moving from Windows Stockfish to Linux changes the engine binary hash. Existing
-saved reviews and accepted training answers remain available; checking additional
-answers against an old exercise's grading reference requires its original binary.
-New games analyzed on Unraid use the Linux engine. **Find training mistakes**
-reuses existing immutable decisions for games already analyzed; it does not
-silently rewrite old grading evidence or reset their schedules. Rebuilding old
-grading references for a different engine is not included in this deployment.
+## Registry access
+
+After the first successful publication, GitHub may create the package as private
+even though the source repository is public. To allow Unraid to pull without
+credentials, open the linked GitHub package settings and change package visibility
+to **Public**. This is a one-time owner setting. If keeping the package private,
+log Docker into `ghcr.io` on Unraid with a GitHub token with `read:packages` access;
+keep that token out of Compose files and Git.
+
+## Optional local build
+
+For development, `docker build -t fieldwork:local .` still builds the same image
+from a source checkout. The default Compose deployment uses the published image.
 
 ## Attach your proxy
 
@@ -88,7 +89,7 @@ LAN IP and point the proxy at that address. The proxy's container loopback is no
 the Unraid host's loopback. Do not expose the origin through an additional router
 port-forward that bypasses your existing access gate.
 
-For Unraid's Docker UI, use image `fieldwork:local`, map `/data` to your appdata
+For Unraid's Docker UI, use image `ghcr.io/reldnahc/chesstrainer:latest`, map `/data` to your appdata
 folder, set the environment values shown in Compose, and run as the configured
 UID:GID using `--user 99:100` in Extra Parameters. Merely setting PUID/PGID as
 container environment variables does not change Linux ownership in this image.
@@ -111,6 +112,11 @@ docker compose exec fieldwork python scripts/backup.py export /data/backup-YYYY-
 Copy backups off the appdata disk. A backup contains all accounts and sessions;
 treat it as private. Stop the app before restoring into a new database path, then
 switch files while stopped. Do not overwrite a live database. Upgrades are
-`docker compose build` followed by `docker compose up -d`; the appdata mount
+`docker compose pull` followed by `docker compose up -d`; the appdata mount
 preserves accounts and progress. Back up before schema upgrades. See
 [ACCOUNTS.md](ACCOUNTS.md) for session behavior and account recovery.
+
+To pin a known build, set `IMAGE_TAG` to its full Git commit SHA. Retained image
+versions let you choose an earlier application build; restoring an older database
+schema may also require its matching backup. In Unraid's Docker UI, use Check for
+Updates / Update after a successful publish, as with the speech services.

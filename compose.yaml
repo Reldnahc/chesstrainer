@@ -1,7 +1,6 @@
 services:
   fieldwork:
-    build: .
-    image: fieldwork:local
+    image: ghcr.io/reldnahc/chesstrainer:${IMAGE_TAG:-latest}
     restart: unless-stopped
     init: true
     user: "${PUID:-99}:${PGID:-100}"
