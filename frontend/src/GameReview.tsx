@@ -163,7 +163,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
     };
     resize();
     const observer = new ResizeObserver(resize);
-    for (const element of document.querySelectorAll('.app-header, .account-bar')) observer.observe(element);
+    for (const element of document.querySelectorAll('.app-header')) observer.observe(element);
     window.addEventListener('resize', resize);
     return () => { observer.disconnect(); window.removeEventListener('resize', resize); };
   }, [!!game]);

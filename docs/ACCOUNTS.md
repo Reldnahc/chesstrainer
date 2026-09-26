@@ -12,6 +12,10 @@ Cloudflare
 Access and the existing reverse proxy remain independent outer access controls.
 The app authenticates its own users; it does not trust Cloudflare email headers.
 
+Find the signed-in username, **Sign out**, and **Sign out all devices** in
+**Settings → Account** on desktop and mobile. Account controls do not occupy a
+separate bar above navigation. Local mode has no account section.
+
 All accounts, sessions, games, jobs, reviews and training history live in the
 existing `DATABASE_PATH` SQLite file. Private tables have an indexed `user_id`.
 Game fingerprints and exercise/classification identities deduplicate per account.

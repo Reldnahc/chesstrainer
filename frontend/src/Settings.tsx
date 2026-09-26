@@ -3,6 +3,7 @@ import { api, post, type WorkspaceSettings } from "./api";
 import { CoverageSummary } from "./Weaknesses";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
+import { AccountSettings } from "./AccountGate";
 export default function SettingsScreen({
   fail,
 }: {
@@ -36,6 +37,7 @@ export default function SettingsScreen({
         title="Settings"
         description="Your engine, practice preferences and local workspace."
       />
+      <AccountSettings />
       <GameSync />
       {data && (
         <div className="settings-grid">

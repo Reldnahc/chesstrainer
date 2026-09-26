@@ -3,8 +3,24 @@ import { api, post, setAccountSession } from "./api";
 
 export type Account = { id: string; username: string; admin: boolean; chesscom_username: string };
 type Identity = { enabled: boolean; user: Account | null; csrf?: string | null };
-const AccountContext = createContext<Account | null>(null);
-export const useAccount = () => useContext(AccountContext);
+type AccountSession = { user: Account; logout: (all?: boolean) => Promise<void>; busy: boolean; error: string };
+const AccountContext = createContext<AccountSession | null>(null);
+export const useAccount = () => useContext(AccountContext)?.user ?? null;
+
+export function AccountSettings() {
+  const session = useContext(AccountContext);
+  if (!session) return null;
+  const { user, logout, busy, error } = session;
+  return <section className="panel account-settings" aria-labelledby="account-settings-title">
+    <h2 id="account-settings-title">Account</h2>
+    <p>Signed in as <strong>{user.username}</strong></p>
+    <div className="account-actions">
+      <button disabled={busy} onClick={() => logout()}>Sign out</button>
+      <button className="secondary" disabled={busy} onClick={() => logout(true)}>Sign out all devices</button>
+    </div>
+    {error && <p role="alert" className="notice error">{error}</p>}
+  </section>;
+}
 
 export default function AccountGate({ children }: { children: ReactNode }) {
   const [identity, setIdentity] = useState<Identity | null>(null);
@@ -52,8 +68,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
     </form>
     <button disabled={busy} onClick={() => { setSignup(!signup); setError(""); }}>{signup ? "Already have an account? Sign in" : "New here? Create an account"}</button>
   </section></main>;
-  return <AccountContext.Provider value={identity.user}>
-    <div className="account-bar"><span>Signed in as <strong>{identity.user.username}</strong></span><button disabled={busy} onClick={() => logout()}>Sign out</button><details><summary>Sessions</summary><button disabled={busy} onClick={() => logout(true)}>Sign out all devices</button></details>{error && <span role="alert">{error}</span>}</div>
+  return <AccountContext.Provider value={{ user: identity.user, logout, busy, error }}>
     <div key={identity.user.id}>{children}</div>
   </AccountContext.Provider>;
 }
