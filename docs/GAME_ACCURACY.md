@@ -51,6 +51,11 @@ Already-completed reviews get scores when reopened, including when Stockfish is
 unavailable. Ratings, branch exploration and board orientation cannot modify the
 original-game scores. No aggregate is stored in a second table or database.
 
+`GET /api/games` also supplies this summary for completed games on the requested
+history page. It projects only the score fields for those games in one batched
+query and uses the same calculation as the review endpoints. It never starts
+analysis merely to fill the accuracy column.
+
 ## Display
 
 Each player's name has an accuracy readout showing one decimal place, using stable
@@ -58,6 +63,8 @@ space that does not change board size when analysis finishes. An em dash has an
 accessible explanation for incomplete or unavailable results. Accuracy belongs to
 the original game even while the player explores a variation. Flipping the board
 moves each score with its player.
+History rows show White and Black accuracy aligned with their player names.
+Pending reviews show their review action or progress state in that column.
 
 ## Verification
 

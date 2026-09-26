@@ -5,6 +5,7 @@ import Board from "./Board";
 import MoveSymbol from "./MoveSymbol";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
+import GameHistory, { type HistoryItem } from "./GameHistory";
 import Link from "./Link";
 import { gamesPath, navigate as navigatePage, pagePaths, rememberGamePly } from "./navigation";
 
@@ -25,7 +26,6 @@ type Game = {
   accuracy: Accuracy | null;
 };
 type ReviewProgress = { job: Game["job"]; accuracy: Accuracy | null; moves: { ply: number; report: Report }[] };
-type Item = { id: string; white: string; black: string; played_on: string | null; result: string; status: string };
 type Branch = { id: number; root: number; moves: string[]; sans: string[]; returnPly: number; };
 type Cursor = { ply: number; branch: number | null; step: number };
 type Analysis = { report: Report | null; score: Score | null; best_move: string | null };
@@ -74,7 +74,7 @@ function CoachAvatar() {
 }
 
 export default function GamesScreen({ page, selected, initialPly }: { page: number; selected: string | null; initialPly: number }) {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<HistoryItem[]>([]);
   const offset = (page - 1) * 30;
   const [total, setTotal] = useState(0);
   const [revision, setRevision] = useState(0);
@@ -83,7 +83,7 @@ export default function GamesScreen({ page, selected, initialPly }: { page: numb
     if (selected) return;
     let active = true;
     setLoading(true); setError("");
-    api<{ items: Item[]; total: number }>(`/games?offset=${offset}`).then(data => {
+    api<{ items: HistoryItem[]; total: number }>(`/games?offset=${offset}`).then(data => {
       if (active) { setItems(data.items); setTotal(data.total); }
     }).catch(e => { if (active) setError(e.message); }).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
@@ -95,12 +95,7 @@ export default function GamesScreen({ page, selected, initialPly }: { page: numb
     </PageTitle>
     <GameSync onChanged={() => setRevision(value => value + 1)} />
     {error && <p role="alert" className="notice error">{error}</p>}
-    {loading ? <p role="status">Loading your games…</p> : !items.length ? <section className="panel"><h2>{page > 1 ? "No games on this page." : "Your next insight starts with a game."}</h2>{page > 1 ? <Link className="button-link" href={gamesPath()}>Back to your games</Link> : <><p>Import a PGN or your Chess.com games to review both sides with your local coach.</p><Link className="button-link" href={pagePaths.Import}>Go to Import</Link></>}</section> : <div className="game-library">
-      {items.map(item => <Link key={item.id} className="button-link game-library-item" href={gamesPath(page, item.id)}>
-        <span><strong>{item.white} <span className="muted">vs</span> {item.black}</strong><small>{dateText(item.played_on)} · {item.result}</small></span>
-        <span className="game-library-status">{item.status === "completed" ? "Open review" : item.status === "not_started" ? "Review game" : item.status.replaceAll("_", " ")} <ChevronRight size={18}/></span>
-      </Link>)}
-    </div>}
+    {loading ? <p role="status">Loading your games…</p> : !items.length ? <section className="panel"><h2>{page > 1 ? "No games on this page." : "Your next insight starts with a game."}</h2>{page > 1 ? <Link className="button-link" href={gamesPath()}>Back to your games</Link> : <><p>Import a PGN or your Chess.com games to review both sides with your local coach.</p><Link className="button-link" href={pagePaths.Import}>Go to Import</Link></>}</section> : <GameHistory items={items} page={page}/>}
     {total > 30 && items.length > 0 && <div className="game-pagination"><button disabled={offset === 0} onClick={() => navigatePage(gamesPath(page - 1))}>Previous games</button><span>{offset + 1}–{Math.min(offset + 30, total)} of {total}</span><button disabled={offset + 30 >= total} onClick={() => navigatePage(gamesPath(page + 1))}>More games</button></div>}
   </>;
 }

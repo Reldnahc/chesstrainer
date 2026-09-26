@@ -43,6 +43,12 @@ See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for coverage pr
 
 ## Game-review interaction
 
+The game history uses compact rows with player ratings and piece colors, aligned
+results and accuracy, the learner's won/lost/drawn result, time control, move count
+and date. Whole-row game links retain browser navigation and new-tab behavior.
+On mobile the time, moves and date sit below the two player lines. The page uses
+saved PGN metadata and batches completed accuracy reads without engine work.
+
 The review workspace uses a compact title and viewport-sized desktop board; mobile
 remains scrollable. Move quality appears on the destination square, coach bubble,
 main-game notation and rated variation moves. Piece transitions last 280 ms and

@@ -16,6 +16,17 @@ Normal arrow keys move through the game; Alt+Left/Right remain browser shortcuts
 Open **Games** and choose an imported game. Its review starts automatically; an
 unfinished review resumes when reopened, and a completed review reuses saved
 results. Merely browsing the library or syncing games does not start analysis.
+The history uses compact rows with White and Black on separate lines, piece-color
+markers and their recorded ratings. Results and completed accuracy line up with
+those players. Won/Lost/Draw reflects the learner side selected on import. Each
+row also shows time control, move count and date; the whole row is a normal game
+link supporting keyboard activation, browser Back and opening another tab.
+Unreviewed, active, paused and failed reviews show Review, Queued/Reviewing, Resume
+or Retry in the accuracy column. Mobile keeps the player/result/accuracy columns
+and moves the remaining metadata underneath. Missing ratings are omitted; unknown
+metrics use dashes. Dates use the recorded date, falling back to
+the saved UTC timestamp when the PGN date is unknown.
+
 **Pause review** stays paused while the game remains open. If starting or analysis
 fails, **Retry review** lets you retry explicitly without an automatic retry loop.
 The coach and timeline fill as analysis finishes. Select a move, use the arrow keys/buttons,
