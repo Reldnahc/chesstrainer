@@ -144,3 +144,17 @@ Passing suites do not establish independent classifier accuracy or long-term che
   backup restored with both accounts and foreign-key-safe application data.
 - Tests used temporary databases/containers only. The user's real database has not
   been migrated and the Unraid deployment/proxy have not been changed.
+
+## Game-review UX verification - September 26, 2026
+
+- TypeScript/Vite production build passed.
+- Full browser suite: 45 passed, one intentional desktop skip. After final
+  presentation refinements, all six review-specific desktop/mobile tests passed.
+- Browser checks cover 1366x768 board/timeline fit, visible move-quality markers,
+  actual 280 ms piece transitions, reduced-motion feedback, short previews from
+  deliberately long engine output, exact return anchors, nested variations,
+  asynchronous ratings for rapid moves even after returning to the game,
+  stale-response isolation, retryable engine errors and unchanged saved games.
+- Desktop and phone screenshots were visually inspected. Shared-board training,
+  legal moves, promotions and dragging passed the full browser suite.
+- No engine classification policy, database schema or hosting configuration changed.

@@ -21,7 +21,7 @@ type Game = {
   job: { id: string; status: string; completed: number; total: number; error: string | null; cancel_requested: boolean } | null;
 };
 type Item = { id: string; white: string; black: string; played_on: string | null; result: string; status: string };
-type Branch = { id: number; root: number; moves: string[]; sans: string[]; };
+type Branch = { id: number; root: number; moves: string[]; sans: string[]; returnPly: number; preview: boolean; };
 type Cursor = { ply: number; branch: number | null; step: number };
 type Analysis = { report: Report | null; score: Score | null; best_move: string | null };
 const labels = ["Brilliant", "Great", "Best", "Good", "Inaccuracy", "Mistake", "Miss", "Blunder"];
@@ -95,13 +95,14 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   const [training, setTraining] = useState("");
   const [error, setError] = useState("");
   const [branchPosition, setBranchPosition] = useState<{ key: string; value: Position } | null>(null);
-  const [analysis, setAnalysis] = useState<{ key: string; value: Analysis } | null>(null);
+  const [, setAnalysisRevision] = useState(0);
   const [analysisError, setAnalysisError] = useState<{ key: string; message: string } | null>(null);
   const [retry, setRetry] = useState(0);
   const [lineView, setLineView] = useState<{ branch: number; offset: number; line: Line; finding: Finding | null; title: string } | null>(null);
   const mounted = useRef(true);
   const activeKey = useRef("");
   const inFlight = useRef<Promise<unknown> | null>(null);
+  const requests = useRef(new Map<string, Promise<unknown>>());
   const cache = useRef(new Map<string, Analysis>());
   const moveButtons = useRef(new Map<number, HTMLButtonElement>());
   const branch = branches.find(b => b.id === cursor.branch);
@@ -112,13 +113,14 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   activeKey.current = key;
   const saved = !branch ? game?.frames[cursor.ply]?.report : null;
   const frame = branch ? (branchPosition?.key === key ? branchPosition.value : null) : game?.frames[cursor.ply];
-  const report = saved || (analysis?.key === analysisKey ? analysis.value.report : null);
-  const score = report?.white_score || (analysis?.key === analysisKey ? analysis.value.score : null);
+  const currentAnalysis = cache.current.get(analysisKey);
+  const report = saved || currentAnalysis?.report;
+  const score = report?.white_score || currentAnalysis?.score;
   const line = lineView?.branch === branch?.id ? lineView : null;
   const lineIndex = line ? cursor.step - line.offset : -1;
   const lineFrame = line?.line.frames[lineIndex];
   const currentFinding = line?.finding;
-  const actor = report ? (frame?.turn === "white" ? "Black" : "White") : null;
+  const actor = frame?.san ? (frame?.turn === "white" ? "Black" : "White") : null;
   const load = useCallback(() => api<Game>(`/games/${id}`).then(data => {
     if (mounted.current) setGame(data);
     return data;
@@ -145,25 +147,37 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     // The key completely identifies this position, including repetition history.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, key, !!branch]);
+  function analyzePosition(ply: number, moves: string[]) {
+    const requestKey = `${ply}:${moves.join(",")}@${game?.rating ?? 1000}`;
+    if (cache.current.has(requestKey)) return Promise.resolve();
+    const pending = requests.current.get(requestKey);
+    if (pending) return pending;
+    // Every move actually played is queued once. Merely browsing is debounced below.
+    const work = (inFlight.current || Promise.resolve()).then(async () => {
+      if (!mounted.current) return;
+      try {
+        const value = await post<Analysis>(`/games/${id}/analyze`, { ply, moves });
+        if (!mounted.current) return;
+        cache.current.set(requestKey, value);
+        setAnalysisRevision(value => value + 1);
+        setAnalysisError(previous => previous?.key === requestKey ? null : previous);
+      } catch (e) {
+        if (mounted.current) setAnalysisError({ key: requestKey, message: (e as Error).message });
+      }
+    }).finally(() => { requests.current.delete(requestKey); });
+    requests.current.set(requestKey, work);
+    inFlight.current = work;
+    return work;
+  }
   useEffect(() => {
     if (!game || saved || !frame) return;
     let active = true;
-    const requestKey = analysisKey;
     const timer = window.setTimeout(async () => {
-      // Wait for the previous search; fast navigation never queues a pile of engines.
       if (inFlight.current) await inFlight.current;
-      if (!active) return;
-      if (cache.current.has(requestKey)) { setAnalysis({ key: requestKey, value: cache.current.get(requestKey)! }); return; }
-      const work = post<Analysis>(`/games/${id}/analyze`, { ply: root, moves: path }).then(value => {
-        cache.current.set(requestKey, value);
-        if (active) { setAnalysis({ key: requestKey, value }); setAnalysisError(null); }
-      }).catch(e => { if (active) setAnalysisError({ key: requestKey, message: e.message }); });
-      inFlight.current = work;
-      await work;
-      if (inFlight.current === work) inFlight.current = null;
+      if (active) void analyzePosition(root, path);
     }, 350);
     return () => { active = false; window.clearTimeout(timer); };
-    // Saved report arriving during a search supersedes that search's result.
+    // The position key includes the full repetition history.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, key, !!frame, !!saved, retry, game?.rating]);
   useEffect(() => {
@@ -178,6 +192,8 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   }, [cursor.ply, !!branch]);
 
   function navigate(ply: number) { setCursor({ ply, branch: null, step: 0 }); setLineView(null); setError(""); }
+  const returnRef = useRef(() => {});
+  returnRef.current = () => { if (branch) navigate(branch.returnPly); };
   const navigateRef = useRef<(delta: number) => void>(() => {});
   navigateRef.current = delta => {
     if (!game) return;
@@ -188,6 +204,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     const keydown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement;
       if (target.closest("input,select,textarea,[contenteditable=true]")) return;
+      if (event.key === "Escape") { event.preventDefault(); returnRef.current(); }
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault(); navigateRef.current(event.key === "ArrowLeft" ? -1 : 1);
       }
@@ -195,12 +212,15 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
   }, []);
-  function addBranch(base: number, moves: string[], sans: string[], step: number, extend = false) {
-    const existing = branches.find(b => b.root === base && b.moves.join() === moves.join());
-    const extending = !existing && extend && branch && cursor.step === branch.moves.length;
+  function addBranch(base: number, moves: string[], sans: string[], step: number, extend = false, preview = false) {
+    const existing = branches.find(b => !b.preview && !preview && b.root === base && b.moves.join() === moves.join());
+    const extending = !existing && extend && branch && !branch.preview && cursor.step === branch.moves.length;
     const id = existing?.id ?? (extending ? branch.id : nextId.current++);
-    if (extending) setBranches(values => values.map(b => b.id === id ? { id, root: base, moves, sans } : b));
-    else if (!existing) setBranches(values => [...values, { id, root: base, moves, sans }]);
+    const returnPly = branch?.returnPly ?? cursor.ply;
+    if (preview) setBranches(values => values.filter(b => !b.preview));
+    if (extending) setBranches(values => values.map(b => b.id === id ? { id, root: base, moves, sans, returnPly, preview } : b));
+    else if (existing) setBranches(values => values.map(b => b.id === id ? { ...b, returnPly } : b));
+    else setBranches(values => [...values, { id, root: base, moves, sans, returnPly, preview }]);
     setCursor({ ply: base, branch: id, step });
     return id;
   }
@@ -216,6 +236,7 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
       addBranch(root, moves, [...(branch ? branch.sans.slice(0, cursor.step) : []), next.san], moves.length, true);
       setBranchPosition({ key: `${root}:${moves.join(",")}`, value: next });
       setLineView(null);
+      void analyzePosition(root, moves);
     } catch (e) { if (mounted.current) setError((e as Error).message); }
     finally { if (mounted.current) setMoving(false); }
   }
@@ -225,16 +246,17 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
     const inVariation = branch && path.length > 0;
     const prefix = inVariation ? path.slice(0, -1) : [];
     const base = inVariation ? root : Math.max(0, root - 1);
-    const moves = [...prefix, ...selected.frames.slice(1).map(f => f.uci!)].slice(0, 128);
-    const sans = [...(inVariation ? branch.sans.slice(0, cursor.step - 1) : []), ...selected.frames.slice(1).map(f => f.san)].slice(0, 128);
-    const branchId = addBranch(base, moves, sans, Math.min(moves.length, prefix.length + (finding ? finding.frame_ply : Math.min(1, selected.frames.length - 1))));
-    setLineView({ branch: branchId, offset: prefix.length, line: selected, finding, title: which === "best" ? "Better-move line" : "Played-move line" });
+    const shortFrames = selected.frames.slice(1, 1 + Math.min(4, Math.max(2, finding?.frame_ply ?? 2)));
+    const moves = [...prefix, ...shortFrames.map(f => f.uci!)].slice(0, 128);
+    const sans = [...(inVariation ? branch.sans.slice(0, cursor.step - 1) : []), ...shortFrames.map(f => f.san)].slice(0, 128);
+    const branchId = addBranch(base, moves, sans, Math.min(moves.length, prefix.length + (finding ? finding.frame_ply : Math.min(1, selected.frames.length - 1))), false, true);
+    setLineView({ branch: branchId, offset: prefix.length, line: { ...selected, frames: [selected.frames[0], ...shortFrames] }, finding, title: which === "best" ? "Better-move line" : "Played-move line" });
   }
   async function start() {
     setBusy(true); setError("");
     try {
       await post(`/games/${id}/review`, { rating });
-      cache.current.clear(); setAnalysis(null);
+      cache.current.clear(); setAnalysisRevision(value => value + 1);
       await load();
     } catch (e) { setError((e as Error).message); }
     finally { setBusy(false); }
@@ -255,16 +277,17 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
   const displayed = frame || (branchPosition?.value ?? game.frames[cursor.ply]);
   const currentUci = branch ? path.at(-1) : game.frames[cursor.ply].uci;
   return <div className="game-workspace">
-    <div className="game-heading"><button className="text-button" onClick={onBack}><ArrowLeft size={16}/>All games</button><span>{dateText(game.played_on)} · {game.result}</span></div>
-    <PageTitle eyebrow="GAME REVIEW" title={`${game.white} vs ${game.black}`} description="Move any piece to explore. Your original game is always one click away." />
+    <div className="game-heading"><button className="text-button" onClick={onBack}><ArrowLeft size={16}/>All games</button><h1>{game.white} <span>vs</span> {game.black}</h1><span>{dateText(game.played_on)} · {game.result}</span></div>
     {error && <p className="notice error" role="alert">{error}<button onClick={() => setError("")}>Dismiss</button></p>}
     <div className="game-review-layout">
       <section className="game-board-area" aria-label="Game board and navigation">
+        <div className="game-mode-bar">{branch ? <><GitBranch size={16}/><span>{line?.title || "Your variation"}</span><button className="primary" onClick={() => returnRef.current()}><ArrowLeft size={16}/>Back to game</button></> : <><span>GAME REVIEW</span><small>Move a piece to try an idea</small></>}</div>
         <div className="game-player"><span>{orientation === "white" ? game.black : game.white}</span><span>{branch ? "Exploring a variation" : "Original game"}</span></div>
         <div className="game-board-with-eval">
           <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score)}`}><div style={{ height: `${score ? 50 + 48 * strength(score) : 50}%`, top: orientation === "black" ? 0 : "auto", bottom: orientation === "white" ? 0 : "auto" }} /><span>{scoreText(score)}</span></div>
           <Board fen={displayed.fen} orientation={orientation} legalMoves={frame?.legal_moves || []} disabled={!frame || moving} onMove={play}
             highlights={lineFrame?.highlights || (currentUci ? [currentUci.slice(0, 2), currentUci.slice(2, 4)] : [])}
+            animated quality={report && currentUci ? { square: currentUci.slice(2, 4), label: report.label, symbol: symbols[report.label] } : undefined}
             roles={currentFinding?.frame_ply === lineIndex ? currentFinding.roles : undefined}/>
         </div>
         <div className="game-player"><strong>{orientation === "white" ? game.white : game.black}</strong><span>{frame?.termination ? `${frame.result} · ${frame.termination}` : `${frame?.turn || displayed.turn} to move`}</span></div>
@@ -276,33 +299,32 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
           <button aria-label="Last move" disabled={current === maximum} onClick={() => branch ? setCursor(c => ({ ...c, step: maximum })) : navigate(last)}><ChevronsRight size={19}/></button>
           <button aria-label="Flip board" onClick={() => setOrientation(v => v === "white" ? "black" : "white")}><FlipVertical2 size={17}/></button>
         </div>
-        {branch && <div className="game-branch-banner"><GitBranch size={16}/><span>{line?.title || "Your variation"} · from ply {branch.root}</span><button onClick={() => navigate(branch.root)}>Return to game</button></div>}
         <EvaluationGraph frames={game.frames} selected={cursor.ply} onSelect={navigate}/>
-        {!!branches.length && <details className="game-variations" open><summary>Variations ({branches.length})</summary><p className="small">Kept while this game is open. Undo and play another move to branch again.</p>{branches.map(b => <div key={b.id} className="game-variation-row"><span>#{b.id} · ply {b.root}</span>{b.sans.map((san, index) => <button key={index} aria-pressed={branch?.id === b.id && cursor.step === index + 1} onClick={() => { setCursor({ ply: b.root, branch: b.id, step: index + 1 }); setLineView(null); }}>{san}</button>)}</div>)}</details>}
       </section>
       <aside className="game-review-sidebar">
         <section className="game-coach" aria-label="Chess coach"><CoachAvatar/><div className="game-speech">
-          <div className="game-coach-label"><strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>{report && <Badge label={report.label}/>}</div>
-          <p aria-live="polite">{lineFrame ? currentFinding?.explanation || lineFrame.annotation : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : cursor.ply === 0 && !branch ? "Let's look at the ideas in this game. Start a review for the full story, or move a piece to try your own line." : "I'm checking this move and the opponent's strongest reply…")}</p>
-          {report && !lineFrame && report.coach !== report.reason && <p className="small muted">{report.reason}</p>}
-          {report && <div className="game-coach-actions"><button onClick={() => showLine("actual")}>Show why</button>{report.actual.uci !== report.best.uci && <button onClick={() => showLine("best")}>Show {report.best.san}</button>}</div>}
-          {!report && analysis?.key === analysisKey && analysis.value.best_move && <p className="small">Engine suggestion: {analysis.value.best_move} · {scoreText(score)}</p>}
+          <div key={`${analysisKey}:${report?.label}`} className="game-coach-label"><strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>{report ? <Badge label={report.label}/> : actor && !errorAtPosition ? <span className="game-rating-pending" role="status">Checking move...</span> : null}</div>
+          <p aria-live="polite">{lineFrame ? currentFinding?.explanation || lineFrame.annotation : report?.coach || (errorAtPosition ? "You can still explore the board. Engine coaching is unavailable for this position." : cursor.ply === 0 && !branch ? (game?.job?.status === "completed" ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea." : "Start a review for the full story, or move a piece to try your own line.") : "I'm checking this move and the opponent's strongest reply…")}</p>
+
+          {report && !line && <div className="game-coach-actions"><button onClick={() => showLine("actual")}>Show why</button>{report.actual.uci !== report.best.uci && <button onClick={() => showLine("best")}>Show {report.best.san}</button>}</div>}
+          {line && <div className="game-coach-continuation" role="group" aria-label="Coach continuation">{line.line.frames.slice(1).map((f, index) => <button key={index} aria-pressed={lineIndex === index + 1} onClick={() => setCursor(c => ({ ...c, step: line.offset + index + 1 }))}>{f.san}</button>)}</div>}
+          {!report && currentAnalysis?.best_move && <p className="small">Engine suggestion: {currentAnalysis.best_move} · {scoreText(score)}</p>}
           {errorAtPosition && <><p className="small" role="alert">{errorAtPosition}</p><button onClick={() => { setAnalysisError(null); setRetry(n => n + 1); }}><RefreshCw size={14}/>Retry analysis</button></>}
         </div></section>
-        {report && <div className="game-patterns">{report.actual_line.findings.map((f, i) => <button key={i} onClick={() => showLine("actual", f)}>Show {f.skill_id.replaceAll("_", " ")}</button>)}<details><summary>Analysis details</summary><p>{report.engine_version} · depth {report.depth}. White evaluation: {scoreText(report.white_score)}.</p><p>Lines show strong engine replies. A tactic visible in a line does not prove every defense loses material.</p></details></div>}
-        <section className="game-progress panel">
+        {report && <div className="game-patterns">{report.actual_line.findings.filter(f => f.frame_ply <= 4).slice(0, 2).map((f, i) => <button key={i} onClick={() => showLine("actual", f)}>Show {f.skill_id.replaceAll("_", " ")}</button>)}<details><summary>Analysis details</summary><p>{report.engine_version} · depth {report.depth}. White evaluation: {scoreText(report.white_score)}.</p><p>Lines show strong engine replies. A tactic visible in a line does not prove every defense loses material.</p></details></div>}
+        <section className={`game-progress panel${game.job?.status === "completed" ? " report-complete" : ""}`}>
           <div className="row-between"><h2>Game report</h2><span>{game.job ? `${game.job.completed}/${game.job.total} moves` : `${last} moves`}</span></div>
           {game.job && <progress value={game.job.completed} max={game.job.total || 1} aria-label="Game review progress"/>}
           {running ? <div className="row-between"><p role="status">{game.job?.cancel_requested ? "Finishing the current move…" : game.job?.status === "queued" ? "Review queued. You can explore while you wait." : "Reviewing both sides…"}</p><button disabled={busy || game.job?.cancel_requested} onClick={cancel}>Pause review</button></div> : <div className="button-row"><button className="primary" disabled={busy} onClick={start}>{game.job?.status === "completed" ? "Update labels" : game.job ? "Resume review" : "Start game review"}</button></div>}
           {game.job?.error && <p className="small" role="alert">{game.job.error}</p>}
-          <div className="button-row"><button disabled={busy} onClick={async () => {
+          <details className="review-options"><summary>Review settings & training</summary><div className="button-row"><button disabled={busy} onClick={async () => {
             setBusy(true);
             try { await post(`/games/${id}/train`); setTraining("Training analysis queued. Follow progress in Import."); }
             catch (e) { setError((e as Error).message); }
             finally { setBusy(false); }
           }}>Find training mistakes</button></div>
           {training && <p role="status" className="small">{training}</p>}
-          <details><summary>Blunder sensitivity</summary><label>Player rating<select value={rating} disabled={!!running} onChange={e => setRating(Number(e.target.value))}>{Array.from(new Set([600, 1000, 1500, 2000, 2500, game.rating])).sort((a,b) => a-b).map(n => <option key={n} value={n}>{n}</option>)}</select></label><p className="small">Only the Blunder label changes with rating. Decisive pawn losses still count. Applies to both players; use {game.job?.status === "completed" ? "Update labels" : "Start / Resume review"} to save.</p></details>
+          <details><summary>Blunder sensitivity</summary><label>Player rating<select value={rating} disabled={!!running} onChange={e => setRating(Number(e.target.value))}>{Array.from(new Set([600, 1000, 1500, 2000, 2500, game.rating])).sort((a,b) => a-b).map(n => <option key={n} value={n}>{n}</option>)}</select></label><p className="small">Only the Blunder label changes with rating. Decisive pawn losses still count. Applies to both players; use {game.job?.status === "completed" ? "Update labels" : "Start / Resume review"} to save.</p></details></details>
         </section>
         {!!game.job?.completed && <details className="game-summary"><summary>Move quality · {game.job.status === "completed" ? "complete game" : "analyzed moves so far"}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><Badge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>}
         <div className="game-move-heading"><h2>Moves</h2><button onClick={() => {
@@ -313,9 +335,10 @@ function GameWorkspace({ id, onBack }: { id: string; onBack: () => void }) {
         <div className="game-move-list" aria-label="Game moves">{game.frames.slice(1).map((f, index) => {
           const ply = index + 1;
           return <button key={ply} ref={element => { if (element) moveButtons.current.set(ply, element); else moveButtons.current.delete(ply); }} aria-current={!branch && cursor.ply === ply ? "step" : undefined} onClick={() => navigate(ply)} aria-label={`${f.number}${f.actor === "white" ? "." : "..."} ${f.san}${f.report ? `, ${f.report.label}` : ""}`}>
-            <span className="game-move-number">{f.number}{f.actor === "white" ? "." : "…"}</span><strong>{f.san}</strong>{f.report && <span className={`game-move-symbol label-${f.report.label.toLowerCase()}`} title={f.report.label}>{symbols[f.report.label]}</span>}
+            <span className="game-move-number">{f.number}{f.actor === "white" ? "." : "…"}</span><strong>{f.san}</strong>{f.report && <span className={`game-move-symbol label-${f.report.label.toLowerCase()}`} title={f.report.label}>{symbols[f.report.label]}<span className="move-rating-text">{f.report.label}</span></span>}
           </button>;
         })}</div>
+        {!!branches.filter(b => !b.preview).length && <details className="game-variations" open><summary>Variations ({branches.filter(b => !b.preview).length})</summary><p className="small">Kept while this game is open. Undo and play another move to branch again.</p>{branches.filter(b => !b.preview).map(b => <div key={b.id} className="game-variation-row"><span>#{b.id} · ply {b.root}</span>{b.sans.map((san, index) => <button key={index} aria-pressed={branch?.id === b.id && cursor.step === index + 1} onClick={() => { setCursor({ ply: b.root, branch: b.id, step: index + 1 }); setLineView(null); }}>{san}{cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)?.report ? <Badge label={cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)!.report!.label}/> : <span className="muted" aria-label="Not yet rated">�</span>}</button>)}</div>)}</details>}
       </aside>
     </div>
   </div>;

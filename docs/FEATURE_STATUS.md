@@ -13,7 +13,7 @@ Current direction: Review and local mistake classification. The user's September
 | Classification | Pinned Lichess tactical recognition, adaptive saved continuations, connected combinations, before/after causes, native tests for relative pins/fork defenses/trapped pieces, separated outcomes/patterns/cues and exact audits | Version 4 with unchanged mistake-evidence gates; overloads, economically ineffective multiple defenders and broad strategic causes remain unsupported |
 | Weaknesses | Independent-game aggregation, separate pattern/outcome coverage, cues, all supporting examples and focused practice | No calibrated diagnostic accuracy; independent human benchmark outstanding |
 | Review | Cold board, tap/drag, backend legal markers, promotion, accepted alternatives, first-failure semantics | No multi-move graded sequence; deeper lines are playback |
-| Full-game review | Games library, both-color resumable analysis, eight move labels, evaluation timeline, illustrated coach, legal branching variations, suggested-line playback and witness highlights | Finite engine evidence; conservative Brilliant/Great rules; only Blunder severity varies by rating; branches last while the game is open; no accuracy percentage or voice |
+| Full-game review | Games library, both-color resumable analysis, eight move labels, evaluation timeline, illustrated coach, rated branching variations, short coach previews and witness highlights, animated moves, prominent ratings, compact desktop layout and explicit return-to-game navigation | Finite engine evidence; conservative Brilliant/Great rules; only Blunder severity varies by rating; branches last while the game is open; no accuracy percentage or voice |
 | Explanations | Automatic counter on failure, Try again, deeper Show me why; Reveal move plays answer; success explanation/playback | Witness buttons and square-role highlights where supported; quiet positional explanations remain limited |
 | Focused practice | Up to 12 distinct real positions per selected weakness, separate session/attempt/time records, no FSRS writes | A new batch can repeat earlier practice; reload returns to mixed review |
 | SRS | FSRS, automatic Again/Hard/Good, raw response times, persistent due queue, permanent retirement above configured 100 days | No personal parameter optimization; elapsed time includes idle/tab time |
@@ -40,3 +40,19 @@ See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact scope/limits, [
 The deeper-evidence job prioritizes concrete pending defensive questions, then unknown outcomes and saves supplemental analysis links separately. Completed probe keys and persisted task lists support cancellation/restart without repeating completed searches or expanding the job budget. Existing grading evidence and schedules remain unchanged.
 
 See [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for coverage progression and the first blinded assistant comparison. [LICHESS_BENCHMARK.md](LICHESS_BENCHMARK.md) documents the developer-only external positive-label test, with [initial results](LICHESS_BENCHMARK_RESULTS.md). It is not a Lichess import/training product feature.
+
+## Game-review interaction
+
+The review workspace uses a compact title and viewport-sized desktop board; mobile
+remains scrollable. Move quality appears on the destination square, coach bubble,
+main-game notation and rated variation moves. Piece transitions last 280 ms and
+respect reduced-motion preferences.
+
+Back to game (or Escape) returns to the game move from which exploration began,
+including when a coach preview started one ply earlier. Coach previews show the
+move and immediate reply, with up to four plies for a selected tactical witness;
+they do not populate the user's variation history. These are short engine
+continuations, not proofs that every defense fails. Every manually played
+variation move is analyzed through a serialized, deduplicated queue, even when
+the user plays ahead or returns to the game before its rating arrives. Browsing
+positions remains debounced. Variations are retained while that game is open.
