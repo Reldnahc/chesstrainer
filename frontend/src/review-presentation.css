@@ -1,6 +1,6 @@
 /* Shared by SRS, explanation playback and full-game review. */
-main:has(.review-workspace-layout) { max-width: none; min-height: 0; padding: 12px 20px; }
-.review-workspace-layout { --review-gutter: 35px; --review-meta-height: 24px; --review-controls-height: 36px; display: grid; grid-template-columns: minmax(0, var(--review-board-width, calc(100dvh - 130px))) minmax(300px, 1fr); gap: 20px; align-items: start; }
+main:has(.review-workspace-layout) { min-height: 0; padding: 12px var(--page-inline-padding); }
+.review-workspace-layout { --review-gutter: 35px; --review-meta-height: 24px; --review-controls-height: 36px; --review-sidebar-min: 300px; display: grid; grid-template-columns: minmax(0, var(--review-board-width, calc(100dvh - 130px))) minmax(var(--review-sidebar-min), 1fr); gap: 20px; align-items: start; }
 .review-board-area, .review-sidebar { min-width: 0; }
 .review-board-meta { height: var(--review-meta-height); display: flex; align-items: center; font-size: 12px; }
 .review-board-meta > * { min-width: 0; width: 100%; }
@@ -25,7 +25,7 @@ main:has(.review-workspace-layout) { max-width: none; min-height: 0; padding: 12
   .review-workspace-layout { gap: 14px; }
 }
 @media (max-width: 760px) {
-  main:has(.review-workspace-layout) { padding: 8px 12px 24px; }
+  main:has(.review-workspace-layout) { padding-block: 8px 24px; }
   .review-workspace-layout { --review-gutter: 27px; --review-meta-height: 27px; --review-controls-height: 44px; display: flex; flex-direction: column; gap: 0; align-items: stretch; }
   .review-board-area, .review-sidebar { display: contents; }
   .review-workspace-heading { order: -1; margin-bottom: 8px; }

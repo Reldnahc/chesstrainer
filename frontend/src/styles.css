@@ -29,6 +29,8 @@
   --accent-hover: #ff9b7c;
   --board-light: #c7cbd0;
   --board-dark: #737e8b;
+  --page-width: 80%;
+  --page-inline-padding: 20px;
   --mono: "IBM Plex Mono", monospace;
 }
 * { box-sizing: border-box; }
@@ -62,7 +64,7 @@ select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); 
 
 /* One compact application bar, with the same destinations on every device. */
 .app-header { background: #191a1d; border-bottom: 1px solid var(--line); }
-.header-inner { max-width: 1440px; margin: auto; min-height: 56px; padding: 0 40px; display: flex; align-items: center; gap: 48px; }
+.header-inner { width: var(--page-width); min-width: min(100%, 920px); margin: auto; min-height: 56px; padding: 0 var(--page-inline-padding); display: flex; align-items: center; gap: 48px; }
 .brand { display: flex; gap: 11px; align-items: center; text-decoration: none; flex-shrink: 0; font-size: 23px; line-height: 1; letter-spacing: -.8px; font-weight: 600; }
 .brand img { display: block; }
 .brand-sub { display: block; font-size: 10px; letter-spacing: .35px; font-weight: 400; color: var(--muted); margin-top: 7px; }
@@ -72,7 +74,8 @@ nav { display: flex; gap: 5px; align-self: stretch; align-items: center; flex: 1
 .nav-item.active { background: #2a2c31; color: #fff; }
 .nav-item.active::after { content: ""; position: absolute; height: 2px; background: var(--accent); bottom: -7px; left: 14px; right: 14px; }
 .nav-item.active svg { color: var(--accent); }
-main { max-width: 1280px; margin: auto; padding: 38px 40px 56px; min-height: calc(100vh - 149px); }
+/* Shared desktop width. Reviews may request more room to preserve their board. */
+main { width: min(100%, max(var(--page-width), var(--review-min-width, 0px))); margin: auto; padding: 38px var(--page-inline-padding) 56px; min-height: calc(100vh - 149px); }
 main:focus { outline: none; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { font-size: 36px; font-weight: 500; letter-spacing: -1.1px; line-height: 1.15; margin-bottom: 10px; }
@@ -178,7 +181,7 @@ dl { display: grid; grid-template-columns: 1fr 1.5fr; gap: 16px; font-size: 13px
 dt { color: var(--muted); }
 dd { margin: 0; overflow-wrap: anywhere; }
 .loading { color: var(--muted); }
-footer { max-width: 1200px; margin: auto; padding: 22px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; font: 10px var(--mono); color: var(--muted); }
+footer { width: var(--page-width); margin: auto; padding: 22px var(--page-inline-padding); border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; font: 10px var(--mono); color: var(--muted); }
 footer > span:last-child { display: flex; align-items: center; gap: 8px; }
 .footer-divider { margin: 0 9px; color: #555b65; }
 .promotion { position: absolute; inset: 25% 8% auto; background: var(--surface); border: 1px solid #757d89; padding: 20px; border-radius: 8px; box-shadow: 0 12px 50px #0008; z-index: 10; }
@@ -194,16 +197,16 @@ footer > span:last-child { display: flex; align-items: center; gap: 8px; }
 .connection form { display: flex; flex-direction: column; gap: 20px; }
 
 @media (max-width: 1100px) {
-  .header-inner { padding: 0 24px; gap: 24px; }
+  .header-inner { gap: 24px; }
   .nav-item { padding: 12px 10px; }
-  main { padding: 32px 24px 40px; }
+  main { padding-block: 32px 40px; }
   .practice-panel { padding: 22px; }
   .practice-panel h2 { font-size: 25px; }
   .board-coordinate-note { display: none; }
   .stages { grid-template-columns: 1fr 1fr; }
-  footer { margin: 0 24px; }
 }
 @media (max-width: 760px) {
+  :root { --page-width: 100%; --page-inline-padding: 12px; }
   .header-inner { padding: 17px 18px 0; gap: 16px; flex-wrap: wrap; }
   .two-column, .evidence-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .brand { font-size: 21px; }
@@ -211,7 +214,7 @@ footer > span:last-child { display: flex; align-items: center; gap: 8px; }
   nav { order: 2; width: 100%; flex: 0 0 100%; justify-content: space-between; gap: 2px; }
   .nav-item { flex: 1; flex-direction: column; gap: 7px; padding: 12px 2px; border-radius: 5px 5px 0 0; font-size: 10px; min-width: 0; }
   .nav-item.active::after { bottom: 0; left: 0; right: 0; }
-  main { padding: 26px 16px 36px; }
+  main { padding-block: 26px 36px; }
   .page-title { gap: 12px; margin-bottom: 24px; align-items: flex-start; }
   h1 { font-size: 30px; }
   .page-title p { font-size: 12px; }
@@ -236,7 +239,7 @@ footer > span:last-child { display: flex; align-items: center; gap: 8px; }
   .page-title > button { padding: 9px; font-size: 11px; }
   input, select, textarea { font-size: 16px; }
   .import-options { gap: 12px; }
-  footer { flex-wrap: wrap; margin: 0 18px; font-size: 9px; gap: 12px; }
+  footer { flex-wrap: wrap; font-size: 9px; gap: 12px; }
   .promotion { inset: 20% 3% auto; padding: 16px; }
   .promotion button { padding: 8px; min-height: 44px; }
 }
@@ -308,9 +311,8 @@ body:has(dialog[open]) { overflow: hidden; }
 
 @media (max-width: 760px) {
   .app-header { position: sticky; top: 0; z-index: 20; padding-top: env(safe-area-inset-top); }
-  .app-header .header-inner { max-width: 560px; }
   .app-header .nav-item { min-height: 52px; font-size: 10px; }
-  main.workspace-page { max-width: 560px; min-height: 0; padding: 14px 12px max(20px, env(safe-area-inset-bottom)); }
+  main.workspace-page { min-height: 0; padding-block: 14px max(20px, env(safe-area-inset-bottom)); }
   .workspace-page .page-title { margin-bottom: 16px; }
   .workspace-page .page-title h1 { font-size: 22px; margin: 0; letter-spacing: -.5px; }
   .workspace-page .page-title .eyebrow { display: none; }

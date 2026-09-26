@@ -5,6 +5,47 @@ const geometry = (locator: Locator) => locator.evaluate(element => {
   return {top: rect.top + scrollY, height: rect.height, width: rect.width};
 });
 
+test('desktop pages use 80 percent width and review narrowing never takes space from the board', async ({page}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'Desktop container policy; phone geometry is checked separately.');
+  const fixture = await (await page.request.post('/__test/review-explanation-fixture/page-width')).json();
+  for (const size of [{width: 1920, height: 1080}, {width: 1366, height: 900}, {width: 1000, height: 800}, {width: 800, height: 720}]) {
+    await page.setViewportSize(size);
+    await page.goto(`/?exercise=${fixture.exercise_id}`);
+    await expect(page.getByRole('button', {name: 'Reveal move', exact: true})).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    const main = page.locator('main');
+    const board = page.locator('.board-shell');
+    const sidebar = page.locator('.review-sidebar');
+    // Compare with the previously full-width review using the same viewport.
+    await main.evaluate(element => {element.style.width = '100%';});
+    const fullBoard = (await board.boundingBox())!;
+    const fullSidebar = (await sidebar.boundingBox())!;
+    await main.evaluate(element => {element.style.removeProperty('width');});
+    await expect.poll(async () => (await board.boundingBox())!.width).toBeCloseTo(fullBoard.width, 1);
+    const container = (await main.boundingBox())!;
+    expect(container.width).toBeGreaterThanOrEqual(size.width * .8 - 1);
+    expect(container.width).toBeLessThanOrEqual(size.width);
+    expect(container.x).toBeCloseTo((size.width - container.width) / 2, 1);
+    if (size.width === 1920) {
+      expect(container.width).toBeCloseTo(size.width * .8, 1);
+      expect((await sidebar.boundingBox())!.width).toBeLessThan(fullSidebar.width - 300);
+      await page.screenshot({path: 'test-results/page-width-review-desktop.png', fullPage: true});
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    // Navigating away must remove the review's minimum width. Every ordinary
+    // page uses the same 80% container, including at formerly capped widths.
+    for (const name of ['Games', 'Weaknesses', 'Import', 'Settings']) {
+      await page.getByRole('navigation').getByRole('link', {name, exact: true}).click();
+      await expect(page.locator('main h1')).toBeVisible();
+      expect(await main.evaluate(element => element.style.getPropertyValue('--review-min-width'))).toBe('');
+      expect((await main.boundingBox())!.width).toBeCloseTo(size.width * .8, 1);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      expect(await main.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+      if (size.width === 1920 && name === 'Import') await page.screenshot({path: 'test-results/page-width-import-desktop.png', fullPage: true});
+    }
+  }
+});
+
 test('SRS and game review use identical board, header and coach geometry at each viewport', async ({page}, testInfo) => {
   const exercise = await (await page.request.post(`/__test/review-explanation-fixture/equal-layout-${testInfo.project.name}`)).json();
   const {id} = await (await page.request.post(`/__test/game-review-fixture/equal-layout-${testInfo.project.name}`)).json();

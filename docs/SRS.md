@@ -45,6 +45,13 @@ the board on desktop and above it on phones, using the same header slot as Games
 Browser regression checks compare the actual board, heading and coach geometry
 between both modes at three desktop and two phone sizes.
 
+The site shares an 80% desktop page width through `--page-width`; phones use
+100%. Review keeps the existing height-based board size and gives the sidebar
+the remaining width. If the board and minimum usable sidebar do not fit at 80%,
+the centered container expands just enough, up to the viewport width. That
+minimum is removed when leaving review so other pages return to 80%. There are
+no fixed 1280px/560px page caps.
+
 SRS, focused practice and explanation playback use the same `ReviewCoach`,
 `MoveBadge`, `MoveSymbol` and `Board` components as full-game review. Shared styles
 live in `frontend/src/review-presentation.css`; `reviewMotion.ts` owns the 280 ms
