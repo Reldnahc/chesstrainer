@@ -1,0 +1,27 @@
+services:
+  fieldwork:
+    build: .
+    image: fieldwork:local
+    restart: unless-stopped
+    init: true
+    user: "${PUID:-99}:${PGID:-100}"
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${APP_PORT:-8000}:8000"
+    volumes:
+      - "${APPDATA_PATH:-/mnt/user/appdata/fieldwork}:/data"
+    environment:
+      ACCOUNTS_ENABLED: "true"
+      PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:?Set PUBLIC_ORIGIN to your HTTPS chess hostname}"
+      SESSION_SECURE: "true"
+      DATABASE_PATH: /data/trainer.sqlite3
+      STOCKFISH_PATH: /usr/games/stockfish
+      ENGINE_SLOTS: "${ENGINE_SLOTS:-4}"
+      STOCKFISH_THREADS: "${STOCKFISH_THREADS:-2}"
+      STOCKFISH_HASH_MB: "${STOCKFISH_HASH_MB:-128}"
+      STOCKFISH_WORKERS: "${STOCKFISH_WORKERS:-2}"
+      CHESSCOM_USER_AGENT: "${CHESSCOM_USER_AGENT:-FieldworkChessTrainer/0.1}"
+    stop_grace_period: 90s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

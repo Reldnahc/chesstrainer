@@ -80,3 +80,14 @@ The Vite development proxy specifically targets 127.0.0.1:8000. Override SERVER_
 ## Archived settings
 
 COURSE_MAX_UNITS (6, range 1..12), LESSON_MAX_POSITIONS (8, range 2..20) and LESSON_CHECK_PASS_FRACTION (0.8, greater than zero and at most 1) remain validated for archived domain compatibility. They do not enable a course screen, create sequences, resume lesson progression or schedule teaching jobs. Historical stage behavior is documented only in [archive/COURSE_DESIGN.md](archive/COURSE_DESIGN.md).
+
+## Shared hosting
+
+- `ACCOUNTS_ENABLED=false` preserves the original local mode; Docker defaults to true.
+- `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
+- `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
+- `ENGINE_SLOTS=4` caps native engine processes across all accounts in shared mode.
+- `DATABASE_PATH` still names one SQLite file containing accounts and all chess data.
+
+See [ACCOUNTS.md](ACCOUNTS.md) before enabling accounts for existing data and
+[UNRAID.md](UNRAID.md) for container storage, permissions and proxy configuration.

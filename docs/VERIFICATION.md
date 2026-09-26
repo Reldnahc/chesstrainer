@@ -127,3 +127,20 @@ Six current public screenshots were refreshed from inspected Playwright fixture 
 - Dependency upgrades to resolve upstream warnings, standalone wheel/static packaging, manual Linux/macOS installation and physical-phone LAN checks remain separate work.
 
 Passing suites do not establish independent classifier accuracy or long-term chess improvement. No classifier rules or quality measurements were changed; see [CLASSIFICATION_ASSESSMENT.md](CLASSIFICATION_ASSESSMENT.md) for the existing assessment and its limits.
+# Shared hosting verification — September 26, 2026
+
+- Full backend suite: 298 passed; subsequent populated-database ownership migration
+  test passed as part of the four-test account suite (299 backend tests now present).
+- Ruff lint and format checks passed. TypeScript/Vite production build passed.
+- Existing Playwright suite: 43 passed, one intentional desktop skip. Additional
+  account suite: two passed, covering desktop and mobile and a second device.
+- Docker image built from a public-source export because a local Windows cache ACL
+  prevented Docker's context walker from reading the original checkout. Compose
+  configuration validated with a placeholder public origin.
+- Running non-root Linux image used native Stockfish 17.1. Synthetic smoke checks
+  verified source download, signup, private libraries, fetch-only PGN imports,
+  completed whole-game review, selected-game training, retained session/review
+  after container restart, healthy container status, and a consistent SQLite
+  backup restored with both accounts and foreign-key-safe application data.
+- Tests used temporary databases/containers only. The user's real database has not
+  been migrated and the Unraid deployment/proxy have not been changed.

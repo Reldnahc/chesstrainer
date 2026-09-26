@@ -125,3 +125,54 @@ def test_secure_cookie_and_origin(settings):
         cookie = response.headers["set-cookie"].lower()
         assert "secure" in cookie and "httponly" in cookie and "samesite=lax" in cookie
         assert client.get("/api/auth/me").json()["user"]["username"] == "alice"
+
+
+def test_account_migration_preserves_existing_learning_history(settings):
+    from alembic import command
+    from alembic.config import Config
+    from lesson_fixtures import seed_lesson
+
+    engine, sessions = database(settings.database_path)
+    migrate(engine)
+    with sessions() as db:
+        seed_lesson(db, settings, count=3)
+    config = Config("alembic.ini")
+    with engine.connect() as connection:
+        connection.exec_driver_sql("PRAGMA foreign_keys=OFF")
+        connection.commit()
+        config.attributes["connection"] = connection
+        command.downgrade(config, "04af728d913e")
+        connection.commit()
+        tables = [
+            row[0]
+            for row in connection.exec_driver_sql(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name != 'alembic_version'"
+            )
+        ]
+        before = {
+            table: [
+                dict(row)
+                for row in connection.exec_driver_sql(
+                    f'SELECT * FROM "{table}" ORDER BY rowid'
+                ).mappings()
+            ]
+            for table in tables
+        }
+    migrate(engine)
+    with engine.connect() as connection:
+        for table, rows in before.items():
+            after = [
+                dict(row)
+                for row in connection.exec_driver_sql(
+                    f'SELECT * FROM "{table}" ORDER BY rowid'
+                ).mappings()
+            ]
+            assert [
+                {k: v for k, v in row.items() if k not in {"user_id", "played_at"}} for row in after
+            ] == rows
+            assert all(row.get("user_id", "local") == "local" for row in after)
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
+        assert (
+            connection.exec_driver_sql("SELECT disabled FROM users WHERE id='local'").scalar() == 1
+        )
+    engine.dispose()

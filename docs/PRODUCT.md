@@ -31,6 +31,6 @@ There is no LLM runtime, SDK, model service or model API-key requirement. The or
 
 ## Local operation
 
-Data lives in SQLite on the host. PGN analysis and training work offline once dependencies and Stockfish are installed. Explicit Chess.com imports contact its public API. There are no accounts, cloud database, telemetry, social features or public-hosting workflow. LAN clients use the same backend and production origin.
+Data lives in one SQLite database on the host. PGN analysis and training work offline once dependencies and Stockfish are installed. Shared hosting supports self-service accounts with private games and training history, persistent device sessions, and remembered Chess.com usernames. Recent-game sync contacts the public Chess.com API without starting analysis. Docker packages the app and native Stockfish for Unraid behind an existing reverse proxy and optional Cloudflare Access. LAN clients can also use the original single-user mode. There is no cloud database or telemetry. See [Accounts](ACCOUNTS.md) and [Unraid](UNRAID.md).
 
 See [FEATURE_STATUS.md](FEATURE_STATUS.md) for implemented features and limits, [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for detector scope, and [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) for remaining work.

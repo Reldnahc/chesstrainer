@@ -4,7 +4,7 @@ A private chess trainer built around decisions in your own games. Import Chess.c
 
 Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. The application can run locally or be self-hosted for friends with private accounts in one SQLite database.
 
-Shared hosting and account migration: [Accounts](docs/ACCOUNTS.md).
+Shared hosting: [Unraid Docker setup](docs/UNRAID.md) and [accounts/data migration](docs/ACCOUNTS.md).
 
 ## Implemented
 
