@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Literal
+from urllib.parse import urlsplit
 
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -52,6 +53,43 @@ class Settings(BaseSettings):
     chesscom_timeout_seconds: float = Field(default=20, gt=0, le=60)
     chesscom_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
     chesscom_user_agent: str = "FieldworkChessTrainer/0.1 (local personal chess training)"
+
+    def for_runtime(self):
+        """Validate installation settings, including callers that mutate Settings."""
+        origin = self.public_origin.strip().rstrip("/")
+        if origin:
+            try:
+                parts = urlsplit(origin)
+                valid = (
+                    parts.scheme in {"http", "https"}
+                    and parts.hostname
+                    and not parts.username
+                    and not parts.password
+                    and not parts.path
+                    and not parts.query
+                    and not parts.fragment
+                    and not any(char.isspace() for char in origin)
+                )
+                parts.port  # Reject malformed ports as well as malformed hosts.
+            except ValueError:
+                valid = False
+            if not valid:
+                raise ValueError(
+                    "PUBLIC_ORIGIN must be an http:// or https:// address with no path, "
+                    "credentials, query or fragment. Leave it blank for local use without login."
+                )
+            if self.accounts_enabled and parts.scheme == "http" and self.session_secure:
+                raise ValueError(
+                    "HTTP account hosting requires SESSION_SECURE=false; secure cookies cannot "
+                    "work over LAN HTTP. Prefer an HTTPS PUBLIC_ORIGIN, or leave PUBLIC_ORIGIN "
+                    "blank for local use without login."
+                )
+        return self.model_copy(
+            update={
+                "public_origin": origin,
+                "accounts_enabled": self.accounts_enabled and bool(origin),
+            }
+        )
 
     def public(self) -> dict:
         return self.model_dump(mode="json", exclude={"lan_access_token"}) | {

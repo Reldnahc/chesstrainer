@@ -21,7 +21,7 @@ class JSONFormatter(logging.Formatter):
 
 
 def main():
-    settings = Settings()
+    settings = Settings().for_runtime()
     handler = logging.StreamHandler()
     handler.setFormatter(JSONFormatter())
     logging.basicConfig(level=logging.INFO, handlers=[handler])

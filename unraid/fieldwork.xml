@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>fieldwork</Name>
+  <Repository>ghcr.io/reldnahc/chesstrainer:latest</Repository>
+  <Registry>https://github.com/Reldnahc/chesstrainer/pkgs/container/chesstrainer</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <Project>https://github.com/Reldnahc/chesstrainer</Project>
+  <Support>https://github.com/Reldnahc/chesstrainer/issues</Support>
+  <ReadMe>https://github.com/Reldnahc/chesstrainer/blob/main/docs/UNRAID.md</ReadMe>
+  <Overview>Chess review and practice with bundled Stockfish and one persistent database. Local use needs no login: choose storage and a port, then open WebUI. For separate accounts, set Public origin to your HTTPS address and change the Advanced View WebUI shortcut to that address. Cloudflare and Compose are optional. Engine options are in advanced settings.</Overview>
+  <ExtraParams>--init --user 99:100 --security-opt no-new-privileges:true --cap-drop ALL --stop-timeout 90</ExtraParams>
+  <Config Name="Web port" Target="8000" Default="18000" Mode="tcp" Description="LAN port for the app. Open WebUI follows this mapping automatically. Proxies forward HTTP to this host port." Type="Port" Display="always" Required="true" Mask="false">18000</Config>
+  <Config Name="App data" Target="/data" Default="/mnt/user/appdata/fieldwork" Mode="rw" Description="Persistent games, accounts and progress. Keep when updating. Must be writable by UID 99 and GID 100, configured in Extra Parameters." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/fieldwork</Config>
+  <Config Name="Public origin" Target="PUBLIC_ORIGIN" Default="" Description="Optional. Blank means one local workspace with no login. For accounts enter the exact browser address, e.g. https://chess.example.com, without a path. Also change WebUI in Advanced View to that address. Restart after changing. Named accounts stay private in local mode." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Account support" Target="ACCOUNTS_ENABLED" Default="true" Description="Enables accounts when Public origin is set. Blank Public origin always selects local no-login mode. Normally leave true." Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Secure session cookies" Target="SESSION_SECURE" Default="true" Description="Keep true for HTTPS accounts. Set false only for intentional trusted-LAN HTTP accounts. Unused in no-login mode." Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Shared engine slots" Target="ENGINE_SLOTS" Default="4" Description="Account mode: maximum simultaneous engines shared by all users. Busy searches wait. Slots times Threads is the native search-thread budget. Local mode uses separate job and interactive engines." Type="Variable" Display="advanced" Required="true" Mask="false">4</Config>
+  <Config Name="Threads per engine" Target="STOCKFISH_THREADS" Default="1" Description="CPU search threads per Stockfish instance, not a Docker CPU limit. More threads work on the same position. Budget concurrent engines times threads against your allocated CPUs." Type="Variable" Display="advanced" Required="true" Mask="false">1</Config>
+  <Config Name="Hash memory per engine (MB)" Target="STOCKFISH_HASH_MB" Default="64" Description="RAM for each engine's temporary position table. Four engines at 64 MB need about 256 MB plus app and engine overhead. Not disk storage or a database limit." Type="Variable" Display="advanced" Required="true" Mask="false">64</Config>
+  <Config Name="Games per analysis job" Target="STOCKFISH_WORKERS" Default="1" Description="Games analyzed concurrently in each background job (1 to 4). Account mode also obeys Shared engine slots. Signup and recent-game fetching do not analyze games." Type="Variable" Display="advanced" Required="true" Mask="false">1</Config>
+</Container>

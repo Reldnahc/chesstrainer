@@ -3,25 +3,27 @@ services:
     image: ghcr.io/reldnahc/chesstrainer:${IMAGE_TAG:-latest}
     restart: unless-stopped
     init: true
-    user: "${PUID:-99}:${PGID:-100}"
+    user: "${PUID:-1000}:${PGID:-1000}"
     ports:
-      - "${BIND_ADDRESS:-127.0.0.1}:${APP_PORT:-8000}:8000"
+      - "${BIND_ADDRESS:-0.0.0.0}:${APP_PORT:-18000}:8000"
     volumes:
-      - "${APPDATA_PATH:-/mnt/user/appdata/fieldwork}:/data"
+      - "${APPDATA_PATH:-fieldwork-data}:/data"
     environment:
       ACCOUNTS_ENABLED: "true"
       # Blank selects local single-user mode without login.
       PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:-}"
-      SESSION_SECURE: "true"
+      SESSION_SECURE: "${SESSION_SECURE:-true}"
       DATABASE_PATH: /data/trainer.sqlite3
       STOCKFISH_PATH: /usr/games/stockfish
       ENGINE_SLOTS: "${ENGINE_SLOTS:-4}"
-      STOCKFISH_THREADS: "${STOCKFISH_THREADS:-2}"
-      STOCKFISH_HASH_MB: "${STOCKFISH_HASH_MB:-128}"
-      STOCKFISH_WORKERS: "${STOCKFISH_WORKERS:-2}"
+      STOCKFISH_THREADS: "${STOCKFISH_THREADS:-1}"
+      STOCKFISH_HASH_MB: "${STOCKFISH_HASH_MB:-64}"
+      STOCKFISH_WORKERS: "${STOCKFISH_WORKERS:-1}"
       CHESSCOM_USER_AGENT: "${CHESSCOM_USER_AGENT:-FieldworkChessTrainer/0.1}"
     stop_grace_period: 90s
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
+volumes:
+  fieldwork-data:

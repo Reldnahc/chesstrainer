@@ -4,7 +4,16 @@ A private chess trainer built around decisions in your own games. Import Chess.c
 
 Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. The application can run locally or be self-hosted for friends with private accounts in one SQLite database.
 
-Shared hosting: [Unraid Docker setup](docs/UNRAID.md) and [accounts/data migration](docs/ACCOUNTS.md).
+Install with [Docker](docs/DOCKER.md) or the [Unraid template](docs/UNRAID.md).
+One container includes Stockfish and its database; no source checkout is needed.
+
+```sh
+docker run -d --name fieldwork --restart unless-stopped --init -p 18000:8000 -v fieldwork-data:/data ghcr.io/reldnahc/chesstrainer:latest
+```
+
+Open `http://localhost:18000` (or your server's LAN IP). For private accounts behind
+HTTPS, follow [shared hosting](docs/DOCKER.md#shared-https-hosting).
+See [account administration](docs/ACCOUNTS.md) for account recovery.
 
 Leave `PUBLIC_ORIGIN` blank for local single-user operation without login. Everyone
 who can reach that instance shares its local games and progress. For shared hosting

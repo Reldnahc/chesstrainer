@@ -112,7 +112,11 @@ def create_multiuser_app(settings, *, workers, engine_factory, chesscom_factory,
                 expected = settings.public_origin.rstrip("/") or str(request.base_url).rstrip("/")
                 if request.headers.get("origin") != expected:
                     return JSONResponse(
-                        {"detail": "Request origin is not allowed."}, status_code=403
+                        {
+                            "detail": f"Open Fieldwork at {expected}. This address does not match "
+                            "PUBLIC_ORIGIN; the server administrator can correct that setting."
+                        },
+                        status_code=403,
                     )
                 if not public and not secrets.compare_digest(
                     request.headers.get("x-csrf-token", ""), csrf_token(token)
