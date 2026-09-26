@@ -82,7 +82,12 @@ def test_library_variations_special_moves_and_missing_engine(settings):
         assert client.get("/api/games/missing").status_code == 404
         game = seed(app)
         detail = client.get(f"/api/games/{game}").json()
-        assert client.get(f"/api/games/{game}/review").json() == {"job": None, "moves": []}
+        assert client.get(f"/api/games/{game}/review").json() == {
+            "job": None,
+            "moves": [],
+            "accuracy": None,
+        }
+        assert detail["accuracy"] is None
         assert client.get(f"/api/games/{game}/review?after=-1").status_code == 422
         assert client.get("/api/games/missing/review").status_code == 404
         assert len(detail["frames"]) == 5
@@ -142,6 +147,8 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         detail = client.get(f"/api/games/{game}").json()
         assert detail["job"]["status"] == "completed", detail["job"]
         assert detail["job"]["completed"] == 4
+        assert detail["accuracy"] is not None
+        assert 0 <= detail["accuracy"]["white"] < detail["accuracy"]["black"] <= 100
         assert ratings == [700, 1800, 700, 1800]
         assert (detail["white_rating"], detail["black_rating"]) == (700, 1800)
         assert all(f["report"] for f in detail["frames"][1:])
@@ -162,13 +169,18 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         assert ratings[-1] == 1800
         updates = client.get(f"/api/games/{game}/review?after=2").json()
         assert updates["job"] == detail["job"]
+        assert updates["accuracy"] == detail["accuracy"]
         assert [move["ply"] for move in updates["moves"]] == [3, 4]
         assert ratings[-2:] == [700, 1800]
         for move in updates["moves"]:
             assert "actual_line" not in move["report"]
             for key, value in move["report"].items():
                 assert value == detail["frames"][move["ply"]]["report"][key]
-        assert client.get(f"/api/games/{game}/review?after=4").json()["moves"] == []
+        final = client.get(f"/api/games/{game}/review?after=4").json()
+        assert final["moves"] == []
+        assert final["accuracy"] == detail["accuracy"]
+        client.post(f"/api/games/{game}/review", json={"rating": 2500})
+        assert client.get(f"/api/games/{game}").json()["accuracy"] == detail["accuracy"]
         with app.state.sessions() as db:
             for model in (Decision, Exercise, Review):
                 assert db.scalar(select(func.count()).select_from(model)) == 0
@@ -178,6 +190,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
     settings.stockfish_path = "missing-after-restart"
     with TestClient(create_app(settings, workers=False)) as client:
         assert client.get(f"/api/games/{game}").json()["frames"][3]["report"]["label"] == "Blunder"
+        assert client.get(f"/api/games/{game}").json()["accuracy"] == detail["accuracy"]
 
 
 @pytest.mark.stockfish
@@ -260,6 +273,7 @@ def test_cancelled_review_resumes_completed_plies(settings, stockfish_path, monk
         app.state.runner.run_job(job)
         detail = client.get(f"/api/games/{game}").json()
         assert detail["job"]["status"] == "cancelled"
+        assert detail["accuracy"] is None
         assert 1 <= detail["job"]["completed"] <= workers
         first_report = detail["frames"][1]["report"]
         monkeypatch.setattr(app.state.runner, "cancelled", original)

@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 
 from trainer.chess_core import Score
+from trainer.game_accuracy import review_accuracy
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ImportBatch, ImportGame
 
@@ -134,6 +135,12 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                 "black_rating": pgn_rating(parsed, False),
                 "frames": frames,
                 "job": job_progress(job, len(saved), len(frames) - 1),
+                "accuracy": review_accuracy(
+                    saved,
+                    total=len(frames) - 1,
+                    starting_board=parsed.board(),
+                    completed=bool(job and job.status == "completed"),
+                ),
             }
 
     @router.get("/api/games/{game_id}/review")
@@ -142,7 +149,7 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             game = require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review is None:
-                return {"job": None, "moves": []}
+                return {"job": None, "moves": [], "accuracy": None}
             job = db.get(AnalysisJob, review.job_id)
             parsed = parsed_game(game)
             starting_color = parsed.board().turn
@@ -182,7 +189,28 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                         },
                     }
                 )
-            return {"job": job_progress(job, completed, total), "moves": moves}
+            accuracy = None
+            if job and job.status == "completed":
+                # Polls normally read only new moves. The final score needs every
+                # original-game evaluation, even when after is already at the end.
+                saved = {
+                    row.ply: row.report
+                    for row in (
+                        rows
+                        if after == 0
+                        else db.scalars(
+                            select(GameReviewMove).where(GameReviewMove.game_id == game_id)
+                        )
+                    )
+                }
+                accuracy = review_accuracy(
+                    saved, total=total, starting_board=parsed.board(), completed=True
+                )
+            return {
+                "job": job_progress(job, completed, total),
+                "moves": moves,
+                "accuracy": accuracy,
+            }
 
     @router.post("/api/games/{game_id}/review")
     def begin_review(game_id: str, data: ReviewRequest):

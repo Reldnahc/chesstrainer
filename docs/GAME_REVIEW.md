@@ -127,9 +127,9 @@ Best-move playback has its own evidence, never borrowed from the played move.
 An observed motif is not automatically proof of inevitable material loss. Existing
 line-qualified language is retained. Unknown positional reasons get neutral feedback
 and an engine continuation rather than an invented pin, fork or strategic claim.
-There is no LLM, voice service, rating-sensitive engine evaluation, or accuracy score.
-The researched next step is described in the [game accuracy proposal](GAME_ACCURACY_PLAN.md);
-it has not been implemented.
+There is no LLM, voice service, or rating-sensitive engine evaluation. Completed
+reviews expose [Lichess accuracy scores](GAME_ACCURACY.md) through the game APIs,
+calculated from saved evaluations without further engine searches.
 
 Public definitions consulted during planning:
 [Chess.com Great/Brilliant](https://www.chess.com/article/view/how-to-play-a-brilliant-move),
