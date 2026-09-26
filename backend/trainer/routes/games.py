@@ -1,6 +1,8 @@
 """Game library, resumable whole-game review and legal variation analysis."""
 
 import threading
+from collections import defaultdict
+from datetime import timezone
 
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -8,6 +10,7 @@ from sqlalchemy import func, select
 
 from trainer.chess_core import Score
 from trainer.game_accuracy import review_accuracy
+from trainer.game_library import time_control_label
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ImportBatch, ImportGame
 
@@ -60,25 +63,60 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
     @router.get("/api/games")
     def games(offset: int = Query(0, ge=0), limit: int = Query(30, ge=1, le=100)):
         with sessions() as db:
-            rows = db.scalars(
-                select(Game)
+            rows = db.execute(
+                select(Game, AnalysisJob.status)
+                .outerjoin(GameReview, GameReview.game_id == Game.id)
+                .outerjoin(AnalysisJob, AnalysisJob.id == GameReview.job_id)
                 .order_by(Game.played_at.desc(), Game.created_at.desc(), Game.id)
                 .offset(offset)
                 .limit(limit)
             ).all()
+            completed_ids = [game.id for game, status in rows if status == "completed"]
+            saved = defaultdict(dict)
+            if completed_ids:
+                # Read only the small score fields for this page, not every report's
+                # tactical witnesses/PVs, and never one query per listed game.
+                scores = db.execute(
+                    select(
+                        GameReviewMove.game_id,
+                        GameReviewMove.ply,
+                        GameReviewMove.report["white_score"],
+                        GameReviewMove.report["best"]["score"],
+                    ).where(GameReviewMove.game_id.in_(completed_ids))
+                )
+                for game_id, ply, white_score, best_score in scores:
+                    saved[game_id][ply] = {
+                        "white_score": white_score,
+                        "best": {"score": best_score},
+                    }
             items = []
-            for game in rows:
+            for game, status in rows:
                 parsed = parsed_game(game)
-                review = db.get(GameReview, game.id)
-                job = db.get(AnalysisJob, review.job_id) if review else None
+                plies = sum(1 for _ in parsed.mainline_moves())
+                time_control = parsed.headers.get("TimeControl")
                 items.append(
                     {
                         "id": game.id,
                         "white": game.white,
                         "black": game.black,
+                        "white_rating": pgn_rating(parsed, True),
+                        "black_rating": pgn_rating(parsed, False),
+                        "learner_color": "white" if game.learner_color else "black",
                         "played_on": game.played_on,
+                        "played_at": game.played_at.replace(tzinfo=timezone.utc).isoformat()
+                        if game.played_at
+                        else None,
                         "result": parsed.headers.get("Result", "*"),
-                        "status": job.status if job else "not_started",
+                        "time_control": time_control,
+                        "time_control_label": time_control_label(time_control),
+                        "move_count": (plies + 1) // 2,
+                        "status": status or "not_started",
+                        "accuracy": review_accuracy(
+                            saved[game.id],
+                            total=plies,
+                            starting_board=parsed.board(),
+                            completed=status == "completed",
+                        ),
                     }
                 )
             return {"items": items, "total": db.scalar(select(func.count()).select_from(Game))}

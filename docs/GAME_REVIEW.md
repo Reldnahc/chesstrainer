@@ -51,6 +51,12 @@ for three-digit steps and totals, keeping the controls still as those numbers gr
 ## Analysis and persistence
 
 The Games API lists imported PGNs and replays their actual starting position.
+Library items include player ratings/colors, result, readable PGN time control,
+move count (played plies divided by two, rounded up), date/UTC timestamp, review
+status and completed Lichess accuracy. Missing metadata stays unknown. The page
+loads game/job metadata together and projects only saved score fields in one batch
+for completed reviews, rather than loading tactical reports per game. Browsing the
+library does not start Stockfish or fetch remote profiles.
 Starting a review queues a `game_review` job. Each completed ply is saved separately;
 cancel/retry and startup recovery reuse completed reports. The engine cache retains
 full game history, binary identity and search configuration. Saved reports remain

@@ -170,6 +170,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         updates = client.get(f"/api/games/{game}/review?after=2").json()
         assert updates["job"] == detail["job"]
         assert updates["accuracy"] == detail["accuracy"]
+        assert client.get("/api/games").json()["items"][0]["accuracy"] == detail["accuracy"]
         assert [move["ply"] for move in updates["moves"]] == [3, 4]
         assert ratings[-2:] == [700, 1800]
         for move in updates["moves"]:
