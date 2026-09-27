@@ -90,11 +90,11 @@ Check SQLite integrity and foreign keys on both results. For a pass with no sche
 
 The central native vertical test runs an actual background worker through HTTP: PGN import, learner analysis, LocalClassifier, persisted evidence/exercise, review and application restart. It does not require a course. Injected classifiers cover failures and concurrency separately.
 
-Synthetic legal positions and fabricated engine scores test detector and API contracts; they are not proof of objective chess quality. Real Stockfish tests separately verify UCI integration and tactical/defensive fixtures. Historical lesson helpers still have direct domain tests, but those tests do not imply an active lesson feature.
+Synthetic legal positions and fabricated engine scores test detector and API contracts; they are not proof of objective chess quality. Real Stockfish tests separately verify UCI integration and tactical/defensive fixtures. Historical lesson tests seed archived rows explicitly and verify preservation, audit access and rejection of practice; production lesson generation and progression have been removed.
 
 ## Browser coverage
 
-Desktop and phone-emulated Chromium cover all **four** navigation destinations, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, expandable settings, obsolete unit links and evidence dialog focus.
+Desktop and phone-emulated Chromium cover all **five** navigation destinations, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
 
 Review journeys cover taps, drag/drop, legal dots/capture rings, promotion, failure/counter preview, Try again, Reveal move, solve/reload and saved scheduling. The phone-only test checks 390x700, 375x600 and 360x640 layouts; its desktop instance is intentionally skipped.
 
@@ -174,3 +174,24 @@ analysis stays ordered while other accounts and fetch-only jobs can progress;
 concurrent HTTP requests/jobs keep their own data and share the native engine
 budget; and shutdown drains work for restart. It also checks that startup
 retirement reconciliation leaves disabled and reserved local accounts unchanged.
+
+## Docker install verification
+
+Build the image and run the same smoke test used by correctness CI:
+
+```sh
+docker build -t fieldwork:install-check .
+python scripts/smoke_install.py --image fieldwork:install-check
+```
+
+The script creates uniquely named containers with anonymous data volumes and
+loopback-only ephemeral ports, then removes those containers and volumes on exit.
+Both local and account modes must serve the frontend, survive a restart, import a
+synthetic game and complete its review through the application's native Stockfish
+worker. Account mode additionally checks signup, session persistence, origin
+rejection, secure cookies and the lazy engine's health transition from unchecked
+to ready. Local mode verifies engine readiness at startup.
+
+Hosted requests emulate the headers forwarded by a TLS-terminating reverse proxy;
+this does not verify a live proxy or Cloudflare configuration. The test neither
+publishes the image nor touches an existing installation.

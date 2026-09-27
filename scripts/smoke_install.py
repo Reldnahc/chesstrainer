@@ -61,11 +61,16 @@ def main():
                     assert "secure" in signup.headers["set-cookie"].lower()
                     # Emulate the Cookie header forwarded by a TLS-terminating proxy.
                     headers["Cookie"] = signup.headers["set-cookie"].split(";", 1)[0]
+                    headers["Origin"] = "https://chess.example.test"
+                    headers["X-CSRF-Token"] = signup.json()["csrf"]
                     assert (
                         client.get("/api/auth/me", headers=headers).json()["user"]["username"]
                         == "install-test"
                     )
                 assert client.get("/api/games", headers=headers).json()["total"] == 0
+                health = client.get("/api/health", headers=headers).json()
+                assert health["engine_status"] == ("unchecked" if mode == "accounts" else "ready")
+                assert health["engine_available"] is (None if mode == "accounts" else True)
                 docker("restart", name)
                 # Docker may allocate a different ephemeral host port on restart.
                 port = docker("port", name, "8000/tcp").split(":")[-1]
@@ -92,14 +97,32 @@ def main():
                     )
                     == "persistent database ok"
                 )
-                engine = docker(
-                    "exec",
-                    name,
-                    "python",
-                    "-c",
-                    "import chess,chess.engine; e=chess.engine.SimpleEngine.popen_uci('/usr/games/stockfish'); r=e.analyse(chess.Board(),chess.engine.Limit(time=0.1)); assert r['pv']; e.quit(); print('engine ok')",
+                # Exercise the application's native worker path and lazy pool, not
+                # just the presence of a separately launched Stockfish binary.
+                pgn = '[White "InstallTest"]\n[Black "FixtureOpponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
+                imported = client.post(
+                    "/api/imports",
+                    files={"file": ("install-fixture.pgn", pgn)},
+                    data={"side": "white", "analyze": "false"},
+                    headers=headers,
                 )
-                assert engine == "engine ok"
+                assert imported.status_code == 200, imported.text
+                game = client.get("/api/games", headers=headers).json()["items"][0]
+                started = client.post(f"/api/games/{game['id']}/review", json={}, headers=headers)
+                assert started.status_code == 200, started.text
+                deadline = time.monotonic() + 45
+                while True:
+                    progress = client.get(f"/api/games/{game['id']}/review", headers=headers).json()
+                    assert progress["job"]["status"] != "failed", progress["job"]
+                    if progress["job"]["status"] == "completed":
+                        assert progress["job"]["completed"] == 4
+                        break
+                    if time.monotonic() >= deadline:
+                        raise RuntimeError("Native game review did not complete")
+                    time.sleep(0.25)
+                health = client.get("/api/health", headers=headers).json()
+                assert health["engine_status"] == "ready" and health["engine_available"] is True
+                assert "stockfish" in health["engine_version"].lower()
                 print(
                     json.dumps(
                         {
@@ -107,6 +130,7 @@ def main():
                             "fresh_install": "passed",
                             "restart": "passed",
                             "stockfish": "passed",
+                            "native_review_and_health": "passed",
                         }
                     ),
                     flush=True,
