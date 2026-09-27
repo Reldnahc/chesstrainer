@@ -160,8 +160,8 @@ main:has(.review-workspace-layout) {
   gap: 8px;
   min-width: 0;
 }
-.coach-title > strong,
-.coach-title > h2 {
+.review-coach .coach-title > strong,
+.review-coach .coach-title > h2 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -169,6 +169,9 @@ main:has(.review-workspace-layout) {
   margin: 0;
   font-size: inherit;
   letter-spacing: 0;
+}
+.coach-title > .review-move {
+  flex: none;
 }
 .coach-label .move-badge {
   font-size: 15px;

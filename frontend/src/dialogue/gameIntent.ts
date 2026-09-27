@@ -68,7 +68,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       if (item) claims.push(item);
     }
     if (event.kind === "clock_observation") {
-      if (f.before_band === "low" || f.before_band === "critical") add("clock_low", {side, seconds: Number(f.before_seconds).toFixed(1)}, 54);
+      if (f.before_band === "low" || f.before_band === "critical") add("clock_low", {side, seconds: Number(f.before_seconds).toFixed(1)}, f.before_band === "critical" ? 75 : 54);
       else if (f.tempo === "fast_with_time") add("clock_fast", {side, elapsed: Number(f.elapsed_seconds).toFixed(1), seconds: Number(f.before_seconds).toFixed(1)}, 52);
       else if (f.tempo === "long_think") add("clock_long", {side, elapsed: Number(f.elapsed_seconds).toFixed(1)}, 50);
     }

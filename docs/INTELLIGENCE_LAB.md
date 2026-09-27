@@ -32,6 +32,10 @@ never decides legality, quality or human probabilities itself.
 The Voice selector draws directly from the selectable coach registry and keeps a
 neutral reference. Changing it rerenders the same intent locally; the utterance
 trace identifies each custom or neutral fallback template.
+The initial writing section provides synthetic examples for every dialogue purpose,
+all current voices, character bibles, deterministic variants and shuffled blind
+comparison. A real imported intent can also be compared across the cast. Corpus
+errors and writing collisions appear locally in the viewer and fail its tests.
 
 `npx playwright test --config playwright.intelligence.config.ts` tests import,
 malformed/versioned data, deterministic production parity, mobile layout, no API

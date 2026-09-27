@@ -3,7 +3,11 @@ import {stableKey, type CoachUtterance, type DialogueIntent} from "./model";
 import {neutralPersonality, type DialogueCharacter, type PersonalityInput} from "./personality";
 
 function expand(template: string, slots: Record<string, string | number>) {
-  const text = template.replace(/\{(\w+)\}/g, (_, key: string) => String(slots[key] ?? `{${key}}`)).replace(/\s+/g, " ").trim();
+  // Motif vocabulary is controlled, but its first sound changes the article.
+  const phrasing = typeof slots.motif === "string" && /^[aeiou]/i.test(slots.motif)
+    ? template.replaceAll("a {motif}", "an {motif}") : template;
+  const text = phrasing.replace(/\{(\w+)\}/g, (_, key: string) => String(slots[key] ?? `{${key}}`))
+    .replace(/\s+/g, " ").replace(/\s+([,:;.?!])/g, "$1").trim();
   return /\{\w+\}/.test(text) ? "" : text;
 }
 

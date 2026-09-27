@@ -12,7 +12,7 @@ const join = (items: string[]) => items.length === 2 ? `${items[0]} and ${items[
 export function positionalClaim(event: Event, move: string, best: string): Claim | null {
   const f = event.facts;
   const alternative = f.line === "best";
-  const lead = alternative ? `Instead, ${best} ` : `${move} `;
+  const lead = `${alternative ? best : move} `;
   const priority = alternative ? 61 : 66;
   const make = (code: string, slots: Claim["slots"]) => claim(code, slots, priority, event.evidence, [event.id]);
   switch (f.feature) {

@@ -186,7 +186,9 @@ export default function ReviewPanel({
               </p>
             ) : feedback?.completed && feedback.next_due ? (
               <p className="review-due" role="status">
-                Progress saved. Next review:{" "}
+                Progress saved.{" "}
+                {(position.failed || session.hadFailure || feedback.grade === "revealed") && "This recall stays marked for relearning. "}
+                Next review:{" "}
                 <time
                   dateTime={feedback.next_due}
                   title={new Date(feedback.next_due).toLocaleString()}

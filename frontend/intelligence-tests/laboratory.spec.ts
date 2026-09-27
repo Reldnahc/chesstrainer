@@ -41,13 +41,13 @@ test("laboratory traces a local review without network or storage and retains it
   await expect(page.getByRole("heading", {name: "Review intelligence laboratory"})).toBeVisible();
   await page.getByLabel("Open game-detail JSON").setInputFiles({name: "synthetic.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(fixture))});
   await expect(page.locator(".lab-utterance")).toContainText("queen on e4 and king on h7");
-  await expect(page.getByRole("region", {name: "Rendered coach line"})).toContainText("di1:");
+  await expect(page.getByRole("region", {name: "Rendered coach line"})).toContainText("di2:");
   await expect(page.locator(".lab-chain")).toContainText("synthetic-search");
   const neutral = await page.locator(".lab-utterance").innerText();
   await page.getByLabel("Dialogue coach").selectOption("classic");
   await expect(page.locator(".lab-utterance")).not.toHaveText(neutral);
   await expect(page.locator(".lab-utterance")).toContainText("queen on e4 and king on h7");
-  await expect(page.locator(".lab-chain")).toContainText("storyteller-1");
+  await expect(page.locator(".lab-chain")).toContainText("storyteller-");
   await page.getByRole("button", {name: "Previous", exact: true}).click();
   await expect(page.getByLabel("Position", {exact: true})).toHaveValue("0");
   await page.getByRole("button", {name: "Next", exact: true}).click();

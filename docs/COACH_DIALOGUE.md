@@ -58,3 +58,8 @@ Switching and reloading a selected coach changes language and portrait while
 preserving stored reports. The laboratory's Voice selector renders the same intent
 through any current registry entry or the neutral reference, with template-source
 and deterministic variant provenance shown in the trace.
+
+The full selectable cast now has curated claim wording and character bibles.
+See [COACH_PERSONALITIES.md](COACH_PERSONALITIES.md) for the writing standards,
+blind comparison and automatic corpus checks. Rare supported facts can still use
+the complete neutral fallback; character wording never replaces chess evidence.

@@ -4,6 +4,7 @@ import type {Game} from "../src/gameReview/types";
 import {inspectPosition, MAX_BYTES, parseReview} from "./inspection";
 import {selectableCoaches, getCoach} from "../src/coach/registry";
 import {renderDialogue} from "../src/dialogue/neutral";
+import WritingLab, {CoachComparison} from "./CoachComparison";
 
 export default function IntelligenceLab() {
   const [game, setGame] = useState<Game | null>(null);
@@ -41,6 +42,7 @@ export default function IntelligenceLab() {
         <button disabled={!paste.trim()} onClick={() => {generation.current++; accept(paste, "Pasted response");}}>Inspect review</button></details>
       {error && <p role="alert">{error}</p>}
     </section>
+    <details className="lab-writing" open={!game}><summary>Writing examples and full-cast comparison</summary><WritingLab /></details>
     {!game && <p>Save the JSON response from your authenticated <code>/api/games/&#123;id&#125;</code> request, then open it here. Export after the review finishes to inspect refinement, history and the complete narrative. No PGN is sent anywhere.</p>}
     {game && inspection && <>
       <nav className="lab-controls" aria-label="Evidence position">
@@ -59,6 +61,7 @@ export default function IntelligenceLab() {
         </section></div>
       <div className="lab-chain">{Object.entries({...inspection, utterance}).map(([title, data]) => <details key={title} open={title === "intent" || title === "utterance"}>
         <summary>{title}</summary><pre>{JSON.stringify(data, null, 2) ?? "No evidence for this position."}</pre></details>)}</div>
+      <details className="lab-writing"><summary>Compare this exact intent across the cast</summary><CoachComparison intent={inspection.intent} /></details>
     </>}
   </main>;
 }

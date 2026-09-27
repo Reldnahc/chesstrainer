@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 12 verified; Milestone 13 is next.
+Current checkpoint: Milestone 13 verified; Milestone 14 is next.
 
 ## Baseline
 
@@ -260,8 +260,7 @@ Milestone 11: `ae388fb` â€” standalone intelligence laboratory.
 - Production coach/navigation suite: 10 passed. Final lab rerun after syntax and
   layout review: 6 passed. Type and whitespace checks passed.
 
-Milestone 12: personality architecture complete; commit SHA will be recorded at
-the next boundary.
+Milestone 12: `1733dd5` — personality architecture.
 
 - Existing catalogue families register personality/bible/template/delivery data;
   no second coach-ID list or account field. Pure rendering receives only a semantic
@@ -277,6 +276,31 @@ the next boundary.
 - Reopening may check for new model/refinement availability; merely changing a
   preference never queues a search. This behavior is preserved, not bypassed for
   the test. Ruff and whitespace checks passed.
+
+Milestone 13: full-cast writing complete; commit SHA will be recorded at the
+next boundary.
+
+- All 16 currently registered coaches have character bibles and curated primary
+  wording, with safe neutral fallback. The 912-line corpus covers 26 purpose
+  exercises and high-frequency variants. Registry enumeration, required slots,
+  duplicates/near collisions, lengths and semantic delivery are audited.
+- Developer lab compares an actual intent or synthetic exercise across the cast,
+  with deterministic variants, shuffled blind identities and trace/bible reveal.
+  Inspected blind samples and actual desktop/mobile practice/explanation bubbles.
+- Corrected correlated two-choice hash bits, awkward alternative grammar and
+  similar wording. Intent version is now dialogue-intent-2. The selected coach
+  remains presentation only, with no extra analysis, storage or account fields.
+- Production/API/type checks passed. Main dialogue/game/practice regressions:
+  70 passed, 2 intended viewport skips. Lab: 8 passed. Initial legacy phrase
+  assertions exposed displaced relearning information: restored it beside the
+  schedule, and asserted semantic states and factual explanation text instead.
+- Visual inspection found old practice heading styles inflating the shared coach
+  title and clipping SAN. Corrected specificity and reserved notation width;
+  final desktop/mobile layout, retry and explanation checks: 8 passed. Screenshots
+  inspected again. Ruff lint/format and whitespace checks pass.
+- Production JS is 542 kB raw / 166 kB gzip; Vite reports its 500 kB single-chunk
+  warning. Final validation will assess sensible chunking, without introducing
+  asynchronous coach-selection races just to silence a warning.
 
 ## Decisions / follow-ups
 

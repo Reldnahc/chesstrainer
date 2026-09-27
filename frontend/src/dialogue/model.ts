@@ -17,7 +17,7 @@ export type Claim = {
   sourceIds: string[];
 };
 export type DialogueIntent = {
-  version: "dialogue-intent-1";
+  version: "dialogue-intent-2";
   id: string;
   purpose: DialoguePurpose;
   mode: "game" | "variation" | "practice" | "explanation" | "complete";
@@ -54,6 +54,11 @@ export function stableKey(value: unknown): string {
   };
   let hash = 2166136261;
   for (const char of canonical(value)) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+  // Avalanche before modulo selection: raw FNV low bits correlate for two-choice
+  // templates with similar keys and would make many characters vary in lockstep.
+  hash = Math.imul(hash ^ (hash >>> 16), 0x85ebca6b);
+  hash = Math.imul(hash ^ (hash >>> 13), 0xc2b2ae35);
+  hash ^= hash >>> 16;
   return (hash >>> 0).toString(16).padStart(8, "0");
 }
 
@@ -61,7 +66,7 @@ export function makeIntent(key: string, purpose: DialoguePurpose, mode: Dialogue
   expression: CoachExpression, claims: Claim[], decisions: string[] = []): DialogueIntent {
   const priority = Math.max(20, ...claims.map(c => c.priority));
   const facts = {purpose, mode, expression, claims, decisions};
-  return {version: "dialogue-intent-1", id: `di1:${stableKey([key, facts])}`, ...facts,
+  return {version: "dialogue-intent-2", id: `di2:${stableKey([key, facts])}`, ...facts,
     intensity: priority / 100, priority, interruptible: priority < 95,
     autoSpeakSuitable: mode !== "practice" && purpose !== "thinking" && purpose !== "neutral"};
 }
