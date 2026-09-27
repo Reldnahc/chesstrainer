@@ -1,9 +1,8 @@
 import logging
 
-import chess
 from sqlalchemy import func, select
 
-from trainer.chess_core import Candidate, legal_move, valid_board
+from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
 from trainer.explanations import explain_review, replay_line
 from trainer.imports import decision_board
 from trainer.models import (
@@ -136,15 +135,7 @@ def start_review(db, exercise_id, lesson_item_id=None, *, focus_skill_id=None):
         "previous_reviews": state.reviews,
         "practice_only": mode == "focus",
         # All legal moves, never just accepted answers: these are interaction aids.
-        "legal_moves": [
-            {
-                "from_square": chess.square_name(move.from_square),
-                "to_square": chess.square_name(move.to_square),
-                "promotion": chess.piece_symbol(move.promotion) if move.promotion else None,
-                "capture": board.is_capture(move),
-            }
-            for move in board.legal_moves
-        ],
+        "legal_moves": legal_move_options(board),
     }
 
 

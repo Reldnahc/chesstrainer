@@ -118,7 +118,7 @@ def test_back_rank_check_with_escape_is_not_mate_pattern():
 
 def test_unsettled_recapture_after_quiet_prefix_does_not_establish_material():
     from trainer.chess_core import Candidate, valid_board
-    from trainer.local_classifier import replay, settled_delta
+    from trainer.continuations import replay, settled_delta
 
     payload = evidence()
     # The earlier quiet prefix cannot replace an endpoint ending with a capture.

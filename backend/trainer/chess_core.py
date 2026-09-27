@@ -47,6 +47,19 @@ def legal_move(board: chess.Board, uci: str) -> chess.Move:
         raise ValueError("Move is not legal in this position") from exc
 
 
+def legal_move_options(board: chess.Board) -> list[dict]:
+    """Board interaction aids, never accepted answers or a game-termination policy."""
+    return [
+        {
+            "from_square": chess.square_name(move.from_square),
+            "to_square": chess.square_name(move.to_square),
+            "promotion": chess.piece_symbol(move.promotion) if move.promotion else None,
+            "capture": board.is_capture(move),
+        }
+        for move in board.legal_moves
+    ]
+
+
 class Score(BaseModel):
     kind: Literal["cp", "mate"]
     value: int

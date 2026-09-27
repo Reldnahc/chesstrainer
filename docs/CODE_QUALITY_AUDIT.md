@@ -17,7 +17,7 @@ and may move during refactoring.
 - [x] **5. Run account browser tests in CI.**
 - [x] **6. Consolidate CSS ownership and remove obsolete styles.**
 - [x] **7. Break tactical detection and classification into smaller rules/stages.**
-- [ ] **8. Consolidate duplicated chess helpers and correct dependency boundaries.**
+- [x] **8. Consolidate duplicated chess helpers and correct dependency boundaries.**
 - [ ] **9. Remove archived lesson progression from active review handling.**
 - [ ] **10. Correct engine health reporting and preserve diagnostic exceptions.**
 - [ ] **11. Remove this checklist document after all findings above are resolved and verified.**
@@ -222,7 +222,7 @@ Ruff lint/format and diff checks passed.
 
 ## 8. Shared chess helpers are duplicated or imported through the wrong module
 
-**Priority:** Medium. **Status:** Open.
+**Priority:** Medium. **Status:** Resolved and verified.
 
 `verified_patterns.py` constructs findings nearly identically to
 `tactical_geometry.witness`. Game review and SRS duplicate legal-move
@@ -233,7 +233,17 @@ serialization. `explanations.py` imports continuation helpers through
 helpers and import them from their owning modules. Preserve any intentional
 differences between SRS, game review and detector evidence rules.
 
-**Verification / resolution:** Pending.
+**Implementation:** SRS and game review share `chess_core.legal_move_options`;
+whole-game termination remains the caller's policy. Verified motifs use the shared
+geometric witness constructor and square-name helper. Explanations and tests import
+continuation helpers directly from their owner; classifier re-exports are removed.
+Mate/material outcomes and upstream-specific witnesses retain distinct provenance.
+
+**Verification / resolution:** 121 chess/game-review/explanation/classification
+tests passed, including a new special-move regression for castling, legal and pinned
+en passant, all promotions, and the deliberate distinction between raw legal moves
+and a drawn game's unavailable moves. Existing motif tests cover actor, frames,
+roles and witness metadata. Ruff and diff checks passed; HTTP shapes are unchanged.
 
 ## 9. Removed lessons still complicate active review code
 

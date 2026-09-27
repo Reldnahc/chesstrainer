@@ -7,9 +7,9 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select
 
 from trainer.chess_core import Candidate, Score, legal_move, material, position_key, valid_board
+from trainer.continuations import replay, settled_delta
 from trainer.diagnosis_types import Finding
 from trainer.imports import decision_board
-from trainer.local_classifier import replay, settled_delta
 from trainer.models import (
     Attempt,
     Decision,

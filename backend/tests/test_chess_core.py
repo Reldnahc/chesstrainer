@@ -8,11 +8,44 @@ from trainer.chess_core import (
     engine_context,
     evaluation_loss,
     legal_move,
+    legal_move_options,
     material,
     position_key,
     valid_board,
 )
+from trainer.game_review import position
 from trainer.policy import MovePolicy
+
+
+def test_board_options_preserve_special_moves_and_callers_own_termination():
+    castle = valid_board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1")
+    assert {
+        "from_square": "e1",
+        "to_square": "g1",
+        "promotion": None,
+        "capture": False,
+    } in legal_move_options(castle)
+    ep = valid_board("4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1")
+    assert {
+        "from_square": "e5",
+        "to_square": "d6",
+        "promotion": None,
+        "capture": True,
+    } in legal_move_options(ep)
+    pinned = valid_board("k3r3/8/8/3pP3/8/8/8/4K3 w - d6 0 1")
+    assert not any(
+        m["from_square"] == "e5" and m["to_square"] == "d6" for m in legal_move_options(pinned)
+    )
+    promotion = valid_board("4k3/P7/8/8/8/8/8/4K3 w - - 0 1")
+    assert {m["promotion"] for m in legal_move_options(promotion) if m["from_square"] == "a7"} == {
+        "q",
+        "r",
+        "b",
+        "n",
+    }
+    drawn = valid_board("4k3/8/8/8/8/8/8/4K3 w - - 0 1")
+    assert legal_move_options(drawn)  # SRS exposes legal interaction independently.
+    assert position(drawn)["legal_moves"] == []  # Game review stops at a rules outcome.
 
 
 def test_position_identity():

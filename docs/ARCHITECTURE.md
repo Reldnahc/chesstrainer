@@ -132,7 +132,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 
 ## Domain boundaries
 
-- chess_core.py: python-chess rules, legal-position identity, deterministic facts and explicit score types.
+- chess_core.py: python-chess rules, legal-position identity, deterministic facts, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
 - engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
 - policy.py: configurable move acceptance over verified scores.
 - game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
@@ -194,6 +194,12 @@ Classification-only backfills launch no background engines and cannot create/enr
 diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py bounds and orders events; verified_motifs.py owns independent capture, fork, promotion, check, pin, skewer, defender-removal and back-rank rules. tactical_geometry.py, combination_patterns.py and move_causes.py retain shared geometry and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
 
 defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.0-lichess-8d9faff6 are separate version boundaries.
+
+Geometric detectors construct findings through `tactical_geometry.witness`, which
+preserves actor, move/frame, square-role and rule-version metadata. Mate/material
+outcomes and pinned upstream witnesses retain their distinct constructors and
+provenance. Consumers import replay/endpoint helpers directly from `continuations`;
+`local_classifier` does not re-export those helpers.
 
 classification_quality.py and the read-only report script support blinded exports and annotated comparisons. Human and assistant cohorts remain separate; changed evidence cannot inherit stale annotations. Offline assistant assessment is a development activity, not an application dependency or automatic label source. See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md).
 

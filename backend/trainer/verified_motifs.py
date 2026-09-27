@@ -9,8 +9,8 @@ from dataclasses import dataclass, field
 import chess
 
 from trainer.chess_core import VALUES, material
-from trainer.diagnosis_types import CUES, RULE_VERSION, Finding
-from trainer.tactical_geometry import names, valuable_targets
+from trainer.diagnosis_types import Finding
+from trainer.tactical_geometry import names, valuable_targets, witness
 
 
 @dataclass
@@ -52,21 +52,7 @@ class TacticalEvent:
 
     def add(self, skill, plies, roles, text, frame=None):
         self.findings.append(
-            Finding(
-                skill_id=skill,
-                rule_id=f"{skill}:{RULE_VERSION}",
-                direction=self.direction,
-                actor="white" if self.actor else "black",
-                analysis_id=self.analysis_id,
-                plies=plies,
-                moves=[self.boards[p].peek().uci() for p in plies],
-                squares=sorted({sq for values in roles.values() for sq in values}),
-                roles=roles,
-                frame_ply=frame if frame is not None else plies[0],
-                explanation=text,
-                cue=CUES[skill],
-                verification="verified_line",
-            )
+            witness(self.boards, self.analysis_id, self.direction, skill, plies, roles, text, frame)
         )
 
 

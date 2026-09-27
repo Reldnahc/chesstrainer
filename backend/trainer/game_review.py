@@ -9,7 +9,14 @@ import chess
 import chess.pgn
 from sqlalchemy import select
 
-from trainer.chess_core import Candidate, Score, evaluation_loss, legal_move, material
+from trainer.chess_core import (
+    Candidate,
+    Score,
+    evaluation_loss,
+    legal_move,
+    legal_move_options,
+    material,
+)
 from trainer.continuations import replay, settled_delta
 from trainer.explanations import replay_line
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
@@ -31,17 +38,7 @@ def position(board):
     return {
         "fen": board.fen(),
         "turn": "white" if board.turn else "black",
-        "legal_moves": [
-            {
-                "from_square": chess.square_name(m.from_square),
-                "to_square": chess.square_name(m.to_square),
-                "promotion": chess.piece_symbol(m.promotion) if m.promotion else None,
-                "capture": board.is_capture(m),
-            }
-            for m in board.legal_moves
-        ]
-        if outcome is None
-        else [],
+        "legal_moves": legal_move_options(board) if outcome is None else [],
         "result": outcome.result() if outcome else None,
         "termination": outcome.termination.name.replace("_", " ").lower() if outcome else None,
     }

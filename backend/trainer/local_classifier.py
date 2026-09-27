@@ -11,12 +11,6 @@ from trainer.classification_stages import (
     mate_findings,
     read_lines,
 )
-from trainer.continuations import (  # noqa: F401
-    continuation_end,
-    extended_line,
-    replay,
-    settled_delta,
-)
 from trainer.diagnosis_types import RULE_VERSION
 
 
