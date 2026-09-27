@@ -1707,10 +1707,10 @@ export interface components {
             ply: number | null;
             /**
              * Version
-             * @default move-events-1
+             * @default move-events-2
              * @constant
              */
-            version: "move-events-1";
+            version: "move-events-2";
         };
         /** MoveRequest */
         MoveRequest: {
@@ -1858,7 +1858,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "mate" | "evaluation_change" | "critical_resource" | "sacrifice" | "tactic" | "human_contrast" | "clock_observation" | "opening_departure" | "check" | "finish";
+            kind: "mate" | "evaluation_change" | "critical_resource" | "sacrifice" | "tactic" | "human_contrast" | "clock_observation" | "opening_departure" | "check" | "finish" | "positional";
         };
         /** ReviewFeedback */
         ReviewFeedback: {

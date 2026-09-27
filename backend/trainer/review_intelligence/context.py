@@ -19,6 +19,7 @@ class MoveContext:
     uci: str
     clock: ClockFacts
     opening_departure: dict | None = None
+    unmoved_minors: tuple[int, ...] | None = None
 
 
 def move_contexts(parsed):
@@ -26,6 +27,11 @@ def move_contexts(parsed):
     pgn_key = digest(str(parsed))
     board = parsed.board()
     opening = board.fen() == chess.STARTING_FEN
+    unmoved = (
+        {chess.B1, chess.C1, chess.F1, chess.G1, chess.B8, chess.C8, chess.F8, chess.G8}
+        if opening
+        else None
+    )
     last_book = None
     output = {}
     for ply, move in enumerate(parsed.mainline_moves(), 1):
@@ -40,6 +46,16 @@ def move_contexts(parsed):
             opening = False
         if matched:
             last_book = matched
-        output[ply] = MoveContext(ply, pgn_key, board.fen(), move.uci(), clocks[ply], departure)
+        output[ply] = MoveContext(
+            ply,
+            pgn_key,
+            board.fen(),
+            move.uci(),
+            clocks[ply],
+            departure,
+            tuple(sorted(unmoved)) if unmoved is not None else None,
+        )
+        if unmoved is not None:
+            unmoved.difference_update({move.from_square, move.to_square})
         board.push(move)
     return output

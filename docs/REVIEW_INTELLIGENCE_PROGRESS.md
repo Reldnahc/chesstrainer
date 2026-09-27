@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 5 verified; Milestone 6 is next.
+Current checkpoint: Milestone 6 verified; Milestone 7 is next.
 
 ## Baseline
 
@@ -135,8 +135,7 @@ Milestone 4: `c9b6f0bdf74e5f8ea3e08bf9878f8752051862ad` — bounded additive inv
   migration preservation, cross-account FK checks and verification of the actual
   pooled search result's binary identity. No pushes or deployment changes.
 
-Milestone 5: semantic events and clock context complete; commit SHA will be
-recorded at the next boundary.
+Milestone 5: `f593279` — semantic events and clock context.
 
 - Versioned coach-independent events reference Stockfish, human policy, rules,
   legal board transitions and PGN/book evidence. Positive resources, sacrifices,
@@ -157,6 +156,23 @@ recorded at the next boundary.
   negative TypeScript contracts, Ruff lint/format and whitespace checks pass.
 - No new database tables or production UI surfaces. Cold-SRS response tests
   explicitly exclude the added answer-revealing intelligence.
+
+Milestone 6: deterministic positional evidence complete; commit SHA will be
+recorded at the next boundary.
+
+- Added ten supported immediate-change families, shared pin-aware defenders,
+  original-piece development history and separate played/alternative facts.
+  Every observation explicitly avoids a strategic value judgment; unsupported
+  weak-square/bad-bishop/king-safety stories continue to abstain.
+- Focused positional/events/clocks/game/human/API suite: 79 passed. After final
+  history-reference and flank-king restrictions, all 12 positional tests pass.
+  Production build/API/type checks and full Ruff/diff checks pass.
+- Re-ran native Stockfish on the 12-position baseline corpus and inspected all
+  positional output, including quiet Ruy Lopez support changes and castling.
+  Strong sacrifices/mates retain higher-priority tactical/finish semantics;
+  an unguarded piece is never declared lost from geometry alone.
+- Rules and false-positive boundaries: POSITIONAL_EVIDENCE.md. No schema,
+  grading, coach, resource-setting or production layout changes in this slice.
 
 ## Decisions / follow-ups
 

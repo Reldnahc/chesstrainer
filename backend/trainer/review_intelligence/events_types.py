@@ -44,6 +44,7 @@ class ReviewEvent(Contract):
         "opening_departure",
         "check",
         "finish",
+        "positional",
     ]
     actor: Color
     confidence: Literal["board_fact", "searched", "line_witness", "model_signal", "annotation"]
@@ -53,7 +54,7 @@ class ReviewEvent(Contract):
 
 
 class MoveIntelligence(Contract):
-    version: Literal["move-events-1"] = "move-events-1"
+    version: Literal["move-events-2"] = "move-events-2"
     input_digest: str
     ply: int | None
     events: list[ReviewEvent]

@@ -9,8 +9,10 @@ from trainer.review_intelligence.events_types import (
     MoveIntelligence,
     ReviewEvent,
 )
+from trainer.review_intelligence.positional import VERSION as POSITION_VERSION
+from trainer.review_intelligence.positional import positional_events
 
-VERSION = "move-events-1"
+VERSION = "move-events-2"
 
 
 def semantic_line(line):
@@ -37,6 +39,8 @@ def describe_move(report, practical, context=None):
     clock = context.clock if context else None
     ply = context.ply if context else None
     source = {
+        "version": VERSION,
+        "positional_version": POSITION_VERSION,
         "practical": practical.input_digest,
         "before": report.get("before_analysis_id"),
         "played": report.get("played_analysis_id"),
@@ -135,6 +139,7 @@ def describe_move(report, practical, context=None):
             ref,
         )
         tactical_events(report, emit, ref, fen, actor)
+        positional_events(report, board, emit, ref, context)
     else:
         limitations.append("objective_evidence_references_missing")
 

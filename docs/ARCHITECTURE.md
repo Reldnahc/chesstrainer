@@ -266,3 +266,10 @@ pool remain the compute authority. See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.
 traceable semantic events from saved chess facts and PGN annotations. No character
 prose enters this layer. [REVIEW_EVENTS.md](REVIEW_EVENTS.md) specifies gates and
 clock abstention; `review_scores` shares Stockfish-only alternative comparisons.
+# Positional review evidence
+
+The review-intelligence layer adds versioned immediate board-change facts for
+quiet moves using existing python-chess legality and pin-aware tactical geometry.
+It does not infer strategic causes from centipawn loss. See
+[POSITIONAL_EVIDENCE.md](POSITIONAL_EVIDENCE.md) for supported definitions and
+abstention rules; played and alternative lines remain distinct.

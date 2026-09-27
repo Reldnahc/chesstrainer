@@ -1,6 +1,6 @@
 # Semantic review events and clock context
 
-`review_intelligence/events.py` derives `move-events-1` from saved Stockfish
+`review_intelligence/events.py` derives `move-events-2` from saved Stockfish
 reports, practical assessment and optional recorded-mainline context. It neither
 searches nor grades. The typed `intelligence` field is shared by full review,
 progress updates and interactive analysis. It is diagnostic factual input for
@@ -28,6 +28,7 @@ the durable sources; reading semantics requires no migration or engine/model.
 | `opening_departure` | First unmatched move in the initial catalogue sequence | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
 | `check` | Giving check or answering check | Legally replayed actual move; checkmate supersedes generic check |
 | `finish` | Immediate checkmate, stalemate, insufficient material | python-chess actual transition; never inferred from a mate PV or declared PGN result |
+| `positional` | Immediate development, pawn, rook-file, support, king-flight and bishop-pair changes | Explicit geometry/history rules in [POSITIONAL_EVIDENCE.md](POSITIONAL_EVIDENCE.md); no strategic value inferred from an evaluation |
 
 Advantages at ±200 cp and the balanced band ±100 cp are descriptive rule bands,
 not mathematical win/draw proofs. Evaluation-change events require at least 100
