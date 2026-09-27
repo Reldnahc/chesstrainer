@@ -1014,6 +1014,53 @@
         "title": "Credentials",
         "type": "object"
       },
+      "CrossGameContext": {
+        "additionalProperties": false,
+        "properties": {
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "recurrence_threshold": {
+            "title": "Recurrence Threshold",
+            "type": "integer"
+          },
+          "scope": {
+            "const": "other_saved_games",
+            "default": "other_saved_games",
+            "title": "Scope",
+            "type": "string"
+          },
+          "version": {
+            "const": "cross-game-1",
+            "default": "cross-game-1",
+            "title": "Version",
+            "type": "string"
+          },
+          "weaknesses": {
+            "items": {
+              "$ref": "#/components/schemas/HistoricalWeakness"
+            },
+            "title": "Weaknesses",
+            "type": "array"
+          }
+        },
+        "required": [
+          "input_digest",
+          "recurrence_threshold",
+          "weaknesses",
+          "limitations"
+        ],
+        "title": "CrossGameContext",
+        "type": "object"
+      },
       "DifficultyComponents": {
         "additionalProperties": false,
         "properties": {
@@ -1365,7 +1412,8 @@
               "rule",
               "pgn",
               "book",
-              "position"
+              "position",
+              "weakness"
             ],
             "title": "Source",
             "type": "string"
@@ -1767,6 +1815,16 @@
             },
             "title": "Frames",
             "type": "array"
+          },
+          "history": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CrossGameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "id": {
             "title": "Id",
@@ -2679,6 +2737,76 @@
           "database"
         ],
         "title": "Health",
+        "type": "object"
+      },
+      "HistoricalWeakness": {
+        "additionalProperties": false,
+        "properties": {
+          "decision_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Decision Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "game_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Game Ids",
+            "type": "array"
+          },
+          "independent_games": {
+            "title": "Independent Games",
+            "type": "integer"
+          },
+          "occurrences": {
+            "title": "Occurrences",
+            "type": "integer"
+          },
+          "related_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Related Plies",
+            "type": "array"
+          },
+          "skill_id": {
+            "title": "Skill Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "provisional",
+              "supported"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill_id",
+          "title",
+          "status",
+          "independent_games",
+          "occurrences",
+          "related_plies",
+          "evidence",
+          "decision_ids",
+          "game_ids"
+        ],
+        "title": "HistoricalWeakness",
         "type": "object"
       },
       "HumanEvidence": {
@@ -4255,6 +4383,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/GameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "history": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CrossGameContext"
               },
               {
                 "type": "null"

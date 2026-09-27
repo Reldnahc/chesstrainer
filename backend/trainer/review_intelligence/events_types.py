@@ -25,7 +25,7 @@ class ClockFacts(Contract):
 
 
 class EvidenceReference(Contract):
-    source: Literal["stockfish", "human", "rule", "pgn", "book", "position"]
+    source: Literal["stockfish", "human", "rule", "pgn", "book", "position", "weakness"]
     id: str
     field: str
     ply: int | None = None

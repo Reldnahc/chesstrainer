@@ -1053,6 +1053,29 @@ export interface components {
             /** Username */
             username: string;
         };
+        /** CrossGameContext */
+        CrossGameContext: {
+            /** Input Digest */
+            input_digest: string;
+            /** Limitations */
+            limitations: string[];
+            /** Recurrence Threshold */
+            recurrence_threshold: number;
+            /**
+             * Scope
+             * @default other_saved_games
+             * @constant
+             */
+            scope: "other_saved_games";
+            /**
+             * Version
+             * @default cross-game-1
+             * @constant
+             */
+            version: "cross-game-1";
+            /** Weaknesses */
+            weaknesses: components["schemas"]["HistoricalWeakness"][];
+        };
         /** DifficultyComponents */
         DifficultyComponents: {
             /** Acceptable Count Lower Bound */
@@ -1166,7 +1189,7 @@ export interface components {
              * Source
              * @enum {string}
              */
-            source: "stockfish" | "human" | "rule" | "pgn" | "book" | "position";
+            source: "stockfish" | "human" | "rule" | "pgn" | "book" | "position" | "weakness";
         };
         /** Finding */
         Finding: {
@@ -1295,6 +1318,7 @@ export interface components {
             context?: components["schemas"]["GameContext"] | null;
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
+            history?: components["schemas"]["CrossGameContext"] | null;
             /** Id */
             id: string;
             job: components["schemas"]["ReviewJob"] | null;
@@ -1528,6 +1552,30 @@ export interface components {
             engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
+        };
+        /** HistoricalWeakness */
+        HistoricalWeakness: {
+            /** Decision Ids */
+            decision_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Game Ids */
+            game_ids: string[];
+            /** Independent Games */
+            independent_games: number;
+            /** Occurrences */
+            occurrences: number;
+            /** Related Plies */
+            related_plies: number[];
+            /** Skill Id */
+            skill_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "provisional" | "supported";
+            /** Title */
+            title: string;
         };
         /** HumanEvidence */
         HumanEvidence: {
@@ -2021,6 +2069,7 @@ export interface components {
         ReviewProgress: {
             accuracy: components["schemas"]["GameAccuracy"] | null;
             context?: components["schemas"]["GameContext"] | null;
+            history?: components["schemas"]["CrossGameContext"] | null;
             job: components["schemas"]["ReviewJob"] | null;
             /** Moves */
             moves: components["schemas"]["ReviewedMove"][];

@@ -11,16 +11,34 @@ from trainer.scheduling import utc
 from trainer.taxonomy import SKILLS
 
 
-def priorities(db, settings):
-    rows = db.execute(
-        select(SkillEvidence, Decision).join(Decision).where(SkillEvidence.active.is_(True))
-    ).all()
+def active_groups(db, *, skills=None, exclude_game_id=None):
+    query = select(SkillEvidence, Decision).join(Decision).where(SkillEvidence.active.is_(True))
+    if skills is not None:
+        query = query.where(SkillEvidence.skill_id.in_(skills))
+    if exclude_game_id is not None:
+        query = query.where(Decision.game_id != exclude_game_id)
+    rows = db.execute(query.order_by(Decision.game_id, Decision.ply, SkillEvidence.id)).all()
     grouped = defaultdict(list)
     for evidence, decision in rows:
         grouped[evidence.skill_id].append((evidence, decision))
+    return grouped
+
+
+def recurrence(pairs, minimum):
+    games = {d.game_id for _, d in pairs}
+    return dict(
+        independent_games=len(games),
+        occurrences=len(pairs),
+        provisional=len(games) < minimum,
+        evidence_ids=[e.id for e, _ in pairs],
+        decision_ids=list(dict.fromkeys(d.id for _, d in pairs)),
+    )
+
+
+def priorities(db, settings):
+    grouped = active_groups(db)
     result = []
     for skill, pairs in grouped.items():
-        games = {d.game_id for _, d in pairs}
         # At most one severity contribution per game: correlated blunders are not independent.
         per_game = defaultdict(float)
         for evidence, decision in pairs:
@@ -93,8 +111,7 @@ def priorities(db, settings):
                 "focused_failures": sum(s.failed or s.revealed for s in focused),
                 "unique_positions": len({d.position_key for _, d in pairs}),
                 "title": SKILLS[skill]["title"],
-                "independent_games": len(games),
-                "occurrences": len(pairs),
+                **recurrence(pairs, settings.min_independent_games),
                 "priority": round(score, 1),
                 "reviews": len(review_rows),
                 "failures": failures,
@@ -103,9 +120,6 @@ def priorities(db, settings):
                 "retention": "improving"
                 if len(review_rows) >= 5 and failures == 0
                 else "needs_practice",
-                "provisional": len(games) < settings.min_independent_games,
-                "evidence_ids": [e.id for e, _ in pairs],
-                "decision_ids": list(dict.fromkeys(d.id for _, d in pairs)),
             }
         )
     return sorted(

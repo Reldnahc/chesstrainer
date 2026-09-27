@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 7 verified; Milestone 8 is next.
+Current checkpoint: Milestone 8 verified; Milestone 9 is next.
 
 ## Baseline
 
@@ -173,8 +173,7 @@ Milestone 6: `a2b944c` — deterministic positional evidence.
 - Rules and false-positive boundaries: POSITIONAL_EVIDENCE.md. No schema,
   grading, coach, resource-setting or production layout changes in this slice.
 
-Milestone 7: whole-game context complete; commit SHA will be recorded at the
-next boundary.
+Milestone 7: `5783d32` — whole-game context.
 
 - Versioned nodes/links for repeated motifs, punishment, recovery, sustained
   conversion, gradual erosion and restored support of a tracked surviving piece.
@@ -190,6 +189,23 @@ next boundary.
 - Rules and caveats: GAME_CONTEXT.md. Causal king-safety-collapse narratives
   remain unsupported; supported support changes never impersonate proof of a
   tactical cause. No production dialogue change until the planned dialogue slice.
+
+Milestone 8: conservative cross-game context complete; commit SHA will be
+recorded at the next boundary.
+
+- Shared active-evidence grouping/recurrence helpers retain Weaknesses semantics.
+  Relevant learner errors can reference other owned classified games; current
+  game excluded, repeated positions count once per independent game, default
+  support threshold remains the actual setting (2). No practice-transfer claims.
+- Context/native review/training pipeline regression: 39 passed. New history and
+  adversarial accounts suite: 11 passed. Final API/native review/cold-SRS events
+  suite: 44 passed. Two existing TestClient dependency warnings only.
+- Production build, API/type checks, Ruff and whitespace checks pass. History
+  agrees between native detail and polling; no new tables or searches. Updated
+  stale data-model headline to the current 36-table/refinement migration baseline.
+- Other saved games are not asserted to be earlier in playing chronology.
+  Provisional items remain explicitly provisional and new users get empty history.
+  Implementation boundaries: CROSS_GAME_CONTEXT.md.
 
 ## Decisions / follow-ups
 

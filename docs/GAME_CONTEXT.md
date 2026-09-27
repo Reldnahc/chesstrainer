@@ -38,3 +38,8 @@ The graph contains no coach-specific text, additional model query or new table.
 `test_game_context.py` covers multi-ply positive/negative stories and identity;
 native review tests check detail/poll agreement and restart reuse. Later dialogue
 can cite these links; current cold SRS never receives them.
+
+The adjacent `history` projection uses [CROSS_GAME_CONTEXT.md](CROSS_GAME_CONTEXT.md)
+to link relevant learner errors to supported evidence in other owned games.
+It remains separate from within-game relationships and never claims training
+caused improvement.

@@ -1,6 +1,6 @@
 # Data model
 
-SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at 39c94b22a711. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
+SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at 55de0b7b8ff2. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
 
 ## Current and archival relationships
 
@@ -22,7 +22,7 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
 | repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
 
-There are 35 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 36 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
 
 `human_analyses` stores account-owned provider-neutral requests and complete policy
 facts, unique by owner and versioned cache key. `game_review_moves.human_analysis_id`
