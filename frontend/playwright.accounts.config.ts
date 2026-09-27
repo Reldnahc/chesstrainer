@@ -5,6 +5,7 @@ const root = path.resolve('..');
 const python = process.env.TEST_PYTHON || path.join(root, process.platform === 'win32' ? '.venv/Scripts/python.exe' : '.venv/bin/python');
 export default defineConfig({
   testDir: './tests', testMatch: '**/accounts.spec.ts', workers: 1,
+  outputDir: './account-test-results',
   use: {baseURL: 'http://127.0.0.1:8766', trace: 'retain-on-failure'},
   projects: [{name: 'desktop', use: {...devices['Desktop Chrome']}},
              {name: 'mobile', use: {...devices['iPhone 13'], defaultBrowserType: 'chromium'}}],

@@ -14,7 +14,7 @@ and may move during refactoring.
 - [x] **2. Replace per-account application instances and permanent worker threads.**
 - [x] **3. Separate review screen state management from presentation.**
 - [x] **4. Define and share API response contracts.**
-- [ ] **5. Run account browser tests in CI.**
+- [x] **5. Run account browser tests in CI.**
 - [ ] **6. Consolidate CSS ownership and remove obsolete styles.**
 - [ ] **7. Break tactical detection and classification into smaller rules/stages.**
 - [ ] **8. Consolidate duplicated chess helpers and correct dependency boundaries.**
@@ -148,7 +148,7 @@ browser tests are still run separately; adding them to CI remains item 5.
 
 ## 5. Account browser tests are excluded from CI
 
-**Priority:** Medium. **Status:** Open.
+**Priority:** Medium. **Status:** Resolved and verified.
 
 The default Playwright configuration excludes `accounts.spec.ts`, while CI only
 invokes that configuration. `playwright.accounts.config.ts` must currently be run
@@ -157,7 +157,15 @@ manually for signup, second-device login and private-library browser coverage.
 **Completion criteria:** CI executes the account browser suite as well as the
 ordinary desktop/mobile suite and fails when either suite fails.
 
-**Verification / resolution:** Pending.
+**Implementation:** The frontend CI job is now a local/account matrix with fail-fast
+disabled. Both configurations must pass the reusable correctness workflow before
+publishing. Account traces have a separate output directory, also protecting
+concurrent local runs from overwriting each other.
+
+**Verification / resolution:** Both account browser tests passed on desktop/mobile.
+Actionlint passed for correctness and publishing workflows; diff checks passed.
+The ordinary suite was unchanged and passed during the preceding review. Actual
+GitHub execution awaits a requested push.
 
 ## 6. CSS contains scattered overrides and obsolete selectors
 

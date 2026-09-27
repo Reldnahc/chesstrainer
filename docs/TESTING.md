@@ -163,6 +163,11 @@ That config creates an independent disposable account database and tests desktop
 and mobile signup, remembered usernames, sync, second-device login and isolation.
 The default Playwright config explicitly keeps single-user fixture mode.
 
+Correctness CI runs the local and account configurations as independent matrix
+jobs with fail-fast disabled. Both must succeed before Docker publishing can run.
+The account configuration writes to `frontend/account-test-results`, so local runs
+of the two suites do not overwrite each other's traces.
+
 `test_hosted_runtime.py` verifies that 250 idle accounts add no applications,
 coordinators or retained scopes; account jobs recover without login; same-account
 analysis stays ordered while other accounts and fetch-only jobs can progress;
