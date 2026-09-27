@@ -223,3 +223,11 @@ columns. Accuracy has no Elo adjustment.
 Public definitions consulted during planning:
 [Chess.com Great/Brilliant](https://www.chess.com/article/view/how-to-play-a-brilliant-move),
 [classification](https://support.chess.com/en/articles/8572705-how-are-moves-classified-what-is-a-blunder-or-brilliant-etc).
+
+## Additional investigation
+
+After every baseline move is saved, a bounded optional investigation phase uses
+the same grading/evidence rules with deeper and selectively wider Stockfish
+searches. Baseline facts remain immutable; effective reports, accuracy and
+incremental revisions use compatible adopted evidence. See
+[REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for selection, budgets and provenance.

@@ -56,7 +56,7 @@ test('progress merges only new reports without reloading the board or duplicatin
       game.job = {id: 'progress-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
       return route.fulfill({json: {job_id: game.job.id, status: game.job.status}});
     }
-    const after = Number(new URL(route.request().url()).searchParams.get('after'));
+    const after = Number(new URL(route.request().url()).searchParams.get('after_revision'));
     cursors.push(after);
     const plies = after === 0 ? [1] : after === 1 ? [2, 3] : [4];
     // The count may advance between the server's report and count queries.
@@ -67,7 +67,7 @@ test('progress merges only new reports without reloading the board or duplicatin
       game.accuracy = accuracy;
       for (const ply of [1, 2, 3, 4]) game.frames[ply].report = moveReport(ply).report;
     }
-    return route.fulfill({json: {job, moves: plies.map(moveReport), accuracy: after === 3 ? accuracy : null}});
+    return route.fulfill({json: {job, revision: plies.at(-1), moves: plies.map(moveReport), accuracy: after === 3 ? accuracy : null}});
   });
   await page.route(`**/api/games/${id}/analyze`, route => {
     analyses++;
@@ -294,6 +294,7 @@ test('refreshing a saved review receives updated evidence from the new job curso
       depth: 16, engine_version: 'Refresh fixture', board_cues: null};
   };
   for (let ply = 1; ply < game.frames.length; ply++) game.frames[ply].report = report(ply, 'Previously saved evidence.');
+  game.review_revision = 4;
   game.job = {id: 'refresh', status: 'completed', completed: 4, total: 4, error: null, cancel_requested: false};
   const cursors: number[] = [];
   await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
@@ -302,14 +303,50 @@ test('refreshing a saved review receives updated evidence from the new job curso
       game.job = {...game.job, status: 'queued', completed: 0};
       return route.fulfill({json: {job_id: 'refresh', status: 'queued'}});
     }
-    cursors.push(Number(new URL(route.request().url()).searchParams.get('after')));
-    return route.fulfill({json: {job: {...game.job, status: 'completed', completed: 4}, accuracy: null,
+    cursors.push(Number(new URL(route.request().url()).searchParams.get('after_revision')));
+    return route.fulfill({json: {job: {...game.job, status: 'completed', completed: 4}, revision: 8, accuracy: null,
       moves: [1, 2, 3, 4].map(ply => ({ply, report: report(ply, 'Updated saved evidence.')}))}});
   });
   await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
   await page.goto(`/games/${id}?ply=1`);
   await expect(page.locator('.coach-speech')).toContainText('Updated saved evidence.');
-  expect(cursors[0]).toBe(0);
+  expect(cursors[0]).toBe(4);
+});
+
+test('refinement revises an earlier move while keeping the selected board in place', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/refinement-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  for (let ply = 1; ply < game.frames.length; ply++) {
+    const frame = game.frames[ply];
+    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 20}};
+    frame.report = {label: 'Good', engine_label: 'Good', opening: null, reason: '', coach: 'Baseline feedback.',
+      best: candidate, actual: candidate, white_score: candidate.score, depth: 16, engine_version: 'Fixture', board_cues: null};
+  }
+  game.review_revision = 4;
+  game.job = {id: 'refinement', status: 'running', phase: 'refinement', completed: 4, total: 4,
+    refinement_completed: 0, refinement_total: 1, error: null, cancel_requested: false};
+  let release = () => {};
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.route(`**/api/games/${id}/review*`, async route => {
+    expect(new URL(route.request().url()).searchParams.get('after_revision')).toBe('4');
+    await gate;
+    const revised = {...game.frames[1].report, label: 'Mistake', engine_label: 'Mistake',
+      coach: 'The deeper comparison confirms a concession.', depth: 22};
+    return route.fulfill({json: {revision: 6, job: {...game.job, status: 'completed', phase: 'complete', refinement_completed: 1},
+      moves: [{ply: 1, report: revised}], accuracy: null}});
+  });
+  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  await page.goto(`/games/${id}?ply=1`);
+  await expect(page.getByRole('status').filter({hasText: 'Investigating critical moments'})).toBeVisible();
+  await expect(page.locator('.coach-message')).toHaveText('Baseline feedback.');
+  const before = await page.locator('.review-board-square').boundingBox();
+  release();
+  await expect(page.locator('.coach-message')).toHaveText('The deeper comparison confirms a concession.');
+  await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('1. f3, Mistake');
+  await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=1$`));
+  expect(await page.locator('.review-board-square').boundingBox()).toEqual(before);
+  await page.screenshot({path: `test-results/refinement-${info.project.name}.png`, fullPage: true});
 });
 
 test('dense evaluation dots resize and select the matching ply by pointer and keyboard', async ({page}, info) => {

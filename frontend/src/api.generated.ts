@@ -1186,6 +1186,11 @@ export interface components {
             rating: number;
             /** Result */
             result: string;
+            /**
+             * Review Revision
+             * @default 0
+             */
+            review_revision: number;
             /** White */
             white: string;
             /** White Rating */
@@ -1282,6 +1287,7 @@ export interface components {
             practical?: components["schemas"]["PracticalAssessment"] | null;
             /** Reason */
             reason: string;
+            refinement?: components["schemas"]["RefinementInfo"] | null;
             white_score: components["schemas"]["Score"];
         };
         /** GamePosition */
@@ -1341,6 +1347,9 @@ export interface components {
             previous_score: components["schemas"]["Score"] | null;
             /** Reason */
             reason: string;
+            refinement?: components["schemas"]["RefinementInfo"] | null;
+            /** Root Candidates */
+            root_candidates?: components["schemas"]["Candidate"][] | null;
             sacrifice: components["schemas"]["SacrificeEvidence"] | null;
             second_score: components["schemas"]["Score"] | null;
             /** Version */
@@ -1700,6 +1709,27 @@ export interface components {
              */
             chesscom_username: string;
         };
+        /** RefinementInfo */
+        RefinementInfo: {
+            /** Adopted */
+            adopted: boolean;
+            /** Baseline Depth */
+            baseline_depth: number;
+            /** Queries */
+            queries: number;
+            /** Reason */
+            reason: string | null;
+            /** Refined Depth */
+            refined_depth: number | null;
+            /** Status */
+            status: string;
+            /** Task Id */
+            task_id: string;
+            /** Triggers */
+            triggers: string[];
+            /** Version */
+            version: string;
+        };
         /** Rejected */
         Rejected: {
             /** Rejected */
@@ -1759,6 +1789,22 @@ export interface components {
             error: string | null;
             /** Id */
             id: string;
+            /**
+             * Phase
+             * @default baseline
+             * @enum {string}
+             */
+            phase: "baseline" | "refinement" | "complete";
+            /**
+             * Refinement Completed
+             * @default 0
+             */
+            refinement_completed: number;
+            /**
+             * Refinement Total
+             * @default 0
+             */
+            refinement_total: number;
             /** Status */
             status: string;
             /** Total */
@@ -1781,6 +1827,11 @@ export interface components {
             job: components["schemas"]["ReviewJob"] | null;
             /** Moves */
             moves: components["schemas"]["ReviewedMove"][];
+            /**
+             * Revision
+             * @default 0
+             */
+            revision: number;
         };
         /** ReviewQueueItem */
         ReviewQueueItem: {
@@ -1795,6 +1846,11 @@ export interface components {
         ReviewRequest: {
             /** Rating */
             rating?: number | null;
+            /**
+             * Refine
+             * @default false
+             */
+            refine: boolean;
         };
         /** ReviewedMove */
         ReviewedMove: {
@@ -2078,6 +2134,16 @@ export interface components {
             public_origin: string;
             /** Retire After Days */
             retire_after_days: number;
+            /** Review Refinement Depth */
+            review_refinement_depth: number;
+            /** Review Refinement Multipv */
+            review_refinement_multipv: number;
+            /** Review Refinement Positions */
+            review_refinement_positions: number;
+            /** Review Refinement Queries */
+            review_refinement_queries: number;
+            /** Review Refinement Time */
+            review_refinement_time: number;
             /** Server Host */
             server_host: string;
             /** Server Port */
@@ -2596,6 +2662,7 @@ export interface operations {
         parameters: {
             query?: {
                 after?: number;
+                after_revision?: number | null;
             };
             header?: never;
             path: {

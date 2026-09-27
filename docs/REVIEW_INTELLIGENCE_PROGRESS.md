@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 3 verified; Milestone 4 is next.
+Current checkpoint: Milestone 4 verified; Milestone 5 is next.
 
 ## Baseline
 
@@ -89,8 +89,8 @@ Milestone 2: `0bfa31b209dda119a5cc4b0a3c3fece5eb1bce03` â€” production human-evi
 - Ruff lint/format and diff whitespace checks pass. No weights/binaries/private
   PGNs or databases enter source commits. Setup/resource docs: HUMAN_MODELS.md.
 
-Milestone 3: versioned practical difficulty and human naturalness complete; commit
-SHA will be recorded at the next boundary.
+Milestone 3: `f9f1abfc73e74a1054b37af6baf3a3d5b44eec84` — versioned practical
+difficulty and human naturalness.
 
 - Pure semantic layer derives model naturalness separately from Stockfish quality,
   conservative best-find bands, narrow defensive resources, candidate-coverage
@@ -108,6 +108,33 @@ SHA will be recorded at the next boundary.
   new tables, no model rerun and no cold-SRS exposure.
 - Broader empirical population calibration remains explicitly unclaimed, not a
   blocker; only coarse heuristic bands are exposed.
+
+Milestone 4: bounded additive investigation complete; commit SHA will be recorded
+at the next boundary.
+
+- Preserved per-move baseline, finite priority nominations, deeper/wider/restricted
+  questions through existing Stockfish authority/cache/pool, 8 positions × 4
+  queries by default. Interruptible active search/slot wait; resumed question
+  references. Separate owned tasks, identity/depth/consistency adoption gates.
+- Migration `55de0b7b8ff2`, 36 application tables. Effective-report reader and
+  revision polling keep earlier moves, following comparisons and accuracy aligned.
+  Saved full human policies reproject new best moves without another inference.
+- Full backend: 491 passed, 3 explicit native Maia opt-in skips, two existing
+  TestClient warnings. Added storage/ownership/migration checks then focused
+  review/difficulty/API suite: 54 passed. Final leased-engine identity guard is
+  covered by an additional focused transport test.
+- Production build/API/type checks pass. Desktop/mobile review run: 18 passed,
+  two new tests failed on a nonexistent test selector; corrected selector and
+  both passed, including stable board bounds across an earlier-ply revision.
+  Screenshots visually inspected. Account browser suite: 2 passed.
+- Production planner benchmark: four of twelve synthetic positions investigated,
+  grades retained, baseline JSON unchanged. Public targeted C0OA7 probe gained
+  defender-removal evidence and verified mate after bishop acceptance, supporting
+  Brilliant instead of Great. A second probe was not nominated; bounded coverage
+  limits are explicit. Config/timings/provenance: REVIEW_REFINEMENT.md.
+- Critical review added root-candidate depth floors, safe optional-query failure,
+  migration preservation, cross-account FK checks and verification of the actual
+  pooled search result's binary identity. No pushes or deployment changes.
 
 ## Decisions / follow-ups
 

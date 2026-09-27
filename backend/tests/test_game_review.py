@@ -86,6 +86,7 @@ def test_library_variations_special_moves_and_missing_engine(settings):
             "job": None,
             "moves": [],
             "accuracy": None,
+            "revision": 0,
         }
         assert detail["accuracy"] is None
         assert client.get(f"/api/games/{game}/review?after=-1").status_code == 422

@@ -1,13 +1,9 @@
 """Evidence-backed game coaching. Never writes training decisions or recall history."""
 
 import io
-from collections import deque
-from concurrent.futures import ThreadPoolExecutor
-from queue import Queue
 
 import chess
 import chess.pgn
-from sqlalchemy import select
 
 from trainer.chess_core import (
     Candidate,
@@ -19,7 +15,6 @@ from trainer.chess_core import (
 )
 from trainer.continuations import replay, settled_delta
 from trainer.explanations import replay_line
-from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.move_causes import move_causes
 from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
@@ -211,6 +206,7 @@ def analyze_move(engine, board, move, previous_score=None):
         "best": best.model_dump(),
         "actual": actual.model_dump(),
         "second_score": candidates[1].score.model_dump() if len(candidates) > 1 else None,
+        "root_candidates": [candidate.model_dump() for candidate in candidates],
         "previous_score": previous_score.model_dump() if previous_score else None,
         "legal_count": board.legal_moves.count(),
         "loss_cp": loss.cp,
@@ -253,115 +249,9 @@ def public_report(report, rating):
 
 
 def run_review(runner, job_id, engine_override=None):
-    with runner.sessions() as db:
-        review = db.scalar(select(GameReview).where(GameReview.job_id == job_id))
-        game = db.get(Game, review.game_id)
-        parsed = parsed_game(game)
-        moves = list(parsed.mainline_moves())
-        rating = review.rating
-        saved = {
-            row.ply: row.report
-            for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
-        }
-    missing = len(moves) - len(saved)
-    workers = (
-        1
-        if engine_override
-        else min(runner.settings.stockfish_workers, runner.settings.engine_slots, max(1, missing))
-    )
-    engines = (
-        [engine_override]
-        if engine_override
-        else [
-            runner.engine_factory(runner.settings, runner.sessions)
-            for _ in range(workers)
-            if missing
-        ]
-    )
-    available = Queue()
-    for engine in engines:
-        available.put(engine)
+    from trainer.review_jobs import run_review as execute
 
-    human = getattr(runner, "human_models", None)
-
-    def analyze(board, move, cached):
-        if runner.cancelled(job_id):
-            return None
-        if cached is None:
-            engine = available.get()
-            try:
-                # Preceding score is attached in game order below.
-                report = analyze_move(engine, board, move)
-            finally:
-                available.put(engine)
-        else:
-            report = dict(cached)
-        if human:
-            report["human"] = human.evidence(
-                runner.sessions,
-                parsed,
-                board,
-                move.uci(),
-                report["best"].get("uci"),
-                rating,
-                lambda: runner.cancelled(job_id),
-            )
-        return report
-
-    executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="game-review")
-    try:
-        board = parsed.board()
-        pending = deque()
-        next_ply = 1
-        previous = None
-
-        def fill():
-            nonlocal next_ply
-            # Bound both running work and queued boards. Cancellation never leaves
-            # a whole game's searches waiting in the executor.
-            while next_ply <= len(moves) and len(pending) < workers:
-                if runner.cancelled(job_id):
-                    break
-                move = moves[next_ply - 1]
-                cached = saved.get(next_ply)
-                refresh = human and human.needs_refresh(
-                    cached.get("human") if cached else None, parsed, board.turn, rating
-                )
-                future = (
-                    None
-                    if cached is not None and not refresh
-                    else executor.submit(analyze, board.copy(stack=True), move, cached)
-                )
-                pending.append((next_ply, future))
-                board.push(move)
-                next_ply += 1
-
-        fill()
-        while pending:
-            ply, future = pending.popleft()
-            report = future.result() if future else saved[ply]
-            if report is None:
-                break
-            with runner.import_lock, runner.sessions() as db:
-                if future:
-                    report["previous_score"] = previous.model_dump() if previous else None
-                    row = db.get(GameReviewMove, (game.id, ply))
-                    if row is None:
-                        row = GameReviewMove(game_id=game.id, ply=ply)
-                        db.add(row)
-                    row.report = report
-                    row.human_analysis_id = report.get("human", {}).get("evidence_id")
-                job = db.get(AnalysisJob, job_id)
-                job.positions_triaged = ply
-                job.games_processed = int(ply == len(moves))
-                db.commit()
-            previous = Score.model_validate(report["best"]["score"]).negate()
-            fill()
-    finally:
-        executor.shutdown(wait=True, cancel_futures=True)
-        if not engine_override:
-            for engine in engines:
-                engine.close()
+    return execute(runner, job_id, engine_override)
 
 
 def branch_board(game, ply, moves):

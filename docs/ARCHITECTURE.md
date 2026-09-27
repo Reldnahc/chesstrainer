@@ -255,3 +255,9 @@ Review-intelligence authority boundaries and measurement rules are recorded in
 replace objective Stockfish evaluation or directly assign move-quality labels.
 
 The frontend build generates a public-source snapshot with scripts/source_archive.py, served by the existing /assets mount and linked in Settings. Git-listed public source and licenses are included; private data, secrets and untracked files are excluded. See NOTICE.md and LICHESS_REUSE.md for the GPL/AGPL combination and source-offer workflow.
+
+Full-game scheduling lives in `review_jobs`; `review_refinement` runs a finite
+optional pass after the unchanged deep baseline. `review_intelligence/refinement_*`
+own nominations and bounded questions; `review_reports` resolves compatible
+saved evidence for presentation. The existing native cache and shared engine
+pool remain the compute authority. See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).

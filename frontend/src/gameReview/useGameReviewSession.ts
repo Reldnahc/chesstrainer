@@ -13,6 +13,7 @@ export function useGameReviewSession(id: string) {
   const openedReview = useRef(false);
   const loadVersion = useRef(0);
   const receivedPly = useRef(0);
+  const receivedRevision = useRef<number | undefined>(undefined);
   const running =
     !!game?.job && ["queued", "running"].includes(game.job.status);
 
@@ -28,6 +29,7 @@ export function useGameReviewSession(id: string) {
       );
       if (data.job && ["queued", "running"].includes(data.job.status))
         receivedPly.current = Math.min(receivedPly.current, data.job.completed);
+      receivedRevision.current = data.review_revision;
       setGame(data);
     }
   }, [id]);
@@ -51,7 +53,7 @@ export function useGameReviewSession(id: string) {
       await read(
         api.POST("/api/games/{game_id}/review", {
           params: { path: { game_id: id } },
-          body: {},
+          body: { refine: false },
         }),
       );
       if (!mounted.current) return;
@@ -108,7 +110,9 @@ export function useGameReviewSession(id: string) {
           api.GET("/api/games/{game_id}/review", {
             params: {
               path: { game_id: id },
-              query: { after: receivedPly.current },
+              query: receivedRevision.current === undefined
+                ? { after: receivedPly.current }
+                : { after_revision: receivedRevision.current },
             },
           }),
         );
@@ -116,6 +120,8 @@ export function useGameReviewSession(id: string) {
         // Advance only over reports received, never a newer progress counter.
         for (const move of progress.moves)
           receivedPly.current = Math.max(receivedPly.current, move.ply);
+        // The server cursor includes exactly the updates in this response, including earlier plies.
+        if (progress.revision !== undefined) receivedRevision.current = progress.revision;
         const reports = new Map(
           progress.moves.map((move) => [move.ply, move.report]),
         );
@@ -125,6 +131,7 @@ export function useGameReviewSession(id: string) {
                 ...current,
                 job: progress.job,
                 accuracy: progress.accuracy,
+                review_revision: progress.revision,
                 frames: current.frames.map((frame, index) =>
                   reports.has(index)
                     ? { ...frame, report: reports.get(index)! }

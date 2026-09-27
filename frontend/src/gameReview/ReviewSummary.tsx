@@ -30,6 +30,7 @@ export default function ReviewSummary({
   cancel: () => Promise<void>;
 }) {
   const last = game.frames.length - 1;
+  const refining = game.job?.phase === "refinement";
   const summary = labels.map((label) => ({
     label,
     white: game.frames.filter(
@@ -46,7 +47,9 @@ export default function ReviewSummary({
           <>
             <div className="row-between">
               <span>
-                {game.job
+                {refining && game.job
+                  ? `${game.job.refinement_completed}/${game.job.refinement_total} positions investigated`
+                  : game.job
                   ? `${game.job.completed}/${game.job.total} moves reviewed`
                   : `${last} moves to review`}
               </span>
@@ -73,18 +76,20 @@ export default function ReviewSummary({
             </div>
             {game.job && (
               <progress
-                value={game.job.completed}
-                max={game.job.total || 1}
+                value={refining ? game.job.refinement_completed : game.job.completed}
+                max={(refining ? game.job.refinement_total : game.job.total) || 1}
                 aria-label="Game review progress"
               />
             )}
             {running && (
               <p role="status">
                 {game.job?.cancel_requested
-                  ? "Finishing active moves…"
+                  ? refining ? "Pausing investigation…" : "Finishing active moves…"
                   : game.job?.status === "queued"
                     ? "Review queued. You can explore while you wait."
-                    : "Reviewing both sides…"}
+                    : refining
+                      ? "Investigating critical moments. Your review is ready to explore."
+                      : "Reviewing both sides…"}
               </p>
             )}
           </>

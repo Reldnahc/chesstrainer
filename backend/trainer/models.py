@@ -143,6 +143,25 @@ class GameReview(Owned, Base):
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
     job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), unique=True)
     rating: Mapped[int]
+    revision: Mapped[int] = mapped_column(default=0, server_default="0")
+    refinement_plan: Mapped[dict | None] = mapped_column(JSON)
+
+
+class ReviewRefinement(Owned, Base):
+    __tablename__ = "review_refinements"
+    __table_args__ = (UniqueConstraint("user_id", "task_key"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
+    ply: Mapped[int]
+    task_key: Mapped[str]
+    triggers: Mapped[list] = mapped_column(JSON)
+    config: Mapped[dict] = mapped_column(JSON)
+    queries: Mapped[list] = mapped_column(JSON, default=list)
+    status: Mapped[str] = mapped_column(default="pending")
+    reason: Mapped[str | None]
+    report: Mapped[dict | None] = mapped_column(JSON)
+    adopted: Mapped[bool] = mapped_column(default=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
 class HumanAnalysis(Owned, Base):
@@ -163,6 +182,8 @@ class GameReviewMove(Owned, Base):
     ply: Mapped[int] = mapped_column(primary_key=True)
     report: Mapped[dict] = mapped_column(JSON)
     human_analysis_id: Mapped[str | None] = mapped_column(ForeignKey("human_analyses.id"))
+    refinement_id: Mapped[str | None] = mapped_column(ForeignKey("review_refinements.id"))
+    revision: Mapped[int] = mapped_column(default=0, server_default="0")
 
 
 class Decision(Owned, Base):

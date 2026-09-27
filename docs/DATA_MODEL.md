@@ -91,3 +91,9 @@ Classification response schema v2 adds outcomes, abstention reasons, witness fra
 ### Classification schema v3 and rule version 3.1
 
 Response schema v3 adds typed continuation endpoints, defense-check diagnostics, previous-move context on relevant findings and supporting analysis IDs on findings/outcomes. JSON stores immutable diagnostic payloads; classification_probes keeps the core supplemental engine relationships queryable. Older response schemas remain readable through default fields. Rule version is distinct from response-schema version and participates in classification/probe cache identity. Migration f83a90d16c24 adds immutable classification_probes rows linking a supplemental analysis to root and tail/defensive native results, with query kind, root-relative ply and unique query key. At its original rollout it was verified on both the copied and live database with every row of all 28 existing tables unchanged.
+
+Review intelligence refinement adds account-owned `review_refinements`, finite
+`game_reviews.refinement_plan`, review/row revisions and an optional adopted-task
+reference on `game_review_moves`. Migration `55de0b7b8ff2` preserves all baseline
+reports and IDs. The baseline JSON is never overwritten by investigation output.
+See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for effective-generation rules.

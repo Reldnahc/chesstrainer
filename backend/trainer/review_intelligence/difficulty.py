@@ -35,6 +35,15 @@ def root_comparison(report):
     second = Score.model_validate(second)
     gap = evaluation_loss(best, second)
     acceptable = not (gap.mate_lost or gap.allows_mate) and (gap.cp or 0) <= 50
+    roots = report.get("root_candidates") or []
+    observed = 1 + int(acceptable)
+    if roots:
+        observed = sum(
+            not (distance.mate_lost or distance.allows_mate) and (distance.cp or 0) <= 50
+            for distance in (
+                evaluation_loss(best, Score.model_validate(row["score"])) for row in roots
+            )
+        )
     # "Only good" means the runner-up actually loses, not merely that it misses
     # a forced mate while retaining a healthy advantage. Scope is saved search depth.
     safe_best = best.outcome() == 1 or best.kind == "cp" and best.value >= -50
@@ -42,7 +51,7 @@ def root_comparison(report):
     narrow = (
         safe_best and losing_second and (gap.allows_mate or gap.mate_lost or (gap.cp or 0) >= 150)
     )
-    return gap.cp, 1 + int(acceptable), legal_count <= 2, bool(narrow)
+    return gap.cp, observed, legal_count <= max(2, len(roots)), bool(narrow)
 
 
 def witness_structure(report):
@@ -72,6 +81,7 @@ def assess_difficulty(report):
                         "best",
                         "actual",
                         "second_score",
+                        "root_candidates",
                         "legal_count",
                         "sacrifice",
                         "human",

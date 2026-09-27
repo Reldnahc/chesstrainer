@@ -128,3 +128,13 @@ raw exception details. There are no additional container variables for this.
 
 See [ACCOUNTS.md](ACCOUNTS.md) before enabling accounts for existing data and
 [UNRAID.md](UNRAID.md) for container storage, permissions and proxy configuration.
+
+## Full-game review refinement
+
+Optional extra investigation follows the unchanged deep baseline. Defaults are
+`REVIEW_REFINEMENT_POSITIONS=8`, `REVIEW_REFINEMENT_QUERIES=4`,
+`REVIEW_REFINEMENT_DEPTH=22`, `REVIEW_REFINEMENT_TIME=2`, and
+`REVIEW_REFINEMENT_MULTIPV=4`. Set positions to zero to disable extra work.
+See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for bounds, time/depth floors,
+CPU budgets, cancellation, resume and measured quality examples. All five
+settings have descriptions in the advanced Unraid template.

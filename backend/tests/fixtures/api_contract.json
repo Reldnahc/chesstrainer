@@ -1468,6 +1468,11 @@
             "title": "Result",
             "type": "string"
           },
+          "review_revision": {
+            "default": 0,
+            "title": "Review Revision",
+            "type": "integer"
+          },
           "white": {
             "title": "White",
             "type": "string"
@@ -1853,6 +1858,16 @@
             "title": "Reason",
             "type": "string"
           },
+          "refinement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefinementInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "white_score": {
             "$ref": "#/components/schemas/Score"
           }
@@ -2077,6 +2092,30 @@
           "reason": {
             "title": "Reason",
             "type": "string"
+          },
+          "refinement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefinementInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "root_candidates": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Candidate"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Root Candidates"
           },
           "sacrifice": {
             "anyOf": [
@@ -3205,6 +3244,77 @@
         "title": "Profile",
         "type": "object"
       },
+      "RefinementInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "adopted": {
+            "title": "Adopted",
+            "type": "boolean"
+          },
+          "baseline_depth": {
+            "title": "Baseline Depth",
+            "type": "integer"
+          },
+          "queries": {
+            "title": "Queries",
+            "type": "integer"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "refined_depth": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refined Depth"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "task_id": {
+            "title": "Task Id",
+            "type": "string"
+          },
+          "triggers": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Triggers",
+            "type": "array"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "task_id",
+          "status",
+          "triggers",
+          "adopted",
+          "reason",
+          "baseline_depth",
+          "refined_depth",
+          "queries"
+        ],
+        "title": "RefinementInfo",
+        "type": "object"
+      },
       "Rejected": {
         "additionalProperties": false,
         "properties": {
@@ -3479,6 +3589,26 @@
             "title": "Id",
             "type": "string"
           },
+          "phase": {
+            "default": "baseline",
+            "enum": [
+              "baseline",
+              "refinement",
+              "complete"
+            ],
+            "title": "Phase",
+            "type": "string"
+          },
+          "refinement_completed": {
+            "default": 0,
+            "title": "Refinement Completed",
+            "type": "integer"
+          },
+          "refinement_total": {
+            "default": 0,
+            "title": "Refinement Total",
+            "type": "integer"
+          },
           "status": {
             "title": "Status",
             "type": "string"
@@ -3570,6 +3700,11 @@
             },
             "title": "Moves",
             "type": "array"
+          },
+          "revision": {
+            "default": 0,
+            "title": "Revision",
+            "type": "integer"
           }
         },
         "required": [
@@ -3618,6 +3753,11 @@
               }
             ],
             "title": "Rating"
+          },
+          "refine": {
+            "default": false,
+            "title": "Refine",
+            "type": "boolean"
           }
         },
         "title": "ReviewRequest",
@@ -4348,6 +4488,26 @@
             "title": "Retire After Days",
             "type": "integer"
           },
+          "review_refinement_depth": {
+            "title": "Review Refinement Depth",
+            "type": "integer"
+          },
+          "review_refinement_multipv": {
+            "title": "Review Refinement Multipv",
+            "type": "integer"
+          },
+          "review_refinement_positions": {
+            "title": "Review Refinement Positions",
+            "type": "integer"
+          },
+          "review_refinement_queries": {
+            "title": "Review Refinement Queries",
+            "type": "integer"
+          },
+          "review_refinement_time": {
+            "title": "Review Refinement Time",
+            "type": "number"
+          },
           "server_host": {
             "title": "Server Host",
             "type": "string"
@@ -4427,6 +4587,11 @@
           "human_model_threads",
           "human_model_workers",
           "human_model_timeout",
+          "review_refinement_positions",
+          "review_refinement_queries",
+          "review_refinement_depth",
+          "review_refinement_time",
+          "review_refinement_multipv",
           "stockfish_path",
           "stockfish_threads",
           "stockfish_hash_mb",
@@ -5070,6 +5235,23 @@
               "minimum": 0,
               "title": "After",
               "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after_revision",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After Revision"
             }
           }
         ],

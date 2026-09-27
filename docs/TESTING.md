@@ -221,3 +221,13 @@ motion preference after restart, exercising preference persistence and ownership
 Hosted requests emulate the headers forwarded by a TLS-terminating reverse proxy;
 this does not verify a live proxy or Cloudflare configuration. The test neither
 publishes the image nor touches an existing installation.
+
+## Review intelligence refinement
+
+`test_review_refinement.py`, `test_refinement_search.py` and
+`test_refinement_storage.py` cover nomination caps, depth/consistency guards,
+immutable baseline facts, native cancellation without partial cache writes,
+shared-slot cancellation, resume, optional failure, revision polling,
+account-private references and legacy migration. Game browser tests exercise
+earlier-ply revisions and stable board geometry at desktop/mobile widths. Native
+benchmarks and their limitations are documented in [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).

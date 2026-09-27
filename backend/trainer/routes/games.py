@@ -1,6 +1,5 @@
 """Game library, resumable whole-game review and legal variation analysis."""
 
-from collections import defaultdict
 from datetime import timezone
 
 from fastapi import APIRouter, HTTPException, Query
@@ -19,12 +18,22 @@ from trainer.contracts.games import (
 from trainer.game_accuracy import review_accuracy
 from trainer.game_library import pgn_rating, time_control_label
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
-from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ImportBatch, ImportGame
+from trainer.models import (
+    AnalysisJob,
+    Game,
+    GameReview,
+    GameReviewMove,
+    ImportBatch,
+    ImportGame,
+    ReviewRefinement,
+)
+from trainer.review_reports import load_accuracy_scores, load_game_reports
 from trainer.workspaces import CurrentWorkspace
 
 
 class ReviewRequest(BaseModel):
     rating: int | None = Field(default=None, ge=400, le=3000)
+    refine: bool = False
 
 
 class VariationRequest(BaseModel):
@@ -32,7 +41,8 @@ class VariationRequest(BaseModel):
     moves: list[str] = Field(default_factory=list, max_length=128)
 
 
-def job_progress(job, completed, total):
+def job_progress(job, completed, total, review=None):
+    plan = review.refinement_plan if review else None
     return (
         {
             "id": job.id,
@@ -43,6 +53,13 @@ def job_progress(job, completed, total):
             "total": total,
             "error": job.error,
             "cancel_requested": job.cancel_requested,
+            "phase": "complete"
+            if job.status == "completed"
+            else "refinement"
+            if plan and job.positions_triaged >= total
+            else "baseline",
+            "refinement_completed": plan["completed"] if plan else 0,
+            "refinement_total": len(plan["tasks"]) if plan else 0,
         }
         if job
         else None
@@ -74,23 +91,7 @@ def create_router(*, settings, engine_factory):
                 .limit(limit)
             ).all()
             completed_ids = [game.id for game, status in rows if status == "completed"]
-            saved = defaultdict(dict)
-            if completed_ids:
-                # Read only the small score fields for this page, not every report's
-                # tactical witnesses/PVs, and never one query per listed game.
-                scores = db.execute(
-                    select(
-                        GameReviewMove.game_id,
-                        GameReviewMove.ply,
-                        GameReviewMove.report["white_score"],
-                        GameReviewMove.report["best"]["score"],
-                    ).where(GameReviewMove.game_id.in_(completed_ids))
-                )
-                for game_id, ply, white_score, best_score in scores:
-                    saved[game_id][ply] = {
-                        "white_score": white_score,
-                        "best": {"score": best_score},
-                    }
+            saved = load_accuracy_scores(db, completed_ids)
             items = []
             for game, status in rows:
                 parsed = parsed_game(game)
@@ -134,12 +135,7 @@ def create_router(*, settings, engine_factory):
             review = db.get(GameReview, game_id)
             job = db.get(AnalysisJob, review.job_id) if review else None
             rating = review.rating if review else 1000
-            saved = {
-                row.ply: row.report
-                for row in db.scalars(
-                    select(GameReviewMove).where(GameReviewMove.game_id == game_id)
-                )
-            }
+            saved, revisions = load_game_reports(db, game_id)
             frames = [
                 position(board)
                 | {
@@ -176,7 +172,8 @@ def create_router(*, settings, engine_factory):
                 "white_rating": pgn_rating(parsed, True),
                 "black_rating": pgn_rating(parsed, False),
                 "frames": frames,
-                "job": job_progress(job, len(saved), len(frames) - 1),
+                "review_revision": max(revisions.values(), default=0),
+                "job": job_progress(job, len(saved), len(frames) - 1, review),
                 "accuracy": review_accuracy(
                     saved,
                     total=len(frames) - 1,
@@ -190,39 +187,36 @@ def create_router(*, settings, engine_factory):
         response_model=ReviewProgress,
         response_model_exclude_unset=True,
     )
-    def review_progress(workspace: CurrentWorkspace, game_id: str, after: int = Query(0, ge=0)):
+    def review_progress(
+        workspace: CurrentWorkspace,
+        game_id: str,
+        after: int = Query(0, ge=0),
+        after_revision: int | None = Query(None, ge=0),
+    ):
         with workspace.sessions() as db:
             game = require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review is None:
-                return {"job": None, "moves": [], "accuracy": None}
+                return {"job": None, "moves": [], "accuracy": None, "revision": 0}
             job = db.get(AnalysisJob, review.job_id)
             parsed = parsed_game(game)
             starting_color = parsed.board().turn
             total = sum(1 for _ in parsed.mainline_moves())
-            rows = db.scalars(
-                select(GameReviewMove)
-                .where(GameReviewMove.game_id == game_id, GameReviewMove.ply > after)
-                .where(
-                    GameReviewMove.ply
-                    <= (job.positions_triaged if job.status in {"queued", "running"} else total)
-                )
-                .order_by(GameReviewMove.ply)
-            ).all()
-            completed = db.scalar(
-                select(func.count())
-                .select_from(GameReviewMove)
-                .where(GameReviewMove.game_id == game_id)
-            )
+            saved, revisions = load_game_reports(db, game_id)
+            if after_revision is not None:
+                plies = [ply for ply in saved if revisions[ply] > after_revision]
+            else:
+                ceiling = job.positions_triaged if job.status in {"queued", "running"} else total
+                plies = [ply for ply in saved if after < ply <= ceiling]
             moves = []
-            for row in rows:
-                color = starting_color if row.ply % 2 else not starting_color
-                report = public_report(row.report, pgn_rating(parsed, color) or review.rating)
+            for ply in plies:
+                color = starting_color if ply % 2 else not starting_color
+                report = public_report(saved[ply], pgn_rating(parsed, color) or review.rating)
                 # Board positions are loaded once. Progress needs new display
                 # fields, not repeated full witness lines or legal-move lists.
                 moves.append(
                     {
-                        "ply": row.ply,
+                        "ply": ply,
                         "report": {
                             key: report[key]
                             for key in (
@@ -239,6 +233,7 @@ def create_router(*, settings, engine_factory):
                                 "board_cues",
                                 "human",
                                 "practical",
+                                "refinement",
                             )
                             if key in report
                         },
@@ -246,25 +241,14 @@ def create_router(*, settings, engine_factory):
                 )
             accuracy = None
             if job and job.status == "completed":
-                # Polls normally read only new moves. The final score needs every
-                # original-game evaluation, even when after is already at the end.
-                saved = {
-                    row.ply: row.report
-                    for row in (
-                        rows
-                        if after == 0
-                        else db.scalars(
-                            select(GameReviewMove).where(GameReviewMove.game_id == game_id)
-                        )
-                    )
-                }
                 accuracy = review_accuracy(
                     saved, total=total, starting_board=parsed.board(), completed=True
                 )
             return {
-                "job": job_progress(job, completed, total),
+                "job": job_progress(job, len(saved), total, review),
                 "moves": moves,
                 "accuracy": accuracy,
+                "revision": max([after_revision or 0, *(revisions[ply] for ply in plies)]),
             }
 
     @router.post(
@@ -278,11 +262,23 @@ def create_router(*, settings, engine_factory):
                 if data.rating is not None:
                     review.rating = data.rating
                 job = db.get(AnalysisJob, review.job_id)
-                refresh = False
+                refresh = job.status == "completed" and bool(
+                    settings.review_refinement_positions
+                    and (data.refine or review.refinement_plan is None)
+                )
+                if data.refine and job.status not in {"queued", "running"}:
+                    review.refinement_plan = None
+                    for task in db.scalars(
+                        select(ReviewRefinement).where(
+                            ReviewRefinement.game_id == game_id,
+                            ReviewRefinement.status == "unavailable",
+                        )
+                    ):
+                        task.status, task.reason = "pending", None
                 if job.status == "completed" and workspace.human_models.can_attempt():
                     parsed = parsed_game(game)
                     starting = parsed.board().turn
-                    refresh = any(
+                    refresh = refresh or any(
                         workspace.human_models.needs_refresh(
                             row.report.get("human"),
                             parsed,

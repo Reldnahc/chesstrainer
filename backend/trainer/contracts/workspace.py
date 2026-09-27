@@ -45,6 +45,11 @@ class WorkspaceSettings(EngineHealth):
     human_model_threads: int
     human_model_workers: int
     human_model_timeout: float
+    review_refinement_positions: int
+    review_refinement_queries: int
+    review_refinement_depth: int
+    review_refinement_time: float
+    review_refinement_multipv: int
     stockfish_path: str
     stockfish_threads: int
     stockfish_hash_mb: int
