@@ -5,18 +5,19 @@ from sqlalchemy import func, select
 
 from trainer.coverage import coverage
 from trainer.models import ClassificationRun, Exercise, Review
+from trainer.workspaces import CurrentWorkspace
 
 
-def create_router(*, settings, sessions, health, classifier) -> APIRouter:
+def create_router(*, settings, health, classifier) -> APIRouter:
     router = APIRouter()
 
     @router.get("/api/health")
-    def get_health():
+    def get_health(workspace: CurrentWorkspace):
         return {"database": "ready", **health, "classification_available": classifier is not None}
 
     @router.get("/api/settings")
-    def get_settings():
-        with sessions() as db:
+    def get_settings(workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
             return (
                 settings.public()
                 | health
@@ -61,8 +62,8 @@ def create_router(*, settings, sessions, health, classifier) -> APIRouter:
             )
 
     @router.get("/api/stats")
-    def stats():
-        with sessions() as db:
+    def stats(workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
             return {
                 "exercises": db.scalar(select(func.count()).select_from(Exercise)),
                 "reviews": db.scalar(select(func.count()).select_from(Review)),

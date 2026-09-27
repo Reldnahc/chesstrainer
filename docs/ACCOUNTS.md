@@ -27,12 +27,24 @@ to one explicit user. ORM read/update/delete criteria apply to all private model
 including aggregates and guessed IDs. Flush validation assigns ownership and
 rejects cross-account references. Raw SQL and private bulk inserts are prohibited
 in these sessions. The account service alone uses administrative SQL for credentials
-and sessions. New private models must inherit `Owned`; tests must cover their API.
+and sessions. Startup maintenance and the host job queue also use administrative
+sessions, limited to reconciliation and scheduling metadata respectively; they
+never pass those sessions into request handlers or domain job execution. New
+private models must inherit `Owned`; tests must cover their API.
 
 One host-wide engine pool limits native processes through `ENGINE_SLOTS` (default
-4); each process uses `STOCKFISH_THREADS` and `STOCKFISH_HASH_MB`. Account job
-coordinators share that pool. Processes are created lazily when analysis is
-requested, not on signup. Use one Uvicorn worker per database/service instance.
+4); each process uses `STOCKFISH_THREADS` and `STOCKFISH_HASH_MB`. One application
+serves every account. There are exactly `ENGINE_SLOTS` host analysis coordinators
+and one fetch-only coordinator, independent of account count. An account can run
+one analysis job at a time; different accounts share the bounded workers. Native
+processes are created lazily when analysis is requested, not on signup.
+
+Requests and jobs create short-lived account scopes instead of retaining an app or
+threads per user. Per-account locks are released when active requests/jobs finish.
+Startup resumes eligible saved jobs even before their owners log in. Shutdown
+drains active work and closes the pooled engines. Use one Uvicorn worker per
+database/service instance; no new deployment variables or database migration are
+required for this scheduling model.
 
 ## Enable and migrate
 

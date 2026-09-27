@@ -6,9 +6,10 @@ from fastapi import APIRouter, HTTPException
 from sqlalchemy import delete, select
 
 from trainer.models import AnalysisJob, ChessComArchive, ChessComImport, User, now
+from trainer.workspaces import CurrentWorkspace
 
 
-def create_router(*, sessions, mutation_lock):
+def create_router():
     router = APIRouter()
 
     def connection(db):
@@ -41,13 +42,13 @@ def create_router(*, sessions, mutation_lock):
         }
 
     @router.get("/api/sync")
-    def get_sync():
-        with sessions() as db:
+    def get_sync(workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
             return status(db, *connection(db))
 
     @router.post("/api/sync", status_code=202)
-    def begin_sync():
-        with mutation_lock, sessions() as db:
+    def begin_sync(workspace: CurrentWorkspace):
+        with workspace.mutation_lock, workspace.sessions() as db:
             name, job = connection(db)
             if not name:
                 raise HTTPException(422, "Save your Chess.com username first.")

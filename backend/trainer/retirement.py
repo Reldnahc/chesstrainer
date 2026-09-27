@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import select
 
-from trainer.models import SRSState, now
+from trainer.models import SRSState, User, now
 from trainer.scheduling import utc
 
 
@@ -23,11 +23,12 @@ def retire_if_ready(state, settings, retired_at=None):
     return True
 
 
-def retire_existing(db, settings):
+def retire_existing(db, settings, *, enabled_accounts_only=False):
     count = 0
-    for state in db.scalars(
-        select(SRSState).where(SRSState.retired_at.is_(None), SRSState.reviews > 0)
-    ):
+    query = select(SRSState).where(SRSState.retired_at.is_(None), SRSState.reviews > 0)
+    if enabled_accounts_only:
+        query = query.join(User, User.id == SRSState.user_id).where(User.disabled.is_(False))
+    for state in db.scalars(query):
         count += retire_if_ready(state, settings)
     db.commit()
     return count

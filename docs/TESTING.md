@@ -132,10 +132,17 @@ test_lichess_comparison.py verifies frozen sample/provenance preservation, metri
 Raw upstream parity across the frozen sample is a compatibility test, not an accuracy estimate. Source packaging does not add a runtime network dependency.
 ## Shared-hosting checks
 
-`pytest backend/tests/test_accounts.py backend/tests/test_game_sync.py -q` covers
+`pytest backend/tests/test_accounts.py backend/tests/test_game_sync.py backend/tests/test_hosted_runtime.py -q` covers
 cross-account IDs, writes, aggregate counts, device sessions, restart persistence,
 legacy data migration and engine-free recent-game sync. Browser account flows use
 `cd frontend` then `node_modules/.bin/playwright test --config playwright.accounts.config.ts`.
 That config creates an independent disposable account database and tests desktop
 and mobile signup, remembered usernames, sync, second-device login and isolation.
 The default Playwright config explicitly keeps single-user fixture mode.
+
+`test_hosted_runtime.py` verifies that 250 idle accounts add no applications,
+coordinators or retained scopes; account jobs recover without login; same-account
+analysis stays ordered while other accounts and fetch-only jobs can progress;
+concurrent HTTP requests/jobs keep their own data and share the native engine
+budget; and shutdown drains work for restart. It also checks that startup
+retirement reconciliation leaves disabled and reserved local accounts unchanged.

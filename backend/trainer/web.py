@@ -15,7 +15,7 @@ from trainer.engine import EngineUnavailable
 def configure_http(app: FastAPI, settings: Settings):
     @app.middleware("http")
     async def local_access(request: Request, call_next):
-        if request.url.path.startswith("/api/"):
+        if request.url.path.startswith("/api/") and not settings.accounts_enabled:
             token = settings.lan_access_token.get_secret_value()
             if (
                 token

@@ -20,7 +20,10 @@ Whole-game review and training analysis are separately requested from the game.
 
 | Module | Responsibility |
 |---|---|
-| backend/trainer/api.py | Application composition, injected factories, per-app resources, shared mutation lock, lifespan and router registration |
+| backend/trainer/api.py | One application and router graph, shared resources, database maintenance and lifespan |
+| multiuser.py | Cookie authentication, account/profile endpoints and request authentication; no child applications |
+| workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
+| jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
 | backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
 | routes/workspace.py | Health, effective settings and statistics |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
@@ -30,9 +33,23 @@ Whole-game review and training analysis are separately requested from the game.
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
 
-Each router is an ordinary factory receiving its existing resources explicitly. Session factories, engine, scheduler, runner and locks belong to one app instance; there is no global dependency container. HTTP handlers delegate chess and scheduling behavior to existing domain functions.
+Each router is registered once and receives shared configuration/services explicitly.
+Handlers receive a `CurrentWorkspace` FastAPI dependency derived from the authenticated
+request (or reserved `local` identity). It carries an account-bound session factory,
+mutation/variation locks and a lazy interactive engine handle. Account scopes are not
+cached applications and contain no workers. Lock leases are released when the last
+request/job for that account finishes. HTTP handlers continue to delegate chess and
+scheduling behavior to existing domain functions.
 
-The composition root retains migration/skill seeding/retirement reconciliation, engine health checks, worker startup and shutdown. Existing app.state settings/sessions/runner and the public MoveRequest/ManualRequest imports remain compatible. All mutations that previously shared the application lock still use that same lock.
+The composition root performs migrations, global skill seeding and retirement
+reconciliation once, and owns worker/engine shutdown. Hosted retirement maintenance
+only visits enabled accounts, leaving disabled/local history unchanged. Administrative sessions are
+restricted to startup maintenance and job scheduling metadata; request handlers and
+job execution always use bound sessions. `app.state.sessions` remains the local
+workspace factory for offline/test use. Hosted scopes are obtained through
+`app.state.workspaces.open(user_id)`. The public MoveRequest/ManualRequest imports
+remain compatible. Concurrent requests and jobs for one account share its mutation
+lock, while other accounts have independent locks.
 
 ## Frontend ownership
 
@@ -79,7 +96,7 @@ The Vite development proxy targets 127.0.0.1:8000.
 - game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
 - review_cues.py: projects saved immediate witnesses into current-board arrows and square roles without new engine searches; skips later witnesses and checks attack geometry with python-chess. Cues are derived when reports are read, so existing reviews need no reanalysis.
 - imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.
-- jobs.py / pipeline.py / work_pool.py: persistent ordered jobs, bounded worker pools, cancellation and atomic progress.
+- jobs.py / job_queue.py / job_execution.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution, bounded worker pools, cancellation and atomic progress.
 - classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence.
 - curriculum.py: **active weakness priorities**, alongside archived course grouping/sequence helpers. lessons.py contains archived progression helpers.
 - reviews.py / explanations.py / scheduling.py / retirement.py: move grading, verified playback, FSRS adapter and persistent retirement.
@@ -88,7 +105,27 @@ The Vite development proxy targets 127.0.0.1:8000.
 
 ## Local execution and evidence
 
-One coordinator processes queued jobs in order. Within an analysis job, STOCKFISH_WORKERS games run in parallel, each with its own native process and database session. Moves within a game stay ordered. Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits at most twice its worker count. Cancellation stops new work and lets started tasks save; a game is complete after its classification tasks settle.
+In account mode, one host-wide runner has `ENGINE_SLOTS` analysis coordinators and
+one fetch-only coordinator, independent of the number of registered accounts. Local
+mode retains one analysis coordinator and one fetch-only coordinator. Idle polling
+is bounded by that fixed worker count. The queue selects the oldest eligible job
+and allows only one analysis job per account at a time; busy accounts do not block
+other accounts from free workers. The fetch lane remains independent of analysis.
+Disabled accounts are excluded in hosted mode, including the reserved local user.
+
+The scheduler reads only scheduling metadata across accounts. Each claimed job's
+owner is captured before creating its short-lived account scope; that session
+factory is explicitly passed into every pipeline worker and engine handle. There
+is no mutable global/current-account identity. Startup recovers unfinished jobs
+without login or creating per-user runtimes. Shutdown signals all active work,
+drains coordinators and their child pools, then closes the shared engines.
+
+Within an analysis job, STOCKFISH_WORKERS games run in parallel with independent
+database sessions. Native processes come from the shared engine pool in account
+mode and belong to the job in local mode. Moves within a game stay ordered.
+Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
+at most twice its worker count. Cancellation stops new work and lets started tasks
+save; a game is complete after its classification tasks settle.
 
 Full-game review jobs instead parallelize independent move evidence, with at most
 `min(STOCKFISH_WORKERS, ENGINE_SLOTS)` outstanding moves. The coordinator commits
@@ -100,7 +137,11 @@ from `GET /api/games/:id/review?after=N`; the cursor advances only through repor
 actually received. Ordinary mainline browsing uses those reports instead of starting
 duplicate searches while the job runs; manual variations remain interactive.
 
-Short writes share a lock; rule computation runs outside it. Progress uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent searches. Interactive grading has a separate serialized engine. Startup recovers unfinished jobs; multiple Uvicorn application processes are unsupported.
+Short writes share an account's lock; rule computation runs outside it. Progress
+uses atomic SQL increments. Engine cache lock stripes coalesce identical concurrent
+searches. Local interactive grading has a separate serialized engine; hosted
+grading and variations use the same bounded native pool as background work.
+Multiple Uvicorn application processes are unsupported.
 
 Training identity ignores clocks but preserves legal en passant and castling. Engine cache identity also preserves rule clocks and move history. Scores are learner-relative with mate separate from centipawns. Classification caches include saved evidence, rules, parameters and taxonomy; classification weights are not calibrated probabilities.
 

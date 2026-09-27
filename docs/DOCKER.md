@@ -55,7 +55,7 @@ installations additionally require `ACCOUNTS_ENABLED=true` for accounts. See
 | `PUBLIC_ORIGIN` | empty | Blank: local no-login workspace. For accounts: exact HTTP(S) browser address, including nonstandard port, with no credentials, path, query or fragment. |
 | `ACCOUNTS_ENABLED` | `true` | Enables accounts only with a nonblank Public origin. Source default is false. |
 | `SESSION_SECURE` | `true` | HTTPS-only account cookies. Set false for intentional HTTP accounts. Unused without login. |
-| `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines; busy requests wait. |
+| `ENGINE_SLOTS` | `4` | Account mode's shared limit on simultaneous Stockfish engines and host analysis jobs. One additional worker fetches games without analysis. Worker count is independent of account count; busy requests/jobs wait. |
 | `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
 | `STOCKFISH_HASH_MB` | `64` | RAM in MB per engine for temporary search-position tables, not disk storage. |
 | `STOCKFISH_WORKERS` | `1` | Concurrent games per training import, or moves within a game review (1–4). Reviews are also capped by `ENGINE_SLOTS`; account mode obeys the shared host-wide pool. |

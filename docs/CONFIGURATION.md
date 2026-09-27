@@ -92,7 +92,10 @@ COURSE_MAX_UNITS (6, range 1..12), LESSON_MAX_POSITIONS (8, range 2..20) and LES
 - `ACCOUNTS_ENABLED=false` preserves the original local mode; Docker defaults to true.
 - `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
-- `ENGINE_SLOTS=4` caps native engine processes across all accounts in shared mode.
+- `ENGINE_SLOTS=4` caps native engine processes and concurrent analysis jobs across
+  all accounts in shared mode. One additional coordinator handles fetch-only jobs.
+  Each account runs at most one analysis job at a time. Idle accounts allocate no
+  app instance or workers; the host worker count stays fixed as accounts grow.
 - `DATABASE_PATH` still names one SQLite file containing accounts and all chess data.
 
 See [ACCOUNTS.md](ACCOUNTS.md) before enabling accounts for existing data and

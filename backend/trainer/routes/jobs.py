@@ -4,14 +4,15 @@ from fastapi import APIRouter, HTTPException
 from sqlalchemy import func, select
 
 from trainer.models import AnalysisJob, ChessComImport, ClassificationTask
+from trainer.workspaces import CurrentWorkspace
 
 
-def create_router(*, sessions, runner) -> APIRouter:
+def create_router(*, runner) -> APIRouter:
     router = APIRouter()
 
     @router.get("/api/jobs")
-    def jobs():
-        with sessions() as db:
+    def jobs(workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
             rows = db.scalars(
                 select(AnalysisJob).order_by(AnalysisJob.created_at.desc()).limit(50)
             ).all()
@@ -45,8 +46,8 @@ def create_router(*, sessions, runner) -> APIRouter:
             ]
 
     @router.post("/api/jobs/{job_id}/cancel")
-    def cancel_job(job_id: str):
-        with sessions() as db:
+    def cancel_job(workspace: CurrentWorkspace, job_id: str):
+        with workspace.sessions() as db:
             job = db.get(AnalysisJob, job_id)
             if job is None:
                 raise HTTPException(404, "Job not found")
@@ -58,8 +59,8 @@ def create_router(*, sessions, runner) -> APIRouter:
             return {"status": job.status}
 
     @router.post("/api/jobs/{job_id}/retry")
-    def retry_job(job_id: str):
-        with sessions() as db:
+    def retry_job(workspace: CurrentWorkspace, job_id: str):
+        with workspace.sessions() as db:
             job = db.get(AnalysisJob, job_id)
             if job is None:
                 raise HTTPException(404, "Job not found")

@@ -11,7 +11,7 @@ and may move during refactoring.
 ## Checklist
 
 - [ ] **1. Gate Docker publishing on correctness checks.**
-- [ ] **2. Replace per-account application instances and permanent worker threads.**
+- [x] **2. Replace per-account application instances and permanent worker threads.**
 - [ ] **3. Separate review screen state management from presentation.**
 - [ ] **4. Define and share API response contracts.**
 - [ ] **5. Run account browser tests in CI.**
@@ -38,7 +38,7 @@ immutable revision tag alongside `latest`.
 
 ## 2. Each account owns an application and permanent worker threads
 
-**Priority:** High. **Status:** Open; first implementation priority.
+**Priority:** High. **Status:** Resolved and verified.
 
 `multiuser.py` creates and retains a complete FastAPI application per account and
 opens one for every enabled user at startup. Each application's `JobRunner` starts
@@ -53,7 +53,26 @@ without requiring their owners to log in. Preserve fetch-only sync, cancellation
 progress reporting, local mode, account isolation, and the shared engine limit.
 Shutdown must stop and drain workers and close engine resources.
 
-**Verification / resolution:** Pending.
+**Implementation:** A single application registers every router once. Explicit
+request/job scopes hold account-bound sessions and temporary lock leases. A shared
+runner uses `ENGINE_SLOTS` analysis coordinators plus one fetch-only coordinator
+in hosted mode, with one analysis job per account. Startup recovers jobs without
+opening account runtimes; shutdown drains active work before closing engines.
+Local mode keeps its existing two coordinator lanes. No database migration or new
+configuration is required.
+
+**Verification / resolution:** The full backend suite passed (407 tests), followed
+by 14 passing targeted tests after adding the final startup-retirement guard and
+its regression. The ordinary browser suite passed on desktop/mobile (73 passed,
+3 viewport-specific skips); the separate account browser suite passed on both
+viewports (2 passed). Production frontend build, Ruff lint/format and diff checks
+passed. Windows Playwright required manual cleanup of its disposable server
+process trees after the test cases passed; both runners then exited successfully.
+
+The new hosted-runtime regressions cover 250 idle accounts, concurrent account
+isolation, independent fetching, recovery before login, cancellation, pooled engine
+limits, scope cleanup, shutdown/restart and preservation of disabled/local account
+retirement state. Engine health and exception diagnostics remain open in item 10.
 
 ## 3. Review components concentrate too many responsibilities
 

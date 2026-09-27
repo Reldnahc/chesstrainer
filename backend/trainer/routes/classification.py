@@ -7,14 +7,15 @@ from trainer.classification import reject_run
 from trainer.coverage import coverage
 from trainer.curriculum import priorities
 from trainer.models import AnalysisJob, ClassificationRun, Decision, EngineAnalysis, SkillEvidence
+from trainer.workspaces import CurrentWorkspace
 
 
-def create_router(*, settings, sessions, engine, classifier, runner, mutation_lock) -> APIRouter:
+def create_router(*, settings, classifier) -> APIRouter:
     router = APIRouter()
 
     @router.post("/api/classifications/retry")
-    def retry_classifications():
-        with mutation_lock, sessions() as db:
+    def retry_classifications(workspace: CurrentWorkspace):
+        with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(
                 select(AnalysisJob).where(
                     AnalysisJob.kind == "classification",
@@ -29,8 +30,8 @@ def create_router(*, settings, sessions, engine, classifier, runner, mutation_lo
             return {"job_id": job.id}
 
     @router.post("/api/classifications/enrich", status_code=202)
-    def enrich_classifications():
-        with mutation_lock, sessions() as db:
+    def enrich_classifications(workspace: CurrentWorkspace):
+        with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(
                 select(AnalysisJob).where(
                     AnalysisJob.kind == "enrichment",
@@ -39,15 +40,15 @@ def create_router(*, settings, sessions, engine, classifier, runner, mutation_lo
             )
             if existing:
                 return {"job_id": existing.id}
-            engine.start()
+            workspace.engine.start()
             job = AnalysisJob(kind="enrichment")
             db.add(job)
             db.commit()
             return {"job_id": job.id}
 
     @router.get("/api/weaknesses")
-    def weaknesses():
-        with sessions() as db:
+    def weaknesses(workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
             return {
                 "skills": priorities(db, settings),
                 "coverage": coverage(db),
@@ -65,8 +66,8 @@ def create_router(*, settings, sessions, engine, classifier, runner, mutation_lo
             }
 
     @router.get("/api/evidence/{decision_id}")
-    def evidence(decision_id: str):
-        with sessions() as db:
+    def evidence(workspace: CurrentWorkspace, decision_id: str):
+        with workspace.sessions() as db:
             decision = db.get(Decision, decision_id)
             if decision is None:
                 raise HTTPException(404, "Decision not found")
@@ -105,16 +106,16 @@ def create_router(*, settings, sessions, engine, classifier, runner, mutation_lo
             }
 
     @router.get("/api/classification-runs/{run_id}")
-    def classification_run(run_id: str):
-        with sessions() as db:
+    def classification_run(workspace: CurrentWorkspace, run_id: str):
+        with workspace.sessions() as db:
             run = db.get(ClassificationRun, run_id)
             if run is None:
                 raise HTTPException(404, "Classification run not found")
             return {c.name: getattr(run, c.name) for c in ClassificationRun.__table__.columns}
 
     @router.post("/api/classification-runs/{run_id}/reject")
-    def reject_classification(run_id: str):
-        with mutation_lock, runner.course_lock, sessions() as db:
+    def reject_classification(workspace: CurrentWorkspace, run_id: str):
+        with workspace.mutation_lock, workspace.sessions() as db:
             result = reject_run(db, run_id)
             return result
 

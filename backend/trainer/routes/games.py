@@ -1,6 +1,5 @@
 """Game library, resumable whole-game review and legal variation analysis."""
 
-import threading
 from collections import defaultdict
 from datetime import timezone
 
@@ -13,6 +12,7 @@ from trainer.game_accuracy import review_accuracy
 from trainer.game_library import time_control_label
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ImportBatch, ImportGame
+from trainer.workspaces import CurrentWorkspace
 
 
 class ReviewRequest(BaseModel):
@@ -48,11 +48,8 @@ def job_progress(job, completed, total):
     )
 
 
-def create_router(*, sessions, settings, engine_factory, mutation_lock):
+def create_router(*, settings, engine_factory):
     router = APIRouter()
-    # Interactive searches use a separate engine from recall grading and import jobs.
-    # One short-lived process per request avoids orphan processes on shutdown.
-    variation_lock = threading.Lock()
 
     def require_game(db, game_id):
         game = db.get(Game, game_id)
@@ -61,8 +58,12 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
         return game
 
     @router.get("/api/games")
-    def games(offset: int = Query(0, ge=0), limit: int = Query(30, ge=1, le=100)):
-        with sessions() as db:
+    def games(
+        workspace: CurrentWorkspace,
+        offset: int = Query(0, ge=0),
+        limit: int = Query(30, ge=1, le=100),
+    ):
+        with workspace.sessions() as db:
             rows = db.execute(
                 select(Game, AnalysisJob.status)
                 .outerjoin(GameReview, GameReview.game_id == Game.id)
@@ -122,8 +123,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             return {"items": items, "total": db.scalar(select(func.count()).select_from(Game))}
 
     @router.get("/api/games/{game_id}")
-    def game_detail(game_id: str):
-        with sessions() as db:
+    def game_detail(workspace: CurrentWorkspace, game_id: str):
+        with workspace.sessions() as db:
             game = require_game(db, game_id)
             parsed = parsed_game(game)
             board = parsed.board()
@@ -182,8 +183,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             }
 
     @router.get("/api/games/{game_id}/review")
-    def review_progress(game_id: str, after: int = Query(0, ge=0)):
-        with sessions() as db:
+    def review_progress(workspace: CurrentWorkspace, game_id: str, after: int = Query(0, ge=0)):
+        with workspace.sessions() as db:
             game = require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review is None:
@@ -253,8 +254,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             }
 
     @router.post("/api/games/{game_id}/review")
-    def begin_review(game_id: str, data: ReviewRequest):
-        with mutation_lock, sessions() as db:
+    def begin_review(workspace: CurrentWorkspace, game_id: str, data: ReviewRequest):
+        with workspace.mutation_lock, workspace.sessions() as db:
             require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review:
@@ -272,8 +273,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             return {"job_id": job.id, "status": job.status}
 
     @router.post("/api/games/{game_id}/position")
-    def variation_position(game_id: str, data: VariationRequest):
-        with sessions() as db:
+    def variation_position(workspace: CurrentWorkspace, game_id: str, data: VariationRequest):
+        with workspace.sessions() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
         san = None
@@ -284,8 +285,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
         return position(board) | {"san": san}
 
     @router.post("/api/games/{game_id}/train", status_code=202)
-    def train_game(game_id: str):
-        with mutation_lock, sessions() as db:
+    def train_game(workspace: CurrentWorkspace, game_id: str):
+        with workspace.mutation_lock, workspace.sessions() as db:
             require_game(db, game_id)
             active = db.scalar(
                 select(AnalysisJob)
@@ -308,15 +309,15 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
             return {"job_id": job.id, "status": job.status}
 
     @router.post("/api/games/{game_id}/analyze")
-    def analyze_variation(game_id: str, data: VariationRequest):
-        with sessions() as db:
+    def analyze_variation(workspace: CurrentWorkspace, game_id: str, data: VariationRequest):
+        with workspace.sessions() as db:
             game = require_game(db, game_id)
             board = branch_board(game, data.ply, data.moves)
             parsed = parsed_game(game)
             review = db.get(GameReview, game_id)
             rating = review.rating if review else 1000
-        with variation_lock:
-            engine = engine_factory(settings, sessions)
+        with workspace.variation_lock:
+            engine = engine_factory(settings, workspace.sessions)
             try:
                 if not board.move_stack:
                     if board.is_game_over():

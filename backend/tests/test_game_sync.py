@@ -61,27 +61,27 @@ def test_sync_fetches_recent_games_without_engine_and_preserves_explicit_analysi
         assert client.get("/api/auth/me").json()["user"]["chesscom_username"] == "learner"
         job = client.post("/api/sync", headers=headers).json()
         assert client.post("/api/sync", headers=headers).json()["job_id"] == job["job_id"]
-        tenant = app.state.tenants[identity["user"]["id"]]
-        with tenant.state.sessions() as db:
+        sessions = app.state.workspaces.sessions(identity["user"]["id"])
+        with sessions() as db:
             db.get(ChessComImport, job["job_id"]).max_games = 2
             db.commit()
-        assert tenant.state.runner.claim() is None
-        assert tenant.state.runner.claim(sync_only=True) == job["job_id"]
-        tenant.state.runner.run_job(job["job_id"])
+        assert app.state.runner.claim() is None
+        assert app.state.runner.claim(sync_only=True) == job["job_id"]
+        app.state.runner.run_job(job["job_id"])
         result = client.get("/api/games").json()
         assert result["total"] == 2
         assert all(item["status"] == "not_started" for item in result["items"])
-        with tenant.state.sessions() as db:
+        with sessions() as db:
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0
             assert db.scalar(select(ImportBatch)).original_pgn == ""
             assert '[Round "0"]' in db.get(Game, result["items"][0]["id"]).pgn
             db.get(AnalysisJob, job["job_id"]).created_at = current - timedelta(minutes=2)
             db.commit()
         client.post("/api/sync", headers=headers)
-        tenant.state.runner.run_job(job["job_id"])
+        app.state.runner.run_job(job["job_id"])
         assert client.get("/api/games").json()["total"] == 2  # No creeping backfill of old games.
         assert len(calls) == 4
-        with tenant.state.sessions() as db:
+        with sessions() as db:
             assert db.scalar(select(func.count()).select_from(AnalysisJob)) == 1
         # A game fetched earlier remains eligible for explicit training analysis.
         selected = result["items"][0]["id"]

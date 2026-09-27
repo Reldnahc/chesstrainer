@@ -9,9 +9,10 @@ from sqlalchemy import select
 from trainer.chesscom import ChessComRequest
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, ChessComImport
+from trainer.workspaces import CurrentWorkspace
 
 
-def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
+def create_router(*, settings) -> APIRouter:
     router = APIRouter()
 
     async def read_pgn(file):
@@ -26,13 +27,14 @@ def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
 
     @router.post("/api/imports")
     async def upload_pgn(
+        workspace: CurrentWorkspace,
         file: UploadFile = File(...),
         usernames: str = Form(""),
         side: Literal["auto", "white", "black"] = Form("auto"),
         analyze: bool = Form(True),
     ):
         pgn = await read_pgn(file)
-        with mutation_lock, sessions() as db:
+        with workspace.mutation_lock, workspace.sessions() as db:
             return import_games(
                 db,
                 Path(file.filename or "games.pgn").name,
@@ -43,8 +45,8 @@ def create_router(*, settings, sessions, mutation_lock) -> APIRouter:
             )
 
     @router.post("/api/imports/chesscom", status_code=202)
-    def import_chesscom(data: ChessComRequest):
-        with mutation_lock, sessions() as db:
+    def import_chesscom(workspace: CurrentWorkspace, data: ChessComRequest):
+        with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(
                 select(AnalysisJob)
                 .join(ChessComImport)

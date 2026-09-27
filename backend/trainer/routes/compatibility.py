@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 
 from trainer.exercises import manual_exercise
 from trainer.models import TeachingRun
+from trainer.workspaces import CurrentWorkspace
 
 
 class ManualRequest(BaseModel):
@@ -17,7 +18,7 @@ class ManualRequest(BaseModel):
     tags: list[str] = Field(default_factory=list, max_length=20)
 
 
-def create_router(*, sessions, scheduler, mutation_lock) -> APIRouter:
+def create_router(*, scheduler) -> APIRouter:
     router = APIRouter()
 
     @router.get("/api/course", include_in_schema=False)
@@ -27,20 +28,20 @@ def create_router(*, sessions, scheduler, mutation_lock) -> APIRouter:
     @router.post("/api/course/units/{unit_id}/next", include_in_schema=False)
     @router.post("/api/course/units/{unit_id}/extend", include_in_schema=False)
     @router.post("/api/lesson-items/{item_id}/acknowledge", include_in_schema=False)
-    def archived_lessons():
+    def archived_lessons(workspace: CurrentWorkspace):
         raise HTTPException(
             410, "Lessons have been removed. Use Review. Saved history is preserved."
         )
 
     @router.post("/api/course/teaching")
-    def generate_lesson_teaching():
+    def generate_lesson_teaching(workspace: CurrentWorkspace):
         raise HTTPException(
             410, "Model teaching generation has been removed. Saved lesson history is preserved."
         )
 
     @router.get("/api/teaching-runs/{run_id}")
-    def teaching_audit(run_id: str):
-        with sessions() as db:
+    def teaching_audit(workspace: CurrentWorkspace, run_id: str):
+        with workspace.sessions() as db:
             run = db.get(TeachingRun, run_id)
             if run is None:
                 raise HTTPException(404, "Teaching run not found")
@@ -49,8 +50,8 @@ def create_router(*, sessions, scheduler, mutation_lock) -> APIRouter:
             }
 
     @router.post("/api/teaching-runs/{run_id}/reject")
-    def reject_teaching(run_id: str):
-        with mutation_lock, sessions() as db:
+    def reject_teaching(workspace: CurrentWorkspace, run_id: str):
+        with workspace.mutation_lock, workspace.sessions() as db:
             run = db.get(TeachingRun, run_id)
             if run is None:
                 raise HTTPException(404, "Teaching run not found")
@@ -59,14 +60,14 @@ def create_router(*, sessions, scheduler, mutation_lock) -> APIRouter:
             return {"rejected": True}
 
     @router.post("/api/exercises/manual")
-    def add_manual(data: ManualRequest):
-        with mutation_lock, sessions() as db:
+    def add_manual(workspace: CurrentWorkspace, data: ManualRequest):
+        with workspace.mutation_lock, workspace.sessions() as db:
             exercise = manual_exercise(db, scheduler, **data.model_dump())
             return {"id": exercise.id}
 
     @router.get("/api/repertoires", include_in_schema=False)
     @router.post("/api/repertoires", include_in_schema=False)
-    def archived_repertoires():
+    def archived_repertoires(workspace: CurrentWorkspace):
         raise HTTPException(
             410, "Repertoire training has been removed. Saved history is preserved."
         )

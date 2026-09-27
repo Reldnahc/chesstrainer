@@ -1,14 +1,13 @@
-import logging
+"""A bounded host-wide scheduler; account resources exist only during execution."""
+
 import threading
 
-from sqlalchemy import select, update
-
-from trainer.chesscom import ChessComClient, ChessComError, ImportCancelled, fetch_import
+from trainer.chesscom import ChessComClient
 from trainer.engine import Stockfish
-from trainer.models import AnalysisJob, Game, ImportGame
-from trainer.pipeline import JobPipeline
-
-log = logging.getLogger(__name__)
+from trainer.job_execution import JobExecution
+from trainer.job_queue import JobQueue
+from trainer.models import AnalysisJob
+from trainer.workspaces import Workspaces
 
 
 class JobRunner:
@@ -22,35 +21,39 @@ class JobRunner:
         *,
         chesscom_factory=ChessComClient,
         import_lock=None,
+        workspaces=None,
     ):
-        self.settings, self.sessions = settings, sessions
-        self.scheduler, self.classifier = scheduler, classifier
-        self.engine_factory = engine_factory
-        self.chesscom_factory = chesscom_factory
+        self.settings, self.scheduler, self.classifier = settings, scheduler, classifier
+        self.engine_factory, self.chesscom_factory = engine_factory, chesscom_factory
+        self.workspaces = workspaces or Workspaces(
+            sessions.kw["bind"], settings, engine_factory, local_lock=import_lock
+        )
+        self.queue = JobQueue(
+            self.workspaces.sql_engine,
+            user_id=None if settings.accounts_enabled else sessions.kw["info"]["user_id"],
+        )
+        self.import_lock = self.course_lock = self.workspaces.local_lock
         self.chesscom_lock = threading.Lock()
-        self.import_lock = import_lock if import_lock is not None else threading.Lock()
         self.stop_event = threading.Event()
-        self.claim_lock = threading.Lock()
-        self.course_lock = self.import_lock
         self.threads = []
-        self.pipeline = None
-        self.active_job_id = None
+        self._active = {}
+        self._active_lock = threading.Lock()
 
     def recover(self):
-        with self.sessions() as db:
-            db.execute(
-                update(AnalysisJob).where(AnalysisJob.status == "running").values(status="queued")
-            )
-            db.commit()
+        self.queue.recover()
+
+    def claim(self, sync_only=False):
+        claimed = self.queue.claim(sync_only)
+        return claimed[0] if claimed else None
 
     def start(self):
         self.recover()
-        # Jobs remain ordered; parallelism is inside each job across its games/decisions.
-        for sync_only in (False, True):
+        analysis_workers = self.settings.engine_slots if self.settings.accounts_enabled else 1
+        for index, sync_only in enumerate([False] * analysis_workers + [True]):
             thread = threading.Thread(
                 target=self.loop,
                 args=(sync_only,),
-                name="sync-coordinator" if sync_only else "job-coordinator",
+                name="sync-coordinator" if sync_only else f"job-coordinator-{index}",
                 daemon=True,
             )
             thread.start()
@@ -61,145 +64,47 @@ class JobRunner:
         for thread in self.threads:
             thread.join()
 
-    def claim(self, sync_only=False):
-        with self.claim_lock, self.sessions() as db:
-            job = db.scalar(
-                select(AnalysisJob)
-                .where(AnalysisJob.status == "queued")
-                .where(
-                    AnalysisJob.kind.in_(["sync", "chesscom_fetch"])
-                    if sync_only
-                    else AnalysisJob.kind.not_in(["sync", "chesscom_fetch"])
-                )
-                .order_by(AnalysisJob.created_at)
-            )
-            if job is None:
-                return None
-            if job.cancel_requested:
-                job.status = "cancelled"
-                db.commit()
-                return None
-            job.status = "running"
-            job.error = None
-            for key in (
-                "games_processed",
-                "positions_triaged",
-                "deep_completed",
-                "mistakes_identified",
-                "classifications_completed",
-            ):
-                setattr(job, key, 0)
-            db.commit()
-            return job.id
-
-    def cancelled(self, job_id):
-        with self.sessions() as db:
-            return self.stop_event.is_set() or db.get(AnalysisJob, job_id).cancel_requested
-
     def loop(self, sync_only=False):
         while not self.stop_event.is_set():
-            job_id = self.claim(sync_only)
-            if job_id:
-                self.run_job(job_id)
+            claimed = self.queue.claim(sync_only)
+            if claimed:
+                self._run(claimed[0], claimed[1])
             else:
                 self.stop_event.wait(0.5)
 
     def run_job(self, job_id, engine=None):
-        log.info("job_started", extra={"job_id": job_id})
-        try:
-            with self.sessions() as db:
-                kind = db.get(AnalysisJob, job_id).kind
-            if kind == "game_review":
-                from trainer.game_review import run_review
+        # Explicit synchronous entry point used by offline tools and tests.
+        owner = self.queue.owner(job_id)
+        if owner is None:
+            raise ValueError("Job owner is unavailable")
+        self._run(job_id, owner, engine)
 
-                run_review(self, job_id, engine)
-                if self.cancelled(job_id):
-                    self.finish_cancel(job_id)
-                else:
-                    with self.sessions() as db:
-                        db.get(AnalysisJob, job_id).status = "completed"
-                        db.commit()
-                return
-            if kind == "teaching":
-                raise ValueError("Model teaching generation has been removed")
-            if kind in {"chesscom", "chesscom_fetch", "sync"}:
-                # Serialize all provider traffic even when multiple analysis workers run.
-                with self.chesscom_lock:
-                    client = self.chesscom_factory(self.settings)
-                    try:
-                        fetch_import(
-                            job_id,
-                            self.sessions,
-                            self.settings,
-                            client,
-                            lambda: self.cancelled(job_id),
-                            self.import_lock,
-                        )
-                    finally:
-                        client.close()
-                if kind in {"sync", "chesscom_fetch"}:
-                    if self.cancelled(job_id):
-                        self.finish_cancel(job_id)
-                    else:
-                        with self.sessions() as db:
-                            db.get(AnalysisJob, job_id).status = "completed"
-                            db.commit()
-                    return
-            with self.sessions() as db:
-                job = db.get(AnalysisJob, job_id)
-                kind = job.kind
-                if kind == "classification":
-                    game_ids = db.scalars(select(Game.id)).all()
-                else:
-                    game_ids = db.scalars(
-                        select(ImportGame.game_id).where(
-                            ImportGame.import_id == job.import_id, ImportGame.is_new.is_(True)
-                        )
-                    ).all()
-                job.games_total = len(game_ids)
-                db.commit()
-            self.active_job_id = job_id
-            self.pipeline = JobPipeline(self, job_id, engine)
-            if kind == "enrichment":
-                self.pipeline.run_enrichment()
-            else:
-                self.pipeline.run(game_ids, classification_only=kind == "classification")
-            with self.course_lock, self.sessions() as db:
-                if self.cancelled(job_id):
-                    self.finish_cancel(job_id)
-                    return
-                job = db.get(AnalysisJob, job_id)
-                job.status = "completed"
-                db.commit()
-            log.info("job_completed", extra={"job_id": job_id})
-        except ImportCancelled:
-            self.finish_cancel(job_id)
-        except Exception as exc:
-            with self.sessions() as db:
-                job = db.get(AnalysisJob, job_id)
-                job.status = "failed"
-                from trainer.engine import EngineUnavailable
+    def _run(self, job_id, owner, engine=None):
+        with self.workspaces.open(owner) as workspace:
+            execution = JobExecution(self, workspace)
+            with self._active_lock:
+                if job_id in self._active:
+                    raise ValueError("Job is already executing")
+                self._active[job_id] = execution
+            try:
+                execution.run(job_id, engine)
+            finally:
+                with self._active_lock:
+                    del self._active[job_id]
 
-                job.error = (
-                    str(exc)
-                    if isinstance(exc, (EngineUnavailable, ChessComError))
-                    else f"{type(exc).__name__}: analysis interrupted; completed work retained."
-                )
-                db.commit()
-            log.error("job_failed", extra={"job_id": job_id, "error_type": type(exc).__name__})
-            if engine:
-                engine.close()
-        finally:
-            if self.active_job_id == job_id:
-                self.pipeline = None
-                self.active_job_id = None
+    def cancelled(self, job_id):
+        if self.stop_event.is_set():
+            return True
+        with self._active_lock:
+            execution = self._active.get(job_id)
+        if execution is None:
+            return True
+        with execution.sessions() as db:
+            job = db.get(AnalysisJob, job_id)
+            return job is None or job.cancel_requested
 
     def activity(self, job_id):
-        pipeline = self.pipeline
-        return pipeline.snapshot() if pipeline and self.active_job_id == job_id else None
-
-    def finish_cancel(self, job_id):
-        with self.sessions() as db:
-            job = db.get(AnalysisJob, job_id)
-            job.status = "cancelled" if job.cancel_requested else "queued"
-            db.commit()
+        with self._active_lock:
+            execution = self._active.get(job_id)
+            pipeline = execution.pipeline if execution else None
+        return pipeline.snapshot() if pipeline else None
