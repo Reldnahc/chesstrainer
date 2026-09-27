@@ -7,6 +7,7 @@ import MoveBadge from "./MoveBadge";
 import ReviewCoach from "./ReviewCoach";
 import ReviewWorkspace from "./ReviewWorkspace";
 import EvaluationScore from "./EvaluationScore";
+import EvaluationGraph from "./EvaluationGraph";
 import { scoreText, strength, type Score } from "./evaluation";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
@@ -120,9 +121,10 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
   const frame = branch ? (branchPosition?.key === key ? branchPosition.value : null) : game?.frames[cursor.ply];
   const currentAnalysis = cache.current.get(analysisKey);
   const report = saved || currentAnalysis?.report;
-  const startingReport = !branch && cursor.ply === 0 ? game?.frames[1]?.report : null;
-  const startingScore = startingReport ? { ...startingReport.best.score, value: startingReport.best.score.value * (game?.frames[0].turn === "white" ? 1 : -1) } : null;
-  const score = report?.white_score || currentAnalysis?.score || startingScore;
+  const firstReport = game?.frames[1]?.report;
+  const startingReport = !branch && cursor.ply === 0 ? firstReport : null;
+  const initialScore = firstReport ? { ...firstReport.best.score, value: firstReport.best.score.value * (game?.frames[0].turn === "white" ? 1 : -1) } : null;
+  const score = report?.white_score || currentAnalysis?.score || (startingReport ? initialScore : null);
   const bestMove = report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
   const cues = report?.board_cues?.fen === frame?.fen ? report?.board_cues : null;
   const explaining = explanationKey === key && !!cues;
@@ -368,7 +370,7 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
         })}</div>
         {!!branches.length && <details className="game-variations" open><summary>Variations ({branches.length})</summary>{branches.map(b => <div key={b.id} className="game-variation-row"><span>#{b.id} · ply {b.root}</span>{b.sans.map((san, index) => <button key={index} aria-pressed={branch?.id === b.id && cursor.step === index + 1} onClick={() => { setCursor({ ply: b.root, branch: b.id, step: index + 1 }); setExplanationKey(null); }}>{san}{cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)?.report ? <MoveBadge label={cache.current.get(`${b.root}:${b.moves.slice(0, index + 1).join(",")}@${game.rating}`)!.report!.label}/> : <span className="muted" aria-label="Not yet rated">…</span>}</button>)}</div>)}</details>}
         </div></section>
-        <EvaluationGraph frames={game.frames} selected={cursor.ply} onSelect={navigate}/>
+        <EvaluationGraph frames={game.frames} initialScore={initialScore} selected={cursor.ply} onSelect={navigate}/>
         <div className="game-review-tools">
         <section className="game-progress">
           {game.job?.status !== "completed" && <>
@@ -389,63 +391,5 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
         </details>
         </div>
     </ReviewWorkspace>
-  </div>;
-}
-
-function EvaluationGraph({ frames, selected, onSelect }: { frames: Frame[]; selected: number; onSelect: (ply: number) => void }) {
-  const plot = useRef<SVGSVGElement>(null);
-  const [width, setWidth] = useState(600);
-  const height = 56;
-  useEffect(() => {
-    const element = plot.current;
-    if (!element) return;
-    const resize = () => setWidth(Math.max(32, element.getBoundingClientRect().width));
-    resize();
-    const observer = new ResizeObserver(resize);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-  const padding = 14;
-  const last = frames.length - 1;
-  const spacing = (width - padding * 2) / Math.max(1, last);
-  // Use the whole game so dots keep their size as review results arrive.
-  const radius = Math.min(6, spacing * .35);
-  const selectedRadius = Math.max(3, radius * 2);
-  const x = (i: number) => padding + i * spacing;
-  const y = (score: Score) => height / 2 - strength(score) * (height / 2 - padding);
-  const points = frames.flatMap((frame, ply) => frame.report ? [{frame, ply, report: frame.report}] : []);
-  const tabStop = frames[selected]?.report ? selected : points[0]?.ply;
-  const selectPoint = (ply: number) => {
-    onSelect(ply);
-    plot.current?.querySelector<SVGCircleElement>(`[data-ply="${ply}"]`)?.focus({preventScroll: true});
-  };
-  return <div className="game-graph"><div className="row-between"><strong>Game evaluation</strong><span>White ↑ · Black ↓</span></div>
-    <svg ref={plot} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group" aria-label="Evaluation across analyzed game moves" onClick={event => {
-      const bounds = event.currentTarget.getBoundingClientRect();
-      const position = (event.clientX - bounds.left) * width / bounds.width;
-      selectPoint(Math.max(0, Math.min(last, Math.round((position - padding) / spacing))));
-    }}>
-      <g pointerEvents="none" aria-hidden="true">
-        <line x1="0" x2={width} y1={height / 2} y2={height / 2} stroke="#44484f" strokeDasharray="4 4"/>
-        {points.map(({ply, report}) => ply > 0 && frames[ply - 1].report && <line key={ply} x1={x(ply - 1)} y1={y(frames[ply - 1].report!.white_score)} x2={x(ply)} y2={y(report.white_score)} stroke="#b8cfc2" strokeWidth="1.5"/>)}
-        <line x1={x(selected)} x2={x(selected)} y1="0" y2={height} stroke="#ff8059" opacity=".6"/>
-      </g>
-      {points.map(({frame, ply, report}, index) => <circle key={ply} className="game-graph-node" data-ply={ply}
-        cx={x(ply)} cy={y(report.white_score)} r={ply === selected ? selectedRadius : radius}
-        fill={bad.has(report.label) ? "#ff8059" : "#b8cfc2"}
-        role="button" tabIndex={ply === tabStop ? 0 : -1} aria-current={ply === selected ? "step" : undefined}
-        aria-label={`${frame.number}${frame.actor === "white" ? "." : "..."} ${frame.san}, ${report.label}, evaluation ${scoreText(report.white_score)}`}
-        onClick={event => {
-          if (event.detail === 0) { event.stopPropagation(); selectPoint(ply); }
-        }}
-        onKeyDown={event => {
-          const target = event.key === "ArrowLeft" ? points[Math.max(0, index - 1)]
-            : event.key === "ArrowRight" ? points[Math.min(points.length - 1, index + 1)]
-            : event.key === "Home" ? points[0] : event.key === "End" ? points.at(-1)
-            : event.key === "Enter" || event.key === " " ? points[index] : null;
-          if (target) { event.preventDefault(); event.stopPropagation(); selectPoint(target.ply); }
-        }}><title>{frame.number}{frame.actor === "white" ? "." : "..."} {frame.san} · {scoreText(report.white_score)}</title></circle>)}
-    </svg><input type="range" min="0" max={last} value={selected} onChange={e => onSelect(Number(e.target.value))} aria-label="Navigate evaluation timeline"/>
-    {!points.length && <p className="small">The timeline fills as your game is reviewed.</p>}
   </div>;
 }

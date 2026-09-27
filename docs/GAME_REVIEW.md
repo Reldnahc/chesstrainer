@@ -55,13 +55,27 @@ when explanation cues are already hidden. Variations are not saved across leavin
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
 The sidebar orders coaching, compact notation and variations, evaluation, then
-review progress and the move-quality summary. Evaluation dots scale with the graph
-width and the game's ply count, up to 12px normally and 24px for the selected move.
-The selected dot stays at least 6px wide, and padding keeps edge dots visible.
+review progress and the move-quality summary. The evaluation graph uses a white
+area below the score and a dark area above it, with a clear zero line and signed
+pawn labels. It starts at ±4 and expands symmetrically to the next whole pawn
+whenever a finite score exceeds the range (for example, +7.30 gives ±8, and −9.80
+gives ±10). The range uses all analyzed game positions and the starting evaluation,
+so navigating or flipping the board cannot change it. New analysis can expand it.
+Forced mates sit at the appropriate edge without inflating the numeric axis;
+the selected position's exact signed score, including `M`, appears above the graph.
+Unanalyzed gaps remain unfilled. The graph always describes the original game,
+while the coach follows the current position, including an explored variation.
+
+Brilliant, Great, Best, Inaccuracy, Mistake, Miss and Blunder have colored markers;
+Good and Book stay quiet unless selected or focused. Markers scale with graph
+width and ply count up to 12px; the selected marker stays 24px across. Padding keeps
+edge markers visible. There is no legend or separate range slider. Previous/next
+buttons occupy fixed left and right slots around a centered move label, so changes
+in move number or notation cannot shift them.
 Click or tap a dot, or anywhere along the graph, to return to that ply in the
 original game. Arrow keys navigate reviewed dots when a dot is focused; Home/End
-select the first/last reviewed move. The slider also navigates every ply, including
-positions still being reviewed. The coach keeps its label, message area, and action
+select the first/last reviewed move. The graph's buttons also navigate every ply,
+including positions still being reviewed. The coach keeps its label, message area, and action
 row in stable slots; longer explanations scroll inside the bubble. The desktop
 bubble and illustrated coach share a 116px height; narrow layouts use a 136px
 bubble with a smaller portrait. Actions stay outside the bubble in both review modes.

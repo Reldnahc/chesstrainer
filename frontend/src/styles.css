@@ -502,12 +502,33 @@ body:has(dialog[open]) { overflow: hidden; }
 .game-variation-row button { font: 11px var(--mono); min-height: 29px; padding: 3px 6px; }
 .game-variation-row button[aria-pressed=true] { border-color: var(--accent); }
 .game-variation-row .move-badge { font-size: 10px; }
-.game-graph { flex-shrink: 0; min-width: 0; padding: 8px 10px 2px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
-.game-graph .row-between { font-size: 11px; color: var(--muted); }
-.game-graph svg { width: 100%; height: 56px; display: block; margin-top: 4px; cursor: pointer; }
-.game-graph-node:focus-visible { outline: none; stroke: #fff; stroke-width: 2px; }
-.game-graph input[type=range] { display: block; width: 100%; margin: 0; padding: 0; min-height: 18px; accent-color: var(--accent); }
+.game-graph { flex-shrink: 0; min-width: 0; padding: 8px 10px 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.game-graph-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 44px; }
+.game-graph-heading > div:first-child { display: flex; flex-direction: column; gap: 3px; }
+.game-graph-heading strong { font-size: 13px; }
+.game-graph-heading > div:first-child > span, .game-graph-verdict { font-size: 11px; color: var(--muted); }
+.game-graph-reading { display: flex; align-items: center; gap: 8px; }
+.game-graph-reading .evaluation-score { font-size: 14px; min-height: 27px; }
+.game-graph .game-evaluation-plot { width: 100%; height: 152px; display: block; cursor: pointer; touch-action: pan-y; }
+.game-graph-background { fill: #262c31; }
+.game-graph-white { fill: #edf0eb; }
+.game-graph-black { fill: #454b53; }
+.game-graph-line { fill: none; stroke: #d9dfd9; stroke-width: 1.5px; }
+.game-graph-zero { stroke: #828a91; stroke-width: 1px; }
+.game-graph-axis, .game-graph-tick { fill: #b9c0c7; font: 11px "IBM Plex Sans", sans-serif; }
+.game-graph-cursor { stroke: var(--accent); stroke-width: 1.5px; }
+.game-graph-node { fill: transparent; }
+.game-graph-node[data-marked=true] { fill: var(--move-color); }
+.game-graph-node[aria-current], .game-graph-start, .game-graph-node:focus-visible { fill: var(--accent); stroke: #fff; stroke-width: 2px; outline: none; }
+.game-graph-node:hover { fill: var(--accent); }
+.game-graph-footer { min-height: 38px; display: flex; align-items: center; }
+.game-graph-navigation { display: grid; grid-template-columns: 30px minmax(0, 1fr) 30px; align-items: center; gap: 6px; min-width: 0; width: 100%; }
+.game-graph-navigation button { min-width: 30px; min-height: 30px; padding: 4px; flex: none; }
+.game-graph-position { min-width: 0; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .game-graph p { font-size: 11px; margin: 2px 0 4px; }
+@container (max-width: 440px) {
+  .game-graph-verdict { display: none; }
+}
 .game-review-tools { flex-shrink: 0; max-height: 36%; overflow-y: auto; scrollbar-width: thin; }
 .game-review-tools summary { padding: 6px 0; cursor: pointer; font-size: 12px; color: var(--muted); }
 .game-review-tools p { font-size: 12px; margin: 8px 0; }
@@ -532,6 +553,9 @@ body:has(dialog[open]) { overflow: hidden; }
   .game-move-heading button, .game-move-list button, .game-variation-row button { min-height: 44px; }
   .game-review-tools { max-height: none; overflow: visible; margin-top: 10px; }
   .game-review-tools summary { min-height: 44px; padding-block: 12px; }
+  .game-graph-verdict { display: none; }
+  .game-graph-navigation { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .game-graph-navigation button { min-width: 44px; min-height: 44px; }
   .game-library { --history-columns: minmax(0, 1fr) 64px 62px 14px; }
   .game-library-heading, .game-library-item { grid-template-areas: "players result accuracy open"; column-gap: 6px; padding: 9px 10px; }
   .game-library-heading { font-size: 10px; }

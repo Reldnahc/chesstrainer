@@ -44,7 +44,7 @@ test('progress merges only new reports without reloading the board or duplicatin
   const cursors: number[] = [];
   const moveReport = (ply: number) => {
     const frame = game.frames[ply];
-    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 25}};
+    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: ply === 4 ? 825 : 25}};
     return {ply, report: {label: 'Good', reason: '', coach: 'A sound move.', best: candidate, actual: candidate,
       white_score: candidate.score, depth: 16, engine_version: 'Progress fixture', board_cues: null}};
   };
@@ -75,6 +75,7 @@ test('progress merges only new reports without reloading the board or duplicatin
   const whiteScore = page.getByLabel('White accuracy').locator('b');
   const blackScore = page.getByLabel('Black accuracy').locator('b');
   await expect(whiteScore).toHaveText('—');
+  await expect(page.locator('.game-graph-axis')).toHaveText(['+4', '0', '−4']);
   await expect(page.getByLabel('White accuracy')).toHaveAttribute('title', /full game review finishes/);
   await page.locator('.game-summary > summary').click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('—');
@@ -90,6 +91,7 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(page.locator('.game-summary > summary')).toContainText('complete game');
   await expect(whiteScore).toHaveText('86.4');
   await expect(blackScore).toHaveText('100.0');
+  await expect(page.locator('.game-graph-axis')).toHaveText(['+9', '0', '−9']);
   expect(await page.locator('.board-shell').boundingBox()).toEqual(boardBefore);
   expect(await blackScore.boundingBox()).toEqual(readoutBefore);
   await page.locator('.game-summary > summary').click();
@@ -98,7 +100,7 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'First move', exact: true}).click();
-  await expect(page.getByLabel('Evaluation for White: +0.25')).toBeVisible();
+  await expect(page.getByLabel('Evaluation for White: +0.25', {exact: true})).toBeVisible();
   expect(cursors).toEqual([0, 1, 3]);
   expect(fullLoads).toBe(2);
   expect(analyses).toBe(0);
@@ -323,7 +325,7 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   await expect(dot(120)).toHaveAttribute('aria-current', 'step');
 
   // A tap well above a tiny dot still selects its horizontal position.
-  const plot = page.locator('.game-graph svg');
+  const plot = page.locator('.game-evaluation-plot');
   const target = await dot(60).evaluate(dot => ({x: Number(dot.getAttribute('cx')), y: 2}));
   if (info.project.name === 'mobile') await plot.tap({position: target});
   else await plot.click({position: target});
@@ -396,13 +398,13 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
   await expect(page.locator('.board-shell [data-pattern-square="e1"]')).toBeVisible();
   for (const width of testInfo.project.name === 'desktop' ? [1024, 1366, 1920] : [360, 390]) {
     await page.setViewportSize({width, height: testInfo.project.name === 'desktop' ? 768 : 844});
-    const graph = await page.locator('.game-graph svg').evaluate(svg => {
+    const graph = await page.locator('.game-evaluation-plot').evaluate((svg, lastPly) => {
       const bounds = svg.getBoundingClientRect();
-      const dots = [...svg.querySelectorAll('circle')];
-      return {width: bounds.width, right: dots.at(-1)!.getBoundingClientRect().right - bounds.left, height: bounds.height};
-    });
+      const last = svg.querySelector(`[data-ply="${lastPly}"]`)!;
+      return {width: bounds.width, right: last.getBoundingClientRect().right - bounds.left, height: bounds.height};
+    }, game.frames.length - 1);
     expect(graph.right / graph.width).toBeGreaterThan(.95);
-    expect(graph.height).toBe(56);
+    expect(graph.height).toBe(152);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   }
 });
