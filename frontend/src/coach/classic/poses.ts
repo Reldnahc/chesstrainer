@@ -6,7 +6,7 @@ export type Gesture =
   | "clap"
   | "chin"
   | "cheeks"
-  | "point"
+  | "present"
   | "fist"
   | "book"
   | "shrug"
@@ -73,7 +73,7 @@ export const poses: Record<CoachExpression, Pose> = {
     gaze: [0.5, 0],
     brows: ["M24 31 L35 32", "M45 32 L56 30"],
     mouth: "M33 56 Q41 60 48 54 Q44 63 39 62 Q35 61 33 56Z",
-    gesture: "point",
+    gesture: "present",
   }),
   good: pose({
     tilt: 2,
@@ -134,7 +134,7 @@ export const poses: Record<CoachExpression, Pose> = {
     gaze: [0, 1],
     brows: ["M24 30 L36 33", "M44 33 L56 30"],
     mouth: "M34 57 Q40 56 47 57 Q40 60 34 57Z",
-    gesture: "point",
+    gesture: "present",
     accent: "check",
   }),
   winning: pose({
@@ -203,7 +203,7 @@ export const poses: Record<CoachExpression, Pose> = {
     brows: ["M24 30 Q30 26 36 29", "M44 32 Q50 29 56 32"],
     mouth: "M33 56 Q40 57 47 55 Q47 63 41 63 Q36 63 33 56Z",
     open: true,
-    gesture: "point",
+    gesture: "present",
   }),
   draw: pose({
     tilt: -2,
@@ -249,7 +249,7 @@ export function familyPose(expression: CoachExpression, family: string): Pose {
         expression === "brilliant"
           ? "fist"
           : expression === "great"
-            ? "point"
+            ? "present"
             : original.gesture,
     };
   return original;
@@ -264,7 +264,7 @@ export const handPoses: Record<
   clap: { left: [34, 80, 25], right: [47, 80, -25] },
   chin: { left: [18, 93, -8], right: [43, 65, -25] },
   cheeks: { left: [18, 56, -16], right: [62, 56, 16] },
-  point: { left: [17, 93, -8], right: [66, 67, 9] },
+  present: { left: [17, 93, -8], right: [68, 73, 60] },
   fist: { left: [18, 94, -8], right: [66, 70, 20] },
   book: { left: [25, 88, -20], right: [55, 88, 20] },
   shrug: { left: [12, 77, -65], right: [68, 77, 65] },

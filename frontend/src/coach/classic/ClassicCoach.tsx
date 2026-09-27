@@ -285,7 +285,6 @@ function Arm({
   const left = side === "left";
   const shoulder = left ? 18 : 62;
   const elbow = left ? 10 : 70;
-  const pointing = gesture === "point" && !left;
   const fist = gesture === "fist" || gesture === "win";
   return (
     <g className={`coach-arm coach-arm-${side}`}>
@@ -312,7 +311,6 @@ function Arm({
                 : "M-4 4v-8q0-3 1.8-3 1 0 1 2v-2q0-2 1.5-2T2-7v1q0-2 1.5-2T5-6V0q2-4 3-2t-4 7Z"
             }
           />
-          {pointing && <path d="M-2-2v-12q0-2 1.5-2T1-14V-2" />}
           {fist && <path d="M-2-4v3m3-3v3m3-3v3" fill="none" />}
         </g>
       </g>

@@ -143,7 +143,7 @@ export const expressionInfo: Record<
   },
   explaining: {
     label: "Explaining",
-    intent: "One finger raised, sharing the idea rather than celebrating.",
+    intent: "An open palm offers the idea with a welcoming teaching gesture.",
   },
   draw: {
     label: "Draw",

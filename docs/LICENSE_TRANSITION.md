@@ -1,9 +1,10 @@
 # PolyForm Perimeter compatibility assessment
 
 Reviewed September 27, 2026 in response to the request to license Fieldwork under
-PolyForm Perimeter. **The requested repo-wide change has not been applied.** The
-existing LICENSE, package metadata, upstream notices and source offer remain in
-force while the dependency conflict is resolved.
+PolyForm Perimeter. **Closed: the owner chose to retain the existing licensing.**
+No license change or dependency migration is planned. The existing LICENSE,
+package metadata, upstream notices and source offer remain in force. The
+assessment below is retained for reference if a transition is reconsidered.
 
 ## Requested terms and current combination
 

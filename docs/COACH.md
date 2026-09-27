@@ -33,6 +33,8 @@ useful restrained alternative, but loses some facial nuance at 52.5px. Graphic
 spark's held poses, glasses follow-through and accents are more theatrical; it
 stays in the studio for comparison rather than making gameplay busier by default.
 All three preserve the same silhouette, colors and recognizable features.
+Teaching, best-move and check poses use an outward-facing open palm. Avoid a
+single raised finger: its silhouette reads as an insulting gesture at review size.
 
 ## Reaction lifecycle
 
