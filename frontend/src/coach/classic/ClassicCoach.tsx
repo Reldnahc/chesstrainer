@@ -82,12 +82,6 @@ export default function ClassicCoach({
                 <ellipse cx="63" cy="43" rx="4" ry="7" fill="#eab18a" />
                 <ellipse cx="40" cy="39" rx="24" ry="29" fill="#f2c5a0" />
                 <path
-                  d="M17 45q0 14 10 20M63 45q0 14-10 20"
-                  fill="none"
-                  stroke="#e7b48f"
-                  strokeWidth="1.1"
-                />
-                <path
                   d="M16 37Q8 5 35 6Q67 0 65 39L57 29Q43 33 29 19L22 38Z"
                   fill="#dad4ca"
                 />
