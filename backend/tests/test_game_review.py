@@ -130,6 +130,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
     settings.stockfish_workers = workers
     app = create_app(settings, workers=False)
     with TestClient(app) as client:
+        from trainer.review_intelligence import presentation
         from trainer.routes import games as routes
 
         ratings = []
@@ -140,6 +141,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
             return original(report, rating, **kwargs)
 
         monkeypatch.setattr(routes, "public_report", record_rating)
+        monkeypatch.setattr(presentation, "public_report", record_rating)
         game = seed(
             app,
             '[White "Learner"]\n[Black "Opponent"]\n[WhiteElo "700"]\n[BlackElo "1800"]\n\n1. f3 e5 2. g4 Qh4# 0-1',
@@ -149,6 +151,8 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         detail = client.get(f"/api/games/{game}").json()
         assert detail["job"]["status"] == "completed", detail["job"]
         assert detail["job"]["completed"] == 4
+        assert detail["context"]["complete"] and detail["context"]["missing_plies"] == []
+        assert detail["context"]["biggest_swing_ply"] == 3
         assert detail["accuracy"] is not None
         assert 0 <= detail["accuracy"]["white"] < detail["accuracy"]["black"] <= 100
         assert ratings == [700, 1800, 700, 1800]
@@ -176,6 +180,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         updates = client.get(f"/api/games/{game}/review?after=2").json()
         assert updates["job"] == detail["job"]
         assert updates["accuracy"] == detail["accuracy"]
+        assert updates["context"] == detail["context"]
         assert client.get("/api/games").json()["items"][0]["accuracy"] == detail["accuracy"]
         assert [move["ply"] for move in updates["moves"]] == [3, 4]
         assert ratings[-2:] == [700, 1800]
@@ -188,6 +193,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         assert final["accuracy"] == detail["accuracy"]
         client.post(f"/api/games/{game}/review", json={"rating": 2500})
         assert client.get(f"/api/games/{game}").json()["accuracy"] == detail["accuracy"]
+        assert client.get(f"/api/games/{game}").json()["context"] == detail["context"]
         with app.state.sessions() as db:
             for model in (Decision, Exercise, Review):
                 assert db.scalar(select(func.count()).select_from(model)) == 0

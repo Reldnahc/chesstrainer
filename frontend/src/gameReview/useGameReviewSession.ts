@@ -132,6 +132,7 @@ export function useGameReviewSession(id: string) {
                 job: progress.job,
                 accuracy: progress.accuracy,
                 review_revision: progress.revision,
+                context: progress.context ?? current.context,
                 frames: current.frames.map((frame, index) =>
                   reports.has(index)
                     ? { ...frame, report: reports.get(index)! }

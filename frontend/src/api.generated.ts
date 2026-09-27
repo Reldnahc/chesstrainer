@@ -1002,6 +1002,24 @@ export interface components {
              */
             self_source: "pgn" | "fallback";
         };
+        /** ContextNode */
+        ContextNode: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            after: components["schemas"]["Score"];
+            before: components["schemas"]["Score"];
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Input Digest */
+            input_digest: string;
+            /** Ply */
+            ply: number;
+        };
         /** Coverage */
         Coverage: {
             /** Abstention Reasons */
@@ -1240,6 +1258,33 @@ export interface components {
             report: components["schemas"]["GameReviewReport"] | null;
             score: components["schemas"]["Score"] | null;
         };
+        /** GameContext */
+        GameContext: {
+            /** Biggest Swing Ply */
+            biggest_swing_ply: number | null;
+            /** Complete */
+            complete: boolean;
+            /** Input Digest */
+            input_digest: string;
+            /** Limitations */
+            limitations: string[];
+            /** Missing Plies */
+            missing_plies: number[];
+            /** Nodes */
+            nodes: components["schemas"]["ContextNode"][];
+            /** Relationships */
+            relationships: components["schemas"]["GameRelationship"][];
+            /** Total Plies */
+            total_plies: number;
+            /** Turning Points */
+            turning_points: components["schemas"]["TurningPoint"][];
+            /**
+             * Version
+             * @default game-context-1
+             * @constant
+             */
+            version: "game-context-1";
+        };
         /** GameDetail */
         GameDetail: {
             accuracy: components["schemas"]["GameAccuracy"] | null;
@@ -1247,6 +1292,7 @@ export interface components {
             black: string;
             /** Black Rating */
             black_rating: number | null;
+            context?: components["schemas"]["GameContext"] | null;
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
             /** Id */
@@ -1385,6 +1431,31 @@ export interface components {
              * @enum {string}
              */
             turn: "white" | "black";
+        };
+        /** GameRelationship */
+        GameRelationship: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Facts */
+            facts: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+            /** Id */
+            id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "repeated_motif" | "punishment" | "recovery" | "advantage_run" | "erosion" | "support_restored";
+            /** Plies */
+            plies: number[];
         };
         /** GameReviewReport */
         GameReviewReport: {
@@ -1949,6 +2020,7 @@ export interface components {
         /** ReviewProgress */
         ReviewProgress: {
             accuracy: components["schemas"]["GameAccuracy"] | null;
+            context?: components["schemas"]["GameContext"] | null;
             job: components["schemas"]["ReviewJob"] | null;
             /** Moves */
             moves: components["schemas"]["ReviewedMove"][];
@@ -2114,6 +2186,22 @@ export interface components {
             unit_id: string;
             /** User Id */
             user_id: string;
+        };
+        /** TurningPoint */
+        TurningPoint: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Loss Cp */
+            loss_cp: number | null;
+            /** Mate Transition */
+            mate_transition: boolean;
+            /** Ply */
+            ply: number;
         };
         /** ValidationError */
         ValidationError: {

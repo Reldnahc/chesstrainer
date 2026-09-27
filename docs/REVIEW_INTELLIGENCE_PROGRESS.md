@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 6 verified; Milestone 7 is next.
+Current checkpoint: Milestone 7 verified; Milestone 8 is next.
 
 ## Baseline
 
@@ -157,8 +157,7 @@ Milestone 5: `f593279` — semantic events and clock context.
 - No new database tables or production UI surfaces. Cold-SRS response tests
   explicitly exclude the added answer-revealing intelligence.
 
-Milestone 6: deterministic positional evidence complete; commit SHA will be
-recorded at the next boundary.
+Milestone 6: `a2b944c` — deterministic positional evidence.
 
 - Added ten supported immediate-change families, shared pin-aware defenders,
   original-piece development history and separate played/alternative facts.
@@ -173,6 +172,24 @@ recorded at the next boundary.
   an unguarded piece is never declared lost from geometry alone.
 - Rules and false-positive boundaries: POSITIONAL_EVIDENCE.md. No schema,
   grading, coach, resource-setting or production layout changes in this slice.
+
+Milestone 7: whole-game context complete; commit SHA will be recorded at the
+next boundary.
+
+- Versioned nodes/links for repeated motifs, punishment, recovery, sustained
+  conversion, gradual erosion and restored support of a tracked surviving piece.
+  Missing/mismatched plies and inconsistent adjacent searches break sequential
+  inference. Partial counts, engine bands and PGN-result limits are explicit.
+- Detail and polling share one projection; client retains refreshed context.
+  No new table, searches or coach-dependent saved data. Linear linked motif
+  history avoids duplicating all earlier occurrences in every relation.
+- Focused context/native game/refinement/API suite: 44 passed (two existing
+  TestClient warnings). Native game tests verify both-color rating selection,
+  detail/poll graph equality and persisted restart behavior. Production
+  build/API/type checks, Ruff and whitespace checks pass.
+- Rules and caveats: GAME_CONTEXT.md. Causal king-safety-collapse narratives
+  remain unsupported; supported support changes never impersonate proof of a
+  tactical cause. No production dialogue change until the planned dialogue slice.
 
 ## Decisions / follow-ups
 

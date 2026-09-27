@@ -874,6 +874,58 @@
         "title": "Conditioning",
         "type": "object"
       },
+      "ContextNode": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "after": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "before": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ply",
+          "actor",
+          "input_digest",
+          "event_ids",
+          "before",
+          "after",
+          "evidence"
+        ],
+        "title": "ContextNode",
+        "type": "object"
+      },
       "Coverage": {
         "additionalProperties": false,
         "properties": {
@@ -1589,6 +1641,88 @@
         "title": "GameAnalysis",
         "type": "object"
       },
+      "GameContext": {
+        "additionalProperties": false,
+        "properties": {
+          "biggest_swing_ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Biggest Swing Ply"
+          },
+          "complete": {
+            "title": "Complete",
+            "type": "boolean"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "missing_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Missing Plies",
+            "type": "array"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/ContextNode"
+            },
+            "title": "Nodes",
+            "type": "array"
+          },
+          "relationships": {
+            "items": {
+              "$ref": "#/components/schemas/GameRelationship"
+            },
+            "title": "Relationships",
+            "type": "array"
+          },
+          "total_plies": {
+            "title": "Total Plies",
+            "type": "integer"
+          },
+          "turning_points": {
+            "items": {
+              "$ref": "#/components/schemas/TurningPoint"
+            },
+            "title": "Turning Points",
+            "type": "array"
+          },
+          "version": {
+            "const": "game-context-1",
+            "default": "game-context-1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "input_digest",
+          "complete",
+          "total_plies",
+          "missing_plies",
+          "nodes",
+          "relationships",
+          "turning_points",
+          "biggest_swing_ply",
+          "limitations"
+        ],
+        "title": "GameContext",
+        "type": "object"
+      },
       "GameDetail": {
         "additionalProperties": false,
         "properties": {
@@ -1616,6 +1750,16 @@
               }
             ],
             "title": "Black Rating"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "frames": {
             "items": {
@@ -2160,6 +2304,76 @@
           "san"
         ],
         "title": "GamePosition",
+        "type": "object"
+      },
+      "GameRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Facts",
+            "type": "object"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "repeated_motif",
+              "punishment",
+              "recovery",
+              "advantage_run",
+              "erosion",
+              "support_restored"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "facts"
+        ],
+        "title": "GameRelationship",
         "type": "object"
       },
       "GameReviewReport": {
@@ -4037,6 +4251,16 @@
               }
             ]
           },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "job": {
             "anyOf": [
               {
@@ -4496,6 +4720,54 @@
           "evidence_ids"
         ],
         "title": "TeachingAudit",
+        "type": "object"
+      },
+      "TurningPoint": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "loss_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Loss Cp"
+          },
+          "mate_transition": {
+            "title": "Mate Transition",
+            "type": "boolean"
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ply",
+          "actor",
+          "loss_cp",
+          "mate_transition",
+          "event_ids"
+        ],
+        "title": "TurningPoint",
         "type": "object"
       },
       "ValidationError": {

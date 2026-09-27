@@ -6,6 +6,7 @@ from trainer.diagnosis_types import Finding
 from trainer.explanations import Frame
 from trainer.human_models.types import HumanEvidence
 from trainer.review_intelligence.events_types import MoveIntelligence
+from trainer.review_intelligence.game_types import GameContext
 from trainer.review_intelligence.types import PracticalAssessment
 
 MoveQuality = Literal[
@@ -136,6 +137,7 @@ class ReviewJob(Contract):
 
 
 class GameDetail(Contract):
+    context: GameContext | None = None
     review_revision: int = 0
     id: str
     white: str
@@ -157,6 +159,7 @@ class ReviewedMove(Contract):
 
 
 class ReviewProgress(Contract):
+    context: GameContext | None = None
     revision: int = 0
     job: ReviewJob | None
     moves: list[ReviewedMove]

@@ -28,6 +28,7 @@ from trainer.models import (
     ReviewRefinement,
 )
 from trainer.review_intelligence.context import move_contexts
+from trainer.review_intelligence.presentation import present_game
 from trainer.review_reports import load_accuracy_scores, load_game_reports
 from trainer.workspaces import CurrentWorkspace
 
@@ -137,7 +138,9 @@ def create_router(*, settings, engine_factory):
             job = db.get(AnalysisJob, review.job_id) if review else None
             rating = review.rating if review else 1000
             saved, revisions = load_game_reports(db, game_id)
-            contexts = move_contexts(parsed) if saved else {}
+            reports, context = present_game(
+                parsed, saved, rating, completed=bool(job and job.status == "completed")
+            )
             frames = [
                 position(board)
                 | {
@@ -158,15 +161,12 @@ def create_router(*, settings, engine_factory):
                         "uci": move.uci(),
                         "number": number,
                         "actor": "white" if actor else "black",
-                        "report": public_report(
-                            saved[ply], pgn_rating(parsed, actor) or rating, context=contexts[ply]
-                        )
-                        if ply in saved
-                        else None,
+                        "report": reports.get(ply),
                     }
                 )
             return {
                 "id": game.id,
+                "context": context,
                 "white": game.white,
                 "black": game.black,
                 "played_on": game.played_on,
@@ -204,21 +204,19 @@ def create_router(*, settings, engine_factory):
                 return {"job": None, "moves": [], "accuracy": None, "revision": 0}
             job = db.get(AnalysisJob, review.job_id)
             parsed = parsed_game(game)
-            starting_color = parsed.board().turn
             total = sum(1 for _ in parsed.mainline_moves())
             saved, revisions = load_game_reports(db, game_id)
-            contexts = move_contexts(parsed) if saved else {}
             if after_revision is not None:
                 plies = [ply for ply in saved if revisions[ply] > after_revision]
             else:
                 ceiling = job.positions_triaged if job.status in {"queued", "running"} else total
                 plies = [ply for ply in saved if after < ply <= ceiling]
+            reports, context = present_game(
+                parsed, saved, review.rating, completed=bool(job and job.status == "completed")
+            )
             moves = []
             for ply in plies:
-                color = starting_color if ply % 2 else not starting_color
-                report = public_report(
-                    saved[ply], pgn_rating(parsed, color) or review.rating, context=contexts[ply]
-                )
+                report = reports[ply]
                 # Board positions are loaded once. Progress needs new display
                 # fields, not repeated full witness lines or legal-move lists.
                 moves.append(
@@ -255,6 +253,7 @@ def create_router(*, settings, engine_factory):
             return {
                 "job": job_progress(job, len(saved), total, review),
                 "moves": moves,
+                "context": context,
                 "accuracy": accuracy,
                 "revision": max([after_revision or 0, *(revisions[ply] for ply in plies)]),
             }

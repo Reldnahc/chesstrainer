@@ -238,3 +238,9 @@ contrasts and valid mainline clock/opening observations. These facts prepare the
 neutral dialogue layer without changing badges based on human or clock data.
 See [REVIEW_EVENTS.md](REVIEW_EVENTS.md). A good restricted-root alternative now
 also disproves an only-good-move Great claim; all comparisons remain Stockfish facts.
+# Structured game context
+
+Reviewed games now expose versioned relationships between supported moments,
+including missed punishment, recovery, repeated motifs, sustained advantages and
+gradual erosion. They use the same effective evidence generation as move reports
+and accuracy. See [GAME_CONTEXT.md](GAME_CONTEXT.md) for gates and caveats.
