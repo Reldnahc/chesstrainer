@@ -14,11 +14,12 @@ from trainer.continuations import replay, settled_delta
 from trainer.explanations import replay_line
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.move_causes import move_causes
+from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 VERSION = "game-review-1"
-LABELS = ("Brilliant", "Great", "Best", "Good", "Inaccuracy", "Mistake", "Miss", "Blunder")
+LABELS = ("Brilliant", "Great", "Best", "Good", "Book", "Inaccuracy", "Mistake", "Miss", "Blunder")
 
 
 def parsed_game(game):
@@ -225,18 +226,29 @@ def analyze_move(engine, board, move, previous_score=None):
 
 def public_report(report, rating):
     label, reason = classify(report, rating)
+    engine_label = label
     findings = report["actual_line"]["findings"]
     coach = findings[0]["explanation"] if findings else reason
     if not findings and len(report["actual_line"]["frames"]) > 2:
         reply = report["actual_line"]["frames"][2]
         if label in {"Mistake", "Miss", "Blunder", "Inaccuracy"}:
             coach = reason + " " + reply["annotation"]
+    # Recognition belongs to presentation, so saved reviews and interactive
+    # branches use the same current book without rewriting engine evidence.
+    frames = report["actual_line"]["frames"]
+    opening = book_move(frames[0]["fen"], report["actual"]["uci"]) if frames else None
+    if opening:
+        label, reason = "Book", "This move is part of a recognized opening line."
+        coach = f"This follows {opening['name']} ({opening['eco']})." if opening["name"] else reason
     return report | {
         "label": label,
+        "engine_label": engine_label,
+        "opening": opening,
         "reason": reason,
         "coach": coach,
         "board_cues": review_cues(
-            report["actual_line"], mistake=label in {"Mistake", "Miss", "Blunder", "Inaccuracy"}
+            report["actual_line"],
+            mistake=engine_label in {"Mistake", "Miss", "Blunder", "Inaccuracy"},
         ),
     }
 

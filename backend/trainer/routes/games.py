@@ -215,6 +215,8 @@ def create_router(*, sessions, settings, engine_factory, mutation_lock):
                             key: report[key]
                             for key in (
                                 "label",
+                                "engine_label",
+                                "opening",
                                 "reason",
                                 "coach",
                                 "best",

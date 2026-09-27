@@ -135,7 +135,26 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   two legal non-pawn capture candidates are probed. Ordinary equal trades do not
   qualify. Recognition is deliberately conservative and can miss sacrifices.
 
-Priority: Blunder, Miss, Mistake, Inaccuracy, Brilliant, Great, Best, Good. The
+Book takes precedence when the actual position and move appear in the bundled
+[Lichess opening catalogue](../backend/trainer/_vendor/lichess_openings/README.md).
+This is recognition, independent of engine quality or Elo: named unsound lines,
+including the Bongcloud and Fool's Mate, also qualify. All moves along a
+catalogue line are eligible, not just its final named position. Matching includes
+side to move, castling rights and legal en-passant rights while ignoring move
+counters, so transpositions work. A move outside the indexed continuations keeps
+its normal rating; a PGN opening name never makes later moves Book automatically.
+
+One lazy, thread-safe, process-local index serves saved reviews, incremental
+updates and interactive variations. Recognition uses the recorded pre-move FEN
+and actual move, so older saved reviews gain Book labels without rewriting their
+reports, running Stockfish again or migrating the database. Reports expose
+`opening` (catalogue version, optional name and ECO code) and `engine_label`;
+the primary `label` and coach text use Book. Tactical arrows retain the engine's
+perspective, and every underlying evaluation still contributes to accuracy.
+The catalogue and license ship with Python packages, Docker and source downloads;
+there is no runtime network lookup.
+
+Otherwise priority is Blunder, Miss, Mistake, Inaccuracy, Brilliant, Great, Best, Good. The
 coach can explain a missed opportunity even when the primary label is Blunder.
 Thresholds are explicit initial policy, not calibrated human performance estimates.
 

@@ -18,6 +18,11 @@ with evaluation and arithmetic helpers from scalachess 17.8.2 and scalalib 11.8.
 (MIT). That directory includes all three complete licenses, pinned source links,
 authorship, and local modifications.
 
+The unmodified opening catalogue in backend/trainer/_vendor/lichess_openings
+is from lichess-org/chess-openings revision c67912be581f0793dbaa776be5ccf111e01f88d9,
+released under CC0-1.0. That directory includes the complete dedication,
+upstream attribution and original file hashes.
+
 Settings provides a Download source code link to a snapshot served from the same
 host at /assets/fieldwork-source.zip. The frontend build prepares that snapshot
 from Git-listed public source files, including licenses and build instructions.

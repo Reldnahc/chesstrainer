@@ -152,13 +152,17 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         assert ratings == [700, 1800, 700, 1800]
         assert (detail["white_rating"], detail["black_rating"]) == (700, 1800)
         assert all(f["report"] for f in detail["frames"][1:])
-        assert detail["frames"][3]["report"]["label"] == "Blunder"
+        # Fool's Mate is a named line, even though g4 allows mate.
+        assert detail["frames"][3]["report"]["label"] == "Book"
+        assert detail["frames"][3]["report"]["engine_label"] == "Blunder"
         assert detail["frames"][4]["report"]["white_score"]["kind"] == "mate"
         assert Score.model_validate(detail["frames"][4]["report"]["white_score"]).outcome() == -1
         branch = client.post(
             f"/api/games/{game}/analyze", json={"ply": 2, "moves": ["g2g4"]}
         ).json()
-        assert branch["report"]["label"] == "Blunder"
+        assert branch["report"]["label"] == "Book"
+        assert branch["report"]["engine_label"] == "Blunder"
+        assert branch["report"]["opening"] == detail["frames"][3]["report"]["opening"]
         assert ratings[-1] == 700
         assert (
             client.post(
@@ -190,7 +194,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         assert client.get(f"/api/games/{game}").json()["job"]["completed"] == 4
     settings.stockfish_path = "missing-after-restart"
     with TestClient(create_app(settings, workers=False)) as client:
-        assert client.get(f"/api/games/{game}").json()["frames"][3]["report"]["label"] == "Blunder"
+        assert client.get(f"/api/games/{game}").json()["frames"][3]["report"]["label"] == "Book"
         assert client.get(f"/api/games/{game}").json()["accuracy"] == detail["accuracy"]
 
 
