@@ -56,8 +56,26 @@ def create_app():
 
         with app.state.sessions() as db:
             white = f"Review-{key}"
-            pgn = f'[White "{white}"]\n[Black "CoachFixture"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
+            # Keep the tactical regression outside the opening catalogue. With
+            # normal castling rights, this entire Fool's Mate line is Book.
+            pgn = (
+                f'[White "{white}"]\n[Black "CoachFixture"]\n[SetUp "1"]\n'
+                '[FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1"]\n\n'
+                "1. f3 e5 2. g4 Qh4# 0-1"
+            )
             import_games(db, "review-fixture.pgn", pgn, [white], None, queue_analysis=False)
+            return {"id": db.scalar(select(Game.id).where(Game.white == white))}
+
+    @app.post("/__test/book-review-fixture/{key}")
+    def book_review_fixture(key: str):
+        from sqlalchemy import select
+        from trainer.imports import import_games
+        from trainer.models import Game
+
+        with app.state.sessions() as db:
+            white = f"Book-{key}"
+            pgn = f'[White "{white}"]\n[Black "OpeningFixture"]\n\n1. e4 e5 2. Ke2 Nc6 0-1'
+            import_games(db, "book-fixture.pgn", pgn, [white], None, queue_analysis=False)
             return {"id": db.scalar(select(Game.id).where(Game.white == white))}
 
     @app.post("/__test/review-explanation-fixture/{key}")

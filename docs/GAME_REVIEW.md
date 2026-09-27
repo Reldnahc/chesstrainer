@@ -185,8 +185,12 @@ There is no LLM, voice service, or rating-sensitive engine evaluation. Completed
 reviews expose [Lichess accuracy scores](GAME_ACCURACY.md) through the game APIs,
 calculated from saved evaluations without further engine searches.
 Each player's accuracy appears beside their name when the full review finishes.
-The readouts reserve space while reviewing, remain unchanged during variations,
-and follow their players when the board is flipped. Accuracy has no Elo adjustment.
+The same scores lead the White/Black move-quality table, above the nine rating
+counts including Book. Both locations use one accuracy readout with matching
+rounding, pending/unavailable states and explanations.
+The readouts reserve space while reviewing and remain unchanged during variations.
+Board readouts follow their players when flipped; the table keeps its White/Black
+columns. Accuracy has no Elo adjustment.
 
 Public definitions consulted during planning:
 [Chess.com Great/Brilliant](https://www.chess.com/article/view/how-to-play-a-brilliant-move),

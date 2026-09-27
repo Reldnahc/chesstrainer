@@ -76,6 +76,13 @@ test('progress merges only new reports without reloading the board or duplicatin
   const blackScore = page.getByLabel('Black accuracy').locator('b');
   await expect(whiteScore).toHaveText('—');
   await expect(page.getByLabel('White accuracy')).toHaveAttribute('title', /full game review finishes/);
+  await page.locator('.game-summary > summary').click();
+  await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('—');
+  await expect(page.getByLabel('Accuracy for White', {exact: true})).toHaveAttribute('title', /full game review finishes/);
+  await page.locator('.game-summary > summary').click();
+  // The phone scrolled to the summary. Measure completion at the board, away
+  // from the page bottom where removing progress naturally clamps scrollY.
+  await page.evaluate(() => window.scrollTo(0, 0));
   await page.evaluate(() => document.fonts.ready);
   const boardBefore = await page.locator('.board-shell').boundingBox();
   const readoutBefore = await blackScore.boundingBox();
@@ -85,6 +92,9 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(blackScore).toHaveText('100.0');
   expect(await page.locator('.board-shell').boundingBox()).toEqual(boardBefore);
   expect(await blackScore.boundingBox()).toEqual(readoutBefore);
+  await page.locator('.game-summary > summary').click();
+  await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('86.4');
+  await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText('100.0');
   await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'First move', exact: true}).click();
@@ -97,6 +107,52 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(blackScore).toHaveText('100.0');
   expect(cursors).toEqual([0, 1, 3]);
   expect(analyses).toBe(0);
+});
+
+test('book moves appear on the board, coach and branches with original-game accuracy in move quality', async ({page}, info) => {
+  test.setTimeout(90_000);
+  const {id} = await (await page.request.post(`/__test/book-review-fixture/${info.project.name}`)).json();
+  await page.goto(`/games/${id}?ply=3`);
+  await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
+  await expect(page.getByRole('button', {name: '2. Ke2, Book', exact: true})).toHaveAttribute('aria-current', 'step');
+  await expect(page.locator('.coach-speech')).toContainText('Bongcloud Attack');
+  await expect(page.locator('.coach-speech .label-book svg')).toBeVisible();
+  await expect(page.getByLabel('Move rating: Book')).toBeVisible();
+  await expect(page.locator('.board-quality.label-book svg')).toBeVisible();
+  const original = await (await page.request.get(`/api/games/${id}`)).json();
+  expect(original.frames[3].report.engine_label).not.toBe('Book');
+  expect(original.accuracy.white).toBeLessThan(100);
+  const white = original.accuracy.white.toFixed(1), black = original.accuracy.black.toFixed(1);
+  const board = await page.locator('.board-shell').boundingBox();
+  await page.locator('.game-summary > summary').click();
+  const table = page.getByRole('table', {name: 'Move quality and accuracy'});
+  await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
+  await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
+  await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText(black);
+  expect((await page.locator('.board-shell').boundingBox())!.width).toBe(board!.width);
+  const counts = await table.locator('tbody tr').allTextContents();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.screenshot({path: `test-results/book-review-${info.project.name}.png`, fullPage: true});
+
+  await page.getByRole('button', {name: '1... e5, Book', exact: true}).click();
+  await page.locator('.board-shell [data-square="g1"]').click();
+  await page.locator('.board-shell [data-square="f3"]').click();
+  await expect(page.locator('.coach-speech .move-badge')).toHaveText('Book', {timeout: 30_000});
+  await expect(page.locator('.coach-speech')).toContainText("King's Knight Opening");
+  await expect(page.locator('.game-variation-row .label-book svg')).toBeVisible();
+  expect(await table.locator('tbody tr').allTextContents()).toEqual(counts);
+  await expect(page.getByLabel('White accuracy', {exact: true}).locator('b')).toHaveText(white);
+  await page.getByRole('button', {name: 'Flip board', exact: true}).click();
+  await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
+  await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText(black);
+  await page.getByRole('button', {name: 'Back to game', exact: true}).click();
+  await page.getByRole('button', {name: '2. Ke2, Book', exact: true}).click();
+  await page.reload();
+  await expect(page.locator('.coach-speech')).toContainText('Bongcloud Attack');
+  await page.locator('.game-summary > summary').click();
+  await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
+  await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
 });
 
 test('review both players, explain in place, and branch without changing the game', async ({page}, testInfo) => {

@@ -63,6 +63,10 @@ space that does not change board size when analysis finishes. An em dash has an
 accessible explanation for incomplete or unavailable results. Accuracy belongs to
 the original game even while the player explores a variation. Flipping the board
 moves each score with its player.
+The move-quality breakdown repeats these scores at the top of its White/Black
+columns, using the same readout component and pending/unavailable explanations.
+Book labels do not exempt moves from accuracy or substitute a perfect score;
+recognized opening moves contribute their actual saved engine evaluations.
 History rows show White and Black accuracy aligned with their player names.
 Pending reviews show their review action or progress state in that column.
 

@@ -515,6 +515,8 @@ body:has(dialog[open]) { overflow: hidden; }
 .game-summary table { width: 100%; border-collapse: collapse; font-size: 12px; }
 .game-summary th, .game-summary td { padding: 4px; text-align: right; }
 .game-summary th:first-child, .game-summary td:first-child { text-align: left; }
+.game-summary tbody th { font-weight: 400; }
+.game-summary .game-summary-accuracy > * { padding-block: 8px; border-bottom: 1px solid var(--line); }
 @media (max-width: 760px) {
   .game-player { min-height: 27px; }
   .game-board-controls { gap: 2px; }

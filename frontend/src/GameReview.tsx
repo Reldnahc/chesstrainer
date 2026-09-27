@@ -32,7 +32,7 @@ type ReviewProgress = { job: Game["job"]; accuracy: Accuracy | null; moves: { pl
 type Branch = { id: number; root: number; moves: string[]; sans: string[]; returnPly: number; };
 type Cursor = { ply: number; branch: number | null; step: number };
 type Analysis = { report: Report | null; score: Score | null; best_move: string | null };
-const labels = ["Brilliant", "Great", "Best", "Good", "Inaccuracy", "Mistake", "Miss", "Blunder"];
+const labels = ["Brilliant", "Great", "Best", "Good", "Book", "Inaccuracy", "Mistake", "Miss", "Blunder"];
 const bad = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
 const dateText = (date: string | null) => date && !date.includes("?") ? date : "Date unknown";
 
@@ -44,18 +44,24 @@ function scoreText(score: Score | null | undefined) {
 function strength(score: Score) {
   return score.kind === "mate" ? (score.value > 0 || score.mate_given ? 1 : -1) : Math.tanh(score.value / 400);
 }
-function PlayerRow({ name, color, accuracy, complete, status }: {
-  name: string; color: "white" | "black"; accuracy: Accuracy | null; complete: boolean; status: string;
+function AccuracyReadout({ color, accuracy, complete, summary = false }: {
+  color: "white" | "black"; accuracy: Accuracy | null; complete: boolean; summary?: boolean;
 }) {
   const value = accuracy?.[color];
+  const side = color === "white" ? "White" : "Black";
   const description = value != null ? "Original-game accuracy out of 100, using Lichess's method."
     : complete ? "Accuracy unavailable. Both players need moves with complete analysis."
     : "Accuracy will appear when the full game review finishes.";
+  return <output className="game-accuracy" aria-label={summary ? `Accuracy for ${side}` : `${side} accuracy`} title={description}>
+    {!summary && <span>Accuracy</span>}<b>{value == null ? "—" : value.toFixed(1)}</b><span className="sr-only">{description}</span>
+  </output>;
+}
+function PlayerRow({ name, color, accuracy, complete, status }: {
+  name: string; color: "white" | "black"; accuracy: Accuracy | null; complete: boolean; status: string;
+}) {
   return <div className="game-player">
     <div className="game-player-identity"><strong className="game-player-name" title={name}>{name}</strong>
-      <output className="game-accuracy" aria-label={`${color === "white" ? "White" : "Black"} accuracy`} title={description}>
-        <span>Accuracy</span><b>{value == null ? "—" : value.toFixed(1)}</b><span className="sr-only">{description}</span>
-      </output>
+      <AccuracyReadout color={color} accuracy={accuracy} complete={complete}/>
     </div>
     <span className="game-player-status" title={status}>{status}</span>
   </div>;
@@ -378,7 +384,14 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
           </>}
           {game.job?.error && <p className="small" role="alert">{game.job.error}</p>}
         </section>
-        <details className="game-summary"><summary>Move quality{game.job?.status === "completed" ? " · complete game" : ""}</summary><table><thead><tr><th>Move quality</th><th>White</th><th>Black</th></tr></thead><tbody>{summary.map(s => <tr key={s.label}><td><MoveBadge label={s.label}/></td><td>{s.white}</td><td>{s.black}</td></tr>)}</tbody></table></details>
+        <details className="game-summary"><summary>Move quality{game.job?.status === "completed" ? " · complete game" : ""}</summary>
+          <table aria-label="Move quality and accuracy"><thead><tr><th scope="col">Move quality</th><th scope="col">White</th><th scope="col">Black</th></tr></thead><tbody>
+            <tr className="game-summary-accuracy"><th scope="row">Accuracy</th>{(["white", "black"] as const).map(color => <td key={color}>
+              <AccuracyReadout color={color} accuracy={game.accuracy} complete={game.job?.status === "completed"} summary/>
+            </td>)}</tr>
+            {summary.map(s => <tr key={s.label}><th scope="row"><MoveBadge label={s.label}/></th><td>{s.white}</td><td>{s.black}</td></tr>)}
+          </tbody></table>
+        </details>
         </div>
     </ReviewWorkspace>
   </div>;
