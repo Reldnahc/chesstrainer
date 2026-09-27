@@ -158,6 +158,13 @@ user. Missing rows read as `classic` with `natural` motion; reading defaults nev
 creates rows. Supported motion choices are natural, subtle and still. System
 reduced motion always takes precedence over an animation preference.
 
+The preference contract accepts 16 stable character IDs. Storyteller keeps
+`classic`; the others use `man-*`, `woman-*`, `cat-*` and `dog-*` IDs so a saved
+choice identifies one specific character, independent of its display name.
+Expanding this allowlist uses the existing string column and needs no new
+database migration. Tests round-trip every allowed ID through an application
+restart and verify that another account starts with its own default.
+
 The additive migration does not change games, sessions or authentication. Invalid
 new choices are rejected. Unrecognized saved choices fall back for this release
 without overwriting the stored value, allowing removed coaches or older releases

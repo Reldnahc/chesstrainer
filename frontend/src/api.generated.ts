@@ -866,9 +866,9 @@ export interface components {
             /**
              * Coach Id
              * @default classic
-             * @constant
+             * @enum {string}
              */
-            coach_id: "classic";
+            coach_id: "classic" | "man-host" | "man-expert" | "man-partner" | "woman-captain" | "woman-analyst" | "woman-spark" | "woman-blonde" | "cat-tabby" | "cat-tuxedo" | "cat-calico" | "cat-black" | "dog-sunny" | "dog-gentle" | "dog-corgi" | "dog-collie";
             /**
              * Motion
              * @default natural

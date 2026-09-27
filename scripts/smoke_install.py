@@ -72,7 +72,7 @@ def main():
                     "coach_id": "classic",
                     "motion": "natural",
                 }
-                preference = {"coach_id": "classic", "motion": "still"}
+                preference = {"coach_id": "cat-black", "motion": "still"}
                 client.put(
                     "/api/preferences/coach", headers=headers, json=preference
                 ).raise_for_status()

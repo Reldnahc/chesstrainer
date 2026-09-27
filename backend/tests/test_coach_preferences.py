@@ -1,16 +1,29 @@
 from concurrent.futures import ThreadPoolExecutor
+from typing import get_args
 
+import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select, text
 from trainer.accounts import COOKIE
 from trainer.api import create_app
-from trainer.contracts.preferences import CoachPreferences
+from trainer.contracts.preferences import CoachId, CoachPreferences
 from trainer.db import database, migrate
 from trainer.models import UserPreferences
 from trainer.preferences import coach_preferences, save_coach_preferences
 
 DEFAULT = {"coach_id": "classic", "motion": "natural"}
 PATH = "/api/preferences/coach"
+
+
+@pytest.mark.parametrize("coach_id", get_args(CoachId))
+def test_every_coach_persists_across_restart(settings, coach_id):
+    saved = {"coach_id": coach_id, "motion": "subtle"}
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        response = client.put(PATH, json=saved)
+        assert response.status_code == 200
+        assert response.json() == saved
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        assert client.get(PATH).json() == saved
 
 
 def test_local_defaults_save_restart_and_validation(settings):
@@ -47,7 +60,7 @@ def test_accounts_second_device_isolation_and_csrf(settings):
         assert (
             client.put(
                 PATH,
-                json=DEFAULT | {"motion": "subtle"},
+                json={"coach_id": "dog-collie", "motion": "subtle"},
                 headers=origin | {"X-CSRF-Token": alice["csrf"]},
             ).status_code
             == 200
@@ -65,7 +78,7 @@ def test_accounts_second_device_isolation_and_csrf(settings):
         )
         signed_in.raise_for_status()
         assert client.cookies.get(COOKIE) != token
-        assert client.get(PATH).json() == DEFAULT | {"motion": "subtle"}
+        assert client.get(PATH).json() == {"coach_id": "dog-collie", "motion": "subtle"}
 
 
 def test_unknown_saved_choices_fall_back_without_overwriting(sessions):
