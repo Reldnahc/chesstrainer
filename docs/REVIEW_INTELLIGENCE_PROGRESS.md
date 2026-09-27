@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 10 verified; Milestone 11 is next.
+Current checkpoint: Milestone 11 verified; Milestone 12 is next.
 
 ## Baseline
 
@@ -226,8 +226,7 @@ Milestone 9: `a67aa8f` — semantic game narrative and completion UX.
   no coach prose. The next milestone replaces neutral display prose through the
   shared dialogue/utterance boundary before personalities begin.
 
-Milestone 10: shared neutral dialogue complete; commit SHA will be recorded at
-the next boundary.
+Milestone 10: `b785158` — shared neutral dialogue.
 
 - Pure client intents/utterances select evidence-backed claims and deterministic
   variants from current reports, context and narrative. Shared integration covers
@@ -245,6 +244,22 @@ the next boundary.
   compactness and the compatibility fallback. Personality work remains subsequent.
 - Offline native Stockfish + Maia smoke passed: completed review, exact human
   policy, restart/cache reuse and coach-independent persisted evidence.
+
+Milestone 11: standalone intelligence laboratory complete; commit SHA will be
+recorded at the next boundary.
+
+- Separate loopback-only Vite entry (5175), with no backend proxy/account connection.
+  Local game-detail JSON exposes Stockfish, human provenance/policy, practical
+  assessment, events/clocks, links/history/narrative, intents and exact variants.
+  The lab calls the actual production renderer with the same mainline identity.
+- Validated bounded file/paste import, stale-read guard, previous-document retention
+  after malformed input, disabled read-only board and responsive trace panels.
+  Production routes/bundles exclude the surface; CI runs its separate suite.
+- Lab desktop/mobile tests: 6 passed. Production build/type/API checks passed.
+  Inspected the full diagnostic screenshot and corrected oversized checkbox styles.
+  Usage/data privacy and export workflow documented in INTELLIGENCE_LAB.md.
+- Production coach/navigation suite: 10 passed. Final lab rerun after syntax and
+  layout review: 6 passed. Type and whitespace checks passed.
 
 ## Decisions / follow-ups
 

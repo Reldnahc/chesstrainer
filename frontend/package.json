@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "dev:coach": "vite --config vite.coach.config.ts",
+    "dev:intelligence": "vite --config vite.intelligence.config.ts",
     "build": "tsc -b && npm run test:types && vite build",
     "preview": "vite preview",
     "prebuild": "npm run api:check && node ../scripts/source_archive.mjs",

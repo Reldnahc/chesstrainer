@@ -7,6 +7,8 @@ test("the app offers coach selection without an expression viewer route", async 
   await page.goto("/coach-studio");
   await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
   await expect(page.getByLabel("Animation preview controls")).toHaveCount(0);
+  await page.goto("/intelligence-lab");
+  await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
   await page.getByRole("link", { name: "Go to your games" }).click();
   await expect(page).toHaveURL(/\/games$/);
 });

@@ -1,0 +1,15 @@
+.intelligence-lab {max-width: 1500px; margin: auto; padding: 28px; width: 100%;}
+.intelligence-lab h1 {font-size: clamp(1.7rem, 4vw, 2.6rem);}
+.intelligence-lab header {margin-bottom: 24px;}
+.lab-import, .lab-chain details, .lab-overview section {background: var(--surface, #24272a); border: 1px solid #42484e; border-radius: 10px; padding: 18px;}
+.lab-import label {display: block; margin-bottom: 12px;}
+.lab-import textarea {width: 100%; font-family: var(--mono);}
+.lab-controls {display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 20px 0;}
+.lab-controls label {display: flex; flex-direction: row; align-items: center; gap: 8px;}
+.lab-controls input[type="checkbox"] {width: 18px; height: 18px; min-height: 18px; margin: 0;}
+.lab-overview {display: grid; grid-template-columns: minmax(240px, 380px) minmax(0, 1fr); gap: 24px; margin-bottom: 24px;}
+.lab-utterance {font-size: 1.2rem; line-height: 1.6;}
+.lab-chain {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 16px;}
+.lab-chain summary {text-transform: capitalize; cursor: pointer; font-weight: 600;}
+.lab-chain pre {white-space: pre-wrap; overflow-wrap: anywhere; max-height: 580px; overflow: auto; font-size: .82rem;}
+@media(max-width: 760px) {.intelligence-lab {padding: 16px;} .lab-overview, .lab-chain {grid-template-columns: minmax(0, 1fr);} .lab-overview .board-shell {max-width: 380px;}}

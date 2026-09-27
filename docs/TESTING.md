@@ -35,6 +35,7 @@ ruff format --check backend scripts migrations
 cd frontend
 npx playwright test
 npx playwright test --config playwright.coach.config.ts
+npx playwright test --config playwright.intelligence.config.ts
 ```
 
 Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Tests run serially against the production build and a test server on 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
@@ -44,6 +45,8 @@ expression/animation tests in `frontend/studio-tests`. It needs no backend, logi
 database or Stockfish. Production browser tests verify that Settings still offers
 coach selection but no expression viewer, and that `/coach-studio` is not an app
 route. CI runs the application, account and standalone studio suites separately.
+The independent [intelligence laboratory](INTELLIGENCE_LAB.md) runs on port 5175;
+its suite verifies evidence inspection, production-renderer parity and isolation.
 
 PowerShell can use .venv/Scripts/python.exe, .venv/Scripts/ruff.exe, npm.cmd and npx.cmd without activation. PLAYWRIGHT_BROWSERS_PATH optionally selects an installed Chromium directory; TEST_PYTHON selects the browser test server's Python executable.
 
