@@ -41,6 +41,11 @@ the backend OpenAPI snapshot must be regenerated together when contracts change.
 No human-model integration exists at this checkpoint. Normal tests and serving
 saved reviews require neither Torch nor a model checkpoint.
 
+The subsequent feasibility investigation and production integration decision are
+recorded in [MAIA_FEASIBILITY.md](MAIA_FEASIBILITY.md), including exact upstream
+revisions, actual probabilities versus UCI rank-only behavior, domain limits,
+model/file sizes and CPU/offline Docker measurements.
+
 ## Repeatable benchmark
 
 Run from the repository root with the existing Python environment:
