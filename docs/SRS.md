@@ -61,8 +61,10 @@ counter starts after the attempted move finishes. Reduced motion disables piece
 transitions and badge entrance animations in both modes.
 
 The shared header keeps the SRS title and session count on one row. The coach
-reserves title, scrollable message and action slots across checking, retries,
-success and explanation playback. Show me why is present but disabled until a
+reserves title and scrollable message slots in a compact speech bubble, with a
+separate action row underneath across checking, retries, success and explanation
+playback. Game review adds its evaluation in the bubble's corner; cold SRS keeps
+evaluations hidden. Show me why is present but disabled until a
 saved attempt exists. Explanation loading preserves the sidebar height to avoid
 clamping a phone's scroll position. No additional analysis is requested for these
 visual effects.

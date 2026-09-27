@@ -6,13 +6,14 @@ import MoveSymbol from "./MoveSymbol";
 import MoveBadge from "./MoveBadge";
 import ReviewCoach from "./ReviewCoach";
 import ReviewWorkspace from "./ReviewWorkspace";
+import EvaluationScore from "./EvaluationScore";
+import { scoreText, strength, type Score } from "./evaluation";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
 import Link from "./Link";
 import { gamesPath, navigate as navigatePage, pagePaths, rememberGamePly } from "./navigation";
 
-type Score = { kind: "cp" | "mate"; value: number; mate_given?: boolean };
 type Candidate = { uci: string; san: string; pv: string[]; score: Score };
 type Report = {
   label: string; reason: string; coach: string; best: Candidate; actual: Candidate;
@@ -36,14 +37,6 @@ const labels = ["Brilliant", "Great", "Best", "Good", "Book", "Inaccuracy", "Mis
 const bad = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
 const dateText = (date: string | null) => date && !date.includes("?") ? date : "Date unknown";
 
-function scoreText(score: Score | null | undefined) {
-  if (!score) return "—";
-  if (score.kind === "mate") return `${score.value > 0 || score.mate_given ? "+" : "−"}M${Math.abs(score.value)}`;
-  return `${score.value >= 0 ? "+" : ""}${(score.value / 100).toFixed(2)}`;
-}
-function strength(score: Score) {
-  return score.kind === "mate" ? (score.value > 0 || score.mate_given ? 1 : -1) : Math.tanh(score.value / 400);
-}
 function AccuracyReadout({ color, accuracy, complete, summary = false }: {
   color: "white" | "black"; accuracy: Accuracy | null; complete: boolean; summary?: boolean;
 }) {
@@ -345,8 +338,10 @@ function GameWorkspace({ id, initialPly, libraryHref }: { id: string; initialPly
         </div>}
     >
         <ReviewCoach
-          title={<strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>}
-          badge={report ? <MoveBadge label={report.label}/> : actor && !errorAtPosition ? <span className="game-rating-pending" role="status">Checking move...</span> : null}
+          title={report ? <MoveBadge label={report.label}><span className="coach-rated-move">
+            <span className="sr-only">{actor} · </span>{frame?.san || "Move"} is {(["Mistake", "Miss", "Blunder", "Inaccuracy"].includes(report.label)) ? (report.label === "Inaccuracy" ? "an " : "a ") : ""}<span className="coach-quality-name">{report.label}</span>
+          </span></MoveBadge> : <strong>{actor ? `${actor} · ${frame?.san || "Move"}` : "Your coach"}</strong>}
+          evaluation={<EvaluationScore score={score}/>}
           actions={<>
             <button aria-pressed={explaining} disabled={!cues && !errorAtPosition} onClick={() => {
               if (errorAtPosition) { setAnalysisError(null); setRetry(n => n + 1); }

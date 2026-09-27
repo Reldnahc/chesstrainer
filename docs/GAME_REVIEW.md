@@ -40,7 +40,11 @@ The coach and timeline fill as analysis finishes. Select a move, use the arrow k
 or select **Next mistake**. **Show why** overlays arrows and tactical square
 highlights on the current board without moving pieces, changing the selected
 move, requesting more analysis, or creating a variation. **Hide why** or Escape
-clears those cues. The best alternative remains visible in the coach footer.
+clears those cues. The action row and best alternative sit below the speech bubble.
+The compact coach shows the move and rating together, with a prominent signed
+evaluation in the opposite corner. Scores always use White's perspective, even
+in a variation or after flipping the board: positive favors White, negative favors
+Black, and signed `M` values denote forced mate. Pending evaluations show a dash.
 Only the played position and immediate reply supply visual cues; later engine
 continuations are not projected onto the current board.
 
@@ -58,8 +62,10 @@ Click or tap a dot, or anywhere along the graph, to return to that ply in the
 original game. Arrow keys navigate reviewed dots when a dot is focused; Home/End
 select the first/last reviewed move. The slider also navigates every ply, including
 positions still being reviewed. The coach keeps its label, message area, and action
-row in stable slots; longer explanations scroll inside the bubble. The illustrated
-coach is 50% larger at each screen size. Best-move markers use a centered SVG star
+row in stable slots; longer explanations scroll inside the bubble. The desktop
+bubble and illustrated coach share a 116px height; narrow layouts use a 136px
+bubble with a smaller portrait. Actions stay outside the bubble in both review modes.
+Best-move markers use a centered SVG star
 on the board, in coaching, and in notation.
 On phones the coach appears directly below the
 board controls, with full-size touch targets and normal page scrolling. Mobile

@@ -138,7 +138,7 @@ test('book moves appear on the board, coach and branches with original-game accu
   await page.getByRole('button', {name: '1... e5, Book', exact: true}).click();
   await page.locator('.board-shell [data-square="g1"]').click();
   await page.locator('.board-shell [data-square="f3"]').click();
-  await expect(page.locator('.coach-speech .move-badge')).toHaveText('Book', {timeout: 30_000});
+  await expect(page.locator('.coach-speech .move-badge')).toContainText('Book', {timeout: 30_000});
   await expect(page.locator('.coach-speech')).toContainText("King's Knight Opening");
   await expect(page.locator('.game-variation-row .label-book svg')).toBeVisible();
   expect(await table.locator('tbody tr').allTextContents()).toEqual(counts);
