@@ -56,8 +56,14 @@ lock, while other accounts have independent locks.
 | Module in frontend/src | Responsibility |
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
-| Review.tsx | Review/focus session state, answer/reveal actions, counter timer, queue transitions and board composition |
-| GameReview.tsx | Game library, stable coach, in-place board cues, responsive timeline, compact notation, in-session variation branches and stale-response isolation |
+| Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
+| srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
+| srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
+| GameReview.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
+| gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
+| gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |
+| gameReview/usePositionAnalysis.ts | Serialized engine requests, per-history cache, browsing debounce and stale-response isolation |
+| gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
 | Settings.tsx | Effective settings display and local classification job controls |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
@@ -65,7 +71,7 @@ lock, while other accounts have independent locks.
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
 | api.ts | Same-origin HTTP client and response types |
 
-Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review keeps its related state and timers together. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
+Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
 Navigation is Review, Games, Weaknesses, Import, Settings. A small History API
 router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and

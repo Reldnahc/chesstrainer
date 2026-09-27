@@ -12,7 +12,7 @@ and may move during refactoring.
 
 - [x] **1. Gate Docker publishing on correctness checks.**
 - [x] **2. Replace per-account application instances and permanent worker threads.**
-- [ ] **3. Separate review screen state management from presentation.**
+- [x] **3. Separate review screen state management from presentation.**
 - [ ] **4. Define and share API response contracts.**
 - [ ] **5. Run account browser tests in CI.**
 - [ ] **6. Consolidate CSS ownership and remove obsolete styles.**
@@ -86,7 +86,7 @@ retirement state. Engine health and exception diagnostics remain open in item 10
 
 ## 3. Review components concentrate too many responsibilities
 
-**Priority:** High. **Status:** Open.
+**Priority:** High. **Status:** Resolved and verified.
 
 `frontend/src/Review.tsx` has a 452-line SRS component. `GameReview.tsx` combines
 request queues, caching, stale-response handling, branching, keyboard navigation,
@@ -98,7 +98,22 @@ and smaller presentation components. Keep the existing shared board, coach and
 workspace layout. Preserve the distinct policies of SRS and whole-game review,
 including navigation, cancellation and stale-response behavior.
 
-**Verification / resolution:** Pending.
+**Implementation:** SRS now separates queue/grading state from counter/explanation
+playback and from its coach/details presentation. Whole-game review separates job
+lifecycle/polling, variation navigation and queued/cached engine requests, with
+small components for players, controls, notation, coaching and summaries. Both
+still compose the same shared board, coach and workspace. Request cleanup ignores
+late responses after leaving a session; analysis generations invalidate old
+results when restarting. Bookmarked moves are clamped before rendering.
+
+**Verification / resolution:** Production build and full backend suite passed
+(408 tests). The final full desktop/mobile browser run passed (75 tests, 3 expected
+viewport-specific skips); account browser coverage also passed (2 tests). Coverage
+includes shared geometry/motion, reveal/retry/focused practice, incremental progress,
+pause/resume, keyboard/history navigation, queued branch ratings and stale replies.
+A new regression checks that a late grading failure cannot leak into another page.
+The first browser run caught a bookmarked-ply regression; it was corrected before
+the final passing run. Diff checks passed.
 
 ## 4. API response contracts are largely unspecified
 
