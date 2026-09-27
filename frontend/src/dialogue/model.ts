@@ -41,7 +41,8 @@ export type CoachUtterance = {
   priority: number;
   interruptible: boolean;
   autoSpeakSuitable: boolean;
-  trace: { renderer: string; variants: {code: string; index: number; sourceIds: string[]}[]; decisions: string[] };
+  delivery?: {pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright"};
+  trace: { renderer: string; variants: {code: string; index: number; sourceIds: string[]; source?: string}[]; decisions: string[] };
 };
 
 // Stable variation, not a security hash. Sort object keys so JSON transport order is irrelevant.

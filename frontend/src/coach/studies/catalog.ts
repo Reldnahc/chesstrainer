@@ -8,6 +8,8 @@ import ManCoach from "./ManCoach";
 import WomanCoach from "./WomanCoach";
 import CatCoach from "./CatCoach";
 import DogCoach from "./DogCoach";
+import { storyteller } from "../../dialogue/characters/storyteller";
+import { analyst } from "../../dialogue/characters/analyst";
 
 const animalPerformance: CoachDefinition["animation"] = {
   defaultReactionMs: 1400,
@@ -76,6 +78,7 @@ export const manStudy: CoachCollection = {
     {
       id: "storyteller",
       coachId: "classic",
+      personality: storyteller,
       name: "Storyteller",
       description:
         "Warm, generous acting. A face you can read across the board.",
@@ -147,6 +150,7 @@ export const womanStudy: CoachCollection = {
     {
       id: "analyst",
       coachId: "woman-analyst",
+      personality: analyst,
       name: "Quiet analyst",
       description:
         "A curled updo, warm cream knitwear and thoughtful eyes behind glasses.",

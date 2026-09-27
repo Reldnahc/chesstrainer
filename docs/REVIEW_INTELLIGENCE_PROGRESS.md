@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 11 verified; Milestone 12 is next.
+Current checkpoint: Milestone 12 verified; Milestone 13 is next.
 
 ## Baseline
 
@@ -245,8 +245,7 @@ Milestone 10: `b785158` — shared neutral dialogue.
 - Offline native Stockfish + Maia smoke passed: completed review, exact human
   policy, restart/cache reuse and coach-independent persisted evidence.
 
-Milestone 11: standalone intelligence laboratory complete; commit SHA will be
-recorded at the next boundary.
+Milestone 11: `ae388fb` — standalone intelligence laboratory.
 
 - Separate loopback-only Vite entry (5175), with no backend proxy/account connection.
   Local game-detail JSON exposes Stockfish, human provenance/policy, practical
@@ -260,6 +259,24 @@ recorded at the next boundary.
   Usage/data privacy and export workflow documented in INTELLIGENCE_LAB.md.
 - Production coach/navigation suite: 10 passed. Final lab rerun after syntax and
   layout review: 6 passed. Type and whitespace checks passed.
+
+Milestone 12: personality architecture complete; commit SHA will be recorded at
+the next boundary.
+
+- Existing catalogue families register personality/bible/template/delivery data;
+  no second coach-ID list or account field. Pure rendering receives only a semantic
+  intent, keeps factual priority/intensity/reaction, and records custom/fallback
+  provenance. Missing/invalid custom templates fall back safely to neutral claims.
+- Storyteller and Quiet Analyst demonstrate contrasting factual phrasing. Full-cast
+  curated writing is the next milestone. The lab can select any registered voice.
+- Production build/API/type checks passed. Game, dialogue and all-coach selection
+  regressions: 40 passed; new persistence case initially used a synchronous radio
+  check and incorrectly counted the existing idempotent reopen handshake as work.
+  Corrected case verifies completed job identity, unchanged full facts/context and
+  no analysis requests. Final personality suite: 6 passed. Lab suite: 6 passed.
+- Reopening may check for new model/refinement availability; merely changing a
+  preference never queues a search. This behavior is preserved, not bypassed for
+  the test. Ruff and whitespace checks passed.
 
 ## Decisions / follow-ups
 

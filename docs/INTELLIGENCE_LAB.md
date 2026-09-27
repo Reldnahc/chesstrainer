@@ -29,6 +29,9 @@ Show Why uses the same board-cue wording as production. Suppressing recorded-gam
 context demonstrates the branch boundary; it does not create or analyze a branch.
 The laboratory uses the same game/path seed as production mainline review. It
 never decides legality, quality or human probabilities itself.
+The Voice selector draws directly from the selectable coach registry and keeps a
+neutral reference. Changing it rerenders the same intent locally; the utterance
+trace identifies each custom or neutral fallback template.
 
 `npx playwright test --config playwright.intelligence.config.ts` tests import,
 malformed/versioned data, deterministic production parity, mobile layout, no API

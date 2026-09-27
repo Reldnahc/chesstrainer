@@ -1,5 +1,6 @@
 import { coachStudies } from "./studies/catalog";
 import type { SelectableCoach } from "./model";
+import { neutralPersonality } from "../dialogue/personality";
 
 export const coachCollections = coachStudies;
 export const selectableCoaches: readonly SelectableCoach[] =
@@ -10,6 +11,7 @@ export const selectableCoaches: readonly SelectableCoach[] =
       collectionId: collection.id,
       name: family.name,
       description: family.description,
+      personality: family.personality ?? neutralPersonality,
       defaultFamily: family.id,
       families: [family],
       animation: family.animation ?? collection.animation,

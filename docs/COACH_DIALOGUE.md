@@ -35,3 +35,26 @@ auto-speak suitability; there is no audio or TTS integration.
 Regression coverage lives in `dialogue-logic.spec.ts`, game/coach/practice browser
 suites and backend review-event tests. Developer diagnostics consume these same
 pure functions rather than implement another dialogue pipeline.
+
+## Personality boundary
+
+Each family in the existing coach catalogue may register a `CoachPersonality`.
+The selectable registry carries it into the existing account-selected coach;
+there is no parallel identity list or new account setting. An omitted definition
+uses the neutral personality. A partial or malformed custom template falls back
+to the neutral rendering for that claim. New coaches therefore work safely before
+their full writing is ready.
+
+The renderer receives only `DialogueIntent` and a character definition. Curated
+claim templates change sentence structure; character bibles define temperament,
+teaching, rhythm, celebration, correction and boundaries. Compactness and neutral
+delivery metadata are configurable. Priority, factual intensity, reaction meaning,
+references and claims remain unchanged. No personality code can query an engine,
+model or account from this interface. Named factual slots come from the shared
+intent; render functions have no arbitrary callbacks.
+
+`useDialogue` reads the existing account preference and renders synchronously.
+Switching and reloading a selected coach changes language and portrait while
+preserving stored reports. The laboratory's Voice selector renders the same intent
+through any current registry entry or the neutral reference, with template-source
+and deterministic variant provenance shown in the trace.
