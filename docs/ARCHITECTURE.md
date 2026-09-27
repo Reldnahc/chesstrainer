@@ -73,7 +73,7 @@ lock, while other accounts have independent locks.
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
 | coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, reduced motion, event dwell, one-shot reactions and occasional idle gestures |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
-| coach/studies/ / coach/studio/ | Four concepts each for men, women, cats and dogs; shared drawing primitives and lazy-loaded comparison UI |
+| coach/studies/ / coach/studio/ | Shared registered character artwork and a separate development-only comparison entry |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Shared title display |
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
@@ -106,12 +106,11 @@ destination. The root URL aliases `/review` with `replaceState`, preserving old
 `?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
 starting a lesson. Unknown paths show a recoverable not-found screen.
 
-`/coach-studio`, linked from Settings, compares four concepts each for men, women,
-cats and dogs. The preview catalogue is separate from the production coach
-registry, and the additional artwork loads only with this route. Character,
-family and expression URLs restore a study; character switches cancel sequences
-and reset unsupported idle choices. Its preview state does not change account
-preferences or start analysis. There is no extra main navigation destination.
+The coach studio is a separate development process (`npm run dev:coach`, port
+5174), using its own HTML entry and the same character catalogue as production.
+It has no production route or Settings link. Character, family and expression
+URLs restore a study; switches cancel sequences and reset unsupported idle choices.
+The studio does not access account preferences or start analysis.
 
 `?focus=<skill>` selects focused practice, `?page=N` records the library page
 (also retained on game links), and `?ply=N` records a game's selected half-move.
@@ -239,8 +238,18 @@ classification_quality.py and the read-only report script support blinded export
 
 Lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Course generation and lesson progression code have been removed; active review cannot start, resume or finish a lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive.
 
-OpenAI runtime integration is removed: no model SDK or network calls remain. Historical classification and teaching responses stay local. Only explicit Chess.com imports need outbound network access.
+OpenAI runtime integration is removed: no model SDK or model network calls remain.
+Historical classification and teaching responses stay local. Explicit Chess.com
+imports and enabled recent-game synchronization use the public Chess.com API.
 
-Production LAN binding and an optional shared token are configuration. Do not expose the application directly to the internet. The supported deployment is a source checkout with one Python process serving the built frontend; standalone wheel/static-asset packaging remains future work.
+Supported installations include the published Docker image and a source checkout,
+both with one Python process serving the built frontend. Local mode shares one
+workspace; hosted mode uses app accounts behind an HTTPS reverse proxy. See
+[ACCOUNTS.md](ACCOUNTS.md) and [CONFIGURATION.md](CONFIGURATION.md). A standalone
+wheel with packaged static assets is not currently supported.
+
+Review-intelligence authority boundaries and measurement rules are recorded in
+[REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Human move behavior must never
+replace objective Stockfish evaluation or directly assign move-quality labels.
 
 The frontend build generates a public-source snapshot with scripts/source_archive.py, served by the existing /assets mount and linked in Settings. Git-listed public source and licenses are included; private data, secrets and untracked files are excluded. See NOTICE.md and LICHESS_REUSE.md for the GPL/AGPL combination and source-offer workflow.

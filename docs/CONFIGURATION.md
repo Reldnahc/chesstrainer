@@ -2,7 +2,12 @@
 
 Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment variables override root .env; defaults apply last. Relative paths resolve from the server working directory. Run from the repository root. Invalid recognized values fail startup with field-specific errors.
 
-Settings in the browser is read-only. Edit host configuration and restart the backend. Existing exercise policies and engine evidence keep their saved configuration. The optional LAN token is a SecretStr excluded from public serialization; only its configured status is returned.
+Host configuration is changed in the environment, followed by a backend restart.
+Settings in the browser edits account preferences, including Chess.com username,
+coach and motion; it is not a container configuration editor. Existing exercise
+policies and engine evidence keep their saved configuration. The optional LAN
+token is a SecretStr excluded from public serialization; only its configured
+status is returned.
 
 ## Active settings
 
@@ -102,7 +107,8 @@ The UI refreshes health on page navigation and allows retries even after a failu
 Administrator logs contain exception chains; shared health responses do not contain
 raw exception details. There are no additional container variables for this.
 
-- `ACCOUNTS_ENABLED=false` preserves the original local mode; Docker defaults to true.
+- Accounts require both `ACCOUNTS_ENABLED=true` and a nonblank `PUBLIC_ORIGIN`.
+  Docker defaults the flag to true; blank origin still selects the shared local workspace.
 - `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
 - `ENGINE_SLOTS=4` caps native engine processes and concurrent analysis jobs across

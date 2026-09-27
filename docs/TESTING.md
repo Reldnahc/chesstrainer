@@ -1,5 +1,11 @@
 # Testing
 
+The review-intelligence synthetic baseline corpus and native benchmark commands
+are documented in [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Its contract
+tests run with ordinary pytest without Torch or a Maia checkpoint; native
+Stockfish checks use the existing `stockfish` marker. Benchmark artifacts are
+ignored private development output, not repository fixtures.
+
 Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
 
 ## Full verification

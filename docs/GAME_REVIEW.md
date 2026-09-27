@@ -128,8 +128,9 @@ not mathematical proof. These labels are Fieldwork rules, not Chess.com's algori
 
 ## Labels, version game-review-1
 
-Only Blunder severity depends on the selected rating. The same rating setting is
-used for both players. It changes presentation, never evaluations or tactical facts.
+Only Blunder severity depends on rating. Each move uses its moving player's PGN
+rating; the review rating is a fallback when that player's rating is missing.
+It changes presentation, never evaluations or tactical facts.
 It defaults to 1000 and is stored with the review; changing it reuses engine evidence.
 
 - Best: engine top choice or at most 10 cp loss.

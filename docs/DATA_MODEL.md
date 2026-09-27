@@ -1,15 +1,17 @@
 # Data model
 
-SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at f83a90d16c24. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
+SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at ab35a86cd472. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
 
 ## Current and archival relationships
 
 | Tables | Role |
 |---|---|
+| users, auth_sessions, user_preferences | Account credentials/session digests, recent-game sync and persisted coach/motion preferences |
 | game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side and unique fingerprints |
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
 | chesscom_imports, chesscom_archives | Query/filter settings, download diagnostics and per-job archive checkpoints |
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
+| game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
 | decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
 | skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
 | classification_analyses, classification_tasks, classification_probes | Supplemental evidence, capped job selections and root/tail/defense query links, separate from grading authority |
@@ -20,9 +22,13 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
 | repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
 
-There are 29 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 34 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
 
-Configuration lives in environment/.env, not a mutable settings table; the Settings screen is read-only. Credentials are not stored in SQLite. Skill state is derived from evidence and reviews, avoiding a duplicated mastery table.
+Host configuration lives in environment/.env. User settings are account-owned and
+editable in Settings. SQLite contains salted password hashes and session-token
+digests, never plaintext passwords or session tokens. Skill state is derived from
+evidence and reviews, avoiding a duplicated mastery table. See [ACCOUNTS.md](ACCOUNTS.md)
+for ownership filtering and private foreign-key validation.
 
 Engine exercise identity includes analysis/policy context, so identical boards with different draw histories may remain separate. Legacy repertoire helpers normalized continuations into exercise answers and merged transpositions within a repertoire by legal-play key. Those saved rows remain readable; they do not imply an active import or practice workflow. Existing manual exercises remain reviewable through the retained validated API.
 
