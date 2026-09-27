@@ -205,3 +205,11 @@ export function animalPose(
       }
     : original;
 }
+
+export function tailTransform(pose: AnimalPose) {
+  // Shorten a worried tail toward the hip; rotating it outward alone makes it
+  // look excited and pushes the tip beyond the reserved portrait width.
+  const angle = pose.tail > 0 ? -pose.tail * 0.25 : pose.tail;
+  const length = 1 - Math.max(0, pose.tail) * 0.018;
+  return `translate(74 105) rotate(${angle}) scale(1 ${length}) translate(-74 -105)`;
+}

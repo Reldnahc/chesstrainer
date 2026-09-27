@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import type { CoachArtworkProps } from "../model";
-import { animalPose } from "./animalPoses";
+import { animalPose, tailTransform } from "./animalPoses";
 import AnimalFace, { type AnimalPalette } from "./AnimalFace";
 import AnimalPaws from "./AnimalPaws";
 import Accents from "./Accents";
@@ -63,7 +63,7 @@ export default function RetrieverCoach({
       <Accents expression={expression} />
       <g className="study-body">
         <g className="study-body-idle">
-          <g transform={`rotate(${pose.tail} 74 105)`}>
+          <g transform={tailTransform(pose)}>
             <g className="study-tail">
               <path
                 d="M68 110q19-7 23-22l-1-13 5 5-1-14q11 22-1 36l-3-1 1 7-8-2-3 7Z"

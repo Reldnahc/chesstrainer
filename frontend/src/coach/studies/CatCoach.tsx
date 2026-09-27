@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import type { CoachArtworkProps } from "../model";
-import { animalPose } from "./animalPoses";
+import { animalPose, tailTransform } from "./animalPoses";
 import AnimalFace, { type AnimalPalette } from "./AnimalFace";
 import AnimalPaws from "./AnimalPaws";
 import Accents from "./Accents";
@@ -61,7 +61,7 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
       <Accents expression={expression} />
       <g className="study-body">
         <g className="study-body-idle">
-          <g transform={`rotate(${pose.tail} 74 105)`}>
+          <g transform={tailTransform(pose)}>
             <g className="study-tail">
               <path
                 d="M69 107q22 0 18-17-3-12 4-19 8-9 0-15"
