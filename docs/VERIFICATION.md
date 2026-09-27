@@ -2,6 +2,81 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Completed code quality audit: September 27, 2026
+
+All ten audit findings are resolved. The final review revisited the first four
+fixes as well as the remaining six before removing the temporary checklist.
+No blocking finding remains from this review.
+
+1. **Publishing checks:** Docker publication requires the reusable correctness
+   workflow for the same commit, including manual releases. Reviewed dependencies,
+   checkout SHAs, permissions and immutable image tags; no unchecked release path
+   was found.
+2. **Shared hosting:** One application and bounded host-wide workers replace
+   per-account runtimes. Reviewed account-scoped queries, job ownership, recovery,
+   cancellation, pooled session rebinding and shutdown. Regressions cover 250 idle
+   accounts, concurrent isolation and shared engine limits.
+3. **Review structure:** Session, playback, navigation and engine-request state
+   have separate owners; both review screens retain shared presentation. Reviewed
+   cleanup and generation checks that prevent late responses from replacing a
+   new session or selected move.
+4. **API contracts:** Runtime response schemas and generated endpoint-specific
+   frontend types replace duplicated payload definitions. Checked export/type
+   drift, invalid-call regressions and rejection of malformed responses.
+5. **Account CI:** Local and account browser suites are independent required
+   matrix jobs, with separate trace directories. Signup, second-device login and
+   private-library behavior are covered on desktop and mobile.
+6. **CSS ownership:** Shared board/coach/layout rules and feature styles have
+   explicit owners; obsolete selectors and repeated overrides were removed.
+   Sampled computed styles matched before/after across seven screens and five
+   widths; visual inspection and browser geometry/motion checks passed.
+7. **Tactical rules:** Named motif rules and classification stages replace the
+   oversized methods. Reviewed outcome admission, rule ordering and provenance;
+   all 70 complete fixture classifications matched the previous implementation
+   in a differential comparison. Pinned upstream code remains unchanged.
+8. **Chess helpers:** Legal-move serialization and tactical witness construction
+   share their owning modules. Special-move tests preserve castling, promotions,
+   en passant and the deliberate SRS/game-over policy distinction.
+9. **Archived lessons:** Removed inactive generation/progression and the review
+   dependency cycle. Reviewed direct-call guards, historical audit access and
+   unchanged archive rows. Three obsolete lesson settings were removed; historical
+   models and migrations remain intact.
+10. **Diagnostics:** Health reports the last observed engine result, including an
+    unchecked state for lazy startup. Reviewed failure/recovery, pooled ownership
+    and reference-mismatch handling. Tracebacks remain in server logs while
+    unexpected client errors are sanitized; UI retries remain available.
+
+The final pass found a verification gap: the Docker smoke test launched Stockfish
+separately without exercising the app's worker. It now imports a synthetic game,
+completes a native review through HTTP and checks engine health in both modes.
+Testing documentation was also corrected to describe the removed lesson helpers
+and the current five navigation destinations.
+
+Final verification of the completed implementation:
+
+- Backend/native/API suite: **419 passed**, with two existing TestClient dependency
+  deprecation warnings.
+- Desktop/mobile browser suite: **77 passed, 3 expected viewport-specific skips**;
+  separate account suite: **2 passed**.
+- Production frontend build, API export/generated-type checks, compile-only type
+  regressions, repository Ruff lint/format, Actionlint 1.7.12 and Git whitespace
+  checks passed.
+- A fresh isolated database upgraded to the current Alembic head with no schema
+  drift. No schema change was needed for the audit fixes.
+- Local image `fieldwork:audit-final` built from the public-source snapshot and
+  passed fresh-install, restart, native game-review and engine-health checks in
+  both local and account modes. Its disposable containers and data volumes were
+  removed afterward.
+
+No active Docker variable was added or changed. Removed legacy lesson settings
+are documented in [CONFIGURATION.md](CONFIGURATION.md); old environment entries
+are ignored. The engine-health API now distinguishes unchecked availability with
+`null`, and the frontend handles that state explicitly.
+
+These results cover the local implementation and configuration review. Live
+GitHub Actions execution awaits a requested push. No image was published, no live
+database was modified and no Unraid deployment was performed.
+
 ## Audit fixes 1, 3 and 4: September 27, 2026
 
 - Docker publishing now depends on the reusable correctness workflow for the same
@@ -27,8 +102,9 @@ The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain bel
 
 No database schema, container variables or chess/SRS policy changed. No live
 database, Unraid deployment or published image was modified. Account browser
-checks remain a separate local invocation pending audit item 5. Per-item fix
-descriptions are in [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md).
+checks were still a separate local invocation at this milestone; the completed
+audit review above records their subsequent inclusion in CI and the remaining
+fixes.
 
 ## Game-review UX: September 26, 2026
 
