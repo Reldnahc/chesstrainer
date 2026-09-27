@@ -188,8 +188,8 @@ test('review both players, explain in place, and branch without changing the gam
     expect(square.y).toBeLessThan(110);
     const sidebar = (await page.locator('.review-sidebar').boundingBox())!;
     expect(sidebar.x).toBeGreaterThan(square.x + square.width);
-    await page.setViewportSize({width: 1600, height: 768});
-    await expect.poll(async () => (await page.locator('.review-sidebar').boundingBox())!.width).toBeGreaterThan(sidebar.width + 180);
+    await page.setViewportSize({width: 1920, height: 768});
+    await expect.poll(async () => (await page.locator('.review-sidebar').boundingBox())!.width).toBeGreaterThan(sidebar.width + 160);
     expect(Math.abs((await page.locator('.board-shell').boundingBox())!.width - square.width)).toBeLessThan(2);
     await page.setViewportSize({width: 1366, height: 900});
     await expect.poll(async () => (await page.locator('.board-shell').boundingBox())!.width).toBeGreaterThan(square.width + 100);

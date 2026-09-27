@@ -27,7 +27,7 @@ export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard
       const height = `${Math.max(520, window.innerHeight - top - 12)}px`;
       if (layout.style.getPropertyValue("--review-board-width") !== width) layout.style.setProperty("--review-board-width", width);
       if (layout.style.getPropertyValue("--review-height") !== height) layout.style.setProperty("--review-height", height);
-      // Narrow the sidebar first. Grow beyond the shared 80% page width only
+      // Narrow the sidebar first. Grow beyond the shared page width only
       // when the existing board and usable controls cannot otherwise fit.
       const minimum = `${Number.parseFloat(width) + Number.parseFloat(layoutStyle.columnGap)
         + Number.parseFloat(layoutStyle.getPropertyValue("--review-sidebar-min"))

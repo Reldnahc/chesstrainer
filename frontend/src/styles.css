@@ -196,6 +196,9 @@ footer > span:last-child { display: flex; align-items: center; gap: 8px; }
 .connection h1 { font-size: 28px; margin-top: 20px; }
 .connection form { display: flex; flex-direction: column; gap: 20px; }
 
+@media (max-width: 1440px) {
+  :root { --page-width: 100%; }
+}
 @media (max-width: 1100px) {
   .header-inner { gap: 24px; }
   .nav-item { padding: 12px 10px; }
@@ -210,7 +213,7 @@ footer > span:last-child { display: flex; align-items: center; gap: 8px; }
   .brand-wordmark { display: none; }
 }
 @media (max-width: 760px) {
-  :root { --page-width: 100%; --page-inline-padding: 12px; }
+  :root { --page-inline-padding: 12px; }
   .header-inner { padding: 17px 18px 0; gap: 16px; flex-wrap: wrap; }
   .two-column, .evidence-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .brand { font-size: 21px; }

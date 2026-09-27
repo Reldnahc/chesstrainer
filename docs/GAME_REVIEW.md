@@ -6,11 +6,12 @@ The existing training policy is unchanged.
 
 ## Using the workspace
 
-Pages share a centered 80% desktop width. The review sidebar becomes narrower;
-the chessboard retains the same size it had at full page width. Where necessary,
-the container expands beyond 80% to fit the board and usable controls, never
-beyond the viewport. Mobile pages use the available width. SRS and game review
-use this same sizing policy through `ReviewWorkspace`.
+Pages and the site header use the full available width through 1440 CSS pixels,
+covering laptops, tablets and phones. Larger desktops share a centered 80% width.
+The review sidebar absorbs the narrower layout; the chessboard retains the same
+size it had at full page width. Where necessary, the container expands beyond 80%
+to fit the board and usable controls, never beyond the viewport. SRS and game
+review use this same sizing policy through `ReviewWorkspace`.
 
 Each game opens at `/games/<id>`. Browser Back returns to the previous page and
 Forward reopens the review. You can bookmark a game or open its library link in
