@@ -74,6 +74,17 @@ lock, while other accounts have independent locks.
 
 Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
+`styles.css` is the stylesheet entry point. `base.css` owns application chrome,
+element defaults and common form/surface utilities. `board.css` owns the shared
+board, legal-move markers, tactical highlights, rating animation and retry effects;
+`review-presentation.css` owns shared review geometry, coaching and rating colors.
+SRS and game-specific panels live in `srs-review.css` and `game-review.css`.
+History, imports, account/sync forms and evidence each have their own stylesheet.
+Keep a component's normal and responsive rules together, with one block per
+breakpoint, rather than appending overrides to the entry point. Shared review
+presentation precedes the base element defaults to preserve the established
+cascade. Board dimensions and motion remain common to both review experiences.
+
 Navigation is Review, Games, Weaknesses, Import, Settings. A small History API
 router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and
 `/settings`. Screen/game links push history entries; `popstate` restores the

@@ -1,0 +1,266 @@
+.history-toggle {
+  width: 100%;
+}
+.game-library {
+  --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 17px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.game-library-heading,
+.game-library-item {
+  display: grid;
+  grid-template-columns: var(--history-columns);
+  grid-template-areas: "time players result accuracy moves date open";
+  align-items: center;
+  column-gap: 14px;
+  padding: 11px 16px;
+}
+.game-library-heading {
+  background: #191b1e;
+  color: var(--muted);
+  font-size: 11px;
+}
+.game-library-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.game-library-list > li {
+  border-top: 1px solid var(--line);
+  background: #191b1e;
+}
+.game-library-list > li:nth-child(odd) {
+  background: var(--surface);
+}
+.game-library-item {
+  color: inherit;
+  text-decoration: none;
+  min-height: 74px;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+.game-library-item:hover,
+.game-library-item:focus-visible {
+  background: #292d32;
+}
+.game-library-item:focus-visible {
+  outline-offset: -3px;
+}
+.history-players {
+  grid-area: players;
+  min-width: 0;
+}
+.history-line {
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+}
+.history-player {
+  gap: 7px;
+  min-width: 0;
+}
+.history-player strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+}
+.history-player.is-learner strong {
+  font-weight: 600;
+}
+.history-rating {
+  flex: none;
+  color: var(--muted);
+  font-size: 12px;
+}
+.history-color {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #747a83;
+  border-radius: 2px;
+}
+.history-color.white {
+  background: #eceef1;
+}
+.history-color.black {
+  background: #3a3e45;
+}
+.history-result {
+  grid-area: result;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.history-scores,
+.game-library-item .history-accuracy {
+  font: 12px var(--mono);
+}
+.history-scores .history-line,
+.history-accuracy .history-line {
+  justify-content: center;
+}
+.history-outcome {
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+.history-accuracy {
+  grid-area: accuracy;
+  text-align: center;
+}
+.history-review-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 4px 9px;
+  border: 1px solid #53635a;
+  border-radius: 4px;
+  background: #29332e;
+  color: #c1d6c8;
+  font:
+    12px "IBM Plex Sans",
+    sans-serif;
+}
+.history-meta {
+  display: contents;
+}
+.history-time {
+  grid-area: time;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  text-align: center;
+}
+.game-library-item .history-time {
+  font-size: 11px;
+  color: var(--muted);
+}
+.history-time > svg {
+  flex: none;
+  color: #b8cfc2;
+}
+.history-time > span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.history-moves {
+  grid-area: moves;
+  text-align: center;
+}
+.game-library-item .history-moves {
+  font: 12px var(--mono);
+}
+.history-date {
+  grid-area: date;
+  text-align: right;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.game-library-item .history-date {
+  font-size: 12px;
+}
+.history-open {
+  grid-area: open;
+  color: #b8cfc2;
+}
+.history-mobile-label {
+  display: none;
+}
+.game-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 12px;
+}
+@media (max-width: 760px) {
+  .game-library {
+    --history-columns: minmax(0, 1fr) 64px 62px 14px;
+  }
+  .game-library-heading,
+  .game-library-item {
+    grid-template-areas: "players result accuracy open";
+    column-gap: 6px;
+    padding: 9px 10px;
+  }
+  .game-library-heading {
+    font-size: 10px;
+  }
+  .game-library-heading .history-time,
+  .game-library-heading .history-moves,
+  .game-library-heading .history-date {
+    display: none;
+  }
+  .game-library-item {
+    grid-template-areas: "players result accuracy open" "meta meta meta meta";
+    row-gap: 7px;
+  }
+  .history-player {
+    gap: 5px;
+  }
+  .history-player strong {
+    font-size: 13px;
+  }
+  .history-rating {
+    font-size: 11px;
+  }
+  .history-result {
+    gap: 4px;
+  }
+  .history-outcome {
+    padding-inline: 4px;
+  }
+  .history-review-action {
+    padding-inline: 5px;
+    font-size: 11px;
+  }
+  .history-meta {
+    grid-area: meta;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    color: var(--muted);
+  }
+  .game-library-item .history-time {
+    flex-direction: row;
+    text-align: left;
+  }
+  .history-time > svg {
+    width: 14px;
+    height: 14px;
+  }
+  .history-time > span {
+    display: block;
+    max-width: 130px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .history-mobile-label {
+    display: inline;
+  }
+  .game-library-item .history-moves {
+    font:
+      11px "IBM Plex Sans",
+      sans-serif;
+  }
+  .game-library-item .history-date {
+    font-size: 11px;
+    margin-left: auto;
+  }
+  .game-pagination {
+    flex-wrap: wrap;
+  }
+}

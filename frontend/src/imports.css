@@ -1,0 +1,116 @@
+.import-source {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  background: #191b1e;
+}
+.import-source button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  min-height: 36px;
+}
+.import-source button[aria-pressed="true"] {
+  background: #34373d;
+  color: #fff;
+}
+.import-options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+.import-intro {
+  margin-bottom: 0;
+}
+.import-phase {
+  margin-top: 18px;
+  color: #e3e6ec;
+}
+.upload-zone {
+  position: relative;
+  border: 1px dashed #5c636e;
+  border-radius: 6px;
+  min-height: 150px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #202329;
+  gap: 10px !important;
+  text-align: center;
+  cursor: pointer;
+}
+.upload-zone:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.upload-zone svg {
+  color: var(--accent);
+}
+.upload-zone span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.upload-zone input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  max-width: 100%;
+}
+.job {
+  padding: 22px;
+  margin-bottom: 14px;
+}
+.job p {
+  margin-bottom: 8px;
+}
+.import-extra summary {
+  min-height: 44px;
+  padding-block: 12px;
+}
+.import-extra p {
+  margin: 12px 0 0;
+}
+@media (max-width: 760px) {
+  .import-options {
+    gap: 12px;
+  }
+  .workspace-page .import-source {
+    display: flex;
+    margin-bottom: 12px;
+    padding: 3px;
+  }
+  .workspace-page .import-source button {
+    min-height: 44px;
+    flex: 1;
+    padding-inline: 8px;
+  }
+  .workspace-page .import-intro {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+  .workspace-page .upload-zone {
+    min-height: 108px;
+    gap: 6px !important;
+    padding: 10px;
+  }
+  .workspace-page .job {
+    margin-bottom: 10px;
+    padding: 14px;
+  }
+  .workspace-page .job progress {
+    margin: 12px 0 8px;
+  }
+  .workspace-page .job .import-phase {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 370px) {
+  .workspace-page .import-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

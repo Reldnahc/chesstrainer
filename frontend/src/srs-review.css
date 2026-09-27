@@ -1,0 +1,318 @@
+.practice-panel {
+  margin-top: 30px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px;
+}
+.section-number {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 10px var(--mono);
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+.practice-panel h2 {
+  font-size: 29px;
+  letter-spacing: -0.8px;
+}
+.practice-panel > p {
+  margin-bottom: 24px;
+}
+.practice-panel > .primary,
+.practice-panel > .secondary {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.practice-panel > .primary {
+  justify-content: space-between;
+}
+.aside-note {
+  margin-top: 23px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 12px;
+  color: var(--muted);
+}
+.aside-note svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.aside-note p {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.answer-feedback {
+  display: flex;
+  gap: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #4b535e;
+  background: #292e35;
+  border-radius: 6px;
+}
+.answer-feedback svg {
+  color: #cbd6e7;
+  flex-shrink: 0;
+}
+.answer-feedback strong {
+  font: 22px var(--mono);
+  color: #fff;
+}
+.answer-feedback span {
+  display: block;
+  font-size: 12px;
+  color: #bbc4d1;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+.practice-panel time {
+  color: #e5e9f0;
+}
+.review-move {
+  font: 20px var(--mono);
+  color: var(--accent);
+}
+.practice-panel .review-due {
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+.move-status {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-height: 2.8em;
+  font-size: 12px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.move-status.retry {
+  color: #ffb39c;
+}
+.move-status svg {
+  flex-shrink: 0;
+}
+.review-details {
+  border-top: 1px solid var(--line);
+  margin-top: 10px;
+}
+.review-details summary {
+  min-height: 44px;
+  padding: 12px 0;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.review-details p {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.review-details .answer-feedback {
+  padding: 10px;
+  margin: 0 0 12px;
+}
+
+.review-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.review-actions button {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding-block: 6px;
+  line-height: 1.2;
+}
+.review-actions .review-why {
+  font-size: 12px;
+  padding-inline: 10px;
+}
+.explanation-back {
+  min-height: 44px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.explanation-summary {
+  font-size: 13px;
+  margin: 8px 0 12px;
+}
+.explanation-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+.explanation-controls button {
+  min-width: 54px;
+  min-height: 44px;
+}
+.explanation-controls span {
+  font: 12px var(--mono);
+}
+.explanation-caption {
+  font-size: 13px;
+  min-height: 3.3em;
+  margin-bottom: 8px;
+}
+.review-explanation details {
+  font-size: 12px;
+  color: var(--muted);
+}
+.review-explanation summary {
+  min-height: 44px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.review-explanation details p {
+  font-size: 12px;
+}
+.review-explanation {
+  min-width: 0;
+}
+.review-explanation .explanation-summary {
+  margin: 8px 0;
+}
+.review-session .practice-panel {
+  margin-top: 0;
+  padding: 0;
+  min-width: 0;
+  border: 0;
+  background: none;
+  container-type: inline-size;
+}
+.coach-message .move-status {
+  margin: 0;
+  min-height: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.review-schedule {
+  min-height: 38px;
+  padding: 8px 0;
+}
+.review-schedule .review-due {
+  margin: 0;
+}
+.coach-actions .explanation-back {
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+}
+.review-explanation .explanation-controls {
+  font-variant-numeric: tabular-nums;
+}
+.review-explanation .explanation-caption {
+  min-height: 0;
+}
+.pattern-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+}
+.pattern-legend span {
+  border-left: 3px solid;
+  padding-left: 6px;
+}
+.pattern-legend .attacker {
+  border-color: #2785c4;
+}
+.pattern-legend .target {
+  border-color: #f78b40;
+}
+.pattern-legend .defender {
+  border-color: #ab6ee9;
+}
+.pattern-findings {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.pattern-findings button[aria-pressed="true"] {
+  text-decoration: underline;
+}
+.practice-cue {
+  border-left: 2px solid var(--accent);
+  padding-left: 12px;
+}
+.practice-note {
+  margin: 8px 0 0;
+}
+.explanation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: start;
+  margin: 8px 0;
+}
+.explanation-actions > .explanation-back {
+  width: auto;
+  margin: 0;
+  flex: 1 0 auto;
+}
+.explanation-actions > .pattern-tools {
+  margin: 0;
+  flex: 1 1 auto;
+}
+@media (max-width: 1100px) {
+  .practice-panel {
+    padding: 22px;
+  }
+  .practice-panel h2 {
+    font-size: 25px;
+  }
+}
+@media (max-width: 760px) {
+  .practice-panel {
+    margin-top: 0;
+    padding: 22px;
+  }
+  .section-number {
+    margin-bottom: 18px;
+  }
+  .practice-panel h2 {
+    font-size: 25px;
+  }
+  .review-session .review-move {
+    font-size: 17px;
+  }
+  .review-session .review-due {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .review-session .review-action {
+    min-height: 44px;
+    margin-bottom: 0;
+  }
+  .review-session .review-details {
+    margin-top: 6px;
+  }
+  .review-session .review-details summary {
+    padding: 10px 0;
+  }
+  .review-actions .review-action {
+    padding-inline: 10px;
+    gap: 5px;
+  }
+  .explanation-back {
+    margin-bottom: 8px;
+  }
+  .explanation-summary {
+    font-size: 12px;
+    margin-block: 7px;
+  }
+  .review-session .explanation-controls {
+    margin: 8px 0;
+  }
+  .review-session .explanation-back {
+    margin-bottom: 0;
+  }
+  .pattern-findings .text-button {
+    min-height: 44px;
+  }
+}

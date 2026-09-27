@@ -15,7 +15,7 @@ and may move during refactoring.
 - [x] **3. Separate review screen state management from presentation.**
 - [x] **4. Define and share API response contracts.**
 - [x] **5. Run account browser tests in CI.**
-- [ ] **6. Consolidate CSS ownership and remove obsolete styles.**
+- [x] **6. Consolidate CSS ownership and remove obsolete styles.**
 - [ ] **7. Break tactical detection and classification into smaller rules/stages.**
 - [ ] **8. Consolidate duplicated chess helpers and correct dependency boundaries.**
 - [ ] **9. Remove archived lesson progression from active review handling.**
@@ -169,7 +169,7 @@ GitHub execution awaits a requested push.
 
 ## 6. CSS contains scattered overrides and obsolete selectors
 
-**Priority:** Medium. **Status:** Open.
+**Priority:** Medium. **Status:** Resolved and verified.
 
 `frontend/src/styles.css` is 581 lines / roughly 39 KB, with repeated breakpoint
 blocks, obsolete course selectors and distant overrides for the same components.
@@ -180,7 +180,18 @@ review stylesheet. Examples include weakness alignment and evidence-dialog sizin
 equivalent breakpoint rules, and remove confirmed unused selectors. Preserve
 desktop/laptop/mobile geometry and shared review presentation behavior.
 
-**Verification / resolution:** Pending.
+**Implementation:** The entry stylesheet now imports component-owned sheets. Shared
+board geometry/effects, coaching, SRS panels, game review, history, imports, accounts
+and evidence have explicit owners. Repeated selectors/breakpoints are consolidated;
+unused course, old modal/playback and retired board/header selectors are removed.
+Responsive rules stay with their components, with readable declarations.
+
+**Verification / resolution:** Production build and diff checks passed. A disposable
+before/after comparison found identical sampled computed styles for seven screens
+at five viewport sizes (1920, 1366, 1000, 390 and 360 pixels). Desktop/mobile visual
+inspection passed. The full ordinary browser suite passed (75 tests, 3 expected
+viewport skips), as did both account tests. The comparison caught a mobile import
+button-height regression during refactoring; it was corrected before verification.
 
 ## 7. Tactical detectors and classifier methods are oversized
 
