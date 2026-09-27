@@ -95,3 +95,21 @@ test("cold SRS ignores poisoned future feedback and exposes no tactical or histo
   const explanation = explanationIntent("attempt", {analysis_id: "saved-search", authority: "stockfish", summary: "The fork wins material."} as Schema["MoveExplanation"], preview, 1);
   expect(explanation.claims[0].evidence[0].id).toBe("saved-search");
 });
+
+test("delivery severity stays independent of bubble claim ordering and uncertain output stays quiet", () => {
+  const book = makeIntent("opening", "book", "game", "book", [claim("book_sound", {opening: "Opening"}, 96)]);
+  const brilliant = makeIntent("sacrifice", "brilliant", "game", "brilliant", [claim("sacrifice", {}, 90)]);
+  const inaccuracy = makeIntent("slip", "inaccuracy", "game", "inaccuracy", [claim("loss", {loss: "0.65"}, 82)]);
+  const blunder = makeIntent("error", "blunder", "game", "blunder", [claim("loss", {loss: "4.10"}, 82)]);
+  const mate = makeIntent("mate-in-book", "book", "game", "book", [claim("allowed_mate", {opponent: "Black"}, 100)]);
+  expect(book.priority).toBeLessThan(brilliant.priority);
+  expect(book.intensity).toBeLessThan(inaccuracy.intensity);
+  expect(inaccuracy.intensity).toBeLessThan(blunder.intensity);
+  expect(blunder.intensity).toBeLessThan(mate.intensity);
+  expect(book.interruptible).toBe(true);
+  expect(mate.interruptible).toBe(false);
+  expect(makeIntent("opening", "book", "game", "book", [claim("book_sound", {opening: "Opening"}, 1)]).intensity).toBe(book.intensity);
+  const unavailable = makeIntent("failed", "uncertain", "variation", "uncertain", [claim("unavailable")]);
+  expect(unavailable.autoSpeakSuitable).toBe(false);
+  expect(renderNeutral(mate).intensity).toBe(mate.intensity);
+});

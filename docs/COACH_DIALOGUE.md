@@ -32,6 +32,13 @@ selected template/variant, source IDs and selection decisions. It also provides
 expression, intensity, priority, interruptibility, optional speech text and future
 auto-speak suitability; there is no audio or TTS integration.
 
+Claim priority ranks bubble content only. Intent version 3 derives delivery
+intensity and urgency from semantic reactions, with a supported forced-mate
+override even when the move is recognized as Book. Routine opening recognition
+remains quiet and interruptible; unavailable/thinking/cold feedback is unsuitable
+for future automatic speech. This metadata does not change grades, portraits or
+the existing reduced-motion behavior.
+
 Regression coverage lives in `dialogue-logic.spec.ts`, game/coach/practice browser
 suites and backend review-event tests. Developer diagnostics consume these same
 pure functions rather than implement another dialogue pipeline.

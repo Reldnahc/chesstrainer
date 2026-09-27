@@ -1,8 +1,62 @@
-# Implementation history through September 12, 2026
+# Implementation history
 
 This preserves the earlier development journal, including superseded product plans, dated deployments and validation results. It is historical context, not current setup or feature guidance. Use [PRODUCT.md](PRODUCT.md), [FEATURE_STATUS.md](FEATURE_STATUS.md), [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) and [TESTING.md](TESTING.md) for current behavior and work. References below to lessons, Repertoire and model requests describe earlier versions.
 
-# Preserved development journal
+## Review intelligence completion: September 27, 2026
+
+Implemented the owner-supplied [specification](REVIEW_INTELLIGENCE_PLAN.md) in
+order from baseline `ea4ea5f`. The initial tree contained only that supplied plan;
+it remains unchanged. Work was committed locally at each verified milestone.
+No push, container publication, Unraid update or live-account migration was part
+of this project. The final checkpoint removes its temporary implementation ledger.
+
+| Milestone | Commit | Completed slice |
+| --- | --- | --- |
+| 0 | `cc57e0d` | Authority audit, legal synthetic corpus and native baseline benchmark. |
+| 1 | `fa31d2f` | Measured UCI/direct/pinned-adapter options, CPU/CUDA and all three model sizes; pinned source/model provenance. |
+| 2 | `0bfa31b` | Provider-neutral exact policy, bounded isolated workers, owned cache, explicit setup and offline degradation. |
+| 3 | `f9f1abf` | Conservative naturalness/difficulty, separate objective quality and domain uncertainty. |
+| 4 | `c9b6f0b` | Additive bounded refinement, persisted questions, cancellation/resume and report revision. |
+| 5 | `f593279` | Supported events, legal witnesses and retained PGN clock annotations. |
+| 6 | `a2b944c` | Immediate positional facts with explicit false-positive and abstention boundaries. |
+| 7 | `5783d32` | Traced repetition, punishment, recovery, support restoration, erosion and advantage runs. |
+| 8 | `84e4189` | Existing owned weakness evidence, independent-game support and no invented chronology or training-transfer claim. |
+| 9 | `a67aa8f` | Semantic game narrative, key moments and completed-review summary. |
+| 10 | `b785158` | Shared neutral intent/utterance rendering in game review, variations and authorized practice feedback. |
+| 11 | `ae388fb` | Separate offline development laboratory tracing the complete evidence/dialogue chain. |
+| 12 | `1733dd5` | Existing coach registry and account preference drive presentation-only personalities and safe fallback. |
+| 13 | `b85b5e7` | All current character bibles, 912 curated lines, deterministic variation, blind comparison and corpus audit. |
+| 14 | This completion record's commit | Native whole-game/installation verification, final manual and automated review, packaging/writing/delivery polish and ledger removal. |
+
+Important retained decisions: use the licensed 79M checkpoint through a narrow
+pinned subprocess adapter, CPU/two threads/one host worker by default; no implicit
+downloads, WDL-as-evaluation or calibrated population percentages. Smaller model
+weights await clarified terms. Preserve deep Stockfish work on every reviewed
+move, then investigate up to eight positions with four additional questions each.
+Current schema head `55de0b7b8ff2` has 36 application tables in the same SQLite
+database. The human-policy and refinement migrations preserve prior account data.
+
+Critical review corrected only-move claims contradicted by the separately searched
+played move, preserved pending analysis generations and cold-practice gates,
+removed correlated variant selection, restored relearning feedback beside its
+schedule, and fixed shared coach-title sizing/SAN clipping. Final native fixtures
+confirmed that a queen recapture can still be a mistake: recovery is emitted only
+after a supported return to playability. No evidence threshold was weakened to
+force the intended fixture story.
+
+Final delivery metadata is `dialogue-intent-3`: selecting a high-priority opening
+fact does not make its delivery urgent. Semantic reactions and supported mate
+facts determine intensity; personalities cannot change it. The animation system
+and reduced-motion preference remain independent of any future speech system.
+
+Measurements, explicit skips, installation checks and limits are recorded in
+[VERIFICATION.md](VERIFICATION.md). Runtime/benchmark details remain in
+[HUMAN_MODELS.md](HUMAN_MODELS.md), [MAIA_FEASIBILITY.md](MAIA_FEASIBILITY.md),
+[PRACTICAL_DIFFICULTY.md](PRACTICAL_DIFFICULTY.md) and
+[REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md). Supported semantics and dialogue
+contracts are linked from [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md).
+
+# Preserved development journal through September 12, 2026
 
 ## Active work: classification v3 and blinded assessment
 

@@ -27,7 +27,7 @@ Whole-game review and training analysis are separately requested from the game.
 | backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
-| review_intelligence/ | Pure versioned semantic derivations over saved facts, starting with conservative difficulty/naturalness; no model, engine or personality authority |
+| review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships, owned history and narrative; bounded refinement planning uses the existing engine authority |
 | routes/workspace.py | Health, effective settings, account-owned coach preferences and statistics |
 | preferences.py | Validated coach choices in one owned user_preferences row; missing/unsupported choices have safe read defaults |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
@@ -76,6 +76,7 @@ lock, while other accounts have independent locks.
 | coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, reduced motion, event dwell, one-shot reactions and occasional idle gestures |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
 | coach/studies/ / coach/studio/ | Shared registered character artwork and a separate development-only comparison entry |
+| dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Shared title display |
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
@@ -266,10 +267,31 @@ pool remain the compute authority. See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.
 traceable semantic events from saved chess facts and PGN annotations. No character
 prose enters this layer. [REVIEW_EVENTS.md](REVIEW_EVENTS.md) specifies gates and
 clock abstention; `review_scores` shares Stockfish-only alternative comparisons.
-# Positional review evidence
+## Positional review evidence
 
 The review-intelligence layer adds versioned immediate board-change facts for
 quiet moves using existing python-chess legality and pin-aware tactical geometry.
 It does not infer strategic causes from centipawn loss. See
 [POSITIONAL_EVIDENCE.md](POSITIONAL_EVIDENCE.md) for supported definitions and
 abstention rules; played and alternative lines remain distinct.
+
+## Context and communication
+
+The detail and progress endpoints share `review_intelligence/presentation.py`.
+Compatible saved reports become versioned move events, mainline nodes/relationships,
+owned cross-game references and narrative slots. Links require matching PGN/FEN/move
+provenance; gaps and inconsistent adjacent searches cause abstention. These are
+structured facts, never conversational memory. See [game context](GAME_CONTEXT.md),
+[history](CROSS_GAME_CONTEXT.md) and [narrative](GAME_NARRATIVE.md).
+
+The client builds a `DialogueIntent` before selecting a personality. `CoachUtterance`
+retains claim/template provenance and future-neutral delivery metadata, without a
+speech provider or runtime. The existing coach catalogue owns both artwork and
+writing definitions; account preferences need no new field. Character changes
+perform no native work. Cold practice gates precede all dialogue selection.
+See [dialogue](COACH_DIALOGUE.md) and [character writing](COACH_PERSONALITIES.md).
+
+React's framework code has a separately cached production chunk; all registered
+coach definitions remain synchronous. The offline intelligence lab and expression
+studio have separate loopback entry points and do not enter production navigation
+or executable assets. Their source remains in the downloadable public source.

@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const collie: CoachPersonality = {
-  version: "collie-1", maxCharacters: 270, maxClaims: 2, delivery: {pace: "steady", energy: "bright"},
+  version: "collie-2", maxCharacters: 270, maxClaims: 2, delivery: {pace: "steady", energy: "bright"},
   bible: {temperament: "Intensely attentive, organized and driven by patterns and the next useful task.", teaching: "Track the relationship between a move, its reply and the repeated evidence.", rhythm: "Focused observations followed by a concrete study action.", celebration: "Satisfaction when a resource or pattern is correctly handled.", correction: "Identify what changed and direct attention to the relevant continuation.", avoid: "Mechanical checklist talk, pretending to detect patterns without references, or herding jokes."},
   templates: {
     allowed_mate: ["Track the reply first. {opponent} now has forced checkmate. {reply}", "The key change is forced checkmate for {opponent}. {reply}"],
@@ -8,7 +8,7 @@ export const collie: CoachPersonality = {
     tactic_played: ["Track the connection after {move}: a {motif}. {detail}", "The pattern behind {move} is a {motif}. Follow its targets. {detail}"],
     tactic_allowed: ["Follow the opponent's resource: {opponent} has a {motif}. {detail}", "The change to track is {opponent}'s {motif} in the continuation. {detail}"],
     tactic_missed: ["Mark {best} for comparison. It contains the missed {motif}. {detail}", "The pattern to study is the {motif} after {best}. {detail}"],
-    sacrifice: ["Track the acceptance. The sacrifice still holds in that search.", "The acceptance test is satisfied: taking the offer does not refute it."],
+    sacrifice: ["The sacrifice holds up in the searched acceptance line. Keep that reply in view.", "Taking the offer does not refute it in the search. Follow what comes next."],
     only_move: ["The search narrows it to this defense. The other searched choices lose.", "This was the only searched move that retained playability. Mark the resource."],
     decisive_resource: ["The decisive advantage is retained only by this searched choice."],
     reply_capture: ["Track {reply}: {opponent} captures {side}'s {piece}."],

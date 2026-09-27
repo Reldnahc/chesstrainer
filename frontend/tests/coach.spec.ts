@@ -71,9 +71,7 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   });
   await page.getByRole("button", { name: "Last move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "losing");
-  await expect(page.locator(".coach-message")).toContainText(
-    "Your king has no legal escape",
-  );
+  await expect(page.locator(".coach-message")).toContainText(/checkmate|king has no escape/i);
   await page.getByRole("button", { name: "First move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "explaining");
   const fixture = await (

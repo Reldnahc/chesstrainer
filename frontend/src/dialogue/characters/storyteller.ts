@@ -35,7 +35,7 @@ export const storyteller: CoachPersonality = {
     clock_low: ["The clock belongs in this picture too: {side} had {seconds} seconds before moving."],
     turning: ["Of the concessions we reviewed, this was the largest turn in the game."],
     mate_win: ["Checkmate. The attack has reached its finish; there is no escape for the king.", "You brought the attack to its end: checkmate."],
-    mate_loss: ["Checkmate. Let's return to the moment when this attack could still be stopped.", "The king has no escape now. We can look back for where the ending changed."],
+    mate_loss: ["Checkmate. Let's look back at the earlier defensive choices.", "The king has no escape now. We can look back for where the ending changed."],
     draw: ["The position ends in a draw. There may still be useful turns to revisit.", "A drawn ending. Let's see what the earlier moves offered."],
     retry: ["Mistake. Try again; there is more to see in this position.", "Give it another look. The first attempt need not be the last."],
     recovered: ["Now you have found the thread. {detail}", "That brings the idea back into view. {detail}"],

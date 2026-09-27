@@ -10,6 +10,14 @@ Game review complements cold practice. It reviews both colors and arbitrary lega
 variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
 The existing training policy is unchanged.
 
+Completed reviews also derive supported [game relationships](GAME_CONTEXT.md),
+[owned history](CROSS_GAME_CONTEXT.md) and a [game story](GAME_NARRATIVE.md).
+Key moments jump to the original ply. The coach can connect a recovery to an
+earlier error or identify a repeated supported motif; incomplete or inconsistent
+evidence causes abstention. Human difficulty is a model-informed description,
+never a calibrated percentage of players or a replacement for move quality.
+Changing the selected coach rephrases the same facts without rerunning analysis.
+
 ## Using the workspace
 
 Pages and the site header use the full available width through 1440 CSS pixels,

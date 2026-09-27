@@ -3,8 +3,8 @@
 The production human-evidence boundary is described in
 [HUMAN_MODELS.md](HUMAN_MODELS.md): one host-shared isolated Maia provider,
 account-owned policy facts, explicit setup and independent Stockfish authority.
-Its first implementation preserves the baseline below without changing grades
-or dialogue. Current schema and runtime configuration live in DATA_MODEL.md and
+The implementation preserves the baseline below and keeps human evidence separate
+from grades. Current schema and runtime configuration live in DATA_MODEL.md and
 CONFIGURATION.md; this document's baseline measurements remain historical.
 
 [Practical difficulty](PRACTICAL_DIFFICULTY.md) documents the versioned derivation,
@@ -15,6 +15,14 @@ provider authorities remain unchanged.
 The durable implementation specification is
 [REVIEW_INTELLIGENCE_PLAN.md](REVIEW_INTELLIGENCE_PLAN.md). This document records
 implemented architecture and measured decisions, not promises of completed features.
+
+The completed chain is documented by [refinement](REVIEW_REFINEMENT.md),
+[move events/clocks](REVIEW_EVENTS.md), [positional facts](POSITIONAL_EVIDENCE.md),
+[game context](GAME_CONTEXT.md), [saved history](CROSS_GAME_CONTEXT.md),
+[narrative](GAME_NARRATIVE.md), [dialogue](COACH_DIALOGUE.md) and
+[personalities](COACH_PERSONALITIES.md). The [offline lab](INTELLIGENCE_LAB.md)
+inspects the exact evidence and rendering choices. Final measured validation is
+recorded in [VERIFICATION.md](VERIFICATION.md).
 
 ## Authority and storage
 

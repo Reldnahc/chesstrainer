@@ -17,7 +17,7 @@ export type Claim = {
   sourceIds: string[];
 };
 export type DialogueIntent = {
-  version: "dialogue-intent-2";
+  version: "dialogue-intent-3";
   id: string;
   purpose: DialoguePurpose;
   mode: "game" | "variation" | "practice" | "explanation" | "complete";
@@ -62,13 +62,27 @@ export function stableKey(value: unknown): string {
   return (hash >>> 0).toString(16).padStart(8, "0");
 }
 
+// Claim priority chooses which fact fits the bubble. Delivery follows the semantic
+// reaction instead: recognized theory should not be as urgent as a forced mate.
+const deliveryLevels: Record<CoachExpression, readonly [number, number]> = {
+  neutral: [.15, 20], idle: [.1, 10], brilliant: [.9, 85], great: [.65, 70],
+  best: [.4, 40], good: [.3, 35], book: [.2, 30], inaccuracy: [.35, 45],
+  mistake: [.6, 65], blunder: [.85, 90], missed: [.7, 80], check: [.5, 60],
+  winning: [.95, 95], losing: [.95, 95], thinking: [.1, 15], uncertain: [.25, 50],
+  encouraging: [.35, 45], recovered: [.65, 75], explaining: [.25, 55], draw: [.3, 60],
+};
+
 export function makeIntent(key: string, purpose: DialoguePurpose, mode: DialogueIntent["mode"],
   expression: CoachExpression, claims: Claim[], decisions: string[] = []): DialogueIntent {
-  const priority = Math.max(20, ...claims.map(c => c.priority));
+  let [intensity, priority] = deliveryLevels[expression];
+  if (claims.some(c => ["allowed_mate", "mate_win", "mate_loss"].includes(c.code))) {
+    intensity = 1;
+    priority = 100;
+  }
   const facts = {purpose, mode, expression, claims, decisions};
-  return {version: "dialogue-intent-2", id: `di2:${stableKey([key, facts])}`, ...facts,
-    intensity: priority / 100, priority, interruptible: priority < 95,
-    autoSpeakSuitable: mode !== "practice" && purpose !== "thinking" && purpose !== "neutral"};
+  return {version: "dialogue-intent-3", id: `di3:${stableKey([key, facts])}`, ...facts,
+    intensity, priority, interruptible: priority < 95,
+    autoSpeakSuitable: mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose)};
 }
 
 export function claim(code: string, slots: Claim["slots"] = {}, priority = 40,

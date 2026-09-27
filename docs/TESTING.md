@@ -17,6 +17,40 @@ deadlines, cancellation and Stockfish-only/refresh behavior are covered by
 The native production worker test requires the 79M checkpoint; it does not use
 the feasibility adapter. See [HUMAN_MODELS.md](HUMAN_MODELS.md) for setup.
 
+## Native whole-game intelligence verification
+
+With the optional runtime, a verified cached model and Stockfish installed:
+
+```sh
+STOCKFISH_PATH=/path/to/stockfish HUMAN_MODEL_PATH=/path/to/maia3-79m.pt \
+  HF_HUB_OFFLINE=1 python scripts/verify_review_intelligence.py \
+  --output data/verification/native-NEW
+```
+
+PowerShell sets those environment variables with `$env:NAME = 'value'` before
+running Python. Use a new output directory; the command refuses to overwrite one.
+It never downloads weights. The ten original synthetic games contain 114 plies,
+ratings from 600 to 2600, Chess.com/Lichess/unknown domains, quiet and tactical
+play, a sound queen offer, annotated clock pressure, recovery, repeated errors,
+conversion/lost conversion, book errors and draws. Coverage tags describe
+inspection targets, not promises that every native search produces a motif.
+
+The harness exercises the actual import/job/report/variation APIs at the unchanged
+depth-16 / 0.8-second baseline and default 8-position / 4-question refinement
+budgets. It validates native policies and context references, no SRS creation,
+all registered coach IDs preserving the exact saved facts, and restart/reopen
+with no new evidence rows or native processes. JSON reports can be imported into
+the separate intelligence lab; the disposable SQLite file can be served locally
+for manual application inspection. Keep all outputs in ignored `data/`.
+
+Run the same command in a disposable Docker container with `--network none`, the
+model mounted read-only, and a writable new output path such as `/tmp/verification`.
+The smaller `scripts/smoke_human.py` checks a short native review and cached restart.
+Neither harness replaces deterministic false-positive tests, account/concurrency
+tests, or physical-device testing. Native scores and nominated positions can vary
+across Stockfish binaries and available compute; identical model inputs remain
+deterministic within their recorded runtime identity.
+
 Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
 
 ## Full verification
@@ -34,6 +68,7 @@ ruff check backend scripts migrations
 ruff format --check backend scripts migrations
 cd frontend
 npx playwright test
+npx playwright test --config playwright.accounts.config.ts
 npx playwright test --config playwright.coach.config.ts
 npx playwright test --config playwright.intelligence.config.ts
 ```

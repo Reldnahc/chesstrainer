@@ -2,6 +2,98 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review intelligence completion: September 27, 2026
+
+Milestones 0–14 of [the specification](REVIEW_INTELLIGENCE_PLAN.md) are complete.
+The commit map and retained design decisions are in
+[IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md). No production deployment
+or remote push was performed. The temporary progress ledger was removed after
+this final review; synthetic reports/databases/screenshots remain ignored.
+
+Final automated verification:
+
+- Full backend: **564 passed, 3 explicit native-Maia opt-in skips**, 143.25 s.
+  Native Stockfish ran. The two existing Starlette/httpx/AnyIO test-client
+  deprecation warnings remain; no application test failure remains.
+- Supported cached **79M CPU** native/parity/worker suite: **12 passed**, 37.20 s,
+  with no skips. It covers upstream policy parity, history/special moves,
+  deterministic repeats, real subprocess deadlines/cancellation/restart and
+  bounded transport. No Torch import is added to the API process. The normal
+  suite also tests account cache ownership, host-slot contention, invalidation,
+  refinement cancellation/resume, migrations and cold-SRS exclusions.
+  Transport fault cases use synthetic subprocess workers; native cases load the
+  actual supported checkpoint.
+- Final full application browser suite: **129 passed, 3 expected viewport skips**,
+  2.4 min. Includes every registered coach, persistence, dialogue provenance,
+  semantic delivery intensity, stale async responses, branch return, in-place
+  Show Why, summary jumps, SRS failure/retry/recovery and reduced motion.
+- Account browser suite: **2 passed**. Standalone expression studio: **16 passed**
+  across desktop/mobile and every current character/expression. The studio run
+  reused the existing verified checkout's port 5174 using a disposable config;
+  the owner's viewer process was preserved.
+- Final offline intelligence-lab suite: **8 passed**. Current registry audit:
+  **16 coaches, 912 curated lines, zero corpus errors or writing collisions**.
+  The normal production build excludes both developer surfaces from executable
+  assets/navigation while keeping their public source in the source download.
+- Production build, OpenAPI/type contracts, Ruff lint and formatting passed.
+  React's cached chunk is 221.86 kB raw / 69.04 kB gzip; application code including
+  all synchronous coach definitions is 319.28 kB / 96.93 kB. No chunk-size warning.
+
+The repeatable native whole-game harness imports and reviews ten original
+synthetic games (114 plies) at the unchanged depth-16 / 0.8-second baseline with
+default 8-position / 4-question additive refinement. Ratings span 600–2600 and
+include Lichess blitz, Chess.com rapid/blitz, missing ratings/domain and setup
+positions. It verifies exact model probabilities/provenance, bounded work,
+context references, all coach IDs preserving identical stored facts, a real
+interactive variation, and completed cache reuse after restart with an unusable
+Stockfish executable. No Decisions, exercises or recalls are created.
+
+| Measured combined run | Windows native | Linux CPU Docker, no network |
+| --- | ---: | ---: |
+| Python | 3.12.10 | 3.12.14 |
+| Stockfish | 18 | 17.1 |
+| Logical CPUs reported | 24 | 24 |
+| Time for ten games, including first native/model startup | 148.30 s | 125.75 s |
+| Cached reopen of all ten after restart | 0.310 s | 0.296 s |
+| API process peak RSS, excluding native children | 123.63 MiB | 115.11 MiB |
+| Saved human policies / refinement positions | 114 / 41 | 114 / 41 |
+
+Native inspection found the supported Brilliant queen offer, only-move recapture,
+recovery linked to the earlier queen loss, three repeated-motif relationships,
+missed mates, book moves that remain objectively bad, a drawn repetition and a
+19-ply conversion with no graded errors. The failed conversion does not produce
+a successful-conversion narrative. Search-specific findings differ across native
+binaries; absent/contradictory support is not filled in to satisfy a coverage tag.
+These are integration probes and development inspection, **not an independently
+blinded accuracy measurement or population calibration**.
+
+Fresh Docker installation/restart/native Stockfish review passed in both local
+and HTTPS-origin account modes, including coach preference persistence. The
+combined native corpus and separate short smoke passed with `--network none`
+and a read-only pinned checkpoint. Explicit setup returned `already_verified`
+offline; `--verify-only` also passed. Linux cgroup peak memory was **1,348,587,520
+bytes (1.26 GiB)**, including processes and charged filesystem cache. Docker
+reported **1.6 GB disk usage / 376 MB content size**, plus the separate 316 MB
+checkpoint. The large CPU dependency layer is reused for application updates.
+
+Manual inspection used the actual application with native saved reports: Brilliant
+and recovery feedback, Show Why, coach switching/back navigation and saved
+preferences, desktop and 390px phone layouts. A real native export loaded in the
+isolated lab and traced the selected Quiet Analyst recovery sentence to its
+earlier move and engine/context evidence. Actual bubble inspection removed a
+repetitive Collie opener. Diagnostics exposed an overly urgent Book delivery;
+intent version 3 now separates factual claim ordering from reaction intensity.
+Final semantic/personality tests and the complete browser/lab suites pass after
+that correction. Temporary servers were stopped and viewport overrides reset.
+
+Limits: mobile verification uses Chromium emulation, not a physical phone. Proxy
+cookies/origins are exercised without deploying Cloudflare or Unraid. CUDA and
+5M/23M comparisons were run during the feasibility milestone, not repeated as
+production models in this final CPU pass; smaller checkpoint terms remain an
+upstream follow-up. Human difficulty remains a conservative uncalibrated heuristic,
+and unsupported strategic causes continue to abstain. No TTS or training-transfer
+claim was introduced.
+
 ## Separate coach development viewer: September 27, 2026
 
 The expression viewer has its own loopback-only Vite process (`npm run dev:coach`,

@@ -55,8 +55,12 @@ family (token overlap above 0.9), and rendered length/placeholder/semantic deliv
 These are useful mechanical checks, not proof of good writing. Inspect short and
 quiet lines, actual bubble sizes, and blind samples as part of every writing pass.
 
-`dialogue-intent-2` uses a stable avalanche-mixed hash. Raw low-bit modulo selection
+`dialogue-intent-3` uses a stable avalanche-mixed hash. Raw low-bit modulo selection
 made two-choice templates with similar factual keys vary in lockstep; mixing fixes
 that correlation while preserving repeatability across navigation and reloads.
 No text is selected by time or React render count. The first full-cast pass has
 912 curated lines; this count is a dated observation, not a fixed registry limit.
+
+Version 3 separates claim-selection priority from semantic delivery intensity and
+urgency. A book fact can lead the bubble without receiving mate-level delivery.
+Characters cannot alter that metadata; no speech or new animation loop consumes it.

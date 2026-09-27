@@ -8,6 +8,13 @@ four cats and four dogs in **Settings → Your coach**, each with all 20 express
 The dogs include two goldens, a corgi and a border collie. Existing users keep Storyteller
 until they choose another coach; the choice follows their account across devices.
 
+Game review now connects supported tactics, immediate positional changes, human
+difficulty, clocks, earlier moments and relevant saved weaknesses into a factual
+game story. Every selectable coach has its own [writing voice](docs/COACH_PERSONALITIES.md).
+Changing characters rephrases the same evidence without rerunning analysis.
+The separate [developer intelligence lab](docs/INTELLIGENCE_LAB.md) can trace a
+sentence back to that evidence and compare the cast; it is not a production page.
+
 Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. The application can run locally or be self-hosted for friends with private accounts in one SQLite database.
 
 Install with [Docker](docs/DOCKER.md) or the [Unraid template](docs/UNRAID.md).
@@ -91,7 +98,7 @@ STOCKFISH_PATH=C:/tools/stockfish/stockfish-windows-x86-64-avx2.exe
 CLASSIFICATION_WORKERS=2
 ```
 
-Classification runs locally after analysis; the vendored Lichess code makes no network requests. Restart after editing configuration. Settings displays effective values without exposing the optional LAN token.
+Classification runs locally after analysis; the vendored Lichess code makes no network requests. Restart after editing host configuration. Browser Settings contains account preferences and training actions; container settings remain in the environment.
 
 ```sh
 cd frontend

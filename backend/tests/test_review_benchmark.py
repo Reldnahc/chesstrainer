@@ -4,6 +4,7 @@ import chess
 import pytest
 
 from scripts.review_benchmark.corpus import board_for, load_corpus
+from scripts.review_benchmark.games import game_corpus
 from scripts.review_benchmark.metrics import peak_rss_bytes, summary
 
 
@@ -37,6 +38,39 @@ def test_measurements_are_explicit_about_unavailable_values():
     assert summary([1, 2, 3])["median_seconds"] == 2
     memory = peak_rss_bytes()
     assert memory is None or memory > 0
+
+
+def test_whole_game_corpus_has_legal_outcomes_full_history_and_distinct_metadata():
+    import io
+
+    import chess.pgn
+    from trainer.human_models.context import request_for
+    from trainer.review_intelligence.clocks import clock_facts
+
+    domains, ratings, coverage = set(), set(), set()
+    corpus = game_corpus()
+    assert len({item["id"] for item in corpus}) == len(corpus)
+    for item in corpus:
+        game = chess.pgn.read_game(io.StringIO(item["pgn"]))
+        assert not game.errors
+        board = game.board()
+        assert board.is_valid()
+        moves = list(game.mainline_moves())
+        assert len(moves) == item["plies"]
+        for move in moves:
+            assert not board.is_game_over() and move in board.legal_moves
+            board.push(move)
+        if board.is_game_over():
+            assert game.headers["Result"] == board.result()
+        request = request_for(game, game.board(), 1000)
+        domains.add(request.domain.alignment)
+        ratings.add(request.conditioning.self_rating)
+        coverage.update(item["coverage"])
+        if item["id"] == "mate-low-clock":
+            assert clock_facts(game)[3].before_band == "critical"
+    assert domains == {"unknown", "related", "shifted"}
+    assert {600, 1200, 1800, 2400} <= ratings
+    assert {"winning_conversion", "failed_conversion", "draw", "recovery", "quiet"} <= coverage
 
 
 @pytest.mark.stockfish

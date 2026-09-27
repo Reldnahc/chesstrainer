@@ -9,12 +9,28 @@ Fingerprints include selected identifying headers, initial FEN, mainline UCI mov
 
 Imports retain all processed provenance links but queue only newly inserted games (`import_games.is_new`). Re-uploading saved games therefore does not revisit their Stockfish/local-classification pipeline. A duplicate-only PGN upload creates no job; a duplicate-only Chess.com fetch completes with zero analysis games. Retry the original job to finish interrupted older analysis/classification. Classification retries scan saved decisions and reuse compatible completed local rule results; progress can recount saved decisions without rerunning compatible local classification.
 
-## Two passes
+## Training analysis: two passes
 For each learner decision, search the pre-move board normally and again with root_moves restricted to the actual move. Both scores use the learner's perspective at the same root. The actual-move score means the evaluation conditioned on playing that move, not a raw White-perspective child score.
 
 Triage defaults: depth 10 OR 0.15 seconds, whichever comes first. Optional nodes add another bound. Mate transitions or loss >=70% of the mistake threshold trigger depth 16 OR 0.8 seconds with MultiPV 4 plus a restricted actual-move search. Only confirmed policy failures become meaningful mistakes. Time-limited engine scores remain estimates.
 
 Every decision commits before classification. FEN, game/ply reconstruction, played SAN/UCI, engine result IDs, explicit losses and deterministic facts remain available. Candidates retain scores, reached depth and PV; each PV is legally replayed before saving. Facts distinguish geometric attacks from tactical proof: an attacked undefended piece is not automatically labeled hanging. Material values are 1/3/3/5/9. Phase is a simple documented heuristic.
+
+## Full-game review intelligence
+
+Game review has its own existing baseline: every move receives depth 16 / 0.8 s
+Stockfish work with two candidates and a restricted played-move search. It does
+not use the training triage pass above and does not create training decisions or
+recalls. Bounded [refinement](REVIEW_REFINEMENT.md) adds investigation to selected
+positions without replacing or reducing that baseline.
+
+An explicitly cached [human model](HUMAN_MODELS.md) contributes policy facts in a
+separate worker/cache. Practical difficulty, supported tactical/positional events,
+clocks, game relationships, existing owned weakness evidence and narrative are
+versioned derivations. They do not blend model values with Stockfish scores.
+The client turns those facts into neutral dialogue claims before the selected
+coach phrases them. [Review intelligence](REVIEW_INTELLIGENCE.md) links the
+contracts; changing coach requires no analysis or saved-fact rewrite.
 
 ## Scores and policy
 Score stores kind cp/mate, signed value and mate_given for positive terminal mate-zero. Values are root-decision-maker relative. CP loss is max(0,best-played). Mate is never flattened to an arbitrary CP number: losing a winning mate and newly allowing losing mate are separate flags. Winning mate lengths can be interchangeable; already forced-lost positions do not generate artificial mate-length exercises.

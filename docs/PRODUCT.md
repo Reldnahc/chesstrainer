@@ -2,6 +2,15 @@
 
 Fieldwork is private chess practice built from the player's own games. Import games, identify practical mistakes with native Stockfish, review useful positions and retain them with FSRS. Defaults serve a beginner progressing toward 1500 rapid. Multiple sound answers are accepted; small engine preferences usually do not create exercises.
 
+Open review can explain supported tactical consequences, immediate positional
+changes, human difficulty and relationships to earlier game moments. The game
+story selects key moves and a conclusion; saved classified history can add a
+supported recurring issue. These references have explicit evidence, not simulated
+memory. Optional Maia describes human-like choices without changing grades or
+claiming calibrated percentages for Chess.com ratings. A selected coach changes
+the language and expression, not the chess truth. Cold SRS still reveals none of
+these hints before an attempt or reveal.
+
 ## Active learning loop
 
 Import PGNs or completed public Chess.com games, analyze the learner's decisions locally, save verified evidence, and turn meaningful mistakes into review positions. Versioned local rules classify supported consequences and tactical mechanisms. A position can remain unclassified and still be useful in Review.
