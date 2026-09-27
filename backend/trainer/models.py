@@ -45,6 +45,13 @@ class Owned:
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), default="local", index=True)
 
 
+class UserPreferences(Owned, Base):
+    __tablename__ = "user_preferences"
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), primary_key=True)
+    coach_id: Mapped[str] = mapped_column(default="classic", server_default="classic")
+    coach_motion: Mapped[str] = mapped_column(default="natural", server_default="natural")
+
+
 class ImportBatch(Owned, Base):
     __tablename__ = "game_imports"
     id: Mapped[str] = mapped_column(primary_key=True, default=uid)

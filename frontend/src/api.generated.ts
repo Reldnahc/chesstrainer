@@ -443,6 +443,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/preferences/coach": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Coach Preferences */
+        get: operations["get_coach_preferences_api_preferences_coach_get"];
+        /** Put Coach Preferences */
+        put: operations["put_coach_preferences_api_preferences_coach_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/review/queue": {
         parameters: {
             query?: never;
@@ -842,6 +860,21 @@ export interface components {
             user_id: string;
             /** Version */
             version: string;
+        };
+        /** CoachPreferences */
+        CoachPreferences: {
+            /**
+             * Coach Id
+             * @default classic
+             * @constant
+             */
+            coach_id: "classic";
+            /**
+             * Motion
+             * @default natural
+             * @enum {string}
+             */
+            motion: "natural" | "subtle" | "still";
         };
         /** ColdPosition */
         ColdPosition: {
@@ -2590,6 +2623,59 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PracticeQueueItem"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_coach_preferences_api_preferences_coach_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CoachPreferences"];
+                };
+            };
+        };
+    };
+    put_coach_preferences_api_preferences_coach_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CoachPreferences"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CoachPreferences"];
                 };
             };
             /** @description Validation Error */

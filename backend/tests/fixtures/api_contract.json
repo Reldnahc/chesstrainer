@@ -558,6 +558,29 @@
         "title": "ClassificationAudit",
         "type": "object"
       },
+      "CoachPreferences": {
+        "additionalProperties": false,
+        "properties": {
+          "coach_id": {
+            "const": "classic",
+            "default": "classic",
+            "title": "Coach Id",
+            "type": "string"
+          },
+          "motion": {
+            "default": "natural",
+            "enum": [
+              "natural",
+              "subtle",
+              "still"
+            ],
+            "title": "Motion",
+            "type": "string"
+          }
+        },
+        "title": "CoachPreferences",
+        "type": "object"
+      },
       "ColdPosition": {
         "additionalProperties": false,
         "properties": {
@@ -4663,6 +4686,60 @@
           }
         },
         "summary": "Focused Queue"
+      }
+    },
+    "/api/preferences/coach": {
+      "get": {
+        "operationId": "get_coach_preferences_api_preferences_coach_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoachPreferences"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Coach Preferences"
+      },
+      "put": {
+        "operationId": "put_coach_preferences_api_preferences_coach_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoachPreferences"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoachPreferences"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Coach Preferences"
       }
     },
     "/api/review/queue": {
