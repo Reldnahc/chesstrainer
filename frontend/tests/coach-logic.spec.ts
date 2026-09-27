@@ -3,6 +3,8 @@ import { gameReaction, practiceReaction } from "../src/coach/reactions";
 import { classicPerformance } from "../src/coach/classic/performance";
 import {
   expressions,
+  availableIdles,
+  expressionIntent,
   resolveExpression,
   resolveFamily,
   type CoachDefinition,
@@ -170,6 +172,18 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
   expect(resolveExpression(coach, "blunder")).toBe("neutral");
   expect(resolveExpression(coach, "thinking")).toBe("neutral");
   expect(resolveFamily(coach, "removed")).toBe(coach.defaultFamily);
+  expect(availableIdles(coach)).toContain("glasses");
+  expect(availableIdles(coach)).not.toContain("tail");
+  expect(new Set(availableIdles(coach)).size).toBe(
+    availableIdles(coach).length,
+  );
+  expect(
+    expressionIntent(
+      { ...coach, expressionIntents: { brilliant: "Perked ears" } },
+      "brilliant",
+    ),
+  ).toBe("Perked ears");
+  expect(expressionIntent(coach, "neutral")).toContain("welcoming");
   for (const state of expressions)
     expect(resolveExpression({ ...coach, expressions }, state)).toBe(state);
 });

@@ -27,6 +27,33 @@ collection, replay entrances and idle gestures, run a transition sequence, and
 preview natural/subtle/still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
 
+The studio also includes nine new character studies, each with all 20 expressions:
+
+| Character | Concepts | Character-specific motion |
+|---|---|---|
+| Woman | Club captain, Quiet analyst, Bright spark | Hair follow-through, open palms, thoughtful chin poses and a restrained or lively performance |
+| Cat | Library tabby, Midnight tactician, Curious calico | Perked/flattened ears, whiskers, paw gestures and occasional tail flicks |
+| Golden retriever | Sunny companion, Gentle professor, Trail buddy | Floppy ears, broad muzzles, feathered tails and gentle or enthusiastic reactions |
+
+Use the character picker above the expression controls. `coach`, `family` and
+`expression` query parameters restore a comparison directly; existing links still
+open the original coach. Switching characters stops a running sequence, clears the
+pending idle preview and selects a valid family/idle gesture. Preview controls
+offer only the idle gestures that the character actually implements.
+
+These nine studies are preview-only. Settings still offers the original coach,
+and opening a study never writes account preferences or submits engine work.
+The new artwork and motion styles are loaded with the studio route, so ordinary
+reviews do not download the additional characters. The illustration assets are
+original SVG artwork maintained as React components; no external images or assets
+are required.
+
+The quieter studies use a delayed look and a small response; the playful studies
+hold their anticipation before a quick reaction with overlapping hair/ear motion.
+Each character keeps its expression after the entrance settles. Blunder idles use
+breathing, ears or hair rather than a happy tail wag. Reduced motion keeps the
+full expressive silhouette while disabling all reaction and idle animations.
+
 Storyteller is the production direction: its open gestures and contrast between
 delight and concern read most clearly at the small mobile size. Quiet mentor is a
 useful restrained alternative, but loses some facial nuance at 52.5px. Graphic
@@ -84,6 +111,12 @@ default SVG rig, poses, motion tracks and keyframes live in `classic/`; shared
 lifecycle and preference code contain no references to its facial geometry.
 Reusable human expressions, facial layers and open-palm hand artwork live in
 `human/`. Individual human coaches provide their own silhouette, palette and acting.
+`studies/catalog.ts` is a separate preview catalogue. The woman uses the shared
+human primitives; cat and retriever artwork share animal expressions, eyes,
+muzzles and paws. Silhouettes, fur markings, hair, outfits and accessories remain
+with each artwork component. The study CSS uses its own namespaced motion tracks.
+To develop another concept before release, register it in the study catalogue;
+production selection is still governed by the typed account preference contract.
 
 Add an allowed coach ID to the backend preference contract, regenerate the API
 types, and register the matching frontend definition. The typed registry covers

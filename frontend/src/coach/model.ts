@@ -42,6 +42,9 @@ export type CoachMicro =
   | "breathe"
   | "nod"
   | "glasses"
+  | "hair"
+  | "ears"
+  | "tail"
   | "sigh"
   | "twinkle";
 
@@ -49,6 +52,7 @@ export type CoachDefinition = {
   id: string;
   name: string;
   description: string;
+  expressionIntents?: Partial<Record<CoachExpression, string>>;
   defaultState: CoachExpression;
   expressions: readonly CoachExpression[];
   fallbacks: Partial<Record<CoachExpression, CoachExpression>>;
@@ -170,5 +174,35 @@ export function resolveFamily(coach: CoachDefinition, requested?: string) {
   return (
     coach.families.find((family) => family.id === requested)?.id ??
     coach.defaultFamily
+  );
+}
+
+export function expressionIntent(
+  coach: CoachDefinition,
+  state: CoachExpression,
+) {
+  return coach.expressionIntents?.[state] ?? expressionInfo[state].intent;
+}
+
+export const microLabels: Record<Exclude<CoachMicro, "">, string> = {
+  blink: "Blink",
+  glance: "Look around",
+  breathe: "Breathe",
+  nod: "Small nod",
+  glasses: "Settle glasses",
+  hair: "Hair settles",
+  ears: "Ear flick",
+  tail: "Tail flick",
+  sigh: "Exhale",
+  twinkle: "Delighted glint",
+};
+
+export function availableIdles(coach: CoachDefinition) {
+  const configured = new Set([
+    ...coach.animation.defaultIdle,
+    ...Object.values(coach.animation.idleGestures).flat(),
+  ]);
+  return (Object.keys(microLabels) as Exclude<CoachMicro, "">[]).filter(
+    (gesture) => configured.has(gesture),
   );
 }

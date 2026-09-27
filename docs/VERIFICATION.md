@@ -2,6 +2,26 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Additional coach studies: September 27, 2026
+
+The studio now compares a woman, cat and golden retriever, each with three visual
+directions and 20 expressions, alongside the existing coach. Shared human artwork
+was extracted first and verified against the original review behavior.
+
+- Production build, generated API consistency and TypeScript contracts passed.
+- Coach, study, semantic mapping and shared review tests: **35 passed, 1 expected
+  viewport skip**. Desktop checks accept browser subpixel rounding; animation
+  assertions first bring the portrait onscreen, matching the visibility contract.
+- New tests cover all nine expression collections, finite reactions, species
+  idle gestures, unique eye masks, reduced motion, stable comparison geometry,
+  actual review portrait widths, URL restoration and safe character switching.
+  Preview navigation performs no API writes and Settings keeps one real choice.
+- Inspected each new character's brilliant and blunder comparisons in the actual
+  application. Quiet and playful studies use different timing tracks and poses.
+
+The additional artwork remains in the lazy studio chunk. Production coach
+selection, account data and engine scheduling are unchanged.
+
 ## Animated coach: September 27, 2026
 
 Completed after the code-quality audit and deletion of its temporary checklist.

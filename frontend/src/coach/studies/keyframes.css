@@ -1,0 +1,405 @@
+@keyframes study-arrive {
+  0% {
+    transform: translateY(2px) rotate(calc(-3deg * var(--study-strength)));
+  }
+  55% {
+    transform: rotate(calc(1.5deg * var(--study-strength)));
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-delight {
+  0%,
+  15% {
+    transform: translateY(2px) rotate(calc(5deg * var(--study-strength)))
+      scale(0.98);
+  }
+  35% {
+    transform: translateY(calc(-4px * var(--study-strength)))
+      rotate(calc(-5deg * var(--study-strength))) scale(1.035);
+  }
+  57% {
+    transform: rotate(calc(2deg * var(--study-strength)));
+  }
+  78% {
+    transform: rotate(calc(-1deg * var(--study-strength)));
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-rise {
+  0%,
+  15% {
+    transform: scaleY(0.97) translateY(2px);
+  }
+  36% {
+    transform: translateY(calc(-3px * var(--study-strength))) scaleY(1.025);
+  }
+  63% {
+    transform: scaleY(0.995);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-follow {
+  0%,
+  18% {
+    transform: rotate(calc(3deg * var(--study-strength)));
+  }
+  40% {
+    transform: rotate(calc(-4deg * var(--study-strength)));
+  }
+  68% {
+    transform: rotate(calc(1.5deg * var(--study-strength)));
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-ear-settle {
+  0%,
+  20% {
+    transform: rotate(calc(-7deg * var(--study-strength)));
+  }
+  42% {
+    transform: rotate(calc(4deg * var(--study-strength)));
+  }
+  67% {
+    transform: rotate(calc(-2deg * var(--study-strength)));
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-wag {
+  0%,
+  100% {
+    transform: none;
+  }
+  25%,
+  65% {
+    transform: rotate(calc(-9deg * var(--study-strength)));
+  }
+  45%,
+  82% {
+    transform: rotate(calc(5deg * var(--study-strength)));
+  }
+}
+@keyframes study-recoil {
+  0% {
+    transform: rotate(calc(-3deg * var(--study-strength)));
+  }
+  14%,
+  27% {
+    transform: translateY(calc(-4px * var(--study-strength)))
+      rotate(calc(9deg * var(--study-strength))) scale(1.025, 0.97);
+  }
+  53% {
+    transform: translateY(2px) rotate(calc(-3deg * var(--study-strength)));
+  }
+  78% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-brace {
+  0%,
+  100% {
+    transform: none;
+  }
+  18%,
+  30% {
+    transform: scale(1.025, 0.97);
+  }
+  66% {
+    transform: translateY(1px);
+  }
+}
+@keyframes study-surprise {
+  0% {
+    opacity: 0;
+  }
+  15%,
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+@keyframes study-tail-tuck {
+  0% {
+    transform: rotate(-13deg);
+  }
+  23%,
+  52% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-hands-rise {
+  0% {
+    transform: translateY(10px);
+  }
+  22% {
+    transform: translateY(-2px);
+  }
+  55%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-nod {
+  0%,
+  100% {
+    transform: none;
+  }
+  35%,
+  48% {
+    transform: translateY(calc(2px * var(--study-strength)))
+      rotate(calc(3deg * var(--study-strength)));
+  }
+  70% {
+    transform: translateY(-0.5px);
+  }
+}
+@keyframes study-consider {
+  0% {
+    transform: rotate(calc(-5deg * var(--study-strength)));
+  }
+  40%,
+  65% {
+    transform: rotate(calc(3deg * var(--study-strength)));
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-sympathy {
+  0%,
+  100% {
+    transform: none;
+  }
+  35%,
+  65% {
+    transform: translateY(calc(3px * var(--study-strength)))
+      rotate(calc(-3deg * var(--study-strength)));
+  }
+}
+@keyframes study-look-back {
+  0% {
+    transform: rotate(calc(5deg * var(--study-strength)));
+  }
+  30%,
+  55% {
+    transform: rotate(calc(-6deg * var(--study-strength))) translateX(-1px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-focus {
+  0%,
+  100% {
+    transform: none;
+  }
+  35%,
+  60% {
+    transform: translateY(-1px) scale(1.025);
+  }
+}
+@keyframes study-offer {
+  0% {
+    transform: rotate(10deg) translateY(4px);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-stars {
+  0%,
+  18% {
+    opacity: 0;
+    transform: scale(0.65) rotate(-10deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.08) rotate(2deg);
+  }
+  100% {
+    opacity: 0.85;
+    transform: none;
+  }
+}
+@keyframes study-blink {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  45%,
+  60% {
+    transform: scaleY(0.07);
+  }
+}
+@keyframes study-glance {
+  0%,
+  100% {
+    transform: none;
+  }
+  35%,
+  65% {
+    transform: translateX(-1.4px);
+  }
+}
+@keyframes study-breathe {
+  0%,
+  100% {
+    transform: none;
+  }
+  45% {
+    transform: scaleY(1.009) translateY(-0.3px);
+  }
+}
+@keyframes study-ear-flick {
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  48% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes study-tail-flick {
+  0%,
+  100% {
+    transform: none;
+  }
+  37% {
+    transform: rotate(-7deg);
+  }
+  65% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes study-sigh {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: scaleY(1.012);
+  }
+  75% {
+    transform: scaleY(0.99) translateY(0.5px);
+  }
+}
+@keyframes study-twinkle {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: none;
+  }
+  45% {
+    opacity: 1;
+    transform: rotate(5deg) scale(1.07);
+  }
+}
+@keyframes study-glint {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+@keyframes study-quiet-look {
+  0%,
+  25%,
+  100% {
+    transform: none;
+  }
+  50%,
+  65% {
+    transform: rotate(1.6deg) translateY(0.6px);
+  }
+}
+@keyframes study-quiet-delight {
+  0%,
+  20% {
+    transform: rotate(1deg) translateY(0.5px);
+  }
+  45%,
+  60% {
+    transform: rotate(-3deg) translateY(-1.5px);
+  }
+  80% {
+    transform: translateY(0.5px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-quiet-concern {
+  0%,
+  13% {
+    transform: none;
+  }
+  30%,
+  47% {
+    transform: translateY(-1.5px) rotate(3deg);
+  }
+  75% {
+    transform: translateY(1px) rotate(-1deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-playful-delight {
+  0%,
+  19% {
+    transform: rotate(6deg) translateY(3px);
+  }
+  34%,
+  50% {
+    transform: rotate(-5deg) translateY(-4px) scale(1.03);
+  }
+  67% {
+    transform: rotate(2deg);
+  }
+  85%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes study-playful-recoil {
+  0% {
+    transform: none;
+  }
+  12%,
+  30% {
+    transform: rotate(10deg) translateY(-3px);
+  }
+  46%,
+  64% {
+    transform: rotate(-3deg) translateY(1px);
+  }
+  85%,
+  100% {
+    transform: none;
+  }
+}

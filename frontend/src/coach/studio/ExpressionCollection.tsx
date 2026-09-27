@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { CoachCharacter } from "../CoachAvatar";
-import { expressionInfo, expressions, type CoachExpression } from "../model";
+import {
+  expressionInfo,
+  expressionIntent,
+  expressions,
+  type CoachExpression,
+} from "../model";
 import type { StudioPreview } from "./PreviewPanels";
 
 const groups = [
@@ -112,7 +117,7 @@ export default function ExpressionCollection({
             <small>
               {state === "brilliant" || state === "blunder"
                 ? "Signature reaction"
-                : expressionInfo[state].intent.split(".")[0]}
+                : expressionIntent(coach, state).split(".")[0]}
             </small>
           </button>
         ))}

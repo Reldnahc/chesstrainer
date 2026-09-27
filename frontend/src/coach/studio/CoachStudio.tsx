@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, Play, RotateCcw, Sparkles } from "lucide-react";
 import Link from "../../Link";
-import { getCoach } from "../registry";
+import { getCoachStudy } from "../studies/catalog";
 import {
   expressionInfo,
+  expressionIntent,
+  availableIdles,
+  microLabels,
   expressions,
   resolveFamily,
   type CoachExpression,
@@ -13,6 +16,7 @@ import {
 import { useReducedMotion } from "../usePerformance";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
+import CoachPicker from "./CoachPicker";
 import "./studio.css";
 
 const sequence: CoachExpression[] = [
@@ -26,7 +30,11 @@ const sequence: CoachExpression[] = [
   "winning",
 ];
 export default function CoachStudio() {
-  const coach = getCoach("classic");
+  const [coachId, setCoachId] = useState(
+    () => getCoachStudy(new URLSearchParams(location.search).get("coach")).id,
+  );
+  const coach = getCoachStudy(coachId);
+  const idles = availableIdles(coach);
   const [expression, setExpression] = useState<CoachExpression>(() => {
     const requested = new URLSearchParams(location.search).get("expression");
     return expressions.find((state) => state === requested) ?? "brilliant";
@@ -45,7 +53,10 @@ export default function CoachStudio() {
   const [playing, setPlaying] = useState(false);
   const deviceReduced = useReducedMotion();
   const effectiveMotion = reduced || deviceReduced ? "still" : motion;
-  const reaction = { state: expression, key: `studio:${expression}` };
+  const reaction = {
+    state: expression,
+    key: `studio:${coach.id}:${expression}`,
+  };
   const preview = {
     coach,
     family,
@@ -56,10 +67,11 @@ export default function CoachStudio() {
   };
   useEffect(() => {
     const url = new URL(location.href);
+    url.searchParams.set("coach", coach.id);
     url.searchParams.set("expression", expression);
     url.searchParams.set("family", family);
     history.replaceState(history.state, "", url);
-  }, [expression, family]);
+  }, [expression, family, coach.id]);
   useEffect(() => {
     if (!playing) return;
     let index = 0;
@@ -88,6 +100,15 @@ export default function CoachStudio() {
     setExpression(state);
     setReplay((value) => value + 1);
   }
+  function selectCoach(id: string) {
+    const next = getCoachStudy(id);
+    setPlaying(false);
+    setIdlePreview("");
+    setIdleVariant(availableIdles(next)[0] ?? "");
+    setCoachId(next.id);
+    setFamily(next.defaultFamily);
+    setReplay((value) => value + 1);
+  }
   function revealPerformance() {
     document
       .querySelector(`.studio-${family}`)
@@ -102,18 +123,19 @@ export default function CoachStudio() {
         <div>
           <p className="eyebrow">FIELDWORK · CHARACTER STUDIES</p>
           <h1>
-            A familiar face.
+            Meet your next coach.
             <br />
-            <span>A little more life.</span>
+            <span>A little more personality.</span>
           </h1>
         </div>
         <p>
-          Three ways to tell the same story.
+          Four characters. Three directions each.
           <br />
           Compare the acting, replay a moment, then see how it reads beside the
           board.
         </p>
       </header>
+      <CoachPicker selected={coach.id} onSelect={selectCoach} />
       <section
         className="studio-controls"
         aria-label="Animation preview controls"
@@ -184,7 +206,7 @@ export default function CoachStudio() {
           </span>
           <h2>{expressionInfo[expression].label}</h2>
         </div>
-        <p>{expressionInfo[expression].intent}</p>
+        <p>{expressionIntent(coach, expression)}</p>
       </div>
       <ConceptComparison preview={preview} onFamily={setFamily} />
       <section className="studio-idle-bar" aria-label="Idle previews">
@@ -203,13 +225,11 @@ export default function CoachStudio() {
           value={idleVariant}
           onChange={(event) => setIdleVariant(event.target.value as CoachMicro)}
         >
-          <option value="blink">Blink</option>
-          <option value="glance">Look around</option>
-          <option value="breathe">Breathe</option>
-          <option value="nod">Small nod</option>
-          <option value="glasses">Settle glasses</option>
-          <option value="sigh">Exhale</option>
-          <option value="twinkle">Delighted glint</option>
+          {idles.map((idle) => (
+            <option key={idle} value={idle}>
+              {microLabels[idle]}
+            </option>
+          ))}
         </select>
         <button
           disabled={effectiveMotion === "still"}
@@ -232,10 +252,10 @@ export default function CoachStudio() {
       <aside className="studio-note">
         <Sparkles size={20} />
         <p>
-          <strong>One character, three directions.</strong> These studies share
-          the original coach's hair, glasses, beard and jacket. Storyteller is
-          used in your reviews; the other directions stay here for comparison.
-          Preview controls never change your account preferences.
+          <strong>{coach.name}: three directions.</strong> {coach.description}{" "}
+          The original Storyteller is used in your reviews. These studies are
+          here to compare before choosing a new coach. Preview controls never
+          change your account preferences.
         </p>
       </aside>
     </div>

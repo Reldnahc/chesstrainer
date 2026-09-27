@@ -42,4 +42,3 @@ export function familyPose(expression: CoachExpression, family: string): Pose {
     };
   return original;
 }
-

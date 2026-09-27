@@ -12,6 +12,7 @@ test("studio offers three complete collections, stable previews and expressive r
     "data-expression",
     "brilliant",
   );
+  await concepts.first().scrollIntoViewIfNeeded();
   await expect(concepts.first()).toHaveAttribute("data-phase", "reaction");
   await expect(concepts.first()).toHaveAttribute("data-phase", "rest");
   await page.locator(".studio-concepts").screenshot({

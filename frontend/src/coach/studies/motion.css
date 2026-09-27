@@ -1,0 +1,236 @@
+@import "./keyframes.css";
+
+.study-artwork {
+  --study-strength: var(--study-temperament, 1);
+}
+.study-body,
+.study-body-idle {
+  transform-origin: 50px 118px;
+}
+.study-head,
+.study-head-idle,
+.study-head-pose {
+  transform-origin: 50px 78px;
+}
+.study-head-pose {
+  transform: translateY(var(--study-lift)) rotate(var(--study-tilt));
+}
+.study-woman :is(.study-body, .study-body-idle) {
+  transform-origin: 40px 103px;
+}
+.study-woman :is(.study-head, .study-head-idle, .study-head-pose) {
+  transform-origin: 40px 67px;
+}
+.study-woman .coach-arm-left {
+  transform-origin: 18px 77px;
+}
+.study-woman .coach-arm-right {
+  transform-origin: 62px 77px;
+}
+.study-woman .coach-mouth {
+  transform-origin: 40px 59px;
+}
+.study-woman .coach-glasses {
+  transform-origin: 40px 41px;
+}
+.study-woman .coach-eyes,
+.animal-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.study-hair-motion {
+  transform-origin: 52px 22px;
+}
+.study-ear-motion {
+  transform-origin: 25px 30px;
+}
+.study-tail {
+  transform-origin: 74px 105px;
+}
+.study-paw-left {
+  transform-origin: 31px 88px;
+}
+.study-paw-right {
+  transform-origin: 69px 88px;
+}
+.study-whiskers {
+  transform-origin: 50px 55px;
+}
+.study-stars {
+  transform-origin: 50px 32px;
+}
+
+.coach-avatar[data-phase="reaction"][data-motion="natural"] .study-head {
+  animation: study-arrive 1000ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"] .study-hair-motion {
+  animation: study-follow 1200ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"] .study-ear-motion {
+  animation: study-ear-settle 1200ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  .study-head,
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="winning"]
+  .study-head {
+  animation: study-delight 1600ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="brilliant"],
+    [data-expression="winning"],
+    [data-expression="recovered"]
+  )
+  .study-body {
+  animation: study-rise 1600ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="brilliant"],
+    [data-expression="winning"]
+  )
+  .study-stars {
+  animation: study-stars 1600ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="brilliant"],
+    [data-expression="great"],
+    [data-expression="winning"],
+    [data-expression="recovered"]
+  )
+  .study-tail {
+  animation: study-wag 1400ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .study-head {
+  animation: study-recoil 1750ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .study-body {
+  animation: study-brace 1750ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .study-surprise {
+  animation: study-surprise 1600ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .study-tail {
+  animation: study-tail-tuck 1600ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  :is(.study-paw, .study-woman .coach-arm) {
+  animation: study-hands-rise 1500ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="great"],
+    [data-expression="best"],
+    [data-expression="good"],
+    [data-expression="encouraging"],
+    [data-expression="recovered"],
+    [data-expression="book"]
+  )
+  .study-head {
+  animation: study-nod 1200ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="inaccuracy"],
+    [data-expression="uncertain"],
+    [data-expression="draw"],
+    [data-expression="thinking"]
+  )
+  .study-head {
+  animation: study-consider 1300ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="mistake"],
+    [data-expression="losing"]
+  )
+  .study-head {
+  animation: study-sympathy 1400ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="missed"]
+  .study-head {
+  animation: study-look-back 1300ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="check"]
+  .study-head {
+  animation: study-focus 1200ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="explaining"]
+  :is(.study-paw-right, .study-woman .coach-arm-right) {
+  animation: study-offer 1100ms both;
+}
+/* Quiet studies wait before reacting; playful studies hold their anticipation
+   and overlap the head with hair/ear motion. These are different performances,
+   not a continuous loop or merely a speed multiplier. */
+.coach-avatar[data-phase="reaction"][data-motion="natural"]
+  :is(.study-analyst, .study-tuxedo, .study-gentle)
+  .study-head {
+  animation: study-quiet-look 1300ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  :is(.study-analyst, .study-tuxedo, .study-gentle)
+  .study-head {
+  animation: study-quiet-delight 1600ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  :is(.study-analyst, .study-tuxedo, .study-gentle)
+  .study-head {
+  animation: study-quiet-concern 1750ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  :is(.study-spark, .study-calico, .study-scout)
+  .study-head {
+  animation: study-playful-delight 1600ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  :is(.study-spark, .study-calico, .study-scout)
+  .study-head {
+  animation: study-playful-recoil 1750ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="subtle"] .study-head {
+  animation: study-nod 1200ms both;
+}
+.coach-avatar[data-phase="reaction"][data-motion="subtle"][data-expression="blunder"]
+  .study-head {
+  animation: study-sympathy 1400ms both;
+}
+.coach-avatar[data-motion="subtle"] .study-artwork {
+  --study-strength: 0.35;
+}
+
+.coach-avatar:not([data-motion="still"])[data-micro="blink"]
+  :is(.study-artwork .coach-eyes, .animal-eyes) {
+  animation: study-blink 260ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="glance"]
+  :is(.study-gaze, .study-artwork .coach-gaze) {
+  animation: study-glance 1150ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="breathe"]
+  .study-body-idle {
+  animation: study-breathe 1200ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="nod"] .study-head-idle {
+  animation: study-nod 1100ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="hair"] .study-hair-motion {
+  animation: study-follow 1150ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="ears"] .study-ear-left {
+  animation: study-ear-flick 850ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="ears"] .study-ear-right {
+  animation: study-ear-flick 850ms 120ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="tail"] .study-tail {
+  animation: study-tail-flick 1150ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="sigh"] .study-body-idle {
+  animation: study-sigh 1200ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="twinkle"] .study-stars {
+  animation: study-twinkle 1100ms both;
+}
+.coach-avatar:not([data-motion="still"])[data-micro="twinkle"]
+  .study-eye-glint {
+  animation: study-glint 1100ms both;
+}

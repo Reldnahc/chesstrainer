@@ -41,36 +41,16 @@ export default function HumanFeatures({
             strokeLinecap="round"
           >
             <path
-              d={
-                expression === "mistake"
-                  ? "M26 42q4 3 8-1"
-                  : "M26 43q4-5 8 0"
-              }
+              d={expression === "mistake" ? "M26 42q4 3 8-1" : "M26 43q4-5 8 0"}
             />
             <path
-              d={
-                expression === "mistake"
-                  ? "M46 41q4 4 8 1"
-                  : "M46 43q4-5 8 0"
-              }
+              d={expression === "mistake" ? "M46 41q4 4 8 1" : "M46 43q4-5 8 0"}
             />
           </g>
         ) : (
           <>
-            <ellipse
-              cx="30"
-              cy="42"
-              rx="4.2"
-              ry={pose.eye}
-              fill="#fff7e8"
-            />
-            <ellipse
-              cx="50"
-              cy="42"
-              rx="4.2"
-              ry={pose.eye}
-              fill="#fff7e8"
-            />
+            <ellipse cx="30" cy="42" rx="4.2" ry={pose.eye} fill="#fff7e8" />
+            <ellipse cx="50" cy="42" rx="4.2" ry={pose.eye} fill="#fff7e8" />
             <defs>
               <clipPath id={eyeClip}>
                 <ellipse cx="30" cy="42" rx="4.2" ry={pose.eye} />
@@ -129,9 +109,9 @@ export default function HumanFeatures({
             <path d="M34 56q6 2 12 0l-1 3H35Z" fill="#fff7e8" />
           )}
         {pose.open &&
-          ["brilliant", "winning", "recovered"].includes(
-            expression,
-          ) && <path d="M36 65q4-3 8 0-4 3-8 0" fill="#d58c7e" />}
+          ["brilliant", "winning", "recovered"].includes(expression) && (
+            <path d="M36 65q4-3 8 0-4 3-8 0" fill="#d58c7e" />
+          )}
       </g>
       {glasses && (
         <g

@@ -1,6 +1,7 @@
 import ReviewCoach from "../../ReviewCoach";
 import { CoachCharacter } from "../CoachAvatar";
 import { ArrowRight } from "lucide-react";
+import { selectableCoaches } from "../registry";
 import {
   expressionInfo,
   type CoachDefinition,
@@ -32,13 +33,15 @@ export function ConceptComparison({
       {coach.families.map((direction, index) => (
         <article
           className={`studio-concept studio-${direction.id}`}
+          data-concept-index={index}
           key={direction.id}
         >
           <div className="studio-concept-top">
             <span>CONCEPT {String(index + 1).padStart(2, "0")}</span>
-            {direction.id === coach.defaultFamily && (
-              <span className="studio-current">In your reviews</span>
-            )}
+            {selectableCoaches.includes(coach) &&
+              direction.id === coach.defaultFamily && (
+                <span className="studio-current">In your reviews</span>
+              )}
           </div>
           <div className="studio-character-stage">
             <div className="studio-character-halo" />
