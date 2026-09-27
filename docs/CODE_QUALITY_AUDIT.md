@@ -16,7 +16,7 @@ and may move during refactoring.
 - [x] **4. Define and share API response contracts.**
 - [x] **5. Run account browser tests in CI.**
 - [x] **6. Consolidate CSS ownership and remove obsolete styles.**
-- [ ] **7. Break tactical detection and classification into smaller rules/stages.**
+- [x] **7. Break tactical detection and classification into smaller rules/stages.**
 - [ ] **8. Consolidate duplicated chess helpers and correct dependency boundaries.**
 - [ ] **9. Remove archived lesson progression from active review handling.**
 - [ ] **10. Correct engine health reporting and preserve diagnostic exceptions.**
@@ -195,7 +195,7 @@ button-height regression during refactoring; it was corrected before verificatio
 
 ## 7. Tactical detectors and classifier methods are oversized
 
-**Priority:** Medium. **Status:** Open.
+**Priority:** Medium. **Status:** Resolved and verified.
 
 `verified_patterns._detect_at` is 247 lines and `LocalClassifier.classify` is 217
 lines. They mix numerous tactical motifs, evidence checks, outcome determination,
@@ -207,7 +207,18 @@ classification stages while preserving evidence admission, conservative labels,
 provenance and all existing tactical regression behavior. Do not rewrite pinned
 upstream code merely because it is large.
 
-**Verification / resolution:** Pending.
+**Implementation:** Named motif rules now operate on one concrete tactical event;
+episode bounds, outcome admission and rule order remain explicit in the dispatcher.
+The redundant one-item loops are gone. Classification separates root validation,
+material/mate outcomes, defense probes, provenance and abstention reasons. Its
+entry point only orchestrates these stages and constructs the ordered result.
+Pinned upstream code and classification/cache versions are unchanged.
+
+**Verification / resolution:** 92 tactical/classification/continuation/explanation
+regressions passed. A disposable comparison ran the previous committed classifier
+and detector against the same fixture evidence: all 70 complete classification
+results matched, including explanations, ordering, provenance and abstentions.
+Ruff lint/format and diff checks passed.
 
 ## 8. Shared chess helpers are duplicated or imported through the wrong module
 

@@ -139,7 +139,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 - review_cues.py: projects saved immediate witnesses into current-board arrows and square roles without new engine searches; skips later witnesses and checks attack geometry with python-chess. Cues are derived when reports are read, so existing reviews need no reanalysis.
 - imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.
 - jobs.py / job_queue.py / job_execution.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution, bounded worker pools, cancellation and atomic progress.
-- classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence.
+- classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence. `classification_stages.py` separates root validation, line outcome admission, defense checks, provenance and abstention reasons; the classifier preserves ordered aggregation and primary-skill selection.
 - curriculum.py: **active weakness priorities**, alongside archived course grouping/sequence helpers. lessons.py contains archived progression helpers.
 - reviews.py / explanations.py / scheduling.py / retirement.py: move grading, verified playback, FSRS adapter and persistent retirement.
 - practice.py: distinct game-position selection and focused sessions separate from scheduled recall.
@@ -191,7 +191,7 @@ Classification-only backfills launch no background engines and cannot create/enr
 
 ## Classification and audit modules
 
-diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py, tactical_geometry.py, combination_patterns.py and move_causes.py retain detailed collection witnesses and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
+diagnosis_types.py defines immutable outcomes, findings, square roles and cues. continuations.py owns legal replay, bounded forward endpoint selection and exact tail joins. lichess_patterns.py reconstructs upstream inputs; lichess_witnesses.py records successful predicate moves/squares from the pinned AGPL source in _vendor/lichess_puzzler. tactical_patterns.py owns the application episode/outcome admission boundary. verified_patterns.py bounds and orders events; verified_motifs.py owns independent capture, fork, promotion, check, pin, skewer, defender-removal and back-rank rules. tactical_geometry.py, combination_patterns.py and move_causes.py retain shared geometry and independent causal/native extensions. explanations.py uses witnesses only from the selected answer's own line.
 
 defensive_probes.py proposes legal counterfactual queries and checks matched native results. enrichment.py owns capped task/query planning and persistence. coverage.py counts current distinct outcomes and mechanisms independently of cumulative run counts. Response schema v3 and rule version 4.0-lichess-8d9faff6 are separate version boundaries.
 
