@@ -45,6 +45,10 @@ def main():
                 assert human["status"] == "available", human
                 assert human["played"]["probability"] is not None
                 assert human["domain"]["alignment"] == "shifted"
+                practical = frame["report"]["practical"]
+                assert practical["version"] == "practical-1"
+                assert practical["played_naturalness"] != "unknown"
+                assert practical["confidence"] == "limited"
                 assert human["conditioning"]["self_rating"] == (
                     700 if frame["actor"] == "white" else 1800
                 )

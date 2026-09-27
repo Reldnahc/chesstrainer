@@ -93,8 +93,9 @@ blitz; Chess.com games, other speeds, missing metadata and setup-position histor
 are explicitly identified. Even a related-domain result is **uncalibrated**.
 Policy probabilities are model outputs, never measured percentages of comparable
 players. Coach selection is absent from request/cache/evidence identity.
-Cold SRS schemas exclude human hints. No production dialogue is changed by this
-evidence-layer checkpoint.
+Cold SRS schemas exclude human hints. The next layer derives
+[practical difficulty and naturalness](PRACTICAL_DIFFICULTY.md) from these facts;
+it still changes neither objective grades nor personality dialogue.
 
 ## Verification
 

@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 2 verified; Milestone 3 is next.
+Current checkpoint: Milestone 3 verified; Milestone 4 is next.
 
 ## Baseline
 
@@ -57,10 +57,7 @@ benchmark and integration decision.
   only the disposable test image with `--no-cache` resolved it; no global pruning,
   host restart, deployment change or owner action was needed.
 
-## Decisions / follow-ups
-
-Milestone 2: production human-evidence layer complete; commit SHA will be recorded
-at the next boundary.
+Milestone 2: `0bfa31b209dda119a5cc4b0a3c3fece5eb1bce03` — production human-evidence layer.
 
 - One provider-neutral typed policy boundary, pinned narrow 79M adapter, bounded
   host subprocess pool, cancellable/deadline-bounded pipe I/O, cooldown/restart,
@@ -91,6 +88,28 @@ at the next boundary.
   keys, and normalized source hashes to upstream Git LF bytes for Windows/Linux.
 - Ruff lint/format and diff whitespace checks pass. No weights/binaries/private
   PGNs or databases enter source commits. Setup/resource docs: HUMAN_MODELS.md.
+
+Milestone 3: versioned practical difficulty and human naturalness complete; commit
+SHA will be recorded at the next boundary.
+
+- Pure semantic layer derives model naturalness separately from Stockfish quality,
+  conservative best-find bands, narrow defensive resources, candidate-coverage
+  lower bounds and supported witness components. Unknown/stale human evidence
+  abstains. No grading or personality changes, no population percentages.
+- Replayed the fixed M0/M1 corpus at four rating pairs with recorded artifact
+  hashes. 48 probes yielded 38 natural, 9 challenging and 1 difficult best find.
+  The one difficult result is the supported queen sacrifice at the lowest rating.
+  Threshold rationale, per-rating distributions and limits: PRACTICAL_DIFFICULTY.md.
+- Focused review/difficulty/human/API suite: 59 passed. Final stale-context and
+  confidence checks rerun separately. Native Stockfish+79M application smoke,
+  restart cache and coach-independence assertions passed with the new payload.
+- Generated OpenAPI/types, production build and Ruff/diff checks pass. Derived
+  assessments retain evidence IDs and a deterministic version/input digest; no
+  new tables, no model rerun and no cold-SRS exposure.
+- Broader empirical population calibration remains explicitly unclaimed, not a
+  blocker; only coarse heuristic bands are exposed.
+
+## Decisions / follow-ups
 
 - Keep the existing separate development-only coach process. New diagnostics must not enter production navigation.
 - Authority boundaries and repeatable benchmark commands live in `REVIEW_INTELLIGENCE.md`.

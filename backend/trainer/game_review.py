@@ -23,6 +23,7 @@ from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.move_causes import move_causes
 from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
+from trainer.review_intelligence.difficulty import assess_difficulty
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 VERSION = "game-review-1"
@@ -238,6 +239,7 @@ def public_report(report, rating):
         label, reason = "Book", "This move is part of a recognized opening line."
         coach = f"This follows {opening['name']} ({opening['eco']})." if opening["name"] else reason
     return report | {
+        "practical": assess_difficulty(report).model_dump(mode="json"),
         "label": label,
         "engine_label": engine_label,
         "opening": opening,

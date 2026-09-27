@@ -972,6 +972,40 @@ export interface components {
             /** Username */
             username: string;
         };
+        /** DifficultyComponents */
+        DifficultyComponents: {
+            /** Acceptable Count Lower Bound */
+            acceptable_count_lower_bound: number;
+            /** Alternatives Complete */
+            alternatives_complete: boolean;
+            /** Best Forcing Plies */
+            best_forcing_plies: number;
+            /** Best Probability */
+            best_probability?: number | null;
+            /** Best Rank */
+            best_rank?: number | null;
+            /** Best Supported Horizon */
+            best_supported_horizon: number;
+            /** Candidate Gap Cp */
+            candidate_gap_cp?: number | null;
+            /**
+             * Mate Transition
+             * @enum {string}
+             */
+            mate_transition: "allowed" | "missed" | "none";
+            /** Normalized Entropy */
+            normalized_entropy?: number | null;
+            /** Only Good Move At Depth */
+            only_good_move_at_depth: boolean | null;
+            /** Played Probability */
+            played_probability?: number | null;
+            /** Played Rank */
+            played_rank?: number | null;
+            /** Top Three Mass */
+            top_three_mass?: number | null;
+            /** Verified Sacrifice */
+            verified_sacrifice: boolean;
+        };
         /** Domain */
         Domain: {
             /**
@@ -1245,6 +1279,7 @@ export interface components {
              */
             label: "Brilliant" | "Great" | "Best" | "Good" | "Book" | "Inaccuracy" | "Mistake" | "Miss" | "Blunder";
             opening: components["schemas"]["BookOpening"] | null;
+            practical?: components["schemas"]["PracticalAssessment"] | null;
             /** Reason */
             reason: string;
             white_score: components["schemas"]["Score"];
@@ -1302,6 +1337,7 @@ export interface components {
             opportunity_missed: boolean;
             /** Played Analysis Id */
             played_analysis_id: string;
+            practical?: components["schemas"]["PracticalAssessment"] | null;
             previous_score: components["schemas"]["Score"] | null;
             /** Reason */
             reason: string;
@@ -1598,6 +1634,58 @@ export interface components {
             job_id: string | null;
             /** Processed */
             processed: number;
+        };
+        /** PracticalAssessment */
+        PracticalAssessment: {
+            /**
+             * Best Find Difficulty
+             * @enum {string}
+             */
+            best_find_difficulty: "forced" | "natural" | "challenging" | "difficult" | "unknown";
+            /**
+             * Best Naturalness
+             * @enum {string}
+             */
+            best_naturalness: "preferred" | "plausible" | "unusual" | "unknown";
+            /**
+             * Calibration
+             * @default uncalibrated
+             * @constant
+             */
+            calibration: "uncalibrated";
+            components: components["schemas"]["DifficultyComponents"];
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "structural" | "heuristic" | "limited" | "unavailable";
+            /** Human Evidence Id */
+            human_evidence_id: string | null;
+            /** Input Digest */
+            input_digest: string;
+            /** Interpretations */
+            interpretations?: ("forced_reply" | "natural_error" | "unusual_strong_move" | "natural_best" | "hard_to_find_defense" | "immediate_mate_missed")[];
+            /** Limitations */
+            limitations: string[];
+            /**
+             * Played Naturalness
+             * @enum {string}
+             */
+            played_naturalness: "preferred" | "plausible" | "unusual" | "unknown";
+            /**
+             * Probe Version
+             * @default synthetic-probe-1
+             * @constant
+             */
+            probe_version: "synthetic-probe-1";
+            /** Stockfish Analysis Ids */
+            stockfish_analysis_ids: string[];
+            /**
+             * Version
+             * @default practical-1
+             * @constant
+             */
+            version: "practical-1";
         };
         /** PracticeQueueItem */
         PracticeQueueItem: {

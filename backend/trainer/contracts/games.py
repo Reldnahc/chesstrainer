@@ -5,6 +5,7 @@ from trainer.contracts.common import Color, Contract, LegalMove
 from trainer.diagnosis_types import Finding
 from trainer.explanations import Frame
 from trainer.human_models.types import HumanEvidence
+from trainer.review_intelligence.types import PracticalAssessment
 
 MoveQuality = Literal[
     "Brilliant", "Great", "Best", "Good", "Book", "Inaccuracy", "Mistake", "Miss", "Blunder"
@@ -69,6 +70,7 @@ class BookOpening(Contract):
 
 class GameMoveReport(Contract):
     human: HumanEvidence | None = None
+    practical: PracticalAssessment | None = None
     label: MoveQuality
     engine_label: MoveQuality
     opening: BookOpening | None

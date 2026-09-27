@@ -238,6 +238,7 @@ def create_router(*, settings, engine_factory):
                                 "engine_version",
                                 "board_cues",
                                 "human",
+                                "practical",
                             )
                             if key in report
                         },

@@ -1,6 +1,5 @@
 """Account-scoped evidence and durable cache around a host-shared human provider."""
 
-import math
 import threading
 from time import monotonic
 
@@ -8,6 +7,7 @@ from sqlalchemy import select
 
 from trainer.chess_core import digest
 from trainer.human_models.context import request_for
+from trainer.human_models.evidence import policy_summary
 from trainer.human_models.runtime import HumanCancelled, HumanUnavailable, MaiaProvider
 from trainer.human_models.types import HumanEvidence, HumanPolicy
 from trainer.models import HumanAnalysis
@@ -98,25 +98,10 @@ class HumanModels:
                         evidence_id = saved.id
             finally:
                 lock.release()
-            probabilities = [row.probability for row in policy.moves]
-            exact = policy.complete and all(p is not None for p in probabilities)
-            entropy = (
-                -sum(p * math.log(p) for p in probabilities if p) / math.log(len(probabilities))
-                if exact and len(probabilities) > 1
-                else 0.0
-                if exact
-                else None
-            )
-            lookup = {row.uci: row for row in policy.moves}
             return HumanEvidence(
                 status="available",
                 evidence_id=evidence_id,
-                provenance=policy.provenance,
-                played=lookup.get(played),
-                engine_best=lookup.get(best),
-                top_moves=policy.moves[:5],
-                normalized_entropy=entropy,
-                top_three_mass=sum(probabilities[:3]) if exact else None,
+                **policy_summary(policy, played, best),
                 **base,
             ).model_dump(mode="json")
         except HumanCancelled:

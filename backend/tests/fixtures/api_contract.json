@@ -808,6 +808,139 @@
         "title": "Credentials",
         "type": "object"
       },
+      "DifficultyComponents": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptable_count_lower_bound": {
+            "title": "Acceptable Count Lower Bound",
+            "type": "integer"
+          },
+          "alternatives_complete": {
+            "title": "Alternatives Complete",
+            "type": "boolean"
+          },
+          "best_forcing_plies": {
+            "title": "Best Forcing Plies",
+            "type": "integer"
+          },
+          "best_probability": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Best Probability"
+          },
+          "best_rank": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Best Rank"
+          },
+          "best_supported_horizon": {
+            "title": "Best Supported Horizon",
+            "type": "integer"
+          },
+          "candidate_gap_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Candidate Gap Cp"
+          },
+          "mate_transition": {
+            "enum": [
+              "allowed",
+              "missed",
+              "none"
+            ],
+            "title": "Mate Transition",
+            "type": "string"
+          },
+          "normalized_entropy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Entropy"
+          },
+          "only_good_move_at_depth": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Only Good Move At Depth"
+          },
+          "played_probability": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played Probability"
+          },
+          "played_rank": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played Rank"
+          },
+          "top_three_mass": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top Three Mass"
+          },
+          "verified_sacrifice": {
+            "title": "Verified Sacrifice",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "acceptable_count_lower_bound",
+          "alternatives_complete",
+          "only_good_move_at_depth",
+          "best_forcing_plies",
+          "best_supported_horizon",
+          "verified_sacrifice",
+          "mate_transition"
+        ],
+        "title": "DifficultyComponents",
+        "type": "object"
+      },
       "Domain": {
         "additionalProperties": false,
         "properties": {
@@ -1706,6 +1839,16 @@
               }
             ]
           },
+          "practical": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "reason": {
             "title": "Reason",
             "type": "string"
@@ -1910,6 +2053,16 @@
           "played_analysis_id": {
             "title": "Played Analysis Id",
             "type": "string"
+          },
+          "practical": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "previous_score": {
             "anyOf": [
@@ -2900,6 +3053,130 @@
           "errors"
         ],
         "title": "PgnImportResult",
+        "type": "object"
+      },
+      "PracticalAssessment": {
+        "additionalProperties": false,
+        "properties": {
+          "best_find_difficulty": {
+            "enum": [
+              "forced",
+              "natural",
+              "challenging",
+              "difficult",
+              "unknown"
+            ],
+            "title": "Best Find Difficulty",
+            "type": "string"
+          },
+          "best_naturalness": {
+            "enum": [
+              "preferred",
+              "plausible",
+              "unusual",
+              "unknown"
+            ],
+            "title": "Best Naturalness",
+            "type": "string"
+          },
+          "calibration": {
+            "const": "uncalibrated",
+            "default": "uncalibrated",
+            "title": "Calibration",
+            "type": "string"
+          },
+          "components": {
+            "$ref": "#/components/schemas/DifficultyComponents"
+          },
+          "confidence": {
+            "enum": [
+              "structural",
+              "heuristic",
+              "limited",
+              "unavailable"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "human_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Human Evidence Id"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "interpretations": {
+            "items": {
+              "enum": [
+                "forced_reply",
+                "natural_error",
+                "unusual_strong_move",
+                "natural_best",
+                "hard_to_find_defense",
+                "immediate_mate_missed"
+              ],
+              "type": "string"
+            },
+            "title": "Interpretations",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "played_naturalness": {
+            "enum": [
+              "preferred",
+              "plausible",
+              "unusual",
+              "unknown"
+            ],
+            "title": "Played Naturalness",
+            "type": "string"
+          },
+          "probe_version": {
+            "const": "synthetic-probe-1",
+            "default": "synthetic-probe-1",
+            "title": "Probe Version",
+            "type": "string"
+          },
+          "stockfish_analysis_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Stockfish Analysis Ids",
+            "type": "array"
+          },
+          "version": {
+            "const": "practical-1",
+            "default": "practical-1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "input_digest",
+          "stockfish_analysis_ids",
+          "human_evidence_id",
+          "confidence",
+          "limitations",
+          "best_find_difficulty",
+          "played_naturalness",
+          "best_naturalness",
+          "components"
+        ],
+        "title": "PracticalAssessment",
         "type": "object"
       },
       "PracticeQueueItem": {

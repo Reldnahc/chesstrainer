@@ -7,6 +7,11 @@ Its first implementation preserves the baseline below without changing grades
 or dialogue. Current schema and runtime configuration live in DATA_MODEL.md and
 CONFIGURATION.md; this document's baseline measurements remain historical.
 
+[Practical difficulty](PRACTICAL_DIFFICULTY.md) documents the versioned derivation,
+fixed-probe inspection and limits of human naturalness/difficulty bands. The
+`review_intelligence` package derives semantic facts only; raw chess and human
+provider authorities remain unchanged.
+
 The durable implementation specification is
 [REVIEW_INTELLIGENCE_PLAN.md](REVIEW_INTELLIGENCE_PLAN.md). This document records
 implemented architecture and measured decisions, not promises of completed features.

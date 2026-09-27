@@ -27,6 +27,7 @@ Whole-game review and training analysis are separately requested from the game.
 | backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
+| review_intelligence/ | Pure versioned semantic derivations over saved facts, starting with conservative difficulty/naturalness; no model, engine or personality authority |
 | routes/workspace.py | Health, effective settings, account-owned coach preferences and statistics |
 | preferences.py | Validated coach choices in one owned user_preferences row; missing/unsupported choices have safe read defaults |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
