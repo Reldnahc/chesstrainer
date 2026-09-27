@@ -92,6 +92,10 @@ export default function ReviewExplanation({
   return (
     <section className="review-explanation" aria-label="Move explanation">
       <ReviewCoach
+        reaction={{
+          key: `${sessionId}:${attemptId ?? "solution"}:${index}`,
+          state: error ? "uncertain" : !data ? "thinking" : "explaining",
+        }}
         title={<h2 title={title}>{title}</h2>}
         badge={data && <strong className="review-move">{data.move_san}</strong>}
         actions={returnControl}

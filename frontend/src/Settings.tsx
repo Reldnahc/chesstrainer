@@ -3,6 +3,7 @@ import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import { AccountSettings } from "./AccountGate";
+import CoachSettings from "./coach/CoachSettings";
 
 export default function SettingsScreen({
   health,
@@ -41,6 +42,7 @@ export default function SettingsScreen({
         description="Your account, connected games and training."
       />
       <AccountSettings />
+      <CoachSettings />
       <GameSync />
       <section className="panel settings-panel">
         <h2>Training</h2>

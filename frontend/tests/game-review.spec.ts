@@ -286,7 +286,7 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   const moves = Array.from({length: 120}, (_, index) => {
     const frame = source[index % source.length];
     const candidate = {uci: frame.uci, san: frame.san, score: {kind: 'cp', value: Math.sin(index / 8) * 400}, pv: []};
-    return {...frame, number: Math.floor(index / 2) + 1, report: {
+    return {...frame, termination: null, number: Math.floor(index / 2) + 1, report: {
       label: 'Good', coach: `Coaching for ply ${index + 1}.`, best: candidate, actual: candidate,
       white_score: candidate.score, depth: 1, engine_version: 'Timeline fixture',
     }};

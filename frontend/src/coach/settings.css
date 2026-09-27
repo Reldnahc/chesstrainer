@@ -1,0 +1,114 @@
+.coach-settings {
+  margin-block: 20px;
+}
+.coach-settings-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.coach-settings-heading h2 {
+  margin: 0 0 6px;
+}
+.coach-settings-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.coach-settings-heading > a {
+  white-space: nowrap;
+  font-size: 12px;
+}
+.coach-options {
+  border: 0;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.coach-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid #56675d;
+  border-radius: 10px;
+  padding: 10px 18px;
+  background: #252e29;
+  cursor: pointer;
+}
+.coach-option .coach-avatar {
+  width: 64px;
+  height: 80px;
+  flex: none;
+  margin: 0;
+}
+.coach-option > span {
+  flex: 1;
+  display: grid;
+  gap: 6px;
+}
+.coach-option strong {
+  font-size: 16px;
+}
+.coach-option > span > span {
+  font-size: 13px;
+  color: #b6c4b9;
+}
+.coach-option input {
+  accent-color: #b8d69b;
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  padding: 0;
+  flex: none;
+  margin: 0;
+}
+.coach-motion-setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+}
+.coach-motion-setting > div {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+}
+.coach-motion-setting > div > span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.coach-motion-setting label {
+  margin: 0;
+}
+.coach-motion-setting select {
+  width: 150px;
+  min-height: 44px;
+  margin: 0;
+}
+.coach-preference-status {
+  min-height: 24px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .coach-settings-heading {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .coach-option {
+    gap: 12px;
+    padding-inline: 10px;
+  }
+  .coach-motion-setting {
+    align-items: start;
+  }
+  .coach-motion-setting select {
+    width: 112px;
+    flex: none;
+  }
+}

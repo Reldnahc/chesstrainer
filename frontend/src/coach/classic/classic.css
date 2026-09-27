@@ -1,0 +1,44 @@
+@import "./keyframes.css";
+@import "./reactions.css";
+
+.coach-body-motion,
+.coach-body-idle {
+  transform-origin: 40px 102px;
+}
+.coach-head-motion,
+.coach-head-idle,
+.coach-head-pose {
+  transform-origin: 40px 67px;
+}
+.coach-head-pose {
+  transform: translateY(var(--pose-lift)) rotate(var(--pose-tilt));
+}
+.coach-eyes {
+  transform-origin: 40px 42px;
+}
+.coach-mouth {
+  transform-origin: 40px 59px;
+}
+.coach-brows {
+  transform-origin: 40px 31px;
+}
+.coach-glasses {
+  transform-origin: 40px 41px;
+}
+.coach-arm-left {
+  transform-origin: 18px 77px;
+}
+.coach-arm-right {
+  transform-origin: 62px 77px;
+}
+.coach-stars {
+  transform-origin: 40px 30px;
+  opacity: 0.85;
+}
+.coach-rays,
+.coach-check-accent {
+  opacity: 0.65;
+}
+.coach-question {
+  opacity: 0.75;
+}

@@ -2,7 +2,7 @@
 
 from typing import get_args
 
-from sqlalchemy import select
+from sqlalchemy import select, update
 
 from trainer.contracts.preferences import CoachId, CoachMotion, CoachPreferences
 from trainer.models import UserPreferences
@@ -23,8 +23,6 @@ def coach_preferences(db):
 def save_coach_preferences(db, value: CoachPreferences):
     # Serialize the first insert as well as later updates across concurrent devices.
     # SQLite's busy timeout handles this short, engine-free transaction.
-    from sqlalchemy import update
-
     owner = db.info["user_id"]
     changed = db.execute(
         update(UserPreferences).values(coach_id=value.coach_id, coach_motion=value.motion)

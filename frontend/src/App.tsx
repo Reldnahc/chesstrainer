@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import {
   FileUp,
   BookOpen,
@@ -20,6 +20,7 @@ import { navigate, pagePaths, useRoute } from "./navigation";
 import Link from "./Link";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
+const CoachStudio = lazy(() => import("./coach/studio/CoachStudio"));
 const tabs = [
   ["Review", Focus],
   ["Games", BookOpen],
@@ -60,7 +61,7 @@ export default function App() {
   useEffect(() => {
     setError("");
     setEvidenceId(null);
-    document.title = `${route.gameId ? "Game review" : (tab ?? "Page not found")} · Fieldwork`;
+    document.title = `${route.coachStudio ? "Coach studio" : route.gameId ? "Game review" : (tab ?? "Page not found")} · Fieldwork`;
   }, [route, tab]);
   return (
     <>
@@ -181,7 +182,14 @@ export default function App() {
             {tab === "Settings" && (
               <SettingsScreen health={health} fail={fail} />
             )}
-            {!tab && (
+            {route.coachStudio && (
+              <Suspense
+                fallback={<p role="status">Opening the coach studio…</p>}
+              >
+                <CoachStudio />
+              </Suspense>
+            )}
+            {!tab && !route.coachStudio && (
               <section className="panel">
                 <h1>Page not found</h1>
                 <p>This address does not match a page in Fieldwork.</p>

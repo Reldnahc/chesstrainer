@@ -47,7 +47,7 @@ test("lazy and recovered engine use stays available without an endless checking 
     await page
       .getByRole("button", { name: "Deepen unclear positions" })
       .click();
-    await expect(page.getByRole("status")).toContainText(
+    await expect(page.getByRole("status").filter({hasText: "Additional analysis queued"})).toContainText(
       "Additional analysis queued",
     );
   }

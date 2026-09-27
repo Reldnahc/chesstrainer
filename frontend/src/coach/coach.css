@@ -1,0 +1,23 @@
+/* The rig owns its motion. No reaction changes the reserved layout box. */
+.coach-avatar {
+  position: relative;
+  isolation: isolate;
+  contain: layout style;
+}
+.coach-artwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.coach-avatar[data-motion="still"] *,
+.coach-avatar[data-motion="still"] *::before {
+  animation: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .coach-avatar * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

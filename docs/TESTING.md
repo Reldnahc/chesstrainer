@@ -191,6 +191,8 @@ synthetic game and complete its review through the application's native Stockfis
 worker. Account mode additionally checks signup, session persistence, origin
 rejection, secure cookies and the lazy engine's health transition from unchecked
 to ready. Local mode verifies engine readiness at startup.
+Both modes verify default coach preferences and a saved motion preference after
+restart, exercising the additive preference migration and account ownership.
 
 Hosted requests emulate the headers forwarded by a TLS-terminating reverse proxy;
 this does not verify a live proxy or Cloudflare configuration. The test neither

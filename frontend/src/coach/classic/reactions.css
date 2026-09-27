@@ -1,0 +1,221 @@
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"]
+  .coach-head-motion {
+  animation: classic-greet 900ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"]
+  .coach-body-motion {
+  animation: classic-arrive 900ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"]
+  .coach-brows {
+  animation: classic-brow-lift 850ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"]
+  .coach-arm {
+  animation: classic-offer 1000ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  .coach-head-motion {
+  animation: classic-delight 1600ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  .coach-body-motion {
+  animation: classic-brighten 1500ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  .coach-stars {
+  animation: classic-stars-arrive 1500ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  .coach-mouth {
+  animation: classic-aha 1500ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-head-motion {
+  animation: classic-recoil 1750ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-body-motion {
+  animation: classic-brace 1750ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-glasses {
+  animation: classic-glasses-slip 1750ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-arm-left {
+  animation: classic-hands-up-left 1700ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-arm-right {
+  animation: classic-hands-up-right 1700ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-rays {
+  animation: classic-lines-arrive 1700ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="winning"]
+  .coach-body-motion {
+  animation: classic-win 1500ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="winning"]
+  .coach-stars {
+  animation: classic-stars-arrive 1500ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="great"]
+  .coach-arm-left {
+  animation: classic-clap-left 1100ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="great"]
+  .coach-arm-right {
+  animation: classic-clap-right 1100ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="best"],
+    [data-expression="good"],
+    [data-expression="encouraging"]
+  )
+  .coach-head-motion {
+  animation: classic-nod 1000ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="recovered"]
+  .coach-arm-right {
+  animation: classic-fist-pump 1200ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="mistake"],
+    [data-expression="losing"]
+  )
+  .coach-head-motion {
+  animation: classic-sympathy 1250ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"]:is(
+    [data-expression="inaccuracy"],
+    [data-expression="uncertain"],
+    [data-expression="draw"]
+  )
+  .coach-head-motion {
+  animation: classic-consider 1100ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="missed"]
+  .coach-head-motion {
+  animation: classic-look-back 1150ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="check"]
+  .coach-body-motion {
+  animation: classic-lean-in 1000ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="thinking"]
+  .coach-gaze {
+  animation: classic-thought 1000ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="book"]
+  .coach-head-motion {
+  animation: classic-recognize 1100ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="natural"][data-expression="explaining"]
+  .coach-arm-right {
+  animation: classic-point 1000ms both;
+}
+
+/* Mentor acts with a delayed look and one small nod; Spark uses held poses and
+   overlapping glasses/hand movement instead of a larger version of Storyteller. */
+.coach-avatar[data-coach="classic"][data-family="mentor"][data-phase="reaction"][data-motion="natural"]
+  .coach-body-motion,
+.coach-avatar[data-coach="classic"][data-family="mentor"][data-phase="reaction"][data-motion="natural"]
+  .coach-arm {
+  animation: classic-mentor-settle 1250ms both;
+}
+.coach-avatar[data-coach="classic"][data-family="mentor"][data-phase="reaction"][data-motion="natural"]
+  .coach-head-motion {
+  animation: classic-mentor-nod 1100ms both;
+}
+.coach-avatar[data-coach="classic"][data-family="mentor"][data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  .coach-head-motion {
+  animation: classic-mentor-delight 1500ms both;
+}
+.coach-avatar[data-coach="classic"][data-family="mentor"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-head-motion {
+  animation: classic-mentor-concern 1700ms both;
+}
+.coach-avatar[data-coach="classic"][data-family="spark"][data-phase="reaction"][data-motion="natural"]
+  .coach-head-motion {
+  animation: classic-spark-pose 1000ms both;
+}
+.coach-avatar[data-coach="classic"][data-family="spark"][data-phase="reaction"][data-motion="natural"]
+  .coach-glasses {
+  animation: classic-spark-follow 1100ms both;
+}
+.coach-avatar[data-coach="classic"][data-family="spark"][data-phase="reaction"][data-motion="natural"][data-expression="brilliant"]
+  .coach-head-motion {
+  animation: classic-spark-delight 1500ms both;
+}
+.coach-avatar[data-coach="classic"][data-family="spark"][data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
+  .coach-head-motion {
+  animation: classic-spark-recoil 1700ms both;
+}
+
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="subtle"]
+  .coach-head-motion {
+  animation: classic-mentor-nod 1000ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="subtle"][data-expression="blunder"]
+  .coach-head-motion {
+  animation: classic-mentor-concern 1400ms both;
+}
+.coach-avatar[data-coach="classic"][data-phase="reaction"][data-motion="subtle"][data-expression="brilliant"]
+  .coach-head-motion {
+  animation: classic-mentor-delight 1400ms both;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="blink"]
+  .coach-eyes {
+  animation: classic-blink 260ms 1;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="glance"]
+  .coach-gaze {
+  animation: classic-glance 1100ms 1;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="breathe"]
+  .coach-body-idle {
+  animation: classic-breathe 1200ms 1;
+}
+.coach-avatar[data-coach="classic"]:not([data-motion="still"])[data-micro="nod"]
+  .coach-head-idle {
+  animation: classic-mentor-nod 1000ms 1;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="glasses"]
+  .coach-glasses {
+  animation: classic-adjust-glasses 1050ms 1;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="sigh"]
+  .coach-body-idle {
+  animation: classic-exhale 1200ms 1;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="sigh"]
+  .coach-eyes {
+  animation: classic-slow-blink 1000ms 1;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="twinkle"]
+  .coach-stars {
+  animation: classic-twinkle 1100ms 1;
+}
+.coach-avatar[data-coach="classic"]:not(
+    [data-motion="still"]
+  )[data-micro="twinkle"]
+  .coach-lens-glint {
+  animation: classic-glint 1100ms 1;
+}

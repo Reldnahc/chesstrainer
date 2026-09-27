@@ -40,6 +40,7 @@ function readRoute() {
   const tab = gameId ? "Games" : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
   return {
     entry,
+    coachStudio: path === "/coach-studio",
     href: url.pathname + url.search,
     tab,
     gameId,

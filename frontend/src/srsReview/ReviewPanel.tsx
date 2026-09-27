@@ -6,6 +6,7 @@ import ReviewExplanation from "../ReviewExplanation";
 import ReviewDetails from "./ReviewDetails";
 import type { ReviewSession } from "./useReviewSession";
 import type { ReviewPlayback } from "./useReviewPlayback";
+import { practiceReaction } from "../coach/reactions";
 
 export default function ReviewPanel({
   session,
@@ -89,6 +90,14 @@ export default function ReviewPanel({
       ) : (
         <>
           <ReviewCoach
+            reaction={practiceReaction({
+              position,
+              feedback,
+              busy,
+              mistake: mistakeCue,
+              hadFailure: session.hadFailure,
+              error: !!session.gradingError,
+            })}
             title={
               <h2>
                 {feedback?.completed
@@ -141,7 +150,11 @@ export default function ReviewPanel({
               </div>
             }
           >
-            {feedback?.completed ? (
+            {session.gradingError ? (
+              <p>
+                I couldn't get a result for that move. You can try again.
+              </p>
+            ) : feedback?.completed ? (
               <div role="status" aria-live="polite" aria-atomic="true">
                 <p>
                   <strong className="review-move">

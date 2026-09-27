@@ -3,6 +3,7 @@ import ReviewCoach from "../ReviewCoach";
 import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
 import type { Game, Position, Report } from "./types";
+import { gameReaction } from "../coach/reactions";
 
 export default function PositionCoach({
   game,
@@ -16,6 +17,7 @@ export default function PositionCoach({
   errorAtPosition,
   reviewStarting,
   onExplain,
+  positionKey,
 }: {
   game: Game;
   report?: Report | null;
@@ -28,7 +30,28 @@ export default function PositionCoach({
   errorAtPosition: string | null;
   reviewStarting: boolean;
   onExplain: () => void;
+  positionKey: string;
 }) {
+  const reaction = gameReaction({
+    key: positionKey,
+    frame,
+    report,
+    learner: game.orientation,
+    explaining,
+    error: !!errorAtPosition || (!actor && game.job?.status === "failed"),
+    pending:
+      !!actor ||
+      reviewStarting ||
+      ["queued", "running"].includes(game.job?.status ?? ""),
+  });
+  const finish =
+    reaction.state === "winning"
+      ? "Checkmate. You finished the attack; the king has no legal escape."
+      : reaction.state === "losing"
+        ? "Checkmate. Your king has no legal escape. Let's look back for a way to stop the attack."
+        : reaction.state === "draw"
+          ? "The position is drawn. We can look back at the earlier decisions together."
+          : null;
   const coachIntro =
     game.job?.status === "completed"
       ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea."
@@ -39,6 +62,7 @@ export default function PositionCoach({
           : "I'm reviewing both sides. The move ratings will appear as they're ready. You can explore the board while you wait.";
   return (
     <ReviewCoach
+      reaction={reaction}
       title={
         report ? (
           <MoveBadge label={report.label}>
@@ -90,7 +114,8 @@ export default function PositionCoach({
       <p aria-live="polite">
         {explaining
           ? cues!.caption
-          : report?.coach ||
+          : finish ||
+            report?.coach ||
             (errorAtPosition
               ? "You can still explore the board. Engine coaching is unavailable for this position."
               : !actor

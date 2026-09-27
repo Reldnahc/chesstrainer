@@ -25,6 +25,8 @@ export function useReviewSession({
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [submittedMove, setSubmittedMove] = useState<string | null>(null);
+  const [hadFailure, setHadFailure] = useState(false);
+  const [gradingError, setGradingError] = useState<string | null>(null);
   const [done, setDone] = useState(0);
   const [last, setLast] = useState<string | null>(null);
   const practiceBatch = useRef<Schema["PracticeQueueItem"][] | null>(null);
@@ -37,6 +39,8 @@ export function useReviewSession({
       setLoading(true);
       setFeedback(null);
       setSubmittedMove(null);
+      setHadFailure(false);
+      setGradingError(null);
       if (window.matchMedia("(max-width: 760px)").matches)
         window.scrollTo({ top: 0, behavior: "instant" });
       try {
@@ -100,6 +104,7 @@ export function useReviewSession({
     if (!position || busy || feedback?.completed) return;
     const version = generation.current;
     setBusy(true);
+    setGradingError(null);
     try {
       const result = await read(
         api.POST("/api/review/sessions/{session_id}/move", {
@@ -113,10 +118,14 @@ export function useReviewSession({
       );
       if (version !== generation.current) return;
       setFeedback(result);
+      if (!result.completed) setHadFailure(true);
       setSubmittedMove(from + to + (promotion || ""));
       if (result.completed) recordCompletion(position.exercise_id);
     } catch (e) {
-      if (version === generation.current) fail(e);
+      if (version === generation.current) {
+        setGradingError((e as Error).message);
+        fail(e);
+      }
     } finally {
       if (version === generation.current) setBusy(false);
     }
@@ -125,6 +134,7 @@ export function useReviewSession({
     if (!position || busy || feedback?.completed) return;
     const version = generation.current;
     setBusy(true);
+    setGradingError(null);
     try {
       const result = await read(
         api.POST("/api/review/sessions/{session_id}/reveal", {
@@ -135,7 +145,10 @@ export function useReviewSession({
       setFeedback(result);
       recordCompletion(position.exercise_id);
     } catch (e) {
-      if (version === generation.current) fail(e);
+      if (version === generation.current) {
+        setGradingError((e as Error).message);
+        fail(e);
+      }
     } finally {
       if (version === generation.current) setBusy(false);
     }
@@ -147,6 +160,8 @@ export function useReviewSession({
     busy,
     feedback,
     submittedMove,
+    hadFailure,
+    gradingError,
     done,
     answer,
     show,

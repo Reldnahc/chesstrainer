@@ -210,6 +210,7 @@ export default function GameWorkspace({
         boardControls={<ReviewControls exploration={exploration} />}
       >
         <PositionCoach
+          positionKey={`${id}:${analysisEpoch}:${key}`}
           game={game}
           report={report}
           frame={frame}

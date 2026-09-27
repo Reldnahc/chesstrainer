@@ -1,0 +1,525 @@
+@keyframes classic-greet {
+  0% {
+    transform: rotate(-2deg) translateY(1px);
+  }
+  55% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-arrive {
+  0% {
+    transform: translateY(1px) scaleY(0.99);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-brow-lift {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: translateY(-1.5px);
+  }
+}
+@keyframes classic-offer {
+  0% {
+    transform: rotate(-4deg);
+  }
+  55% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-delight {
+  0% {
+    transform: translateY(2px) rotate(4deg) scale(0.98);
+  }
+  16% {
+    transform: translateY(3px) rotate(4deg);
+  }
+  35% {
+    transform: translateY(-4px) rotate(-4deg) scale(1.04);
+  }
+  58% {
+    transform: translateY(1px) rotate(2deg);
+  }
+  78% {
+    transform: translateY(-1px) rotate(-1deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-brighten {
+  0%,
+  17% {
+    transform: scaleY(0.97);
+  }
+  35% {
+    transform: translateY(-2px) scaleY(1.03);
+  }
+  60% {
+    transform: scaleY(0.995);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-aha {
+  0%,
+  18% {
+    transform: scale(0.7, 0.45);
+  }
+  37% {
+    transform: scale(1.1, 1.08);
+  }
+  70%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-stars-arrive {
+  0%,
+  18% {
+    opacity: 0;
+    transform: scale(0.55) rotate(-12deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.12) rotate(3deg);
+  }
+  75%,
+  100% {
+    opacity: 0.85;
+    transform: none;
+  }
+}
+@keyframes classic-recoil {
+  0% {
+    transform: translateY(2px) rotate(-3deg);
+  }
+  13% {
+    transform: translateY(-4px) rotate(8deg) scale(1.03, 0.97);
+  }
+  30% {
+    transform: translateY(-3px) rotate(5deg);
+  }
+  62% {
+    transform: translateY(1px) rotate(-2deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-brace {
+  0% {
+    transform: none;
+  }
+  15%,
+  30% {
+    transform: scaleX(1.045) scaleY(0.96);
+  }
+  70% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-glasses-slip {
+  0%,
+  17% {
+    transform: none;
+  }
+  35%,
+  54% {
+    transform: translateY(2px) rotate(-2deg);
+  }
+  78%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-hands-up-left {
+  0% {
+    transform: rotate(-21deg) translateY(7px);
+  }
+  24% {
+    transform: rotate(6deg) translateY(-1px);
+  }
+  54%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-hands-up-right {
+  0% {
+    transform: rotate(21deg) translateY(7px);
+  }
+  24% {
+    transform: rotate(-6deg) translateY(-1px);
+  }
+  54%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-lines-arrive {
+  0% {
+    opacity: 0;
+  }
+  13%,
+  40% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.65;
+  }
+}
+@keyframes classic-win {
+  0%,
+  15% {
+    transform: translateY(2px) scaleY(0.97);
+  }
+  38% {
+    transform: translateY(-5px) scaleY(1.03);
+  }
+  63% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-clap-left {
+  0%,
+  100% {
+    transform: none;
+  }
+  30%,
+  65% {
+    transform: rotate(-7deg) translateX(2px);
+  }
+  47% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes classic-clap-right {
+  0%,
+  100% {
+    transform: none;
+  }
+  30%,
+  65% {
+    transform: rotate(7deg) translateX(-2px);
+  }
+  47% {
+    transform: rotate(-3deg);
+  }
+}
+@keyframes classic-nod {
+  0%,
+  100% {
+    transform: none;
+  }
+  35% {
+    transform: translateY(2px) rotate(3deg);
+  }
+  63% {
+    transform: translateY(-0.6px);
+  }
+}
+@keyframes classic-fist-pump {
+  0% {
+    transform: rotate(7deg) translateY(4px);
+  }
+  30% {
+    transform: rotate(-10deg) translateY(-4px);
+  }
+  65% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-sympathy {
+  0%,
+  100% {
+    transform: none;
+  }
+  33% {
+    transform: rotate(4deg) translateY(3px);
+  }
+  62% {
+    transform: rotate(-2deg) translateY(2px);
+  }
+}
+@keyframes classic-consider {
+  0% {
+    transform: rotate(-7deg);
+  }
+  38%,
+  65% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-look-back {
+  0% {
+    transform: rotate(6deg);
+  }
+  28%,
+  50% {
+    transform: rotate(-5deg) translateX(-1px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-lean-in {
+  0% {
+    transform: translateY(2px) scale(0.99);
+  }
+  35%,
+  65% {
+    transform: translateY(-1px) scale(1.03);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-thought {
+  0%,
+  100% {
+    transform: none;
+  }
+  25%,
+  70% {
+    transform: translateX(-1.5px);
+  }
+}
+@keyframes classic-recognize {
+  0% {
+    transform: rotate(-3deg) translateY(-1px);
+  }
+  42%,
+  67% {
+    transform: translateY(2px) rotate(2deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-point {
+  0% {
+    transform: rotate(9deg) translateY(4px);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-mentor-settle {
+  0% {
+    transform: translateY(0.8px);
+  }
+  45% {
+    transform: translateY(-0.4px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-mentor-nod {
+  0%,
+  100% {
+    transform: none;
+  }
+  35%,
+  50% {
+    transform: rotate(1.8deg) translateY(1px);
+  }
+}
+@keyframes classic-mentor-delight {
+  0%,
+  20% {
+    transform: rotate(2deg);
+  }
+  42%,
+  65% {
+    transform: rotate(-3deg) translateY(-1.5px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-mentor-concern {
+  0% {
+    transform: none;
+  }
+  18%,
+  37% {
+    transform: translateY(-1.5px) rotate(3deg);
+  }
+  70% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-spark-pose {
+  0%,
+  16% {
+    transform: rotate(-4deg) translateY(2px);
+  }
+  30%,
+  52% {
+    transform: rotate(2deg) translateY(-1px);
+  }
+  74%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-spark-follow {
+  0%,
+  23% {
+    transform: translateY(1px);
+  }
+  40%,
+  57% {
+    transform: rotate(-2deg);
+  }
+  83%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-spark-delight {
+  0%,
+  16% {
+    transform: translateY(3px) rotate(7deg);
+  }
+  30%,
+  48% {
+    transform: translateY(-3px) rotate(-5deg) scale(1.025);
+  }
+  65% {
+    transform: rotate(2deg);
+  }
+  85%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-spark-recoil {
+  0% {
+    transform: none;
+  }
+  10%,
+  30% {
+    transform: rotate(10deg) translateY(-3px);
+  }
+  45%,
+  64% {
+    transform: rotate(-3deg) translateY(1px);
+  }
+  83%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes classic-blink {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  45%,
+  60% {
+    transform: scaleY(0.08);
+  }
+}
+@keyframes classic-slow-blink {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  28%,
+  60% {
+    transform: scaleY(0.12);
+  }
+}
+@keyframes classic-glance {
+  0%,
+  100% {
+    transform: none;
+  }
+  30%,
+  65% {
+    transform: translateX(-1.3px);
+  }
+}
+@keyframes classic-breathe {
+  0%,
+  100% {
+    transform: none;
+  }
+  45% {
+    transform: scaleY(1.008) translateY(-0.3px);
+  }
+}
+@keyframes classic-adjust-glasses {
+  0%,
+  100% {
+    transform: none;
+  }
+  30%,
+  60% {
+    transform: translateY(-0.7px) rotate(-0.7deg);
+  }
+}
+@keyframes classic-exhale {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: scaleY(1.012);
+  }
+  75% {
+    transform: scaleY(0.99) translateY(0.5px);
+  }
+}
+@keyframes classic-twinkle {
+  0%,
+  100% {
+    transform: none;
+    opacity: 0.85;
+  }
+  45% {
+    transform: rotate(5deg) scale(1.09);
+    opacity: 1;
+  }
+}
+@keyframes classic-glint {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
