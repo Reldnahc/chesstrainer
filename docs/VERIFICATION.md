@@ -2,6 +2,51 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Animated coach: September 27, 2026
+
+Completed after the code-quality audit and deletion of its temporary checklist.
+The shared coach now has 20 semantic states and three complete concept families,
+with Storyteller used in game review, SRS and saved explanations. Settings owns the
+selected coach and motion preference through the existing account database. See
+[COACH.md](COACH.md) for the design decisions, lifecycle and extension contract.
+
+Final verification:
+
+- Backend/native/API suite: **424 passed**, with the two existing TestClient
+  dependency deprecation warnings.
+- Desktop/mobile browser suite: **99 passed, 3 expected viewport-specific skips**;
+  separate account suite: **2 passed**. Includes semantic mapping, fallback cycles,
+  recovery, replay, offscreen handling, stale engine responses, reduced motion,
+  preference load/save failure recovery, LAN reconnection and second-device state.
+- Ruff lint and formatting, exported OpenAPI consistency, generated TypeScript,
+  contract rejection checks and the production build passed.
+- Fresh Alembic upgrade and schema check passed. Migration tests preserve existing
+  users and foreign keys; missing preferences read safely without creating rows.
+- A Docker image built from the public source archive passed fresh local/account
+  installation, native Stockfish game review, health checks and restart. Coach
+  preferences persisted in both modes using the existing data volume.
+- Manually used the production frontend and native engine with isolated synthetic
+  fixtures: game navigation through blunder/checkmate, wrong SRS move, retry,
+  successful recovery, explanation playback, Settings save/reload, all three
+  concept collections, transition playback and idle previews. Inspected 1366px
+  and 1440px desktop views, 390px phone layout, and the actual 92.8px/52.5px
+  portrait sizes. Mobile checks use browser emulation, not a physical handset.
+
+The review produced concrete fixes: mobile controls no longer overlap; replay
+restarts the SVG even mid-reaction; returning onscreen does not replay an already
+seen entrance; known move feedback does not briefly flash a neutral face; terminal
+coaching describes the learner's outcome; per-instance eye masks contain glances;
+and optional LAN login automatically retries preference loading. Artwork styles
+are scoped to their registered coach. Studio panels were separated by purpose,
+and no unused/undefined animation tracks or temporary production coaches remain.
+
+Shared board and speech-bubble geometry stayed unchanged. The runtime uses finite
+CSS/SVG animations and occasional local timers, with no JavaScript frame loop.
+The studio is a separate lazy-loaded chunk (4.42 KB JavaScript and 2.06 KB CSS,
+gzipped); production JavaScript grew by approximately 8.1 KB gzipped over the
+pre-feature build. This is an asset-size check, not a device performance benchmark.
+No blocking finding remains from this feature review.
+
 ## Completed code quality audit: September 27, 2026
 
 All ten audit findings are resolved. The final review revisited the first four

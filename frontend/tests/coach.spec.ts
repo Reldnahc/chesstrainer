@@ -12,6 +12,11 @@ test("studio offers three complete collections, stable previews and expressive r
     "data-expression",
     "brilliant",
   );
+  await expect(concepts.first()).toHaveAttribute("data-phase", "reaction");
+  await expect(concepts.first()).toHaveAttribute("data-phase", "rest");
+  await page.locator(".studio-concepts").screenshot({
+    path: `test-results/coach-directions-${info.project.name}.png`,
+  });
   await expect(page.locator(".studio-expression")).toHaveCount(20);
   const controls = await page
     .locator(".studio-controls select, .studio-controls button")
@@ -57,6 +62,9 @@ test("studio offers three complete collections, stable previews and expressive r
     await expect(
       page.locator(`.studio-expression .coach-avatar[data-family="${family}"]`),
     ).toHaveCount(20);
+    await page.locator(".studio-collection").screenshot({
+      path: `test-results/coach-collection-${family}-${info.project.name}.png`,
+    });
   }
   await page
     .getByRole("combobox", { name: "Expression", exact: true })
@@ -236,4 +244,64 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
     path: `test-results/coach-review-${info.project.name}.png`,
     fullPage: true,
   });
+});
+
+test("preference failures keep the last saved choice and allow recovery", async ({ page }) => {
+  await page.request.put("/api/preferences/coach", {
+    data: { coach_id: "classic", motion: "natural" },
+  });
+  let failLoad = true;
+  let failSave = true;
+  await page.route("**/api/preferences/coach", async (route) => {
+    const reading = route.request().method() === "GET";
+    if ((reading && failLoad) || (!reading && failSave)) {
+      if (reading) failLoad = false;
+      else failSave = false;
+      return route.fulfill({
+        status: 503,
+        json: { detail: reading ? "Preferences unavailable" : "Preference was not saved" },
+      });
+    }
+    return route.continue();
+  });
+  try {
+    await page.goto("/settings");
+    const motion = page.getByLabel("Coach motion", { exact: true });
+    const status = page.locator(".coach-preference-status");
+    await expect(status).toContainText("Preferences unavailable");
+    await expect(motion).toBeDisabled();
+    await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute("data-motion", "still");
+    await page.getByRole("button", { name: "Reload preferences" }).click();
+    await expect(motion).toBeEnabled();
+    await expect(motion).toHaveValue("natural");
+    await motion.selectOption("still");
+    await expect(status).toContainText("Preference was not saved");
+    await expect(motion).toHaveValue("natural");
+    expect((await (await page.request.get("/api/preferences/coach")).json()).motion).toBe("natural");
+    await motion.selectOption("still");
+    await expect(status).toContainText("Saved");
+    await page.reload();
+    await expect(motion).toHaveValue("still");
+  } finally {
+    await page.request.put("/api/preferences/coach", {
+      data: { coach_id: "classic", motion: "natural" },
+    });
+  }
+});
+
+test("connecting with a LAN token restores preferences without a page reload", async ({ page }) => {
+  await page.route("**/api/preferences/coach", (route) =>
+    route.request().headers().authorization === "Bearer coach-test-token"
+      ? route.fulfill({ json: { coach_id: "classic", motion: "still" } })
+      : route.fulfill({ status: 401, json: { detail: "LAN token required" } }),
+  );
+  await page.goto("/settings");
+  await expect(page.getByRole("heading", { name: "Connect to your workspace" })).toBeVisible();
+  await page.getByLabel("Access token", { exact: true }).fill("coach-test-token");
+  await page.getByRole("button", { name: "Connect", exact: true }).click();
+  const motion = page.getByLabel("Coach motion", { exact: true });
+  await expect(motion).toBeEnabled();
+  await expect(motion).toHaveValue("still");
+  await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute("data-motion", "still");
+  await expect(page.getByRole("button", { name: "Reload preferences" })).toHaveCount(0);
 });

@@ -70,6 +70,8 @@ Static facial poses, ratings, evaluation and explanatory text remain. Reactions
 are decorative: the existing accessible coaching text carries the analysis. The
 animation changes transforms/opacity inside a reserved box and does not move the
 board, bubble or controls. No flashes, audio or infinite animation loops are used.
+Eye masks belong to each SVG instance so idle glances stay within the eye shape
+even when many differently posed characters appear together in the studio.
 
 ## Adding a coach
 
@@ -97,6 +99,10 @@ sessions. Browser/logic tests cover semantic mapping, fallback chains, special
 outcomes, recovery, actual native game reviews, replay/settling, offscreen behavior,
 complete concept collections, control geometry, settings restoration and reduced
 motion. Existing shared-board geometry and stale-request regressions remain.
+Failed preference loads keep controls disabled and the character still until retry;
+failed saves preserve the last accepted choice. Both recovery paths are exercised
+through the actual Settings screen. Connecting with the optional LAN token retries
+preference loading automatically; a manual page reload is not required.
 Final validation results are recorded in [VERIFICATION.md](VERIFICATION.md).
 
 ## Account preferences

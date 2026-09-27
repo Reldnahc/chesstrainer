@@ -357,6 +357,7 @@ test('stale engine responses never replace the selected move and failures remain
   release();
   await expect(page.getByText('Engine unavailable at ply 2', {exact: true})).toBeVisible();
   await expect(page.getByText('Engine unavailable at ply 1', {exact: true})).not.toBeVisible();
+  await expect(page.locator('.review-coach .coach-avatar')).toHaveAttribute('data-expression', 'uncertain');
   expect((await page.locator('.coach-speech').boundingBox())!.height).toBe(speechHeight);
   expect((await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY)).toBe(notationTop);
   await page.locator('.board-shell [data-square="d2"]').click();

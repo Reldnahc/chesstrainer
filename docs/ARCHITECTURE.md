@@ -26,7 +26,8 @@ Whole-game review and training analysis are separately requested from the game.
 | jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
 | backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
-| routes/workspace.py | Health, effective settings and statistics |
+| routes/workspace.py | Health, effective settings, account-owned coach preferences and statistics |
+| preferences.py | Validated coach choices in one owned user_preferences row; missing/unsupported choices have safe read defaults |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
@@ -67,7 +68,11 @@ lock, while other accounts have independent locks.
 | gameReview/usePositionAnalysis.ts | Serialized engine requests, per-history cache, browsing debounce and stale-response isolation |
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
-| Settings.tsx | Effective settings display and local classification job controls |
+| Settings.tsx | Account, connected games, coach preferences and classification job controls |
+| coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
+| coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
+| coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, reduced motion, event dwell, one-shot reactions and occasional idle gestures |
+| coach/classic/ / coach/studio/ | Existing character's SVG rig and acting; lazy-loaded concept comparison surface |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Shared title display |
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
@@ -86,12 +91,23 @@ breakpoint, rather than appending overrides to the entry point. Shared review
 presentation precedes the base element defaults to preserve the established
 cascade. Board dimensions and motion remain common to both review experiences.
 
+The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
+review experiences. Artwork-specific poses, styles and finite CSS animations stay
+with the registered character; semantic reaction and preference code are shared.
+The provider lives inside the account boundary, so switching users discards the
+previous preference state. Selection and motion use the existing owned SQLite
+database, including the reserved local user, with no new container settings.
+
 Navigation is Review, Games, Weaknesses, Import, Settings. A small History API
 router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and
 `/settings`. Screen/game links push history entries; `popstate` restores the
 destination. The root URL aliases `/review` with `replaceState`, preserving old
 `?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
 starting a lesson. Unknown paths show a recoverable not-found screen.
+
+`/coach-studio`, linked from Settings, compares the existing character's three
+concept families without adding a main navigation destination. Its preview state
+does not change account preferences or start analysis.
 
 `?focus=<skill>` selects focused practice, `?page=N` records the library page
 (also retained on game links), and `?ply=N` records a game's selected half-move.

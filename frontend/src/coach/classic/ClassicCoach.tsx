@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useId, type CSSProperties } from "react";
 import type { CoachArtworkProps } from "../model";
 import { familyPose, handPoses, type Gesture } from "./poses";
 import "./classic.css";
@@ -7,6 +7,7 @@ export default function ClassicCoach({
   expression,
   family,
 }: CoachArtworkProps) {
+  const eyeClip = useId();
   const pose = familyPose(expression, family);
   const hands = handPoses[pose.gesture];
   const vars = {
@@ -163,24 +164,32 @@ export default function ClassicCoach({
                         ry={pose.eye}
                         fill="#fff7e8"
                       />
-                      <g className="coach-gaze">
-                        <g transform={`translate(${pose.gaze.join(" ")})`}>
-                          <ellipse
-                            cx="30"
-                            cy="42"
-                            rx="2"
-                            ry={Math.min(2.5, pose.eye - 0.4)}
-                            fill="#393c42"
-                          />
-                          <ellipse
-                            cx="50"
-                            cy="42"
-                            rx="2"
-                            ry={Math.min(2.5, pose.eye - 0.4)}
-                            fill="#393c42"
-                          />
-                          <circle cx="29.4" cy="41.2" r=".65" fill="#fff" />
-                          <circle cx="49.4" cy="41.2" r=".65" fill="#fff" />
+                      <defs>
+                        <clipPath id={eyeClip}>
+                          <ellipse cx="30" cy="42" rx="4.2" ry={pose.eye} />
+                          <ellipse cx="50" cy="42" rx="4.2" ry={pose.eye} />
+                        </clipPath>
+                      </defs>
+                      <g clipPath={`url(#${eyeClip})`}>
+                        <g className="coach-gaze">
+                          <g transform={`translate(${pose.gaze.join(" ")})`}>
+                            <ellipse
+                              cx="30"
+                              cy="42"
+                              rx="2"
+                              ry={Math.min(2.5, pose.eye - 0.4)}
+                              fill="#393c42"
+                            />
+                            <ellipse
+                              cx="50"
+                              cy="42"
+                              rx="2"
+                              ry={Math.min(2.5, pose.eye - 0.4)}
+                              fill="#393c42"
+                            />
+                            <circle cx="29.4" cy="41.2" r=".65" fill="#fff" />
+                            <circle cx="49.4" cy="41.2" r=".65" fill="#fff" />
+                          </g>
                         </g>
                       </g>
                     </>

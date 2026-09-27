@@ -20,6 +20,7 @@ import { navigate, pagePaths, useRoute } from "./navigation";
 import Link from "./Link";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
+import { useCoachPreferences } from "./coach/CoachProvider";
 const CoachStudio = lazy(() => import("./coach/studio/CoachStudio"));
 const tabs = [
   ["Review", Focus],
@@ -30,6 +31,7 @@ const tabs = [
 ] as const;
 export default function App() {
   const account = useAccount();
+  const { retry: reloadCoachPreferences } = useCoachPreferences();
   const route = useRoute();
   const { tab, focusSkill, exercise } = route;
   const [error, setError] = useState("");
@@ -129,6 +131,7 @@ export default function App() {
               onSubmit={(e) => {
                 e.preventDefault();
                 sessionStorage.setItem("lan-token", token);
+                reloadCoachPreferences();
                 setConnection(false);
                 setRefresh((v) => v + 1);
                 setError("");
