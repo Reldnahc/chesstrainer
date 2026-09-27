@@ -15,25 +15,25 @@
 .study-head-pose {
   transform: translateY(var(--study-lift)) rotate(var(--study-tilt));
 }
-.study-woman :is(.study-body, .study-body-idle) {
+.study-human :is(.study-body, .study-body-idle) {
   transform-origin: 40px 103px;
 }
-.study-woman :is(.study-head, .study-head-idle, .study-head-pose) {
+.study-human :is(.study-head, .study-head-idle, .study-head-pose) {
   transform-origin: 40px 67px;
 }
-.study-woman .coach-arm-left {
+.study-human .coach-arm-left {
   transform-origin: 18px 77px;
 }
-.study-woman .coach-arm-right {
+.study-human .coach-arm-right {
   transform-origin: 62px 77px;
 }
-.study-woman .coach-mouth {
+.study-human .coach-mouth {
   transform-origin: 40px 59px;
 }
-.study-woman .coach-glasses {
+.study-human .coach-glasses {
   transform-origin: 40px 41px;
 }
-.study-woman .coach-eyes,
+.study-human .coach-eyes,
 .animal-eyes {
   transform-box: fill-box;
   transform-origin: center;
@@ -116,7 +116,7 @@
   animation: study-tail-tuck 1600ms both;
 }
 .coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="blunder"]
-  :is(.study-paw, .study-woman .coach-arm) {
+  :is(.study-paw, .study-human .coach-arm) {
   animation: study-hands-rise 1500ms both;
 }
 .coach-avatar[data-phase="reaction"][data-motion="natural"]:is(
@@ -155,7 +155,7 @@
   animation: study-focus 1200ms both;
 }
 .coach-avatar[data-phase="reaction"][data-motion="natural"][data-expression="explaining"]
-  :is(.study-paw-right, .study-woman .coach-arm-right) {
+  :is(.study-paw-right, .study-human .coach-arm-right) {
   animation: study-offer 1100ms both;
 }
 /* Quiet studies wait before reacting; playful studies hold their anticipation

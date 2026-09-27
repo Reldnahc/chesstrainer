@@ -27,20 +27,6 @@ export const coaches: Record<CoachId, CoachDefinition> = {
           "Warm, generous acting. A face you can read across the board.",
         character: "Anticipation · open gestures · soft settling",
       },
-      {
-        id: "mentor",
-        name: "Quiet mentor",
-        description:
-          "A little more reserved. The eyes and the pauses do the talking.",
-        character: "Asymmetry · small nods · considered timing",
-      },
-      {
-        id: "spark",
-        name: "Graphic spark",
-        description:
-          "Crisp poses with a playful second beat and hand-drawn accents.",
-        character: "Snappy holds · secondary motion · graphic punctuation",
-      },
     ],
     Artwork: ClassicCoach,
   },

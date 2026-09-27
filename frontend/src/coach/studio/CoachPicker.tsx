@@ -25,10 +25,8 @@ export default function CoachPicker({
             label={`${coach.name} preview`}
           />
           <span>
-            <strong>
-              {coach.id === "classic" ? "Original coach" : coach.name}
-            </strong>
-            <small>3 concept directions</small>
+            <strong>{coach.name}</strong>
+            <small>{coach.families.length} concept directions</small>
           </span>
         </button>
       ))}

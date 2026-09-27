@@ -1,44 +1,60 @@
 @import "./keyframes.css";
 @import "./reactions.css";
 
-:where(.coach-avatar[data-coach="classic"]) .coach-body-motion,
-:where(.coach-avatar[data-coach="classic"]) .coach-body-idle {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-body-motion,
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-body-idle {
   transform-origin: 40px 102px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-head-motion,
-:where(.coach-avatar[data-coach="classic"]) .coach-head-idle,
-:where(.coach-avatar[data-coach="classic"]) .coach-head-pose {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-head-motion,
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-head-idle,
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-head-pose {
   transform-origin: 40px 67px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-head-pose {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-head-pose {
   transform: translateY(var(--pose-lift)) rotate(var(--pose-tilt));
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-eyes {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-eyes {
   transform-origin: 40px 42px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-mouth {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-mouth {
   transform-origin: 40px 59px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-brows {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-brows {
   transform-origin: 40px 31px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-glasses {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-glasses {
   transform-origin: 40px 41px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-arm-left {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-arm-left {
   transform-origin: 18px 77px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-arm-right {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-arm-right {
   transform-origin: 62px 77px;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-stars {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-stars {
   transform-origin: 40px 30px;
   opacity: 0.85;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-rays,
-:where(.coach-avatar[data-coach="classic"]) .coach-check-accent {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-rays,
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-check-accent {
   opacity: 0.65;
 }
-:where(.coach-avatar[data-coach="classic"]) .coach-question {
+:where(.coach-avatar[data-coach="classic"][data-family="storyteller"])
+  .coach-question {
   opacity: 0.75;
 }

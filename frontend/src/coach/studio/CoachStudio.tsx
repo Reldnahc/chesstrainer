@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, Play, RotateCcw, Sparkles } from "lucide-react";
 import Link from "../../Link";
-import { getCoachStudy } from "../studies/catalog";
+import { coachStudies, getCoachStudy } from "../studies/catalog";
 import {
   expressionInfo,
   expressionIntent,
@@ -129,7 +129,11 @@ export default function CoachStudio() {
           </h1>
         </div>
         <p>
-          Four characters. Three directions each.
+          {coachStudies.reduce(
+            (count, item) => count + item.families.length,
+            0,
+          )}{" "}
+          character concepts to explore.
           <br />
           Compare the acting, replay a moment, then see how it reads beside the
           board.
@@ -252,10 +256,12 @@ export default function CoachStudio() {
       <aside className="studio-note">
         <Sparkles size={20} />
         <p>
-          <strong>{coach.name}: three directions.</strong> {coach.description}{" "}
-          The original Storyteller is used in your reviews. These studies are
-          here to compare before choosing a new coach. Preview controls never
-          change your account preferences.
+          <strong>
+            {coach.name}: {coach.families.length} directions.
+          </strong>{" "}
+          {coach.description} The original Storyteller is used in your reviews.
+          These studies are here to compare before choosing a new coach. Preview
+          controls never change your account preferences.
         </p>
       </aside>
     </div>

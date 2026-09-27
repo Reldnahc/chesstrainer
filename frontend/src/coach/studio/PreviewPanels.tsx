@@ -38,10 +38,11 @@ export function ConceptComparison({
         >
           <div className="studio-concept-top">
             <span>CONCEPT {String(index + 1).padStart(2, "0")}</span>
-            {selectableCoaches.includes(coach) &&
-              direction.id === coach.defaultFamily && (
-                <span className="studio-current">In your reviews</span>
-              )}
+            {selectableCoaches.some(
+              (production) =>
+                production.id === coach.id &&
+                production.defaultFamily === direction.id,
+            ) && <span className="studio-current">In your reviews</span>}
           </div>
           <div className="studio-character-stage">
             <div className="studio-character-halo" />

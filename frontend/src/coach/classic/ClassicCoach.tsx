@@ -1,15 +1,12 @@
 import type { CSSProperties } from "react";
 import type { CoachArtworkProps } from "../model";
-import { familyPose, handPoses } from "./poses";
+import { poses, handPoses } from "../human/poses";
 import Arm from "../human/Arm";
 import HumanFeatures from "../human/HumanFeatures";
 import "./classic.css";
 
-export default function ClassicCoach({
-  expression,
-  family,
-}: CoachArtworkProps) {
-  const pose = familyPose(expression, family);
+export default function ClassicCoach({ expression }: CoachArtworkProps) {
+  const pose = poses[expression];
   const hands = handPoses[pose.gesture];
   const vars = {
     "--pose-tilt": `${pose.tilt}deg`,

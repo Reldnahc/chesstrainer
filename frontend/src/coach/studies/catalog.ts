@@ -1,5 +1,6 @@
 import { expressions, type CoachDefinition } from "../model";
 import { coaches } from "../registry";
+import ManCoach from "./ManCoach";
 import WomanCoach from "./WomanCoach";
 import CatCoach from "./CatCoach";
 import RetrieverCoach from "./RetrieverCoach";
@@ -51,6 +52,46 @@ const common = {
   fallbacks: {},
   capabilities: { reactions: true, idle: true },
 } as const;
+
+export const manStudy: CoachDefinition = {
+  ...coaches.classic,
+  name: "Men",
+  description:
+    "Storyteller and three new faces, each with a distinct silhouette and wardrobe.",
+  animation: {
+    ...coaches.classic.animation,
+    idleGestures: {
+      ...coaches.classic.animation.idleGestures,
+      blunder: ["blink", "sigh"],
+      thinking: ["glance", "blink"],
+    },
+  },
+  families: [
+    coaches.classic.families[0],
+    {
+      id: "host",
+      name: "Club host",
+      description:
+        "Close curls, a neat beard and a terracotta overshirt. An easy, welcoming presence.",
+      character: "Open palms · warm grins · an expressive double take",
+    },
+    {
+      id: "expert",
+      name: "Endgame expert",
+      description:
+        "Silver at the temples, a clean-shaven face and a slate cardigan. A steady study companion.",
+      character: "Measured tilts · attentive eyes · quiet delight",
+    },
+    {
+      id: "partner",
+      name: "Creative partner",
+      description:
+        "Dark waves, a shaped beard and a forest-green waistcoat. Ready to explore an idea together.",
+      character: "Curious looks · bright smiles · generous encouragement",
+    },
+  ],
+  Artwork: ManCoach,
+};
 
 export const womanStudy: CoachDefinition = {
   ...common,
@@ -175,12 +216,7 @@ export const retrieverStudy: CoachDefinition = {
 
 // These assets are imported only by the lazy studio route. Promotion to Settings
 // is a separate product choice and uses the existing typed production registry.
-export const coachStudies = [
-  coaches.classic,
-  womanStudy,
-  catStudy,
-  retrieverStudy,
-];
+export const coachStudies = [manStudy, womanStudy, catStudy, retrieverStudy];
 export function getCoachStudy(id: string | null | undefined) {
-  return coachStudies.find((coach) => coach.id === id) ?? coaches.classic;
+  return coachStudies.find((coach) => coach.id === id) ?? manStudy;
 }

@@ -7,22 +7,24 @@ his silhouette, beard and sage jacket.
 
 ## Visual directions
 
-Three complete directions share the same character rig, each with all 20 states:
+The men's collection has four complete characters, each with all 20 states:
 
 - **Storyteller:** open, warm facial acting, clear anticipation and recovery,
   expressive shoulders and hands. Strong contrast between delight and concern.
-- **Quiet mentor:** smaller head gestures, thoughtful eyes, asymmetry and pauses.
-  Character comes from attention rather than large movement.
-- **Graphic spark:** crisp poses, delayed secondary motion and restrained drawn
-  accents. Silhouette and timing carry the most important reactions.
+- **Club host:** a Black man with close curls, a neat beard and a terracotta
+  overshirt. Open, welcoming gestures and an expressive double take.
+- **Endgame expert:** an older East Asian man with silver temples, a clean-shaven
+  face and a slate cardigan. Measured head movements and attentive eyes.
+- **Creative partner:** a South Asian man with dark waves, a shaped beard and a
+  forest-green waistcoat. Curious looks and generous encouragement.
 
-These are concept families for one coach, not additional selectable characters.
+These are preview concepts, not additional selectable production characters.
 The comparison surface will retain useful alternatives without adding production
 accounts or artificial entries to the coach selector.
 
 Open **Settings → Preview expressions**, or `/coach-studio`. The studio is a lazy
 loaded page, reachable in local and account mode, with no engine jobs or preference
-writes. Compare three performances side by side, browse each complete expression
+writes. Compare performances side by side, browse each complete expression
 collection, replay entrances and idle gestures, run a transition sequence, and
 preview natural/subtle/still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
@@ -54,12 +56,11 @@ Each character keeps its expression after the entrance settles. Blunder idles us
 breathing, ears or hair rather than a happy tail wag. Reduced motion keeps the
 full expressive silhouette while disabling all reaction and idle animations.
 
-Storyteller is the production direction: its open gestures and contrast between
-delight and concern read most clearly at the small mobile size. Quiet mentor is a
-useful restrained alternative, but loses some facial nuance at 52.5px. Graphic
-spark's held poses, glasses follow-through and accents are more theatrical; it
-stays in the studio for comparison rather than making gameplay busier by default.
-All three preserve the same silhouette, colors and recognizable features.
+Storyteller remains the production direction, with its original artwork and
+performance unchanged. The former Quiet mentor and Graphic spark variants of
+that same man have been retired in favor of three distinct people. Old family
+links fall back to Storyteller. The production registry contains only the original
+character; the studio expands it through a separate preview definition.
 Teaching, best-move and check poses use an outward-facing open palm. Avoid a
 single raised finger: its silhouette reads as an insulting gesture at review size.
 

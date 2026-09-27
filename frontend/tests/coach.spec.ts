@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { expressions } from "../src/coach/model";
 
-test("studio offers three complete collections, stable previews and expressive reduced motion", async ({
+test("studio offers four male collections, stable previews and expressive reduced motion", async ({
   page,
 }, info) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/coach-studio");
   const concepts = page.locator(".studio-concepts .coach-avatar");
-  await expect(concepts).toHaveCount(3);
+  await expect(concepts).toHaveCount(4);
   await expect(concepts.first()).toHaveAttribute(
     "data-expression",
     "brilliant",
@@ -56,7 +56,7 @@ test("studio offers three complete collections, stable previews and expressive r
       await expect(character).toHaveAttribute("data-expression", state);
     expect(await geometry()).toEqual(initial);
   }
-  for (const family of ["storyteller", "mentor", "spark"]) {
+  for (const family of ["storyteller", "host", "expert", "partner"]) {
     await page
       .getByRole("combobox", { name: "Collection", exact: true })
       .selectOption(family);
@@ -247,7 +247,9 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   });
 });
 
-test("preference failures keep the last saved choice and allow recovery", async ({ page }) => {
+test("preference failures keep the last saved choice and allow recovery", async ({
+  page,
+}) => {
   await page.request.put("/api/preferences/coach", {
     data: { coach_id: "classic", motion: "natural" },
   });
@@ -260,7 +262,11 @@ test("preference failures keep the last saved choice and allow recovery", async 
       else failSave = false;
       return route.fulfill({
         status: 503,
-        json: { detail: reading ? "Preferences unavailable" : "Preference was not saved" },
+        json: {
+          detail: reading
+            ? "Preferences unavailable"
+            : "Preference was not saved",
+        },
       });
     }
     return route.continue();
@@ -271,14 +277,19 @@ test("preference failures keep the last saved choice and allow recovery", async 
     const status = page.locator(".coach-preference-status");
     await expect(status).toContainText("Preferences unavailable");
     await expect(motion).toBeDisabled();
-    await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute("data-motion", "still");
+    await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute(
+      "data-motion",
+      "still",
+    );
     await page.getByRole("button", { name: "Reload preferences" }).click();
     await expect(motion).toBeEnabled();
     await expect(motion).toHaveValue("natural");
     await motion.selectOption("still");
     await expect(status).toContainText("Preference was not saved");
     await expect(motion).toHaveValue("natural");
-    expect((await (await page.request.get("/api/preferences/coach")).json()).motion).toBe("natural");
+    expect(
+      (await (await page.request.get("/api/preferences/coach")).json()).motion,
+    ).toBe("natural");
     await motion.selectOption("still");
     await expect(status).toContainText("Saved");
     await page.reload();
@@ -290,19 +301,30 @@ test("preference failures keep the last saved choice and allow recovery", async 
   }
 });
 
-test("connecting with a LAN token restores preferences without a page reload", async ({ page }) => {
+test("connecting with a LAN token restores preferences without a page reload", async ({
+  page,
+}) => {
   await page.route("**/api/preferences/coach", (route) =>
     route.request().headers().authorization === "Bearer coach-test-token"
       ? route.fulfill({ json: { coach_id: "classic", motion: "still" } })
       : route.fulfill({ status: 401, json: { detail: "LAN token required" } }),
   );
   await page.goto("/settings");
-  await expect(page.getByRole("heading", { name: "Connect to your workspace" })).toBeVisible();
-  await page.getByLabel("Access token", { exact: true }).fill("coach-test-token");
+  await expect(
+    page.getByRole("heading", { name: "Connect to your workspace" }),
+  ).toBeVisible();
+  await page
+    .getByLabel("Access token", { exact: true })
+    .fill("coach-test-token");
   await page.getByRole("button", { name: "Connect", exact: true }).click();
   const motion = page.getByLabel("Coach motion", { exact: true });
   await expect(motion).toBeEnabled();
   await expect(motion).toHaveValue("still");
-  await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute("data-motion", "still");
-  await expect(page.getByRole("button", { name: "Reload preferences" })).toHaveCount(0);
+  await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute(
+    "data-motion",
+    "still",
+  );
+  await expect(
+    page.getByRole("button", { name: "Reload preferences" }),
+  ).toHaveCount(0);
 });

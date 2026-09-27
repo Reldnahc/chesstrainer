@@ -6,11 +6,15 @@ export default function HumanFeatures({
   pose,
   expression,
   browColor = "#797469",
+  noseColor = "#c79572",
+  mouthColor = "#75473e",
   glasses = true,
 }: {
   pose: Pose;
   expression: CoachExpression;
   browColor?: string;
+  noseColor?: string;
+  mouthColor?: string;
   glasses?: boolean;
 }) {
   const eyeClip = useId();
@@ -85,15 +89,15 @@ export default function HumanFeatures({
       <path
         d="M39 43q-2 7 1 7h2"
         fill="none"
-        stroke="#c79572"
+        stroke={noseColor}
         strokeWidth="1.4"
         strokeLinecap="round"
       />
       <g className="coach-mouth">
         <path
           d={pose.mouth}
-          fill="#75473e"
-          stroke="#75473e"
+          fill={mouthColor}
+          stroke={mouthColor}
           strokeWidth=".65"
           strokeLinejoin="round"
         />

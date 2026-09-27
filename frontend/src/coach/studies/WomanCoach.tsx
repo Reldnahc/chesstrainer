@@ -66,7 +66,7 @@ export default function WomanCoach({ expression, family }: CoachArtworkProps) {
   return (
     <svg
       viewBox="-6 -8 92 115"
-      className={`coach-artwork study-artwork study-woman study-${look}`}
+      className={`coach-artwork study-artwork study-human study-woman study-${look}`}
       style={vars}
       aria-hidden="true"
       focusable="false"
