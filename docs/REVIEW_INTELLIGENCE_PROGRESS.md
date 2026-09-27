@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 1 verified; Milestone 2 is next.
+Current checkpoint: Milestone 2 verified; Milestone 3 is next.
 
 ## Baseline
 
@@ -32,8 +32,8 @@ Validation actually run:
 - Diff whitespace checks pass excluding the supplied spec's original intentional
   Markdown hard-break spaces, preserved verbatim.
 
-Milestone 1: pinned Maia feasibility benchmark and integration decision complete;
-commit SHA will be recorded at the next boundary.
+Milestone 1: `fa31d2f79bc23fdaff91293d3caa2f40932bb376` — pinned Maia feasibility
+benchmark and integration decision.
 
 - Compared standard UCI, upstream Python and complete-policy adapters for 5M/23M/79M.
   Exact repeated policies; top-20 ranks and probabilities match upstream for all
@@ -58,6 +58,39 @@ commit SHA will be recorded at the next boundary.
   host restart, deployment change or owner action was needed.
 
 ## Decisions / follow-ups
+
+Milestone 2: production human-evidence layer complete; commit SHA will be recorded
+at the next boundary.
+
+- One provider-neutral typed policy boundary, pinned narrow 79M adapter, bounded
+  host subprocess pool, cancellable/deadline-bounded pipe I/O, cooldown/restart,
+  independent readiness, explicit atomic hash-verified setup, CPU Docker runtime.
+- Both-color ratings, full history, domain/fallback provenance, account-owned
+  SQLite policy cache and saved report references. Migration `39c94b22a711`,
+  35 application tables. Refresh reuses baseline Stockfish results; changing coach
+  does no analysis. Workers alone do not invalidate semantic cache identity.
+- Full backend run: 466 passed, 3 explicit native Maia opt-in skips; two existing
+  TestClient dependency warnings. After final worker guard/ownership checks,
+  focused evidence/transport suite: 15 passed, 1 explicit native skip.
+- Native supported 79M CPU production and upstream parity suite: 11 passed.
+  Includes full history, castling/en passant/promotion, exact repeat, subprocess
+  teardown and absence of new Torch imports in the API process.
+- Production build/API/type checks pass. Full desktop/mobile run initially had
+  99 passes, 3 viewport skips and 2 obsolete reopen-request assertions. Updated
+  those assertions and added a refresh cursor regression: targeted game suite had
+  17 passes and one mock idempotence failure, then both corrected progress tests
+  passed. No outstanding browser failures. Account browser suite: 2 passed.
+- Built the actual Dockerfile CPU image. Disposable local and HTTPS-account
+  fresh installs/restarts/native Stockfish reviews passed. Production Maia plus
+  Stockfish review, persisted cache restart and coach independence passed with
+  `--network none` and a read-only cached model (`scripts/smoke_human.py`).
+- Docker initially hit ACLs walking local pytest cache; a public-source export
+  built successfully without changing host permissions or production deployment.
+- Critical review added bounded writer transport (hung pipe writes also cancel),
+  avoided SQLite transactions across native inference, verified private foreign
+  keys, and normalized source hashes to upstream Git LF bytes for Windows/Linux.
+- Ruff lint/format and diff whitespace checks pass. No weights/binaries/private
+  PGNs or databases enter source commits. Setup/resource docs: HUMAN_MODELS.md.
 
 - Keep the existing separate development-only coach process. New diagnostics must not enter production navigation.
 - Authority boundaries and repeatable benchmark commands live in `REVIEW_INTELLIGENCE.md`.

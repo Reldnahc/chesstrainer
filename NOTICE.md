@@ -7,10 +7,12 @@ Existing Fieldwork source keeps its original license. The combined application
 also carries the applicable AGPL obligations, including the network source offer.
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
-The optional developer Maia benchmarks use CSSLab's AGPL-3.0 inference package at
+The optional human-move adapter and developer benchmarks use CSSLab's AGPL-3.0 inference primitives at
 [1e13597c42d4858b7cfd7cfdae01e297263364b2](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2).
-The narrow policy probe follows that implementation. Neural weights are not
-committed or bundled in this checkpoint. The supported production direction uses
+Unmodified model, tokenizer and move-vocabulary source and the complete license
+are included in `backend/trainer/_vendor/maia3`. Fieldwork's separate adapter adds
+policy-only inference, process isolation and integrity/contract validation. Neural
+weights are not committed or bundled in the image. Explicit setup uses
 the 79M card's explicit AGPLv3 declaration; smaller cards need weight-term
 clarification. Exact hashes, source links and measured installation implications
 are recorded in [MAIA_FEASIBILITY.md](docs/MAIA_FEASIBILITY.md).

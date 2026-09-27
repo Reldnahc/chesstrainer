@@ -1,5 +1,11 @@
 # Full-game review
 
+Full-game and variation reports can carry [human move evidence](HUMAN_MODELS.md)
+independently of their Stockfish findings. Opening an already reviewed game checks
+for missing/outdated human evidence when the model is ready; compatible baseline
+reports are reused. Progress polling publishes refreshed rows in game order and
+keeps the board usable throughout. Maia availability never changes move grades.
+
 Game review complements cold practice. It reviews both colors and arbitrary legal
 variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
 The existing training policy is unchanged.

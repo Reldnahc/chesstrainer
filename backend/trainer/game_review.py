@@ -256,6 +256,7 @@ def run_review(runner, job_id, engine_override=None):
         game = db.get(Game, review.game_id)
         parsed = parsed_game(game)
         moves = list(parsed.mainline_moves())
+        rating = review.rating
         saved = {
             row.ply: row.report
             for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
@@ -279,16 +280,31 @@ def run_review(runner, job_id, engine_override=None):
     for engine in engines:
         available.put(engine)
 
-    def analyze(board, move):
+    human = getattr(runner, "human_models", None)
+
+    def analyze(board, move, cached):
         if runner.cancelled(job_id):
             return None
-        engine = available.get()
-        try:
-            # Evidence for a move is independent of the preceding move's score.
-            # Attach that score in game order below, before exposing any labels.
-            return analyze_move(engine, board, move)
-        finally:
-            available.put(engine)
+        if cached is None:
+            engine = available.get()
+            try:
+                # Preceding score is attached in game order below.
+                report = analyze_move(engine, board, move)
+            finally:
+                available.put(engine)
+        else:
+            report = dict(cached)
+        if human:
+            report["human"] = human.evidence(
+                runner.sessions,
+                parsed,
+                board,
+                move.uci(),
+                report["best"].get("uci"),
+                rating,
+                lambda: runner.cancelled(job_id),
+            )
+        return report
 
     executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="game-review")
     try:
@@ -305,10 +321,14 @@ def run_review(runner, job_id, engine_override=None):
                 if runner.cancelled(job_id):
                     break
                 move = moves[next_ply - 1]
+                cached = saved.get(next_ply)
+                refresh = human and human.needs_refresh(
+                    cached.get("human") if cached else None, parsed, board.turn, rating
+                )
                 future = (
                     None
-                    if next_ply in saved
-                    else executor.submit(analyze, board.copy(stack=True), move)
+                    if cached is not None and not refresh
+                    else executor.submit(analyze, board.copy(stack=True), move, cached)
                 )
                 pending.append((next_ply, future))
                 board.push(move)
@@ -323,7 +343,12 @@ def run_review(runner, job_id, engine_override=None):
             with runner.import_lock, runner.sessions() as db:
                 if future:
                     report["previous_score"] = previous.model_dump() if previous else None
-                    db.add(GameReviewMove(game_id=game.id, ply=ply, report=report))
+                    row = db.get(GameReviewMove, (game.id, ply))
+                    if row is None:
+                        row = GameReviewMove(game_id=game.id, ply=ply)
+                        db.add(row)
+                    row.report = report
+                    row.human_analysis_id = report.get("human", {}).get("evidence_id")
                 job = db.get(AnalysisJob, job_id)
                 job.positions_triaged = ply
                 job.games_processed = int(ply == len(moves))

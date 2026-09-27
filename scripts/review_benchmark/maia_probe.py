@@ -10,7 +10,7 @@ import math
 from pathlib import Path
 from time import perf_counter
 
-PINS = Path(__file__).with_name("maia_pins.json")
+from trainer.human_models.preset import MANIFEST as PINS
 
 
 def validate_source():
@@ -19,7 +19,10 @@ def validate_source():
     folder = Path(maia3.__file__).parent
     pins = json.loads(PINS.read_text(encoding="utf-8"))
     for name, expected in pins["source_files"].items():
-        if hashlib.sha256((folder / name).read_bytes()).hexdigest() != expected:
+        if (
+            hashlib.sha256((folder / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+            != expected
+        ):
             raise ValueError("Installed Maia source does not match the pinned feasibility revision")
 
 

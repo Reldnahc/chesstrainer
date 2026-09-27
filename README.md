@@ -13,6 +13,12 @@ Python-chess owns rules; Stockfish owns evaluation; configurable Python policy o
 Install with [Docker](docs/DOCKER.md) or the [Unraid template](docs/UNRAID.md).
 One container includes Stockfish and its database; no source checkout is needed.
 
+Optional [Maia human move evidence](docs/HUMAN_MODELS.md) uses an isolated local
+CPU worker alongside Stockfish. Docker includes the runtime; acquire the pinned
+model explicitly with `docker exec fieldwork python -m trainer.human_models.setup`.
+Ordinary review never downloads weights, and Stockfish remains the evaluation
+authority when the human model is present or absent.
+
 ```sh
 docker run -d --name fieldwork --restart unless-stopped --init -p 18000:8000 -v fieldwork-data:/data ghcr.io/reldnahc/chesstrainer:latest
 ```

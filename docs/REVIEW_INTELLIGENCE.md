@@ -1,5 +1,12 @@
 # Review intelligence
 
+The production human-evidence boundary is described in
+[HUMAN_MODELS.md](HUMAN_MODELS.md): one host-shared isolated Maia provider,
+account-owned policy facts, explicit setup and independent Stockfish authority.
+Its first implementation preserves the baseline below without changing grades
+or dialogue. Current schema and runtime configuration live in DATA_MODEL.md and
+CONFIGURATION.md; this document's baseline measurements remain historical.
+
 The durable implementation specification is
 [REVIEW_INTELLIGENCE_PLAN.md](REVIEW_INTELLIGENCE_PLAN.md). This document records
 implemented architecture and measured decisions, not promises of completed features.

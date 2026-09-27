@@ -679,6 +679,47 @@
         "title": "ColdPosition",
         "type": "object"
       },
+      "Conditioning": {
+        "additionalProperties": false,
+        "properties": {
+          "opponent_rating": {
+            "maximum": 5000.0,
+            "minimum": 0.0,
+            "title": "Opponent Rating",
+            "type": "integer"
+          },
+          "opponent_source": {
+            "enum": [
+              "pgn",
+              "fallback"
+            ],
+            "title": "Opponent Source",
+            "type": "string"
+          },
+          "self_rating": {
+            "maximum": 5000.0,
+            "minimum": 0.0,
+            "title": "Self Rating",
+            "type": "integer"
+          },
+          "self_source": {
+            "enum": [
+              "pgn",
+              "fallback"
+            ],
+            "title": "Self Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "self_rating",
+          "opponent_rating",
+          "self_source",
+          "opponent_source"
+        ],
+        "title": "Conditioning",
+        "type": "object"
+      },
       "Coverage": {
         "additionalProperties": false,
         "properties": {
@@ -765,6 +806,78 @@
           "password"
         ],
         "title": "Credentials",
+        "type": "object"
+      },
+      "Domain": {
+        "additionalProperties": false,
+        "properties": {
+          "alignment": {
+            "enum": [
+              "related",
+              "shifted",
+              "unknown"
+            ],
+            "title": "Alignment",
+            "type": "string"
+          },
+          "calibration": {
+            "const": "unvalidated",
+            "default": "unvalidated",
+            "title": "Calibration",
+            "type": "string"
+          },
+          "history_from_start": {
+            "title": "History From Start",
+            "type": "boolean"
+          },
+          "platform": {
+            "enum": [
+              "lichess",
+              "chesscom",
+              "unknown"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "time_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Class"
+          },
+          "time_control": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Control"
+          }
+        },
+        "required": [
+          "platform",
+          "time_control",
+          "time_class",
+          "alignment",
+          "history_from_start",
+          "reasons"
+        ],
+        "title": "Domain",
         "type": "object"
       },
       "Evidence": {
@@ -1558,6 +1671,16 @@
             "title": "Engine Version",
             "type": "string"
           },
+          "human": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "label": {
             "enum": [
               "Brilliant",
@@ -1729,6 +1852,16 @@
           "engine_version": {
             "title": "Engine Version",
             "type": "string"
+          },
+          "human": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "label": {
             "enum": [
@@ -1923,6 +2056,221 @@
           "database"
         ],
         "title": "Health",
+        "type": "object"
+      },
+      "HumanEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "conditioning": {
+            "$ref": "#/components/schemas/Conditioning"
+          },
+          "configuration_key": {
+            "title": "Configuration Key",
+            "type": "string"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "engine_best": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanMove"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          },
+          "history_key": {
+            "title": "History Key",
+            "type": "string"
+          },
+          "legal_count": {
+            "title": "Legal Count",
+            "type": "integer"
+          },
+          "mover": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Mover",
+            "type": "string"
+          },
+          "normalized_entropy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Entropy"
+          },
+          "played": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanMove"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelProvenance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "schema_version": {
+            "const": "human-evidence-1",
+            "default": "human-evidence-1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "available",
+              "disabled",
+              "unavailable",
+              "cancelled",
+              "not_applicable"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "top_moves": {
+            "items": {
+              "$ref": "#/components/schemas/HumanMove"
+            },
+            "title": "Top Moves",
+            "type": "array"
+          },
+          "top_three_mass": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top Three Mass"
+          },
+          "unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable Reason"
+          }
+        },
+        "required": [
+          "status",
+          "configuration_key",
+          "history_key",
+          "mover",
+          "conditioning",
+          "domain",
+          "legal_count"
+        ],
+        "title": "HumanEvidence",
+        "type": "object"
+      },
+      "HumanMove": {
+        "additionalProperties": false,
+        "properties": {
+          "probability": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Probability"
+          },
+          "rank": {
+            "minimum": 1.0,
+            "title": "Rank",
+            "type": "integer"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          }
+        },
+        "required": [
+          "uci",
+          "rank"
+        ],
+        "title": "HumanMove",
+        "type": "object"
+      },
+      "HumanReadiness": {
+        "additionalProperties": false,
+        "properties": {
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "model": {
+            "default": "79m",
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "default": "maia3",
+            "title": "Provider",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "not_configured",
+              "unchecked",
+              "ready",
+              "unavailable"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "HumanReadiness",
         "type": "object"
       },
       "Identity": {
@@ -2277,6 +2625,63 @@
           "moves"
         ],
         "title": "ManualRequest",
+        "type": "object"
+      },
+      "ModelProvenance": {
+        "additionalProperties": false,
+        "properties": {
+          "adapter_version": {
+            "title": "Adapter Version",
+            "type": "string"
+          },
+          "checkpoint_sha256": {
+            "title": "Checkpoint Sha256",
+            "type": "string"
+          },
+          "code_revision": {
+            "title": "Code Revision",
+            "type": "string"
+          },
+          "inference": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Inference",
+            "type": "object"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "model_revision": {
+            "title": "Model Revision",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "model",
+          "model_revision",
+          "checkpoint_sha256",
+          "code_revision",
+          "adapter_version",
+          "inference"
+        ],
+        "title": "ModelProvenance",
         "type": "object"
       },
       "MoveExplanation": {
@@ -3606,6 +4011,34 @@
             ],
             "title": "Engine Version"
           },
+          "human_model_device": {
+            "enum": [
+              "cpu",
+              "cuda"
+            ],
+            "title": "Human Model Device",
+            "type": "string"
+          },
+          "human_model_enabled": {
+            "title": "Human Model Enabled",
+            "type": "boolean"
+          },
+          "human_model_path": {
+            "title": "Human Model Path",
+            "type": "string"
+          },
+          "human_model_threads": {
+            "title": "Human Model Threads",
+            "type": "integer"
+          },
+          "human_model_timeout": {
+            "title": "Human Model Timeout",
+            "type": "number"
+          },
+          "human_model_workers": {
+            "title": "Human Model Workers",
+            "type": "integer"
+          },
           "lan_token_configured": {
             "title": "Lan Token Configured",
             "type": "boolean"
@@ -3711,6 +4144,12 @@
           "session_secure",
           "public_origin",
           "engine_slots",
+          "human_model_enabled",
+          "human_model_path",
+          "human_model_device",
+          "human_model_threads",
+          "human_model_workers",
+          "human_model_timeout",
           "stockfish_path",
           "stockfish_threads",
           "stockfish_hash_mb",
@@ -4484,6 +4923,24 @@
           }
         },
         "summary": "Get Health"
+      }
+    },
+    "/api/human-model": {
+      "get": {
+        "operationId": "human_model_readiness_api_human_model_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HumanReadiness"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Human Model Readiness"
       }
     },
     "/api/imports": {

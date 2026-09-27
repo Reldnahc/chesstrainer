@@ -51,6 +51,8 @@ test('progress merges only new reports without reloading the board or duplicatin
   await page.route(`**/api/games/${id}`, route => { fullLoads++; return route.fulfill({json: game}); });
   await page.route(`**/api/games/${id}/review*`, async route => {
     if (route.request().method() === 'POST') {
+      if (game.job?.status === 'completed')
+        return route.fulfill({json: {job_id: game.job.id, status: 'completed'}});
       game.job = {id: 'progress-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
       return route.fulfill({json: {job_id: game.job.id, status: game.job.status}});
     }
@@ -275,7 +277,39 @@ test('review both players, explain in place, and branch without changing the gam
   await expect(page.locator('.game-summary > summary')).toBeVisible();
   await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
   await expect(blackScore).toHaveText(game.accuracy.black.toFixed(1));
-  expect(starts).toHaveLength(1);
+  // Reopening checks for newly available human evidence. The idempotent request
+  // preserves the completed Stockfish report when no refresh is needed.
+  expect(starts).toHaveLength(2);
+  expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
+});
+
+test('refreshing a saved review receives updated evidence from the new job cursor', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/refresh-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  const report = (ply: number, message: string) => {
+    const frame = game.frames[ply];
+    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 20}};
+    return {label: 'Good', engine_label: 'Good', opening: null, reason: '', coach: message,
+      best: candidate, actual: candidate, white_score: candidate.score,
+      depth: 16, engine_version: 'Refresh fixture', board_cues: null};
+  };
+  for (let ply = 1; ply < game.frames.length; ply++) game.frames[ply].report = report(ply, 'Previously saved evidence.');
+  game.job = {id: 'refresh', status: 'completed', completed: 4, total: 4, error: null, cancel_requested: false};
+  const cursors: number[] = [];
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.route(`**/api/games/${id}/review*`, route => {
+    if (route.request().method() === 'POST') {
+      game.job = {...game.job, status: 'queued', completed: 0};
+      return route.fulfill({json: {job_id: 'refresh', status: 'queued'}});
+    }
+    cursors.push(Number(new URL(route.request().url()).searchParams.get('after')));
+    return route.fulfill({json: {job: {...game.job, status: 'completed', completed: 4}, accuracy: null,
+      moves: [1, 2, 3, 4].map(ply => ({ply, report: report(ply, 'Updated saved evidence.')}))}});
+  });
+  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  await page.goto(`/games/${id}?ply=1`);
+  await expect(page.locator('.coach-speech')).toContainText('Updated saved evidence.');
+  expect(cursors[0]).toBe(0);
 });
 
 test('dense evaluation dots resize and select the matching ply by pointer and keyboard', async ({page}, info) => {

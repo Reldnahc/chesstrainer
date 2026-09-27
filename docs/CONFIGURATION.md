@@ -17,6 +17,11 @@ status is returned.
 | DATABASE_PATH | data/trainer.sqlite3 |
 | STOCKFISH_PATH | stockfish |
 | STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..4 |
+| HUMAN_MODEL_ENABLED | true; inference only when explicitly installed/cached |
+| HUMAN_MODEL_PATH | data/models/maia3-79m.pt; /data/models/maia3-79m.pt in Docker |
+| HUMAN_MODEL_DEVICE | cpu; optional administrator-provided cuda runtime |
+| HUMAN_MODEL_THREADS / HUMAN_MODEL_WORKERS | 2 / 1; bounds 1..16 / 1..4, host-wide |
+| HUMAN_MODEL_TIMEOUT | 30 seconds (1..120), slot wait plus native request |
 | TRIAGE_DEPTH / TRIAGE_TIME / TRIAGE_NODES | 10 / 0.15 seconds / unset |
 | DEEP_DEPTH / DEEP_TIME / DEEP_NODES | 16 / 0.8 seconds / unset |
 | MULTIPV | 4 |
@@ -61,6 +66,10 @@ For unlisted answers, the saved analysis limits/resources and binary identity ar
 Policy and target-rating effects are documented in [ANALYSIS_PIPELINE.md](ANALYSIS_PIPELINE.md) and [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
 
 ## Local classification
+
+Human move evidence is separate from rule classification and Stockfish. See
+[HUMAN_MODELS.md](HUMAN_MODELS.md) for explicit setup, resource measurements,
+offline use, cache identity and conservative interpretation of rating domains.
 
 CLASSIFICATION_WORKERS limits local rule tasks; it starts no model requests or additional engines. Each bounded pool admits at most twice its worker count. Worker count alone does not invalidate results.
 

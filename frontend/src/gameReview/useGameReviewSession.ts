@@ -26,6 +26,8 @@ export function useGameReviewSession(id: string) {
         (last, frame, index) => (frame.report ? index : last),
         0,
       );
+      if (data.job && ["queued", "running"].includes(data.job.status))
+        receivedPly.current = Math.min(receivedPly.current, data.job.completed);
       setGame(data);
     }
   }, [id]);
@@ -85,7 +87,7 @@ export function useGameReviewSession(id: string) {
   useEffect(() => {
     if (!game || openedReview.current) return;
     openedReview.current = true;
-    if (!game.job || ["failed", "cancelled"].includes(game.job.status))
+    if (!game.job || ["failed", "cancelled", "completed"].includes(game.job.status))
       void start();
     else setReviewStarting(false);
     // Only opening triggers auto-start. A pause/failure while open must stick.

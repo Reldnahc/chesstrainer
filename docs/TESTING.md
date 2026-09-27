@@ -11,6 +11,12 @@ Opt-in Maia feasibility tests and CPU/CUDA benchmark commands are documented in
 optional runtime plus `MAIA_CHECKPOINT_DIR`; ordinary tests verify missing/corrupt
 files, source pinning and complete-history inputs without importing Torch.
 
+Production human-evidence contracts, ownership/cache invalidation, real process
+deadlines, cancellation and Stockfish-only/refresh behavior are covered by
+`test_human_evidence.py`, `test_human_runtime.py` and `test_human_review.py`.
+The native production worker test requires the 79M checkpoint; it does not use
+the feasibility adapter. See [HUMAN_MODELS.md](HUMAN_MODELS.md) for setup.
+
 Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
 
 ## Full verification

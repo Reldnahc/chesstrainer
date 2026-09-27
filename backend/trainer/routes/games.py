@@ -17,7 +17,7 @@ from trainer.contracts.games import (
     ReviewProgress,
 )
 from trainer.game_accuracy import review_accuracy
-from trainer.game_library import time_control_label
+from trainer.game_library import pgn_rating, time_control_label
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
 from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ImportBatch, ImportGame
 from trainer.workspaces import CurrentWorkspace
@@ -32,21 +32,14 @@ class VariationRequest(BaseModel):
     moves: list[str] = Field(default_factory=list, max_length=128)
 
 
-def pgn_rating(parsed, color):
-    """Use the rating recorded for the moving side, never the opponent's rating."""
-    try:
-        value = int(parsed.headers.get("WhiteElo" if color else "BlackElo", ""))
-        return value if 0 < value <= 4000 else None
-    except (ValueError, TypeError):
-        return None
-
-
 def job_progress(job, completed, total):
     return (
         {
             "id": job.id,
             "status": job.status,
-            "completed": completed,
+            "completed": min(completed, job.positions_triaged)
+            if job.status in {"queued", "running"}
+            else completed,
             "total": total,
             "error": job.error,
             "cancel_requested": job.cancel_requested,
@@ -210,6 +203,10 @@ def create_router(*, settings, engine_factory):
             rows = db.scalars(
                 select(GameReviewMove)
                 .where(GameReviewMove.game_id == game_id, GameReviewMove.ply > after)
+                .where(
+                    GameReviewMove.ply
+                    <= (job.positions_triaged if job.status in {"queued", "running"} else total)
+                )
                 .order_by(GameReviewMove.ply)
             ).all()
             completed = db.scalar(
@@ -240,7 +237,9 @@ def create_router(*, settings, engine_factory):
                                 "depth",
                                 "engine_version",
                                 "board_cues",
+                                "human",
                             )
+                            if key in report
                         },
                     }
                 )
@@ -272,14 +271,30 @@ def create_router(*, settings, engine_factory):
     )
     def begin_review(workspace: CurrentWorkspace, game_id: str, data: ReviewRequest):
         with workspace.mutation_lock, workspace.sessions() as db:
-            require_game(db, game_id)
+            game = require_game(db, game_id)
             review = db.get(GameReview, game_id)
             if review:
                 if data.rating is not None:
                     review.rating = data.rating
                 job = db.get(AnalysisJob, review.job_id)
-                if job.status in {"failed", "cancelled"}:
+                refresh = False
+                if job.status == "completed" and workspace.human_models.can_attempt():
+                    parsed = parsed_game(game)
+                    starting = parsed.board().turn
+                    refresh = any(
+                        workspace.human_models.needs_refresh(
+                            row.report.get("human"),
+                            parsed,
+                            starting if row.ply % 2 else not starting,
+                            review.rating,
+                        )
+                        for row in db.scalars(
+                            select(GameReviewMove).where(GameReviewMove.game_id == game_id)
+                        )
+                    )
+                if job.status in {"failed", "cancelled"} or refresh:
                     job.status, job.cancel_requested, job.error = "queued", False, None
+                    job.positions_triaged = 0
             else:
                 job = AnalysisJob(kind="game_review", games_total=1)
                 db.add(job)
@@ -360,16 +375,26 @@ def create_router(*, settings, engine_factory):
                         "score": (score if board.turn else score.negate()).model_dump(),
                     }
                 move = board.pop()
-                rating = pgn_rating(parsed, board.turn) or rating
+                fallback = rating
+                rating = pgn_rating(parsed, board.turn) or fallback
                 previous_score = None
                 if board.move_stack:
                     previous = board.copy(stack=True)
                     previous.pop()
                     result = engine.analyze(previous, deep=True, multipv=2)
                     previous_score = Score.model_validate(result.candidates[0]["score"]).negate()
-                report = public_report(analyze_move(engine, board, move, previous_score), rating)
-                return {"report": report, "score": report["white_score"], "best_move": None}
+                report = analyze_move(engine, board, move, previous_score)
             finally:
                 engine.close()
+            report["human"] = workspace.human_models.evidence(
+                workspace.sessions,
+                parsed,
+                board,
+                move.uci(),
+                report["best"]["uci"],
+                fallback,
+            )
+            report = public_report(report, rating)
+            return {"report": report, "score": report["white_score"], "best_move": None}
 
     return router

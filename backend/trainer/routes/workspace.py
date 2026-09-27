@@ -6,6 +6,7 @@ from sqlalchemy import func, select
 from trainer.contracts.preferences import CoachPreferences
 from trainer.contracts.workspace import Health, Stats, WorkspaceSettings
 from trainer.coverage import coverage
+from trainer.human_models.types import HumanReadiness
 from trainer.models import ClassificationRun, Exercise, Review
 from trainer.preferences import coach_preferences, save_coach_preferences
 from trainer.workspaces import CurrentWorkspace
@@ -13,6 +14,10 @@ from trainer.workspaces import CurrentWorkspace
 
 def create_router(*, settings, health, classifier) -> APIRouter:
     router = APIRouter()
+
+    @router.get("/api/human-model", response_model=HumanReadiness)
+    def human_model_readiness(workspace: CurrentWorkspace):
+        return workspace.human_models.snapshot()
 
     @router.get("/api/preferences/coach", response_model=CoachPreferences)
     def get_coach_preferences(workspace: CurrentWorkspace):

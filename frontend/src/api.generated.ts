@@ -341,6 +341,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/human-model": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Human Model Readiness */
+        get: operations["human_model_readiness_api_human_model_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/imports": {
         parameters: {
             query?: never;
@@ -905,6 +922,23 @@ export interface components {
             /** Session Id */
             session_id: string;
         };
+        /** Conditioning */
+        Conditioning: {
+            /** Opponent Rating */
+            opponent_rating: number;
+            /**
+             * Opponent Source
+             * @enum {string}
+             */
+            opponent_source: "pgn" | "fallback";
+            /** Self Rating */
+            self_rating: number;
+            /**
+             * Self Source
+             * @enum {string}
+             */
+            self_source: "pgn" | "fallback";
+        };
         /** Coverage */
         Coverage: {
             /** Abstention Reasons */
@@ -937,6 +971,33 @@ export interface components {
             password: string;
             /** Username */
             username: string;
+        };
+        /** Domain */
+        Domain: {
+            /**
+             * Alignment
+             * @enum {string}
+             */
+            alignment: "related" | "shifted" | "unknown";
+            /**
+             * Calibration
+             * @default unvalidated
+             * @constant
+             */
+            calibration: "unvalidated";
+            /** History From Start */
+            history_from_start: boolean;
+            /**
+             * Platform
+             * @enum {string}
+             */
+            platform: "lichess" | "chesscom" | "unknown";
+            /** Reasons */
+            reasons: string[];
+            /** Time Class */
+            time_class: string | null;
+            /** Time Control */
+            time_control: string | null;
         };
         /** Evidence */
         Evidence: {
@@ -1177,6 +1238,7 @@ export interface components {
             engine_label: "Brilliant" | "Great" | "Best" | "Good" | "Book" | "Inaccuracy" | "Mistake" | "Miss" | "Blunder";
             /** Engine Version */
             engine_version: string;
+            human?: components["schemas"]["HumanEvidence"] | null;
             /**
              * Label
              * @enum {string}
@@ -1225,6 +1287,7 @@ export interface components {
             engine_label: "Brilliant" | "Great" | "Best" | "Good" | "Book" | "Inaccuracy" | "Mistake" | "Miss" | "Blunder";
             /** Engine Version */
             engine_version: string;
+            human?: components["schemas"]["HumanEvidence"] | null;
             /**
              * Label
              * @enum {string}
@@ -1270,6 +1333,75 @@ export interface components {
             engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
+        };
+        /** HumanEvidence */
+        HumanEvidence: {
+            conditioning: components["schemas"]["Conditioning"];
+            /** Configuration Key */
+            configuration_key: string;
+            domain: components["schemas"]["Domain"];
+            engine_best?: components["schemas"]["HumanMove"] | null;
+            /** Evidence Id */
+            evidence_id?: string | null;
+            /** History Key */
+            history_key: string;
+            /** Legal Count */
+            legal_count: number;
+            /**
+             * Mover
+             * @enum {string}
+             */
+            mover: "white" | "black";
+            /** Normalized Entropy */
+            normalized_entropy?: number | null;
+            played?: components["schemas"]["HumanMove"] | null;
+            provenance?: components["schemas"]["ModelProvenance"] | null;
+            /**
+             * Schema Version
+             * @default human-evidence-1
+             * @constant
+             */
+            schema_version: "human-evidence-1";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "available" | "disabled" | "unavailable" | "cancelled" | "not_applicable";
+            /** Top Moves */
+            top_moves?: components["schemas"]["HumanMove"][];
+            /** Top Three Mass */
+            top_three_mass?: number | null;
+            /** Unavailable Reason */
+            unavailable_reason?: string | null;
+        };
+        /** HumanMove */
+        HumanMove: {
+            /** Probability */
+            probability?: number | null;
+            /** Rank */
+            rank: number;
+            /** Uci */
+            uci: string;
+        };
+        /** HumanReadiness */
+        HumanReadiness: {
+            /** Message */
+            message?: string | null;
+            /**
+             * Model
+             * @default 79m
+             */
+            model: string;
+            /**
+             * Provider
+             * @default maia3
+             */
+            provider: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "disabled" | "not_configured" | "unchecked" | "ready" | "unavailable";
         };
         /** Identity */
         Identity: {
@@ -1379,6 +1511,25 @@ export interface components {
             orientation: "white" | "black";
             /** Tags */
             tags?: string[];
+        };
+        /** ModelProvenance */
+        ModelProvenance: {
+            /** Adapter Version */
+            adapter_version: string;
+            /** Checkpoint Sha256 */
+            checkpoint_sha256: string;
+            /** Code Revision */
+            code_revision: string;
+            /** Inference */
+            inference: {
+                [key: string]: string | number | boolean;
+            };
+            /** Model */
+            model: string;
+            /** Model Revision */
+            model_revision: string;
+            /** Provider */
+            provider: string;
         };
         /** MoveExplanation */
         MoveExplanation: {
@@ -1808,6 +1959,21 @@ export interface components {
             engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
+            /**
+             * Human Model Device
+             * @enum {string}
+             */
+            human_model_device: "cpu" | "cuda";
+            /** Human Model Enabled */
+            human_model_enabled: boolean;
+            /** Human Model Path */
+            human_model_path: string;
+            /** Human Model Threads */
+            human_model_threads: number;
+            /** Human Model Timeout */
+            human_model_timeout: number;
+            /** Human Model Workers */
+            human_model_workers: number;
             /** Lan Token Configured */
             lan_token_configured: boolean;
             /** Max Import Bytes */
@@ -2453,6 +2619,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    human_model_readiness_api_human_model_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HumanReadiness"];
                 };
             };
         };

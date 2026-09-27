@@ -145,11 +145,24 @@ class GameReview(Owned, Base):
     rating: Mapped[int]
 
 
+class HumanAnalysis(Owned, Base):
+    """Account-owned human move facts, never engine scores or character prose."""
+
+    __tablename__ = "human_analyses"
+    __table_args__ = (UniqueConstraint("user_id", "cache_key"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    cache_key: Mapped[str] = mapped_column(index=True)
+    request: Mapped[dict] = mapped_column(JSON)
+    policy: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
 class GameReviewMove(Owned, Base):
     __tablename__ = "game_review_moves"
     game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
     ply: Mapped[int] = mapped_column(primary_key=True)
     report: Mapped[dict] = mapped_column(JSON)
+    human_analysis_id: Mapped[str | None] = mapped_column(ForeignKey("human_analyses.id"))
 
 
 class Decision(Owned, Base):

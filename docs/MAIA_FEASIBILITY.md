@@ -7,7 +7,7 @@ new validation of Maia's human move-matching accuracy.
 
 Inference code: [CSSLab/maia3, commit 1e13597](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2),
 AGPL-3.0. Model revisions, filenames, byte counts and SHA-256 digests are recorded
-in `scripts/review_benchmark/maia_pins.json`; all three downloaded files matched.
+in `backend/trainer/human_models/manifest.json`; all three downloaded files matched.
 
 | Model | Model revision | Checkpoint bytes |
 |---|---|---:|

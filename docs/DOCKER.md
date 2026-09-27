@@ -1,5 +1,10 @@
 # Docker installation
 
+The image includes an optional CPU human-model runtime. Weights are installed only
+by the explicit host command in [HUMAN_MODELS.md](HUMAN_MODELS.md), then cached in
+the existing `/data` mount. Stockfish-only review works before setup. No extra
+container, database or GPU is required.
+
 One container includes the web app and native Stockfish. All persistent data lives
 in `/data/trainer.sqlite3`. No external database or engine service is required.
 Unraid users can use the [template](UNRAID.md) instead.
