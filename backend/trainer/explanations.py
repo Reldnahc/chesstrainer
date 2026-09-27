@@ -1,5 +1,7 @@
 """Explain recorded moves using saved engine evidence and legal replay only."""
 
+from typing import Literal
+
 import chess
 from pydantic import BaseModel, Field
 from sqlalchemy import select
@@ -35,14 +37,14 @@ class Frame(BaseModel):
 class MoveExplanation(BaseModel):
     version: str = "1"
     attempt_id: str | None
-    authority: str
+    authority: Literal["stockfish", "curated"]
     accepted: bool
     move_uci: str
     move_san: str
     summary: str
     notes: list[str]
     frames: list[Frame]
-    orientation: str
+    orientation: Literal["white", "black"]
     analysis_id: str | None = None
     engine_version: str | None = None
     score: Score | None = None

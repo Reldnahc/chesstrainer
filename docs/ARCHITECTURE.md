@@ -32,6 +32,7 @@ Whole-game review and training analysis are separately requested from the game.
 | routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
+| contracts/ | Explicit HTTP response schemas grouped by endpoint domain; reused chess evidence types retain their original owners |
 
 Each router is registered once and receives shared configuration/services explicitly.
 Handlers receive a `CurrentWorkspace` FastAPI dependency derived from the authenticated
@@ -69,7 +70,7 @@ lock, while other accounts have independent locks.
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Shared title display |
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
-| api.ts | Same-origin HTTP client and response types |
+| api.ts / api.generated.ts | Same-origin typed OpenAPI client, authentication/error handling and generated request/response contracts |
 
 Existing Board, MoveStatus, ReviewExplanation, ChessComImport and Weaknesses components remain separate. The frontend renders backend-provided legal moves, scores and witness frames; it implements no authoritative chess rules. Review session hooks own requests and state transitions, while presentation components compose the shared Board, ReviewCoach and ReviewWorkspace without duplicating their sizing or animations. SRS playback never submits another recall; game variation analysis never changes the original game. Request generations and effect cleanup prevent disposed or superseded work from updating the current session. Inline explanation playback reuses the board, header and layout; the evidence audit is a separate native dialog.
 
@@ -93,6 +94,30 @@ Production already serves `index.html` for frontend paths on the API origin,
 including direct game URLs; `/api/` and `/assets/` retain their existing handling.
 No reverse-proxy rewrite is needed when forwarding the whole site to the app.
 The Vite development proxy targets 127.0.0.1:8000.
+
+## API contract ownership
+
+FastAPI response models validate all active success payloads. New response models
+reject undeclared fields; optional fields use `response_model_exclude_unset` to
+preserve existing omissions. Cold SRS responses have their own schemas and cannot
+accidentally acquire answers from a richer feedback response. Historical audit
+responses and saved fact dictionaries intentionally contain versioned JSON, while
+their surrounding response fields are explicit.
+
+`scripts/export_api_contract.py` exports the hosted API's OpenAPI contract without
+starting the application lifespan, opening a database or starting Stockfish. Local
+and hosted API snapshots are both verified against it. `frontend/scripts/api-types.mjs`
+uses pinned openapi-typescript to derive `api.generated.ts`, including binary
+multipart upload types. The openapi-fetch client infers response types from literal
+endpoint paths and checks request bodies, path parameters and query parameters.
+UI aliases refer to generated schemas; they do not repeat server field definitions.
+Game session state explicitly accepts compact polling reports alongside the richer
+initial reports. Explanation square-role overlays remain transient UI state.
+
+Backend CI detects schema drift. Frontend builds reject stale generated types and
+compile negative type tests that verify invalid endpoints, missing parameters,
+incompatible request values and missing response fields remain errors. Regeneration
+commands and the intentional-change review process are in [TESTING.md](TESTING.md).
 
 ## Domain boundaries
 

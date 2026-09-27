@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, post } from "../api";
-import type { Game, ReviewProgress } from "./types";
+import { api, read } from "../api";
+import type { Game } from "./types";
 
 /** Owns the original game and its persisted review job, never variation state. */
 export function useGameReviewSession(id: string) {
@@ -18,7 +18,9 @@ export function useGameReviewSession(id: string) {
 
   const load = useCallback(async () => {
     const version = ++loadVersion.current;
-    const data = await api<Game>(`/games/${encodeURIComponent(id)}`);
+    const data = await read(
+      api.GET("/api/games/{game_id}", { params: { path: { game_id: id } } }),
+    );
     if (mounted.current && version === loadVersion.current) {
       receivedPly.current = data.frames.reduce(
         (last, frame, index) => (frame.report ? index : last),
@@ -44,7 +46,12 @@ export function useGameReviewSession(id: string) {
     setReviewStarting(true);
     setError("");
     try {
-      await post(`/games/${encodeURIComponent(id)}/review`, {});
+      await read(
+        api.POST("/api/games/{game_id}/review", {
+          params: { path: { game_id: id } },
+          body: {},
+        }),
+      );
       if (!mounted.current) return;
       setAnalysisEpoch((value) => value + 1);
       await load();
@@ -62,7 +69,11 @@ export function useGameReviewSession(id: string) {
     if (!game?.job || busy) return;
     setBusy(true);
     try {
-      await post(`/jobs/${game.job.id}/cancel`);
+      await read(
+        api.POST("/api/jobs/{job_id}/cancel", {
+          params: { path: { job_id: game.job.id } },
+        }),
+      );
       if (mounted.current) await load();
     } catch (e) {
       if (mounted.current) setError((e as Error).message);
@@ -91,8 +102,13 @@ export function useGameReviewSession(id: string) {
     const update = async () => {
       const version = loadVersion.current;
       try {
-        const progress = await api<ReviewProgress>(
-          `/games/${encodeURIComponent(id)}/review?after=${receivedPly.current}`,
+        const progress = await read(
+          api.GET("/api/games/{game_id}/review", {
+            params: {
+              path: { game_id: id },
+              query: { after: receivedPly.current },
+            },
+          }),
         );
         if (!active || version !== loadVersion.current) return;
         // Advance only over reports received, never a newer progress counter.

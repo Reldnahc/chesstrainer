@@ -85,7 +85,9 @@ export default function GameWorkspace({
   const bestMove =
     report?.best.san || currentAnalysis?.best_move || startingReport?.best.san;
   const cues =
-    report?.board_cues?.fen === frame?.fen ? report?.board_cues : null;
+    report?.board_cues?.fen === frame?.fen
+      ? (report?.board_cues ?? null)
+      : null;
   const explaining = exploration.explanationKey === key && !!cues;
   const actor =
     (branch ? cursor.step > 0 : cursor.ply > 0) && frame?.san

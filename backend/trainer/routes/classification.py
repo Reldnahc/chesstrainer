@@ -4,6 +4,8 @@ from fastapi import APIRouter, HTTPException
 from sqlalchemy import func, select
 
 from trainer.classification import reject_run
+from trainer.contracts.classification import ClassificationAudit, Evidence, Weaknesses
+from trainer.contracts.common import JobCreated, Rejected
 from trainer.coverage import coverage
 from trainer.curriculum import priorities
 from trainer.models import AnalysisJob, ClassificationRun, Decision, EngineAnalysis, SkillEvidence
@@ -13,7 +15,9 @@ from trainer.workspaces import CurrentWorkspace
 def create_router(*, settings, classifier) -> APIRouter:
     router = APIRouter()
 
-    @router.post("/api/classifications/retry")
+    @router.post(
+        "/api/classifications/retry", response_model=JobCreated, response_model_exclude_unset=True
+    )
     def retry_classifications(workspace: CurrentWorkspace):
         with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(
@@ -29,7 +33,12 @@ def create_router(*, settings, classifier) -> APIRouter:
             db.commit()
             return {"job_id": job.id}
 
-    @router.post("/api/classifications/enrich", status_code=202)
+    @router.post(
+        "/api/classifications/enrich",
+        status_code=202,
+        response_model=JobCreated,
+        response_model_exclude_unset=True,
+    )
     def enrich_classifications(workspace: CurrentWorkspace):
         with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(
@@ -46,7 +55,7 @@ def create_router(*, settings, classifier) -> APIRouter:
             db.commit()
             return {"job_id": job.id}
 
-    @router.get("/api/weaknesses")
+    @router.get("/api/weaknesses", response_model=Weaknesses, response_model_exclude_unset=True)
     def weaknesses(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
             return {
@@ -65,7 +74,9 @@ def create_router(*, settings, classifier) -> APIRouter:
                 "classification_available": classifier is not None,
             }
 
-    @router.get("/api/evidence/{decision_id}")
+    @router.get(
+        "/api/evidence/{decision_id}", response_model=Evidence, response_model_exclude_unset=True
+    )
     def evidence(workspace: CurrentWorkspace, decision_id: str):
         with workspace.sessions() as db:
             decision = db.get(Decision, decision_id)
@@ -105,7 +116,11 @@ def create_router(*, settings, classifier) -> APIRouter:
                 ],
             }
 
-    @router.get("/api/classification-runs/{run_id}")
+    @router.get(
+        "/api/classification-runs/{run_id}",
+        response_model=ClassificationAudit,
+        response_model_exclude_unset=True,
+    )
     def classification_run(workspace: CurrentWorkspace, run_id: str):
         with workspace.sessions() as db:
             run = db.get(ClassificationRun, run_id)
@@ -113,7 +128,11 @@ def create_router(*, settings, classifier) -> APIRouter:
                 raise HTTPException(404, "Classification run not found")
             return {c.name: getattr(run, c.name) for c in ClassificationRun.__table__.columns}
 
-    @router.post("/api/classification-runs/{run_id}/reject")
+    @router.post(
+        "/api/classification-runs/{run_id}/reject",
+        response_model=Rejected,
+        response_model_exclude_unset=True,
+    )
     def reject_classification(workspace: CurrentWorkspace, run_id: str):
         with workspace.mutation_lock, workspace.sessions() as db:
             result = reject_run(db, run_id)

@@ -8,6 +8,14 @@ from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 
 from trainer.chess_core import Score
+from trainer.contracts.common import JobStarted
+from trainer.contracts.games import (
+    GameAnalysis,
+    GameDetail,
+    GameHistory,
+    GamePosition,
+    ReviewProgress,
+)
 from trainer.game_accuracy import review_accuracy
 from trainer.game_library import time_control_label
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
@@ -57,7 +65,7 @@ def create_router(*, settings, engine_factory):
             raise HTTPException(404, "Game not found")
         return game
 
-    @router.get("/api/games")
+    @router.get("/api/games", response_model=GameHistory, response_model_exclude_unset=True)
     def games(
         workspace: CurrentWorkspace,
         offset: int = Query(0, ge=0),
@@ -122,7 +130,9 @@ def create_router(*, settings, engine_factory):
                 )
             return {"items": items, "total": db.scalar(select(func.count()).select_from(Game))}
 
-    @router.get("/api/games/{game_id}")
+    @router.get(
+        "/api/games/{game_id}", response_model=GameDetail, response_model_exclude_unset=True
+    )
     def game_detail(workspace: CurrentWorkspace, game_id: str):
         with workspace.sessions() as db:
             game = require_game(db, game_id)
@@ -182,7 +192,11 @@ def create_router(*, settings, engine_factory):
                 ),
             }
 
-    @router.get("/api/games/{game_id}/review")
+    @router.get(
+        "/api/games/{game_id}/review",
+        response_model=ReviewProgress,
+        response_model_exclude_unset=True,
+    )
     def review_progress(workspace: CurrentWorkspace, game_id: str, after: int = Query(0, ge=0)):
         with workspace.sessions() as db:
             game = require_game(db, game_id)
@@ -253,7 +267,9 @@ def create_router(*, settings, engine_factory):
                 "accuracy": accuracy,
             }
 
-    @router.post("/api/games/{game_id}/review")
+    @router.post(
+        "/api/games/{game_id}/review", response_model=JobStarted, response_model_exclude_unset=True
+    )
     def begin_review(workspace: CurrentWorkspace, game_id: str, data: ReviewRequest):
         with workspace.mutation_lock, workspace.sessions() as db:
             require_game(db, game_id)
@@ -272,7 +288,11 @@ def create_router(*, settings, engine_factory):
             db.commit()
             return {"job_id": job.id, "status": job.status}
 
-    @router.post("/api/games/{game_id}/position")
+    @router.post(
+        "/api/games/{game_id}/position",
+        response_model=GamePosition,
+        response_model_exclude_unset=True,
+    )
     def variation_position(workspace: CurrentWorkspace, game_id: str, data: VariationRequest):
         with workspace.sessions() as db:
             game = require_game(db, game_id)
@@ -284,7 +304,12 @@ def create_router(*, settings, engine_factory):
             san = before.san(move)
         return position(board) | {"san": san}
 
-    @router.post("/api/games/{game_id}/train", status_code=202)
+    @router.post(
+        "/api/games/{game_id}/train",
+        status_code=202,
+        response_model=JobStarted,
+        response_model_exclude_unset=True,
+    )
     def train_game(workspace: CurrentWorkspace, game_id: str):
         with workspace.mutation_lock, workspace.sessions() as db:
             require_game(db, game_id)
@@ -308,7 +333,11 @@ def create_router(*, settings, engine_factory):
             db.commit()
             return {"job_id": job.id, "status": job.status}
 
-    @router.post("/api/games/{game_id}/analyze")
+    @router.post(
+        "/api/games/{game_id}/analyze",
+        response_model=GameAnalysis,
+        response_model_exclude_unset=True,
+    )
     def analyze_variation(workspace: CurrentWorkspace, game_id: str, data: VariationRequest):
         with workspace.sessions() as db:
             game = require_game(db, game_id)

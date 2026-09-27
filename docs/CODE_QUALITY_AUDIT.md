@@ -13,7 +13,7 @@ and may move during refactoring.
 - [x] **1. Gate Docker publishing on correctness checks.**
 - [x] **2. Replace per-account application instances and permanent worker threads.**
 - [x] **3. Separate review screen state management from presentation.**
-- [ ] **4. Define and share API response contracts.**
+- [x] **4. Define and share API response contracts.**
 - [ ] **5. Run account browser tests in CI.**
 - [ ] **6. Consolidate CSS ownership and remove obsolete styles.**
 - [ ] **7. Break tactical detection and classification into smaller rules/stages.**
@@ -117,7 +117,7 @@ the final passing run. Diff checks passed.
 
 ## 4. API response contracts are largely unspecified
 
-**Priority:** Medium. **Status:** Open.
+**Priority:** Medium. **Status:** Resolved and verified.
 
 The checked-in OpenAPI fixture has empty schemas for 33 of 34 successful
 responses. `frontend/src/api.ts` defaults to `any`; callers manually declare
@@ -128,7 +128,23 @@ both the contract snapshot and TypeScript checks.
 derive or otherwise verify corresponding frontend types. Remove the implicit
 `any` escape hatch and ensure contract checks detect incompatible payload changes.
 
-**Verification / resolution:** Pending.
+**Implementation:** All active endpoints now declare response schemas, reusing
+existing chess types. FastAPI validates responses, and generated TypeScript gives
+each frontend request its endpoint's body, parameters and return type. Handwritten
+response copies and the generic `any` client are removed. Schema export, generated
+type checks and compile-only invalid-call regressions catch drift in CI/builds.
+Authentication, multipart uploads and existing optional fields are preserved;
+historical payloads remain explicitly typed JSON. Docker includes the generation
+tooling. No database migration or container-variable change is needed.
+
+**Verification / resolution:** Full backend suite: 411 passed. Full desktop/mobile
+browser suite: 75 passed, 3 expected viewport skips; separate account suite: 2
+passed. Production build, contract export/type checks, Ruff, Actionlint and diff
+checks passed. A local Docker image built successfully and passed fresh-install,
+restart and native Stockfish smoke checks in both local and account modes. The
+build used the staged public-source snapshot to avoid an unrelated Windows access
+error on the ignored pytest cache. Nothing was published or deployed. Account
+browser tests are still run separately; adding them to CI remains item 5.
 
 ## 5. Account browser tests are excluded from CI
 

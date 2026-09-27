@@ -7,6 +7,8 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from sqlalchemy import select
 
 from trainer.chesscom import ChessComRequest
+from trainer.contracts.common import JobStarted
+from trainer.contracts.jobs import PgnImportResult
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, ChessComImport
 from trainer.workspaces import CurrentWorkspace
@@ -25,7 +27,7 @@ def create_router(*, settings) -> APIRouter:
         except UnicodeDecodeError:
             raise HTTPException(422, "Save PGN as UTF-8 before importing")
 
-    @router.post("/api/imports")
+    @router.post("/api/imports", response_model=PgnImportResult, response_model_exclude_unset=True)
     async def upload_pgn(
         workspace: CurrentWorkspace,
         file: UploadFile = File(...),
@@ -44,7 +46,12 @@ def create_router(*, settings) -> APIRouter:
                 queue_analysis=analyze,
             )
 
-    @router.post("/api/imports/chesscom", status_code=202)
+    @router.post(
+        "/api/imports/chesscom",
+        status_code=202,
+        response_model=JobStarted,
+        response_model_exclude_unset=True,
+    )
     def import_chesscom(workspace: CurrentWorkspace, data: ChessComRequest):
         with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(

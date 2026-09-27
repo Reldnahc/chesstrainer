@@ -9,7 +9,7 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import { api, type Health } from "./api";
+import { api, read, type Health } from "./api";
 import ReviewScreen from "./Review";
 import GamesScreen from "./GameReview";
 import ImportScreen from "./Import";
@@ -44,13 +44,13 @@ export default function App() {
   useEffect(() => {
     const connect = () => setConnection(true);
     window.addEventListener("connection-required", connect);
-    api<Health>("/health").then(setHealth).catch(fail);
+    read(api.GET("/api/health")).then(setHealth).catch(fail);
     return () => window.removeEventListener("connection-required", connect);
   }, [refresh, fail]);
   useEffect(() => {
     setError("");
     setEvidenceId(null);
-    document.title = `${route.gameId ? "Game review" : tab ?? "Page not found"} · Fieldwork`;
+    document.title = `${route.gameId ? "Game review" : (tab ?? "Page not found")} · Fieldwork`;
   }, [route, tab]);
   return (
     <>
@@ -75,7 +75,11 @@ export default function App() {
                 key={name}
                 href={pagePaths[name]}
                 aria-current={tab === name ? "page" : undefined}
-                className={tab === name ? "button-link nav-item active" : "button-link nav-item"}
+                className={
+                  tab === name
+                    ? "button-link nav-item active"
+                    : "button-link nav-item"
+                }
               >
                 <Icon size={17} strokeWidth={1.7} />
                 <span>{name}</span>
@@ -87,7 +91,11 @@ export default function App() {
       <main
         id="main-content"
         tabIndex={-1}
-        className={tab === "Review" || (tab === "Games" && route.gameId) ? "review-page" : "workspace-page"}
+        className={
+          tab === "Review" || (tab === "Games" && route.gameId)
+            ? "review-page"
+            : "workspace-page"
+        }
       >
         {error && (
           <div role="alert" className="notice error">
@@ -141,18 +149,37 @@ export default function App() {
               />
             )}
             {tab === "Import" && <ImportScreen health={health} fail={fail} />}
-            {tab === "Games" && <GamesScreen key={route.href} page={route.page} selected={route.gameId} initialPly={route.ply} />}
+            {tab === "Games" && (
+              <GamesScreen
+                key={route.href}
+                page={route.page}
+                selected={route.gameId}
+                initialPly={route.ply}
+              />
+            )}
             {tab === "Weaknesses" && (
               <WeaknessScreen
                 onPractice={(skill) => {
-                  navigate(`${pagePaths.Review}?focus=${encodeURIComponent(skill)}`);
+                  navigate(
+                    `${pagePaths.Review}?focus=${encodeURIComponent(skill)}`,
+                  );
                 }}
                 onEvidence={setEvidenceId}
                 fail={fail}
               />
             )}
-            {tab === "Settings" && <SettingsScreen health={health} fail={fail} />}
-            {!tab && <section className="panel"><h1>Page not found</h1><p>This address does not match a page in Fieldwork.</p><Link className="button-link primary" href={pagePaths.Games}>Go to your games</Link></section>}
+            {tab === "Settings" && (
+              <SettingsScreen health={health} fail={fail} />
+            )}
+            {!tab && (
+              <section className="panel">
+                <h1>Page not found</h1>
+                <p>This address does not match a page in Fieldwork.</p>
+                <Link className="button-link primary" href={pagePaths.Games}>
+                  Go to your games
+                </Link>
+              </section>
+            )}
           </>
         )}
       </main>
@@ -162,7 +189,10 @@ export default function App() {
           TRAINING
         </span>
         <span>
-          <ShieldCheck size={14} /> {account ? "Games & practice are private to your account" : "Games & practice stay on this computer"}
+          <ShieldCheck size={14} />{" "}
+          {account
+            ? "Games & practice are private to your account"
+            : "Games & practice stay on this computer"}
         </span>
       </footer>
       {evidenceId && (

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { post } from "../api";
+import { api, read } from "../api";
 import type { Analysis } from "./types";
 
 const cacheKey = (root: number, path: string[], rating: number) =>
@@ -60,9 +60,11 @@ export function usePositionAnalysis({
         .then(async () => {
           if (!current()) return;
           try {
-            const value = await post<Analysis>(
-              `/games/${encodeURIComponent(id)}/analyze`,
-              { ply, moves },
+            const value = await read(
+              api.POST("/api/games/{game_id}/analyze", {
+                params: { path: { game_id: id } },
+                body: { ply, moves },
+              }),
             );
             if (!current()) return;
             cache.current.set(key, value);

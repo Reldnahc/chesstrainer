@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, HTTPException
 from sqlalchemy import delete, select
 
+from trainer.contracts.accounts import SyncStatus
 from trainer.models import AnalysisJob, ChessComArchive, ChessComImport, User, now
 from trainer.workspaces import CurrentWorkspace
 
@@ -41,12 +42,14 @@ def create_router():
             "error": job.error if job else None,
         }
 
-    @router.get("/api/sync")
+    @router.get("/api/sync", response_model=SyncStatus, response_model_exclude_unset=True)
     def get_sync(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
             return status(db, *connection(db))
 
-    @router.post("/api/sync", status_code=202)
+    @router.post(
+        "/api/sync", status_code=202, response_model=SyncStatus, response_model_exclude_unset=True
+    )
     def begin_sync(workspace: CurrentWorkspace):
         with workspace.mutation_lock, workspace.sessions() as db:
             name, job = connection(db)

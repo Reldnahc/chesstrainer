@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "./api";
+import { api, read } from "./api";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
@@ -27,7 +27,7 @@ export default function GamesScreen({
     let active = true;
     setLoading(true);
     setError("");
-    api<{ items: HistoryItem[]; total: number }>(`/games?offset=${offset}`)
+    read(api.GET("/api/games", { params: { query: { offset } } }))
       .then((data) => {
         if (active) {
           setItems(data.items);

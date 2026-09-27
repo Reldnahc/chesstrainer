@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, post, type ColdPosition, type Feedback } from "../api";
+import {
+  api,
+  read,
+  type ColdPosition,
+  type Feedback,
+  type Promotion,
+  type Schema,
+} from "../api";
 import { clearExerciseLink } from "../navigation";
 
 /** Owns grading and queues. Focused practice never changes the SRS queue policy. */
@@ -20,7 +27,7 @@ export function useReviewSession({
   const [submittedMove, setSubmittedMove] = useState<string | null>(null);
   const [done, setDone] = useState(0);
   const [last, setLast] = useState<string | null>(null);
-  const practiceBatch = useRef<{ exercise_id: string }[] | null>(null);
+  const practiceBatch = useRef<Schema["PracticeQueueItem"][] | null>(null);
   const practiced = useRef(new Set<string>());
   const generation = useRef(0);
 
@@ -34,8 +41,10 @@ export function useReviewSession({
         window.scrollTo({ top: 0, behavior: "instant" });
       try {
         if (focusSkill && !practiceBatch.current) {
-          const batch = await api<{ exercise_id: string }[]>(
-            `/practice/queue?skill_id=${encodeURIComponent(focusSkill)}`,
+          const batch = await read(
+            api.GET("/api/practice/queue", {
+              params: { query: { skill_id: focusSkill } },
+            }),
           );
           if (version !== generation.current) return;
           practiceBatch.current = batch;
@@ -44,15 +53,22 @@ export function useReviewSession({
           ? (practiceBatch.current || []).filter(
               (item) => !practiced.current.has(item.exercise_id),
             )
-          : await api<{ exercise_id: string }[]>(
-              `/review/queue${previous ? `?last_id=${previous}` : ""}`,
+          : await read(
+              api.GET("/api/review/queue", {
+                params: { query: { last_id: previous || undefined } },
+              }),
             );
         if (version !== generation.current) return;
         setDue(queue.length);
         const next = id || queue[0]?.exercise_id;
         const result = next
-          ? await post<ColdPosition>(
-              `/review/${next}/start${focusSkill ? `?focus_skill_id=${encodeURIComponent(focusSkill)}` : ""}`,
+          ? await read(
+              api.POST("/api/review/{exercise_id}/start", {
+                params: {
+                  path: { exercise_id: next },
+                  query: { focus_skill_id: focusSkill || undefined },
+                },
+              }),
             )
           : null;
         if (version === generation.current) setPosition(result);
@@ -80,18 +96,20 @@ export function useReviewSession({
     setDone((value) => value + 1);
     setLast(exerciseId);
   }
-  async function answer(from: string, to: string, promotion?: string) {
+  async function answer(from: string, to: string, promotion?: Promotion) {
     if (!position || busy || feedback?.completed) return;
     const version = generation.current;
     setBusy(true);
     try {
-      const result = await post<Feedback>(
-        `/review/sessions/${position.session_id}/move`,
-        {
-          from_square: from,
-          to_square: to,
-          promotion: promotion || null,
-        },
+      const result = await read(
+        api.POST("/api/review/sessions/{session_id}/move", {
+          params: { path: { session_id: position.session_id } },
+          body: {
+            from_square: from,
+            to_square: to,
+            promotion: promotion || null,
+          },
+        }),
       );
       if (version !== generation.current) return;
       setFeedback(result);
@@ -108,8 +126,10 @@ export function useReviewSession({
     const version = generation.current;
     setBusy(true);
     try {
-      const result = await post<Feedback>(
-        `/review/sessions/${position.session_id}/reveal`,
+      const result = await read(
+        api.POST("/api/review/sessions/{session_id}/reveal", {
+          params: { path: { session_id: position.session_id } },
+        }),
       );
       if (version !== generation.current) return;
       setFeedback(result);

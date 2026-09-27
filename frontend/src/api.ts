@@ -1,224 +1,75 @@
+import createClient from "openapi-fetch";
+import type { components, paths } from "./api.generated";
+
 let accountMode = false;
 let csrf = "";
 export function setAccountSession(enabled: boolean, token?: string | null) {
   accountMode = enabled;
   csrf = token || "";
 }
-export async function api<T = any>(
-  path: string,
-  options: RequestInit = {},
-): Promise<T> {
-  const headers = new Headers(options.headers);
-  if (csrf) headers.set("X-CSRF-Token", csrf);
-  const token = sessionStorage.getItem("lan-token");
-  if (token) headers.set("Authorization", `Bearer ${token}`);
-  if (options.body && !(options.body instanceof FormData))
-    headers.set("Content-Type", "application/json");
-  const response = await fetch(`/api${path}`, { ...options, headers });
-  const result = await response.json();
-  if (!response.ok) {
-    if (response.status === 401 && !path.startsWith("/auth/"))
-      window.dispatchEvent(new Event(accountMode ? "account-required" : "connection-required"));
+
+export const api = createClient<paths>({ baseUrl: window.location.origin });
+api.use({
+  onRequest({ request }) {
+    if (csrf) request.headers.set("X-CSRF-Token", csrf);
+    const token = sessionStorage.getItem("lan-token");
+    if (token) request.headers.set("Authorization", `Bearer ${token}`);
+  },
+  async onResponse({ response, schemaPath }) {
+    if (response.ok) return;
+    if (response.status === 401 && !schemaPath.startsWith("/api/auth/")) {
+      window.dispatchEvent(
+        new Event(accountMode ? "account-required" : "connection-required"),
+      );
+    }
+    const result: unknown = await response
+      .clone()
+      .json()
+      .catch(() => null);
     throw new Error(
+      result &&
+      typeof result === "object" &&
+      "detail" in result &&
       typeof result.detail === "string"
         ? result.detail
         : "Please check the submitted fields.",
     );
-  }
-  return result;
+  },
+});
+
+/** Unwrap the endpoint's inferred success type; callers cannot supply a substitute. */
+export async function read<T>(request: Promise<{ data?: T }>): Promise<T> {
+  const { data } = await request;
+  if (data === undefined)
+    throw new Error("The server returned an empty response.");
+  return data;
 }
-export const post = <T = any>(path: string, data?: object) =>
-  api<T>(path, {
-    method: "POST",
-    body: data ? JSON.stringify(data) : undefined,
-  });
 
-export type LegalMove = {
-  from_square: string;
-  to_square: string;
-  promotion: string | null;
-  capture: boolean;
-};
-export type ColdPosition = {
-  practice_only?: boolean;
-  last_attempt_id?: string | null;
-  session_id: string;
-  exercise_id: string;
-  fen: string;
-  orientation: "white" | "black";
-  failed: boolean;
-  review_reason:
-    | "new"
-    | "resume"
-    | "learning"
-    | "relearning"
-    | "review"
-    | "practice";
-  previous_reviews: number;
-  legal_moves: LegalMove[];
-};
-export type ExplanationFrame = {
+export function multipart(body: Record<string, unknown>) {
+  const data = new FormData();
+  for (const [name, value] of Object.entries(body)) {
+    if (value !== undefined && value !== null)
+      data.append(name, value instanceof Blob ? value : String(value));
+  }
+  return data;
+}
+
+// These are aliases, not independently maintained copies of server payloads.
+export type Schema = components["schemas"];
+export type LegalMove = Schema["LegalMove"];
+export type Promotion = NonNullable<LegalMove["promotion"]>;
+export type ColdPosition = Schema["ColdPosition"];
+export type Feedback = Schema["ReviewFeedback"];
+export type Job = Schema["Job"];
+export type ChessComImport = Schema["ChessComImportProgress"];
+export type Evidence = Schema["Evidence"];
+export type MoveExplanation = Schema["MoveExplanation"];
+export type PatternFinding = Schema["Finding"];
+export type Coverage = Schema["Coverage"];
+export type Health = Schema["Health"];
+export type PgnImportResult = Schema["PgnImportResult"];
+export type WorkspaceSettings = Schema["WorkspaceSettings"];
+// Roles are a transient UI overlay selected from a finding, not another wire field.
+export type ExplanationFrame = Schema["Frame"] & {
   roles?: Record<string, string[]>;
-  fen: string;
-  uci: string | null;
-  san: string;
-  annotation: string;
-  highlights: string[];
-  material_change: number;
-};
-export type Feedback = {
-  practice_only?: boolean;
-  reveal_frame?: ExplanationFrame;
-  attempt_frame?: ExplanationFrame;
-  counter_reply?: ExplanationFrame;
-  attempt_id?: string;
-  explanation_summary?: string;
-  submitted_san?: string;
-  completed: boolean;
-  next_due?: string | null;
-  retired?: boolean;
-  retired_interval_days?: number | null;
-  grade: string;
-  fen?: string;
-  message?: string;
-  explanation?: string;
-  answers?: { uci: string; san: string; primary: boolean }[];
-  played_san?: string;
-  source?: string;
-  decision_id?: string;
-};
-export type ChessComImport = {
-  username: string;
-  time_class: string;
-  months: number;
-  max_games: number;
-  start_date: string | null;
-  end_date: string | null;
-  archives_total: number;
-  archives_processed: number;
-  games_fetched: number;
-  games_imported: number;
-  duplicates: number;
-  filtered: number;
-  rejected: number;
-  fetch_completed: boolean;
-  errors: { error: string; game?: number; archive?: string }[];
-};
-export type Job = {
-  probe_total?: number | null;
-  id: string;
-  kind: string;
-  status: string;
-  games_processed: number;
-  games_total: number;
-  positions_triaged: number;
-  deep_completed: number;
-  mistakes_identified: number;
-  classifications_completed: number;
-  error?: string;
-  chesscom?: ChessComImport | null;
-  activity?: {
-    games: { active: number; pending: number };
-    classifications: { active: number; pending: number };
-  } | null;
-};
-export type Evidence = {
-  id: string;
-  fen: string;
-  played_san: string;
-  loss_cp: number | null;
-  allows_mate: boolean;
-  mate_lost: boolean;
-  candidates: {
-    san: string;
-    score: { kind: string; value: number };
-    pv: string[];
-  }[];
-  classifications: {
-    provider: string;
-    skill: string;
-    confidence: number;
-    explanation: string;
-    run_id: string;
-  }[];
-  facts: any;
-};
-
-export type MoveExplanation = {
-  version: string;
-  attempt_id: string | null;
-  authority: "stockfish" | "curated";
-  accepted: boolean;
-  move_uci: string;
-  move_san: string;
-  summary: string;
-  notes: string[];
-  orientation: "white" | "black";
-  analysis_id: string | null;
-  engine_version: string | null;
-  frames: ExplanationFrame[];
-  findings: PatternFinding[];
-};
-
-export type PatternFinding = {
-  skill_id: string;
-  frame_ply: number;
-  roles: Record<string, string[]>;
-  explanation: string;
-  cue: string;
-  analysis_id: string;
-};
-export type Coverage = {
-  total: number;
-  labeled: number;
-  outcomes: number;
-  mechanisms: number;
-  outcome_only: number;
-  unclassified: number;
-  pending: number;
-  abstention_reasons: Record<string, number>;
-};
-
-export type Health = {
-  database: string;
-  engine_available: boolean;
-  engine_error: string | null;
-  engine_version: string | null;
-  classification_available: boolean;
-};
-
-export type PgnImportResult = {
-  import_id: string;
-  imported: number;
-  duplicates: number;
-  job_id: string | null;
-  errors: { game: number; error: string }[];
-};
-
-export type WorkspaceSettings = Omit<Health, "database"> & {
-  stockfish_path: string;
-  stockfish_workers: number;
-  stockfish_threads: number;
-  stockfish_hash_mb: number;
-  triage_time: number;
-  deep_time: number;
-  multipv: number;
-  target_rating: number;
-  acceptance_mode: string;
-  retire_after_days: number;
-  practical_tolerance_cp: number;
-  slow_answer_seconds: number;
-  desired_retention: number;
-  classification_probe_positions: number;
-  classification_probe_queries: number;
-  classification_probe_time: number;
-  coverage: Coverage;
-  classification_version: string;
-  classification_workers: number;
-  classification_runs: number;
-  classification_abstained: number;
-  classification_failed: number;
-  classification_rejected: number;
-  database_path: string;
-  lan_token_configured: boolean;
 };

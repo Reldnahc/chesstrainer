@@ -1,3 +1,4 @@
+import type { Promotion } from "./api";
 import Board from "./Board";
 import ReviewWorkspace from "./ReviewWorkspace";
 import ReviewPanel from "./srsReview/ReviewPanel";
@@ -27,7 +28,7 @@ export default function ReviewScreen({
     session;
   const { explaining, explanationFrame, preview, previewFrame, mistakeCue } =
     playback;
-  function answer(from: string, to: string, promotion?: string) {
+  function answer(from: string, to: string, promotion?: Promotion) {
     if (preview || explaining) return;
     playback.beginAttempt();
     return session.answer(from, to, promotion);

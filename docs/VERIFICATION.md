@@ -2,6 +2,34 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Audit fixes 1, 3 and 4: September 27, 2026
+
+- Docker publishing now depends on the reusable correctness workflow for the same
+  commit. Actionlint 1.7.12 passed; live GitHub Actions execution awaits a requested
+  push.
+- Review session, playback, navigation and analysis state are separated from
+  presentation while retaining shared board/coach/layout components. Browser
+  regressions cover unchanged geometry, motion, branching and stale responses.
+- Active API success responses have runtime schemas; the frontend uses generated
+  OpenAPI types and endpoint-specific requests. Export drift, generated-type drift
+  and invalid-call type checks passed. A malformed response regression confirms
+  server-side validation rejects an incompatible payload.
+- Final full backend suite: **411 passed**, with two existing TestClient dependency
+  deprecation warnings. Final ordinary browser suite: **75 passed, 3 expected
+  viewport skips**. Separate desktop/mobile account suite: **2 passed**.
+- Production frontend build, unused TypeScript symbol checks, repository-wide
+  Ruff lint/format and Git whitespace checks passed.
+- Docker Desktop built `fieldwork:audit-contracts` from the staged public-source
+  snapshot. Fresh installs, persisted restarts and native Stockfish passed in
+  local and account modes using disposable containers and anonymous data volumes.
+  The snapshot avoided a Windows ACL error while Docker walked the ignored
+  `.pytest_cache`; Docker's public-file allowlist still applied to the build.
+
+No database schema, container variables or chess/SRS policy changed. No live
+database, Unraid deployment or published image was modified. Account browser
+checks remain a separate local invocation pending audit item 5. Per-item fix
+descriptions are in [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md).
+
 ## Game-review UX: September 26, 2026
 
 - Targeted backend/native review suite: **26 passed**, including current-board

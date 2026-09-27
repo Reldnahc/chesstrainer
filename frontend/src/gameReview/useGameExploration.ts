@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { post } from "../api";
+import { api, read } from "../api";
 import { rememberGamePly } from "../navigation";
 import type { Branch, Cursor, Game, Position } from "./types";
 
@@ -59,10 +59,15 @@ export function useGameExploration(
   useEffect(() => {
     if (!branch) return;
     let active = true;
-    post<Position>(`/games/${encodeURIComponent(id)}/position`, {
-      ply: root,
-      moves: path,
-    })
+    read(
+      api.POST("/api/games/{game_id}/position", {
+        params: { path: { game_id: id } },
+        body: {
+          ply: root,
+          moves: path,
+        },
+      }),
+    )
       .then((value) => {
         if (active) setBranchPosition({ key, value });
       })
@@ -149,11 +154,15 @@ export function useGameExploration(
     setMoving(true);
     fail("");
     try {
-      const next = await post<Position>(
-        `/games/${encodeURIComponent(id)}/position`,
-        { ply: root, moves },
+      const next = await read(
+        api.POST("/api/games/{game_id}/position", {
+          params: { path: { game_id: id } },
+          body: { ply: root, moves },
+        }),
       );
       if (!mounted.current || activeKey.current !== requestKey) return null;
+      if (!next.san)
+        throw new Error("The server returned a variation without its move.");
       addBranch(moves, [
         ...(branch ? branch.sans.slice(0, cursor.step) : []),
         next.san,

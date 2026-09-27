@@ -3,6 +3,8 @@
 from fastapi import APIRouter, HTTPException
 from sqlalchemy import func, select
 
+from trainer.contracts.common import JobStatus
+from trainer.contracts.jobs import Job
 from trainer.models import AnalysisJob, ChessComImport, ClassificationTask
 from trainer.workspaces import CurrentWorkspace
 
@@ -10,7 +12,7 @@ from trainer.workspaces import CurrentWorkspace
 def create_router(*, runner) -> APIRouter:
     router = APIRouter()
 
-    @router.get("/api/jobs")
+    @router.get("/api/jobs", response_model=list[Job], response_model_exclude_unset=True)
     def jobs(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
             rows = db.scalars(
@@ -45,7 +47,9 @@ def create_router(*, runner) -> APIRouter:
                 for row in rows
             ]
 
-    @router.post("/api/jobs/{job_id}/cancel")
+    @router.post(
+        "/api/jobs/{job_id}/cancel", response_model=JobStatus, response_model_exclude_unset=True
+    )
     def cancel_job(workspace: CurrentWorkspace, job_id: str):
         with workspace.sessions() as db:
             job = db.get(AnalysisJob, job_id)
@@ -58,7 +62,9 @@ def create_router(*, runner) -> APIRouter:
                 db.commit()
             return {"status": job.status}
 
-    @router.post("/api/jobs/{job_id}/retry")
+    @router.post(
+        "/api/jobs/{job_id}/retry", response_model=JobStatus, response_model_exclude_unset=True
+    )
     def retry_job(workspace: CurrentWorkspace, job_id: str):
         with workspace.sessions() as db:
             job = db.get(AnalysisJob, job_id)

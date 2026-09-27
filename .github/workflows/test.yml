@@ -37,6 +37,7 @@ jobs:
           STOCKFISH_PATH: /usr/games/stockfish
       - run: ruff check backend scripts
       - run: ruff format --check backend scripts migrations
+      - run: python scripts/export_api_contract.py --check
       - run: alembic upgrade head && alembic check
   frontend:
     runs-on: ubuntu-latest

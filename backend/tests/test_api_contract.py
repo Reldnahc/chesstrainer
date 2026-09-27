@@ -1,16 +1,22 @@
-"""Protect public HTTP contracts and per-application ownership during router extraction."""
+"""Verify local/hosted HTTP schemas, response validation and application ownership."""
 
 import json
 from pathlib import Path
 
 import chess
+import pytest
+from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 from pydantic import SecretStr
 from trainer.api import create_app
+from trainer.models import AnalysisJob
 
 
-def test_documented_api_contract_matches_pre_refactor_snapshot(settings):
+@pytest.mark.parametrize("hosted", [False, True])
+def test_documented_api_contract_matches_checked_in_schema(settings, hosted):
     settings.stockfish_path = "missing-contract-test-engine"
+    settings.accounts_enabled = hosted
+    settings.public_origin = "https://contract.invalid" if hosted else ""
     expected = json.loads(
         (Path(__file__).parent / "fixtures" / "api_contract.json").read_text(encoding="utf-8")
     )
@@ -21,7 +27,51 @@ def test_documented_api_contract_matches_pre_refactor_snapshot(settings):
         actual["paths"] = {
             path: value for path, value in actual["paths"].items() if path.startswith("/api/")
         }
+        actual["info"]["title"] = "Fieldwork API"
+        if not hosted:
+            expected["paths"] = {
+                path: value
+                for path, value in expected["paths"].items()
+                if not path.startswith("/api/auth/") or path == "/api/auth/me"
+            }
+            expected["components"]["schemas"] = {
+                name: expected["components"]["schemas"][name]
+                for name in actual["components"]["schemas"]
+            }
         assert actual == expected
+
+
+def test_every_success_response_has_a_concrete_contract(settings):
+    settings.accounts_enabled = True
+    settings.public_origin = "https://contract.invalid"
+    schema = create_app(settings, workers=False, start_engine=False).openapi()
+    for path, methods in schema["paths"].items():
+        if not path.startswith("/api/"):
+            continue
+        for method, operation in methods.items():
+            for status, response in operation["responses"].items():
+                if status.startswith("2"):
+                    body = response["content"]["application/json"]["schema"]
+                    assert body, (method, path, status)
+                    item = body.get("items", body)
+                    assert "$ref" in item or item.get("properties"), (method, path, body)
+
+
+def test_incompatible_response_payload_is_rejected(settings):
+    app = create_app(settings, workers=False, start_engine=False)
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            db.add(AnalysisJob(kind="training"))
+            db.commit()
+        app.state.runner.activity = lambda job_id: {
+            "games": {"active": "not a count", "pending": 0},
+            "classifications": {"active": 0, "pending": 0},
+        }
+        with pytest.raises(ResponseValidationError) as failure:
+            client.get("/api/jobs")
+        assert any(
+            error["loc"][-3:] == ("activity", "games", "active") for error in failure.value.errors()
+        )
 
 
 def test_router_resources_and_access_controls_belong_to_each_app(settings, tmp_path):

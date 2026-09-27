@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
-import { api, post, type Evidence } from "./api";
+import { api, read, type Evidence, type Schema } from "./api";
 import Board from "./Board";
 export default function EvidenceDialog({
   id,
@@ -12,7 +12,7 @@ export default function EvidenceDialog({
   fail: (e: unknown) => void;
 }) {
   const [data, setData] = useState<Evidence | null>(null),
-    [audit, setAudit] = useState<Record<string, unknown> | null>(null);
+    [audit, setAudit] = useState<Schema["ClassificationAudit"] | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const opener = document.activeElement as HTMLElement | null;
@@ -24,7 +24,13 @@ export default function EvidenceDialog({
     };
   }, []);
   useEffect(() => {
-    api<Evidence>(`/evidence/${id}`).then(setData).catch(fail);
+    read(
+      api.GET("/api/evidence/{decision_id}", {
+        params: { path: { decision_id: id } },
+      }),
+    )
+      .then(setData)
+      .catch(fail);
   }, [id, fail]);
   return (
     <dialog
@@ -85,7 +91,11 @@ export default function EvidenceDialog({
                 <button
                   className="text-button small"
                   onClick={() =>
-                    api(`/classification-runs/${c.run_id}`)
+                    read(
+                      api.GET("/api/classification-runs/{run_id}", {
+                        params: { path: { run_id: c.run_id } },
+                      }),
+                    )
                       .then(setAudit)
                       .catch(fail)
                   }
@@ -95,8 +105,18 @@ export default function EvidenceDialog({
                 <button
                   className="text-button small"
                   onClick={() =>
-                    post(`/classification-runs/${c.run_id}/reject`)
-                      .then(() => api<Evidence>(`/evidence/${id}`))
+                    read(
+                      api.POST("/api/classification-runs/{run_id}/reject", {
+                        params: { path: { run_id: c.run_id } },
+                      }),
+                    )
+                      .then(() =>
+                        read(
+                          api.GET("/api/evidence/{decision_id}", {
+                            params: { path: { decision_id: id } },
+                          }),
+                        ),
+                      )
                       .then(setData)
                       .catch(fail)
                   }

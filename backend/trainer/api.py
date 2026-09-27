@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker
 
 from trainer.chesscom import ChessComClient
 from trainer.config import Settings
+from trainer.contracts.accounts import Identity
 from trainer.db import database, migrate
 from trainer.engine import EngineUnavailable, Stockfish
 from trainer.engine_pool import EnginePool
@@ -98,7 +99,13 @@ def create_app(
         configure_accounts(app, settings)
     else:
 
-        @app.get("/api/auth/me")
+        @app.get(
+            "/api/auth/me",
+            response_model=Identity,
+            response_model_exclude_unset=True,
+            operation_id="get_identity",
+            summary="Identity",
+        )
         def local_identity():
             return {"enabled": False, "user": None}
 

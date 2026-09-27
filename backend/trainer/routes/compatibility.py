@@ -5,6 +5,8 @@ from typing import Literal
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
+from trainer.contracts.classification import TeachingAudit
+from trainer.contracts.common import ApiError, CreatedId, Rejected
 from trainer.exercises import manual_exercise
 from trainer.models import TeachingRun
 from trainer.workspaces import CurrentWorkspace
@@ -33,13 +35,17 @@ def create_router(*, scheduler) -> APIRouter:
             410, "Lessons have been removed. Use Review. Saved history is preserved."
         )
 
-    @router.post("/api/course/teaching")
+    @router.post("/api/course/teaching", status_code=410, response_model=ApiError)
     def generate_lesson_teaching(workspace: CurrentWorkspace):
         raise HTTPException(
             410, "Model teaching generation has been removed. Saved lesson history is preserved."
         )
 
-    @router.get("/api/teaching-runs/{run_id}")
+    @router.get(
+        "/api/teaching-runs/{run_id}",
+        response_model=TeachingAudit,
+        response_model_exclude_unset=True,
+    )
     def teaching_audit(workspace: CurrentWorkspace, run_id: str):
         with workspace.sessions() as db:
             run = db.get(TeachingRun, run_id)
@@ -49,7 +55,11 @@ def create_router(*, scheduler) -> APIRouter:
                 column.name: getattr(run, column.name) for column in TeachingRun.__table__.columns
             }
 
-    @router.post("/api/teaching-runs/{run_id}/reject")
+    @router.post(
+        "/api/teaching-runs/{run_id}/reject",
+        response_model=Rejected,
+        response_model_exclude_unset=True,
+    )
     def reject_teaching(workspace: CurrentWorkspace, run_id: str):
         with workspace.mutation_lock, workspace.sessions() as db:
             run = db.get(TeachingRun, run_id)
@@ -59,7 +69,9 @@ def create_router(*, scheduler) -> APIRouter:
             db.commit()
             return {"rejected": True}
 
-    @router.post("/api/exercises/manual")
+    @router.post(
+        "/api/exercises/manual", response_model=CreatedId, response_model_exclude_unset=True
+    )
     def add_manual(workspace: CurrentWorkspace, data: ManualRequest):
         with workspace.mutation_lock, workspace.sessions() as db:
             exercise = manual_exercise(db, scheduler, **data.model_dump())

@@ -3,6 +3,7 @@
 from fastapi import APIRouter
 from sqlalchemy import func, select
 
+from trainer.contracts.workspace import Health, Stats, WorkspaceSettings
 from trainer.coverage import coverage
 from trainer.models import ClassificationRun, Exercise, Review
 from trainer.workspaces import CurrentWorkspace
@@ -11,11 +12,13 @@ from trainer.workspaces import CurrentWorkspace
 def create_router(*, settings, health, classifier) -> APIRouter:
     router = APIRouter()
 
-    @router.get("/api/health")
+    @router.get("/api/health", response_model=Health, response_model_exclude_unset=True)
     def get_health(workspace: CurrentWorkspace):
         return {"database": "ready", **health, "classification_available": classifier is not None}
 
-    @router.get("/api/settings")
+    @router.get(
+        "/api/settings", response_model=WorkspaceSettings, response_model_exclude_unset=True
+    )
     def get_settings(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
             return (
@@ -61,7 +64,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
                 }
             )
 
-    @router.get("/api/stats")
+    @router.get("/api/stats", response_model=Stats, response_model_exclude_unset=True)
     def stats(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
             return {

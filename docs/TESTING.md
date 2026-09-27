@@ -31,6 +31,29 @@ If Windows denies shared temporary/cache directory access, use fresh paths insid
 .venv/Scripts/python.exe -m pytest -q --basetemp data/verification/run-NEW -o cache_dir=data/verification/cache-NEW
 ```
 
+## API contract changes
+
+Define or update response models in `backend/trainer/contracts/` and wire them to
+their FastAPI endpoints. Reuse existing chess evidence schemas where appropriate.
+After an intentional API change, run from the repository root:
+
+```sh
+python scripts/export_api_contract.py
+npm --prefix frontend run api:generate
+```
+
+Review both generated diffs along with the endpoint implementation. Never edit
+`frontend/src/api.generated.ts` by hand. The OpenAPI fixture includes hosted
+authentication endpoints; tests also check local mode's subset. Exporting starts
+no workers or engines and does not read the configured application database.
+
+`python scripts/export_api_contract.py --check` verifies backend/schema agreement.
+`npm --prefix frontend run api:check` verifies schema/TypeScript agreement.
+`npm --prefix frontend run test:types` checks endpoint inference and rejects
+intentionally invalid calls. Both frontend checks run as part of `npm run build`;
+backend contract tests and the export check run in correctness CI. Browser tests
+exercise the typed client's real JSON/multipart requests, authentication and errors.
+
 ## Migrations and data preservation
 
 Use a disposable database for verification, never the live database by accident. From the root, POSIX shell:
@@ -61,7 +84,7 @@ Check SQLite integrity and foreign keys on both results. For a pass with no sche
 | Policy/review/FSRS | Multiple sound answers versus best-only, unlisted answer verification, no failure on unavailable grading, first-failure-once, reveal, restart/due behavior, retirement and raw timing |
 | Imports and jobs | Learner ambiguity, invalid-game isolation, cross-source duplicates, date/time-class limits, new-game budgets, resumable downloads, cancellation/retry and bounded engine/classification pools |
 | Local classification | Verified witness linkage, positive/negative/mirrored fixtures, abstention, rejected/cached results, adaptive endpoints, connected patterns, defensive probes and unchanged grading/SRS during enrichment |
-| HTTP interface | Frozen pre-refactor API schemas/methods/response contracts, independent app instances/resources, access token/origin rejection, cold payloads, errors and archival guards |
+| HTTP interface | Local/hosted OpenAPI agreement, typed success responses, rejection of incompatible payloads, generated endpoint-specific frontend types, account isolation, access token/origin rejection, cold payloads, errors and archival guards |
 | Data compatibility | Historical lesson/repertoire/audit preservation, archived route 410s, manual API, backup round trip/secret exclusion/integrity/no overwrite |
 | Quality tooling | Blinded packets, evidence fingerprints, frozen comparisons, reviewer provenance, human/assistant separation and exclusion of uncertain/invalid labels; external positive-theme mappings, solver reconstruction, reproducible reservoirs, witness linkage, metrics and disagreement exports |
 

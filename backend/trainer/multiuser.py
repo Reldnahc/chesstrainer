@@ -18,6 +18,8 @@ from trainer.accounts import (
     password_matches,
 )
 from trainer.chesscom import ChessComRequest
+from trainer.contracts.accounts import AccountProfile, Identity
+from trainer.contracts.common import Ok
 
 
 class Credentials(BaseModel):
@@ -108,7 +110,13 @@ def configure_accounts(app, settings):
         )
         return {"enabled": True, "user": accounts.public(user), "csrf": csrf_token(token)}
 
-    @app.get("/api/auth/me")
+    @app.get(
+        "/api/auth/me",
+        response_model=Identity,
+        response_model_exclude_unset=True,
+        operation_id="get_identity",
+        summary="Identity",
+    )
     def me(request: Request):
         user = request.state.user
         return {
@@ -117,19 +125,24 @@ def configure_accounts(app, settings):
             "csrf": csrf_token(request.cookies[COOKIE]) if user else None,
         }
 
-    @app.post("/api/auth/signup", status_code=201)
+    @app.post(
+        "/api/auth/signup",
+        status_code=201,
+        response_model=Identity,
+        response_model_exclude_unset=True,
+    )
     async def signup(data: Credentials, request: Request, response: Response):
         throttle(request, data.username)
         user = await run_in_threadpool(authenticate, data, True)
         return signed_in(user, response)
 
-    @app.post("/api/auth/login")
+    @app.post("/api/auth/login", response_model=Identity, response_model_exclude_unset=True)
     async def login(data: Credentials, request: Request, response: Response):
         throttle(request, data.username)
         user = await run_in_threadpool(authenticate, data, False)
         return signed_in(user, response)
 
-    @app.post("/api/auth/logout")
+    @app.post("/api/auth/logout", response_model=Ok, response_model_exclude_unset=True)
     def logout(request: Request, response: Response):
         accounts.revoke(request.cookies.get(COOKIE, ""))
         response.delete_cookie(
@@ -137,7 +150,7 @@ def configure_accounts(app, settings):
         )
         return {"ok": True}
 
-    @app.post("/api/auth/profile")
+    @app.post("/api/auth/profile", response_model=AccountProfile, response_model_exclude_unset=True)
     def profile(data: Profile, request: Request):
         name = data.chesscom_username.strip()
         if name:
@@ -149,7 +162,7 @@ def configure_accounts(app, settings):
         user = accounts.by_name(request.state.user["username"])
         return {"user": accounts.public(user)}
 
-    @app.post("/api/auth/logout-all")
+    @app.post("/api/auth/logout-all", response_model=Ok, response_model_exclude_unset=True)
     def logout_all(request: Request, response: Response):
         with accounts.connect() as db:
             db.execute("DELETE FROM auth_sessions WHERE user_id=?", (request.state.user["id"],))

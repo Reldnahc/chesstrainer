@@ -1,1328 +1,132 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "Local Chess Trainer",
-    "version": "0.1.0"
-  },
-  "paths": {
-    "/api/auth/me": {
-      "get": {
-        "summary": "Local Identity",
-        "operationId": "local_identity_api_auth_me_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/health": {
-      "get": {
-        "summary": "Get Health",
-        "operationId": "get_health_api_health_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/settings": {
-      "get": {
-        "summary": "Get Settings",
-        "operationId": "get_settings_api_settings_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/stats": {
-      "get": {
-        "summary": "Stats",
-        "operationId": "stats_api_stats_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/imports": {
-      "post": {
-        "summary": "Upload Pgn",
-        "operationId": "upload_pgn_api_imports_post",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Body_upload_pgn_api_imports_post"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/imports/chesscom": {
-      "post": {
-        "summary": "Import Chesscom",
-        "operationId": "import_chesscom_api_imports_chesscom_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChessComRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "202": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/jobs": {
-      "get": {
-        "summary": "Jobs",
-        "operationId": "jobs_api_jobs_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/jobs/{job_id}/cancel": {
-      "post": {
-        "summary": "Cancel Job",
-        "operationId": "cancel_job_api_jobs__job_id__cancel_post",
-        "parameters": [
-          {
-            "name": "job_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Job Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/jobs/{job_id}/retry": {
-      "post": {
-        "summary": "Retry Job",
-        "operationId": "retry_job_api_jobs__job_id__retry_post",
-        "parameters": [
-          {
-            "name": "job_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Job Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/sync": {
-      "get": {
-        "summary": "Get Sync",
-        "operationId": "get_sync_api_sync_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Begin Sync",
-        "operationId": "begin_sync_api_sync_post",
-        "responses": {
-          "202": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/games": {
-      "get": {
-        "summary": "Games",
-        "operationId": "games_api_games_get",
-        "parameters": [
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "default": 0,
-              "title": "Offset"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "maximum": 100,
-              "minimum": 1,
-              "default": 30,
-              "title": "Limit"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/games/{game_id}": {
-      "get": {
-        "summary": "Game Detail",
-        "operationId": "game_detail_api_games__game_id__get",
-        "parameters": [
-          {
-            "name": "game_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Game Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/games/{game_id}/review": {
-      "post": {
-        "summary": "Begin Review",
-        "operationId": "begin_review_api_games__game_id__review_post",
-        "parameters": [
-          {
-            "name": "game_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Game Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ReviewRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "Review Progress",
-        "operationId": "review_progress_api_games__game_id__review_get",
-        "parameters": [
-          {
-            "name": "game_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Game Id"
-            }
-          },
-          {
-            "name": "after",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "default": 0,
-              "title": "After"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/games/{game_id}/position": {
-      "post": {
-        "summary": "Variation Position",
-        "operationId": "variation_position_api_games__game_id__position_post",
-        "parameters": [
-          {
-            "name": "game_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Game Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VariationRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/games/{game_id}/train": {
-      "post": {
-        "summary": "Train Game",
-        "operationId": "train_game_api_games__game_id__train_post",
-        "parameters": [
-          {
-            "name": "game_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Game Id"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/games/{game_id}/analyze": {
-      "post": {
-        "summary": "Analyze Variation",
-        "operationId": "analyze_variation_api_games__game_id__analyze_post",
-        "parameters": [
-          {
-            "name": "game_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Game Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VariationRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/review/queue": {
-      "get": {
-        "summary": "Review Queue",
-        "operationId": "review_queue_api_review_queue_get",
-        "parameters": [
-          {
-            "name": "last_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Last Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/practice/queue": {
-      "get": {
-        "summary": "Focused Queue",
-        "operationId": "focused_queue_api_practice_queue_get",
-        "parameters": [
-          {
-            "name": "skill_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Skill Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/review/{exercise_id}/start": {
-      "post": {
-        "summary": "Begin Review",
-        "operationId": "begin_review_api_review__exercise_id__start_post",
-        "parameters": [
-          {
-            "name": "exercise_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Exercise Id"
-            }
-          },
-          {
-            "name": "focus_skill_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Focus Skill Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/review/sessions/{session_id}/move": {
-      "post": {
-        "summary": "Move",
-        "operationId": "move_api_review_sessions__session_id__move_post",
-        "parameters": [
-          {
-            "name": "session_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Session Id"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MoveRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/review/sessions/{session_id}/reveal": {
-      "post": {
-        "summary": "Show Move",
-        "operationId": "show_move_api_review_sessions__session_id__reveal_post",
-        "parameters": [
-          {
-            "name": "session_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Session Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/review/sessions/{session_id}/explanation": {
-      "get": {
-        "summary": "Review Explanation",
-        "operationId": "review_explanation_api_review_sessions__session_id__explanation_get",
-        "parameters": [
-          {
-            "name": "session_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Session Id"
-            }
-          },
-          {
-            "name": "attempt_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Attempt Id"
-            }
-          },
-          {
-            "name": "solution",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false,
-              "title": "Solution"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MoveExplanation"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/classifications/retry": {
-      "post": {
-        "summary": "Retry Classifications",
-        "operationId": "retry_classifications_api_classifications_retry_post",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/classifications/enrich": {
-      "post": {
-        "summary": "Enrich Classifications",
-        "operationId": "enrich_classifications_api_classifications_enrich_post",
-        "responses": {
-          "202": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/weaknesses": {
-      "get": {
-        "summary": "Weaknesses",
-        "operationId": "weaknesses_api_weaknesses_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/evidence/{decision_id}": {
-      "get": {
-        "summary": "Evidence",
-        "operationId": "evidence_api_evidence__decision_id__get",
-        "parameters": [
-          {
-            "name": "decision_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Decision Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/classification-runs/{run_id}": {
-      "get": {
-        "summary": "Classification Run",
-        "operationId": "classification_run_api_classification_runs__run_id__get",
-        "parameters": [
-          {
-            "name": "run_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Run Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/classification-runs/{run_id}/reject": {
-      "post": {
-        "summary": "Reject Classification",
-        "operationId": "reject_classification_api_classification_runs__run_id__reject_post",
-        "parameters": [
-          {
-            "name": "run_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Run Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/course/teaching": {
-      "post": {
-        "summary": "Generate Lesson Teaching",
-        "operationId": "generate_lesson_teaching_api_course_teaching_post",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/teaching-runs/{run_id}": {
-      "get": {
-        "summary": "Teaching Audit",
-        "operationId": "teaching_audit_api_teaching_runs__run_id__get",
-        "parameters": [
-          {
-            "name": "run_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Run Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/teaching-runs/{run_id}/reject": {
-      "post": {
-        "summary": "Reject Teaching",
-        "operationId": "reject_teaching_api_teaching_runs__run_id__reject_post",
-        "parameters": [
-          {
-            "name": "run_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Run Id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/exercises/manual": {
-      "post": {
-        "summary": "Add Manual",
-        "operationId": "add_manual_api_exercises_manual_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ManualRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
   "components": {
     "schemas": {
-      "Body_upload_pgn_api_imports_post": {
+      "AcceptedAnswer": {
+        "additionalProperties": false,
         "properties": {
-          "file": {
-            "type": "string",
-            "contentMediaType": "application/octet-stream",
-            "title": "File"
+          "primary": {
+            "title": "Primary",
+            "type": "boolean"
           },
-          "usernames": {
-            "type": "string",
-            "title": "Usernames",
-            "default": ""
+          "san": {
+            "title": "San",
+            "type": "string"
           },
-          "side": {
-            "type": "string",
-            "enum": [
-              "auto",
-              "white",
-              "black"
-            ],
-            "title": "Side",
-            "default": "auto"
-          },
-          "analyze": {
-            "type": "boolean",
-            "title": "Analyze",
-            "default": true
+          "uci": {
+            "title": "Uci",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
-          "file"
+          "uci",
+          "san",
+          "primary"
         ],
-        "title": "Body_upload_pgn_api_imports_post"
+        "title": "AcceptedAnswer",
+        "type": "object"
       },
-      "ChessComRequest": {
+      "Account": {
+        "additionalProperties": false,
         "properties": {
-          "analyze": {
-            "type": "boolean",
-            "title": "Analyze",
-            "default": true
+          "admin": {
+            "title": "Admin",
+            "type": "boolean"
+          },
+          "chesscom_username": {
+            "title": "Chesscom Username",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
           },
           "username": {
-            "type": "string",
-            "maxLength": 50,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z0-9_-]+$",
-            "title": "Username"
-          },
-          "time_class": {
-            "type": "string",
-            "enum": [
-              "rapid",
-              "blitz",
-              "bullet",
-              "daily",
-              "all"
-            ],
-            "title": "Time Class",
-            "default": "rapid"
-          },
-          "months": {
-            "type": "integer",
-            "maximum": 120.0,
-            "minimum": 0.0,
-            "title": "Months",
-            "default": 3
-          },
-          "max_games": {
-            "type": "integer",
-            "maximum": 1000.0,
-            "minimum": 1.0,
-            "title": "Max Games",
-            "default": 100
-          },
-          "start_date": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Start Date"
-          },
-          "end_date": {
-            "anyOf": [
-              {
-                "type": "string",
-                "format": "date"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "End Date"
+            "title": "Username",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
-          "username"
+          "id",
+          "username",
+          "admin",
+          "chesscom_username"
         ],
-        "title": "ChessComRequest"
+        "title": "Account",
+        "type": "object"
       },
-      "Finding": {
+      "AccountProfile": {
+        "additionalProperties": false,
         "properties": {
-          "skill_id": {
-            "type": "string",
-            "title": "Skill Id"
+          "user": {
+            "$ref": "#/components/schemas/Account"
+          }
+        },
+        "required": [
+          "user"
+        ],
+        "title": "AccountProfile",
+        "type": "object"
+      },
+      "ApiError": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          }
+        },
+        "required": [
+          "detail"
+        ],
+        "title": "ApiError",
+        "type": "object"
+      },
+      "BoardArrow": {
+        "additionalProperties": false,
+        "properties": {
+          "endSquare": {
+            "title": "Endsquare",
+            "type": "string"
           },
-          "rule_id": {
-            "type": "string",
-            "title": "Rule Id"
-          },
-          "direction": {
-            "type": "string",
+          "kind": {
             "enum": [
-              "missed_opportunity",
-              "allowed_opponent_tactic"
+              "move",
+              "reply",
+              "threat"
             ],
-            "title": "Direction"
+            "title": "Kind",
+            "type": "string"
           },
-          "actor": {
-            "type": "string",
-            "enum": [
-              "white",
-              "black"
-            ],
-            "title": "Actor"
-          },
-          "analysis_id": {
-            "type": "string",
-            "title": "Analysis Id"
-          },
-          "plies": {
+          "startSquare": {
+            "title": "Startsquare",
+            "type": "string"
+          }
+        },
+        "required": [
+          "startSquare",
+          "endSquare",
+          "kind"
+        ],
+        "title": "BoardArrow",
+        "type": "object"
+      },
+      "BoardCues": {
+        "additionalProperties": false,
+        "properties": {
+          "arrows": {
             "items": {
-              "type": "integer"
+              "$ref": "#/components/schemas/BoardArrow"
             },
-            "type": "array",
-            "minItems": 1,
-            "title": "Plies"
+            "title": "Arrows",
+            "type": "array"
           },
-          "squares": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Squares"
+          "caption": {
+            "title": "Caption",
+            "type": "string"
           },
-          "moves": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Moves"
-          },
-          "explanation": {
-            "type": "string",
-            "title": "Explanation"
-          },
-          "verification": {
-            "type": "string",
-            "enum": [
-              "engine_mate",
-              "verified_line",
-              "engine_defense"
-            ],
-            "title": "Verification"
-          },
-          "cue": {
-            "type": "string",
-            "title": "Cue",
-            "default": ""
-          },
-          "frame_ply": {
-            "type": "integer",
-            "title": "Frame Ply",
-            "default": 0
+          "fen": {
+            "title": "Fen",
+            "type": "string"
           },
           "roles": {
             "additionalProperties": {
@@ -1331,8 +135,729 @@
               },
               "type": "array"
             },
-            "type": "object",
-            "title": "Roles"
+            "title": "Roles",
+            "type": "object"
+          }
+        },
+        "required": [
+          "fen",
+          "arrows",
+          "roles",
+          "caption"
+        ],
+        "title": "BoardCues",
+        "type": "object"
+      },
+      "Body_upload_pgn_api_imports_post": {
+        "properties": {
+          "analyze": {
+            "default": true,
+            "title": "Analyze",
+            "type": "boolean"
+          },
+          "file": {
+            "contentMediaType": "application/octet-stream",
+            "title": "File",
+            "type": "string"
+          },
+          "side": {
+            "default": "auto",
+            "enum": [
+              "auto",
+              "white",
+              "black"
+            ],
+            "title": "Side",
+            "type": "string"
+          },
+          "usernames": {
+            "default": "",
+            "title": "Usernames",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_pgn_api_imports_post",
+        "type": "object"
+      },
+      "BookOpening": {
+        "additionalProperties": false,
+        "properties": {
+          "eco": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eco"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "eco",
+          "name"
+        ],
+        "title": "BookOpening",
+        "type": "object"
+      },
+      "Candidate": {
+        "properties": {
+          "depth": {
+            "default": 0,
+            "title": "Depth",
+            "type": "integer"
+          },
+          "pv": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Pv",
+            "type": "array"
+          },
+          "san": {
+            "title": "San",
+            "type": "string"
+          },
+          "score": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          }
+        },
+        "required": [
+          "uci",
+          "san",
+          "score",
+          "pv"
+        ],
+        "title": "Candidate",
+        "type": "object"
+      },
+      "ChessComImportProgress": {
+        "additionalProperties": false,
+        "properties": {
+          "archives_processed": {
+            "title": "Archives Processed",
+            "type": "integer"
+          },
+          "archives_total": {
+            "title": "Archives Total",
+            "type": "integer"
+          },
+          "duplicates": {
+            "title": "Duplicates",
+            "type": "integer"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/ImportError"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "fetch_completed": {
+            "title": "Fetch Completed",
+            "type": "boolean"
+          },
+          "filtered": {
+            "title": "Filtered",
+            "type": "integer"
+          },
+          "games_fetched": {
+            "title": "Games Fetched",
+            "type": "integer"
+          },
+          "games_imported": {
+            "title": "Games Imported",
+            "type": "integer"
+          },
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "max_games": {
+            "title": "Max Games",
+            "type": "integer"
+          },
+          "months": {
+            "title": "Months",
+            "type": "integer"
+          },
+          "rejected": {
+            "title": "Rejected",
+            "type": "integer"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "time_class": {
+            "title": "Time Class",
+            "type": "string"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id",
+          "user_id",
+          "username",
+          "time_class",
+          "months",
+          "max_games",
+          "start_date",
+          "end_date",
+          "archives_total",
+          "archives_processed",
+          "games_fetched",
+          "games_imported",
+          "duplicates",
+          "filtered",
+          "rejected",
+          "errors",
+          "fetch_completed"
+        ],
+        "title": "ChessComImportProgress",
+        "type": "object"
+      },
+      "ChessComRequest": {
+        "properties": {
+          "analyze": {
+            "default": true,
+            "title": "Analyze",
+            "type": "boolean"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "max_games": {
+            "default": 100,
+            "maximum": 1000.0,
+            "minimum": 1.0,
+            "title": "Max Games",
+            "type": "integer"
+          },
+          "months": {
+            "default": 3,
+            "maximum": 120.0,
+            "minimum": 0.0,
+            "title": "Months",
+            "type": "integer"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "time_class": {
+            "default": "rapid",
+            "enum": [
+              "rapid",
+              "blitz",
+              "bullet",
+              "daily",
+              "all"
+            ],
+            "title": "Time Class",
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 50,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "title": "ChessComRequest",
+        "type": "object"
+      },
+      "ClassificationAudit": {
+        "additionalProperties": false,
+        "properties": {
+          "attempts": {
+            "title": "Attempts",
+            "type": "integer"
+          },
+          "cache_key": {
+            "title": "Cache Key",
+            "type": "string"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "decision_id": {
+            "title": "Decision Id",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "input_tokens": {
+            "title": "Input Tokens",
+            "type": "integer"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "output_tokens": {
+            "title": "Output Tokens",
+            "type": "integer"
+          },
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "response": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/JsonValue"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response"
+          },
+          "schema_version": {
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "cache_key",
+          "model",
+          "schema_version",
+          "prompt_version",
+          "status",
+          "response",
+          "confidence",
+          "error",
+          "input_tokens",
+          "output_tokens",
+          "attempts",
+          "created_at",
+          "provider",
+          "version",
+          "decision_id"
+        ],
+        "title": "ClassificationAudit",
+        "type": "object"
+      },
+      "ColdPosition": {
+        "additionalProperties": false,
+        "properties": {
+          "exercise_id": {
+            "title": "Exercise Id",
+            "type": "string"
+          },
+          "failed": {
+            "title": "Failed",
+            "type": "boolean"
+          },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "last_attempt_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Attempt Id"
+          },
+          "legal_moves": {
+            "items": {
+              "$ref": "#/components/schemas/LegalMove"
+            },
+            "title": "Legal Moves",
+            "type": "array"
+          },
+          "orientation": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Orientation",
+            "type": "string"
+          },
+          "practice_only": {
+            "title": "Practice Only",
+            "type": "boolean"
+          },
+          "previous_reviews": {
+            "title": "Previous Reviews",
+            "type": "integer"
+          },
+          "review_reason": {
+            "enum": [
+              "new",
+              "resume",
+              "learning",
+              "relearning",
+              "review",
+              "practice"
+            ],
+            "title": "Review Reason",
+            "type": "string"
+          },
+          "session_id": {
+            "title": "Session Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "session_id",
+          "last_attempt_id",
+          "exercise_id",
+          "fen",
+          "orientation",
+          "failed",
+          "review_reason",
+          "previous_reviews",
+          "practice_only",
+          "legal_moves"
+        ],
+        "title": "ColdPosition",
+        "type": "object"
+      },
+      "Coverage": {
+        "additionalProperties": false,
+        "properties": {
+          "abstention_reasons": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Abstention Reasons",
+            "type": "object"
+          },
+          "labeled": {
+            "title": "Labeled",
+            "type": "integer"
+          },
+          "mechanisms": {
+            "title": "Mechanisms",
+            "type": "integer"
+          },
+          "outcome_only": {
+            "title": "Outcome Only",
+            "type": "integer"
+          },
+          "outcomes": {
+            "title": "Outcomes",
+            "type": "integer"
+          },
+          "pending": {
+            "title": "Pending",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "unclassified": {
+            "title": "Unclassified",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total",
+          "labeled",
+          "outcomes",
+          "mechanisms",
+          "outcome_only",
+          "unclassified",
+          "pending",
+          "abstention_reasons"
+        ],
+        "title": "Coverage",
+        "type": "object"
+      },
+      "CreatedId": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "CreatedId",
+        "type": "object"
+      },
+      "Credentials": {
+        "properties": {
+          "password": {
+            "maxLength": 128,
+            "minLength": 10,
+            "title": "Password",
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 32,
+            "minLength": 3,
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Credentials",
+        "type": "object"
+      },
+      "Evidence": {
+        "additionalProperties": false,
+        "properties": {
+          "allows_mate": {
+            "title": "Allows Mate",
+            "type": "boolean"
+          },
+          "candidates": {
+            "items": {
+              "$ref": "#/components/schemas/Candidate"
+            },
+            "title": "Candidates",
+            "type": "array"
+          },
+          "classifications": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceClassification"
+            },
+            "title": "Classifications",
+            "type": "array"
+          },
+          "facts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Facts",
+            "type": "object"
+          },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "loss_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Loss Cp"
+          },
+          "mate_lost": {
+            "title": "Mate Lost",
+            "type": "boolean"
+          },
+          "played_san": {
+            "title": "Played San",
+            "type": "string"
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "fen",
+          "ply",
+          "played_san",
+          "loss_cp",
+          "mate_lost",
+          "allows_mate",
+          "facts",
+          "candidates",
+          "classifications"
+        ],
+        "title": "Evidence",
+        "type": "object"
+      },
+      "EvidenceClassification": {
+        "additionalProperties": false,
+        "properties": {
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/Finding"
+            },
+            "title": "Findings",
+            "type": "array"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "run_id": {
+            "title": "Run Id",
+            "type": "string"
+          },
+          "skill": {
+            "title": "Skill",
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill",
+          "explanation",
+          "confidence",
+          "run_id",
+          "provider",
+          "findings"
+        ],
+        "title": "EvidenceClassification",
+        "type": "object"
+      },
+      "Finding": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "analysis_id": {
+            "title": "Analysis Id",
+            "type": "string"
           },
           "context_fen": {
             "anyOf": [
@@ -1356,16 +881,85 @@
             ],
             "title": "Context Move"
           },
+          "cue": {
+            "default": "",
+            "title": "Cue",
+            "type": "string"
+          },
+          "direction": {
+            "enum": [
+              "missed_opportunity",
+              "allowed_opponent_tactic"
+            ],
+            "title": "Direction",
+            "type": "string"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "frame_ply": {
+            "default": 0,
+            "title": "Frame Ply",
+            "type": "integer"
+          },
+          "moves": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Moves",
+            "type": "array"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "title": "Plies",
+            "type": "array"
+          },
+          "roles": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Roles",
+            "type": "object"
+          },
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "skill_id": {
+            "title": "Skill Id",
+            "type": "string"
+          },
+          "squares": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          },
+          "verification": {
+            "enum": [
+              "engine_mate",
+              "verified_line",
+              "engine_defense"
+            ],
+            "title": "Verification",
+            "type": "string"
+          },
           "verification_analysis_ids": {
             "items": {
               "type": "string"
             },
-            "type": "array",
-            "title": "Verification Analysis Ids"
+            "title": "Verification Analysis Ids",
+            "type": "array"
           }
         },
-        "additionalProperties": false,
-        "type": "object",
         "required": [
           "skill_id",
           "rule_id",
@@ -1378,43 +972,14 @@
           "explanation",
           "verification"
         ],
-        "title": "Finding"
+        "title": "Finding",
+        "type": "object"
       },
       "Frame": {
         "properties": {
-          "fen": {
-            "type": "string",
-            "title": "Fen"
-          },
-          "uci": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Uci"
-          },
-          "san": {
-            "type": "string",
-            "title": "San"
-          },
           "annotation": {
-            "type": "string",
-            "title": "Annotation"
-          },
-          "highlights": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Highlights"
-          },
-          "material_change": {
-            "type": "integer",
-            "title": "Material Change"
+            "title": "Annotation",
+            "type": "string"
           },
           "capture": {
             "anyOf": [
@@ -1427,13 +992,42 @@
             ],
             "title": "Capture"
           },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
           "gives_check": {
-            "type": "boolean",
+            "default": false,
             "title": "Gives Check",
-            "default": false
+            "type": "boolean"
+          },
+          "highlights": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Highlights",
+            "type": "array"
+          },
+          "material_change": {
+            "title": "Material Change",
+            "type": "integer"
+          },
+          "san": {
+            "title": "San",
+            "type": "string"
+          },
+          "uci": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uci"
           }
         },
-        "type": "object",
         "required": [
           "fen",
           "uci",
@@ -1442,7 +1036,776 @@
           "highlights",
           "material_change"
         ],
-        "title": "Frame"
+        "title": "Frame",
+        "type": "object"
+      },
+      "GameAccuracy": {
+        "additionalProperties": false,
+        "properties": {
+          "black": {
+            "title": "Black",
+            "type": "number"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          },
+          "white": {
+            "title": "White",
+            "type": "number"
+          }
+        },
+        "required": [
+          "version",
+          "white",
+          "black"
+        ],
+        "title": "GameAccuracy",
+        "type": "object"
+      },
+      "GameAnalysis": {
+        "additionalProperties": false,
+        "properties": {
+          "best_move": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Best Move"
+          },
+          "report": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameReviewReport"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "score": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Score"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "report",
+          "score",
+          "best_move"
+        ],
+        "title": "GameAnalysis",
+        "type": "object"
+      },
+      "GameDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "accuracy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameAccuracy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "black": {
+            "title": "Black",
+            "type": "string"
+          },
+          "black_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Black Rating"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/GameFrame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "job": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewJob"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "orientation": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Orientation",
+            "type": "string"
+          },
+          "played_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played On"
+          },
+          "rating": {
+            "title": "Rating",
+            "type": "integer"
+          },
+          "result": {
+            "title": "Result",
+            "type": "string"
+          },
+          "white": {
+            "title": "White",
+            "type": "string"
+          },
+          "white_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "White Rating"
+          }
+        },
+        "required": [
+          "id",
+          "white",
+          "black",
+          "played_on",
+          "result",
+          "orientation",
+          "rating",
+          "white_rating",
+          "black_rating",
+          "frames",
+          "job",
+          "accuracy"
+        ],
+        "title": "GameDetail",
+        "type": "object"
+      },
+      "GameFrame": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "anyOf": [
+              {
+                "enum": [
+                  "white",
+                  "black"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor"
+          },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "legal_moves": {
+            "items": {
+              "$ref": "#/components/schemas/LegalMove"
+            },
+            "title": "Legal Moves",
+            "type": "array"
+          },
+          "number": {
+            "title": "Number",
+            "type": "integer"
+          },
+          "report": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameReviewReport"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "result": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result"
+          },
+          "san": {
+            "title": "San",
+            "type": "string"
+          },
+          "termination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Termination"
+          },
+          "turn": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Turn",
+            "type": "string"
+          },
+          "uci": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uci"
+          }
+        },
+        "required": [
+          "fen",
+          "turn",
+          "legal_moves",
+          "result",
+          "termination",
+          "san",
+          "uci",
+          "number",
+          "actor",
+          "report"
+        ],
+        "title": "GameFrame",
+        "type": "object"
+      },
+      "GameHistory": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/GameHistoryItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "GameHistory",
+        "type": "object"
+      },
+      "GameHistoryItem": {
+        "additionalProperties": false,
+        "properties": {
+          "accuracy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameAccuracy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "black": {
+            "title": "Black",
+            "type": "string"
+          },
+          "black_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Black Rating"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "learner_color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Learner Color",
+            "type": "string"
+          },
+          "move_count": {
+            "title": "Move Count",
+            "type": "integer"
+          },
+          "played_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played At"
+          },
+          "played_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played On"
+          },
+          "result": {
+            "title": "Result",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "time_control": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Control"
+          },
+          "time_control_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Control Label"
+          },
+          "white": {
+            "title": "White",
+            "type": "string"
+          },
+          "white_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "White Rating"
+          }
+        },
+        "required": [
+          "id",
+          "white",
+          "black",
+          "white_rating",
+          "black_rating",
+          "learner_color",
+          "played_on",
+          "played_at",
+          "result",
+          "time_control",
+          "time_control_label",
+          "move_count",
+          "status",
+          "accuracy"
+        ],
+        "title": "GameHistoryItem",
+        "type": "object"
+      },
+      "GameMoveReport": {
+        "additionalProperties": false,
+        "properties": {
+          "actual": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "best": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "board_cues": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BoardCues"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coach": {
+            "title": "Coach",
+            "type": "string"
+          },
+          "depth": {
+            "title": "Depth",
+            "type": "integer"
+          },
+          "engine_label": {
+            "enum": [
+              "Brilliant",
+              "Great",
+              "Best",
+              "Good",
+              "Book",
+              "Inaccuracy",
+              "Mistake",
+              "Miss",
+              "Blunder"
+            ],
+            "title": "Engine Label",
+            "type": "string"
+          },
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "label": {
+            "enum": [
+              "Brilliant",
+              "Great",
+              "Best",
+              "Good",
+              "Book",
+              "Inaccuracy",
+              "Mistake",
+              "Miss",
+              "Blunder"
+            ],
+            "title": "Label",
+            "type": "string"
+          },
+          "opening": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BookOpening"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "white_score": {
+            "$ref": "#/components/schemas/Score"
+          }
+        },
+        "required": [
+          "label",
+          "engine_label",
+          "opening",
+          "reason",
+          "coach",
+          "best",
+          "actual",
+          "white_score",
+          "depth",
+          "engine_version",
+          "board_cues"
+        ],
+        "title": "GameMoveReport",
+        "type": "object"
+      },
+      "GamePosition": {
+        "additionalProperties": false,
+        "properties": {
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "legal_moves": {
+            "items": {
+              "$ref": "#/components/schemas/LegalMove"
+            },
+            "title": "Legal Moves",
+            "type": "array"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result"
+          },
+          "san": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "San"
+          },
+          "termination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Termination"
+          },
+          "turn": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Turn",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fen",
+          "turn",
+          "legal_moves",
+          "result",
+          "termination",
+          "san"
+        ],
+        "title": "GamePosition",
+        "type": "object"
+      },
+      "GameReviewReport": {
+        "additionalProperties": false,
+        "properties": {
+          "actual": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "actual_line": {
+            "$ref": "#/components/schemas/ReviewLine"
+          },
+          "before_analysis_id": {
+            "title": "Before Analysis Id",
+            "type": "string"
+          },
+          "best": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "best_line": {
+            "$ref": "#/components/schemas/ReviewLine"
+          },
+          "board_cues": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BoardCues"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coach": {
+            "title": "Coach",
+            "type": "string"
+          },
+          "depth": {
+            "title": "Depth",
+            "type": "integer"
+          },
+          "engine_label": {
+            "enum": [
+              "Brilliant",
+              "Great",
+              "Best",
+              "Good",
+              "Book",
+              "Inaccuracy",
+              "Mistake",
+              "Miss",
+              "Blunder"
+            ],
+            "title": "Engine Label",
+            "type": "string"
+          },
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "label": {
+            "enum": [
+              "Brilliant",
+              "Great",
+              "Best",
+              "Good",
+              "Book",
+              "Inaccuracy",
+              "Mistake",
+              "Miss",
+              "Blunder"
+            ],
+            "title": "Label",
+            "type": "string"
+          },
+          "legal_count": {
+            "title": "Legal Count",
+            "type": "integer"
+          },
+          "loss_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Loss Cp"
+          },
+          "opening": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BookOpening"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "opportunity_missed": {
+            "title": "Opportunity Missed",
+            "type": "boolean"
+          },
+          "played_analysis_id": {
+            "title": "Played Analysis Id",
+            "type": "string"
+          },
+          "previous_score": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Score"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "sacrifice": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SacrificeEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "second_score": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Score"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          },
+          "white_score": {
+            "$ref": "#/components/schemas/Score"
+          }
+        },
+        "required": [
+          "label",
+          "engine_label",
+          "opening",
+          "reason",
+          "coach",
+          "best",
+          "actual",
+          "white_score",
+          "depth",
+          "engine_version",
+          "board_cues",
+          "version",
+          "before_analysis_id",
+          "played_analysis_id",
+          "second_score",
+          "previous_score",
+          "legal_count",
+          "loss_cp",
+          "sacrifice",
+          "opportunity_missed",
+          "actual_line",
+          "best_line"
+        ],
+        "title": "GameReviewReport",
+        "type": "object"
       },
       "HTTPValidationError": {
         "properties": {
@@ -1450,66 +1813,431 @@
             "items": {
               "$ref": "#/components/schemas/ValidationError"
             },
-            "type": "array",
-            "title": "Detail"
+            "title": "Detail",
+            "type": "array"
           }
         },
-        "type": "object",
-        "title": "HTTPValidationError"
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "Health": {
+        "additionalProperties": false,
+        "properties": {
+          "classification_available": {
+            "title": "Classification Available",
+            "type": "boolean"
+          },
+          "database": {
+            "title": "Database",
+            "type": "string"
+          },
+          "engine_available": {
+            "title": "Engine Available",
+            "type": "boolean"
+          },
+          "engine_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine Error"
+          },
+          "engine_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine Version"
+          }
+        },
+        "required": [
+          "engine_available",
+          "engine_error",
+          "engine_version",
+          "classification_available",
+          "database"
+        ],
+        "title": "Health",
+        "type": "object"
+      },
+      "Identity": {
+        "additionalProperties": false,
+        "properties": {
+          "csrf": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Csrf"
+          },
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "user": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Account"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "enabled",
+          "user"
+        ],
+        "title": "Identity",
+        "type": "object"
+      },
+      "ImportError": {
+        "additionalProperties": false,
+        "properties": {
+          "archive": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archive"
+          },
+          "error": {
+            "title": "Error",
+            "type": "string"
+          },
+          "game": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ImportError",
+        "type": "object"
+      },
+      "Job": {
+        "additionalProperties": false,
+        "properties": {
+          "activity": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/JobActivity"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cancel_requested": {
+            "title": "Cancel Requested",
+            "type": "boolean"
+          },
+          "chesscom": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ChessComImportProgress"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "classifications_completed": {
+            "title": "Classifications Completed",
+            "type": "integer"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "deep_completed": {
+            "title": "Deep Completed",
+            "type": "integer"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "games_processed": {
+            "title": "Games Processed",
+            "type": "integer"
+          },
+          "games_total": {
+            "title": "Games Total",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "import_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Import Id"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "mistakes_identified": {
+            "title": "Mistakes Identified",
+            "type": "integer"
+          },
+          "positions_triaged": {
+            "title": "Positions Triaged",
+            "type": "integer"
+          },
+          "probe_total": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Probe Total"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "kind",
+          "import_id",
+          "status",
+          "games_total",
+          "games_processed",
+          "positions_triaged",
+          "deep_completed",
+          "mistakes_identified",
+          "classifications_completed",
+          "cancel_requested",
+          "error",
+          "created_at",
+          "probe_total",
+          "activity",
+          "chesscom"
+        ],
+        "title": "Job",
+        "type": "object"
+      },
+      "JobActivity": {
+        "additionalProperties": false,
+        "properties": {
+          "classifications": {
+            "$ref": "#/components/schemas/WorkerActivity"
+          },
+          "games": {
+            "$ref": "#/components/schemas/WorkerActivity"
+          }
+        },
+        "required": [
+          "games",
+          "classifications"
+        ],
+        "title": "JobActivity",
+        "type": "object"
+      },
+      "JobCreated": {
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id"
+        ],
+        "title": "JobCreated",
+        "type": "object"
+      },
+      "JobStarted": {
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id",
+          "status"
+        ],
+        "title": "JobStarted",
+        "type": "object"
+      },
+      "JobStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "JobStatus",
+        "type": "object"
+      },
+      "JsonValue": {},
+      "LegalMove": {
+        "additionalProperties": false,
+        "properties": {
+          "capture": {
+            "title": "Capture",
+            "type": "boolean"
+          },
+          "from_square": {
+            "title": "From Square",
+            "type": "string"
+          },
+          "promotion": {
+            "anyOf": [
+              {
+                "enum": [
+                  "q",
+                  "r",
+                  "b",
+                  "n"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promotion"
+          },
+          "to_square": {
+            "title": "To Square",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_square",
+          "to_square",
+          "promotion",
+          "capture"
+        ],
+        "title": "LegalMove",
+        "type": "object"
       },
       "ManualRequest": {
         "properties": {
+          "explanation": {
+            "default": "",
+            "maxLength": 5000,
+            "title": "Explanation",
+            "type": "string"
+          },
           "fen": {
-            "type": "string",
             "maxLength": 200,
-            "title": "Fen"
+            "title": "Fen",
+            "type": "string"
           },
           "moves": {
             "items": {
               "type": "string"
             },
-            "type": "array",
             "maxItems": 100,
             "minItems": 1,
-            "title": "Moves"
+            "title": "Moves",
+            "type": "array"
           },
           "orientation": {
-            "type": "string",
+            "default": "white",
             "enum": [
               "white",
               "black"
             ],
             "title": "Orientation",
-            "default": "white"
-          },
-          "explanation": {
-            "type": "string",
-            "maxLength": 5000,
-            "title": "Explanation",
-            "default": ""
+            "type": "string"
           },
           "tags": {
             "items": {
               "type": "string"
             },
-            "type": "array",
             "maxItems": 20,
-            "title": "Tags"
+            "title": "Tags",
+            "type": "array"
           }
         },
-        "type": "object",
         "required": [
           "fen",
           "moves"
         ],
-        "title": "ManualRequest"
+        "title": "ManualRequest",
+        "type": "object"
       },
       "MoveExplanation": {
         "properties": {
-          "version": {
-            "type": "string",
-            "title": "Version",
-            "default": "1"
+          "accepted": {
+            "title": "Accepted",
+            "type": "boolean"
+          },
+          "analysis_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Analysis Id"
           },
           "attempt_id": {
             "anyOf": [
@@ -1523,53 +2251,12 @@
             "title": "Attempt Id"
           },
           "authority": {
-            "type": "string",
-            "title": "Authority"
-          },
-          "accepted": {
-            "type": "boolean",
-            "title": "Accepted"
-          },
-          "move_uci": {
-            "type": "string",
-            "title": "Move Uci"
-          },
-          "move_san": {
-            "type": "string",
-            "title": "Move San"
-          },
-          "summary": {
-            "type": "string",
-            "title": "Summary"
-          },
-          "notes": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Notes"
-          },
-          "frames": {
-            "items": {
-              "$ref": "#/components/schemas/Frame"
-            },
-            "type": "array",
-            "title": "Frames"
-          },
-          "orientation": {
-            "type": "string",
-            "title": "Orientation"
-          },
-          "analysis_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "enum": [
+              "stockfish",
+              "curated"
             ],
-            "title": "Analysis Id"
+            "title": "Authority",
+            "type": "string"
           },
           "engine_version": {
             "anyOf": [
@@ -1582,6 +2269,43 @@
             ],
             "title": "Engine Version"
           },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/Finding"
+            },
+            "title": "Findings",
+            "type": "array"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/Frame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "move_san": {
+            "title": "Move San",
+            "type": "string"
+          },
+          "move_uci": {
+            "title": "Move Uci",
+            "type": "string"
+          },
+          "notes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Notes",
+            "type": "array"
+          },
+          "orientation": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Orientation",
+            "type": "string"
+          },
           "score": {
             "anyOf": [
               {
@@ -1592,15 +2316,16 @@
               }
             ]
           },
-          "findings": {
-            "items": {
-              "$ref": "#/components/schemas/Finding"
-            },
-            "type": "array",
-            "title": "Findings"
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "version": {
+            "default": "1",
+            "title": "Version",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "attempt_id",
           "authority",
@@ -1612,53 +2337,556 @@
           "frames",
           "orientation"
         ],
-        "title": "MoveExplanation"
+        "title": "MoveExplanation",
+        "type": "object"
       },
       "MoveRequest": {
         "properties": {
           "from_square": {
-            "type": "string",
             "pattern": "^[a-h][1-8]$",
-            "title": "From Square"
-          },
-          "to_square": {
-            "type": "string",
-            "pattern": "^[a-h][1-8]$",
-            "title": "To Square"
+            "title": "From Square",
+            "type": "string"
           },
           "promotion": {
             "anyOf": [
               {
-                "type": "string",
                 "enum": [
                   "q",
                   "r",
                   "b",
                   "n"
-                ]
+                ],
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
             "title": "Promotion"
+          },
+          "to_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "To Square",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "from_square",
           "to_square"
         ],
-        "title": "MoveRequest"
+        "title": "MoveRequest",
+        "type": "object"
+      },
+      "Ok": {
+        "additionalProperties": false,
+        "properties": {
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ok"
+        ],
+        "title": "Ok",
+        "type": "object"
+      },
+      "PgnImportResult": {
+        "additionalProperties": false,
+        "properties": {
+          "duplicates": {
+            "title": "Duplicates",
+            "type": "integer"
+          },
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/ImportError"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "import_id": {
+            "title": "Import Id",
+            "type": "string"
+          },
+          "imported": {
+            "title": "Imported",
+            "type": "integer"
+          },
+          "job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Id"
+          },
+          "processed": {
+            "title": "Processed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "import_id",
+          "processed",
+          "imported",
+          "duplicates",
+          "job_id",
+          "errors"
+        ],
+        "title": "PgnImportResult",
+        "type": "object"
+      },
+      "PracticeQueueItem": {
+        "additionalProperties": false,
+        "properties": {
+          "exercise_id": {
+            "title": "Exercise Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "exercise_id"
+        ],
+        "title": "PracticeQueueItem",
+        "type": "object"
+      },
+      "Profile": {
+        "properties": {
+          "chesscom_username": {
+            "default": "",
+            "maxLength": 50,
+            "title": "Chesscom Username",
+            "type": "string"
+          }
+        },
+        "title": "Profile",
+        "type": "object"
+      },
+      "Rejected": {
+        "additionalProperties": false,
+        "properties": {
+          "rejected": {
+            "title": "Rejected",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "rejected"
+        ],
+        "title": "Rejected",
+        "type": "object"
+      },
+      "ReviewFeedback": {
+        "additionalProperties": false,
+        "properties": {
+          "answers": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/AcceptedAnswer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answers"
+          },
+          "attempt_frame": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attempt_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attempt Id"
+          },
+          "candidates": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Candidate"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Candidates"
+          },
+          "completed": {
+            "title": "Completed",
+            "type": "boolean"
+          },
+          "counter_reply": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Id"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
+          },
+          "explanation_summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation Summary"
+          },
+          "facts": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/JsonValue"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Facts"
+          },
+          "fen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fen"
+          },
+          "grade": {
+            "title": "Grade",
+            "type": "string"
+          },
+          "lesson_result": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/JsonValue"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lesson Result"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "next_due": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Due"
+          },
+          "played_san": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played San"
+          },
+          "practice_only": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Practice Only"
+          },
+          "retired": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retired"
+          },
+          "retired_interval_days": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retired Interval Days"
+          },
+          "reveal_frame": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "submitted_san": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted San"
+          }
+        },
+        "required": [
+          "completed",
+          "grade"
+        ],
+        "title": "ReviewFeedback",
+        "type": "object"
+      },
+      "ReviewJob": {
+        "additionalProperties": false,
+        "properties": {
+          "cancel_requested": {
+            "title": "Cancel Requested",
+            "type": "boolean"
+          },
+          "completed": {
+            "title": "Completed",
+            "type": "integer"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "completed",
+          "total",
+          "error",
+          "cancel_requested"
+        ],
+        "title": "ReviewJob",
+        "type": "object"
+      },
+      "ReviewLine": {
+        "additionalProperties": false,
+        "properties": {
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/Finding"
+            },
+            "title": "Findings",
+            "type": "array"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/Frame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "material_delta": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Material Delta"
+          },
+          "settled": {
+            "title": "Settled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "frames",
+          "findings",
+          "material_delta",
+          "settled"
+        ],
+        "title": "ReviewLine",
+        "type": "object"
+      },
+      "ReviewProgress": {
+        "additionalProperties": false,
+        "properties": {
+          "accuracy": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameAccuracy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "job": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewJob"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "moves": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewedMove"
+            },
+            "title": "Moves",
+            "type": "array"
+          }
+        },
+        "required": [
+          "job",
+          "moves",
+          "accuracy"
+        ],
+        "title": "ReviewProgress",
+        "type": "object"
+      },
+      "ReviewQueueItem": {
+        "additionalProperties": false,
+        "properties": {
+          "due": {
+            "title": "Due",
+            "type": "string"
+          },
+          "exercise_id": {
+            "title": "Exercise Id",
+            "type": "string"
+          },
+          "new": {
+            "title": "New",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "exercise_id",
+          "due",
+          "new"
+        ],
+        "title": "ReviewQueueItem",
+        "type": "object"
       },
       "ReviewRequest": {
         "properties": {
           "rating": {
             "anyOf": [
               {
-                "type": "integer",
                 "maximum": 3000.0,
-                "minimum": 400.0
+                "minimum": 400.0,
+                "type": "integer"
               },
               {
                 "type": "null"
@@ -1667,38 +2895,400 @@
             "title": "Rating"
           }
         },
-        "type": "object",
-        "title": "ReviewRequest"
+        "title": "ReviewRequest",
+        "type": "object"
+      },
+      "ReviewedMove": {
+        "additionalProperties": false,
+        "properties": {
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          },
+          "report": {
+            "$ref": "#/components/schemas/GameMoveReport"
+          }
+        },
+        "required": [
+          "ply",
+          "report"
+        ],
+        "title": "ReviewedMove",
+        "type": "object"
+      },
+      "SacrificeEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "analysis_id": {
+            "title": "Analysis Id",
+            "type": "string"
+          },
+          "capture": {
+            "title": "Capture",
+            "type": "string"
+          },
+          "score": {
+            "$ref": "#/components/schemas/Score"
+          }
+        },
+        "required": [
+          "capture",
+          "analysis_id",
+          "score"
+        ],
+        "title": "SacrificeEvidence",
+        "type": "object"
       },
       "Score": {
         "properties": {
           "kind": {
-            "type": "string",
             "enum": [
               "cp",
               "mate"
             ],
-            "title": "Kind"
-          },
-          "value": {
-            "type": "integer",
-            "title": "Value"
+            "title": "Kind",
+            "type": "string"
           },
           "mate_given": {
-            "type": "boolean",
+            "default": false,
             "title": "Mate Given",
-            "default": false
+            "type": "boolean"
+          },
+          "value": {
+            "title": "Value",
+            "type": "integer"
           }
         },
-        "type": "object",
         "required": [
           "kind",
           "value"
         ],
-        "title": "Score"
+        "title": "Score",
+        "type": "object"
+      },
+      "SkillPriority": {
+        "additionalProperties": false,
+        "properties": {
+          "cue": {
+            "title": "Cue",
+            "type": "string"
+          },
+          "decision_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Decision Ids",
+            "type": "array"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "failures": {
+            "title": "Failures",
+            "type": "integer"
+          },
+          "focused_attempts": {
+            "title": "Focused Attempts",
+            "type": "integer"
+          },
+          "focused_failures": {
+            "title": "Focused Failures",
+            "type": "integer"
+          },
+          "independent_games": {
+            "title": "Independent Games",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "outcome",
+              "mechanism"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "lesson_attempts": {
+            "title": "Lesson Attempts",
+            "type": "integer"
+          },
+          "lesson_failures": {
+            "title": "Lesson Failures",
+            "type": "integer"
+          },
+          "occurrences": {
+            "title": "Occurrences",
+            "type": "integer"
+          },
+          "practice_positions": {
+            "title": "Practice Positions",
+            "type": "integer"
+          },
+          "priority": {
+            "title": "Priority",
+            "type": "number"
+          },
+          "provisional": {
+            "title": "Provisional",
+            "type": "boolean"
+          },
+          "retention": {
+            "enum": [
+              "improving",
+              "needs_practice"
+            ],
+            "title": "Retention",
+            "type": "string"
+          },
+          "reviews": {
+            "title": "Reviews",
+            "type": "integer"
+          },
+          "skill_id": {
+            "title": "Skill Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "unique_positions": {
+            "title": "Unique Positions",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "skill_id",
+          "kind",
+          "cue",
+          "practice_positions",
+          "focused_attempts",
+          "focused_failures",
+          "unique_positions",
+          "title",
+          "independent_games",
+          "occurrences",
+          "priority",
+          "reviews",
+          "failures",
+          "lesson_attempts",
+          "lesson_failures",
+          "retention",
+          "provisional",
+          "evidence_ids",
+          "decision_ids"
+        ],
+        "title": "SkillPriority",
+        "type": "object"
+      },
+      "Stats": {
+        "additionalProperties": false,
+        "properties": {
+          "exercises": {
+            "title": "Exercises",
+            "type": "integer"
+          },
+          "reviews": {
+            "title": "Reviews",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "exercises",
+          "reviews"
+        ],
+        "title": "Stats",
+        "type": "object"
+      },
+      "SyncStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "checked_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checked At"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "imported": {
+            "title": "Imported",
+            "type": "integer"
+          },
+          "job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Id"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "job_id",
+          "status",
+          "checked_at",
+          "imported",
+          "error"
+        ],
+        "title": "SyncStatus",
+        "type": "object"
+      },
+      "TeachingAudit": {
+        "additionalProperties": false,
+        "properties": {
+          "attempts": {
+            "title": "Attempts",
+            "type": "integer"
+          },
+          "cache_key": {
+            "title": "Cache Key",
+            "type": "string"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Ids",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "input_tokens": {
+            "title": "Input Tokens",
+            "type": "integer"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "output_tokens": {
+            "title": "Output Tokens",
+            "type": "integer"
+          },
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          },
+          "response": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/JsonValue"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response"
+          },
+          "schema_version": {
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "unit_id": {
+            "title": "Unit Id",
+            "type": "string"
+          },
+          "user_id": {
+            "title": "User Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "cache_key",
+          "model",
+          "schema_version",
+          "prompt_version",
+          "status",
+          "response",
+          "confidence",
+          "error",
+          "input_tokens",
+          "output_tokens",
+          "attempts",
+          "created_at",
+          "unit_id",
+          "evidence_ids"
+        ],
+        "title": "TeachingAudit",
+        "type": "object"
       },
       "ValidationError": {
         "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
           "loc": {
             "items": {
               "anyOf": [
@@ -1710,52 +3300,1788 @@
                 }
               ]
             },
-            "type": "array",
-            "title": "Location"
+            "title": "Location",
+            "type": "array"
           },
           "msg": {
-            "type": "string",
-            "title": "Message"
+            "title": "Message",
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "title": "Error Type"
-          },
-          "input": {
-            "title": "Input"
-          },
-          "ctx": {
-            "type": "object",
-            "title": "Context"
+            "title": "Error Type",
+            "type": "string"
           }
         },
-        "type": "object",
         "required": [
           "loc",
           "msg",
           "type"
         ],
-        "title": "ValidationError"
+        "title": "ValidationError",
+        "type": "object"
       },
       "VariationRequest": {
         "properties": {
-          "ply": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "Ply",
-            "default": 0
-          },
           "moves": {
             "items": {
               "type": "string"
             },
-            "type": "array",
             "maxItems": 128,
-            "title": "Moves"
+            "title": "Moves",
+            "type": "array"
+          },
+          "ply": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Ply",
+            "type": "integer"
           }
         },
-        "type": "object",
-        "title": "VariationRequest"
+        "title": "VariationRequest",
+        "type": "object"
+      },
+      "Weaknesses": {
+        "additionalProperties": false,
+        "properties": {
+          "classification_available": {
+            "title": "Classification Available",
+            "type": "boolean"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/SkillPriority"
+            },
+            "title": "Skills",
+            "type": "array"
+          },
+          "unclassified": {
+            "title": "Unclassified",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "skills",
+          "coverage",
+          "unclassified",
+          "classification_available"
+        ],
+        "title": "Weaknesses",
+        "type": "object"
+      },
+      "WorkerActivity": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "title": "Active",
+            "type": "integer"
+          },
+          "pending": {
+            "title": "Pending",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "active",
+          "pending"
+        ],
+        "title": "WorkerActivity",
+        "type": "object"
+      },
+      "WorkspaceSettings": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptance_mode": {
+            "enum": [
+              "best_only",
+              "engine_tolerance",
+              "practical",
+              "custom"
+            ],
+            "title": "Acceptance Mode",
+            "type": "string"
+          },
+          "accounts_enabled": {
+            "title": "Accounts Enabled",
+            "type": "boolean"
+          },
+          "chesscom_max_response_bytes": {
+            "title": "Chesscom Max Response Bytes",
+            "type": "integer"
+          },
+          "chesscom_timeout_seconds": {
+            "title": "Chesscom Timeout Seconds",
+            "type": "number"
+          },
+          "chesscom_user_agent": {
+            "title": "Chesscom User Agent",
+            "type": "string"
+          },
+          "classification_abstained": {
+            "title": "Classification Abstained",
+            "type": "integer"
+          },
+          "classification_available": {
+            "title": "Classification Available",
+            "type": "boolean"
+          },
+          "classification_extension_plies": {
+            "title": "Classification Extension Plies",
+            "type": "integer"
+          },
+          "classification_failed": {
+            "title": "Classification Failed",
+            "type": "integer"
+          },
+          "classification_max_plies": {
+            "title": "Classification Max Plies",
+            "type": "integer"
+          },
+          "classification_min_loss_cp": {
+            "title": "Classification Min Loss Cp",
+            "type": "integer"
+          },
+          "classification_min_material": {
+            "title": "Classification Min Material",
+            "type": "integer"
+          },
+          "classification_probe_depth": {
+            "title": "Classification Probe Depth",
+            "type": "integer"
+          },
+          "classification_probe_positions": {
+            "title": "Classification Probe Positions",
+            "type": "integer"
+          },
+          "classification_probe_queries": {
+            "title": "Classification Probe Queries",
+            "type": "integer"
+          },
+          "classification_probe_time": {
+            "title": "Classification Probe Time",
+            "type": "number"
+          },
+          "classification_provider": {
+            "title": "Classification Provider",
+            "type": "string"
+          },
+          "classification_rejected": {
+            "title": "Classification Rejected",
+            "type": "integer"
+          },
+          "classification_runs": {
+            "title": "Classification Runs",
+            "type": "integer"
+          },
+          "classification_tactic_plies": {
+            "title": "Classification Tactic Plies",
+            "type": "integer"
+          },
+          "classification_version": {
+            "title": "Classification Version",
+            "type": "string"
+          },
+          "classification_workers": {
+            "title": "Classification Workers",
+            "type": "integer"
+          },
+          "course_max_units": {
+            "title": "Course Max Units",
+            "type": "integer"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          },
+          "database_path": {
+            "title": "Database Path",
+            "type": "string"
+          },
+          "deep_depth": {
+            "title": "Deep Depth",
+            "type": "integer"
+          },
+          "deep_nodes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deep Nodes"
+          },
+          "deep_time": {
+            "title": "Deep Time",
+            "type": "number"
+          },
+          "desired_retention": {
+            "title": "Desired Retention",
+            "type": "number"
+          },
+          "engine_available": {
+            "title": "Engine Available",
+            "type": "boolean"
+          },
+          "engine_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine Error"
+          },
+          "engine_slots": {
+            "title": "Engine Slots",
+            "type": "integer"
+          },
+          "engine_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine Version"
+          },
+          "lan_token_configured": {
+            "title": "Lan Token Configured",
+            "type": "boolean"
+          },
+          "lesson_check_pass_fraction": {
+            "title": "Lesson Check Pass Fraction",
+            "type": "number"
+          },
+          "lesson_max_positions": {
+            "title": "Lesson Max Positions",
+            "type": "integer"
+          },
+          "max_import_bytes": {
+            "title": "Max Import Bytes",
+            "type": "integer"
+          },
+          "min_independent_games": {
+            "title": "Min Independent Games",
+            "type": "integer"
+          },
+          "mistake_threshold_cp": {
+            "title": "Mistake Threshold Cp",
+            "type": "integer"
+          },
+          "multipv": {
+            "title": "Multipv",
+            "type": "integer"
+          },
+          "practical_tolerance_cp": {
+            "title": "Practical Tolerance Cp",
+            "type": "integer"
+          },
+          "public_origin": {
+            "title": "Public Origin",
+            "type": "string"
+          },
+          "retire_after_days": {
+            "title": "Retire After Days",
+            "type": "integer"
+          },
+          "server_host": {
+            "title": "Server Host",
+            "type": "string"
+          },
+          "server_port": {
+            "title": "Server Port",
+            "type": "integer"
+          },
+          "session_secure": {
+            "title": "Session Secure",
+            "type": "boolean"
+          },
+          "slow_answer_seconds": {
+            "title": "Slow Answer Seconds",
+            "type": "number"
+          },
+          "stockfish_hash_mb": {
+            "title": "Stockfish Hash Mb",
+            "type": "integer"
+          },
+          "stockfish_path": {
+            "title": "Stockfish Path",
+            "type": "string"
+          },
+          "stockfish_threads": {
+            "title": "Stockfish Threads",
+            "type": "integer"
+          },
+          "stockfish_workers": {
+            "title": "Stockfish Workers",
+            "type": "integer"
+          },
+          "target_rating": {
+            "title": "Target Rating",
+            "type": "integer"
+          },
+          "tolerance_cp": {
+            "title": "Tolerance Cp",
+            "type": "integer"
+          },
+          "triage_depth": {
+            "title": "Triage Depth",
+            "type": "integer"
+          },
+          "triage_nodes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Triage Nodes"
+          },
+          "triage_time": {
+            "title": "Triage Time",
+            "type": "number"
+          }
+        },
+        "required": [
+          "engine_available",
+          "engine_error",
+          "engine_version",
+          "classification_available",
+          "server_host",
+          "server_port",
+          "database_path",
+          "accounts_enabled",
+          "session_secure",
+          "public_origin",
+          "engine_slots",
+          "stockfish_path",
+          "stockfish_threads",
+          "stockfish_hash_mb",
+          "stockfish_workers",
+          "triage_depth",
+          "triage_time",
+          "triage_nodes",
+          "deep_depth",
+          "deep_time",
+          "deep_nodes",
+          "multipv",
+          "classification_workers",
+          "classification_max_plies",
+          "classification_extension_plies",
+          "classification_tactic_plies",
+          "classification_min_loss_cp",
+          "classification_min_material",
+          "classification_probe_positions",
+          "classification_probe_depth",
+          "classification_probe_time",
+          "classification_probe_queries",
+          "target_rating",
+          "acceptance_mode",
+          "tolerance_cp",
+          "practical_tolerance_cp",
+          "mistake_threshold_cp",
+          "slow_answer_seconds",
+          "retire_after_days",
+          "desired_retention",
+          "course_max_units",
+          "lesson_max_positions",
+          "lesson_check_pass_fraction",
+          "min_independent_games",
+          "max_import_bytes",
+          "chesscom_timeout_seconds",
+          "chesscom_max_response_bytes",
+          "chesscom_user_agent",
+          "lan_token_configured",
+          "coverage",
+          "classification_provider",
+          "classification_version",
+          "classification_runs",
+          "classification_failed",
+          "classification_rejected",
+          "classification_abstained"
+        ],
+        "title": "WorkspaceSettings",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Fieldwork API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "operationId": "login_api_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Credentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Identity"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Login"
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "operationId": "logout_api_auth_logout_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ok"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Logout"
+      }
+    },
+    "/api/auth/logout-all": {
+      "post": {
+        "operationId": "logout_all_api_auth_logout_all_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ok"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Logout All"
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "operationId": "get_identity",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Identity"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Identity"
+      }
+    },
+    "/api/auth/profile": {
+      "post": {
+        "operationId": "profile_api_auth_profile_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Profile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountProfile"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Profile"
+      }
+    },
+    "/api/auth/signup": {
+      "post": {
+        "operationId": "signup_api_auth_signup_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Credentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Identity"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Signup"
+      }
+    },
+    "/api/classification-runs/{run_id}": {
+      "get": {
+        "operationId": "classification_run_api_classification_runs__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClassificationAudit"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Classification Run"
+      }
+    },
+    "/api/classification-runs/{run_id}/reject": {
+      "post": {
+        "operationId": "reject_classification_api_classification_runs__run_id__reject_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rejected"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reject Classification"
+      }
+    },
+    "/api/classifications/enrich": {
+      "post": {
+        "operationId": "enrich_classifications_api_classifications_enrich_post",
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCreated"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Enrich Classifications"
+      }
+    },
+    "/api/classifications/retry": {
+      "post": {
+        "operationId": "retry_classifications_api_classifications_retry_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCreated"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Retry Classifications"
+      }
+    },
+    "/api/course/teaching": {
+      "post": {
+        "operationId": "generate_lesson_teaching_api_course_teaching_post",
+        "responses": {
+          "410": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Generate Lesson Teaching"
+      }
+    },
+    "/api/evidence/{decision_id}": {
+      "get": {
+        "operationId": "evidence_api_evidence__decision_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "decision_id",
+            "required": true,
+            "schema": {
+              "title": "Decision Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evidence"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Evidence"
+      }
+    },
+    "/api/exercises/manual": {
+      "post": {
+        "operationId": "add_manual_api_exercises_manual_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManualRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedId"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Manual"
+      }
+    },
+    "/api/games": {
+      "get": {
+        "operationId": "games_api_games_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 30,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameHistory"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Games"
+      }
+    },
+    "/api/games/{game_id}": {
+      "get": {
+        "operationId": "game_detail_api_games__game_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "game_id",
+            "required": true,
+            "schema": {
+              "title": "Game Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Game Detail"
+      }
+    },
+    "/api/games/{game_id}/analyze": {
+      "post": {
+        "operationId": "analyze_variation_api_games__game_id__analyze_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "game_id",
+            "required": true,
+            "schema": {
+              "title": "Game Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameAnalysis"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Analyze Variation"
+      }
+    },
+    "/api/games/{game_id}/position": {
+      "post": {
+        "operationId": "variation_position_api_games__game_id__position_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "game_id",
+            "required": true,
+            "schema": {
+              "title": "Game Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VariationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GamePosition"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Variation Position"
+      }
+    },
+    "/api/games/{game_id}/review": {
+      "get": {
+        "operationId": "review_progress_api_games__game_id__review_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "game_id",
+            "required": true,
+            "schema": {
+              "title": "Game Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "After",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewProgress"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Review Progress"
+      },
+      "post": {
+        "operationId": "begin_review_api_games__game_id__review_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "game_id",
+            "required": true,
+            "schema": {
+              "title": "Game Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStarted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Begin Review"
+      }
+    },
+    "/api/games/{game_id}/train": {
+      "post": {
+        "operationId": "train_game_api_games__game_id__train_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "game_id",
+            "required": true,
+            "schema": {
+              "title": "Game Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStarted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Train Game"
+      }
+    },
+    "/api/health": {
+      "get": {
+        "operationId": "get_health_api_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Health"
+      }
+    },
+    "/api/imports": {
+      "post": {
+        "operationId": "upload_pgn_api_imports_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_pgn_api_imports_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PgnImportResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Upload Pgn"
+      }
+    },
+    "/api/imports/chesscom": {
+      "post": {
+        "operationId": "import_chesscom_api_imports_chesscom_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChessComRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStarted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Import Chesscom"
+      }
+    },
+    "/api/jobs": {
+      "get": {
+        "operationId": "jobs_api_jobs_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  },
+                  "title": "Response Jobs Api Jobs Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Jobs"
+      }
+    },
+    "/api/jobs/{job_id}/cancel": {
+      "post": {
+        "operationId": "cancel_job_api_jobs__job_id__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancel Job"
+      }
+    },
+    "/api/jobs/{job_id}/retry": {
+      "post": {
+        "operationId": "retry_job_api_jobs__job_id__retry_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Retry Job"
+      }
+    },
+    "/api/practice/queue": {
+      "get": {
+        "operationId": "focused_queue_api_practice_queue_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "skill_id",
+            "required": true,
+            "schema": {
+              "title": "Skill Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PracticeQueueItem"
+                  },
+                  "title": "Response Focused Queue Api Practice Queue Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Focused Queue"
+      }
+    },
+    "/api/review/queue": {
+      "get": {
+        "operationId": "review_queue_api_review_queue_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "last_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Last Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewQueueItem"
+                  },
+                  "title": "Response Review Queue Api Review Queue Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Review Queue"
+      }
+    },
+    "/api/review/sessions/{session_id}/explanation": {
+      "get": {
+        "operationId": "review_explanation_api_review_sessions__session_id__explanation_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "attempt_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Attempt Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "solution",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Solution",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MoveExplanation"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Review Explanation"
+      }
+    },
+    "/api/review/sessions/{session_id}/move": {
+      "post": {
+        "operationId": "move_api_review_sessions__session_id__move_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MoveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewFeedback"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Move"
+      }
+    },
+    "/api/review/sessions/{session_id}/reveal": {
+      "post": {
+        "operationId": "show_move_api_review_sessions__session_id__reveal_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewFeedback"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Show Move"
+      }
+    },
+    "/api/review/{exercise_id}/start": {
+      "post": {
+        "operationId": "begin_review_api_review__exercise_id__start_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "exercise_id",
+            "required": true,
+            "schema": {
+              "title": "Exercise Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "focus_skill_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Focus Skill Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColdPosition"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Begin Review"
+      }
+    },
+    "/api/settings": {
+      "get": {
+        "operationId": "get_settings_api_settings_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSettings"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Settings"
+      }
+    },
+    "/api/stats": {
+      "get": {
+        "operationId": "stats_api_stats_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Stats"
+      }
+    },
+    "/api/sync": {
+      "get": {
+        "operationId": "get_sync_api_sync_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyncStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Sync"
+      },
+      "post": {
+        "operationId": "begin_sync_api_sync_post",
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyncStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Begin Sync"
+      }
+    },
+    "/api/teaching-runs/{run_id}": {
+      "get": {
+        "operationId": "teaching_audit_api_teaching_runs__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeachingAudit"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Teaching Audit"
+      }
+    },
+    "/api/teaching-runs/{run_id}/reject": {
+      "post": {
+        "operationId": "reject_teaching_api_teaching_runs__run_id__reject_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "title": "Run Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rejected"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reject Teaching"
+      }
+    },
+    "/api/weaknesses": {
+      "get": {
+        "operationId": "weaknesses_api_weaknesses_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Weaknesses"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Weaknesses"
       }
     }
   }

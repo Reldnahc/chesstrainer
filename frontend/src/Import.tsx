@@ -1,6 +1,14 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ArrowRight, FileUp, Layers } from "lucide-react";
-import { api, type Health, type Job, type PgnImportResult } from "./api";
+import {
+  api,
+  read,
+  multipart,
+  type Health,
+  type Job,
+  type PgnImportResult,
+  type Schema,
+} from "./api";
 import { ChessComImportForm, ImportJob } from "./ChessComImport";
 import PageTitle from "./PageTitle";
 function PgnInput({
@@ -54,14 +62,17 @@ export default function ImportScreen({
   const [file, setFile] = useState<File | null>(null),
     [text, setText] = useState("");
   const [names, setNames] = useState(""),
-    [side, setSide] = useState("auto");
+    [side, setSide] =
+      useState<NonNullable<Schema["Body_upload_pgn_api_imports_post"]["side"]>>(
+        "auto",
+      );
   const [jobs, setJobs] = useState<Job[]>([]),
     [result, setResult] = useState<PgnImportResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [analyze, setAnalyze] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const reload = useCallback(
-    () => api<Job[]>("/jobs").then(setJobs).catch(fail),
+    () => read(api.GET("/api/jobs")).then(setJobs).catch(fail),
     [fail],
   );
   useEffect(() => {
@@ -73,13 +84,18 @@ export default function ImportScreen({
     e.preventDefault();
     setBusy(true);
     try {
-      const body = new FormData();
-      body.append("file", file || new File([text], "pasted-games.pgn"));
-      body.append("usernames", names);
-      body.append("side", side);
-      body.append("analyze", String(analyze));
       setResult(
-        await api<PgnImportResult>("/imports", { method: "POST", body }),
+        await read(
+          api.POST("/api/imports", {
+            body: {
+              file: file || new File([text], "pasted-games.pgn"),
+              usernames: names,
+              side,
+              analyze,
+            },
+            bodySerializer: multipart,
+          }),
+        ),
       );
       await reload();
     } catch (e) {
@@ -120,7 +136,14 @@ export default function ImportScreen({
             <ChessComImportForm onQueued={reload} fail={fail} />
           ) : (
             <form className="panel form-panel" onSubmit={submit}>
-              <label><input type="checkbox" checked={analyze} onChange={e => setAnalyze(e.target.checked)} />Also analyze these games for training</label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={analyze}
+                  onChange={(e) => setAnalyze(e.target.checked)}
+                />
+                Also analyze these games for training
+              </label>
               <h2>Import PGN</h2>
               <PgnInput {...{ file, setFile, text, setText }} />
               <label>
@@ -138,7 +161,10 @@ export default function ImportScreen({
               </label>
               <label>
                 Learner side
-                <select value={side} onChange={(e) => setSide(e.target.value)}>
+                <select
+                  value={side}
+                  onChange={(e) => setSide(e.target.value as typeof side)}
+                >
                   <option value="auto">Match my username in each game</option>
                   <option value="white">I played White in every game</option>
                   <option value="black">I played Black in every game</option>
