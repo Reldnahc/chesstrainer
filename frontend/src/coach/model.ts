@@ -33,6 +33,7 @@ export type CoachFamily = {
   name: string;
   description: string;
   character: string;
+  animation?: CoachDefinition["animation"];
 };
 export type CoachArtworkProps = { expression: CoachExpression; family: string };
 export type CoachMicro =
@@ -67,6 +68,14 @@ export type CoachDefinition = {
     defaultIdle: readonly CoachMicro[];
   };
   Artwork: ComponentType<CoachArtworkProps>;
+};
+
+export type CoachCollection = Omit<CoachDefinition, "families"> & {
+  families: readonly (CoachFamily & { coachId: CoachId })[];
+};
+export type SelectableCoach = CoachDefinition & {
+  id: CoachId;
+  collectionId: string;
 };
 
 export const expressionInfo: Record<
@@ -197,10 +206,19 @@ export const microLabels: Record<Exclude<CoachMicro, "">, string> = {
   twinkle: "Delighted glint",
 };
 
-export function availableIdles(coach: CoachDefinition) {
+export function resolveAnimation(coach: CoachDefinition, family?: string) {
+  const direction = resolveFamily(coach, family);
+  return (
+    coach.families.find((variant) => variant.id === direction)?.animation ??
+    coach.animation
+  );
+}
+
+export function availableIdles(coach: CoachDefinition, family?: string) {
+  const animation = resolveAnimation(coach, family);
   const configured = new Set([
-    ...coach.animation.defaultIdle,
-    ...Object.values(coach.animation.idleGestures).flat(),
+    ...animation.defaultIdle,
+    ...Object.values(animation.idleGestures).flat(),
   ]);
   return (Object.keys(microLabels) as Exclude<CoachMicro, "">[]).filter(
     (gesture) => configured.has(gesture),

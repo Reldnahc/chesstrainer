@@ -2,6 +2,34 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Selectable coach release: September 27, 2026
+
+All 16 characters are available in Settings and use the shared reaction system
+in game review, SRS practice and saved explanations. The studio and production
+registry now derive their characters from one catalogue. Existing accounts retain
+Storyteller; individual IDs and motion preferences follow the account to another
+device. The existing preference table needs no further schema change.
+
+- Full backend suite: **440 passed**, including restart persistence for every
+  coach, defaults, account isolation and rejected invalid choices. The two
+  existing TestClient dependency deprecation warnings remain.
+- Full desktop/mobile browser suite: **115 passed, 3 expected viewport skips**.
+  Separate account suite: **2 passed**, including a blonde coach restored on a
+  second device and an independent default for another account.
+- The browser suite selects every API-allowed coach through Settings and loads
+  it into an actual game review. It also checks the collie's SRS reactions,
+  failed-save recovery, reduced motion, old bookmarks and studio behavior.
+- Production build, generated API consistency, TypeScript contracts, Ruff lint
+  and Python formatting passed. Docker install CI now saves a black-cat choice
+  and checks it after restart in both local and account modes.
+- Manually selected coaches in the application, inspected the collie beside
+  a blunder explanation and Show why, and inspected phone-emulated Settings.
+  Selection cards reserve their space and only the selected portrait idles.
+
+The shared artwork is bundled with the application; the comparison interface
+remains lazy-loaded. No external illustration requests, engine settings, proxy
+settings or additional services are required.
+
 ## Expanded coach cast: September 27, 2026
 
 The studio now offers 16 concepts: Storyteller plus three new men, four women

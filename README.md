@@ -3,10 +3,11 @@
 A private chess trainer built around decisions in your own games. Import Chess.com history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
 
 The shared [animated coach](docs/COACH.md) reacts to your moves and practice, with
-account-saved motion preferences. Open **Settings → Preview expressions** to
-compare four men, four women, four cats and four dogs, each with all 20 expressions.
-The dogs include two goldens, a corgi and a border collie. New studies are previews;
-the original coach remains selected in reviews.
+account-saved character and motion preferences. Choose from four men, four women,
+four cats and four dogs in **Settings → Your coach**, each with all 20 expressions.
+The dogs include two goldens, a corgi and a border collie. **Preview expressions**
+lets you compare their reactions before choosing. Existing users keep Storyteller
+until they choose another coach; the choice follows their account across devices.
 
 Python-chess owns rules; Stockfish owns evaluation; configurable Python policy owns grading. The pinned Lichess tagger recognizes tactical motifs; versioned Fieldwork evidence checks decide which findings support a mistake label. There is no LLM integration or API-key requirement. The application can run locally or be self-hosted for friends with private accounts in one SQLite database.
 

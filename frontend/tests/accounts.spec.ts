@@ -17,6 +17,9 @@ test('account signup, engine-free sync, second-device login and private library'
   expect(await page.locator('.app-header').evaluate(header => header.getBoundingClientRect().top)).toBe(0);
   const gameHref = (await page.locator('.game-library-item').getAttribute('href'))!;
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
+  await page.getByRole('button', {name: 'Women', exact: true}).click();
+  await page.getByRole('radio', {name: 'Golden braid', exact: true}).click();
+  await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByRole('link', {name: 'Games', exact: true}).click();
@@ -37,12 +40,15 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device).toHaveURL(`${gameHref}?ply=3`);
     await expect(device.getByRole('heading', {name: `${username} vs FixtureOpponent`})).toBeVisible();
     await expect(device.locator('.review-coach .coach-avatar')).toHaveAttribute('data-motion', 'still');
+    await expect(device.locator('.review-coach .coach-avatar')).toHaveAttribute('data-coach', 'woman-blonde');
     await expect(device.getByRole('button', {name: /^2\. g4(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue(username);
     await expect(device.locator('.game-library-item')).toHaveCount(1);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
+    await expect(device.getByRole('button', {name: 'Women', exact: true})).toHaveAttribute('aria-pressed', 'true');
+    await expect(device.getByRole('radio', {name: 'Golden braid', exact: true})).toBeChecked();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByRole('region', {name: 'Account', exact: true})).toContainText(`Signed in as ${username}`);
     await device.getByRole('button', {name: 'Sign out', exact: true}).click();
@@ -60,6 +66,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('natural');
+    await expect(device.getByRole('radio', {name: 'Storyteller', exact: true})).toBeChecked();
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue('');

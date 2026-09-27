@@ -4,6 +4,7 @@ import {
   expressionInfo,
   resolveExpression,
   resolveFamily,
+  resolveAnimation,
   type CoachDefinition,
   type CoachMotion,
   type CoachMicro,
@@ -32,6 +33,7 @@ export function CoachCharacter({
   label?: string;
 }) {
   const direction = resolveFamily(coach, family);
+  const animation = resolveAnimation(coach, direction);
   const requested = resolveExpression(coach, reaction.state);
   const performance = usePerformance({
     reaction: { ...reaction, state: requested },
@@ -40,7 +42,7 @@ export function CoachCharacter({
     reactionsEnabled: coach.capabilities.reactions,
     replay,
     idleEnabled: idle && coach.capabilities.idle,
-    animation: coach.animation,
+    animation,
     previewIdle,
   });
   const Artwork = coach.Artwork;

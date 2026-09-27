@@ -166,8 +166,10 @@ test("coach preference saves, reloads and respects the device across real pages"
   });
   try {
     await page.goto("/settings");
-    await expect(page.getByRole("radio")).toHaveCount(1);
-    await expect(page.getByRole("radio")).toBeChecked();
+    await expect(page.getByRole("radio")).toHaveCount(4);
+    await expect(
+      page.getByRole("radio", { name: "Storyteller", exact: true }),
+    ).toBeChecked();
     await page
       .getByLabel("Coach motion", { exact: true })
       .selectOption("still");
@@ -176,19 +178,17 @@ test("coach preference saves, reloads and respects the device across real pages"
     await expect(page.getByLabel("Coach motion", { exact: true })).toHaveValue(
       "still",
     );
-    await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute(
-      "data-motion",
-      "still",
-    );
+    await expect(
+      page.locator(".coach-option:has(input:checked) .coach-avatar"),
+    ).toHaveAttribute("data-motion", "still");
     await page
       .getByLabel("Coach motion", { exact: true })
       .selectOption("natural");
     await expect(page.getByRole("status")).toContainText("Saved");
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute(
-      "data-motion",
-      "still",
-    );
+    await expect(
+      page.locator(".coach-option:has(input:checked) .coach-avatar"),
+    ).toHaveAttribute("data-motion", "still");
     await expect(
       page.getByText(
         "Your device requests reduced motion. The coach will stay still.",
@@ -277,23 +277,29 @@ test("preference failures keep the last saved choice and allow recovery", async 
     const status = page.locator(".coach-preference-status");
     await expect(status).toContainText("Preferences unavailable");
     await expect(motion).toBeDisabled();
-    await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute(
-      "data-motion",
-      "still",
-    );
+    await expect(
+      page.locator(".coach-option:has(input:checked) .coach-avatar"),
+    ).toHaveAttribute("data-motion", "still");
     await page.getByRole("button", { name: "Reload preferences" }).click();
     await expect(motion).toBeEnabled();
     await expect(motion).toHaveValue("natural");
-    await motion.selectOption("still");
+    await page.getByRole("button", { name: "Cats", exact: true }).click();
+    const cat = page.getByRole("radio", { name: "Velvet night", exact: true });
+    await cat.click();
     await expect(status).toContainText("Preference was not saved");
+    await expect(cat).not.toBeChecked();
     await expect(motion).toHaveValue("natural");
     expect(
-      (await (await page.request.get("/api/preferences/coach")).json()).motion,
-    ).toBe("natural");
+      await (await page.request.get("/api/preferences/coach")).json(),
+    ).toEqual({ coach_id: "classic", motion: "natural" });
+    await cat.click();
+    await expect(cat).toBeChecked();
+    await expect(motion).toBeEnabled();
     await motion.selectOption("still");
     await expect(status).toContainText("Saved");
     await page.reload();
     await expect(motion).toHaveValue("still");
+    await expect(cat).toBeChecked();
   } finally {
     await page.request.put("/api/preferences/coach", {
       data: { coach_id: "classic", motion: "natural" },
@@ -320,10 +326,9 @@ test("connecting with a LAN token restores preferences without a page reload", a
   const motion = page.getByLabel("Coach motion", { exact: true });
   await expect(motion).toBeEnabled();
   await expect(motion).toHaveValue("still");
-  await expect(page.locator(".coach-settings .coach-avatar")).toHaveAttribute(
-    "data-motion",
-    "still",
-  );
+  await expect(
+    page.locator(".coach-option:has(input:checked) .coach-avatar"),
+  ).toHaveAttribute("data-motion", "still");
   await expect(
     page.getByRole("button", { name: "Reload preferences" }),
   ).toHaveCount(0);

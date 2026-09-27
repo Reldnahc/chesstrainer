@@ -1,5 +1,9 @@
-import { expressions, type CoachDefinition } from "../model";
-import { coaches } from "../registry";
+import {
+  expressions,
+  type CoachDefinition,
+  type CoachCollection,
+} from "../model";
+import { classicPerformance } from "../classic/performance";
 import ManCoach from "./ManCoach";
 import WomanCoach from "./WomanCoach";
 import CatCoach from "./CatCoach";
@@ -53,23 +57,34 @@ const common = {
   capabilities: { reactions: true, idle: true },
 } as const;
 
-export const manStudy: CoachDefinition = {
-  ...coaches.classic,
+export const manStudy: CoachCollection = {
+  ...common,
+  id: "classic",
+  defaultFamily: "storyteller",
   name: "Men",
   description:
     "Storyteller and three new faces, each with a distinct silhouette and wardrobe.",
   animation: {
-    ...coaches.classic.animation,
+    ...classicPerformance,
     idleGestures: {
-      ...coaches.classic.animation.idleGestures,
+      ...classicPerformance.idleGestures,
       blunder: ["blink", "sigh"],
       thinking: ["glance", "blink"],
     },
   },
   families: [
-    coaches.classic.families[0],
+    {
+      id: "storyteller",
+      coachId: "classic",
+      name: "Storyteller",
+      description:
+        "Warm, generous acting. A face you can read across the board.",
+      character: "Anticipation · open gestures · soft settling",
+      animation: classicPerformance,
+    },
     {
       id: "host",
+      coachId: "man-host",
       name: "Club host",
       description:
         "Close curls, a neat beard and a terracotta overshirt. An easy, welcoming presence.",
@@ -77,6 +92,7 @@ export const manStudy: CoachDefinition = {
     },
     {
       id: "expert",
+      coachId: "man-expert",
       name: "Endgame expert",
       description:
         "Silver at the temples, a clean-shaven face and a slate cardigan. A steady study companion.",
@@ -84,6 +100,7 @@ export const manStudy: CoachDefinition = {
     },
     {
       id: "partner",
+      coachId: "man-partner",
       name: "Creative partner",
       description:
         "Dark waves, a shaped beard and a forest-green waistcoat. Ready to explore an idea together.",
@@ -93,7 +110,7 @@ export const manStudy: CoachDefinition = {
   Artwork: ManCoach,
 };
 
-export const womanStudy: CoachDefinition = {
+export const womanStudy: CoachCollection = {
   ...common,
   id: "woman",
   name: "Women",
@@ -121,6 +138,7 @@ export const womanStudy: CoachDefinition = {
   families: [
     {
       id: "captain",
+      coachId: "woman-captain",
       name: "Club captain",
       description:
         "Auburn waves, a teal blazer and warm, assured encouragement.",
@@ -128,6 +146,7 @@ export const womanStudy: CoachDefinition = {
     },
     {
       id: "analyst",
+      coachId: "woman-analyst",
       name: "Quiet analyst",
       description:
         "A curled updo, warm cream knitwear and thoughtful eyes behind glasses.",
@@ -135,6 +154,7 @@ export const womanStudy: CoachDefinition = {
     },
     {
       id: "spark",
+      coachId: "woman-spark",
       name: "Bright spark",
       description:
         "A swinging ponytail and a plum jacket. Quick to spot—and celebrate—an idea.",
@@ -142,6 +162,7 @@ export const womanStudy: CoachDefinition = {
     },
     {
       id: "blonde",
+      coachId: "woman-blonde",
       name: "Golden braid",
       description:
         "A swept blonde fringe, a loose side braid and a soft blue cardigan. Bright, easygoing company.",
@@ -151,7 +172,7 @@ export const womanStudy: CoachDefinition = {
   Artwork: WomanCoach,
 };
 
-export const catStudy: CoachDefinition = {
+export const catStudy: CoachCollection = {
   ...common,
   id: "cat",
   name: "Cats",
@@ -163,6 +184,7 @@ export const catStudy: CoachDefinition = {
   families: [
     {
       id: "tabby",
+      coachId: "cat-tabby",
       name: "Library tabby",
       description:
         "A warm ginger study companion. Curious eyes, soft stripes and a sage scarf.",
@@ -170,6 +192,7 @@ export const catStudy: CoachDefinition = {
     },
     {
       id: "tuxedo",
+      coachId: "cat-tuxedo",
       name: "Midnight tactician",
       description:
         "A sharp tuxedo silhouette, white mittens and a quieter kind of confidence.",
@@ -177,6 +200,7 @@ export const catStudy: CoachDefinition = {
     },
     {
       id: "calico",
+      coachId: "cat-calico",
       name: "Curious calico",
       description:
         "A patchwork face with a turquoise scarf. Always another angle to investigate.",
@@ -184,6 +208,7 @@ export const catStudy: CoachDefinition = {
     },
     {
       id: "black",
+      coachId: "cat-black",
       name: "Velvet night",
       description:
         "An all-black coat, amber eyes and a plum scarf. A watchful companion with a soft side.",
@@ -193,7 +218,7 @@ export const catStudy: CoachDefinition = {
   Artwork: CatCoach,
 };
 
-export const dogStudy: CoachDefinition = {
+export const dogStudy: CoachCollection = {
   ...common,
   id: "dog",
   name: "Dogs",
@@ -205,6 +230,7 @@ export const dogStudy: CoachDefinition = {
   families: [
     {
       id: "sunny",
+      coachId: "dog-sunny",
       name: "Sunny companion",
       description:
         "Honey-gold fur and a blue bandana. Every good idea earns a warm welcome.",
@@ -212,6 +238,7 @@ export const dogStudy: CoachDefinition = {
     },
     {
       id: "gentle",
+      coachId: "dog-gentle",
       name: "Gentle professor",
       description:
         "A cream-colored older golden with reading glasses and endless patience.",
@@ -219,6 +246,7 @@ export const dogStudy: CoachDefinition = {
     },
     {
       id: "corgi",
+      coachId: "dog-corgi",
       name: "Pocket captain",
       description:
         "A red-and-white corgi with big upright ears, a broad grin and a little red bandana.",
@@ -226,6 +254,7 @@ export const dogStudy: CoachDefinition = {
     },
     {
       id: "collie",
+      coachId: "dog-collie",
       name: "Border collie",
       description:
         "A black-and-white coat, a white blaze and one folded ear. Always watching the next move.",
@@ -235,8 +264,7 @@ export const dogStudy: CoachDefinition = {
   Artwork: DogCoach,
 };
 
-// These assets are imported only by the lazy studio route. Promotion to Settings
-// is a separate product choice and uses the existing typed production registry.
+// Settings, review and the studio share these assets and performance definitions.
 export const coachStudies = [manStudy, womanStudy, catStudy, dogStudy];
 export function getCoachStudy(id: string | null | undefined) {
   // Existing golden-retriever preview links now open the broader dog collection.

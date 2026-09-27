@@ -40,9 +40,9 @@ export function ConceptComparison({
             <span>CONCEPT {String(index + 1).padStart(2, "0")}</span>
             {selectableCoaches.some(
               (production) =>
-                production.id === coach.id &&
+                production.collectionId === coach.id &&
                 production.defaultFamily === direction.id,
-            ) && <span className="studio-current">In your reviews</span>}
+            ) && <span className="studio-current">Available in Settings</span>}
           </div>
           <div className="studio-character-stage">
             <div className="studio-character-halo" />

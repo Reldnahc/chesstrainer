@@ -49,8 +49,8 @@ for (const character of characters) {
     for (const avatar of await concepts.all())
       await expect(avatar).toHaveAttribute("data-coach", character.id);
     await expect(
-      page.getByText("In your reviews", { exact: true }),
-    ).toHaveCount(character.id === "classic" ? 1 : 0);
+      page.getByText("Available in Settings", { exact: true }),
+    ).toHaveCount(4);
     await first.scrollIntoViewIfNeeded();
     await expect(first).toHaveAttribute("data-phase", "reaction");
     await expect
@@ -262,10 +262,10 @@ test("study links restore character and family; changing character resets unsupp
     page.getByRole("combobox", { name: "Expression", exact: true }),
   ).toHaveValue("brilliant");
   await page.getByRole("link", { name: "Back to Settings" }).click();
-  await expect(page.getByRole("radio")).toHaveCount(1);
+  await expect(page.getByRole("radio")).toHaveCount(4);
 });
 
-test("retired concepts have safe bookmark fallbacks without adding production choices", async ({
+test("retired concepts have safe bookmark fallbacks without changing the saved coach", async ({
   page,
 }) => {
   for (const family of ["mentor", "spark"]) {
@@ -275,7 +275,7 @@ test("retired concepts have safe bookmark fallbacks without adding production ch
     await expect(
       page.getByRole("combobox", { name: "Collection", exact: true }),
     ).toHaveValue("storyteller");
-    await expect(page.locator(".studio-current")).toHaveCount(1);
+    await expect(page.locator(".studio-current")).toHaveCount(4);
     await expect(
       page.locator(".studio-storyteller .coach-avatar"),
     ).toHaveAttribute("data-expression", "blunder");
@@ -295,5 +295,5 @@ test("retired concepts have safe bookmark fallbacks without adding production ch
     page.getByRole("combobox", { name: "Collection", exact: true }),
   ).toHaveValue("sunny");
   await page.getByRole("link", { name: "Back to Settings" }).click();
-  await expect(page.getByRole("radio")).toHaveCount(1);
+  await expect(page.getByRole("radio")).toHaveCount(4);
 });

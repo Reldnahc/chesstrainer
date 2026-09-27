@@ -18,9 +18,11 @@ The men's collection has four complete characters, each with all 20 states:
 - **Creative partner:** a South Asian man with dark waves, a shaped beard and a
   forest-green waistcoat. Curious looks and generous encouragement.
 
-These are preview concepts, not additional selectable production characters.
-The comparison surface will retain useful alternatives without adding production
-accounts or artificial entries to the coach selector.
+All sixteen characters are selectable in **Settings → Your coach**, organized
+into four compact groups. Browsing a group does not save a choice; selecting a
+portrait does. Settings restores the selected character's group on load. Only
+the selected portrait animates, and phone layouts use two columns. The same saved
+character appears in game review, SRS practice and saved explanations.
 
 Open **Settings → Preview expressions**, or `/coach-studio`. The studio is a lazy
 loaded page, reachable in local and account mode, with no engine jobs or preference
@@ -44,10 +46,10 @@ open the original coach. Switching characters stops a running sequence, clears t
 pending idle preview and selects a valid family/idle gesture. Preview controls
 offer only the idle gestures that the character actually implements.
 
-The 15 alternatives are preview-only. Settings still offers the original coach,
-and opening a study never writes account preferences or submits engine work.
-The new artwork and motion styles are loaded with the studio route, so ordinary
-reviews do not download the additional characters. Existing `coach=retriever`
+Opening the studio never writes account preferences or submits engine work.
+Its comparison interface remains lazy-loaded; shared character SVGs and motion
+styles are bundled with the application so a selected coach is immediately
+available in reviews without an image request. Existing `coach=retriever`
 links resolve to the dog collection; the retired Trail buddy (`scout`) family
 falls back to Sunny companion. The illustration assets are
 original SVG artwork maintained as React components; no external images or assets
@@ -59,11 +61,12 @@ Each character keeps its expression after the entrance settles. Blunder idles us
 breathing, ears or hair rather than a happy tail wag. Reduced motion keeps the
 full expressive silhouette while disabling all reaction and idle animations.
 
-Storyteller remains the production direction, with its review artwork and
+Storyteller remains the default, with its review artwork and
 performance unchanged. The former Quiet mentor and Graphic spark variants of
 that same man have been retired in favor of three distinct people. Old family
-links fall back to Storyteller. The production registry contains only the original
-character; the studio expands it through a separate preview definition.
+links fall back to Storyteller. The production registry and studio use the same
+catalogue, including individual animation overrides such as Storyteller's glasses
+gestures. Switching a studio collection clears unsupported idle previews.
 Teaching, best-move and check poses use an outward-facing open palm. Avoid a
 single raised finger: its silhouette reads as an insulting gesture at review size.
 
@@ -108,27 +111,27 @@ even when many differently posed characters appear together in the studio.
 
 ## Adding a coach
 
-`model.ts` defines the character contract. `registry.ts` supplies its ID, name,
-description, supported states, fallback map, concept families, default family,
-capabilities, animation timing/idle configuration and artwork component. The
+`model.ts` defines the character contract. `studies/catalog.ts` supplies the
+collections, stable character IDs, names, descriptions, supported states, fallback
+maps, families, capabilities, timing/idle configuration and artwork components.
+`registry.ts` derives individual selectable definitions from that single source.
+Each has one default family and a typed account ID; collection IDs remain useful
+for browsing and studio URLs. They are never saved in place of a character ID. The
 default SVG rig, motion tracks and keyframes live in `classic/`; shared
 lifecycle and preference code contain no references to its facial geometry.
 Reusable human expressions, facial layers and open-palm hand artwork live in
 `human/`. Individual human coaches provide their own silhouette, palette and acting.
-`studies/catalog.ts` is a separate preview catalogue. The new men and women use shared
-human primitives; cat and dog artwork share animal expressions, eyes,
+The men and women use shared human primitives; cat and dog artwork share animal expressions, eyes,
 muzzles and paws. Silhouettes, fur markings, hair, outfits and accessories remain
 with each artwork component. Dog head geometry is separated from the common body
 rig and palettes, so a new breed does not duplicate facial animation. Dark-coated
 animals can supply a lighter eyelid stroke to keep closed expressions legible.
 The study CSS uses its own namespaced motion tracks; classic CSS is scoped to
 Storyteller so it cannot also animate the shared human rig of another man.
-To develop another concept before release, register it in the study catalogue;
-production selection is still governed by the typed account preference contract.
-
 Add an allowed coach ID to the backend preference contract, regenerate the API
-types, and register the matching frontend definition. The typed registry covers
-every allowed ID. Settings renders available definitions automatically. Supply an
+types, and add the matching family and `coachId` to the catalogue. Browser tests
+compare all selectable IDs with the API allowlist and exercise each in a real
+review. Settings renders available definitions automatically. Supply an
 explicit supported default state and an accessible static pose for every provided
 expression; omitted states follow the fallback chain, with cycle protection.
 Artwork may omit reactions or idle capabilities independently. Preserve the
@@ -142,7 +145,8 @@ Backend tests cover defaults for existing users, additive migration preservation
 validation, concurrent first writes, account isolation, CSRF and second-device
 sessions. Browser/logic tests cover semantic mapping, fallback chains, special
 outcomes, recovery, actual native game reviews, replay/settling, offscreen behavior,
-complete concept collections, control geometry, settings restoration and reduced
+complete concept collections, control geometry, selection of all 16 coaches,
+cross-device/account restoration, failed-save recovery and reduced
 motion. Existing shared-board geometry and stale-request regressions remain.
 Failed preference loads keep controls disabled and the character still until retry;
 failed saves preserve the last accepted choice. Both recovery paths are exercised

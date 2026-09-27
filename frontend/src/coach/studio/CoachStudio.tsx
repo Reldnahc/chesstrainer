@@ -34,7 +34,6 @@ export default function CoachStudio() {
     () => getCoachStudy(new URLSearchParams(location.search).get("coach")).id,
   );
   const coach = getCoachStudy(coachId);
-  const idles = availableIdles(coach);
   const [expression, setExpression] = useState<CoachExpression>(() => {
     const requested = new URLSearchParams(location.search).get("expression");
     return expressions.find((state) => state === requested) ?? "brilliant";
@@ -46,6 +45,7 @@ export default function CoachStudio() {
     ),
   );
   const [motion, setMotion] = useState<CoachMotion>("natural");
+  const idles = availableIdles(coach, family);
   const [reduced, setReduced] = useState(false);
   const [replay, setReplay] = useState(0);
   const [idlePreview, setIdlePreview] = useState<CoachMicro>("");
@@ -107,6 +107,13 @@ export default function CoachStudio() {
     setIdleVariant(availableIdles(next)[0] ?? "");
     setCoachId(next.id);
     setFamily(next.defaultFamily);
+    setReplay((value) => value + 1);
+  }
+  function selectFamily(id: string) {
+    setPlaying(false);
+    setIdlePreview("");
+    setIdleVariant(availableIdles(coach, id)[0] ?? "");
+    setFamily(id);
     setReplay((value) => value + 1);
   }
   function revealPerformance() {
@@ -212,7 +219,7 @@ export default function CoachStudio() {
         </div>
         <p>{expressionIntent(coach, expression)}</p>
       </div>
-      <ConceptComparison preview={preview} onFamily={setFamily} />
+      <ConceptComparison preview={preview} onFamily={selectFamily} />
       <section className="studio-idle-bar" aria-label="Idle previews">
         <div>
           <h2>The quieter moments</h2>
@@ -250,7 +257,7 @@ export default function CoachStudio() {
       <BoardSizePreview preview={preview} />
       <ExpressionCollection
         preview={preview}
-        onFamily={setFamily}
+        onFamily={selectFamily}
         onSelect={select}
       />
       <aside className="studio-note">
@@ -259,9 +266,9 @@ export default function CoachStudio() {
           <strong>
             {coach.name}: {coach.families.length} directions.
           </strong>{" "}
-          {coach.description} The original Storyteller is used in your reviews.
-          These studies are here to compare before choosing a new coach. Preview
-          controls never change your account preferences.
+          {coach.description} All of these coaches are available in Settings for
+          game review and practice. Preview controls never change your account
+          preferences.
         </p>
       </aside>
     </div>

@@ -7,6 +7,7 @@ import {
   expressionIntent,
   resolveExpression,
   resolveFamily,
+  resolveAnimation,
   type CoachDefinition,
 } from "../src/coach/model";
 import { nextIdle } from "../src/coach/idle";
@@ -174,6 +175,24 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
   expect(resolveFamily(coach, "removed")).toBe(coach.defaultFamily);
   expect(availableIdles(coach)).toContain("glasses");
   expect(availableIdles(coach)).not.toContain("tail");
+  const variant = {
+    ...coach,
+    families: [
+      {
+        ...coach.families[0],
+        animation: {
+          ...classicPerformance,
+          defaultIdle: ["ears"] as const,
+          idleGestures: {},
+        },
+      },
+    ],
+  };
+  expect(availableIdles(variant)).toEqual(["ears"]);
+  expect(resolveAnimation(variant, "removed")).toBe(
+    variant.families[0].animation,
+  );
+  expect(resolveAnimation(coach)).toBe(classicPerformance);
   expect(new Set(availableIdles(coach)).size).toBe(
     availableIdles(coach).length,
   );
