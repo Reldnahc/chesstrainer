@@ -54,7 +54,7 @@ test('pages use full laptop width and 80 percent on larger screens without shrin
   }
 });
 
-test('SRS and game review use identical board, header and coach geometry at each viewport', async ({page}, testInfo) => {
+test('review modes share board and coach sizing without empty mobile controls', async ({page}, testInfo) => {
   const exercise = await (await page.request.post(`/__test/review-explanation-fixture/equal-layout-${testInfo.project.name}`)).json();
   const {id} = await (await page.request.post(`/__test/game-review-fixture/equal-layout-${testInfo.project.name}`)).json();
   expect((await page.request.post(`/api/games/${id}/review`, {data: {}})).ok()).toBe(true);
@@ -79,7 +79,21 @@ test('SRS and game review use identical board, header and coach geometry at each
     await page.goto(`/?exercise=${exercise.exercise_id}`);
     await expect(page.getByRole('button', {name: 'Reveal move', exact: true})).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
-    await expect.poll(dimensions).toEqual(game);
+    await expect.poll(async () => {
+      const practice = await dimensions();
+      // Phones stack content, so SRS coaching follows the board hint directly;
+      // game review also has its working move-navigation controls in between.
+      return size.width <= 760
+        ? {...practice, coach: {...practice.coach, y: game.coach.y}}
+        : practice;
+    }).toEqual(game);
+    if (size.width <= 760) {
+      await expect(page.locator('.review-board-toolbar')).toBeHidden();
+      const hint = await geometry(page.locator('.review-board-hint'));
+      const coach = await geometry(page.locator('.coach-speech'));
+      expect(coach.top - hint.top - hint.height).toBeGreaterThanOrEqual(8);
+      expect(coach.top - hint.top - hint.height).toBeLessThan(24);
+    }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({path: `test-results/shared-layout-srs-${size.width}.png`, fullPage: true});
   }

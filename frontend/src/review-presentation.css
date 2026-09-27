@@ -360,6 +360,11 @@ main:has(.review-workspace-layout) {
   .review-board-toolbar {
     padding: 4px 0 6px;
   }
+  /* Desktop reserves matching board chrome across review modes. On phones,
+     an unused toolbar should not separate the board from the coach. */
+  .review-board-toolbar:empty {
+    display: none;
+  }
   .review-workspace-layout .review-sidebar > .review-coach,
   .review-workspace-layout .review-sidebar > .practice-panel {
     margin: 10px 0 14px;

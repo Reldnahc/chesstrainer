@@ -2,6 +2,19 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Mobile SRS spacing: September 27, 2026
+
+The shared workspace collapses its unused board toolbar on phones. SRS no longer
+has a 54px empty strip before the coach; game-review navigation and shared desktop
+board sizing remain intact.
+
+- Production build and API/TypeScript checks passed.
+- Presentation browser tests: **5 passed, 1 expected mobile skip**, including
+  matching desktop board geometry and tight SRS spacing at 390px and 375px widths.
+- Manually inspected the real SRS page at 390px before and after the fix.
+- Windows left the isolated test server running after assertions completed;
+  terminating only that fixture process let the test runner exit successfully.
+
 ## Selectable coach release: September 27, 2026
 
 All 16 characters are available in Settings and use the shared reaction system
