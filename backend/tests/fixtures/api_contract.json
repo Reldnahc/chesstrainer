@@ -558,6 +558,160 @@
         "title": "ClassificationAudit",
         "type": "object"
       },
+      "ClockFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after_band": {
+            "default": "unknown",
+            "enum": [
+              "critical",
+              "low",
+              "ample",
+              "unknown"
+            ],
+            "title": "After Band",
+            "type": "string"
+          },
+          "after_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After Seconds"
+          },
+          "before_band": {
+            "default": "unknown",
+            "enum": [
+              "critical",
+              "low",
+              "ample",
+              "unknown"
+            ],
+            "title": "Before Band",
+            "type": "string"
+          },
+          "before_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before Seconds"
+          },
+          "before_source": {
+            "default": "unknown",
+            "enum": [
+              "previous_clock",
+              "initial_control",
+              "unknown"
+            ],
+            "title": "Before Source",
+            "type": "string"
+          },
+          "control_kind": {
+            "default": "unknown",
+            "enum": [
+              "increment",
+              "sudden_death",
+              "delay",
+              "staged",
+              "unknown"
+            ],
+            "title": "Control Kind",
+            "type": "string"
+          },
+          "elapsed_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Seconds"
+          },
+          "elapsed_source": {
+            "default": "unknown",
+            "enum": [
+              "annotation",
+              "clock_delta",
+              "unknown"
+            ],
+            "title": "Elapsed Source",
+            "type": "string"
+          },
+          "increment_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Increment Seconds"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "status": {
+            "default": "absent",
+            "enum": [
+              "absent",
+              "annotated",
+              "invalid"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "tempo": {
+            "default": "unknown",
+            "enum": [
+              "fast_with_time",
+              "long_think",
+              "ordinary",
+              "unknown"
+            ],
+            "title": "Tempo",
+            "type": "string"
+          },
+          "time_control": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Control"
+          },
+          "version": {
+            "const": "clock-1",
+            "default": "clock-1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "title": "ClockFacts",
+        "type": "object"
+      },
       "CoachPreferences": {
         "additionalProperties": false,
         "properties": {
@@ -1128,6 +1282,49 @@
           "findings"
         ],
         "title": "EvidenceClassification",
+        "type": "object"
+      },
+      "EvidenceReference": {
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "title": "Field",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ply"
+          },
+          "source": {
+            "enum": [
+              "stockfish",
+              "human",
+              "rule",
+              "pgn",
+              "book",
+              "position"
+            ],
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "id",
+          "field"
+        ],
+        "title": "EvidenceReference",
         "type": "object"
       },
       "Finding": {
@@ -1819,6 +2016,16 @@
               }
             ]
           },
+          "intelligence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MoveIntelligence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "label": {
             "enum": [
               "Brilliant",
@@ -2015,6 +2222,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/HumanEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "intelligence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MoveIntelligence"
               },
               {
                 "type": "null"
@@ -2994,6 +3211,65 @@
         "title": "MoveExplanation",
         "type": "object"
       },
+      "MoveIntelligence": {
+        "additionalProperties": false,
+        "properties": {
+          "clock": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ClockFacts"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewEvent"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ply"
+          },
+          "version": {
+            "const": "move-events-1",
+            "default": "move-events-1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "input_digest",
+          "ply",
+          "events",
+          "clock",
+          "limitations"
+        ],
+        "title": "MoveIntelligence",
+        "type": "object"
+      },
       "MoveRequest": {
         "properties": {
           "from_square": {
@@ -3198,8 +3474,8 @@
             "type": "array"
           },
           "version": {
-            "const": "practical-1",
-            "default": "practical-1",
+            "const": "practical-2",
+            "default": "practical-2",
             "title": "Version",
             "type": "string"
           }
@@ -3327,6 +3603,82 @@
           "rejected"
         ],
         "title": "Rejected",
+        "type": "object"
+      },
+      "ReviewEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Facts",
+            "type": "object"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "mate",
+              "evaluation_change",
+              "critical_resource",
+              "sacrifice",
+              "tactic",
+              "human_contrast",
+              "clock_observation",
+              "opening_departure",
+              "check",
+              "finish"
+            ],
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "actor",
+          "confidence",
+          "importance",
+          "facts",
+          "evidence"
+        ],
+        "title": "ReviewEvent",
         "type": "object"
       },
       "ReviewFeedback": {

@@ -28,7 +28,7 @@ class DifficultyComponents(Contract):
 
 
 class PracticalAssessment(Contract):
-    version: Literal["practical-1"] = "practical-1"
+    version: Literal["practical-2"] = "practical-2"
     input_digest: str
     stockfish_analysis_ids: list[str]
     human_evidence_id: str | None

@@ -5,6 +5,7 @@ from trainer.contracts.common import Color, Contract, LegalMove
 from trainer.diagnosis_types import Finding
 from trainer.explanations import Frame
 from trainer.human_models.types import HumanEvidence
+from trainer.review_intelligence.events_types import MoveIntelligence
 from trainer.review_intelligence.types import PracticalAssessment
 
 MoveQuality = Literal[
@@ -69,6 +70,7 @@ class BookOpening(Contract):
 
 
 class GameMoveReport(Contract):
+    intelligence: MoveIntelligence | None = None
     human: HumanEvidence | None = None
     practical: PracticalAssessment | None = None
     refinement: "RefinementInfo | None" = None

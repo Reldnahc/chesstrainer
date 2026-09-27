@@ -878,6 +878,69 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** ClockFacts */
+        ClockFacts: {
+            /**
+             * After Band
+             * @default unknown
+             * @enum {string}
+             */
+            after_band: "critical" | "low" | "ample" | "unknown";
+            /** After Seconds */
+            after_seconds?: number | null;
+            /**
+             * Before Band
+             * @default unknown
+             * @enum {string}
+             */
+            before_band: "critical" | "low" | "ample" | "unknown";
+            /** Before Seconds */
+            before_seconds?: number | null;
+            /**
+             * Before Source
+             * @default unknown
+             * @enum {string}
+             */
+            before_source: "previous_clock" | "initial_control" | "unknown";
+            /**
+             * Control Kind
+             * @default unknown
+             * @enum {string}
+             */
+            control_kind: "increment" | "sudden_death" | "delay" | "staged" | "unknown";
+            /** Elapsed Seconds */
+            elapsed_seconds?: number | null;
+            /**
+             * Elapsed Source
+             * @default unknown
+             * @enum {string}
+             */
+            elapsed_source: "annotation" | "clock_delta" | "unknown";
+            /** Increment Seconds */
+            increment_seconds?: number | null;
+            /** Limitations */
+            limitations?: string[];
+            /**
+             * Status
+             * @default absent
+             * @enum {string}
+             */
+            status: "absent" | "annotated" | "invalid";
+            /**
+             * Tempo
+             * @default unknown
+             * @enum {string}
+             */
+            tempo: "fast_with_time" | "long_think" | "ordinary" | "unknown";
+            /** Time Control */
+            time_control?: string | null;
+            /**
+             * Version
+             * @default clock-1
+             * @constant
+             */
+            version: "clock-1";
+        };
         /** CoachPreferences */
         CoachPreferences: {
             /**
@@ -1072,6 +1135,20 @@ export interface components {
             run_id: string;
             /** Skill */
             skill: string;
+        };
+        /** EvidenceReference */
+        EvidenceReference: {
+            /** Field */
+            field: string;
+            /** Id */
+            id: string;
+            /** Ply */
+            ply?: number | null;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "stockfish" | "human" | "rule" | "pgn" | "book" | "position";
         };
         /** Finding */
         Finding: {
@@ -1278,6 +1355,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
              * Label
              * @enum {string}
@@ -1329,6 +1407,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
              * Label
              * @enum {string}
@@ -1615,6 +1694,24 @@ export interface components {
              */
             version: string;
         };
+        /** MoveIntelligence */
+        MoveIntelligence: {
+            clock: components["schemas"]["ClockFacts"] | null;
+            /** Events */
+            events: components["schemas"]["ReviewEvent"][];
+            /** Input Digest */
+            input_digest: string;
+            /** Limitations */
+            limitations: string[];
+            /** Ply */
+            ply: number | null;
+            /**
+             * Version
+             * @default move-events-1
+             * @constant
+             */
+            version: "move-events-1";
+        };
         /** MoveRequest */
         MoveRequest: {
             /** From Square */
@@ -1691,10 +1788,10 @@ export interface components {
             stockfish_analysis_ids: string[];
             /**
              * Version
-             * @default practical-1
+             * @default practical-2
              * @constant
              */
-            version: "practical-1";
+            version: "practical-2";
         };
         /** PracticeQueueItem */
         PracticeQueueItem: {
@@ -1734,6 +1831,34 @@ export interface components {
         Rejected: {
             /** Rejected */
             rejected: boolean;
+        };
+        /** ReviewEvent */
+        ReviewEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Facts */
+            facts: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "mate" | "evaluation_change" | "critical_resource" | "sacrifice" | "tactic" | "human_contrast" | "clock_observation" | "opening_departure" | "check" | "finish";
         };
         /** ReviewFeedback */
         ReviewFeedback: {

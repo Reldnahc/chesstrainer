@@ -231,3 +231,10 @@ the same grading/evidence rules with deeper and selectively wider Stockfish
 searches. Baseline facts remain immutable; effective reports, accuracy and
 incremental revisions use compatible adopted evidence. See
 [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for selection, budgets and provenance.
+
+Review/variation responses include versioned semantic `intelligence`: objective
+transitions, critical resources, sacrifice/tactic witnesses, honest human-policy
+contrasts and valid mainline clock/opening observations. These facts prepare the
+neutral dialogue layer without changing badges based on human or clock data.
+See [REVIEW_EVENTS.md](REVIEW_EVENTS.md). A good restricted-root alternative now
+also disproves an only-good-move Great claim; all comparisons remain Stockfish facts.

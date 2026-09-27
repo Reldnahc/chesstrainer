@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 4 verified; Milestone 5 is next.
+Current checkpoint: Milestone 5 verified; Milestone 6 is next.
 
 ## Baseline
 
@@ -89,7 +89,7 @@ Milestone 2: `0bfa31b209dda119a5cc4b0a3c3fece5eb1bce03` — production human-evi
 - Ruff lint/format and diff whitespace checks pass. No weights/binaries/private
   PGNs or databases enter source commits. Setup/resource docs: HUMAN_MODELS.md.
 
-Milestone 3: `f9f1abfc73e74a1054b37af6baf3a3d5b44eec84` � versioned practical
+Milestone 3: `f9f1abfc73e74a1054b37af6baf3a3d5b44eec84` — versioned practical
 difficulty and human naturalness.
 
 - Pure semantic layer derives model naturalness separately from Stockfish quality,
@@ -109,11 +109,10 @@ difficulty and human naturalness.
 - Broader empirical population calibration remains explicitly unclaimed, not a
   blocker; only coarse heuristic bands are exposed.
 
-Milestone 4: bounded additive investigation complete; commit SHA will be recorded
-at the next boundary.
+Milestone 4: `c9b6f0bdf74e5f8ea3e08bf9878f8752051862ad` — bounded additive investigation.
 
 - Preserved per-move baseline, finite priority nominations, deeper/wider/restricted
-  questions through existing Stockfish authority/cache/pool, 8 positions � 4
+  questions through existing Stockfish authority/cache/pool, 8 positions × 4
   queries by default. Interruptible active search/slot wait; resumed question
   references. Separate owned tasks, identity/depth/consistency adoption gates.
 - Migration `55de0b7b8ff2`, 36 application tables. Effective-report reader and
@@ -135,6 +134,29 @@ at the next boundary.
 - Critical review added root-candidate depth floors, safe optional-query failure,
   migration preservation, cross-account FK checks and verification of the actual
   pooled search result's binary identity. No pushes or deployment changes.
+
+Milestone 5: semantic events and clock context complete; commit SHA will be
+recorded at the next boundary.
+
+- Versioned coach-independent events reference Stockfish, human policy, rules,
+  legal board transitions and PGN/book evidence. Positive resources, sacrifices,
+  tactics, mate transitions, evaluation swings and honest human contrasts all
+  have positive and abstention coverage. Objective event IDs survive human refresh.
+- Valid PGN clocks now survive canonical imports. Same-player clock arithmetic
+  handles increments, missing observations, invalid annotations and unsupported
+  staged/delay controls conservatively; branches never inherit mainline clocks.
+  Previously stripped comments cannot be reconstructed from saved Game PGNs.
+- Critical review found separately searched played moves could disprove an
+  only-good-move claim. Shared typed score comparison now protects both Great
+  grading and practical-2 assessment. No fake centipawn mate ordering.
+- Full backend: 529 passed, 3 explicit native Maia opt-in skips, two existing
+  TestClient dependency warnings. Focused semantic/review suite: 104 passed;
+  import/restart/branch and sync coverage after comment preservation: 36 passed.
+- Native Stockfish + supported 79M application review, offline restart cache and
+  coach-independence smoke passed separately. Production build, generated API,
+  negative TypeScript contracts, Ruff lint/format and whitespace checks pass.
+- No new database tables or production UI surfaces. Cold-SRS response tests
+  explicitly exclude the added answer-revealing intelligence.
 
 ## Decisions / follow-ups
 

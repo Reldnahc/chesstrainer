@@ -3,6 +3,7 @@
 from trainer.chess_core import Score, digest, engine_context
 from trainer.engine import EngineReferenceMismatch
 from trainer.models import EngineAnalysis, ReviewRefinement
+from trainer.review_scores import score_order
 from trainer.search_limits import EngineCancelled, SearchLimits
 
 
@@ -76,11 +77,6 @@ def adoption_reason(baseline, refined):
 
     # Restricted roots can discover a line missed by the unrestricted search.
     # Do not publish an internally inconsistent best/played comparison.
-    def order(score):
-        if score.kind == "cp":
-            return score.value
-        return 100000 - abs(score.value) if score.outcome() == 1 else -100000 + abs(score.value)
-
-    if order(actual) > order(best):
+    if score_order(actual) > score_order(best):
         return "inconsistent_roots"
     return None

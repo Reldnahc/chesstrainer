@@ -41,9 +41,20 @@ def test_review_fallback_refresh_without_stockfish_restart_or_coach_dependency(
         assert updated["job"]["status"] == "completed", updated["job"]
         assert updated["accuracy"] == original["accuracy"]
         for old, new in zip(original["frames"][1:], updated["frames"][1:]):
-            assert {k: v for k, v in new["report"].items() if k not in {"human", "practical"}} == {
-                k: v for k, v in old["report"].items() if k not in {"human", "practical"}
+            assert {
+                k: v
+                for k, v in new["report"].items()
+                if k not in {"human", "practical", "intelligence"}
+            } == {
+                k: v
+                for k, v in old["report"].items()
+                if k not in {"human", "practical", "intelligence"}
             }
+            assert [
+                e for e in new["report"]["intelligence"]["events"] if e["kind"] != "human_contrast"
+            ] == [
+                e for e in old["report"]["intelligence"]["events"] if e["kind"] != "human_contrast"
+            ]
             assert new["report"]["human"]["status"] == "available"
             assert classify(new["report"], 1000) == classify(old["report"], 1000)
         assert len(provider.calls) == 4

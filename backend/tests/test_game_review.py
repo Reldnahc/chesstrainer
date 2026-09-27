@@ -43,6 +43,7 @@ def test_labels_and_elo_only_change_blunder_severity():
 
 def test_great_only_good_and_both_opponent_error_transitions():
     only = quality(0, 0, second_score={"kind": "cp", "value": -200})
+    only["actual"]["uci"] = only["best"]["uci"]
     assert classify(only, 1000)[0] == "Great"
     assert classify(only | {"legal_count": 1}, 1000)[0] == "Best"
     assert (
@@ -134,9 +135,9 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         ratings = []
         original = routes.public_report
 
-        def record_rating(report, rating):
+        def record_rating(report, rating, **kwargs):
             ratings.append(rating)
-            return original(report, rating)
+            return original(report, rating, **kwargs)
 
         monkeypatch.setattr(routes, "public_report", record_rating)
         game = seed(

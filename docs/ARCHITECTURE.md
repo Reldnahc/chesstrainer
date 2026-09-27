@@ -261,3 +261,8 @@ optional pass after the unchanged deep baseline. `review_intelligence/refinement
 own nominations and bounded questions; `review_reports` resolves compatible
 saved evidence for presentation. The existing native cache and shared engine
 pool remain the compute authority. See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).
+
+`review_intelligence/events`, `event_facts`, `context` and `clocks` derive typed,
+traceable semantic events from saved chess facts and PGN annotations. No character
+prose enters this layer. [REVIEW_EVENTS.md](REVIEW_EVENTS.md) specifies gates and
+clock abstention; `review_scores` shares Stockfish-only alternative comparisons.

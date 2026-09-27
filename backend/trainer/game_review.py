@@ -19,6 +19,8 @@ from trainer.move_causes import move_causes
 from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
 from trainer.review_intelligence.difficulty import assess_difficulty
+from trainer.review_intelligence.events import describe_move
+from trainer.review_scores import strongest_alternative
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 VERSION = "game-review-1"
@@ -68,13 +70,13 @@ def classify(report, rating):
         return "Brilliant", "You found a sound piece sacrifice with a verified tactical idea."
     # Great is best/near-best AND critical; a sole legal reply is never an achievement.
     if cp <= 20 and report["legal_count"] > 1:
-        second = report["second_score"]
+        second = strongest_alternative(report)
         only_good = (
             second is not None
             and (
-                evaluation_loss(best, Score.model_validate(second)).allows_mate
-                or evaluation_loss(best, Score.model_validate(second)).mate_lost
-                or (evaluation_loss(best, Score.model_validate(second)).cp or 0) >= 150
+                evaluation_loss(best, second).allows_mate
+                or evaluation_loss(best, second).mate_lost
+                or (evaluation_loss(best, second).cp or 0) >= 150
             )
             and numeric(actual) >= -50
         )
@@ -218,7 +220,7 @@ def analyze_move(engine, board, move, previous_score=None):
     }
 
 
-def public_report(report, rating):
+def public_report(report, rating, *, context=None):
     label, reason = classify(report, rating)
     engine_label = label
     findings = report["actual_line"]["findings"]
@@ -234,8 +236,10 @@ def public_report(report, rating):
     if opening:
         label, reason = "Book", "This move is part of a recognized opening line."
         coach = f"This follows {opening['name']} ({opening['eco']})." if opening["name"] else reason
+    practical = assess_difficulty(report)
     return report | {
-        "practical": assess_difficulty(report).model_dump(mode="json"),
+        "practical": practical.model_dump(mode="json"),
+        "intelligence": describe_move(report, practical, context).model_dump(mode="json"),
         "label": label,
         "engine_label": engine_label,
         "opening": opening,

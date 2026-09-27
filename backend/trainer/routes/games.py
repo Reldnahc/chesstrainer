@@ -27,6 +27,7 @@ from trainer.models import (
     ImportGame,
     ReviewRefinement,
 )
+from trainer.review_intelligence.context import move_contexts
 from trainer.review_reports import load_accuracy_scores, load_game_reports
 from trainer.workspaces import CurrentWorkspace
 
@@ -136,6 +137,7 @@ def create_router(*, settings, engine_factory):
             job = db.get(AnalysisJob, review.job_id) if review else None
             rating = review.rating if review else 1000
             saved, revisions = load_game_reports(db, game_id)
+            contexts = move_contexts(parsed) if saved else {}
             frames = [
                 position(board)
                 | {
@@ -156,7 +158,9 @@ def create_router(*, settings, engine_factory):
                         "uci": move.uci(),
                         "number": number,
                         "actor": "white" if actor else "black",
-                        "report": public_report(saved[ply], pgn_rating(parsed, actor) or rating)
+                        "report": public_report(
+                            saved[ply], pgn_rating(parsed, actor) or rating, context=contexts[ply]
+                        )
                         if ply in saved
                         else None,
                     }
@@ -203,6 +207,7 @@ def create_router(*, settings, engine_factory):
             starting_color = parsed.board().turn
             total = sum(1 for _ in parsed.mainline_moves())
             saved, revisions = load_game_reports(db, game_id)
+            contexts = move_contexts(parsed) if saved else {}
             if after_revision is not None:
                 plies = [ply for ply in saved if revisions[ply] > after_revision]
             else:
@@ -211,7 +216,9 @@ def create_router(*, settings, engine_factory):
             moves = []
             for ply in plies:
                 color = starting_color if ply % 2 else not starting_color
-                report = public_report(saved[ply], pgn_rating(parsed, color) or review.rating)
+                report = public_report(
+                    saved[ply], pgn_rating(parsed, color) or review.rating, context=contexts[ply]
+                )
                 # Board positions are loaded once. Progress needs new display
                 # fields, not repeated full witness lines or legal-move lists.
                 moves.append(
@@ -234,6 +241,7 @@ def create_router(*, settings, engine_factory):
                                 "human",
                                 "practical",
                                 "refinement",
+                                "intelligence",
                             )
                             if key in report
                         },
@@ -391,7 +399,8 @@ def create_router(*, settings, engine_factory):
                 report["best"]["uci"],
                 fallback,
             )
-            report = public_report(report, rating)
+            context = move_contexts(parsed).get(data.ply) if not data.moves else None
+            report = public_report(report, rating, context=context)
             return {"report": report, "score": report["white_score"], "best_move": None}
 
     return router

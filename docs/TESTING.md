@@ -231,3 +231,10 @@ shared-slot cancellation, resume, optional failure, revision polling,
 account-private references and legacy migration. Game browser tests exercise
 earlier-ply revisions and stable board geometry at desktop/mobile widths. Native
 benchmarks and their limitations are documented in [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).
+
+Semantic review coverage: `test_review_events.py` and `test_review_clocks.py`
+exercise each event family, positive/negative evidence, deterministic identities,
+clock arithmetic and invalid/absent annotations, import/restart preservation,
+arbitrary-branch exclusion, and cold-SRS API protection. Fixtures contain legal
+synthetic positions; their synthetic evaluations are rule inputs, not benchmark
+chess claims. Native review/human smoke verifies the combined production path.

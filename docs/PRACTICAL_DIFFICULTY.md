@@ -1,6 +1,6 @@
 # Practical difficulty and human naturalness
 
-`review_intelligence/difficulty.py` derives `practical-1` from saved Stockfish and
+`review_intelligence/difficulty.py` derives `practical-2` from saved Stockfish and
 human evidence. It performs no search, changes no grades, and uses no coach
 identity. Full-game and variation reports expose the same typed assessment.
 Legacy Stockfish-only reports retain structural facts and explicitly abstain
@@ -26,6 +26,13 @@ move. `only_good_move_at_depth` requires a nonlosing best move and a runner-up a
 least 150 cp worse that reaches -150 cp or a losing mate. A missed forced win
 while retaining +5 is **not** a sole defensive resource. These are bounded-search
 and rule conclusions, not proof against perfect play.
+
+Version 2 also includes a separately searched played move when comparing
+alternatives. If that move is different from the engine's first choice and also
+holds the position, it disproves an only-good-move claim even if the unrestricted
+MultiPV runner-up scored poorly. The same Stockfish-only comparison protects the
+Fieldwork Great rule. A missing runner-up is still unknown, never proof of a sole
+resource. Version 1's recorded benchmark below remains a historical measurement.
 
 ## Conservative bands and confidence
 

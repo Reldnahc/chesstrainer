@@ -3,8 +3,9 @@
 from trainer.chess_core import Score, digest, evaluation_loss
 from trainer.human_models.types import HumanEvidence
 from trainer.review_intelligence.types import DifficultyComponents, PracticalAssessment
+from trainer.review_scores import strongest_alternative
 
-VERSION = "practical-1"
+VERSION = "practical-2"
 # Coarse gates inspected on the fixed 12-position × 4-rating probe (see docs).
 # These are model-policy descriptions, not calibrated human success rates.
 PREFERRED_POLICY = 0.10
@@ -26,18 +27,20 @@ def naturalness(move):
 
 def root_comparison(report):
     best = Score.model_validate(report["best"]["score"])
-    second = report.get("second_score")
+    second = strongest_alternative(report)
     legal_count = report["legal_count"]
     if legal_count == 1:
         return None, 1, True, False
     if second is None:
         return None, 1, False, None
-    second = Score.model_validate(second)
     gap = evaluation_loss(best, second)
     acceptable = not (gap.mate_lost or gap.allows_mate) and (gap.cp or 0) <= 50
     roots = report.get("root_candidates") or []
     observed = 1 + int(acceptable)
     if roots:
+        roots = list(roots)
+        if report["actual"]["uci"] not in {row["uci"] for row in roots}:
+            roots.append(report["actual"])
         observed = sum(
             not (distance.mate_lost or distance.allows_mate) and (distance.cp or 0) <= 50
             for distance in (

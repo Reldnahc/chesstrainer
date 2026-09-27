@@ -46,7 +46,8 @@ def main():
                 assert human["played"]["probability"] is not None
                 assert human["domain"]["alignment"] == "shifted"
                 practical = frame["report"]["practical"]
-                assert practical["version"] == "practical-1"
+                assert practical["version"] == "practical-2"
+                assert frame["report"]["intelligence"]["version"] == "move-events-1"
                 assert practical["played_naturalness"] != "unknown"
                 assert practical["confidence"] == "limited"
                 assert human["conditioning"]["self_rating"] == (
