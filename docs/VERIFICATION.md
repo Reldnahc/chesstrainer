@@ -2,6 +2,32 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Expanded coach cast: September 27, 2026
+
+The studio now offers 16 concepts: Storyteller plus three new men, four women
+including a blonde coach, four cats including a solid-black cat, and two golden
+retrievers alongside a corgi and a border collie. Storyteller remains the sole
+production selection. Retired variants and their unused artwork were removed.
+
+- Production build, generated API consistency and TypeScript contracts passed.
+- Full desktop/mobile browser suite: **111 passed, 3 expected viewport skips**.
+  Account suite: **2 passed**. Final beard-outline polish was followed by another
+  successful build and **4 passing desktop/mobile human-collection checks**.
+- Every concept is checked across all 20 expressions. Each performs brilliant
+  and blunder entrances, supports an idle preview, and respects reduced motion.
+  Tests also check stable geometry, real portrait widths, unique eye masks,
+  cancellation on character switches, old/unknown URL fallbacks, no accidental
+  classic-animation bleed into the new men, and no preview preference writes.
+- Manually used the actual studio, compared reaction silhouettes, reviewed the
+  new expression sheets, and inspected 92.8px/52.5px previews. Refined the collie's
+  folded ear, the black cat's lip/eyelid contrast and dark paws, the new beards'
+  edges, and comparison-button alignment. Mobile layout was checked in emulation.
+- The studio artwork stays lazy-loaded: **15.59 KB JavaScript and 4.08 KB CSS
+  gzipped** in the final build. These are asset sizes, not a device benchmark.
+
+The artwork uses the existing lifecycle and semantic reactions. No backend,
+database, account contract, or engine scheduling changes were required.
+
 ## Additional coach studies: September 27, 2026
 
 The studio now compares a woman, cat and golden retriever, each with three visual

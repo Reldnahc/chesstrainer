@@ -3,7 +3,7 @@ import { coaches } from "../registry";
 import ManCoach from "./ManCoach";
 import WomanCoach from "./WomanCoach";
 import CatCoach from "./CatCoach";
-import RetrieverCoach from "./RetrieverCoach";
+import DogCoach from "./DogCoach";
 
 const animalPerformance: CoachDefinition["animation"] = {
   defaultReactionMs: 1400,
@@ -96,10 +96,10 @@ export const manStudy: CoachDefinition = {
 export const womanStudy: CoachDefinition = {
   ...common,
   id: "woman",
-  name: "Woman",
+  name: "Women",
   defaultFamily: "captain",
   description:
-    "Three women with distinct silhouettes, wardrobes and ways of encouraging a player.",
+    "Four women with distinct silhouettes, wardrobes and ways of encouraging a player.",
   expressionIntents: {
     brilliant: "A delighted double take, then a bright, open smile.",
     best: "Quiet conviction. Exactly the move she was hoping for.",
@@ -140,6 +140,13 @@ export const womanStudy: CoachDefinition = {
         "A swinging ponytail and a plum jacket. Quick to spot—and celebrate—an idea.",
       character: "Anticipation · lively poses · hair follow-through",
     },
+    {
+      id: "blonde",
+      name: "Golden braid",
+      description:
+        "A swept blonde fringe, a loose side braid and a soft blue cardigan. Bright, easygoing company.",
+      character: "Warm smiles · open gestures · a gently settling braid",
+    },
   ],
   Artwork: WomanCoach,
 };
@@ -147,10 +154,10 @@ export const womanStudy: CoachDefinition = {
 export const catStudy: CoachDefinition = {
   ...common,
   id: "cat",
-  name: "Cat",
+  name: "Cats",
   defaultFamily: "tabby",
   description:
-    "Three feline coaches, with expressive ears, whiskers and very deliberate paws.",
+    "Four feline coaches, with expressive ears, whiskers and very deliberate paws.",
   expressionIntents: animalIntents,
   animation: animalPerformance,
   families: [
@@ -175,17 +182,24 @@ export const catStudy: CoachDefinition = {
         "A patchwork face with a turquoise scarf. Always another angle to investigate.",
       character: "Uneven ears · playful head tilts · bright double takes",
     },
+    {
+      id: "black",
+      name: "Velvet night",
+      description:
+        "An all-black coat, amber eyes and a plum scarf. A watchful companion with a soft side.",
+      character: "Tall ears · luminous eyes · quiet whisker movements",
+    },
   ],
   Artwork: CatCoach,
 };
 
-export const retrieverStudy: CoachDefinition = {
+export const dogStudy: CoachDefinition = {
   ...common,
-  id: "retriever",
-  name: "Golden retriever",
+  id: "dog",
+  name: "Dogs",
   defaultFamily: "sunny",
   description:
-    "Three unmistakably golden companions: floppy ears, feathered tails and patient enthusiasm.",
+    "Two beloved goldens, a corgi and a border collie. Four different kinds of good company.",
   expressionIntents: animalIntents,
   animation: { ...animalPerformance, idleRangeMs: [6000, 12000] },
   families: [
@@ -204,19 +218,28 @@ export const retrieverStudy: CoachDefinition = {
       character: "Soft brows · unhurried nods · gentle encouragement",
     },
     {
-      id: "scout",
-      name: "Trail buddy",
+      id: "corgi",
+      name: "Pocket captain",
       description:
-        "A red-gold coat, a green scarf and an alert, adventurous streak.",
-      character: "Perked attention · quick recovery · feathery follow-through",
+        "A red-and-white corgi with big upright ears, a broad grin and a little red bandana.",
+      character: "Eager ears · buoyant double takes · a full-body smile",
+    },
+    {
+      id: "collie",
+      name: "Border collie",
+      description:
+        "A black-and-white coat, a white blaze and one folded ear. Always watching the next move.",
+      character: "Intent eyes · attentive ears · a feathery white-tipped tail",
     },
   ],
-  Artwork: RetrieverCoach,
+  Artwork: DogCoach,
 };
 
 // These assets are imported only by the lazy studio route. Promotion to Settings
 // is a separate product choice and uses the existing typed production registry.
-export const coachStudies = [manStudy, womanStudy, catStudy, retrieverStudy];
+export const coachStudies = [manStudy, womanStudy, catStudy, dogStudy];
 export function getCoachStudy(id: string | null | undefined) {
-  return coachStudies.find((coach) => coach.id === id) ?? manStudy;
+  // Existing golden-retriever preview links now open the broader dog collection.
+  const requested = id === "retriever" ? "dog" : id;
+  return coachStudies.find((coach) => coach.id === requested) ?? manStudy;
 }

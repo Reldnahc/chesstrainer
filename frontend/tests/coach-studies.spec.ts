@@ -3,27 +3,33 @@ import { expressions } from "../src/coach/model";
 
 const characters = [
   {
+    id: "classic",
+    name: "Men",
+    families: ["storyteller", "host", "expert", "partner"],
+    micro: "nod",
+  },
+  {
     id: "woman",
-    name: "Woman",
-    families: ["captain", "analyst", "spark"],
+    name: "Women",
+    families: ["captain", "analyst", "spark", "blonde"],
     micro: "hair",
   },
   {
     id: "cat",
-    name: "Cat",
-    families: ["tabby", "tuxedo", "calico"],
+    name: "Cats",
+    families: ["tabby", "tuxedo", "calico", "black"],
     micro: "ears",
   },
   {
-    id: "retriever",
-    name: "Golden retriever",
-    families: ["sunny", "gentle", "scout"],
+    id: "dog",
+    name: "Dogs",
+    families: ["sunny", "gentle", "corgi", "collie"],
     micro: "tail",
   },
 ];
 
 for (const character of characters) {
-  test(`${character.name} has three complete expressive studies at review sizes`, async ({
+  test(`${character.name} has four complete expressive studies at review sizes`, async ({
     page,
   }, info) => {
     const errors: string[] = [];
@@ -39,12 +45,12 @@ for (const character of characters) {
     await page.goto(`/coach-studio?coach=${character.id}&expression=brilliant`);
     const concepts = page.locator(".studio-concepts .coach-avatar");
     const first = concepts.first();
-    await expect(concepts).toHaveCount(3);
+    await expect(concepts).toHaveCount(4);
     for (const avatar of await concepts.all())
       await expect(avatar).toHaveAttribute("data-coach", character.id);
     await expect(
       page.getByText("In your reviews", { exact: true }),
-    ).toHaveCount(0);
+    ).toHaveCount(character.id === "classic" ? 1 : 0);
     await first.scrollIntoViewIfNeeded();
     await expect(first).toHaveAttribute("data-phase", "reaction");
     await expect
@@ -105,6 +111,43 @@ for (const character of characters) {
       await page.locator(".studio-collection").screenshot({
         path: `test-results/studies-${character.id}-${family}-${info.project.name}.png`,
       });
+      // Every rig must actually perform both signature reactions. The original
+      // man's CSS must not leak onto the shared human rig of the other men.
+      const portrait = page.locator(`.studio-${family} .coach-avatar`);
+      for (const state of ["brilliant", "blunder"]) {
+        await page
+          .getByRole("combobox", { name: "Expression", exact: true })
+          .selectOption(state);
+        await page
+          .getByRole("button", { name: "Replay reaction", exact: true })
+          .click();
+        await expect(portrait).toHaveAttribute("data-phase", "reaction");
+        await expect(portrait).toHaveAttribute("data-expression", state);
+        await expect
+          .poll(() =>
+            portrait.evaluate(
+              (el) =>
+                el
+                  .getAnimations({ subtree: true })
+                  .filter((animation) => animation.playState === "running")
+                  .length,
+            ),
+          )
+          .toBeGreaterThan(0);
+        if (character.id === "classic" && family !== "storyteller") {
+          expect(
+            await portrait.evaluate((el) =>
+              el
+                .getAnimations({ subtree: true })
+                .some(
+                  (animation) =>
+                    animation instanceof CSSAnimation &&
+                    animation.animationName.startsWith("classic-"),
+                ),
+            ),
+          ).toBe(false);
+        }
+      }
     }
 
     const idles = page.getByRole("combobox", {
@@ -138,7 +181,7 @@ for (const character of characters) {
             els.flatMap((el) => el.getAnimations({ subtree: true })).length,
         ),
     ).toBe(0);
-    // Eye masks must belong to their own character when 29 SVGs share a page.
+    // Each eye mask must belong to its own character across all preview SVGs.
     const ids = await page
       .locator(".coach-avatar clipPath")
       .evaluateAll((els) => els.map((el) => el.id));
@@ -158,7 +201,7 @@ test("study links restore character and family; changing character resets unsupp
 }) => {
   await page.goto("/coach-studio?coach=cat&family=tuxedo&expression=thinking");
   await expect(
-    page.getByRole("button", { name: "Preview Cat", exact: true }),
+    page.getByRole("button", { name: "Preview Cats", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
   await expect(
     page.getByRole("combobox", { name: "Collection", exact: true }),
@@ -173,7 +216,7 @@ test("study links restore character and family; changing character resets unsupp
     page.getByRole("button", { name: "Stop sequence" }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "Preview Woman", exact: true })
+    .getByRole("button", { name: "Preview Women", exact: true })
     .click();
   await expect(page.getByRole("button", { name: "Stop sequence" })).toHaveCount(
     0,
@@ -203,7 +246,7 @@ test("study links restore character and family; changing character resets unsupp
     page.getByRole("combobox", { name: "Expression", exact: true }),
   ).toHaveValue("blunder");
   await expect(
-    page.getByRole("button", { name: "Preview Woman", exact: true }),
+    page.getByRole("button", { name: "Preview Women", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
 
   await page.goto(
@@ -218,6 +261,39 @@ test("study links restore character and family; changing character resets unsupp
   await expect(
     page.getByRole("combobox", { name: "Expression", exact: true }),
   ).toHaveValue("brilliant");
+  await page.getByRole("link", { name: "Back to Settings" }).click();
+  await expect(page.getByRole("radio")).toHaveCount(1);
+});
+
+test("retired concepts have safe bookmark fallbacks without adding production choices", async ({
+  page,
+}) => {
+  for (const family of ["mentor", "spark"]) {
+    await page.goto(
+      `/coach-studio?coach=classic&family=${family}&expression=blunder`,
+    );
+    await expect(
+      page.getByRole("combobox", { name: "Collection", exact: true }),
+    ).toHaveValue("storyteller");
+    await expect(page.locator(".studio-current")).toHaveCount(1);
+    await expect(
+      page.locator(".studio-storyteller .coach-avatar"),
+    ).toHaveAttribute("data-expression", "blunder");
+  }
+  await page.goto(
+    "/coach-studio?coach=retriever&family=gentle&expression=good",
+  );
+  await expect(
+    page.getByRole("button", { name: "Preview Dogs", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await expect(
+    page.getByRole("combobox", { name: "Collection", exact: true }),
+  ).toHaveValue("gentle");
+  await expect(page).toHaveURL(/coach=dog/);
+  await page.goto("/coach-studio?coach=retriever&family=scout");
+  await expect(
+    page.getByRole("combobox", { name: "Collection", exact: true }),
+  ).toHaveValue("sunny");
   await page.getByRole("link", { name: "Back to Settings" }).click();
   await expect(page.getByRole("radio")).toHaveCount(1);
 });

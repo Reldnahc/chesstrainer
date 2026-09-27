@@ -1,4 +1,4 @@
-export type WomanLook = "captain" | "analyst" | "spark";
+export type WomanLook = "captain" | "analyst" | "spark" | "blonde";
 
 export default function WomanHair({
   look,
@@ -7,6 +7,43 @@ export default function WomanHair({
   look: WomanLook;
   front?: boolean;
 }) {
+  if (look === "blonde")
+    return front ? (
+      <g fill="#dcc078">
+        <path d="M16 39Q7 12 28 8 48-2 62 16q7 9 2 24l-6-11-1-10Q45 34 21 31l-1 10Z" />
+        <path
+          d="M22 23q14-1 29-12M23 27q20-2 32-12"
+          stroke="#f4df9f"
+          strokeWidth="2.3"
+          fill="none"
+          strokeLinecap="round"
+        />
+        <path
+          d="M58 20q5 6 3 14"
+          stroke="#b99b5d"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
+        />
+      </g>
+    ) : (
+      <g className="study-hair-motion">
+        <path d="M17 26q-10 19 3 41l9 2 27-2q10-7 9-28l-5-22Z" fill="#b99b5d" />
+        <path
+          d="M61 44q13 7 4 17 8 6 0 14l-6 4q-11-7-4-15-8-6-1-13Z"
+          fill="#dcc078"
+        />
+        <path
+          d="m58 49 8 7-10 7 9 8-6 5"
+          stroke="#b29556"
+          strokeWidth="1.7"
+          fill="none"
+          strokeLinecap="round"
+        />
+        <path d="m58 78-2 9 10-2-4-8Z" fill="#e8cc88" />
+        <path d="m57 77 7-1 1 4-7 1Z" fill="#9d6774" />
+      </g>
+    );
   if (look === "analyst")
     return front ? (
       <g fill="#30272b">

@@ -10,16 +10,21 @@ export type AnimalPalette = {
   iris: string;
   accent: string;
   brow: string;
+  lid?: string;
+  paw?: string;
+  lip?: string;
 };
 
 export default function AnimalFace({
   pose,
   palette,
   dog = false,
+  muzzleShape,
 }: {
   pose: AnimalPose;
   palette: AnimalPalette;
   dog?: boolean;
+  muzzleShape?: string;
 }) {
   const mask = useId();
   const { eye, gaze } = pose;
@@ -40,7 +45,12 @@ export default function AnimalFace({
       </g>
       <g className="animal-eyes">
         {pose.closed ? (
-          <g stroke="#302b29" strokeWidth="2" fill="none" strokeLinecap="round">
+          <g
+            stroke={palette.lid ?? "#302b29"}
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          >
             {xs.map((x) => (
               <path
                 key={x}
@@ -110,7 +120,10 @@ export default function AnimalFace({
       </g>
       {dog ? (
         <path
-          d="M32 57q0-10 11-10h14q11 0 11 10v5Q65 77 50 77 35 77 32 62Z"
+          d={
+            muzzleShape ??
+            "M32 57q0-10 11-10h14q11 0 11 10v5Q65 77 50 77 35 77 32 62Z"
+          }
           fill={palette.muzzle}
         />
       ) : (
@@ -144,7 +157,7 @@ export default function AnimalFace({
             <path
               d={`M${dog ? 38 : 40} ${noseY + 7}q${dog ? 12 : 10} 5 ${dog ? 24 : 20} 0-1 13-${dog ? 12 : 10} 13-${dog ? 11 : 9}-1-${dog ? 12 : 10}-13Z`}
               fill="#5b3630"
-              stroke="none"
+              stroke={palette.lip ?? "none"}
             />
             <path
               d={`M45 ${noseY + 14}q5-4 10 0v4q-5 7-10 0Z`}
@@ -161,7 +174,7 @@ export default function AnimalFace({
             rx={dog ? 4.5 : 3.8}
             ry="5.5"
             fill="#5b3630"
-            stroke="none"
+            stroke={palette.lip ?? "none"}
           />
         )}
         {pose.mouth === "concern" && <path d={`M42 ${noseY + 12}q8-5 16 0`} />}

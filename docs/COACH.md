@@ -29,13 +29,14 @@ collection, replay entrances and idle gestures, run a transition sequence, and
 preview natural/subtle/still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
 
-The studio also includes nine new character studies, each with all 20 expressions:
+The studio contains 16 concepts across four groups, each with all 20 expressions:
 
 | Character | Concepts | Character-specific motion |
 |---|---|---|
-| Woman | Club captain, Quiet analyst, Bright spark | Hair follow-through, open palms, thoughtful chin poses and a restrained or lively performance |
-| Cat | Library tabby, Midnight tactician, Curious calico | Perked/flattened ears, whiskers, paw gestures and occasional tail flicks |
-| Golden retriever | Sunny companion, Gentle professor, Trail buddy | Floppy ears, broad muzzles, feathered tails and gentle or enthusiastic reactions |
+| Men | Storyteller, Club host, Endgame expert, Creative partner | Shared facial/hand articulation; distinct hair, facial hair, face shapes and clothing |
+| Women | Club captain, Quiet analyst, Bright spark, Golden braid | Hair follow-through, open palms, thoughtful chin poses; blonde side braid on the fourth concept |
+| Cats | Library tabby, Midnight tactician, Curious calico, Velvet night | Expressive ears, whiskers, paws and tails; the fourth has solid-black fur and amber eyes |
+| Dogs | Sunny companion, Gentle professor, Pocket captain, Border collie | Two goldens, a corgi and a border collie with distinct ears, muzzle geometry, coats, chests and tails |
 
 Use the character picker above the expression controls. `coach`, `family` and
 `expression` query parameters restore a comparison directly; existing links still
@@ -43,10 +44,12 @@ open the original coach. Switching characters stops a running sequence, clears t
 pending idle preview and selects a valid family/idle gesture. Preview controls
 offer only the idle gestures that the character actually implements.
 
-These nine studies are preview-only. Settings still offers the original coach,
+The 15 alternatives are preview-only. Settings still offers the original coach,
 and opening a study never writes account preferences or submits engine work.
 The new artwork and motion styles are loaded with the studio route, so ordinary
-reviews do not download the additional characters. The illustration assets are
+reviews do not download the additional characters. Existing `coach=retriever`
+links resolve to the dog collection; the retired Trail buddy (`scout`) family
+falls back to Sunny companion. The illustration assets are
 original SVG artwork maintained as React components; no external images or assets
 are required.
 
@@ -56,7 +59,7 @@ Each character keeps its expression after the entrance settles. Blunder idles us
 breathing, ears or hair rather than a happy tail wag. Reduced motion keeps the
 full expressive silhouette while disabling all reaction and idle animations.
 
-Storyteller remains the production direction, with its original artwork and
+Storyteller remains the production direction, with its review artwork and
 performance unchanged. The former Quiet mentor and Graphic spark variants of
 that same man have been retired in favor of three distinct people. Old family
 links fall back to Storyteller. The production registry contains only the original
@@ -108,14 +111,18 @@ even when many differently posed characters appear together in the studio.
 `model.ts` defines the character contract. `registry.ts` supplies its ID, name,
 description, supported states, fallback map, concept families, default family,
 capabilities, animation timing/idle configuration and artwork component. The
-default SVG rig, poses, motion tracks and keyframes live in `classic/`; shared
+default SVG rig, motion tracks and keyframes live in `classic/`; shared
 lifecycle and preference code contain no references to its facial geometry.
 Reusable human expressions, facial layers and open-palm hand artwork live in
 `human/`. Individual human coaches provide their own silhouette, palette and acting.
-`studies/catalog.ts` is a separate preview catalogue. The woman uses the shared
-human primitives; cat and retriever artwork share animal expressions, eyes,
+`studies/catalog.ts` is a separate preview catalogue. The new men and women use shared
+human primitives; cat and dog artwork share animal expressions, eyes,
 muzzles and paws. Silhouettes, fur markings, hair, outfits and accessories remain
-with each artwork component. The study CSS uses its own namespaced motion tracks.
+with each artwork component. Dog head geometry is separated from the common body
+rig and palettes, so a new breed does not duplicate facial animation. Dark-coated
+animals can supply a lighter eyelid stroke to keep closed expressions legible.
+The study CSS uses its own namespaced motion tracks; classic CSS is scoped to
+Storyteller so it cannot also animate the shared human rig of another man.
 To develop another concept before release, register it in the study catalogue;
 production selection is still governed by the typed account preference contract.
 

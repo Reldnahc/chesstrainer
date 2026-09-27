@@ -27,6 +27,7 @@ const palettes: Record<string, AnimalPalette> = {
     iris: "#9ebe9b",
     accent: "#ba9860",
     brow: "#aaa997",
+    lid: "#aaa997",
   },
   calico: {
     fur: "#eed9b6",
@@ -37,6 +38,19 @@ const palettes: Record<string, AnimalPalette> = {
     iris: "#84969b",
     accent: "#679491",
     brow: "#665044",
+  },
+  black: {
+    fur: "#2c303b",
+    dark: "#1c202a",
+    light: "#7e8b9d",
+    muzzle: "#3c424f",
+    nose: "#b5a0aa",
+    iris: "#d9b054",
+    accent: "#9b7081",
+    brow: "#a0a5b1",
+    lid: "#a0a5b1",
+    paw: "#49515f",
+    lip: "#b48e98",
   },
 };
 
@@ -110,9 +124,11 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
                       >
                         <path
                           d={
-                            look === "tuxedo"
-                              ? "M15 36 9 5q16 1 26 22Z"
-                              : "M14 37 10 9q15-3 26 20Z"
+                            look === "black"
+                              ? "M17 36 11 3q14 3 22 26Z"
+                              : look === "tuxedo"
+                                ? "M15 36 9 5q16 1 26 22Z"
+                                : "M14 37 10 9q15-3 26 20Z"
                           }
                           fill={
                             look === "calico" && right ? "#41464a" : palette.fur
@@ -120,7 +136,13 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
                         />
                         <path
                           d="m17 29-3-14q9 1 15 12Z"
-                          fill={look === "tuxedo" ? "#a87d7b" : "#d59682"}
+                          fill={
+                            look === "black"
+                              ? "#786674"
+                              : look === "tuxedo"
+                                ? "#a87d7b"
+                                : "#d59682"
+                          }
                         />
                         <path
                           d="m17 29 4-6 5 8"
@@ -133,12 +155,23 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
                 ))}
                 <path
                   d={
-                    look === "tuxedo"
-                      ? "M20 32Q28 21 50 23q22-2 30 9l4 17-5 3 3 7-8 1Q66 78 50 80 34 78 26 60l-8-1 3-7-5-3Z"
-                      : "M19 32Q28 23 50 24q22-1 31 8l3 16-5 4 5 6-9 2Q66 78 50 80 34 78 25 60l-9-2 5-6-5-4Z"
+                    look === "black"
+                      ? "M22 31Q34 21 50 24q18-2 28 7l5 20-5 2 3 6-8 1Q63 78 50 79 37 78 27 60l-8-1 3-6-5-2Z"
+                      : look === "tuxedo"
+                        ? "M20 32Q28 21 50 23q22-2 30 9l4 17-5 3 3 7-8 1Q66 78 50 80 34 78 26 60l-8-1 3-7-5-3Z"
+                        : "M19 32Q28 23 50 24q22-1 31 8l3 16-5 4 5 6-9 2Q66 78 50 80 34 78 25 60l-9-2 5-6-5-4Z"
                   }
                   fill={palette.fur}
                 />
+                {look === "black" && (
+                  <path
+                    d="M24 32q7-5 15-5m22 0q9 0 15 5M22 49l4 4m48 0 4-4"
+                    stroke="#626b7b"
+                    strokeWidth="1.3"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                )}
                 {look === "tabby" && (
                   <g fill={palette.dark}>
                     <path d="m39 25 4 10 4-11 3 13 3-13 4 11 4-10-1 13-10 2-10-2Z" />
@@ -179,7 +212,7 @@ export default function CatCoach({ expression, family }: CoachArtworkProps) {
           <AnimalPaws
             pose={pose}
             palette={palette}
-            mittens={look !== "tabby"}
+            mittens={look === "tuxedo" || look === "calico"}
           />
         </g>
       </g>

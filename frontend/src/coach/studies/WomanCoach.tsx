@@ -33,11 +33,21 @@ const palettes = {
     cuff: "#d6ac98",
     hair: "#322b3a",
   },
+  blonde: {
+    skin: "#eac5a5",
+    shade: "#c99976",
+    coat: "#7398ac",
+    sleeve: "#608396",
+    cuff: "#c4d9da",
+    hair: "#a7864c",
+  },
 };
 
 export default function WomanCoach({ expression, family }: CoachArtworkProps) {
   const look: WomanLook =
-    family === "analyst" || family === "spark" ? family : "captain";
+    family === "analyst" || family === "spark" || family === "blonde"
+      ? family
+      : "captain";
   const color = palettes[look];
   const source = poses[expression];
   const pose: Pose = {
@@ -96,6 +106,18 @@ export default function WomanCoach({ expression, family }: CoachArtworkProps) {
           )}
           {look === "analyst" && (
             <path d="M32 80v23m16-23v23" stroke="#a38d72" strokeWidth="1.2" />
+          )}
+          {look === "blonde" && (
+            <g>
+              <path d="M24 70q16 16 32 0l7 33H17Z" fill={color.coat} />
+              <path
+                d="M25 72q15 15 30 0M38 84v19m4-18v18"
+                fill="none"
+                stroke="#b5cdd3"
+                strokeWidth="1.1"
+              />
+              <path d="M49 91h10v8H49Z" fill="#608396" />
+            </g>
           )}
           <g className="study-head">
             <g className="study-head-idle">

@@ -173,6 +173,8 @@
   gap: 16px;
 }
 .studio-concept {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   background: #252d27;
   border: 1px solid #435243;
@@ -274,6 +276,7 @@
   padding-inline: 0;
   color: #cbd9bd;
   font-size: 11px;
+  margin-top: auto;
 }
 .studio-concept > button[aria-pressed="true"] {
   color: #ebeedf;

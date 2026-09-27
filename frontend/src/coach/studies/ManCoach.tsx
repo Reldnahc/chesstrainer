@@ -144,7 +144,7 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
                 <ManHair look={look} />
                 {look === "host" && (
                   <g fill={color.hair}>
-                    <path d="M18 46 23 51l2 13q15 10 30 0l2-13 5-5v10q-3 18-22 20-19-2-22-20Z" />
+                    <path d="M17 49 23 54l2 9q15 10 30 0l2-9 6-5v4q-2 20-23 21-21-1-23-21Z" />
                     <path d="M29 54q6-4 11 0 5-4 11 0l-1 3q-6-1-10-2-4 1-10 2Z" />
                   </g>
                 )}
@@ -159,7 +159,7 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
                 )}
                 {look === "partner" && (
                   <g fill={color.hair}>
-                    <path d="M19 47 23 50l3 13 6 4q8 4 16 0l6-4 3-13 4-3v11q-3 17-21 19-18-2-21-19Z" />
+                    <path d="M18 48 23 51l3 12 6 4q8 4 16 0l6-4 3-12 5-3v3Q60 72 40 76 20 72 18 51Z" />
                     <path d="M29 55q3-5 11-2 8-3 11 2l-2 3q-6-3-9-3-3 0-9 3Z" />
                   </g>
                 )}

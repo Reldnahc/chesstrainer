@@ -58,7 +58,7 @@ export default function AnimalPaws({
           <g transform={`translate(${x} ${y}) rotate(${angle})`}>
             <path
               d="M-7 3v-7q0-5 4-5l3 1 3-1q4 0 4 5v7q-7 6-14 0Z"
-              fill={mittens ? palette.muzzle : palette.light}
+              fill={mittens ? palette.muzzle : (palette.paw ?? palette.light)}
             />
             <path
               d="M-3-5v3m6-3v3"
