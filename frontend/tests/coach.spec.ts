@@ -73,7 +73,7 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
     "Your king has no legal escape",
   );
   await page.getByRole("button", { name: "First move", exact: true }).click();
-  await expect(avatar).toHaveAttribute("data-expression", "neutral");
+  await expect(avatar).toHaveAttribute("data-expression", "explaining");
   const fixture = await (
     await page.request.post(
       `/__test/review-explanation-fixture/coach-${info.project.name}`,

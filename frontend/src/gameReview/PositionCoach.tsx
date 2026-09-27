@@ -4,6 +4,7 @@ import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
 import type { Game, Position, Report } from "./types";
 import { gameReaction } from "../coach/reactions";
+import { completionText } from "./narrativeText";
 
 export default function PositionCoach({
   game,
@@ -44,6 +45,10 @@ export default function PositionCoach({
       reviewStarting ||
       ["queued", "running"].includes(game.job?.status ?? ""),
   });
+  if (!actor && !report && game.narrative?.complete && !errorAtPosition) {
+    reaction.state = "explaining";
+    reaction.key += `:complete:${game.narrative.input_digest}`;
+  }
   const finish =
     reaction.state === "winning"
       ? "Checkmate. You finished the attack; the king has no legal escape."
@@ -54,7 +59,7 @@ export default function PositionCoach({
           : null;
   const coachIntro =
     game.job?.status === "completed"
-      ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea."
+      ? completionText(game) || "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea."
       : game.job?.status === "cancelled"
         ? "Your review is paused. Resume it below, or move a piece to explore."
         : game.job?.status === "failed" || (!game.job && !reviewStarting)

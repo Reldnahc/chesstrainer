@@ -1,6 +1,7 @@
 import MoveBadge from "../MoveBadge";
 import { AccuracyReadout } from "./Players";
 import type { Game } from "./types";
+import GameStory from "./GameStory";
 
 const labels = [
   "Brilliant",
@@ -21,6 +22,7 @@ export default function ReviewSummary({
   reviewStarting,
   start,
   cancel,
+  onSelect,
 }: {
   game: Game;
   running: boolean;
@@ -28,6 +30,7 @@ export default function ReviewSummary({
   reviewStarting: boolean;
   start: () => Promise<void>;
   cancel: () => Promise<void>;
+  onSelect: (ply: number) => void;
 }) {
   const last = game.frames.length - 1;
   const refining = game.job?.phase === "refinement";
@@ -100,6 +103,7 @@ export default function ReviewSummary({
           </p>
         )}
       </section>
+      <GameStory game={game} onSelect={onSelect} />
       <details className="game-summary">
         <summary>
           Move quality

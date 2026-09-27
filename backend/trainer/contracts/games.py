@@ -8,6 +8,7 @@ from trainer.human_models.types import HumanEvidence
 from trainer.review_intelligence.events_types import MoveIntelligence
 from trainer.review_intelligence.game_types import GameContext
 from trainer.review_intelligence.history import CrossGameContext
+from trainer.review_intelligence.narrative import GameNarrative
 from trainer.review_intelligence.types import PracticalAssessment
 
 MoveQuality = Literal[
@@ -138,6 +139,7 @@ class ReviewJob(Contract):
 
 
 class GameDetail(Contract):
+    narrative: GameNarrative | None = None
     history: CrossGameContext | None = None
     context: GameContext | None = None
     review_revision: int = 0
@@ -161,6 +163,7 @@ class ReviewedMove(Contract):
 
 
 class ReviewProgress(Contract):
+    narrative: GameNarrative | None = None
     history: CrossGameContext | None = None
     context: GameContext | None = None
     revision: int = 0

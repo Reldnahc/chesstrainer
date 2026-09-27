@@ -29,6 +29,7 @@ from trainer.models import (
 )
 from trainer.review_intelligence.context import move_contexts
 from trainer.review_intelligence.history import cross_game_context
+from trainer.review_intelligence.narrative import game_narrative
 from trainer.review_intelligence.presentation import present_game
 from trainer.review_reports import load_accuracy_scores, load_game_reports
 from trainer.workspaces import CurrentWorkspace
@@ -169,6 +170,7 @@ def create_router(*, settings, engine_factory):
                 "id": game.id,
                 "context": context,
                 "history": cross_game_context(db, settings, game, reports, context),
+                "narrative": game_narrative(parsed, reports, context),
                 "white": game.white,
                 "black": game.black,
                 "played_on": game.played_on,
@@ -257,6 +259,7 @@ def create_router(*, settings, engine_factory):
                 "moves": moves,
                 "context": context,
                 "history": cross_game_context(db, settings, game, reports, context),
+                "narrative": game_narrative(parsed, reports, context),
                 "accuracy": accuracy,
                 "revision": max([after_revision or 0, *(revisions[ply] for ply in plies)]),
             }

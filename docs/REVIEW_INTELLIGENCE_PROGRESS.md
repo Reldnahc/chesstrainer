@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 8 verified; Milestone 9 is next.
+Current checkpoint: Milestone 9 verified; Milestone 10 is next.
 
 ## Baseline
 
@@ -190,8 +190,7 @@ Milestone 7: `5783d32` — whole-game context.
   remain unsupported; supported support changes never impersonate proof of a
   tactical cause. No production dialogue change until the planned dialogue slice.
 
-Milestone 8: conservative cross-game context complete; commit SHA will be
-recorded at the next boundary.
+Milestone 8: `84e4189` — conservative cross-game context.
 
 - Shared active-evidence grouping/recurrence helpers retain Weaknesses semantics.
   Relevant learner errors can reference other owned classified games; current
@@ -206,6 +205,27 @@ recorded at the next boundary.
 - Other saved games are not asserted to be earlier in playing chronology.
   Provisional items remain explicitly provisional and new users get empty history.
   Implementation boundaries: CROSS_GAME_CONTEXT.md.
+
+Milestone 9: semantic game narrative and completion UX complete; commit SHA will
+be recorded at the next boundary.
+
+- Stable factual slots select supported opening, strongest concession, positive
+  finds, difficult resources, missed chances, recovery, repetition, conversion,
+  erosion and conclusion. Unsupported slots abstain. Direct references accompany
+  opening/PGN/board facts; partial reviews never claim completion or conversion.
+- Compact summary/key-move jumps and expandable story share existing review space.
+  Initial-position coach acknowledges completion; active selected move/variation
+  is not interrupted or navigated. Board sizing remains the shared policy.
+- Narrative/context/history unit suite: 21 passed. Native review/API/context
+  integration: 39 passed. Final narrative/native/API suite after direct provenance
+  refinements: 35 passed. Production build/API/type checks and Ruff pass.
+- Desktop/mobile game review, new story and coach browser suites: 34 passed.
+  Manually opened the actual app through the browser and used a summary jump;
+  verified URL/selection and inspected desktop/mobile screenshots. Stable board
+  dimensions, no horizontal overflow, pause/reload and existing Show Why covered.
+- GAME_NARRATIVE.md documents selection and result caveats. Saved facts contain
+  no coach prose. The next milestone replaces neutral display prose through the
+  shared dialogue/utterance boundary before personalities begin.
 
 ## Decisions / follow-ups
 

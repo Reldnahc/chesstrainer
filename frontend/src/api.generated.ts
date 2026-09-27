@@ -1322,6 +1322,7 @@ export interface components {
             /** Id */
             id: string;
             job: components["schemas"]["ReviewJob"] | null;
+            narrative?: components["schemas"]["GameNarrative"] | null;
             /**
              * Orientation
              * @enum {string}
@@ -1437,6 +1438,29 @@ export interface components {
             reason: string;
             refinement?: components["schemas"]["RefinementInfo"] | null;
             white_score: components["schemas"]["Score"];
+        };
+        /** GameNarrative */
+        GameNarrative: {
+            /** Complete */
+            complete: boolean;
+            /** Context Digest */
+            context_digest: string;
+            /** Input Digest */
+            input_digest: string;
+            /** Key Plies */
+            key_plies: number[];
+            /** Limitations */
+            limitations: string[];
+            /** Moments */
+            moments: components["schemas"]["NarrativeMoment"][];
+            /** Takeaways */
+            takeaways: string[];
+            /**
+             * Version
+             * @default game-narrative-1
+             * @constant
+             */
+            version: "game-narrative-1";
         };
         /** GamePosition */
         GamePosition: {
@@ -1840,6 +1864,30 @@ export interface components {
             /** To Square */
             to_square: string;
         };
+        /** NarrativeMoment */
+        NarrativeMoment: {
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Facts */
+            facts: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "opening" | "turning_point" | "best_find" | "hard_find" | "missed_opportunity" | "defense" | "recovery" | "repeated_issue" | "conversion" | "erosion" | "conclusion";
+            /** Plies */
+            plies: number[];
+            /** Relationship Ids */
+            relationship_ids: string[];
+        };
         /** Ok */
         Ok: {
             /** Ok */
@@ -2073,6 +2121,7 @@ export interface components {
             job: components["schemas"]["ReviewJob"] | null;
             /** Moves */
             moves: components["schemas"]["ReviewedMove"][];
+            narrative?: components["schemas"]["GameNarrative"] | null;
             /**
              * Revision
              * @default 0
