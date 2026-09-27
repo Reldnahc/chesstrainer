@@ -7,14 +7,22 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
+  correctness:
+    uses: ./.github/workflows/test.yml
+
   docker:
+    needs: correctness
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3

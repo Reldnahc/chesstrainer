@@ -10,7 +10,7 @@ and may move during refactoring.
 
 ## Checklist
 
-- [ ] **1. Gate Docker publishing on correctness checks.**
+- [x] **1. Gate Docker publishing on correctness checks.**
 - [x] **2. Replace per-account application instances and permanent worker threads.**
 - [ ] **3. Separate review screen state management from presentation.**
 - [ ] **4. Define and share API response contracts.**
@@ -24,7 +24,7 @@ and may move during refactoring.
 
 ## 1. Docker publishing is independent of correctness
 
-**Priority:** High. **Status:** Open.
+**Priority:** High. **Status:** Resolved and verified.
 
 `.github/workflows/docker.yml` publishes `latest` on pushes independently of
 `.github/workflows/test.yml`. A commit can publish even if its correctness checks
@@ -34,7 +34,17 @@ fail.
 commit being released, including manual publishing entry points. Preserve an
 immutable revision tag alongside `latest`.
 
-**Verification / resolution:** Pending.
+**Implementation:** Publishing now calls the reusable correctness workflow and
+depends on its success. Both main-branch pushes and manual releases validate the
+same explicit commit SHA that the publisher checks out. Other branch pushes and
+pull requests reuse the same checks without publishing; only the publishing job
+has package-write permission. The full SHA image tag is retained alongside `latest`.
+
+**Verification / resolution:** Actionlint 1.7.12 passed for both workflows, and
+`git diff --check` passed. Reviewed both entry points, the required-job dependency,
+checkout SHAs, permissions and immutable tag. A failed or cancelled correctness
+workflow leaves the publishing job skipped by GitHub's normal dependency rules.
+Live Actions execution awaits a requested push; no image was published locally.
 
 ## 2. Each account owns an application and permanent worker threads
 
