@@ -86,11 +86,11 @@ def queue(db, last_id=None, limit=30):
     ]
 
 
-def start_review(db, exercise_id, lesson_item_id=None, *, focus_skill_id=None):
+def start_review(db, exercise_id, *, focus_skill_id=None):
     exercise = db.get(Exercise, exercise_id)
     if exercise is None:
         raise ValueError("Exercise not found")
-    require_active_review(db, exercise_id, lesson_item_id)
+    require_active_review(db, exercise_id)
     if focus_skill_id is not None:
         require_focus(db, exercise, focus_skill_id)
     mode = "focus" if focus_skill_id is not None else "review"
@@ -98,7 +98,7 @@ def start_review(db, exercise_id, lesson_item_id=None, *, focus_skill_id=None):
         select(ReviewSession).where(
             ReviewSession.exercise_id == exercise_id,
             ReviewSession.completed.is_(False),
-            ReviewSession.lesson_item_id == lesson_item_id,
+            ReviewSession.lesson_item_id.is_(None),
             ReviewSession.mode == mode,
             ReviewSession.focus_skill_id == focus_skill_id,
         )
@@ -107,7 +107,6 @@ def start_review(db, exercise_id, lesson_item_id=None, *, focus_skill_id=None):
     if existing is None:
         existing = ReviewSession(
             exercise_id=exercise_id,
-            lesson_item_id=lesson_item_id,
             mode=mode,
             focus_skill_id=focus_skill_id,
         )
@@ -140,8 +139,8 @@ def start_review(db, exercise_id, lesson_item_id=None, *, focus_skill_id=None):
 
 
 def record_once(db, session, scheduler, settings, response_ms):
-    if session.lesson_item_id is not None or session.mode == "focus":
-        return None  # Lesson practice has its own progression, not an FSRS recall.
+    if session.mode == "focus":
+        return None  # Focused practice does not schedule an FSRS recall.
     existing = db.scalar(select(Review).where(Review.session_id == session.id))
     if existing:
         return existing
@@ -206,10 +205,12 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
     session = db.get(ReviewSession, session_id)
     if session is None:
         raise ValueError("Review session not found")
+    if session.lesson_item_id is not None:
+        raise ValueError("This lesson attempt is archived. Start a position in Review.")
     exercise = db.get(Exercise, session.exercise_id)
     if session.completed:
         return {"completed": True, "grade": "already_recorded", **feedback(db, exercise, session)}
-    require_active_review(db, exercise.id, session.lesson_item_id)
+    require_active_review(db, exercise.id)
     board = valid_board(exercise.fen)
     move = legal_move(board, uci)  # Illegal attempts never count as failed recall.
     elapsed = max(0, int((now() - utc(session.started_at)).total_seconds() * 1000))
@@ -262,7 +263,6 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
     session.completed_at = now()
     record_once(db, session, scheduler, settings, elapsed)
     board.push(move)
-    lesson_result = finish_lesson_attempt(db, session, settings)
     db.commit()
     return {
         "completed": True,
@@ -276,22 +276,15 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
         if session.failed
         else "Good move.",
         **feedback(db, exercise, session),
-        "lesson_result": lesson_result,
     }
-
-
-def finish_lesson_attempt(db, session, settings):
-    if session.lesson_item_id:
-        from trainer.lessons import finish_item
-
-        return finish_item(db, session, settings)
-    return None
 
 
 def reveal(db, session_id, scheduler, settings):
     session = db.get(ReviewSession, session_id)
     if session is None:
         raise ValueError("Review session not found")
+    if session.lesson_item_id is not None:
+        raise ValueError("This lesson attempt is archived. Start a position in Review.")
     exercise = db.get(Exercise, session.exercise_id)
     answer = db.scalar(
         select(ExerciseAnswer).where(
@@ -303,9 +296,8 @@ def reveal(db, session_id, scheduler, settings):
     # Apply the curated/verified answer even when deeper engine evidence is unavailable.
     # Validate before recording recall so an invalid saved move cannot consume a review.
     frame = replay_line(valid_board(exercise.fen), [answer.uci])[1]
-    lesson_result = None
     if not session.completed:
-        require_active_review(db, exercise.id, session.lesson_item_id)
+        require_active_review(db, exercise.id)
         session.revealed = True
         session.failed = True
         elapsed = max(0, int((now() - utc(session.started_at)).total_seconds() * 1000))
@@ -319,7 +311,6 @@ def reveal(db, session_id, scheduler, settings):
             review.revealed = True
         session.completed = True
         session.completed_at = now()
-        lesson_result = finish_lesson_attempt(db, session, settings)
         db.commit()
     return {
         "completed": True,
@@ -329,5 +320,4 @@ def reveal(db, session_id, scheduler, settings):
         "fen": frame.fen,
         "reveal_frame": frame.model_dump(),
         "submitted_san": frame.san,
-        "lesson_result": lesson_result,
     }

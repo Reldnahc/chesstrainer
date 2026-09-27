@@ -85,7 +85,11 @@ The Vite development proxy specifically targets 127.0.0.1:8000. Override SERVER_
 
 ## Archived settings
 
-COURSE_MAX_UNITS (6, range 1..12), LESSON_MAX_POSITIONS (8, range 2..20) and LESSON_CHECK_PASS_FRACTION (0.8, greater than zero and at most 1) remain validated for archived domain compatibility. They do not enable a course screen, create sequences, resume lesson progression or schedule teaching jobs. Historical stage behavior is documented only in [archive/COURSE_DESIGN.md](archive/COURSE_DESIGN.md).
+`COURSE_MAX_UNITS`, `LESSON_MAX_POSITIONS` and `LESSON_CHECK_PASS_FRACTION`
+have been removed along with unused course generation and lesson progression.
+Old `.env` entries are ignored; they can be deleted. No active Docker/Unraid setting
+changes. Historical data, migrations and teaching audits remain available; the old
+stage behavior is documented only in [archive/COURSE_DESIGN.md](archive/COURSE_DESIGN.md).
 
 ## Shared hosting
 

@@ -7,8 +7,8 @@ from trainer.classification import reject_run
 from trainer.contracts.classification import ClassificationAudit, Evidence, Weaknesses
 from trainer.contracts.common import JobCreated, Rejected
 from trainer.coverage import coverage
-from trainer.curriculum import priorities
 from trainer.models import AnalysisJob, ClassificationRun, Decision, EngineAnalysis, SkillEvidence
+from trainer.weaknesses import priorities
 from trainer.workspaces import CurrentWorkspace
 
 

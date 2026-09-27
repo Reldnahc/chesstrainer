@@ -1,21 +1,38 @@
 """Archived lesson compatibility and safe removal from the live product."""
 
+import copy
+
+import pytest
 from fastapi.testclient import TestClient
 from lesson_fixtures import seed_lesson
 from sqlalchemy import select
 from trainer.api import create_app
-from trainer.curriculum import build_course
-from trainer.models import LessonItem, ReviewSession, SRSState
+from trainer.models import (
+    Course,
+    CourseRevision,
+    CourseUnit,
+    Lesson,
+    LessonItem,
+    ReviewSession,
+    SRSState,
+    TeachingRun,
+    UnitEvidence,
+)
+from trainer.reviews import reveal, submit_move
+from trainer.scheduling import FSRSScheduler
 
 
-def test_lesson_routes_and_old_attempts_are_archived(settings):
+@pytest.mark.parametrize("completed", [False, True])
+def test_lesson_routes_and_old_attempts_are_archived(settings, completed):
     settings.stockfish_path = "missing-test"
     app = create_app(settings, workers=False)
     with TestClient(app) as client:
         with app.state.sessions() as db:
             seed_lesson(db, settings, count=3)
             item = db.scalar(select(LessonItem))
-            session = ReviewSession(exercise_id=item.exercise_id, lesson_item_id=item.id)
+            session = ReviewSession(
+                exercise_id=item.exercise_id, lesson_item_id=item.id, completed=completed
+            )
             db.add(session)
             db.commit()
             session_id, exercise_id = session.id, item.exercise_id
@@ -39,14 +56,68 @@ def test_lesson_routes_and_old_attempts_are_archived(settings):
             == 410
         )
         with app.state.sessions() as db:
-            assert not db.get(ReviewSession, session_id).completed
+            assert db.get(ReviewSession, session_id).completed == completed
             assert db.get(SRSState, exercise_id).card == before
+            # Offline/domain callers cannot bypass the HTTP archive guard either.
+            with pytest.raises(ValueError, match="archived"):
+                reveal(db, session_id, FSRSScheduler(settings), settings)
+            with pytest.raises(ValueError, match="archived"):
+                submit_move(db, session_id, "e1d1", None, FSRSScheduler(settings), settings)
         # An ordinary review of the same position is a separate usable session.
         position = client.post(f"/api/review/{exercise_id}/start").json()
         assert position["session_id"] != session_id
         assert (
             client.post(f"/api/review/sessions/{position['session_id']}/reveal").status_code == 200
         )
+
+
+def test_current_review_preserves_archives_and_teaching_audit_access(settings):
+    app = create_app(settings, workers=False, start_engine=False)
+    tables = (Course, CourseUnit, CourseRevision, Lesson, LessonItem, UnitEvidence)
+
+    def snapshot(db):
+        return copy.deepcopy(
+            {
+                model.__tablename__: [
+                    {column.name: getattr(row, column.name) for column in model.__table__.columns}
+                    for row in db.scalars(select(model))
+                ]
+                for model in tables
+            }
+        )
+
+    with TestClient(app) as client:
+        with app.state.sessions() as db:
+            seed_lesson(db, settings, count=3)
+            unit = db.scalar(select(CourseUnit))
+            run = TeachingRun(
+                unit_id=unit.id,
+                cache_key="historical-audit",
+                model="archived",
+                schema_version="1",
+                prompt_version="1",
+                evidence_ids=[],
+                response={"explanation": "Saved historical teaching"},
+                status="completed",
+            )
+            db.add(run)
+            db.commit()
+            run_id = run.id
+            exercise_id = db.scalar(select(LessonItem.exercise_id))
+            before = snapshot(db)
+        cold = client.post(f"/api/review/{exercise_id}/start").json()
+        response = client.post(f"/api/review/sessions/{cold['session_id']}/reveal")
+        assert response.status_code == 200
+        assert "lesson_result" not in response.json()
+        assert client.get("/api/weaknesses").status_code == 200
+        audit = client.get(f"/api/teaching-runs/{run_id}")
+        assert audit.status_code == 200
+        assert audit.json()["response"] == {"explanation": "Saved historical teaching"}
+        assert client.post(f"/api/teaching-runs/{run_id}/reject").status_code == 200
+        with app.state.sessions() as db:
+            assert snapshot(db) == before
+            assert db.get(SRSState, exercise_id).reviews == 1
+            assert db.get(TeachingRun, run_id).status == "rejected"
 
 
 def test_lesson_release_migration_preserves_scheduling_and_history(settings, sessions):
@@ -123,58 +194,3 @@ def test_lesson_release_migration_preserves_scheduling_and_history(settings, ses
     with engine.connect() as connection:
         assert snapshot(connection) == expected
     engine.dispose()
-
-
-def test_course_enrollment_does_not_hide_reviewed_or_open_cards(settings):
-
-    settings.stockfish_path = "missing-test"
-    app = create_app(settings, workers=False)
-    with TestClient(app) as client:
-        with app.state.sessions() as db:
-            seed_lesson(db, settings, count=3)
-            states = db.scalars(select(SRSState)).all()
-            for state in states:
-                state.eligible = True
-            # Rebuild a new sequence as if classification arrived after review had begun.
-
-            db.query(LessonItem).delete()
-            db.commit()
-        queue = client.get("/api/review/queue").json()
-        opened = client.post(f"/api/review/{queue[0]['exercise_id']}/start").json()
-        reviewed = client.post(f"/api/review/{queue[1]['exercise_id']}/start").json()
-        client.post(f"/api/review/sessions/{reviewed['session_id']}/reveal")
-        with app.state.sessions() as db:
-            original = db.get(SRSState, queue[1]["exercise_id"]).card
-            build_course(db, settings)
-            assert db.get(SRSState, queue[0]["exercise_id"]).eligible
-            assert db.get(SRSState, queue[1]["exercise_id"]).eligible
-            assert db.get(SRSState, queue[1]["exercise_id"]).card == original
-        assert client.get("/api/review/queue").json()[0]["exercise_id"] == queue[0]["exercise_id"]
-        assert (
-            client.post(f"/api/review/{queue[0]['exercise_id']}/start").json()["session_id"]
-            == opened["session_id"]
-        )
-
-
-def test_legacy_unit_cannot_displace_stable_group(settings, sessions):
-    from trainer.models import CourseUnit
-
-    with sessions() as db:
-        course = seed_lesson(db, settings, count=3)
-        unit = db.scalar(select(CourseUnit))
-        original_id = unit.id
-        unit.ordinal = 3
-        db.add(
-            CourseUnit(
-                course_id=course.id,
-                skill_id="development",
-                title="Legacy",
-                rationale="",
-                ordinal=0,
-                provisional=False,
-                group_key="",
-            )
-        )
-        db.commit()
-        build_course(db, settings)
-        assert db.scalar(select(CourseUnit).where(CourseUnit.active.is_(True))).id == original_id

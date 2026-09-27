@@ -2608,20 +2608,6 @@
             "title": "Grade",
             "type": "string"
           },
-          "lesson_result": {
-            "anyOf": [
-              {
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/JsonValue"
-                },
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Lesson Result"
-          },
           "message": {
             "anyOf": [
               {
@@ -3487,10 +3473,6 @@
             "title": "Classification Workers",
             "type": "integer"
           },
-          "course_max_units": {
-            "title": "Course Max Units",
-            "type": "integer"
-          },
           "coverage": {
             "$ref": "#/components/schemas/Coverage"
           },
@@ -3554,14 +3536,6 @@
           "lan_token_configured": {
             "title": "Lan Token Configured",
             "type": "boolean"
-          },
-          "lesson_check_pass_fraction": {
-            "title": "Lesson Check Pass Fraction",
-            "type": "number"
-          },
-          "lesson_max_positions": {
-            "title": "Lesson Max Positions",
-            "type": "integer"
           },
           "max_import_bytes": {
             "title": "Max Import Bytes",
@@ -3692,9 +3666,6 @@
           "slow_answer_seconds",
           "retire_after_days",
           "desired_retention",
-          "course_max_units",
-          "lesson_max_positions",
-          "lesson_check_pass_fraction",
           "min_independent_games",
           "max_import_bytes",
           "chesscom_timeout_seconds",

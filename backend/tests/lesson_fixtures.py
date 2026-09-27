@@ -4,15 +4,21 @@ import chess
 import chess.pgn
 from sqlalchemy import select
 from trainer.chess_core import Candidate, Score, position_key
-from trainer.curriculum import build_course
 from trainer.exercises import exercise_from_decision
 from trainer.models import (
     ClassificationRun,
+    Course,
+    CourseRevision,
+    CourseUnit,
     Decision,
     EngineAnalysis,
     ExerciseAnswer,
     Game,
+    Lesson,
+    LessonItem,
     SkillEvidence,
+    SRSState,
+    UnitEvidence,
 )
 from trainer.scheduling import FSRSScheduler
 from trainer.taxonomy import seed_skills
@@ -127,24 +133,38 @@ def seed_lesson(db, settings, count=8, offset=0, skills=None):
             )
         )
         db.commit()
-    return build_course(db, settings)
-
-
-def solve_step(client, app, data):
-    if data["stage"] == "teach":
-        return client.post(f"/api/lesson-items/{data['item_id']}/acknowledge").json()
-    position = data["position"]
-    with app.state.sessions() as db:
-        answer = db.scalar(
-            select(ExerciseAnswer).where(
-                ExerciseAnswer.exercise_id == position["exercise_id"],
-                ExerciseAnswer.primary.is_(True),
-            )
-        )
-        uci = answer.uci
-    response = client.post(
-        f"/api/review/sessions/{position['session_id']}/move",
-        json={"from_square": uci[:2], "to_square": uci[2:4], "promotion": uci[4:] or None},
+    # Historical rows are explicit fixtures, not a retained course-generation engine.
+    course = Course(title="Archived fixture course", target_rating=settings.target_rating)
+    db.add(course)
+    db.flush()
+    unit = CourseUnit(
+        course_id=course.id,
+        skill_id="king_safety",
+        title="Archived unit",
+        rationale="Historical fixture",
+        ordinal=0,
+        provisional=True,
+        group_key="Tactical awareness",
     )
-    assert response.status_code == 200, response.text
-    return response.json()
+    db.add(unit)
+    db.flush()
+    exercises = db.scalars(select(SRSState)).all()
+    for ordinal, stage in enumerate(("diagnose", "teach", "drill", "check", "retain")):
+        lesson = Lesson(unit_id=unit.id, stage=stage, ordinal=ordinal)
+        db.add(lesson)
+        db.flush()
+        if stage != "retain":
+            for index, state in enumerate(exercises):
+                state.eligible = False
+                db.add(
+                    LessonItem(lesson_id=lesson.id, exercise_id=state.exercise_id, ordinal=index)
+                )
+    for evidence in db.scalars(select(SkillEvidence)):
+        db.add(UnitEvidence(unit_id=unit.id, evidence_id=evidence.id))
+    db.add(
+        CourseRevision(
+            course_id=course.id, fingerprint="archived-fixture", snapshot={"fixture": True}
+        )
+    )
+    db.commit()
+    return course

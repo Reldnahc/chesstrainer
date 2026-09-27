@@ -1454,10 +1454,6 @@ export interface components {
             fen?: string | null;
             /** Grade */
             grade: string;
-            /** Lesson Result */
-            lesson_result?: {
-                [key: string]: components["schemas"]["JsonValue"];
-            } | null;
             /** Message */
             message?: string | null;
             /** Next Due */
@@ -1750,8 +1746,6 @@ export interface components {
             classification_version: string;
             /** Classification Workers */
             classification_workers: number;
-            /** Course Max Units */
-            course_max_units: number;
             coverage: components["schemas"]["Coverage"];
             /** Database Path */
             database_path: string;
@@ -1773,10 +1767,6 @@ export interface components {
             engine_version: string | null;
             /** Lan Token Configured */
             lan_token_configured: boolean;
-            /** Lesson Check Pass Fraction */
-            lesson_check_pass_fraction: number;
-            /** Lesson Max Positions */
-            lesson_max_positions: number;
             /** Max Import Bytes */
             max_import_bytes: number;
             /** Min Independent Games */

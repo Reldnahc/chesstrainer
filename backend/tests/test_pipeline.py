@@ -7,13 +7,11 @@ from pydantic import ValidationError
 from sqlalchemy import func, select
 from trainer.analysis import analyze_decision
 from trainer.classification import Classification, classify_decision
-from trainer.curriculum import build_course
 from trainer.engine import Stockfish
 from trainer.exercises import exercise_from_decision, import_repertoire, manual_exercise
 from trainer.imports import identify_learner, import_games, learner_decisions
 from trainer.local_classifier import LocalClassifier
 from trainer.models import (
-    CourseUnit,
     ExerciseAnswer,
     Game,
     Review,
@@ -23,6 +21,7 @@ from trainer.models import (
 from trainer.reviews import reveal, start_review, submit_move
 from trainer.scheduling import FSRSScheduler, behavior_rating
 from trainer.taxonomy import seed_skills
+from trainer.weaknesses import priorities
 
 PGN = """[Event "Fixture"]
 [White "Learner"]
@@ -81,8 +80,8 @@ def test_real_engine_vertical_slice_and_persistence(settings, sessions, stockfis
                     exercise = exercise_from_decision(db, decision, settings, scheduler)
             assert meaningful
             assert any(d.allows_mate for d in meaningful)
-            course = build_course(db, settings)
-            assert course and db.scalar(select(CourseUnit)).provisional
+            weaknesses = priorities(db, settings)
+            assert weaknesses and weaknesses[0]["provisional"]
             cold = start_review(db, exercise.id)
             assert not {"answers", "candidates", "source", "explanation"}.intersection(cold)
             answer = db.scalar(

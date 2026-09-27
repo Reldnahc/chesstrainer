@@ -12,7 +12,7 @@ Outcomes and mechanisms use controlled IDs. Local findings carry aggregation wei
 
 ## Current priority calculation
 
-The live Weaknesses route calls priorities() in curriculum.py. It uses these explicit heuristics:
+The live Weaknesses route calls priorities() in weaknesses.py. It uses these explicit heuristics:
 
 1. Independence means distinct game IDs. Each game contributes its maximum evidence weight multiplied by bounded severity and recency.
 2. Mate transitions have severity 3. Ordinary loss scales by 150 cp, capped at 3. Recency halves over 90 days using decision analysis time, not the historical game's date.

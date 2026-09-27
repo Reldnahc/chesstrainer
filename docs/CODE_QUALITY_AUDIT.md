@@ -18,7 +18,7 @@ and may move during refactoring.
 - [x] **6. Consolidate CSS ownership and remove obsolete styles.**
 - [x] **7. Break tactical detection and classification into smaller rules/stages.**
 - [x] **8. Consolidate duplicated chess helpers and correct dependency boundaries.**
-- [ ] **9. Remove archived lesson progression from active review handling.**
+- [x] **9. Remove archived lesson progression from active review handling.**
 - [ ] **10. Correct engine health reporting and preserve diagnostic exceptions.**
 - [ ] **11. Remove this checklist document after all findings above are resolved and verified.**
 
@@ -247,7 +247,7 @@ roles and witness metadata. Ruff and diff checks passed; HTTP shapes are unchang
 
 ## 9. Removed lessons still complicate active review code
 
-**Priority:** Medium. **Status:** Open.
+**Priority:** Medium. **Status:** Resolved and verified.
 
 Lesson routes are tombstones, but `lessons.py` retains progression/mutation logic
 and `reviews.py` still calls into it. Active weakness priorities share
@@ -258,7 +258,21 @@ dependency between lessons and reviews.
 its active review branches. Preserve historical data, migrations, supported audit
 access, and the existing rejection of archived practice.
 
-**Verification / resolution:** Pending.
+**Implementation:** Deleted unused course generation/progression and their circular
+review dependency. Weakness priorities now have a dedicated module and retain only
+read-only historical statistics. Reviews cannot create or mutate lesson attempts,
+even via direct domain calls. Removed the dead feedback field and three obsolete
+lesson settings; old environment entries are ignored. Historical models, migrations,
+tombstones and teaching audit/rejection endpoints remain. Fixtures create explicit
+archive rows instead of relying on a production course builder.
+
+**Verification / resolution:** Full backend suite passed (412 tests), including
+archive/migration/account regressions. New checks cover completed and unfinished
+archived sessions, unchanged course rows after live reviews, teaching audit access,
+and ordinary recall recording without lesson results. The frontend build passed;
+API schemas and frontend types were regenerated. Targeted contract/archive/account
+and pipeline checks were rerun after the final obsolete-setting removal. Ruff and
+diff checks passed. No database migration or active container setting changed.
 
 ## 10. Health and exception diagnostics are unreliable
 

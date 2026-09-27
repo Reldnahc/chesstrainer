@@ -1,8 +1,8 @@
 from lesson_fixtures import seed_lesson
 from sqlalchemy import select
 from trainer.classification import Classification, classify_decision, reject_run
-from trainer.curriculum import build_course
 from trainer.models import ClassificationRun, CourseUnit, Decision, SkillEvidence
+from trainer.weaknesses import priorities
 
 
 def test_classification_versions_reconcile_and_rejection_preserves_truth(settings, sessions):
@@ -45,8 +45,9 @@ def test_classification_versions_reconcile_and_rejection_preserves_truth(setting
         assert not classify_decision(db, decision_id, classifier, settings)
         assert classifier.calls == 2
         assert db.scalar(select(Decision)).meaningful
-        build_course(db, settings)
-        assert not db.scalar(select(CourseUnit)).active
+        assert priorities(db, settings) == []
+        # Reclassification no longer mutates historical course progression.
+        assert db.scalar(select(CourseUnit)).active
         classifier.model, classifier.confidence = "version-low", 0.2
         assert classify_decision(db, decision_id, classifier, settings)
         assert db.scalars(select(SkillEvidence).where(SkillEvidence.active.is_(True))).all() == []

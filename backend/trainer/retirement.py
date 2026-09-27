@@ -34,7 +34,6 @@ def retire_existing(db, settings, *, enabled_accounts_only=False):
     return count
 
 
-def require_active_review(db, exercise_id, lesson_item_id=None):
-    # Explicit study inside a saved lesson remains available; it never schedules FSRS.
-    if lesson_item_id is None and db.get(SRSState, exercise_id).retired_at is not None:
+def require_active_review(db, exercise_id):
+    if db.get(SRSState, exercise_id).retired_at is not None:
         raise ValueError("This position is retired and will no longer appear in reviews.")

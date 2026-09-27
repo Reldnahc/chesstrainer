@@ -67,9 +67,6 @@ class WorkspaceSettings(EngineHealth):
     slow_answer_seconds: float
     retire_after_days: int
     desired_retention: float
-    course_max_units: int
-    lesson_max_positions: int
-    lesson_check_pass_fraction: float
     min_independent_games: int
     max_import_bytes: int
     chesscom_timeout_seconds: float

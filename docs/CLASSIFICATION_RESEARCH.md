@@ -31,7 +31,7 @@ Already reusable:
 - `analysis.py`: same-root best and actual-move searches, learner-perspective scores, meaningful-mistake policy and persistent analyses.
 - `chess_core.py`: legality, canonical identity, material, explicit mate transitions and replayed facts.
 - `explanations.py`: legal PV frames, actual captures, checks, promotion, castling, highlights and material changes.
-- `curriculum.py`: deterministic aggregation of independent game evidence. This can support weakness summaries without resuming lesson work.
+- `weaknesses.py`: deterministic aggregation of independent game evidence for weakness summaries.
 - Review, accepted alternatives, counter-move playback and FSRS: already independent of OpenAI inference.
 
 The current classifier receives both candidate sets, but deterministic facts primarily describe the actual-move line. The replacement should explicitly examine the useful alternative as well. Reconstruct positions from the saved game when repetition history matters.

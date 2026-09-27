@@ -140,7 +140,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 - imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.
 - jobs.py / job_queue.py / job_execution.py / pipeline.py / work_pool.py: persistent ordered jobs, host-wide scheduling, account-bound execution, bounded worker pools, cancellation and atomic progress.
 - classification.py / local_classifier.py: validated versioned findings, immutable runs, cache identity and active skill evidence. `classification_stages.py` separates root validation, line outcome admission, defense checks, provenance and abstention reasons; the classifier preserves ordered aggregation and primary-skill selection.
-- curriculum.py: **active weakness priorities**, alongside archived course grouping/sequence helpers. lessons.py contains archived progression helpers.
+- weaknesses.py: active weakness priorities with read-only historical attempt statistics; no course generation or progression.
 - reviews.py / explanations.py / scheduling.py / retirement.py: move grading, verified playback, FSRS adapter and persistent retirement.
 - practice.py: distinct game-position selection and focused sessions separate from scheduled recall.
 - models.py / db.py: relational persistence, SQLite configuration and migrations.
@@ -205,7 +205,7 @@ classification_quality.py and the read-only report script support blinded export
 
 ## Archives, privacy and deployment
 
-Lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and audit access remain. No production job invokes lesson generation/progression.
+Lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Course generation and lesson progression code have been removed; active review cannot start, resume or finish a lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive.
 
 OpenAI runtime integration is removed: no model SDK or network calls remain. Historical classification and teaching responses stay local. Only explicit Chess.com imports need outbound network access.
 

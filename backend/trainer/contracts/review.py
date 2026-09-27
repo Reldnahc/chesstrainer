@@ -56,6 +56,5 @@ class ReviewFeedback(Contract):
     source: str | None = None
     played_san: str | None = None
     candidates: list[Candidate] | None = None
-    # Historical evidence and archived lesson results have versioned JSON shapes.
+    # Historical evidence retains versioned JSON shapes.
     facts: dict[str, JsonValue] | None = None
-    lesson_result: dict[str, JsonValue] | None = None
