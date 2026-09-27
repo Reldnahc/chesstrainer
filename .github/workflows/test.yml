@@ -50,6 +50,8 @@ jobs:
             config: playwright.config.ts
           - suite: accounts
             config: playwright.accounts.config.ts
+          - suite: coach-studio
+            config: playwright.coach.config.ts
     steps:
       - uses: actions/checkout@v4
         with:

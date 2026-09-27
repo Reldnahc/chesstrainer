@@ -24,9 +24,18 @@ portrait does. Settings restores the selected character's group on load. Only
 the selected portrait animates, and phone layouts use two columns. The same saved
 character appears in game review, SRS practice and saved explanations.
 
-Open **Settings → Preview expressions**, or `/coach-studio`. The studio is a lazy
-loaded page, reachable in local and account mode, with no engine jobs or preference
-writes. Compare performances side by side, browse each complete expression
+The expression viewer runs only as a separate development process:
+
+```sh
+cd frontend
+npm run dev:coach
+```
+
+Open http://127.0.0.1:5174. No backend, database, login or Docker configuration is
+needed. This command binds to loopback on a dedicated port and fails if the port
+is occupied. It has its own HTML/React entry point and no API proxy. The normal
+application has no studio link or route, and its production bundle does not
+include the studio interface. Compare performances side by side, browse each complete expression
 collection, replay entrances and idle gestures, run a transition sequence, and
 preview natural/subtle/still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
@@ -41,13 +50,13 @@ The studio contains 16 concepts across four groups, each with all 20 expressions
 | Dogs | Sunny companion, Gentle professor, Pocket captain, Border collie | Two goldens, a corgi and a border collie with distinct ears, muzzle geometry, coats, chests and tails |
 
 Use the character picker above the expression controls. `coach`, `family` and
-`expression` query parameters restore a comparison directly; existing links still
-open the original coach. Switching characters stops a running sequence, clears the
+`expression` query parameters restore a comparison on the studio's own server.
+Switching characters stops a running sequence, clears the
 pending idle preview and selects a valid family/idle gesture. Preview controls
 offer only the idle gestures that the character actually implements.
 
-Opening the studio never writes account preferences or submits engine work.
-Its comparison interface remains lazy-loaded; shared character SVGs and motion
+The studio never connects to accounts or submits engine work. It imports the
+same character catalogue and review bubble as the application; shared SVGs and motion
 styles are bundled with the application so a selected coach is immediately
 available in reviews without an image request. Existing `coach=retriever`
 links resolve to the dog collection; the retired Trail buddy (`scout`) family

@@ -33,16 +33,15 @@ for (const character of characters) {
     page,
   }, info) => {
     const errors: string[] = [];
-    const writes: string[] = [];
+    const apiRequests: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     page.on("console", (message) => {
       if (message.type() === "error") errors.push(message.text());
     });
     page.on("request", (request) => {
-      if (request.method() !== "GET" && request.url().includes("/api/"))
-        writes.push(request.url());
+      if (request.url().includes("/api/")) apiRequests.push(request.url());
     });
-    await page.goto(`/coach-studio?coach=${character.id}&expression=brilliant`);
+    await page.goto(`/?coach=${character.id}&expression=brilliant`);
     const concepts = page.locator(".studio-concepts .coach-avatar");
     const first = concepts.first();
     await expect(concepts).toHaveCount(4);
@@ -60,7 +59,7 @@ for (const character of characters) {
       .toBeGreaterThan(0);
     await expect(first).toHaveAttribute("data-phase", "rest");
     await page.locator(".studio-concepts").screenshot({
-      path: `test-results/studies-${character.id}-brilliant-${info.project.name}.png`,
+      path: `studio-test-results/studies-${character.id}-brilliant-${info.project.name}.png`,
     });
 
     const geometry = () =>
@@ -84,7 +83,7 @@ for (const character of characters) {
     await expect(first).toHaveAttribute("data-phase", "reaction");
     await expect(first).toHaveAttribute("data-phase", "rest");
     await page.locator(".studio-concepts").screenshot({
-      path: `test-results/studies-${character.id}-blunder-${info.project.name}.png`,
+      path: `studio-test-results/studies-${character.id}-blunder-${info.project.name}.png`,
     });
 
     for (const family of character.families) {
@@ -109,7 +108,7 @@ for (const character of characters) {
         ).toBeCloseTo(92.8, 1);
       }
       await page.locator(".studio-collection").screenshot({
-        path: `test-results/studies-${character.id}-${family}-${info.project.name}.png`,
+        path: `studio-test-results/studies-${character.id}-${family}-${info.project.name}.png`,
       });
       // Every rig must actually perform both signature reactions. The original
       // man's CSS must not leak onto the shared human rig of the other men.
@@ -192,14 +191,14 @@ for (const character of characters) {
       ),
     ).toBe(true);
     expect(errors).toEqual([]);
-    expect(writes).toEqual([]);
+    expect(apiRequests).toEqual([]);
   });
 }
 
 test("study links restore character and family; changing character resets unsupported idles and sequences", async ({
   page,
 }) => {
-  await page.goto("/coach-studio?coach=cat&family=tuxedo&expression=thinking");
+  await page.goto("/?coach=cat&family=tuxedo&expression=thinking");
   await expect(
     page.getByRole("button", { name: "Preview Cats", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
@@ -250,7 +249,7 @@ test("study links restore character and family; changing character resets unsupp
   ).toHaveAttribute("aria-pressed", "true");
 
   await page.goto(
-    "/coach-studio?coach=removed&family=unknown&expression=unknown",
+    "/?coach=removed&family=unknown&expression=unknown",
   );
   await expect(
     page.locator(".studio-concepts .coach-avatar").first(),
@@ -261,16 +260,14 @@ test("study links restore character and family; changing character resets unsupp
   await expect(
     page.getByRole("combobox", { name: "Expression", exact: true }),
   ).toHaveValue("brilliant");
-  await page.getByRole("link", { name: "Back to Settings" }).click();
-  await expect(page.getByRole("radio")).toHaveCount(4);
 });
 
-test("retired concepts have safe bookmark fallbacks without changing the saved coach", async ({
+test("retired concepts have safe bookmark fallbacks in the standalone studio", async ({
   page,
 }) => {
   for (const family of ["mentor", "spark"]) {
     await page.goto(
-      `/coach-studio?coach=classic&family=${family}&expression=blunder`,
+      `/?coach=classic&family=${family}&expression=blunder`,
     );
     await expect(
       page.getByRole("combobox", { name: "Collection", exact: true }),
@@ -281,7 +278,7 @@ test("retired concepts have safe bookmark fallbacks without changing the saved c
     ).toHaveAttribute("data-expression", "blunder");
   }
   await page.goto(
-    "/coach-studio?coach=retriever&family=gentle&expression=good",
+    "/?coach=retriever&family=gentle&expression=good",
   );
   await expect(
     page.getByRole("button", { name: "Preview Dogs", exact: true }),
@@ -290,10 +287,8 @@ test("retired concepts have safe bookmark fallbacks without changing the saved c
     page.getByRole("combobox", { name: "Collection", exact: true }),
   ).toHaveValue("gentle");
   await expect(page).toHaveURL(/coach=dog/);
-  await page.goto("/coach-studio?coach=retriever&family=scout");
+  await page.goto("/?coach=retriever&family=scout");
   await expect(
     page.getByRole("combobox", { name: "Collection", exact: true }),
   ).toHaveValue("sunny");
-  await page.getByRole("link", { name: "Back to Settings" }).click();
-  await expect(page.getByRole("radio")).toHaveCount(4);
 });

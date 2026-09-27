@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Link from "../Link";
 import { CoachCharacter } from "./CoachAvatar";
 import { useCoachPreferences } from "./CoachProvider";
 import { coachCollections, getCoach, selectableCoaches } from "./registry";
@@ -39,12 +38,6 @@ export default function CoachSettings() {
             practice.
           </p>
         </div>
-        <Link
-          className="text-button"
-          href={`/coach-studio?coach=${selected.collectionId}&family=${selected.defaultFamily}`}
-        >
-          Preview expressions <span aria-hidden="true">↗</span>
-        </Link>
       </div>
       <div
         className="coach-collections"

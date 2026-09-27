@@ -17,9 +17,16 @@ ruff check backend scripts migrations
 ruff format --check backend scripts migrations
 cd frontend
 npx playwright test
+npx playwright test --config playwright.coach.config.ts
 ```
 
 Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Tests run serially against the production build and a test server on 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
+
+The separate coach suite starts `npm run dev:coach` on 127.0.0.1:5174 and runs the
+expression/animation tests in `frontend/studio-tests`. It needs no backend, login,
+database or Stockfish. Production browser tests verify that Settings still offers
+coach selection but no expression viewer, and that `/coach-studio` is not an app
+route. CI runs the application, account and standalone studio suites separately.
 
 PowerShell can use .venv/Scripts/python.exe, .venv/Scripts/ruff.exe, npm.cmd and npx.cmd without activation. PLAYWRIGHT_BROWSERS_PATH optionally selects an installed Chromium directory; TEST_PYTHON selects the browser test server's Python executable.
 

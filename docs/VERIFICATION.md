@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Separate coach development viewer: September 27, 2026
+
+The expression viewer has its own loopback-only Vite process (`npm run dev:coach`,
+port 5174), HTML entry point and browser-test suite. The application no longer
+imports the studio, links to it from Settings or recognizes `/coach-studio`.
+Selectable coaches and account persistence remain in the application.
+
+- Production build, generated API consistency and TypeScript contracts passed.
+  Built assets contain no studio interface, controls or stylesheet chunk.
+- Full application browser suite: **101 passed, 3 expected viewport skips**.
+- Standalone development studio: **16 passed** across desktop and mobile,
+  covering all 16 characters/20 expressions, transitions, idle behavior, bookmark
+  fallbacks and reduced motion. The studio makes no API requests.
+- Manually used the separate viewer and inspected the built app's mobile
+  Settings and SRS layout. The corrected SRS spacing remains stable during
+  failed attempts, accepted moves and explanation playback.
+- CI now runs the standalone studio in addition to the application and account
+  suites. No backend, schema, container variable or production service changed.
+
 ## Mobile SRS spacing: September 27, 2026
 
 The shared workspace collapses its unused board toolbar on phones. SRS no longer

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowLeft, Play, RotateCcw, Sparkles } from "lucide-react";
-import Link from "../../Link";
+import { Play, RotateCcw, Sparkles } from "lucide-react";
 import { coachStudies, getCoachStudy } from "../studies/catalog";
 import {
   expressionInfo,
@@ -123,9 +122,9 @@ export default function CoachStudio() {
   }
   return (
     <div className="coach-studio">
-      <Link className="text-button studio-back" href="/settings">
-        <ArrowLeft size={15} /> Back to Settings
-      </Link>
+      <p className="studio-dev-notice">
+        Development studio · No account or engine connection
+      </p>
       <header className="studio-heading">
         <div>
           <p className="eyebrow">FIELDWORK · CHARACTER STUDIES</p>
