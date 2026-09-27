@@ -7,6 +7,10 @@ import ReviewDetails from "./ReviewDetails";
 import type { ReviewSession } from "./useReviewSession";
 import type { ReviewPlayback } from "./useReviewPlayback";
 import { practiceReaction } from "../coach/reactions";
+import { practiceIntent } from "../dialogue/practiceIntent";
+import { claim, makeIntent } from "../dialogue/model";
+import { useDialogue } from "../dialogue/useDialogue";
+import DialogueText from "../dialogue/DialogueText";
 
 export default function ReviewPanel({
   session,
@@ -39,6 +43,11 @@ export default function ReviewPanel({
     explanationOpener,
     openExplanation,
   } = playback;
+  const reaction = position ? practiceReaction({position, feedback, busy, mistake: mistakeCue,
+    hadFailure: session.hadFailure, error: !!session.gradingError}) : {key: "practice-empty", state: "neutral" as const};
+  const utterance = useDialogue(position ? practiceIntent({position, feedback, frame: previewFrame,
+    hadFailure: session.hadFailure, expression: reaction.state, error: !!session.gradingError})
+    : makeIntent("practice-empty", "neutral", "practice", "neutral", [claim("cold")]));
   return (
     <div
       ref={practicePanel}
@@ -90,14 +99,7 @@ export default function ReviewPanel({
       ) : (
         <>
           <ReviewCoach
-            reaction={practiceReaction({
-              position,
-              feedback,
-              busy,
-              mistake: mistakeCue,
-              hadFailure: session.hadFailure,
-              error: !!session.gradingError,
-            })}
+            reaction={reaction}
             title={
               <h2>
                 {feedback?.completed
@@ -151,9 +153,7 @@ export default function ReviewPanel({
             }
           >
             {session.gradingError ? (
-              <p>
-                I couldn't get a result for that move. You can try again.
-              </p>
+              <DialogueText utterance={utterance} />
             ) : feedback?.completed ? (
               <div role="status" aria-live="polite" aria-atomic="true">
                 <p>
@@ -165,25 +165,16 @@ export default function ReviewPanel({
                         .join(", ")}
                   </strong>
                 </p>
-                <p>
-                  {feedback.message ||
-                    "Study the move, then try the next position."}
-                </p>
-                {feedback.explanation_summary && (
-                  <p>{feedback.explanation_summary}</p>
-                )}
+                <DialogueText utterance={utterance} />
               </div>
             ) : previewFrame ? (
               <div role="status" aria-live="polite" aria-atomic="true">
-                <p>{previewFrame.annotation}</p>
-                {preview === "reply" &&
-                  feedback?.explanation_summary !== previewFrame.annotation && (
-                    <p>{feedback?.explanation_summary}</p>
-                  )}
+                <DialogueText utterance={utterance} />
               </div>
             ) : (
               <MoveStatus
                 busy={busy}
+                text={utterance.text}
                 failed={position.failed || !!(feedback && !feedback.completed)}
               />
             )}

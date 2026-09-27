@@ -244,6 +244,7 @@ def create_router(*, settings, engine_factory):
                                 "practical",
                                 "refinement",
                                 "intelligence",
+                                "immediate_reply",
                             )
                             if key in report
                         },

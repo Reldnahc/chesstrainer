@@ -2228,6 +2228,16 @@
               }
             ]
           },
+          "immediate_reply": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "intelligence": {
             "anyOf": [
               {
@@ -2566,6 +2576,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/HumanEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "immediate_reply": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
               },
               {
                 "type": "null"
@@ -3668,8 +3688,8 @@
             "title": "Ply"
           },
           "version": {
-            "const": "move-events-2",
-            "default": "move-events-2",
+            "const": "move-events-3",
+            "default": "move-events-3",
             "title": "Version",
             "type": "string"
           }

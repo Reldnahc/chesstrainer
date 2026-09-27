@@ -1426,6 +1426,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_reply?: components["schemas"]["Frame"] | null;
             intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
              * Label
@@ -1526,6 +1527,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_reply?: components["schemas"]["Frame"] | null;
             intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
              * Label
@@ -1850,10 +1852,10 @@ export interface components {
             ply: number | null;
             /**
              * Version
-             * @default move-events-2
+             * @default move-events-3
              * @constant
              */
-            version: "move-events-2";
+            version: "move-events-3";
         };
         /** MoveRequest */
         MoveRequest: {

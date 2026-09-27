@@ -211,6 +211,9 @@ export default function GameWorkspace({
       >
         <PositionCoach
           positionKey={`${id}:${analysisEpoch}:${key}`}
+          dialogueKey={`${id}:${key}`}
+          ply={cursor.ply}
+          variation={cursor.branch !== null}
           game={game}
           report={report}
           frame={frame}

@@ -73,6 +73,7 @@ class BookOpening(Contract):
 
 
 class GameMoveReport(Contract):
+    immediate_reply: Frame | None = None
     intelligence: MoveIntelligence | None = None
     human: HumanEvidence | None = None
     practical: PracticalAssessment | None = None

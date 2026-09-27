@@ -38,10 +38,3 @@ export function momentText(moment: Schema["NarrativeMoment"], game: Game) {
     }
   }
 }
-
-export function completionText(game: Game) {
-  const story = game.narrative;
-  if (!story?.complete) return null;
-  const takeaway = story.moments.find((m) => story.takeaways.includes(m.id));
-  return takeaway ? `Review complete. ${momentText(takeaway, game)}` : "Review complete. Select a move or move a piece to explore an alternative.";
-}

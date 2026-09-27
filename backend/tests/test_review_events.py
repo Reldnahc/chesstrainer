@@ -92,6 +92,11 @@ def test_positive_tactic_is_a_line_witness_not_a_played_game_claim_or_best_line_
     fork = next(event for event in tactics if event.facts["motif"] == "fork")
     assert fork.confidence == "line_witness" and fork.facts["role"] == "played"
     assert fork.actor == "white" and fork.facts["plies"]
+    assert fork.facts["pieces"]["e4"] == {"piece": "queen", "color": "black"}
+    assert fork.facts["witness"] == [
+        {"ply": 1, "san": "Ng5+", "capture": None, "gives_check": True}
+    ]  # The fork does not pretend a later capture already happened.
+    assert fork.facts["settled_material_delta"] is None or fork.facts["settled_material_delta"] > 0
     assert "explanation" not in fork.facts and "cue" not in fork.facts
     changed = deepcopy(report)
     changed["actual_line"]["findings"] = []
@@ -104,6 +109,20 @@ def test_positive_tactic_is_a_line_witness_not_a_played_game_claim_or_best_line_
     assert not events(changed, kind="tactic")
     changed["actual_line"]["frames"][1]["uci"] = "f3d4"
     assert not events(changed, kind="tactic")
+
+
+def test_immediate_reply_is_projected_from_verified_line_not_a_best_line_hint():
+    board = game("1. f3 e5 *").end().board()
+    report = move_report(
+        board, "g2g4", best="b1c3", pv=["g2g4", "d8h4"], after={"kind": "mate", "value": -1}
+    )
+    report["actual_line"] = line_evidence(
+        board, Candidate.model_validate(report["actual"]), "played-evidence", 1
+    )
+    result = public_report(report, 1000)
+    assert result["immediate_reply"]["san"] == "Qh4#"
+    report["actual_line"]["frames"] = report["actual_line"]["frames"][:2]
+    assert public_report(report, 1000)["immediate_reply"] is None
 
 
 def test_human_contrast_carries_domain_and_never_changes_objective_event_identity_or_grade():

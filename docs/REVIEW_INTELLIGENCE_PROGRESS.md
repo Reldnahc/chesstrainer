@@ -1,6 +1,6 @@
 # Review intelligence implementation ledger
 
-Current checkpoint: Milestone 9 verified; Milestone 10 is next.
+Current checkpoint: Milestone 10 verified; Milestone 11 is next.
 
 ## Baseline
 
@@ -206,8 +206,7 @@ Milestone 8: `84e4189` — conservative cross-game context.
   Provisional items remain explicitly provisional and new users get empty history.
   Implementation boundaries: CROSS_GAME_CONTEXT.md.
 
-Milestone 9: semantic game narrative and completion UX complete; commit SHA will
-be recorded at the next boundary.
+Milestone 9: `a67aa8f` — semantic game narrative and completion UX.
 
 - Stable factual slots select supported opening, strongest concession, positive
   finds, difficult resources, missed chances, recovery, repetition, conversion,
@@ -226,6 +225,26 @@ be recorded at the next boundary.
 - GAME_NARRATIVE.md documents selection and result caveats. Saved facts contain
   no coach prose. The next milestone replaces neutral display prose through the
   shared dialogue/utterance boundary before personalities begin.
+
+Milestone 10: shared neutral dialogue complete; commit SHA will be recorded at
+the next boundary.
+
+- Pure client intents/utterances select evidence-backed claims and deterministic
+  variants from current reports, context and narrative. Shared integration covers
+  game review, variations, practice feedback and Show Why. No reanalysis or prose
+  persistence. SRS retains its authorized saved-continuation authority and cold gate.
+- Tactical facts now carry visible role pieces/witness details; the public played
+  report includes its immediate reply. Positional facts remain descriptive rather
+  than inferred causes. Context requires a matching mainline node, never a branch.
+- Backend event/native review/API suite: 45 passed. Desktop/mobile dialogue,
+  game/story, coach, lifecycle and practice-layout suites: 53 passed, one expected
+  mobile skip of the desktop width test. Production build, API/type checks, Ruff
+  and whitespace checks pass. Inspected real initial/blunder screens through the
+  app browser and desktop/mobile screenshots through the test artifacts.
+- COACH_DIALOGUE.md documents contracts, provenance, deterministic selection,
+  compactness and the compatibility fallback. Personality work remains subsequent.
+- Offline native Stockfish + Maia smoke passed: completed review, exact human
+  policy, restart/cache reuse and coach-independent persisted evidence.
 
 ## Decisions / follow-ups
 

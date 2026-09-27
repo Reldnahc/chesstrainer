@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
 import ReviewCoach from "./ReviewCoach";
+import { explanationIntent } from "./dialogue/practiceIntent";
+import { claim, makeIntent } from "./dialogue/model";
+import { useDialogue } from "./dialogue/useDialogue";
+import DialogueText from "./dialogue/DialogueText";
 
 export default function ReviewExplanation({
   sessionId,
@@ -63,6 +67,9 @@ export default function ReviewExplanation({
     };
   }, [sessionId, attemptId, solution, initialPly]);
   const frame = data?.frames[index];
+  const utterance = useDialogue(data && frame
+    ? explanationIntent(`${sessionId}:${attemptId ?? "solution"}`, data, frame, index)
+    : makeIntent(sessionId, "thinking", "explanation", "thinking", [claim("thinking")]));
   const ready = !!frame;
   useEffect(() => {
     back.current?.focus({ preventScroll: true });
@@ -105,14 +112,7 @@ export default function ReviewExplanation({
         ) : !data || !frame ? (
           <p role="status">Loading the saved continuation...</p>
         ) : (
-          <>
-            {data.summary.trim() !== frame.annotation.trim() && (
-              <p className="explanation-summary">{data.summary}</p>
-            )}
-            <p className="explanation-caption" aria-live="polite">
-              {frame.annotation}
-            </p>
-          </>
+          <DialogueText className="explanation-caption" utterance={utterance} />
         )}
       </ReviewCoach>
       {data && frame && (

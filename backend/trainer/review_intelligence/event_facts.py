@@ -1,5 +1,7 @@
 """Objective and witnessed event rules; each retains its source authority."""
 
+import chess
+
 from trainer.chess_core import Score, evaluation_loss
 
 
@@ -138,6 +140,21 @@ def tactical_events(report, emit, ref, fen, actor):
                     "verification": finding["verification"],
                     "context_fen": finding.get("context_fen"),
                     "context_move": finding.get("context_move"),
+                    "witness": [
+                        {
+                            "ply": ply,
+                            "san": frames[ply]["san"],
+                            "capture": frames[ply].get("capture"),
+                            "gives_check": frames[ply].get("gives_check", False),
+                        }
+                        for ply in finding["plies"]
+                    ],
+                    "pieces": witness_pieces(frames, finding),
+                    "settled_material_delta": (
+                        line.get("material_delta") * (-1 if role == "allowed" else 1)
+                        if line.get("settled") and line.get("material_delta") is not None
+                        else None
+                    ),
                 },
                 [
                     ref("stockfish", finding["analysis_id"], f"{source}_line/findings/{index}"),
@@ -149,3 +166,16 @@ def tactical_events(report, emit, ref, fen, actor):
                 ],
                 mover=finding["actor"],
             )
+
+
+def witness_pieces(frames, finding):
+    """Describe visible role pieces, without guessing what was captured later."""
+    board = chess.Board(frames[finding["frame_ply"]]["fen"])
+    return {
+        square: {
+            "piece": chess.piece_name(piece.piece_type),
+            "color": "white" if piece.color else "black",
+        }
+        for square in finding["squares"]
+        if (piece := board.piece_at(chess.parse_square(square))) is not None
+    }
