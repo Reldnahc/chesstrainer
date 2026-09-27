@@ -14,7 +14,11 @@ def create_router(*, settings, health, classifier) -> APIRouter:
 
     @router.get("/api/health", response_model=Health, response_model_exclude_unset=True)
     def get_health(workspace: CurrentWorkspace):
-        return {"database": "ready", **health, "classification_available": classifier is not None}
+        return {
+            "database": "ready",
+            **health.snapshot(),
+            "classification_available": classifier is not None,
+        }
 
     @router.get(
         "/api/settings", response_model=WorkspaceSettings, response_model_exclude_unset=True
@@ -23,7 +27,7 @@ def create_router(*, settings, health, classifier) -> APIRouter:
         with workspace.sessions() as db:
             return (
                 settings.public()
-                | health
+                | health.snapshot()
                 | {
                     "classification_available": classifier is not None,
                     "coverage": coverage(db),

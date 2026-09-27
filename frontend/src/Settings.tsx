@@ -58,7 +58,7 @@ export default function SettingsScreen({
           </button>
           <button
             className="secondary"
-            disabled={!!busy || !health?.engine_available}
+            disabled={!!busy || !health}
             onClick={() => classify(true)}
           >
             {busy === "deepen" ? "Queuing…" : "Deepen unclear positions"}

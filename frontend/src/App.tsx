@@ -42,11 +42,21 @@ export default function App() {
     [],
   );
   useEffect(() => {
+    let active = true;
     const connect = () => setConnection(true);
     window.addEventListener("connection-required", connect);
-    read(api.GET("/api/health")).then(setHealth).catch(fail);
-    return () => window.removeEventListener("connection-required", connect);
-  }, [refresh, fail]);
+    read(api.GET("/api/health"))
+      .then((result) => {
+        if (active) setHealth(result);
+      })
+      .catch((error) => {
+        if (active) fail(error);
+      });
+    return () => {
+      active = false;
+      window.removeEventListener("connection-required", connect);
+    };
+  }, [refresh, fail, tab]);
   useEffect(() => {
     setError("");
     setEvidenceId(null);

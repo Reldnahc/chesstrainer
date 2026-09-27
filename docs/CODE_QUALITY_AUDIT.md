@@ -19,7 +19,7 @@ and may move during refactoring.
 - [x] **7. Break tactical detection and classification into smaller rules/stages.**
 - [x] **8. Consolidate duplicated chess helpers and correct dependency boundaries.**
 - [x] **9. Remove archived lesson progression from active review handling.**
-- [ ] **10. Correct engine health reporting and preserve diagnostic exceptions.**
+- [x] **10. Correct engine health reporting and preserve diagnostic exceptions.**
 - [ ] **11. Remove this checklist document after all findings above are resolved and verified.**
 
 ## 1. Docker publishing is independent of correctness
@@ -276,7 +276,7 @@ diff checks passed. No database migration or active container setting changed.
 
 ## 10. Health and exception diagnostics are unreliable
 
-**Priority:** Medium. **Status:** Open.
+**Priority:** Medium. **Status:** Resolved and verified.
 
 An isolated audit probe using a nonexistent Stockfish executable returned
 `engine_available: true` in account mode: startup sets availability even when the
@@ -287,7 +287,22 @@ JSON log formatter discards exception information even when supplied.
 not been started, report failures accurately, and preserve useful server-side
 exception diagnostics without exposing private data in client responses.
 
-**Verification / resolution:** Pending.
+**Implementation:** A thread-safe host observer records unchecked/ready/unavailable
+from real engine startup/search results. Hosted mode remains lazy; health reads
+start no engines. Availability is null before checking, failures clear stale version
+information, and successful retries clear errors. Account-session rebinding still
+reaches the native pooled engine. Saved-reference mismatches do not report a host
+outage. Health refreshes on UI page navigation and does not disable retry requests.
+Job failures log full exception chains before saving a sanitized client error;
+the JSON formatter retains tracebacks and explicit stack information.
+
+**Verification / resolution:** 26 focused health/hosted-resource/API/native-engine
+tests passed, followed by all 7 diagnostic tests after adding pooled recovery
+coverage. Both desktop/mobile health browser tests and the production build passed.
+Tests cover lazy missing engines, startup/search failure and recovery in both modes,
+per-application isolation, pooled account ownership, native reference mismatch, and
+private sentinel text reaching server logs but not the job response. Schemas/types
+were regenerated; Ruff and diff checks passed. No container variables were added.
 
 ## Audit validation and boundaries
 

@@ -93,14 +93,15 @@ def test_router_resources_and_access_controls_belong_to_each_app(settings, tmp_p
     )
     with (
         TestClient(create_app(first, workers=False)) as left,
-        TestClient(create_app(second, workers=False)) as right,
+        TestClient(create_app(second, workers=False, start_engine=False)) as right,
     ):
         left.headers["authorization"] = "Bearer first-token"
         right.headers["authorization"] = "Bearer second-token"
         assert left.get("/api/settings").json()["target_rating"] == 1000
         assert right.get("/api/settings").json()["target_rating"] == 1800
-        assert "missing-first-engine" in left.get("/api/health").json()["engine_error"]
-        assert "missing-second-engine" in right.get("/api/health").json()["engine_error"]
+        assert left.get("/api/health").json()["engine_status"] == "unavailable"
+        assert right.get("/api/health").json()["engine_status"] == "unchecked"
+        assert right.get("/api/health").json()["engine_error"] is None
         assert (
             left.get("/api/settings", headers={"authorization": "Bearer second-token"}).status_code
             == 401

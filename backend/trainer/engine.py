@@ -23,6 +23,10 @@ class EngineUnavailable(RuntimeError):
     pass
 
 
+class EngineReferenceMismatch(EngineUnavailable):
+    """Stockfish is usable, but this position requires a different saved executable."""
+
+
 class Stockfish:
     """A serialized native engine with a persistent, context-sensitive cache."""
 
@@ -97,7 +101,7 @@ class Stockfish:
                 reference.engine_version != self.version
                 or reference.config["binary_sha256"] != self.binary_hash
             ):
-                raise EngineUnavailable(
+                raise EngineReferenceMismatch(
                     "This exercise was verified with a different Stockfish executable. "
                     "Restore that STOCKFISH_PATH to verify additional moves; "
                     "stored accepted answers remain usable."

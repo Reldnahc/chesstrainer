@@ -93,6 +93,15 @@ stage behavior is documented only in [archive/COURSE_DESIGN.md](archive/COURSE_D
 
 ## Shared hosting
 
+`/api/health` and `/api/settings` distinguish an unchecked engine from a working
+or unavailable one through `engine_status`. Availability is `null` until checked,
+then `true` or `false` according to the latest actual engine operation. Health
+requests do not start Stockfish or spend analysis CPU. Account mode checks on first
+use; local mode checks at startup. A successful retry clears a previous failure.
+The UI refreshes health on page navigation and allows retries even after a failure.
+Administrator logs contain exception chains; shared health responses do not contain
+raw exception details. There are no additional container variables for this.
+
 - `ACCOUNTS_ENABLED=false` preserves the original local mode; Docker defaults to true.
 - `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.

@@ -1227,9 +1227,14 @@ export interface components {
             /** Database */
             database: string;
             /** Engine Available */
-            engine_available: boolean;
+            engine_available: boolean | null;
             /** Engine Error */
             engine_error: string | null;
+            /**
+             * Engine Status
+             * @enum {string}
+             */
+            engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
         };
@@ -1758,11 +1763,16 @@ export interface components {
             /** Desired Retention */
             desired_retention: number;
             /** Engine Available */
-            engine_available: boolean;
+            engine_available: boolean | null;
             /** Engine Error */
             engine_error: string | null;
             /** Engine Slots */
             engine_slots: number;
+            /**
+             * Engine Status
+             * @enum {string}
+             */
+            engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
             /** Lan Token Configured */

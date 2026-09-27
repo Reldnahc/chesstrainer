@@ -111,10 +111,8 @@ export default function ImportScreen({
         title="Import games"
         description="Find the decisions that matter in games you actually played."
       />
-      {!health?.engine_available && (
-        <div className="notice">
-          {health?.engine_error || "Checking engine availability…"}
-        </div>
+      {health?.engine_status === "unavailable" && (
+        <div className="notice">{health.engine_error}</div>
       )}
       <div className="two-column">
         <div>

@@ -25,6 +25,7 @@ Whole-game review and training analysis are separately requested from the game.
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
 | jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
 | backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
+| engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | routes/workspace.py | Health, effective settings and statistics |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
@@ -184,6 +185,17 @@ uses atomic SQL increments. Engine cache lock stripes coalesce identical concurr
 searches. Local interactive grading has a separate serialized engine; hosted
 grading and variations use the same bounded native pool as background work.
 Multiple Uvicorn application processes are unsupported.
+
+Engine health starts as `unchecked` (`engine_available: null`) until a real startup
+or search succeeds or fails. Local mode checks at startup; account mode stays lazy.
+One host-wide observer wraps native engines before pooling and explicitly forwards
+account-session rebinding. Successful use reports `ready`, failures report
+`unavailable`, and the next success clears the error. This describes the last
+observed operation, not a background liveness probe or occupied-slot count. Normal
+engine cleanup leaves that observation intact. A saved-executable mismatch is a
+position-specific verification error, not a host outage. Health errors are generic;
+full exception chains belong in server logs. JSON job diagnostics include the job
+ID, error type and traceback, while unexpected client errors remain sanitized.
 
 Training identity ignores clocks but preserves legal en passant and castling. Engine cache identity also preserves rule clocks and move history. Scores are learner-relative with mate separate from centipawns. Classification caches include saved evidence, rules, parameters and taxonomy; classification weights are not calibrated probabilities.
 

@@ -1832,8 +1832,15 @@
             "type": "string"
           },
           "engine_available": {
-            "title": "Engine Available",
-            "type": "boolean"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine Available"
           },
           "engine_error": {
             "anyOf": [
@@ -1845,6 +1852,15 @@
               }
             ],
             "title": "Engine Error"
+          },
+          "engine_status": {
+            "enum": [
+              "unchecked",
+              "ready",
+              "unavailable"
+            ],
+            "title": "Engine Status",
+            "type": "string"
           },
           "engine_version": {
             "anyOf": [
@@ -1859,6 +1875,7 @@
           }
         },
         "required": [
+          "engine_status",
           "engine_available",
           "engine_error",
           "engine_version",
@@ -3504,8 +3521,15 @@
             "type": "number"
           },
           "engine_available": {
-            "title": "Engine Available",
-            "type": "boolean"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine Available"
           },
           "engine_error": {
             "anyOf": [
@@ -3521,6 +3545,15 @@
           "engine_slots": {
             "title": "Engine Slots",
             "type": "integer"
+          },
+          "engine_status": {
+            "enum": [
+              "unchecked",
+              "ready",
+              "unavailable"
+            ],
+            "title": "Engine Status",
+            "type": "string"
           },
           "engine_version": {
             "anyOf": [
@@ -3626,6 +3659,7 @@
           }
         },
         "required": [
+          "engine_status",
           "engine_available",
           "engine_error",
           "engine_version",

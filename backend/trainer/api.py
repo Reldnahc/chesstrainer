@@ -10,6 +10,7 @@ from trainer.config import Settings
 from trainer.contracts.accounts import Identity
 from trainer.db import database, migrate
 from trainer.engine import EngineUnavailable, Stockfish
+from trainer.engine_health import EngineHealth
 from trainer.engine_pool import EnginePool
 from trainer.jobs import JobRunner
 from trainer.local_classifier import LocalClassifier
@@ -44,6 +45,8 @@ def create_app(
 ):
     settings = (settings or Settings()).for_runtime()
     sql_engine, sessions = database(settings.database_path)
+    health = EngineHealth()
+    engine_factory = health.observe(engine_factory)
     pool = EnginePool(engine_factory, settings.engine_slots) if settings.accounts_enabled else None
     engine_factory = pool.handle if pool else engine_factory
     engine = engine_factory(settings, sessions)
@@ -61,7 +64,6 @@ def create_app(
         chesscom_factory=chesscom_factory,
         workspaces=workspaces,
     )
-    health = {"engine_available": False, "engine_error": None, "engine_version": None}
 
     @asynccontextmanager
     async def lifespan(app):
@@ -76,11 +78,8 @@ def create_app(
             try:
                 if start_engine and not pool:
                     engine.start()
-                health.update(
-                    engine_available=True, engine_error=None, engine_version=engine.version
-                )
-            except EngineUnavailable as exc:
-                health.update(engine_available=False, engine_error=str(exc))
+            except EngineUnavailable:
+                pass  # The observer records availability and the server-side exception.
             if workers:
                 runner.start()
             yield

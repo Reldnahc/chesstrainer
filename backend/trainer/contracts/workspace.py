@@ -4,7 +4,8 @@ from trainer.contracts.common import Contract
 
 
 class EngineHealth(Contract):
-    engine_available: bool
+    engine_status: Literal["unchecked", "ready", "unavailable"]
+    engine_available: bool | None
     engine_error: str | None
     engine_version: str | None
     classification_available: bool

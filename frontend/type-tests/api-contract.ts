@@ -4,7 +4,7 @@ import { api, read, type ColdPosition, type Schema } from "../src/api";
 // callers can again substitute an unrelated hand-written response shape.
 async function endpointContracts() {
   const health = await read(api.GET("/api/health"));
-  const available: boolean = health.engine_available;
+  const available: boolean | null = health.engine_available;
   // @ts-expect-error health does not contain a game board
   health.frames;
   // @ts-expect-error endpoint return types cannot be substituted by the caller

@@ -94,6 +94,7 @@ class JobExecution:
         except ImportCancelled:
             self.finish_cancel(job_id)
         except Exception as exc:
+            log.exception("job_failed", extra={"job_id": job_id, "error_type": type(exc).__name__})
             with self.sessions() as db:
                 job = db.get(AnalysisJob, job_id)
                 job.status = "failed"
@@ -105,7 +106,6 @@ class JobExecution:
                     else f"{type(exc).__name__}: analysis interrupted; completed work retained."
                 )
                 db.commit()
-            log.error("job_failed", extra={"job_id": job_id, "error_type": type(exc).__name__})
             if engine:
                 engine.close()
         finally:
