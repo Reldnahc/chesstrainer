@@ -47,12 +47,6 @@ export default function DogCoach({ expression, family }: CoachArtworkProps) {
                     d="M68 110q19-7 23-22l-1-13 5 5-1-14q11 22-1 36l-3-1 1 7-8-2-3 7Z"
                     fill={look === "collie" ? palette.fur : palette.light}
                   />
-                  {look === "collie" && (
-                    <path
-                      d="m94 66 1 14-5-5 1 13-1 4 9 1q2-13-5-27Z"
-                      fill={palette.muzzle}
-                    />
-                  )}
                   <path
                     d="M76 108q13-8 18-18"
                     stroke={look === "collie" ? palette.light : palette.fur}
@@ -60,6 +54,13 @@ export default function DogCoach({ expression, family }: CoachArtworkProps) {
                     fill="none"
                     strokeLinecap="round"
                   />
+                  {/* Cover the fur contour so it stops at the white tip. */}
+                  {look === "collie" && (
+                    <path
+                      d="m94 66 1 14-5-5 1 13-1 4 9 1q2-13-5-27Z"
+                      fill={palette.muzzle}
+                    />
+                  )}
                 </>
               )}
             </g>

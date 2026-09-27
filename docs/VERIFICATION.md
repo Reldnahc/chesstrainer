@@ -24,6 +24,10 @@ production selection. Retired variants and their unused artwork were removed.
   edges, and comparison-button alignment. Mobile layout was checked in emulation.
 - The studio artwork stays lazy-loaded: **15.59 KB JavaScript and 4.08 KB CSS
   gzipped** in the final build. These are asset sizes, not a device benchmark.
+- Tail follow-up: the border collie's white tip now covers the gray fur contour,
+  ending the line at the color boundary while retaining the original silhouette.
+  Production build and both desktop/mobile dog-collection checks passed; the
+  boundary was also inspected in the actual studio.
 
 The artwork uses the existing lifecycle and semantic reactions. No backend,
 database, account contract, or engine scheduling changes were required.
