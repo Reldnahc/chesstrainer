@@ -1,13 +1,14 @@
-import { useId, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import type { CoachArtworkProps } from "../model";
-import { familyPose, handPoses, type Gesture } from "./poses";
+import { familyPose, handPoses } from "./poses";
+import Arm from "../human/Arm";
+import HumanFeatures from "../human/HumanFeatures";
 import "./classic.css";
 
 export default function ClassicCoach({
   expression,
   family,
 }: CoachArtworkProps) {
-  const eyeClip = useId();
   const pose = familyPose(expression, family);
   const hands = handPoses[pose.gesture];
   const vars = {
@@ -103,140 +104,7 @@ export default function ClassicCoach({
                   strokeWidth="1"
                   strokeLinecap="round"
                 />
-                {pose.blush && (
-                  <g fill="#df9783" opacity=".3">
-                    <ellipse cx="24" cy="51" rx="5" ry="2.5" />
-                    <ellipse cx="56" cy="51" rx="5" ry="2.5" />
-                  </g>
-                )}
-                <g
-                  className="coach-brows"
-                  fill="none"
-                  stroke="#797469"
-                  strokeWidth="2.3"
-                  strokeLinecap="round"
-                >
-                  <path className="coach-brow-left" d={pose.brows[0]} />
-                  <path className="coach-brow-right" d={pose.brows[1]} />
-                </g>
-                <g className="coach-eyes">
-                  {pose.closedEyes ? (
-                    <g
-                      fill="none"
-                      stroke="#393c42"
-                      strokeWidth="1.7"
-                      strokeLinecap="round"
-                    >
-                      <path
-                        d={
-                          expression === "mistake"
-                            ? "M26 42q4 3 8-1"
-                            : "M26 43q4-5 8 0"
-                        }
-                      />
-                      <path
-                        d={
-                          expression === "mistake"
-                            ? "M46 41q4 4 8 1"
-                            : "M46 43q4-5 8 0"
-                        }
-                      />
-                    </g>
-                  ) : (
-                    <>
-                      <ellipse
-                        cx="30"
-                        cy="42"
-                        rx="4.2"
-                        ry={pose.eye}
-                        fill="#fff7e8"
-                      />
-                      <ellipse
-                        cx="50"
-                        cy="42"
-                        rx="4.2"
-                        ry={pose.eye}
-                        fill="#fff7e8"
-                      />
-                      <defs>
-                        <clipPath id={eyeClip}>
-                          <ellipse cx="30" cy="42" rx="4.2" ry={pose.eye} />
-                          <ellipse cx="50" cy="42" rx="4.2" ry={pose.eye} />
-                        </clipPath>
-                      </defs>
-                      <g clipPath={`url(#${eyeClip})`}>
-                        <g className="coach-gaze">
-                          <g transform={`translate(${pose.gaze.join(" ")})`}>
-                            <ellipse
-                              cx="30"
-                              cy="42"
-                              rx="2"
-                              ry={Math.min(2.5, pose.eye - 0.4)}
-                              fill="#393c42"
-                            />
-                            <ellipse
-                              cx="50"
-                              cy="42"
-                              rx="2"
-                              ry={Math.min(2.5, pose.eye - 0.4)}
-                              fill="#393c42"
-                            />
-                            <circle cx="29.4" cy="41.2" r=".65" fill="#fff" />
-                            <circle cx="49.4" cy="41.2" r=".65" fill="#fff" />
-                          </g>
-                        </g>
-                      </g>
-                    </>
-                  )}
-                </g>
-                <path
-                  d="M39 43q-2 7 1 7h2"
-                  fill="none"
-                  stroke="#c79572"
-                  strokeWidth="1.4"
-                  strokeLinecap="round"
-                />
-                <g className="coach-mouth">
-                  <path
-                    d={pose.mouth}
-                    fill="#75473e"
-                    stroke="#75473e"
-                    strokeWidth=".65"
-                    strokeLinejoin="round"
-                  />
-                  {pose.open &&
-                    [
-                      "brilliant",
-                      "great",
-                      "winning",
-                      "recovered",
-                      "encouraging",
-                      "explaining",
-                    ].includes(expression) && (
-                      <path d="M34 56q6 2 12 0l-1 3H35Z" fill="#fff7e8" />
-                    )}
-                  {pose.open &&
-                    ["brilliant", "winning", "recovered"].includes(
-                      expression,
-                    ) && <path d="M36 65q4-3 8 0-4 3-8 0" fill="#d58c7e" />}
-                </g>
-                <g
-                  className="coach-glasses"
-                  fill="none"
-                  stroke="#393c42"
-                  strokeWidth="2.2"
-                >
-                  <rect x="22" y="35" width="15" height="13" rx="4.5" />
-                  <rect x="43" y="35" width="15" height="13" rx="4.5" />
-                  <path d="M37 40q3-2 6 0M17 37l5 2m36 0 5-2" />
-                  <path
-                    className="coach-lens-glint"
-                    d="m25 39 3-1m19 1 3-1"
-                    stroke="#fff"
-                    strokeWidth="1.3"
-                    opacity=".55"
-                  />
-                </g>
+                <HumanFeatures pose={pose} expression={expression} />
               </g>
             </g>
           </g>
@@ -264,50 +132,5 @@ export default function ClassicCoach({
         </g>
       </g>
     </svg>
-  );
-}
-
-function Arm({
-  side,
-  hand: [x, y, angle],
-  gesture,
-}: {
-  side: "left" | "right";
-  hand: [number, number, number];
-  gesture: Gesture;
-}) {
-  const left = side === "left";
-  const shoulder = left ? 18 : 62;
-  const elbow = left ? 10 : 70;
-  const fist = gesture === "fist" || gesture === "win";
-  return (
-    <g className={`coach-arm coach-arm-${side}`}>
-      <path
-        d={`M${shoulder} 78Q${elbow} 92 ${x} ${y + 5}`}
-        fill="none"
-        stroke="#526e66"
-        strokeWidth="10"
-        strokeLinecap="round"
-      />
-      <g transform={`translate(${x} ${y}) rotate(${angle})`}>
-        <path d="M-4 5h8v3h-8Z" fill="#a2b5a9" />
-        <g
-          className="coach-hand"
-          fill="#f2c5a0"
-          stroke="#dba47f"
-          strokeWidth=".65"
-          strokeLinejoin="round"
-        >
-          <path
-            d={
-              fist
-                ? "M-4 3V-3q0-3 3-3h4q3 0 3 3v6q-4 4-10 0Z"
-                : "M-4 4v-8q0-3 1.8-3 1 0 1 2v-2q0-2 1.5-2T2-7v1q0-2 1.5-2T5-6V0q2-4 3-2t-4 7Z"
-            }
-          />
-          {fist && <path d="M-2-4v3m3-3v3m3-3v3" fill="none" />}
-        </g>
-      </g>
-    </g>
   );
 }

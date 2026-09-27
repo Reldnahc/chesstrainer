@@ -82,6 +82,8 @@ description, supported states, fallback map, concept families, default family,
 capabilities, animation timing/idle configuration and artwork component. The
 default SVG rig, poses, motion tracks and keyframes live in `classic/`; shared
 lifecycle and preference code contain no references to its facial geometry.
+Reusable human expressions, facial layers and open-palm hand artwork live in
+`human/`. Individual human coaches provide their own silhouette, palette and acting.
 
 Add an allowed coach ID to the backend preference contract, regenerate the API
 types, and register the matching frontend definition. The typed registry covers
