@@ -4,6 +4,7 @@ from copy import deepcopy
 
 import chess
 import pytest
+from review_cause_fixtures import CAUSES, cause_report
 from review_intelligence_fixtures import move_report
 from test_review_clocks import game
 from test_review_difficulty import report as human_report
@@ -17,6 +18,48 @@ from trainer.review_intelligence.events import describe_move
 def events(report, context=None, kind=None):
     result = describe_move(report, assess_difficulty(report), context)
     return [e for e in result.events if kind is None or e.kind == kind]
+
+
+@pytest.mark.parametrize("black", [False, True])
+@pytest.mark.parametrize("skill", CAUSES)
+def test_mover_causes_survive_the_production_review_path(skill, black):
+    report = cause_report(skill, black)
+    mover, opponent = ("black", "white") if black else ("white", "black")
+    finding = next(f for f in report["actual_line"]["findings"] if f["skill_id"] == skill)
+    assert finding["actor"] == mover and finding["plies"] == [1, 2]
+    described = public_report(report, 1000)
+    causal = [e for e in described["intelligence"]["events"] if e["facts"].get("motif") == skill]
+    assert len(causal) == 1
+    event = causal[0]
+    assert event["actor"] == mover
+    assert event["facts"]["role"] == "caused"
+    assert event["facts"]["opportunity_actor"] == opponent
+    assert event["facts"]["settled_material_delta"] < 0
+    assert event["facts"]["witness"][1]["san"] == report["actual_line"]["frames"][2]["san"]
+    assert event["evidence"][0]["id"] == report["played_analysis_id"]
+    assert "explanation" not in event["facts"]
+
+    # A causal witness is still the mover's, not permission to ignore actor checks.
+    finding["actor"] = opponent
+    assert not [e for e in events(report, kind="tactic") if e.facts["motif"] == skill]
+
+
+def test_causes_are_not_opponent_tactics_or_alternative_achievements():
+    report = cause_report("abandoned_defender")
+    finding = next(
+        f for f in report["actual_line"]["findings"] if f["skill_id"] == "abandoned_defender"
+    )
+    for change in ({"plies": [2]}, {"direction": "missed_opportunity"}, {"frame_ply": 1}):
+        modified = deepcopy(report)
+        modified["actual_line"]["findings"] = [finding | change]
+        assert not [
+            e for e in events(modified, kind="tactic") if e.facts["motif"] == "abandoned_defender"
+        ]
+    # No poor-move gate means no causal diagnosis, even with a retained witness.
+    report["actual"]["score"] = report["best"]["score"]
+    assert not [
+        e for e in events(report, kind="tactic") if e.facts["motif"] == "abandoned_defender"
+    ]
 
 
 @pytest.mark.parametrize(

@@ -4,6 +4,8 @@ import chess
 
 from trainer.chess_core import Score, evaluation_loss
 
+MOVER_CAUSES = {"abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"}
+
 
 def advantage(score):
     if score.kind == "mate":
@@ -93,6 +95,7 @@ def tactical_events(report, emit, ref, fen, actor):
         Score.model_validate(report["actual"]["score"]),
     )
     poor = loss.allows_mate or loss.mate_lost or (loss.cp or 0) >= 50
+    opponent = "black" if actor == "white" else "white"
     for source in ("actual", "best"):
         if source == "best" and report["best"]["uci"] == report["actual"]["uci"]:
             continue
@@ -121,16 +124,30 @@ def tactical_events(report, emit, ref, fen, actor):
                 if poor
                 else "alternative"
             )
-            expected = ("black" if actor == "white" else "white") if role == "allowed" else actor
+            # These witnesses begin with the mover's error, then the opponent's
+            # capture. Their actor remains the responsible mover, not the beneficiary.
+            causal = finding["skill_id"] in MOVER_CAUSES
+            if causal:
+                if (
+                    role != "allowed"
+                    or finding.get("direction") != "allowed_opponent_tactic"
+                    or finding["plies"] != [1, 2]
+                    or finding["frame_ply"] != 0
+                    or finding["moves"] != [frames[p]["uci"] for p in (1, 2)]
+                ):
+                    continue
+                role = "caused"
+            expected = opponent if role == "allowed" else actor
             if finding["actor"] != expected:
                 continue
             emit(
                 "tactic",
                 "line_witness",
-                75 if role in {"allowed", "missed"} else 65,
+                75 if role in {"allowed", "caused", "missed"} else 65,
                 {
                     "motif": finding["skill_id"],
                     "role": role,
+                    **({"opportunity_actor": opponent} if causal else {}),
                     "rule_id": finding["rule_id"],
                     "frame_ply": finding["frame_ply"],
                     "plies": finding["plies"],

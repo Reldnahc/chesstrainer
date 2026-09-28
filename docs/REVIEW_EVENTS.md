@@ -1,11 +1,10 @@
 # Semantic review events and clock context
 
-`review_intelligence/events.py` derives `move-events-2` from saved Stockfish
+`review_intelligence/events.py` derives `move-events-4` from saved Stockfish
 reports, practical assessment and optional recorded-mainline context. It neither
 searches nor grades. The typed `intelligence` field is shared by full review,
 progress updates and interactive analysis. It is diagnostic factual input for
-dialogue and the developer laboratory; this checkpoint does not replace the
-visible coach's existing prose yet.
+dialogue and the developer laboratory, including the visible coach's supported claims.
 
 Each event has a deterministic ID, actor, confidence, importance, structured
 facts and evidence references (authority, ID, field and optional game ply).
@@ -22,7 +21,7 @@ the durable sources; reading semantics requires no migration or engine/model.
 | `evaluation_change` | Concession, lost advantage, decisive transition | Saved best/actual scores; mate remains separate from cp |
 | `critical_resource` | Only-good-at-depth, defensive versus decisive resource, practical difficulty | Safe best, losing searched runner-up, near-best played move, multiple legal moves; a good separately searched alternative disproves uniqueness |
 | `sacrifice` | Sound offer and explicit acceptance response | Existing Fieldwork sacrifice witness and acceptance analysis ID, under 50 cp loss and no newly lost/allowed mate |
-| `tactic` | Played, allowed, missed or alternative motif in a verified line | Matching line root/first move, actor, valid witness plies and exact analysis/rule IDs; never attribute an alternative's tactic to the played move |
+| `tactic` | Played, allowed, caused, missed or alternative motif in a verified line | Matching line root/first move, actor, valid witness plies and exact analysis/rule IDs; never attribute an alternative's tactic to the played move |
 | `human_contrast` | Natural error, unusual strong find, unusual model best choice | Compatible saved human evidence plus objective references; carries conditioning, domain, unvalidated calibration and confidence |
 | `clock_observation` | Low time, fast play with time, long think, accompanying evaluated error | Actual clock annotations/derivable values plus grading evidence; explicitly no psychological causation |
 | `opening_departure` | First unmatched move in the initial catalogue sequence | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
@@ -35,6 +34,17 @@ not mathematical win/draw proofs. Evaluation-change events require at least 100
 cp loss or a band change. Critical defensive resources require the practical
 assessment's stronger losing-alternative gate; an already-lost position does not
 become a celebrated sole defense.
+
+For `allowed`, the actor executes the opponent's tactic. For `caused`, the actor
+is the mover responsible for abandoning a defender, ignoring a newly enabled
+attack, or taking an unfavorable immediate exchange; `opportunity_actor` is the
+opponent who can capture. These three causal rules require the actual poor-move
+line, original `[1, 2]` witness and frame zero, with actor validation retained.
+Material delta remains relative to the event actor, so a caused loss is negative.
+Repeated motifs, narratives and historical weakness matching treat `caused` as
+an issue for the responsible mover. Dialogue uses dedicated causal claims rather
+than saying the opponent possesses the mover's error. Version 4 regenerates these
+semantics from saved facts without rerunning Stockfish or Maia.
 
 Tactical facts retain witness moves, frame indices, square roles and optional
 prior-position context. Their `line_witness` confidence means **in this saved

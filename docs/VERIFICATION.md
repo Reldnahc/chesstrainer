@@ -18,6 +18,23 @@ Using the documented local Stockfish and Chromium environment variables:
 passed **40/40** (20 desktop, 20 mobile), 52.1 s. Repetition supplements the
 explicit lifecycle ownership; it is not proof that every possible race is absent.
 
+### Mover-caused semantic explanations
+
+Six new regressions failed at the reviewed head: `analyze_move` produced each
+causal finding in both colors, but `public_report` dropped all six. The correction
+introduces `caused` with the original mover actor and explicit opponent opportunity,
+retaining strict actor/witness gates. Consumer tests cover repeated motifs and
+owned historical weakness matching. Browser regressions generate reports through
+Python's production pipeline and render them through all 16 registered coaches.
+
+- `python -m pytest -q backend/tests/test_review_events.py backend/tests/test_patterns_v3.py backend/tests/test_game_context.py backend/tests/test_cross_game_context.py backend/tests/test_game_narrative.py`:
+  **72 passed**, two existing TestClient dependency warnings.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`:
+  **20 passed** (desktop/mobile, including all six causal cases and the existing lab).
+- `npm.cmd --prefix frontend run build`: passed, including generated API consistency
+  and TypeScript contracts. OpenAPI and TypeScript regenerated through the normal
+  export commands for `move-events-4`; export `--check`, Ruff check/format passed.
+
 ## Review intelligence completion: September 27, 2026
 
 Milestones 0–14 of [the specification](REVIEW_INTELLIGENCE_PLAN.md) are complete.

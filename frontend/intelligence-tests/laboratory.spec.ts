@@ -13,7 +13,7 @@ const fixture = {
     {fen: "8/7k/8/6N1/4q3/8/8/K7 b - - 1 1", san: "Ng5+", actor: "white", turn: "black", number: 1, legal_moves: [], result: null, termination: null,
       report: {label: "Best", engine_label: "Best", actual: {uci: "f3g5", san: "Ng5+", score: {kind: "cp", value: 0}}, best: {uci: "f3g5", san: "Ng5+", score: {kind: "cp", value: 0}},
         before_analysis_id: "synthetic-search", played_analysis_id: "synthetic-search", depth: 16, engine_version: "synthetic-fixture", reason: "Example",
-        intelligence: {version: "move-events-3", input_digest: "demo-facts", ply: 1, clock: null, limitations: [], events: [
+        intelligence: {version: "move-events-4", input_digest: "demo-facts", ply: 1, clock: null, limitations: [], events: [
           {id: "demo-fork", kind: "tactic", actor: "white", confidence: "line_witness", importance: 75,
             facts: {role: "played", motif: "fork", roles: {targets: ["e4", "h7"]}, pieces: {e4: {piece: "queen", color: "black"}, h7: {piece: "king", color: "black"}}},
             evidence: [{source: "stockfish", id: "synthetic-search", field: "actual_line/findings/0"}]},
@@ -30,7 +30,7 @@ test("inspection is the same deterministic production dialogue and malformed evi
   expect(inspection.utterance.text).toContain("queen on e4 and king on h7");
   expect(parseReview(JSON.stringify(fixture))).toEqual(fixture);
   expect(() => parseReview('{"frames":[]}')).toThrow(/Expected/);
-  expect(() => parseReview(JSON.stringify(fixture).replace("move-events-3", "move-events-99"))).toThrow(/current server/);
+  expect(() => parseReview(JSON.stringify(fixture).replace("move-events-4", "move-events-99"))).toThrow(/current server/);
   expect(() => parseReview(JSON.stringify({...fixture, frames: [{...fixture.frames[1], report: {label: "Best"}}]}))).toThrow(/incompatible/);
 });
 

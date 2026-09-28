@@ -1852,10 +1852,10 @@ export interface components {
             ply: number | null;
             /**
              * Version
-             * @default move-events-3
+             * @default move-events-4
              * @constant
              */
-            version: "move-events-3";
+            version: "move-events-4";
         };
         /** MoveRequest */
         MoveRequest: {

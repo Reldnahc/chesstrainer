@@ -2,8 +2,11 @@
 
 from copy import deepcopy
 
+import pytest
+from review_cause_fixtures import CAUSES, cause_report
 from review_intelligence_fixtures import move_report
 from test_review_clocks import game
+from trainer.game_review import public_report
 from trainer.review_intelligence.game_context import game_context
 from trainer.review_intelligence.presentation import present_game
 
@@ -116,6 +119,27 @@ def test_repeated_motif_uses_player_role_and_unique_plies_not_duplicate_detector
     assert repeated[0].actor == "white" and repeated[0].plies == [1, 3]
     assert repeated[0].facts["occurrence"] == 2
     assert repeated[0].event_ids == ["fork-1", "fork-3"]
+
+
+@pytest.mark.parametrize("skill", CAUSES)
+@pytest.mark.parametrize("black", [False, True])
+def test_repeated_causes_belong_to_the_responsible_player(skill, black):
+    parsed, reports, _ = reviewed([0] * 8)
+    mover = "black" if black else "white"
+    own = [2, 4] if black else [1, 3]
+    opponent = 5 if black else 6
+    for ply in [*own, opponent]:
+        source = public_report(cause_report(skill, black if ply in own else not black), 1000)
+        event = next(
+            e for e in source["intelligence"]["events"] if e["facts"].get("motif") == skill
+        )
+        event["id"] = f"{event['id']}:{ply}"
+        reports[ply]["intelligence"]["events"] += [event, deepcopy(event)]
+    repeated = links(game_context(parsed, reports, completed=True), "repeated_motif")
+    assert len(repeated) == 1
+    assert repeated[0].actor == mover and repeated[0].plies == own
+    assert repeated[0].facts["role"] == "caused"
+    assert repeated[0].facts["occurrence"] == 2
 
 
 def test_actual_development_and_return_restore_a_concrete_knights_support():

@@ -12,7 +12,7 @@ from trainer.review_intelligence.events_types import (
 from trainer.review_intelligence.positional import VERSION as POSITION_VERSION
 from trainer.review_intelligence.positional import positional_events
 
-VERSION = "move-events-3"
+VERSION = "move-events-4"
 
 
 def semantic_line(line):

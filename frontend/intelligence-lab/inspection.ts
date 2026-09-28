@@ -44,8 +44,8 @@ export function parseReview(text: string): Game {
   for (const frame of value.frames) {
     if (!frame || !displayableFen(frame.fen) || typeof frame.san !== "string" || !["white", "black"].includes(frame.turn))
       throw new Error("The review contains an invalid position.");
-    if (frame.report?.intelligence && frame.report.intelligence.version !== "move-events-3")
-      throw new Error("This laboratory needs move-events-3. Export the game from the current server.");
+    if (frame.report?.intelligence && frame.report.intelligence.version !== "move-events-4")
+      throw new Error("This laboratory needs move-events-4. Export the game from the current server.");
   }
   // Dry-run the actual renderer before replacing the last good document. This is
   // diagnostic input, never chess authority or executable content.

@@ -54,7 +54,7 @@ class ReviewEvent(Contract):
 
 
 class MoveIntelligence(Contract):
-    version: Literal["move-events-3"] = "move-events-3"
+    version: Literal["move-events-4"] = "move-events-4"
     input_digest: str
     ply: int | None
     events: list[ReviewEvent]

@@ -26,6 +26,12 @@ facts. `immediate_reply` projects the played line's first reply, not a best-line
 answer. Targets being forked are distinguished from later captures. These facts
 are coach independent, as are the Fieldwork labels and Stockfish scores.
 
+`move-events-4` preserves mover-caused errors with an explicit responsible actor
+and opponent opportunity actor. Dedicated causal claims explain the abandoned
+defender, unaddressed preceding threat or unfavorable capture/recapture. They use
+the shared neutral fallback for every coach and retain the verified source IDs;
+an opponent tactic template never narrates a mover-caused error.
+
 Variant selection uses stable factual identity, including game/path/evidence,
 never render time or analysis retry epoch. An utterance carries its intent ID,
 selected template/variant, source IDs and selection decisions. It also provides

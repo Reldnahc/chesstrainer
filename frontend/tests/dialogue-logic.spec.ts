@@ -13,7 +13,7 @@ const event = (kind: Schema["ReviewEvent"]["kind"], facts: Schema["ReviewEvent"]
 const report = (events: Schema["ReviewEvent"][] = []): Report => ({label: "Blunder", engine_label: "Blunder",
   actual: {uci: "e2e4", san: "e4", score: {kind: "cp", value: -250}},
   best: {uci: "d2d4", san: "d4", score: {kind: "cp", value: 50}},
-  intelligence: {version: "move-events-3", input_digest: "facts", ply: 1, events, clock: null, limitations: []},
+  intelligence: {version: "move-events-4", input_digest: "facts", ply: 1, events, clock: null, limitations: []},
 } as Report);
 const game = {frames: [{}, {number: 1, san: "e4", actor: "white"}], orientation: "white"} as Game;
 const frame = {turn: "black", fen: "position"} as Position;

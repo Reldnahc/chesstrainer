@@ -42,7 +42,7 @@ def cross_game_context(db, settings, game, reports, context):
         for event in reports[node.ply]["intelligence"]["events"]:
             fact = event["facts"]
             skill = None
-            if event["kind"] == "tactic" and fact["role"] in {"allowed", "missed"}:
+            if event["kind"] == "tactic" and fact["role"] in {"allowed", "caused", "missed"}:
                 skill = fact["motif"]
             elif event["kind"] == "mate":
                 skill = "allowed_mate" if fact["transition"] == "allowed" else "missed_mate"

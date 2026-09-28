@@ -1,9 +1,12 @@
 """Historical statements need independent owned games, not repeated local mistakes."""
 
+import pytest
 from lesson_fixtures import seed_lesson
+from review_cause_fixtures import CAUSES, cause_report
 from sqlalchemy import select
 from test_game_context import reviewed
 from trainer.accounts import Accounts
+from trainer.game_review import public_report
 from trainer.models import Decision, Game, SkillEvidence
 from trainer.ownership import account_sessions
 from trainer.review_intelligence.history import cross_game_context
@@ -20,6 +23,24 @@ def current_evidence(ply=1, role="missed"):
         }
     )
     return reports, context
+
+
+@pytest.mark.parametrize("skill", CAUSES)
+@pytest.mark.parametrize("black", [False, True])
+def test_causal_errors_match_only_the_learners_owned_weaknesses(settings, sessions, skill, black):
+    _, reports, context = reviewed([0] * 8)
+    ply = 2 if black else 1
+    reports[ply] = public_report(cause_report(skill, black), 1000)
+    with sessions() as db:
+        seed_lesson(db, settings, count=3, skills=[skill])
+        game = db.scalars(select(Game).order_by(Game.created_at)).first()
+        game.learner_color = not black
+        result = cross_game_context(db, settings, game, reports, context)
+        match = next(w for w in result.weaknesses if w.skill_id == skill)
+        assert match.status == "supported" and match.independent_games == 2
+        assert match.related_plies == [ply]
+        game.learner_color = black
+        assert not cross_game_context(db, settings, game, reports, context).weaknesses
 
 
 def test_existing_recurrence_threshold_and_current_game_exclusion(settings, sessions):

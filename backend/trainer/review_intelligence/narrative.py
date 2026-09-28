@@ -212,7 +212,7 @@ def game_narrative(parsed, reports, context):
             r
             for r in context.relationships
             if r.kind == source
-            and (source != "repeated_motif" or r.facts["role"] in {"allowed", "missed"})
+            and (source != "repeated_motif" or r.facts["role"] in {"allowed", "caused", "missed"})
             and (source != "advantage_run" or r.facts["outcome"] == "converted")
         ]
         if available:

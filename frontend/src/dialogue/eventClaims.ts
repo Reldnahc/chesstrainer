@@ -37,6 +37,7 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
 
 export function tacticalClaim(event: Event, move: string, best: string, opponent: string): Claim | null {
   const f = event.facts, role = f.role;
+  if (role === "caused") return causalClaim(event, move);
   if (!["played", "allowed", "missed"].includes(String(role))) return null;
   let detail = "";
   const roles = object(f.roles), pieces = object(f.pieces);
@@ -53,4 +54,27 @@ export function tacticalClaim(event: Event, move: string, best: string, opponent
   }
   return claim(`tactic_${role}`, {move, best, opponent, motif: words(f.motif), detail},
     role === "allowed" ? 94 : role === "missed" ? 91 : 83, event.evidence, [event.id]);
+}
+
+function causalClaim(event: Event, move: string): Claim | null {
+  const f = event.facts, roles = object(f.roles), pieces = object(f.pieces);
+  const witness = Array.isArray(f.witness) ? f.witness.map(object) : [];
+  const first = witness.find(frame => frame.ply === 1), reply = witness.find(frame => frame.ply === 2);
+  const opponent = event.actor === "white" ? "Black" : "White";
+  if (f.opportunity_actor !== opponent.toLowerCase() || !reply?.san || !reply.capture) return null;
+  const side = event.actor === "white" ? "White" : "Black";
+  const slots = {move, side, opponent, reply: String(reply.san)};
+  const make = (code: string, detail: Claim["slots"]) => claim(code, {...slots, ...detail}, 95, event.evidence, [event.id]);
+  if (f.motif === "avoiding_bad_trades") {
+    const moved = object(pieces[strings(roles.moved_piece)[0]]);
+    return moved.color === event.actor && moved.piece && first?.capture
+      ? make("cause_avoiding_bad_trades", {piece: String(moved.piece), captured: String(first.capture)}) : null;
+  }
+  const square = strings(roles.target)[0], target = object(pieces[square]);
+  if (target.color !== event.actor || !target.piece) return null;
+  const detail = {piece: String(target.piece), square};
+  if (f.motif === "abandoned_defender") return make("cause_abandoned_defender", detail);
+  if (f.motif === "opponent_threat_recognition" && f.context_fen && f.context_move)
+    return make("cause_opponent_threat_recognition", detail);
+  return null;
 }
