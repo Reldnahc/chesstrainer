@@ -1,8 +1,22 @@
 # Full-game review
 
+Full-game and variation reports can carry [human move evidence](HUMAN_MODELS.md)
+independently of their Stockfish findings. Opening an already reviewed game checks
+for missing/outdated human evidence when the model is ready; compatible baseline
+reports are reused. Progress polling publishes refreshed rows in game order and
+keeps the board usable throughout. Maia availability never changes move grades.
+
 Game review complements cold practice. It reviews both colors and arbitrary legal
 variations without creating Decisions, exercises, weakness evidence or FSRS recalls.
 The existing training policy is unchanged.
+
+Completed reviews also derive supported [game relationships](GAME_CONTEXT.md),
+[owned history](CROSS_GAME_CONTEXT.md) for individual move explanations.
+The coach can connect a recovery to an
+earlier error or identify a repeated supported motif; incomplete or inconsistent
+evidence causes abstention. Human difficulty is a model-informed description,
+never a calibrated percentage of players or a replacement for move quality.
+Changing the selected coach rephrases the same facts without rerunning analysis.
 
 ## Using the workspace
 
@@ -13,11 +27,18 @@ size it had at full page width. Where necessary, the container expands beyond 80
 to fit the board and usable controls, never beyond the viewport. SRS and game
 review use this same sizing policy through `ReviewWorkspace`.
 
+**Settings → Animations → Piece & interface motion** controls piece movement,
+board feedback and interface transitions across all review screens. It follows
+the browser by default; saved Animated/Still choices override the browser and
+remain independent of coach motion.
+
 Each game opens at `/games/<id>`. Browser Back returns to the previous page and
 Forward reopens the review. You can bookmark a game or open its library link in
 another tab. Selecting a move records `?ply=<half-move>` in the same history entry,
 so refreshing or returning from another screen restores that position. **All games**
-opens the library, retaining its page when the game was opened from a later page.
+at the bottom left below the board opens the library, retaining its page when the
+game was opened from a later page. The sidebar starts directly with the coach;
+player names remain beside the board without a repeated matchup/date heading.
 Normal arrow keys move through the game; Alt+Left/Right remain browser shortcuts.
 
 Open **Games** and choose an imported game. Its review starts automatically; an
@@ -45,17 +66,33 @@ The compact coach shows the move and rating together, with a prominent signed
 evaluation in the opposite corner. Scores always use White's perspective, even
 in a variation or after flipping the board: positive favors White, negative favors
 Black, and signed `M` values denote forced mate. Pending evaluations show a dash.
+The board's narrow evaluation bar shows a horizontal score rounded to one decimal;
+the coach and game graph retain two decimals. Mate distances keep their `M` notation.
 Only the played position and immediate reply supply visual cues; later engine
 continuations are not projected onto the current board.
 
 Move any legal piece to start a variation. Undo and choose a different move to fork
-it; the variations list keeps both lines while this game remains open. **Game**
-in the board navigation restores the original branch point. Escape does the same
-when explanation cues are already hidden. Variations are not saved across leaving
+it; the variations list keeps both lines while this game remains open. A prominent
+purple **Return to game** button beside **Show why** in the coach's action row
+restores the original branch point without adding another row above the controls.
+Stepping backward to that point also exits the variation. The **First move** (`<<`)
+control always selects ply 1 of the original game, even from a variation; the
+previous-move control can still reach the initial position. Escape returns to the
+game when explanation cues are already hidden. Variations are not saved across leaving
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
-The sidebar orders coaching, compact notation and variations, evaluation, then
-review progress and the move-quality summary. The evaluation graph uses a white
+The sidebar orders coaching, a tabbed review panel, then evaluation. **Moves** is
+the default tab, with notation and variations; **Move quality** swaps in the
+accuracy and rating counts within the same panel. Switching tabs preserves the
+selected position and panel height. Arrow keys/Home/End navigate the focused tabs
+without stepping the board. Review progress and pause/resume controls remain
+available in either tab. The panel has a 240px minimum height on desktop and a
+344px fixed height on phones; long content scrolls inside the active tab. The
+desktop page and board stay in place, with sidebar scrolling available on short
+viewports. Phones retain normal page scrolling. The compact evaluation plot is
+120px tall. The inset quality table uses sticky player usernames as column headings
+and centers their counts; truncated names retain the full username and color in a tooltip.
+The evaluation graph uses a white
 area below the score and a dark area above it, with a clear zero line and signed
 pawn labels. It starts at ±4 and expands symmetrically to the next whole pawn
 whenever a finite score exceeds the range (for example, +7.30 gives ±8, and −9.80
@@ -79,6 +116,13 @@ including positions still being reviewed. The coach keeps its label, message are
 row in stable slots; longer explanations scroll inside the bubble. The desktop
 bubble and illustrated coach share a 116px height; narrow layouts use a 136px
 bubble with a smaller portrait. Actions stay outside the bubble in both review modes.
+On learner moves, a compact **Maia** insight sits beside Show why when saved human
+evidence supports one. Natural mistakes, hard finds, unusual strong moves, natural
+best choices and difficult defenses get plain-language labels. Tap the insight for
+the selected coach's explanation and source/domain uncertainty. It uses existing
+evidence, stays visible even when the bubble prioritizes tactics or opening text,
+and closes when changing positions. It adds no dashboard or analysis request.
+Objective labels and evaluations remain independent of this estimate.
 Best-move markers use a centered SVG star
 on the board, in coaching, and in notation.
 On phones the coach appears directly below the
@@ -128,8 +172,9 @@ not mathematical proof. These labels are Fieldwork rules, not Chess.com's algori
 
 ## Labels, version game-review-1
 
-Only Blunder severity depends on the selected rating. The same rating setting is
-used for both players. It changes presentation, never evaluations or tactical facts.
+Only Blunder severity depends on rating. Each move uses its moving player's PGN
+rating; the review rating is a fallback when that player's rating is missing.
+It changes presentation, never evaluations or tactical facts.
 It defaults to 1000 and is stored with the review; changing it reuses engine evidence.
 
 - Best: engine top choice or at most 10 cp loss.
@@ -216,3 +261,28 @@ columns. Accuracy has no Elo adjustment.
 Public definitions consulted during planning:
 [Chess.com Great/Brilliant](https://www.chess.com/article/view/how-to-play-a-brilliant-move),
 [classification](https://support.chess.com/en/articles/8572705-how-are-moves-classified-what-is-a-blunder-or-brilliant-etc).
+
+## Additional investigation
+
+After every baseline move is saved, a bounded optional investigation phase uses
+the same grading/evidence rules with deeper and selectively wider Stockfish
+searches. Baseline facts remain immutable; effective reports, accuracy and
+incremental revisions use compatible adopted evidence. See
+[REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for selection, budgets and provenance.
+
+Review/variation responses include versioned semantic `intelligence`: objective
+transitions, critical resources, sacrifice/tactic witnesses, honest human-policy
+contrasts and valid mainline clock/opening observations. These facts feed the
+[shared dialogue layer](COACH_DIALOGUE.md) without changing badges based on human or clock data.
+See [REVIEW_EVENTS.md](REVIEW_EVENTS.md). A good restricted-root alternative now
+also disproves an only-good-move Great claim; all comparisons remain Stockfish facts.
+## Structured game context
+
+Reviewed games now expose versioned relationships between supported moments,
+including missed punishment, recovery, repeated motifs, sustained advantages and
+gradual erosion. They use the same effective evidence generation as move reports
+and accuracy. See [GAME_CONTEXT.md](GAME_CONTEXT.md) for gates and caveats.
+
+Review stays move-by-move. There is no game story, critical-moment summary or
+ranked takeaway surface. Completion leaves the selected position and coach alone;
+move quality, accuracy and normal move navigation remain available.

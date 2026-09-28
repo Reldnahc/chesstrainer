@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { ChevronRight } from "lucide-react";
 import MoveSymbol from "../MoveSymbol";
 import MoveBadge from "../MoveBadge";
+import ReviewSummary from "./ReviewSummary";
 import type { Analysis, Game } from "./types";
 import type { GameExploration } from "./useGameExploration";
 
@@ -11,15 +12,19 @@ export default function ReviewMoves({
   game,
   exploration,
   getAnalysis,
+  progress,
 }: {
   game: Game;
   exploration: GameExploration;
   getAnalysis: (root: number, path: string[]) => Analysis | undefined;
+  progress: ReactNode;
 }) {
+  const [tab, setTab] = useState<"moves" | "quality">("moves");
+  const id = useId();
   const { cursor, branch, branches, navigate, selectBranch } = exploration;
   const moveButtons = useRef(new Map<number, HTMLButtonElement>());
   useEffect(() => {
-    if (branch) return;
+    if (branch || tab !== "moves") return;
     const button = moveButtons.current.get(cursor.ply);
     const list = button?.closest(".game-notation-scroll");
     if (!button || !list) return;
@@ -29,12 +34,41 @@ export default function ReviewMoves({
     if (row.top < pane.top) list.scrollTop -= pane.top - row.top;
     else if (row.bottom > pane.bottom)
       list.scrollTop += row.bottom - pane.bottom;
-  }, [cursor.ply, !!branch]);
+  }, [cursor.ply, !!branch, tab]);
   return (
-    <section className="game-notation" aria-label="Moves and variations">
+    <section className="game-notation" aria-label="Moves and move quality">
       <div className="game-move-heading">
-        <h2>Moves</h2>
+        <div className="game-review-tabs" role="tablist" aria-label="Game review details">
+          {(["moves", "quality"] as const).map((value) => (
+            <button
+              key={value}
+              id={`${id}-${value}-tab`}
+              type="button"
+              role="tab"
+              aria-selected={tab === value}
+              aria-controls={`${id}-${value}-panel`}
+              tabIndex={tab === value ? 0 : -1}
+              onClick={() => setTab(value)}
+              onKeyDown={(event) => {
+                if (event.altKey || event.ctrlKey || event.metaKey) return;
+                const next = event.key === "Home" ? "moves"
+                  : event.key === "End" ? "quality"
+                    : event.key === "ArrowLeft" || event.key === "ArrowRight"
+                      ? value === "moves" ? "quality" : "moves" : null;
+                if (!next) return;
+                event.preventDefault();
+                // Tabs own these keys; don't also step the board's global shortcut.
+                event.stopPropagation();
+                setTab(next);
+                document.getElementById(`${id}-${next}-tab`)?.focus();
+              }}
+            >
+              {value === "moves" ? "Moves" : "Move quality"}
+            </button>
+          ))}
+        </div>
         <button
+          hidden={tab !== "moves"}
           onClick={() => {
             const next = game.frames.findIndex(
               (f, i) => i > cursor.ply && f.report && bad.has(f.report.label),
@@ -51,7 +85,15 @@ export default function ReviewMoves({
           Next mistake <ChevronRight size={14} />
         </button>
       </div>
-      <div className="game-notation-scroll">
+      {progress}
+      <div
+        className="game-notation-scroll"
+        id={`${id}-moves-panel`}
+        role="tabpanel"
+        aria-labelledby={`${id}-moves-tab`}
+        tabIndex={0}
+        hidden={tab !== "moves"}
+      >
         <div className="game-move-list" aria-label="Game moves">
           {game.frames.slice(1).map((f, index) => {
             const ply = index + 1;
@@ -121,6 +163,16 @@ export default function ReviewMoves({
             ))}
           </details>
         )}
+      </div>
+      <div
+        className="game-notation-scroll"
+        id={`${id}-quality-panel`}
+        role="tabpanel"
+        aria-labelledby={`${id}-quality-tab`}
+        tabIndex={0}
+        hidden={tab !== "quality"}
+      >
+        <ReviewSummary game={game} />
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ test('Back, Forward and refresh restore the game and move without a history entr
   const gameLink = page.getByRole('link', {name: new RegExp(`Review-history-${info.project.name} vs CoachFixture`)});
   await expect(gameLink).toHaveAttribute('href', `/games/${id}`);
   await gameLink.click();
-  await expect(page.getByRole('heading', {name: `Review-history-${info.project.name} vs CoachFixture`})).toBeVisible();
+  await expect(page.locator('.game-player-name', {hasText: `Review-history-${info.project.name}`})).toBeVisible();
   const historyLength = await page.evaluate(() => history.length);
   await page.getByRole('button', {name: '2. g4', exact: true}).click();
   await expect(page).toHaveURL(`/games/${id}?ply=3`);
@@ -81,7 +81,7 @@ test('game links support opening a second tab without navigating the first', asy
   const other = await opened;
   try {
     await expect(other).toHaveURL(`/games/${id}`);
-    await expect(other.getByRole('heading', {name: 'Review-new-tab vs CoachFixture'})).toBeVisible();
+    await expect(other.locator('.game-player-name', {hasText: 'Review-new-tab'})).toBeVisible();
     await expect(page).toHaveURL('/games');
     await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
   } finally { await other.close(); }

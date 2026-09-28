@@ -11,13 +11,13 @@ from trainer.db import database, migrate
 from trainer.models import UserPreferences
 from trainer.preferences import coach_preferences, save_coach_preferences
 
-DEFAULT = {"coach_id": "classic", "motion": "natural"}
+DEFAULT = {"coach_id": "classic", "motion": "system"}
 PATH = "/api/preferences/coach"
 
 
 @pytest.mark.parametrize("coach_id", get_args(CoachId))
 def test_every_coach_persists_across_restart(settings, coach_id):
-    saved = {"coach_id": coach_id, "motion": "subtle"}
+    saved = {"coach_id": coach_id, "motion": "natural"}
     with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
         response = client.put(PATH, json=saved)
         assert response.status_code == 200
@@ -34,6 +34,7 @@ def test_local_defaults_save_restart_and_validation(settings):
         for invalid in (
             {"coach_id": "invented", "motion": "natural"},
             {"coach_id": "classic", "motion": "flash"},
+            {"coach_id": "classic", "motion": "subtle"},
             DEFAULT | {"user_id": "another-account"},
         ):
             assert client.put(PATH, json=invalid).status_code == 422
@@ -60,7 +61,7 @@ def test_accounts_second_device_isolation_and_csrf(settings):
         assert (
             client.put(
                 PATH,
-                json={"coach_id": "dog-collie", "motion": "subtle"},
+                json={"coach_id": "dog-collie", "motion": "natural"},
                 headers=origin | {"X-CSRF-Token": alice["csrf"]},
             ).status_code
             == 200
@@ -78,7 +79,7 @@ def test_accounts_second_device_isolation_and_csrf(settings):
         )
         signed_in.raise_for_status()
         assert client.cookies.get(COOKIE) != token
-        assert client.get(PATH).json() == {"coach_id": "dog-collie", "motion": "subtle"}
+        assert client.get(PATH).json() == {"coach_id": "dog-collie", "motion": "natural"}
 
 
 def test_unknown_saved_choices_fall_back_without_overwriting(sessions):
@@ -96,8 +97,8 @@ def test_concurrent_first_save_has_one_account_row(sessions):
             return save_coach_preferences(db, CoachPreferences(motion=motion))
 
     with ThreadPoolExecutor(max_workers=2) as pool:
-        results = list(pool.map(save, ("still", "subtle")))
-    assert {result.motion for result in results} == {"still", "subtle"}
+        results = list(pool.map(save, ("still", "natural")))
+    assert {result.motion for result in results} == {"still", "natural"}
     with sessions() as db:
         assert len(db.scalars(select(UserPreferences)).all()) == 1
 
@@ -119,4 +120,33 @@ def test_migration_preserves_existing_accounts_and_defaults(settings):
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     with sessions() as db:
         assert coach_preferences(db).model_dump() == DEFAULT
+    engine.dispose()
+
+
+@pytest.mark.parametrize("saved_motion", ["natural", "still", "subtle"])
+def test_device_default_migration_preserves_saved_motion(settings, saved_motion):
+    from alembic import command
+    from alembic.config import Config
+
+    engine, sessions = database(settings.database_path)
+    config = Config("alembic.ini")
+    with engine.begin() as connection:
+        config.attributes["connection"] = connection
+        command.upgrade(config, "55de0b7b8ff2")
+        connection.execute(
+            text("INSERT INTO user_preferences (user_id, coach_motion) VALUES ('local', :motion)"),
+            {"motion": saved_motion},
+        )
+    migrate(engine)
+    with engine.connect() as connection:
+        columns = connection.exec_driver_sql("PRAGMA table_info(user_preferences)").mappings().all()
+        assert (
+            next(column for column in columns if column["name"] == "coach_motion")["dflt_value"]
+            == "'system'"
+        )
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
+    with sessions() as db:
+        expected = "natural" if saved_motion == "subtle" else saved_motion
+        assert coach_preferences(db).motion == expected
+        assert db.scalar(select(UserPreferences)).coach_motion == saved_motion
     engine.dispose()

@@ -1,7 +1,13 @@
 # Docker installation
 
-One container includes the web app and native Stockfish. All persistent data lives
-in `/data/trainer.sqlite3`. No external database or engine service is required.
+The image includes an optional CPU human-model runtime. Weights are installed only
+by the explicit host command in [HUMAN_MODELS.md](HUMAN_MODELS.md), then cached in
+the existing `/data` mount. Stockfish-only review works before setup. No extra
+container, database or GPU is required.
+
+One container includes the web app and native Stockfish. Account, chess and
+practice data lives in `/data/trainer.sqlite3`; optional reproducible model files
+live in `/data/models`. No external database or engine service is required.
 Unraid users can use the [template](UNRAID.md) instead.
 
 ## Local use without login
@@ -59,6 +65,9 @@ installations additionally require `ACCOUNTS_ENABLED=true` for accounts. See
 | `STOCKFISH_THREADS` | `1` | Search threads per engine working on the same position. |
 | `STOCKFISH_HASH_MB` | `64` | RAM in MB per engine for temporary search-position tables, not disk storage. |
 | `STOCKFISH_WORKERS` | `1` | Concurrent games per training import, or moves within a game review (1–4). Reviews are also capped by `ENGINE_SLOTS`; account mode obeys the shared host-wide pool. |
+| `HUMAN_MODEL_ENABLED` | `true` | Permits human-policy inference when the explicitly installed checkpoint exists. Missing weights keep review Stockfish-only, with no download. |
+| `HUMAN_MODEL_WORKERS` / `HUMAN_MODEL_THREADS` | `1` / `2` | Host-wide resident Maia workers and CPU threads per worker. Model RAM multiplies with workers; independent of Stockfish slots. |
+| `REVIEW_REFINEMENT_POSITIONS` / `REVIEW_REFINEMENT_QUERIES` | `8` / `4` | Maximum positions and additional questions per position after the unchanged full-game baseline. Zero positions disables this extra work. |
 | `DATABASE_PATH` | `/data/trainer.sqlite3` | Persistent SQLite file; normally keep unchanged. |
 | `STOCKFISH_PATH` | `/usr/games/stockfish` | Bundled engine binary; normally keep unchanged. |
 | `SERVER_HOST` | `0.0.0.0` | Bind inside the container; Docker's published address controls host exposure. |
@@ -75,6 +84,11 @@ run no analysis. Opening an individual game starts or resumes its review. For fa
 reviews on a host with available CPUs, raise `STOCKFISH_WORKERS` (up to 4) while
 budgeting engine slots, threads and memory together. Use only one app instance/Uvicorn
 worker per database.
+
+See [human-model setup/resources](HUMAN_MODELS.md) and
+[targeted review budgets](REVIEW_REFINEMENT.md) for advanced limits, cache identity
+and cancellation. Ordinary users choose their coach in Settings; infrastructure
+controls stay in host configuration.
 
 ## Optional Compose
 

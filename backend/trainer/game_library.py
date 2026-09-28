@@ -5,6 +5,15 @@ from math import isfinite
 import chess.pgn
 
 
+def pgn_rating(parsed, color):
+    """The actual moving player's recorded rating; an absent value is not zero."""
+    try:
+        value = int(parsed.headers.get("WhiteElo" if color else "BlackElo", ""))
+        return value if 0 < value <= 4000 else None
+    except (ValueError, TypeError):
+        return None
+
+
 def time_control_label(value: str | None) -> str | None:
     if not value or value.strip() in {"?", ""}:
         return None

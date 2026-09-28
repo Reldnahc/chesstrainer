@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, type ReactNode } from "react";
 
 /** The single layout and sizing policy for game review and spaced repetition. */
 export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard, belowBoard, boardControls, evaluation, children }: {
-  heading: ReactNode;
+  heading?: ReactNode;
   boardLabel: string;
   board: ReactNode;
   aboveBoard: ReactNode;
@@ -24,7 +24,7 @@ export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard
       const pageStyle = getComputedStyle(page);
       const gutter = Number.parseFloat(layoutStyle.getPropertyValue("--review-gutter"));
       const width = `${Math.max(240, window.innerHeight - top - controlsHeight - 14) + gutter}px`;
-      const height = `${Math.max(520, window.innerHeight - top - 12)}px`;
+      const height = `${Math.max(0, window.innerHeight - top - 12)}px`;
       if (layout.style.getPropertyValue("--review-board-width") !== width) layout.style.setProperty("--review-board-width", width);
       if (layout.style.getPropertyValue("--review-height") !== height) layout.style.setProperty("--review-height", height);
       // Narrow the sidebar first. Grow beyond the shared page width only
@@ -56,7 +56,7 @@ export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard
       <div className="review-board-toolbar" data-review-chrome>{boardControls}</div>
     </section>
     <aside className="review-sidebar">
-      <div className="review-workspace-heading">{heading}</div>
+      {heading && <div className="review-workspace-heading">{heading}</div>}
       {children}
     </aside>
   </div>;

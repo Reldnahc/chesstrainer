@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { Schema } from "../api";
+import type { CoachPersonality } from "../dialogue/personality";
 
 export const expressions = [
   "neutral",
@@ -33,6 +34,7 @@ export type CoachFamily = {
   name: string;
   description: string;
   character: string;
+  personality?: CoachPersonality;
   animation?: CoachDefinition["animation"];
 };
 export type CoachArtworkProps = { expression: CoachExpression; family: string };
@@ -63,7 +65,6 @@ export type CoachDefinition = {
   animation: {
     reactionMs: Partial<Record<CoachExpression, number>>;
     defaultReactionMs: number;
-    idleRangeMs: readonly [number, number];
     idleGestures: Partial<Record<CoachExpression, readonly CoachMicro[]>>;
     defaultIdle: readonly CoachMicro[];
   };
@@ -76,6 +77,7 @@ export type CoachCollection = Omit<CoachDefinition, "families"> & {
 export type SelectableCoach = CoachDefinition & {
   id: CoachId;
   collectionId: string;
+  personality: CoachPersonality;
 };
 
 export const expressionInfo: Record<

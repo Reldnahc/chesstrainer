@@ -19,6 +19,17 @@ class Settings(BaseSettings):
     stockfish_threads: int = Field(default=1, ge=1, le=32)
     stockfish_hash_mb: int = Field(default=64, ge=16, le=4096)
     stockfish_workers: int = Field(default=1, ge=1, le=4)
+    human_model_enabled: bool = True
+    human_model_path: Path = Path("data/models/maia3-79m.pt")
+    human_model_device: Literal["cpu", "cuda"] = "cpu"
+    human_model_threads: int = Field(default=2, ge=1, le=16)
+    human_model_workers: int = Field(default=1, ge=1, le=4)
+    human_model_timeout: float = Field(default=30, ge=1, le=120)
+    review_refinement_positions: int = Field(default=8, ge=0, le=128)
+    review_refinement_queries: int = Field(default=4, ge=2, le=8)
+    review_refinement_depth: int = Field(default=22, ge=1, le=50)
+    review_refinement_time: float = Field(default=2, gt=0, le=10)
+    review_refinement_multipv: int = Field(default=4, ge=2, le=8)
     triage_depth: int = Field(default=10, ge=1, le=40)
     triage_time: float = Field(default=0.15, gt=0, le=30)
     triage_nodes: int | None = Field(default=None, ge=1)

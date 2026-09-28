@@ -50,7 +50,6 @@
   position: relative;
   background: #25272c;
   border: 1px solid #44484f;
-  overflow: hidden;
   border-radius: 3px;
 }
 .game-eval-bar > div {
@@ -58,25 +57,36 @@
   bottom: 0;
   width: 100%;
   background: #dddeda;
+  border-radius: 2px;
   transition: height 0.25s;
 }
 .game-eval-bar > span {
   position: absolute;
   bottom: 6px;
-  left: 50%;
-  writing-mode: vertical-rl;
-  transform: translateX(-50%);
+  right: 0;
+  min-width: 100%;
+  white-space: nowrap;
+  text-align: center;
   background: #30343a;
   color: #fff;
-  padding: 4px 2px;
+  padding: 3px 2px;
   border-radius: 3px;
-  font: 11px var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 .game-board-controls {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: minmax(36px, 1fr) repeat(2, 36px) max-content repeat(2, 36px) minmax(36px, 1fr);
   gap: 5px;
   align-items: center;
+}
+.game-library-link {
+  justify-self: start;
+  min-height: 36px;
+  padding: 6px 0;
+  font-size: 12px;
+  white-space: nowrap;
 }
 .game-move-counter {
   flex: 0 0 9ch;
@@ -97,15 +107,32 @@
   min-width: 36px;
   padding: 6px;
 }
-.game-board-controls .game-return {
-  margin-right: auto;
-  gap: 5px;
-  padding-inline: 8px;
-  font-size: 12px;
+.coach-actions:has(.game-return) {
+  justify-content: flex-start;
 }
-.game-board-controls .game-return:not(:disabled) {
-  color: var(--accent);
-  border-color: var(--accent);
+.coach-actions:has(.game-return) > button {
+  flex: none;
+  width: auto;
+  min-height: 44px;
+}
+.coach-actions:has(.game-return) .coach-move-context {
+  margin-left: auto;
+}
+.coach-actions .game-return {
+  gap: 6px;
+  white-space: nowrap;
+  background: #b5a0f2;
+  border-color: #cfbfff;
+  color: #211437;
+  font-size: 13px;
+  font-weight: 700;
+}
+.game-return svg {
+  flex-shrink: 0;
+}
+.coach-actions .game-return:hover {
+  background: #cfbfff;
+  border-color: #e3d9ff;
 }
 .game-board-controls button:last-child {
   margin-left: auto;
@@ -113,8 +140,8 @@
 .game-notation {
   display: flex;
   flex-direction: column;
-  min-height: 120px;
-  flex: 1;
+  min-height: 240px;
+  flex: 1 1 240px;
   border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
@@ -124,14 +151,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 4px 10px;
+  flex-shrink: 0;
+  padding: 0 10px;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
-}
-.game-move-heading h2 {
-  font-size: 13px;
-  letter-spacing: 0;
-  margin: 0;
 }
 .game-move-heading button {
   font-size: 11px;
@@ -141,9 +164,29 @@
   border-color: transparent;
   gap: 3px;
 }
+.game-move-heading button[hidden] {
+  display: none;
+}
+.game-review-tabs {
+  display: flex;
+  gap: 4px;
+}
+.game-review-tabs button {
+  min-height: 38px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.game-review-tabs button[aria-selected="true"] {
+  border-bottom-color: var(--accent);
+  color: #eceef1;
+}
 .game-notation-scroll {
+  position: relative;
+  flex: 1;
   overflow-y: auto;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
   min-height: 0;
 }
@@ -223,7 +266,7 @@
 .game-graph {
   flex-shrink: 0;
   min-width: 0;
-  padding: 8px 10px 4px;
+  padding: 6px 10px 2px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -233,7 +276,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  height: 44px;
+  height: 36px;
 }
 .game-graph-heading > div:first-child {
   display: flex;
@@ -259,7 +302,6 @@
 }
 .game-graph .game-evaluation-plot {
   width: 100%;
-  height: 152px;
   display: block;
   cursor: pointer;
   touch-action: pan-y;
@@ -311,7 +353,7 @@
   fill: var(--accent);
 }
 .game-graph-footer {
-  min-height: 38px;
+  min-height: 34px;
   display: flex;
   align-items: center;
 }
@@ -342,19 +384,21 @@
   font-size: 11px;
   margin: 2px 0 4px;
 }
-.game-review-tools {
-  flex-shrink: 0;
-  max-height: 36%;
-  overflow-y: auto;
-  scrollbar-width: thin;
+.game-summary {
+  padding: 8px 18px 12px;
 }
-.game-review-tools summary {
-  padding: 6px 0;
-  cursor: pointer;
-  font-size: 12px;
+.game-summary caption {
+  padding-bottom: 6px;
+  text-align: right;
   color: var(--muted);
+  font-size: 11px;
 }
-.game-review-tools p {
+.game-progress {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.game-progress p {
   font-size: 12px;
   margin: 8px 0;
 }
@@ -377,12 +421,29 @@
 .game-summary table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 12px;
+}
+.game-summary thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--surface);
+}
+.game-summary thead th:first-child {
+  width: 40%;
+}
+.game-summary thead th > span:not(.sr-only) {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .game-summary th,
 .game-summary td {
-  padding: 4px;
-  text-align: right;
+  padding: 2px 4px;
+  line-height: 1.25;
+  text-align: center;
 }
 .game-summary th:first-child,
 .game-summary td:first-child {
@@ -392,7 +453,7 @@
   font-weight: 400;
 }
 .game-summary .game-summary-accuracy > * {
-  padding-block: 8px;
+  padding-block: 4px;
   border-bottom: 1px solid var(--line);
 }
 @container (max-width: 440px) {
@@ -405,7 +466,15 @@
     min-height: 27px;
   }
   .game-board-controls {
+    display: flex;
+    flex-wrap: wrap;
     gap: 2px;
+  }
+  .game-library-link {
+    order: 1;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    min-height: 44px;
   }
   .game-board-controls button {
     flex: 1 1 0;
@@ -416,36 +485,18 @@
   .game-move-counter {
     font-size: 11px;
   }
-  .game-board-controls .game-return {
-    margin-right: 0;
-    padding-inline: 5px;
-  }
-  .game-board-controls .game-return > svg {
-    display: none;
-  }
   .game-board-controls button:last-child {
     margin-left: 0;
   }
   .game-notation {
     flex: none;
+    height: 344px;
     margin-bottom: 12px;
-  }
-  .game-notation-scroll {
-    max-height: 300px;
   }
   .game-move-heading button,
   .game-move-list button,
   .game-variation-row button {
     min-height: 44px;
-  }
-  .game-review-tools {
-    max-height: none;
-    overflow: visible;
-    margin-top: 10px;
-  }
-  .game-review-tools summary {
-    min-height: 44px;
-    padding-block: 12px;
   }
   .game-graph-verdict {
     display: none;
@@ -456,10 +507,5 @@
   .game-graph-navigation button {
     min-width: 44px;
     min-height: 44px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .game-eval-bar > div {
-    transition: none;
   }
 }

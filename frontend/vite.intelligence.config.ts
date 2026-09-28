@@ -1,0 +1,10 @@
+import {fileURLToPath} from "node:url";
+import {defineConfig} from "vite";
+import react from "@vitejs/plugin-react";
+
+// No API proxy, account connection, public directory or production entry point.
+export default defineConfig({
+  root: fileURLToPath(new URL("./intelligence-lab", import.meta.url)),
+  plugins: [react()], publicDir: false,
+  server: {host: "127.0.0.1", port: 5175, strictPort: true},
+});

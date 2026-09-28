@@ -6,13 +6,14 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "dev:coach": "vite --config vite.coach.config.ts",
+    "dev:intelligence": "vite --config vite.intelligence.config.ts",
     "build": "tsc -b && npm run test:types && vite build",
     "preview": "vite preview",
     "prebuild": "npm run api:check && node ../scripts/source_archive.mjs",
     "predev": "node ../scripts/source_archive.mjs",
     "api:generate": "node scripts/api-types.mjs",
     "api:check": "node scripts/api-types.mjs --check",
-    "test:types": "tsc --project tsconfig.contracts.json"
+    "test:types": "tsc --project tsconfig.contracts.json && tsc --project tsconfig.browser-tests.json"
   },
   "dependencies": {
     "@fontsource-variable/ibm-plex-sans": "^5.3.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "@types/node": "24.19.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.1.0",

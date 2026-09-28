@@ -46,11 +46,17 @@ test('evaluation scales to the game, preserves mate scores, and keeps navigation
   await page.evaluate(() => document.fonts.ready);
   const buttons = {previous: await geometry(previous), next: await geometry(next)};
   const bubbleHeight = (await geometry(coach)).height;
-  for (const [ply, text] of [[1, '+0.35'], [2, '−3.20'], [3, '+M3'], [4, '−M2'], [5, '+M0'], [6, '−M0'], [7, '+0.00']] as const) {
+  for (const [ply, text, barText] of [[1, '+0.35', '+0.4'], [2, '−3.20', '−3.2'], [3, '+M3', '+M3'], [4, '−M2', '−M2'], [5, '+M0', '+M0'], [6, '−M0', '−M0'], [7, '+0.00', '+0.0']] as const) {
     if (info.project.name === 'mobile') await node(ply).tap(); else await node(ply).click();
     await expect(coach.locator('.evaluation-score')).toHaveText(text);
     await expect(graph.locator('.evaluation-score')).toHaveText(text);
-    await expect(page.locator('.game-eval-bar > span')).toHaveText(text);
+    const bar = page.locator('.game-eval-bar > span');
+    await expect(bar).toHaveText(barText);
+    await expect(bar).toHaveCSS('writing-mode', 'horizontal-tb');
+    const bounds = (await bar.boundingBox())!;
+    expect(bounds.x).toBeGreaterThanOrEqual(0);
+    expect(bounds.width).toBeGreaterThan(bounds.height);
+    expect(await bar.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
     await expect(axes).toHaveText(['+4', '0', '−4']);
     expect({previous: await geometry(previous), next: await geometry(next)}).toEqual(buttons);
     expect((await geometry(coach)).height).toBe(bubbleHeight);
@@ -98,4 +104,5 @@ test('evaluation scales to the game, preserves mate scores, and keeps navigation
   await plot.click({position: {x: (Number(neighbors[0]) + Number(neighbors[1])) / 2, y: 2}});
   await expect(graph.locator('.evaluation-score')).toHaveText('—');
   await expect(coach.locator('.evaluation-score')).toHaveText('—');
+  await expect(page.locator('.game-eval-bar > span')).toHaveText('—');
 });

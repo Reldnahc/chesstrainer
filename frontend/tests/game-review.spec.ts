@@ -51,10 +51,12 @@ test('progress merges only new reports without reloading the board or duplicatin
   await page.route(`**/api/games/${id}`, route => { fullLoads++; return route.fulfill({json: game}); });
   await page.route(`**/api/games/${id}/review*`, async route => {
     if (route.request().method() === 'POST') {
+      if (game.job?.status === 'completed')
+        return route.fulfill({json: {job_id: game.job.id, status: 'completed'}});
       game.job = {id: 'progress-review', status: 'queued', completed: 0, total: 4, error: null, cancel_requested: false};
       return route.fulfill({json: {job_id: game.job.id, status: game.job.status}});
     }
-    const after = Number(new URL(route.request().url()).searchParams.get('after'));
+    const after = Number(new URL(route.request().url()).searchParams.get('after_revision'));
     cursors.push(after);
     const plies = after === 0 ? [1] : after === 1 ? [2, 3] : [4];
     // The count may advance between the server's report and count queries.
@@ -65,7 +67,7 @@ test('progress merges only new reports without reloading the board or duplicatin
       game.accuracy = accuracy;
       for (const ply of [1, 2, 3, 4]) game.frames[ply].report = moveReport(ply).report;
     }
-    return route.fulfill({json: {job, moves: plies.map(moveReport), accuracy: after === 3 ? accuracy : null}});
+    return route.fulfill({json: {job, revision: plies.at(-1), moves: plies.map(moveReport), accuracy: after === 3 ? accuracy : null}});
   });
   await page.route(`**/api/games/${id}/analyze`, route => {
     analyses++;
@@ -77,30 +79,30 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(whiteScore).toHaveText('—');
   await expect(page.locator('.game-graph-axis')).toHaveText(['+4', '0', '−4']);
   await expect(page.getByLabel('White accuracy')).toHaveAttribute('title', /full game review finishes/);
-  await page.locator('.game-summary > summary').click();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('—');
   await expect(page.getByLabel('Accuracy for White', {exact: true})).toHaveAttribute('title', /full game review finishes/);
-  await page.locator('.game-summary > summary').click();
-  // The phone scrolled to the summary. Measure completion at the board, away
-  // from the page bottom where removing progress naturally clamps scrollY.
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
+  // Measure completion at the board, away from the phone's page bottom.
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.evaluate(() => document.fonts.ready);
   const boardBefore = await page.locator('.board-shell').boundingBox();
   const readoutBefore = await blackScore.boundingBox();
   finishReview();
-  await expect(page.locator('.game-summary > summary')).toContainText('complete game');
+  await expect(page.locator('.game-summary caption')).toContainText('Complete game');
   await expect(whiteScore).toHaveText('86.4');
   await expect(blackScore).toHaveText('100.0');
   await expect(page.locator('.game-graph-axis')).toHaveText(['+9', '0', '−9']);
   expect(await page.locator('.board-shell').boundingBox()).toEqual(boardBefore);
   expect(await blackScore.boundingBox()).toEqual(readoutBefore);
-  await page.locator('.game-summary > summary').click();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('86.4');
   await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText('100.0');
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
   await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'First move', exact: true}).click();
-  await expect(page.getByLabel('Evaluation for White: +0.25', {exact: true})).toBeVisible();
+  await expect(page.getByLabel('Evaluation for White: +0.3', {exact: true})).toBeVisible();
   expect(cursors).toEqual([0, 1, 3]);
   expect(fullLoads).toBe(2);
   expect(analyses).toBe(0);
@@ -115,18 +117,23 @@ test('book moves appear on the board, coach and branches with original-game accu
   test.setTimeout(90_000);
   const {id} = await (await page.request.post(`/__test/book-review-fixture/${info.project.name}`)).json();
   await page.goto(`/games/${id}?ply=3`);
-  await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
+  await expect(page.locator('.game-summary caption')).toContainText('Complete game', {timeout: 60_000});
   await expect(page.getByRole('button', {name: '2. Ke2, Book', exact: true})).toHaveAttribute('aria-current', 'step');
-  await expect(page.locator('.coach-speech')).toContainText('Bongcloud Attack');
+  // The book badge remains, but the poor move's consequence takes priority
+  // over opening trivia and quality disclaimers in the compact bubble.
+  await expect(page.locator('.coach-message')).toContainText(/pawns|would|allows|captur/);
+  await expect(page.locator('.coach-message')).not.toContainText(/Book recognition|does not.*sound|quality grade/);
+  const bookFeedback = await page.locator('.coach-message').innerText();
   await expect(page.locator('.coach-speech .label-book svg')).toBeVisible();
   await expect(page.getByLabel('Move rating: Book')).toBeVisible();
   await expect(page.locator('.board-quality.label-book svg')).toBeVisible();
   const original = await (await page.request.get(`/api/games/${id}`)).json();
+  expect(original.frames[3].report.opening.name).toBe('Bongcloud Attack');
   expect(original.frames[3].report.engine_label).not.toBe('Book');
   expect(original.accuracy.white).toBeLessThan(100);
   const white = original.accuracy.white.toFixed(1), black = original.accuracy.black.toFixed(1);
   const board = await page.locator('.board-shell').boundingBox();
-  await page.locator('.game-summary > summary').click();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   const table = page.getByRole('table', {name: 'Move quality and accuracy'});
   await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
@@ -137,22 +144,25 @@ test('book moves appear on the board, coach and branches with original-game accu
   await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({path: `test-results/book-review-${info.project.name}.png`, fullPage: true});
 
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
   await page.getByRole('button', {name: '1... e5, Book', exact: true}).click();
   await page.locator('.board-shell [data-square="g1"]').click();
   await page.locator('.board-shell [data-square="f3"]').click();
   await expect(page.locator('.coach-speech .move-badge')).toContainText('Book', {timeout: 30_000});
   await expect(page.locator('.coach-speech')).toContainText("King's Knight Opening");
   await expect(page.locator('.game-variation-row .label-book svg')).toBeVisible();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   expect(await table.locator('tbody tr').allTextContents()).toEqual(counts);
   await expect(page.getByLabel('White accuracy', {exact: true}).locator('b')).toHaveText(white);
   await page.getByRole('button', {name: 'Flip board', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
   await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText(black);
-  await page.getByRole('button', {name: 'Back to game', exact: true}).click();
+  await page.getByRole('button', {name: 'Return to game', exact: true}).click();
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
   await page.getByRole('button', {name: '2. Ke2, Book', exact: true}).click();
   await page.reload();
-  await expect(page.locator('.coach-speech')).toContainText('Bongcloud Attack');
-  await page.locator('.game-summary > summary').click();
+  await expect(page.locator('.coach-message')).toHaveText(bookFeedback);
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
   await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
 });
@@ -169,7 +179,7 @@ test('review both players, explain in place, and branch without changing the gam
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
-  await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
+  await expect(page.locator('.game-summary caption')).toContainText('Complete game', {timeout: 60_000});
   expect(starts).toHaveLength(1);
   await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toHaveCount(0);
   await expect(page.getByRole('heading', {name: 'Game report', exact: true})).toHaveCount(0);
@@ -226,7 +236,7 @@ test('review both players, explain in place, and branch without changing the gam
   await expect(page.locator('.board-shell [data-pattern-square="h4"]')).toBeVisible();
   await expect(page.locator('.game-player').last()).toContainText('black to move');
   await expect(page.locator('.game-variation-row')).toHaveCount(0);
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
+  await expect(page.getByRole('button', {name: 'Return to game', exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect((await page.locator('.coach-speech').boundingBox())!.height).toBe(coach.height);
   expect((await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY)).toBe(notationTop);
@@ -256,7 +266,7 @@ test('review both players, explain in place, and branch without changing the gam
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   if (testInfo.project.name === 'mobile') {
     const boardWidth = (await page.locator('.review-board-row').boundingBox())!.width;
-    for (const selector of ['.game-progress', '.game-move-list']) {
+    for (const selector of ['.game-notation', '.game-move-list']) {
       expect((await page.locator(selector).boundingBox())!.width).toBeGreaterThanOrEqual(boardWidth - 2);
     }
     expect((await page.locator('.review-coach').boundingBox())!.y).toBeLessThan((await page.locator('.game-graph').boundingBox())!.y);
@@ -264,7 +274,7 @@ test('review both players, explain in place, and branch without changing the gam
   const originalMove = page.locator('.game-graph-node[data-ply="2"]');
   if (testInfo.project.name === 'mobile') await originalMove.tap();
   else await originalMove.click();
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
+  await expect(page.getByRole('button', {name: 'Return to game', exact: true})).toHaveCount(0);
   await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName(/^1\.\.\. e5/);
   await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=2$`));
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
@@ -272,10 +282,79 @@ test('review both players, explain in place, and branch without changing the gam
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
   await page.getByRole('link', {name: 'All games', exact: true}).click();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
-  await expect(page.locator('.game-summary > summary')).toBeVisible();
+  await expect(page.locator('.game-summary caption')).toHaveText('Complete game');
   await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
   await expect(blackScore).toHaveText(game.accuracy.black.toFixed(1));
-  expect(starts).toHaveLength(1);
+  // Reopening checks for newly available human evidence. The idempotent request
+  // preserves the completed Stockfish report when no refresh is needed.
+  expect(starts).toHaveLength(2);
+  expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
+});
+
+test('refreshing a saved review receives updated evidence from the new job cursor', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/refresh-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  const report = (ply: number, message: string) => {
+    const frame = game.frames[ply];
+    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 20}};
+    return {label: 'Good', engine_label: 'Good', opening: null, reason: '', coach: message,
+      best: candidate, actual: candidate, white_score: candidate.score,
+      depth: 16, engine_version: 'Refresh fixture', board_cues: null};
+  };
+  for (let ply = 1; ply < game.frames.length; ply++) game.frames[ply].report = report(ply, 'Previously saved evidence.');
+  game.review_revision = 4;
+  game.job = {id: 'refresh', status: 'completed', completed: 4, total: 4, error: null, cancel_requested: false};
+  const cursors: number[] = [];
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.route(`**/api/games/${id}/review*`, route => {
+    if (route.request().method() === 'POST') {
+      game.job = {...game.job, status: 'queued', completed: 0};
+      return route.fulfill({json: {job_id: 'refresh', status: 'queued'}});
+    }
+    cursors.push(Number(new URL(route.request().url()).searchParams.get('after_revision')));
+    return route.fulfill({json: {job: {...game.job, status: 'completed', completed: 4}, revision: 8, accuracy: null,
+      moves: [1, 2, 3, 4].map(ply => ({ply, report: report(ply, 'Updated saved evidence.')}))}});
+  });
+  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  await page.goto(`/games/${id}?ply=1`);
+  await expect(page.locator('.coach-speech')).toContainText('Updated saved evidence.');
+  expect(cursors[0]).toBe(4);
+});
+
+test('refinement revises an earlier move while keeping the selected board in place', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/refinement-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  for (let ply = 1; ply < game.frames.length; ply++) {
+    const frame = game.frames[ply];
+    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 20}};
+    frame.report = {label: 'Good', engine_label: 'Good', opening: null, reason: '', coach: 'Baseline feedback.',
+      best: candidate, actual: candidate, white_score: candidate.score, depth: 16, engine_version: 'Fixture', board_cues: null};
+  }
+  game.review_revision = 4;
+  game.job = {id: 'refinement', status: 'running', phase: 'refinement', completed: 4, total: 4,
+    refinement_completed: 0, refinement_total: 1, error: null, cancel_requested: false};
+  let release = () => {};
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.route(`**/api/games/${id}/review*`, async route => {
+    expect(new URL(route.request().url()).searchParams.get('after_revision')).toBe('4');
+    await gate;
+    const revised = {...game.frames[1].report, label: 'Mistake', engine_label: 'Mistake',
+      coach: 'The deeper comparison confirms a concession.', depth: 22};
+    return route.fulfill({json: {revision: 6, job: {...game.job, status: 'completed', phase: 'complete', refinement_completed: 1},
+      moves: [{ply: 1, report: revised}], accuracy: null}});
+  });
+  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  await page.goto(`/games/${id}?ply=1`);
+  await expect(page.getByRole('status').filter({hasText: 'Checking selected positions more deeply'})).toBeVisible();
+  await expect(page.locator('.coach-message')).toHaveText('Baseline feedback.');
+  const before = await page.locator('.review-board-square').boundingBox();
+  release();
+  await expect(page.locator('.coach-message')).toHaveText('The deeper comparison confirms a concession.');
+  await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('1. f3, Mistake');
+  await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=1$`));
+  expect(await page.locator('.review-board-square').boundingBox()).toEqual(before);
+  await page.screenshot({path: `test-results/refinement-${info.project.name}.png`, fullPage: true});
 });
 
 test('dense evaluation dots resize and select the matching ply by pointer and keyboard', async ({page}, info) => {
@@ -316,9 +395,17 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=99$`));
   await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('50. g4, Good');
   await expect(page.locator('.coach-message')).toHaveText('Coaching for ply 99.');
+  const utterance = page.locator('.coach-message [data-utterance]');
+  const learnerIntent = await utterance.getAttribute('data-intent');
   await page.keyboard.press('ArrowRight');
   await expect(dot(100)).toBeFocused();
-  await expect(page.locator('.coach-message')).toHaveText('Coaching for ply 100.');
+  await expect(dot(100)).toHaveAttribute('aria-current', 'step');
+  await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=100$`));
+  // Opponent moves keep objective feedback, not the learner's legacy prose.
+  await expect(page.locator('.coach-message')).toHaveText(/A sound choice|This remains close/);
+  await expect(page.locator('.coach-avatar')).toHaveAttribute('data-expression', 'explaining');
+  await expect(utterance).not.toHaveAttribute('data-intent', learnerIntent!);
+  const opponentIntent = await utterance.getAttribute('data-intent');
   await page.keyboard.press('Home');
   await expect(dot(1)).toHaveAttribute('aria-current', 'step');
   await page.keyboard.press('End');
@@ -329,7 +416,9 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   const target = await dot(60).evaluate(dot => ({x: Number(dot.getAttribute('cx')), y: 2}));
   if (info.project.name === 'mobile') await plot.tap({position: target});
   else await plot.click({position: target});
-  await expect(page.locator('.coach-message')).toHaveText('Coaching for ply 60.');
+  await expect(page.locator('.coach-message')).toHaveText(/A sound choice|This remains close/);
+  await expect(utterance).not.toHaveAttribute('data-intent', opponentIntent!);
+  await expect(dot(60)).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-counter')).toHaveText('60 / 120');
   await expect(page.getByText('Review tools & details', {exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Find training mistakes'})).toHaveCount(0);
@@ -405,7 +494,7 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
       return {width: bounds.width, right: last.getBoundingClientRect().right - bounds.left, height: bounds.height};
     }, game.frames.length - 1);
     expect(graph.right / graph.width).toBeGreaterThan(.95);
-    expect(graph.height).toBe(152);
+    expect(graph.height).toBe(120);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   }
 });
@@ -446,7 +535,7 @@ test('explanations never create a move tree and rapid variations finish rating a
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', {name: '1. f3', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-variation-row')).toHaveCount(0);
-  await page.getByRole('button', {name: 'First move', exact: true}).click();
+  await page.getByRole('button', {name: 'Previous move', exact: true}).click();
   const square = (name: string) => page.locator(`.board-shell [data-square="${name}"]`);
   await square('d2').click(); await square('d4').click();
   await expect.poll(() => seen.some(moves => moves.join() === 'd2d4')).toBe(true);
@@ -458,7 +547,7 @@ test('explanations never create a move tree and rapid variations finish rating a
   await expect(page.locator('.game-variation-row')).toContainText('d4');
   await expect(page.locator('.game-variation-row')).toContainText('Good');
   await expect(page.locator('.game-variation-row')).toContainText('Mistake');
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
+  await expect(page.getByRole('button', {name: 'Return to game', exact: true})).toHaveCount(0);
   await page.locator('.game-variation-row button').last().click();
   await expect(page.locator('.coach-speech')).toContainText('Black');
   await expect(page.locator('.coach-speech .move-badge')).toHaveText(/Mistake/);

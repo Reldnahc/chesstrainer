@@ -2,6 +2,670 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## UX release: full branch verification (September 27, 2026)
+
+The owner authorized full verification after the rapid UX changes through
+`9e98006`. One stale Docker smoke assertion expected `natural` instead of the
+new `system` coach default. It now checks the correct default and independently
+saves/restores coach and interface motion in both local and account installations.
+No application defect was found in this pass.
+
+- `npm.cmd ci --cache '../.tools/npm-cache' --no-audit --no-fund` and
+  `npm.cmd run build` from `frontend`: passed, including generated API agreement
+  and application/contract/browser-test TypeScript checks. The existing coach
+  studio was briefly stopped to release Windows' esbuild lock, then restored.
+- `.venv/Scripts/python.exe -m pytest -q --basetemp data/verification/ux-release-full-20260927 -o cache_dir=data/verification/ux-release-cache-20260927`:
+  **592 passed, 3 Maia opt-in skips**, native Stockfish enabled. The two existing
+  TestClient/httpx/AnyIO deprecation warnings remain.
+- With `MAIA_CHECKPOINT_DIR=data/maia-benchmark/models`, `MAIA_TEST_MODEL=79m`,
+  `MAIA_TEST_DEVICE=cpu`, `HF_HUB_OFFLINE=1`, the pinned CPU runtime's
+  `python -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q`:
+  **3 passed, 9 deselected**. All skipped native checks were exercised offline.
+- `npx.cmd playwright test --reporter=line`: **205 passed, 3 intentional viewport
+  skips**, desktop/mobile; full unfiltered application suite.
+- `npx.cmd playwright test --config=playwright.accounts.config.ts --reporter=line`:
+  **2 passed**. `--config=playwright.coach.config.ts`: **28 passed**.
+  `--config=playwright.intelligence.config.ts`: **34 passed**.
+- `ruff check backend scripts migrations`, `ruff format --check backend scripts migrations`,
+  `python scripts/export_api_contract.py --check`, `python -m pip check` and
+  `git diff --check`: passed. Fresh isolated Alembic upgrade/check, SQLite integrity
+  and foreign-key checks passed.
+- `docker build --progress=plain -t fieldwork:ux-release-20260927 .tools/ux-release-context-20260927`:
+  passed using a tracked-source archive (the checkout's ignored Windows cache
+  has restricted permissions). `python scripts/smoke_install.py --image fieldwork:ux-release-20260927`:
+  fresh local/accounts, secure-cookie/origin handling, restart, independent
+  preferences, native review and engine health passed after the assertion fix.
+- `docker run --rm --network none` with the existing checkpoint mounted read-only,
+  `HUMAN_MODEL_PATH=/models/maia3-79m.pt`, image `fieldwork:ux-release-20260927` and
+  `python scripts/smoke_human.py`: native Stockfish/Maia review, persisted restart
+  cache and coach independence passed without network or model downloads.
+
+These are local release checks. Remote CI and deployment are verified separately;
+phone results use Chromium emulation, not physical-device testing.
+
+## Game review library link: focused checks
+
+All games sits at the bottom left below the board; the repeated matchup/date/result
+heading is removed. Desktop move controls remain centered, while phones put the
+library link below the controls to retain their touch widths. The shared SRS
+heading and board sizing are unchanged.
+
+- From `frontend`, `npx.cmd playwright test review-presentation.spec.ts variation-navigation.spec.ts navigation.spec.ts game-review-presentation.spec.ts --grep 'review modes share|variation return is|Back, Forward|returning to the library|moves and move quality' --reporter=line`:
+  **10 passed**, desktop/mobile. Covers link placement, shared board/coach sizes,
+  centered controls, library pagination/history and sidebar layout through 320px.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed. Desktop/mobile screenshots
+  inspected. Full verification remains deferred by owner request.
+
+## Piece and interface motion preferences: focused checks
+
+Settings offers device-default, Animated and Still for pieces/interface effects,
+independent of the same coach choices. One owned preference row persists both;
+the additive migration defaults existing accounts to device behavior without
+changing their coaches. Shared device resolution, preference lifecycle and CSS
+replace independent browser-only board/interface checks. Full verification is
+still deferred by owner request.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_motion_preferences.py backend/tests/test_coach_preferences.py -q --basetemp data/verification/interface-motion -o cache_dir=data/verification/interface-motion-cache`:
+  **31 passed**, with the two existing TestClient deprecation warnings. Covers
+  fresh/existing defaults, restart, unsupported values, account isolation/CSRF,
+  independent updates and concurrent first writes, migration integrity/FKs.
+- From `frontend`, `npx.cmd playwright test motion.spec.ts coach.spec.ts review-presentation.spec.ts --grep 'motion|preference failures|connecting with a LAN token|SRS shares animated' --reporter=line`:
+  **16 passed**, desktop/mobile. Checks actual piece transitions and badge CSS,
+  evaluation/interface transitions, browser overrides in both directions, coach
+  independence, reload, live device changes, failed load/save recovery and cold SRS.
+- `npx.cmd playwright test --config=playwright.accounts.config.ts --grep 'account signup' --reporter=line`:
+  **2 passed**, restoring the saved choice on another device and keeping a new
+  account's device default independent.
+- After widening the phone selector and explicitly testing both LAN-protected
+  preference endpoints, `npx.cmd playwright test motion.spec.ts coach.spec.ts --grep 'piece and interface motion saves|connecting with a LAN token' --reporter=line`:
+  **4 passed**. Desktop/320px phone Settings screenshots inspected.
+- App/browser TypeScript checks, Vite bundle, changed-Python Ruff lint/format,
+  API export/generated-type checks and Git whitespace checks passed. API outputs
+  were regenerated using the existing scripts. No full suites, Docker deployment
+  or engine-budget changes.
+
+## Horizontal evaluation-bar score: focused checks
+
+The board bar displays a horizontal, one-decimal pawn score. Existing coach/graph
+precision and mate notation are unchanged. `npx.cmd playwright test evaluation.spec.ts --reporter=line`
+passed both desktop/mobile checks, including rounding, positive/negative/mate/
+missing scores, label orientation and bounds, and unchanged graph navigation.
+Vite bundle and diff checks passed; desktop screenshot inspected. Full
+verification remains deferred by owner request.
+
+## Return action placement: focused checks
+
+The purple Return to game action now sits beside Show why in the same row.
+Entering a variation no longer adds an action row between the bubble and controls.
+`npx.cmd playwright test variation-navigation.spec.ts --grep 'variation return is' --reporter=line`
+passed both desktop/mobile checks, including 320px phone width, unchanged action
+height, no horizontal overflow and exact return to the original position. Vite
+bundle and diff checks passed; screenshots inspected. Full verification remains
+deferred by owner request.
+
+## Review sidebar tabs: focused checks
+
+Moves and Move quality now share one panel. The inset quality table uses sticky
+username headings; review progress stays available from either tab. Evaluation
+is shorter and the moves panel has more room. Tab changes preserve the selected
+position, board size and panel height. Desktop scrolling stays inside the review
+workspace; mobile retains normal page scrolling.
+
+- From `frontend`, `npx.cmd playwright test game-review-presentation.spec.ts review-presentation.spec.ts game-review.spec.ts --grep 'moves and move quality|a paused partial|progress merges|review modes share|book moves appear|opening starts once' --reporter=line`:
+  **12 passed**, desktop/mobile. Covers tab click/keyboard behavior, six viewport
+  sizes, no added page height, shared SRS/game board geometry, progress/accuracy
+  updates, pause/resume/retry and unchanged original-game counts in variations.
+- After the sticky-heading polish, `npx.cmd playwright test game-review-presentation.spec.ts --grep 'moves and move quality' --reporter=line`:
+  **2 passed**, including usernames remaining visible during internal scrolling.
+- `npx.cmd tsc -b`, `npm.cmd run test:types`, `npx.cmd vite build` and
+  `git diff --check` passed. Desktop/mobile screenshots inspected.
+- Full verification remains deferred by owner request. No API, engine, grading,
+  persistence or deployment changes.
+
+## Variation navigation UX: focused checks
+
+Return to game is a purple primary action below the coach. Stepping back to a
+variation's root restores the mainline; First move always selects original-game
+ply 1. Desktop move controls remain centered, with Flip board on the right.
+
+- `playwright test variation-navigation.spec.ts --reporter=line`: 6 passed on
+  desktop/mobile, including centered controls, keyboard/button exits, original
+  game preservation, full-width return action and no horizontal overflow.
+- Directly affected existing review/late-analysis checks: 4 passed. The coach
+  navigation/SRS check passed on both viewports after explicitly waiting for
+  review completion before asserting initial-position text.
+- App/test TypeScript checks, Vite bundle and diff checks passed. Desktop/mobile
+  screenshots inspected. Full verification remains deferred by owner request.
+
+## Coach cadence and motion choices: focused checks
+
+All characters share a 500–1000ms idle gap. Device motion is the default; saved
+Animated/Still choices override it. Subtle has been removed. Full verification
+is intentionally deferred until the owner finishes the current UX changes.
+
+- `pytest backend/tests/test_coach_preferences.py -q`: 24 passed; includes saved
+  choices, migration defaults, legacy Subtle fallback and account isolation.
+- `playwright test --config ../.tools/pr1-coach.config.ts idle-cadence.spec.ts reduced-motion.spec.ts --reporter=line`:
+  12 passed across desktop/mobile; repeated idle cycles, visibility pausing,
+  device defaults, explicit overrides and actual CSS animation.
+- `playwright test coach.spec.ts --grep 'coach motion' --reporter=line`:
+  4 passed across desktop/mobile; actual Settings saves/reloads and device changes.
+- App/test TypeScript checks, Vite bundle, changed-file Ruff lint/format and
+  `git diff --check` passed. API contracts/types regenerated through their tooling.
+
+## Review product cleanup: final verification
+
+Completed units: `01c0e3b` removes story presentation and its dead response-time
+projection; `7088285` scopes personal coaching to the saved learner; `87618fe`
+surfaces human insights and cleans the focused shared/character wording. Review
+of the complete diff confirmed no changes to engine budgets, grading thresholds,
+Maia weights/setup, persisted schemas or coach animation timing. Context and
+history remain two-sided/learner-owned respectively.
+
+From the repository root, using the existing locked environment:
+
+```powershell
+npm.cmd --prefix frontend run build
+.venv/Scripts/ruff.exe check backend scripts migrations
+.venv/Scripts/ruff.exe format --check backend scripts migrations
+.venv/Scripts/python.exe scripts/export_api_contract.py --check
+.venv/Scripts/python.exe -m pytest -q --basetemp data/verification/review-product-full -o cache_dir=data/verification/review-product-full-cache
+```
+
+Build, API export/generated types, app/endpoint/browser TypeScript and Ruff pass
+(222 Python files formatted). Backend: **582 passed, 3 skipped**, 169.89 s, with
+native Stockfish and the two existing TestClient deprecation warnings. The three
+Maia opt-ins were then run using the existing pinned CPU runtime and cached model:
+
+```powershell
+$env:MAIA_CHECKPOINT_DIR = 'C:\Users\cwmle\Documents\chesstrainer\data\maia-benchmark\models'
+$env:MAIA_TEST_MODEL = '79m'
+$env:MAIA_TEST_DEVICE = 'cpu'
+$env:HF_HUB_OFFLINE = '1'
+.tools/maia-runtime/Scripts/python.exe -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q --basetemp data/verification/review-product-native -o cache_dir=data/verification/review-product-native-cache
+```
+
+Native Maia: **3 passed, 9 deselected**, 40.04 s. No checkpoint was downloaded.
+From `frontend`, with these browser/native-engine paths:
+
+```powershell
+$env:PLAYWRIGHT_BROWSERS_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\playwright'
+$env:STOCKFISH_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\stockfish\stockfish-windows-x86-64-avx2.exe'
+npx.cmd playwright test --reporter=line
+npx.cmd playwright test --config=playwright.accounts.config.ts --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+npx.cmd playwright test --config=playwright.intelligence.config.ts --reporter=line
+```
+
+- Application: **191 passed, 3 expected viewport skips**, 3.1 min.
+- Accounts: **2 passed**, 43.8 s, isolated account database.
+- Coach studio: **28 passed**, 2.7 min; the ignored config inherits the normal
+  studio configuration and reuses the owner's existing port-5174 server.
+- Intelligence lab: **34 passed**, 46.3 s; all 16 selectable coaches audited.
+
+The first complete application run had eight failures (four outdated presentation
+assertions on both viewports): the initial story's
+explaining reaction, the old critical-moment progress wording, opening text taking
+priority over a book move's mistake, and personal legacy text on opponent plies.
+Those assertions now verify the intended behavior, retaining exact ply navigation,
+utterance changes, persisted feedback, objective labels, accuracy and geometry.
+The full rerun above passed. Three viewport-specific skips remain intentional.
+
+Fresh migration verification (no persisted schema change was needed):
+
+```powershell
+$env:DATABASE_PATH = 'data/verification/review-product-fresh.sqlite3'
+.venv/Scripts/python.exe -m alembic upgrade head
+.venv/Scripts/python.exe -m alembic check
+.venv/Scripts/python.exe -c "import sqlite3; c=sqlite3.connect('data/verification/review-product-fresh.sqlite3'); print(c.execute('pragma integrity_check').fetchall()); print(c.execute('pragma foreign_key_check').fetchall())"
+```
+
+Passed: no new upgrade operations, integrity `ok`, no foreign-key violations.
+The direct Docker checkout build hit the previously documented Windows cache ACL.
+A clean archive of committed product code `87618fe` built successfully:
+
+```powershell
+git archive --format=zip --output=.tools/review-product-source.zip HEAD
+Expand-Archive -LiteralPath .tools/review-product-source.zip -DestinationPath .tools/review-product-context
+docker build -t fieldwork:review-product-cleanup .tools/review-product-context
+.venv/Scripts/python.exe scripts/smoke_install.py --image fieldwork:review-product-cleanup
+```
+
+Both local and account modes passed fresh installation, restart, native Stockfish
+review/health and coach preference persistence. No existing deployment was touched.
+The additional offline combined review smoke initially failed because its harness
+still asserted `move-events-3`. It now validates `MoveIntelligence` against the
+current public contract; production evidence code was unchanged. The corrected
+script was mounted read-only into the same image for verification:
+
+```powershell
+docker run --rm --network none --mount 'type=bind,source=C:\Users\cwmle\Documents\chesstrainer\data\maia-benchmark\models\maia3-79m.pt,target=/data/models/maia3-79m.pt,readonly' --mount 'type=bind,source=C:\Users\cwmle\Documents\chesstrainer\scripts\smoke_human.py,target=/app/scripts/smoke_human.py,readonly' fieldwork:review-product-cleanup python scripts/smoke_human.py
+```
+
+Passed: native review, exact human policy, restart/cache reuse, and coach
+independence with networking disabled. Test-owned containers/volumes and the
+manual inspection server were stopped; owner services were preserved. No push,
+merge or live deployment was performed. Physical-phone/Safari verification and
+the long native quality benchmark were not repeated for this presentation pass.
+
+## Review product cleanup: visible human insights and concise prose
+
+Eight new checks failed before the change: mechanical natural/hard-find wording,
+masked unusual-strong choices, absent natural-best/near-best and found-defense
+claims, and missing-policy abstention. Synthetic legal games now pass through the
+production practical/report projection and then the real dialogue/UI boundary.
+No engine, model, grade, animation or persisted-schema behavior changed.
+
+- `python -m pytest backend/tests/test_review_difficulty.py backend/tests/test_human_review.py backend/tests/test_review_events.py -q --basetemp data/verification/human-insight -o cache_dir=data/verification/human-insight-cache`:
+  **44 passed**, 6.65 s. Includes native Stockfish, persisted human refresh/cache,
+  coach preference independence and cold-SRS protection; two existing warnings.
+- From `frontend`, `npx.cmd playwright test tests/human-insight.spec.ts tests/dialogue-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **64 passed**, 38.8 s, desktop/mobile. Seven insight kinds, absent/stale/forced/
+  opponent evidence, domain caution, popup geometry and keyboard dismissal,
+  navigation cleanup, source wording and saved coach/reload invariance.
+- `npx.cmd playwright test --config=playwright.intelligence.config.ts --reporter=line`:
+  **34 passed**, 46.3 s. All 16 selectable coaches preserve facts/hypotheticals,
+  omit population claims/opening disclaimers, and pass the complete writing audit.
+- `npm.cmd --prefix frontend run build`, API generation check, browser/app/endpoint
+  TypeScript checks and backend Ruff check/format passed.
+- Actual production UI inspected with synthetic reports at 1440×1100, 390×844 and
+  320×700. The compact insight leaves board/bubble geometry intact; long labels
+  wrap, the popup is keyboard/touch accessible and no horizontal overflow occurs.
+  Screenshots are ignored verification artifacts, not owner game data.
+
+Iteration caught and fixed review Escape swallowing native popup dismissal and
+two repeated opening sentences. The mobile geometry assertion now uses document
+coordinates, distinguishing Playwright's automatic scroll from layout movement.
+Only the five relevant human/opening entries per character were rewritten; the
+remaining personality corpus was retained.
+
+## Review product cleanup: learner perspective
+
+Six new regressions reproduced opponent recovery/personal relationship/achievement
+selection in both colors. The UI used mover identity where it needed the saved
+learner. Intent v5 explicitly scopes personal delivery; the backend graph remains
+two-sided and owned history keeps its existing learner filter. Legal recovery
+mainlines with synthetic evaluations run through production report/context code.
+
+- `python -m pytest -q backend/tests/test_game_context.py backend/tests/test_cross_game_context.py`:
+  **28 passed**, 8.76 s, including both-color history isolation.
+- `npx.cmd playwright test tests/learner-perspective.spec.ts tests/dialogue-logic.spec.ts tests/coach-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **56 passed**, 33.5 s. Covers every consumed relationship, opponent help,
+  history, objective labels, saved identity through flip/reload, cold SRS and preferences.
+- The intelligence suite passed 28 cases; two lab checks still expected the old
+  `di4` prefix. They now assert the exact production intent ID.
+  `npx.cmd playwright test --config playwright.intelligence.config.ts laboratory.spec.ts --reporter=line`:
+  **6 passed**, 4.6 s, after that correction.
+- Production build/API types, Ruff check/format and diff checks passed.
+
+## Review product cleanup: story removal
+
+The new absence regression reproduced the story region before removal; the two
+native full-review cases also failed on the unwanted narrative API field. Story
+selection was derived on read, with no persisted schema to migrate. Move context,
+history, scores, refinement and navigation remain intact. Contracts were regenerated
+with `python scripts/export_api_contract.py` and `npm --prefix frontend run api:generate`.
+
+- `python -m pytest -q backend/tests/test_game_review.py backend/tests/test_game_context.py backend/tests/test_cross_game_context.py`:
+  **51 passed**, 21.86 s (native Stockfish; two existing dependency warnings).
+- `npx.cmd playwright test tests/game-review-presentation.spec.ts tests/dialogue-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **34 passed**, 25.4 s, desktop/mobile including absence, navigation/reload and paused review.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`:
+  **30 passed**, 32.4 s, including the current personality corpus and diagnostic renderer.
+- `npm.cmd --prefix frontend run build`, `ruff check backend scripts migrations`,
+  `ruff format --check backend scripts migrations`, API export `--check` and
+  `git diff --check`: passed. Ruff normalized the edited test's line endings.
+
+## Coach idle cadence follow-up
+
+The first tuning still felt too sparse in use. Quiet gaps are now 0.5–1.5 s for
+humans (previously 2–5 s), 0.75–1.75 s for cats (2.5–5.5 s), and 1–2 s for
+dogs (3–6 s). Subtle adds 0.5 s instead of 1.5 s. Only timing constants and their
+documented test expectations changed; 1.2 s gestures, reactions and pause behavior
+remain unchanged.
+
+Validation from `frontend`, using the same local Chromium/Stockfish environment:
+
+- `npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line`:
+  **28 passed**, 2.5 min, including repeated idle cycles and pause/resume checks
+  on desktop/mobile. The existing owner studio server was reused.
+- `npx.cmd playwright test tests/coach.spec.ts tests/coach-logic.spec.ts tests/coach-selection.spec.ts --reporter=line`:
+  **26 passed**, 27.4 s. The initial sandboxed run passed its assertions but stalled
+  in test-server cleanup; only its verified server tree was stopped. A fresh run
+  with normal process permissions passed and cleaned up without intervention.
+- From the root, `npm.cmd --prefix frontend run build` and `git diff --check`
+  passed. No test skips or assertion failures.
+
+## Coach idle cadence tuning
+
+Only existing idle delays changed: men/default 4.5–10 s to 2–5 s, women
+5.5–11.5 s to 2–5 s, cats 5.5–11.5 s to 2.5–5.5 s, and dogs 6–12 s to
+3–6 s. Subtle's extra delay is now 1.5 s instead of 4 s. Women's explicit idle
+range preserves their existing reaction timings. Gesture durations remain 1.2 s;
+artwork, reaction timing, scheduling and visibility/reduced-motion logic are unchanged.
+
+The new controlled-clock browser regression exercises the real studio scheduler
+for each collection on desktop/mobile: three automatic idle cycles after a
+reaction, unchanged gesture duration, Subtle's extra delay, and no reaction replay.
+It checks cancellation and resumption for Still, native reduced-motion preferences,
+real offscreen scrolling, and a simulated `document.hidden`/`visibilitychange`
+transition across multiple idle windows, without arbitrary sleeps.
+
+From `frontend`, with the documented Chromium/Stockfish environment:
+
+```powershell
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts idle-cadence.spec.ts --max-failures=2 --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+npx.cmd playwright test tests/coach.spec.ts tests/coach-logic.spec.ts tests/coach-selection.spec.ts --reporter=line
+```
+
+- Focused cadence checks: **10 passed**, 11.5 s.
+- Full coach studio: **28 passed**, 2.5 min.
+- Application coach suites: **26 passed**, 27.2 s.
+- No skips or failures. The ignored studio config reuses the owner's existing
+  server; the standard committed config is unchanged.
+- From the repository root, `npm.cmd --prefix frontend run build` passed,
+  including API consistency, strict application/browser-test types, endpoint
+  contracts and the production Vite build. `git diff --check` passed.
+
+## PR #1 follow-up: browser-test type coverage
+
+Reproduced the previously recorded ad hoc TypeScript failure at `10bdaae`:
+Node imports/globals had no declarations, and the recovery context fixture was
+incomplete. Enabling the normal strict settings for all browser tests also caught
+an incomplete move-report fixture. Both fixtures now satisfy the generated API
+types without assertions hiding missing fields. Node 24 types are locked as a
+development dependency. `npm run test:types` now includes application, studio,
+intelligence-lab tests and all Playwright configs, so the existing build/CI gate
+prevents this gap returning.
+
+- `npm.cmd --prefix frontend run build`: passed, including API consistency,
+  strict application types, endpoint contract tests and all browser-test types.
+- The exact ad hoc `tsc --noEmit` command recorded below now passes too.
+- From `frontend`, with the documented Chromium/Stockfish environment,
+  `npx.cmd playwright test tests/dialogue-logic.spec.ts --reporter=line`:
+  **24 passed** (desktop/mobile), 9.1 s. Assertions and behavioral coverage remain.
+- `git diff --check`: passed.
+
+## PR #1 follow-up: synchronized reduced motion
+
+The original studio test passed 20 pre-fix repetitions, but the new focused
+native-media transition regression reproduced the unchecked checkbox twice before
+any production change. Trace instrumentation showed the shared MediaQueryList had
+changed to `true` without delivering its change event to any of the 31 registered
+listeners. Portrait animation renders read the new live value while the parent
+control retained the old value. Removing those render-time reads resolved the
+reproduction: all coach consumers now read one event-driven snapshot. Its single
+native listener detaches when unused and resynchronizes on remount. There is no
+polling, forced checkbox click, increased timeout or trace suppression.
+
+The new studio regression checks all portraits, the checkbox, notice, disabled
+state and absence of animations across repeated device changes, manual preview
+overrides and reload. A production Settings regression changes the device
+preference while no coach consumers are mounted, then returns without reloading.
+Both additional follow-ups from the previous correction pass are now resolved.
+
+From `frontend`, using the same Chromium/Stockfish environment documented below:
+
+```powershell
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts reduced-motion.spec.ts --repeat-each=20 --max-failures=1 --reporter=line
+npx.cmd playwright test tests/coach.spec.ts --reporter=line
+npx.cmd playwright test --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line
+npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line
+```
+
+- Native media transition repetition: **40 passed**, 20 desktop + 20 mobile,
+  1.3 min. Real Settings/coach integration: **12 passed**, 17.6 s.
+- Full application: **141 passed, 3 expected viewport skips**, 2.7 min.
+- Full coach studio, including the original failed test: **18 passed**, 2.4 min.
+- Accounts: **2 passed**, 43.1 s. Intelligence laboratory: **30 passed**, 37.1 s.
+- The studio used the previously documented ignored config to preserve the
+  owner's running development server; the normal config still refuses to take
+  over an occupied port.
+
+From the repository root:
+
+```powershell
+npm.cmd --prefix frontend run build
+.venv/Scripts/python.exe -m pytest -q -ra --basetemp data/verification/pr1-followup-backend -o cache_dir=data/verification/pr1-followup-pytest-cache
+.venv/Scripts/ruff.exe check backend scripts migrations
+.venv/Scripts/ruff.exe format --check backend scripts migrations
+.venv/Scripts/python.exe scripts/export_api_contract.py --check
+git diff --check
+```
+
+All passed. Backend: **587 passed, 3 explicit native-Maia opt-in skips**, 152.14 s;
+`MAIA_CHECKPOINT_DIR` was unset. Native Stockfish ran. The two existing TestClient
+dependency deprecation warnings remain. Build includes the new strict browser-test
+type gate. No engine settings, model weights, chess evidence, account schema or
+container configuration changed. Temporary diagnostic code was removed.
+
+## PR #1 correction pass: coach-selection lifecycle
+
+At reviewed head `7423d61`, the latest PR run `36360090312` failed on mobile
+with `response.json: Test ended`; the same-head push run passed. Twelve local
+repetitions of the original test passed, consistent with an intermittent race.
+The response listener could start body reads after its promise array was drained.
+Back navigation and reload now each register an explicit response wait before
+navigation and await its body. The synchronous request observer is removed in
+`finally`. Reload also verifies unchanged wording, intent, chess facts and job,
+two completed handshakes, and no new analysis requests.
+
+Using the documented local Stockfish and Chromium environment variables:
+`npx.cmd playwright test tests/personality.spec.ts --grep 'saved coach selection' --repeat-each=20 --reporter=line`
+passed **40/40** (20 desktop, 20 mobile), 52.1 s. Repetition supplements the
+explicit lifecycle ownership; it is not proof that every possible race is absent.
+
+### Mover-caused semantic explanations
+
+Six new regressions failed at the reviewed head: `analyze_move` produced each
+causal finding in both colors, but `public_report` dropped all six. The correction
+introduces `caused` with the original mover actor and explicit opponent opportunity,
+retaining strict actor/witness gates. Consumer tests cover repeated motifs and
+owned historical weakness matching. Browser regressions generate reports through
+Python's production pipeline and render them through all 16 registered coaches.
+
+- `python -m pytest -q backend/tests/test_review_events.py backend/tests/test_patterns_v3.py backend/tests/test_game_context.py backend/tests/test_cross_game_context.py backend/tests/test_game_narrative.py`:
+  **72 passed**, two existing TestClient dependency warnings.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`:
+  **20 passed** (desktop/mobile, including all six causal cases and the existing lab).
+- `npm.cmd --prefix frontend run build`: passed, including generated API consistency
+  and TypeScript contracts. OpenAPI and TypeScript regenerated through the normal
+  export commands for `move-events-4`; export `--check`, Ruff check/format passed.
+
+### Alternative positional consequences
+
+Four frontend regressions reproduced the exact branch loss: legal bishop-pair
+and doubled-pawn alternatives in both colors were narrated as actual facts.
+Their new backend tests passed before the fix, confirming the server retained
+the correct line, move and affected side. The correction carries typed position
+scope through intent version 4 and uses a shared conditional renderer for every
+alternative positional family. Actual-move wording stays factual; personality
+overrides cannot remove hypothetical scope.
+
+- `python -m pytest -q backend/tests/test_review_positions.py`: **16 passed**.
+- `npx.cmd playwright test tests/dialogue-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **30 passed**, desktop/mobile, including an intentionally unsafe personality
+  override that cannot replace alternative scope.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`:
+  **30 passed**. All 16 coaches render the legal actual/alternative cases and all
+  eleven positional claim forms without losing conditional scope or evidence IDs.
+- `npm.cmd --prefix frontend run build`: passed, including API/type checks.
+
+### Final correction validation
+
+Production corrections are in `b097005`, `9d41882` and `b8bc1ae`. No engine
+budgets, weights, grades, migrations or cold-SRS disclosure rules were changed.
+The final verification also corrects test-only fixture types to use the detailed
+report contract and a complete context node, without changing their assertions.
+
+From the repository root, these exact commands passed:
+
+```powershell
+npm.cmd --prefix frontend run build
+.venv/Scripts/python.exe -m pytest -q -ra --basetemp data/verification/pr1-final-backend -o cache_dir=data/verification/pr1-pytest-cache
+.venv/Scripts/ruff.exe check backend scripts migrations
+.venv/Scripts/ruff.exe format --check backend scripts migrations
+.venv/Scripts/python.exe scripts/export_api_contract.py --check
+$env:DATABASE_PATH = 'data/verification/pr1-corrections-schema.sqlite3'
+.venv/Scripts/python.exe -m alembic upgrade head
+.venv/Scripts/python.exe -m alembic check
+```
+
+Backend: **587 passed, 3 skipped**, 151.22 s. The skips are the unchanged explicit
+Maia opt-ins in `test_human_runtime.py` and `test_maia_feasibility.py`, because this
+run did not set `MAIA_CHECKPOINT_DIR`; native Stockfish ran. Two existing
+TestClient dependency deprecations and a Windows pytest-cache write warning were
+reported. All tests completed; the cache warning did not fail a test. Ruff checked
+222 files; API/type checks and disposable migration upgrade/check passed.
+
+From `frontend`, browser runs used these environment values:
+
+```powershell
+$env:PLAYWRIGHT_BROWSERS_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\playwright'
+$env:STOCKFISH_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\stockfish\stockfish-windows-x86-64-avx2.exe'
+npx.cmd playwright test --reporter=line
+npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line
+npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+```
+
+- Full application: **139 passed, 3 expected viewport skips**, 2.6 min.
+- Accounts: **2 passed**, 41.2 s.
+- Intelligence laboratory: **30 passed**, 32.7 s.
+- After the test-only fixture type correction,
+  `npx.cmd playwright test --config playwright.intelligence.config.ts causal-dialogue.spec.ts positional-dialogue.spec.ts --reporter=line`:
+  **22 passed**, 25.9 s.
+- Coach studio: **16 passed**, 2.2 min. The ordinary studio command detected the
+  owner's existing port 5174. Its process/path was verified; an ignored temporary
+  config inherited the normal config, used absolute test/output paths and enabled
+  `reuseExistingServer`. The existing process was preserved.
+- The lifecycle stress run above remains **40/40**; no sleeps, skipped assertions
+  or swallowed asynchronous failures were added.
+
+Docker's direct checkout build encountered an existing Windows ACL error opening
+excluded `.pytest_cache`. A clean archive of committed source `b8bc1ae` built and
+passed the same fresh-install smoke procedure:
+
+```powershell
+git archive --format=zip --output=.tools/pr1-corrections-source.zip HEAD
+Expand-Archive -LiteralPath .tools/pr1-corrections-source.zip -DestinationPath .tools/pr1-corrections-context
+docker build -t fieldwork:pr1-corrections .tools/pr1-corrections-context
+.venv/Scripts/python.exe scripts/smoke_install.py --image fieldwork:pr1-corrections
+```
+
+Local and account modes both passed fresh install, restart, native Stockfish
+review/health and coach-preference persistence. No existing installation or live
+database was used.
+
+Additional, non-CI inspection: a direct `tsc --noEmit` invocation over Playwright
+test sources was not a configured repository check. That run reported absent Node
+type declarations and a pre-existing partial-context cast in `dialogue-logic.spec.ts`.
+No dependency or test-typechecking infrastructure changes were made in this
+targeted pass. The supported production build/type-contract checks and runtime
+browser suites passed. The browser-test type coverage follow-up above resolves
+this separate typing gap and adds it to the normal build gate.
+The additional command (from `frontend`) was:
+
+```powershell
+npx.cmd tsc --noEmit --target ES2022 --module ESNext --moduleResolution bundler --jsx react-jsx --skipLibCheck tests/dialogue-logic.spec.ts tests/personality.spec.ts tests/semantic-fixtures.ts tests/positional-claims.ts intelligence-tests/causal-dialogue.spec.ts intelligence-tests/positional-dialogue.spec.ts intelligence-tests/render-coaches.ts
+```
+
+## Review intelligence completion: September 27, 2026
+
+Milestones 0–14 of [the specification](REVIEW_INTELLIGENCE_PLAN.md) are complete.
+The commit map and retained design decisions are in
+[IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md). No production deployment
+or remote push was performed. The temporary progress ledger was removed after
+this final review; synthetic reports/databases/screenshots remain ignored.
+
+Final automated verification:
+
+- Full backend: **564 passed, 3 explicit native-Maia opt-in skips**, 143.25 s.
+  Native Stockfish ran. The two existing Starlette/httpx/AnyIO test-client
+  deprecation warnings remain; no application test failure remains.
+- Supported cached **79M CPU** native/parity/worker suite: **12 passed**, 37.20 s,
+  with no skips. It covers upstream policy parity, history/special moves,
+  deterministic repeats, real subprocess deadlines/cancellation/restart and
+  bounded transport. No Torch import is added to the API process. The normal
+  suite also tests account cache ownership, host-slot contention, invalidation,
+  refinement cancellation/resume, migrations and cold-SRS exclusions.
+  Transport fault cases use synthetic subprocess workers; native cases load the
+  actual supported checkpoint.
+- Final full application browser suite: **129 passed, 3 expected viewport skips**,
+  2.4 min. Includes every registered coach, persistence, dialogue provenance,
+  semantic delivery intensity, stale async responses, branch return, in-place
+  Show Why, summary jumps, SRS failure/retry/recovery and reduced motion.
+- Account browser suite: **2 passed**. Standalone expression studio: **16 passed**
+  across desktop/mobile and every current character/expression. The studio run
+  reused the existing verified checkout's port 5174 using a disposable config;
+  the owner's viewer process was preserved.
+- Final offline intelligence-lab suite: **8 passed**. Current registry audit:
+  **16 coaches, 912 curated lines, zero corpus errors or writing collisions**.
+  The normal production build excludes both developer surfaces from executable
+  assets/navigation while keeping their public source in the source download.
+- Production build, OpenAPI/type contracts, Ruff lint and formatting passed.
+  React's cached chunk is 221.86 kB raw / 69.04 kB gzip; application code including
+  all synchronous coach definitions is 319.28 kB / 96.93 kB. No chunk-size warning.
+
+The repeatable native whole-game harness imports and reviews ten original
+synthetic games (114 plies) at the unchanged depth-16 / 0.8-second baseline with
+default 8-position / 4-question additive refinement. Ratings span 600–2600 and
+include Lichess blitz, Chess.com rapid/blitz, missing ratings/domain and setup
+positions. It verifies exact model probabilities/provenance, bounded work,
+context references, all coach IDs preserving identical stored facts, a real
+interactive variation, and completed cache reuse after restart with an unusable
+Stockfish executable. No Decisions, exercises or recalls are created.
+
+| Measured combined run | Windows native | Linux CPU Docker, no network |
+| --- | ---: | ---: |
+| Python | 3.12.10 | 3.12.14 |
+| Stockfish | 18 | 17.1 |
+| Logical CPUs reported | 24 | 24 |
+| Time for ten games, including first native/model startup | 148.30 s | 125.75 s |
+| Cached reopen of all ten after restart | 0.310 s | 0.296 s |
+| API process peak RSS, excluding native children | 123.63 MiB | 115.11 MiB |
+| Saved human policies / refinement positions | 114 / 41 | 114 / 41 |
+
+Native inspection found the supported Brilliant queen offer, only-move recapture,
+recovery linked to the earlier queen loss, three repeated-motif relationships,
+missed mates, book moves that remain objectively bad, a drawn repetition and a
+19-ply conversion with no graded errors. The failed conversion does not produce
+a successful-conversion narrative. Search-specific findings differ across native
+binaries; absent/contradictory support is not filled in to satisfy a coverage tag.
+These are integration probes and development inspection, **not an independently
+blinded accuracy measurement or population calibration**.
+
+Fresh Docker installation/restart/native Stockfish review passed in both local
+and HTTPS-origin account modes, including coach preference persistence. The
+combined native corpus and separate short smoke passed with `--network none`
+and a read-only pinned checkpoint. Explicit setup returned `already_verified`
+offline; `--verify-only` also passed. Linux cgroup peak memory was **1,348,587,520
+bytes (1.26 GiB)**, including processes and charged filesystem cache. Docker
+reported **1.6 GB disk usage / 376 MB content size**, plus the separate 316 MB
+checkpoint. The large CPU dependency layer is reused for application updates.
+
+Manual inspection used the actual application with native saved reports: Brilliant
+and recovery feedback, Show Why, coach switching/back navigation and saved
+preferences, desktop and 390px phone layouts. A real native export loaded in the
+isolated lab and traced the selected Quiet Analyst recovery sentence to its
+earlier move and engine/context evidence. Actual bubble inspection removed a
+repetitive Collie opener. Diagnostics exposed an overly urgent Book delivery;
+intent version 3 now separates factual claim ordering from reaction intensity.
+Final semantic/personality tests and the complete browser/lab suites pass after
+that correction. Temporary servers were stopped and viewport overrides reset.
+
+Limits: mobile verification uses Chromium emulation, not a physical phone. Proxy
+cookies/origins are exercised without deploying Cloudflare or Unraid. CUDA and
+5M/23M comparisons were run during the feasibility milestone, not repeated as
+production models in this final CPU pass; smaller checkpoint terms remain an
+upstream follow-up. Human difficulty remains a conservative uncalibrated heuristic,
+and unsupported strategic causes continue to abstain. No TTS or training-transfer
+claim was introduced.
+
 ## Separate coach development viewer: September 27, 2026
 
 The expression viewer has its own loopback-only Vite process (`npm run dev:coach`,

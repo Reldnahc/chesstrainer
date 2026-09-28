@@ -3,7 +3,6 @@ import type { CoachDefinition } from "../model";
 export const classicPerformance: CoachDefinition["animation"] = {
   defaultReactionMs: 1300,
   reactionMs: { brilliant: 1650, blunder: 1800, winning: 1650, losing: 1450 },
-  idleRangeMs: [4500, 10000],
   defaultIdle: ["blink", "glance", "breathe"],
   idleGestures: {
     brilliant: ["blink", "twinkle", "nod"],

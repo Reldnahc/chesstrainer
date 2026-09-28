@@ -1,5 +1,56 @@
 # Testing
 
+The review-intelligence synthetic baseline corpus and native benchmark commands
+are documented in [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Its contract
+tests run with ordinary pytest without Torch or a Maia checkpoint; native
+Stockfish checks use the existing `stockfish` marker. Benchmark artifacts are
+ignored private development output, not repository fixtures.
+
+Opt-in Maia feasibility tests and CPU/CUDA benchmark commands are documented in
+[MAIA_FEASIBILITY.md](MAIA_FEASIBILITY.md). Native `maia` tests require the pinned
+optional runtime plus `MAIA_CHECKPOINT_DIR`; ordinary tests verify missing/corrupt
+files, source pinning and complete-history inputs without importing Torch.
+
+Production human-evidence contracts, ownership/cache invalidation, real process
+deadlines, cancellation and Stockfish-only/refresh behavior are covered by
+`test_human_evidence.py`, `test_human_runtime.py` and `test_human_review.py`.
+The native production worker test requires the 79M checkpoint; it does not use
+the feasibility adapter. See [HUMAN_MODELS.md](HUMAN_MODELS.md) for setup.
+
+## Native whole-game intelligence verification
+
+With the optional runtime, a verified cached model and Stockfish installed:
+
+```sh
+STOCKFISH_PATH=/path/to/stockfish HUMAN_MODEL_PATH=/path/to/maia3-79m.pt \
+  HF_HUB_OFFLINE=1 python scripts/verify_review_intelligence.py \
+  --output data/verification/native-NEW
+```
+
+PowerShell sets those environment variables with `$env:NAME = 'value'` before
+running Python. Use a new output directory; the command refuses to overwrite one.
+It never downloads weights. The ten original synthetic games contain 114 plies,
+ratings from 600 to 2600, Chess.com/Lichess/unknown domains, quiet and tactical
+play, a sound queen offer, annotated clock pressure, recovery, repeated errors,
+conversion/lost conversion, book errors and draws. Coverage tags describe
+inspection targets, not promises that every native search produces a motif.
+
+The harness exercises the actual import/job/report/variation APIs at the unchanged
+depth-16 / 0.8-second baseline and default 8-position / 4-question refinement
+budgets. It validates native policies and context references, no SRS creation,
+all registered coach IDs preserving the exact saved facts, and restart/reopen
+with no new evidence rows or native processes. JSON reports can be imported into
+the separate intelligence lab; the disposable SQLite file can be served locally
+for manual application inspection. Keep all outputs in ignored `data/`.
+
+Run the same command in a disposable Docker container with `--network none`, the
+model mounted read-only, and a writable new output path such as `/tmp/verification`.
+The smaller `scripts/smoke_human.py` checks a short native review and cached restart.
+Neither harness replaces deterministic false-positive tests, account/concurrency
+tests, or physical-device testing. Native scores and nominated positions can vary
+across Stockfish binaries and available compute; identical model inputs remain
+deterministic within their recorded runtime identity.
+
 Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
 
 ## Full verification
@@ -17,7 +68,9 @@ ruff check backend scripts migrations
 ruff format --check backend scripts migrations
 cd frontend
 npx playwright test
+npx playwright test --config playwright.accounts.config.ts
 npx playwright test --config playwright.coach.config.ts
+npx playwright test --config playwright.intelligence.config.ts
 ```
 
 Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Tests run serially against the production build and a test server on 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
@@ -27,6 +80,8 @@ expression/animation tests in `frontend/studio-tests`. It needs no backend, logi
 database or Stockfish. Production browser tests verify that Settings still offers
 coach selection but no expression viewer, and that `/coach-studio` is not an app
 route. CI runs the application, account and standalone studio suites separately.
+The independent [intelligence laboratory](INTELLIGENCE_LAB.md) runs on port 5175;
+its suite verifies evidence inspection, production-renderer parity and isolation.
 
 PowerShell can use .venv/Scripts/python.exe, .venv/Scripts/ruff.exe, npm.cmd and npx.cmd without activation. PLAYWRIGHT_BROWSERS_PATH optionally selects an installed Chromium directory; TEST_PYTHON selects the browser test server's Python executable.
 
@@ -56,8 +111,12 @@ no workers or engines and does not read the configured application database.
 
 `python scripts/export_api_contract.py --check` verifies backend/schema agreement.
 `npm --prefix frontend run api:check` verifies schema/TypeScript agreement.
-`npm --prefix frontend run test:types` checks endpoint inference and rejects
-intentionally invalid calls. Both frontend checks run as part of `npm run build`;
+`npm --prefix frontend run test:types` checks endpoint inference, rejects
+intentionally invalid calls, and strictly typechecks all application, coach-studio
+and intelligence-lab browser tests and their Playwright configs. The browser-test
+project includes Node 24 declarations for its runner and fixture helpers; fixtures
+must satisfy the same generated API contracts as the application. Both frontend
+checks run as part of `npm run build`;
 backend contract tests and the export check run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.
 
@@ -204,3 +263,20 @@ motion preference after restart, exercising preference persistence and ownership
 Hosted requests emulate the headers forwarded by a TLS-terminating reverse proxy;
 this does not verify a live proxy or Cloudflare configuration. The test neither
 publishes the image nor touches an existing installation.
+
+## Review intelligence refinement
+
+`test_review_refinement.py`, `test_refinement_search.py` and
+`test_refinement_storage.py` cover nomination caps, depth/consistency guards,
+immutable baseline facts, native cancellation without partial cache writes,
+shared-slot cancellation, resume, optional failure, revision polling,
+account-private references and legacy migration. Game browser tests exercise
+earlier-ply revisions and stable board geometry at desktop/mobile widths. Native
+benchmarks and their limitations are documented in [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).
+
+Semantic review coverage: `test_review_events.py` and `test_review_clocks.py`
+exercise each event family, positive/negative evidence, deterministic identities,
+clock arithmetic and invalid/absent annotations, import/restart preservation,
+arbitrary-branch exclusion, and cold-SRS API protection. Fixtures contain legal
+synthetic positions; their synthetic evaluations are rule inputs, not benchmark
+chess claims. Native review/human smoke verifies the combined production path.

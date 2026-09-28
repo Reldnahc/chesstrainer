@@ -558,6 +558,160 @@
         "title": "ClassificationAudit",
         "type": "object"
       },
+      "ClockFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "after_band": {
+            "default": "unknown",
+            "enum": [
+              "critical",
+              "low",
+              "ample",
+              "unknown"
+            ],
+            "title": "After Band",
+            "type": "string"
+          },
+          "after_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After Seconds"
+          },
+          "before_band": {
+            "default": "unknown",
+            "enum": [
+              "critical",
+              "low",
+              "ample",
+              "unknown"
+            ],
+            "title": "Before Band",
+            "type": "string"
+          },
+          "before_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before Seconds"
+          },
+          "before_source": {
+            "default": "unknown",
+            "enum": [
+              "previous_clock",
+              "initial_control",
+              "unknown"
+            ],
+            "title": "Before Source",
+            "type": "string"
+          },
+          "control_kind": {
+            "default": "unknown",
+            "enum": [
+              "increment",
+              "sudden_death",
+              "delay",
+              "staged",
+              "unknown"
+            ],
+            "title": "Control Kind",
+            "type": "string"
+          },
+          "elapsed_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Seconds"
+          },
+          "elapsed_source": {
+            "default": "unknown",
+            "enum": [
+              "annotation",
+              "clock_delta",
+              "unknown"
+            ],
+            "title": "Elapsed Source",
+            "type": "string"
+          },
+          "increment_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Increment Seconds"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "status": {
+            "default": "absent",
+            "enum": [
+              "absent",
+              "annotated",
+              "invalid"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "tempo": {
+            "default": "unknown",
+            "enum": [
+              "fast_with_time",
+              "long_think",
+              "ordinary",
+              "unknown"
+            ],
+            "title": "Tempo",
+            "type": "string"
+          },
+          "time_control": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Control"
+          },
+          "version": {
+            "const": "clock-1",
+            "default": "clock-1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "title": "ClockFacts",
+        "type": "object"
+      },
       "CoachPreferences": {
         "additionalProperties": false,
         "properties": {
@@ -585,10 +739,10 @@
             "type": "string"
           },
           "motion": {
-            "default": "natural",
+            "default": "system",
             "enum": [
+              "system",
               "natural",
-              "subtle",
               "still"
             ],
             "title": "Motion",
@@ -679,6 +833,99 @@
         "title": "ColdPosition",
         "type": "object"
       },
+      "Conditioning": {
+        "additionalProperties": false,
+        "properties": {
+          "opponent_rating": {
+            "maximum": 5000.0,
+            "minimum": 0.0,
+            "title": "Opponent Rating",
+            "type": "integer"
+          },
+          "opponent_source": {
+            "enum": [
+              "pgn",
+              "fallback"
+            ],
+            "title": "Opponent Source",
+            "type": "string"
+          },
+          "self_rating": {
+            "maximum": 5000.0,
+            "minimum": 0.0,
+            "title": "Self Rating",
+            "type": "integer"
+          },
+          "self_source": {
+            "enum": [
+              "pgn",
+              "fallback"
+            ],
+            "title": "Self Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "self_rating",
+          "opponent_rating",
+          "self_source",
+          "opponent_source"
+        ],
+        "title": "Conditioning",
+        "type": "object"
+      },
+      "ContextNode": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "after": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "before": {
+            "$ref": "#/components/schemas/Score"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ply",
+          "actor",
+          "input_digest",
+          "event_ids",
+          "before",
+          "after",
+          "evidence"
+        ],
+        "title": "ContextNode",
+        "type": "object"
+      },
       "Coverage": {
         "additionalProperties": false,
         "properties": {
@@ -765,6 +1012,258 @@
           "password"
         ],
         "title": "Credentials",
+        "type": "object"
+      },
+      "CrossGameContext": {
+        "additionalProperties": false,
+        "properties": {
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "recurrence_threshold": {
+            "title": "Recurrence Threshold",
+            "type": "integer"
+          },
+          "scope": {
+            "const": "other_saved_games",
+            "default": "other_saved_games",
+            "title": "Scope",
+            "type": "string"
+          },
+          "version": {
+            "const": "cross-game-1",
+            "default": "cross-game-1",
+            "title": "Version",
+            "type": "string"
+          },
+          "weaknesses": {
+            "items": {
+              "$ref": "#/components/schemas/HistoricalWeakness"
+            },
+            "title": "Weaknesses",
+            "type": "array"
+          }
+        },
+        "required": [
+          "input_digest",
+          "recurrence_threshold",
+          "weaknesses",
+          "limitations"
+        ],
+        "title": "CrossGameContext",
+        "type": "object"
+      },
+      "DifficultyComponents": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptable_count_lower_bound": {
+            "title": "Acceptable Count Lower Bound",
+            "type": "integer"
+          },
+          "alternatives_complete": {
+            "title": "Alternatives Complete",
+            "type": "boolean"
+          },
+          "best_forcing_plies": {
+            "title": "Best Forcing Plies",
+            "type": "integer"
+          },
+          "best_probability": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Best Probability"
+          },
+          "best_rank": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Best Rank"
+          },
+          "best_supported_horizon": {
+            "title": "Best Supported Horizon",
+            "type": "integer"
+          },
+          "candidate_gap_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Candidate Gap Cp"
+          },
+          "mate_transition": {
+            "enum": [
+              "allowed",
+              "missed",
+              "none"
+            ],
+            "title": "Mate Transition",
+            "type": "string"
+          },
+          "normalized_entropy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Entropy"
+          },
+          "only_good_move_at_depth": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Only Good Move At Depth"
+          },
+          "played_probability": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played Probability"
+          },
+          "played_rank": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played Rank"
+          },
+          "top_three_mass": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top Three Mass"
+          },
+          "verified_sacrifice": {
+            "title": "Verified Sacrifice",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "acceptable_count_lower_bound",
+          "alternatives_complete",
+          "only_good_move_at_depth",
+          "best_forcing_plies",
+          "best_supported_horizon",
+          "verified_sacrifice",
+          "mate_transition"
+        ],
+        "title": "DifficultyComponents",
+        "type": "object"
+      },
+      "Domain": {
+        "additionalProperties": false,
+        "properties": {
+          "alignment": {
+            "enum": [
+              "related",
+              "shifted",
+              "unknown"
+            ],
+            "title": "Alignment",
+            "type": "string"
+          },
+          "calibration": {
+            "const": "unvalidated",
+            "default": "unvalidated",
+            "title": "Calibration",
+            "type": "string"
+          },
+          "history_from_start": {
+            "title": "History From Start",
+            "type": "boolean"
+          },
+          "platform": {
+            "enum": [
+              "lichess",
+              "chesscom",
+              "unknown"
+            ],
+            "title": "Platform",
+            "type": "string"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "time_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Class"
+          },
+          "time_control": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Control"
+          }
+        },
+        "required": [
+          "platform",
+          "time_control",
+          "time_class",
+          "alignment",
+          "history_from_start",
+          "reasons"
+        ],
+        "title": "Domain",
         "type": "object"
       },
       "Evidence": {
@@ -882,6 +1381,50 @@
           "findings"
         ],
         "title": "EvidenceClassification",
+        "type": "object"
+      },
+      "EvidenceReference": {
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "title": "Field",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ply"
+          },
+          "source": {
+            "enum": [
+              "stockfish",
+              "human",
+              "rule",
+              "pgn",
+              "book",
+              "position",
+              "weakness"
+            ],
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "id",
+          "field"
+        ],
+        "title": "EvidenceReference",
         "type": "object"
       },
       "Finding": {
@@ -1146,6 +1689,88 @@
         "title": "GameAnalysis",
         "type": "object"
       },
+      "GameContext": {
+        "additionalProperties": false,
+        "properties": {
+          "biggest_swing_ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Biggest Swing Ply"
+          },
+          "complete": {
+            "title": "Complete",
+            "type": "boolean"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "missing_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Missing Plies",
+            "type": "array"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/ContextNode"
+            },
+            "title": "Nodes",
+            "type": "array"
+          },
+          "relationships": {
+            "items": {
+              "$ref": "#/components/schemas/GameRelationship"
+            },
+            "title": "Relationships",
+            "type": "array"
+          },
+          "total_plies": {
+            "title": "Total Plies",
+            "type": "integer"
+          },
+          "turning_points": {
+            "items": {
+              "$ref": "#/components/schemas/TurningPoint"
+            },
+            "title": "Turning Points",
+            "type": "array"
+          },
+          "version": {
+            "const": "game-context-1",
+            "default": "game-context-1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "input_digest",
+          "complete",
+          "total_plies",
+          "missing_plies",
+          "nodes",
+          "relationships",
+          "turning_points",
+          "biggest_swing_ply",
+          "limitations"
+        ],
+        "title": "GameContext",
+        "type": "object"
+      },
       "GameDetail": {
         "additionalProperties": false,
         "properties": {
@@ -1174,12 +1799,32 @@
             ],
             "title": "Black Rating"
           },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "frames": {
             "items": {
               "$ref": "#/components/schemas/GameFrame"
             },
             "title": "Frames",
             "type": "array"
+          },
+          "history": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CrossGameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "id": {
             "title": "Id",
@@ -1221,6 +1866,11 @@
           "result": {
             "title": "Result",
             "type": "string"
+          },
+          "review_revision": {
+            "default": 0,
+            "title": "Review Revision",
+            "type": "integer"
           },
           "white": {
             "title": "White",
@@ -1558,6 +2208,36 @@
             "title": "Engine Version",
             "type": "string"
           },
+          "human": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "immediate_reply": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "intelligence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MoveIntelligence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "label": {
             "enum": [
               "Brilliant",
@@ -1583,9 +2263,29 @@
               }
             ]
           },
+          "practical": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "reason": {
             "title": "Reason",
             "type": "string"
+          },
+          "refinement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefinementInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "white_score": {
             "$ref": "#/components/schemas/Score"
@@ -1674,6 +2374,76 @@
         "title": "GamePosition",
         "type": "object"
       },
+      "GameRelationship": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Facts",
+            "type": "object"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "repeated_motif",
+              "punishment",
+              "recovery",
+              "advantage_run",
+              "erosion",
+              "support_restored"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "plies": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 2,
+            "title": "Plies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "actor",
+          "plies",
+          "event_ids",
+          "evidence",
+          "facts"
+        ],
+        "title": "GameRelationship",
+        "type": "object"
+      },
       "GameReviewReport": {
         "additionalProperties": false,
         "properties": {
@@ -1730,6 +2500,36 @@
             "title": "Engine Version",
             "type": "string"
           },
+          "human": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "immediate_reply": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "intelligence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MoveIntelligence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "label": {
             "enum": [
               "Brilliant",
@@ -1778,6 +2578,16 @@
             "title": "Played Analysis Id",
             "type": "string"
           },
+          "practical": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PracticalAssessment"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "previous_score": {
             "anyOf": [
               {
@@ -1791,6 +2601,30 @@
           "reason": {
             "title": "Reason",
             "type": "string"
+          },
+          "refinement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RefinementInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "root_candidates": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Candidate"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Root Candidates"
           },
           "sacrifice": {
             "anyOf": [
@@ -1923,6 +2757,291 @@
           "database"
         ],
         "title": "Health",
+        "type": "object"
+      },
+      "HistoricalWeakness": {
+        "additionalProperties": false,
+        "properties": {
+          "decision_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Decision Ids",
+            "type": "array"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "game_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Game Ids",
+            "type": "array"
+          },
+          "independent_games": {
+            "title": "Independent Games",
+            "type": "integer"
+          },
+          "occurrences": {
+            "title": "Occurrences",
+            "type": "integer"
+          },
+          "related_plies": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Related Plies",
+            "type": "array"
+          },
+          "skill_id": {
+            "title": "Skill Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "provisional",
+              "supported"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill_id",
+          "title",
+          "status",
+          "independent_games",
+          "occurrences",
+          "related_plies",
+          "evidence",
+          "decision_ids",
+          "game_ids"
+        ],
+        "title": "HistoricalWeakness",
+        "type": "object"
+      },
+      "HumanEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "conditioning": {
+            "$ref": "#/components/schemas/Conditioning"
+          },
+          "configuration_key": {
+            "title": "Configuration Key",
+            "type": "string"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "engine_best": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanMove"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          },
+          "history_key": {
+            "title": "History Key",
+            "type": "string"
+          },
+          "legal_count": {
+            "title": "Legal Count",
+            "type": "integer"
+          },
+          "mover": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Mover",
+            "type": "string"
+          },
+          "normalized_entropy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Entropy"
+          },
+          "played": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HumanMove"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelProvenance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "schema_version": {
+            "const": "human-evidence-1",
+            "default": "human-evidence-1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "available",
+              "disabled",
+              "unavailable",
+              "cancelled",
+              "not_applicable"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "top_moves": {
+            "items": {
+              "$ref": "#/components/schemas/HumanMove"
+            },
+            "title": "Top Moves",
+            "type": "array"
+          },
+          "top_three_mass": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Top Three Mass"
+          },
+          "unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable Reason"
+          }
+        },
+        "required": [
+          "status",
+          "configuration_key",
+          "history_key",
+          "mover",
+          "conditioning",
+          "domain",
+          "legal_count"
+        ],
+        "title": "HumanEvidence",
+        "type": "object"
+      },
+      "HumanMove": {
+        "additionalProperties": false,
+        "properties": {
+          "probability": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Probability"
+          },
+          "rank": {
+            "minimum": 1.0,
+            "title": "Rank",
+            "type": "integer"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          }
+        },
+        "required": [
+          "uci",
+          "rank"
+        ],
+        "title": "HumanMove",
+        "type": "object"
+      },
+      "HumanReadiness": {
+        "additionalProperties": false,
+        "properties": {
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "model": {
+            "default": "79m",
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "default": "maia3",
+            "title": "Provider",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "disabled",
+              "not_configured",
+              "unchecked",
+              "ready",
+              "unavailable"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "HumanReadiness",
         "type": "object"
       },
       "Identity": {
@@ -2279,6 +3398,80 @@
         "title": "ManualRequest",
         "type": "object"
       },
+      "ModelProvenance": {
+        "additionalProperties": false,
+        "properties": {
+          "adapter_version": {
+            "title": "Adapter Version",
+            "type": "string"
+          },
+          "checkpoint_sha256": {
+            "title": "Checkpoint Sha256",
+            "type": "string"
+          },
+          "code_revision": {
+            "title": "Code Revision",
+            "type": "string"
+          },
+          "inference": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Inference",
+            "type": "object"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "model_revision": {
+            "title": "Model Revision",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "model",
+          "model_revision",
+          "checkpoint_sha256",
+          "code_revision",
+          "adapter_version",
+          "inference"
+        ],
+        "title": "ModelProvenance",
+        "type": "object"
+      },
+      "MotionPreferences": {
+        "additionalProperties": false,
+        "properties": {
+          "motion": {
+            "default": "system",
+            "enum": [
+              "system",
+              "natural",
+              "still"
+            ],
+            "title": "Motion",
+            "type": "string"
+          }
+        },
+        "title": "MotionPreferences",
+        "type": "object"
+      },
       "MoveExplanation": {
         "properties": {
           "accepted": {
@@ -2397,6 +3590,65 @@
         "title": "MoveExplanation",
         "type": "object"
       },
+      "MoveIntelligence": {
+        "additionalProperties": false,
+        "properties": {
+          "clock": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ClockFacts"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewEvent"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ply"
+          },
+          "version": {
+            "const": "move-events-4",
+            "default": "move-events-4",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "input_digest",
+          "ply",
+          "events",
+          "clock",
+          "limitations"
+        ],
+        "title": "MoveIntelligence",
+        "type": "object"
+      },
       "MoveRequest": {
         "properties": {
           "from_square": {
@@ -2497,6 +3749,130 @@
         "title": "PgnImportResult",
         "type": "object"
       },
+      "PracticalAssessment": {
+        "additionalProperties": false,
+        "properties": {
+          "best_find_difficulty": {
+            "enum": [
+              "forced",
+              "natural",
+              "challenging",
+              "difficult",
+              "unknown"
+            ],
+            "title": "Best Find Difficulty",
+            "type": "string"
+          },
+          "best_naturalness": {
+            "enum": [
+              "preferred",
+              "plausible",
+              "unusual",
+              "unknown"
+            ],
+            "title": "Best Naturalness",
+            "type": "string"
+          },
+          "calibration": {
+            "const": "uncalibrated",
+            "default": "uncalibrated",
+            "title": "Calibration",
+            "type": "string"
+          },
+          "components": {
+            "$ref": "#/components/schemas/DifficultyComponents"
+          },
+          "confidence": {
+            "enum": [
+              "structural",
+              "heuristic",
+              "limited",
+              "unavailable"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "human_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Human Evidence Id"
+          },
+          "input_digest": {
+            "title": "Input Digest",
+            "type": "string"
+          },
+          "interpretations": {
+            "items": {
+              "enum": [
+                "forced_reply",
+                "natural_error",
+                "unusual_strong_move",
+                "natural_best",
+                "hard_to_find_defense",
+                "immediate_mate_missed"
+              ],
+              "type": "string"
+            },
+            "title": "Interpretations",
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "played_naturalness": {
+            "enum": [
+              "preferred",
+              "plausible",
+              "unusual",
+              "unknown"
+            ],
+            "title": "Played Naturalness",
+            "type": "string"
+          },
+          "probe_version": {
+            "const": "synthetic-probe-1",
+            "default": "synthetic-probe-1",
+            "title": "Probe Version",
+            "type": "string"
+          },
+          "stockfish_analysis_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Stockfish Analysis Ids",
+            "type": "array"
+          },
+          "version": {
+            "const": "practical-2",
+            "default": "practical-2",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "input_digest",
+          "stockfish_analysis_ids",
+          "human_evidence_id",
+          "confidence",
+          "limitations",
+          "best_find_difficulty",
+          "played_naturalness",
+          "best_naturalness",
+          "components"
+        ],
+        "title": "PracticalAssessment",
+        "type": "object"
+      },
       "PracticeQueueItem": {
         "additionalProperties": false,
         "properties": {
@@ -2523,6 +3899,77 @@
         "title": "Profile",
         "type": "object"
       },
+      "RefinementInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "adopted": {
+            "title": "Adopted",
+            "type": "boolean"
+          },
+          "baseline_depth": {
+            "title": "Baseline Depth",
+            "type": "integer"
+          },
+          "queries": {
+            "title": "Queries",
+            "type": "integer"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "refined_depth": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refined Depth"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "task_id": {
+            "title": "Task Id",
+            "type": "string"
+          },
+          "triggers": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Triggers",
+            "type": "array"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "task_id",
+          "status",
+          "triggers",
+          "adopted",
+          "reason",
+          "baseline_depth",
+          "refined_depth",
+          "queries"
+        ],
+        "title": "RefinementInfo",
+        "type": "object"
+      },
       "Rejected": {
         "additionalProperties": false,
         "properties": {
@@ -2535,6 +3982,83 @@
           "rejected"
         ],
         "title": "Rejected",
+        "type": "object"
+      },
+      "ReviewEvent": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "board_fact",
+              "searched",
+              "line_witness",
+              "model_signal",
+              "annotation"
+            ],
+            "title": "Confidence",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceReference"
+            },
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          },
+          "facts": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Facts",
+            "type": "object"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importance": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Importance",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "mate",
+              "evaluation_change",
+              "critical_resource",
+              "sacrifice",
+              "tactic",
+              "human_contrast",
+              "clock_observation",
+              "opening_departure",
+              "check",
+              "finish",
+              "positional"
+            ],
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "actor",
+          "confidence",
+          "importance",
+          "facts",
+          "evidence"
+        ],
+        "title": "ReviewEvent",
         "type": "object"
       },
       "ReviewFeedback": {
@@ -2797,6 +4321,26 @@
             "title": "Id",
             "type": "string"
           },
+          "phase": {
+            "default": "baseline",
+            "enum": [
+              "baseline",
+              "refinement",
+              "complete"
+            ],
+            "title": "Phase",
+            "type": "string"
+          },
+          "refinement_completed": {
+            "default": 0,
+            "title": "Refinement Completed",
+            "type": "integer"
+          },
+          "refinement_total": {
+            "default": 0,
+            "title": "Refinement Total",
+            "type": "integer"
+          },
           "status": {
             "title": "Status",
             "type": "string"
@@ -2872,6 +4416,26 @@
               }
             ]
           },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "history": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CrossGameContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "job": {
             "anyOf": [
               {
@@ -2888,6 +4452,11 @@
             },
             "title": "Moves",
             "type": "array"
+          },
+          "revision": {
+            "default": 0,
+            "title": "Revision",
+            "type": "integer"
           }
         },
         "required": [
@@ -2936,6 +4505,11 @@
               }
             ],
             "title": "Rating"
+          },
+          "refine": {
+            "default": false,
+            "title": "Refine",
+            "type": "boolean"
           }
         },
         "title": "ReviewRequest",
@@ -3323,6 +4897,54 @@
         "title": "TeachingAudit",
         "type": "object"
       },
+      "TurningPoint": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Actor",
+            "type": "string"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Event Ids",
+            "type": "array"
+          },
+          "loss_cp": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Loss Cp"
+          },
+          "mate_transition": {
+            "title": "Mate Transition",
+            "type": "boolean"
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ply",
+          "actor",
+          "loss_cp",
+          "mate_transition",
+          "event_ids"
+        ],
+        "title": "TurningPoint",
+        "type": "object"
+      },
       "ValidationError": {
         "properties": {
           "ctx": {
@@ -3606,6 +5228,34 @@
             ],
             "title": "Engine Version"
           },
+          "human_model_device": {
+            "enum": [
+              "cpu",
+              "cuda"
+            ],
+            "title": "Human Model Device",
+            "type": "string"
+          },
+          "human_model_enabled": {
+            "title": "Human Model Enabled",
+            "type": "boolean"
+          },
+          "human_model_path": {
+            "title": "Human Model Path",
+            "type": "string"
+          },
+          "human_model_threads": {
+            "title": "Human Model Threads",
+            "type": "integer"
+          },
+          "human_model_timeout": {
+            "title": "Human Model Timeout",
+            "type": "number"
+          },
+          "human_model_workers": {
+            "title": "Human Model Workers",
+            "type": "integer"
+          },
           "lan_token_configured": {
             "title": "Lan Token Configured",
             "type": "boolean"
@@ -3637,6 +5287,26 @@
           "retire_after_days": {
             "title": "Retire After Days",
             "type": "integer"
+          },
+          "review_refinement_depth": {
+            "title": "Review Refinement Depth",
+            "type": "integer"
+          },
+          "review_refinement_multipv": {
+            "title": "Review Refinement Multipv",
+            "type": "integer"
+          },
+          "review_refinement_positions": {
+            "title": "Review Refinement Positions",
+            "type": "integer"
+          },
+          "review_refinement_queries": {
+            "title": "Review Refinement Queries",
+            "type": "integer"
+          },
+          "review_refinement_time": {
+            "title": "Review Refinement Time",
+            "type": "number"
           },
           "server_host": {
             "title": "Server Host",
@@ -3711,6 +5381,17 @@
           "session_secure",
           "public_origin",
           "engine_slots",
+          "human_model_enabled",
+          "human_model_path",
+          "human_model_device",
+          "human_model_threads",
+          "human_model_workers",
+          "human_model_timeout",
+          "review_refinement_positions",
+          "review_refinement_queries",
+          "review_refinement_depth",
+          "review_refinement_time",
+          "review_refinement_multipv",
           "stockfish_path",
           "stockfish_threads",
           "stockfish_hash_mb",
@@ -4355,6 +6036,23 @@
               "title": "After",
               "type": "integer"
             }
+          },
+          {
+            "in": "query",
+            "name": "after_revision",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After Revision"
+            }
           }
         ],
         "responses": {
@@ -4484,6 +6182,24 @@
           }
         },
         "summary": "Get Health"
+      }
+    },
+    "/api/human-model": {
+      "get": {
+        "operationId": "human_model_readiness_api_human_model_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HumanReadiness"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Human Model Readiness"
       }
     },
     "/api/imports": {
@@ -4757,6 +6473,60 @@
           }
         },
         "summary": "Put Coach Preferences"
+      }
+    },
+    "/api/preferences/motion": {
+      "get": {
+        "operationId": "get_motion_preferences_api_preferences_motion_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotionPreferences"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Motion Preferences"
+      },
+      "put": {
+        "operationId": "put_motion_preferences_api_preferences_motion_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotionPreferences"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotionPreferences"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Motion Preferences"
       }
     },
     "/api/review/queue": {

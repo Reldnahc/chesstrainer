@@ -8,11 +8,26 @@ import ManCoach from "./ManCoach";
 import WomanCoach from "./WomanCoach";
 import CatCoach from "./CatCoach";
 import DogCoach from "./DogCoach";
+import { storyteller } from "../../dialogue/characters/storyteller";
+import { analyst } from "../../dialogue/characters/analyst";
+import { host } from "../../dialogue/characters/host";
+import { expert } from "../../dialogue/characters/expert";
+import { partner } from "../../dialogue/characters/partner";
+import { captain } from "../../dialogue/characters/captain";
+import { spark } from "../../dialogue/characters/spark";
+import { blonde } from "../../dialogue/characters/blonde";
+import { tabby } from "../../dialogue/characters/tabby";
+import { tuxedo } from "../../dialogue/characters/tuxedo";
+import { calico } from "../../dialogue/characters/calico";
+import { velvet } from "../../dialogue/characters/velvet";
+import { sunny } from "../../dialogue/characters/sunny";
+import { professor } from "../../dialogue/characters/professor";
+import { corgi } from "../../dialogue/characters/corgi";
+import { collie } from "../../dialogue/characters/collie";
 
 const animalPerformance: CoachDefinition["animation"] = {
   defaultReactionMs: 1400,
   reactionMs: { brilliant: 1700, blunder: 1850, winning: 1700, losing: 1500 },
-  idleRangeMs: [5500, 11500],
   defaultIdle: ["blink", "glance", "breathe", "ears"],
   idleGestures: {
     brilliant: ["blink", "tail", "twinkle"],
@@ -76,6 +91,7 @@ export const manStudy: CoachCollection = {
     {
       id: "storyteller",
       coachId: "classic",
+      personality: storyteller,
       name: "Storyteller",
       description:
         "Warm, generous acting. A face you can read across the board.",
@@ -85,6 +101,7 @@ export const manStudy: CoachCollection = {
     {
       id: "host",
       coachId: "man-host",
+      personality: host,
       name: "Club host",
       description:
         "Close curls, a neat beard and a terracotta overshirt. An easy, welcoming presence.",
@@ -93,6 +110,7 @@ export const manStudy: CoachCollection = {
     {
       id: "expert",
       coachId: "man-expert",
+      personality: expert,
       name: "Endgame expert",
       description:
         "Silver at the temples, a clean-shaven face and a slate cardigan. A steady study companion.",
@@ -101,6 +119,7 @@ export const manStudy: CoachCollection = {
     {
       id: "partner",
       coachId: "man-partner",
+      personality: partner,
       name: "Creative partner",
       description:
         "Dark waves, a shaped beard and a forest-green waistcoat. Ready to explore an idea together.",
@@ -139,6 +158,7 @@ export const womanStudy: CoachCollection = {
     {
       id: "captain",
       coachId: "woman-captain",
+      personality: captain,
       name: "Club captain",
       description:
         "Auburn waves, a teal blazer and warm, assured encouragement.",
@@ -147,6 +167,7 @@ export const womanStudy: CoachCollection = {
     {
       id: "analyst",
       coachId: "woman-analyst",
+      personality: analyst,
       name: "Quiet analyst",
       description:
         "A curled updo, warm cream knitwear and thoughtful eyes behind glasses.",
@@ -155,6 +176,7 @@ export const womanStudy: CoachCollection = {
     {
       id: "spark",
       coachId: "woman-spark",
+      personality: spark,
       name: "Bright spark",
       description:
         "A swinging ponytail and a plum jacket. Quick to spot—and celebrate—an idea.",
@@ -163,6 +185,7 @@ export const womanStudy: CoachCollection = {
     {
       id: "blonde",
       coachId: "woman-blonde",
+      personality: blonde,
       name: "Golden braid",
       description:
         "A swept blonde fringe, a loose side braid and a soft blue cardigan. Bright, easygoing company.",
@@ -185,6 +208,7 @@ export const catStudy: CoachCollection = {
     {
       id: "tabby",
       coachId: "cat-tabby",
+      personality: tabby,
       name: "Library tabby",
       description:
         "A warm ginger study companion. Curious eyes, soft stripes and a sage scarf.",
@@ -193,6 +217,7 @@ export const catStudy: CoachCollection = {
     {
       id: "tuxedo",
       coachId: "cat-tuxedo",
+      personality: tuxedo,
       name: "Midnight tactician",
       description:
         "A sharp tuxedo silhouette, white mittens and a quieter kind of confidence.",
@@ -201,6 +226,7 @@ export const catStudy: CoachCollection = {
     {
       id: "calico",
       coachId: "cat-calico",
+      personality: calico,
       name: "Curious calico",
       description:
         "A patchwork face with a turquoise scarf. Always another angle to investigate.",
@@ -209,6 +235,7 @@ export const catStudy: CoachCollection = {
     {
       id: "black",
       coachId: "cat-black",
+      personality: velvet,
       name: "Velvet night",
       description:
         "An all-black coat, amber eyes and a plum scarf. A watchful companion with a soft side.",
@@ -226,11 +253,12 @@ export const dogStudy: CoachCollection = {
   description:
     "Two beloved goldens, a corgi and a border collie. Four different kinds of good company.",
   expressionIntents: animalIntents,
-  animation: { ...animalPerformance, idleRangeMs: [6000, 12000] },
+  animation: animalPerformance,
   families: [
     {
       id: "sunny",
       coachId: "dog-sunny",
+      personality: sunny,
       name: "Sunny companion",
       description:
         "Honey-gold fur and a blue bandana. Every good idea earns a warm welcome.",
@@ -239,6 +267,7 @@ export const dogStudy: CoachCollection = {
     {
       id: "gentle",
       coachId: "dog-gentle",
+      personality: professor,
       name: "Gentle professor",
       description:
         "A cream-colored older golden with reading glasses and endless patience.",
@@ -247,6 +276,7 @@ export const dogStudy: CoachCollection = {
     {
       id: "corgi",
       coachId: "dog-corgi",
+      personality: corgi,
       name: "Pocket captain",
       description:
         "A red-and-white corgi with big upright ears, a broad grin and a little red bandana.",
@@ -255,6 +285,7 @@ export const dogStudy: CoachCollection = {
     {
       id: "collie",
       coachId: "dog-collie",
+      personality: collie,
       name: "Border collie",
       description:
         "A black-and-white coat, a white blaze and one folded ear. Always watching the next move.",

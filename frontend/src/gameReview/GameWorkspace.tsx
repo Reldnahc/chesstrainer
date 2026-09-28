@@ -8,13 +8,10 @@ import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
 import ReviewMoves from "./ReviewMoves";
-import ReviewSummary from "./ReviewSummary";
+import ReviewProgress from "./ReviewProgress";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
-
-const dateText = (date: string | null) =>
-  date && !date.includes("?") ? date : "Date unknown";
 
 export default function GameWorkspace({
   id,
@@ -125,20 +122,6 @@ export default function GameWorkspace({
       )}
       <ReviewWorkspace
         boardLabel="Game board and navigation"
-        heading={
-          <>
-            <Link className="button-link text-button" href={libraryHref}>
-              <ArrowLeft size={16} />
-              All games
-            </Link>
-            <h1>
-              {game.white} <span>vs</span> {game.black}
-            </h1>
-            <span>
-              {dateText(game.played_on)} · {game.result}
-            </span>
-          </>
-        }
         aboveBoard={
           <PlayerRow
             name={playerName(orientation === "white" ? "black" : "white")}
@@ -164,7 +147,7 @@ export default function GameWorkspace({
         evaluation={
           <div
             className="game-eval-bar"
-            aria-label={`Evaluation for White: ${scoreText(score)}`}
+            aria-label={`Evaluation for White: ${scoreText(score, 1)}`}
           >
             <div
               style={{
@@ -173,7 +156,7 @@ export default function GameWorkspace({
                 bottom: orientation === "white" ? 0 : "auto",
               }}
             />
-            <span>{scoreText(score)}</span>
+            <span>{scoreText(score, 1)}</span>
           </div>
         }
         board={
@@ -207,10 +190,13 @@ export default function GameWorkspace({
             }
           />
         }
-        boardControls={<ReviewControls exploration={exploration} />}
+        boardControls={<ReviewControls exploration={exploration} libraryHref={libraryHref} />}
       >
         <PositionCoach
           positionKey={`${id}:${analysisEpoch}:${key}`}
+          dialogueKey={`${id}:${key}`}
+          ply={cursor.ply}
+          variation={cursor.branch !== null}
           game={game}
           report={report}
           frame={frame}
@@ -224,25 +210,28 @@ export default function GameWorkspace({
           onExplain={() =>
             analysis.error ? analysis.retry() : exploration.toggleExplanation()
           }
+          onReturnToGame={exploration.returnToGame}
         />
         <ReviewMoves
           game={game}
           exploration={exploration}
           getAnalysis={analysis.get}
+          progress={
+            <ReviewProgress
+              game={game}
+              running={running}
+              busy={busy}
+              reviewStarting={reviewStarting}
+              start={start}
+              cancel={cancel}
+            />
+          }
         />
         <EvaluationGraph
           frames={game.frames}
           initialScore={initialScore}
           selected={cursor.ply}
           onSelect={navigate}
-        />
-        <ReviewSummary
-          game={game}
-          running={running}
-          busy={busy}
-          reviewStarting={reviewStarting}
-          start={start}
-          cancel={cancel}
         />
       </ReviewWorkspace>
     </div>

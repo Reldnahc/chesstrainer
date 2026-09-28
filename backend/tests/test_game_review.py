@@ -43,6 +43,7 @@ def test_labels_and_elo_only_change_blunder_severity():
 
 def test_great_only_good_and_both_opponent_error_transitions():
     only = quality(0, 0, second_score={"kind": "cp", "value": -200})
+    only["actual"]["uci"] = only["best"]["uci"]
     assert classify(only, 1000)[0] == "Great"
     assert classify(only | {"legal_count": 1}, 1000)[0] == "Best"
     assert (
@@ -86,6 +87,7 @@ def test_library_variations_special_moves_and_missing_engine(settings):
             "job": None,
             "moves": [],
             "accuracy": None,
+            "revision": 0,
         }
         assert detail["accuracy"] is None
         assert client.get(f"/api/games/{game}/review?after=-1").status_code == 422
@@ -128,16 +130,18 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
     settings.stockfish_workers = workers
     app = create_app(settings, workers=False)
     with TestClient(app) as client:
+        from trainer.review_intelligence import presentation
         from trainer.routes import games as routes
 
         ratings = []
         original = routes.public_report
 
-        def record_rating(report, rating):
+        def record_rating(report, rating, **kwargs):
             ratings.append(rating)
-            return original(report, rating)
+            return original(report, rating, **kwargs)
 
         monkeypatch.setattr(routes, "public_report", record_rating)
+        monkeypatch.setattr(presentation, "public_report", record_rating)
         game = seed(
             app,
             '[White "Learner"]\n[Black "Opponent"]\n[WhiteElo "700"]\n[BlackElo "1800"]\n\n1. f3 e5 2. g4 Qh4# 0-1',
@@ -147,6 +151,8 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         detail = client.get(f"/api/games/{game}").json()
         assert detail["job"]["status"] == "completed", detail["job"]
         assert detail["job"]["completed"] == 4
+        assert detail["context"]["complete"] and detail["context"]["missing_plies"] == []
+        assert detail["context"]["biggest_swing_ply"] == 3
         assert detail["accuracy"] is not None
         assert 0 <= detail["accuracy"]["white"] < detail["accuracy"]["black"] <= 100
         assert ratings == [700, 1800, 700, 1800]
@@ -174,6 +180,10 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         updates = client.get(f"/api/games/{game}/review?after=2").json()
         assert updates["job"] == detail["job"]
         assert updates["accuracy"] == detail["accuracy"]
+        assert updates["context"] == detail["context"]
+        assert updates["history"] == detail["history"]
+        assert "narrative" not in detail
+        assert "narrative" not in updates
         assert client.get("/api/games").json()["items"][0]["accuracy"] == detail["accuracy"]
         assert [move["ply"] for move in updates["moves"]] == [3, 4]
         assert ratings[-2:] == [700, 1800]
@@ -186,6 +196,7 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         assert final["accuracy"] == detail["accuracy"]
         client.post(f"/api/games/{game}/review", json={"rating": 2500})
         assert client.get(f"/api/games/{game}").json()["accuracy"] == detail["accuracy"]
+        assert client.get(f"/api/games/{game}").json()["context"] == detail["context"]
         with app.state.sessions() as db:
             for model in (Decision, Exercise, Review):
                 assert db.scalar(select(func.count()).select_from(model)) == 0

@@ -341,6 +341,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/human-model": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Human Model Readiness */
+        get: operations["human_model_readiness_api_human_model_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/imports": {
         parameters: {
             query?: never;
@@ -454,6 +471,24 @@ export interface paths {
         get: operations["get_coach_preferences_api_preferences_coach_get"];
         /** Put Coach Preferences */
         put: operations["put_coach_preferences_api_preferences_coach_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/preferences/motion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Motion Preferences */
+        get: operations["get_motion_preferences_api_preferences_motion_get"];
+        /** Put Motion Preferences */
+        put: operations["put_motion_preferences_api_preferences_motion_put"];
         post?: never;
         delete?: never;
         options?: never;
@@ -861,6 +896,69 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** ClockFacts */
+        ClockFacts: {
+            /**
+             * After Band
+             * @default unknown
+             * @enum {string}
+             */
+            after_band: "critical" | "low" | "ample" | "unknown";
+            /** After Seconds */
+            after_seconds?: number | null;
+            /**
+             * Before Band
+             * @default unknown
+             * @enum {string}
+             */
+            before_band: "critical" | "low" | "ample" | "unknown";
+            /** Before Seconds */
+            before_seconds?: number | null;
+            /**
+             * Before Source
+             * @default unknown
+             * @enum {string}
+             */
+            before_source: "previous_clock" | "initial_control" | "unknown";
+            /**
+             * Control Kind
+             * @default unknown
+             * @enum {string}
+             */
+            control_kind: "increment" | "sudden_death" | "delay" | "staged" | "unknown";
+            /** Elapsed Seconds */
+            elapsed_seconds?: number | null;
+            /**
+             * Elapsed Source
+             * @default unknown
+             * @enum {string}
+             */
+            elapsed_source: "annotation" | "clock_delta" | "unknown";
+            /** Increment Seconds */
+            increment_seconds?: number | null;
+            /** Limitations */
+            limitations?: string[];
+            /**
+             * Status
+             * @default absent
+             * @enum {string}
+             */
+            status: "absent" | "annotated" | "invalid";
+            /**
+             * Tempo
+             * @default unknown
+             * @enum {string}
+             */
+            tempo: "fast_with_time" | "long_think" | "ordinary" | "unknown";
+            /** Time Control */
+            time_control?: string | null;
+            /**
+             * Version
+             * @default clock-1
+             * @constant
+             */
+            version: "clock-1";
+        };
         /** CoachPreferences */
         CoachPreferences: {
             /**
@@ -871,10 +969,10 @@ export interface components {
             coach_id: "classic" | "man-host" | "man-expert" | "man-partner" | "woman-captain" | "woman-analyst" | "woman-spark" | "woman-blonde" | "cat-tabby" | "cat-tuxedo" | "cat-calico" | "cat-black" | "dog-sunny" | "dog-gentle" | "dog-corgi" | "dog-collie";
             /**
              * Motion
-             * @default natural
+             * @default system
              * @enum {string}
              */
-            motion: "natural" | "subtle" | "still";
+            motion: "system" | "natural" | "still";
         };
         /** ColdPosition */
         ColdPosition: {
@@ -904,6 +1002,41 @@ export interface components {
             review_reason: "new" | "resume" | "learning" | "relearning" | "review" | "practice";
             /** Session Id */
             session_id: string;
+        };
+        /** Conditioning */
+        Conditioning: {
+            /** Opponent Rating */
+            opponent_rating: number;
+            /**
+             * Opponent Source
+             * @enum {string}
+             */
+            opponent_source: "pgn" | "fallback";
+            /** Self Rating */
+            self_rating: number;
+            /**
+             * Self Source
+             * @enum {string}
+             */
+            self_source: "pgn" | "fallback";
+        };
+        /** ContextNode */
+        ContextNode: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            after: components["schemas"]["Score"];
+            before: components["schemas"]["Score"];
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Input Digest */
+            input_digest: string;
+            /** Ply */
+            ply: number;
         };
         /** Coverage */
         Coverage: {
@@ -937,6 +1070,90 @@ export interface components {
             password: string;
             /** Username */
             username: string;
+        };
+        /** CrossGameContext */
+        CrossGameContext: {
+            /** Input Digest */
+            input_digest: string;
+            /** Limitations */
+            limitations: string[];
+            /** Recurrence Threshold */
+            recurrence_threshold: number;
+            /**
+             * Scope
+             * @default other_saved_games
+             * @constant
+             */
+            scope: "other_saved_games";
+            /**
+             * Version
+             * @default cross-game-1
+             * @constant
+             */
+            version: "cross-game-1";
+            /** Weaknesses */
+            weaknesses: components["schemas"]["HistoricalWeakness"][];
+        };
+        /** DifficultyComponents */
+        DifficultyComponents: {
+            /** Acceptable Count Lower Bound */
+            acceptable_count_lower_bound: number;
+            /** Alternatives Complete */
+            alternatives_complete: boolean;
+            /** Best Forcing Plies */
+            best_forcing_plies: number;
+            /** Best Probability */
+            best_probability?: number | null;
+            /** Best Rank */
+            best_rank?: number | null;
+            /** Best Supported Horizon */
+            best_supported_horizon: number;
+            /** Candidate Gap Cp */
+            candidate_gap_cp?: number | null;
+            /**
+             * Mate Transition
+             * @enum {string}
+             */
+            mate_transition: "allowed" | "missed" | "none";
+            /** Normalized Entropy */
+            normalized_entropy?: number | null;
+            /** Only Good Move At Depth */
+            only_good_move_at_depth: boolean | null;
+            /** Played Probability */
+            played_probability?: number | null;
+            /** Played Rank */
+            played_rank?: number | null;
+            /** Top Three Mass */
+            top_three_mass?: number | null;
+            /** Verified Sacrifice */
+            verified_sacrifice: boolean;
+        };
+        /** Domain */
+        Domain: {
+            /**
+             * Alignment
+             * @enum {string}
+             */
+            alignment: "related" | "shifted" | "unknown";
+            /**
+             * Calibration
+             * @default unvalidated
+             * @constant
+             */
+            calibration: "unvalidated";
+            /** History From Start */
+            history_from_start: boolean;
+            /**
+             * Platform
+             * @enum {string}
+             */
+            platform: "lichess" | "chesscom" | "unknown";
+            /** Reasons */
+            reasons: string[];
+            /** Time Class */
+            time_class: string | null;
+            /** Time Control */
+            time_control: string | null;
         };
         /** Evidence */
         Evidence: {
@@ -977,6 +1194,20 @@ export interface components {
             run_id: string;
             /** Skill */
             skill: string;
+        };
+        /** EvidenceReference */
+        EvidenceReference: {
+            /** Field */
+            field: string;
+            /** Id */
+            id: string;
+            /** Ply */
+            ply?: number | null;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "stockfish" | "human" | "rule" | "pgn" | "book" | "position" | "weakness";
         };
         /** Finding */
         Finding: {
@@ -1068,6 +1299,33 @@ export interface components {
             report: components["schemas"]["GameReviewReport"] | null;
             score: components["schemas"]["Score"] | null;
         };
+        /** GameContext */
+        GameContext: {
+            /** Biggest Swing Ply */
+            biggest_swing_ply: number | null;
+            /** Complete */
+            complete: boolean;
+            /** Input Digest */
+            input_digest: string;
+            /** Limitations */
+            limitations: string[];
+            /** Missing Plies */
+            missing_plies: number[];
+            /** Nodes */
+            nodes: components["schemas"]["ContextNode"][];
+            /** Relationships */
+            relationships: components["schemas"]["GameRelationship"][];
+            /** Total Plies */
+            total_plies: number;
+            /** Turning Points */
+            turning_points: components["schemas"]["TurningPoint"][];
+            /**
+             * Version
+             * @default game-context-1
+             * @constant
+             */
+            version: "game-context-1";
+        };
         /** GameDetail */
         GameDetail: {
             accuracy: components["schemas"]["GameAccuracy"] | null;
@@ -1075,8 +1333,10 @@ export interface components {
             black: string;
             /** Black Rating */
             black_rating: number | null;
+            context?: components["schemas"]["GameContext"] | null;
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
+            history?: components["schemas"]["CrossGameContext"] | null;
             /** Id */
             id: string;
             job: components["schemas"]["ReviewJob"] | null;
@@ -1091,6 +1351,11 @@ export interface components {
             rating: number;
             /** Result */
             result: string;
+            /**
+             * Review Revision
+             * @default 0
+             */
+            review_revision: number;
             /** White */
             white: string;
             /** White Rating */
@@ -1177,14 +1442,19 @@ export interface components {
             engine_label: "Brilliant" | "Great" | "Best" | "Good" | "Book" | "Inaccuracy" | "Mistake" | "Miss" | "Blunder";
             /** Engine Version */
             engine_version: string;
+            human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_reply?: components["schemas"]["Frame"] | null;
+            intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
              * Label
              * @enum {string}
              */
             label: "Brilliant" | "Great" | "Best" | "Good" | "Book" | "Inaccuracy" | "Mistake" | "Miss" | "Blunder";
             opening: components["schemas"]["BookOpening"] | null;
+            practical?: components["schemas"]["PracticalAssessment"] | null;
             /** Reason */
             reason: string;
+            refinement?: components["schemas"]["RefinementInfo"] | null;
             white_score: components["schemas"]["Score"];
         };
         /** GamePosition */
@@ -1204,6 +1474,31 @@ export interface components {
              * @enum {string}
              */
             turn: "white" | "black";
+        };
+        /** GameRelationship */
+        GameRelationship: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Facts */
+            facts: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+            /** Id */
+            id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "repeated_motif" | "punishment" | "recovery" | "advantage_run" | "erosion" | "support_restored";
+            /** Plies */
+            plies: number[];
         };
         /** GameReviewReport */
         GameReviewReport: {
@@ -1225,6 +1520,9 @@ export interface components {
             engine_label: "Brilliant" | "Great" | "Best" | "Good" | "Book" | "Inaccuracy" | "Mistake" | "Miss" | "Blunder";
             /** Engine Version */
             engine_version: string;
+            human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_reply?: components["schemas"]["Frame"] | null;
+            intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
              * Label
              * @enum {string}
@@ -1239,9 +1537,13 @@ export interface components {
             opportunity_missed: boolean;
             /** Played Analysis Id */
             played_analysis_id: string;
+            practical?: components["schemas"]["PracticalAssessment"] | null;
             previous_score: components["schemas"]["Score"] | null;
             /** Reason */
             reason: string;
+            refinement?: components["schemas"]["RefinementInfo"] | null;
+            /** Root Candidates */
+            root_candidates?: components["schemas"]["Candidate"][] | null;
             sacrifice: components["schemas"]["SacrificeEvidence"] | null;
             second_score: components["schemas"]["Score"] | null;
             /** Version */
@@ -1270,6 +1572,99 @@ export interface components {
             engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
+        };
+        /** HistoricalWeakness */
+        HistoricalWeakness: {
+            /** Decision Ids */
+            decision_ids: string[];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Game Ids */
+            game_ids: string[];
+            /** Independent Games */
+            independent_games: number;
+            /** Occurrences */
+            occurrences: number;
+            /** Related Plies */
+            related_plies: number[];
+            /** Skill Id */
+            skill_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "provisional" | "supported";
+            /** Title */
+            title: string;
+        };
+        /** HumanEvidence */
+        HumanEvidence: {
+            conditioning: components["schemas"]["Conditioning"];
+            /** Configuration Key */
+            configuration_key: string;
+            domain: components["schemas"]["Domain"];
+            engine_best?: components["schemas"]["HumanMove"] | null;
+            /** Evidence Id */
+            evidence_id?: string | null;
+            /** History Key */
+            history_key: string;
+            /** Legal Count */
+            legal_count: number;
+            /**
+             * Mover
+             * @enum {string}
+             */
+            mover: "white" | "black";
+            /** Normalized Entropy */
+            normalized_entropy?: number | null;
+            played?: components["schemas"]["HumanMove"] | null;
+            provenance?: components["schemas"]["ModelProvenance"] | null;
+            /**
+             * Schema Version
+             * @default human-evidence-1
+             * @constant
+             */
+            schema_version: "human-evidence-1";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "available" | "disabled" | "unavailable" | "cancelled" | "not_applicable";
+            /** Top Moves */
+            top_moves?: components["schemas"]["HumanMove"][];
+            /** Top Three Mass */
+            top_three_mass?: number | null;
+            /** Unavailable Reason */
+            unavailable_reason?: string | null;
+        };
+        /** HumanMove */
+        HumanMove: {
+            /** Probability */
+            probability?: number | null;
+            /** Rank */
+            rank: number;
+            /** Uci */
+            uci: string;
+        };
+        /** HumanReadiness */
+        HumanReadiness: {
+            /** Message */
+            message?: string | null;
+            /**
+             * Model
+             * @default 79m
+             */
+            model: string;
+            /**
+             * Provider
+             * @default maia3
+             */
+            provider: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "disabled" | "not_configured" | "unchecked" | "ready" | "unavailable";
         };
         /** Identity */
         Identity: {
@@ -1380,6 +1775,34 @@ export interface components {
             /** Tags */
             tags?: string[];
         };
+        /** ModelProvenance */
+        ModelProvenance: {
+            /** Adapter Version */
+            adapter_version: string;
+            /** Checkpoint Sha256 */
+            checkpoint_sha256: string;
+            /** Code Revision */
+            code_revision: string;
+            /** Inference */
+            inference: {
+                [key: string]: string | number | boolean;
+            };
+            /** Model */
+            model: string;
+            /** Model Revision */
+            model_revision: string;
+            /** Provider */
+            provider: string;
+        };
+        /** MotionPreferences */
+        MotionPreferences: {
+            /**
+             * Motion
+             * @default system
+             * @enum {string}
+             */
+            motion: "system" | "natural" | "still";
+        };
         /** MoveExplanation */
         MoveExplanation: {
             /** Accepted */
@@ -1419,6 +1842,24 @@ export interface components {
              */
             version: string;
         };
+        /** MoveIntelligence */
+        MoveIntelligence: {
+            clock: components["schemas"]["ClockFacts"] | null;
+            /** Events */
+            events: components["schemas"]["ReviewEvent"][];
+            /** Input Digest */
+            input_digest: string;
+            /** Limitations */
+            limitations: string[];
+            /** Ply */
+            ply: number | null;
+            /**
+             * Version
+             * @default move-events-4
+             * @constant
+             */
+            version: "move-events-4";
+        };
         /** MoveRequest */
         MoveRequest: {
             /** From Square */
@@ -1448,6 +1889,58 @@ export interface components {
             /** Processed */
             processed: number;
         };
+        /** PracticalAssessment */
+        PracticalAssessment: {
+            /**
+             * Best Find Difficulty
+             * @enum {string}
+             */
+            best_find_difficulty: "forced" | "natural" | "challenging" | "difficult" | "unknown";
+            /**
+             * Best Naturalness
+             * @enum {string}
+             */
+            best_naturalness: "preferred" | "plausible" | "unusual" | "unknown";
+            /**
+             * Calibration
+             * @default uncalibrated
+             * @constant
+             */
+            calibration: "uncalibrated";
+            components: components["schemas"]["DifficultyComponents"];
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "structural" | "heuristic" | "limited" | "unavailable";
+            /** Human Evidence Id */
+            human_evidence_id: string | null;
+            /** Input Digest */
+            input_digest: string;
+            /** Interpretations */
+            interpretations?: ("forced_reply" | "natural_error" | "unusual_strong_move" | "natural_best" | "hard_to_find_defense" | "immediate_mate_missed")[];
+            /** Limitations */
+            limitations: string[];
+            /**
+             * Played Naturalness
+             * @enum {string}
+             */
+            played_naturalness: "preferred" | "plausible" | "unusual" | "unknown";
+            /**
+             * Probe Version
+             * @default synthetic-probe-1
+             * @constant
+             */
+            probe_version: "synthetic-probe-1";
+            /** Stockfish Analysis Ids */
+            stockfish_analysis_ids: string[];
+            /**
+             * Version
+             * @default practical-2
+             * @constant
+             */
+            version: "practical-2";
+        };
         /** PracticeQueueItem */
         PracticeQueueItem: {
             /** Exercise Id */
@@ -1461,10 +1954,59 @@ export interface components {
              */
             chesscom_username: string;
         };
+        /** RefinementInfo */
+        RefinementInfo: {
+            /** Adopted */
+            adopted: boolean;
+            /** Baseline Depth */
+            baseline_depth: number;
+            /** Queries */
+            queries: number;
+            /** Reason */
+            reason: string | null;
+            /** Refined Depth */
+            refined_depth: number | null;
+            /** Status */
+            status: string;
+            /** Task Id */
+            task_id: string;
+            /** Triggers */
+            triggers: string[];
+            /** Version */
+            version: string;
+        };
         /** Rejected */
         Rejected: {
             /** Rejected */
             rejected: boolean;
+        };
+        /** ReviewEvent */
+        ReviewEvent: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /**
+             * Confidence
+             * @enum {string}
+             */
+            confidence: "board_fact" | "searched" | "line_witness" | "model_signal" | "annotation";
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceReference"][];
+            /** Facts */
+            facts: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+            /** Id */
+            id: string;
+            /** Importance */
+            importance: number;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "mate" | "evaluation_change" | "critical_resource" | "sacrifice" | "tactic" | "human_contrast" | "clock_observation" | "opening_departure" | "check" | "finish" | "positional";
         };
         /** ReviewFeedback */
         ReviewFeedback: {
@@ -1520,6 +2062,22 @@ export interface components {
             error: string | null;
             /** Id */
             id: string;
+            /**
+             * Phase
+             * @default baseline
+             * @enum {string}
+             */
+            phase: "baseline" | "refinement" | "complete";
+            /**
+             * Refinement Completed
+             * @default 0
+             */
+            refinement_completed: number;
+            /**
+             * Refinement Total
+             * @default 0
+             */
+            refinement_total: number;
             /** Status */
             status: string;
             /** Total */
@@ -1539,9 +2097,16 @@ export interface components {
         /** ReviewProgress */
         ReviewProgress: {
             accuracy: components["schemas"]["GameAccuracy"] | null;
+            context?: components["schemas"]["GameContext"] | null;
+            history?: components["schemas"]["CrossGameContext"] | null;
             job: components["schemas"]["ReviewJob"] | null;
             /** Moves */
             moves: components["schemas"]["ReviewedMove"][];
+            /**
+             * Revision
+             * @default 0
+             */
+            revision: number;
         };
         /** ReviewQueueItem */
         ReviewQueueItem: {
@@ -1556,6 +2121,11 @@ export interface components {
         ReviewRequest: {
             /** Rating */
             rating?: number | null;
+            /**
+             * Refine
+             * @default false
+             */
+            refine: boolean;
         };
         /** ReviewedMove */
         ReviewedMove: {
@@ -1695,6 +2265,22 @@ export interface components {
             /** User Id */
             user_id: string;
         };
+        /** TurningPoint */
+        TurningPoint: {
+            /**
+             * Actor
+             * @enum {string}
+             */
+            actor: "white" | "black";
+            /** Event Ids */
+            event_ids: string[];
+            /** Loss Cp */
+            loss_cp: number | null;
+            /** Mate Transition */
+            mate_transition: boolean;
+            /** Ply */
+            ply: number;
+        };
         /** ValidationError */
         ValidationError: {
             /** Context */
@@ -1808,6 +2394,21 @@ export interface components {
             engine_status: "unchecked" | "ready" | "unavailable";
             /** Engine Version */
             engine_version: string | null;
+            /**
+             * Human Model Device
+             * @enum {string}
+             */
+            human_model_device: "cpu" | "cuda";
+            /** Human Model Enabled */
+            human_model_enabled: boolean;
+            /** Human Model Path */
+            human_model_path: string;
+            /** Human Model Threads */
+            human_model_threads: number;
+            /** Human Model Timeout */
+            human_model_timeout: number;
+            /** Human Model Workers */
+            human_model_workers: number;
             /** Lan Token Configured */
             lan_token_configured: boolean;
             /** Max Import Bytes */
@@ -1824,6 +2425,16 @@ export interface components {
             public_origin: string;
             /** Retire After Days */
             retire_after_days: number;
+            /** Review Refinement Depth */
+            review_refinement_depth: number;
+            /** Review Refinement Multipv */
+            review_refinement_multipv: number;
+            /** Review Refinement Positions */
+            review_refinement_positions: number;
+            /** Review Refinement Queries */
+            review_refinement_queries: number;
+            /** Review Refinement Time */
+            review_refinement_time: number;
             /** Server Host */
             server_host: string;
             /** Server Port */
@@ -2342,6 +2953,7 @@ export interface operations {
         parameters: {
             query?: {
                 after?: number;
+                after_revision?: number | null;
             };
             header?: never;
             path: {
@@ -2453,6 +3065,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    human_model_readiness_api_human_model_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HumanReadiness"];
                 };
             };
         };
@@ -2676,6 +3308,59 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["CoachPreferences"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_motion_preferences_api_preferences_motion_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MotionPreferences"];
+                };
+            };
+        };
+    };
+    put_motion_preferences_api_preferences_motion_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MotionPreferences"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MotionPreferences"];
                 };
             };
             /** @description Validation Error */

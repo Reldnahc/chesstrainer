@@ -4,6 +4,7 @@ import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import { AccountSettings } from "./AccountGate";
 import CoachSettings from "./coach/CoachSettings";
+import MotionSettings from "./MotionSettings";
 
 export default function SettingsScreen({
   health,
@@ -43,6 +44,7 @@ export default function SettingsScreen({
       />
       <AccountSettings />
       <CoachSettings />
+      <MotionSettings />
       <GameSync />
       <section className="panel settings-panel">
         <h2>Training</h2>
