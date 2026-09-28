@@ -21,7 +21,7 @@ test('account signup, engine-free sync, second-device login and private library'
   await page.getByRole('radio', {name: 'Golden braid', exact: true}).click();
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
-  await expect(page.locator('.coach-preference-status')).toContainText('Saved');
+  await expect(page.locator('.coach-motion-preference-status')).toContainText('Saved');
   await page.getByLabel('Piece & interface motion', {exact: true}).selectOption('natural');
   await expect(page.locator('.motion-preference-status')).toContainText('Saved');
   await page.getByRole('link', {name: 'Games', exact: true}).click();
