@@ -2,6 +2,37 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review product cleanup: visible human insights and concise prose
+
+Eight new checks failed before the change: mechanical natural/hard-find wording,
+masked unusual-strong choices, absent natural-best/near-best and found-defense
+claims, and missing-policy abstention. Synthetic legal games now pass through the
+production practical/report projection and then the real dialogue/UI boundary.
+No engine, model, grade, animation or persisted-schema behavior changed.
+
+- `python -m pytest backend/tests/test_review_difficulty.py backend/tests/test_human_review.py backend/tests/test_review_events.py -q --basetemp data/verification/human-insight -o cache_dir=data/verification/human-insight-cache`:
+  **44 passed**, 6.65 s. Includes native Stockfish, persisted human refresh/cache,
+  coach preference independence and cold-SRS protection; two existing warnings.
+- From `frontend`, `npx.cmd playwright test tests/human-insight.spec.ts tests/dialogue-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **64 passed**, 38.8 s, desktop/mobile. Seven insight kinds, absent/stale/forced/
+  opponent evidence, domain caution, popup geometry and keyboard dismissal,
+  navigation cleanup, source wording and saved coach/reload invariance.
+- `npx.cmd playwright test --config=playwright.intelligence.config.ts --reporter=line`:
+  **34 passed**, 46.3 s. All 16 selectable coaches preserve facts/hypotheticals,
+  omit population claims/opening disclaimers, and pass the complete writing audit.
+- `npm.cmd --prefix frontend run build`, API generation check, browser/app/endpoint
+  TypeScript checks and backend Ruff check/format passed.
+- Actual production UI inspected with synthetic reports at 1440×1100, 390×844 and
+  320×700. The compact insight leaves board/bubble geometry intact; long labels
+  wrap, the popup is keyboard/touch accessible and no horizontal overflow occurs.
+  Screenshots are ignored verification artifacts, not owner game data.
+
+Iteration caught and fixed review Escape swallowing native popup dismissal and
+two repeated opening sentences. The mobile geometry assertion now uses document
+coordinates, distinguishing Playwright's automatic scroll from layout movement.
+Only the five relevant human/opening entries per character were rewritten; the
+remaining personality corpus was retained.
+
 ## Review product cleanup: learner perspective
 
 Six new regressions reproduced opponent recovery/personal relationship/achievement

@@ -3,6 +3,7 @@ import type {CoachExpression} from "../coach/model";
 import {scoreText} from "../evaluation";
 import {claim, makeIntent, type Claim, type DialoguePurpose, type EvidenceRef} from "./model";
 import {positionalClaim, tacticalClaim, words} from "./eventClaims";
+import {humanClaims} from "./humanClaims";
 
 const purposes: Record<Report["label"], DialoguePurpose> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good", Book: "book",
@@ -75,16 +76,10 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     }
     if (event.kind === "opening_departure" && !report.opening) add("departure", {}, 48);
   }
-  if (report.opening) claims.push(claim(poor ? "book" : "book_sound", {opening: report.opening.name || "a recognized opening line"}, poor ? 86 : 96,
+  if (report.opening) claims.push(claim(poor ? "book" : "book_sound", {opening: report.opening.name || "a recognized opening line"}, poor ? 49 : 96,
     [{source: "book", id: report.opening.version, field: "recognized_opening", ply}]));
   const practical = report.practical;
-  const humanRefs = report.human?.evidence_id ? [{source: "human" as const, id: report.human.evidence_id, field: "policy", ply}] : [];
-  if (learnerMove && practical?.interpretations?.includes("natural_error")) claims.push(claim("human_natural_error", {}, 73, humanRefs));
-  if (learnerMove && practical?.best_find_difficulty === "difficult" && practical.components.only_good_move_at_depth && poor)
-    claims.push(claim("difficult_defense", {best}, 79, [...refs, ...humanRefs]));
-  else if (learnerMove && practical && ["difficult", "challenging"].includes(practical.best_find_difficulty) && report.actual.uci === report.best.uci)
-    claims.push(claim("human_challenging", {best}, 70, [...refs, ...humanRefs]));
-  else if (learnerMove && practical?.interpretations?.includes("unusual_strong_move")) claims.push(claim("human_rare", {}, 64, humanRefs));
+  if (learnerMove) claims.push(...humanClaims(report, ply, mover ?? null));
   // The graph remains two-sided. Personal relationships require the saved
   // learner, a matching evidence generation and an actual learner move.
   if (!variation && node && learnerMove && node.actor === game.orientation) {

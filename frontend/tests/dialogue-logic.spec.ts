@@ -9,6 +9,7 @@ import type {Game, Position, Report} from "../src/gameReview/types";
 import type {ColdPosition, ExplanationFrame, Schema} from "../src/api";
 import {semanticFixtures} from "./semantic-fixtures";
 import {positionalClaims} from "./positional-claims";
+import {humanGames, humanIntent} from "./human-fixtures";
 
 const ref = {source: "stockfish" as const, id: "search", field: "root"};
 const event = (kind: Schema["ReviewEvent"]["kind"], facts: Schema["ReviewEvent"]["facts"]): Schema["ReviewEvent"] =>
@@ -76,14 +77,14 @@ test("semantic dialogue names supported tactics, replies and exact severity with
 });
 
 test("human naturalness does not become a population claim or override the grade", () => {
-  const value = report();
-  value.practical = {interpretations: ["natural_error"], limitations: ["source_domain_shift"], stockfish_analysis_ids: ["search"]} as Report["practical"];
-  value.human = {evidence_id: "model"} as Report["human"];
-  const intent = gameIntent({...args, report: value});
-  expect(intent.purpose).toBe("blunder");
-  expect(intent.decisions).toContain("source_domain_shift");
+  const game = humanGames.natural_error, value = game.frames[1].report!;
+  const intent = humanIntent(game);
+  expect(intent.purpose).toBe("book");
+  expect(value.engine_label).toBe("Blunder");
+  expect(intent.decisions).toContain("domain_shift");
   const text = renderNeutral(intent).text;
-  expect(text).toContain("human model");
+  expect(text).toContain("natural mistake");
+  expect(text).toContain("3.40 pawns");
   expect(text).not.toMatch(/%|players at your|you thought/);
 });
 
@@ -107,7 +108,11 @@ test("book is recognition, positive findings teach and arbitrary structure is no
   const value = report();
   value.opening = {name: "Bongcloud", version: "openings"} as Report["opening"];
   value.label = "Book";
-  expect(renderNeutral(gameIntent({...args, report: value})).text).toContain("does not mean the move is sound");
+  const intent = gameIntent({...args, report: value});
+  const text = renderNeutral(intent).text;
+  expect(text).toContain("Bongcloud");
+  expect(text).toContain("3.00 pawns");
+  expect(text).not.toMatch(/recognition|does not mean|quality grade|sound/);
   const fact = event("positional", {feature: "rook_file", line: "actual", side: "black", after: "open", file: "d"});
   expect(renderNeutral(makeIntent("key", "best", "game", "best", [positionalClaim(fact, "exd5", "Nf3")!])).text).toContain("black's rook");
   expect(positionalClaim(event("positional", {feature: "bad_bishop"}), "e4", "d4")).toBeNull();
@@ -125,7 +130,7 @@ test("deterministic variants survive reordering and leave evidence untouched", (
   expect(first.text.length).toBeLessThanOrEqual(290);
   const broken = renderNeutral(makeIntent("bad", "uncertain", "game", "uncertain", [claim("missing"), claim("reply_capture")]));
   expect(broken.text).not.toContain("{");
-  expect(broken.text).toContain("does not support");
+  expect(broken.text).toContain("don't have a clear explanation");
 });
 
 test("cold SRS ignores poisoned future feedback and exposes no tactical or historical hints", () => {

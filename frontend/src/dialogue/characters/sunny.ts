@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const sunny: CoachPersonality = {
-  version: "sunny-1", maxCharacters: 285, maxClaims: 2, delivery: {pace: "lively", energy: "bright"},
+  version: "sunny-2", maxCharacters: 285, maxClaims: 2, delivery: {pace: "lively", energy: "bright"},
   bible: {temperament: "Openly delighted and companionable, with honest attention to both sides.", teaching: "Celebrate the specific discovery and stay engaged after mistakes.", rhythm: "Warm, buoyant sentences with clear factual anchors.", celebration: "Unreserved pleasure when an idea works.", correction: "Stay practical and willing to try again, without minimizing the loss.", avoid: "Endless praise, pet puns, or telling the learner how they feel."},
   templates: {
     allowed_mate: ["Let's catch the reply: {opponent} can force checkmate. {reply}", "This gives {opponent} a forced checkmate. We have a clear moment to study. {reply}"],
@@ -16,12 +16,12 @@ export const sunny: CoachPersonality = {
     loss: ["That costs {loss} pawns of evaluation. Let's learn from the stronger line.", "The best continuation keeps {loss} more pawns of evaluation."],
     best: ["That is a strong choice, right up with the engine's best.", "The move holds up beautifully beside the best searched line."],
     good: ["Good choice. Most of the position's value is still there.", "This works well, close to the stronger alternatives."],
-    human_natural_error: ["The human model finds this natural, though the engine finds a cost. A useful contrast to learn from."],
-    difficult_defense: ["The saving idea was {best}, marked difficult by the human-model assessment."],
-    human_challenging: ["{best} was a challenging find in the human-model assessment. That idea is worth keeping."],
-    book: ["This is {opening}. Being in the book still doesn't guarantee a sound move."],
+    human_natural_error: ["A natural mistake, and a useful reply to learn for next time."],
+    difficult_defense: ["{best} would have held. A tough defense to find, but now you can study it."],
+    human_challenging: ["{best} was hard to find. That idea is worth keeping!"],
+    book: ["Here is {opening}."],
     book_sound: ["A recognized opening line: {opening}.", "The move belongs to {opening}. Familiar ground in the catalogue."],
-    departure: ["Here the game leaves the recognized opening line. The move can still stand on its own."],
+    departure: ["The game moves beyond its known opening line here."],
     recovery: ["There is a playable position again after {earlier}. A recovery worth noticing.{help}", "Back within reach after the setback at {earlier}.{help}"],
     repeated: ["We have spotted this {motif} issue {count} times in the reviewed game. That gives us something clear to study."],
     clock_low: ["Keep the clock in mind too: {side} had {seconds} seconds before moving."],

@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const spark: CoachPersonality = {
-  version: "spark-1", maxCharacters: 260, maxClaims: 2, delivery: {pace: "lively", energy: "bright"},
+  version: "spark-2", maxCharacters: 260, maxClaims: 2, delivery: {pace: "lively", energy: "bright"},
   bible: {temperament: "Quick, bright and delighted by concrete tactical connections.", teaching: "Lead with the action or contrast that makes the move interesting.", rhythm: "Short bursts followed by one crisp explanation.", celebration: "Let a surprising resource land without a wall of exclamation marks.", correction: "Immediate and specific; never tease the player.", avoid: "Meme slang, constant excitement, or calling every tactic a fork."},
   templates: {
     allowed_mate: ["That reply is decisive: {opponent} can force checkmate. {reply}", "The danger is immediate—forced checkmate for {opponent}. {reply}"],
@@ -16,12 +16,12 @@ export const spark: CoachPersonality = {
     loss: ["The evaluation drops {loss} pawns against the best line.", "A {loss}-pawn evaluation concession. Let's inspect the reply."],
     best: ["Right on the engine's strongest track.", "A sharp choice, close to the best searched value."],
     good: ["The move holds up. Most of the value stays put.", "Good choice—close to the stronger lines."],
-    human_natural_error: ["A telling split: natural to the human model, costly to Stockfish."],
-    difficult_defense: ["The escape was {best}, and the human-model assessment calls it difficult."],
-    human_challenging: ["{best} was a challenging find in the human-model assessment. Worth replaying."],
-    book: ["That's {opening}. Book can still be bad—the name doesn't settle the evaluation."],
+    human_natural_error: ["A natural mistake. Replay the reply and see the difference."],
+    difficult_defense: ["{best} would have held. A hard-to-find defense worth replaying."],
+    human_challenging: ["{best} was hard to spot. Replay that resource!"],
+    book: ["We are in {opening}."],
     book_sound: ["Recognized opening: {opening}.", "This lands in {opening}. The catalogue knows the move."],
-    departure: ["New ground for this opening line. Leaving the catalogue is not itself a mistake."],
+    departure: ["New ground: the known opening line ends here."],
     recovery: ["Back to a playable position after {earlier}.{help}", "The evaluation has recovered from {earlier}; there is a game again.{help}"],
     repeated: ["The {motif} issue is back: {count} occurrences in the reviewed part of the game."],
     clock_low: ["Little time on the clock: {side} had {seconds} seconds before moving."],

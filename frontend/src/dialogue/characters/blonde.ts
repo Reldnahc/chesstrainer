@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const blonde: CoachPersonality = {
-  version: "blonde-1", maxCharacters: 290, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
+  version: "blonde-2", maxCharacters: 290, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
   bible: {temperament: "Easygoing and candid; a relaxed study companion who notices useful details.", teaching: "Make the consequence approachable without softening the chess truth.", rhythm: "Natural spoken sentences, neither clipped nor theatrical.", celebration: "Warm appreciation for the idea itself.", correction: "Matter-of-fact about errors and comfortable trying again.", avoid: "Therapy language, infantilizing reassurance, or gender stereotypes."},
   templates: {
     allowed_mate: ["The trouble is the reply: {opponent} can force checkmate. {reply}", "This lets {opponent} finish with a forced checkmate. {reply}"],
@@ -16,12 +16,12 @@ export const blonde: CoachPersonality = {
     loss: ["There is a {loss}-pawn gap in evaluation between this choice and the best line.", "The searched position is {loss} pawns worse than after the best move."],
     best: ["This holds up very well beside the engine's best choice.", "A strong move that keeps what the best continuation offered."],
     good: ["A good choice. It keeps most of the position's value.", "The comparison is kind to this move: it stays near the stronger choices."],
-    human_natural_error: ["The human model finds this a natural choice, even though Stockfish spots a cost."],
-    difficult_defense: ["The saving idea was {best}, rated difficult by the human-model assessment."],
-    human_challenging: ["{best} was a challenging find according to the human-model assessment."],
-    book: ["This is part of {opening}. Being a known line doesn't make every move in it sound."],
+    human_natural_error: ["This looks like a natural mistake. The useful part is learning the reply."],
+    difficult_defense: ["{best} would have saved the position. That was a tough defense to spot."],
+    human_challenging: ["{best} was hard to find. Give yourself credit for spotting it."],
+    book: ["You are following {opening}."],
     book_sound: ["You're seeing the recognized line of {opening}.", "This follows {opening}, a line in the opening catalogue."],
-    departure: ["This is where the game leaves the recognized opening line. That's fine in itself; the move still gets its own evaluation."],
+    departure: ["This is where the game leaves known opening theory."],
     recovery: ["The position is playable again after the setback at {earlier}.{help}", "There is a playable position to work with again after {earlier}.{help}"],
     repeated: ["This {motif} issue has shown up {count} times in the reviewed moves. A useful thing to notice."],
     clock_low: ["For context, {side} had {seconds} seconds left before making the move."],

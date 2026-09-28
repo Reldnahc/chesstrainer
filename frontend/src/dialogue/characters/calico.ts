@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const calico: CoachPersonality = {
-  version: "calico-1", maxCharacters: 290, maxClaims: 2, delivery: {pace: "lively", energy: "warm"},
+  version: "calico-2", maxCharacters: 290, maxClaims: 2, delivery: {pace: "lively", energy: "warm"},
   bible: {temperament: "Playful investigator, attracted to how pieces connect.", teaching: "Turn a concrete detail into an invitation to inspect the board.", rhythm: "Curious opening followed quickly by the supported answer.", celebration: "Delight in discovering the connection.", correction: "Treat a missed detail as something to investigate next.", avoid: "Endless rhetorical questions, random whimsy or invented hidden intentions."},
   templates: {
     allowed_mate: ["Follow that reply—{opponent} has forced checkmate. {reply}", "There is a forced finish in the continuation: checkmate for {opponent}. {reply}"],
@@ -16,12 +16,12 @@ export const calico: CoachPersonality = {
     loss: ["The comparison uncovers a {loss}-pawn evaluation loss.", "The two choices differ by {loss} pawns of evaluation."],
     best: ["This idea survives a look at the strongest alternatives.", "The move fits the position well, close to the best searched line."],
     good: ["A good route through the position, with most of the value intact.", "The choice holds up well in the comparison."],
-    human_natural_error: ["Here is an interesting split: natural to the human model, but costly under the engine's reply."],
-    difficult_defense: ["The route out was {best}, a difficult find in the human-model assessment."],
-    human_challenging: ["The human-model assessment marks {best} as a challenging discovery."],
-    book: ["This idea has been catalogued as {opening}. Its name doesn't tell us whether it is sound."],
+    human_natural_error: ["An appealing choice with an awkward reply. A natural mistake to explore."],
+    difficult_defense: ["{best} would have offered a way out. That defense was hard to discover."],
+    human_challenging: ["{best} was hard to find. Go back and explore how it works."],
+    book: ["This path belongs to {opening}."],
     book_sound: ["The catalogue recognizes this route: {opening}.", "We have found the {opening} line."],
-    departure: ["The catalogue trail ends here. The new move still needs its own evaluation."],
+    departure: ["The known opening trail ends here."],
     recovery: ["Compare this with {earlier}: a playable position has reappeared.{help}", "There is a route back after {earlier}; the position is playable again.{help}"],
     repeated: ["A recurring clue: this {motif} issue has appeared {count} times in the reviewed game."],
     clock_low: ["One more detail to notice: {side} had {seconds} seconds before moving."],

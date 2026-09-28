@@ -1,7 +1,7 @@
 import type {CoachPersonality} from "../personality";
 
 export const storyteller: CoachPersonality = {
-  version: "storyteller-2", maxCharacters: 290, maxClaims: 2,
+  version: "storyteller-3", maxCharacters: 290, maxClaims: 2,
   delivery: {pace: "steady", energy: "warm"},
   bible: {temperament: "A generous club elder who follows the story of the position.",
     teaching: "Connect the present consequence to the move that made it possible.",
@@ -24,12 +24,12 @@ export const storyteller: CoachPersonality = {
     alternative: ["Compare that with {best}: the engine gives the mover {evaluation}."],
     loss: ["The position gives up {loss} pawns of evaluation here. It is a change worth tracing.", "Against the best continuation, this costs {loss} pawns of evaluation."],
     good: ["A good continuation; the position keeps most of what it offered.", "The idea holds up well, close to the stronger continuations."],
-    human_natural_error: ["There is a human side to this error: the model finds the choice natural, despite the engine's objection."],
-    difficult_defense: ["The way through was {best}, a difficult saving move in the human-model assessment."],
-    human_challenging: ["{best} deserves a second look: the human-model assessment marks it as a challenging find."],
-    book: ["We are still following {opening}, though recognized theory can still contain a bad move."],
+    human_natural_error: ["A natural mistake. The move is tempting; the reply changes the story."],
+    difficult_defense: ["{best} would have kept a way through. That defense was hard to find."],
+    human_challenging: ["{best} was a hard move to find. Keep that idea for another game."],
+    book: ["The opening path here is {opening}."],
     book_sound: ["Familiar territory: this follows {opening}.", "This move belongs to the recognized line of {opening}."],
-    departure: ["Here the game leaves its recognized opening line. That is a change of territory, not an error by itself."],
+    departure: ["Here the game steps beyond its known opening line."],
     repeated: ["There is the {motif} issue again: {count} occurrences in the reviewed part of this game."],
     clock_low: ["The clock belongs in this picture too: {side} had {seconds} seconds before moving."],
     mate_win: ["Checkmate. The attack has reached its finish; there is no escape for the king.", "You brought the attack to its end: checkmate."],

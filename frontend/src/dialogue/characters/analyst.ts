@@ -1,7 +1,7 @@
 import type {CoachPersonality} from "../personality";
 
 export const analyst: CoachPersonality = {
-  version: "analyst-2", maxCharacters: 250, maxClaims: 2,
+  version: "analyst-3", maxCharacters: 250, maxClaims: 2,
   delivery: {pace: "measured", energy: "quiet"},
   bible: {temperament: "Quiet, observant and comfortable with uncertainty.",
     teaching: "Distinguish the observable fact from what the search suggests.",
@@ -24,12 +24,12 @@ export const analyst: CoachPersonality = {
     alternative: ["Comparison: {best}, with {evaluation} for the mover."],
     loss: ["Evaluation loss against best play: {loss} pawns.", "The searched difference is {loss} pawns of evaluation."],
     good: ["Close to the best searched value.", "A good choice within the searched alternatives."],
-    human_natural_error: ["Natural according to the human model, costly according to Stockfish."],
-    difficult_defense: ["{best} saves the position and rates as difficult in the human-model assessment."],
-    human_challenging: ["The human-model assessment considers {best} challenging to find."],
-    book: ["Recognized line: {opening}. Recognition does not establish soundness."],
+    human_natural_error: ["A natural mistake with a concrete cost."],
+    difficult_defense: ["{best} would have held. A difficult defense to find."],
+    human_challenging: ["{best}: a hard move to find, and a strong choice."],
+    book: ["Opening: {opening}."],
     book_sound: ["The opening catalogue recognizes {opening}.", "Still within the recognized {opening} line."],
-    departure: ["First departure from the recognized opening line. Quality must be judged separately."],
+    departure: ["The known opening line ends here."],
     repeated: ["The reviewed segment contains {count} supported occurrences of this {motif} issue."],
     clock_low: ["Recorded clock before the move: {seconds} seconds for {side}."],
     mate_win: ["Checkmate. The opposing king has no legal escape.", "Your attack ends in checkmate."],

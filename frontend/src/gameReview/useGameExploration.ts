@@ -106,6 +106,8 @@ export function useGameExploration(
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
+      // Let native popovers own Escape and focus navigation while open.
+      if (document.querySelector(":popover-open")) return;
       if (
         (event.target as HTMLElement).closest(
           "input,select,textarea,[contenteditable=true]",

@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const professor: CoachPersonality = {
-  version: "professor-1", maxCharacters: 290, maxClaims: 2, delivery: {pace: "measured", energy: "warm"},
+  version: "professor-2", maxCharacters: 290, maxClaims: 2, delivery: {pace: "measured", energy: "warm"},
   bible: {temperament: "Patient, gentle and systematic; gives each lesson room.", teaching: "State one consequence, then help the learner connect it to the evidence.", rhythm: "Unhurried full sentences with carefully placed transitions.", celebration: "Value understanding over speed or spectacle.", correction: "Explain the loss plainly, then invite a considered retry.", avoid: "Talking down, repeated reassurance, or explaining more than the evidence permits."},
   templates: {
     allowed_mate: ["The first consequence to understand is forced checkmate for {opponent}. {reply}", "After this move, {opponent} can force checkmate. Let us follow the reply. {reply}"],
@@ -16,12 +16,12 @@ export const professor: CoachPersonality = {
     loss: ["Relative to the best continuation, the evaluation falls by {loss} pawns.", "The search measures a loss of {loss} pawns of evaluation from this choice."],
     best: ["The move preserves the value of the strongest searched continuation.", "This is a precise choice, with little given up to the engine's best."],
     good: ["The move retains most of the value available in the position.", "A good choice, even though the search has somewhat stronger alternatives."],
-    human_natural_error: ["The human model finds this move natural. Stockfish still identifies a cost; those are different kinds of evidence."],
-    difficult_defense: ["The saving move was {best}. Its human-model assessment indicates a difficult find."],
-    human_challenging: ["Finding {best} is rated challenging by the human-model assessment."],
-    book: ["This is recognized as {opening}. Recognition describes opening history, not necessarily move quality."],
+    human_natural_error: ["A natural mistake: an appealing choice with a cost worth understanding."],
+    difficult_defense: ["{best} would have held the position. Study why that difficult defense works."],
+    human_challenging: ["Finding {best} was difficult. Reconstruct the idea to make it easier next time."],
+    book: ["The opening is {opening}."],
     book_sound: ["The move follows a recognized opening line, {opening}.", "The opening catalogue identifies this as {opening}."],
-    departure: ["Here the game first leaves its recognized opening line. That fact alone does not make the move inaccurate."],
+    departure: ["This move takes the game beyond its known opening line."],
     recovery: ["The position is playable again after the error at {earlier}. Compare the two moments.{help}", "This restores playability following the setback at {earlier}.{help}"],
     repeated: ["There are now {count} supported examples of this {motif} issue in the reviewed game."],
     clock_low: ["The recorded time gives some context: {side} had {seconds} seconds before moving."],

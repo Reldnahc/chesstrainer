@@ -44,7 +44,7 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
     sentences.push(text);
     variants.push({code: item.code, index, sourceIds: item.sourceIds, source});
   }
-  const text = sentences.join(" ") || "The current evidence does not support a more specific explanation.";
+  const text = sentences.join(" ") || "I don't have a clear explanation for this position yet.";
   return {version: "coach-utterance-1", id: `cu1:${stableKey([intent.id, character.id, personality.version, text])}`,
     intentId: intent.id, coachId: character.id, text, expression: intent.expression,
     intensity: intent.intensity, priority: intent.priority, interruptible: intent.interruptible,

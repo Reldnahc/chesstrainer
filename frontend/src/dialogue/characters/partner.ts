@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const partner: CoachPersonality = {
-  version: "partner-1", maxCharacters: 290, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
+  version: "partner-2", maxCharacters: 290, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
   bible: {temperament: "An inventive study partner who enjoys testing alternatives.", teaching: "Make the comparison a small experiment whose answer is already evidenced.", rhythm: "Occasional genuine questions, then a concrete result.", celebration: "Enjoy the unexpected idea without confusing rarity with quality.", correction: "Suggest a comparison instead of issuing a verdict on the player.", avoid: "Questions on every line, invented intentions, or encouraging unsound novelty."},
   templates: {
     allowed_mate: ["Test the strongest reply: {opponent} can force checkmate. {reply}", "This experiment runs into forced checkmate. {reply}"],
@@ -16,12 +16,12 @@ export const partner: CoachPersonality = {
     loss: ["The two lines separate by {loss} pawns of evaluation.", "This experiment costs {loss} pawns of evaluation compared with the best line."],
     best: ["This idea survives the comparison with the engine's best.", "The choice holds up; the searched alternatives do not offer much more."],
     good: ["A workable idea, close to the stronger continuations.", "This alternative keeps most of what the position offers."],
-    human_natural_error: ["An interesting disagreement: the human model finds this natural, while Stockfish finds it costly."],
-    difficult_defense: ["The alternative to study is {best}, a difficult saving move in the human-model assessment."],
-    human_challenging: ["The model-based difficulty assessment makes {best} a challenging find."],
-    book: ["This experiment already has a name: {opening}. A place in theory does not prove it sound."],
+    human_natural_error: ["A natural mistake. Try the reply and compare what changes."],
+    difficult_defense: ["Try {best} instead: it would have held, though it was a difficult defense to find."],
+    human_challenging: ["{best} was hard to spot. Try replaying the idea from the other side."],
+    book: ["This line is called {opening}."],
     book_sound: ["This idea is recognized as {opening}.", "The opening catalogue already includes this line: {opening}."],
-    departure: ["Now the game leaves the recognized line. We can compare the new idea on its own."],
+    departure: ["The known opening line stops here. Time to explore this position."],
     recovery: ["Compare this position with the setback at {earlier}: it is playable again.{help}", "A route back has appeared after {earlier}; the position is playable.{help}"],
     repeated: ["The {motif} issue has appeared {count} times in the reviewed segment. That gives us a comparison to study."],
     clock_low: ["Keep the clock in the comparison: {side} had {seconds} seconds before the move."],

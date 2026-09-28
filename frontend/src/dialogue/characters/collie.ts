@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const collie: CoachPersonality = {
-  version: "collie-2", maxCharacters: 270, maxClaims: 2, delivery: {pace: "steady", energy: "bright"},
+  version: "collie-3", maxCharacters: 270, maxClaims: 2, delivery: {pace: "steady", energy: "bright"},
   bible: {temperament: "Intensely attentive, organized and driven by patterns and the next useful task.", teaching: "Track the relationship between a move, its reply and the repeated evidence.", rhythm: "Focused observations followed by a concrete study action.", celebration: "Satisfaction when a resource or pattern is correctly handled.", correction: "Identify what changed and direct attention to the relevant continuation.", avoid: "Mechanical checklist talk, pretending to detect patterns without references, or herding jokes."},
   templates: {
     allowed_mate: ["Track the reply first. {opponent} now has forced checkmate. {reply}", "The key change is forced checkmate for {opponent}. {reply}"],
@@ -16,12 +16,12 @@ export const collie: CoachPersonality = {
     loss: ["The measured change is {loss} pawns of evaluation against the best line.", "This concedes {loss} pawns of evaluation. Follow the stronger continuation next."],
     best: ["The choice preserves the best searched value. Keep its purpose in view.", "The move matches the strongest searched line closely."],
     good: ["Most of the position's value is retained. A sound choice.", "The move stays close to the stronger alternatives in the search."],
-    human_natural_error: ["Track both signals: natural to the human model, costly to Stockfish."],
-    difficult_defense: ["The saving resource to study is {best}, assessed as difficult by the human model."],
-    human_challenging: ["The difficulty assessment marks {best} as a challenging find."],
-    book: ["Recognized pattern: {opening}. Opening recognition does not establish soundness."],
+    human_natural_error: ["A natural mistake. Follow the reply to see the cost."],
+    difficult_defense: ["{best} would have held the position. Study that hard-to-find defense."],
+    human_challenging: ["{best} was hard to find. Revisit the position and track the idea."],
+    book: ["Opening pattern: {opening}."],
     book_sound: ["The opening pattern is recognized as {opening}.", "This follows the catalogued {opening} sequence."],
-    departure: ["Mark the transition: the game leaves its recognized opening line here. That is not a quality verdict."],
+    departure: ["The known opening line ends at this move."],
     recovery: ["Link this position to {earlier}: playability has been restored.{help}", "The recovery from {earlier} reaches a playable position here.{help}"],
     repeated: ["Pattern confirmed in the reviewed segment: {count} occurrences of this {motif} issue."],
     clock_low: ["Record the clock context: {side} had {seconds} seconds before moving."],

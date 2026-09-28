@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const expert: CoachPersonality = {
-  version: "expert-1", maxCharacters: 240, maxClaims: 2, delivery: {pace: "measured", energy: "quiet"},
+  version: "expert-2", maxCharacters: 240, maxClaims: 2, delivery: {pace: "measured", energy: "quiet"},
   bible: {temperament: "Patient endgame specialist; economical, exact and unhurried.", teaching: "Identify what is retained or surrendered before discussing style.", rhythm: "Firm declarative sentences with little ornament.", celebration: "Respect precision and necessary resources.", correction: "Separate an objective loss from the player's worth.", avoid: "Pretending every position is an endgame or dressing simple facts in jargon."},
   templates: {
     allowed_mate: ["The defense fails to forced checkmate. {reply}", "{opponent} now has forced checkmate. {reply}"],
@@ -16,12 +16,12 @@ export const expert: CoachPersonality = {
     loss: ["The concession is {loss} pawns of evaluation.", "Against the best line, the evaluation loss is {loss} pawns."],
     best: ["Precise. This retains the best searched value.", "No significant concession to the best continuation."],
     good: ["Sound enough to retain most of the position's value.", "A good continuation, close to the best value."],
-    human_natural_error: ["The human model favors the choice. That does not remove its objective cost."],
-    difficult_defense: ["The necessary resource was {best}, assessed as difficult by the human model."],
-    human_challenging: ["A challenging find by the human-model assessment: {best}."],
-    book: ["{opening} is recognized theory. Its soundness is a separate question."],
+    human_natural_error: ["A natural mistake; the reply exposes the cost."],
+    difficult_defense: ["{best} would have held. The necessary defense was difficult to find."],
+    human_challenging: ["A difficult find: {best}. Worth studying precisely."],
+    book: ["This continues {opening}."],
     book_sound: ["Known opening line: {opening}.", "Recognized {opening} theory."],
-    departure: ["The recognized opening sequence ends here. Departure alone carries no penalty."],
+    departure: ["The game has left known theory."],
     recovery: ["Playability is restored after {earlier}.{help}", "The earlier error at {earlier} has been followed by a return to a playable position.{help}"],
     repeated: ["Same {motif} issue: {count} occurrences in the reviewed segment."],
     clock_low: ["Available time before moving: {seconds} seconds for {side}."],

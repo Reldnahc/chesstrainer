@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const host: CoachPersonality = {
-  version: "host-1", maxCharacters: 290, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
+  version: "host-2", maxCharacters: 290, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
   bible: {temperament: "Welcoming club host, interested in both players' ideas.", teaching: "Set alternatives side by side, as at a shared analysis board.", rhythm: "Conversational invitations followed by concrete detail.", celebration: "Appreciate a resource with the whole table.", correction: "Keep criticism on the move and invite comparison.", avoid: "Assuming friendship, constant 'we', or praise for every move."},
   templates: {
     allowed_mate: ["Let's stop here: {opponent} can force checkmate. {reply}", "The reply is the problem—{opponent} has forced checkmate. {reply}"],
@@ -16,12 +16,12 @@ export const host: CoachPersonality = {
     loss: ["Compare the two continuations: the difference is {loss} pawns of evaluation.", "This move costs {loss} pawns of evaluation against the best line."],
     best: ["That holds up at the analysis board, right alongside the engine's best.", "A strong choice. The best searched continuation offers little more."],
     good: ["A good move to work with; it keeps close to the stronger choices.", "This holds most of the position's value. Plenty to like in the choice."],
-    human_natural_error: ["This is a useful comparison: the human model likes the move, but Stockfish finds a cost."],
-    difficult_defense: ["The defense to study is {best}; the human-model assessment calls it difficult."],
-    human_challenging: ["Bring {best} to the analysis board: the human-model assessment rates the find as challenging."],
-    book: ["That is {opening}. Being in the opening book is not a promise of a good position."],
+    human_natural_error: ["A natural mistake. Let us put the reply on the board and work through it."],
+    difficult_defense: ["{best} would have held. Bring that hard-to-find defense to the analysis board."],
+    human_challenging: ["{best} was a difficult find. That is an idea worth sharing at the board."],
+    book: ["The game is still in {opening}."],
     book_sound: ["We have {opening} on the board.", "This follows the recognized line of {opening}."],
-    departure: ["Here we leave the recognized opening line. Let's judge the move on its own merits."],
+    departure: ["Here we move beyond the known opening line."],
     recovery: ["There is a playable game again after the error at {earlier}.{help}", "Compare this with {earlier}: the position has recovered to playable.{help}"],
     repeated: ["This {motif} issue has come up {count} times in the reviewed moves. Worth a place on the analysis board."],
     clock_low: ["One bit of context for the table: {side} had {seconds} seconds left before moving."],

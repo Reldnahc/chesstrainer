@@ -7,6 +7,7 @@ import { gameReaction } from "../coach/reactions";
 import { gameIntent } from "../dialogue/gameIntent";
 import { useDialogue } from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
+import HumanInsight from "./HumanInsight";
 
 export default function PositionCoach({
   game,
@@ -53,11 +54,13 @@ export default function PositionCoach({
       reviewStarting ||
       ["queued", "running"].includes(game.job?.status ?? ""),
   });
-  const utterance = useDialogue(gameIntent({game, report, frame, ply, variation,
-    key: dialogueKey, expression: reaction.state, explaining,
+  const input = {game, report, frame, ply, variation,
+    key: dialogueKey, expression: reaction.state,
     error: !!errorAtPosition || game.job?.status === "failed",
     pending: !!actor || reviewStarting || ["queued", "running"].includes(game.job?.status ?? ""),
-  }));
+  };
+  const intent = gameIntent(input);
+  const utterance = useDialogue(explaining ? gameIntent({...input, explaining}) : intent);
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}
@@ -97,6 +100,7 @@ export default function PositionCoach({
                 ? "Hide why"
                 : "Show why"}
           </button>
+          <div className="coach-move-context">
           <span title={bestMove ? `Best move: ${bestMove}` : undefined}>
             {bestMove ? (
               <>
@@ -106,6 +110,8 @@ export default function PositionCoach({
               "Move a piece to explore"
             )}
           </span>
+          {report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
+          </div>
         </>
       }
     >

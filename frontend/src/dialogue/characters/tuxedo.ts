@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const tuxedo: CoachPersonality = {
-  version: "tuxedo-1", maxCharacters: 245, maxClaims: 2, delivery: {pace: "steady", energy: "quiet"},
+  version: "tuxedo-2", maxCharacters: 245, maxClaims: 2, delivery: {pace: "steady", energy: "quiet"},
   bible: {temperament: "Controlled tactical confidence, with a little dry wit aimed at the position.", teaching: "Expose the opponent's most concrete resource.", rhythm: "Crisp setup, decisive factual payoff.", celebration: "Admire efficiency, not spectacle for its own sake.", correction: "Unsparing about the move, never insulting about the person.", avoid: "Villain monologues, smugness, species puns or unearned certainty."},
   templates: {
     allowed_mate: ["The reply leaves no negotiation: forced checkmate for {opponent}. {reply}", "{opponent} has a forced checkmate. The defense has run out. {reply}"],
@@ -16,12 +16,12 @@ export const tuxedo: CoachPersonality = {
     loss: ["The cost is {loss} pawns of evaluation. The position keeps accounts.", "A concession of {loss} pawns of evaluation against best play."],
     best: ["Efficient. Little separates it from the best searched line.", "This keeps the strongest searched value. Enough said."],
     good: ["The move does its job, close to the stronger alternatives.", "A sound choice with most of the value retained."],
-    human_natural_error: ["Natural to the human model. Still costly to the engine. Both facts matter."],
-    difficult_defense: ["{best} was the saving move, rated difficult by the human-model assessment."],
-    human_challenging: ["The human-model assessment finds {best} challenging. The resource is real."],
-    book: ["{opening}. A name in a book is not an alibi for the evaluation."],
+    human_natural_error: ["A natural mistake. Tempting moves have replies too."],
+    difficult_defense: ["{best} would have held the position. A difficult defense to notice."],
+    human_challenging: ["{best} was hard to find. The resource was there."],
+    book: ["A familiar line: {opening}."],
     book_sound: ["Recognized theory: {opening}.", "The catalogue has this one: {opening}."],
-    departure: ["Theory stops recognizing the line here. That alone proves nothing about its quality."],
+    departure: ["That ends the known opening sequence."],
     recovery: ["Playable again after {earlier}. The earlier concession no longer settles the position.{help}", "The position recovered from the setback at {earlier}.{help}"],
     repeated: ["The {motif} issue has made {count} appearances in the reviewed game. A pattern worth addressing."],
     clock_low: ["The clock allowed {side} {seconds} seconds before this move."],

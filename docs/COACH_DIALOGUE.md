@@ -17,7 +17,8 @@ and recoveries, then supported positional, human, clock and history observations
 Normal bubbles contain at most two whole claims within a 290-character target;
 long legacy verified explanations retain their wording. An evaluation loss alone
 never becomes a weak-square or king-safety story. Book recognition can coexist
-with an objective error. Human-model wording refers to a model assessment, not a
+with an objective error; its name never displaces the error's consequence with a
+quality disclaimer. Human-model wording describes naturalness/difficulty, not a
 calibrated percentage of Chess.com players. Cross-game references require supported
 independent evidence. A branch cannot inherit recorded-game relationships.
 
@@ -55,6 +56,29 @@ or correction; rendering uses neutral factual templates so personality wording
 cannot address an opponent achievement as the learner's. Terminal outcomes still
 use the saved learner's side. Missing mover identity never implies the learner.
 Cold practice retains its separate gated intent path.
+
+`humanClaims.ts` projects existing practical interpretations into compact claims:
+natural mistake, hard find, unusual but strong, natural best/strong choice, and
+hard defense found or missed. Rarity alone is not promoted to the stronger
+corroborated-difficulty tier. A near-best natural move is not called the engine's
+best. Missing/unavailable, forced, mismatched move/actor or stale human generations
+abstain. No probability, difficulty threshold, grade or engine budget is computed
+or changed here.
+
+In game review, `HumanInsight` presents the same selected claims beside Show why,
+even when a more important objective claim occupies the bubble. Its compact Maia
+line opens a native popover with selected-coach wording and source/domain notes.
+It remains available during Show why, closes on position/evidence changes, and
+does not change board or bubble dimensions. Native Escape/focus handling takes
+precedence over review shortcuts while it is open. Unknown source/time control,
+domain shift, missing ratings/history and incomplete policy retain uncertainty;
+estimates are never presented as measured player success rates. Provider naming
+falls back generically rather than calling a future provider Maia.
+
+The popup is only a rendering of the existing intent and stored report. Changing
+coaches keeps its intent/evidence identity and performs no extra engine/model
+work. Cold SRS never renders this component. The intelligence laboratory can trace
+the same human claims without a second inference or presentation rules engine.
 
 Variant selection uses stable factual identity, including game/path/evidence,
 never render time or analysis retry epoch. An utterance carries its intent ID,

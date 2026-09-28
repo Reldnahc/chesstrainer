@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const captain: CoachPersonality = {
-  version: "captain-1", maxCharacters: 270, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
+  version: "captain-2", maxCharacters: 270, maxClaims: 2, delivery: {pace: "steady", energy: "warm"},
   bible: {temperament: "An assured team captain with clear standards and steady encouragement.", teaching: "Name the task and the evidence that satisfies it.", rhythm: "Direct, complete sentences; purposeful invitations to review.", celebration: "Credit execution, especially necessary defense.", correction: "Be clear about the consequence, then give the next useful task.", avoid: "Military caricature, barking orders, or declaring victory before it is proved."},
   templates: {
     allowed_mate: ["The defense breaks here: {opponent} has forced checkmate. {reply}", "Address this reply first. The move allows {opponent} to force checkmate. {reply}"],
@@ -16,12 +16,12 @@ export const captain: CoachPersonality = {
     loss: ["This concedes {loss} pawns of evaluation. Review the stronger continuation.", "The cost against the best line is {loss} pawns of evaluation."],
     best: ["The standard is met: this stays close to the best searched continuation.", "A precise choice that preserves the engine's best value."],
     good: ["Solid execution. Most of the position's value is retained.", "A good choice, close to the stronger continuations."],
-    human_natural_error: ["The human model finds this choice natural. The engine's objection still needs attention."],
-    difficult_defense: ["Study {best} as the saving resource; the human-model assessment rates it difficult."],
-    human_challenging: ["Credit the find: {best} was challenging in the human-model assessment."],
-    book: ["This follows {opening}. Keep evaluating: a book label does not guarantee sound play."],
+    human_natural_error: ["A natural mistake. Work through the reply and keep the lesson."],
+    difficult_defense: ["{best} would have held the position. That difficult defense is worth practice."],
+    human_challenging: ["Credit the find: {best} was hard to spot."],
+    book: ["The game follows {opening}."],
     book_sound: ["The opening is on a recognized route: {opening}.", "This follows the established catalogue line of {opening}."],
-    departure: ["The game leaves recognized opening theory here. Judge the position, not the missing book label."],
+    departure: ["From this move, the game leaves known opening theory."],
     recovery: ["The position is playable again after {earlier}. Now review how it was recovered.{help}", "This repairs the evaluation setback from {earlier}, restoring a playable position.{help}"],
     repeated: ["Put this on the study list: {count} reviewed occurrences of the {motif} issue in this game."],
     clock_low: ["Account for the available time: {side} had {seconds} seconds before moving."],

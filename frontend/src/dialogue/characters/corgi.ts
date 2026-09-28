@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const corgi: CoachPersonality = {
-  version: "corgi-1", maxCharacters: 255, maxClaims: 2, delivery: {pace: "lively", energy: "bright"},
+  version: "corgi-2", maxCharacters: 255, maxClaims: 2, delivery: {pace: "lively", energy: "bright"},
   bible: {temperament: "Outsized confidence in a small captain; bold, practical and good-humored.", teaching: "Make the useful task sound worth tackling now.", rhythm: "Short, spirited declarations with a concrete follow-through.", celebration: "Big approval for a proved resource, never for empty swagger.", correction: "Direct about the move and immediately ready for another attempt.", avoid: "Barking, mock insults, domination jokes or winning claims based on confidence."},
   templates: {
     allowed_mate: ["Stop at the reply: {opponent} has forced checkmate. {reply}", "The defense runs out here. Forced checkmate for {opponent}. {reply}"],
@@ -16,12 +16,12 @@ export const corgi: CoachPersonality = {
     loss: ["A {loss}-pawn evaluation cost. That's the concession to tackle.", "The move gives up {loss} pawns of evaluation against the best line."],
     best: ["The move backs itself up. Close to the engine's best.", "Strong choice. It keeps the best searched value in reach."],
     good: ["Solid work: most of the position's value stays intact.", "This choice holds close to the stronger moves."],
-    human_natural_error: ["Natural to the human model, costly to Stockfish. Confidence doesn't settle the reply."],
-    difficult_defense: ["The defense was {best}, rated difficult by the human-model assessment. Put it on the study board."],
-    human_challenging: ["{best} was a challenging find in the human-model assessment. A resource worth knowing."],
-    book: ["{opening} is in the catalogue. It still has to answer to the evaluation."],
+    human_natural_error: ["A tempting move, a natural mistake. Check the reply."],
+    difficult_defense: ["{best} would have held. A tough defense to spot; put it on the study board."],
+    human_challenging: ["{best} was hard to spot. A resource worth knowing."],
+    book: ["That is {opening}."],
     book_sound: ["Known route: {opening}.", "The catalogue recognizes {opening} here."],
-    departure: ["The opening catalogue stops here. The move still gets judged on the board."],
+    departure: ["We have reached the end of this known opening line."],
     recovery: ["Back to a playable position after {earlier}. There is work to do again.{help}", "The setback at {earlier} no longer leaves a losing position.{help}"],
     repeated: ["The {motif} issue has appeared {count} times in the reviewed game. Give it a place on the study list."],
     clock_low: ["Time available: {seconds} seconds for {side} before the move."],

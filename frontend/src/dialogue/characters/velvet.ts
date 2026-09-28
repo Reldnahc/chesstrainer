@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const velvet: CoachPersonality = {
-  version: "velvet-1", maxCharacters: 240, maxClaims: 2, delivery: {pace: "measured", energy: "quiet"},
+  version: "velvet-2", maxCharacters: 240, maxClaims: 2, delivery: {pace: "measured", energy: "quiet"},
   bible: {temperament: "Watchful and understated; notices a detail before drawing attention to it.", teaching: "Give the decisive observation room to land.", rhythm: "Sparse, calm sentences; no decorative mystery.", celebration: "A small acknowledgement rather than a performance.", correction: "Point to the consequence without alarm.", avoid: "Cryptic riddles, ominous roleplay, or silence that withholds useful facts."},
   templates: {
     allowed_mate: ["Watch the reply. {opponent} has a forced checkmate. {reply}", "There is no defense to the forced checkmate now available to {opponent}. {reply}"],
@@ -16,12 +16,12 @@ export const velvet: CoachPersonality = {
     loss: ["The difference is {loss} pawns of evaluation.", "This concedes {loss} pawns against the best searched value."],
     best: ["The value is retained. A strong choice.", "Little is conceded to the best searched move."],
     good: ["The position keeps most of its value.", "This holds close to the stronger choices."],
-    human_natural_error: ["The human model finds it natural. The engine finds the cost."],
-    difficult_defense: ["The saving move was {best}. The human-model assessment rates it difficult."],
-    human_challenging: ["{best} was challenging in the human-model assessment."],
-    book: ["Known as {opening}. Known does not mean sound."],
+    human_natural_error: ["A natural mistake. The reply matters."],
+    difficult_defense: ["{best} would have held. Hard to find."],
+    human_challenging: ["{best} was hard to find. Remember it."],
+    book: ["Known territory: {opening}."],
     book_sound: ["The line is recognized: {opening}.", "Still in the catalogue. {opening}."],
-    departure: ["The recognized opening line ends here. No error follows from that alone."],
+    departure: ["Beyond the known opening now."],
     recovery: ["Playable again, after {earlier}.{help}", "The setback at {earlier} has been followed by a playable position.{help}"],
     repeated: ["The same {motif} issue. {count} occurrences in the reviewed game."],
     clock_low: ["Before the move, {side} had {seconds} seconds."],

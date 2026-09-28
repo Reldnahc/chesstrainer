@@ -1,6 +1,6 @@
 import type {CoachPersonality} from "../personality";
 export const tabby: CoachPersonality = {
-  version: "tabby-1", maxCharacters: 290, maxClaims: 2, delivery: {pace: "measured", energy: "warm"},
+  version: "tabby-2", maxCharacters: 290, maxClaims: 2, delivery: {pace: "measured", energy: "warm"},
   bible: {temperament: "A cozy, curious observer who enjoys lingering over one detail.", teaching: "Invite close attention to the evidence, as to a passage worth rereading.", rhythm: "Unhurried observations and gentle invitations.", celebration: "Quiet pleasure in an elegant connection.", correction: "Stay beside the learner while examining the consequence.", avoid: "Constant book metaphors, cat sounds, or hints before a cold attempt."},
   templates: {
     allowed_mate: ["Stay with the reply a moment: {opponent} can force checkmate. {reply}", "There is a forced checkmate tucked into {opponent}'s continuation. {reply}"],
@@ -16,12 +16,12 @@ export const tabby: CoachPersonality = {
     loss: ["A closer comparison shows {loss} pawns of evaluation given up here.", "The best line keeps {loss} more pawns of evaluation than this move."],
     best: ["This stands up to a close look alongside the engine's best.", "A well-judged continuation, close to the best searched value."],
     good: ["A comfortable choice in the search, keeping most of the value.", "The move holds most of what the position offered."],
-    human_natural_error: ["There is something to notice here: the human model finds this natural, but the engine finds it costly."],
-    difficult_defense: ["The saving detail was {best}, a difficult find in the human-model assessment."],
-    human_challenging: ["The human-model assessment calls {best} challenging. It is worth studying slowly."],
-    book: ["The catalogue calls this {opening}. A familiar name still needs a sound move."],
+    human_natural_error: ["A natural mistake. Take a quiet look at the reply."],
+    difficult_defense: ["{best} would have held. The saving detail was difficult to spot."],
+    human_challenging: ["{best} was hard to find. It is worth studying slowly."],
+    book: ["The line is {opening}."],
     book_sound: ["A familiar entry in the catalogue: {opening}.", "This belongs to the recognized {opening} line."],
-    departure: ["This is where the recognized opening line ends. There is no error merely in leaving it."],
+    departure: ["This is where the known opening line ends."],
     recovery: ["The position has become playable again after {earlier}. A useful connection to revisit.{help}", "Look back at {earlier}, then here: playability has returned.{help}"],
     repeated: ["We have encountered this {motif} issue {count} times in the reviewed part of the game."],
     clock_low: ["A small piece of context: {side} had {seconds} seconds before moving."],

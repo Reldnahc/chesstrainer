@@ -12,7 +12,7 @@ The existing training policy is unchanged.
 
 Completed reviews also derive supported [game relationships](GAME_CONTEXT.md),
 [owned history](CROSS_GAME_CONTEXT.md) for individual move explanations.
-Key moments jump to the original ply. The coach can connect a recovery to an
+The coach can connect a recovery to an
 earlier error or identify a repeated supported motif; incomplete or inconsistent
 evidence causes abstention. Human difficulty is a model-informed description,
 never a calibrated percentage of players or a replacement for move quality.
@@ -93,6 +93,13 @@ including positions still being reviewed. The coach keeps its label, message are
 row in stable slots; longer explanations scroll inside the bubble. The desktop
 bubble and illustrated coach share a 116px height; narrow layouts use a 136px
 bubble with a smaller portrait. Actions stay outside the bubble in both review modes.
+On learner moves, a compact **Maia** insight sits beside Show why when saved human
+evidence supports one. Natural mistakes, hard finds, unusual strong moves, natural
+best choices and difficult defenses get plain-language labels. Tap the insight for
+the selected coach's explanation and source/domain uncertainty. It uses existing
+evidence, stays visible even when the bubble prioritizes tactics or opening text,
+and closes when changing positions. It adds no dashboard or analysis request.
+Objective labels and evaluations remain independent of this estimate.
 Best-move markers use a centered SVG star
 on the board, in coaching, and in notation.
 On phones the coach appears directly below the
