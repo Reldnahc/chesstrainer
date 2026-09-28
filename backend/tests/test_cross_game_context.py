@@ -80,19 +80,26 @@ def test_multiple_positions_in_one_other_game_remain_one_independent_sample(sett
         assert fact.status == "provisional"
 
 
-def test_inactive_evidence_and_opponent_or_positive_motifs_do_not_personalize(settings, sessions):
+@pytest.mark.parametrize("black", [False, True])
+def test_inactive_evidence_and_opponent_or_positive_motifs_do_not_personalize(
+    settings, sessions, black
+):
     with sessions() as db:
         seed_lesson(db, settings, count=3, skills=["fork"])
         game = db.scalars(select(Game)).first()
-        assert not cross_game_context(db, settings, game, *current_evidence(ply=2)).weaknesses
+        game.learner_color = not black
+        own_ply, opponent_ply = (2, 1) if black else (1, 2)
+        assert not cross_game_context(
+            db, settings, game, *current_evidence(ply=opponent_ply)
+        ).weaknesses
         for role in ("played", "alternative"):
             assert not cross_game_context(
-                db, settings, game, *current_evidence(role=role)
+                db, settings, game, *current_evidence(ply=own_ply, role=role)
             ).weaknesses
         for evidence in db.scalars(select(SkillEvidence)):
             evidence.active = False
         db.commit()
-        assert not cross_game_context(db, settings, game, *current_evidence()).weaknesses
+        assert not cross_game_context(db, settings, game, *current_evidence(ply=own_ply)).weaknesses
 
 
 def test_another_account_cannot_supply_corroboration(settings, sessions):

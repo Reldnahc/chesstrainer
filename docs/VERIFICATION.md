@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review product cleanup: learner perspective
+
+Six new regressions reproduced opponent recovery/personal relationship/achievement
+selection in both colors. The UI used mover identity where it needed the saved
+learner. Intent v5 explicitly scopes personal delivery; the backend graph remains
+two-sided and owned history keeps its existing learner filter. Legal recovery
+mainlines with synthetic evaluations run through production report/context code.
+
+- `python -m pytest -q backend/tests/test_game_context.py backend/tests/test_cross_game_context.py`:
+  **28 passed**, 8.76 s, including both-color history isolation.
+- `npx.cmd playwright test tests/learner-perspective.spec.ts tests/dialogue-logic.spec.ts tests/coach-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **56 passed**, 33.5 s. Covers every consumed relationship, opponent help,
+  history, objective labels, saved identity through flip/reload, cold SRS and preferences.
+- The intelligence suite passed 28 cases; two lab checks still expected the old
+  `di4` prefix. They now assert the exact production intent ID.
+  `npx.cmd playwright test --config playwright.intelligence.config.ts laboratory.spec.ts --reporter=line`:
+  **6 passed**, 4.6 s, after that correction.
+- Production build/API types, Ruff check/format and diff checks passed.
+
 ## Review product cleanup: story removal
 
 The new absence regression reproduced the story region before removal; the two

@@ -35,6 +35,9 @@ contradicting an automatic board ending cannot support conversion. Resignation,
 timeout and draw agreement are not invented from a bare result header.
 
 The graph contains no coach-specific text, additional model query or new table.
+It remains two-sided; learner-specific relationship selection happens in the
+[dialogue boundary](COACH_DIALOGUE.md), using the saved game's learner color,
+not the selected mover or the board's temporary display orientation.
 `test_game_context.py` covers multi-ply positive/negative stories and identity;
 native review tests check detail/poll agreement and restart reuse. Later dialogue
 can cite these links; current cold SRS never receives them.

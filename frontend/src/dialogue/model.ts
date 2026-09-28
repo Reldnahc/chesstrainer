@@ -18,11 +18,12 @@ export type Claim = {
   position?: {line: "actual" | "alternative"; move: string};
 };
 export type DialogueIntent = {
-  version: "dialogue-intent-4";
+  version: "dialogue-intent-5";
   id: string;
   purpose: DialoguePurpose;
   mode: "game" | "variation" | "practice" | "explanation";
   expression: CoachExpression;
+  subject: "learner" | "opponent" | "position";
   intensity: number;
   priority: number;
   interruptible: boolean;
@@ -74,14 +75,15 @@ const deliveryLevels: Record<CoachExpression, readonly [number, number]> = {
 };
 
 export function makeIntent(key: string, purpose: DialoguePurpose, mode: DialogueIntent["mode"],
-  expression: CoachExpression, claims: Claim[], decisions: string[] = []): DialogueIntent {
+  expression: CoachExpression, claims: Claim[], decisions: string[] = [],
+  subject: DialogueIntent["subject"] = "learner"): DialogueIntent {
   let [intensity, priority] = deliveryLevels[expression];
   if (claims.some(c => ["allowed_mate", "mate_win", "mate_loss"].includes(c.code))) {
     intensity = 1;
     priority = 100;
   }
-  const facts = {purpose, mode, expression, claims, decisions};
-  return {version: "dialogue-intent-4", id: `di4:${stableKey([key, facts])}`, ...facts,
+  const facts = {purpose, mode, expression, subject, claims, decisions};
+  return {version: "dialogue-intent-5", id: `di5:${stableKey([key, facts])}`, ...facts,
     intensity, priority, interruptible: priority < 95,
     autoSpeakSuitable: mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose)};
 }

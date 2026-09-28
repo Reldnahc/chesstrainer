@@ -13,7 +13,7 @@ for (const fixture of fixtures) test(`all coaches preserve ${fixture.feature} br
   for (const kind of ["actual", "alternative"] as const) {
     const report = fixture[kind];
     const turn = report.actual_line!.frames[1].fen.split(" ")[1] === "w" ? "white" : "black";
-    const intent = gameIntent({game: {frames: []} as unknown as Game, frame: {turn} as Position,
+    const intent = gameIntent({game: {frames: [], orientation: turn === "white" ? "black" : "white"} as unknown as Game, frame: {turn} as Position,
       report, key: "positional-branch", ply: 1, expression: kind === "actual" ? "best" : "mistake"});
     const item = intent.claims.find(c => c.code === fixture.code)!;
     expect(item).toBeTruthy();

@@ -9,7 +9,7 @@ for (const {skill, black, report} of fixtures) test(`${skill} identifies the res
   const events = report.intelligence!.events.filter(e => e.facts.motif === skill);
   expect(events).toHaveLength(1);
   const mover = black ? "Black" : "White", opponent = black ? "White" : "Black";
-  const intent = gameIntent({game: {frames: []} as unknown as Game,
+  const intent = gameIntent({game: {frames: [], orientation: black ? "black" : "white"} as unknown as Game,
     report: {...report, intelligence: {...report.intelligence!, events}},
     frame: {turn: black ? "white" : "black"} as Position, ply: 1, key: `cause:${skill}:${black}`, expression: "blunder"});
   const cause = intent.claims.find(c => c.code === `cause_${skill}`);
@@ -32,7 +32,7 @@ for (const {skill, black, report} of fixtures) test(`${skill} identifies the res
       event_ids: [events[0].id], input_digest: report.intelligence!.input_digest, evidence: events[0].evidence}], turning_points: [],
     relationships: [{id: "repeated-cause", kind: "repeated_motif", actor: black ? "black" : "white", plies: [0, 1],
       event_ids: [events[0].id], facts: {role: "caused", motif: skill, occurrence: 2}, evidence: events[0].evidence}]};
-  const linked = gameIntent({game: {frames: [], context} as unknown as Game, report,
+  const linked = gameIntent({game: {frames: [], context, orientation: black ? "black" : "white"} as unknown as Game, report,
     frame: {turn: black ? "white" : "black"} as Position, ply: 1, key: "linked-cause", expression: "blunder"});
   expect(linked.claims.find(c => c.code === "repeated")?.sourceIds).toEqual(["repeated-cause"]);
 });

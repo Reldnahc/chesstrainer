@@ -34,11 +34,15 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       : "Select a move or move a piece to explore an alternative.";
     return makeIntent(key, pending ? "thinking" : "neutral", mode, expression, [claim(code, {detail})]);
   }
-  let purpose = purposes[report.label];
+  const mover = frame?.turn === "white" ? "black" : frame?.turn === "black" ? "white"
+    : !variation ? game.frames[ply]?.actor : null;
+  const learnerMove = !!mover && mover === game.orientation;
+  const subject = learnerMove ? "learner" : mover ? "opponent" : "position";
+  let purpose: DialoguePurpose = learnerMove ? purposes[report.label] : "explanation";
+  if (!learnerMove) expression = "explaining";
   const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.engine_label ?? report.label);
-  const mover = frame?.turn === "white" ? "black" : "white";
-  const side = mover === "white" ? "White" : "Black";
-  const opponent = mover === "white" ? "Black" : "White";
+  const side = mover === "white" ? "White" : mover === "black" ? "Black" : "The mover";
+  const opponent = mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent";
   const move = report.actual.san, best = report.best.san;
   const claims: Claim[] = [];
   const events = report.intelligence?.events ?? [];
@@ -56,7 +60,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     if (event.kind === "sacrifice") add("sacrifice", {}, 90);
     if (event.kind === "critical_resource") {
       add(f.purpose === "defense" ? "only_move" : "decisive_resource", {}, 93);
-      purpose = f.difficult ? "difficult_defense" : "only_move";
+      if (learnerMove) purpose = f.difficult ? "difficult_defense" : "only_move";
     }
     if (event.kind === "positional") {
       // Positive explanations describe the played move; errors can compare the better candidate.
@@ -75,15 +79,17 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     [{source: "book", id: report.opening.version, field: "recognized_opening", ply}]));
   const practical = report.practical;
   const humanRefs = report.human?.evidence_id ? [{source: "human" as const, id: report.human.evidence_id, field: "policy", ply}] : [];
-  if (practical?.interpretations?.includes("natural_error")) claims.push(claim("human_natural_error", {}, 73, humanRefs));
-  if (practical?.best_find_difficulty === "difficult" && practical.components.only_good_move_at_depth && poor)
+  if (learnerMove && practical?.interpretations?.includes("natural_error")) claims.push(claim("human_natural_error", {}, 73, humanRefs));
+  if (learnerMove && practical?.best_find_difficulty === "difficult" && practical.components.only_good_move_at_depth && poor)
     claims.push(claim("difficult_defense", {best}, 79, [...refs, ...humanRefs]));
-  else if (practical && ["difficult", "challenging"].includes(practical.best_find_difficulty) && report.actual.uci === report.best.uci)
+  else if (learnerMove && practical && ["difficult", "challenging"].includes(practical.best_find_difficulty) && report.actual.uci === report.best.uci)
     claims.push(claim("human_challenging", {best}, 70, [...refs, ...humanRefs]));
-  else if (practical?.interpretations?.includes("unusual_strong_move")) claims.push(claim("human_rare", {}, 64, humanRefs));
-  if (!variation && node) {
+  else if (learnerMove && practical?.interpretations?.includes("unusual_strong_move")) claims.push(claim("human_rare", {}, 64, humanRefs));
+  // The graph remains two-sided. Personal relationships require the saved
+  // learner, a matching evidence generation and an actual learner move.
+  if (!variation && node && learnerMove && node.actor === game.orientation) {
     for (const relation of game.context?.relationships ?? []) {
-      if (relation.plies.at(-1) !== ply || relation.actor !== mover) continue;
+      if (relation.plies.at(-1) !== ply || relation.actor !== game.orientation) continue;
       const earlier = moveLabel(game, relation.plies[0]), f = relation.facts;
       const linked = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, relation.evidence, [relation.id]));
       if (relation.kind === "recovery") {
@@ -111,9 +117,9 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     }
     claims.push(claim("alternative", {best, evaluation: scoreText(report.best.score)}, 42, refs));
   } else if (!claims.length) claims.push(claim(report.label === "Good" ? "good" : "best", {}, 40, refs));
-  if (!report.intelligence) return makeIntent(key, purpose, mode, expression,
+  if (!report.intelligence && learnerMove) return makeIntent(key, purpose, mode, expression,
     [claim("compatibility", {detail: report.coach || report.reason}, 50)], ["legacy_report_without_semantics"]);
-  return makeIntent(`${key}:${report.intelligence.input_digest}`, purpose, mode, expression, claims,
+  return makeIntent(`${key}:${report.intelligence?.input_digest ?? "legacy"}`, purpose, mode, expression, claims,
     ["stockfish_quality_separate_from_human_policy", variation ? "branch_has_no_recorded_game_relationships" : "current_ply_context_only",
-      ...(practical?.limitations ?? [])]);
+      "saved_learner_perspective", ...(practical?.limitations ?? [])], subject);
 }

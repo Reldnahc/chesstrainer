@@ -24,7 +24,9 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
     const alternative = item.position?.line === "alternative";
     const fallback = alternative ? alternativeTemplate(item) : neutralTemplates[item.code];
     const fallbackSource = alternative ? "positional-conditional-1" : "neutral-1";
-    const custom = alternative ? undefined : personality.templates[item.code];
+    // Personal praise/correction belongs to the learner. Opponent facts retain
+    // objective wording even if a personality template addresses the player.
+    const custom = alternative || intent.subject !== "learner" ? undefined : personality.templates[item.code];
     let options = custom?.length ? custom : fallback;
     if (!options?.length) continue;
     let index = Number.parseInt(stableKey([intent.id, item.code, ...(custom?.length ? [character.id, personality.version] : [])]), 16) % options.length;

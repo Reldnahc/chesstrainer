@@ -40,6 +40,22 @@ including bishop pairs and doubled files. Actual consequences keep factual tense
 and existing personality wording. Unsupported conditional predicates abstain.
 The utterance trace identifies this rendering as `positional-conditional-1`.
 
+Intent version 5 records the subject as learner, opponent or unknown position.
+The saved game's `orientation` is the learner identity; flipping the displayed
+board does not change it. Personal relationships/history require a matching
+mainline node and evidence generation, a learner move, a relation whose actor is
+the learner, and a link ending at this ply. This covers recovery, punishment or
+missed punishment, repeated errors, restored support, erosion and conversion.
+The two-sided graph is preserved. Opponent errors can still explain the learner's
+next opportunity or recovery, including explicit acknowledgement of their help.
+
+Opponent moves keep objective grades, tactical/positional consequences and reply
+explanations. Their intent/expression is explanatory rather than personal praise
+or correction; rendering uses neutral factual templates so personality wording
+cannot address an opponent achievement as the learner's. Terminal outcomes still
+use the saved learner's side. Missing mover identity never implies the learner.
+Cold practice retains its separate gated intent path.
+
 Variant selection uses stable factual identity, including game/path/evidence,
 never render time or analysis retry epoch. An utterance carries its intent ID,
 selected template/variant, source IDs and selection decisions. It also provides
