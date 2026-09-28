@@ -63,8 +63,11 @@ evidence; cross-account references are rejected on writes.
 Monotonic report revisions let polls receive changes to **earlier** plies, including
 the next move when its preceding-score comparison changes. Cursors advance only
 over actual returned updates. Legacy `after=ply` remains available; current clients
-use `after_revision`. The UI distinguishes baseline progress from investigation
-and remains playable during either phase.
+use `after_revision`. The UI shows progress during baseline analysis, then hides
+the progress panel while investigation runs in the background. Polling continues
+to apply deeper findings without changing the selected position; review remains
+playable during either phase. Interrupted or failed jobs still expose resume/retry
+controls and errors.
 
 Opening a completed legacy review without a refinement plan queues its one extra
 pass when enabled. Reopening a completed compatible plan is idempotent. An explicit

@@ -26,6 +26,9 @@ the selected move. Moving through a game updates the current URL without adding
 a browser-history stop for each move.
 
 - **Games** browses imported games, runs resumable analysis of both colors, and shows Lichess accuracy for each player, move-quality labels, a timeline and an illustrated tactical coach. Accuracy uses saved evaluations with no Elo adjustment or extra engine searches. The board accepts variations at any point, with undo, saved in-session branches and a return to the original game. Coach evidence and variation analysis never count as scheduled recalls. See [Game review](GAME_REVIEW.md) for scoring rules and limits.
+  The progress panel closes after baseline analysis. Targeted deeper checks
+  continue in the background and update the review as results arrive. Interrupted
+  or failed work retains recovery controls.
 
 - **Review** starts with an unlabeled board. The backend supplies legal moves and grades answers. A failed engine answer previews the opponent's saved counter; Try again restores the board and Show me why opens deeper playback. Success offers factual feedback and optional Show why. Reveal move performs the saved answer. Repeated retries create only one failed recall per session.
 - **Weaknesses** separates material/mate outcomes from tactical patterns, shows supporting decisions and practice cues, and starts focused batches of up to 12 distinct positions. Focused attempts are stored separately and never change FSRS.
