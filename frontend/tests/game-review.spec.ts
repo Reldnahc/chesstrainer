@@ -102,7 +102,7 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'First move', exact: true}).click();
-  await expect(page.getByLabel('Evaluation for White: +0.25', {exact: true})).toBeVisible();
+  await expect(page.getByLabel('Evaluation for White: +0.3', {exact: true})).toBeVisible();
   expect(cursors).toEqual([0, 1, 3]);
   expect(fullLoads).toBe(2);
   expect(analyses).toBe(0);

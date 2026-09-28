@@ -164,7 +164,7 @@ export default function GameWorkspace({
         evaluation={
           <div
             className="game-eval-bar"
-            aria-label={`Evaluation for White: ${scoreText(score)}`}
+            aria-label={`Evaluation for White: ${scoreText(score, 1)}`}
           >
             <div
               style={{
@@ -173,7 +173,7 @@ export default function GameWorkspace({
                 bottom: orientation === "white" ? 0 : "auto",
               }}
             />
-            <span>{scoreText(score)}</span>
+            <span>{scoreText(score, 1)}</span>
           </div>
         }
         board={

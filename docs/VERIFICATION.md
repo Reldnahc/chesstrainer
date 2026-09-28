@@ -2,6 +2,15 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Horizontal evaluation-bar score: focused checks
+
+The board bar displays a horizontal, one-decimal pawn score. Existing coach/graph
+precision and mate notation are unchanged. `npx.cmd playwright test evaluation.spec.ts --reporter=line`
+passed both desktop/mobile checks, including rounding, positive/negative/mate/
+missing scores, label orientation and bounds, and unchanged graph navigation.
+Vite bundle and diff checks passed; desktop screenshot inspected. Full
+verification remains deferred by owner request.
+
 ## Return action placement: focused checks
 
 The purple Return to game action now sits beside Show why in the same row.

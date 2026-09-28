@@ -59,6 +59,8 @@ The compact coach shows the move and rating together, with a prominent signed
 evaluation in the opposite corner. Scores always use White's perspective, even
 in a variation or after flipping the board: positive favors White, negative favors
 Black, and signed `M` values denote forced mate. Pending evaluations show a dash.
+The board's narrow evaluation bar shows a horizontal score rounded to one decimal;
+the coach and game graph retain two decimals. Mate distances keep their `M` notation.
 Only the played position and immediate reply supply visual cues; later engine
 continuations are not projected onto the current board.
 

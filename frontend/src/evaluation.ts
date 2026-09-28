@@ -9,12 +9,15 @@ export function scoreSide(score: Score | null | undefined) {
     : "black";
 }
 
-export function scoreText(score: Score | null | undefined) {
+export function scoreText(score: Score | null | undefined, decimals: 1 | 2 = 2) {
   if (!score) return "—";
   const sign = scoreSide(score) === "black" ? "−" : "+";
+  const pawns = decimals === 1
+    ? Math.round(Math.abs(score.value) / 10) / 10
+    : Math.abs(score.value) / 100;
   return score.kind === "mate"
     ? `${sign}M${Math.abs(score.value)}`
-    : `${sign}${(Math.abs(score.value) / 100).toFixed(2)}`;
+    : `${sign}${pawns.toFixed(decimals)}`;
 }
 
 export function scoreSummary(score: Score | null | undefined) {
