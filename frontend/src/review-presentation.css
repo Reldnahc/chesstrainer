@@ -391,12 +391,18 @@ main:has(.review-workspace-layout) {
 }
 .human-insight-popover p { margin: 6px 0 0; }
 .human-insight-source {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 12px;
   margin-top: 14px;
   padding-top: 10px;
   border-top: 1px solid #47554d;
   font-size: 12px;
   color: #b8c9bf;
 }
+.human-insight-source a { color: #a9d6e1; white-space: nowrap; }
 .move-badge {
   display: inline-flex;
   gap: 6px;

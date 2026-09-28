@@ -10,9 +10,9 @@ export default function HumanInsight({intent, report}: {intent: DialogueIntent; 
   const id = useId();
   const items = intent.claims.filter(item => humanInsightLabels[item.code]).sort((a, b) => b.priority - a.priority);
   const utterance = useDialogue(makeIntent(`${intent.id}:human`, intent.purpose, intent.mode,
-    intent.expression, items, intent.decisions, intent.subject));
+    intent.expression, items.slice(0, 1), intent.decisions, intent.subject));
   if (!items.length) return null;
-  const label = humanInsightLabels[items[0].code], {name, notes} = humanSourceNotes(report);
+  const label = humanInsightLabels[items[0].code], {name, note, url} = humanSourceNotes(report);
   return <>
     <button className="human-insight-trigger" popoverTarget={id} aria-label={`${name}: ${label}`}>
       <span><b>{name}</b> · {label}</span><Info size={13} aria-hidden="true" />
@@ -22,9 +22,11 @@ export default function HumanInsight({intent, report}: {intent: DialogueIntent; 
         <h3 id={`${id}-title`}>{name} insight</h3>
         <button popoverTarget={id} popoverTargetAction="hide" aria-label="Close insight"><X size={18} aria-hidden="true" /></button>
       </header>
-      <strong>{label}</strong>
       <DialogueText utterance={utterance} />
-      <div className="human-insight-source">{notes.map(note => <p key={note}>{note}</p>)}</div>
+      <div className="human-insight-source">
+        <span>{note}</span>
+        {url && <a href={url} target="_blank" rel="noopener noreferrer">About Maia ↗</a>}
+      </div>
     </div>
   </>;
 }
