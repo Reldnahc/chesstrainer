@@ -2,6 +2,47 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## UX release: full branch verification (September 27, 2026)
+
+The owner authorized full verification after the rapid UX changes through
+`9e98006`. One stale Docker smoke assertion expected `natural` instead of the
+new `system` coach default. It now checks the correct default and independently
+saves/restores coach and interface motion in both local and account installations.
+No application defect was found in this pass.
+
+- `npm.cmd ci --cache '../.tools/npm-cache' --no-audit --no-fund` and
+  `npm.cmd run build` from `frontend`: passed, including generated API agreement
+  and application/contract/browser-test TypeScript checks. The existing coach
+  studio was briefly stopped to release Windows' esbuild lock, then restored.
+- `.venv/Scripts/python.exe -m pytest -q --basetemp data/verification/ux-release-full-20260927 -o cache_dir=data/verification/ux-release-cache-20260927`:
+  **592 passed, 3 Maia opt-in skips**, native Stockfish enabled. The two existing
+  TestClient/httpx/AnyIO deprecation warnings remain.
+- With `MAIA_CHECKPOINT_DIR=data/maia-benchmark/models`, `MAIA_TEST_MODEL=79m`,
+  `MAIA_TEST_DEVICE=cpu`, `HF_HUB_OFFLINE=1`, the pinned CPU runtime's
+  `python -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q`:
+  **3 passed, 9 deselected**. All skipped native checks were exercised offline.
+- `npx.cmd playwright test --reporter=line`: **205 passed, 3 intentional viewport
+  skips**, desktop/mobile; full unfiltered application suite.
+- `npx.cmd playwright test --config=playwright.accounts.config.ts --reporter=line`:
+  **2 passed**. `--config=playwright.coach.config.ts`: **28 passed**.
+  `--config=playwright.intelligence.config.ts`: **34 passed**.
+- `ruff check backend scripts migrations`, `ruff format --check backend scripts migrations`,
+  `python scripts/export_api_contract.py --check`, `python -m pip check` and
+  `git diff --check`: passed. Fresh isolated Alembic upgrade/check, SQLite integrity
+  and foreign-key checks passed.
+- `docker build --progress=plain -t fieldwork:ux-release-20260927 .tools/ux-release-context-20260927`:
+  passed using a tracked-source archive (the checkout's ignored Windows cache
+  has restricted permissions). `python scripts/smoke_install.py --image fieldwork:ux-release-20260927`:
+  fresh local/accounts, secure-cookie/origin handling, restart, independent
+  preferences, native review and engine health passed after the assertion fix.
+- `docker run --rm --network none` with the existing checkpoint mounted read-only,
+  `HUMAN_MODEL_PATH=/models/maia3-79m.pt`, image `fieldwork:ux-release-20260927` and
+  `python scripts/smoke_human.py`: native Stockfish/Maia review, persisted restart
+  cache and coach independence passed without network or model downloads.
+
+These are local release checks. Remote CI and deployment are verified separately;
+phone results use Chromium emulation, not physical-device testing.
+
 ## Game review library link: focused checks
 
 All games sits at the bottom left below the board; the repeated matchup/date/result
