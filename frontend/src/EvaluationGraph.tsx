@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import EvaluationScore from "./EvaluationScore";
 import { scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
 
@@ -136,13 +135,6 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
       })}
       {selected === 0 && current && <circle className="game-graph-start" cx={x(0)} cy={y(current)} r={12} pointerEvents="none" aria-hidden="true"/>}
     </svg>
-    <div className="game-graph-footer">
-      <div className="game-graph-navigation" role="group" aria-label="Evaluation graph navigation">
-        <button aria-label="Previous graph position" disabled={selected === 0} onClick={() => selectPoint(selected - 1)}><ChevronLeft size={16}/></button>
-        <span className="game-graph-position" title={selected ? `Original game · ${pointName(selected)}` : "Original game · Start"}>Game · {selected ? pointName(selected) : "Start"}</span>
-        <button aria-label="Next graph position" disabled={selected === last} onClick={() => selectPoint(selected + 1)}><ChevronRight size={16}/></button>
-      </div>
-    </div>
     {!reviewed.length && <p>The timeline fills as your game is reviewed.</p>}
   </section>;
 }
