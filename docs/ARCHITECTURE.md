@@ -121,6 +121,8 @@ On mobile, both review modes place the coach and its action buttons together
 above the board. SRS explanation playback uses the same placement; supporting
 details, game move lists and evaluation graphs remain below the board. Desktop
 retains its board-and-sidebar layout.
+Game review does not add a temporary exploration-hint row while analysis is
+pending, so receiving the best move cannot collapse a row above the mobile board.
 The All games link uses the same button styling as board navigation. On mobile,
 it stays in that single row while the move and flip buttons share the remaining
 width; all buttons retain their 44px height.

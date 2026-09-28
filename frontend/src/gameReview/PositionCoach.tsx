@@ -124,7 +124,6 @@ export default function PositionCoach({
         </>
       }
       insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
-      context={!bestMove && <span>Move a piece to explore</span>}
     >
       <DialogueText utterance={utterance} />
       {errorAtPosition && <p role="alert">{errorAtPosition}</p>}
