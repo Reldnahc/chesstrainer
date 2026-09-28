@@ -2,6 +2,20 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Start-of-game navigation: focused checks
+
+The `<<` control now returns to the original game's starting position (ply 0),
+including from a variation, and is disabled there. Its accessible name is
+**Start of game**. This supersedes the earlier owner-requested ply-1 behavior.
+
+- From `frontend`, `npx.cmd playwright test variation-navigation.spec.ts coach.spec.ts game-review.spec.ts --grep 'start of game always|variation return is|game navigation and SRS attempts|progress merges only' --reporter=line`:
+  **8 passed**, desktop/mobile. Covers starting pieces and move count, return from
+  variations and later moves, disabled controls at ply 0, neutral opening coaching,
+  initial evaluation, no duplicate searches and unchanged control alignment.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed.
+- Full verification remains deferred by owner request; no push/deployment.
+
 ## Evaluation graph drag scrubbing: focused checks
 
 The graph captures mouse/touch/pen drags and selects each newly crossed ply,
