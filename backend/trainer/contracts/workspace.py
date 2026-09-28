@@ -84,6 +84,9 @@ class WorkspaceSettings(EngineHealth):
     chesscom_timeout_seconds: float
     chesscom_max_response_bytes: int
     chesscom_user_agent: str
+    provider_timeout_seconds: float
+    provider_max_response_bytes: int
+    provider_max_scan_games: int
     lan_token_configured: bool
     coverage: Coverage
     classification_provider: str

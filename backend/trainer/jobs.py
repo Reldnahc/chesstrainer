@@ -20,6 +20,7 @@ class JobRunner:
         engine_factory=Stockfish,
         *,
         chesscom_factory=ChessComClient,
+        provider_factories=None,
         import_lock=None,
         workspaces=None,
     ):
@@ -33,7 +34,13 @@ class JobRunner:
             user_id=None if settings.accounts_enabled else sessions.kw["info"]["user_id"],
         )
         self.import_lock = self.course_lock = self.workspaces.local_lock
-        self.chesscom_lock = threading.Lock()
+        from trainer.game_providers import client_factories
+
+        self.provider_factories = (
+            client_factories() | {"chesscom": chesscom_factory} | (provider_factories or {})
+        )
+        self.provider_lock = threading.Lock()  # One active provider request per host.
+
         self.stop_event = threading.Event()
         self.threads = []
         self._active = {}

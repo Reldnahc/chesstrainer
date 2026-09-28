@@ -44,6 +44,7 @@ def create_app(
     chesscom_factory=ChessComClient,
     start_engine=True,
     human_provider=None,
+    provider_factories=None,
 ):
     settings = (settings or Settings()).for_runtime()
     sql_engine, sessions = database(settings.database_path)
@@ -69,6 +70,7 @@ def create_app(
         classifier,
         engine_factory,
         chesscom_factory=chesscom_factory,
+        provider_factories=provider_factories,
         workspaces=workspaces,
     )
 

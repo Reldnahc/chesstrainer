@@ -19,6 +19,8 @@ class PgnImportResult(Contract):
 
 
 class ChessComImportProgress(Contract):
+    provider: str = "chesscom"
+    provider_name: str = "Chess.com"
     job_id: str
     user_id: str
     username: str
@@ -66,3 +68,4 @@ class Job(Contract):
     probe_total: int | None
     activity: JobActivity | None
     chesscom: ChessComImportProgress | None
+    provider_import: ChessComImportProgress | None = None

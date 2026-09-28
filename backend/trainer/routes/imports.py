@@ -9,8 +9,10 @@ from sqlalchemy import select
 from trainer.chesscom import ChessComRequest
 from trainer.contracts.common import JobStarted
 from trainer.contracts.jobs import PgnImportResult
+from trainer.game_providers import get_provider
+from trainer.game_providers.base import ProviderImportRequest
 from trainer.imports import import_games
-from trainer.models import AnalysisJob, ChessComImport
+from trainer.models import AnalysisJob, ProviderImport
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -53,27 +55,57 @@ def create_router(*, settings) -> APIRouter:
         response_model_exclude_unset=True,
     )
     def import_chesscom(workspace: CurrentWorkspace, data: ChessComRequest):
+        return queue_provider(workspace, data, "chesscom")
+
+    @router.post(
+        "/api/imports/provider/{provider}",
+        status_code=202,
+        response_model=JobStarted,
+        response_model_exclude_unset=True,
+    )
+    def import_provider(provider: str, workspace: CurrentWorkspace, data: ProviderImportRequest):
+        try:
+            get_provider(provider).validate(data)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        return queue_provider(workspace, data, provider)
+
+    def queue_provider(workspace, data, provider):
         with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(
                 select(AnalysisJob)
-                .join(ChessComImport)
+                .join(ProviderImport)
                 .where(
                     AnalysisJob.status.in_(["queued", "running"]),
-                    AnalysisJob.kind == ("chesscom" if data.analyze else "chesscom_fetch"),
-                    ChessComImport.username == data.username,
-                    ChessComImport.time_class == data.time_class,
-                    ChessComImport.months == data.months,
-                    ChessComImport.max_games == data.max_games,
-                    ChessComImport.start_date == data.start_date,
-                    ChessComImport.end_date == data.end_date,
+                    AnalysisJob.kind
+                    == (
+                        ("chesscom" if provider == "chesscom" else "provider_import")
+                        if data.analyze
+                        else ("chesscom_fetch" if provider == "chesscom" else "provider_fetch")
+                    ),
+                    ProviderImport.provider == provider,
+                    ProviderImport.username == data.username,
+                    ProviderImport.time_class == data.time_class,
+                    ProviderImport.months == data.months,
+                    ProviderImport.max_games == data.max_games,
+                    ProviderImport.start_date == data.start_date,
+                    ProviderImport.end_date == data.end_date,
                 )
             )
             if existing:
                 return {"job_id": existing.id, "status": existing.status}
-            job = AnalysisJob(kind="chesscom" if data.analyze else "chesscom_fetch")
+            job = AnalysisJob(
+                kind=("chesscom" if provider == "chesscom" else "provider_import")
+                if data.analyze
+                else ("chesscom_fetch" if provider == "chesscom" else "provider_fetch")
+            )
             db.add(job)
             db.flush()
-            db.add(ChessComImport(job_id=job.id, **data.model_dump(exclude={"analyze"})))
+            db.add(
+                ProviderImport(
+                    job_id=job.id, provider=provider, **data.model_dump(exclude={"analyze"})
+                )
+            )
             db.commit()
             return {"job_id": job.id, "status": job.status}
 

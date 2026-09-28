@@ -7,7 +7,7 @@ from sqlalchemy.orm import aliased, sessionmaker
 
 from trainer.models import AnalysisJob, User
 
-FETCH_KINDS = ("sync", "chesscom_fetch")
+FETCH_KINDS = ("sync", "chesscom_fetch", "provider_fetch")
 
 
 class JobQueue:

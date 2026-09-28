@@ -100,9 +100,10 @@ class AnalysisJob(Owned, Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
-class ChessComImport(Owned, Base):
+class ProviderImport(Owned, Base):
     __tablename__ = "chesscom_imports"
     job_id: Mapped[str] = mapped_column(ForeignKey("analysis_jobs.id"), primary_key=True)
+    provider: Mapped[str] = mapped_column(default="chesscom", server_default="chesscom")
     username: Mapped[str]
     time_class: Mapped[str]
     months: Mapped[int]
@@ -120,12 +121,24 @@ class ChessComImport(Owned, Base):
     fetch_completed: Mapped[bool] = mapped_column(default=False)
 
 
-class ChessComArchive(Owned, Base):
+class ProviderCheckpoint(Owned, Base):
     __tablename__ = "chesscom_archives"
     job_id: Mapped[str] = mapped_column(ForeignKey("chesscom_imports.job_id"), primary_key=True)
     url: Mapped[str] = mapped_column(primary_key=True)
     games_selected: Mapped[int]
     fetched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+# Stable physical tables and aliases preserve existing jobs and offline tools.
+ChessComImport = ProviderImport
+ChessComArchive = ProviderCheckpoint
+
+
+class ProviderConnection(Owned, Base):
+    __tablename__ = "provider_connections"
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), primary_key=True)
+    provider: Mapped[str] = mapped_column(primary_key=True)
+    username: Mapped[str]
 
 
 class EngineAnalysis(Base):

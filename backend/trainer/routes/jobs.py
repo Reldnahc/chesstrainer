@@ -5,7 +5,8 @@ from sqlalchemy import func, select
 
 from trainer.contracts.common import JobStatus
 from trainer.contracts.jobs import Job
-from trainer.models import AnalysisJob, ChessComImport, ClassificationTask
+from trainer.game_providers import get_provider
+from trainer.models import AnalysisJob, ClassificationTask, ProviderImport
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -21,8 +22,8 @@ def create_router(*, runner) -> APIRouter:
             sources = {
                 source.job_id: source
                 for source in db.scalars(
-                    select(ChessComImport).where(
-                        ChessComImport.job_id.in_([row.id for row in rows])
+                    select(ProviderImport).where(
+                        ProviderImport.job_id.in_([row.id for row in rows])
                     )
                 )
             }
@@ -37,11 +38,18 @@ def create_router(*, runner) -> APIRouter:
                     if row.kind == "enrichment"
                     else None,
                     "activity": runner.activity(row.id),
+                    "provider_import": {
+                        c.name: getattr(sources[row.id], c.name)
+                        for c in ProviderImport.__table__.columns
+                    }
+                    | {"provider_name": get_provider(sources[row.id].provider).name}
+                    if row.id in sources
+                    else None,
                     "chesscom": {
                         c.name: getattr(sources[row.id], c.name)
-                        for c in ChessComImport.__table__.columns
+                        for c in ProviderImport.__table__.columns
                     }
-                    if row.id in sources
+                    if row.id in sources and sources[row.id].provider == "chesscom"
                     else None,
                 }
                 for row in rows

@@ -61,6 +61,9 @@ class Settings(BaseSettings):
     chesscom_timeout_seconds: float = Field(default=20, gt=0, le=60)
     chesscom_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
     chesscom_user_agent: str = "FieldworkChessTrainer/0.1 (local personal chess training)"
+    provider_timeout_seconds: float = Field(default=20, gt=0, le=60)
+    provider_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
+    provider_max_scan_games: int = Field(default=10000, ge=1000, le=100000)
 
     def for_runtime(self):
         """Validate installation settings, including callers that mutate Settings."""

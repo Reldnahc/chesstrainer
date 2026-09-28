@@ -317,6 +317,16 @@
             "title": "Months",
             "type": "integer"
           },
+          "provider": {
+            "default": "chesscom",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_name": {
+            "default": "Chess.com",
+            "title": "Provider Name",
+            "type": "string"
+          },
           "rejected": {
             "title": "Rejected",
             "type": "integer"
@@ -2388,6 +2398,33 @@
         "title": "GamePosition",
         "type": "object"
       },
+      "GameProvider": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "time_classes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Time Classes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "time_classes"
+        ],
+        "title": "GameProvider",
+        "type": "object"
+      },
       "GameRelationship": {
         "additionalProperties": false,
         "properties": {
@@ -3227,6 +3264,16 @@
             ],
             "title": "Probe Total"
           },
+          "provider_import": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ChessComImportProgress"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "status": {
             "title": "Status",
             "type": "string"
@@ -3911,6 +3958,84 @@
           }
         },
         "title": "Profile",
+        "type": "object"
+      },
+      "ProviderConnectionRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "title": "ProviderConnectionRequest",
+        "type": "object"
+      },
+      "ProviderImportRequest": {
+        "properties": {
+          "analyze": {
+            "default": true,
+            "title": "Analyze",
+            "type": "boolean"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          },
+          "max_games": {
+            "default": 100,
+            "maximum": 1000.0,
+            "minimum": 1.0,
+            "title": "Max Games",
+            "type": "integer"
+          },
+          "months": {
+            "default": 3,
+            "maximum": 120.0,
+            "minimum": 0.0,
+            "title": "Months",
+            "type": "integer"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "time_class": {
+            "default": "rapid",
+            "title": "Time Class",
+            "type": "string"
+          },
+          "username": {
+            "maxLength": 50,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "title": "ProviderImportRequest",
         "type": "object"
       },
       "RefinementInfo": {
@@ -4774,6 +4899,11 @@
             ],
             "title": "Job Id"
           },
+          "provider": {
+            "default": "chesscom",
+            "title": "Provider",
+            "type": "string"
+          },
           "status": {
             "title": "Status",
             "type": "string"
@@ -5294,6 +5424,18 @@
             "title": "Practical Tolerance Cp",
             "type": "integer"
           },
+          "provider_max_response_bytes": {
+            "title": "Provider Max Response Bytes",
+            "type": "integer"
+          },
+          "provider_max_scan_games": {
+            "title": "Provider Max Scan Games",
+            "type": "integer"
+          },
+          "provider_timeout_seconds": {
+            "title": "Provider Timeout Seconds",
+            "type": "number"
+          },
           "public_origin": {
             "title": "Public Origin",
             "type": "string"
@@ -5440,6 +5582,9 @@
           "chesscom_timeout_seconds",
           "chesscom_max_response_bytes",
           "chesscom_user_agent",
+          "provider_timeout_seconds",
+          "provider_max_response_bytes",
+          "provider_max_scan_games",
           "lan_token_configured",
           "coverage",
           "classification_provider",
@@ -5835,6 +5980,28 @@
           }
         },
         "summary": "Add Manual"
+      }
+    },
+    "/api/game-providers": {
+      "get": {
+        "operationId": "providers_api_game_providers_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GameProvider"
+                  },
+                  "title": "Response Providers Api Game Providers Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Providers"
       }
     },
     "/api/games": {
@@ -6292,6 +6459,55 @@
         "summary": "Import Chesscom"
       }
     },
+    "/api/imports/provider/{provider}": {
+      "post": {
+        "operationId": "import_provider_api_imports_provider__provider__post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider",
+            "required": true,
+            "schema": {
+              "title": "Provider",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProviderImportRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStarted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Import Provider"
+      }
+    },
     "/api/jobs": {
       "get": {
         "operationId": "jobs_api_jobs_get",
@@ -6541,6 +6757,131 @@
           }
         },
         "summary": "Put Motion Preferences"
+      }
+    },
+    "/api/providers/{provider}/connection": {
+      "put": {
+        "operationId": "save_connection_api_providers__provider__connection_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider",
+            "required": true,
+            "schema": {
+              "title": "Provider",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProviderConnectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyncStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Save Connection"
+      }
+    },
+    "/api/providers/{provider}/sync": {
+      "get": {
+        "operationId": "provider_status_api_providers__provider__sync_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider",
+            "required": true,
+            "schema": {
+              "title": "Provider",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyncStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Provider Status"
+      },
+      "post": {
+        "operationId": "provider_sync_api_providers__provider__sync_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider",
+            "required": true,
+            "schema": {
+              "title": "Provider",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyncStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Provider Sync"
       }
     },
     "/api/review/queue": {

@@ -159,6 +159,10 @@ def configure_accounts(app, settings):
             db.execute(
                 "UPDATE users SET chesscom_username=? WHERE id=?", (name, request.state.user["id"])
             )
+            db.execute(
+                "INSERT INTO provider_connections (user_id, provider, username) VALUES (?, 'chesscom', ?) ON CONFLICT(user_id, provider) DO UPDATE SET username=excluded.username",
+                (request.state.user["id"], name),
+            )
         user = accounts.by_name(request.state.user["username"])
         return {"user": accounts.public(user)}
 
