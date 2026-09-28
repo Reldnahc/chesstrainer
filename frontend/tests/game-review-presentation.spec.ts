@@ -42,6 +42,7 @@ test('moves and move quality swap in one stable panel without adding page height
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   game.white = 'APlayerWithAVeryLongUsername';
   game.black = 'Reldnahcs';
+  game.accuracy = {version: 'layout-fixture', white: 87.3, black: 69.1};
   for (const frame of game.frames.slice(1)) {
     const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 50}};
     frame.report = {label: 'Good', coach: 'A sound move.', reason: '', best: candidate, actual: candidate,
@@ -85,13 +86,37 @@ test('moves and move quality swap in one stable panel without adding page height
     expect(await panel.boundingBox()).toEqual(before);
     expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBe(pageHeight);
     expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
-    await expect(quality.getByRole('columnheader')).toHaveText(['Move quality', game.white, game.black]);
+    await expect(quality.getByRole('columnheader')).toHaveCount(3);
+    await expect(quality.getByRole('columnheader').nth(0)).toHaveAccessibleName(`${game.white} · White`);
+    await expect(quality.getByRole('columnheader').nth(1)).toHaveAccessibleName('Move quality');
+    await expect(quality.getByRole('columnheader').nth(2)).toHaveAccessibleName(`${game.black} · Black`);
     await expect(quality.getByText(game.white, {exact: true})).toHaveAttribute('title', `${game.white} · White`);
+    await expect(quality.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('87.3');
+    await expect(quality.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText('69.1');
+    await expect(quality.getByRole('row', {name: '2 Good 2', exact: true})).toBeVisible();
     await expect(quality.getByRole('row')).toHaveCount(11);
     await expect(page.locator('details.game-summary, .game-summary summary')).toHaveCount(0);
     expect(before!.height).toBeGreaterThanOrEqual(240);
     expect((await page.locator('.game-evaluation-plot').boundingBox())!.height).toBe(120);
-    expect((await page.locator('.game-summary').boundingBox())!.height).toBeLessThan(300);
+    const scale = await quality.evaluate(element => {
+      const pane = element.closest('[role="tabpanel"]')!.getBoundingClientRect();
+      const last = element.querySelector('tbody tr:last-child')!.getBoundingClientRect();
+      const caption = element.querySelector('caption')!.getBoundingClientRect();
+      return {
+        width: pane.width, height: pane.height, rowHeight: last.height,
+        overflow: element.closest('[role="tabpanel"]')!.scrollHeight - pane.height,
+        unusedBottom: pane.bottom - last.bottom - caption.height,
+        font: parseFloat(getComputedStyle(element).fontSize),
+        labelFont: parseFloat(getComputedStyle(element.querySelector('.move-badge')!).fontSize),
+      };
+    });
+    expect(scale.unusedBottom).toBeLessThanOrEqual(20);
+    expect(scale.labelFont).toBe(scale.font);
+    if (scale.height >= 240) expect(scale.overflow, JSON.stringify({size, ...scale})).toBeLessThanOrEqual(1);
+    if (scale.height > 400 && scale.width > 400) {
+      expect(scale.font).toBeGreaterThanOrEqual(16);
+      expect(scale.rowHeight).toBeGreaterThanOrEqual(32);
+    }
     const inset = await quality.evaluate(element => {
       const pane = element.closest('.game-notation')!;
       return pane.getBoundingClientRect().right - element.getBoundingClientRect().right;
@@ -104,11 +129,12 @@ test('moves and move quality swap in one stable panel without adding page height
       }
       const content = page.getByRole('tabpanel', {name: 'Move quality', exact: true});
       await content.evaluate(element => { element.scrollTop = element.scrollHeight; });
-      await expect(quality.getByRole('columnheader', {name: game.white, exact: true})).toBeInViewport();
-      await expect(quality.getByRole('columnheader', {name: game.black, exact: true})).toBeInViewport();
-      await expect(quality.getByRole('row', {name: 'Blunder 0 0', exact: true})).toBeInViewport();
+      await expect(quality.getByRole('columnheader', {name: `${game.white} · White`, exact: true})).toBeInViewport();
+      await expect(quality.getByRole('columnheader', {name: `${game.black} · Black`, exact: true})).toBeInViewport();
+      await expect(quality.getByRole('row', {name: '0 Blunder 0', exact: true})).toBeInViewport();
       expect(await page.evaluate(() => window.scrollY)).toBe(0);
       expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
+      await content.evaluate(element => { element.scrollTop = 0; });
     } else {
       await expect(sidebar).toHaveCSS('display', 'contents');
       expect(pageHeight).toBeGreaterThan(size.height);
@@ -116,6 +142,7 @@ test('moves and move quality swap in one stable panel without adding page height
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({path: `test-results/review-quality-tab-${size.width}x${size.height}.png`, fullPage: true});
+    await panel.screenshot({path: `test-results/move-quality-panel-${size.width}x${size.height}.png`});
     // Tab arrow keys change the panel, not the selected chess move.
     await qualityTab.focus();
     await qualityTab.press('ArrowLeft');

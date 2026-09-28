@@ -94,8 +94,13 @@ available in either tab. The panel has a 240px minimum height on desktop and a
 344px fixed height on phones; long content scrolls inside the active tab. The
 desktop page and board stay in place, with sidebar scrolling available on short
 viewports. Phones retain normal page scrolling. The compact evaluation plot is
-120px tall. The inset quality table uses sticky player usernames as column headings
-and centers their counts; truncated names retain the full username and color in a tooltip.
+120px tall. Move quality compares the players on opposite sides, with their names,
+piece colors and prominent accuracy scores above each count column. Colored move
+quality labels sit between the counts, with zero counts subdued. Rows fill the
+available panel height, and text/icons scale with its width and height. Short panels
+retain readable minimum sizes and scroll when necessary. Player headings stay
+visible while scrolling; truncated names retain the full username and color in a tooltip.
+The review's completion status sits below the comparison.
 The evaluation graph uses a white
 area below the score and a dark area above it, with a clear zero line and signed
 pawn labels. It starts at ±4 and expands symmetrically to the next whole pawn

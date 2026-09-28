@@ -135,7 +135,7 @@ test('book moves appear on the board, coach and branches with original-game accu
   const board = await page.locator('.board-shell').boundingBox();
   await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   const table = page.getByRole('table', {name: 'Move quality and accuracy'});
-  await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
+  await expect(table.getByRole('row', {name: '2 Book 1', exact: true})).toBeVisible();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
   await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText(black);
   expect((await page.locator('.board-shell').boundingBox())!.width).toBe(board!.width);
@@ -164,7 +164,7 @@ test('book moves appear on the board, coach and branches with original-game accu
   await expect(page.locator('.coach-message')).toHaveText(bookFeedback);
   await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
-  await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
+  await expect(table.getByRole('row', {name: '2 Book 1', exact: true})).toBeVisible();
 });
 
 test('review both players, explain in place, and branch without changing the game', async ({page}, testInfo) => {

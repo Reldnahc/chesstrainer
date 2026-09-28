@@ -165,7 +165,7 @@ export default function ReviewMoves({
         )}
       </div>
       <div
-        className="game-notation-scroll"
+        className="game-notation-scroll game-quality-panel"
         id={`${id}-quality-panel`}
         role="tabpanel"
         aria-labelledby={`${id}-quality-tab`}
