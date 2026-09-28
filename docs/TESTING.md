@@ -310,3 +310,12 @@ clock arithmetic and invalid/absent annotations, import/restart preservation,
 arbitrary-branch exclusion, and cold-SRS API protection. Fixtures contain legal
 synthetic positions; their synthetic evaluations are rule inputs, not benchmark
 chess claims. Native review/human smoke verifies the combined production path.
+
+## Game provider imports
+
+`test_game_providers.py`, `test_chesscom.py`, `test_game_sync.py` and
+`test_hosted_runtime.py` exercise adapter normalization, stream bounds, checkpoints,
+rate-limit cooldown, account isolation, upgrade migration and the engine-free fetch
+lane. `frontend/tests/providers.spec.ts` covers Lichess/manual imports, opt-in native
+training, multi-provider refresh and delayed username hydration on desktop/mobile.
+Provider HTTP responses are injected; no test needs a real player's credentials.

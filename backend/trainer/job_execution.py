@@ -1,10 +1,11 @@
 """One job's execution, with its owner's resources captured before any work starts."""
 
 import logging
+import time
 
 from sqlalchemy import select
 
-from trainer.game_providers.base import ImportCancelled, ProviderError
+from trainer.game_providers.base import ImportCancelled, ProviderError, ProviderRateLimited
 from trainer.game_providers.ingest import fetch_import
 from trainer.models import AnalysisJob, Game, ImportGame, ProviderImport
 from trainer.pipeline import JobPipeline
@@ -49,6 +50,10 @@ class JobExecution:
                 with self.provider_lock:
                     with self.sessions() as db:
                         provider = db.get(ProviderImport, job_id).provider
+                    if time.monotonic() < self.runner.provider_retry_at.get(provider, 0):
+                        raise ProviderError(
+                            "This provider is rate limiting requests. Wait at least a minute before retrying; saved games are retained."
+                        )
                     client = self.runner.provider_factories[provider](self.settings)
                     try:
                         fetch_import(
@@ -59,6 +64,9 @@ class JobExecution:
                             lambda: self.cancelled(job_id),
                             self.import_lock,
                         )
+                    except ProviderRateLimited as exc:
+                        self.runner.provider_retry_at[provider] = time.monotonic() + exc.retry_after
+                        raise
                     finally:
                         client.close()
                 if kind in {"sync", "chesscom_fetch", "provider_fetch"}:

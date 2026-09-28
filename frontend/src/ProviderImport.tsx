@@ -1,25 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Job, type Schema } from "./api";
-import { useAccount } from "./AccountGate";
 
-export function ChessComImportForm({
+
+export function ProviderImportForm({
+  provider,
   onQueued,
   fail,
 }: {
+  provider: Schema["GameProvider"];
   onQueued: () => void;
   fail: (e: unknown) => void;
 }) {
-  const account = useAccount();
-  const [username, setUsername] = useState(
-    () =>
-      account?.chesscom_username ||
-      (!account ? localStorage.getItem("chesscom-username") : "") ||
-      "",
-  );
+  const [username, setUsername] = useState("");
+  const [loadingUsername, setLoadingUsername] = useState(true);
+  useEffect(() => {
+    let active = true;
+    read(api.GET("/api/providers/{provider}/sync", { params: { path: { provider: provider.id } } }))
+      .then(value => { if (active) setUsername(current => current || value.username); })
+      .catch(error => { if (active) fail(error); })
+      .finally(() => { if (active) setLoadingUsername(false); });
+    return () => { active = false; };
+  }, [provider.id, fail]);
   const [analyze, setAnalyze] = useState(false);
   const [timeClass, setTimeClass] =
-    useState<NonNullable<Schema["ChessComRequest"]["time_class"]>>("rapid");
+    useState(provider.time_classes.includes("rapid") ? "rapid" : provider.time_classes[0]);
   const [months, setMonths] = useState(3);
   const [maxGames, setMaxGames] = useState(100);
   const [startDate, setStartDate] = useState("");
@@ -33,7 +38,8 @@ export function ChessComImportForm({
     setMessage("");
     try {
       await read(
-        api.POST("/api/imports/chesscom", {
+        api.POST("/api/imports/provider/{provider}", {
+          params: { path: { provider: provider.id } },
           body: {
             username: username.trim(),
             time_class: timeClass,
@@ -45,7 +51,6 @@ export function ChessComImportForm({
           },
         }),
       );
-      if (!account) localStorage.setItem("chesscom-username", username.trim());
       setMessage(
         `Import queued for ${username.trim()}. ${analyze ? "Fetching and training analysis continue in the background." : "Games will appear in Games without engine analysis."}`,
       );
@@ -59,22 +64,23 @@ export function ChessComImportForm({
 
   return (
     <form className="panel form-panel" onSubmit={submit}>
-      <h2>Import from Chess.com</h2>
+      <h2>Import from {provider.name}</h2>
       <p className="small import-intro">
         Enter your username to bring in your completed games. No login or API
         key needed.
       </p>
       <label>
-        Chess.com username
+        {provider.name} username
         <input
-          aria-label="Chess.com username"
+          aria-label={`${provider.name} username`}
+          disabled={loadingUsername}
           autoComplete="off"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
           maxLength={50}
           pattern="[A-Za-z0-9_-]+"
-          placeholder="Your Chess.com username"
+          placeholder={`Your ${provider.name} username`}
         />
         <small>Your side is identified separately in every game.</small>
       </label>
@@ -85,11 +91,9 @@ export function ChessComImportForm({
           value={timeClass}
           onChange={(e) => setTimeClass(e.target.value as typeof timeClass)}
         >
-          <option value="rapid">Rapid</option>
-          <option value="blitz">Blitz</option>
-          <option value="bullet">Bullet</option>
-          <option value="daily">Daily</option>
-          <option value="all">All time controls</option>
+          {provider.time_classes.map(value => <option key={value} value={value}>
+            {value === "all" ? "All time controls" : value === "ultraBullet" ? "Ultra bullet" : value[0].toUpperCase() + value.slice(1)}
+          </option>)}
         </select>
       </label>
       <div className="import-options">
@@ -173,8 +177,8 @@ export function ChessComImportForm({
           </button>
         )}
       </details>
-      <button className="primary" disabled={busy || !username.trim()}>
-        {busy ? "Queuing import…" : "Fetch & analyze games"}
+      <button className="primary" disabled={busy || loadingUsername || !username.trim()}>
+        {busy ? "Queuing import…" : analyze ? "Fetch & analyze games" : "Fetch games"}
         <ArrowRight size={17} />
       </button>
       {message && (
@@ -190,7 +194,7 @@ export function ChessComImportForm({
           standard chess; recently finished games may take time to appear.
         </p>
         <p className="small">
-          Your host contacts Chess.com's public API. Analysis and mistake
+          Your host contacts {provider.name}'s public API. Analysis and mistake
           classification run locally.
         </p>
       </details>
@@ -207,14 +211,15 @@ export function ImportJob({
   reload: () => void;
   fail: (e: unknown) => void;
 }) {
-  const source = job.chesscom;
+  const source = job.provider_import || job.chesscom;
+  const fetchOnly = ["sync", "chesscom_fetch", "provider_fetch"].includes(job.kind);
   const fetching = source && !source.fetch_completed;
   return (
     <article className="job panel">
       <div className="row-between">
         <strong>
           {source
-            ? `Chess.com · ${source.username}`
+            ? `${source.provider_name} · ${source.username}`
             : job.kind === "sync"
               ? "Recent-game sync"
               : job.kind === "chesscom_fetch"
@@ -238,27 +243,26 @@ export function ImportJob({
           <p className="import-phase">
             {fetching
               ? "Fetching public game archives"
-              : "Download complete · local analysis"}
+              : fetchOnly ? "Download complete" : "Download complete · local analysis"}
           </p>
           {fetching && (
             <progress
-              aria-label="Archive download progress"
-              value={source.archives_processed}
+              aria-label="Game download progress"
+              value={source.archives_total ? source.archives_processed : undefined}
               max={Math.max(1, source.archives_total)}
             />
           )}
           <p>
-            {source.archives_processed} / {source.archives_total} archives
-            checked · {source.games_fetched} games fetched
+            {source.games_fetched} {source.games_fetched === 1 ? "game" : "games"} fetched
           </p>
           <p className="small">
             {source.games_imported} imported · {source.duplicates} duplicates ·{" "}
             {source.filtered} filtered · {source.rejected} rejected
           </p>
-          {source.fetch_completed && job.games_total === 0 && (
+          {source.fetch_completed && source.games_imported === 0 && (
             <p>
               {source.duplicates > 0
-                ? "No new games found. Saved games were skipped; use Retry saved work on an earlier job to finish interrupted analysis."
+                ? fetchOnly ? "No new games found. Saved games were skipped." : "No new games found. Saved games were skipped; use Retry saved work on an earlier job to finish interrupted analysis."
                 : "No matching games imported. Check the username, range and time control."}
             </p>
           )}
@@ -291,7 +295,7 @@ export function ImportJob({
           </p>
         </>
       )}
-      {!fetching &&
+      {!fetching && !fetchOnly &&
         job.kind !== "teaching" &&
         job.kind !== "enrichment" &&
         job.kind !== "game_review" && (

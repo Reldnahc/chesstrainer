@@ -12,11 +12,11 @@ test('account signup, engine-free sync, second-device login and private library'
   await page.getByRole('link', {name: 'Update games', exact: true}).click();
   await expect(page).toHaveURL('/settings');
   await page.getByLabel('Remembered Chess.com username').fill(username);
-  await page.getByRole('button', {name: 'Save username', exact: true}).click();
+  await page.getByRole('region', {name: 'Recent Chess.com games', exact: true}).getByRole('button', {name: 'Save username', exact: true}).click();
   await expect(page.getByText('Change Chess.com connection', {exact: true})).toBeVisible();
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByLabel('Remembered Chess.com username')).toHaveCount(0);
-  const syncResponse = page.waitForResponse(r => r.url().endsWith('/api/sync') && r.request().method() === 'POST');
+  const syncResponse = page.waitForResponse(r => r.url().endsWith('/api/providers/chesscom/sync') && r.request().method() === 'POST');
   await page.getByRole('button', {name: 'Update games', exact: true}).click();
   expect((await syncResponse).ok()).toBe(true);
   await expect(page.locator('.game-library-item')).toHaveCount(1, {timeout: 30000});

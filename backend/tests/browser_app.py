@@ -1,11 +1,13 @@
 """Playwright-only app: real backend/Stockfish with deterministic public HTTP fixtures."""
 
+import json
 import re
 from datetime import datetime, timezone
 
 import httpx
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
+from trainer.game_providers.lichess import LichessClient
 
 
 def create_app():
@@ -46,7 +48,35 @@ def create_app():
 
         return ChessComClient(settings, transport=httpx.MockTransport(handler))
 
-    app = production_app(chesscom_factory=factory)
+    def lichess_factory(settings):
+        def handler(request):
+            username = request.url.path.rsplit("/", 1)[-1]
+            if username == "missing-player":
+                return httpx.Response(404)
+            date = datetime.now(timezone.utc)
+            pgn = f'[Site "https://lichess.org/abcd1234"]\n[White "{username}"]\n[Black "LichessOpponent"]\n[Date "{date:%Y.%m.%d}"]\n[TimeControl "180+2"]\n\n1. f3 e5 2. g4 Qh4# 0-1'
+            return httpx.Response(
+                200,
+                content=json.dumps(
+                    {
+                        "id": "abcd1234",
+                        "pgn": pgn,
+                        "variant": "standard",
+                        "speed": "blitz",
+                        "status": "mate",
+                        "lastMoveAt": int(date.timestamp() * 1000),
+                        "players": {
+                            "white": {"user": {"name": username}},
+                            "black": {"user": {"name": "LichessOpponent"}},
+                        },
+                    }
+                )
+                + "\n",
+            )
+
+        return LichessClient(settings, transport=httpx.MockTransport(handler))
+
+    app = production_app(chesscom_factory=factory, provider_factories={"lichess": lichess_factory})
 
     @app.post("/__test/game-review-fixture/{key}")
     def game_review_fixture(key: str):
