@@ -76,10 +76,10 @@ lock, while other accounts have independent locks.
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
 | useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
 | MotionProvider.tsx / MotionSettings.tsx / motion.ts / MotionSelect.tsx | Saved piece/interface motion, common device-default override rules and shared motion selector |
-| coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, event dwell, one-shot reactions and occasional idle gestures |
+| coach/model.ts / registry.ts / motionVocabulary.ts / usePerformance.ts | Coach definitions, explicit display groups, compatibility fallbacks, expression-specific idle pools, event dwell and one-shot reactions |
 | useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits, boards and controls |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
-| coach/studies/ / coach/studio/ | Shared registered character artwork and a separate development-only comparison entry |
+| coach/studies/ / coach/cast/ / coach/studio/ | Shared registered character artwork, cast-specific SVG rigs and a separate development-only expression/idle comparison entry |
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Shared title display |
@@ -115,6 +115,12 @@ SRS and game styles must not override shared action dimensions.
 The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
 review experiences. Artwork-specific poses, styles and finite CSS animations stay
 with the registered character; semantic reaction and preference code are shared.
+The registry derives one stable selectable roster from authoring collections.
+Presentation groups order the unified Settings grid but never filter it or decide
+which coach IDs are valid. Every registered family receives its complete 20-by-4
+idle configuration from the shared motion vocabulary, including in the studio.
+Retired selection aliases are explicit read-only mappings shared in behavior with
+the API; no account rows or stored chess evidence are rewritten on load.
 The provider lives inside the account boundary, so switching users discards the
 previous preference state. Selection and motion use the existing owned SQLite
 database, including the reserved local user, with no new container settings.

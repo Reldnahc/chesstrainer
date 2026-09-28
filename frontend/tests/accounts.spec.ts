@@ -17,7 +17,6 @@ test('account signup, engine-free sync, second-device login and private library'
   expect(await page.locator('.app-header').evaluate(header => header.getBoundingClientRect().top)).toBe(0);
   const gameHref = (await page.locator('.game-library-item').getAttribute('href'))!;
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
-  await page.getByRole('button', {name: 'Women', exact: true}).click();
   await page.getByRole('radio', {name: 'Golden braid', exact: true}).click();
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
@@ -51,7 +50,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('natural');
-    await expect(device.getByRole('button', {name: 'Women', exact: true})).toHaveAttribute('aria-pressed', 'true');
+    await expect(device.getByRole('radio')).toHaveCount(30);
     await expect(device.getByRole('radio', {name: 'Golden braid', exact: true})).toBeChecked();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByRole('region', {name: 'Account', exact: true})).toContainText(`Signed in as ${username}`);

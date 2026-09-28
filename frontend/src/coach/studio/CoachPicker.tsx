@@ -1,5 +1,5 @@
 import { CoachCharacter } from "../CoachAvatar";
-import { coachStudies } from "../studies/catalog";
+import { selectableCoaches } from "../registry";
 
 export default function CoachPicker({
   selected,
@@ -10,7 +10,7 @@ export default function CoachPicker({
 }) {
   return (
     <section className="studio-cast" aria-label="Choose a coach to preview">
-      {coachStudies.map((coach) => (
+      {selectableCoaches.map((coach) => (
         <button
           key={coach.id}
           aria-label={`Preview ${coach.name}`}
@@ -26,7 +26,7 @@ export default function CoachPicker({
           />
           <span>
             <strong>{coach.name}</strong>
-            <small>{coach.families.length} concept directions</small>
+            <small>{coach.expressions.length} expressions · 4 idles each</small>
           </span>
         </button>
       ))}

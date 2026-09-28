@@ -1,6 +1,7 @@
 import type { CoachDefinition, CoachExpression, CoachMicro } from "./model";
 
 export const IDLE_GAP_MS = [500, 1000] as const;
+export const IDLE_GESTURE_MS = 1200;
 
 export function nextIdle(
   animation: CoachDefinition["animation"],

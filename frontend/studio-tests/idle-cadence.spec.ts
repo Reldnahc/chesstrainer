@@ -30,12 +30,15 @@ for (const { coach, reaction } of cases) {
   test(`${coach} keeps cycling existing idles at the shared device and animated cadence`, async ({ page }) => {
     const avatar = await settledCoach(page, coach, reaction);
     const take = await avatar.getAttribute("data-take");
+    let previous = "";
     for (let cycle = 0; cycle < 3; cycle++) {
       await page.clock.runFor(idleGapMs - 1);
       await expect(avatar).toHaveAttribute("data-micro", "");
       await page.clock.runFor(1);
       await expect(avatar).toHaveAttribute("data-micro", /.+/);
       const gesture = await avatar.getAttribute("data-micro");
+      expect(gesture).not.toBe(previous);
+      previous = gesture!;
       await expect(avatar).toHaveAttribute("data-phase", "rest");
       await expect(avatar).toHaveAttribute("data-take", take!);
       await page.clock.runFor(1199);
@@ -48,6 +51,7 @@ for (const { coach, reaction } of cases) {
     await expect(avatar).toHaveAttribute("data-motion", "natural");
     await page.clock.runFor(idleGapMs - 1);
     await expect(avatar).toHaveAttribute("data-micro", "");
+    expect(await avatar.evaluate((element) => element.getAnimations({ subtree: true }).length)).toBe(0);
     await page.clock.runFor(1);
     await expect(avatar).toHaveAttribute("data-micro", /.+/);
     await expect(avatar).toHaveAttribute("data-phase", "rest");
@@ -59,9 +63,13 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
   const avatar = await settledCoach(page, "classic", 1650);
   const take = await avatar.getAttribute("data-take");
   const motion = page.getByRole("combobox", { name: "Motion intensity" });
+  let previous = "";
   for (const pause of ["still", "reduced", "offscreen", "hidden"]) {
     await page.clock.runFor(idleGapMs);
     await expect(avatar).toHaveAttribute("data-micro", /.+/);
+    const gesture = await avatar.getAttribute("data-micro");
+    expect(gesture).not.toBe(previous);
+    previous = gesture!;
     if (pause === "still") {
       await motion.selectOption("still");
       await avatar.scrollIntoViewIfNeeded();
@@ -79,6 +87,7 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
       });
     }
     await expect(avatar).toHaveAttribute("data-micro", "");
+    expect(await avatar.evaluate((element) => element.getAnimations({ subtree: true }).length)).toBe(0);
     // Cross two complete idle windows, including the cancelled gesture's finish.
     for (let cycle = 0; cycle < 2; cycle++) {
       await page.clock.runFor(idleGapMs);
@@ -99,4 +108,33 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
   }
   await page.clock.runFor(idleGapMs);
   await expect(avatar).toHaveAttribute("data-micro", /.+/);
+});
+
+test("expression changes cancel the previous idle and use the new four-gesture pool", async ({ page }) => {
+  const avatar = await settledCoach(page, "classic", 1650);
+  await page.clock.runFor(idleGapMs);
+  await expect(avatar).toHaveAttribute("data-micro", "nod");
+  await page.getByRole("combobox", { name: "Expression", exact: true }).selectOption("blunder");
+  await avatar.scrollIntoViewIfNeeded();
+  await expect(avatar).toHaveAttribute("data-micro", "");
+  await page.clock.runFor(110);
+  await expect(avatar).toHaveAttribute("data-phase", "reaction");
+  await page.clock.runFor(1800);
+  await expect(avatar).toHaveAttribute("data-phase", "rest");
+  const pool = await page.getByRole("combobox", { name: "Idle gesture", exact: true })
+    .locator("option").evaluateAll((options) => options.map((option) => (option as HTMLOptionElement).value));
+  expect(pool).toEqual(["slow-blink", "sigh", "glasses", "look-down"]);
+  const take = await avatar.getAttribute("data-take");
+  let previous = "";
+  for (let cycle = 0; cycle < 5; cycle++) {
+    await page.clock.runFor(idleGapMs);
+    const gesture = await avatar.getAttribute("data-micro");
+    expect(pool).toContain(gesture);
+    expect(gesture).not.toBe(previous);
+    previous = gesture!;
+    await expect(avatar).toHaveAttribute("data-phase", "rest");
+    await expect(avatar).toHaveAttribute("data-take", take!);
+    await page.clock.runFor(1200);
+    await expect(avatar).toHaveAttribute("data-micro", "");
+  }
 });

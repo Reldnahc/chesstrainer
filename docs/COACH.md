@@ -18,11 +18,24 @@ The men's collection has four complete characters, each with all 20 states:
 - **Creative partner:** a South Asian man with dark waves, a shaped beard and a
   forest-green waistcoat. Curious looks and generous encouragement.
 
-All sixteen characters are selectable in **Settings → Your coach**, organized
-into four compact groups. Browsing a group does not save a choice; selecting a
-portrait does. Settings restores the selected character's group on load. Only
-the selected portrait animates, and phone layouts use two columns. The same saved
-character appears in game review, SRS practice and saved explanations.
+The [cast bible](COACH_CAST_BIBLE.md) defines the thirty selectable personalities.
+**Settings → Your coach** displays all thirty coaches in a compact, unbroken
+six-column/five-row desktop grid, in the stable order below. There are no category
+headings, gaps, tabs or filters. Small portraits and names keep selection compact;
+descriptions remain available on hover and to assistive technology. Only the
+selected portrait animates. Tablet layouts use four columns, phones use three,
+and the narrowest phones use two. The same saved selection appears in game review, SRS
+practice and saved explanations, including after reload or on another device.
+
+| Group | Selectable coaches |
+|---|---|
+| Humans | Storyteller, Club host, Endgame expert, Creative partner, Club captain, Quiet analyst, Bright spark, Golden braid, Young Boy, Young Girl |
+| Dogs | Gentle professor, Pocket captain, Border collie, Puppy |
+| Cats | Midnight tactician, Velvet night, Kitten |
+| Other animals | Gorilla, Raccoon, Frog, Capybara |
+| Fantasy | Unicorn, Wizard, Dragon, Ghost |
+| Sci-Fi | Alien, Robot |
+| Silly & conceptual | Slime, Mushroom, Living Pawn |
 
 Each selectable character also has a curated writing voice and character bible.
 The shared dialogue layer selects supported facts before the chosen personality
@@ -48,27 +61,27 @@ collection, replay entrances and idle gestures, run a transition sequence, and
 preview device-default, animated or still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
 
-The studio contains 16 concepts across four groups, each with all 20 expressions:
-
-| Character | Concepts | Character-specific motion |
-|---|---|---|
-| Men | Storyteller, Club host, Endgame expert, Creative partner | Shared facial/hand articulation; distinct hair, facial hair, face shapes and clothing |
-| Women | Club captain, Quiet analyst, Bright spark, Golden braid | Hair follow-through, open palms, thoughtful chin poses; blonde side braid on the fourth concept |
-| Cats | Library tabby, Midnight tactician, Curious calico, Velvet night | Expressive ears, whiskers, paws and tails; the fourth has solid-black fur and amber eyes |
-| Dogs | Sunny companion, Gentle professor, Pocket captain, Border collie | Two goldens, a corgi and a border collie with distinct ears, muzzle geometry, coats, chests and tails |
+The studio offers the whole production cast, all 20 expressions and a four-card
+idle gallery for the selected expression. Each idle can replay independently
+without starting the entrance reaction. A comparison panel places three selected
+coaches in the same semantic state. The older human/pet collections still provide
+family comparisons for authoring; production selection is always an individual
+coach. New species keep their own silhouettes and facial geometry while sharing
+the same bounded motion lifecycle.
 
 Use the character picker above the expression controls. `coach`, `family` and
 `expression` query parameters restore a comparison on the studio's own server.
-Switching characters stops a running sequence, clears the
-pending idle preview and selects a valid family/idle gesture. Preview controls
-offer only the idle gestures that the character actually implements.
+Switching characters stops a running sequence, clears the pending idle preview
+and selects a valid family/idle gesture. Preview controls offer only the four
+gestures valid for the current coach and expression.
 
 The studio never connects to accounts or submits engine work. It imports the
 same character catalogue and review bubble as the application; shared SVGs and motion
 styles are bundled with the application so a selected coach is immediately
 available in reviews without an image request. Existing `coach=retriever`
-links resolve to the dog collection; the retired Trail buddy (`scout`) family
-falls back to Sunny companion. The illustration assets are
+links resolve to the dog collection; unsupported families fall back to its retained
+Gentle professor. Retired production/preview IDs have the compatibility mappings
+listed below. The illustration assets are
 original SVG artwork maintained as React components; no external images or assets
 are required.
 
@@ -113,6 +126,14 @@ Idle gestures occur after variable 0.5–1 second pauses for every animated coac
 The shared range lives in `coach/idle.ts`; character
 definitions choose gestures, not cadence.
 Each gesture still lasts 1.2 seconds before scheduling the next pause.
+Every selectable coach resolves exactly four distinct idle variants for each of
+the 20 expressions: 80 slots per coach, 2,400 across this cast. The pools choose
+only gestures supported by the rig and appropriate to the state. For example,
+worried faces do not borrow delighted glints, and closed eyes do not rely on an
+invisible pupil-only glance. `motionVocabulary.ts` provides complete expression
+pools and per-coach acting profiles. Character-specific eyes, ears, hair, tail or
+lens gestures combine with common head-angle, breathing and stance movements.
+Profiles control idle amplitude, gaze and settling independently of reaction timing.
 The character avoids immediately repeating a gesture when alternatives
 exist. Neutral, brilliant and blunder have distinct idle vocabularies. A small
 number of local timers schedule gestures; CSS performs the animation without a
@@ -154,12 +175,13 @@ resolved state as the board library; there is no second browser-only override.
 
 ## Adding a coach
 
-`model.ts` defines the character contract. `studies/catalog.ts` supplies the
+`model.ts` defines the character contract. `studies/catalog.ts` and `cast/catalog.ts` supply the
 collections, stable character IDs, names, descriptions, supported states, fallback
 maps, families, capabilities, timing/idle configuration and artwork components.
 `registry.ts` derives individual selectable definitions from that single source.
-Each has one default family and a typed account ID; collection IDs remain useful
-for browsing and studio URLs. They are never saved in place of a character ID. The
+Each has one default family, explicit presentation group and a typed account ID;
+collection IDs remain useful for authoring and studio URLs. They are never saved
+in place of a character ID. The
 default SVG rig, motion tracks and keyframes live in `classic/`; shared
 lifecycle and preference code contain no references to its facial geometry.
 Reusable human expressions, facial layers and open-palm hand artwork live in
@@ -171,6 +193,9 @@ rig and palettes, so a new breed does not duplicate facial animation. Dark-coate
 animals can supply a lighter eyelid stroke to keep closed expressions legible.
 The study CSS uses its own namespaced motion tracks; classic CSS is scoped to
 Storyteller so it cannot also animate the shared human rig of another man.
+New artwork is organized under `cast/humansPets`, `cast/animals`, `cast/fantasy`
+and `cast/scifi`, with small local rig/face helpers. These source folders do not
+determine the Settings groups or persisted IDs.
 Add an allowed coach ID to the backend preference contract, regenerate the API
 types, and add the matching family and `coachId` to the catalogue. Browser tests
 compare all selectable IDs with the API allowlist and exercise each in a real
@@ -188,7 +213,7 @@ Backend tests cover defaults for existing users, additive migration preservation
 validation, concurrent first writes, account isolation, CSRF and second-device
 sessions. Browser/logic tests cover semantic mapping, fallback chains, special
 outcomes, recovery, actual native game reviews, replay/settling, offscreen behavior,
-complete concept collections, control geometry, selection of all 16 coaches,
+complete concept collections, control geometry, selection of all 30 coaches,
 cross-device/account restoration, failed-save recovery and reduced
 motion. Existing shared-board geometry and stale-request regressions remain.
 Failed preference loads keep controls disabled and the character still until retry;
@@ -208,15 +233,28 @@ The removed `subtle` choice reads as Animated without rewriting the stored value
 The motion-default migration updates the database default to `system` while
 preserving saved choices.
 
-The preference contract accepts 16 stable character IDs. Storyteller keeps
-`classic`; the others use `man-*`, `woman-*`, `cat-*` and `dog-*` IDs so a saved
-choice identifies one specific character, independent of its display name.
+The preference contract accepts 30 stable character IDs. Storyteller keeps
+`classic`; existing retained characters keep their original IDs. New coaches
+have explicit IDs registered in the same contract. IDs identify individuals,
+independent of their display name, artwork folder or presentation group.
 Expanding this allowlist uses the existing string column and needs no new
 database migration. Tests round-trip every allowed ID through an application
 restart and verify that another account starts with its own default.
 
-The additive migration does not change games, sessions or authentication. Invalid
-new choices are rejected. Unrecognized saved choices fall back for this release
+This cast expansion requires no schema migration and does not change games,
+sessions or authentication. Invalid new choices are rejected. Retired saved
+choices resolve through explicit read-only replacements:
+
+| Retired selection | Replacement | Reason |
+|---|---|---|
+| Sunny companion (`dog-sunny`) | Puppy (`dog-puppy`) | Retains the eager, affectionate teammate role |
+| Library tabby (`cat-tabby`) | Kitten (`cat-kitten`) | Keeps a curious feline companion in the consolidated cast |
+| Curious calico (`cat-calico`) | Kitten (`cat-kitten`) | Retains playful investigative curiosity |
+
+These mappings are applied on API reads and stale frontend lookups/bookmarks;
+they do not rewrite preference rows. Choosing a coach explicitly saves its new
+ID. Retired IDs are rejected on new writes, so they cannot reenter the selectable
+roster. Unrecognized saved choices fall back to Storyteller for this release
 without overwriting the stored value, allowing removed coaches or older releases
 to open the same database safely. Concurrent first saves serialize through the
 same SQLite write transaction. No Docker configuration is required.

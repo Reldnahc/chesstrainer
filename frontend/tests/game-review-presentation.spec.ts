@@ -15,7 +15,9 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await expect(move).toHaveAttribute('aria-current', 'step');
   await expect(page).toHaveURL(/ply=3/);
   expect((await page.locator('.board-shell').boundingBox())!.width).toBe(before!.width);
-  await expect(page.locator('.coach-speech')).toContainText(/forced checkmate/i);
+  await expect(page.locator('.coach-speech')).toContainText(/\bforce(?:d)? (?:check)?mate\b/i);
+  await expect(page.locator('.coach-speech')).toContainText('Black');
+  await expect(page.locator('.coach-speech')).toContainText('Qh4#');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.reload();
   await expect(move).toHaveAttribute('aria-current', 'step');

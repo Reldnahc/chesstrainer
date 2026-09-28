@@ -17,7 +17,8 @@ test("personality changes language and delivery without changing factual intensi
   expect(voices[0].text).not.toBe(voices[1].text);
   for (const line of voices) {
     expect(line.text).toContain("Qh4#");
-    expect(line.text).toMatch(/forced checkmate/i);
+    expect(line.text).toMatch(/\bforce(?:d)? (?:check)?mate\b/i);
+    expect(line.text).toContain("Black");
     expect(line.intentId).toBe(intent.id);
     expect(line.expression).toBe("blunder");
     expect(line.priority).toBe(100);
@@ -48,7 +49,9 @@ test("saved coach selection changes reviewed wording without new searches or alt
   await page.request.put("/api/preferences/coach", {data: {coach_id: "classic", motion: "still"}});
   await page.goto(`/games/${id}?ply=3`);
   const line = page.locator(".coach-message [data-utterance]");
-  await expect(line).toContainText(/forced checkmate/i, {timeout: 60_000});
+  await expect(line).toContainText(/\bforce(?:d)? (?:check)?mate\b/i, {timeout: 60_000});
+  await expect(line).toContainText("Black");
+  await expect(line).toContainText("Qh4#");
   await expect(page.locator(".game-summary caption")).toContainText("Complete game", {timeout: 60_000});
   const text = await line.innerText(), intentId = await line.getAttribute("data-intent");
   const before = await (await page.request.get(`/api/games/${id}`)).json();
@@ -74,7 +77,6 @@ test("saved coach selection changes reviewed wording without new searches or alt
   };
   try {
     await page.getByRole("link", {name: "Settings", exact: true}).click();
-    await page.getByRole("button", {name: "Women", exact: true}).click();
     const choice = page.getByRole("radio", {name: "Quiet analyst", exact: true});
     await choice.click();
     await expect(choice).toBeChecked();

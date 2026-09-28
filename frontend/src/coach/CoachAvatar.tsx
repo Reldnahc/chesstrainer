@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { useCoachPreferences } from "./CoachProvider";
 import { getCoach } from "./registry";
 import {
@@ -46,6 +47,12 @@ export function CoachCharacter({
     previewIdle,
   });
   const Artwork = coach.Artwork;
+  const profile = animation.motionProfile;
+  const idleStyle = {
+    "--idle-strength": profile?.amplitude ?? 1,
+    "--idle-gaze": profile?.gaze ?? 1,
+    "--idle-settle": profile?.settle ?? 1,
+  } as CSSProperties;
   return (
     <div
       ref={performance.ref}
@@ -60,6 +67,8 @@ export function CoachCharacter({
       data-micro={performance.micro}
       data-motion={performance.motion}
       data-take={performance.take}
+      data-motion-profile={profile?.id ?? "default"}
+      style={idleStyle}
       title={`${coach.name} · ${expressionInfo[performance.expression].label}`}
     >
       <Artwork

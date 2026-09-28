@@ -29,9 +29,10 @@ are coach independent, as are the Fieldwork labels and Stockfish scores.
 
 `move-events-4` preserves mover-caused errors with an explicit responsible actor
 and opponent opportunity actor. Dedicated causal claims explain the abandoned
-defender, unaddressed preceding threat or unfavorable capture/recapture. They use
-the shared neutral fallback for every coach and retain the verified source IDs;
-an opponent tactic template never narrates a mover-caused error.
+defender, unaddressed preceding threat or unfavorable capture/recapture. They retain
+the verified source IDs through character-specific causal wording; an opponent
+tactic template never narrates a mover-caused error. Required mover, target and
+reply slots cannot be removed by optional character staging.
 
 Intent version 4 retains positional branch identity in `Claim.position`: the
 actual or alternative line and its SAN move. Alternative positional claims use
@@ -106,19 +107,47 @@ uses the neutral personality. A partial or malformed custom template falls back
 to the neutral rendering for that claim. New coaches therefore work safely before
 their full writing is ready.
 
-The renderer receives only `DialogueIntent` and a character definition. Curated
-claim templates change sentence structure; character bibles define temperament,
-teaching, rhythm, celebration, correction and boundaries. Compactness and neutral
-delivery metadata are configurable. Priority, factual intensity, reaction meaning,
-references and claims remain unchanged. No personality code can query an engine,
-model or account from this interface. Named factual slots come from the shared
-intent; render functions have no arbitrary callbacks.
+The renderer receives only `DialogueIntent` and a character definition. Character
+bibles describe temperament, teaching, rhythm, celebration, correction and explicit
+prohibitions. Communication behavior selects separate praise, correction and
+general strategies: reaction-first, consequence-first, observation-first,
+question-first, pattern-first, mentor-first, calm-reset or minimal. Directness,
+emotional amplitude, humor, jargon, sentence length and address preferences are
+authoring metadata; they do not rescore a move or modify factual intensity.
+
+Authored claims can be plain sentences or structured `ClaimWording` fragments.
+`fact` and optional `consequence` are mandatory; reaction, observation, question
+and takeaway are optional teaching cues. Composition changes the order of the
+mandatory fragments and selects the appropriate cue. Consequence-first therefore
+really states the result before its cause; minimal drops optional framing. Missed
+tactics are an explicit exception: their unplayed-candidate introduction must come
+before its effects, so those effects cannot be mistaken for the actual board. The
+variant trace records the ordering actually used. Question
+cadence is a deterministic sample of factual intent identity, never a render-time
+coin toss. The selected claim cap still applies, and low-priority claims cannot
+displace the main consequence. When a response is long, optional cues are removed
+before an entire secondary claim is omitted. Required facts are never truncated.
+
+Runtime slot validation checks custom forms against the neutral claim contract.
+Unknown slots, missing mandatory slots or facts hidden only in an optional cue
+fall back to neutral wording. Positional alternatives and opponent/unknown-subject
+claims retain their protected factual rendering and do not acquire learner praise
+or character questions. Priority, reaction meaning, references and claims remain
+unchanged. No personality code can query an engine, model or account; render
+definitions are data rather than arbitrary callbacks.
 
 `useDialogue` reads the existing account preference and renders synchronously.
 Switching and reloading a selected coach changes language and portrait while
 preserving stored reports. The laboratory's Voice selector renders the same intent
 through any current registry entry or the neutral reference, with template-source
-and deterministic variant provenance shown in the trace.
+and deterministic variant provenance shown in the trace. The trace also records
+active strategy, sentence/composed form, cues actually retained, claim/question/
+sentence counts, and custom-versus-fallback claim counts.
+
+An allowed-mate claim already names the report's immediate reply. The intent
+builder omits a second check-only claim for that same reply, while preserving
+capture facts and the actual checking reply when discussing an unplayed missed
+mate. This removes repeated wording without changing saved chess evidence.
 
 The full selectable cast now has curated claim wording and character bibles.
 See [COACH_PERSONALITIES.md](COACH_PERSONALITIES.md) for the writing standards,

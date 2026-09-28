@@ -17,6 +17,7 @@ export type StudioPreview = {
   reaction: CoachReaction;
   motion: CoachMotion;
   replay: number;
+  reactionReplay: number;
   previewIdle: CoachMicro;
 };
 
@@ -49,6 +50,8 @@ export function ConceptComparison({
             <CoachCharacter
               {...preview}
               family={direction.id}
+              replay={direction.id === family ? preview.replay : preview.reactionReplay}
+              previewIdle={direction.id === family ? preview.previewIdle : ""}
               label={`${direction.name}: ${expressionInfo[reaction.state].label}`}
             />
           </div>

@@ -1,0 +1,30 @@
+/* The small casts use the existing reaction/idle layers. Species details keep
+   their own pivots; no continuously running ambient animation is introduced. */
+.cast-gorilla .study-ear-left,
+.cast-capybara .study-ear-left {
+  transform-origin: 22px 31px;
+}
+.cast-gorilla .study-ear-right,
+.cast-capybara .study-ear-right {
+  transform-origin: 78px 31px;
+}
+.cast-raccoon .study-ear-left,
+.cast-raccoon .study-ear-right {
+  /* Both ears use left-ear coordinates; the right parent mirrors the rig. */
+  transform-origin: 25px 28px;
+}
+.cast-raccoon .study-tail {
+  transform-origin: 73px 108px;
+}
+.cast-frog-throat {
+  transform-origin: 50px 77px;
+}
+.cast-frog .study-head-pose {
+  transform-origin: 50px 72px;
+}
+.cast-gorilla .study-muzzle,
+.cast-raccoon .study-muzzle,
+.cast-frog .study-muzzle,
+.cast-capybara .study-muzzle {
+  transform-origin: 50px 65px;
+}

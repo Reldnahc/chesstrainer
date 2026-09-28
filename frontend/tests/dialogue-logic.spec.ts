@@ -3,6 +3,7 @@ import {gameIntent} from "../src/dialogue/gameIntent";
 import {practiceIntent, explanationIntent} from "../src/dialogue/practiceIntent";
 import {renderDialogue, renderNeutral} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
+import {neutralTemplates} from "../src/dialogue/templates";
 import {claim, makeIntent, stableKey} from "../src/dialogue/model";
 import {positionalClaim} from "../src/dialogue/eventClaims";
 import type {Game, Position, Report} from "../src/gameReview/types";
@@ -48,13 +49,30 @@ test("every positional claim carries branch scope that personality wording canno
     expect(item).toBeTruthy();
     expect(item.position).toEqual({line: line === "actual" ? "actual" : "alternative", move: line === "actual" ? "played" : "alternative"});
     const intent = makeIntent("grammar", "mistake", "game", "mistake", [item]);
-    const character = {id: "unsafe-override", personality: {...neutralPersonality, templates: {[item.code]: ["This already happened on the actual board."]}}};
-    const text = renderDialogue(intent, character).text;
+    const character = {id: "unsafe-override", personality: {...neutralPersonality, version: "branch-safety-test", templates: {[item.code]: ["This already happened on the actual board."]}}};
+    const rendered = renderDialogue(intent, character);
+    const text = rendered.text;
     if (line === "best") {
       expect(text).toMatch(/^alternative would /);
       expect(text).not.toContain("already happened");
-      expect(renderDialogue(intent, character).trace.variants[0].source).toBe("positional-conditional-1");
-    } else expect(text).toBe("This already happened on the actual board.");
+      expect(rendered.trace.variants[0].source).toBe("positional-conditional-1");
+    } else {
+      // Actual-move customization still has to carry the mandatory facts. An
+      // empty assertion is no longer a valid custom form under the slot guard.
+      expect(text).toBe(renderNeutral(intent).text);
+      expect(rendered.trace.variants[0].source).toBe("neutral-1");
+    }
+    const valid = {...character, personality: {...character.personality,
+      templates: {[item.code]: [`Verified actual consequence: ${neutralTemplates[item.code][0]}`]}}};
+    const validOutput = renderDialogue(intent, valid);
+    if (line === "best") {
+      expect(validOutput.text).toMatch(/^alternative would /);
+      expect(validOutput.text).not.toContain("Verified actual consequence");
+      expect(validOutput.trace.variants[0].source).toBe("positional-conditional-1");
+    } else {
+      expect(validOutput.text).toContain("Verified actual consequence: played");
+      expect(validOutput.trace.variants[0].source).toBe("branch-safety-test");
+    }
   }
   const unsupported = {...positionalClaims("best")[0], code: "future_feature"};
   const fallback = renderNeutral(makeIntent("unknown", "mistake", "game", "mistake", [unsupported]));
@@ -86,6 +104,22 @@ test("human naturalness does not become a population claim or override the grade
   expect(text).toContain("natural mistake");
   expect(text).toContain("3.40 pawns");
   expect(text).not.toMatch(/%|players at your|you thought/);
+});
+
+test("a mate explanation names the immediate check once without suppressing a separate reply", () => {
+  const value = report([event("mate", {transition: "allowed"})]);
+  value.immediate_reply = {san: "Qh4#", capture: null, gives_check: true} as ExplanationFrame;
+  const intent = gameIntent({...args, report: value});
+  expect(intent.claims.find(c => c.code === "allowed_mate")?.slots.reply).toBe("Black's strongest reply is Qh4#.");
+  expect(intent.claims.some(c => c.code === "reply_check")).toBe(false);
+  expect(renderNeutral(intent).text.match(/Qh4#/g)).toHaveLength(1);
+
+  // A missed mate describes an unplayed alternative, so the actual opponent's
+  // checking reply remains a distinct supported fact.
+  const missed = {...value, intelligence: {...value.intelligence!, events: [event("mate", {transition: "missed"})]}};
+  expect(gameIntent({...args, report: missed}).claims.find(c => c.code === "reply_check")?.slots.reply).toBe("Qh4#");
+  const ordinary = {...value, intelligence: {...value.intelligence!, events: []}};
+  expect(gameIntent({...args, report: ordinary}).claims.find(c => c.code === "reply_check")?.slots.reply).toBe("Qh4#");
 });
 
 test("recorded relationships need the matching node and never follow a variation", () => {

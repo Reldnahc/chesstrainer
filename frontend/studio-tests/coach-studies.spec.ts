@@ -6,30 +6,26 @@ const characters = [
     id: "classic",
     name: "Men",
     families: ["storyteller", "host", "expert", "partner"],
-    micro: "nod",
   },
   {
     id: "woman",
     name: "Women",
     families: ["captain", "analyst", "spark", "blonde"],
-    micro: "hair",
   },
   {
     id: "cat",
     name: "Cats",
-    families: ["tabby", "tuxedo", "calico", "black"],
-    micro: "ears",
+    families: ["tuxedo", "black"],
   },
   {
     id: "dog",
     name: "Dogs",
-    families: ["sunny", "gentle", "corgi", "collie"],
-    micro: "tail",
+    families: ["gentle", "corgi", "collie"],
   },
 ];
 
 for (const character of characters) {
-  test(`${character.name} has four complete expressive studies at review sizes`, async ({
+  test(`${character.name} has complete retained expressive studies at review sizes`, async ({
     page,
   }, info) => {
     const errors: string[] = [];
@@ -44,12 +40,12 @@ for (const character of characters) {
     await page.goto(`/?coach=${character.id}&expression=brilliant`);
     const concepts = page.locator(".studio-concepts .coach-avatar");
     const first = concepts.first();
-    await expect(concepts).toHaveCount(4);
+    await expect(concepts).toHaveCount(character.families.length);
     for (const avatar of await concepts.all())
       await expect(avatar).toHaveAttribute("data-coach", character.id);
     await expect(
       page.getByText("Available in Settings", { exact: true }),
-    ).toHaveCount(4);
+    ).toHaveCount(character.families.length);
     await first.scrollIntoViewIfNeeded();
     await expect(first).toHaveAttribute("data-phase", "reaction");
     await expect
@@ -153,13 +149,14 @@ for (const character of characters) {
       name: "Idle gesture",
       exact: true,
     });
-    await idles.selectOption(character.micro);
+    const idle = await idles.locator("option").first().getAttribute("value");
+    await idles.selectOption(idle!);
     await page
       .getByRole("button", { name: "Preview idle", exact: true })
       .click();
     const chosen = concepts.last();
     await chosen.scrollIntoViewIfNeeded();
-    await expect(chosen).toHaveAttribute("data-micro", character.micro);
+    await expect(chosen).toHaveAttribute("data-micro", idle!);
     await expect
       .poll(() =>
         chosen.evaluate((el) => el.getAnimations({ subtree: true }).length),
@@ -200,14 +197,14 @@ test("study links restore character and family; changing character resets unsupp
 }) => {
   await page.goto("/?coach=cat&family=tuxedo&expression=thinking");
   await expect(
-    page.getByRole("button", { name: "Preview Cats", exact: true }),
+    page.locator('.studio-cast button:has([data-coach="cat-tuxedo"])'),
   ).toHaveAttribute("aria-pressed", "true");
   await expect(
     page.getByRole("combobox", { name: "Collection", exact: true }),
   ).toHaveValue("tuxedo");
   await page
     .getByRole("combobox", { name: "Idle gesture", exact: true })
-    .selectOption("ears");
+    .selectOption({ index: 0 });
   await page
     .getByRole("button", { name: "Play a sequence", exact: true })
     .click();
@@ -215,7 +212,7 @@ test("study links restore character and family; changing character resets unsupp
     page.getByRole("button", { name: "Stop sequence" }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "Preview Women", exact: true })
+    .locator('.studio-cast button:has([data-coach="woman-captain"])')
     .click();
   await expect(page.getByRole("button", { name: "Stop sequence" })).toHaveCount(
     0,
@@ -225,7 +222,7 @@ test("study links restore character and family; changing character resets unsupp
   ).toHaveValue("captain");
   await expect(
     page.getByRole("combobox", { name: "Idle gesture", exact: true }),
-  ).toHaveValue("blink");
+  ).toHaveValue(/.+/);
   await expect(
     page
       .getByRole("combobox", { name: "Idle gesture", exact: true })
@@ -245,7 +242,7 @@ test("study links restore character and family; changing character resets unsupp
     page.getByRole("combobox", { name: "Expression", exact: true }),
   ).toHaveValue("blunder");
   await expect(
-    page.getByRole("button", { name: "Preview Women", exact: true }),
+    page.locator('.studio-cast button:has([data-coach="woman-analyst"])'),
   ).toHaveAttribute("aria-pressed", "true");
 
   await page.goto(
@@ -281,14 +278,24 @@ test("retired concepts have safe bookmark fallbacks in the standalone studio", a
     "/?coach=retriever&family=gentle&expression=good",
   );
   await expect(
-    page.getByRole("button", { name: "Preview Dogs", exact: true }),
+    page.locator('.studio-cast button:has([data-coach="dog-gentle"])'),
   ).toHaveAttribute("aria-pressed", "true");
   await expect(
     page.getByRole("combobox", { name: "Collection", exact: true }),
   ).toHaveValue("gentle");
-  await expect(page).toHaveURL(/coach=dog/);
+  await expect(page).toHaveURL(/coach=dog-gentle/);
   await page.goto("/?coach=retriever&family=scout");
   await expect(
     page.getByRole("combobox", { name: "Collection", exact: true }),
-  ).toHaveValue("sunny");
+  ).toHaveValue("gentle");
+  for (const bookmark of [
+    "coach=cat-tabby", "coach=cat-calico", "coach=cat&family=tabby", "coach=cat&family=calico",
+  ]) {
+    await page.goto(`/?${bookmark}`);
+    await expect(page.locator('.studio-cast button:has([data-coach="cat-kitten"])')).toHaveAttribute("aria-pressed", "true");
+  }
+  for (const bookmark of ["coach=dog-sunny", "coach=dog&family=sunny", "coach=retriever&family=sunny"]) {
+    await page.goto(`/?${bookmark}`);
+    await expect(page.locator('.studio-cast button:has([data-coach="dog-puppy"])')).toHaveAttribute("aria-pressed", "true");
+  }
 });
