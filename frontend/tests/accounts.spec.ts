@@ -40,7 +40,8 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByLabel('Password', {exact: true}).fill('test-only-password');
     await device.getByRole('button', {name: 'Sign in', exact: true}).click();
     await expect(device).toHaveURL(`${gameHref}?ply=3`);
-    await expect(device.getByRole('heading', {name: `${username} vs FixtureOpponent`})).toBeVisible();
+    await expect(device.locator('.game-player-name', {hasText: username})).toBeVisible();
+    await expect(device.locator('.game-player-name', {hasText: 'FixtureOpponent'})).toBeVisible();
     await expect(device.locator('.review-coach .coach-avatar')).toHaveAttribute('data-motion', 'still');
     await expect(device.locator('.review-coach .coach-avatar')).toHaveAttribute('data-coach', 'woman-blonde');
     await expect(device.getByRole('button', {name: /^2\. g4(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
@@ -76,7 +77,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue('');
     await device.goto(`${gameHref}?ply=3`);
     await expect(device.getByRole('alert')).toContainText('Game not found');
-    await expect(device.getByRole('heading', {name: `${username} vs FixtureOpponent`})).toHaveCount(0);
+    await expect(device.locator('.game-player-name')).toHaveCount(0);
     await device.getByRole('link', {name: 'All games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
   } finally { await second.close(); }

@@ -13,9 +13,6 @@ import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
 
-const dateText = (date: string | null) =>
-  date && !date.includes("?") ? date : "Date unknown";
-
 export default function GameWorkspace({
   id,
   initialPly,
@@ -125,20 +122,6 @@ export default function GameWorkspace({
       )}
       <ReviewWorkspace
         boardLabel="Game board and navigation"
-        heading={
-          <>
-            <Link className="button-link text-button" href={libraryHref}>
-              <ArrowLeft size={16} />
-              All games
-            </Link>
-            <h1>
-              {game.white} <span>vs</span> {game.black}
-            </h1>
-            <span>
-              {dateText(game.played_on)} · {game.result}
-            </span>
-          </>
-        }
         aboveBoard={
           <PlayerRow
             name={playerName(orientation === "white" ? "black" : "white")}
@@ -207,7 +190,7 @@ export default function GameWorkspace({
             }
           />
         }
-        boardControls={<ReviewControls exploration={exploration} />}
+        boardControls={<ReviewControls exploration={exploration} libraryHref={libraryHref} />}
       >
         <PositionCoach
           positionKey={`${id}:${analysisEpoch}:${key}`}

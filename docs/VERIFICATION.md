@@ -2,6 +2,20 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Game review library link: focused checks
+
+All games sits at the bottom left below the board; the repeated matchup/date/result
+heading is removed. Desktop move controls remain centered, while phones put the
+library link below the controls to retain their touch widths. The shared SRS
+heading and board sizing are unchanged.
+
+- From `frontend`, `npx.cmd playwright test review-presentation.spec.ts variation-navigation.spec.ts navigation.spec.ts game-review-presentation.spec.ts --grep 'review modes share|variation return is|Back, Forward|returning to the library|moves and move quality' --reporter=line`:
+  **10 passed**, desktop/mobile. Covers link placement, shared board/coach sizes,
+  centered controls, library pagination/history and sidebar layout through 320px.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed. Desktop/mobile screenshots
+  inspected. Full verification remains deferred by owner request.
+
 ## Piece and interface motion preferences: focused checks
 
 Settings offers device-default, Animated and Still for pieces/interface effects,

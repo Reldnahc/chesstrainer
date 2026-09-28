@@ -67,7 +67,7 @@ test('review modes share board and coach sizing without empty mobile controls', 
       const {x, y, width, height} = document.querySelector(selector)!.getBoundingClientRect();
       return {x: x + scrollX, y: y + scrollY, width, height};
     };
-    return {board: rect('.board-shell'), heading: rect('.review-workspace-heading'), coach: rect('.coach-speech')};
+    return {board: rect('.board-shell'), coach: rect('.coach-speech')};
   });
   for (const size of sizes) {
     await page.setViewportSize(size);
@@ -75,17 +75,29 @@ test('review modes share board and coach sizing without empty mobile controls', 
     await expect(page.getByRole('button', {name: 'Last move', exact: true})).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
     const game = await dimensions();
+    await expect(page.locator('.review-workspace-heading')).toHaveCount(0);
+    const navigation = page.getByRole('group', {name: 'Game navigation'});
+    const allGames = navigation.getByRole('link', {name: 'All games', exact: true});
+    await expect(allGames).toHaveAttribute('href', '/games');
+    const link = await geometry(allGames);
+    expect(link.top).toBeGreaterThanOrEqual(game.board.y + game.board.height);
+    expect((await allGames.boundingBox())!.x).toBe((await navigation.boundingBox())!.x);
+    if (size.width > 760) {
+      expect(game.coach.y).toBe((await page.locator('.review-sidebar').boundingBox())!.y);
+    }
     await page.screenshot({path: `test-results/shared-layout-game-${size.width}.png`, fullPage: true});
     await page.goto(`/?exercise=${exercise.exercise_id}`);
     await expect(page.getByRole('button', {name: 'Reveal move', exact: true})).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator('.review-workspace-heading')).toBeVisible();
     await expect.poll(async () => {
       const practice = await dimensions();
-      // Phones stack content, so SRS coaching follows the board hint directly;
-      // game review also has its working move-navigation controls in between.
-      return size.width <= 760
-        ? {...practice, coach: {...practice.coach, y: game.coach.y}}
-        : practice;
+      // SRS keeps its heading; game review starts directly with the coach.
+      // On phones that heading also precedes the board. Sizes stay shared.
+      return {
+        board: {...practice.board, y: size.width <= 760 ? game.board.y : practice.board.y},
+        coach: {...practice.coach, y: game.coach.y},
+      };
     }).toEqual(game);
     if (size.width <= 760) {
       await expect(page.locator('.review-board-toolbar')).toBeHidden();

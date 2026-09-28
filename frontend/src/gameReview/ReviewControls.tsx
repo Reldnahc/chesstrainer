@@ -1,16 +1,20 @@
 import {
+  ArrowLeft,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
   FlipVertical2,
 } from "lucide-react";
+import Link from "../Link";
 import type { GameExploration } from "./useGameExploration";
 
 export default function ReviewControls({
   exploration,
+  libraryHref,
 }: {
   exploration: GameExploration;
+  libraryHref: string;
 }) {
   const {
     branch, cursor, current, maximum, firstPly, navigate, step, selectStep, flip,
@@ -21,6 +25,10 @@ export default function ReviewControls({
       role="group"
       aria-label="Game navigation"
     >
+      <Link className="button-link text-button game-library-link" href={libraryHref}>
+        <ArrowLeft size={16} />
+        All games
+      </Link>
       <button
         aria-label="First move"
         title="First move of the original game"

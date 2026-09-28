@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, type ReactNode } from "react";
 
 /** The single layout and sizing policy for game review and spaced repetition. */
 export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard, belowBoard, boardControls, evaluation, children }: {
-  heading: ReactNode;
+  heading?: ReactNode;
   boardLabel: string;
   board: ReactNode;
   aboveBoard: ReactNode;
@@ -56,7 +56,7 @@ export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard
       <div className="review-board-toolbar" data-review-chrome>{boardControls}</div>
     </section>
     <aside className="review-sidebar">
-      <div className="review-workspace-heading">{heading}</div>
+      {heading && <div className="review-workspace-heading">{heading}</div>}
       {children}
     </aside>
   </div>;

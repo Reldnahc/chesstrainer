@@ -81,8 +81,12 @@
   gap: 5px;
   align-items: center;
 }
-.game-board-controls button:first-child {
-  grid-column: 2;
+.game-library-link {
+  justify-self: start;
+  min-height: 36px;
+  padding: 6px 0;
+  font-size: 12px;
+  white-space: nowrap;
 }
 .game-move-counter {
   flex: 0 0 9ch;
@@ -463,7 +467,14 @@
   }
   .game-board-controls {
     display: flex;
+    flex-wrap: wrap;
     gap: 2px;
+  }
+  .game-library-link {
+    order: 1;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    min-height: 44px;
   }
   .game-board-controls button {
     flex: 1 1 0;
