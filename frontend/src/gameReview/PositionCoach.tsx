@@ -90,6 +90,14 @@ export default function PositionCoach({
         )
       }
       evaluation={<EvaluationScore score={score} />}
+      portraitCaption={
+        bestMove && (
+          <span className="coach-best-move" title={`Best move: ${bestMove}`}>
+            <span>Best</span>
+            <strong>{bestMove}</strong>
+          </span>
+        )
+      }
       actions={
         <>
           <button
@@ -117,15 +125,7 @@ export default function PositionCoach({
       }
       context={
         <>
-          <span title={bestMove ? `Best move: ${bestMove}` : undefined}>
-            {bestMove ? (
-              <>
-                Best: <strong>{bestMove}</strong>
-              </>
-            ) : (
-              "Move a piece to explore"
-            )}
-          </span>
+          {!bestMove && <span>Move a piece to explore</span>}
           {report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
         </>
       }

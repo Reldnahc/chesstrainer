@@ -82,6 +82,22 @@ test('review modes share board and coach sizing without empty mobile controls', 
     await expect(page.getByRole('button', {name: 'Last move', exact: true})).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
     const game = await dimensions();
+    const best = page.locator('.coach-portrait-caption');
+    await expect(best).toContainText('Best');
+    const portrait = await geometry(page.locator('.review-coach .coach-avatar'));
+    const caption = await geometry(best);
+    expect(caption.top - portrait.top - portrait.height).toBeCloseTo(8, 1);
+    expect(caption.width).toBeCloseTo(portrait.width, 1);
+    expect(caption.top + caption.height).toBeLessThanOrEqual(
+      (await geometry(page.locator('.coach-actions'))).top + game.actions.height,
+    );
+    expect(await best.locator('strong').evaluate(element => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const bounds = element.closest('.coach-portrait-caption')!.getBoundingClientRect();
+      const text = range.getBoundingClientRect();
+      return range.getClientRects().length === 1 && text.left >= bounds.left && text.right <= bounds.right;
+    })).toBe(true);
     expect(game.actions.buttonWidth).toBeCloseTo((game.actions.width - 8) / 2, 1);
     expect(game.actions.buttonHeight).toBeGreaterThanOrEqual(44);
     await expect(page.locator('.review-workspace-heading')).toHaveCount(0);
@@ -97,6 +113,7 @@ test('review modes share board and coach sizing without empty mobile controls', 
     await page.screenshot({path: `test-results/shared-layout-game-${size.width}.png`, fullPage: true});
     await page.goto(`/?exercise=${exercise.exercise_id}`);
     await expect(page.getByRole('button', {name: 'Reveal move', exact: true})).toBeVisible();
+    await expect(page.locator('.coach-portrait-caption')).toHaveCount(0);
     await page.evaluate(() => document.fonts.ready);
     await expect(page.locator('.review-workspace-heading')).toBeVisible();
     await expect.poll(async () => {

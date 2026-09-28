@@ -79,9 +79,10 @@ purple **Return to game** button beside **Show why** in the coach's action row
 restores the original branch point without adding another row above the controls.
 Game review and SRS share the same action sizing: buttons grow with the row up to
 half its width, allowing for the gap, with a 44px minimum height. A single action
-keeps that half-width when Return to game appears beside it. Best-move and human
-insight information sit on a separate compact line below the actions, so they
-cannot squeeze the buttons.
+keeps that half-width when Return to game appears beside it. The best move sits
+directly beneath the coach portrait, with its notation kept on one line even in
+compact panels. Human insight information keeps a separate compact line below
+the actions, so neither readout can squeeze the buttons.
 Stepping backward to that point also exits the variation. The **Start of game** (`<<`)
 control always selects the original game's initial position (ply 0), even from a
 variation. It is disabled when already at that position. Escape returns to the
