@@ -49,10 +49,17 @@ main:has(.review-workspace-layout) {
   margin: 0;
 }
 .review-sidebar {
+  /* Keep absolute accessibility labels inside the scrolling pane. */
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
   height: var(--review-height, calc(100dvh - 84px));
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
   container-type: inline-size;
 }
 .review-workspace-heading {

@@ -49,7 +49,7 @@ test("saved coach selection changes reviewed wording without new searches or alt
   await page.goto(`/games/${id}?ply=3`);
   const line = page.locator(".coach-message [data-utterance]");
   await expect(line).toContainText(/forced checkmate/i, {timeout: 60_000});
-  await expect(page.locator(".game-summary > summary")).toContainText("complete game", {timeout: 60_000});
+  await expect(page.locator(".game-summary caption")).toContainText("Complete game", {timeout: 60_000});
   const text = await line.innerText(), intentId = await line.getAttribute("data-intent");
   const before = await (await page.request.get(`/api/games/${id}`)).json();
   const searches: string[] = [];

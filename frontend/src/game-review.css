@@ -124,8 +124,8 @@
 .game-notation {
   display: flex;
   flex-direction: column;
-  min-height: 120px;
-  flex: 1;
+  min-height: 240px;
+  flex: 1 1 240px;
   border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
@@ -135,14 +135,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 4px 10px;
+  flex-shrink: 0;
+  padding: 0 10px;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
-}
-.game-move-heading h2 {
-  font-size: 13px;
-  letter-spacing: 0;
-  margin: 0;
 }
 .game-move-heading button {
   font-size: 11px;
@@ -152,9 +148,29 @@
   border-color: transparent;
   gap: 3px;
 }
+.game-move-heading button[hidden] {
+  display: none;
+}
+.game-review-tabs {
+  display: flex;
+  gap: 4px;
+}
+.game-review-tabs button {
+  min-height: 38px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.game-review-tabs button[aria-selected="true"] {
+  border-bottom-color: var(--accent);
+  color: #eceef1;
+}
 .game-notation-scroll {
+  position: relative;
+  flex: 1;
   overflow-y: auto;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
   min-height: 0;
 }
@@ -234,7 +250,7 @@
 .game-graph {
   flex-shrink: 0;
   min-width: 0;
-  padding: 8px 10px 4px;
+  padding: 6px 10px 2px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -244,7 +260,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  height: 44px;
+  height: 36px;
 }
 .game-graph-heading > div:first-child {
   display: flex;
@@ -270,7 +286,6 @@
 }
 .game-graph .game-evaluation-plot {
   width: 100%;
-  height: 152px;
   display: block;
   cursor: pointer;
   touch-action: pan-y;
@@ -322,7 +337,7 @@
   fill: var(--accent);
 }
 .game-graph-footer {
-  min-height: 38px;
+  min-height: 34px;
   display: flex;
   align-items: center;
 }
@@ -353,19 +368,21 @@
   font-size: 11px;
   margin: 2px 0 4px;
 }
-.game-review-tools {
-  flex-shrink: 0;
-  max-height: 36%;
-  overflow-y: auto;
-  scrollbar-width: thin;
+.game-summary {
+  padding: 8px 18px 12px;
 }
-.game-review-tools summary {
-  padding: 6px 0;
-  cursor: pointer;
-  font-size: 12px;
+.game-summary caption {
+  padding-bottom: 6px;
+  text-align: right;
   color: var(--muted);
+  font-size: 11px;
 }
-.game-review-tools p {
+.game-progress {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.game-progress p {
   font-size: 12px;
   margin: 8px 0;
 }
@@ -388,12 +405,29 @@
 .game-summary table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 12px;
+}
+.game-summary thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--surface);
+}
+.game-summary thead th:first-child {
+  width: 40%;
+}
+.game-summary thead th > span:not(.sr-only) {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .game-summary th,
 .game-summary td {
-  padding: 4px;
-  text-align: right;
+  padding: 2px 4px;
+  line-height: 1.25;
+  text-align: center;
 }
 .game-summary th:first-child,
 .game-summary td:first-child {
@@ -403,7 +437,7 @@
   font-weight: 400;
 }
 .game-summary .game-summary-accuracy > * {
-  padding-block: 8px;
+  padding-block: 4px;
   border-bottom: 1px solid var(--line);
 }
 @container (max-width: 440px) {
@@ -433,24 +467,13 @@
   }
   .game-notation {
     flex: none;
+    height: 344px;
     margin-bottom: 12px;
-  }
-  .game-notation-scroll {
-    max-height: 300px;
   }
   .game-move-heading button,
   .game-move-list button,
   .game-variation-row button {
     min-height: 44px;
-  }
-  .game-review-tools {
-    max-height: none;
-    overflow: visible;
-    margin-top: 10px;
-  }
-  .game-review-tools summary {
-    min-height: 44px;
-    padding-block: 12px;
   }
   .game-graph-verdict {
     display: none;

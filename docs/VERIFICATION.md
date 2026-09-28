@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review sidebar tabs: focused checks
+
+Moves and Move quality now share one panel. The inset quality table uses sticky
+username headings; review progress stays available from either tab. Evaluation
+is shorter and the moves panel has more room. Tab changes preserve the selected
+position, board size and panel height. Desktop scrolling stays inside the review
+workspace; mobile retains normal page scrolling.
+
+- From `frontend`, `npx.cmd playwright test game-review-presentation.spec.ts review-presentation.spec.ts game-review.spec.ts --grep 'moves and move quality|a paused partial|progress merges|review modes share|book moves appear|opening starts once' --reporter=line`:
+  **12 passed**, desktop/mobile. Covers tab click/keyboard behavior, six viewport
+  sizes, no added page height, shared SRS/game board geometry, progress/accuracy
+  updates, pause/resume/retry and unchanged original-game counts in variations.
+- After the sticky-heading polish, `npx.cmd playwright test game-review-presentation.spec.ts --grep 'moves and move quality' --reporter=line`:
+  **2 passed**, including usernames remaining visible during internal scrolling.
+- `npx.cmd tsc -b`, `npm.cmd run test:types`, `npx.cmd vite build` and
+  `git diff --check` passed. Desktop/mobile screenshots inspected.
+- Full verification remains deferred by owner request. No API, engine, grading,
+  persistence or deployment changes.
+
 ## Variation navigation UX: focused checks
 
 Return to game is a purple primary action below the coach. Stepping back to a

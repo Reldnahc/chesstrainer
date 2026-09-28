@@ -71,8 +71,18 @@ previous-move control can still reach the initial position. Escape returns to th
 game when explanation cues are already hidden. Variations are not saved across leaving
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
-The sidebar orders coaching, compact notation and variations, evaluation, then
-review progress and the move-quality summary. The evaluation graph uses a white
+The sidebar orders coaching, a tabbed review panel, then evaluation. **Moves** is
+the default tab, with notation and variations; **Move quality** swaps in the
+accuracy and rating counts within the same panel. Switching tabs preserves the
+selected position and panel height. Arrow keys/Home/End navigate the focused tabs
+without stepping the board. Review progress and pause/resume controls remain
+available in either tab. The panel has a 240px minimum height on desktop and a
+344px fixed height on phones; long content scrolls inside the active tab. The
+desktop page and board stay in place, with sidebar scrolling available on short
+viewports. Phones retain normal page scrolling. The compact evaluation plot is
+120px tall. The inset quality table uses sticky player usernames as column headings
+and centers their counts; truncated names retain the full username and color in a tooltip.
+The evaluation graph uses a white
 area below the score and a dark area above it, with a clear zero line and signed
 pawn labels. It starts at ±4 and expands symmetrically to the next whole pawn
 whenever a finite score exceeds the range (for example, +7.30 gives ±8, and −9.80

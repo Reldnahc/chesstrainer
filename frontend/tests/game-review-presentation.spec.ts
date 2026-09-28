@@ -4,7 +4,7 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   test.setTimeout(90_000);
   const {id} = await (await page.request.post(`/__test/game-review-fixture/move-review-${info.project.name}`)).json();
   await page.goto(`/games/${id}`);
-  await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
+  await expect(page.locator('.game-summary caption')).toContainText('Complete game', {timeout: 60_000});
   await expect(page.getByRole('region', {name: 'Game summary'})).toHaveCount(0);
   await expect(page.getByRole('button', {name: /^Jump to/})).toHaveCount(0);
   await expect(page.locator('body')).not.toContainText(/Game story|Critical moments|Book recognition is not a quality grade/i);
@@ -30,5 +30,99 @@ test('a paused partial review keeps its resume control', async ({page}, info) =>
   await page.route(`**/api/games/${id}/review`, route => route.fulfill({json: {job_id: 'paused-review', status: 'cancelled'}}));
   await page.goto(`/games/${id}`);
   await expect(page.getByRole('button', {name: 'Resume review'})).toBeVisible();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
+  await expect(page.getByRole('button', {name: 'Resume review'})).toBeVisible();
+  await expect(page.getByRole('table', {name: 'Move quality and accuracy'})).toBeVisible();
+  await expect(page.locator('.game-summary caption')).toHaveText('Reviewed moves so far');
   await expect(page.getByRole('region', {name: 'Game summary'})).toHaveCount(0);
+});
+
+test('moves and move quality swap in one stable panel without adding page height', async ({page}, info) => {
+  const {id} = await (await page.request.post(`/__test/game-review-fixture/sidebar-${info.project.name}`)).json();
+  const game = await (await page.request.get(`/api/games/${id}`)).json();
+  game.white = 'APlayerWithAVeryLongUsername';
+  game.black = 'Reldnahcs';
+  for (const frame of game.frames.slice(1)) {
+    const candidate = {uci: frame.uci, san: frame.san, pv: [], score: {kind: 'cp', value: 50}};
+    frame.report = {label: 'Good', coach: 'A sound move.', reason: '', best: candidate, actual: candidate,
+      white_score: candidate.score, depth: 1, engine_version: 'Layout fixture', board_cues: null};
+  }
+  game.job = {id: 'layout-review', status: 'completed', completed: 4, total: 4};
+  await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
+  await page.route(`**/api/games/${id}/review`, route => route.fulfill({json: {job_id: game.job.id, status: 'completed'}}));
+  const sizes = info.project.name === 'desktop'
+    ? [{width: 1366, height: 768}, {width: 1280, height: 600}, {width: 1000, height: 800}, {width: 1920, height: 1080}]
+    : [{width: 390, height: 844}, {width: 320, height: 700}];
+  for (const size of sizes) {
+    await page.setViewportSize(size);
+    await page.goto(`/games/${id}?ply=2`);
+    const sidebar = page.locator('.review-sidebar');
+    const movesTab = page.getByRole('tab', {name: 'Moves', exact: true});
+    const qualityTab = page.getByRole('tab', {name: 'Move quality', exact: true});
+    const quality = page.getByRole('table', {name: 'Move quality and accuracy'});
+    const panel = page.locator('.game-notation');
+    await expect(movesTab).toHaveAttribute('aria-selected', 'true');
+    await expect(page.getByRole('tabpanel', {name: 'Moves', exact: true})).toBeVisible();
+    await expect(quality).toBeHidden();
+    await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
+    await page.evaluate(() => document.fonts.ready);
+    await movesTab.scrollIntoViewIfNeeded();
+    const before = await panel.boundingBox();
+    const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+    const board = (await page.locator('.board-shell').boundingBox())!;
+    await qualityTab.click();
+    await expect(qualityTab).toHaveAttribute('aria-selected', 'true');
+    await expect(page.getByRole('tabpanel', {name: 'Moves', exact: true})).toBeHidden();
+    await expect(quality).toBeVisible();
+    await expect(page.getByRole('button', {name: 'Next mistake', exact: true})).toBeHidden();
+    expect(await panel.boundingBox()).toEqual(before);
+    expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBe(pageHeight);
+    expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
+    await expect(quality.getByRole('columnheader')).toHaveText(['Move quality', game.white, game.black]);
+    await expect(quality.getByText(game.white, {exact: true})).toHaveAttribute('title', `${game.white} · White`);
+    await expect(quality.getByRole('row')).toHaveCount(11);
+    await expect(page.locator('details.game-summary, .game-summary summary')).toHaveCount(0);
+    expect(before!.height).toBeGreaterThanOrEqual(240);
+    expect((await page.locator('.game-evaluation-plot').boundingBox())!.height).toBe(120);
+    expect((await page.locator('.game-summary').boundingBox())!.height).toBeLessThan(300);
+    const inset = await quality.evaluate(element => {
+      const pane = element.closest('.game-notation')!;
+      return pane.getBoundingClientRect().right - element.getBoundingClientRect().right;
+    });
+    expect(inset).toBeGreaterThanOrEqual(18);
+    if (info.project.name === 'desktop') {
+      expect(pageHeight).toBeLessThanOrEqual(size.height + 1);
+      if (size.height >= 768) {
+        expect(await sidebar.evaluate(element => element.scrollHeight - element.clientHeight)).toBeLessThanOrEqual(1);
+      }
+      const content = page.getByRole('tabpanel', {name: 'Move quality', exact: true});
+      await content.evaluate(element => { element.scrollTop = element.scrollHeight; });
+      await expect(quality.getByRole('columnheader', {name: game.white, exact: true})).toBeInViewport();
+      await expect(quality.getByRole('columnheader', {name: game.black, exact: true})).toBeInViewport();
+      await expect(quality.getByRole('row', {name: 'Blunder 0 0', exact: true})).toBeInViewport();
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
+    } else {
+      await expect(sidebar).toHaveCSS('display', 'contents');
+      expect(pageHeight).toBeGreaterThan(size.height);
+      expect(await sidebar.evaluate(element => element.scrollTop)).toBe(0);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({path: `test-results/review-quality-tab-${size.width}x${size.height}.png`, fullPage: true});
+    // Tab arrow keys change the panel, not the selected chess move.
+    await qualityTab.focus();
+    await qualityTab.press('ArrowLeft');
+    await expect(movesTab).toBeFocused();
+    await expect(movesTab).toHaveAttribute('aria-selected', 'true');
+    await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
+    await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=2$`));
+    await movesTab.press('End');
+    await expect(qualityTab).toBeFocused();
+    await qualityTab.press('Home');
+    await expect(movesTab).toBeFocused();
+    await movesTab.press('ArrowRight');
+    await expect(qualityTab).toBeFocused();
+    await movesTab.click();
+    expect((await panel.boundingBox())!.height).toBe(before!.height);
+  }
 });

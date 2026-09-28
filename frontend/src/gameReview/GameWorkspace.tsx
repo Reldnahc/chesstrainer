@@ -8,7 +8,7 @@ import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
 import ReviewMoves from "./ReviewMoves";
-import ReviewSummary from "./ReviewSummary";
+import ReviewProgress from "./ReviewProgress";
 import { useGameReviewSession } from "./useGameReviewSession";
 import { useGameExploration } from "./useGameExploration";
 import { usePositionAnalysis } from "./usePositionAnalysis";
@@ -233,20 +233,22 @@ export default function GameWorkspace({
           game={game}
           exploration={exploration}
           getAnalysis={analysis.get}
+          progress={
+            <ReviewProgress
+              game={game}
+              running={running}
+              busy={busy}
+              reviewStarting={reviewStarting}
+              start={start}
+              cancel={cancel}
+            />
+          }
         />
         <EvaluationGraph
           frames={game.frames}
           initialScore={initialScore}
           selected={cursor.ply}
           onSelect={navigate}
-        />
-        <ReviewSummary
-          game={game}
-          running={running}
-          busy={busy}
-          reviewStarting={reviewStarting}
-          start={start}
-          cancel={cancel}
         />
       </ReviewWorkspace>
     </div>

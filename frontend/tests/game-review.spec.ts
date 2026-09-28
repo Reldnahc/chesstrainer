@@ -79,26 +79,26 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(whiteScore).toHaveText('—');
   await expect(page.locator('.game-graph-axis')).toHaveText(['+4', '0', '−4']);
   await expect(page.getByLabel('White accuracy')).toHaveAttribute('title', /full game review finishes/);
-  await page.locator('.game-summary > summary').click();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('—');
   await expect(page.getByLabel('Accuracy for White', {exact: true})).toHaveAttribute('title', /full game review finishes/);
-  await page.locator('.game-summary > summary').click();
-  // The phone scrolled to the summary. Measure completion at the board, away
-  // from the page bottom where removing progress naturally clamps scrollY.
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
+  // Measure completion at the board, away from the phone's page bottom.
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.evaluate(() => document.fonts.ready);
   const boardBefore = await page.locator('.board-shell').boundingBox();
   const readoutBefore = await blackScore.boundingBox();
   finishReview();
-  await expect(page.locator('.game-summary > summary')).toContainText('complete game');
+  await expect(page.locator('.game-summary caption')).toContainText('Complete game');
   await expect(whiteScore).toHaveText('86.4');
   await expect(blackScore).toHaveText('100.0');
   await expect(page.locator('.game-graph-axis')).toHaveText(['+9', '0', '−9']);
   expect(await page.locator('.board-shell').boundingBox()).toEqual(boardBefore);
   expect(await blackScore.boundingBox()).toEqual(readoutBefore);
-  await page.locator('.game-summary > summary').click();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText('86.4');
   await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText('100.0');
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
   await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'First move', exact: true}).click();
@@ -117,7 +117,7 @@ test('book moves appear on the board, coach and branches with original-game accu
   test.setTimeout(90_000);
   const {id} = await (await page.request.post(`/__test/book-review-fixture/${info.project.name}`)).json();
   await page.goto(`/games/${id}?ply=3`);
-  await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
+  await expect(page.locator('.game-summary caption')).toContainText('Complete game', {timeout: 60_000});
   await expect(page.getByRole('button', {name: '2. Ke2, Book', exact: true})).toHaveAttribute('aria-current', 'step');
   // The book badge remains, but the poor move's consequence takes priority
   // over opening trivia and quality disclaimers in the compact bubble.
@@ -133,7 +133,7 @@ test('book moves appear on the board, coach and branches with original-game accu
   expect(original.accuracy.white).toBeLessThan(100);
   const white = original.accuracy.white.toFixed(1), black = original.accuracy.black.toFixed(1);
   const board = await page.locator('.board-shell').boundingBox();
-  await page.locator('.game-summary > summary').click();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   const table = page.getByRole('table', {name: 'Move quality and accuracy'});
   await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
@@ -144,22 +144,25 @@ test('book moves appear on the board, coach and branches with original-game accu
   await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({path: `test-results/book-review-${info.project.name}.png`, fullPage: true});
 
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
   await page.getByRole('button', {name: '1... e5, Book', exact: true}).click();
   await page.locator('.board-shell [data-square="g1"]').click();
   await page.locator('.board-shell [data-square="f3"]').click();
   await expect(page.locator('.coach-speech .move-badge')).toContainText('Book', {timeout: 30_000});
   await expect(page.locator('.coach-speech')).toContainText("King's Knight Opening");
   await expect(page.locator('.game-variation-row .label-book svg')).toBeVisible();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   expect(await table.locator('tbody tr').allTextContents()).toEqual(counts);
   await expect(page.getByLabel('White accuracy', {exact: true}).locator('b')).toHaveText(white);
   await page.getByRole('button', {name: 'Flip board', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
   await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText(black);
   await page.getByRole('button', {name: 'Return to game', exact: true}).click();
+  await page.getByRole('tab', {name: 'Moves', exact: true}).click();
   await page.getByRole('button', {name: '2. Ke2, Book', exact: true}).click();
   await page.reload();
   await expect(page.locator('.coach-message')).toHaveText(bookFeedback);
-  await page.locator('.game-summary > summary').click();
+  await page.getByRole('tab', {name: 'Move quality', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
   await expect(table.getByRole('row', {name: 'Book 2 1', exact: true})).toBeVisible();
 });
@@ -176,7 +179,7 @@ test('review both players, explain in place, and branch without changing the gam
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Your games'})).toBeVisible();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
-  await expect(page.locator('.game-summary > summary')).toContainText('complete game', {timeout: 60_000});
+  await expect(page.locator('.game-summary caption')).toContainText('Complete game', {timeout: 60_000});
   expect(starts).toHaveLength(1);
   await expect(page.getByRole('button', {name: 'Update labels', exact: true})).toHaveCount(0);
   await expect(page.getByRole('heading', {name: 'Game report', exact: true})).toHaveCount(0);
@@ -263,7 +266,7 @@ test('review both players, explain in place, and branch without changing the gam
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   if (testInfo.project.name === 'mobile') {
     const boardWidth = (await page.locator('.review-board-row').boundingBox())!.width;
-    for (const selector of ['.game-progress', '.game-move-list']) {
+    for (const selector of ['.game-notation', '.game-move-list']) {
       expect((await page.locator(selector).boundingBox())!.width).toBeGreaterThanOrEqual(boardWidth - 2);
     }
     expect((await page.locator('.review-coach').boundingBox())!.y).toBeLessThan((await page.locator('.game-graph').boundingBox())!.y);
@@ -279,7 +282,7 @@ test('review both players, explain in place, and branch without changing the gam
   expect((await (await page.request.get(`/api/games/${id}`)).json()).frames).toEqual(game.frames);
   await page.getByRole('link', {name: 'All games', exact: true}).click();
   await page.getByRole('link', {name: new RegExp(`Review-${testInfo.project.name} vs CoachFixture`)}).click();
-  await expect(page.locator('.game-summary > summary')).toBeVisible();
+  await expect(page.locator('.game-summary caption')).toHaveText('Complete game');
   await expect(whiteScore).toHaveText(game.accuracy.white.toFixed(1));
   await expect(blackScore).toHaveText(game.accuracy.black.toFixed(1));
   // Reopening checks for newly available human evidence. The idempotent request
@@ -491,7 +494,7 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
       return {width: bounds.width, right: last.getBoundingClientRect().right - bounds.left, height: bounds.height};
     }, game.frames.length - 1);
     expect(graph.right / graph.width).toBeGreaterThan(.95);
-    expect(graph.height).toBe(152);
+    expect(graph.height).toBe(120);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   }
 });

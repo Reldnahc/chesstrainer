@@ -98,7 +98,7 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   await expect(avatar).toHaveAttribute("data-expression", "blunder", {
     timeout: 30000,
   });
-  await expect(page.locator(".game-summary > summary")).toContainText("complete game", {timeout: 30000});
+  await expect(page.locator(".game-summary caption")).toContainText("Complete game", {timeout: 30000});
   await page.getByRole("button", { name: "Last move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "losing");
   await expect(page.locator(".coach-message")).toContainText(/checkmate|king has no escape/i);
