@@ -49,3 +49,25 @@ test("all positional families retain hypothetical scope across the current coach
     }
   }
 });
+
+const counterexamples = semanticFixtures<{name: string; code: string; fen: string; after: string; report: Schema["GameReviewReport"]}[]>("review_personality_position_fixtures.py");
+for (const fixture of counterexamples) test(`all voices preserve the limited positional fact: ${fixture.name}`, async ({page}) => {
+  await page.goto("/");
+  const intent = gameIntent({game: {frames: [], orientation: "white"} as unknown as Game,
+    frame: {turn: "black", fen: fixture.after} as Position, report: fixture.report,
+    key: fixture.name, ply: 1, expression: "best"});
+  const item = intent.claims.find(c => c.code === fixture.code);
+  expect(item).toBeTruthy();
+  const outputs = await renderCoaches(page, {...intent, claims: [item!]});
+  for (const output of outputs) {
+    expect(output.trace.variants[0].code).toBe(fixture.code);
+    expect(output.text).toContain(fixture.report.actual.san);
+    if (fixture.name === "blocked_passer") {
+      expect(output.text).toContain("e6");
+      expect(output.text).not.toMatch(/clear (route|path)|unblocked|unstoppable|will promote|can advance/i);
+    } else {
+      expect(output.text).toContain("open d-file");
+      expect(output.text).not.toMatch(/puts|places|moves|relocates|brings.*rook/i);
+    }
+  }
+});

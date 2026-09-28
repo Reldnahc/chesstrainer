@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Play, RotateCcw, Sparkles } from "lucide-react";
-import { coachStudies, getCoachStudy } from "../studies/catalog";
+import { getCoachStudy } from "../studies/catalog";
+import {
+  getCoach, retiredCoachReplacements, selectableCoaches,
+} from "../registry";
 import {
   expressionInfo,
   expressionIntent,
-  availableIdles,
+  expressionIdles,
   microLabels,
   expressions,
   resolveFamily,
@@ -16,6 +19,7 @@ import { useReducedMotion } from "../../useReducedMotion";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
+import { CastComparison, IdleVariants } from "./PerformanceCollections";
 import "./studio.css";
 
 const sequence: CoachExpression[] = [
@@ -28,27 +32,51 @@ const sequence: CoachExpression[] = [
   "recovered",
   "winning",
 ];
+function bookmarkedCoach() {
+  const query = new URLSearchParams(location.search);
+  const requested = query.get("coach");
+  const legacy: Record<string, string> = {
+    "cat:tabby": "cat-tabby",
+    "cat:calico": "cat-calico",
+    "dog:sunny": "dog-sunny",
+    "retriever:sunny": "dog-sunny",
+  };
+  const retired = legacy[`${requested}:${query.get("family")}`] ?? requested;
+  const replacement = retired && Object.hasOwn(retiredCoachReplacements, retired)
+    ? getCoach(retired) : undefined;
+  const production = replacement ?? selectableCoaches.find(
+    (coach) => coach.id === requested,
+  );
+  const collection = getCoachStudy(production?.collectionId ?? requested);
+  return {
+    collection,
+    family: resolveFamily(
+      collection,
+      replacement?.defaultFamily ?? query.get("family") ?? production?.defaultFamily,
+    ),
+  };
+}
 export default function CoachStudio() {
   const [coachId, setCoachId] = useState(
-    () => getCoachStudy(new URLSearchParams(location.search).get("coach")).id,
+    () => bookmarkedCoach().collection.id,
   );
   const coach = getCoachStudy(coachId);
   const [expression, setExpression] = useState<CoachExpression>(() => {
     const requested = new URLSearchParams(location.search).get("expression");
     return expressions.find((state) => state === requested) ?? "brilliant";
   });
-  const [family, setFamily] = useState(() =>
-    resolveFamily(
-      coach,
-      new URLSearchParams(location.search).get("family") ?? undefined,
-    ),
-  );
+  const [family, setFamily] = useState(() => bookmarkedCoach().family);
+  const selected = selectableCoaches.find(
+    (item) => item.collectionId === coach.id && item.defaultFamily === family,
+  )!;
   const [motion, setMotion] = useState<CoachMotion>("system");
-  const idles = availableIdles(coach, family);
+  const idles = expressionIdles(coach, family, expression);
   const [reduced, setReduced] = useState(false);
   const [replay, setReplay] = useState(0);
+  const [reactionReplay, setReactionReplay] = useState(0);
   const [idlePreview, setIdlePreview] = useState<CoachMicro>("");
   const [idleVariant, setIdleVariant] = useState<CoachMicro>("blink");
+  const chosenIdle = idles.find((idle) => idle === idleVariant) ?? idles[0] ?? "";
   const [playing, setPlaying] = useState(false);
   const deviceReduced = useReducedMotion();
   const deviceStill = motion === "system" && deviceReduced;
@@ -63,15 +91,16 @@ export default function CoachStudio() {
     reaction,
     motion: effectiveMotion,
     replay,
+    reactionReplay,
     previewIdle: idlePreview,
   };
   useEffect(() => {
     const url = new URL(location.href);
-    url.searchParams.set("coach", coach.id);
+    url.searchParams.set("coach", selected.id);
     url.searchParams.set("expression", expression);
     url.searchParams.set("family", family);
     history.replaceState(history.state, "", url);
-  }, [expression, family, coach.id]);
+  }, [expression, family, selected.id]);
   useEffect(() => {
     if (!playing) return;
     let index = 0;
@@ -99,22 +128,29 @@ export default function CoachStudio() {
     setIdlePreview("");
     setExpression(state);
     setReplay((value) => value + 1);
+    setReactionReplay((value) => value + 1);
   }
   function selectCoach(id: string) {
-    const next = getCoachStudy(id);
+    const nextCoach = getCoach(id);
+    const next = getCoachStudy(nextCoach.collectionId);
     setPlaying(false);
     setIdlePreview("");
-    setIdleVariant(availableIdles(next)[0] ?? "");
+    setIdleVariant("");
     setCoachId(next.id);
-    setFamily(next.defaultFamily);
+    setFamily(nextCoach.defaultFamily);
     setReplay((value) => value + 1);
+    setReactionReplay((value) => value + 1);
+    document.querySelector(".studio-controls")?.scrollIntoView({
+      block: "start", behavior: "instant",
+    });
   }
   function selectFamily(id: string) {
     setPlaying(false);
     setIdlePreview("");
-    setIdleVariant(availableIdles(coach, id)[0] ?? "");
+    setIdleVariant("");
     setFamily(id);
     setReplay((value) => value + 1);
+    setReactionReplay((value) => value + 1);
   }
   function revealPerformance() {
     document
@@ -136,17 +172,14 @@ export default function CoachStudio() {
           </h1>
         </div>
         <p>
-          {coachStudies.reduce(
-            (count, item) => count + item.families.length,
-            0,
-          )}{" "}
-          character concepts to explore.
+          {selectableCoaches.length} coaches to explore. Every expression has four
+          idle performances.
           <br />
           Compare the acting, replay a moment, then see how it reads beside the
           board.
         </p>
       </header>
-      <CoachPicker selected={coach.id} onSelect={selectCoach} />
+      <CoachPicker selected={selected.id} onSelect={selectCoach} />
       <section
         className="studio-controls"
         aria-label="Animation preview controls"
@@ -183,6 +216,7 @@ export default function CoachStudio() {
             setPlaying(false);
             setIdlePreview("");
             setReplay((value) => value + 1);
+            setReactionReplay((value) => value + 1);
             revealPerformance();
           }}
         >
@@ -227,7 +261,8 @@ export default function CoachStudio() {
         <div>
           <h2>The quieter moments</h2>
           <p>
-            Idle gestures vary, with short pauses between them.
+            Four gestures for {selected.name} · {expressionInfo[expression].label}.
+            Idle previews never replay the reaction.
           </p>
         </div>
         <label className="sr-only" htmlFor="idle-variant">
@@ -235,7 +270,7 @@ export default function CoachStudio() {
         </label>
         <select
           id="idle-variant"
-          value={idleVariant}
+          value={chosenIdle}
           onChange={(event) => setIdleVariant(event.target.value as CoachMicro)}
         >
           {idles.map((idle) => (
@@ -248,7 +283,7 @@ export default function CoachStudio() {
           disabled={effectiveMotion === "still"}
           onClick={() => {
             setPlaying(false);
-            setIdlePreview(idleVariant);
+            setIdlePreview(chosenIdle);
             setReplay((value) => value + 1);
             revealPerformance();
           }}
@@ -256,7 +291,9 @@ export default function CoachStudio() {
           Preview idle
         </button>
       </section>
+      <IdleVariants preview={preview} />
       <BoardSizePreview preview={preview} />
+      <CastComparison preview={preview} selected={selected.id} />
       <ExpressionCollection
         preview={preview}
         onFamily={selectFamily}
@@ -266,9 +303,9 @@ export default function CoachStudio() {
         <Sparkles size={20} />
         <p>
           <strong>
-            {coach.name}: {coach.families.length} directions.
+            {selected.name}: {expressions.length} expressions, four idles each.
           </strong>{" "}
-          {coach.description} All of these coaches are available in Settings for
+          {selected.description} All of these coaches are available in Settings for
           game review and practice. Preview controls never change your account
           preferences.
         </p>

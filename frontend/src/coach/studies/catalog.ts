@@ -16,14 +16,13 @@ import { partner } from "../../dialogue/characters/partner";
 import { captain } from "../../dialogue/characters/captain";
 import { spark } from "../../dialogue/characters/spark";
 import { blonde } from "../../dialogue/characters/blonde";
-import { tabby } from "../../dialogue/characters/tabby";
 import { tuxedo } from "../../dialogue/characters/tuxedo";
-import { calico } from "../../dialogue/characters/calico";
 import { velvet } from "../../dialogue/characters/velvet";
-import { sunny } from "../../dialogue/characters/sunny";
 import { professor } from "../../dialogue/characters/professor";
 import { corgi } from "../../dialogue/characters/corgi";
 import { collie } from "../../dialogue/characters/collie";
+import { newCoachCollections } from "../cast/catalog";
+import { coachPerformance } from "../motionVocabulary";
 
 const animalPerformance: CoachDefinition["animation"] = {
   defaultReactionMs: 1400,
@@ -75,6 +74,7 @@ const common = {
 export const manStudy: CoachCollection = {
   ...common,
   id: "classic",
+  group: "humans",
   defaultFamily: "storyteller",
   name: "Men",
   description:
@@ -94,7 +94,7 @@ export const manStudy: CoachCollection = {
       personality: storyteller,
       name: "Storyteller",
       description:
-        "Warm, generous acting. A face you can read across the board.",
+        "A warm veteran who connects this move to the game's turning points.",
       character: "Anticipation · open gestures · soft settling",
       animation: classicPerformance,
     },
@@ -104,7 +104,7 @@ export const manStudy: CoachCollection = {
       personality: host,
       name: "Club host",
       description:
-        "Close curls, a neat beard and a terracotta overshirt. An easy, welcoming presence.",
+        "Friendly, candid analysis as if you were sitting across the club table.",
       character: "Open palms · warm grins · an expressive double take",
     },
     {
@@ -113,7 +113,7 @@ export const manStudy: CoachCollection = {
       personality: expert,
       name: "Endgame expert",
       description:
-        "Silver at the temples, a clean-shaven face and a slate cardigan. A steady study companion.",
+        "Exact consequences, measured approval and no extra words.",
       character: "Measured tilts · attentive eyes · quiet delight",
     },
     {
@@ -122,7 +122,7 @@ export const manStudy: CoachCollection = {
       personality: partner,
       name: "Creative partner",
       description:
-        "Dark waves, a shaped beard and a forest-green waistcoat. Ready to explore an idea together.",
+        "Curious questions and candidate ideas to explore together.",
       character: "Curious looks · bright smiles · generous encouragement",
     },
   ],
@@ -132,6 +132,7 @@ export const manStudy: CoachCollection = {
 export const womanStudy: CoachCollection = {
   ...common,
   id: "woman",
+  group: "humans",
   name: "Women",
   defaultFamily: "captain",
   description:
@@ -161,7 +162,7 @@ export const womanStudy: CoachCollection = {
       personality: captain,
       name: "Club captain",
       description:
-        "Auburn waves, a teal blazer and warm, assured encouragement.",
+        "A confident mentor: a clear verdict, a concrete reason and a habit to build.",
       character: "Open hands · generous smiles · confident nods",
     },
     {
@@ -170,7 +171,7 @@ export const womanStudy: CoachCollection = {
       personality: analyst,
       name: "Quiet analyst",
       description:
-        "A curled updo, warm cream knitwear and thoughtful eyes behind glasses.",
+        "A restrained observer who identifies exactly what changed.",
       character: "Small tilts · considered pauses · a reassuring smile",
     },
     {
@@ -179,7 +180,7 @@ export const womanStudy: CoachCollection = {
       personality: spark,
       name: "Bright spark",
       description:
-        "A swinging ponytail and a plum jacket. Quick to spot—and celebrate—an idea.",
+        "Quick, lively explanations and real excitement for clever tactics.",
       character: "Anticipation · lively poses · hair follow-through",
     },
     {
@@ -188,7 +189,7 @@ export const womanStudy: CoachCollection = {
       personality: blonde,
       name: "Golden braid",
       description:
-        "A swept blonde fringe, a loose side braid and a soft blue cardigan. Bright, easygoing company.",
+        "Relaxed encouragement that keeps the chess honest and the next step clear.",
       character: "Warm smiles · open gestures · a gently settling braid",
     },
   ],
@@ -198,39 +199,22 @@ export const womanStudy: CoachCollection = {
 export const catStudy: CoachCollection = {
   ...common,
   id: "cat",
+  group: "cats",
   name: "Cats",
-  defaultFamily: "tabby",
+  defaultFamily: "tuxedo",
   description:
-    "Four feline coaches, with expressive ears, whiskers and very deliberate paws.",
+    "Two watchful feline coaches, with expressive ears and very deliberate paws.",
   expressionIntents: animalIntents,
   animation: animalPerformance,
   families: [
-    {
-      id: "tabby",
-      coachId: "cat-tabby",
-      personality: tabby,
-      name: "Library tabby",
-      description:
-        "A warm ginger study companion. Curious eyes, soft stripes and a sage scarf.",
-      character: "Ear flicks · thoughtful paws · a pleased little squint",
-    },
     {
       id: "tuxedo",
       coachId: "cat-tuxedo",
       personality: tuxedo,
       name: "Midnight tactician",
       description:
-        "A sharp tuxedo silhouette, white mittens and a quieter kind of confidence.",
+        "Consequences first. Terse, dry and tactically unforgiving, without cruelty.",
       character: "Measured looks · precise nods · slow tail punctuation",
-    },
-    {
-      id: "calico",
-      coachId: "cat-calico",
-      personality: calico,
-      name: "Curious calico",
-      description:
-        "A patchwork face with a turquoise scarf. Always another angle to investigate.",
-      character: "Uneven ears · playful head tilts · bright double takes",
     },
     {
       id: "black",
@@ -238,7 +222,7 @@ export const catStudy: CoachCollection = {
       personality: velvet,
       name: "Velvet night",
       description:
-        "An all-black coat, amber eyes and a plum scarf. A watchful companion with a soft side.",
+        "Quiet, watchful explanations with a soft edge and very little drama.",
       character: "Tall ears · luminous eyes · quiet whisker movements",
     },
   ],
@@ -248,29 +232,21 @@ export const catStudy: CoachCollection = {
 export const dogStudy: CoachCollection = {
   ...common,
   id: "dog",
+  group: "dogs",
   name: "Dogs",
-  defaultFamily: "sunny",
+  defaultFamily: "gentle",
   description:
-    "Two beloved goldens, a corgi and a border collie. Four different kinds of good company.",
+    "A patient golden retriever, a decisive corgi and an intensely focused collie.",
   expressionIntents: animalIntents,
   animation: animalPerformance,
   families: [
-    {
-      id: "sunny",
-      coachId: "dog-sunny",
-      personality: sunny,
-      name: "Sunny companion",
-      description:
-        "Honey-gold fur and a blue bandana. Every good idea earns a warm welcome.",
-      character: "Bright eyes · soft ear bounce · a happy tail",
-    },
     {
       id: "gentle",
       coachId: "dog-gentle",
       personality: professor,
       name: "Gentle professor",
       description:
-        "A cream-colored older golden with reading glasses and endless patience.",
+        "Patient, connected explanations: the principle, this position and the lesson.",
       character: "Soft brows · unhurried nods · gentle encouragement",
     },
     {
@@ -279,7 +255,7 @@ export const dogStudy: CoachCollection = {
       personality: corgi,
       name: "Pocket captain",
       description:
-        "A red-and-white corgi with big upright ears, a broad grin and a little red bandana.",
+        "A tiny commander with enormous confidence. Short orders, clear consequences.",
       character: "Eager ears · buoyant double takes · a full-body smile",
     },
     {
@@ -288,7 +264,7 @@ export const dogStudy: CoachCollection = {
       personality: collie,
       name: "Border collie",
       description:
-        "A black-and-white coat, a white blaze and one folded ear. Always watching the next move.",
+        "Intense pattern recognition and precise, task-focused feedback.",
       character: "Intent eyes · attentive ears · a feathery white-tipped tail",
     },
   ],
@@ -296,9 +272,17 @@ export const dogStudy: CoachCollection = {
 };
 
 // Settings, review and the studio share these assets and performance definitions.
-export const coachStudies = [manStudy, womanStudy, catStudy, dogStudy];
+export const coachStudies: readonly CoachCollection[] = [
+  manStudy, womanStudy, catStudy, dogStudy, ...newCoachCollections,
+].map((collection) => ({
+  ...collection,
+  families: collection.families.map((family) => ({
+    ...family,
+    animation: coachPerformance(family.coachId, family.animation ?? collection.animation),
+  })),
+}));
 export function getCoachStudy(id: string | null | undefined) {
   // Existing golden-retriever preview links now open the broader dog collection.
   const requested = id === "retriever" ? "dog" : id;
-  return coachStudies.find((coach) => coach.id === requested) ?? manStudy;
+  return coachStudies.find((coach) => coach.id === requested) ?? coachStudies[0];
 }

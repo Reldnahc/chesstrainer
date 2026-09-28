@@ -29,11 +29,20 @@ export type CoachId = NonNullable<Schema["CoachPreferences"]["coach_id"]>;
 export type CoachMotion = NonNullable<Schema["CoachPreferences"]["motion"]>;
 export type CoachPreferences = { coach_id: CoachId; motion: CoachMotion };
 export type CoachReaction = { state: CoachExpression; key: string };
+export type CoachGroup =
+  | "humans"
+  | "dogs"
+  | "cats"
+  | "animals"
+  | "fantasy"
+  | "scifi"
+  | "conceptual";
 export type CoachFamily = {
   id: string;
   name: string;
   description: string;
   character: string;
+  group?: CoachGroup;
   personality?: CoachPersonality;
   animation?: CoachDefinition["animation"];
 };
@@ -49,12 +58,27 @@ export type CoachMicro =
   | "ears"
   | "tail"
   | "sigh"
-  | "twinkle";
+  | "twinkle"
+  | "slow-blink"
+  | "look-down"
+  | "head-tilt"
+  | "lean-in"
+  | "posture-reset"
+  | "scan";
+export type CoachIdle = Exclude<CoachMicro, "">;
+export type CoachIdlePool = readonly [CoachIdle, CoachIdle, CoachIdle, CoachIdle];
+export type CoachMotionProfile = {
+  id: string;
+  amplitude: number;
+  gaze: number;
+  settle: number;
+};
 
 export type CoachDefinition = {
   id: string;
   name: string;
   description: string;
+  group?: CoachGroup;
   expressionIntents?: Partial<Record<CoachExpression, string>>;
   defaultState: CoachExpression;
   expressions: readonly CoachExpression[];
@@ -67,6 +91,7 @@ export type CoachDefinition = {
     defaultReactionMs: number;
     idleGestures: Partial<Record<CoachExpression, readonly CoachMicro[]>>;
     defaultIdle: readonly CoachMicro[];
+    motionProfile?: CoachMotionProfile;
   };
   Artwork: ComponentType<CoachArtworkProps>;
 };
@@ -94,15 +119,15 @@ export const expressionInfo: Record<
   },
   brilliant: {
     label: "Brilliant",
-    intent: "A delighted double take. He saw the idea a beat after you did.",
+    intent: "Delighted surprise at an exceptional idea.",
   },
   great: {
     label: "Great",
-    intent: "Raised brows, a proud nod and a little applause.",
+    intent: "Proud recognition of a particularly important move.",
   },
   best: {
     label: "Best",
-    intent: "Quiet conviction. Exactly the move he was hoping for.",
+    intent: "Quiet conviction in the strongest move.",
   },
   good: {
     label: "Good",
@@ -122,11 +147,11 @@ export const expressionInfo: Record<
   },
   blunder: {
     label: "Blunder",
-    intent: "A sharp intake of breath, lifted hands, then a concerned settle.",
+    intent: "Immediate alarm, settling into concern and readiness to help.",
   },
   missed: {
     label: "Missed opportunity",
-    intent: "A glance back and an open palm: that chance was there.",
+    intent: "A moment of regret for an opportunity that was available.",
   },
   check: {
     label: "Check",
@@ -134,31 +159,31 @@ export const expressionInfo: Record<
   },
   winning: {
     label: "Winning finish",
-    intent: "A joyful lift and a satisfied, eyes-closed grin.",
+    intent: "Joy and satisfaction at a successful finish.",
   },
   losing: {
     label: "Losing finish",
-    intent: "Softened brows and lowered shoulders. No ridicule.",
+    intent: "Sympathy and acceptance after a loss. No ridicule.",
   },
   thinking: {
     label: "Thinking",
-    intent: "Eyes follow an idea, with a hand resting at his chin.",
+    intent: "Focused consideration while analysis is in progress.",
   },
   uncertain: {
     label: "Uncertain",
-    intent: "Uneven brows and a small shrug; confidence is not invented.",
+    intent: "Visible uncertainty; confidence is not invented.",
   },
   encouraging: {
     label: "Try again",
-    intent: "An open hand and a warm, steady look.",
+    intent: "Warm, steady encouragement to try again.",
   },
   recovered: {
     label: "Found it",
-    intent: "A small fist pump for recovering after a miss.",
+    intent: "A restrained celebration of recovery after a miss.",
   },
   explaining: {
     label: "Explaining",
-    intent: "An open palm offers the idea with a welcoming teaching gesture.",
+    intent: "Patient attention to an idea being explained.",
   },
   draw: {
     label: "Draw",
@@ -206,6 +231,12 @@ export const microLabels: Record<Exclude<CoachMicro, "">, string> = {
   tail: "Tail flick",
   sigh: "Exhale",
   twinkle: "Delighted glint",
+  "slow-blink": "Measured blink",
+  "look-down": "Look back at the board",
+  "head-tilt": "Consider the position",
+  "lean-in": "Attentive lean",
+  "posture-reset": "Settle posture",
+  scan: "Follow the line",
 };
 
 export function resolveAnimation(coach: CoachDefinition, family?: string) {
@@ -224,5 +255,16 @@ export function availableIdles(coach: CoachDefinition, family?: string) {
   ]);
   return (Object.keys(microLabels) as Exclude<CoachMicro, "">[]).filter(
     (gesture) => configured.has(gesture),
+  );
+}
+
+export function expressionIdles(
+  coach: CoachDefinition,
+  family: string | undefined,
+  expression: CoachExpression,
+): readonly CoachIdle[] {
+  const animation = resolveAnimation(coach, family);
+  return (animation.idleGestures[expression] ?? animation.defaultIdle).filter(
+    (gesture): gesture is CoachIdle => gesture !== "",
   );
 }

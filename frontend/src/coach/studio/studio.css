@@ -278,6 +278,29 @@
 .studio-concept > button[aria-pressed="true"] {
   color: #ebeedf;
 }
+@media (min-width: 761px) {
+  .studio-concept:only-child {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 740px;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 0 24px;
+  }
+  .studio-concept:only-child .studio-concept-top {
+    grid-column: 1 / -1;
+  }
+  .studio-concept:only-child .studio-character-stage {
+    grid-row: 2 / 4;
+  }
+  .studio-concept:only-child .studio-concept-copy {
+    align-self: center;
+  }
+  .studio-concept:only-child > button {
+    grid-column: 2;
+  }
+}
 .studio-idle-bar {
   display: flex;
   align-items: center;
@@ -303,6 +326,68 @@
   white-space: nowrap;
   min-height: 42px;
   font-size: 12px;
+}
+.studio-idle-grid,
+.studio-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.studio-comparison-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.studio-idle-card,
+.studio-comparison-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #424b40;
+  border-radius: 10px;
+  background: #1c211e;
+}
+.studio-idle-card .coach-avatar,
+.studio-comparison-card .coach-avatar {
+  width: 92.8px;
+  height: 116px;
+  margin: 8px 0 12px;
+}
+.studio-idle-card h3 {
+  font-size: 13px;
+  margin: 0 0 12px;
+  text-align: center;
+}
+.studio-idle-card button {
+  min-height: 42px;
+  font-size: 12px;
+  width: 100%;
+  margin-top: auto;
+}
+.studio-comparison-card label {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  font-size: 11px;
+  color: var(--studio-muted);
+}
+.studio-comparison-card select {
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+}
+.studio-comparison-selected {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  margin: 0;
+  font-size: 13px;
+}
+.studio-comparison-card > p:last-child {
+  font-size: 12px;
+  margin: 0;
+  color: var(--studio-muted);
 }
 .studio-section-title {
   display: flex;
@@ -476,6 +561,12 @@
   }
 }
 @media (max-width: 760px) {
+  .studio-idle-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .studio-comparison-grid {
+    grid-template-columns: 1fr;
+  }
   .studio-cast {
     gap: 8px;
   }

@@ -24,7 +24,12 @@ for (const {skill, black, report} of fixtures) test(`${skill} identifies the res
     expect(rendered.text).toContain(`${opponent} can`);
     expect(rendered.text).toContain(report.immediate_reply!.san!);
     expect(rendered.text).not.toMatch(/has an? abandoned defender|gets an? avoiding bad trades/i);
-    expect(rendered.text).toMatch(skill === "abandoned_defender" ? /only.*defen/ : skill === "opponent_threat_recognition" ? /preceding move/ : /pawn.*recapture/);
+    if (skill === "avoiding_bad_trades") {
+      // Consequence-first voices state the recapture before the initial exchange.
+      // Both facts are mandatory, but their presentation order is not chess truth.
+      expect(rendered.text).toMatch(/pawn/);
+      expect(rendered.text).toMatch(/recapture/);
+    } else expect(rendered.text).toMatch(skill === "abandoned_defender" ? /only.*defen/ : /preceding move/);
   }
   const context: NonNullable<Game["context"]> = {complete: false, input_digest: "causal-context", limitations: [], missing_plies: [], total_plies: 1,
     biggest_swing_ply: null, version: "game-context-1",

@@ -44,7 +44,19 @@ export type CoachUtterance = {
   interruptible: boolean;
   autoSpeakSuitable: boolean;
   delivery?: {pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright"};
-  trace: { renderer: string; variants: {code: string; index: number; sourceIds: string[]; source?: string}[]; decisions: string[] };
+  trace: {
+    renderer: string;
+    variants: {code: string; index: number; sourceIds: string[]; source?: string; form?: "sentence" | "composed"; cues?: string[]; order?: "fact-first" | "consequence-first"}[];
+    composition?: {
+      strategy: import("./personality").ResponseStrategy;
+      claimCount: number;
+      questionCount: number;
+      sentenceCount: number;
+      characterClaims: number;
+      fallbackClaims: number;
+    };
+    decisions: string[];
+  };
 };
 
 // Stable variation, not a security hash. Sort object keys so JSON transport order is irrelevant.

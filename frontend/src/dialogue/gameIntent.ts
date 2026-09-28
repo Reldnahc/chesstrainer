@@ -104,7 +104,10 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   if (poor) {
     const reply = report.immediate_reply;
     if (reply?.capture) claims.push(claim("reply_capture", {opponent, reply: reply.san, piece: reply.capture, side}, 78, refs));
-    else if (reply?.gives_check) claims.push(claim("reply_check", {opponent, reply: reply.san}, 62, refs));
+    // The allowed-mate claim above already names this exact immediate reply.
+    // Repeating it as a lower-priority check adds no new explanation.
+    else if (reply?.gives_check && !claims.some(c => c.code === "allowed_mate" && c.slots.reply))
+      claims.push(claim("reply_check", {opponent, reply: reply.san}, 62, refs));
     if (!claims.some(c => c.priority >= 78)) {
       const before = report.best.score, after = report.actual.score;
       if (before.kind === "cp" && after.kind === "cp" && before.value > after.value)

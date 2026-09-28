@@ -5,7 +5,7 @@ import {
   type CoachMotion,
   type CoachReaction,
 } from "./model";
-import { IDLE_GAP_MS, nextIdle } from "./idle";
+import { IDLE_GAP_MS, IDLE_GESTURE_MS, nextIdle } from "./idle";
 import { useReducedMotion } from "../useReducedMotion";
 import { resolveMotion } from "../motion";
 
@@ -36,6 +36,7 @@ export function usePerformance({
   const [micro, setMicro] = useState<CoachMicro>("");
   const [take, setTake] = useState(0);
   const played = useRef(0);
+  const previousIdle = useRef({ identity: "", expression: "", gesture: "" as CoachMicro });
   const reduced = useReducedMotion();
   const effectiveMotion = resolveMotion(motion, reduced);
 
@@ -83,27 +84,34 @@ export function usePerformance({
         : "rest",
     );
     if (!running) return;
-    let last: CoachMicro = "";
+    let last: CoachMicro =
+      previousIdle.current.identity === identity &&
+      previousIdle.current.expression === expression
+        ? previousIdle.current.gesture
+        : "";
     const scheduleIdle = () => {
       if (!idleEnabled) return;
       timer = window.setTimeout(
         () => {
           last = nextIdle(animation, expression, last);
+          previousIdle.current = { identity, expression, gesture: last };
           setMicro(last);
           finish = window.setTimeout(() => {
             setMicro("");
             scheduleIdle();
-          }, 1200);
+          }, IDLE_GESTURE_MS);
         },
         IDLE_GAP_MS[0] + Math.random() * (IDLE_GAP_MS[1] - IDLE_GAP_MS[0]),
       );
     };
     if (previewIdle && fresh) {
+      last = previewIdle;
       setMicro(previewIdle);
+      previousIdle.current = { identity, expression, gesture: previewIdle };
       finish = window.setTimeout(() => {
         setMicro("");
         scheduleIdle();
-      }, 1500);
+      }, IDLE_GESTURE_MS);
     } else if (fresh && reactionsEnabled) {
       timer = window.setTimeout(() => {
         setPhase("rest");

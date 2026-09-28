@@ -18,8 +18,8 @@ Branch: `codex/coach-revamp`, based on `main` at `ddf1925`.
 
 ## Work and validation
 
-- Current: integrated cast, behavior composition and motion are implemented;
-  independent safety review and full browser verification are in progress.
+- Current: integrated cast, behavior composition, motion and developer tools
+  passed full source/browser verification and independent safety review.
 - Backend preference regressions reproduced: 12 failed before the fix. Focused
   coach/motion suite: 57 passed afterward; targeted Ruff and generated contracts
   checked. Full backend: 618 passed, three optional Maia skips; the separate
@@ -30,16 +30,28 @@ Branch: `codex/coach-revamp`, based on `main` at `ddf1925`.
   all 30 selections, reload, retired aliases and narrow layouts.
 - Artwork contact sheets inspected at actual portrait sizes. Independent review
   confirmed all 2,400 configured idle slots have matching articulation targets.
-- Remaining: finalize dialogue safety refinements, complete all browser suites,
-  production build and fresh Docker smoke; permanent documentation and ledger removal.
+- Final owner refinement: Settings uses one compact six-by-five desktop grid,
+  no headings or category gaps; four/three/two columns at smaller breakpoints.
+- Final application suite: 213 passed, three intentional device-specific skips.
+  Accounts: two passed. Intelligence lab: 44 passed uninterrupted. Studio: all
+  42 tests passed across isolated partitions; no skips. Production build passed.
+- Corpus audit: 10,800 samples, 1,777 authored forms, no audit errors or complete
+  voice collisions; the ten common situations had no primary neutral fallback.
+- Manual native import/review and compact Settings inspected on disposable data;
+  desktop/mobile screenshots and actual-size idle frames inspected.
+- Remaining: fresh Docker install smoke, permanent verification history and
+  removal of this temporary ledger. Vite reports the application chunk at
+  536.59 kB minified / 143.75 kB gzip; no warning suppression or new dependency.
 
 ## Completed commits
 
 - `67a6c8c`: preserve the owner brief and implementation checkpoints.
-- Next verified unit: account preference contract, explicit retired aliases,
-  generated API types and backend persistence regressions.
+- `1633b69`: account preference contract, explicit retired aliases, generated
+  API types and backend persistence regressions.
+- Next verified unit: the integrated production cast, behaviors, animation pools,
+  compact picker, developer previews and focused regression coverage.
 
 ## Follow-ups / blockers
 
-- No owner blocker. Visual distinctness and blind dialogue comparison require
-  actual application/studio inspection after integration.
+- No owner blocker. Creative preferences remain open for owner review in the
+  studio and blind comparison; all requested functionality is implemented.

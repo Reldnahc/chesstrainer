@@ -37,7 +37,7 @@ a browser-history stop for each move.
   headings and edges align on desktop; activity entries share one panel with
   separators. At 900px and below, activity stacks below the form. Training analysis
   is an optional inline checkbox for either source.
-- **Settings** contains account and device sign-out controls, the Chess.com connection, and actions to refresh training labels or deepen unclear positions. Host configuration and diagnostic tables stay out of the user interface; operators configure the environment or .env. The header shows navigation without a local/account status badge.
+- **Settings** contains account and device sign-out controls, the Chess.com connection, and actions to refresh training labels or deepen unclear positions. Its compact coach grid shows all thirty characters in six columns and five rows on desktop, with fewer columns on smaller screens and no category headings or navigation; the saved selection changes presentation and wording, never chess evidence. Coach and interface motion remain separate account preferences. Host configuration and diagnostic tables stay out of the user interface; operators configure the environment or .env. The header shows navigation without a local/account status badge.
 
 FSRS increases intervals after successful recall. An interval strictly above the configured threshold (100 days by default) permanently retires the position, preserving history. The cold review board hides source, concept, previous moves, scores and answers; feedback and playback become available after an attempt or reveal.
 

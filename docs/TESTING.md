@@ -83,6 +83,36 @@ route. CI runs the application, account and standalone studio suites separately.
 The independent [intelligence laboratory](INTELLIGENCE_LAB.md) runs on port 5175;
 its suite verifies evidence inspection, production-renderer parity and isolation.
 
+### Coach cast and behavior
+
+The roster is defined by the production registry. `coach-selection.spec.ts`
+checks all 30 choices in the compact six-by-five Settings grid, stable order, no
+category headings, narrow layouts,
+retired-ID fallback, saved selection and the actual review avatar. Account tests
+verify the same preference survives another browser session and remains private.
+Backend preference tests cover every ID, restart, unknown IDs and explicit
+retired mappings without rewriting stored rows during reads.
+
+`studio-tests/motion-vocabulary.spec.ts` checks every 20-expression/four-idle pool,
+nonrepetition and anatomy-specific gestures. `idle-articulation.spec.ts` mounts
+all 2,400 slots and checks their browser animation targets. `idle-cadence.spec.ts`
+checks repeated 500–1000ms gaps, 1200ms gestures, expression changes, reaction
+isolation, motion preferences and hidden/offscreen pausing with controlled time.
+`full-cast.spec.ts` exercises the complete studio, independent idle replay,
+same-expression comparisons and the tablet singleton layout.
+
+The intelligence suite compares ten shared situations across the full cast,
+including tactical mistakes, human-policy evidence, recovery, positional play,
+forced defense and cold SRS. It checks deterministic output, intact provenance,
+required factual slots, claim limits, composition strategies, safe alternatives,
+and common-intent fallback coverage. These are correctness checks, not a test
+that everyone will enjoy every voice. Use the lab's blind comparison and inspect
+the coach studio at actual portrait sizes for that creative review.
+
+When running independent studio checks concurrently, give each Playwright run
+a distinct `--output=studio-test-results-NAME` directory. Sharing an output
+directory can remove another run's active trace files during setup.
+
 PowerShell can use .venv/Scripts/python.exe, .venv/Scripts/ruff.exe, npm.cmd and npx.cmd without activation. PLAYWRIGHT_BROWSERS_PATH optionally selects an installed Chromium directory; TEST_PYTHON selects the browser test server's Python executable.
 
 Set STOCKFISH_PATH for native tests. The test fixtures also discover a compatible ignored .tools/stockfish installation. Missing native Stockfish explicitly skips the marked integration tests; document those skips rather than reporting full chess integration coverage. Playwright's real analysis flows need a working native engine.

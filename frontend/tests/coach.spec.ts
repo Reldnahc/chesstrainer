@@ -23,7 +23,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     const motion = page.getByLabel("Coach motion", { exact: true });
     const portrait = page.locator(".coach-option:has(input:checked) .coach-avatar");
     const notice = page.getByText("Your device requests reduced motion. The coach will stay still.");
-    await expect(page.getByRole("radio")).toHaveCount(4);
+    await expect(page.getByRole("radio")).toHaveCount(30);
     await expect(page.getByRole("radio", { name: "Storyteller", exact: true })).toBeChecked();
     await expect(motion).toHaveValue("system");
     await expect(motion.locator("option")).toHaveText(["Use device setting", "Animated", "Still"]);
@@ -171,7 +171,6 @@ test("preference failures keep the last saved choice and allow recovery", async 
     await page.getByRole("button", { name: "Reload coach motion preferences", exact: true }).click();
     await expect(motion).toBeEnabled();
     await expect(motion).toHaveValue("natural");
-    await page.getByRole("button", { name: "Cats", exact: true }).click();
     const cat = page.getByRole("radio", { name: "Velvet night", exact: true });
     await cat.click();
     await expect(status).toContainText("Preference was not saved");

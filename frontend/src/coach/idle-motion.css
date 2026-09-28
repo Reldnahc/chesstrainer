@@ -1,0 +1,223 @@
+/* Idle tracks are nested inside entrance tracks: a small gesture can never
+   restart a full reaction or overwrite the held expression's pose transform. */
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="blink"]
+  :is(.coach-eyes, .animal-eyes) {
+  animation: coach-idle-blink 260ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="slow-blink"]
+  :is(.coach-eyes, .animal-eyes) {
+  animation: coach-idle-slow-blink 1100ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="glance"]
+  :is(.coach-gaze, .study-gaze) {
+  animation: coach-idle-glance 1150ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="breathe"]
+  :is(.coach-body-idle, .study-body-idle) {
+  animation: coach-idle-breathe 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="nod"]
+  :is(.coach-head-idle, .study-head-idle) {
+  animation: coach-idle-nod 1100ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="glasses"]
+  .coach-glasses {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: coach-idle-glasses 1050ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="hair"]
+  .study-hair-motion {
+  animation: coach-idle-hair 1150ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="ears"]
+  .study-ear-left {
+  animation: coach-idle-ears 850ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="ears"]
+  .study-ear-right {
+  animation: coach-idle-ears 850ms 120ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="ears"]
+  .study-whiskers {
+  animation: coach-idle-whiskers 1000ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="tail"]
+  .study-tail {
+  animation: coach-idle-tail 1150ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="sigh"]
+  :is(.coach-body-idle, .study-body-idle) {
+  animation: coach-idle-sigh 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="sigh"]
+  :is(.coach-eyes, .animal-eyes) {
+  animation: coach-idle-slow-blink 1000ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="twinkle"]
+  :is(.coach-stars, .study-stars) {
+  animation: coach-idle-twinkle 1100ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="twinkle"]
+  :is(.coach-lens-glint, .study-eye-glint) {
+  animation: coach-idle-glint 1100ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="head-tilt"]
+  :is(.coach-head-idle, .study-head-idle) {
+  animation: coach-idle-tilt 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="lean-in"]
+  :is(.coach-body-idle, .study-body-idle) {
+  animation: coach-idle-lean 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="posture-reset"]
+  :is(.coach-body-idle, .study-body-idle) {
+  animation: coach-idle-reset 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="look-down"]
+  :is(.coach-head-idle, .study-head-idle) {
+  animation: coach-idle-look-down 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="look-down"]
+  :is(.coach-gaze, .study-gaze) {
+  animation: coach-idle-gaze-down 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
+  :is(.coach-head-idle, .study-head-idle) {
+  animation: coach-idle-scan 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
+  :is(.coach-gaze, .study-gaze) {
+  animation: coach-idle-gaze-scan 1200ms both;
+}
+
+/* Optional secondary articulation adds character without another timer. */
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
+  .cast-scanline {
+  animation: coach-idle-screen-scan 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
+  .cast-lens {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: coach-idle-lens 1200ms both;
+}
+.coach-avatar[data-phase="rest"][data-motion="natural"]:is(
+    [data-micro="breathe"], [data-micro="sigh"]
+  ) .cast-frog-throat {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: coach-idle-throat 1200ms both;
+}
+
+@keyframes coach-idle-blink {
+  0%, 100% { transform: scaleY(1); }
+  45%, 60% { transform: scaleY(0.07); }
+}
+@keyframes coach-idle-slow-blink {
+  0%, 100% { transform: scaleY(1); }
+  28%, 52% { transform: scaleY(0.1); }
+  80% { transform: scaleY(0.85); }
+}
+@keyframes coach-idle-glance {
+  0%, 100% { transform: none; }
+  35%, 65% { transform: translateX(calc(-1.4px * var(--idle-gaze))); }
+}
+@keyframes coach-idle-breathe {
+  0%, 100% { transform: none; }
+  45% { transform: scaleY(calc(1 + 0.009 * var(--idle-settle))) translateY(-0.3px); }
+}
+@keyframes coach-idle-nod {
+  0%, 100% { transform: none; }
+  35%, 48% {
+    transform: translateY(calc(2px * var(--idle-strength))) rotate(calc(2deg * var(--idle-strength)));
+  }
+  70% { transform: translateY(-0.5px); }
+}
+@keyframes coach-idle-glasses {
+  0%, 100% { transform: none; }
+  35%, 50% { transform: translateY(calc(-1.2px * var(--idle-strength))) rotate(-1deg); }
+}
+@keyframes coach-idle-hair {
+  0%, 100% { transform: none; }
+  28% { transform: rotate(calc(3deg * var(--idle-strength))); }
+  54% { transform: rotate(calc(-2deg * var(--idle-strength))); }
+  77% { transform: rotate(calc(0.8deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-ears {
+  0%, 100% { transform: none; }
+  25% { transform: rotate(calc(-8deg * var(--idle-strength))); }
+  48% { transform: rotate(calc(3deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-whiskers {
+  0%, 100% { transform: none; }
+  35% { transform: scaleX(1.025) rotate(0.7deg); }
+  60% { transform: rotate(-0.4deg); }
+}
+@keyframes coach-idle-tail {
+  0%, 100% { transform: none; }
+  37% { transform: rotate(calc(-7deg * var(--idle-strength))); }
+  65% { transform: rotate(calc(3deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-sigh {
+  0%, 100% { transform: none; }
+  30% { transform: scaleY(calc(1 + 0.012 * var(--idle-settle))); }
+  75% { transform: scaleY(calc(1 - 0.01 * var(--idle-settle))) translateY(0.5px); }
+}
+@keyframes coach-idle-twinkle {
+  0%, 100% { opacity: 0.85; transform: none; }
+  45% { opacity: 1; transform: rotate(5deg) scale(1.07); }
+}
+@keyframes coach-idle-glint {
+  0%, 100% { opacity: 0.8; }
+  45% { opacity: 1; }
+}
+@keyframes coach-idle-tilt {
+  0%, 100% { transform: none; }
+  28%, 65% { transform: rotate(calc(-3.5deg * var(--idle-strength))); }
+  83% { transform: rotate(calc(0.6deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-lean {
+  0%, 100% { transform: none; }
+  32%, 66% {
+    transform: translateY(calc(-1.3px * var(--idle-strength))) scale(calc(1 + 0.013 * var(--idle-strength)));
+  }
+}
+@keyframes coach-idle-reset {
+  0%, 100% { transform: none; }
+  24% { transform: translateY(calc(0.8px * var(--idle-settle))) scaleY(0.991); }
+  55% { transform: translateY(calc(-0.9px * var(--idle-settle))) rotate(calc(0.8deg * var(--idle-strength))); }
+  80% { transform: rotate(calc(-0.4deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-look-down {
+  0%, 100% { transform: none; }
+  35%, 67% { transform: translateY(calc(1.2px * var(--idle-strength))) rotate(calc(1.5deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-gaze-down {
+  0%, 100% { transform: none; }
+  28%, 70% { transform: translateY(calc(1px * var(--idle-gaze))); }
+}
+@keyframes coach-idle-scan {
+  0%, 100% { transform: none; }
+  25%, 40% { transform: rotate(calc(-1.5deg * var(--idle-strength))); }
+  62%, 75% { transform: rotate(calc(1deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-gaze-scan {
+  0%, 100% { transform: none; }
+  20%, 40% { transform: translateX(calc(-1.3px * var(--idle-gaze))); }
+  60%, 80% { transform: translateX(calc(0.9px * var(--idle-gaze))); }
+}
+@keyframes coach-idle-screen-scan {
+  0%, 100% { opacity: 0; transform: none; }
+  20% { opacity: 0.35; transform: translateY(-8px); }
+  75% { opacity: 0.35; transform: translateY(8px); }
+}
+@keyframes coach-idle-lens {
+  0%, 100% { transform: none; }
+  28%, 48% { transform: scale(0.85); }
+  70% { transform: scale(1.05); }
+}
+@keyframes coach-idle-throat {
+  0%, 100% { transform: none; }
+  45% { transform: scale(1.025, 1.045); }
+}

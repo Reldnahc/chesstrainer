@@ -227,7 +227,9 @@ test('review both players, explain in place, and branch without changing the gam
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect(await page.evaluate(() => window.scrollY)).toBe(scrollBefore);
   await expect(page.locator('.coach-speech')).toContainText('Blunder');
-  await expect(page.locator('.coach-speech')).toContainText('forced checkmate');
+  await expect(page.locator('.coach-speech')).toContainText(/\bforce(?:d)? (?:check)?mate\b/i);
+  await expect(page.locator('.coach-speech')).toContainText('Black');
+  await expect(page.locator('.coach-speech')).toContainText('Qh4#');
   const coach = (await page.locator('.coach-speech').boundingBox())!;
   const notation = (await page.locator('.game-notation').boundingBox())!;
   const notationTop = notation.y + await page.evaluate(() => window.scrollY);
@@ -364,14 +366,15 @@ test('refinement continues in the background without progress or moving the sele
     beginRefinement();
     await expect(page.getByRole('region', {name: 'Review progress'})).toHaveCount(0);
     await expect(page.getByRole('button', {name: 'Pause review', exact: true})).toHaveCount(0);
-    await expect(page.locator('.coach-message')).toHaveText('Baseline feedback.');
+    await expect(page.locator('.coach-message')).toContainText('Baseline feedback.');
     await page.getByRole('button', {name: 'Next move', exact: true}).click();
     await expect(page.locator('.game-move-counter')).toHaveText('2 / 4');
     await page.getByRole('button', {name: 'Previous move', exact: true}).click();
     await expect(page.locator('.game-move-counter')).toHaveText('1 / 4');
     const before = await page.locator('.review-board-square').boundingBox();
     release();
-    await expect(page.locator('.coach-message')).toHaveText('The deeper comparison confirms a concession.');
+    await expect(page.locator('.coach-message')).toContainText('The deeper comparison confirms a concession.');
+    await expect(page.locator('.coach-message')).not.toContainText('Baseline feedback.');
     await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('1. f3, Mistake');
     await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=1$`));
     await expect(page.getByRole('region', {name: 'Review progress'})).toHaveCount(0);
@@ -423,7 +426,7 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   await expect(dot(99)).toHaveAttribute('aria-current', 'step');
   await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=99$`));
   await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('50. g4, Good');
-  await expect(page.locator('.coach-message')).toHaveText('Coaching for ply 99.');
+  await expect(page.locator('.coach-message')).toContainText('Coaching for ply 99.');
   const utterance = page.locator('.coach-message [data-utterance]');
   const learnerIntent = await utterance.getAttribute('data-intent');
   await page.keyboard.press('ArrowRight');
