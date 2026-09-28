@@ -13,6 +13,12 @@ from trainer.contracts.preferences import (
 )
 from trainer.models import UserPreferences
 
+RETIRED_COACH_REPLACEMENTS: dict[str, CoachId] = {
+    "dog-sunny": "dog-puppy",
+    "cat-tabby": "cat-kitten",
+    "cat-calico": "cat-kitten",
+}
+
 
 def coach_preferences(db):
     saved = db.scalar(select(UserPreferences))
@@ -20,9 +26,10 @@ def coach_preferences(db):
         return CoachPreferences()
     # A removed coach or a database opened by an older release stays usable.
     # Reads never overwrite the user's saved choice with the temporary fallback.
+    coach_id = RETIRED_COACH_REPLACEMENTS.get(saved.coach_id, saved.coach_id)
     motion = "natural" if saved.coach_motion == "subtle" else saved.coach_motion
     return CoachPreferences(
-        coach_id=saved.coach_id if saved.coach_id in get_args(CoachId) else "classic",
+        coach_id=coach_id if coach_id in get_args(CoachId) else "classic",
         motion=motion if motion in get_args(CoachMotion) else "system",
     )
 

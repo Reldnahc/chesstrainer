@@ -18,18 +18,26 @@ Branch: `codex/coach-revamp`, based on `main` at `ddf1925`.
 
 ## Work and validation
 
-- Current: cast/registry/persistence and unified picker; artwork and dialogue
-  implementation in separate owned modules, followed by integrated verification.
+- Current: integrated cast, behavior composition and motion are implemented;
+  independent safety review and full browser verification are in progress.
 - Backend preference regressions reproduced: 12 failed before the fix. Focused
   coach/motion suite: 57 passed afterward; targeted Ruff and generated contracts
-  checked. Not yet committed with the complete selectable-registry slice.
-- Upcoming checkpoints: coherent cast/picker; behavior composition and cast
-  writing; complete idle pools and developer previews; full validation/visual
-  review, permanent documentation and removal of this temporary ledger.
+  checked. Full backend: 618 passed, three optional Maia skips; the separate
+  cached/offline CPU Maia run passed all three skipped native checks.
+- Ruff, formatting, exported API contracts, dependency consistency and fresh
+  migration upgrade/check passed. No schema change is necessary.
+- Production picker browser tests: 8 passed across desktop/mobile, including
+  all 30 selections, reload, retired aliases and narrow layouts.
+- Artwork contact sheets inspected at actual portrait sizes. Independent review
+  confirmed all 2,400 configured idle slots have matching articulation targets.
+- Remaining: finalize dialogue safety refinements, complete all browser suites,
+  production build and fresh Docker smoke; permanent documentation and ledger removal.
 
 ## Completed commits
 
-- None yet beyond the recorded baseline.
+- `67a6c8c`: preserve the owner brief and implementation checkpoints.
+- Next verified unit: account preference contract, explicit retired aliases,
+  generated API types and backend persistence regressions.
 
 ## Follow-ups / blockers
 
