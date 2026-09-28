@@ -140,7 +140,8 @@ remains beneath the portrait; neither insight adds a row below the action button
 Long coaching text scrolls above the Maia link so the link remains accessible.
 Natural mistakes, hard finds, unusual strong moves, natural
 best choices and difficult defenses get plain-language labels. Tap the insight for
-the selected coach's explanation and source/domain uncertainty. It uses existing
+the selected coach's explanation of the highest-priority insight, one short
+uncertainty note, and an About Maia link. It uses existing
 evidence, stays visible even when the bubble prioritizes tactics or opening text,
 and closes when changing positions. It adds no dashboard or analysis request.
 Objective labels and evaluations remain independent of this estimate.

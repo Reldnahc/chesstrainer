@@ -42,15 +42,16 @@ export function humanClaims(report: Report, ply: number, mover: string | null): 
   return result;
 }
 
-export function humanSourceNotes(report: Report): {name: string; notes: string[]} {
+export function humanSourceNotes(report: Report): {name: string; note: string; url?: string} {
   const maia = report.human?.provenance?.provider === "maia3";
-  const name = maia ? "Maia" : "Human model";
-  const notes = [maia ? "Maia estimates human move choices using Lichess blitz games." : "This model estimates human move choices."];
   const alignment = report.human?.domain.alignment;
-  if (alignment === "shifted") notes.push("This game uses a different site or time control, so treat the estimate as a rough guide.");
-  else if (alignment !== "related") notes.push("The game's source or time control is unknown, so the estimate is less certain.");
-  if (report.practical?.limitations.some(value => ["rating_fallback", "outside_probed_rating_range", "pre_setup_history_unknown", "incomplete_policy"].includes(value)))
-    notes.push("Limited rating, game history or move data adds uncertainty.");
-  notes.push("These estimates are not measured player success rates.");
-  return {name, notes};
+  const limited = report.practical?.limitations.some(value =>
+    ["rating_fallback", "outside_probed_rating_range", "pre_setup_history_unknown", "incomplete_policy"].includes(value));
+  const note = limited || !["related", "shifted"].includes(alignment ?? "")
+    ? "Rough estimate: limited game or rating data."
+    : alignment === "shifted"
+      ? maia ? "Rough estimate: trained on Lichess blitz." : "Rough estimate: different training context."
+      : "Human-move estimate, not an engine score.";
+  return {name: maia ? "Maia" : "Human model", note,
+    ...(maia ? {url: "https://www.maiachess.com/"} : {})};
 }

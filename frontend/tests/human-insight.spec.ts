@@ -54,9 +54,9 @@ for (const [kind, code, phrase, label] of cases) {
     await trigger.click();
     const detail = page.getByRole("dialog", {name: "Maia insight"});
     await expect(detail).toBeVisible();
-    await expect(detail).toContainText(/estimate|estimates/);
-    await expect(detail).toContainText("Lichess blitz");
-    await expect(detail).toContainText(/different site or time control/i);
+    await expect(detail.locator("p")).toHaveCount(1);
+    await expect(detail.locator(".human-insight-source")).toContainText("Rough estimate");
+    await expect(detail.getByRole("link", {name: "About Maia"})).toHaveAttribute("href", "https://www.maiachess.com/");
     expect(await geometry(".review-board-row")).toEqual(boardBefore);
     expect(await geometry(".coach-speech")).toEqual(bubbleBefore);
     await page.keyboard.press("ArrowLeft");
@@ -94,18 +94,19 @@ test("missing, stale, forced and opponent policy cannot become learner achieveme
 
 test("source context preserves domain uncertainty without turning policy into population odds", () => {
   const report = structuredClone(humanGames.natural_best.frames[1].report!);
-  expect(humanSourceNotes(report).notes.join(" ")).toContain("different site or time control");
+  expect(humanSourceNotes(report).note).toBe("Rough estimate: trained on Lichess blitz.");
   report.human!.domain.alignment = "unknown";
   report.practical!.limitations.push("rating_fallback");
-  expect(humanSourceNotes(report).notes.join(" ")).toContain("source or time control is unknown");
-  expect(humanSourceNotes(report).notes.join(" ")).toContain("adds uncertainty");
+  expect(humanSourceNotes(report).note).toBe("Rough estimate: limited game or rating data.");
   report.human!.domain.alignment = "related";
-  const notes = humanSourceNotes(report).notes.join(" ");
-  expect(notes).toContain("not measured player success rates");
-  expect(notes).not.toContain("different site");
+  expect(humanSourceNotes(report).note).toContain("limited game or rating data");
+  report.practical!.limitations = [];
+  expect(humanSourceNotes(report).note).toBe("Human-move estimate, not an engine score.");
   report.human!.provenance!.provider = "future-provider";
   expect(humanSourceNotes(report).name).toBe("Human model");
-  expect(humanSourceNotes(report).notes.join(" ")).not.toMatch(/Maia|Lichess/);
+  report.human!.domain.alignment = "shifted";
+  expect(humanSourceNotes(report).note).not.toMatch(/Maia|Lichess/);
+  expect(humanSourceNotes(report).url).toBeUndefined();
 });
 
 test("visible Maia insight survives coach selection and reload without new analysis", async ({page}) => {
