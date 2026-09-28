@@ -1,36 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronRight, Flag } from "lucide-react";
-import { api, read, type Coverage, type Schema } from "./api";
-
-export function CoverageSummary({ data }: { data: Coverage }) {
-  return (
-    <div className="coverage-summary">
-      <p>
-        <strong>
-          {data.mechanisms} / {data.total}
-        </strong>{" "}
-        mistakes have a specific tactical pattern.
-      </p>
-      <p>
-        <strong>{data.outcomes}</strong> have a material or mate outcome.{" "}
-        <strong>{data.unclassified}</strong> remain unclassified.
-      </p>
-      <details>
-        <summary>What these counts mean</summary>
-        <p>
-          A position can have both an outcome and a pattern. These counts
-          measure coverage, not classification accuracy. {data.outcome_only}{" "}
-          have an outcome without a specific pattern. {data.pending} await local
-          classification.
-        </p>
-        <p>
-          Every claim comes from saved engine evidence. A continuation is one
-          line of play; it does not prove that every reply is forced.
-        </p>
-      </details>
-    </div>
-  );
-}
+import { api, read, type Schema } from "./api";
 
 export default function WeaknessScreen({
   onEvidence,
@@ -57,18 +27,13 @@ export default function WeaknessScreen({
     <>
       <div className="page-title">
         <div>
-          <div className="eyebrow">FROM YOUR GAMES</div>
           <h1>Weaknesses</h1>
-          <p>
-            Notice a recurring pattern, then practice the positions behind it.
-          </p>
         </div>
       </div>
       {!data ? (
         <p role="status">Loading your evidence...</p>
       ) : (
         <>
-          <CoverageSummary data={data.coverage} />
           {!data.skills.length && (
             <div className="empty-state panel">
               <Flag />
