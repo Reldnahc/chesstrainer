@@ -111,8 +111,12 @@ no workers or engines and does not read the configured application database.
 
 `python scripts/export_api_contract.py --check` verifies backend/schema agreement.
 `npm --prefix frontend run api:check` verifies schema/TypeScript agreement.
-`npm --prefix frontend run test:types` checks endpoint inference and rejects
-intentionally invalid calls. Both frontend checks run as part of `npm run build`;
+`npm --prefix frontend run test:types` checks endpoint inference, rejects
+intentionally invalid calls, and strictly typechecks all application, coach-studio
+and intelligence-lab browser tests and their Playwright configs. The browser-test
+project includes Node 24 declarations for its runner and fixture helpers; fixtures
+must satisfy the same generated API contracts as the application. Both frontend
+checks run as part of `npm run build`;
 backend contract tests and the export check run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.
 

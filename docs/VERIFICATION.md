@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## PR #1 follow-up: browser-test type coverage
+
+Reproduced the previously recorded ad hoc TypeScript failure at `10bdaae`:
+Node imports/globals had no declarations, and the recovery context fixture was
+incomplete. Enabling the normal strict settings for all browser tests also caught
+an incomplete move-report fixture. Both fixtures now satisfy the generated API
+types without assertions hiding missing fields. Node 24 types are locked as a
+development dependency. `npm run test:types` now includes application, studio,
+intelligence-lab tests and all Playwright configs, so the existing build/CI gate
+prevents this gap returning.
+
+- `npm.cmd --prefix frontend run build`: passed, including API consistency,
+  strict application types, endpoint contract tests and all browser-test types.
+- The exact ad hoc `tsc --noEmit` command recorded below now passes too.
+- From `frontend`, with the documented Chromium/Stockfish environment,
+  `npx.cmd playwright test tests/dialogue-logic.spec.ts --reporter=line`:
+  **24 passed** (desktop/mobile), 9.1 s. Assertions and behavioral coverage remain.
+- `git diff --check`: passed.
+
 ## PR #1 correction pass: coach-selection lifecycle
 
 At reviewed head `7423d61`, the latest PR run `36360090312` failed on mobile

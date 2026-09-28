@@ -14,10 +14,12 @@ const ref = {source: "stockfish" as const, id: "search", field: "root"};
 const event = (kind: Schema["ReviewEvent"]["kind"], facts: Schema["ReviewEvent"]["facts"]): Schema["ReviewEvent"] =>
   ({id: `event-${kind}`, actor: "white", confidence: "searched", importance: 75, kind, facts, evidence: [ref]});
 const report = (events: Schema["ReviewEvent"][] = []): Report => ({label: "Blunder", engine_label: "Blunder",
-  actual: {uci: "e2e4", san: "e4", score: {kind: "cp", value: -250}},
-  best: {uci: "d2d4", san: "d4", score: {kind: "cp", value: 50}},
+  actual: {uci: "e2e4", san: "e4", depth: 16, pv: ["e2e4"], score: {kind: "cp", value: -250, mate_given: false}},
+  best: {uci: "d2d4", san: "d4", depth: 16, pv: ["d2d4"], score: {kind: "cp", value: 50, mate_given: false}},
+  opening: null, board_cues: null, coach: "", reason: "Synthetic evaluation loss", depth: 16, engine_version: "test",
+  white_score: {kind: "cp", value: -250, mate_given: false},
   intelligence: {version: "move-events-4", input_digest: "facts", ply: 1, events, clock: null, limitations: []},
-} as Report);
+});
 const game = {frames: [{}, {number: 1, san: "e4", actor: "white"}], orientation: "white"} as Game;
 const frame = {turn: "black", fen: "position"} as Position;
 const args = {game, frame, key: "game:1:", ply: 1, expression: "blunder" as const};
@@ -87,13 +89,17 @@ test("human naturalness does not become a population claim or override the grade
 
 test("recorded relationships need the matching node and never follow a variation", () => {
   const value = report();
-  const context = {nodes: [{ply: 1, input_digest: "facts", evidence: [ref]}], turning_points: [],
-    relationships: [{id: "recovery", kind: "recovery", actor: "white", plies: [0, 1], facts: {opponent_errors: [0]}, evidence: [ref]}]} as Game["context"];
+  const context: NonNullable<Game["context"]> = {version: "game-context-1", complete: false,
+    input_digest: "context", total_plies: 1, missing_plies: [], limitations: [], biggest_swing_ply: null,
+    nodes: [{ply: 1, actor: "white", before: value.best.score, after: value.actual.score,
+      event_ids: [], input_digest: "facts", evidence: [ref]}], turning_points: [],
+    relationships: [{id: "recovery", kind: "recovery", actor: "white", plies: [0, 1],
+      event_ids: [], facts: {opponent_errors: [0]}, evidence: [ref]}]};
   const full = {...args, game: {...game, context}, report: value};
   expect(renderNeutral(gameIntent(full)).text).toMatch(/playable.*opponent's errors/i);
   expect(gameIntent(full).expression).toBe("recovered");
   expect(renderNeutral(gameIntent({...full, variation: true})).text).not.toMatch(/playable|recovered|opponent's errors/);
-  const stale = {...context!, nodes: []};
+  const stale = {...context, nodes: []};
   expect(gameIntent({...full, game: {...game, context: stale}}).claims.some(c => c.code === "recovery")).toBe(false);
 });
 
