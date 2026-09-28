@@ -54,6 +54,84 @@ overrides cannot remove hypothetical scope.
   eleven positional claim forms without losing conditional scope or evidence IDs.
 - `npm.cmd --prefix frontend run build`: passed, including API/type checks.
 
+### Final correction validation
+
+Production corrections are in `b097005`, `9d41882` and `b8bc1ae`. No engine
+budgets, weights, grades, migrations or cold-SRS disclosure rules were changed.
+The final verification also corrects test-only fixture types to use the detailed
+report contract and a complete context node, without changing their assertions.
+
+From the repository root, these exact commands passed:
+
+```powershell
+npm.cmd --prefix frontend run build
+.venv/Scripts/python.exe -m pytest -q -ra --basetemp data/verification/pr1-final-backend -o cache_dir=data/verification/pr1-pytest-cache
+.venv/Scripts/ruff.exe check backend scripts migrations
+.venv/Scripts/ruff.exe format --check backend scripts migrations
+.venv/Scripts/python.exe scripts/export_api_contract.py --check
+$env:DATABASE_PATH = 'data/verification/pr1-corrections-schema.sqlite3'
+.venv/Scripts/python.exe -m alembic upgrade head
+.venv/Scripts/python.exe -m alembic check
+```
+
+Backend: **587 passed, 3 skipped**, 151.22 s. The skips are the unchanged explicit
+Maia opt-ins in `test_human_runtime.py` and `test_maia_feasibility.py`, because this
+run did not set `MAIA_CHECKPOINT_DIR`; native Stockfish ran. Two existing
+TestClient dependency deprecations and a Windows pytest-cache write warning were
+reported. All tests completed; the cache warning did not fail a test. Ruff checked
+222 files; API/type checks and disposable migration upgrade/check passed.
+
+From `frontend`, browser runs used these environment values:
+
+```powershell
+$env:PLAYWRIGHT_BROWSERS_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\playwright'
+$env:STOCKFISH_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\stockfish\stockfish-windows-x86-64-avx2.exe'
+npx.cmd playwright test --reporter=line
+npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line
+npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+```
+
+- Full application: **139 passed, 3 expected viewport skips**, 2.6 min.
+- Accounts: **2 passed**, 41.2 s.
+- Intelligence laboratory: **30 passed**, 32.7 s.
+- After the test-only fixture type correction,
+  `npx.cmd playwright test --config playwright.intelligence.config.ts causal-dialogue.spec.ts positional-dialogue.spec.ts --reporter=line`:
+  **22 passed**, 25.9 s.
+- Coach studio: **16 passed**, 2.2 min. The ordinary studio command detected the
+  owner's existing port 5174. Its process/path was verified; an ignored temporary
+  config inherited the normal config, used absolute test/output paths and enabled
+  `reuseExistingServer`. The existing process was preserved.
+- The lifecycle stress run above remains **40/40**; no sleeps, skipped assertions
+  or swallowed asynchronous failures were added.
+
+Docker's direct checkout build encountered an existing Windows ACL error opening
+excluded `.pytest_cache`. A clean archive of committed source `b8bc1ae` built and
+passed the same fresh-install smoke procedure:
+
+```powershell
+git archive --format=zip --output=.tools/pr1-corrections-source.zip HEAD
+Expand-Archive -LiteralPath .tools/pr1-corrections-source.zip -DestinationPath .tools/pr1-corrections-context
+docker build -t fieldwork:pr1-corrections .tools/pr1-corrections-context
+.venv/Scripts/python.exe scripts/smoke_install.py --image fieldwork:pr1-corrections
+```
+
+Local and account modes both passed fresh install, restart, native Stockfish
+review/health and coach-preference persistence. No existing installation or live
+database was used.
+
+Additional, non-CI inspection: a direct `tsc --noEmit` invocation over Playwright
+test sources is not a configured repository check. It still reports absent Node
+type declarations and a pre-existing partial-context cast in `dialogue-logic.spec.ts`.
+No dependency or test-typechecking infrastructure changes were made in this
+targeted pass. The supported production build/type-contract checks and runtime
+browser suites pass; this separate test-source typing gap is a follow-up.
+The additional command (from `frontend`) was:
+
+```powershell
+npx.cmd tsc --noEmit --target ES2022 --module ESNext --moduleResolution bundler --jsx react-jsx --skipLibCheck tests/dialogue-logic.spec.ts tests/personality.spec.ts tests/semantic-fixtures.ts tests/positional-claims.ts intelligence-tests/causal-dialogue.spec.ts intelligence-tests/positional-dialogue.spec.ts intelligence-tests/render-coaches.ts
+```
+
 ## Review intelligence completion: September 27, 2026
 
 Milestones 0–14 of [the specification](REVIEW_INTELLIGENCE_PLAN.md) are complete.

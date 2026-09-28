@@ -26,9 +26,12 @@ for (const {skill, black, report} of fixtures) test(`${skill} identifies the res
     expect(rendered.text).not.toMatch(/has an? abandoned defender|gets an? avoiding bad trades/i);
     expect(rendered.text).toMatch(skill === "abandoned_defender" ? /only.*defen/ : skill === "opponent_threat_recognition" ? /preceding move/ : /pawn.*recapture/);
   }
-  const context = {nodes: [{ply: 1, input_digest: report.intelligence!.input_digest, evidence: events[0].evidence}], turning_points: [],
+  const context: NonNullable<Game["context"]> = {complete: false, input_digest: "causal-context", limitations: [], missing_plies: [], total_plies: 1,
+    biggest_swing_ply: null, version: "game-context-1",
+    nodes: [{ply: 1, actor: black ? "black" : "white", before: report.best.score, after: report.actual.score,
+      event_ids: [events[0].id], input_digest: report.intelligence!.input_digest, evidence: events[0].evidence}], turning_points: [],
     relationships: [{id: "repeated-cause", kind: "repeated_motif", actor: black ? "black" : "white", plies: [0, 1],
-      facts: {role: "caused", motif: skill, occurrence: 2}, evidence: events[0].evidence}]} as Game["context"];
+      event_ids: [events[0].id], facts: {role: "caused", motif: skill, occurrence: 2}, evidence: events[0].evidence}]};
   const linked = gameIntent({game: {frames: [], context} as unknown as Game, report,
     frame: {turn: black ? "white" : "black"} as Position, ply: 1, key: "linked-cause", expression: "blunder"});
   expect(linked.claims.find(c => c.code === "repeated")?.sourceIds).toEqual(["repeated-cause"]);

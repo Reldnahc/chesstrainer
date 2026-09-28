@@ -47,7 +47,7 @@ expression, intensity, priority, interruptibility, optional speech text and futu
 auto-speak suitability; there is no audio or TTS integration.
 
 Claim priority ranks bubble content only. Since intent version 3, delivery
-intensity and urgency from semantic reactions, with a supported forced-mate
+intensity and urgency derive from semantic reactions, with a supported forced-mate
 override even when the move is recognized as Book. Routine opening recognition
 remains quiet and interruptible; unavailable/thinking/cold feedback is unsuitable
 for future automatic speech. This metadata does not change grades, portraits or

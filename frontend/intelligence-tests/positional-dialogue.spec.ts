@@ -1,12 +1,13 @@
 import {test, expect} from "@playwright/test";
 import {gameIntent} from "../src/dialogue/gameIntent";
-import type {Game, Position, Report} from "../src/gameReview/types";
+import type {Game, Position} from "../src/gameReview/types";
+import type {Schema} from "../src/api";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import {renderCoaches} from "./render-coaches";
 import {positionalClaims} from "../tests/positional-claims";
 import {makeIntent} from "../src/dialogue/model";
 
-const fixtures = semanticFixtures<{feature: string; code: string; mirrored: boolean; alternative: Report; actual: Report}[]>("review_position_fixtures.py");
+const fixtures = semanticFixtures<{feature: string; code: string; mirrored: boolean; alternative: Schema["GameReviewReport"]; actual: Schema["GameReviewReport"]}[]>("review_position_fixtures.py");
 for (const fixture of fixtures) test(`all coaches preserve ${fixture.feature} branch identity (${fixture.mirrored ? "mirror" : "original"})`, async ({page}) => {
   await page.goto("/");
   for (const kind of ["actual", "alternative"] as const) {

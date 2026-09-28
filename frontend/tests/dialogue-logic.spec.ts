@@ -22,7 +22,7 @@ const game = {frames: [{}, {number: 1, san: "e4", actor: "white"}], orientation:
 const frame = {turn: "black", fen: "position"} as Position;
 const args = {game, frame, key: "game:1:", ply: 1, expression: "blunder" as const};
 
-const positionFixtures = semanticFixtures<{feature: string; code: string; mirrored: boolean; alternative: Report; actual: Report}[]>("review_position_fixtures.py");
+const positionFixtures = semanticFixtures<{feature: string; code: string; mirrored: boolean; alternative: Schema["GameReviewReport"]; actual: Schema["GameReviewReport"]}[]>("review_position_fixtures.py");
 for (const fixture of positionFixtures) test(`${fixture.feature} preserves actual versus unplayed consequences (${fixture.mirrored ? "mirror" : "original"})`, () => {
   for (const kind of ["actual", "alternative"] as const) {
     const value = fixture[kind];
