@@ -38,6 +38,10 @@ main:has(.review-workspace-layout) {
   grid-column: 2;
   min-width: 0;
 }
+.review-board-square:only-child {
+  grid-column: 1 / -1;
+  margin-inline: calc(var(--review-gutter) / 2);
+}
 .review-board-toolbar {
   min-height: calc(var(--review-controls-height) + 10px);
   padding-block: 4px 6px;
