@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Best move beneath the coach portrait: focused checks - September 28, 2026
+
+Game review now places its best-move readout beneath the portrait using an optional
+shared caption slot. Move notation stays on one line; the speech bubble, board and
+half-width actions retain their geometry. Human insight remains below the actions.
+
+- From `frontend`, `npm.cmd run build`: passed, including generated API agreement,
+  application/contract/browser-test TypeScript checks and the production bundle.
+- With local Stockfish and Chromium enabled,
+  `npx.cmd playwright test review-presentation.spec.ts variation-navigation.spec.ts human-insight.spec.ts --grep 'review modes share|SRS shares animated|variation return is|natural_error has an accessible' --reporter=line`:
+  **8 passed**. Updated layout assertions verify the caption directly under the
+  portrait, unwrapped notation, shared action dimensions and no caption in cold
+  SRS across 1920px, 1366px, 1000px, 390px, 375px and 320px layouts. Existing
+  feedback/explanation, variation-return and human-insight checks also passed.
+- Desktop and 320px phone screenshots inspected; `git diff --check` passed.
+
+This small follow-up received focused verification; the full suites below were not
+repeated. No push or deployment was performed.
+
 ## Full UX verification - September 28, 2026
 
 The owner authorized full verification after the rapid UX changes through

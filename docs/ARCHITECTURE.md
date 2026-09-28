@@ -65,7 +65,7 @@ lock, while other accounts have independent locks.
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
 | GameReview.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
-| ReviewCoach.tsx | Common speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
+| ReviewCoach.tsx | Common portrait with optional caption, speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
 | gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
 | gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |
 | gameReview/usePositionAnalysis.ts | Serialized engine requests, per-history cache, browsing debounce and stale-response isolation |
@@ -107,8 +107,10 @@ precedence. Preferences remain still while loading or after a failed initial loa
 `ReviewCoach` owns one action row: 44px minimum-height buttons share the available
 width with an 8px gap, capped at half the row per button. A single action retains
 that same half-width, so adding a second action does not resize it. Callers provide
-buttons directly; supplementary move/insight information uses the separate
-`context` slot. SRS and game styles must not override shared action dimensions.
+buttons directly; game review's best move uses the `portraitCaption` slot beneath
+the character, while human insight uses the separate `context` slot. The portrait
+caption does not change bubble or action geometry and is absent in cold SRS.
+SRS and game styles must not override shared action dimensions.
 
 The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
 review experiences. Artwork-specific poses, styles and finite CSS animations stay

@@ -11,6 +11,7 @@ export default function ReviewCoach({
   children,
   actions,
   context,
+  portraitCaption,
   reaction = { state: "neutral", key: "ready" },
   character,
 }: {
@@ -20,12 +21,18 @@ export default function ReviewCoach({
   children: ReactNode;
   actions: ReactNode;
   context?: ReactNode;
+  portraitCaption?: ReactNode;
   reaction?: CoachReaction;
   character?: ReactNode;
 }) {
   return (
     <section className="review-coach" aria-label="Chess coach">
-      {character ?? <CoachAvatar reaction={reaction} />}
+      <div className="coach-portrait">
+        {character ?? <CoachAvatar reaction={reaction} />}
+        {portraitCaption && (
+          <div className="coach-portrait-caption">{portraitCaption}</div>
+        )}
+      </div>
       <div className="coach-speech">
         <div className="coach-label">
           <div className="coach-title">
