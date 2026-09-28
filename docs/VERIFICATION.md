@@ -2,6 +2,57 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Full UX verification - September 28, 2026
+
+The owner authorized full verification after the rapid UX changes through
+`b9b21cb` on `main`. All application checks passed; no production or regression-test
+corrections were needed. Host: Windows, Python 3.12.10, Node 24.19.0, Docker 29.1.3.
+Tests used disposable data and the existing local Stockfish/checkpoint installations.
+
+- From `frontend`, `npm.cmd ls --depth=0` and `npm.cmd run build`: passed,
+  including source packaging, generated API agreement, and application, contract
+  and browser-test TypeScript checks.
+- `.venv/Scripts/python.exe -m pytest -q -ra --basetemp data/verification/ux-full-b9b21cb -o cache_dir=data/verification/ux-full-cache-b9b21cb`:
+  **592 passed, 3 opt-in Maia skips**, with native Stockfish enabled. The two
+  existing TestClient/httpx/AnyIO deprecation warnings remain.
+- With `MAIA_CHECKPOINT_DIR=data/maia-benchmark/models`, `MAIA_TEST_MODEL=79m`,
+  `MAIA_TEST_DEVICE=cpu`, and `HF_HUB_OFFLINE=1`,
+  `.tools/maia-runtime/Scripts/python.exe -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q -ra --basetemp data/verification/ux-maia-full-b9b21cb -o cache_dir=data/verification/ux-maia-cache-b9b21cb`:
+  **3 passed, 9 deselected**. All three native checks skipped by the ordinary
+  environment were exercised offline in the pinned CPU runtime.
+- `npx.cmd playwright test --reporter=line`: **207 passed, 3 intentional skips**,
+  full unfiltered desktop/mobile application suite. Skips are desktop-only
+  modifier-click and wide-layout cases on mobile, and the phone-only layout case
+  on desktop. The missing-Chess.com-user fixture intentionally logs an import error.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`:
+  **2 passed**. Full intelligence lab via `--config playwright.intelligence.config.ts`:
+  **34 passed**. Full coach studio: **28 passed** via
+  `--config ../.tools/playwright.coach.full-b9b21cb.config.ts`; the ignored wrapper
+  imports the normal config, uses the same test/output directories, and only
+  enables reuse of the owner's existing port-5174 server. An initial wrapper module
+  loading error was corrected before tests ran. The owner's server was preserved.
+- `.venv/Scripts/ruff.exe check backend scripts migrations`,
+  `.venv/Scripts/ruff.exe format --check backend scripts migrations`,
+  `.venv/Scripts/python.exe scripts/export_api_contract.py --check`,
+  `.venv/Scripts/python.exe -m pip check` and `git diff --check`: passed.
+  Fresh Alembic upgrade/check at `data/verification/ux-schema-full-b9b21cb.sqlite3`,
+  SQLite integrity and foreign-key checks passed.
+- `docker build --progress=plain -t fieldwork:ux-full-b9b21cb .tools/ux-full-context-b9b21cb`:
+  passed. The context is a public tracked-source export of `b9b21cb`, avoiding the
+  checkout's restricted Windows cache directories. The image's locked dependency
+  installation and production build passed.
+- `.venv/Scripts/python.exe scripts/smoke_install.py --image fieldwork:ux-full-b9b21cb`:
+  fresh local/accounts, origin and cookie handling, native review/engine health,
+  separate coach/interface preferences and persistence across restart passed.
+- `docker run --rm --network none` with the existing 79M checkpoint mounted
+  read-only at `/models/maia3-79m.pt`, `HUMAN_MODEL_PATH` pointing there, image
+  `fieldwork:ux-full-b9b21cb`, and `python scripts/smoke_human.py`: native review,
+  human policy, restart cache and coach independence passed without network access.
+
+Desktop/mobile review screenshots were inspected. Results cover local verification
+and Chromium phone emulation, not a physical device or remote CI/deployment.
+No push or Unraid update was performed.
+
 ## Shared coach action sizing: focused checks
 
 SRS, game review and explanation playback now use the action row owned by
