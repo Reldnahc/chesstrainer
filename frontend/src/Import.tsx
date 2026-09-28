@@ -114,34 +114,26 @@ export default function ImportScreen({
       {health?.engine_status === "unavailable" && (
         <div className="notice">{health.engine_error}</div>
       )}
-      <div className="two-column">
-        <div>
-          <div className="import-source" role="group" aria-label="Game source">
-            <button
-              aria-pressed={source === "chesscom"}
-              onClick={() => setSource("chesscom")}
-            >
-              Chess.com username
-            </button>
-            <button
-              aria-pressed={source === "pgn"}
-              onClick={() => setSource("pgn")}
-            >
-              PGN file
-            </button>
-          </div>
+      <div className="import-source" role="group" aria-label="Game source">
+        <button
+          aria-pressed={source === "chesscom"}
+          onClick={() => setSource("chesscom")}
+        >
+          Chess.com username
+        </button>
+        <button
+          aria-pressed={source === "pgn"}
+          onClick={() => setSource("pgn")}
+        >
+          PGN file
+        </button>
+      </div>
+      <div className="import-layout">
+        <div className="import-form">
           {source === "chesscom" ? (
             <ChessComImportForm onQueued={reload} fail={fail} />
           ) : (
             <form className="panel form-panel" onSubmit={submit}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={analyze}
-                  onChange={(e) => setAnalyze(e.target.checked)}
-                />
-                Also analyze these games for training
-              </label>
               <h2>Import PGN</h2>
               <PgnInput {...{ file, setFile, text, setText }} />
               <label>
@@ -168,6 +160,14 @@ export default function ImportScreen({
                   <option value="black">I played Black in every game</option>
                 </select>
               </label>
+              <label className="import-analysis-option">
+                <input
+                  type="checkbox"
+                  checked={analyze}
+                  onChange={(e) => setAnalyze(e.target.checked)}
+                />
+                Also analyze these games for training
+              </label>
               <button
                 className="primary"
                 disabled={busy || (!file && !text.trim())}
@@ -191,8 +191,8 @@ export default function ImportScreen({
             </form>
           )}
         </div>
-        <section>
-          <h2 className="section-heading">Analysis activity</h2>
+        <section className="panel import-activity" aria-labelledby="import-activity-title">
+          <h2 id="import-activity-title">Analysis activity</h2>
           {jobs.filter((job) => job.kind !== "teaching").length === 0 && (
             <div className="empty-state">
               <Layers />
