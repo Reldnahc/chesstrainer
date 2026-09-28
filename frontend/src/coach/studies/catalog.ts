@@ -28,7 +28,6 @@ import { collie } from "../../dialogue/characters/collie";
 const animalPerformance: CoachDefinition["animation"] = {
   defaultReactionMs: 1400,
   reactionMs: { brilliant: 1700, blunder: 1850, winning: 1700, losing: 1500 },
-  idleRangeMs: [750, 1750],
   defaultIdle: ["blink", "glance", "breathe", "ears"],
   idleGestures: {
     brilliant: ["blink", "tail", "twinkle"],
@@ -144,7 +143,6 @@ export const womanStudy: CoachCollection = {
   },
   animation: {
     ...animalPerformance,
-    idleRangeMs: classicPerformance.idleRangeMs,
     defaultIdle: ["blink", "glance", "breathe", "hair"],
     idleGestures: {
       brilliant: ["blink", "twinkle", "nod"],
@@ -255,7 +253,7 @@ export const dogStudy: CoachCollection = {
   description:
     "Two beloved goldens, a corgi and a border collie. Four different kinds of good company.",
   expressionIntents: animalIntents,
-  animation: { ...animalPerformance, idleRangeMs: [1000, 2000] },
+  animation: animalPerformance,
   families: [
     {
       id: "sunny",

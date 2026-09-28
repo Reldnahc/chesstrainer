@@ -65,7 +65,6 @@ export type CoachDefinition = {
   animation: {
     reactionMs: Partial<Record<CoachExpression, number>>;
     defaultReactionMs: number;
-    idleRangeMs: readonly [number, number];
     idleGestures: Partial<Record<CoachExpression, readonly CoachMicro[]>>;
     defaultIdle: readonly CoachMicro[];
   };

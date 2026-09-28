@@ -1,5 +1,7 @@
 import type { CoachDefinition, CoachExpression, CoachMicro } from "./model";
 
+export const IDLE_GAP_MS = [500, 1000] as const;
+
 export function nextIdle(
   animation: CoachDefinition["animation"],
   state: CoachExpression,

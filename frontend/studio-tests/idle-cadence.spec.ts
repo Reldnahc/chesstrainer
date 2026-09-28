@@ -1,11 +1,12 @@
 import { test, expect, type Page } from "@playwright/test";
 
 const cases = [
-  { coach: "classic", delay: 1000, reaction: 1650 },
-  { coach: "woman", delay: 1000, reaction: 1700 },
-  { coach: "cat", delay: 1250, reaction: 1700 },
-  { coach: "dog", delay: 1500, reaction: 1700 },
+  { coach: "classic", reaction: 1650 },
+  { coach: "woman", reaction: 1700 },
+  { coach: "cat", reaction: 1700 },
+  { coach: "dog", reaction: 1700 },
 ];
+const idleGapMs = 750;
 
 async function settledCoach(page: Page, coach: string, reaction: number) {
   // Fix the random draw at the documented range midpoint and advance actual
@@ -25,12 +26,12 @@ async function settledCoach(page: Page, coach: string, reaction: number) {
   return avatar;
 }
 
-for (const { coach, delay, reaction } of cases) {
+for (const { coach, reaction } of cases) {
   test(`${coach} keeps cycling existing idles at the natural and subtle cadence`, async ({ page }) => {
     const avatar = await settledCoach(page, coach, reaction);
     const take = await avatar.getAttribute("data-take");
     for (let cycle = 0; cycle < 3; cycle++) {
-      await page.clock.runFor(delay - 1);
+      await page.clock.runFor(idleGapMs - 1);
       await expect(avatar).toHaveAttribute("data-micro", "");
       await page.clock.runFor(1);
       await expect(avatar).toHaveAttribute("data-micro", /.+/);
@@ -45,7 +46,7 @@ for (const { coach, delay, reaction } of cases) {
     await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("subtle");
     await avatar.scrollIntoViewIfNeeded();
     await expect(avatar).toHaveAttribute("data-motion", "subtle");
-    await page.clock.runFor(delay + 500 - 1);
+    await page.clock.runFor(idleGapMs - 1);
     await expect(avatar).toHaveAttribute("data-micro", "");
     await page.clock.runFor(1);
     await expect(avatar).toHaveAttribute("data-micro", /.+/);
@@ -59,7 +60,7 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
   const take = await avatar.getAttribute("data-take");
   const motion = page.getByRole("combobox", { name: "Motion intensity" });
   for (const pause of ["still", "reduced", "offscreen", "hidden"]) {
-    await page.clock.runFor(1000);
+    await page.clock.runFor(idleGapMs);
     await expect(avatar).toHaveAttribute("data-micro", /.+/);
     if (pause === "still") {
       await motion.selectOption("still");
@@ -80,7 +81,7 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
     await expect(avatar).toHaveAttribute("data-micro", "");
     // Cross two complete idle windows, including the cancelled gesture's finish.
     for (let cycle = 0; cycle < 2; cycle++) {
-      await page.clock.runFor(1000);
+      await page.clock.runFor(idleGapMs);
       await expect(avatar).toHaveAttribute("data-micro", "");
       await page.clock.runFor(1200);
       await expect(avatar).toHaveAttribute("data-micro", "");
@@ -96,6 +97,6 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
     await expect(avatar).toHaveAttribute("data-phase", "rest");
     await expect(avatar).toHaveAttribute("data-take", take!);
   }
-  await page.clock.runFor(1000);
+  await page.clock.runFor(idleGapMs);
   await expect(avatar).toHaveAttribute("data-micro", /.+/);
 });
