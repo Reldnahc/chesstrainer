@@ -250,49 +250,46 @@ main:has(.review-workspace-layout) {
   margin-top: 8px;
 }
 .coach-actions {
+  --coach-action-gap: 8px;
   grid-column: 2;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  align-items: stretch;
+  gap: var(--coach-action-gap);
   min-height: 44px;
   min-width: 0;
 }
-.coach-actions button {
-  min-height: 34px;
-  width: 110px;
-  padding: 5px 8px;
+.coach-actions > button {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: calc((100% - var(--coach-action-gap)) / 2);
+  min-height: 44px;
+  padding: 6px 10px;
+  gap: 6px;
   font-size: 12px;
-  flex-shrink: 0;
+  line-height: 1.2;
 }
 .coach-actions button[aria-pressed="true"] {
   border-color: #b8cfc2;
   background: #34483c;
 }
-.coach-actions > span {
-  color: #c1cfc5;
-  font-size: 11px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.coach-move-context {
+.coach-context {
+  grid-column: 2;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   min-width: 0;
-  min-height: 44px;
+  min-height: 28px;
   color: #c1cfc5;
   font-size: 11px;
 }
-.coach-move-context > span {
+.coach-context > span {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.coach-actions .human-insight-trigger {
+.coach-context .human-insight-trigger {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -336,7 +333,7 @@ main:has(.review-workspace-layout) {
   margin-bottom: 12px;
 }
 .human-insight-popover h3 { margin: 0; font-size: 15px; color: #a9d6e1; }
-.coach-actions .human-insight-popover button {
+.human-insight-popover button {
   display: grid;
   place-items: center;
   width: 36px;
@@ -474,20 +471,9 @@ main:has(.review-workspace-layout) {
   .coach-label .move-badge {
     font-size: 13px;
   }
-  .coach-actions {
+  .coach-actions,
+  .coach-context {
     grid-column: 1 / -1;
-  }
-  .coach-actions button {
-    min-height: 44px;
-    flex: 1;
-  }
-  .coach-actions > span {
-    flex: 1;
-    text-align: center;
-  }
-  .coach-move-context {
-    flex: 1;
-    align-items: center;
   }
   .evaluation-score {
     min-width: 6ch;
@@ -511,7 +497,8 @@ main:has(.review-workspace-layout) {
   .coach-label .move-badge {
     font-size: 13px;
   }
-  .coach-actions {
+  .coach-actions,
+  .coach-context {
     grid-column: 1 / -1;
   }
 }

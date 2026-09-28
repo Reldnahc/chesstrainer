@@ -116,27 +116,6 @@
   margin: 0 0 12px;
 }
 
-.review-actions {
-  display: flex;
-  gap: 8px;
-  width: 100%;
-}
-.review-actions button {
-  flex: 1;
-  min-width: 0;
-  min-height: 44px;
-  padding-block: 6px;
-  line-height: 1.2;
-}
-.review-actions .review-why {
-  font-size: 12px;
-  padding-inline: 10px;
-}
-.explanation-back {
-  min-height: 44px;
-  width: 100%;
-  margin-bottom: 10px;
-}
 .explanation-summary {
   font-size: 13px;
   margin: 8px 0 12px;
@@ -199,11 +178,6 @@
 .review-schedule .review-due {
   margin: 0;
 }
-.coach-actions .explanation-back {
-  width: 100%;
-  min-height: 44px;
-  margin: 0;
-}
 .review-explanation .explanation-controls {
   font-variant-numeric: tabular-nums;
 }
@@ -250,11 +224,6 @@
   align-items: start;
   margin: 8px 0;
 }
-.explanation-actions > .explanation-back {
-  width: auto;
-  margin: 0;
-  flex: 1 0 auto;
-}
 .explanation-actions > .pattern-tools {
   margin: 0;
   flex: 1 1 auto;
@@ -285,22 +254,11 @@
     font-size: 11px;
     line-height: 1.4;
   }
-  .review-session .review-action {
-    min-height: 44px;
-    margin-bottom: 0;
-  }
   .review-session .review-details {
     margin-top: 6px;
   }
   .review-session .review-details summary {
     padding: 10px 0;
-  }
-  .review-actions .review-action {
-    padding-inline: 10px;
-    gap: 5px;
-  }
-  .explanation-back {
-    margin-bottom: 8px;
   }
   .explanation-summary {
     font-size: 12px;
@@ -308,9 +266,6 @@
   }
   .review-session .explanation-controls {
     margin: 8px 0;
-  }
-  .review-session .explanation-back {
-    margin-bottom: 0;
   }
   .pattern-findings .text-button {
     min-height: 44px;

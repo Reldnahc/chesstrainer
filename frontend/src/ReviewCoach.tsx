@@ -10,6 +10,7 @@ export default function ReviewCoach({
   evaluation,
   children,
   actions,
+  context,
   reaction = { state: "neutral", key: "ready" },
   character,
 }: {
@@ -18,6 +19,7 @@ export default function ReviewCoach({
   evaluation?: ReactNode;
   children: ReactNode;
   actions: ReactNode;
+  context?: ReactNode;
   reaction?: CoachReaction;
   character?: ReactNode;
 }) {
@@ -41,6 +43,7 @@ export default function ReviewCoach({
         </div>
       </div>
       <div className="coach-actions">{actions}</div>
+      {context && <div className="coach-context">{context}</div>}
     </section>
   );
 }

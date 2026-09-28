@@ -60,7 +60,13 @@ for (const [kind, code, phrase, label] of cases) {
     await expect(detail).not.toBeVisible();
     // Navigating away closes the old insight; it cannot describe the next board.
     await trigger.click();
-    await page.getByRole("button", {name: "Previous move", exact: true}).click();
+    const previous = page.getByRole("button", {name: "Previous move", exact: true});
+    // Keep the real click outside the centered popover and sticky phone header.
+    await previous.evaluate(button => {
+      const header = document.querySelector('.app-header')!.getBoundingClientRect();
+      window.scrollBy(0, button.getBoundingClientRect().top - header.bottom - 16);
+    });
+    await previous.click();
     await expect(detail).not.toBeVisible();
     await expect(trigger).not.toBeVisible();
   });

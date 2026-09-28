@@ -77,8 +77,11 @@ Move any legal piece to start a variation. Undo and choose a different move to f
 it; the variations list keeps both lines while this game remains open. A prominent
 purple **Return to game** button beside **Show why** in the coach's action row
 restores the original branch point without adding another row above the controls.
-Existing action buttons retain their width and height when this button appears;
-they only shrink if the available row cannot fit the buttons at their usual widths.
+Game review and SRS share the same action sizing: buttons grow with the row up to
+half its width, allowing for the gap, with a 44px minimum height. A single action
+keeps that half-width when Return to game appears beside it. Best-move and human
+insight information sit on a separate compact line below the actions, so they
+cannot squeeze the buttons.
 Stepping backward to that point also exits the variation. The **Start of game** (`<<`)
 control always selects the original game's initial position (ply 0), even from a
 variation. It is disabled when already at that position. Escape returns to the
