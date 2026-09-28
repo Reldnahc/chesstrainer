@@ -1,7 +1,7 @@
 import {test, expect, type Request} from "@playwright/test";
 import {renderNeutral} from "../src/dialogue/neutral";
 import {humanGames, humanIntent} from "./human-fixtures";
-import {humanSourceNotes} from "../src/dialogue/humanClaims";
+import {humanInsightExplanation, humanSourceNotes} from "../src/dialogue/humanClaims";
 
 const cases = [
   ["natural_error", "human_natural_error", /natural mistake/i, "Natural mistake"],
@@ -24,6 +24,11 @@ for (const [kind, code, phrase, label] of cases) {
     expect(item!.evidence.some(ref => ref.id === game.frames[1].report!.human!.evidence_id)).toBe(true);
     expect(intent.decisions).toContain("domain_shift");
     expect(JSON.stringify(game)).toBe(saved);
+    const meaning = humanInsightExplanation(code, game.frames[1].report!);
+    expect(meaning).toContain("Maia");
+    expect(meaning).toContain("Stockfish");
+    expect(meaning).toContain(game.frames[1].report![code === "human_natural_error" || code === "human_rare" || code.startsWith("human_natural_") ? "actual" : "best"].san);
+    expect(meaning).not.toMatch(/%|players at your rating/);
     if (kind === "natural_strong") expect(text).not.toMatch(/best move/i);
     if (kind === "missed_defense") expect(text).toMatch(/would|was available|instead/i);
   });
@@ -54,7 +59,8 @@ for (const [kind, code, phrase, label] of cases) {
     await trigger.click();
     const detail = page.getByRole("dialog", {name: "Maia insight"});
     await expect(detail).toBeVisible();
-    await expect(detail.locator("p")).toHaveCount(1);
+    await expect(detail.locator("p")).toHaveCount(2);
+    await expect(detail.locator(".human-insight-meaning")).toHaveText(humanInsightExplanation(code, game.frames[1].report!));
     await expect(detail.locator(".human-insight-source")).toContainText("Rough estimate");
     await expect(detail.getByRole("link", {name: "About Maia"})).toHaveAttribute("href", "https://www.maiachess.com/");
     expect(await geometry(".review-board-row")).toEqual(boardBefore);
@@ -107,6 +113,7 @@ test("source context preserves domain uncertainty without turning policy into po
   report.human!.domain.alignment = "shifted";
   expect(humanSourceNotes(report).note).not.toMatch(/Maia|Lichess/);
   expect(humanSourceNotes(report).url).toBeUndefined();
+  expect(humanInsightExplanation("human_natural_best", report)).not.toContain("Maia");
 });
 
 test("visible Maia insight survives coach selection and reload without new analysis", async ({page}) => {

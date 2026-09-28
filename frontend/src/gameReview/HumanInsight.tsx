@@ -1,6 +1,6 @@
 import {useId} from "react";
 import {Info, X} from "lucide-react";
-import {humanInsightLabels, humanSourceNotes} from "../dialogue/humanClaims";
+import {humanInsightExplanation, humanInsightLabels, humanSourceNotes} from "../dialogue/humanClaims";
 import {makeIntent, type DialogueIntent} from "../dialogue/model";
 import {useDialogue} from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
@@ -23,6 +23,7 @@ export default function HumanInsight({intent, report}: {intent: DialogueIntent; 
         <button popoverTarget={id} popoverTargetAction="hide" aria-label="Close insight"><X size={18} aria-hidden="true" /></button>
       </header>
       <DialogueText utterance={utterance} />
+      <p className="human-insight-meaning">{humanInsightExplanation(items[0].code, report)}</p>
       <div className="human-insight-source">
         <span>{note}</span>
         {url && <a href={url} target="_blank" rel="noopener noreferrer">About Maia ↗</a>}
