@@ -60,11 +60,8 @@ export default function GamesScreen({
         title="Your games"
         description="Review the turning points. Follow the ideas. Try a different move."
       >
-        <Link className="button-link primary" href={pagePaths.Import}>
-          Import games
-        </Link>
+        <GameSync compact onChanged={() => setRevision((value) => value + 1)} />
       </PageTitle>
-      <GameSync onChanged={() => setRevision((value) => value + 1)} />
       {error && (
         <p role="alert" className="notice error">
           {error}
@@ -89,8 +86,8 @@ export default function GamesScreen({
                 Import a PGN or your Chess.com games to review both sides with
                 your local coach.
               </p>
-              <Link className="button-link" href={pagePaths.Import}>
-                Go to Import
+              <Link className="button-link" href={pagePaths.Settings}>
+                Import games in Settings
               </Link>
             </>
           )}

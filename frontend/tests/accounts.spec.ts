@@ -8,8 +8,17 @@ test('account signup, engine-free sync, second-device login and private library'
   await page.getByLabel('Password', {exact: true}).fill('test-only-password');
   await page.getByRole('button', {name: 'Create account', exact: true}).click();
   await page.getByRole('link', {name: 'Games', exact: true}).click();
+  await expect(page.getByLabel('Remembered Chess.com username')).toHaveCount(0);
+  await page.getByRole('link', {name: 'Update games', exact: true}).click();
+  await expect(page).toHaveURL('/settings');
   await page.getByLabel('Remembered Chess.com username').fill(username);
   await page.getByRole('button', {name: 'Save username', exact: true}).click();
+  await expect(page.getByText('Change Chess.com connection', {exact: true})).toBeVisible();
+  await page.getByRole('link', {name: 'Games', exact: true}).click();
+  await expect(page.getByLabel('Remembered Chess.com username')).toHaveCount(0);
+  const syncResponse = page.waitForResponse(r => r.url().endsWith('/api/sync') && r.request().method() === 'POST');
+  await page.getByRole('button', {name: 'Update games', exact: true}).click();
+  expect((await syncResponse).ok()).toBe(true);
   await expect(page.locator('.game-library-item')).toHaveCount(1, {timeout: 30000});
   await expect(page.locator('.game-library-item')).toContainText(username);
   await expect(page.getByText(`Signed in as ${username}`)).toHaveCount(0);
@@ -45,9 +54,10 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.locator('.review-coach .coach-avatar')).toHaveAttribute('data-coach', 'woman-blonde');
     await expect(device.getByRole('button', {name: /^2\. g4(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
     await device.getByRole('link', {name: 'Games', exact: true}).click();
-    await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue(username);
     await expect(device.locator('.game-library-item')).toHaveCount(1);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
+    await device.getByText('Change Chess.com connection', {exact: true}).click();
+    await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue(username);
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('natural');
     await expect(device.getByRole('radio')).toHaveCount(30);
@@ -73,6 +83,8 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.getByRole('radio', {name: 'Storyteller', exact: true})).toBeChecked();
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
+    await expect(device.getByLabel('Remembered Chess.com username')).toHaveCount(0);
+    await device.getByRole('link', {name: 'Update games', exact: true}).click();
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue('');
     await device.goto(`${gameHref}?ply=3`);
     await expect(device.getByRole('alert')).toContainText('Game not found');

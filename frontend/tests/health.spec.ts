@@ -27,9 +27,10 @@ test("lazy and recovered engine use stays available without an endless checking 
   await page.goto("/import");
   for (const state of ["unchecked", "unavailable", "ready"] as const) {
     status = state;
+    await page.goto("/games");
     await page
       .getByRole("navigation")
-      .getByRole("link", { name: "Import", exact: true })
+      .getByRole("link", { name: "Settings", exact: true })
       .click();
     await expect(
       page.getByRole("heading", { name: "Import games" }),

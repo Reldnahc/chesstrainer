@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import {
-  FileUp,
   BookOpen,
   Flag,
   Focus,
@@ -12,7 +11,6 @@ import {
 import { api, read, type Health } from "./api";
 import ReviewScreen from "./Review";
 import GamesScreen from "./GameReview";
-import ImportScreen from "./Import";
 import SettingsScreen from "./Settings";
 import WeaknessScreen from "./Weaknesses";
 import EvidenceDialog from "./EvidenceDialog";
@@ -26,7 +24,6 @@ const tabs = [
   ["Review", Focus],
   ["Games", BookOpen],
   ["Weaknesses", Flag],
-  ["Import", FileUp],
   ["Settings", Settings2],
 ] as const;
 export default function App() {
@@ -159,12 +156,11 @@ export default function App() {
                 focusSkill={focusSkill}
                 onExitFocus={() => navigate(pagePaths.Review)}
                 requested={exercise}
-                onImport={() => navigate(pagePaths.Import)}
+                onImport={() => navigate(pagePaths.Settings)}
                 fail={fail}
                 onEvidence={setEvidenceId}
               />
             )}
-            {tab === "Import" && <ImportScreen health={health} fail={fail} />}
             {tab === "Games" && (
               <GamesScreen
                 key={route.href}
