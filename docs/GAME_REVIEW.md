@@ -64,7 +64,8 @@ continuations are not projected onto the current board.
 
 Move any legal piece to start a variation. Undo and choose a different move to fork
 it; the variations list keeps both lines while this game remains open. A prominent
-purple **Return to game** button below the coach restores the original branch point.
+purple **Return to game** button beside **Show why** in the coach's action row
+restores the original branch point without adding another row above the controls.
 Stepping backward to that point also exits the variation. The **First move** (`<<`)
 control always selects ply 1 of the original game, even from a variation; the
 previous-move control can still reach the initial position. Escape returns to the

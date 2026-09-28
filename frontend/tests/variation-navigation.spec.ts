@@ -29,7 +29,9 @@ async function openGame(page: Page, suffix: string) {
 
 test("variation return is a prominent coach action and restores the original position", async ({page}, info) => {
   const {id, game, play, onMainline} = await openGame(page, `return-${info.project.name}`);
+  await page.evaluate(() => document.fonts.ready);
   const boardWidth = (await page.locator(".board-shell").boundingBox())!.width;
+  const actionsHeight = (await page.locator(".coach-actions").boundingBox())!.height;
   if (info.project.name === "desktop") {
     const centers = await page.getByRole("group", {name: "Game navigation"}).evaluate(controls => {
       const row = controls.getBoundingClientRect();
@@ -48,21 +50,36 @@ test("variation return is a prominent coach action and restores the original pos
   const layout = await back.evaluate(button => {
     const bounds = button.getBoundingClientRect();
     const actions = button.closest(".coach-actions")!;
+    const why = actions.querySelector("button[aria-pressed]")!.getBoundingClientRect();
     const speech = button.closest(".review-coach")!.querySelector(".coach-speech")!.getBoundingClientRect();
     return {
       width: bounds.width, height: bounds.height, top: bounds.top,
-      actionsWidth: actions.getBoundingClientRect().width, speechBottom: speech.bottom,
+      actionsHeight: actions.getBoundingClientRect().height, speechBottom: speech.bottom,
+      whyTop: why.top, whyHeight: why.height, gap: bounds.left - why.right,
       color: getComputedStyle(button).backgroundColor,
       secondaryColor: getComputedStyle(actions.querySelector("button[aria-pressed]")!).backgroundColor,
     };
   });
   expect(layout.top).toBeGreaterThanOrEqual(layout.speechBottom);
   expect(layout.height).toBeGreaterThanOrEqual(44);
-  expect(layout.width).toBeCloseTo(layout.actionsWidth, 0);
+  expect(layout.top).toBeCloseTo(layout.whyTop, 1);
+  expect(layout.height).toBe(layout.whyHeight);
+  expect(layout.gap).toBe(8);
+  expect(layout.actionsHeight).toBe(actionsHeight);
   expect(layout.color).not.toBe(layout.secondaryColor);
   expect((await page.locator(".board-shell").boundingBox())!.width).toBe(boardWidth);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.locator(".review-coach").screenshot({path: `test-results/variation-return-${info.project.name}.png`});
+  if (info.project.name === "mobile") {
+    await page.setViewportSize({width: 320, height: 700});
+    const why = (await page.getByRole("button", {name: "Show why", exact: true}).boundingBox())!;
+    const returning = (await back.boundingBox())!;
+    expect(returning.y).toBe(why.y);
+    expect(returning.x).toBe(why.x + why.width + 8);
+    expect((await page.locator(".coach-actions").boundingBox())!.height).toBe(actionsHeight);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.locator(".review-coach").screenshot({path: "test-results/variation-return-small-phone.png"});
+  }
   await back.click();
   await onMainline(2);
   await expect(page.locator(".coach-speech")).toContainText("e5");

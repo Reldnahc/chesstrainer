@@ -2,6 +2,16 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Return action placement: focused checks
+
+The purple Return to game action now sits beside Show why in the same row.
+Entering a variation no longer adds an action row between the bubble and controls.
+`npx.cmd playwright test variation-navigation.spec.ts --grep 'variation return is' --reporter=line`
+passed both desktop/mobile checks, including 320px phone width, unchanged action
+height, no horizontal overflow and exact return to the original position. Vite
+bundle and diff checks passed; screenshots inspected. Full verification remains
+deferred by owner request.
+
 ## Review sidebar tabs: focused checks
 
 Moves and Move quality now share one panel. The inset quality table uses sticky

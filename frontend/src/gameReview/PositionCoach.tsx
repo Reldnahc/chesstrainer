@@ -92,16 +92,6 @@ export default function PositionCoach({
       evaluation={<EvaluationScore score={score} />}
       actions={
         <>
-          {variation && (
-            <button
-              className="game-return"
-              onClick={onReturnToGame}
-              title="Return to game (Escape)"
-            >
-              <CornerUpLeft size={18} />
-              Return to game
-            </button>
-          )}
           <button
             aria-pressed={explaining}
             disabled={!cues && !errorAtPosition}
@@ -113,6 +103,16 @@ export default function PositionCoach({
                 ? "Hide why"
                 : "Show why"}
           </button>
+          {variation && (
+            <button
+              className="game-return"
+              onClick={onReturnToGame}
+              title="Return to game (Escape)"
+            >
+              <CornerUpLeft size={18} />
+              Return to game
+            </button>
+          )}
           <div className="coach-move-context">
             <span title={bestMove ? `Best move: ${bestMove}` : undefined}>
               {bestMove ? (
