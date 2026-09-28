@@ -12,6 +12,8 @@ def settings(tmp_path):
     return Settings(
         _env_file=None,
         database_path=tmp_path / "test.sqlite3",
+        # Fallback tests must not discover a developer's installed model. Native tests opt in.
+        human_model_path=tmp_path / "unconfigured-maia.pt",
         triage_depth=8,
         triage_time=0.05,
         deep_depth=12,
