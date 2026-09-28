@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useAccount } from "./AccountGate";
 import { api, read, type Schema } from "./api";
+import Link from "./Link";
+import { pagePaths } from "./navigation";
 
 type Sync = Schema["SyncStatus"];
 
-export default function GameSync({ onChanged }: { onChanged?: () => void }) {
+export default function GameSync({ onChanged, compact = false }: { onChanged?: () => void; compact?: boolean }) {
   const account = useAccount();
   const [name, setName] = useState("");
   const [status, setStatus] = useState<Sync | null>(null);
@@ -59,7 +61,7 @@ export default function GameSync({ onChanged }: { onChanged?: () => void }) {
         update(value);
         if (value.username) void tick();
       })
-      .catch((e) => setError(e.message))
+      .catch((e) => { if (active.current) setError(e.message); })
       .finally(() => {
         if (active.current) setLoadingProfile(false);
       });
@@ -92,8 +94,18 @@ export default function GameSync({ onChanged }: { onChanged?: () => void }) {
       setBusy(false);
     }
   }
-  if (!account) return null;
   const running = status && ["queued", "running"].includes(status.status);
+  if (compact) return <div className="game-sync-compact">
+    {!account || (!loadingProfile && !status?.username) ? (
+      <Link className="button-link secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</Link>
+    ) : (
+      <button className="secondary" disabled={loadingProfile || busy || !!running} onClick={refresh}>
+        {busy || running ? "Updating…" : "Update games"}
+      </button>
+    )}
+    {(error || status?.error) && <span role="alert" className="small">{error || status?.error}</span>}
+  </div>;
+  if (!account) return null;
   return (
     <section className="panel game-sync" aria-label="Recent Chess.com games">
       <h2>Recent Chess.com games</h2>

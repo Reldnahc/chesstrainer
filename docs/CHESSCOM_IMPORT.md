@@ -1,6 +1,6 @@
 # Chess.com username import
 
-Open **Import → Chess.com username** and enter a player username. Defaults: rapid, last 3 calendar months (including the current UTC month), latest 100 unsaved matching games. Select blitz/bullet/daily/all, a longer range or all available history, and a maximum of 1–1000 new games. Rated and unrated completed standard-chess games are included. Chess variants and ongoing games are excluded. No Chess.com login, API key or subscription integration is required.
+Open **Settings → Import games → Chess.com username** and enter a player username. Defaults: rapid, last 3 calendar months (including the current UTC month), latest 100 unsaved matching games. Select blitz/bullet/daily/all, a longer range or all available history, and a maximum of 1–1000 new games. Rated and unrated completed standard-chess games are included. Chess variants and ongoing games are excluded. No Chess.com login, API key or subscription integration is required.
 
 ## Provider and authority
 

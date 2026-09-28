@@ -1,6 +1,6 @@
 # Development plan
 
-Fieldwork is a private, review-centered chess trainer. The current navigation is Review, Games, Weaknesses, Import and Settings. Product behavior and known limits live in [PRODUCT.md](PRODUCT.md) and [FEATURE_STATUS.md](FEATURE_STATUS.md); this document tracks current work and remaining priorities.
+Fieldwork is a private, review-centered chess trainer. The current navigation is Review, Games, Weaknesses and Settings. Product behavior and known limits live in [PRODUCT.md](PRODUCT.md) and [FEATURE_STATUS.md](FEATURE_STATUS.md); this document tracks current work and remaining priorities.
 
 ## Current state
 

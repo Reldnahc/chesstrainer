@@ -16,7 +16,7 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
   const response = await page.request.get(icon!);
   expect(response.headers()['content-type']).toContain('image/svg+xml');
   expect(await response.text()).toContain('<svg');
-  for (const tab of ['Review', 'Games', 'Import', 'Weaknesses', 'Settings']) {
+  for (const tab of ['Review', 'Games', 'Weaknesses', 'Settings']) {
     await page.getByRole('link', {name: tab, exact: true}).click();
     await expect(page.getByRole('link', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
@@ -82,21 +82,21 @@ test('create a curated position, fail once, solve by tapping and retain after re
 
 test('PGN upload form imports a learner game and reports real analysis', async ({page}, testInfo) => {
   await page.goto('/');
-  await page.getByRole('link', {name: 'Import', exact: true}).click();
+  await page.getByRole('link', {name: 'Settings', exact: true}).click();
   await page.getByRole('button', {name: 'PGN file', exact: true}).click();
   await page.getByText('Or paste PGN text', {exact: true}).click();
   await page.getByLabel('PGN', {exact: true}).fill(`[Round "${testInfo.project.name}"]\n[White "UI learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1`);
   await page.getByLabel('Your username(s)').fill('UI learner');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
   await page.getByRole('button', {name: 'Import & analyze'}).click();
-  await expect(page.getByRole('status')).toContainText(/imported/);
+  await expect(page.locator('.settings-import').getByRole('status')).toContainText(/imported/);
   await expect(page.locator('.job .badge').first()).toHaveText('completed', {timeout: 30000});
   await expect(page.locator('.job').first()).toContainText('2 decisions');
   const previousJobs = await page.locator('.job').count();
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
   await page.getByRole('button', {name: 'Import & analyze'}).click();
-  await expect(page.getByRole('status')).toContainText('0 imported');
-  await expect(page.getByRole('status')).toContainText('1 duplicate');
+  await expect(page.locator('.settings-import').getByRole('status')).toContainText('0 imported');
+  await expect(page.locator('.settings-import').getByRole('status')).toContainText('1 duplicate');
   await expect(page.locator('.job')).toHaveCount(previousJobs);
 });
 
@@ -155,7 +155,7 @@ test('legal capture rings exclude pinned moves and stay usable after a failed an
 test('Chess.com username import fetches, analyzes and deduplicates without OpenAI', async ({page}, testInfo) => {
   const username = `ui-import-${testInfo.project.name}`;
   await page.goto('/');
-  await page.getByRole('link', {name: 'Import', exact: true}).click();
+  await page.getByRole('link', {name: 'Settings', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Import from Chess.com'})).toBeVisible();
   await expect(page.getByLabel('Time control', {exact: true})).toHaveValue('rapid');
   await expect(page.getByLabel('Look back')).toHaveValue('3');
@@ -175,7 +175,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   const response = await queued;
   expect(response.status()).toBe(202);
   expect(response.request().postDataJSON()).toEqual({username, analyze: true, time_class: 'rapid', months: 6, max_games: 25, start_date: startDate, end_date: endDate});
-  await expect(page.getByRole('status')).toContainText('Import queued');
+  await expect(page.locator('.settings-import').getByRole('status')).toContainText('Import queued');
   const job = page.locator('.job').filter({hasText: username}).first();
   await expect(job.locator('.badge')).toHaveText('completed', {timeout: 30000});
   await expect(job).toContainText('1 imported');
@@ -192,7 +192,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
 
 test('Chess.com missing username reports a retryable provider error', async ({page}) => {
   await page.goto('/');
-  await page.getByRole('link', {name: 'Import', exact: true}).click();
+  await page.getByRole('link', {name: 'Settings', exact: true}).click();
   await page.getByLabel('Chess.com username', {exact: true}).fill('missing-player');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
   await page.getByRole('button', {name: 'Fetch & analyze games'}).click();
@@ -507,9 +507,9 @@ test('local classification settings and evidence work without model connectivity
 test('compact workspace keeps navigation reachable and settings focused on user actions', async ({page}, testInfo) => {
   await page.goto('/');
   if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 390, height: 700});
-  for (const tab of ['Import', 'Weaknesses', 'Settings']) {
+  for (const tab of ['Weaknesses', 'Settings']) {
     await page.getByRole('navigation').getByRole('link', {name: tab, exact: true}).click();
-    await expect(page.locator('main h1')).toHaveText(tab === 'Import' ? 'Import games' : tab);
+    await expect(page.locator('main h1')).toHaveText(tab);
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
     if (testInfo.project.name === 'mobile') {
       expect((await page.locator('header').boundingBox())!.height).toBeLessThanOrEqual(60);
@@ -526,7 +526,7 @@ test('compact workspace keeps navigation reachable and settings focused on user 
     await expect(page.getByText(label, {exact: true})).toHaveCount(0);
   }
   await expect(page.locator('.app-header')).not.toContainText(/Local|Private account/);
-  await page.getByRole('navigation').getByRole('link', {name: 'Import', exact: true}).click();
+  await page.getByRole('navigation').getByRole('link', {name: 'Settings', exact: true}).click();
   await expect(page.getByLabel('From date')).not.toBeVisible();
   await page.getByText('Custom date range', {exact: true}).click();
   await page.getByLabel('From date').fill('2026-01-01');

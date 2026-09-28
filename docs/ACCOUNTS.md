@@ -94,7 +94,7 @@ Once accounts exist, schema downgrade is refused; restore a pre-upgrade snapshot
 
 ## Recent games
 
-Save a Chess.com username in Games or Settings. It is stored on the account, not
+Save a Chess.com username in Settings. Games exposes a compact **Update games** control using that saved connection. It is stored on the account, not
 in that browser. While either page is visible it checks sync progress every 15
 seconds and requests a provider refresh at most once per minute. Multiple devices
 share the same checkpoint/cooldown. Hidden pages do not poll. A failed provider

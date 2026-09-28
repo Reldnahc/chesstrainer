@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
-import GameSync from "./GameSync";
+import ImportSettings from "./Import";
 import { AccountSettings } from "./AccountGate";
 import CoachSettings from "./coach/CoachSettings";
 import MotionSettings from "./MotionSettings";
@@ -26,8 +26,8 @@ export default function SettingsScreen({
       );
       setMessage(
         enrich
-          ? "Additional analysis queued for unclear training positions. Follow progress in Import."
-          : "Training labels queued. Follow progress in Import.",
+          ? "Additional analysis queued for unclear training positions. Follow progress in Analysis activity above."
+          : "Training labels queued. Follow progress in Analysis activity above.",
       );
     } catch (e) {
       fail(e);
@@ -43,9 +43,9 @@ export default function SettingsScreen({
         description="Your account, connected games and training."
       />
       <AccountSettings />
+      <ImportSettings health={health} fail={fail} />
       <CoachSettings />
       <MotionSettings />
-      <GameSync />
       <section className="panel settings-panel">
         <h2>Training</h2>
         <p>

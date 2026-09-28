@@ -4,7 +4,6 @@ export const pagePaths = {
   Review: "/review",
   Games: "/games",
   Weaknesses: "/weaknesses",
-  Import: "/import",
   Settings: "/settings",
 } as const;
 export type Tab = keyof typeof pagePaths;
@@ -26,6 +25,7 @@ function readRoute() {
   const url = new URL(window.location.href);
   // Keep old bookmarks working without adding an extra Back-button stop.
   if (url.pathname === "/") url.pathname = pagePaths.Review;
+  if (url.pathname.replace(/\/$/, "") === "/import") url.pathname = pagePaths.Settings;
   if (url.searchParams.has("unit")) {
     url.searchParams.delete("unit");
     url.searchParams.delete("exercise");

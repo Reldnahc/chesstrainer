@@ -129,12 +129,17 @@ the `interface_motion` column in that same row. Both providers share the saved
 preference lifecycle and reset when the account boundary unmounts. The root CSS
 motion attribute is also removed on unmount; login screens use the device default.
 
-Navigation is Review, Games, Weaknesses, Import, Settings. A small History API
-router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and
+Navigation is Review, Games, Weaknesses, Settings. A small History API
+router renders `/review`, `/games`, `/games/:id`, `/weaknesses` and
 `/settings`. Screen/game links push history entries; `popstate` restores the
 destination. The root URL aliases `/review` with `replaceState`, preserving old
 `?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
 starting a lesson. Unknown paths show a recoverable not-found screen.
+Legacy `/import` URLs replace their history entry with `/settings`. Settings owns
+the saved Chess.com connection, filtered imports, PGN uploads and import activity.
+Games keeps only a compact Update games control using the same sync component and
+polling behavior; without a connection it links to Settings. Sync still fetches
+games without starting engine analysis.
 Weaknesses opens directly with its title and supported pattern/outcome lists;
 introductory copy and the classification-coverage summary are not shown there.
 

@@ -15,7 +15,7 @@ these hints before an attempt or reveal.
 
 Import PGNs or completed public Chess.com games, analyze the learner's decisions locally, save verified evidence, and turn meaningful mistakes into review positions. Versioned local rules classify supported consequences and tactical mechanisms. A position can remain unclassified and still be useful in Review.
 
-The five screens are **Review, Games, Weaknesses, Import and Settings**, in that order on desktop and mobile.
+The four screens are **Review, Games, Weaknesses and Settings**, in that order on desktop and mobile.
 All screens share the compact navigation header, including the Games library and
 game-review workspace. Desktop uses the same 56px navigation row throughout;
 phones retain the compact sticky navigation with full-size touch targets.
@@ -32,12 +32,12 @@ a browser-history stop for each move.
 
 - **Review** starts with an unlabeled board. The backend supplies legal moves and grades answers. A failed engine answer previews the opponent's saved counter; Try again restores the board and Show me why opens deeper playback. Success offers factual feedback and optional Show why. Reveal move performs the saved answer. Repeated retries create only one failed recall per session.
 - **Weaknesses** separates material/mate outcomes from tactical patterns, shows supporting decisions and practice cues, and starts focused batches of up to 12 distinct positions. Focused attempts are stored separately and never change FSRS.
-- **Import** supports multi-game PGNs, explicit learner matching and filtered Chess.com username imports. Only new games enter new analysis jobs; cancellation/retry preserves completed work.
+- **Import games in Settings** supports multi-game PGNs, explicit learner matching and filtered Chess.com username imports. Only new games enter new analysis jobs; cancellation/retry preserves completed work.
   Source selection sits above equally sized form and activity panels. Their
   headings and edges align on desktop; activity entries share one panel with
   separators. At 900px and below, activity stacks below the form. Training analysis
   is an optional inline checkbox for either source.
-- **Settings** contains account and device sign-out controls, the Chess.com connection, and actions to refresh training labels or deepen unclear positions. Its compact coach grid shows all thirty characters in six columns and five rows on desktop, with fewer columns on smaller screens and no category headings or navigation; the saved selection changes presentation and wording, never chess evidence. Coach and interface motion remain separate account preferences. Host configuration and diagnostic tables stay out of the user interface; operators configure the environment or .env. The header shows navigation without a local/account status badge.
+- **Settings** contains account and device sign-out controls, the Chess.com connection, game import tools and analysis activity, and actions to refresh training labels or deepen unclear positions. Its compact coach grid shows all thirty characters in six columns and five rows on desktop, with fewer columns on smaller screens and no category headings or navigation; the saved selection changes presentation and wording, never chess evidence. Coach and interface motion remain separate account preferences. Host configuration and diagnostic tables stay out of the user interface; operators configure the environment or .env. The header shows navigation without a local/account status badge.
 
 FSRS increases intervals after successful recall. An interval strictly above the configured threshold (100 days by default) permanently retires the position, preserving history. The cold review board hides source, concept, previous moves, scores and answers; feedback and playback become available after an attempt or reveal.
 

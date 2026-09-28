@@ -10,7 +10,7 @@ import {
   type Schema,
 } from "./api";
 import { ChessComImportForm, ImportJob } from "./ChessComImport";
-import PageTitle from "./PageTitle";
+import GameSync from "./GameSync";
 function PgnInput({
   file,
   setFile,
@@ -51,7 +51,7 @@ function PgnInput({
     </>
   );
 }
-export default function ImportScreen({
+export default function ImportSettings({
   health,
   fail,
 }: {
@@ -105,12 +105,9 @@ export default function ImportScreen({
     }
   }
   return (
-    <>
-      <PageTitle
-        eyebrow="FROM PLAY TO PRACTICE"
-        title="Import games"
-        description="Find the decisions that matter in games you actually played."
-      />
+    <section className="settings-import" aria-labelledby="settings-import-title">
+      <h2 id="settings-import-title">Import games</h2>
+      <GameSync onChanged={reload} />
       {health?.engine_status === "unavailable" && (
         <div className="notice">{health.engine_error}</div>
       )}
@@ -224,6 +221,6 @@ export default function ImportScreen({
           )}
         </section>
       </div>
-    </>
+    </section>
   );
 }
