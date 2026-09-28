@@ -84,7 +84,7 @@
 .game-library-link {
   justify-self: start;
   min-height: 36px;
-  padding: 6px 0;
+  padding: 6px 8px;
   font-size: 12px;
   white-space: nowrap;
 }
@@ -495,20 +495,21 @@
   }
   .game-board-controls {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 2px;
   }
   .game-library-link {
-    order: 1;
-    flex-basis: 100%;
-    justify-content: flex-start;
+    flex: 0 0 auto;
     min-height: 44px;
+    padding: 5px 6px;
+    gap: 4px;
+    font-size: 11px;
   }
   .game-board-controls button {
     flex: 1 1 0;
     min-height: 44px;
     min-width: 0;
-    padding: 5px;
+    padding: 5px 2px;
   }
   .game-move-counter {
     font-size: 11px;
