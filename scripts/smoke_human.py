@@ -12,6 +12,7 @@ from fastapi.testclient import TestClient
 from trainer.api import create_app
 from trainer.config import Settings
 from trainer.human_models.preset import verify_checkpoint, verify_source
+from trainer.review_intelligence.events_types import MoveIntelligence
 
 
 def main():
@@ -47,7 +48,7 @@ def main():
                 assert human["domain"]["alignment"] == "shifted"
                 practical = frame["report"]["practical"]
                 assert practical["version"] == "practical-2"
-                assert frame["report"]["intelligence"]["version"] == "move-events-3"
+                MoveIntelligence.model_validate(frame["report"]["intelligence"])
                 assert practical["played_naturalness"] != "unknown"
                 assert practical["confidence"] == "limited"
                 assert human["conditioning"]["self_rating"] == (

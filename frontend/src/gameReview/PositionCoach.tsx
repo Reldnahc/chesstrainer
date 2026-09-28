@@ -101,16 +101,16 @@ export default function PositionCoach({
                 : "Show why"}
           </button>
           <div className="coach-move-context">
-          <span title={bestMove ? `Best move: ${bestMove}` : undefined}>
-            {bestMove ? (
-              <>
-                Best: <strong>{bestMove}</strong>
-              </>
-            ) : (
-              "Move a piece to explore"
-            )}
-          </span>
-          {report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
+            <span title={bestMove ? `Best move: ${bestMove}` : undefined}>
+              {bestMove ? (
+                <>
+                  Best: <strong>{bestMove}</strong>
+                </>
+              ) : (
+                "Move a piece to explore"
+              )}
+            </span>
+            {report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
           </div>
         </>
       }

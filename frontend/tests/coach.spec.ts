@@ -93,7 +93,9 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   await expect(avatar).toHaveAttribute("data-expression", "losing");
   await expect(page.locator(".coach-message")).toContainText(/checkmate|king has no escape/i);
   await page.getByRole("button", { name: "First move", exact: true }).click();
-  await expect(avatar).toHaveAttribute("data-expression", "explaining");
+  await expect(avatar).toHaveAttribute("data-expression", "neutral");
+  await expect(page.locator(".coach-message")).toContainText("Select a move");
+  await expect(page.getByRole("region", {name: "Game story"})).toHaveCount(0);
   const fixture = await (
     await page.request.post(
       `/__test/review-explanation-fixture/coach-${info.project.name}`,

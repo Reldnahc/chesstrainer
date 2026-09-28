@@ -2,6 +2,101 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review product cleanup: final verification
+
+Completed units: `01c0e3b` removes story presentation and its dead response-time
+projection; `7088285` scopes personal coaching to the saved learner; `87618fe`
+surfaces human insights and cleans the focused shared/character wording. Review
+of the complete diff confirmed no changes to engine budgets, grading thresholds,
+Maia weights/setup, persisted schemas or coach animation timing. Context and
+history remain two-sided/learner-owned respectively.
+
+From the repository root, using the existing locked environment:
+
+```powershell
+npm.cmd --prefix frontend run build
+.venv/Scripts/ruff.exe check backend scripts migrations
+.venv/Scripts/ruff.exe format --check backend scripts migrations
+.venv/Scripts/python.exe scripts/export_api_contract.py --check
+.venv/Scripts/python.exe -m pytest -q --basetemp data/verification/review-product-full -o cache_dir=data/verification/review-product-full-cache
+```
+
+Build, API export/generated types, app/endpoint/browser TypeScript and Ruff pass
+(222 Python files formatted). Backend: **582 passed, 3 skipped**, 169.89 s, with
+native Stockfish and the two existing TestClient deprecation warnings. The three
+Maia opt-ins were then run using the existing pinned CPU runtime and cached model:
+
+```powershell
+$env:MAIA_CHECKPOINT_DIR = 'C:\Users\cwmle\Documents\chesstrainer\data\maia-benchmark\models'
+$env:MAIA_TEST_MODEL = '79m'
+$env:MAIA_TEST_DEVICE = 'cpu'
+$env:HF_HUB_OFFLINE = '1'
+.tools/maia-runtime/Scripts/python.exe -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q --basetemp data/verification/review-product-native -o cache_dir=data/verification/review-product-native-cache
+```
+
+Native Maia: **3 passed, 9 deselected**, 40.04 s. No checkpoint was downloaded.
+From `frontend`, with these browser/native-engine paths:
+
+```powershell
+$env:PLAYWRIGHT_BROWSERS_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\playwright'
+$env:STOCKFISH_PATH = 'C:\Users\cwmle\Documents\chesstrainer\.tools\stockfish\stockfish-windows-x86-64-avx2.exe'
+npx.cmd playwright test --reporter=line
+npx.cmd playwright test --config=playwright.accounts.config.ts --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+npx.cmd playwright test --config=playwright.intelligence.config.ts --reporter=line
+```
+
+- Application: **191 passed, 3 expected viewport skips**, 3.1 min.
+- Accounts: **2 passed**, 43.8 s, isolated account database.
+- Coach studio: **28 passed**, 2.7 min; the ignored config inherits the normal
+  studio configuration and reuses the owner's existing port-5174 server.
+- Intelligence lab: **34 passed**, 46.3 s; all 16 selectable coaches audited.
+
+The first complete application run had eight failures (four outdated presentation
+assertions on both viewports): the initial story's
+explaining reaction, the old critical-moment progress wording, opening text taking
+priority over a book move's mistake, and personal legacy text on opponent plies.
+Those assertions now verify the intended behavior, retaining exact ply navigation,
+utterance changes, persisted feedback, objective labels, accuracy and geometry.
+The full rerun above passed. Three viewport-specific skips remain intentional.
+
+Fresh migration verification (no persisted schema change was needed):
+
+```powershell
+$env:DATABASE_PATH = 'data/verification/review-product-fresh.sqlite3'
+.venv/Scripts/python.exe -m alembic upgrade head
+.venv/Scripts/python.exe -m alembic check
+.venv/Scripts/python.exe -c "import sqlite3; c=sqlite3.connect('data/verification/review-product-fresh.sqlite3'); print(c.execute('pragma integrity_check').fetchall()); print(c.execute('pragma foreign_key_check').fetchall())"
+```
+
+Passed: no new upgrade operations, integrity `ok`, no foreign-key violations.
+The direct Docker checkout build hit the previously documented Windows cache ACL.
+A clean archive of committed product code `87618fe` built successfully:
+
+```powershell
+git archive --format=zip --output=.tools/review-product-source.zip HEAD
+Expand-Archive -LiteralPath .tools/review-product-source.zip -DestinationPath .tools/review-product-context
+docker build -t fieldwork:review-product-cleanup .tools/review-product-context
+.venv/Scripts/python.exe scripts/smoke_install.py --image fieldwork:review-product-cleanup
+```
+
+Both local and account modes passed fresh installation, restart, native Stockfish
+review/health and coach preference persistence. No existing deployment was touched.
+The additional offline combined review smoke initially failed because its harness
+still asserted `move-events-3`. It now validates `MoveIntelligence` against the
+current public contract; production evidence code was unchanged. The corrected
+script was mounted read-only into the same image for verification:
+
+```powershell
+docker run --rm --network none --mount 'type=bind,source=C:\Users\cwmle\Documents\chesstrainer\data\maia-benchmark\models\maia3-79m.pt,target=/data/models/maia3-79m.pt,readonly' --mount 'type=bind,source=C:\Users\cwmle\Documents\chesstrainer\scripts\smoke_human.py,target=/app/scripts/smoke_human.py,readonly' fieldwork:review-product-cleanup python scripts/smoke_human.py
+```
+
+Passed: native review, exact human policy, restart/cache reuse, and coach
+independence with networking disabled. Test-owned containers/volumes and the
+manual inspection server were stopped; owner services were preserved. No push,
+merge or live deployment was performed. Physical-phone/Safari verification and
+the long native quality benchmark were not repeated for this presentation pass.
+
 ## Review product cleanup: visible human insights and concise prose
 
 Eight new checks failed before the change: mechanical natural/hard-find wording,
