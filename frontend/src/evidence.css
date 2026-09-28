@@ -83,18 +83,6 @@ body:has(dialog[open]) {
 .evidence-grid > * {
   min-width: 0;
 }
-.coverage-summary {
-  margin-bottom: 24px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-}
-.coverage-summary p {
-  margin: 6px 0;
-}
-.coverage-summary details {
-  font-size: 13px;
-  max-width: 64ch;
-}
 .weakness-section {
   margin-top: 28px;
 }
@@ -173,9 +161,6 @@ body:has(dialog[open]) {
   }
   .weakness > button {
     width: 100%;
-  }
-  .coverage-summary {
-    font-size: 13px;
   }
   .evidence-grid > .board-shell {
     width: min(100%, 400px);

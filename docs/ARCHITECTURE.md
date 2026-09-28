@@ -135,6 +135,8 @@ router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and
 destination. The root URL aliases `/review` with `replaceState`, preserving old
 `?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
 starting a lesson. Unknown paths show a recoverable not-found screen.
+Weaknesses opens directly with its title and supported pattern/outcome lists;
+introductory copy and the classification-coverage summary are not shown there.
 
 The coach studio is a separate development process (`npm run dev:coach`, port
 5174), using its own HTML entry and the same character catalogue as production.
