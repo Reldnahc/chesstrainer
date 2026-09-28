@@ -13,52 +13,60 @@ test("the app offers coach selection without an expression viewer route", async 
   await expect(page).toHaveURL(/\/games$/);
 });
 
-test("coach preference saves, reloads and respects the device across real pages", async ({
-  page,
-}) => {
+test("coach motion follows the device by default and saved overrides survive reload", async ({ page }) => {
   await page.request.put("/api/preferences/coach", {
-    data: { coach_id: "classic", motion: "natural" },
+    data: { coach_id: "classic", motion: "system" },
   });
   try {
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/settings");
+    const motion = page.getByLabel("Coach motion", { exact: true });
+    const portrait = page.locator(".coach-option:has(input:checked) .coach-avatar");
+    const notice = page.getByText("Your device requests reduced motion. The coach will stay still.");
     await expect(page.getByRole("radio")).toHaveCount(4);
-    await expect(
-      page.getByRole("radio", { name: "Storyteller", exact: true }),
-    ).toBeChecked();
-    await page
-      .getByLabel("Coach motion", { exact: true })
-      .selectOption("still");
+    await expect(page.getByRole("radio", { name: "Storyteller", exact: true })).toBeChecked();
+    await expect(motion).toHaveValue("system");
+    await expect(motion.locator("option")).toHaveText(["Use device setting", "Animated", "Still"]);
+    await expect(portrait).toHaveAttribute("data-motion", "still");
+    await expect(notice).toBeVisible();
+
+    await motion.selectOption("natural");
+    await expect(page.getByRole("status")).toContainText("Saved");
+    await expect(portrait).toHaveAttribute("data-motion", "natural");
+    await page.reload();
+    await expect(motion).toHaveValue("natural");
+    await expect(portrait).toHaveAttribute("data-motion", "natural");
+    await portrait.scrollIntoViewIfNeeded();
+    await expect.poll(() => portrait.evaluate(element =>
+      element.getAnimations({ subtree: true }).filter(animation => animation.playState === "running").length,
+    )).toBeGreaterThan(0);
+    await expect(notice).toHaveCount(0);
+
+    await motion.selectOption("still");
+    await expect(page.getByRole("status")).toContainText("Saved");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.reload();
+    await expect(motion).toHaveValue("still");
+    await expect(portrait).toHaveAttribute("data-motion", "still");
+    expect(await portrait.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
+
+    await motion.selectOption("system");
     await expect(page.getByRole("status")).toContainText("Saved");
     await page.reload();
-    await expect(page.getByLabel("Coach motion", { exact: true })).toHaveValue(
-      "still",
-    );
-    await expect(
-      page.locator(".coach-option:has(input:checked) .coach-avatar"),
-    ).toHaveAttribute("data-motion", "still");
-    await page
-      .getByLabel("Coach motion", { exact: true })
-      .selectOption("natural");
-    await expect(page.getByRole("status")).toContainText("Saved");
+    await expect(motion).toHaveValue("system");
+    await expect(portrait).toHaveAttribute("data-motion", "natural");
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await expect(
-      page.locator(".coach-option:has(input:checked) .coach-avatar"),
-    ).toHaveAttribute("data-motion", "still");
-    await expect(
-      page.getByText(
-        "Your device requests reduced motion. The coach will stay still.",
-      ),
-    ).toBeVisible();
+    await expect(portrait).toHaveAttribute("data-motion", "still");
   } finally {
     await page.request.put("/api/preferences/coach", {
-      data: { coach_id: "classic", motion: "natural" },
+      data: { coach_id: "classic", motion: "system" },
     });
   }
 });
 
 test("coach motion resynchronizes after device changes while the settings page is unmounted", async ({ page }) => {
   await page.request.put("/api/preferences/coach", {
-    data: { coach_id: "classic", motion: "natural" },
+    data: { coach_id: "classic", motion: "system" },
   });
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/settings");

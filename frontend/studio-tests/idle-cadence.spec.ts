@@ -27,7 +27,7 @@ async function settledCoach(page: Page, coach: string, reaction: number) {
 }
 
 for (const { coach, reaction } of cases) {
-  test(`${coach} keeps cycling existing idles at the natural and subtle cadence`, async ({ page }) => {
+  test(`${coach} keeps cycling existing idles at the shared device and animated cadence`, async ({ page }) => {
     const avatar = await settledCoach(page, coach, reaction);
     const take = await avatar.getAttribute("data-take");
     for (let cycle = 0; cycle < 3; cycle++) {
@@ -43,9 +43,9 @@ for (const { coach, reaction } of cases) {
       await page.clock.runFor(1);
       await expect(avatar).toHaveAttribute("data-micro", "");
     }
-    await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("subtle");
+    await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("natural");
     await avatar.scrollIntoViewIfNeeded();
-    await expect(avatar).toHaveAttribute("data-motion", "subtle");
+    await expect(avatar).toHaveAttribute("data-motion", "natural");
     await page.clock.runFor(idleGapMs - 1);
     await expect(avatar).toHaveAttribute("data-micro", "");
     await page.clock.runFor(1);
@@ -86,7 +86,7 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
       await page.clock.runFor(1200);
       await expect(avatar).toHaveAttribute("data-micro", "");
     }
-    if (pause === "still") await motion.selectOption("natural");
+    if (pause === "still") await motion.selectOption("system");
     if (pause === "reduced") await page.emulateMedia({ reducedMotion: "no-preference" });
     if (pause === "hidden") await page.evaluate(() => {
       Reflect.deleteProperty(document, "hidden");

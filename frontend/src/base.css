@@ -760,7 +760,11 @@ footer > span:last-child {
   *,
   *::before,
   *::after {
-    transition: none !important;
     scroll-behavior: auto !important;
+  }
+  *:not(.coach-avatar[data-motion="natural"], .coach-avatar[data-motion="natural"] *),
+  *:not(.coach-avatar[data-motion="natural"], .coach-avatar[data-motion="natural"] *)::before,
+  *:not(.coach-avatar[data-motion="natural"], .coach-avatar[data-motion="natural"] *)::after {
+    transition: none !important;
   }
 }

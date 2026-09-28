@@ -43,4 +43,21 @@ test("device motion changes keep the studio controls and every portrait synchron
   await expect(checkbox).toBeDisabled();
   await expect(notice).toContainText("Your device requests reduced motion.");
   await expect(page.locator('.coach-avatar:not([data-motion="still"])')).toHaveCount(0);
+
+  const motion = page.getByRole("combobox", { name: "Motion intensity" });
+  await expect(motion.locator("option")).toHaveText(["Use device setting", "Animated", "Still"]);
+  await motion.selectOption("natural");
+  await expect(checkbox).not.toBeChecked();
+  await expect(checkbox).toBeEnabled();
+  await expect(notice).toHaveCount(0);
+  const portrait = concepts.first();
+  await portrait.scrollIntoViewIfNeeded();
+  await expect(portrait).toHaveAttribute("data-motion", "natural");
+  await expect.poll(() => portrait.evaluate(element =>
+    element.getAnimations({ subtree: true }).filter(animation => animation.playState === "running").length,
+  )).toBeGreaterThan(0);
+  await motion.selectOption("still");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expect(portrait).toHaveAttribute("data-motion", "still");
+  expect(await portrait.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
 });

@@ -65,7 +65,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('button', {name: 'Create account', exact: true}).click();
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
-    await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('natural');
+    await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('system');
     await expect(device.getByRole('radio', {name: 'Storyteller', exact: true})).toBeChecked();
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);

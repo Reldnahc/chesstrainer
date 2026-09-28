@@ -100,7 +100,7 @@ export default function CoachSettings() {
         <div>
           <label htmlFor="coach-motion">Coach motion</label>
           <span id="coach-motion-help">
-            Reactions stay expressive even when motion is off.
+            Uses your device setting by default. Animated or Still overrides it.
           </span>
         </div>
         <select
@@ -115,8 +115,8 @@ export default function CoachSettings() {
             })
           }
         >
-          <option value="natural">Natural</option>
-          <option value="subtle">Subtle</option>
+          <option value="system">Use device setting</option>
+          <option value="natural">Animated</option>
           <option value="still">Still</option>
         </select>
       </div>
@@ -132,7 +132,7 @@ export default function CoachSettings() {
           </>
         ) : !ready ? (
           "Loading your coach…"
-        ) : reduced ? (
+        ) : preferences.motion === "system" && reduced ? (
           "Your device requests reduced motion. The coach will stay still."
         ) : saved ? (
           "Saved. This choice follows your account."

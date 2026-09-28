@@ -36,7 +36,8 @@ export function usePerformance({
   const [take, setTake] = useState(0);
   const played = useRef(0);
   const reduced = useReducedMotion();
-  const effectiveMotion = reduced ? "still" : motion;
+  const effectiveMotion =
+    motion === "system" ? (reduced ? "still" : "natural") : motion;
 
   useEffect(() => {
     const observer = new IntersectionObserver(

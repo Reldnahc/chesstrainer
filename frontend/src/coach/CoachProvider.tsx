@@ -10,7 +10,7 @@ import {
 import { api, read } from "../api";
 import type { CoachPreferences } from "./model";
 
-const defaults: CoachPreferences = { coach_id: "classic", motion: "natural" };
+const defaults: CoachPreferences = { coach_id: "classic", motion: "system" };
 type Context = {
   preferences: CoachPreferences;
   ready: boolean;

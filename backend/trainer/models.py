@@ -49,7 +49,7 @@ class UserPreferences(Owned, Base):
     __tablename__ = "user_preferences"
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), primary_key=True)
     coach_id: Mapped[str] = mapped_column(default="classic", server_default="classic")
-    coach_motion: Mapped[str] = mapped_column(default="natural", server_default="natural")
+    coach_motion: Mapped[str] = mapped_column(default="system", server_default="system")
 
 
 class ImportBatch(Owned, Base):

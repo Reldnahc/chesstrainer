@@ -2,6 +2,22 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach cadence and motion choices: focused checks
+
+All characters share a 500–1000ms idle gap. Device motion is the default; saved
+Animated/Still choices override it. Subtle has been removed. Full verification
+is intentionally deferred until the owner finishes the current UX changes.
+
+- `pytest backend/tests/test_coach_preferences.py -q`: 24 passed; includes saved
+  choices, migration defaults, legacy Subtle fallback and account isolation.
+- `playwright test --config ../.tools/pr1-coach.config.ts idle-cadence.spec.ts reduced-motion.spec.ts --reporter=line`:
+  12 passed across desktop/mobile; repeated idle cycles, visibility pausing,
+  device defaults, explicit overrides and actual CSS animation.
+- `playwright test coach.spec.ts --grep 'coach motion' --reporter=line`:
+  4 passed across desktop/mobile; actual Settings saves/reloads and device changes.
+- App/test TypeScript checks, Vite bundle, changed-file Ruff lint/format and
+  `git diff --check` passed. API contracts/types regenerated through their tooling.
+
 ## Review product cleanup: final verification
 
 Completed units: `01c0e3b` removes story presentation and its dead response-time

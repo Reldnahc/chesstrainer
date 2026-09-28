@@ -951,10 +951,10 @@ export interface components {
             coach_id: "classic" | "man-host" | "man-expert" | "man-partner" | "woman-captain" | "woman-analyst" | "woman-spark" | "woman-blonde" | "cat-tabby" | "cat-tuxedo" | "cat-calico" | "cat-black" | "dog-sunny" | "dog-gentle" | "dog-corgi" | "dog-collie";
             /**
              * Motion
-             * @default natural
+             * @default system
              * @enum {string}
              */
-            motion: "natural" | "subtle" | "still";
+            motion: "system" | "natural" | "still";
         };
         /** ColdPosition */
         ColdPosition: {

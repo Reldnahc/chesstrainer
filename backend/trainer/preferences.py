@@ -14,9 +14,10 @@ def coach_preferences(db):
         return CoachPreferences()
     # A removed coach or a database opened by an older release stays usable.
     # Reads never overwrite the user's saved choice with the temporary fallback.
+    motion = "natural" if saved.coach_motion == "subtle" else saved.coach_motion
     return CoachPreferences(
         coach_id=saved.coach_id if saved.coach_id in get_args(CoachId) else "classic",
-        motion=saved.coach_motion if saved.coach_motion in get_args(CoachMotion) else "natural",
+        motion=motion if motion in get_args(CoachMotion) else "system",
     )
 
 
