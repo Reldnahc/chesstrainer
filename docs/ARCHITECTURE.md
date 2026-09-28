@@ -27,7 +27,7 @@ Whole-game review and training analysis are separately requested from the game.
 | backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
-| review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships, owned history and narrative; bounded refinement planning uses the existing engine authority |
+| review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
 | routes/workspace.py | Health, effective settings, account-owned coach preferences and statistics |
 | preferences.py | Validated coach choices in one owned user_preferences row; missing/unsupported choices have safe read defaults |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
@@ -280,10 +280,10 @@ abstention rules; played and alternative lines remain distinct.
 
 The detail and progress endpoints share `review_intelligence/presentation.py`.
 Compatible saved reports become versioned move events, mainline nodes/relationships,
-owned cross-game references and narrative slots. Links require matching PGN/FEN/move
+owned cross-game references. Links require matching PGN/FEN/move
 provenance; gaps and inconsistent adjacent searches cause abstention. These are
 structured facts, never conversational memory. See [game context](GAME_CONTEXT.md),
-[history](CROSS_GAME_CONTEXT.md) and [narrative](GAME_NARRATIVE.md).
+[history](CROSS_GAME_CONTEXT.md).
 
 The client builds a `DialogueIntent` before selecting a personality. `CoachUtterance`
 retains claim/template provenance and future-neutral delivery metadata, without a

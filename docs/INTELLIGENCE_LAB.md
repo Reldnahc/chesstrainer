@@ -9,7 +9,7 @@ is not a product route. It is not packaged into production JavaScript.
 In your authenticated application browser, save the JSON response for
 `GET /api/games/{id}` (the Network panel shows this request when opening a game).
 Open that file in the laboratory, or paste the response. Use the completed game
-response to include final refinement, context and narrative. Files are read into
+response to include final refinement and context. Files are read into
 browser memory only, not uploaded or saved to web storage. Keep private exports
 in ignored `data/` and out of Git. Inputs over 20 MB or 5,000 frames are rejected.
 Unsupported evidence versions ask for a fresh export; invalid input preserves the
@@ -22,7 +22,7 @@ beside its board. Inspect expandable sections for:
 - human model provenance, conditioning, source domain and policy/rank evidence;
 - practical difficulty components and calibration caveats;
 - semantic tactical/positional events, direct evidence and clock observations;
-- game relationships, turning points, relevant cross-game corroboration and narrative;
+- game relationships, turning points, relevant cross-game corroboration;
 - selected dialogue claims, rejected/limited evidence decisions and final utterance.
 
 Show Why uses the same board-cue wording as production. Suppressing recorded-game

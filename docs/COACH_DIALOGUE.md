@@ -1,7 +1,7 @@
 # Evidence-led coach dialogue
 
 `frontend/src/dialogue` is a pure presentation boundary. The server supplies
-versioned review events, practical evidence, context relationships and narratives.
+versioned review events, practical evidence and context relationships.
 The client selects `DialogueIntent` claims with evidence references, source IDs,
 priority and named slots, then renders a `CoachUtterance`. Neither layer evaluates
 chess, calls models or writes saved review truth.

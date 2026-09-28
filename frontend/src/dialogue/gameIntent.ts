@@ -1,5 +1,4 @@
 import type { Game, Position, Report } from "../gameReview/types";
-import {moveLabel, momentText} from "../gameReview/narrativeText";
 import type {CoachExpression} from "../coach/model";
 import {scoreText} from "../evaluation";
 import {claim, makeIntent, type Claim, type DialoguePurpose, type EvidenceRef} from "./model";
@@ -9,6 +8,11 @@ const purposes: Record<Report["label"], DialoguePurpose> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good", Book: "book",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Blunder: "blunder", Miss: "missed",
 };
+
+function moveLabel(game: Game, ply: number) {
+  const frame = game.frames[ply];
+  return frame ? `${frame.number}${frame.actor === "black" ? "..." : "."} ${frame.san}` : `Ply ${ply}`;
+}
 
 export function gameIntent({game, report, frame, ply, key, expression, explaining = false,
   variation = false, error = false, pending = false}: {
@@ -25,13 +29,6 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   }
   if (!report) {
     if (error) return makeIntent(key, "uncertain", mode, "uncertain", [claim("unavailable")]);
-    if (!variation && ply === 0 && game.narrative?.complete) {
-      const story = game.narrative;
-      const moment = story.moments.find(m => story.takeaways.includes(m.id));
-      return makeIntent(story.input_digest, "review_complete", "complete", "explaining",
-        [claim("complete", {detail: moment ? momentText(moment, game) : "Select a move or explore an alternative."},
-          70, moment?.evidence ?? [], moment ? [moment.id] : [])]);
-    }
     const code = pending ? "thinking" : "compatibility";
     const detail = game.job?.status === "cancelled" ? "Your review is paused. Resume it below, or move a piece to explore."
       : "Select a move or move a piece to explore an alternative.";
@@ -85,8 +82,6 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     claims.push(claim("human_challenging", {best}, 70, [...refs, ...humanRefs]));
   else if (practical?.interpretations?.includes("unusual_strong_move")) claims.push(claim("human_rare", {}, 64, humanRefs));
   if (!variation && node) {
-    const turning = game.context?.turning_points[0];
-    if (turning?.ply === ply) claims.push(claim("turning", {}, 69, refs, turning.event_ids));
     for (const relation of game.context?.relationships ?? []) {
       if (relation.plies.at(-1) !== ply || relation.actor !== mover) continue;
       const earlier = moveLabel(game, relation.plies[0]), f = relation.facts;

@@ -53,10 +53,6 @@ export default function PositionCoach({
       reviewStarting ||
       ["queued", "running"].includes(game.job?.status ?? ""),
   });
-  if (!actor && !report && game.narrative?.complete && !errorAtPosition) {
-    reaction.state = "explaining";
-    reaction.key += `:complete:${game.narrative.input_digest}`;
-  }
   const utterance = useDialogue(gameIntent({game, report, frame, ply, variation,
     key: dialogueKey, expression: reaction.state, explaining,
     error: !!errorAtPosition || game.job?.status === "failed",

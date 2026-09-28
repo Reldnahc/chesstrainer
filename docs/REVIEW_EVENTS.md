@@ -41,7 +41,7 @@ attack, or taking an unfavorable immediate exchange; `opportunity_actor` is the
 opponent who can capture. These three causal rules require the actual poor-move
 line, original `[1, 2]` witness and frame zero, with actor validation retained.
 Material delta remains relative to the event actor, so a caused loss is negative.
-Repeated motifs, narratives and historical weakness matching treat `caused` as
+Repeated motifs and historical weakness matching treat `caused` as
 an issue for the responsible mover. Dialogue uses dedicated causal claims rather
 than saying the opponent possesses the mover's error. Version 4 regenerates these
 semantics from saved facts without rerunning Stockfish or Maia.

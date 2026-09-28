@@ -2,6 +2,24 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review product cleanup: story removal
+
+The new absence regression reproduced the story region before removal; the two
+native full-review cases also failed on the unwanted narrative API field. Story
+selection was derived on read, with no persisted schema to migrate. Move context,
+history, scores, refinement and navigation remain intact. Contracts were regenerated
+with `python scripts/export_api_contract.py` and `npm --prefix frontend run api:generate`.
+
+- `python -m pytest -q backend/tests/test_game_review.py backend/tests/test_game_context.py backend/tests/test_cross_game_context.py`:
+  **51 passed**, 21.86 s (native Stockfish; two existing dependency warnings).
+- `npx.cmd playwright test tests/game-review-presentation.spec.ts tests/dialogue-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **34 passed**, 25.4 s, desktop/mobile including absence, navigation/reload and paused review.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`:
+  **30 passed**, 32.4 s, including the current personality corpus and diagnostic renderer.
+- `npm.cmd --prefix frontend run build`, `ruff check backend scripts migrations`,
+  `ruff format --check backend scripts migrations`, API export `--check` and
+  `git diff --check`: passed. Ruff normalized the edited test's line endings.
+
 ## Coach idle cadence follow-up
 
 The first tuning still felt too sparse in use. Quiet gaps are now 0.5–1.5 s for

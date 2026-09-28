@@ -43,7 +43,7 @@ export default function IntelligenceLab() {
       {error && <p role="alert">{error}</p>}
     </section>
     <details className="lab-writing" open={!game}><summary>Writing examples and full-cast comparison</summary><WritingLab /></details>
-    {!game && <p>Save the JSON response from your authenticated <code>/api/games/&#123;id&#125;</code> request, then open it here. Export after the review finishes to inspect refinement, history and the complete narrative. No PGN is sent anywhere.</p>}
+    {!game && <p>Save the JSON response from your authenticated <code>/api/games/&#123;id&#125;</code> request, then open it here. Export after the review finishes to inspect refinement, history and move relationships. No PGN is sent anywhere.</p>}
     {game && inspection && <>
       <nav className="lab-controls" aria-label="Evidence position">
         <button disabled={ply === 0} onClick={() => setPly(p => p - 1)}>Previous</button>

@@ -246,7 +246,6 @@ export default function GameWorkspace({
           reviewStarting={reviewStarting}
           start={start}
           cancel={cancel}
-          onSelect={navigate}
         />
       </ReviewWorkspace>
     </div>

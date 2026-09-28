@@ -1840,16 +1840,6 @@
               }
             ]
           },
-          "narrative": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/GameNarrative"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "orientation": {
             "enum": [
               "white",
@@ -2315,68 +2305,6 @@
           "board_cues"
         ],
         "title": "GameMoveReport",
-        "type": "object"
-      },
-      "GameNarrative": {
-        "additionalProperties": false,
-        "properties": {
-          "complete": {
-            "title": "Complete",
-            "type": "boolean"
-          },
-          "context_digest": {
-            "title": "Context Digest",
-            "type": "string"
-          },
-          "input_digest": {
-            "title": "Input Digest",
-            "type": "string"
-          },
-          "key_plies": {
-            "items": {
-              "type": "integer"
-            },
-            "title": "Key Plies",
-            "type": "array"
-          },
-          "limitations": {
-            "items": {
-              "type": "string"
-            },
-            "title": "Limitations",
-            "type": "array"
-          },
-          "moments": {
-            "items": {
-              "$ref": "#/components/schemas/NarrativeMoment"
-            },
-            "title": "Moments",
-            "type": "array"
-          },
-          "takeaways": {
-            "items": {
-              "type": "string"
-            },
-            "title": "Takeaways",
-            "type": "array"
-          },
-          "version": {
-            "const": "game-narrative-1",
-            "default": "game-narrative-1",
-            "title": "Version",
-            "type": "string"
-          }
-        },
-        "required": [
-          "input_digest",
-          "context_digest",
-          "complete",
-          "moments",
-          "key_plies",
-          "takeaways",
-          "limitations"
-        ],
-        "title": "GameNarrative",
         "type": "object"
       },
       "GamePosition": {
@@ -3741,84 +3669,6 @@
         "title": "MoveRequest",
         "type": "object"
       },
-      "NarrativeMoment": {
-        "additionalProperties": false,
-        "properties": {
-          "event_ids": {
-            "items": {
-              "type": "string"
-            },
-            "title": "Event Ids",
-            "type": "array"
-          },
-          "evidence": {
-            "items": {
-              "$ref": "#/components/schemas/EvidenceReference"
-            },
-            "minItems": 1,
-            "title": "Evidence",
-            "type": "array"
-          },
-          "facts": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/JsonValue"
-            },
-            "title": "Facts",
-            "type": "object"
-          },
-          "id": {
-            "title": "Id",
-            "type": "string"
-          },
-          "importance": {
-            "title": "Importance",
-            "type": "integer"
-          },
-          "kind": {
-            "enum": [
-              "opening",
-              "turning_point",
-              "best_find",
-              "hard_find",
-              "missed_opportunity",
-              "defense",
-              "recovery",
-              "repeated_issue",
-              "conversion",
-              "erosion",
-              "conclusion"
-            ],
-            "title": "Kind",
-            "type": "string"
-          },
-          "plies": {
-            "items": {
-              "type": "integer"
-            },
-            "title": "Plies",
-            "type": "array"
-          },
-          "relationship_ids": {
-            "items": {
-              "type": "string"
-            },
-            "title": "Relationship Ids",
-            "type": "array"
-          }
-        },
-        "required": [
-          "id",
-          "kind",
-          "plies",
-          "event_ids",
-          "relationship_ids",
-          "evidence",
-          "facts",
-          "importance"
-        ],
-        "title": "NarrativeMoment",
-        "type": "object"
-      },
       "Ok": {
         "additionalProperties": false,
         "properties": {
@@ -4585,16 +4435,6 @@
             },
             "title": "Moves",
             "type": "array"
-          },
-          "narrative": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/GameNarrative"
-              },
-              {
-                "type": "null"
-              }
-            ]
           },
           "revision": {
             "default": 0,

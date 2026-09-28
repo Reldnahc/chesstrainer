@@ -11,7 +11,7 @@ variations without creating Decisions, exercises, weakness evidence or FSRS reca
 The existing training policy is unchanged.
 
 Completed reviews also derive supported [game relationships](GAME_CONTEXT.md),
-[owned history](CROSS_GAME_CONTEXT.md) and a [game story](GAME_NARRATIVE.md).
+[owned history](CROSS_GAME_CONTEXT.md) for individual move explanations.
 Key moments jump to the original ply. The coach can connect a recovery to an
 earlier error or identify a repeated supported motif; incomplete or inconsistent
 evidence causes abstention. Human difficulty is a model-informed description,
@@ -253,6 +253,6 @@ including missed punishment, recovery, repeated motifs, sustained advantages and
 gradual erosion. They use the same effective evidence generation as move reports
 and accuracy. See [GAME_CONTEXT.md](GAME_CONTEXT.md) for gates and caveats.
 
-Completed reviews also provide a compact [game narrative](GAME_NARRATIVE.md),
-an expandable factual story and up to four direct jumps to supported key moments.
-Completion never navigates away from the user's selected position.
+Review stays move-by-move. There is no game story, critical-moment summary or
+ranked takeaway surface. Completion leaves the selected position and coach alone;
+move quality, accuracy and normal move navigation remain available.

@@ -26,7 +26,7 @@ positions without replacing or reducing that baseline.
 
 An explicitly cached [human model](HUMAN_MODELS.md) contributes policy facts in a
 separate worker/cache. Practical difficulty, supported tactical/positional events,
-clocks, game relationships, existing owned weakness evidence and narrative are
+clocks, game relationships and existing owned weakness evidence are
 versioned derivations. They do not blend model values with Stockfish scores.
 The client turns those facts into neutral dialogue claims before the selected
 coach phrases them. [Review intelligence](REVIEW_INTELLIGENCE.md) links the

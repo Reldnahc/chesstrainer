@@ -45,7 +45,8 @@ def counts(app):
 
 def inspect_case(detail, plies):
     assert detail["job"]["status"] == "completed", detail["job"]
-    assert detail["context"]["complete"] and detail["narrative"]["complete"]
+    assert detail["context"]["complete"]
+    assert "narrative" not in detail
     assert len(detail["context"]["nodes"]) == plies
     assert detail["job"]["refinement_total"] <= 8
     events, grades, difficulties, domains = Counter(), Counter(), Counter(), Counter()
@@ -75,7 +76,6 @@ def inspect_case(detail, plies):
         "domain": domains,
         "events": events,
         "relationships": Counter(r["kind"] for r in relations),
-        "story": [m["kind"] for m in detail["narrative"]["moments"]],
         "refined_positions": detail["job"]["refinement_completed"],
     }
 

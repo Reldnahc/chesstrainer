@@ -26,10 +26,8 @@ export const writingExamples: Example[] = [
   {purpose: "encouraging", expression: "encouraging", code: "retry"},
   {purpose: "recovery", expression: "recovered", code: "recovery", slots: {earlier: "17. Qe2", help: " The opponent's errors helped make that possible."}},
   {purpose: "explanation", expression: "explaining", code: "explanation", slots: {detail: "The knight attacks the king and queen together."}},
-  {purpose: "turning_point", expression: "explaining", code: "turning"},
   {purpose: "repeated_motif", expression: "explaining", code: "repeated", slots: {motif: "pin", count: 2}},
   {purpose: "time_trouble", expression: "explaining", code: "clock_low", slots: {side: "White", seconds: "8.0"}},
-  {purpose: "review_complete", expression: "explaining", code: "complete", slots: {detail: "2. g4 was the largest reviewed concession, allowing a forced mate."}},
   {purpose: "variation", expression: "explaining", code: "variation", slots: {detail: "Black can answer Nxe4, capturing the pawn."}},
 ];
 

@@ -5,7 +5,7 @@ export const dialoguePurposes = [
   "neutral", "thinking", "uncertain", "brilliant", "great", "best", "good", "book",
   "opening_departure", "inaccuracy", "mistake", "blunder", "missed", "difficult_defense",
   "only_move", "winning", "losing", "draw", "encouraging", "recovery", "explanation",
-  "turning_point", "repeated_motif", "time_trouble", "review_complete", "variation",
+  "repeated_motif", "time_trouble", "variation",
 ] as const;
 export type DialoguePurpose = typeof dialoguePurposes[number];
 export type EvidenceRef = Schema["EvidenceReference"];
@@ -21,7 +21,7 @@ export type DialogueIntent = {
   version: "dialogue-intent-4";
   id: string;
   purpose: DialoguePurpose;
-  mode: "game" | "variation" | "practice" | "explanation" | "complete";
+  mode: "game" | "variation" | "practice" | "explanation";
   expression: CoachExpression;
   intensity: number;
   priority: number;

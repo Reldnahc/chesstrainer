@@ -19,7 +19,7 @@ implemented architecture and measured decisions, not promises of completed featu
 The completed chain is documented by [refinement](REVIEW_REFINEMENT.md),
 [move events/clocks](REVIEW_EVENTS.md), [positional facts](POSITIONAL_EVIDENCE.md),
 [game context](GAME_CONTEXT.md), [saved history](CROSS_GAME_CONTEXT.md),
-[narrative](GAME_NARRATIVE.md), [dialogue](COACH_DIALOGUE.md) and
+[dialogue](COACH_DIALOGUE.md) and
 [personalities](COACH_PERSONALITIES.md). The [offline lab](INTELLIGENCE_LAB.md)
 inspects the exact evidence and rendering choices. Final measured validation is
 recorded in [VERIFICATION.md](VERIFICATION.md).

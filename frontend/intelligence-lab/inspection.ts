@@ -23,7 +23,6 @@ export function inspectPosition(game: Game, ply: number, explaining = false, var
       links: game.context?.relationships.filter(r => r.plies.includes(ply)),
       turning: game.context?.turning_points.filter(t => t.ply === ply), limitations: game.context?.limitations},
     history: game.history?.weaknesses.filter(w => w.related_plies.includes(ply)) ?? [],
-    narrative: game.narrative?.moments.filter(m => m.plies.includes(ply)) ?? [],
   };
 }
 

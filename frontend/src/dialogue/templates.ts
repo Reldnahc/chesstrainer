@@ -36,7 +36,6 @@ export const neutralTemplates: Record<string, readonly string[]> = {
   erosion: ["This is one of several small concessions since {earlier}; together they worsened the position."],
   conversion: ["{side} kept the searched advantage from {earlier} through the recorded win."],
   history: ["This {motif} issue also appears in {games} other classified games in your saved history."],
-  turning: ["This is the largest reviewed concession in the game."],
   development: ["{lead}develops the {piece} from its original square."],
   rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file."],
   passed: ["{lead}leaves {side} with passed pawns on {squares}; no enemy pawn is ahead on those or neighboring files."],
@@ -60,7 +59,6 @@ export const neutralTemplates: Record<string, readonly string[]> = {
   accepted: ["{detail}"],
   explanation: ["{detail}"],
   explanation_summary: ["{detail}"],
-  complete: ["Review complete. {detail}"],
   variation: ["In this variation, {detail}"],
   compatibility: ["{detail}"],
 };

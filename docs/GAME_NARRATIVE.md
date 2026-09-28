@@ -1,35 +1,16 @@
-# Game narrative and review completion
+# Game story retired
 
-`game-narrative-1` selects a concise story from the current versioned game context.
-It returns factual slots, not character prose: opening/departure, largest reviewed
-concession, a supported strong find, difficult find, missed opportunity, narrow
-defense, recovery, repeated issue, conversion, gradual erosion and conclusion.
-Unsupported slots are omitted rather than padded with generic strategic claims.
+The owner removed Game Story / Critical Moments after hands-on review. The product
+now stays focused on individual moves: no ranked takeaways, key-moment jumps,
+opening/result story prose or completion-driven coach reaction.
 
-Each moment carries supporting plies, semantic-event/relationship IDs and direct
-PGN/book/board references where needed. The narrative digest includes the context
-generation and selected facts. Refresh, process restart and changing coach do not
-rewrite chess history. An incomplete review has no completion/conversion claim.
+`GameNarrative` and `NarrativeMoment` were response-time projections, never stored
+database records. Their generator, detail/progress API fields, generated contracts,
+UI, styles, language templates and story-only tests have been removed. No migration
+or legacy narrative payload is needed; stored move reports remain unchanged.
 
-Selection favors mate transitions, major concessions and concrete strong moves;
-rarity alone does not make a strong find. A difficult alternative is never credited
-to the played move. Opening recognition does not imply objective quality. The
-conclusion prefers python-chess automatic endings; a bare PGN result supplies
-only the recorded winner/draw, without inventing resignation, timeout or agreement.
-
-Completed reviews show a compact summary beneath the evaluation graph, with up
-to four distinct move jumps and an expandable game story. Quiet/very short games
-can have fewer meaningful moments. Move quality and accuracy remain available
-in their existing disclosure. At the initial board the coach acknowledges the
-completed review; completing in the background never replaces a selected move's
-reaction or changes the board. Pause/partial review never claims completion.
-
-Frontend wording is currently neutral. The following dialogue milestone owns
-the richer shared utterance contract; saved narrative facts are independent of
-that wording and all coach preferences. No new database table or engine/model
-query is needed to produce the story.
-
-Validation includes narrative traceability/stability, partial reviews, positive
-find guards, conflicting result headers and no prose dependence. Real desktop/
-mobile browser tests cover completion, jumps, reload, stable board width,
-absence of horizontal overflow and paused-state behavior.
+The two-sided [game context](GAME_CONTEXT.md), its diagnostic turning-point data,
+and [owned history](CROSS_GAME_CONTEXT.md) remain useful for evidence-backed
+move-by-move coaching. Refinement still investigates selected positions under its
+existing budgets. This retirement supersedes the narrative milestone in the
+historical implementation plan.
