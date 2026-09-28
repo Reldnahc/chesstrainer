@@ -109,6 +109,10 @@ test('review modes share board and coach sizing without empty mobile controls', 
     expect((await allGames.boundingBox())!.x).toBe((await navigation.boundingBox())!.x);
     if (size.width > 760) {
       expect(game.coach.y).toBe((await page.locator('.review-sidebar').boundingBox())!.y);
+    } else {
+      const actions = await geometry(page.locator('.coach-actions'));
+      expect(actions.top).toBeGreaterThanOrEqual(game.coach.y + game.coach.height);
+      expect(actions.top + actions.height).toBeLessThan(game.board.y);
     }
     await page.screenshot({path: `test-results/shared-layout-game-${size.width}.png`, fullPage: true});
     await page.goto(`/?exercise=${exercise.exercise_id}`);
@@ -131,10 +135,13 @@ test('review modes share board and coach sizing without empty mobile controls', 
     expect(practiceBoard.x + practiceBoard.width / 2).toBeCloseTo(practiceRow.x + practiceRow.width / 2, 1);
     if (size.width <= 760) {
       await expect(page.locator('.review-board-toolbar')).toBeHidden();
-      const hint = await geometry(page.locator('.review-board-hint'));
       const coach = await geometry(page.locator('.coach-speech'));
-      expect(coach.top - hint.top - hint.height).toBeGreaterThanOrEqual(8);
-      expect(coach.top - hint.top - hint.height).toBeLessThan(24);
+      const actions = await geometry(page.locator('.coach-actions'));
+      const board = await geometry(page.locator('.board-shell'));
+      const meta = await geometry(page.locator('.review-board-meta').first());
+      expect(actions.top - coach.top - coach.height).toBeCloseTo(8, 1);
+      expect(meta.top - actions.top - actions.height).toBeCloseTo(12, 1);
+      expect(board.top).toBeGreaterThan(actions.top + actions.height);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({path: `test-results/shared-layout-srs-${size.width}.png`, fullPage: true});
