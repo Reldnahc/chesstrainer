@@ -107,18 +107,19 @@
   min-width: 36px;
   padding: 6px;
 }
-.coach-actions:has(.game-return) {
+.coach-actions:has(.coach-move-context) {
   justify-content: flex-start;
 }
-.coach-actions:has(.game-return) > button {
-  flex: none;
-  width: auto;
+.coach-actions:has(.coach-move-context) > button {
+  flex: 0 1 auto;
   min-height: 44px;
 }
-.coach-actions:has(.game-return) .coach-move-context {
+.coach-actions .coach-move-context {
+  flex: 1 1 0;
   margin-left: auto;
 }
 .coach-actions .game-return {
+  width: auto;
   gap: 6px;
   white-space: nowrap;
   background: #b5a0f2;

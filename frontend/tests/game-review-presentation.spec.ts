@@ -70,6 +70,13 @@ test('moves and move quality swap in one stable panel without adding page height
     const before = await panel.boundingBox();
     const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
     const board = (await page.locator('.board-shell').boundingBox())!;
+    if (info.project.name === 'desktop') {
+      await expect.poll(async () => {
+        const pane = (await sidebar.boundingBox())!;
+        const controls = (await page.getByRole('group', {name: 'Game navigation'}).boundingBox())!;
+        return Math.abs(pane.y + pane.height - controls.y - controls.height);
+      }).toBeLessThan(1);
+    }
     await qualityTab.click();
     await expect(qualityTab).toHaveAttribute('aria-selected', 'true');
     await expect(page.getByRole('tabpanel', {name: 'Moves', exact: true})).toBeHidden();

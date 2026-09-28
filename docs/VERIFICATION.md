@@ -2,6 +2,24 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review column alignment and stable variation actions: focused checks
+
+Started from updated `main` at `88b278d`. Browser regressions reproduced an 8px
+sidebar overhang and Show why shrinking from 110px to about 74px on desktop
+(188px to about 74px on mobile). The shared workspace now measures the rendered
+board column and excludes the controls' trailing padding from sidebar height.
+Game coach actions use the same dimensions before and during exploration, with
+the move context taking remaining space and shrinking allowed only when needed.
+
+- From `frontend`, `npx.cmd playwright test variation-navigation.spec.ts game-review-presentation.spec.ts review-presentation.spec.ts --grep 'variation return is|moves and move quality|review modes share' --reporter=line`:
+  **6 passed**, desktop/mobile. Checks bottom-edge alignment across desktop sizes,
+  stable action dimensions when entering a variation, 320px phone fit, unchanged
+  board sizing, sidebar tabs/scrolling and the shared SRS layout.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed. Desktop and small-phone
+  screenshots inspected.
+- Full verification remains deferred by owner request; no push or deployment in this pass.
+
 ## UX release: full branch verification (September 27, 2026)
 
 The owner authorized full verification after the rapid UX changes through

@@ -32,6 +32,7 @@ test("variation return is a prominent coach action and restores the original pos
   await page.evaluate(() => document.fonts.ready);
   const boardWidth = (await page.locator(".board-shell").boundingBox())!.width;
   const actionsHeight = (await page.locator(".coach-actions").boundingBox())!.height;
+  const originalWhy = (await page.getByRole("button", {name: "Show why", exact: true}).boundingBox())!;
   if (info.project.name === "desktop") {
     const centers = await page.getByRole("group", {name: "Game navigation"}).evaluate(controls => {
       const row = controls.getBoundingClientRect();
@@ -55,7 +56,7 @@ test("variation return is a prominent coach action and restores the original pos
     return {
       width: bounds.width, height: bounds.height, top: bounds.top,
       actionsHeight: actions.getBoundingClientRect().height, speechBottom: speech.bottom,
-      whyTop: why.top, whyHeight: why.height, gap: bounds.left - why.right,
+      whyTop: why.top, whyHeight: why.height, whyWidth: why.width, gap: bounds.left - why.right,
       color: getComputedStyle(button).backgroundColor,
       secondaryColor: getComputedStyle(actions.querySelector("button[aria-pressed]")!).backgroundColor,
     };
@@ -64,6 +65,8 @@ test("variation return is a prominent coach action and restores the original pos
   expect(layout.height).toBeGreaterThanOrEqual(44);
   expect(layout.top).toBeCloseTo(layout.whyTop, 1);
   expect(layout.height).toBe(layout.whyHeight);
+  expect(layout.whyWidth).toBeCloseTo(originalWhy.width, 1);
+  expect(layout.whyHeight).toBe(originalWhy.height);
   expect(layout.gap).toBe(8);
   expect(layout.actionsHeight).toBe(actionsHeight);
   expect(layout.color).not.toBe(layout.secondaryColor);

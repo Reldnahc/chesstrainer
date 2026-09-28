@@ -26,6 +26,8 @@ The review sidebar absorbs the narrower layout; the chessboard retains the same
 size it had at full page width. Where necessary, the container expands beyond 80%
 to fit the board and usable controls, never beyond the viewport. SRS and game
 review use this same sizing policy through `ReviewWorkspace`.
+The desktop sidebar ends at the board controls' bottom edge, using the rendered
+board column height even when available width limits the board's size.
 
 **Settings → Animations → Piece & interface motion** controls piece movement,
 board feedback and interface transitions across all review screens. It follows
@@ -75,6 +77,8 @@ Move any legal piece to start a variation. Undo and choose a different move to f
 it; the variations list keeps both lines while this game remains open. A prominent
 purple **Return to game** button beside **Show why** in the coach's action row
 restores the original branch point without adding another row above the controls.
+Existing action buttons retain their width and height when this button appears;
+they only shrink if the available row cannot fit the buttons at their usual widths.
 Stepping backward to that point also exits the variation. The **First move** (`<<`)
 control always selects ply 1 of the original game, even from a variation; the
 previous-move control can still reach the initial position. Escape returns to the
