@@ -106,12 +106,8 @@ export function BoardSizePreview({ preview }: { preview: StudioPreview }) {
                 <span className="evaluation-score">{example.evaluation}</span>
               }
               character={<CoachCharacter {...preview} />}
-              actions={
-                <>
-                  <button disabled>Show why</button>
-                  <span>Example position</span>
-                </>
-              }
+              actions={<button disabled>Show why</button>}
+              context={<span>Example position</span>}
             >
               <p>{example.text}</p>
             </ReviewCoach>

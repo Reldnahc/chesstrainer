@@ -84,7 +84,7 @@ export default function ReviewExplanation({
       });
   }, [frame, onFrame, finding, index]);
   const returnControl = (
-    <button ref={back} className="secondary explanation-back" onClick={onClose}>
+    <button ref={back} className="secondary" onClick={onClose}>
       <ArrowLeft size={17} />
       {completed ? "Back to review" : "Back to attempt"}
     </button>

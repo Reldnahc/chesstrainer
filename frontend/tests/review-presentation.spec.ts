@@ -61,13 +61,20 @@ test('review modes share board and coach sizing without empty mobile controls', 
   await expect.poll(async () => (await (await page.request.get(`/api/games/${id}`)).json()).job?.status, {timeout: 30000}).toBe('completed');
   const sizes = testInfo.project.name === 'desktop'
     ? [{width: 1920, height: 1080}, {width: 1366, height: 768}, {width: 1000, height: 800}]
-    : [{width: 390, height: 844}, {width: 375, height: 600}];
+    : [{width: 390, height: 844}, {width: 375, height: 600}, {width: 320, height: 700}];
   const dimensions = () => page.evaluate(() => {
     const rect = (selector: string) => {
       const {x, y, width, height} = document.querySelector(selector)!.getBoundingClientRect();
       return {x: x + scrollX, y: y + scrollY, width, height};
     };
-    return {board: rect('.board-shell'), coach: rect('.coach-speech')};
+    const button = document.querySelector('.coach-actions button')!;
+    const style = getComputedStyle(button);
+    return {board: rect('.board-shell'), coach: rect('.coach-speech'), actions: {
+      width: rect('.coach-actions').width, height: rect('.coach-actions').height,
+      buttonWidth: button.getBoundingClientRect().width,
+      buttonHeight: button.getBoundingClientRect().height,
+      font: style.fontSize, padding: style.padding, lineHeight: style.lineHeight,
+    }};
   });
   for (const size of sizes) {
     await page.setViewportSize(size);
@@ -75,6 +82,8 @@ test('review modes share board and coach sizing without empty mobile controls', 
     await expect(page.getByRole('button', {name: 'Last move', exact: true})).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
     const game = await dimensions();
+    expect(game.actions.buttonWidth).toBeCloseTo((game.actions.width - 8) / 2, 1);
+    expect(game.actions.buttonHeight).toBeGreaterThanOrEqual(44);
     await expect(page.locator('.review-workspace-heading')).toHaveCount(0);
     const navigation = page.getByRole('group', {name: 'Game navigation'});
     const allGames = navigation.getByRole('link', {name: 'All games', exact: true});
@@ -97,6 +106,7 @@ test('review modes share board and coach sizing without empty mobile controls', 
       return {
         board: {...practice.board, y: size.width <= 760 ? game.board.y : practice.board.y},
         coach: {...practice.coach, y: game.coach.y},
+        actions: practice.actions,
       };
     }).toEqual(game);
     if (size.width <= 760) {
@@ -131,6 +141,10 @@ test('SRS shares animated coaching, stable actions and reduced-motion feedback w
     await expect(board).toBeInViewport({ratio: 1});
   }
   const original = {board: await geometry(board), bubble: await geometry(bubble), actions: await geometry(actions)};
+  const buttonWidth = (original.actions.width - 8) / 2;
+  for (const button of await actions.getByRole('button').all()) {
+    expect((await geometry(button)).width).toBeCloseTo(buttonWidth, 1);
+  }
   expect(original.actions.top).toBeGreaterThanOrEqual(original.bubble.top + original.bubble.height);
   expect(original.bubble.height).toBeLessThanOrEqual(136);
   await expect(bubble.locator('.evaluation-score')).toHaveCount(0); // Cold SRS never reveals an evaluation.
@@ -160,6 +174,7 @@ test('SRS shares animated coaching, stable actions and reduced-motion feedback w
   expect(await geometry(actions)).toEqual(original.actions);
   await why.click();
   await expect(page.getByRole('region', {name: 'Move explanation'})).toContainText('loses 5 points');
+  expect((await geometry(page.getByRole('button', {name: 'Back to attempt', exact: true}))).width).toBeCloseTo(buttonWidth, 1);
   expect(await geometry(bubble)).toEqual(original.bubble);
   expect(await geometry(actions)).toEqual(original.actions);
   await page.getByRole('button', {name: 'Back to attempt', exact: true}).click();

@@ -2,6 +2,30 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Shared coach action sizing: focused checks
+
+SRS, game review and explanation playback now use the action row owned by
+`ReviewCoach`. Buttons share its width up to half the row each (allowing for the
+gap), with the same height, padding and typography. Game move/insight context has
+its own compact line; adding Return to game leaves Show why's dimensions intact.
+The separate SRS and game sizing overrides were removed.
+
+- The sizing regression first failed against the old build on desktop/mobile:
+  game actions stayed 110px wide instead of growing to the half-row allocation.
+- From `frontend`, `npx.cmd playwright test review-presentation.spec.ts variation-navigation.spec.ts human-insight.spec.ts --grep 'review modes share|SRS shares animated|variation return is|natural_error has an accessible' --reporter=line`:
+  **7 passed, 1 failed**. All six shared-layout/SRS/variation checks passed,
+  covering 1920px through 320px, equal sizing, stable feedback/explanation slots,
+  unchanged board geometry, return behavior and cold-answer exclusion. The mobile
+  insight check could not click navigation behind the centered popover/header.
+- After explicitly scrolling that real navigation button clear of both overlays,
+  `npx.cmd playwright test human-insight.spec.ts --grep 'natural_error has an accessible' --reporter=line`:
+  **2 passed**, desktop/mobile, preserving open/close, source notes and stale-board
+  dismissal assertions. All eight distinct focused checks now pass. Desktop and
+  320px phone coach/action screenshots were inspected.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed.
+- Full verification remains deferred by owner request; no push/deployment.
+
 ## Background refinement progress: focused checks
 
 The game-review progress panel now hides during active background refinement.

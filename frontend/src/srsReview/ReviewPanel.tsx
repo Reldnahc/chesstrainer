@@ -119,22 +119,22 @@ export default function ReviewPanel({
               ) : undefined
             }
             actions={
-              <div className="review-actions">
+              <>
                 {feedback?.completed ? (
                   <button
-                    className="primary review-action"
+                    className="primary"
                     disabled={busy}
                     onClick={next}
                   >
                     Next position <ArrowRight size={17} />
                   </button>
                 ) : preview ? (
-                  <button className="primary review-action" onClick={retry}>
+                  <button className="primary" onClick={retry}>
                     Try again
                   </button>
                 ) : (
                   <button
-                    className="secondary review-action"
+                    className="secondary"
                     disabled={busy}
                     onClick={show}
                   >
@@ -143,13 +143,13 @@ export default function ReviewPanel({
                 )}
                 <button
                   ref={explanationOpener}
-                  className="secondary review-why"
+                  className="secondary"
                   disabled={busy || !(feedback || position.last_attempt_id)}
                   onClick={openExplanation}
                 >
                   {feedback?.completed ? "Show why" : "Show me why"}
                 </button>
-              </div>
+              </>
             }
           >
             {session.gradingError ? (

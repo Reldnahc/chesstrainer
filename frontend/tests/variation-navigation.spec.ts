@@ -32,7 +32,9 @@ test("variation return is a prominent coach action and restores the original pos
   await page.evaluate(() => document.fonts.ready);
   const boardWidth = (await page.locator(".board-shell").boundingBox())!.width;
   const actionsHeight = (await page.locator(".coach-actions").boundingBox())!.height;
+  const actionsWidth = (await page.locator(".coach-actions").boundingBox())!.width;
   const originalWhy = (await page.getByRole("button", {name: "Show why", exact: true}).boundingBox())!;
+  expect(originalWhy.width).toBeCloseTo((actionsWidth - 8) / 2, 1);
   if (info.project.name === "desktop") {
     const centers = await page.getByRole("group", {name: "Game navigation"}).evaluate(controls => {
       const row = controls.getBoundingClientRect();
@@ -66,6 +68,7 @@ test("variation return is a prominent coach action and restores the original pos
   expect(layout.top).toBeCloseTo(layout.whyTop, 1);
   expect(layout.height).toBe(layout.whyHeight);
   expect(layout.whyWidth).toBeCloseTo(originalWhy.width, 1);
+  expect(layout.width).toBeCloseTo(layout.whyWidth, 1);
   expect(layout.whyHeight).toBe(originalWhy.height);
   expect(layout.gap).toBe(8);
   expect(layout.actionsHeight).toBe(actionsHeight);
