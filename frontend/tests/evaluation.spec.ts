@@ -5,7 +5,7 @@ const geometry = (locator: Locator) => locator.evaluate(element => {
   return {x, y: y + scrollY, width, height};
 });
 
-test('evaluation scales to the game, preserves mate scores, and keeps navigation stable', async ({page}, info) => {
+test('evaluation scales to the game and preserves mate scores without a redundant navigation row', async ({page}, info) => {
   const {id} = await (await page.request.post(`/__test/game-review-fixture/evaluation-${info.project.name}`)).json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   const source = game.frames.slice(1);
@@ -40,11 +40,10 @@ test('evaluation scales to the game, preserves mate scores, and keeps navigation
   }
   await expect(graph.locator('.game-graph-legend')).toHaveCount(0);
 
-  const previous = graph.getByRole('button', {name: 'Previous graph position'});
-  const next = graph.getByRole('button', {name: 'Next graph position'});
-  await next.scrollIntoViewIfNeeded();
+  await expect(graph.getByRole('group', {name: 'Evaluation graph navigation'})).toHaveCount(0);
+  await expect(graph.locator('.game-graph-footer')).toHaveCount(0);
+  await graph.scrollIntoViewIfNeeded();
   await page.evaluate(() => document.fonts.ready);
-  const buttons = {previous: await geometry(previous), next: await geometry(next)};
   const bubbleHeight = (await geometry(coach)).height;
   for (const [ply, text, barText] of [[1, '+0.35', '+0.4'], [2, '−3.20', '−3.2'], [3, '+M3', '+M3'], [4, '−M2', '−M2'], [5, '+M0', '+M0'], [6, '−M0', '−M0'], [7, '+0.00', '+0.0']] as const) {
     if (info.project.name === 'mobile') await node(ply).tap(); else await node(ply).click();
@@ -58,7 +57,6 @@ test('evaluation scales to the game, preserves mate scores, and keeps navigation
     expect(bounds.width).toBeGreaterThan(bounds.height);
     expect(await bar.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
     await expect(axes).toHaveText(['+4', '0', '−4']);
-    expect({previous: await geometry(previous), next: await geometry(next)}).toEqual(buttons);
     expect((await geometry(coach)).height).toBe(bubbleHeight);
   }
   await page.getByRole('button', {name: 'Flip board', exact: true}).click();
@@ -66,11 +64,10 @@ test('evaluation scales to the game, preserves mate scores, and keeps navigation
   await expect(coach.locator('.evaluation-score')).toHaveAttribute('data-side', 'black');
   await expect(coach.locator('.evaluation-score')).toHaveText('−3.20');
   await node(22).click();
-  await expect(graph.locator('.game-graph-position')).toHaveText('Game · 11... bxa8=Q+');
-  expect({previous: await geometry(previous), next: await geometry(next)}).toEqual(buttons);
-  await previous.click();
+  await expect(node(22)).toHaveAttribute('aria-label', /11\.\.\. bxa8=Q\+/);
+  await node(22).press('ArrowLeft');
   await expect(node(21)).toHaveAttribute('aria-current', 'step');
-  await next.click();
+  await node(21).press('ArrowRight');
   await expect(node(22)).toHaveAttribute('aria-current', 'step');
 
   // Larger finite scores expand both sides. Mate values do not determine the
@@ -98,7 +95,7 @@ test('evaluation scales to the game, preserves mate scores, and keeps navigation
   game.frames[10] = {...game.frames[10], report: null};
   await page.reload();
   await expect(graph.locator('.game-graph-white')).toHaveCount(2);
-  await next.scrollIntoViewIfNeeded();
+  await graph.scrollIntoViewIfNeeded();
   const plot = graph.locator('.game-evaluation-plot');
   const neighbors = await Promise.all([node(9), node(11)].map(n => n.getAttribute('cx')));
   await plot.click({position: {x: (Number(neighbors[0]) + Number(neighbors[1])) / 2, y: 2}});

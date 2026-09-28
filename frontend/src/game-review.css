@@ -343,34 +343,6 @@
 .game-graph-node:hover {
   fill: var(--accent);
 }
-.game-graph-footer {
-  min-height: 34px;
-  display: flex;
-  align-items: center;
-}
-.game-graph-navigation {
-  display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) 30px;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  width: 100%;
-}
-.game-graph-navigation button {
-  min-width: 30px;
-  min-height: 30px;
-  padding: 4px;
-  flex: none;
-}
-.game-graph-position {
-  min-width: 0;
-  text-align: center;
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 .game-graph p {
   font-size: 11px;
   margin: 2px 0 4px;
@@ -556,12 +528,5 @@
   }
   .game-graph-verdict {
     display: none;
-  }
-  .game-graph-navigation {
-    grid-template-columns: 44px minmax(0, 1fr) 44px;
-  }
-  .game-graph-navigation button {
-    min-width: 44px;
-    min-height: 44px;
   }
 }

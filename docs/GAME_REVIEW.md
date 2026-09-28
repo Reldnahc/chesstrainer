@@ -128,8 +128,9 @@ positions: the cursor, board and coaching follow each new ply while held. Draggi
 past either end stops at the first/last position; release or cancellation ends the
 gesture. Vertical swipes still scroll the page on phones.
 Arrow keys navigate reviewed dots when a dot is focused; Home/End
-select the first/last reviewed move. The graph's buttons also navigate every ply,
-including positions still being reviewed. The coach keeps its label, message area, and action
+select the first/last reviewed move. The graph has no separate move/navigation
+footer; use scrubbing or the main game controls to reach any ply, including positions
+still being reviewed. The coach keeps its label, message area, and action
 row in stable slots; longer explanations scroll inside the bubble. The desktop
 bubble and illustrated coach share a 116px height; narrow layouts use a 136px
 bubble with a smaller portrait. Actions stay outside the bubble in both review modes.
