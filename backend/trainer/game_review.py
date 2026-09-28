@@ -1,13 +1,9 @@
 """Evidence-backed game coaching. Never writes training decisions or recall history."""
 
 import io
-from collections import deque
-from concurrent.futures import ThreadPoolExecutor
-from queue import Queue
 
 import chess
 import chess.pgn
-from sqlalchemy import select
 
 from trainer.chess_core import (
     Candidate,
@@ -19,10 +15,12 @@ from trainer.chess_core import (
 )
 from trainer.continuations import replay, settled_delta
 from trainer.explanations import replay_line
-from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove
 from trainer.move_causes import move_causes
 from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
+from trainer.review_intelligence.difficulty import assess_difficulty
+from trainer.review_intelligence.events import describe_move
+from trainer.review_scores import strongest_alternative
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 VERSION = "game-review-1"
@@ -72,13 +70,13 @@ def classify(report, rating):
         return "Brilliant", "You found a sound piece sacrifice with a verified tactical idea."
     # Great is best/near-best AND critical; a sole legal reply is never an achievement.
     if cp <= 20 and report["legal_count"] > 1:
-        second = report["second_score"]
+        second = strongest_alternative(report)
         only_good = (
             second is not None
             and (
-                evaluation_loss(best, Score.model_validate(second)).allows_mate
-                or evaluation_loss(best, Score.model_validate(second)).mate_lost
-                or (evaluation_loss(best, Score.model_validate(second)).cp or 0) >= 150
+                evaluation_loss(best, second).allows_mate
+                or evaluation_loss(best, second).mate_lost
+                or (evaluation_loss(best, second).cp or 0) >= 150
             )
             and numeric(actual) >= -50
         )
@@ -210,6 +208,7 @@ def analyze_move(engine, board, move, previous_score=None):
         "best": best.model_dump(),
         "actual": actual.model_dump(),
         "second_score": candidates[1].score.model_dump() if len(candidates) > 1 else None,
+        "root_candidates": [candidate.model_dump() for candidate in candidates],
         "previous_score": previous_score.model_dump() if previous_score else None,
         "legal_count": board.legal_moves.count(),
         "loss_cp": loss.cp,
@@ -221,7 +220,7 @@ def analyze_move(engine, board, move, previous_score=None):
     }
 
 
-def public_report(report, rating):
+def public_report(report, rating, *, context=None):
     label, reason = classify(report, rating)
     engine_label = label
     findings = report["actual_line"]["findings"]
@@ -237,7 +236,11 @@ def public_report(report, rating):
     if opening:
         label, reason = "Book", "This move is part of a recognized opening line."
         coach = f"This follows {opening['name']} ({opening['eco']})." if opening["name"] else reason
+    practical = assess_difficulty(report)
     return report | {
+        "immediate_reply": frames[2] if len(frames) > 2 else None,
+        "practical": practical.model_dump(mode="json"),
+        "intelligence": describe_move(report, practical, context).model_dump(mode="json"),
         "label": label,
         "engine_label": engine_label,
         "opening": opening,
@@ -251,90 +254,9 @@ def public_report(report, rating):
 
 
 def run_review(runner, job_id, engine_override=None):
-    with runner.sessions() as db:
-        review = db.scalar(select(GameReview).where(GameReview.job_id == job_id))
-        game = db.get(Game, review.game_id)
-        parsed = parsed_game(game)
-        moves = list(parsed.mainline_moves())
-        saved = {
-            row.ply: row.report
-            for row in db.scalars(select(GameReviewMove).where(GameReviewMove.game_id == game.id))
-        }
-    missing = len(moves) - len(saved)
-    workers = (
-        1
-        if engine_override
-        else min(runner.settings.stockfish_workers, runner.settings.engine_slots, max(1, missing))
-    )
-    engines = (
-        [engine_override]
-        if engine_override
-        else [
-            runner.engine_factory(runner.settings, runner.sessions)
-            for _ in range(workers)
-            if missing
-        ]
-    )
-    available = Queue()
-    for engine in engines:
-        available.put(engine)
+    from trainer.review_jobs import run_review as execute
 
-    def analyze(board, move):
-        if runner.cancelled(job_id):
-            return None
-        engine = available.get()
-        try:
-            # Evidence for a move is independent of the preceding move's score.
-            # Attach that score in game order below, before exposing any labels.
-            return analyze_move(engine, board, move)
-        finally:
-            available.put(engine)
-
-    executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="game-review")
-    try:
-        board = parsed.board()
-        pending = deque()
-        next_ply = 1
-        previous = None
-
-        def fill():
-            nonlocal next_ply
-            # Bound both running work and queued boards. Cancellation never leaves
-            # a whole game's searches waiting in the executor.
-            while next_ply <= len(moves) and len(pending) < workers:
-                if runner.cancelled(job_id):
-                    break
-                move = moves[next_ply - 1]
-                future = (
-                    None
-                    if next_ply in saved
-                    else executor.submit(analyze, board.copy(stack=True), move)
-                )
-                pending.append((next_ply, future))
-                board.push(move)
-                next_ply += 1
-
-        fill()
-        while pending:
-            ply, future = pending.popleft()
-            report = future.result() if future else saved[ply]
-            if report is None:
-                break
-            with runner.import_lock, runner.sessions() as db:
-                if future:
-                    report["previous_score"] = previous.model_dump() if previous else None
-                    db.add(GameReviewMove(game_id=game.id, ply=ply, report=report))
-                job = db.get(AnalysisJob, job_id)
-                job.positions_triaged = ply
-                job.games_processed = int(ply == len(moves))
-                db.commit()
-            previous = Score.model_validate(report["best"]["score"]).negate()
-            fill()
-    finally:
-        executor.shutdown(wait=True, cancel_futures=True)
-        if not engine_override:
-            for engine in engines:
-                engine.close()
+    return execute(runner, job_id, engine_override)
 
 
 def branch_board(game, ply, moves):

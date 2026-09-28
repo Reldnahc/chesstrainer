@@ -7,6 +7,23 @@ Existing Fieldwork source keeps its original license. The combined application
 also carries the applicable AGPL obligations, including the network source offer.
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
+The optional human-move adapter and developer benchmarks use CSSLab's AGPL-3.0 inference primitives at
+[1e13597c42d4858b7cfd7cfdae01e297263364b2](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2).
+Unmodified model, tokenizer and move-vocabulary source and the complete license
+are included in `backend/trainer/_vendor/maia3`. Fieldwork's separate adapter adds
+policy-only inference, process isolation and integrity/contract validation. Neural
+weights are not committed or bundled in the image. Explicit setup uses
+the 79M card's explicit AGPLv3 declaration; smaller cards need weight-term
+clarification. Exact hashes, source links and measured installation implications
+are recorded in [MAIA_FEASIBILITY.md](docs/MAIA_FEASIBILITY.md).
+
+The optional CPU inference runtime uses PyTorch 2.8.0+cpu and NumPy 2.2.6,
+distributed under their upstream BSD-style terms. Their wheels retain their
+complete license and bundled third-party notices in `torch-2.8.0+cpu.dist-info/LICENSE`
+and `numpy-2.2.6.dist-info/LICENSE.txt` inside the installed Python environment.
+`requirements-human-cpu.lock` pins the runtime dependencies; Fieldwork does not
+replace their license notices with the application's GPL/AGPL notice.
+
 The Lichess tagger is pinned to commit
 8d9faff694ba3a8598abc5465347209af3f90a82. Local changes adapt package imports,
 remove global logging configuration and add observer calls at successful motif

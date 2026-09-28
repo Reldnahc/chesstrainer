@@ -27,6 +27,7 @@ class Workspace:
     settings: object
     engine_factory: object
     shared_engine: object = None
+    human_models: object = None
 
     @cached_property
     def engine(self):
@@ -44,9 +45,19 @@ class Workspaces:
     reads and unrelated accounts remain independent of long engine searches.
     """
 
-    def __init__(self, sql_engine, settings, engine_factory, *, local_engine=None, local_lock=None):
+    def __init__(
+        self,
+        sql_engine,
+        settings,
+        engine_factory,
+        *,
+        local_engine=None,
+        local_lock=None,
+        human_models=None,
+    ):
         self.sql_engine, self.settings = sql_engine, settings
         self.engine_factory, self.local_engine = engine_factory, local_engine
+        self.human_models = human_models
         self.local_lock = local_lock if local_lock is not None else threading.RLock()
         self._guard = threading.Lock()
         self._locks = {}
@@ -75,6 +86,7 @@ class Workspaces:
                 self.settings,
                 self.engine_factory,
                 self.local_engine,
+                self.human_models,
             )
         finally:
             with self._guard:

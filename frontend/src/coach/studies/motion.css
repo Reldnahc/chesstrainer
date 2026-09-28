@@ -186,17 +186,6 @@
   .study-head {
   animation: study-playful-recoil 1750ms both;
 }
-.coach-avatar[data-phase="reaction"][data-motion="subtle"] .study-head {
-  animation: study-nod 1200ms both;
-}
-.coach-avatar[data-phase="reaction"][data-motion="subtle"][data-expression="blunder"]
-  .study-head {
-  animation: study-sympathy 1400ms both;
-}
-.coach-avatar[data-motion="subtle"] .study-artwork {
-  --study-strength: 0.35;
-}
-
 .coach-avatar:not([data-motion="still"])[data-micro="blink"]
   :is(.study-artwork .coach-eyes, .animal-eyes) {
   animation: study-blink 260ms both;

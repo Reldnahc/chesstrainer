@@ -39,6 +39,17 @@ class WorkspaceSettings(EngineHealth):
     session_secure: bool
     public_origin: str
     engine_slots: int
+    human_model_enabled: bool
+    human_model_path: str
+    human_model_device: Literal["cpu", "cuda"]
+    human_model_threads: int
+    human_model_workers: int
+    human_model_timeout: float
+    review_refinement_positions: int
+    review_refinement_queries: int
+    review_refinement_depth: int
+    review_refinement_time: float
+    review_refinement_multipv: int
     stockfish_path: str
     stockfish_threads: int
     stockfish_hash_mb: int

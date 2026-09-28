@@ -9,6 +9,11 @@ Current direction: Review and local mistake classification. The user's September
 | Game import | Multi-PGN, learner matching, provenance, deduplication, partial errors | Standard chess only |
 | Chess.com | Username, mode/date filters, lookback, new-game limit and resumable archives | Completed public games only; automatic recent-game sync for accounts; cached upstream data; no exact clock/increment filter |
 | Analysis | Triage/deep passes, MultiPV, actual move at same root, deterministic facts, compatible persistent cache | Bounded engine limits can miss tactics; subtle positional causes often unexplained |
+| Human move evidence | Pinned Maia-3 79M policy in a shared isolated CPU worker, both-color ratings/history/domain, private cache, explicit offline-capable setup and optional GPU runtime | Uncalibrated human-likeness signal; never objective evaluation, population percentages or a grading authority |
+| Practical difficulty | Versioned deterministic naturalness, best-find bands, candidate-coverage limits, narrow-defense and witness components | Inspected synthetic probe only; domain/fallback uncertainty explicit; does not change grades or infer mental states |
+| Review intelligence | Additive bounded refinement, traceable tactical/positional/clock events, game links and owned cross-game context for individual move explanations | Positional facts are descriptive; search drift/gaps abstain; no psychological or training-transfer claims |
+| Coach dialogue | Shared evidence-led intents and deterministic utterances; every registered coach has a character bible, curated voice and complete neutral fallback | No LLM or TTS; finite curated corpus; long authorized explanations remain scrollable |
+| Developer diagnostics | Separate offline intelligence lab, full-cast/blind comparison and corpus audit; existing expression studio remains separate | Local saved JSON only; absent production routes and bundles |
 | Jobs | Persistent queue/progress, parallel engines/local rule workers, cancellation/cache/restart | One backend process |
 | Classification | Pinned Lichess tactical recognition, adaptive saved continuations, connected combinations, before/after causes, native tests for relative pins/fork defenses/trapped pieces, separated outcomes/patterns/cues and exact audits | Version 4 with unchanged mistake-evidence gates; overloads, economically ineffective multiple defenders and broad strategic causes remain unsupported |
 | Weaknesses | Independent-game aggregation, separate pattern/outcome coverage, cues, all supporting examples and focused practice | No calibrated diagnostic accuracy; independent human benchmark outstanding |
@@ -25,9 +30,9 @@ Current direction: Review and local mistake classification. The user's September
 | Data and backups | SQLite WAL, migrations, consistent backup/restore and preserved historical audits | CLI backup only; no cloud sync |
 | Quality | Rules/engine/API/browser tests, frozen HTTP contracts, independent app instances, migration preservation, blinded stratified export and frozen annotation comparison; first assistant assessment with preserved adjudications; offline Lichess positive-theme benchmark and per-theme failure corpus | External puzzle agreement tests the line detector only; initial recognition is uneven. Independent human precision, full-classifier recall and long-term improvement remain unmeasured |
 
-## What no longer needs a model
+## No remote teaching model
 
-Import, analysis, classification, weakness aggregation, answers, explanations, playback and FSRS all run locally. PGN training needs no network; explicit Chess.com imports contact its public API. No model key, SDK, selector, paid request pool or outbound pedagogy payload remains.
+Import, analysis, classification, weakness aggregation, answers, explanations, playback and FSRS all run locally. PGN training needs no network; explicit Chess.com imports contact its public API. Optional Maia inference uses an explicitly pre-cached local checkpoint. No remote teaching model, API key, paid request pool or outbound pedagogy payload is used.
 
 Historical classification IDs/responses remain in provider-neutral audit storage. Old model labels are inactive; local findings replace the active projection. Historical teaching records remain in backups/audit endpoints; generation and old job retries return 410. Saved lessons and review history are retained.
 

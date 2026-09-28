@@ -12,7 +12,7 @@ import {
   type CoachMotion,
   type CoachMicro,
 } from "../model";
-import { useReducedMotion } from "../usePerformance";
+import { useReducedMotion } from "../../useReducedMotion";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
@@ -43,7 +43,7 @@ export default function CoachStudio() {
       new URLSearchParams(location.search).get("family") ?? undefined,
     ),
   );
-  const [motion, setMotion] = useState<CoachMotion>("natural");
+  const [motion, setMotion] = useState<CoachMotion>("system");
   const idles = availableIdles(coach, family);
   const [reduced, setReduced] = useState(false);
   const [replay, setReplay] = useState(0);
@@ -51,7 +51,8 @@ export default function CoachStudio() {
   const [idleVariant, setIdleVariant] = useState<CoachMicro>("blink");
   const [playing, setPlaying] = useState(false);
   const deviceReduced = useReducedMotion();
-  const effectiveMotion = reduced || deviceReduced ? "still" : motion;
+  const deviceStill = motion === "system" && deviceReduced;
+  const effectiveMotion = reduced || deviceStill ? "still" : motion;
   const reaction = {
     state: expression,
     key: `studio:${coach.id}:${expression}`,
@@ -167,10 +168,13 @@ export default function CoachStudio() {
           Motion intensity
           <select
             value={motion}
-            onChange={(event) => setMotion(event.target.value as CoachMotion)}
+            onChange={(event) => {
+              setMotion(event.target.value as CoachMotion);
+              setReduced(false);
+            }}
           >
-            <option value="natural">Natural</option>
-            <option value="subtle">Subtle</option>
+            <option value="system">Use device setting</option>
+            <option value="natural">Animated</option>
             <option value="still">Still</option>
           </select>
         </label>
@@ -193,16 +197,16 @@ export default function CoachStudio() {
         <label className="studio-reduced">
           <input
             type="checkbox"
-            checked={reduced || deviceReduced}
-            disabled={deviceReduced}
+            checked={reduced || deviceStill}
+            disabled={deviceStill}
             onChange={(event) => setReduced(event.target.checked)}
           />{" "}
           Reduced motion
         </label>
       </section>
-      {(reduced || deviceReduced) && (
+      {(reduced || deviceStill) && (
         <p className="studio-motion-notice" role="status">
-          {deviceReduced
+          {deviceStill
             ? "Your device requests reduced motion."
             : "Reduced-motion preview is on."}{" "}
           Expressions stay visible; motion is paused.
@@ -223,8 +227,7 @@ export default function CoachStudio() {
         <div>
           <h2>The quieter moments</h2>
           <p>
-            One reaction, then room to breathe. Idle gestures vary, with long
-            pauses between them.
+            Idle gestures vary, with short pauses between them.
           </p>
         </div>
         <label className="sr-only" htmlFor="idle-variant">

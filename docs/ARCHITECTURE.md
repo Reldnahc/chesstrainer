@@ -26,8 +26,10 @@ Whole-game review and training analysis are separately requested from the game.
 | jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
 | backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
-| routes/workspace.py | Health, effective settings, account-owned coach preferences and statistics |
-| preferences.py | Validated coach choices in one owned user_preferences row; missing/unsupported choices have safe read defaults |
+| human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
+| review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
+| routes/workspace.py | Health, effective settings, account-owned coach/interface preferences and statistics |
+| preferences.py | Validated coach and motion choices in one owned user_preferences row; field-specific writes preserve independent choices and missing/unsupported choices have safe read defaults |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
@@ -68,12 +70,16 @@ lock, while other accounts have independent locks.
 | gameReview/usePositionAnalysis.ts | Serialized engine requests, per-history cache, browsing debounce and stale-response isolation |
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
-| Settings.tsx | Account, connected games, coach preferences and classification job controls |
+| Settings.tsx | Account, connected games, coach/interface preferences and classification job controls |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
-| coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, reduced motion, event dwell, one-shot reactions and occasional idle gestures |
+| useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
+| MotionProvider.tsx / MotionSettings.tsx / motion.ts / MotionSelect.tsx | Saved piece/interface motion, common device-default override rules and shared motion selector |
+| coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, event dwell, one-shot reactions and occasional idle gestures |
+| useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits, boards and controls |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
-| coach/studies/ / coach/studio/ | Four concepts each for men, women, cats and dogs; shared drawing primitives and lazy-loaded comparison UI |
+| coach/studies/ / coach/studio/ | Shared registered character artwork and a separate development-only comparison entry |
+| dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
 | EvidenceDialog.tsx | Evidence/audit display, rejection action and dialog focus lifecycle |
 | PageTitle.tsx | Shared title display |
 | navigation.ts / Link.tsx | URL routing, browser history, scroll restoration, legacy link cleanup and normal anchor/modifier-click behavior |
@@ -91,6 +97,11 @@ Keep a component's normal and responsive rules together, with one block per
 breakpoint, rather than appending overrides to the entry point. Shared review
 presentation precedes the base element defaults to preserve the established
 cascade. Board dimensions and motion remain common to both review experiences.
+`motion.css` applies the resolved account motion choice to all interface CSS
+animations/transitions, excluding coach portrait subtrees with their independent
+choice. `Board` uses that same resolved state for native piece movement. Browser
+reduced motion supplies the default; explicit Animated/Still choices take
+precedence. Preferences remain still while loading or after a failed initial load.
 
 The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
 review experiences. Artwork-specific poses, styles and finite CSS animations stay
@@ -98,6 +109,10 @@ with the registered character; semantic reaction and preference code are shared.
 The provider lives inside the account boundary, so switching users discards the
 previous preference state. Selection and motion use the existing owned SQLite
 database, including the reserved local user, with no new container settings.
+The independent piece/interface preference uses `/api/preferences/motion` and
+the `interface_motion` column in that same row. Both providers share the saved
+preference lifecycle and reset when the account boundary unmounts. The root CSS
+motion attribute is also removed on unmount; login screens use the device default.
 
 Navigation is Review, Games, Weaknesses, Import, Settings. A small History API
 router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and
@@ -106,12 +121,11 @@ destination. The root URL aliases `/review` with `replaceState`, preserving old
 `?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
 starting a lesson. Unknown paths show a recoverable not-found screen.
 
-`/coach-studio`, linked from Settings, compares four concepts each for men, women,
-cats and dogs. The preview catalogue is separate from the production coach
-registry, and the additional artwork loads only with this route. Character,
-family and expression URLs restore a study; character switches cancel sequences
-and reset unsupported idle choices. Its preview state does not change account
-preferences or start analysis. There is no extra main navigation destination.
+The coach studio is a separate development process (`npm run dev:coach`, port
+5174), using its own HTML entry and the same character catalogue as production.
+It has no production route or Settings link. Character, family and expression
+URLs restore a study; switches cancel sequences and reset unsupported idle choices.
+The studio does not access account preferences or start analysis.
 
 `?focus=<skill>` selects focused practice, `?page=N` records the library page
 (also retained on game links), and `?ply=N` records a game's selected half-move.
@@ -239,8 +253,57 @@ classification_quality.py and the read-only report script support blinded export
 
 Lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Course generation and lesson progression code have been removed; active review cannot start, resume or finish a lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive.
 
-OpenAI runtime integration is removed: no model SDK or network calls remain. Historical classification and teaching responses stay local. Only explicit Chess.com imports need outbound network access.
+OpenAI runtime integration is removed: no model SDK or model network calls remain.
+Historical classification and teaching responses stay local. Explicit Chess.com
+imports and enabled recent-game synchronization use the public Chess.com API.
 
-Production LAN binding and an optional shared token are configuration. Do not expose the application directly to the internet. The supported deployment is a source checkout with one Python process serving the built frontend; standalone wheel/static-asset packaging remains future work.
+Supported installations include the published Docker image and a source checkout,
+both with one Python process serving the built frontend. Local mode shares one
+workspace; hosted mode uses app accounts behind an HTTPS reverse proxy. See
+[ACCOUNTS.md](ACCOUNTS.md) and [CONFIGURATION.md](CONFIGURATION.md). A standalone
+wheel with packaged static assets is not currently supported.
+
+Review-intelligence authority boundaries and measurement rules are recorded in
+[REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Human move behavior must never
+replace objective Stockfish evaluation or directly assign move-quality labels.
 
 The frontend build generates a public-source snapshot with scripts/source_archive.py, served by the existing /assets mount and linked in Settings. Git-listed public source and licenses are included; private data, secrets and untracked files are excluded. See NOTICE.md and LICHESS_REUSE.md for the GPL/AGPL combination and source-offer workflow.
+
+Full-game scheduling lives in `review_jobs`; `review_refinement` runs a finite
+optional pass after the unchanged deep baseline. `review_intelligence/refinement_*`
+own nominations and bounded questions; `review_reports` resolves compatible
+saved evidence for presentation. The existing native cache and shared engine
+pool remain the compute authority. See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md).
+
+`review_intelligence/events`, `event_facts`, `context` and `clocks` derive typed,
+traceable semantic events from saved chess facts and PGN annotations. No character
+prose enters this layer. [REVIEW_EVENTS.md](REVIEW_EVENTS.md) specifies gates and
+clock abstention; `review_scores` shares Stockfish-only alternative comparisons.
+## Positional review evidence
+
+The review-intelligence layer adds versioned immediate board-change facts for
+quiet moves using existing python-chess legality and pin-aware tactical geometry.
+It does not infer strategic causes from centipawn loss. See
+[POSITIONAL_EVIDENCE.md](POSITIONAL_EVIDENCE.md) for supported definitions and
+abstention rules; played and alternative lines remain distinct.
+
+## Context and communication
+
+The detail and progress endpoints share `review_intelligence/presentation.py`.
+Compatible saved reports become versioned move events, mainline nodes/relationships,
+owned cross-game references. Links require matching PGN/FEN/move
+provenance; gaps and inconsistent adjacent searches cause abstention. These are
+structured facts, never conversational memory. See [game context](GAME_CONTEXT.md),
+[history](CROSS_GAME_CONTEXT.md).
+
+The client builds a `DialogueIntent` before selecting a personality. `CoachUtterance`
+retains claim/template provenance and future-neutral delivery metadata, without a
+speech provider or runtime. The existing coach catalogue owns both artwork and
+writing definitions; account preferences need no new field. Character changes
+perform no native work. Cold practice gates precede all dialogue selection.
+See [dialogue](COACH_DIALOGUE.md) and [character writing](COACH_PERSONALITIES.md).
+
+React's framework code has a separately cached production chunk; all registered
+coach definitions remain synchronous. The offline intelligence lab and expression
+studio have separate loopback entry points and do not enter production navigation
+or executable assets. Their source remains in the downloadable public source.

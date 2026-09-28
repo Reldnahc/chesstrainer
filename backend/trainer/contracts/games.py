@@ -4,6 +4,11 @@ from trainer.chess_core import Candidate, Score
 from trainer.contracts.common import Color, Contract, LegalMove
 from trainer.diagnosis_types import Finding
 from trainer.explanations import Frame
+from trainer.human_models.types import HumanEvidence
+from trainer.review_intelligence.events_types import MoveIntelligence
+from trainer.review_intelligence.game_types import GameContext
+from trainer.review_intelligence.history import CrossGameContext
+from trainer.review_intelligence.types import PracticalAssessment
 
 MoveQuality = Literal[
     "Brilliant", "Great", "Best", "Good", "Book", "Inaccuracy", "Mistake", "Miss", "Blunder"
@@ -67,6 +72,11 @@ class BookOpening(Contract):
 
 
 class GameMoveReport(Contract):
+    immediate_reply: Frame | None = None
+    intelligence: MoveIntelligence | None = None
+    human: HumanEvidence | None = None
+    practical: PracticalAssessment | None = None
+    refinement: "RefinementInfo | None" = None
     label: MoveQuality
     engine_label: MoveQuality
     opening: BookOpening | None
@@ -98,6 +108,7 @@ class GameReviewReport(GameMoveReport):
     before_analysis_id: str
     played_analysis_id: str
     second_score: Score | None
+    root_candidates: list[Candidate] | None = None
     previous_score: Score | None
     legal_count: int
     loss_cp: int | None
@@ -122,9 +133,15 @@ class ReviewJob(Contract):
     total: int
     error: str | None
     cancel_requested: bool
+    phase: Literal["baseline", "refinement", "complete"] = "baseline"
+    refinement_completed: int = 0
+    refinement_total: int = 0
 
 
 class GameDetail(Contract):
+    history: CrossGameContext | None = None
+    context: GameContext | None = None
+    review_revision: int = 0
     id: str
     white: str
     black: str
@@ -145,6 +162,9 @@ class ReviewedMove(Contract):
 
 
 class ReviewProgress(Contract):
+    history: CrossGameContext | None = None
+    context: GameContext | None = None
+    revision: int = 0
     job: ReviewJob | None
     moves: list[ReviewedMove]
     accuracy: GameAccuracy | None
@@ -154,3 +174,15 @@ class GameAnalysis(Contract):
     report: GameReviewReport | None
     score: Score | None
     best_move: str | None
+
+
+class RefinementInfo(Contract):
+    version: str
+    task_id: str
+    status: str
+    triggers: list[str]
+    adopted: bool
+    reason: str | None
+    baseline_depth: int
+    refined_depth: int | None
+    queries: int

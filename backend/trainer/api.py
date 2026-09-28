@@ -12,6 +12,7 @@ from trainer.db import database, migrate
 from trainer.engine import EngineUnavailable, Stockfish
 from trainer.engine_health import EngineHealth
 from trainer.engine_pool import EnginePool
+from trainer.human_models.service import HumanModels
 from trainer.jobs import JobRunner
 from trainer.local_classifier import LocalClassifier
 from trainer.multiuser import configure_accounts
@@ -42,6 +43,7 @@ def create_app(
     engine_factory=Stockfish,
     chesscom_factory=ChessComClient,
     start_engine=True,
+    human_provider=None,
 ):
     settings = (settings or Settings()).for_runtime()
     sql_engine, sessions = database(settings.database_path)
@@ -52,8 +54,13 @@ def create_app(
     engine = engine_factory(settings, sessions)
     scheduler = FSRSScheduler(settings)
     classifier = classifier if classifier is not None else LocalClassifier(settings)
+    human_models = HumanModels(settings, human_provider)
     workspaces = Workspaces(
-        sql_engine, settings, engine_factory, local_engine=None if pool else engine
+        sql_engine,
+        settings,
+        engine_factory,
+        local_engine=None if pool else engine,
+        human_models=human_models,
     )
     runner = JobRunner(
         settings,
@@ -85,6 +92,7 @@ def create_app(
             yield
         finally:
             runner.stop()
+            human_models.close()
             engine.close()
             if pool:
                 pool.close()
@@ -93,6 +101,7 @@ def create_app(
     app = FastAPI(title="Fieldwork accounts" if pool else "Local Chess Trainer", lifespan=lifespan)
     app.state.sessions, app.state.runner, app.state.settings = sessions, runner, settings
     app.state.workspaces = workspaces
+    app.state.human_models = human_models
     configure_http(app, settings)
     if settings.accounts_enabled:
         configure_accounts(app, settings)

@@ -1,9 +1,14 @@
+import { CornerUpLeft } from "lucide-react";
 import MoveBadge from "../MoveBadge";
 import ReviewCoach from "../ReviewCoach";
 import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
 import type { Game, Position, Report } from "./types";
 import { gameReaction } from "../coach/reactions";
+import { gameIntent } from "../dialogue/gameIntent";
+import { useDialogue } from "../dialogue/useDialogue";
+import DialogueText from "../dialogue/DialogueText";
+import HumanInsight from "./HumanInsight";
 
 export default function PositionCoach({
   game,
@@ -17,7 +22,11 @@ export default function PositionCoach({
   errorAtPosition,
   reviewStarting,
   onExplain,
+  onReturnToGame,
   positionKey,
+  dialogueKey,
+  ply,
+  variation,
 }: {
   game: Game;
   report?: Report | null;
@@ -30,7 +39,11 @@ export default function PositionCoach({
   errorAtPosition: string | null;
   reviewStarting: boolean;
   onExplain: () => void;
+  onReturnToGame: () => void;
   positionKey: string;
+  dialogueKey: string;
+  ply: number;
+  variation: boolean;
 }) {
   const reaction = gameReaction({
     key: positionKey,
@@ -44,25 +57,16 @@ export default function PositionCoach({
       reviewStarting ||
       ["queued", "running"].includes(game.job?.status ?? ""),
   });
-  const finish =
-    reaction.state === "winning"
-      ? "Checkmate. You finished the attack; the king has no legal escape."
-      : reaction.state === "losing"
-        ? "Checkmate. Your king has no legal escape. Let's look back for a way to stop the attack."
-        : reaction.state === "draw"
-          ? "The position is drawn. We can look back at the earlier decisions together."
-          : null;
-  const coachIntro =
-    game.job?.status === "completed"
-      ? "Your review is ready. Select a move, jump to the next mistake, or move a piece to try an idea."
-      : game.job?.status === "cancelled"
-        ? "Your review is paused. Resume it below, or move a piece to explore."
-        : game.job?.status === "failed" || (!game.job && !reviewStarting)
-          ? "The review couldn't finish. Retry below, or explore the board while you wait."
-          : "I'm reviewing both sides. The move ratings will appear as they're ready. You can explore the board while you wait.";
+  const input = {game, report, frame, ply, variation,
+    key: dialogueKey, expression: reaction.state,
+    error: !!errorAtPosition || game.job?.status === "failed",
+    pending: !!actor || reviewStarting || ["queued", "running"].includes(game.job?.status ?? ""),
+  };
+  const intent = gameIntent(input);
+  const utterance = useDialogue(explaining ? gameIntent({...input, explaining}) : intent);
   return (
     <ReviewCoach
-      reaction={reaction}
+      reaction={{...reaction, state: utterance.expression}}
       title={
         report ? (
           <MoveBadge label={report.label}>
@@ -99,29 +103,32 @@ export default function PositionCoach({
                 ? "Hide why"
                 : "Show why"}
           </button>
-          <span title={bestMove ? `Best move: ${bestMove}` : undefined}>
-            {bestMove ? (
-              <>
-                Best: <strong>{bestMove}</strong>
-              </>
-            ) : (
-              "Move a piece to explore"
-            )}
-          </span>
+          {variation && (
+            <button
+              className="game-return"
+              onClick={onReturnToGame}
+              title="Return to game (Escape)"
+            >
+              <CornerUpLeft size={18} />
+              Return to game
+            </button>
+          )}
+          <div className="coach-move-context">
+            <span title={bestMove ? `Best move: ${bestMove}` : undefined}>
+              {bestMove ? (
+                <>
+                  Best: <strong>{bestMove}</strong>
+                </>
+              ) : (
+                "Move a piece to explore"
+              )}
+            </span>
+            {report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
+          </div>
         </>
       }
     >
-      <p aria-live="polite">
-        {explaining
-          ? cues!.caption
-          : finish ||
-            report?.coach ||
-            (errorAtPosition
-              ? "You can still explore the board. Engine coaching is unavailable for this position."
-              : !actor
-                ? coachIntro
-                : "I'm checking this move and the opponent's strongest reply…")}
-      </p>
+      <DialogueText utterance={utterance} />
       {errorAtPosition && <p role="alert">{errorAtPosition}</p>}
     </ReviewCoach>
   );

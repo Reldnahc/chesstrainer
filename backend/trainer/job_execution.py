@@ -15,6 +15,7 @@ class JobExecution:
     def __init__(self, runner, workspace):
         self.runner = runner
         self.settings, self.sessions = runner.settings, workspace.sessions
+        self.human_models = workspace.human_models
         self.scheduler, self.classifier = runner.scheduler, runner.classifier
         self.engine_factory, self.chesscom_factory = runner.engine_factory, runner.chesscom_factory
         self.import_lock = self.course_lock = workspace.mutation_lock

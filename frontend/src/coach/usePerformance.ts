@@ -1,26 +1,13 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   type CoachDefinition,
   type CoachMicro,
   type CoachMotion,
   type CoachReaction,
 } from "./model";
-import { nextIdle } from "./idle";
-
-const media =
-  typeof window === "undefined"
-    ? null
-    : window.matchMedia("(prefers-reduced-motion: reduce)");
-const subscribe = (listener: () => void) => {
-  media?.addEventListener("change", listener);
-  return () => media?.removeEventListener("change", listener);
-};
-export const useReducedMotion = () =>
-  useSyncExternalStore(
-    subscribe,
-    () => media?.matches ?? true,
-    () => true,
-  );
+import { IDLE_GAP_MS, nextIdle } from "./idle";
+import { useReducedMotion } from "../useReducedMotion";
+import { resolveMotion } from "../motion";
 
 export function usePerformance({
   reaction,
@@ -50,7 +37,7 @@ export function usePerformance({
   const [take, setTake] = useState(0);
   const played = useRef(0);
   const reduced = useReducedMotion();
-  const effectiveMotion = reduced ? "still" : motion;
+  const effectiveMotion = resolveMotion(motion, reduced);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -108,9 +95,7 @@ export function usePerformance({
             scheduleIdle();
           }, 1200);
         },
-        animation.idleRangeMs[0] +
-          (effectiveMotion === "subtle" ? 4000 : 0) +
-          Math.random() * (animation.idleRangeMs[1] - animation.idleRangeMs[0]),
+        IDLE_GAP_MS[0] + Math.random() * (IDLE_GAP_MS[1] - IDLE_GAP_MS[0]),
       );
     };
     if (previewIdle && fresh) {

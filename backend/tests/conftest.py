@@ -17,6 +17,7 @@ def settings(tmp_path):
         deep_depth=12,
         deep_time=0.2,
         classification_workers=1,
+        review_refinement_positions=0,  # Baseline fixtures opt in only when testing refinement.
     )
 
 

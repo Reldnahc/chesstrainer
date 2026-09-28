@@ -64,19 +64,19 @@ test('create a curated position, fail once, solve by tapping and retain after re
   await expect(markers).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Reveal move'})).toBeVisible();
   await square('g1').click(); await square('f3').click();
-  await expect(page.getByRole('status').filter({hasText: 'Try again'})).toContainText('Try again');
+  await expect(page.locator('.move-status.retry')).toBeVisible();
   await expect(page.getByRole('button', {name: 'Reveal move'})).toBeVisible();
   await page.reload();
   await expect(page.getByRole('heading', {name: 'Find a good move.'})).toBeVisible();
   const file = testInfo.project.name === 'mobile' ? 'd' : 'e';
   await square(`${file}2`).click(); await square(`${file}4`).click();
-  await expect(page.getByText('Solved. This recall stays marked for relearning.')).toBeVisible();
+  await expect(page.getByRole('status').filter({hasText: 'This recall stays marked for relearning.'})).toBeVisible();
   await expect(page.getByRole('status').filter({hasText: 'Progress saved.'})).toContainText('Next review:');
   expect(new URL(page.url()).searchParams.has('exercise')).toBe(false);
   const nextQueue = page.waitForResponse(r => r.url().includes('/api/review/queue'));
   await page.reload();
   expect((await (await nextQueue).json()).map((item: {exercise_id: string}) => item.exercise_id)).not.toContain(exerciseId);
-  await expect(page.getByText('Solved. This recall stays marked for relearning.')).not.toBeVisible();
+  await expect(page.getByRole('status').filter({hasText: 'This recall stays marked for relearning.'})).not.toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
@@ -124,7 +124,7 @@ test('promotion choice and drag interaction are graded by the backend', async ({
   }
   await expect(page.getByRole('dialog', {name: 'Choose promotion'})).toBeVisible();
   await page.getByRole('button', {name: 'Knight', exact: true}).click();
-  await expect(page.getByText('Good move.', {exact: true})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Good decision.', exact: true})).toBeVisible();
   await expect(page.getByText('a8=N', {exact: true})).toBeVisible();
 });
 
@@ -143,12 +143,12 @@ test('legal capture rings exclude pinned moves and stay usable after a failed an
   await expect(board.locator('[data-legal-destination="d2"]')).toHaveCount(0);
   await page.screenshot({path: `test-results/${testInfo.project.name}-legal-moves.png`, fullPage: true});
   await square('e3').click();
-  await expect(page.getByRole('status').filter({hasText: 'Try again'})).toBeVisible();
+  await expect(page.locator('.move-status.retry')).toBeVisible();
   await expect(board.locator('[data-legal-destination]')).toHaveCount(0);
   await square('e2').click();
   await expect(board.locator('[data-legal-destination="e8"].capture')).toBeVisible();
   await square('e8').click();
-  await expect(page.getByText('Solved. This recall stays marked for relearning.')).toBeVisible();
+  await expect(page.getByRole('status').filter({hasText: 'This recall stays marked for relearning.'})).toBeVisible();
   await expect(board.locator('[data-legal-destination]')).toHaveCount(0);
 });
 
@@ -244,7 +244,7 @@ test('phone reviews keep a full-width board and reachable actions through retrie
     };
     await fits('Reveal move');
     await square('e2').tap(); await square('e3').tap();
-    await expect(page.getByRole('status').filter({hasText: 'Try again'})).toBeVisible();
+    await expect(page.locator('.move-status.retry')).toBeVisible();
     await fits('Reveal move');
     await square('e2').tap(); await square('e4').tap();
     await expect(page.getByRole('button', {name: 'Next position', exact: true})).toBeVisible();
@@ -319,11 +319,12 @@ test('wrong-answer feedback stays steady while checking and retrying', async ({p
       await expect(page.getByRole('status').filter({hasText: 'Checking your move'})).toBeVisible();
       await expect(board).toHaveCSS('outline-style', 'none');
       expect((await action.boundingBox())!.y).toBeCloseTo(baseline!.y, 0);
-      await expect(page.getByRole('status').filter({hasText: 'Try again'})).toHaveCount(0);
+      await expect(page.locator('.move-status.retry')).toHaveCount(0);
       if (testInfo.project.name === 'mobile') await expect(board).toBeInViewport({ratio: 1});
     } finally {release();}
     await expect(action).toBeEnabled();
-    await expect(page.getByRole('status').filter({hasText: 'Mistake. Try again.'})).toBeVisible();
+    await expect(page.locator('.move-status.retry')).toBeVisible();
+    await expect(page.locator('.move-status.retry')).not.toContainText('Checking your move');
     await expect(board).toHaveCSS('outline-color', 'rgb(255, 98, 120)');
     await expect(board).toHaveCSS('outline-width', '3px');
     expect(await documentBox(board)).toEqual(originalBoard);
@@ -360,12 +361,12 @@ test('fast wrong answers never flash a loading message', async ({page}) => {
   });
   await board.locator('[data-square="e2"]').click();
   await board.locator('[data-square="e3"]').click();
-  await expect(page.getByRole('status').filter({hasText: 'Try again'})).toBeVisible();
+  await expect(page.locator('.move-status.retry')).toBeVisible();
   await expect(action).toBeEnabled();
   // Let any mistakenly surviving loading timer fire after the response.
   await page.clock.runFor(500);
   expect(await page.evaluate(() => (window as unknown as {feedbackSeen: string[]}).feedbackSeen.some(text => text.includes('Checking your move')))).toBe(false);
-  await expect(page.getByRole('status').filter({hasText: 'Try again'})).toBeVisible();
+  await expect(page.locator('.move-status.retry')).toBeVisible();
 });
 
 
@@ -398,9 +399,13 @@ test('review explanations replay the submitted move and return without another r
   const originalHeader = await page.locator('header').boundingBox();
   await page.getByRole('button', {name: "Show me why"}).click();
   const dialog = page.getByRole('region', {name: 'Move explanation'});
-  await expect(dialog.getByText('In this line, White loses 5 points of material.', {exact: true})).toBeVisible();
+  await expect(dialog.locator('.explanation-caption')).toContainText('In this line, White loses 5 points of material.');
   await expect(board.locator('[data-square="f1"] [data-piece="wK"]')).toBeVisible();
   await expect(dialog.locator('.explanation-caption')).toContainText("capturing White's rook");
+  // Practice page heading styles must not inflate or squeeze the shared bubble.
+  for (const label of await dialog.locator('.coach-title > *').all()) {
+    expect(await label.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
+  }
   await expect(board.locator('[data-square="a1"] .playback-highlight')).toBeVisible();
   if (testInfo.project.name === 'desktop') await expect(board).toBeInViewport({ratio: 1});
   const returnButton = dialog.getByRole('button', {name: 'Back to attempt'});
@@ -418,17 +423,17 @@ test('review explanations replay the submitted move and return without another r
   await dialog.getByRole('button', {name: 'Back to attempt'}).click();
   await expect(dialog).toHaveCount(0);
   await expect(board.locator('[data-square="g1"] [data-piece="wK"]')).toBeVisible();
-  await expect(page.getByRole('status').filter({hasText:'Try again'})).toBeVisible();
+  await expect(page.locator('.move-status.retry')).toBeVisible();
   expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before.reviews + 1);
   await page.reload();
   await page.getByRole('button', {name: "Show me why"}).click();
-  await expect(dialog.getByText('In this line, White loses 5 points of material.', {exact: true})).toBeVisible();
+  await expect(dialog.locator('.explanation-caption')).toContainText('In this line, White loses 5 points of material.');
   await dialog.getByRole('button', {name:'Back to attempt'}).click();
   await play(fixture.alternative);
   await expect(page.locator('.review-move')).toHaveText('Bxa5');
   await expect(page.getByRole('button', {name:'Next position'})).toBeVisible();
   await page.getByRole('button', {name:'Show why', exact:true}).click();
-  await expect(dialog.getByText('In this line, White gains 9 points of material.', {exact:true})).toBeVisible();
+  await expect(dialog.locator('.explanation-caption')).toContainText('In this line, White gains 9 points of material.');
   await expect(board.locator('[data-square="a5"] [data-piece="wB"]')).toBeVisible();
   const backToReview = dialog.getByRole('button', {name:'Back to review'});
   await expect(backToReview).toBeInViewport({ratio: 1});
@@ -619,14 +624,13 @@ test('playback shows a repeated summary and move annotation only once', async ({
   await page.getByRole('button', {name: 'Show me why', exact: true}).click();
   const playback = page.getByRole('region', {name: 'Move explanation'});
   await expect(playback.locator('.explanation-caption')).toContainText('capturing');
-  await expect(playback.getByText(repeated, {exact: true})).toHaveCount(1);
-  await expect(playback.locator('.explanation-summary')).toHaveCount(0);
+  const caption = playback.locator('.explanation-caption');
+  await expect.poll(async () => (await caption.innerText()).split(repeated).length - 1).toBe(1);
   await playback.getByRole('button', {name: 'Previous move', exact: true}).click();
-  await expect(playback.locator('.explanation-summary')).toHaveText(repeated);
+  await expect(caption).toContainText(repeated);
   await expect(playback.locator('.explanation-caption')).toContainText('White plays');
   await playback.getByRole('button', {name: 'Next move', exact: true}).click();
-  await expect(playback.getByText(repeated, {exact: true})).toHaveCount(1);
-  await expect(playback.locator('.explanation-summary')).toHaveCount(0);
+  await expect.poll(async () => (await caption.innerText()).split(repeated).length - 1).toBe(1);
 });
 
 

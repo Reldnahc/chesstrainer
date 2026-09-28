@@ -52,6 +52,8 @@ jobs:
             config: playwright.accounts.config.ts
           - suite: coach-studio
             config: playwright.coach.config.ts
+          - suite: intelligence-lab
+            config: playwright.intelligence.config.ts
     steps:
       - uses: actions/checkout@v4
         with:

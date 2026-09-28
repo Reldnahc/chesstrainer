@@ -84,8 +84,8 @@ class ObservedEngine:
         self._health.ready(self._engine.version)
         return result
 
-    def start(self):
-        return self._run("start")
+    def start(self, **kwargs):
+        return self._run("start", **kwargs)
 
     def analyze(self, *args, **kwargs):
         return self._run("analyze", *args, **kwargs)

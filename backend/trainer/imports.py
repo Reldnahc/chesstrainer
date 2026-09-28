@@ -143,7 +143,7 @@ def import_games(
                 black=parsed.headers.get("Black", "?"),
                 learner_color=color,
                 pgn=parsed.accept(
-                    chess.pgn.StringExporter(headers=True, variations=False, comments=False)
+                    chess.pgn.StringExporter(headers=True, variations=False, comments=True)
                 ),
                 played_on=parsed.headers.get("Date"),
                 played_at=played_at(parsed),

@@ -24,6 +24,14 @@ portrait does. Settings restores the selected character's group on load. Only
 the selected portrait animates, and phone layouts use two columns. The same saved
 character appears in game review, SRS practice and saved explanations.
 
+Each selectable character also has a curated writing voice and character bible.
+The shared dialogue layer selects supported facts before the chosen personality
+phrases them; switching coaches never changes grades, evidence or engine work.
+See [character writing](COACH_PERSONALITIES.md) and the separate
+[intelligence laboratory](INTELLIGENCE_LAB.md) for blind comparisons, all-purpose
+writing exercises and exact sentence traces. Review scheduling feedback remains
+consistent outside the character dialogue, including relearning after a miss.
+
 The expression viewer runs only as a separate development process:
 
 ```sh
@@ -37,7 +45,7 @@ is occupied. It has its own HTML/React entry point and no API proxy. The normal
 application has no studio link or route, and its production bundle does not
 include the studio interface. Compare performances side by side, browse each complete expression
 collection, replay entrances and idle gestures, run a transition sequence, and
-preview natural/subtle/still motion. The two context samples use the real coach
+preview device-default, animated or still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
 
 The studio contains 16 concepts across four groups, each with all 20 expressions:
@@ -101,8 +109,11 @@ pending work; existing review generation guards still discard stale engine repli
 An entrance lasts roughly 1.3–1.8 seconds, then retains a quieter static expression
 consistent with the bubble instead of returning to an unrelated neutral face.
 
-Idle gestures occur after variable 4.5–10 second pauses; subtle mode adds four
-seconds. The character avoids immediately repeating a gesture when alternatives
+Idle gestures occur after variable 0.5–1 second pauses for every animated coach.
+The shared range lives in `coach/idle.ts`; character
+definitions choose gestures, not cadence.
+Each gesture still lasts 1.2 seconds before scheduling the next pause.
+The character avoids immediately repeating a gesture when alternatives
 exist. Neutral, brilliant and blunder have distinct idle vocabularies. A small
 number of local timers schedule gestures; CSS performs the animation without a
 JavaScript frame loop. Offscreen or hidden characters stop active motion/timers.
@@ -110,13 +121,34 @@ The latest unseen reaction can play when it becomes visible; an interrupted or
 already seen entrance is not replayed. Unmounting removes observers/listeners and
 clears timers. Replaying deliberately restarts only the SVG rig, not its layout.
 
-System reduced motion and the Still preference disable entrances and idle motion.
+The default **Use device setting** follows system reduced motion. Choosing
+**Animated** or **Still** overrides the browser preference; Still disables both
+entrances and idle motion. The same resolved setting controls timers and CSS.
+`useReducedMotion.ts` shares an event-driven snapshot between portraits, boards,
+Settings and studio controls. `motion.ts` resolves both account motion choices
+with the same override rules. The device hook uses one native media listener while consumers
+are mounted, detaches it after the last unmount, and resynchronizes when a consumer
+returns. Animation renders never reread the live query: in Chromium that could
+consume a pending change notification and leave controls behind the portraits.
+The studio follows the same choices. Its separate reduced-motion preview remains
+selected when the device preference switches off again; choosing a motion option
+clears the manual preview.
 Static facial poses, ratings, evaluation and explanatory text remain. Reactions
 are decorative: the existing accessible coaching text carries the analysis. The
 animation changes transforms/opacity inside a reserved box and does not move the
 board, bubble or controls. No flashes, audio or infinite animation loops are used.
 Eye masks belong to each SVG instance so idle glances stay within the eye shape
 even when many differently posed characters appear together in the studio.
+
+**Settings → Animations → Piece & interface motion** controls piece movement,
+rating entrances, evaluation-bar transitions and other interface animations.
+It has the same device-default/Animated/Still choices, saved independently from
+coach motion in the account's existing preference row. Both default to the
+device for existing/new users; adding this preference preserves saved coach
+choices. Interface Still does not stop an explicitly animated coach, and coach
+Still does not stop explicitly animated pieces. Boards in game review, SRS,
+explanations and evidence all use this shared preference. CSS uses the same
+resolved state as the board library; there is no second browser-only override.
 
 ## Adding a coach
 
@@ -167,9 +199,12 @@ Final validation results are recorded in [VERIFICATION.md](VERIFICATION.md).
 
 `GET` / `PUT /api/preferences/coach` use the existing scoped workspace and database.
 `user_preferences` holds at most one row per account, including the reserved local
-user. Missing rows read as `classic` with `natural` motion; reading defaults never
-creates rows. Supported motion choices are natural, subtle and still. System
-reduced motion always takes precedence over an animation preference.
+user. Missing rows read as `classic` with `system` motion; reading defaults never
+creates rows. Supported motion choices are `system` (Use device setting),
+`natural` (Animated) and `still`. Existing saved Animated/Still choices persist.
+The removed `subtle` choice reads as Animated without rewriting the stored value.
+The motion-default migration updates the database default to `system` while
+preserving saved choices.
 
 The preference contract accepts 16 stable character IDs. Storyteller keeps
 `classic`; the others use `man-*`, `woman-*`, `cat-*` and `dog-*` IDs so a saved

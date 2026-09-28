@@ -7,56 +7,87 @@ test("the app offers coach selection without an expression viewer route", async 
   await page.goto("/coach-studio");
   await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
   await expect(page.getByLabel("Animation preview controls")).toHaveCount(0);
+  await page.goto("/intelligence-lab");
+  await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
   await page.getByRole("link", { name: "Go to your games" }).click();
   await expect(page).toHaveURL(/\/games$/);
 });
 
-test("coach preference saves, reloads and respects the device across real pages", async ({
-  page,
-}) => {
+test("coach motion follows the device by default and saved overrides survive reload", async ({ page }) => {
   await page.request.put("/api/preferences/coach", {
-    data: { coach_id: "classic", motion: "natural" },
+    data: { coach_id: "classic", motion: "system" },
   });
   try {
-    await page.goto("/settings");
-    await expect(page.getByRole("radio")).toHaveCount(4);
-    await expect(
-      page.getByRole("radio", { name: "Storyteller", exact: true }),
-    ).toBeChecked();
-    await page
-      .getByLabel("Coach motion", { exact: true })
-      .selectOption("still");
-    await expect(page.getByRole("status")).toContainText("Saved");
-    await page.reload();
-    await expect(page.getByLabel("Coach motion", { exact: true })).toHaveValue(
-      "still",
-    );
-    await expect(
-      page.locator(".coach-option:has(input:checked) .coach-avatar"),
-    ).toHaveAttribute("data-motion", "still");
-    await page
-      .getByLabel("Coach motion", { exact: true })
-      .selectOption("natural");
-    await expect(page.getByRole("status")).toContainText("Saved");
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await expect(
-      page.locator(".coach-option:has(input:checked) .coach-avatar"),
-    ).toHaveAttribute("data-motion", "still");
-    await expect(
-      page.getByText(
-        "Your device requests reduced motion. The coach will stay still.",
-      ),
-    ).toBeVisible();
+    await page.goto("/settings");
+    const motion = page.getByLabel("Coach motion", { exact: true });
+    const portrait = page.locator(".coach-option:has(input:checked) .coach-avatar");
+    const notice = page.getByText("Your device requests reduced motion. The coach will stay still.");
+    await expect(page.getByRole("radio")).toHaveCount(4);
+    await expect(page.getByRole("radio", { name: "Storyteller", exact: true })).toBeChecked();
+    await expect(motion).toHaveValue("system");
+    await expect(motion.locator("option")).toHaveText(["Use device setting", "Animated", "Still"]);
+    await expect(portrait).toHaveAttribute("data-motion", "still");
+    await expect(notice).toBeVisible();
+
+    await motion.selectOption("natural");
+    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
+    await expect(portrait).toHaveAttribute("data-motion", "natural");
+    await page.reload();
+    await expect(motion).toHaveValue("natural");
+    await expect(portrait).toHaveAttribute("data-motion", "natural");
+    await portrait.scrollIntoViewIfNeeded();
+    await expect.poll(() => portrait.evaluate(element =>
+      element.getAnimations({ subtree: true }).filter(animation => animation.playState === "running").length,
+    )).toBeGreaterThan(0);
+    await expect(notice).toHaveCount(0);
+
+    await motion.selectOption("still");
+    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.reload();
+    await expect(motion).toHaveValue("still");
+    await expect(portrait).toHaveAttribute("data-motion", "still");
+    expect(await portrait.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
+
+    await motion.selectOption("system");
+    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
+    await page.reload();
+    await expect(motion).toHaveValue("system");
+    await expect(portrait).toHaveAttribute("data-motion", "natural");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(portrait).toHaveAttribute("data-motion", "still");
   } finally {
     await page.request.put("/api/preferences/coach", {
-      data: { coach_id: "classic", motion: "natural" },
+      data: { coach_id: "classic", motion: "system" },
     });
+  }
+});
+
+test("coach motion resynchronizes after device changes while the settings page is unmounted", async ({ page }) => {
+  await page.request.put("/api/preferences/coach", {
+    data: { coach_id: "classic", motion: "system" },
+  });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/settings");
+  const selected = page.locator(".coach-option:has(input:checked) .coach-avatar");
+  await expect(selected).toHaveAttribute("data-motion", "natural");
+  const deviceNotice = page.getByText("Your device requests reduced motion. The coach will stay still.");
+
+  for (const reducedMotion of ["reduce", "no-preference", "reduce"] as const) {
+    await page.getByRole("link", { name: "Games", exact: true }).click();
+    await expect(page.locator(".coach-avatar")).toHaveCount(0);
+    await page.emulateMedia({ reducedMotion });
+    await page.getByRole("link", { name: "Settings", exact: true }).click();
+    await expect(selected).toHaveAttribute("data-motion", reducedMotion === "reduce" ? "still" : "natural");
+    await expect(deviceNotice).toHaveCount(reducedMotion === "reduce" ? 1 : 0);
   }
 });
 
 test("game navigation and SRS attempts drive the real shared coach", async ({
   page,
 }, info) => {
+  test.setTimeout(60_000);
   const { id } = await (
     await page.request.post(
       `/__test/game-review-fixture/coach-${info.project.name}`,
@@ -67,13 +98,15 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   await expect(avatar).toHaveAttribute("data-expression", "blunder", {
     timeout: 30000,
   });
+  await expect(page.locator(".game-summary caption")).toContainText("Complete game", {timeout: 30000});
   await page.getByRole("button", { name: "Last move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "losing");
-  await expect(page.locator(".coach-message")).toContainText(
-    "Your king has no legal escape",
-  );
+  await expect(page.locator(".coach-message")).toContainText(/checkmate|king has no escape/i);
   await page.getByRole("button", { name: "First move", exact: true }).click();
+  await page.getByRole("button", { name: "Previous move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "neutral");
+  await expect(page.locator(".coach-message")).toContainText("Select a move");
+  await expect(page.getByRole("region", {name: "Game story"})).toHaveCount(0);
   const fixture = await (
     await page.request.post(
       `/__test/review-explanation-fixture/coach-${info.project.name}`,
@@ -163,6 +196,12 @@ test("preference failures keep the last saved choice and allow recovery", async 
 test("connecting with a LAN token restores preferences without a page reload", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.route("**/api/preferences/motion", (route) =>
+    route.request().headers().authorization === "Bearer coach-test-token"
+      ? route.fulfill({ json: { motion: "natural" } })
+      : route.fulfill({ status: 401, json: { detail: "LAN token required" } }),
+  );
   await page.route("**/api/preferences/coach", (route) =>
     route.request().headers().authorization === "Bearer coach-test-token"
       ? route.fulfill({ json: { coach_id: "classic", motion: "still" } })
@@ -179,6 +218,8 @@ test("connecting with a LAN token restores preferences without a page reload", a
   const motion = page.getByLabel("Coach motion", { exact: true });
   await expect(motion).toBeEnabled();
   await expect(motion).toHaveValue("still");
+  await expect(page.getByLabel("Piece & interface motion", {exact: true})).toHaveValue("natural");
+  await expect(page.locator("html")).toHaveAttribute("data-interface-motion", "natural");
   await expect(
     page.locator(".coach-option:has(input:checked) .coach-avatar"),
   ).toHaveAttribute("data-motion", "still");

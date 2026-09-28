@@ -1,5 +1,11 @@
 # Install Fieldwork on Unraid
 
+Optional human-move evidence uses the existing container and app-data mount. The
+advanced template fields describe its model path, worker/thread budget and
+timeout. Run `python -m trainer.human_models.setup` in the container Console to
+explicitly acquire the pinned weights; see [HUMAN_MODELS.md](HUMAN_MODELS.md) for
+measured memory/image costs and offline operation.
+
 Fieldwork is **one container** with the app, Stockfish and one SQLite database.
 Local use requires no external database, reverse proxy, Cloudflare or Compose.
 

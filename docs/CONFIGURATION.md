@@ -2,7 +2,12 @@
 
 Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment variables override root .env; defaults apply last. Relative paths resolve from the server working directory. Run from the repository root. Invalid recognized values fail startup with field-specific errors.
 
-Settings in the browser is read-only. Edit host configuration and restart the backend. Existing exercise policies and engine evidence keep their saved configuration. The optional LAN token is a SecretStr excluded from public serialization; only its configured status is returned.
+Host configuration is changed in the environment, followed by a backend restart.
+Settings in the browser edits account preferences, including Chess.com username,
+coach and motion; it is not a container configuration editor. Existing exercise
+policies and engine evidence keep their saved configuration. The optional LAN
+token is a SecretStr excluded from public serialization; only its configured
+status is returned.
 
 ## Active settings
 
@@ -12,6 +17,11 @@ Settings in the browser is read-only. Edit host configuration and restart the ba
 | DATABASE_PATH | data/trainer.sqlite3 |
 | STOCKFISH_PATH | stockfish |
 | STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..4 |
+| HUMAN_MODEL_ENABLED | true; inference only when explicitly installed/cached |
+| HUMAN_MODEL_PATH | data/models/maia3-79m.pt; /data/models/maia3-79m.pt in Docker |
+| HUMAN_MODEL_DEVICE | cpu; optional administrator-provided cuda runtime |
+| HUMAN_MODEL_THREADS / HUMAN_MODEL_WORKERS | 2 / 1; bounds 1..16 / 1..4, host-wide |
+| HUMAN_MODEL_TIMEOUT | 30 seconds (1..120), slot wait plus native request |
 | TRIAGE_DEPTH / TRIAGE_TIME / TRIAGE_NODES | 10 / 0.15 seconds / unset |
 | DEEP_DEPTH / DEEP_TIME / DEEP_NODES | 16 / 0.8 seconds / unset |
 | MULTIPV | 4 |
@@ -56,6 +66,10 @@ For unlisted answers, the saved analysis limits/resources and binary identity ar
 Policy and target-rating effects are documented in [ANALYSIS_PIPELINE.md](ANALYSIS_PIPELINE.md) and [CURRICULUM_ENGINE.md](CURRICULUM_ENGINE.md). The custom mode currently uses TOLERANCE_CP; it is not a plug-in policy editor.
 
 ## Local classification
+
+Human move evidence is separate from rule classification and Stockfish. See
+[HUMAN_MODELS.md](HUMAN_MODELS.md) for explicit setup, resource measurements,
+offline use, cache identity and conservative interpretation of rating domains.
 
 CLASSIFICATION_WORKERS limits local rule tasks; it starts no model requests or additional engines. Each bounded pool admits at most twice its worker count. Worker count alone does not invalidate results.
 
@@ -102,7 +116,8 @@ The UI refreshes health on page navigation and allows retries even after a failu
 Administrator logs contain exception chains; shared health responses do not contain
 raw exception details. There are no additional container variables for this.
 
-- `ACCOUNTS_ENABLED=false` preserves the original local mode; Docker defaults to true.
+- Accounts require both `ACCOUNTS_ENABLED=true` and a nonblank `PUBLIC_ORIGIN`.
+  Docker defaults the flag to true; blank origin still selects the shared local workspace.
 - `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
 - `ENGINE_SLOTS=4` caps native engine processes and concurrent analysis jobs across
@@ -113,3 +128,13 @@ raw exception details. There are no additional container variables for this.
 
 See [ACCOUNTS.md](ACCOUNTS.md) before enabling accounts for existing data and
 [UNRAID.md](UNRAID.md) for container storage, permissions and proxy configuration.
+
+## Full-game review refinement
+
+Optional extra investigation follows the unchanged deep baseline. Defaults are
+`REVIEW_REFINEMENT_POSITIONS=8`, `REVIEW_REFINEMENT_QUERIES=4`,
+`REVIEW_REFINEMENT_DEPTH=22`, `REVIEW_REFINEMENT_TIME=2`, and
+`REVIEW_REFINEMENT_MULTIPV=4`. Set positions to zero to disable extra work.
+See [REVIEW_REFINEMENT.md](REVIEW_REFINEMENT.md) for bounds, time/depth floors,
+CPU budgets, cancellation, resume and measured quality examples. All five
+settings have descriptions in the advanced Unraid template.

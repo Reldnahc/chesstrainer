@@ -15,7 +15,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
 }) {
   const plot = useRef<SVGSVGElement>(null);
   const [width, setWidth] = useState(600);
-  const height = 152;
+  const height = 120;
   useEffect(() => {
     const element = plot.current;
     if (!element) return;
@@ -60,7 +60,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
       <div><strong>Game evaluation</strong><span>White ↑ · Black ↓</span></div>
       <div className="game-graph-reading"><span className="game-graph-verdict">{scoreSummary(current)}</span><EvaluationScore score={current}/></div>
     </div>
-    <svg ref={plot} className="game-evaluation-plot" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group"
+    <svg ref={plot} className="game-evaluation-plot" style={{height}} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group"
       aria-label="Evaluation across analyzed game moves" onClick={event => {
         const bounds = event.currentTarget.getBoundingClientRect();
         const position = (event.clientX - bounds.left) * width / bounds.width;

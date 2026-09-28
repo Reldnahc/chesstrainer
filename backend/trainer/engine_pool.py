@@ -1,6 +1,8 @@
 """A host-wide native engine budget shared by every account and job."""
 
-from queue import Queue
+from queue import Empty, Queue
+
+from trainer.search_limits import EngineCancelled
 
 
 class EnginePool:
@@ -21,7 +23,15 @@ class EnginePool:
                 self.settings = settings
 
             def run(self, method, *args, **kwargs):
-                engine = pool.available.get()
+                cancelled = kwargs.get("cancelled")
+                while True:
+                    if cancelled and cancelled():
+                        raise EngineCancelled()
+                    try:
+                        engine = pool.available.get(timeout=0.05)
+                        break
+                    except Empty:
+                        continue
                 try:
                     if engine is None:
                         engine = pool.factory(settings, sessions)
@@ -34,8 +44,11 @@ class EnginePool:
                 finally:
                     pool.available.put(engine)
 
-            def start(self):
-                self.run("start")
+            def start(self, cancelled=None):
+                if cancelled is None:
+                    self.run("start")
+                else:
+                    self.run("start", cancelled=cancelled)
 
             def analyze(self, *args, **kwargs):
                 return self.run("analyze", *args, **kwargs)

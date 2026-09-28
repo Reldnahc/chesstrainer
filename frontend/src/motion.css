@@ -1,0 +1,56 @@
+/* Coach portraits own their own motion choice. All other interface effects use
+   this policy, including inline transitions from the board library. */
+:root[data-interface-motion="still"],
+:root[data-interface-motion="still"] *:not(.coach-avatar, .coach-avatar *),
+:root[data-interface-motion="still"] *:not(.coach-avatar, .coach-avatar *)::before,
+:root[data-interface-motion="still"] *:not(.coach-avatar, .coach-avatar *)::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+/* Before account preferences load, login and standalone development surfaces
+   still honor the browser. An explicit Animated choice takes precedence. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-interface-motion="natural"]),
+  :root:not([data-interface-motion="natural"]) *:not(.coach-avatar, .coach-avatar *),
+  :root:not([data-interface-motion="natural"]) *:not(.coach-avatar, .coach-avatar *)::before,
+  :root:not([data-interface-motion="natural"]) *:not(.coach-avatar, .coach-avatar *)::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.motion-setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+}
+.motion-setting > div {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+}
+.motion-setting > div > span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.motion-setting label { margin: 0; }
+.motion-setting select {
+  width: 180px;
+  min-height: 44px;
+  margin: 0;
+  flex: none;
+}
+.motion-preference-status {
+  min-height: 24px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .motion-setting { flex-direction: column; align-items: stretch; gap: 10px; }
+  .motion-setting select { width: 100%; }
+}

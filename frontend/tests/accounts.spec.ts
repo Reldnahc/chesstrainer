@@ -22,6 +22,8 @@ test('account signup, engine-free sync, second-device login and private library'
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
+  await page.getByLabel('Piece & interface motion', {exact: true}).selectOption('natural');
+  await expect(page.locator('.motion-preference-status')).toContainText('Saved');
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   const jobs = await (await page.request.get('/api/jobs')).json();
   expect(jobs).toHaveLength(1);
@@ -38,7 +40,8 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByLabel('Password', {exact: true}).fill('test-only-password');
     await device.getByRole('button', {name: 'Sign in', exact: true}).click();
     await expect(device).toHaveURL(`${gameHref}?ply=3`);
-    await expect(device.getByRole('heading', {name: `${username} vs FixtureOpponent`})).toBeVisible();
+    await expect(device.locator('.game-player-name', {hasText: username})).toBeVisible();
+    await expect(device.locator('.game-player-name', {hasText: 'FixtureOpponent'})).toBeVisible();
     await expect(device.locator('.review-coach .coach-avatar')).toHaveAttribute('data-motion', 'still');
     await expect(device.locator('.review-coach .coach-avatar')).toHaveAttribute('data-coach', 'woman-blonde');
     await expect(device.getByRole('button', {name: /^2\. g4(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
@@ -47,6 +50,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.locator('.game-library-item')).toHaveCount(1);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
+    await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('natural');
     await expect(device.getByRole('button', {name: 'Women', exact: true})).toHaveAttribute('aria-pressed', 'true');
     await expect(device.getByRole('radio', {name: 'Golden braid', exact: true})).toBeChecked();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
@@ -65,14 +69,15 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('button', {name: 'Create account', exact: true}).click();
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
-    await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('natural');
+    await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('system');
+    await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('system');
     await expect(device.getByRole('radio', {name: 'Storyteller', exact: true})).toBeChecked();
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue('');
     await device.goto(`${gameHref}?ply=3`);
     await expect(device.getByRole('alert')).toContainText('Game not found');
-    await expect(device.getByRole('heading', {name: `${username} vs FixtureOpponent`})).toHaveCount(0);
+    await expect(device.locator('.game-player-name')).toHaveCount(0);
     await device.getByRole('link', {name: 'All games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
   } finally { await second.close(); }

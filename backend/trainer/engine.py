@@ -10,7 +10,9 @@ from sqlalchemy.dialects.sqlite import insert
 
 from trainer.chess_core import Candidate, Score, digest, engine_context, legal_move
 from trainer.config import Settings
+from trainer.engine_search import cancellable_search, search_lock
 from trainer.models import EngineAnalysis, uid
+from trainer.search_limits import EngineCancelled, SearchLimits
 
 log = logging.getLogger(__name__)
 
@@ -40,8 +42,8 @@ class Stockfish:
         self.hits = 0
         self.misses = 0
 
-    def start(self):
-        with self.lock:
+    def start(self, cancelled=None):
+        with search_lock(self.lock, cancelled):
             if self.process is not None:
                 return
             path = shutil.which(self.settings.stockfish_path)
@@ -94,8 +96,10 @@ class Stockfish:
         multipv: int | None = None,
         reference: EngineAnalysis | None = None,
         classification_probe: bool = False,
+        limits: SearchLimits | None = None,
+        cancelled=None,
     ) -> EngineAnalysis:
-        with self.lock:
+        with search_lock(self.lock, cancelled):
             self.start()
             if reference and (
                 reference.engine_version != self.version
@@ -119,22 +123,26 @@ class Stockfish:
                 "adapter_version": "2",
             }
             if reference:
-                if classification_probe:
+                if classification_probe or limits:
                     raise ValueError(
                         "A classification probe cannot change grading reference limits"
                     )
                 for name in ("threads", "hash_mb", "depth", "time", "nodes"):
                     config[name] = reference.config[name]
             if classification_probe:
+                if limits:
+                    raise ValueError("Choose one explicit search profile")
                 config.update(
                     depth=self.settings.classification_probe_depth,
                     time=self.settings.classification_probe_time,
                     nodes=None,
                 )
+            if limits:
+                config.update(limits.model_dump())
             key = digest(
                 {"context": engine_context(board), "engine": self.version, "config": config}
             )
-            with _CACHE_LOCKS[int(key[:3], 16) % len(_CACHE_LOCKS)]:
+            with search_lock(_CACHE_LOCKS[int(key[:3], 16) % len(_CACHE_LOCKS)], cancelled):
                 with self.sessions() as db:
                     cached = db.scalar(
                         select(EngineAnalysis).where(EngineAnalysis.cache_key == key)
@@ -151,8 +159,19 @@ class Stockfish:
                     self.process.configure(
                         {"Threads": config["threads"], "Hash": config["hash_mb"]}
                     )
-                    infos = self.process.analyse(
-                        board, limit, multipv=count, root_moves=roots, game=object()
+                    infos = (
+                        cancellable_search(
+                            self.process,
+                            board,
+                            limit,
+                            multipv=count,
+                            root_moves=roots,
+                            cancelled=cancelled,
+                        )
+                        if cancelled is not None
+                        else self.process.analyse(
+                            board, limit, multipv=count, root_moves=roots, game=object()
+                        )
                     )
                     candidates = []
                     for info in infos:
@@ -176,6 +195,9 @@ class Stockfish:
                         raise EngineUnavailable(
                             "Stockfish returned no candidate moves for this position"
                         )
+                except EngineCancelled:
+                    self.close()
+                    raise
                 except (chess.engine.EngineError, TimeoutError) as exc:
                     self.close()
                     raise EngineUnavailable(

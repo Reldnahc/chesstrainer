@@ -49,10 +49,17 @@ main:has(.review-workspace-layout) {
   margin: 0;
 }
 .review-sidebar {
+  /* Keep absolute accessibility labels inside the scrolling pane. */
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
   height: var(--review-height, calc(100dvh - 84px));
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
   container-type: inline-size;
 }
 .review-workspace-heading {
@@ -160,8 +167,8 @@ main:has(.review-workspace-layout) {
   gap: 8px;
   min-width: 0;
 }
-.coach-title > strong,
-.coach-title > h2 {
+.review-coach .coach-title > strong,
+.review-coach .coach-title > h2 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -169,6 +176,9 @@ main:has(.review-workspace-layout) {
   margin: 0;
   font-size: inherit;
   letter-spacing: 0;
+}
+.coach-title > .review-move {
+  flex: none;
 }
 .coach-label .move-badge {
   font-size: 15px;
@@ -265,6 +275,82 @@ main:has(.review-workspace-layout) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.coach-move-context {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  color: #c1cfc5;
+  font-size: 11px;
+}
+.coach-move-context > span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.coach-actions .human-insight-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  min-height: 28px;
+  width: auto;
+  max-width: 100%;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: #a9d6e1;
+  font-size: 11px;
+  flex: none;
+}
+.human-insight-trigger span {
+  white-space: normal;
+  line-height: 13px;
+  text-wrap: balance;
+}
+.human-insight-trigger svg { flex-shrink: 0; }
+.human-insight-trigger:hover { text-decoration: underline; }
+.human-insight-popover {
+  width: min(380px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  padding: 16px;
+  margin: auto;
+  border: 1px solid #63786c;
+  border-radius: 12px;
+  background: #242d28;
+  color: #e0e8e2;
+  box-shadow: 0 12px 48px #0009;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.human-insight-popover::backdrop { background: #0005; }
+.human-insight-popover header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.human-insight-popover h3 { margin: 0; font-size: 15px; color: #a9d6e1; }
+.coach-actions .human-insight-popover button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  min-height: 36px;
+  padding: 0;
+  flex: none;
+}
+.human-insight-popover p { margin: 6px 0 0; }
+.human-insight-source {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #47554d;
+  font-size: 12px;
+  color: #b8c9bf;
 }
 .move-badge {
   display: inline-flex;
@@ -398,6 +484,10 @@ main:has(.review-workspace-layout) {
   .coach-actions > span {
     flex: 1;
     text-align: center;
+  }
+  .coach-move-context {
+    flex: 1;
+    align-items: center;
   }
   .evaluation-score {
     min-width: 6ch;

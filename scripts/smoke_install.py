@@ -70,12 +70,20 @@ def main():
                 assert client.get("/api/games", headers=headers).json()["total"] == 0
                 assert client.get("/api/preferences/coach", headers=headers).json() == {
                     "coach_id": "classic",
-                    "motion": "natural",
+                    "motion": "system",
                 }
                 preference = {"coach_id": "cat-black", "motion": "still"}
                 client.put(
                     "/api/preferences/coach", headers=headers, json=preference
                 ).raise_for_status()
+                assert client.get("/api/preferences/motion", headers=headers).json() == {
+                    "motion": "system"
+                }
+                motion_preference = {"motion": "natural"}
+                client.put(
+                    "/api/preferences/motion", headers=headers, json=motion_preference
+                ).raise_for_status()
+                assert client.get("/api/preferences/coach", headers=headers).json() == preference
                 health = client.get("/api/health", headers=headers).json()
                 assert health["engine_status"] == ("unchecked" if mode == "accounts" else "ready")
                 assert health["engine_available"] is (None if mode == "accounts" else True)
@@ -96,6 +104,10 @@ def main():
                 if mode == "accounts":
                     assert response.json()["user"]["username"] == "install-test"
                 assert client.get("/api/preferences/coach", headers=headers).json() == preference
+                assert (
+                    client.get("/api/preferences/motion", headers=headers).json()
+                    == motion_preference
+                )
                 assert (
                     docker(
                         "exec",
@@ -141,6 +153,7 @@ def main():
                             "stockfish": "passed",
                             "native_review_and_health": "passed",
                             "coach_preferences": "passed",
+                            "interface_motion_preferences": "passed",
                         }
                     ),
                     flush=True,
