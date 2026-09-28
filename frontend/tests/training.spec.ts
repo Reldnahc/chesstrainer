@@ -236,9 +236,10 @@ test('phone reviews keep a full-width board and reachable actions through retrie
       const button = page.getByRole('button', {name: action, exact: true});
       await button.evaluate(element => element.scrollIntoView({block: 'center'}));
       await expect(button).toBeInViewport({ratio: 1});
-      await page.evaluate(() => window.scrollTo(0, 0));
+      await board.scrollIntoViewIfNeeded();
       await expect(board).toBeInViewport({ratio: 1});
       expect((await documentBox(board)).width).toBeGreaterThan(size.width - 60);
+      await page.evaluate(() => window.scrollTo(0, 0));
       expect(await page.evaluate(() => window.scrollY)).toBe(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     };
@@ -306,7 +307,7 @@ test('wrong-answer feedback stays steady while checking and retrying', async ({p
   const board = page.locator('.board-shell');
   const action = page.getByRole('button', {name: 'Reveal move', exact: true});
   await expect(action).toBeEnabled();
-  const baseline = await action.boundingBox();
+  const baseline = await documentBox(action);
   const originalBoard = await documentBox(board);
   const beforeReviews = (await (await page.request.get('/api/stats')).json()).reviews;
   await expect(board).toHaveCSS('outline-style', 'none');
@@ -318,9 +319,12 @@ test('wrong-answer feedback stays steady while checking and retrying', async ({p
     try {
       await expect(page.getByRole('status').filter({hasText: 'Checking your move'})).toBeVisible();
       await expect(board).toHaveCSS('outline-style', 'none');
-      expect((await action.boundingBox())!.y).toBeCloseTo(baseline!.y, 0);
+      expect((await documentBox(action))!.y).toBeCloseTo(baseline!.y, 0);
       await expect(page.locator('.move-status.retry')).toHaveCount(0);
-      if (testInfo.project.name === 'mobile') await expect(board).toBeInViewport({ratio: 1});
+      if (testInfo.project.name === 'mobile') {
+        await board.scrollIntoViewIfNeeded();
+        await expect(board).toBeInViewport({ratio: 1});
+      }
     } finally {release();}
     await expect(action).toBeEnabled();
     await expect(page.locator('.move-status.retry')).toBeVisible();
@@ -329,7 +333,7 @@ test('wrong-answer feedback stays steady while checking and retrying', async ({p
     await expect(board).toHaveCSS('outline-width', '3px');
     expect(await documentBox(board)).toEqual(originalBoard);
     expect(await board.evaluate(element => getComputedStyle(element, '::after').pointerEvents)).toBe('none');
-    expect((await action.boundingBox())!.y).toBeCloseTo(baseline!.y, 0);
+    expect((await documentBox(action))!.y).toBeCloseTo(baseline!.y, 0);
     await expect(board.locator('[data-square="e2"] [data-piece="wP"]')).toBeVisible();
     await expect(board.locator('[data-square="e3"] [data-piece="wP"]')).toHaveCount(0);
   }
@@ -415,7 +419,10 @@ test('review explanations replay the submitted move and return without another r
   await expect(board).toHaveCSS('outline-style', 'none');
   expect(await page.locator('header').boundingBox()).toEqual(originalHeader);
   await expect(page.locator('.board-shell')).toHaveCount(1);
-  if (testInfo.project.name === 'mobile') expect((await documentBox(returnButton))!.y).toBeGreaterThan(shownBoard!.y + shownBoard!.height);
+  if (testInfo.project.name === 'mobile') {
+    const control = (await documentBox(returnButton))!;
+    expect(control.y + control.height).toBeLessThan(shownBoard!.y);
+  }
   await expect(board.locator('[data-square="a1"] [data-piece="bQ"]')).toBeVisible();
   await page.screenshot({path:`test-results/review-explanation-${testInfo.project.name}.png`});
   await dialog.getByRole('button', {name: 'Previous move', exact: true}).click();
@@ -438,7 +445,10 @@ test('review explanations replay the submitted move and return without another r
   const backToReview = dialog.getByRole('button', {name:'Back to review'});
   await expect(backToReview).toBeInViewport({ratio: 1});
   const successBoard = await documentBox(board);
-  if (testInfo.project.name === 'mobile') expect((await documentBox(backToReview))!.y).toBeGreaterThan(successBoard!.y + successBoard!.height);
+  if (testInfo.project.name === 'mobile') {
+    const control = (await documentBox(backToReview))!;
+    expect(control.y + control.height).toBeLessThan(successBoard!.y);
+  }
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
   expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');

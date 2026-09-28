@@ -488,7 +488,7 @@ main:has(.review-workspace-layout) {
     display: contents;
   }
   .review-workspace-heading {
-    order: -1;
+    order: -2;
     margin-bottom: 8px;
   }
   .review-workspace-heading h1 {
@@ -506,9 +506,16 @@ main:has(.review-workspace-layout) {
   .review-board-toolbar:empty {
     display: none;
   }
-  .review-workspace-layout .review-sidebar > .review-coach,
   .review-workspace-layout .review-sidebar > .practice-panel {
     margin: 10px 0 14px;
+  }
+  .review-workspace-layout .practice-panel:has(.review-coach),
+  .review-workspace-layout .review-explanation {
+    display: contents;
+  }
+  .review-workspace-layout .review-coach {
+    order: -1;
+    margin: 0 0 12px;
   }
   .review-coach {
     --coach-height: 136px;

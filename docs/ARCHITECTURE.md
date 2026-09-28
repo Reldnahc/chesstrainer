@@ -117,6 +117,11 @@ within the board row on desktop and mobile. The unused gutter is split equally
 between both sides, retaining the same board size as game review. SRS does not
 display an evaluation.
 
+On mobile, both review modes place the coach and its action buttons together
+above the board. SRS explanation playback uses the same placement; supporting
+details, game move lists and evaluation graphs remain below the board. Desktop
+retains its board-and-sidebar layout.
+
 The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
 review experiences. Artwork-specific poses, styles and finite CSS animations stay
 with the registered character; semantic reaction and preference code are shared.
