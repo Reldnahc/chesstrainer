@@ -2,6 +2,26 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Balanced Import layout: focused checks
+
+Source controls now sit above the two equal-width panels, giving forms and
+activity matching headings, padding and top/bottom edges. Activity uses one
+container with separated entries and a centered empty state. Training checkboxes
+are inline rather than inheriting full-width, 44px input sizing; phone labels
+retain a 44px touch target. Panels stack at 900px and below.
+
+- From `frontend`, `npx.cmd playwright test training.spec.ts --grep 'PGN upload form|Chess.com username import|Chess.com missing username' --reporter=line`:
+  **6 passed**, desktop/mobile. Covers PGN and Chess.com submission, training
+  opt-in, filters/dates, deduplication, progress and retryable provider errors.
+  The missing-username fixture intentionally logs a failed import.
+- Inspected populated desktop/mobile screenshots and used the app's Chess.com
+  and PGN forms with empty activity. At 1000px both panels measured the same
+  width/height/top; at 900px and 320px they stacked without horizontal overflow.
+  The phone checkbox measured 18px inside a 44px-high label. The isolated preview
+  used a test database, and its tab/server were closed afterward.
+- `npx.cmd tsc -b`, `npx.cmd vite build` and Git whitespace checks passed.
+- Full verification remains deferred by owner request; no push/deployment.
+
 ## Animation settings grouping: focused checks
 
 Coach motion now appears beside Piece & interface motion in Settings → Animations,

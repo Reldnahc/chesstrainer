@@ -30,6 +30,10 @@ a browser-history stop for each move.
 - **Review** starts with an unlabeled board. The backend supplies legal moves and grades answers. A failed engine answer previews the opponent's saved counter; Try again restores the board and Show me why opens deeper playback. Success offers factual feedback and optional Show why. Reveal move performs the saved answer. Repeated retries create only one failed recall per session.
 - **Weaknesses** separates material/mate outcomes from tactical patterns, shows supporting decisions and practice cues, and starts focused batches of up to 12 distinct positions. Focused attempts are stored separately and never change FSRS.
 - **Import** supports multi-game PGNs, explicit learner matching and filtered Chess.com username imports. Only new games enter new analysis jobs; cancellation/retry preserves completed work.
+  Source selection sits above equally sized form and activity panels. Their
+  headings and edges align on desktop; activity entries share one panel with
+  separators. At 900px and below, activity stacks below the form. Training analysis
+  is an optional inline checkbox for either source.
 - **Settings** contains account and device sign-out controls, the Chess.com connection, and actions to refresh training labels or deepen unclear positions. Host configuration and diagnostic tables stay out of the user interface; operators configure the environment or .env. The header shows navigation without a local/account status badge.
 
 FSRS increases intervals after successful recall. An interval strictly above the configured threshold (100 days by default) permanently retires the position, preserving history. The cold review board hides source, concept, previous moves, scores and answers; feedback and playback become available after an attempt or reveal.

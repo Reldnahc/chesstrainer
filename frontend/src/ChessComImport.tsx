@@ -122,7 +122,7 @@ export function ChessComImportForm({
           />
         </label>
       </div>
-      <label>
+      <label className="import-analysis-option">
         <input
           type="checkbox"
           checked={analyze}
