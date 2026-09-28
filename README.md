@@ -116,6 +116,8 @@ Explicit migration commands are `alembic upgrade head` and `alembic check`. Run 
 
 ## First session
 
+New accounts get a short, one-time welcome: optional Chess.com/Lichess usernames, then import instructions. Without connected usernames, it explains PGN files instead. Existing accounts and local-only installs skip onboarding.
+
 1. Open Settings → Import games and choose Chess.com or Lichess and enter your username. Defaults fetch up to 100 **new** rapid games from the current and preceding two calendar months. Change time class, range or limit as needed, then click **Fetch games**. Enable the optional analysis checkbox to also create training exercises. No login or API key is needed. Alternatively choose **PGN file**, identify your username(s), and explicitly assign a side only when it is yours in every game.
 2. Watch progress; invalid or ambiguous games are reported separately. Completed work survives interruptions. Retry an older cancelled job separately; a new import only queues new games.
 3. Open Review. Meaningful errors become practice; small engine preferences usually do not. Try a move, inspect the saved counter/playback when useful, and continue to the next position.

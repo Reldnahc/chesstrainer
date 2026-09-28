@@ -7,6 +7,8 @@ test('account signup, engine-free sync, second-device login and private library'
   await page.getByLabel('Username', {exact: true}).fill(username);
   await page.getByLabel('Password', {exact: true}).fill('test-only-password');
   await page.getByRole('button', {name: 'Create account', exact: true}).click();
+  await page.getByRole('button', {name: 'Continue', exact: true}).click();
+  await page.getByRole('button', {name: 'Finish for now', exact: true}).click();
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page.getByLabel('Remembered Chess.com username')).toHaveCount(0);
   await page.getByRole('link', {name: 'Update games', exact: true}).click();
@@ -76,6 +78,8 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByLabel('Username', {exact: true}).fill(`${username}-other`);
     await device.getByLabel('Password', {exact: true}).fill('test-only-password');
     await device.getByRole('button', {name: 'Create account', exact: true}).click();
+    await device.getByRole('button', {name: 'Continue', exact: true}).click();
+    await device.getByRole('button', {name: 'Finish for now', exact: true}).click();
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('system');
@@ -93,3 +97,46 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.locator('.game-library-item')).toHaveCount(0);
   } finally { await second.close(); }
 });
+
+for (const connected of [false, true]) {
+  test(`one-time onboarding ${connected ? 'saves both providers and explains fetching' : 'allows no usernames and explains PGN import'}`, async ({page}, info) => {
+    const username = `welcome-${connected ? 'sites' : 'pgn'}-${info.project.name}`;
+    await page.goto('/');
+    await page.getByRole('button', {name: 'New here? Create an account'}).click();
+    await page.getByLabel('Username', {exact: true}).fill(username);
+    await page.getByLabel('Password', {exact: true}).fill('test-only-password');
+    await page.getByRole('button', {name: 'Create account', exact: true}).click();
+    await expect(page.getByRole('heading', {name: 'Where do you play?'})).toBeVisible();
+    if (connected) {
+      await page.getByLabel('Chess.com username (optional)', {exact: true}).fill(username);
+      await page.getByLabel('Lichess username (optional)', {exact: true}).fill(`${username}-li`);
+    }
+    await page.getByRole('button', {name: 'Continue', exact: true}).click();
+    await expect(page.getByRole('heading', {name: 'Bring in your first games'})).toBeVisible();
+    expect((await (await page.request.get('/api/auth/me')).json()).user.onboarding_completed).toBe(false);
+    expect(await (await page.request.get('/api/jobs')).json()).toEqual([]);
+    // An interrupted welcome resumes with saved choices, without starting analysis.
+    await page.reload();
+    await expect(page.getByLabel('Chess.com username (optional)', {exact: true})).toHaveValue(connected ? username : '');
+    await expect(page.getByLabel('Lichess username (optional)', {exact: true})).toHaveValue(connected ? `${username}-li` : '');
+    await page.getByRole('button', {name: 'Continue', exact: true}).click();
+    if (connected) await expect(page.getByText('Your Chess.com and Lichess usernames are saved.')).toBeVisible();
+    else await expect(page.getByText('No connected account needed.', {exact: false})).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({path: `account-test-results/onboarding-${connected ? 'sites' : 'pgn'}-${info.project.name}.png`, fullPage: true});
+    if (!connected) {
+      await page.route('**/api/auth/onboarding/complete', route => route.fulfill({status: 503, json: {detail: 'Please retry completion.'}}));
+      await page.getByRole('button', {name: 'Open imports', exact: true}).click();
+      await expect(page.getByRole('alert')).toContainText('Please retry completion.');
+      expect((await (await page.request.get('/api/auth/me')).json()).user.onboarding_completed).toBe(false);
+      await page.unroute('**/api/auth/onboarding/complete');
+    }
+    await page.getByRole('button', {name: 'Open imports', exact: true}).click();
+    await expect(page).toHaveURL(`/settings?import=${connected ? 'chesscom' : 'pgn'}`);
+    await expect(page.getByRole('heading', {name: connected ? 'Import from Chess.com' : 'Import PGN', exact: true})).toBeVisible();
+    expect((await (await page.request.get('/api/auth/me')).json()).user.onboarding_completed).toBe(true);
+    await page.reload();
+    await expect(page.getByRole('heading', {name: 'Settings', exact: true})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Where do you play?'})).toHaveCount(0);
+  });
+}

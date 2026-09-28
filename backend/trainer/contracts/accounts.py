@@ -6,6 +6,7 @@ class Account(Contract):
     username: str
     admin: bool
     chesscom_username: str
+    onboarding_completed: bool
 
 
 class Identity(Contract):
