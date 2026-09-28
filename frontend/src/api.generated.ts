@@ -966,7 +966,7 @@ export interface components {
              * @default classic
              * @enum {string}
              */
-            coach_id: "classic" | "man-host" | "man-expert" | "man-partner" | "woman-captain" | "woman-analyst" | "woman-spark" | "woman-blonde" | "cat-tabby" | "cat-tuxedo" | "cat-calico" | "cat-black" | "dog-sunny" | "dog-gentle" | "dog-corgi" | "dog-collie";
+            coach_id: "classic" | "man-host" | "man-expert" | "man-partner" | "woman-captain" | "woman-analyst" | "woman-spark" | "woman-blonde" | "cat-tuxedo" | "cat-black" | "dog-gentle" | "dog-corgi" | "dog-collie" | "human-boy" | "human-girl" | "dog-puppy" | "cat-kitten" | "alien" | "unicorn" | "gorilla" | "robot" | "wizard" | "slime" | "dragon" | "ghost" | "raccoon" | "frog" | "capybara" | "mushroom" | "living-pawn";
             /**
              * Motion
              * @default system

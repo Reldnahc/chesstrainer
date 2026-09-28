@@ -13,6 +13,11 @@ from trainer.preferences import coach_preferences, save_coach_preferences
 
 DEFAULT = {"coach_id": "classic", "motion": "system"}
 PATH = "/api/preferences/coach"
+RETIRED_COACHES = [
+    ("dog-sunny", "dog-puppy"),
+    ("cat-tabby", "cat-kitten"),
+    ("cat-calico", "cat-kitten"),
+]
 
 
 @pytest.mark.parametrize("coach_id", get_args(CoachId))
@@ -89,6 +94,37 @@ def test_unknown_saved_choices_fall_back_without_overwriting(sessions):
         assert coach_preferences(db).model_dump() == DEFAULT
         saved = db.scalar(select(UserPreferences))
         assert saved.coach_id == "future-coach" and saved.coach_motion == "future-motion"
+
+
+@pytest.mark.parametrize(("retired", "replacement"), RETIRED_COACHES)
+@pytest.mark.parametrize("motion", ["system", "natural", "still"])
+def test_retired_coach_reads_replacement_without_overwriting(
+    settings, retired, replacement, motion
+):
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        with client.app.state.sessions() as db:
+            db.add(UserPreferences(coach_id=retired, coach_motion=motion, interface_motion="still"))
+            db.commit()
+        expected = {"coach_id": replacement, "motion": motion}
+        assert client.get(PATH).json() == expected
+        assert client.get("/api/preferences/motion").json() == {"motion": "still"}
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        assert client.get(PATH).json() == expected
+        with client.app.state.sessions() as db:
+            saved = db.scalar(select(UserPreferences))
+            assert saved.coach_id == retired
+            assert saved.coach_motion == motion
+            assert saved.interface_motion == "still"
+
+
+@pytest.mark.parametrize(("retired", "replacement"), RETIRED_COACHES)
+def test_retired_coach_writes_are_rejected(settings, retired, replacement):
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        response = client.put(PATH, json={"coach_id": retired, "motion": "natural"})
+        assert response.status_code == 422
+        assert client.get(PATH).json() == DEFAULT
+        selected = {"coach_id": replacement, "motion": "natural"}
+        assert client.put(PATH, json=selected).json() == selected
 
 
 def test_concurrent_first_save_has_one_account_row(sessions):
