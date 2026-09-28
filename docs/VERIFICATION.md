@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Full release verification — September 28, 2026
+
+Validated the accumulated main-branch UX, provider import and onboarding work.
+Corrected stale navigation/weakness-copy assertions and the migration test's
+whole-row comparison after adding onboarding state. The shared backend fixture
+now explicitly uses an absent Maia path; installed developer models cannot change
+fallback tests. The intelligence laboratory uses its own Vite dependency cache,
+preventing concurrent studio optimization from causing `Outdated Optimize Dep`.
+
+- `.venv/Scripts/python.exe -m pytest -q -ra -p no:cacheprovider --basetemp=data/verification/release-sep28-backend-final`: **637 passed, 3 opt-in Maia skips**, with native Stockfish configured.
+- `.tools/maia-runtime/Scripts/python.exe -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q -ra -p no:cacheprovider --basetemp=data/verification/release-sep28-maia-native`: **3 passed, 9 deselected**. Used the installed pinned research runtime, cached 79M checkpoint, CPU and `HF_HUB_OFFLINE=1`; covers the three opt-in tests above. An initial attempt in the ordinary virtualenv skipped two upstream comparisons because `maia3` is installed only in the research runtime.
+- `npx.cmd playwright test --reporter=line`: **221 passed, 3 deliberate viewport-specific skips** (desktop modifier-click/layout checks and phone-only layout check).
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`: **6 passed**.
+- Full coach studio suite: **42 passed**, using a temporary config on port 5176 to preserve the owner's running studio on 5174; temporary config removed afterward.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`: **44 passed**, rerun after isolating its dependency cache while the studio remained active.
+- `npm.cmd run build`, `ruff check backend scripts migrations`, `ruff format --check backend scripts migrations`, `python scripts/export_api_contract.py --check`, and `git diff --check`: **passed**. Existing chunk-size and TestClient deprecation advisories remain.
+- Fresh disposable database: `python -m alembic upgrade head` and `python -m alembic check`: **passed**, no schema drift.
+- `docker build -t fieldwork:release-sep28 .tools/release-sep28-context` and `python scripts/smoke_install.py --image fieldwork:release-sep28`: **passed** in local and account modes, including fresh install, restart, native review/health, coach and interface preferences. The build context contained only tracked working-tree source; direct repository context traversal was blocked by a protected local pytest cache. No cache ACL changes were made.
+
 ## One-time account onboarding — September 28, 2026
 
 New accounts receive optional provider connection setup and a short, conditional

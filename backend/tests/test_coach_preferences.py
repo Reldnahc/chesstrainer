@@ -149,10 +149,12 @@ def test_migration_preserves_existing_accounts_and_defaults(settings):
         config.attributes["connection"] = connection
         command.upgrade(config, "862dcc851f0b")
         connection.commit()
-        before = connection.execute(text("SELECT * FROM users")).all()
+        before = connection.execute(text("SELECT * FROM users")).mappings().all()
     migrate(engine)
     with engine.connect() as connection:
-        assert connection.execute(text("SELECT * FROM users")).all() == before
+        after = connection.execute(text("SELECT * FROM users")).mappings().all()
+        assert [{key: row[key] for key in before[0]} for row in after] == before
+        assert all(row["onboarding_completed"] for row in after)
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
     with sessions() as db:
         assert coach_preferences(db).model_dump() == DEFAULT

@@ -208,7 +208,7 @@ test('removed lesson links return to Review without starting a lesson', async ({
   page.on('request', request => {if (request.url().includes('/api/course')) requests.push(request.url());});
   await page.goto('/?unit=archived-unit');
   await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
-  await expect(page.getByRole('navigation').getByRole('link')).toHaveCount(5);
+  await expect(page.getByRole('navigation').getByRole('link')).toHaveText(['Review', 'Games', 'Weaknesses', 'Settings']);
   await expect(page.getByRole('button', {name: 'Course', exact: true})).toHaveCount(0);
   expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
   expect(requests).toEqual([]);
@@ -638,7 +638,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   const fixture = await (await page.request.post(`/__test/classified-fixture/focus-${testInfo.project.name}`)).json();
   await page.goto('/');
   await page.getByRole('navigation').getByRole('link', {name: 'Weaknesses', exact: true}).click();
-  await expect(page.getByText('mistakes have a specific tactical pattern.', {exact: false})).toBeVisible();
+  await expect(page.getByRole('region', {name: 'Tactical patterns', exact: true})).toBeVisible();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
   const before = (await (await page.request.get('/api/stats')).json()).reviews;
   await weakness.getByRole('button', {name: /Practice .* positions/}).click();
