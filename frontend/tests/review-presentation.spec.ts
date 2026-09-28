@@ -121,11 +121,14 @@ test('review modes share board and coach sizing without empty mobile controls', 
       // SRS keeps its heading; game review starts directly with the coach.
       // On phones that heading also precedes the board. Sizes stay shared.
       return {
-        board: {...practice.board, y: size.width <= 760 ? game.board.y : practice.board.y},
+        board: {...practice.board, x: game.board.x, y: size.width <= 760 ? game.board.y : practice.board.y},
         coach: {...practice.coach, y: game.coach.y},
         actions: practice.actions,
       };
     }).toEqual(game);
+    const practiceBoard = (await page.locator('.board-shell').boundingBox())!;
+    const practiceRow = (await page.locator('.review-board-row').boundingBox())!;
+    expect(practiceBoard.x + practiceBoard.width / 2).toBeCloseTo(practiceRow.x + practiceRow.width / 2, 1);
     if (size.width <= 760) {
       await expect(page.locator('.review-board-toolbar')).toBeHidden();
       const hint = await geometry(page.locator('.review-board-hint'));

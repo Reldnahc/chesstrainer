@@ -112,6 +112,11 @@ the character, while human insight uses the separate `context` slot. The portrai
 caption does not change bubble or action geometry and is absent in cold SRS.
 SRS and game styles must not override shared action dimensions.
 
+When the shared review workspace has no evaluation bar, its board is centered
+within the board row on desktop and mobile. The unused gutter is split equally
+between both sides, retaining the same board size as game review. SRS does not
+display an evaluation.
+
 The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
 review experiences. Artwork-specific poses, styles and finite CSS animations stay
 with the registered character; semantic reaction and preference code are shared.
