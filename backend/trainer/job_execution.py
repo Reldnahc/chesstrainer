@@ -4,8 +4,9 @@ import logging
 
 from sqlalchemy import select
 
-from trainer.chesscom import ChessComError, ImportCancelled, fetch_import
-from trainer.models import AnalysisJob, Game, ImportGame
+from trainer.game_providers.base import ImportCancelled, ProviderError
+from trainer.game_providers.ingest import fetch_import
+from trainer.models import AnalysisJob, Game, ImportGame, ProviderImport
 from trainer.pipeline import JobPipeline
 
 log = logging.getLogger(__name__)
@@ -17,9 +18,9 @@ class JobExecution:
         self.settings, self.sessions = runner.settings, workspace.sessions
         self.human_models = workspace.human_models
         self.scheduler, self.classifier = runner.scheduler, runner.classifier
-        self.engine_factory, self.chesscom_factory = runner.engine_factory, runner.chesscom_factory
+        self.engine_factory = runner.engine_factory
         self.import_lock = self.course_lock = workspace.mutation_lock
-        self.chesscom_lock = runner.chesscom_lock
+        self.provider_lock = runner.provider_lock
         self.pipeline = None
 
     def cancelled(self, job_id):
@@ -43,10 +44,12 @@ class JobExecution:
                 return
             if kind == "teaching":
                 raise ValueError("Model teaching generation has been removed")
-            if kind in {"chesscom", "chesscom_fetch", "sync"}:
+            if kind in {"chesscom", "chesscom_fetch", "provider_fetch", "sync", "provider_import"}:
                 # Serialize all provider traffic even when multiple analysis workers run.
-                with self.chesscom_lock:
-                    client = self.chesscom_factory(self.settings)
+                with self.provider_lock:
+                    with self.sessions() as db:
+                        provider = db.get(ProviderImport, job_id).provider
+                    client = self.runner.provider_factories[provider](self.settings)
                     try:
                         fetch_import(
                             job_id,
@@ -58,7 +61,7 @@ class JobExecution:
                         )
                     finally:
                         client.close()
-                if kind in {"sync", "chesscom_fetch"}:
+                if kind in {"sync", "chesscom_fetch", "provider_fetch"}:
                     if self.cancelled(job_id):
                         self.finish_cancel(job_id)
                     else:
@@ -103,7 +106,7 @@ class JobExecution:
 
                 job.error = (
                     str(exc)
-                    if isinstance(exc, (EngineUnavailable, ChessComError))
+                    if isinstance(exc, (EngineUnavailable, ProviderError))
                     else f"{type(exc).__name__}: analysis interrupted; completed work retained."
                 )
                 db.commit()

@@ -221,6 +221,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/game-providers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Providers */
+        get: operations["providers_api_game_providers_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/games": {
         parameters: {
             query?: never;
@@ -392,6 +409,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/imports/provider/{provider}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Import Provider */
+        post: operations["import_provider_api_imports_provider__provider__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/jobs": {
         parameters: {
             query?: never;
@@ -490,6 +524,41 @@ export interface paths {
         /** Put Motion Preferences */
         put: operations["put_motion_preferences_api_preferences_motion_put"];
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/providers/{provider}/connection": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Save Connection */
+        put: operations["save_connection_api_providers__provider__connection_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/providers/{provider}/sync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Provider Status */
+        get: operations["provider_status_api_providers__provider__sync_get"];
+        put?: never;
+        /** Provider Sync */
+        post: operations["provider_sync_api_providers__provider__sync_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -813,6 +882,16 @@ export interface components {
             max_games: number;
             /** Months */
             months: number;
+            /**
+             * Provider
+             * @default chesscom
+             */
+            provider: string;
+            /**
+             * Provider Name
+             * @default Chess.com
+             */
+            provider_name: string;
             /** Rejected */
             rejected: number;
             /** Start Date */
@@ -1475,6 +1554,15 @@ export interface components {
              */
             turn: "white" | "black";
         };
+        /** GameProvider */
+        GameProvider: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Time Classes */
+            time_classes: string[];
+        };
         /** GameRelationship */
         GameRelationship: {
             /**
@@ -1716,6 +1804,7 @@ export interface components {
             positions_triaged: number;
             /** Probe Total */
             probe_total: number | null;
+            provider_import?: components["schemas"]["ChessComImportProgress"] | null;
             /** Status */
             status: string;
             /** User Id */
@@ -1953,6 +2042,40 @@ export interface components {
              * @default
              */
             chesscom_username: string;
+        };
+        /** ProviderConnectionRequest */
+        ProviderConnectionRequest: {
+            /** Username */
+            username: string;
+        };
+        /** ProviderImportRequest */
+        ProviderImportRequest: {
+            /**
+             * Analyze
+             * @default true
+             */
+            analyze: boolean;
+            /** End Date */
+            end_date?: string | null;
+            /**
+             * Max Games
+             * @default 100
+             */
+            max_games: number;
+            /**
+             * Months
+             * @default 3
+             */
+            months: number;
+            /** Start Date */
+            start_date?: string | null;
+            /**
+             * Time Class
+             * @default rapid
+             */
+            time_class: string;
+            /** Username */
+            username: string;
         };
         /** RefinementInfo */
         RefinementInfo: {
@@ -2220,6 +2343,11 @@ export interface components {
             imported: number;
             /** Job Id */
             job_id: string | null;
+            /**
+             * Provider
+             * @default chesscom
+             */
+            provider: string;
             /** Status */
             status: string;
             /** Username */
@@ -2421,6 +2549,12 @@ export interface components {
             multipv: number;
             /** Practical Tolerance Cp */
             practical_tolerance_cp: number;
+            /** Provider Max Response Bytes */
+            provider_max_response_bytes: number;
+            /** Provider Max Scan Games */
+            provider_max_scan_games: number;
+            /** Provider Timeout Seconds */
+            provider_timeout_seconds: number;
             /** Public Origin */
             public_origin: string;
             /** Retire After Days */
@@ -2816,6 +2950,26 @@ export interface operations {
             };
         };
     };
+    providers_api_game_providers_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GameProvider"][];
+                };
+            };
+        };
+    };
     games_api_games_get: {
         parameters: {
             query?: {
@@ -3155,6 +3309,41 @@ export interface operations {
             };
         };
     };
+    import_provider_api_imports_provider__provider__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                provider: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProviderImportRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobStarted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     jobs_api_jobs_get: {
         parameters: {
             query?: never;
@@ -3361,6 +3550,103 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["MotionPreferences"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    save_connection_api_providers__provider__connection_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                provider: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProviderConnectionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SyncStatus"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    provider_status_api_providers__provider__sync_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                provider: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SyncStatus"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    provider_sync_api_providers__provider__sync_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                provider: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SyncStatus"];
                 };
             };
             /** @description Validation Error */

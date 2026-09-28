@@ -19,9 +19,20 @@ class AccountProfile(Contract):
 
 
 class SyncStatus(Contract):
+    provider: str = "chesscom"
     username: str
     job_id: str | None
     status: str
     checked_at: str | None
     imported: int
     error: str | None
+
+
+class GameProvider(Contract):
+    id: str
+    name: str
+    time_classes: list[str]
+
+
+class ProviderConnectionRequest(Contract):
+    username: str

@@ -1,50 +1,29 @@
 """Read-only Chess.com archive ingestion. PGN interpretation stays in imports.py."""
 
 import json
-import math
 import re
 import time
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from typing import Literal
 
 import httpx
-from pydantic import BaseModel, Field, field_validator, model_validator
-from sqlalchemy import select
 
-from trainer.imports import fingerprint, identify_learner, import_games, parse_games
-from trainer.models import AnalysisJob, ChessComArchive, ChessComImport, ImportBatch, ImportGame
+from trainer.game_providers.base import (
+    ImportCancelled,
+    ProviderBatch,
+    ProviderError,
+    ProviderImportRequest,
+)
 
 BASE_URL = "https://api.chess.com/pub/player/"
 
 
-class ChessComRequest(BaseModel):
-    analyze: bool = Field(default=True, exclude=True)
-    username: str = Field(min_length=1, max_length=50, pattern=r"^[a-zA-Z0-9_-]+$")
+class ChessComRequest(ProviderImportRequest):
     time_class: Literal["rapid", "blitz", "bullet", "daily", "all"] = "rapid"
-    months: int = Field(default=3, ge=0, le=120)
-    max_games: int = Field(default=100, ge=1, le=1000)
-    start_date: date | None = None
-    end_date: date | None = None
-
-    @model_validator(mode="after")
-    def validate_dates(self):
-        if self.start_date and self.end_date and self.start_date > self.end_date:
-            raise ValueError("From date must be on or before To date.")
-        return self
-
-    @field_validator("username", mode="before")
-    @classmethod
-    def normalize_username(cls, value):
-        return value.strip().lower() if isinstance(value, str) else value
 
 
-class ChessComError(RuntimeError):
-    pass
-
-
-class ImportCancelled(RuntimeError):
-    pass
+ChessComError = ProviderError
 
 
 class ChessComClient:
@@ -183,139 +162,43 @@ class ChessComClient:
             raise ChessComError("Chess.com did not return games for this archive.")
         return games
 
-
-def fetch_import(job_id, sessions, settings, client, cancelled, import_lock):
-    with sessions() as db:
-        request = db.get(ChessComImport, job_id)
-        job = db.get(AnalysisJob, job_id)
-        if request.fetch_completed:
-            return
-        username, months, limit, time_class = (
+    def batches(self, request, anchor, cancelled, completed=frozenset()):
+        archives = self.archives(
             request.username,
             request.months,
-            request.max_games,
-            request.time_class,
+            anchor,
+            cancelled,
+            start_date=request.start_date,
+            end_date=request.end_date,
         )
-        sync = job.kind == "sync"
-        anchor = job.created_at
-        start_date, end_date = request.start_date, request.end_date
-        if job.import_id is None:
-            batch = ImportBatch(filename=f"Chess.com/{username}", original_pgn="")
-            db.add(batch)
-            db.flush()
-            job.import_id = batch.id
-            db.commit()
-    archives = client.archives(
-        username, months, anchor, cancelled, start_date=start_date, end_date=end_date
-    )
-    with sessions() as db:
-        db.get(ChessComImport, job_id).archives_total = len(archives)
-        db.commit()
-    for url in archives:
-        client.check_cancel(cancelled)
-        with sessions() as db:
-            request = db.get(ChessComImport, job_id)
-            used = request.games_fetched if sync else request.games_imported
-            if used >= limit:
-                break
-            if db.get(ChessComArchive, (job_id, url)):
+        for url in archives:
+            if url in completed:
                 continue
-            remaining = limit - used
-        games = client.games(url, cancelled)
-        selected, filtered, rejected, errors = [], 0, 0, []
-        completed_times = {}
-
-        # Monthly API order is oldest first; do not depend on it being perfectly sorted.
-        def end_time(game):
-            value = game.get("end_time", 0) if isinstance(game, dict) else 0
-            return value if isinstance(value, (int, float)) and math.isfinite(value) else 0
-
-        for game in sorted(games, key=end_time, reverse=True):
-            if not isinstance(game, dict):
-                rejected += 1
-                continue
-            if game.get("rules") != "chess" or (
-                time_class != "all" and game.get("time_class") != time_class
-            ):
-                filtered += 1
-                continue
-            players = [
-                game.get(color, {}).get("username", "") if isinstance(game.get(color), dict) else ""
-                for color in ("white", "black")
-            ]
-            matches = [isinstance(name, str) and name.casefold() == username for name in players]
-            try:
-                completed_on = datetime.fromtimestamp(end_time(game), timezone.utc).date()
-            except (ValueError, OverflowError, OSError):
-                completed_on = None
-            if (
-                sum(matches) != 1
-                or not isinstance(game.get("pgn"), str)
-                or not game["pgn"].strip()
-                or end_time(game) <= 0
-                or completed_on is None
-            ):
-                rejected += 1
-                errors.append(
+            games = self.games(url, cancelled)
+            normalized = []
+            for game in games:
+                if not isinstance(game, dict):
+                    normalized.append({})
+                    continue
+                normalized.append(
                     {
-                        "archive": url,
-                        "error": "Skipped game with missing PGN, completion time, or ambiguous learner metadata.",
+                        "pgn": game.get("pgn"),
+                        "variant": game.get("rules"),
+                        "speed": game.get("time_class"),
+                        "completed_at": game.get("end_time"),
+                        **{
+                            color: game.get(color, {}).get("username", "")
+                            if isinstance(game.get(color), dict)
+                            else ""
+                            for color in ("white", "black")
+                        },
                     }
                 )
-                continue
-            if (start_date and completed_on < start_date) or (end_date and completed_on > end_date):
-                filtered += 1
-                continue
-            selected.append(game["pgn"])
-            for _, parsed, error in parse_games(game["pgn"]):
-                if parsed is not None and not error:
-                    try:
-                        color = identify_learner(parsed, [username], None)
-                    except ValueError:
-                        continue
-                    completed_times[fingerprint(parsed, color)] = datetime.fromtimestamp(
-                        end_time(game), timezone.utc
-                    )
-        client.check_cancel(cancelled)
-        # Import and archive checkpoint commit together; restart cannot double-count a month.
-        with import_lock, sessions() as db:
-            request = db.get(ChessComImport, job_id)
-            job = db.get(AnalysisJob, job_id)
-            processed = 0
-            if selected:
-                result = import_games(
-                    db,
-                    f"Chess.com/{username}",
-                    "\n\n".join(selected[:remaining] if sync else selected),
-                    [username],
-                    None,
-                    batch=db.get(ImportBatch, job.import_id),
-                    queue_analysis=False,
-                    commit=False,
-                    max_new_games=remaining,
-                    retain_original=not sync,
-                    completed_times=completed_times,
-                )
-                processed = result["processed"]
-                request.games_imported += result["imported"]
-                request.duplicates += result["duplicates"]
-                rejected += len(result["errors"])
-                errors.extend({"archive": url, **error} for error in result["errors"])
-            request.filtered += filtered
-            request.rejected += rejected
-            request.errors = (request.errors + errors)[:50]
-            request.games_fetched += processed
-            request.archives_processed += 1
-            job.games_total = len(
-                db.scalars(
-                    select(ImportGame.game_id).where(
-                        ImportGame.import_id == job.import_id, ImportGame.is_new.is_(True)
-                    )
-                ).all()
-            )
-            db.add(ChessComArchive(job_id=job_id, url=url, games_selected=processed))
-            db.commit()
-    client.check_cancel(cancelled)
-    with sessions() as db:
-        db.get(ChessComImport, job_id).fetch_completed = True
-        db.commit()
+            yield ProviderBatch(url, normalized, len(archives))
+
+
+def fetch_import(*args, **kwargs):
+    # Compatibility for existing tools; all providers use the same pipeline.
+    from trainer.game_providers.ingest import fetch_import as run
+
+    return run(*args, **kwargs)
