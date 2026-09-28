@@ -322,7 +322,7 @@ test('refreshing a saved review receives updated evidence from the new job curso
   expect(cursors[0]).toBe(4);
 });
 
-test('refinement revises an earlier move while keeping the selected board in place', async ({page}, info) => {
+test('refinement continues in the background without progress or moving the selected board', async ({page}, info) => {
   const {id} = await (await page.request.post(`/__test/game-review-fixture/refinement-${info.project.name}`)).json();
   const game = await (await page.request.get(`/api/games/${id}`)).json();
   for (let ply = 1; ply < game.frames.length; ply++) {
@@ -332,30 +332,58 @@ test('refinement revises an earlier move while keeping the selected board in pla
       best: candidate, actual: candidate, white_score: candidate.score, depth: 16, engine_version: 'Fixture', board_cues: null};
   }
   game.review_revision = 4;
-  game.job = {id: 'refinement', status: 'running', phase: 'refinement', completed: 4, total: 4,
+  game.job = {id: 'refinement', status: 'running', phase: 'baseline', completed: 4, total: 4,
     refinement_completed: 0, refinement_total: 1, error: null, cancel_requested: false};
+  let beginRefinement = () => {};
+  const baselineGate = new Promise<void>(resolve => { beginRefinement = resolve; });
   let release = () => {};
   const gate = new Promise<void>(resolve => { release = resolve; });
+  let polls = 0, analyses = 0;
   await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
   await page.route(`**/api/games/${id}/review*`, async route => {
+    expect(route.request().method()).toBe('GET');
     expect(new URL(route.request().url()).searchParams.get('after_revision')).toBe('4');
+    if (++polls === 1) {
+      await baselineGate;
+      game.job.phase = 'refinement';
+      return route.fulfill({json: {revision: 4, job: game.job, moves: [], accuracy: null}});
+    }
     await gate;
     const revised = {...game.frames[1].report, label: 'Mistake', engine_label: 'Mistake',
       coach: 'The deeper comparison confirms a concession.', depth: 22};
     return route.fulfill({json: {revision: 6, job: {...game.job, status: 'completed', phase: 'complete', refinement_completed: 1},
       moves: [{ply: 1, report: revised}], accuracy: null}});
   });
-  await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
-  await page.goto(`/games/${id}?ply=1`);
-  await expect(page.getByRole('status').filter({hasText: 'Checking selected positions more deeply'})).toBeVisible();
-  await expect(page.locator('.coach-message')).toHaveText('Baseline feedback.');
-  const before = await page.locator('.review-board-square').boundingBox();
-  release();
-  await expect(page.locator('.coach-message')).toHaveText('The deeper comparison confirms a concession.');
-  await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('1. f3, Mistake');
-  await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=1$`));
-  expect(await page.locator('.review-board-square').boundingBox()).toEqual(before);
-  await page.screenshot({path: `test-results/refinement-${info.project.name}.png`, fullPage: true});
+  await page.route(`**/api/games/${id}/analyze`, route => {
+    analyses++;
+    return route.fulfill({json: {report: null, score: null, best_move: null}});
+  });
+  try {
+    await page.goto(`/games/${id}?ply=1`);
+    await expect(page.getByRole('progressbar', {name: 'Game review progress'})).toBeVisible();
+    beginRefinement();
+    await expect(page.getByRole('region', {name: 'Review progress'})).toHaveCount(0);
+    await expect(page.getByRole('button', {name: 'Pause review', exact: true})).toHaveCount(0);
+    await expect(page.locator('.coach-message')).toHaveText('Baseline feedback.');
+    await page.getByRole('button', {name: 'Next move', exact: true}).click();
+    await expect(page.locator('.game-move-counter')).toHaveText('2 / 4');
+    await page.getByRole('button', {name: 'Previous move', exact: true}).click();
+    await expect(page.locator('.game-move-counter')).toHaveText('1 / 4');
+    const before = await page.locator('.review-board-square').boundingBox();
+    release();
+    await expect(page.locator('.coach-message')).toHaveText('The deeper comparison confirms a concession.');
+    await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName('1. f3, Mistake');
+    await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=1$`));
+    await expect(page.getByRole('region', {name: 'Review progress'})).toHaveCount(0);
+    expect(await page.locator('.review-board-square').boundingBox()).toEqual(before);
+    expect(polls).toBe(2);
+    expect(analyses).toBe(0);
+    await page.screenshot({path: `test-results/refinement-${info.project.name}.png`, fullPage: true});
+  } finally {
+    beginRefinement();
+    release();
+    await page.unrouteAll({behavior: 'wait'});
+  }
 });
 
 test('dense evaluation dots resize and select the matching ply by pointer and keyboard', async ({page}, info) => {

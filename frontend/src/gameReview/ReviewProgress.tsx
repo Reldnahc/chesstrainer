@@ -15,8 +15,10 @@ export default function ReviewProgress({
   start: () => Promise<void>;
   cancel: () => Promise<void>;
 }) {
-  if (game.job?.status === "completed" && !game.job.error) return null;
   const refining = game.job?.phase === "refinement";
+  // The session keeps polling background refinement; interruptions still expose recovery.
+  if (!game.job?.error && (game.job?.status === "completed" || (refining && running)))
+    return null;
   return (
     <section className="game-progress" aria-label="Review progress">
       {game.job?.status !== "completed" && (

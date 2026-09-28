@@ -2,6 +2,24 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Background refinement progress: focused checks
+
+The game-review progress panel now hides during active background refinement.
+Session polling, search budgets and saved evidence are unchanged; failed or
+interrupted jobs retain recovery controls.
+
+- The updated regression reproduced the persistent progress panel on desktop
+  and mobile before the fix.
+- From `frontend`, `npx.cmd playwright test game-review.spec.ts --grep 'refinement continues in the background|opening starts once|progress merges only' --reporter=line`:
+  **6 passed**, desktop/mobile. Checks baseline progress, disappearing refinement
+  progress, continued report updates, navigation without duplicate searches,
+  stable selected-board geometry, and existing pause/retry/resume behavior.
+  The isolated Windows test server needed explicit shutdown after the browser
+  checks finished; the runner then exited successfully.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed.
+- Full verification remains deferred by owner request; no push/deployment.
+
 ## Balanced Import layout: focused checks
 
 Source controls now sit above the two equal-width panels, giving forms and
