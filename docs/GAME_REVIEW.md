@@ -79,9 +79,9 @@ purple **Return to game** button beside **Show why** in the coach's action row
 restores the original branch point without adding another row above the controls.
 Existing action buttons retain their width and height when this button appears;
 they only shrink if the available row cannot fit the buttons at their usual widths.
-Stepping backward to that point also exits the variation. The **First move** (`<<`)
-control always selects ply 1 of the original game, even from a variation; the
-previous-move control can still reach the initial position. Escape returns to the
+Stepping backward to that point also exits the variation. The **Start of game** (`<<`)
+control always selects the original game's initial position (ply 0), even from a
+variation. It is disabled when already at that position. Escape returns to the
 game when explanation cues are already hidden. Variations are not saved across leaving
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.

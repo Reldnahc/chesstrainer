@@ -42,7 +42,6 @@ export function useGameExploration(
     : game?.frames[cursor.ply];
   const current = branch ? cursor.step : cursor.ply;
   const maximum = branch ? branch.moves.length : (game?.frames.length ?? 1) - 1;
-  const firstPly = game && game.frames.length > 1 ? 1 : 0;
 
   useEffect(() => {
     mounted.current = true;
@@ -197,7 +196,6 @@ export function useGameExploration(
     explanationKey,
     current,
     maximum,
-    firstPly,
     navigate,
     selectStep,
     step,

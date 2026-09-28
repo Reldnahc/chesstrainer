@@ -17,7 +17,7 @@ export default function ReviewControls({
   libraryHref: string;
 }) {
   const {
-    branch, cursor, current, maximum, firstPly, navigate, step, selectStep, flip,
+    branch, cursor, current, maximum, navigate, step, selectStep, flip,
   } = exploration;
   return (
     <div
@@ -30,10 +30,10 @@ export default function ReviewControls({
         All games
       </Link>
       <button
-        aria-label="First move"
-        title="First move of the original game"
-        disabled={!branch && cursor.ply === firstPly}
-        onClick={() => navigate(firstPly)}
+        aria-label="Start of game"
+        title="Starting position of the original game"
+        disabled={!branch && cursor.ply === 0}
+        onClick={() => navigate(0)}
       >
         <ChevronsLeft size={19} />
       </button>

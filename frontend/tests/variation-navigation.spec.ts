@@ -36,7 +36,7 @@ test("variation return is a prominent coach action and restores the original pos
   if (info.project.name === "desktop") {
     const centers = await page.getByRole("group", {name: "Game navigation"}).evaluate(controls => {
       const row = controls.getBoundingClientRect();
-      const first = controls.querySelector('[aria-label="First move"]')!.getBoundingClientRect();
+      const first = controls.querySelector('[aria-label="Start of game"]')!.getBoundingClientRect();
       const last = controls.querySelector('[aria-label="Last move"]')!.getBoundingClientRect();
       const flip = controls.querySelector('[aria-label="Flip board"]')!.getBoundingClientRect();
       return {row: (row.left + row.right) / 2, moves: (first.left + last.right) / 2, right: row.right, flipRight: flip.right};
@@ -109,23 +109,27 @@ test("backward navigation exits a variation when it reaches the original branch 
   }
 });
 
-test("first move always exits variations at original-game ply one", async ({page}, info) => {
+test("start of game always exits variations at original-game ply zero", async ({page}, info) => {
   const {play, onMainline} = await openGame(page, `first-${info.project.name}`);
   await play("e2e4");
-  const first = page.getByRole("button", {name: "First move", exact: true});
+  const first = page.getByRole("button", {name: "Start of game", exact: true});
   await expect(first).toBeEnabled();
   await first.click();
-  await onMainline(1);
-  await expect(first).toBeDisabled();
-  await page.getByRole("button", {name: "Previous move", exact: true}).click();
   await onMainline(0);
+  await expect(page.locator(".game-move-counter")).toHaveText("0 / 4");
+  await expect(page.locator('.board-shell [data-square="f2"] [data-piece="wP"]')).toHaveCount(1);
+  await expect(page.locator('.board-shell [data-square="e7"] [data-piece="bP"]')).toHaveCount(1);
+  await expect(first).toBeDisabled();
+  await expect(page.getByRole("button", {name: "Previous move", exact: true})).toBeDisabled();
+  await page.getByRole("button", {name: "Next move", exact: true}).click();
+  await onMainline(1);
   await expect(first).toBeEnabled();
   await first.click();
-  await onMainline(1);
+  await onMainline(0);
   await page.getByRole("button", {name: "Last move", exact: true}).click();
   await first.click();
-  await onMainline(1);
+  await onMainline(0);
   await page.locator(".game-variation-row button").first().click();
   await first.click();
-  await onMainline(1);
+  await onMainline(0);
 });
