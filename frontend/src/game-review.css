@@ -385,14 +385,22 @@
   font-size: 11px;
   margin: 2px 0 4px;
 }
+.game-quality-panel {
+  /* Scale the comparison within its tab, without growing the board or sidebar. */
+  container-type: size;
+}
 .game-summary {
-  padding: 8px 18px 12px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(4px, 2cqh, 16px) clamp(18px, 3cqw, 24px);
 }
 .game-summary caption {
-  padding-bottom: 6px;
-  text-align: right;
+  caption-side: bottom;
+  padding-top: clamp(4px, 1.5cqh, 10px);
+  text-align: center;
   color: var(--muted);
-  font-size: 11px;
+  font-size: max(11px, .7em);
 }
 .game-progress {
   flex-shrink: 0;
@@ -420,21 +428,47 @@
   margin: 5px 0;
 }
 .game-summary table {
+  flex: 1;
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: 12px;
+  font-size: clamp(12px, min(4cqw, 4.5cqh), 20px);
+  font-variant-numeric: tabular-nums;
 }
 .game-summary thead {
   position: sticky;
   top: 0;
   z-index: 1;
-  background: var(--surface);
+  background: #141517;
 }
-.game-summary thead th:first-child {
+.game-summary thead th {
+  width: 30%;
+  padding-block: clamp(1px, .6cqh, 4px);
+}
+.game-summary thead .game-summary-label {
   width: 40%;
 }
-.game-summary thead th > span:not(.sr-only) {
+.game-summary-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: clamp(2px, .8cqh, 5px);
+  color: var(--muted);
+  font-size: max(10px, .7em);
+  font-weight: 400;
+}
+.game-summary-side i {
+  width: .8em;
+  height: .8em;
+  border: 1px solid #a0a5ae;
+  border-radius: 2px;
+  background: #edf0eb;
+}
+.game-summary-side[data-side="black"] i {
+  background: #35383e;
+}
+.game-summary-name {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -442,20 +476,51 @@
 }
 .game-summary th,
 .game-summary td {
-  padding: 2px 4px;
+  padding: 0 4px;
   line-height: 1.25;
   text-align: center;
 }
-.game-summary th:first-child,
-.game-summary td:first-child {
-  text-align: left;
+.game-summary td {
+  font-weight: 600;
+}
+.game-summary td[data-empty="true"] {
+  font-weight: 400;
+  color: var(--muted);
 }
 .game-summary tbody th {
   font-weight: 400;
 }
+.game-summary tbody tr + tr {
+  border-top: 1px solid #ffffff08;
+}
+.game-summary tbody tr:nth-child(even) {
+  background: #ffffff03;
+}
+.game-summary .move-badge {
+  width: 8em;
+  max-width: 100%;
+  gap: .4em;
+  font-size: inherit;
+  text-align: left;
+}
+.game-summary .move-badge b {
+  min-width: 1.4em;
+  font-size: inherit;
+  line-height: 1;
+}
 .game-summary .game-summary-accuracy > * {
-  padding-block: 4px;
+  padding-block: clamp(2px, 1cqh, 8px);
   border-bottom: 1px solid var(--line);
+}
+.game-summary-accuracy th {
+  color: var(--muted);
+  font-size: .85em;
+}
+.game-summary .game-accuracy > b {
+  width: auto;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-align: center;
 }
 @container (max-width: 440px) {
   .game-graph-verdict {

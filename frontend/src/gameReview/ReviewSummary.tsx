@@ -14,6 +14,16 @@ const labels = [
   "Blunder",
 ];
 
+function PlayerHeading({ name, color }: { name: string; color: "white" | "black" }) {
+  const side = color === "white" ? "White" : "Black";
+  return <th scope="col" aria-label={`${name} · ${side}`}>
+    <span className="game-summary-side" data-side={color}>
+      <i aria-hidden="true" />{side}
+    </span>
+    <span className="game-summary-name" title={`${name} · ${side}`}>{name}</span>
+  </th>;
+}
+
 export default function ReviewSummary({ game }: { game: Game }) {
   const summary = labels.map((label) => ({
     label,
@@ -32,32 +42,30 @@ export default function ReviewSummary({ game }: { game: Game }) {
         </caption>
         <thead>
           <tr>
-            <th scope="col"><span className="sr-only">Move quality</span></th>
-            <th scope="col"><span title={`${game.white} · White`}>{game.white}</span></th>
-            <th scope="col"><span title={`${game.black} · Black`}>{game.black}</span></th>
+            <PlayerHeading name={game.white} color="white" />
+            <th scope="col" className="game-summary-label"><span className="sr-only">Move quality</span></th>
+            <PlayerHeading name={game.black} color="black" />
           </tr>
         </thead>
         <tbody>
           <tr className="game-summary-accuracy">
+            <td>
+              <AccuracyReadout color="white" accuracy={game.accuracy}
+                complete={game.job?.status === "completed"} summary />
+            </td>
             <th scope="row">Accuracy</th>
-            {(["white", "black"] as const).map((color) => (
-              <td key={color}>
-                <AccuracyReadout
-                  color={color}
-                  accuracy={game.accuracy}
-                  complete={game.job?.status === "completed"}
-                  summary
-                />
-              </td>
-            ))}
+            <td>
+              <AccuracyReadout color="black" accuracy={game.accuracy}
+                complete={game.job?.status === "completed"} summary />
+            </td>
           </tr>
           {summary.map((s) => (
             <tr key={s.label}>
+              <td data-empty={s.white === 0}>{s.white}</td>
               <th scope="row">
                 <MoveBadge label={s.label} />
               </th>
-              <td>{s.white}</td>
-              <td>{s.black}</td>
+              <td data-empty={s.black === 0}>{s.black}</td>
             </tr>
           ))}
         </tbody>

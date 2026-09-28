@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Responsive Move quality comparison: focused checks
+
+Move quality now presents player names/colors above larger accuracy scores, with
+each player's counts on either side of centered quality labels. Its rows fill the
+tab, text and icons respond to the tab's available dimensions, and completion
+status sits below the comparison. Compact spacing keeps the full comparison
+visible in normal laptop/phone panels; constrained panels retain internal scrolling
+and sticky player headings. No grading, counting, accuracy or board-sizing changes.
+
+- From `frontend`, `npx.cmd playwright test game-review-presentation.spec.ts game-review.spec.ts --grep 'moves and move quality|paused partial review|book moves appear' --reporter=line`:
+  **6 passed**, desktop/mobile, after refining the compact layout. Covers six
+  viewport sizes, growing text/icons/rows, filled panel height, no unnecessary
+  scrolling, player attribution, original-game counts/accuracy through variations,
+  partial-review controls and unchanged board/page/tab geometry.
+- The responsive-panel test additionally captures isolated panel previews for
+  visual inspection. Desktop, laptop and 320px phone screenshots inspected.
+- App and browser-test TypeScript checks, Vite build and Git whitespace checks
+  passed. Full verification remains deferred by owner request; no push/deployment.
+
 ## Review column alignment and stable variation actions: focused checks
 
 Started from updated `main` at `88b278d`. Browser regressions reproduced an 8px
