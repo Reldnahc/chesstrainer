@@ -2,6 +2,26 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach idle cadence follow-up
+
+The first tuning still felt too sparse in use. Quiet gaps are now 0.5–1.5 s for
+humans (previously 2–5 s), 0.75–1.75 s for cats (2.5–5.5 s), and 1–2 s for
+dogs (3–6 s). Subtle adds 0.5 s instead of 1.5 s. Only timing constants and their
+documented test expectations changed; 1.2 s gestures, reactions and pause behavior
+remain unchanged.
+
+Validation from `frontend`, using the same local Chromium/Stockfish environment:
+
+- `npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line`:
+  **28 passed**, 2.5 min, including repeated idle cycles and pause/resume checks
+  on desktop/mobile. The existing owner studio server was reused.
+- `npx.cmd playwright test tests/coach.spec.ts tests/coach-logic.spec.ts tests/coach-selection.spec.ts --reporter=line`:
+  **26 passed**, 27.4 s. The initial sandboxed run passed its assertions but stalled
+  in test-server cleanup; only its verified server tree was stopped. A fresh run
+  with normal process permissions passed and cleaned up without intervention.
+- From the root, `npm.cmd --prefix frontend run build` and `git diff --check`
+  passed. No test skips or assertion failures.
+
 ## Coach idle cadence tuning
 
 Only existing idle delays changed: men/default 4.5–10 s to 2–5 s, women

@@ -109,8 +109,8 @@ pending work; existing review generation guards still discard stale engine repli
 An entrance lasts roughly 1.3–1.8 seconds, then retains a quieter static expression
 consistent with the bubble instead of returning to an unrelated neutral face.
 
-Idle gestures occur after variable 2–5 second pauses for human coaches,
-2.5–5.5 seconds for cats, and 3–6 seconds for dogs. Subtle mode adds 1.5 seconds.
+Idle gestures occur after variable 0.5–1.5 second pauses for human coaches,
+0.75–1.75 seconds for cats, and 1–2 seconds for dogs. Subtle mode adds 0.5 seconds.
 Each gesture still lasts 1.2 seconds before scheduling the next pause.
 The character avoids immediately repeating a gesture when alternatives
 exist. Neutral, brilliant and blunder have distinct idle vocabularies. A small

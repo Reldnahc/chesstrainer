@@ -95,7 +95,7 @@ export function usePerformance({
           }, 1200);
         },
         animation.idleRangeMs[0] +
-          (effectiveMotion === "subtle" ? 1500 : 0) +
+          (effectiveMotion === "subtle" ? 500 : 0) +
           Math.random() * (animation.idleRangeMs[1] - animation.idleRangeMs[0]),
       );
     };

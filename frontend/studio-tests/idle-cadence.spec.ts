@@ -1,10 +1,10 @@
 import { test, expect, type Page } from "@playwright/test";
 
 const cases = [
-  { coach: "classic", delay: 3500, reaction: 1650 },
-  { coach: "woman", delay: 3500, reaction: 1700 },
-  { coach: "cat", delay: 4000, reaction: 1700 },
-  { coach: "dog", delay: 4500, reaction: 1700 },
+  { coach: "classic", delay: 1000, reaction: 1650 },
+  { coach: "woman", delay: 1000, reaction: 1700 },
+  { coach: "cat", delay: 1250, reaction: 1700 },
+  { coach: "dog", delay: 1500, reaction: 1700 },
 ];
 
 async function settledCoach(page: Page, coach: string, reaction: number) {
@@ -45,7 +45,7 @@ for (const { coach, delay, reaction } of cases) {
     await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("subtle");
     await avatar.scrollIntoViewIfNeeded();
     await expect(avatar).toHaveAttribute("data-motion", "subtle");
-    await page.clock.runFor(delay + 1500 - 1);
+    await page.clock.runFor(delay + 500 - 1);
     await expect(avatar).toHaveAttribute("data-micro", "");
     await page.clock.runFor(1);
     await expect(avatar).toHaveAttribute("data-micro", /.+/);
@@ -59,7 +59,7 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
   const take = await avatar.getAttribute("data-take");
   const motion = page.getByRole("combobox", { name: "Motion intensity" });
   for (const pause of ["still", "reduced", "offscreen", "hidden"]) {
-    await page.clock.runFor(3500);
+    await page.clock.runFor(1000);
     await expect(avatar).toHaveAttribute("data-micro", /.+/);
     if (pause === "still") {
       await motion.selectOption("still");
@@ -80,7 +80,7 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
     await expect(avatar).toHaveAttribute("data-micro", "");
     // Cross two complete idle windows, including the cancelled gesture's finish.
     for (let cycle = 0; cycle < 2; cycle++) {
-      await page.clock.runFor(3500);
+      await page.clock.runFor(1000);
       await expect(avatar).toHaveAttribute("data-micro", "");
       await page.clock.runFor(1200);
       await expect(avatar).toHaveAttribute("data-micro", "");
@@ -96,6 +96,6 @@ test("idle pauses for Still, reduced motion, offscreen and hidden tabs without r
     await expect(avatar).toHaveAttribute("data-phase", "rest");
     await expect(avatar).toHaveAttribute("data-take", take!);
   }
-  await page.clock.runFor(3500);
+  await page.clock.runFor(1000);
   await expect(avatar).toHaveAttribute("data-micro", /.+/);
 });
