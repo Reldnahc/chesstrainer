@@ -2,6 +2,21 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Variation navigation UX: focused checks
+
+Return to game is a purple primary action below the coach. Stepping back to a
+variation's root restores the mainline; First move always selects original-game
+ply 1. Desktop move controls remain centered, with Flip board on the right.
+
+- `playwright test variation-navigation.spec.ts --reporter=line`: 6 passed on
+  desktop/mobile, including centered controls, keyboard/button exits, original
+  game preservation, full-width return action and no horizontal overflow.
+- Directly affected existing review/late-analysis checks: 4 passed. The coach
+  navigation/SRS check passed on both viewports after explicitly waiting for
+  review completion before asserting initial-position text.
+- App/test TypeScript checks, Vite bundle and diff checks passed. Desktop/mobile
+  screenshots inspected. Full verification remains deferred by owner request.
+
 ## Coach cadence and motion choices: focused checks
 
 All characters share a 500–1000ms idle gap. Device motion is the default; saved

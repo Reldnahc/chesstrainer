@@ -42,6 +42,7 @@ export function useGameExploration(
     : game?.frames[cursor.ply];
   const current = branch ? cursor.step : cursor.ply;
   const maximum = branch ? branch.moves.length : (game?.frames.length ?? 1) - 1;
+  const firstPly = game && game.frames.length > 1 ? 1 : 0;
 
   useEffect(() => {
     mounted.current = true;
@@ -88,7 +89,8 @@ export function useGameExploration(
   function selectStep(value: number) {
     setExplanationKey(null);
     const next = Math.max(0, Math.min(maximum, value));
-    if (branch) setCursor((c) => ({ ...c, step: next }));
+    if (branch && next === 0) navigate(branch.root);
+    else if (branch) setCursor((c) => ({ ...c, step: next }));
     else navigate(next);
   }
   function step(delta: number) {
@@ -195,6 +197,7 @@ export function useGameExploration(
     explanationKey,
     current,
     maximum,
+    firstPly,
     navigate,
     selectStep,
     step,

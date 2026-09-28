@@ -87,6 +87,7 @@ test("coach motion resynchronizes after device changes while the settings page i
 test("game navigation and SRS attempts drive the real shared coach", async ({
   page,
 }, info) => {
+  test.setTimeout(60_000);
   const { id } = await (
     await page.request.post(
       `/__test/game-review-fixture/coach-${info.project.name}`,
@@ -97,10 +98,12 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   await expect(avatar).toHaveAttribute("data-expression", "blunder", {
     timeout: 30000,
   });
+  await expect(page.locator(".game-summary > summary")).toContainText("complete game", {timeout: 30000});
   await page.getByRole("button", { name: "Last move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "losing");
   await expect(page.locator(".coach-message")).toContainText(/checkmate|king has no escape/i);
   await page.getByRole("button", { name: "First move", exact: true }).click();
+  await page.getByRole("button", { name: "Previous move", exact: true }).click();
   await expect(avatar).toHaveAttribute("data-expression", "neutral");
   await expect(page.locator(".coach-message")).toContainText("Select a move");
   await expect(page.getByRole("region", {name: "Game story"})).toHaveCount(0);

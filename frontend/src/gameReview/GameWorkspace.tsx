@@ -227,6 +227,7 @@ export default function GameWorkspace({
           onExplain={() =>
             analysis.error ? analysis.retry() : exploration.toggleExplanation()
           }
+          onReturnToGame={exploration.returnToGame}
         />
         <ReviewMoves
           game={game}

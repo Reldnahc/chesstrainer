@@ -155,7 +155,7 @@ test('book moves appear on the board, coach and branches with original-game accu
   await page.getByRole('button', {name: 'Flip board', exact: true}).click();
   await expect(page.getByLabel('Accuracy for White', {exact: true}).locator('b')).toHaveText(white);
   await expect(page.getByLabel('Accuracy for Black', {exact: true}).locator('b')).toHaveText(black);
-  await page.getByRole('button', {name: 'Back to game', exact: true}).click();
+  await page.getByRole('button', {name: 'Return to game', exact: true}).click();
   await page.getByRole('button', {name: '2. Ke2, Book', exact: true}).click();
   await page.reload();
   await expect(page.locator('.coach-message')).toHaveText(bookFeedback);
@@ -233,7 +233,7 @@ test('review both players, explain in place, and branch without changing the gam
   await expect(page.locator('.board-shell [data-pattern-square="h4"]')).toBeVisible();
   await expect(page.locator('.game-player').last()).toContainText('black to move');
   await expect(page.locator('.game-variation-row')).toHaveCount(0);
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
+  await expect(page.getByRole('button', {name: 'Return to game', exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: '2. g4, Blunder', exact: true})).toHaveAttribute('aria-current', 'step');
   expect((await page.locator('.coach-speech').boundingBox())!.height).toBe(coach.height);
   expect((await page.locator('.game-notation').boundingBox())!.y + await page.evaluate(() => window.scrollY)).toBe(notationTop);
@@ -271,7 +271,7 @@ test('review both players, explain in place, and branch without changing the gam
   const originalMove = page.locator('.game-graph-node[data-ply="2"]');
   if (testInfo.project.name === 'mobile') await originalMove.tap();
   else await originalMove.click();
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
+  await expect(page.getByRole('button', {name: 'Return to game', exact: true})).toHaveCount(0);
   await expect(page.locator('.game-move-list button[aria-current]')).toHaveAccessibleName(/^1\.\.\. e5/);
   await expect(page).toHaveURL(new RegExp(`/games/${id}\\?ply=2$`));
   await page.getByRole('button', {name: 'Next mistake', exact: true}).click();
@@ -532,7 +532,7 @@ test('explanations never create a move tree and rapid variations finish rating a
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', {name: '1. f3', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-variation-row')).toHaveCount(0);
-  await page.getByRole('button', {name: 'First move', exact: true}).click();
+  await page.getByRole('button', {name: 'Previous move', exact: true}).click();
   const square = (name: string) => page.locator(`.board-shell [data-square="${name}"]`);
   await square('d2').click(); await square('d4').click();
   await expect.poll(() => seen.some(moves => moves.join() === 'd2d4')).toBe(true);
@@ -544,7 +544,7 @@ test('explanations never create a move tree and rapid variations finish rating a
   await expect(page.locator('.game-variation-row')).toContainText('d4');
   await expect(page.locator('.game-variation-row')).toContainText('Good');
   await expect(page.locator('.game-variation-row')).toContainText('Mistake');
-  await expect(page.getByRole('button', {name: 'Back to game', exact: true})).toBeDisabled();
+  await expect(page.getByRole('button', {name: 'Return to game', exact: true})).toHaveCount(0);
   await page.locator('.game-variation-row button').last().click();
   await expect(page.locator('.coach-speech')).toContainText('Black');
   await expect(page.locator('.coach-speech .move-badge')).toHaveText(/Mistake/);

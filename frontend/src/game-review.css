@@ -73,10 +73,13 @@
   font: 11px var(--mono);
 }
 .game-board-controls {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: minmax(36px, 1fr) repeat(2, 36px) max-content repeat(2, 36px) minmax(36px, 1fr);
   gap: 5px;
   align-items: center;
+}
+.game-board-controls button:first-child {
+  grid-column: 2;
 }
 .game-move-counter {
   flex: 0 0 9ch;
@@ -97,15 +100,23 @@
   min-width: 36px;
   padding: 6px;
 }
-.game-board-controls .game-return {
-  margin-right: auto;
-  gap: 5px;
-  padding-inline: 8px;
-  font-size: 12px;
+.coach-actions:has(.game-return) {
+  flex-wrap: wrap;
 }
-.game-board-controls .game-return:not(:disabled) {
-  color: var(--accent);
-  border-color: var(--accent);
+.coach-actions .game-return {
+  flex: 1 0 100%;
+  width: 100%;
+  min-height: 44px;
+  gap: 8px;
+  background: #b5a0f2;
+  border-color: #cfbfff;
+  color: #211437;
+  font-size: 13px;
+  font-weight: 700;
+}
+.coach-actions .game-return:hover {
+  background: #cfbfff;
+  border-color: #e3d9ff;
 }
 .game-board-controls button:last-child {
   margin-left: auto;
@@ -405,6 +416,7 @@
     min-height: 27px;
   }
   .game-board-controls {
+    display: flex;
     gap: 2px;
   }
   .game-board-controls button {
@@ -415,13 +427,6 @@
   }
   .game-move-counter {
     font-size: 11px;
-  }
-  .game-board-controls .game-return {
-    margin-right: 0;
-    padding-inline: 5px;
-  }
-  .game-board-controls .game-return > svg {
-    display: none;
   }
   .game-board-controls button:last-child {
     margin-left: 0;

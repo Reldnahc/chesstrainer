@@ -63,9 +63,12 @@ Only the played position and immediate reply supply visual cues; later engine
 continuations are not projected onto the current board.
 
 Move any legal piece to start a variation. Undo and choose a different move to fork
-it; the variations list keeps both lines while this game remains open. **Game**
-in the board navigation restores the original branch point. Escape does the same
-when explanation cues are already hidden. Variations are not saved across leaving
+it; the variations list keeps both lines while this game remains open. A prominent
+purple **Return to game** button below the coach restores the original branch point.
+Stepping backward to that point also exits the variation. The **First move** (`<<`)
+control always selects ply 1 of the original game, even from a variation; the
+previous-move control can still reach the initial position. Escape returns to the
+game when explanation cues are already hidden. Variations are not saved across leaving
 the game or reloading. Engine failures leave legal board exploration available.
 Late engine responses cannot replace coaching for a different selected position.
 The sidebar orders coaching, compact notation and variations, evaluation, then

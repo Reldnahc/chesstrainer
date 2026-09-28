@@ -3,7 +3,6 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-  CornerUpLeft,
   FlipVertical2,
 } from "lucide-react";
 import type { GameExploration } from "./useGameExploration";
@@ -13,8 +12,9 @@ export default function ReviewControls({
 }: {
   exploration: GameExploration;
 }) {
-  const { branch, current, maximum, returnToGame, step, selectStep, flip } =
-    exploration;
+  const {
+    branch, cursor, current, maximum, firstPly, navigate, step, selectStep, flip,
+  } = exploration;
   return (
     <div
       className="game-board-controls"
@@ -22,19 +22,10 @@ export default function ReviewControls({
       aria-label="Game navigation"
     >
       <button
-        className="game-return"
-        aria-label="Back to game"
-        title="Back to game (Escape)"
-        disabled={!branch}
-        onClick={returnToGame}
-      >
-        <CornerUpLeft size={16} />
-        <span>Game</span>
-      </button>
-      <button
         aria-label="First move"
-        disabled={current === 0}
-        onClick={() => selectStep(0)}
+        title="First move of the original game"
+        disabled={!branch && cursor.ply === firstPly}
+        onClick={() => navigate(firstPly)}
       >
         <ChevronsLeft size={19} />
       </button>
