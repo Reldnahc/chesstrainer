@@ -15,9 +15,10 @@ export type Claim = {
   evidence: EvidenceRef[];
   priority: number;
   sourceIds: string[];
+  position?: {line: "actual" | "alternative"; move: string};
 };
 export type DialogueIntent = {
-  version: "dialogue-intent-3";
+  version: "dialogue-intent-4";
   id: string;
   purpose: DialoguePurpose;
   mode: "game" | "variation" | "practice" | "explanation" | "complete";
@@ -80,7 +81,7 @@ export function makeIntent(key: string, purpose: DialoguePurpose, mode: Dialogue
     priority = 100;
   }
   const facts = {purpose, mode, expression, claims, decisions};
-  return {version: "dialogue-intent-3", id: `di3:${stableKey([key, facts])}`, ...facts,
+  return {version: "dialogue-intent-4", id: `di4:${stableKey([key, facts])}`, ...facts,
     intensity, priority, interruptible: priority < 95,
     autoSpeakSuitable: mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose)};
 }

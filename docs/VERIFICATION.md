@@ -35,6 +35,25 @@ Python's production pipeline and render them through all 16 registered coaches.
   and TypeScript contracts. OpenAPI and TypeScript regenerated through the normal
   export commands for `move-events-4`; export `--check`, Ruff check/format passed.
 
+### Alternative positional consequences
+
+Four frontend regressions reproduced the exact branch loss: legal bishop-pair
+and doubled-pawn alternatives in both colors were narrated as actual facts.
+Their new backend tests passed before the fix, confirming the server retained
+the correct line, move and affected side. The correction carries typed position
+scope through intent version 4 and uses a shared conditional renderer for every
+alternative positional family. Actual-move wording stays factual; personality
+overrides cannot remove hypothetical scope.
+
+- `python -m pytest -q backend/tests/test_review_positions.py`: **16 passed**.
+- `npx.cmd playwright test tests/dialogue-logic.spec.ts tests/personality.spec.ts --reporter=line`:
+  **30 passed**, desktop/mobile, including an intentionally unsafe personality
+  override that cannot replace alternative scope.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`:
+  **30 passed**. All 16 coaches render the legal actual/alternative cases and all
+  eleven positional claim forms without losing conditional scope or evidence IDs.
+- `npm.cmd --prefix frontend run build`: passed, including API/type checks.
+
 ## Review intelligence completion: September 27, 2026
 
 Milestones 0–14 of [the specification](REVIEW_INTELLIGENCE_PLAN.md) are complete.

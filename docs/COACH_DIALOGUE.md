@@ -32,13 +32,21 @@ defender, unaddressed preceding threat or unfavorable capture/recapture. They us
 the shared neutral fallback for every coach and retain the verified source IDs;
 an opponent tactic template never narrates a mover-caused error.
 
+Intent version 4 retains positional branch identity in `Claim.position`: the
+actual or alternative line and its SAN move. Alternative positional claims use
+shared base predicates wrapped as `<move> would ...`; an actual-board personality
+template cannot override that scope. This applies to every positional family,
+including bishop pairs and doubled files. Actual consequences keep factual tense
+and existing personality wording. Unsupported conditional predicates abstain.
+The utterance trace identifies this rendering as `positional-conditional-1`.
+
 Variant selection uses stable factual identity, including game/path/evidence,
 never render time or analysis retry epoch. An utterance carries its intent ID,
 selected template/variant, source IDs and selection decisions. It also provides
 expression, intensity, priority, interruptibility, optional speech text and future
 auto-speak suitability; there is no audio or TTS integration.
 
-Claim priority ranks bubble content only. Intent version 3 derives delivery
+Claim priority ranks bubble content only. Since intent version 3, delivery
 intensity and urgency from semantic reactions, with a supported forced-mate
 override even when the move is recognized as Book. Routine opening recognition
 remains quiet and interruptible; unavailable/thinking/cold feedback is unsuitable

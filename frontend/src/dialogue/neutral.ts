@@ -1,6 +1,7 @@
 import {neutralTemplates} from "./templates";
 import {stableKey, type CoachUtterance, type DialogueIntent} from "./model";
 import {neutralPersonality, type DialogueCharacter, type PersonalityInput} from "./personality";
+import {alternativeTemplate} from "./positionalTemplates";
 
 function expand(template: string, slots: Record<string, string | number>) {
   // Motif vocabulary is controlled, but its first sound changes the article.
@@ -20,17 +21,20 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
   const variants: CoachUtterance["trace"]["variants"] = [];
   const sentences: string[] = [];
   for (const item of [...intent.claims].sort((a, b) => b.priority - a.priority)) {
-    const custom = personality.templates[item.code];
-    let options = custom?.length ? custom : neutralTemplates[item.code];
+    const alternative = item.position?.line === "alternative";
+    const fallback = alternative ? alternativeTemplate(item) : neutralTemplates[item.code];
+    const fallbackSource = alternative ? "positional-conditional-1" : "neutral-1";
+    const custom = alternative ? undefined : personality.templates[item.code];
+    let options = custom?.length ? custom : fallback;
     if (!options?.length) continue;
     let index = Number.parseInt(stableKey([intent.id, item.code, ...(custom?.length ? [character.id, personality.version] : [])]), 16) % options.length;
     let text = expand(options[index], item.slots);
-    let source = custom?.length ? personality.version : "neutral-1";
-    if (!text && custom?.length && neutralTemplates[item.code]?.length) {
-      options = neutralTemplates[item.code];
+    let source = custom?.length ? personality.version : fallbackSource;
+    if (!text && custom?.length && fallback?.length) {
+      options = fallback;
       index = Number.parseInt(stableKey([intent.id, item.code]), 16) % options.length;
       text = expand(options[index], item.slots);
-      source = "neutral-1";
+      source = fallbackSource;
     }
     if (!text || sentences.includes(text)) continue;
     // Keep whole factual sentences. A secondary fact never pushes the bubble into an essay.

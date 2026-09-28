@@ -5,10 +5,28 @@ from copy import deepcopy
 import chess
 import pytest
 from review_intelligence_fixtures import move_report
+from review_position_fixtures import position_reports
 from test_review_clocks import game
 from trainer.game_review import public_report
 from trainer.review_intelligence.context import move_contexts
 from trainer.review_intelligence.positional import pawn_features, position_changes
+
+
+@pytest.mark.parametrize("feature", ["doubled_files", "bishop_pair"])
+@pytest.mark.parametrize("black", [False, True])
+def test_unplayed_positional_changes_keep_their_branch_and_affected_side(feature, black):
+    fixture = position_reports(feature, black)
+    alternative, actual = fixture["alternative"], fixture["actual"]
+    unplayed = [
+        e for e in alternative["intelligence"]["events"] if e["facts"].get("feature") == feature
+    ]
+    played = [e for e in actual["intelligence"]["events"] if e["facts"].get("feature") == feature]
+    assert len(unplayed) == len(played) == 1
+    assert unplayed[0]["facts"]["line"] == "best"
+    assert played[0]["facts"]["line"] == "actual"
+    for key in ("side", "before", "after", "uci"):
+        assert unplayed[0]["facts"][key] == played[0]["facts"][key]
+    assert unplayed[0]["facts"]["side"] == ("black" if black else "white")
 
 
 def changes(fen, uci, feature):

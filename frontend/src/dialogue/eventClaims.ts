@@ -11,10 +11,14 @@ const join = (items: string[]) => items.length === 2 ? `${items[0]} and ${items[
 
 export function positionalClaim(event: Event, move: string, best: string): Claim | null {
   const f = event.facts;
+  if (f.line !== "actual" && f.line !== "best") return null;
   const alternative = f.line === "best";
   const lead = `${alternative ? best : move} `;
   const priority = alternative ? 61 : 66;
-  const make = (code: string, slots: Claim["slots"]) => claim(code, slots, priority, event.evidence, [event.id]);
+  const make = (code: string, slots: Claim["slots"]): Claim => ({
+    ...claim(code, slots, priority, event.evidence, [event.id]),
+    position: {line: alternative ? "alternative" : "actual", move: alternative ? best : move},
+  });
   switch (f.feature) {
     case "first_development": return make("development", {lead, piece: words(f.piece)});
     case "rook_file": return f.after === "open" || f.after === "semi_open"
@@ -28,9 +32,9 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
       {lead, piece: words(f.piece), square: words(f.target)});
     case "king_flights": return make("flights", {lead, squares: join(strings(f.opened))});
     case "castling": return make("castle", {lead, square: words(f.after)});
-    case "bishop_pair": return make("bishops", {side: words(f.side)});
+    case "bishop_pair": return make("bishops", {lead, side: words(f.side)});
     case "doubled_files": return strings(f.after).length
-      ? make("doubled", {side: words(f.side), files: join(strings(f.after))}) : null;
+      ? make("doubled", {lead, side: words(f.side), files: join(strings(f.after))}) : null;
     default: return null;
   }
 }

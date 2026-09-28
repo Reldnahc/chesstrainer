@@ -41,7 +41,7 @@ test("laboratory traces a local review without network or storage and retains it
   await expect(page.getByRole("heading", {name: "Review intelligence laboratory"})).toBeVisible();
   await page.getByLabel("Open game-detail JSON").setInputFiles({name: "synthetic.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(fixture))});
   await expect(page.locator(".lab-utterance")).toContainText("queen on e4 and king on h7");
-  await expect(page.getByRole("region", {name: "Rendered coach line"})).toContainText("di3:");
+  await expect(page.getByRole("region", {name: "Rendered coach line"})).toContainText("di4:");
   await expect(page.locator(".lab-chain")).toContainText("synthetic-search");
   const neutral = await page.locator(".lab-utterance").innerText();
   await page.getByLabel("Dialogue coach").selectOption("classic");

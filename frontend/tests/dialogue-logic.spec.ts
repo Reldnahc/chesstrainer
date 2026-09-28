@@ -1,11 +1,14 @@
 import {test, expect} from "@playwright/test";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {practiceIntent, explanationIntent} from "../src/dialogue/practiceIntent";
-import {renderNeutral} from "../src/dialogue/neutral";
+import {renderDialogue, renderNeutral} from "../src/dialogue/neutral";
+import {neutralPersonality} from "../src/dialogue/personality";
 import {claim, makeIntent, stableKey} from "../src/dialogue/model";
 import {positionalClaim} from "../src/dialogue/eventClaims";
 import type {Game, Position, Report} from "../src/gameReview/types";
 import type {ColdPosition, ExplanationFrame, Schema} from "../src/api";
+import {semanticFixtures} from "./semantic-fixtures";
+import {positionalClaims} from "./positional-claims";
 
 const ref = {source: "stockfish" as const, id: "search", field: "root"};
 const event = (kind: Schema["ReviewEvent"]["kind"], facts: Schema["ReviewEvent"]["facts"]): Schema["ReviewEvent"] =>
@@ -18,6 +21,42 @@ const report = (events: Schema["ReviewEvent"][] = []): Report => ({label: "Blund
 const game = {frames: [{}, {number: 1, san: "e4", actor: "white"}], orientation: "white"} as Game;
 const frame = {turn: "black", fen: "position"} as Position;
 const args = {game, frame, key: "game:1:", ply: 1, expression: "blunder" as const};
+
+const positionFixtures = semanticFixtures<{feature: string; code: string; mirrored: boolean; alternative: Report; actual: Report}[]>("review_position_fixtures.py");
+for (const fixture of positionFixtures) test(`${fixture.feature} preserves actual versus unplayed consequences (${fixture.mirrored ? "mirror" : "original"})`, () => {
+  for (const kind of ["actual", "alternative"] as const) {
+    const value = fixture[kind];
+    const turn = value.actual_line!.frames[1].fen.split(" ")[1] === "w" ? "white" : "black";
+    const intent = gameIntent({...args, frame: {...frame, turn}, report: value});
+    const item = intent.claims.find(c => c.code === fixture.code)!;
+    expect(item).toBeTruthy();
+    // Isolate one selected claim to prove its language even if a compact bubble
+    // omits this lower-priority fact in favor of another supported consequence.
+    const text = renderNeutral({...intent, claims: [item]}).text;
+    expect(text).toContain(kind === "alternative" ? value.best.san : fixture.feature === "doubled_files" ? "doubled" : "bishops");
+    if (kind === "alternative") expect(text).toContain(`${value.best.san} would `);
+    else expect(text).not.toMatch(/would|unplayed|instead/);
+    expect(text).toContain(fixture.mirrored ? "black" : "white");
+  }
+});
+
+test("every positional claim carries branch scope that personality wording cannot discard", () => {
+  for (const line of ["actual", "best"] as const) for (const item of positionalClaims(line)) {
+    expect(item).toBeTruthy();
+    expect(item.position).toEqual({line: line === "actual" ? "actual" : "alternative", move: line === "actual" ? "played" : "alternative"});
+    const intent = makeIntent("grammar", "mistake", "game", "mistake", [item]);
+    const character = {id: "unsafe-override", personality: {...neutralPersonality, templates: {[item.code]: ["This already happened on the actual board."]}}};
+    const text = renderDialogue(intent, character).text;
+    if (line === "best") {
+      expect(text).toMatch(/^alternative would /);
+      expect(text).not.toContain("already happened");
+      expect(renderDialogue(intent, character).trace.variants[0].source).toBe("positional-conditional-1");
+    } else expect(text).toBe("This already happened on the actual board.");
+  }
+  const unsupported = {...positionalClaims("best")[0], code: "future_feature"};
+  const fallback = renderNeutral(makeIntent("unknown", "mistake", "game", "mistake", [unsupported]));
+  expect(fallback.trace.variants).toEqual([]);
+});
 
 test("semantic dialogue names supported tactics, replies and exact severity without inventing causes", () => {
   const tactic = event("tactic", {role: "allowed", motif: "fork", roles: {targets: ["e4", "h7"]},
