@@ -2,6 +2,124 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Thirty-coach cast and behavior revamp - September 28, 2026
+
+Verified on `codex/coach-revamp`, based on `ddf1925`. The preserved owner brief is
+[COACH_CAST_BIBLE.md](COACH_CAST_BIBLE.md); the final roster, compatibility choices,
+motion architecture and preview commands are in [COACH.md](COACH.md). The owner's
+later picker decision supersedes the brief's optional group headings: production
+Settings is an unbroken six-column/five-row desktop grid, with smaller portraits
+and responsive four/three/two-column layouts. No visible categories or filters.
+
+Completed units: `67a6c8c` preserved the brief, `1633b69` expanded the account/API
+contract and retired-ID handling, and `ce66320` integrated the artwork, behavioral
+dialogue, four-idle expression pools, compact selection, developer tools and tests.
+The temporary implementation ledger was removed after this permanent handoff.
+No push, merge, live deployment, engine budget or grading change was made.
+
+Host: Windows, Python 3.12.10, Node 24.19.0, Docker 29.1.3. Existing locked
+dependencies, local Stockfish and cached Maia weights were used. Test databases,
+screenshots, source exports and logs remain ignored development artifacts.
+
+### Validation actually run
+
+- `npm.cmd ls --depth=0` and `npm.cmd run build` from `frontend`: passed. The build
+  includes generated API agreement, application/contract/browser-test TypeScript,
+  downloadable source packaging and Vite. It was rebuilt after new files were
+  committed so the source download includes the complete cast implementation.
+- With `STOCKFISH_PATH=.tools/stockfish/stockfish-windows-x86-64-avx2.exe`,
+  `.venv/Scripts/python.exe -m pytest -q -ra --basetemp data/verification/coach-revamp-backend -o cache_dir=data/verification/coach-revamp-cache`:
+  **618 passed, 3 optional Maia skips**, including native Stockfish. The two
+  existing TestClient/httpx/AnyIO deprecation warnings remain.
+- With `MAIA_CHECKPOINT_DIR=data/maia-benchmark/models`, `MAIA_TEST_MODEL=79m`,
+  `MAIA_TEST_DEVICE=cpu` and `HF_HUB_OFFLINE=1`,
+  `.tools/maia-runtime/Scripts/python.exe -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q -ra --basetemp data/verification/coach-revamp-maia -o cache_dir=data/verification/coach-revamp-maia-cache`:
+  **3 passed, 9 deselected**. This exercised all three optional checks skipped in
+  the ordinary environment, with cached weights and no model download.
+- `npx.cmd playwright test --reporter=line`: **213 passed, 3 intentional skips**
+  in the complete desktop/mobile application suite. Skips remain the phone-only
+  layout test on desktop and desktop-only modifier-click/wide-layout cases on
+  mobile. The missing-Chess.com-user test intentionally logs an import error.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`:
+  **2 passed**, covering account isolation, another browser session, coach and
+  interface-motion persistence. Repeated after the compact-picker refinement.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line`:
+  **44 passed**, uninterrupted on final production dialogue, with no skips or
+  retries. Includes causal actors/colors, hypothetical positional scope, sparse
+  payloads, blocked passed pawns, stationary rooks, cold SRS and blind comparison.
+- All **42 tests** in the normal coach-studio configuration passed on desktop and
+  mobile, with no skips. The ignored `../.tools/playwright.coach.revamp.config.ts`
+  wrapper imports the normal config and enables reuse of the owner's existing
+  port-5174 server; its tests, projects and application are unchanged. From
+  `frontend`, with that `--config`, the partitions were:
+  - `coach-studies.spec.ts coach-studio.spec.ts full-cast.spec.ts --output=studio-test-results-inspector --reporter=line`: **22 passed**.
+  - `reduced-motion.spec.ts --output=studio-test-results-inspector-reduced --reporter=line`: **2 passed**.
+  - `motion-vocabulary.spec.ts --reporter=line`: **4 passed**.
+  - `idle-cadence.spec.ts idle-articulation.spec.ts --output=studio-test-results-animation`: the **12 cadence checks passed**; an incorrect test-only Vite import path initially failed both articulation checks. After correcting that path, `idle-articulation.spec.ts --output=studio-test-results-animation` passed **2 checks**, exercising all 2,400 mounted slots on both devices.
+- `.venv/Scripts/ruff.exe check backend scripts migrations`,
+  `.venv/Scripts/ruff.exe format --check backend scripts migrations`,
+  `.venv/Scripts/python.exe scripts/export_api_contract.py --check`,
+  `.venv/Scripts/python.exe -m pip check` and `git diff --check`: passed.
+  Ruff formatting checked 226 files after adding the legal positional fixture.
+- With `DATABASE_PATH=data/verification/coach-revamp-fresh.sqlite3`,
+  `.venv/Scripts/python.exe -m alembic upgrade head` and
+  `.venv/Scripts/python.exe -m alembic check`: passed. SQLite integrity returned
+  `ok`; foreign-key check returned no rows. No schema migration was needed.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_source_archive.py -q --basetemp data/verification/coach-revamp-source -o cache_dir=data/verification/coach-revamp-source-cache`:
+  **5 passed**, repeated after committing the new source files.
+- `docker build --progress=plain -t fieldwork:coach-revamp-ce66320 .tools/coach-revamp-context-ce66320`:
+  passed using a public tracked-source export of the committed feature, avoiding
+  restricted local cache directories. Locked dependency install, API/type checks,
+  corresponding-source packaging and the Linux production build passed.
+- `.venv/Scripts/python.exe scripts/smoke_install.py --image fieldwork:coach-revamp-ce66320`:
+  fresh local/accounts, restart, native Stockfish review/health, origin/cookie
+  protection and independent coach/interface-motion preferences all passed.
+  Disposable containers/volumes were removed by the harness; the live host was
+  not contacted.
+
+### Review and visual checks
+
+The full cast has 20 expressions and four distinct configured idle variants per
+expression. Production scheduler checks cover repeated cycles, immediate-repeat
+avoidance, expression changes, hidden/offscreen pauses, Still/device overrides and
+separation from full reactions. Independent review checked actual SVG articulation
+targets; browser checks verified the corresponding animation tracks. Actual-size
+idle frames were inspected across eleven representative character/state pairs,
+and all thirty desktop/mobile expression sheets were captured. A mirrored raccoon
+ear pivot and a half-width tablet singleton preview were corrected.
+
+The production renderer corpus covered **10,800 outputs and 1,777 authored forms**,
+with no audit errors or whole-voice collisions. The ten common-situation subset
+covered 3,600 renders: no primary neutral fallback, and 144 secondary neutral
+fallbacks for ordinary Stockfish alternative comparisons. All 300 single-take
+blind comparison outputs were read. Writing refinements removed unsupported
+passed-pawn clearance, implied rook movement after a pawn move, dangling Robot
+labels and ambiguous consequence-first references. A missed tactic establishes
+the unplayed move before its effects. An allowed-mate explanation no longer
+repeats the same reply solely to say that it checks.
+
+Manual application inspection used a disposable native game import, selected
+Robot, opened its real review, stepped through feedback, reloaded, and inspected
+desktop and phone layouts. The compact picker was inspected at desktop size;
+automated geometry and screenshots cover 390px and 320px widths. Saved selection
+and actual review portraits were exercised for all thirty coaches. No user games
+or live preferences were altered.
+
+Development failures were investigated rather than hidden: the first application
+run had 14 stale wording/unsafe-template expectation failures, all corrected while
+preserving actor, reply, facts and lifecycle assertions. The final full run passed.
+Early studio trace teardown errors came from sharing an output directory; isolated
+runs passed. One earlier lab navigation hit Chromium `ERR_NO_BUFFER_SPACE` while
+several browser suites ran together; the final full lab run passed uninterrupted.
+
+Vite still warns about its 500-kB chunk threshold: the application is 536.59 kB
+minified / 143.75 kB gzip, plus the separately cached React chunk at 69.04 kB gzip.
+No dependencies, downloaded artwork, voice system, continuous JavaScript animation
+loop or warning suppression was introduced. This is a build advisory, not a test
+failure. Emulated phones do not establish physical-device performance, and writing
+audits cannot establish personal taste. The studio and blind lab remain available
+for the owner's creative review; no engineering blocker remains.
+
 ## Best move beneath the coach portrait: focused checks - September 28, 2026
 
 Game review now places its best-move readout beneath the portrait using an optional
