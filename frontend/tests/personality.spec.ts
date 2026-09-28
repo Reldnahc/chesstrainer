@@ -1,4 +1,4 @@
-import {test, expect} from "@playwright/test";
+import {test, expect, type Request} from "@playwright/test";
 import {renderDialogue, renderNeutral} from "../src/dialogue/neutral";
 import {claim, makeIntent} from "../src/dialogue/model";
 import {neutralPersonality} from "../src/dialogue/personality";
@@ -53,9 +53,25 @@ test("saved coach selection changes reviewed wording without new searches or alt
   const text = await line.innerText(), intentId = await line.getAttribute("data-intent");
   const before = await (await page.request.get(`/api/games/${id}`)).json();
   const searches: string[] = [];
-  const refreshChecks: Promise<{status: string; job_id: string}>[] = [];
-  page.on("request", r => {if (r.method() === "POST" && /\/(analysis|analyze)$/.test(r.url())) searches.push(r.url());});
-  page.on("response", r => {if (r.request().method() === "POST" && r.url().endsWith(`/games/${id}/review`)) refreshChecks.push(r.json());});
+  const refreshRequests: string[] = [];
+  const observeRequest = (request: Request) => {
+    if (request.method() !== "POST") return;
+    if (/\/(analysis|analyze)$/.test(request.url())) searches.push(request.url());
+    if (request.url().endsWith(`/games/${id}/review`)) refreshRequests.push(request.url());
+  };
+  page.on("request", observeRequest);
+  const reopen = async (navigate: () => Promise<unknown>) => {
+    // Register before navigation and consume the body within the awaited task.
+    // Both back navigation and reload perform the completed-review handshake.
+    await Promise.all([
+      page.waitForResponse(r => r.request().method() === "POST" && r.url().endsWith(`/games/${id}/review`))
+        .then(async response => {
+          expect(response.ok()).toBe(true);
+          expect(await response.json()).toEqual({status: "completed", job_id: before.job.id});
+        }),
+      navigate(),
+    ]);
+  };
   try {
     await page.getByRole("link", {name: "Settings", exact: true}).click();
     await page.getByRole("button", {name: "Women", exact: true}).click();
@@ -63,7 +79,7 @@ test("saved coach selection changes reviewed wording without new searches or alt
     await choice.click();
     await expect(choice).toBeChecked();
     await expect(page.getByLabel("Coach motion", {exact: true})).toBeEnabled();
-    await page.goBack();
+    await reopen(() => page.goBack());
     await expect(line).toHaveAttribute("data-dialogue-coach", "woman-analyst");
     await expect(line).not.toHaveText(text);
     await expect(line).toHaveAttribute("data-intent", intentId!);
@@ -74,8 +90,19 @@ test("saved coach selection changes reviewed wording without new searches or alt
     // Reopening has an existing idempotent model/refinement refresh handshake.
     // A preference change must leave it completed, never queue another search.
     expect(after.job).toEqual(before.job);
-    expect(await Promise.all(refreshChecks)).toEqual([{status: "completed", job_id: before.job.id}]);
-    await page.reload();
+    const selectedText = await line.innerText();
+    await reopen(() => page.reload());
     await expect(line).toHaveAttribute("data-dialogue-coach", "woman-analyst");
-  } finally {await page.request.put("/api/preferences/coach", {data: {coach_id: "classic", motion: "natural"}});}
+    await expect(line).toHaveText(selectedText);
+    await expect(line).toHaveAttribute("data-intent", intentId!);
+    const reloaded = await (await page.request.get(`/api/games/${id}`)).json();
+    expect(reloaded.frames).toEqual(before.frames);
+    expect(reloaded.context).toEqual(before.context);
+    expect(reloaded.job).toEqual(before.job);
+    expect(refreshRequests).toHaveLength(2);
+    expect(searches).toEqual([]);
+  } finally {
+    page.off("request", observeRequest);
+    await page.request.put("/api/preferences/coach", {data: {coach_id: "classic", motion: "natural"}});
+  }
 });

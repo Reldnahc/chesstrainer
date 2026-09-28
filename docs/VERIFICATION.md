@@ -2,6 +2,22 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## PR #1 correction pass: coach-selection lifecycle
+
+At reviewed head `7423d61`, the latest PR run `36360090312` failed on mobile
+with `response.json: Test ended`; the same-head push run passed. Twelve local
+repetitions of the original test passed, consistent with an intermittent race.
+The response listener could start body reads after its promise array was drained.
+Back navigation and reload now each register an explicit response wait before
+navigation and await its body. The synchronous request observer is removed in
+`finally`. Reload also verifies unchanged wording, intent, chess facts and job,
+two completed handshakes, and no new analysis requests.
+
+Using the documented local Stockfish and Chromium environment variables:
+`npx.cmd playwright test tests/personality.spec.ts --grep 'saved coach selection' --repeat-each=20 --reporter=line`
+passed **40/40** (20 desktop, 20 mobile), 52.1 s. Repetition supplements the
+explicit lifecycle ownership; it is not proof that every possible race is absent.
+
 ## Review intelligence completion: September 27, 2026
 
 Milestones 0–14 of [the specification](REVIEW_INTELLIGENCE_PLAN.md) are complete.
