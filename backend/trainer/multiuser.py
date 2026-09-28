@@ -166,6 +166,14 @@ def configure_accounts(app, settings):
         user = accounts.by_name(request.state.user["username"])
         return {"user": accounts.public(user)}
 
+    @app.post("/api/auth/onboarding/complete", response_model=AccountProfile)
+    def complete_onboarding(request: Request):
+        with accounts.connect() as db:
+            db.execute(
+                "UPDATE users SET onboarding_completed=1 WHERE id=?", (request.state.user["id"],)
+            )
+        return {"user": accounts.public(accounts.by_name(request.state.user["username"]))}
+
     @app.post("/api/auth/logout-all", response_model=Ok, response_model_exclude_unset=True)
     def logout_all(request: Request, response: Response):
         with accounts.connect() as db:

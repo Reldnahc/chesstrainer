@@ -76,7 +76,7 @@ class Accounts:
         with self.connect() as db:
             try:
                 db.execute(
-                    "INSERT INTO users(id,username,password,admin,created,disabled,chesscom_username) VALUES(?,?,?,?,?,0,'')",
+                    "INSERT INTO users(id,username,password,admin,created,disabled,chesscom_username,onboarding_completed) VALUES(?,?,?,?,?,0,'',0)",
                     (identity, name, encoded, int(admin), time.time()),
                 )
             except sqlite3.IntegrityError as exc:
@@ -115,7 +115,10 @@ class Accounts:
 
     @staticmethod
     def public(user):
-        return {key: user[key] for key in ("id", "username", "admin", "chesscom_username")}
+        return {
+            key: user[key]
+            for key in ("id", "username", "admin", "chesscom_username", "onboarding_completed")
+        }
 
 
 def main():

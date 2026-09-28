@@ -31,6 +31,7 @@ class User(Base):
     admin: Mapped[bool] = mapped_column(default=False)
     disabled: Mapped[bool] = mapped_column(default=False)
     chesscom_username: Mapped[str] = mapped_column(default="")
+    onboarding_completed: Mapped[bool] = mapped_column(default=False, server_default="0")
     created: Mapped[float]
 
 

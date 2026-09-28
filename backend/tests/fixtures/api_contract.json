@@ -40,6 +40,10 @@
             "title": "Id",
             "type": "string"
           },
+          "onboarding_completed": {
+            "title": "Onboarding Completed",
+            "type": "boolean"
+          },
           "username": {
             "title": "Username",
             "type": "string"
@@ -49,7 +53,8 @@
           "id",
           "username",
           "admin",
-          "chesscom_username"
+          "chesscom_username",
+          "onboarding_completed"
         ],
         "title": "Account",
         "type": "object"
@@ -5695,6 +5700,24 @@
           }
         },
         "summary": "Identity"
+      }
+    },
+    "/api/auth/onboarding/complete": {
+      "post": {
+        "operationId": "complete_onboarding_api_auth_onboarding_complete_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountProfile"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Complete Onboarding"
       }
     },
     "/api/auth/profile": {

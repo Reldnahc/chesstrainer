@@ -27,3 +27,18 @@ A completed game is checkpointed atomically as it is saved. Retry reopens the bo
 All provider traffic shares one host lock. Lichess limits default to `PROVIDER_TIMEOUT_SECONDS=20` per network read, `PROVIDER_MAX_RESPONSE_BYTES=25000000`, `PROVIDER_MAX_SCAN_GAMES=10000`, one megabyte per record and ten minutes per export. Narrow the date range if a cap is reached. Cancellation during a blocked read completes when that bounded read returns. Chess.com's existing `CHESSCOM_*` transport settings remain unchanged. No new Docker configuration is required.
 
 Automated tests inject provider responses and make no live provider requests. This verifies Fieldwork's transport contract and integration, not the external services' uptime.
+
+## New-account welcome
+
+New hosted accounts see a two-step welcome before entering the application: optional
+provider usernames, then either provider-fetch guidance or PGN instructions when no
+username was supplied. It saves connections through the ordinary provider API and
+does not start import or engine jobs during onboarding. Open imports goes directly
+to the appropriate Settings form; Finish for now retains the original destination.
+
+`users.onboarding_completed` is false for new accounts and marked true only after
+successful completion. The authenticated, CSRF-protected completion endpoint is
+idempotent and changes only the current account. Existing users are grandfathered
+as complete during migration. Local-only installations have no onboarding gate.
+Reloading an unfinished flow restores saved usernames; completed users bypass it
+on every device. Connections remain editable later in Settings.

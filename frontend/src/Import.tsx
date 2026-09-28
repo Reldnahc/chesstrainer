@@ -58,11 +58,11 @@ export default function ImportSettings({
   health: Health | null;
   fail: (e: unknown) => void;
 }) {
-  const [source, setSource] = useState<string>("chesscom");
+  const [source, setSource] = useState<string>(() => new URLSearchParams(window.location.search).get("import") || "chesscom");
   const [providers, setProviders] = useState<Schema["GameProvider"][]>([]);
   useEffect(() => {
     let active = true;
-    read(api.GET("/api/game-providers")).then(value => { if (active) setProviders(value); }).catch(fail);
+    read(api.GET("/api/game-providers")).then(value => { if (active) { setProviders(value); setSource(current => current === "pgn" || value.some(provider => provider.id === current) ? current : value[0]?.id || "pgn"); } }).catch(fail);
     return () => { active = false; };
   }, [fail]);
   const selectedProvider = providers.find(provider => provider.id === source);

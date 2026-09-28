@@ -2,6 +2,18 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## One-time account onboarding — September 28, 2026
+
+New accounts receive optional provider connection setup and a short, conditional
+import guide. Completion is stored on the user; migration grandfathers existing
+users. Unfinished sessions resume with saved connections. No import/engine job is
+started by the onboarding screens themselves.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_onboarding.py backend/tests/test_accounts.py backend/tests/test_api_contract.py backend/tests/test_game_providers.py -q -p no:cacheprovider --basetemp=data/verification/onboarding-1`: **30 passed**, covering migration, authentication/CSRF, idempotent completion, account isolation, restart persistence and local-mode bypass.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`: **6 passed** across desktop/mobile. Both optional-username paths, interrupted flow reload, failed completion/retry, direct entry into provider/PGN forms, completed-account reload and existing second-device login coverage pass.
+- `npm.cmd run build`, `ruff check backend scripts migrations`, `ruff format --check backend scripts migrations`, and `git diff --check`: passed. OpenAPI and generated TypeScript were regenerated through the existing tools. Existing Vite chunk-size and TestClient deprecation advisories remain.
+- Inspected desktop PGN and mobile provider guide screenshots. No live provider requests, deployment or unrelated full-suite rerun.
+
 ## Lichess and shared game providers — September 28, 2026
 
 Implemented on main after `d42ea35`; backend/migration/API foundation committed as

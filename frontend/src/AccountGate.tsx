@@ -7,6 +7,8 @@ import {
 } from "react";
 import { api, read, setAccountSession, type Schema } from "./api";
 
+import Onboarding from "./Onboarding";
+
 export type Account = Schema["Account"];
 type Identity = Schema["Identity"];
 type AccountSession = {
@@ -177,6 +179,8 @@ export default function AccountGate({ children }: { children: ReactNode }) {
         </section>
       </main>
     );
+  if (!identity.user.onboarding_completed)
+    return <Onboarding key={identity.user.id} onComplete={user => setIdentity(current => current ? { ...current, user } : current)} />;
   return (
     <AccountContext.Provider
       value={{ user: identity.user, logout, busy, error }}
