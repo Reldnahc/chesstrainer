@@ -2,6 +2,22 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Animation settings grouping: focused checks
+
+Coach motion now appears beside Piece & interface motion in Settings → Animations,
+with its save, loading, reduced-motion and retry feedback next to the control.
+Your coach retains character selection. Existing preference providers, account
+persistence and override behavior are unchanged.
+
+- From `frontend`, `npx.cmd playwright test coach.spec.ts motion.spec.ts --grep 'coach motion|preference failures|piece and interface motion saves|motion load and save failures' --reporter=line`:
+  **10 passed**, desktop/mobile. Covers both controls in Animations, independent
+  choices, reload persistence, device changes, overrides and failed-save/retry
+  behavior. Desktop and 320px phone panel screenshots inspected.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed. The account browser test's
+  save-status selector was updated; that separate suite was not run.
+- Full verification remains deferred by owner request; no push/deployment.
+
 ## Start-of-game navigation: focused checks
 
 The `<<` control now returns to the original game's starting position (ply 0),

@@ -1,7 +1,31 @@
 import { useState } from "react";
+import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
 import MotionSelect from "./MotionSelect";
 import { useReducedMotion } from "./useReducedMotion";
+
+function CoachMotionSetting() {
+  const {preferences, ready, saving, error, save, retry} = useCoachPreferences();
+  const reduced = useReducedMotion();
+  const [saved, setSaved] = useState(false);
+  return <>
+    <MotionSelect id="coach-motion" label="Coach motion"
+      value={preferences.motion} disabled={!ready || saving}
+      onChange={async motion => {
+        setSaved(false);
+        setSaved(await save({...preferences, motion}));
+      }} />
+    <p className="coach-motion-preference-status" role="status">
+      {saving ? "Saving…" : error ? <>
+        {error}{" "}<button className="text-button" onClick={retry}>Reload coach motion preferences</button>
+      </> : !ready ? "Loading coach motion preferences…"
+        : preferences.motion === "system" && reduced
+          ? "Your device requests reduced motion. The coach will stay still."
+          : saved ? "Saved. This choice follows your account."
+            : "Your coach motion preference is saved with your workspace."}
+    </p>
+  </>;
+}
 
 export default function MotionSettings() {
   const {preferences, ready, saving, error, save, retry} = useMotionPreferences();
@@ -9,7 +33,8 @@ export default function MotionSettings() {
   const [saved, setSaved] = useState(false);
   return <section className="panel settings-panel" aria-labelledby="motion-settings-title">
     <h2 id="motion-settings-title">Animations</h2>
-    <p>Chess pieces, board feedback and interface effects. Your coach has its own motion setting.</p>
+    <p>Choose motion for your coach and for chess pieces, board feedback and interface effects.</p>
+    <CoachMotionSetting />
     <MotionSelect id="interface-motion" label="Piece & interface motion"
       value={preferences.motion} disabled={!ready || saving}
       onChange={async motion => {

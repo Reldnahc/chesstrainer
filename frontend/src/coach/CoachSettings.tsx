@@ -3,14 +3,11 @@ import { CoachCharacter } from "./CoachAvatar";
 import { useCoachPreferences } from "./CoachProvider";
 import { coachCollections, getCoach, selectableCoaches } from "./registry";
 import type { CoachId, CoachPreferences } from "./model";
-import { useReducedMotion } from "../useReducedMotion";
-import MotionSelect from "../MotionSelect";
 import "./settings.css";
 
 export default function CoachSettings() {
   const { preferences, ready, saving, error, save, retry } =
     useCoachPreferences();
-  const reduced = useReducedMotion();
   const [saved, setSaved] = useState(false);
   const selected = getCoach(preferences.coach_id);
   const [browsing, setBrowsing] = useState<{
@@ -97,8 +94,6 @@ export default function CoachSettings() {
             </label>
           ))}
       </fieldset>
-      <MotionSelect id="coach-motion" label="Coach motion" disabled={!ready || saving}
-        value={preferences.motion} onChange={motion => change({...preferences, motion})} />
       <p className="coach-preference-status" role="status">
         {saving ? (
           "Saving…"
@@ -111,12 +106,10 @@ export default function CoachSettings() {
           </>
         ) : !ready ? (
           "Loading your coach…"
-        ) : preferences.motion === "system" && reduced ? (
-          "Your device requests reduced motion. The coach will stay still."
         ) : saved ? (
           "Saved. This choice follows your account."
         ) : (
-          "Your coach and motion preference are saved with your workspace."
+          "Your coach is saved with your workspace."
         )}
       </p>
     </section>

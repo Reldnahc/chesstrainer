@@ -8,7 +8,9 @@ test('piece and interface motion saves independently and follows the device only
     await page.request.put('/api/preferences/coach', {data: {...coach, motion: 'still'}});
     await page.emulateMedia({reducedMotion: 'reduce'});
     await page.goto('/settings');
-    const motion = page.getByLabel('Piece & interface motion', {exact: true});
+    const animations = page.getByRole('region', {name: 'Animations', exact: true});
+    const motion = animations.getByLabel('Piece & interface motion', {exact: true});
+    const coachMotion = animations.getByLabel('Coach motion', {exact: true});
     const portrait = page.locator('.coach-option:has(input:checked) .coach-avatar');
     const root = page.locator('html');
     await expect(motion).toBeEnabled();
@@ -26,7 +28,8 @@ test('piece and interface motion saves independently and follows the device only
     await page.emulateMedia({reducedMotion: 'no-preference'});
     await motion.selectOption('still');
     await expect(root).toHaveAttribute('data-interface-motion', 'still');
-    await page.getByLabel('Coach motion', {exact: true}).selectOption('natural');
+    await coachMotion.selectOption('natural');
+    await expect(animations.locator('.coach-motion-preference-status')).toContainText('Saved');
     await expect(portrait).toHaveAttribute('data-motion', 'natural');
     await portrait.scrollIntoViewIfNeeded();
     await expect.poll(() => portrait.evaluate(element => element.getAnimations({subtree: true}).length)).toBeGreaterThan(0);
@@ -46,7 +49,7 @@ test('piece and interface motion saves independently and follows the device only
     await page.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(motion).toHaveValue('system');
     if (info.project.name === 'mobile') await page.setViewportSize({width: 320, height: 700});
-    await page.getByRole('region', {name: 'Animations', exact: true}).screenshot({path: `test-results/motion-settings-${info.project.name}.png`});
+    await animations.screenshot({path: `test-results/motion-settings-${info.project.name}.png`});
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   } finally {
     await page.request.put('/api/preferences/motion', {data: original});

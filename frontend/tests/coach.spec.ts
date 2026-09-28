@@ -31,7 +31,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     await expect(notice).toBeVisible();
 
     await motion.selectOption("natural");
-    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
+    await expect(page.locator(".coach-motion-preference-status")).toContainText("Saved");
     await expect(portrait).toHaveAttribute("data-motion", "natural");
     await page.reload();
     await expect(motion).toHaveValue("natural");
@@ -43,7 +43,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     await expect(notice).toHaveCount(0);
 
     await motion.selectOption("still");
-    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
+    await expect(page.locator(".coach-motion-preference-status")).toContainText("Saved");
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.reload();
     await expect(motion).toHaveValue("still");
@@ -51,7 +51,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     expect(await portrait.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
 
     await motion.selectOption("system");
-    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
+    await expect(page.locator(".coach-motion-preference-status")).toContainText("Saved");
     await page.reload();
     await expect(motion).toHaveValue("system");
     await expect(portrait).toHaveAttribute("data-motion", "natural");
@@ -161,12 +161,14 @@ test("preference failures keep the last saved choice and allow recovery", async 
     await page.goto("/settings");
     const motion = page.getByLabel("Coach motion", { exact: true });
     const status = page.locator(".coach-preference-status");
+    const motionStatus = page.locator(".coach-motion-preference-status");
     await expect(status).toContainText("Preferences unavailable");
+    await expect(motionStatus).toContainText("Preferences unavailable");
     await expect(motion).toBeDisabled();
     await expect(
       page.locator(".coach-option:has(input:checked) .coach-avatar"),
     ).toHaveAttribute("data-motion", "still");
-    await page.getByRole("button", { name: "Reload preferences" }).click();
+    await page.getByRole("button", { name: "Reload coach motion preferences", exact: true }).click();
     await expect(motion).toBeEnabled();
     await expect(motion).toHaveValue("natural");
     await page.getByRole("button", { name: "Cats", exact: true }).click();
@@ -181,8 +183,13 @@ test("preference failures keep the last saved choice and allow recovery", async 
     await cat.click();
     await expect(cat).toBeChecked();
     await expect(motion).toBeEnabled();
+    failSave = true;
     await motion.selectOption("still");
-    await expect(status).toContainText("Saved");
+    await expect(motionStatus).toContainText("Preference was not saved");
+    await expect(motion).toHaveValue("natural");
+    await expect(cat).toBeChecked();
+    await motion.selectOption("still");
+    await expect(motionStatus).toContainText("Saved");
     await page.reload();
     await expect(motion).toHaveValue("still");
     await expect(cat).toBeChecked();

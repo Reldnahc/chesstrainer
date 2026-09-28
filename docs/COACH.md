@@ -121,6 +121,8 @@ The latest unseen reaction can play when it becomes visible; an interrupted or
 already seen entrance is not replayed. Unmounting removes observers/listeners and
 clears timers. Replaying deliberately restarts only the SVG rig, not its layout.
 
+**Settings → Animations** groups **Coach motion** and **Piece & interface motion**,
+each with its own save/error feedback. **Your coach** contains character selection.
 The default **Use device setting** follows system reduced motion. Choosing
 **Animated** or **Still** overrides the browser preference; Still disables both
 entrances and idle motion. The same resolved setting controls timers and CSS.
