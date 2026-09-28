@@ -286,3 +286,31 @@ def test_lichess_limit_closes_stream_without_consuming_bad_followup(settings, se
     with sessions() as db:
         assert db.get(ProviderImport, job).games_imported == 1
         assert db.get(ProviderImport, job).fetch_completed
+
+
+def test_rate_limit_pauses_later_jobs_on_the_host(settings):
+    seen = []
+
+    def response(request):
+        seen.append(request)
+        return httpx.Response(429)
+
+    app = create_app(
+        settings,
+        workers=False,
+        start_engine=False,
+        provider_factories={
+            "lichess": lambda s: LichessClient(s, transport=httpx.MockTransport(response)),
+        },
+    )
+    with TestClient(app) as api:
+        for name in ["one", "two"]:
+            job = api.post(
+                "/api/imports/provider/lichess", json={"username": name, "analyze": False}
+            ).json()["job_id"]
+            app.state.runner.run_job(job)
+        assert len(seen) == 1
+        assert all(
+            row["status"] == "failed" and "minute" in row["error"]
+            for row in api.get("/api/jobs").json()
+        )

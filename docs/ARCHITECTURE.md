@@ -329,3 +329,7 @@ React's framework code has a separately cached production chunk; all registered
 coach definitions remain synchronous. The offline intelligence lab and expression
 studio have separate loopback entry points and do not enter production navigation
 or executable assets. Their source remains in the downloadable public source.
+
+## Public game providers
+
+Chess.com and Lichess share one checkpointed ingestion pipeline, job lanes, and account-owned connections. Provider clients supply normalized PGNs and stable batch keys; the shared importer owns legality, learner matching, deduplication and atomic progress. Discovery drives the same Settings forms and multi-provider Games refresh. See [provider integration and extension contract](GAME_PROVIDERS.md).

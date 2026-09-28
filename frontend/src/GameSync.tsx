@@ -1,176 +1,126 @@
 import { useEffect, useRef, useState } from "react";
-import { useAccount } from "./AccountGate";
 import { api, read, type Schema } from "./api";
 import Link from "./Link";
 import { pagePaths } from "./navigation";
 
 type Sync = Schema["SyncStatus"];
+type Provider = Schema["GameProvider"];
+const running = (value?: Sync) => !!value && ["queued", "running"].includes(value.status);
+const path = (provider: string) => ({ path: { provider } });
+
+function Connection({ provider, status, save, busy }: {
+  provider: Provider; status?: Sync; save: (provider: string, name: string) => Promise<void>; busy: boolean;
+}) {
+  const [name, setName] = useState(status?.username || "");
+  // Polling must not overwrite an unfinished username edit.
+  useEffect(() => { setName(status?.username || ""); }, [status?.username]);
+  return <section className="panel game-sync" aria-label={`Recent ${provider.name} games`}>
+    <h3>{provider.name}</h3>
+    {status?.username && <strong>{status.username}</strong>}
+    <details open={status?.username ? undefined : true}>
+      <summary>{status?.username ? `Change ${provider.name} connection` : `Connect your ${provider.name} games`}</summary>
+      <form className="sync-form" onSubmit={event => { event.preventDefault(); void save(provider.id, name); }}>
+        <label>Remembered {provider.name} username
+          <input disabled={!status || busy} value={name} onChange={event => setName(event.target.value)} maxLength={50} pattern="[A-Za-z0-9_-]*" autoComplete="off" placeholder={`Your ${provider.name} username`} />
+        </label>
+        <button disabled={!status || busy}>Save username</button>
+      </form>
+      <p className="small">Clear the username to disconnect.</p>
+    </details>
+    {status?.username && <p role="status">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}` : "Ready to check for new games"}</p>}
+    {status?.error && <p role="alert" className="notice error">{status.error}</p>}
+  </section>;
+}
 
 export default function GameSync({ onChanged, compact = false }: { onChanged?: () => void; compact?: boolean }) {
-  const account = useAccount();
-  const [name, setName] = useState("");
-  const [status, setStatus] = useState<Sync | null>(null);
+  const [providers, setProviders] = useState<Provider[]>([]);
+  const [statuses, setStatuses] = useState<Record<string, Sync>>({});
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const [loadingProfile, setLoadingProfile] = useState(true);
+  const [loading, setLoading] = useState(true);
   const callback = useRef(onChanged);
   callback.current = onChanged;
-  const previous = useRef("");
-  const active = useRef(true);
-  function update(value: Sync) {
-    if (!active.current) return;
-    setStatus(value);
-    const version = `${value.checked_at}:${value.imported}:${value.status}`;
-    if (version !== previous.current && value.job_id) callback.current?.();
-    previous.current = version;
+  const versions = useRef<Record<string, string>>({});
+  const generation = useRef(0);
+  const inFlight = useRef<number | null>(null);
+  const edits = useRef<Record<string, number>>({});
+  function update(value: Sync, token: number) {
+    if (generation.current !== token) return;
+    setStatuses(previous => ({ ...previous, [value.provider]: value }));
+    const version = `${value.job_id}:${value.checked_at}:${value.imported}:${value.status}`;
+    if (version !== versions.current[value.provider] && value.job_id) callback.current?.();
+    versions.current[value.provider] = version;
   }
-  async function refresh() {
-    setBusy(true);
-    setError("");
+  async function check(items: Provider[], token: number, refresh: boolean) {
+    if (inFlight.current === token) return;
+    inFlight.current = token;
     try {
-      update(await read(api.POST("/api/sync")));
-    } catch (e) {
-      if (active.current) setError((e as Error).message);
-    } finally {
-      if (active.current) setBusy(false);
-    }
+      for (const provider of items) {
+        if (generation.current !== token) return;
+        const revision = edits.current[provider.id];
+        let value = await read(api.GET("/api/providers/{provider}/sync", { params: path(provider.id) }));
+        if (generation.current !== token) return;
+        if (edits.current[provider.id] !== revision) continue;
+        update(value, token);
+        if (refresh && value.username && !running(value)) {
+          value = await read(api.POST("/api/providers/{provider}/sync", { params: path(provider.id) }));
+          if (edits.current[provider.id] === revision) update(value, token);
+        }
+      }
+    } finally { if (inFlight.current === token) inFlight.current = null; }
   }
   useEffect(() => {
-    if (!account) return;
-    active.current = true;
-    let checking = false;
-    async function tick() {
-      if (checking || document.visibilityState === "hidden") return;
-      checking = true;
-      try {
-        const current = await read(api.GET("/api/sync"));
-        if (!active.current) return;
-        update(current);
-        if (current.username && !["queued", "running"].includes(current.status))
-          update(await read(api.POST("/api/sync")));
-      } catch (e) {
-        if (active.current) setError((e as Error).message);
-      } finally {
-        checking = false;
-      }
-    }
-    read(api.GET("/api/sync"))
-      .then((value) => {
-        if (!active.current) return;
-        setName(value.username);
-        update(value);
-        if (value.username) void tick();
-      })
-      .catch((e) => { if (active.current) setError(e.message); })
-      .finally(() => {
-        if (active.current) setLoadingProfile(false);
-      });
+    const token = ++generation.current;
+    let items: Provider[] = [];
+    const tick = () => {
+      if (document.visibilityState === "hidden" || generation.current !== token) return;
+      void check(items, token, true).catch(e => { if (generation.current === token) setError(e.message); });
+    };
+    read(api.GET("/api/game-providers")).then(async value => {
+      if (generation.current !== token) return;
+      items = value;
+      setProviders(value);
+      await check(value, token, document.visibilityState !== "hidden");
+    }).catch(e => { if (generation.current === token) setError(e.message); })
+      .finally(() => { if (generation.current === token) setLoading(false); });
     const timer = window.setInterval(tick, 15000);
-    const visible = () => {
-      if (document.visibilityState === "visible") void tick();
-    };
-    document.addEventListener("visibilitychange", visible);
+    document.addEventListener("visibilitychange", tick);
     return () => {
-      active.current = false;
+      generation.current++;
       window.clearInterval(timer);
-      document.removeEventListener("visibilitychange", visible);
+      document.removeEventListener("visibilitychange", tick);
     };
-  }, [account?.id]);
-  async function save(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError("");
-    try {
-      await read(
-        api.POST("/api/auth/profile", {
-          body: { chesscom_username: name.trim() },
-        }),
-      );
-      if (name.trim()) update(await read(api.POST("/api/sync")));
-      else update(await read(api.GET("/api/sync")));
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setBusy(false);
-    }
+  }, []);
+  async function refresh() {
+    const token = generation.current;
+    setBusy(true); setError("");
+    try { await check(providers, token, true); }
+    catch (e) { if (generation.current === token) setError((e as Error).message); }
+    finally { if (generation.current === token) setBusy(false); }
   }
-  const running = status && ["queued", "running"].includes(status.status);
+  async function save(provider: string, name: string) {
+    const token = generation.current;
+    setBusy(true); setError("");
+    edits.current[provider] = (edits.current[provider] || 0) + 1;
+    try {
+      const saved = await read(api.PUT("/api/providers/{provider}/connection", { params: path(provider), body: { username: name.trim() } }));
+      if (generation.current !== token) return;
+      update(saved, token);
+      if (saved.username) update(await read(api.POST("/api/providers/{provider}/sync", { params: path(provider) })), token);
+    } catch (e) { if (generation.current === token) setError((e as Error).message); }
+    finally { if (generation.current === token) setBusy(false); }
+  }
+  const connected = Object.values(statuses).some(value => value.username);
+  const checking = Object.values(statuses).some(running);
+  const button = <button className="secondary" disabled={loading || busy || checking} onClick={refresh}>{busy || checking ? "Updating…" : "Update games"}</button>;
   if (compact) return <div className="game-sync-compact">
-    {!account || (!loadingProfile && !status?.username) ? (
-      <Link className="button-link secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</Link>
-    ) : (
-      <button className="secondary" disabled={loadingProfile || busy || !!running} onClick={refresh}>
-        {busy || running ? "Updating…" : "Update games"}
-      </button>
-    )}
-    {(error || status?.error) && <span role="alert" className="small">{error || status?.error}</span>}
+    {!loading && !connected ? <Link className="button-link secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</Link> : button}
+    {(error || Object.values(statuses).find(value => value.error)?.error) && <span role="alert" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</span>}
   </div>;
-  if (!account) return null;
-  return (
-    <section className="panel game-sync" aria-label="Recent Chess.com games">
-      <h2>Recent Chess.com games</h2>
-      {status?.username && (
-        <div className="row-between">
-          <strong>{status.username}</strong>
-          <button disabled={busy || !!running} onClick={refresh}>
-            Check for new games
-          </button>
-        </div>
-      )}
-      <details open={status?.username ? undefined : true}>
-        <summary>
-          {status?.username
-            ? "Change Chess.com connection"
-            : "Connect your Chess.com games"}
-        </summary>
-        <form onSubmit={save} className="sync-form">
-          <label>
-            Remembered Chess.com username
-            <input
-              disabled={loadingProfile}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              maxLength={50}
-              pattern="[A-Za-z0-9_-]*"
-              autoComplete="off"
-              placeholder="Your Chess.com username"
-            />
-          </label>
-          <button disabled={busy || loadingProfile}>Save username</button>
-        </form>
-        <p className="small">
-          Your latest 50 completed games from the last two months. Fetching
-          games does not run engine analysis.
-        </p>
-        <p className="small">
-          Checks run while this page is visible, at most once a minute. Clear
-          the username to disconnect.
-        </p>
-      </details>
-      {status?.username && (
-        <p role="status">
-          {running
-            ? "Checking Chess.com…"
-            : status.status === "completed"
-              ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}`
-              : "Ready to check for new games"}
-          {status.checked_at && (
-            <span className="small">
-              {" "}
-              · {new Date(status.checked_at).toLocaleTimeString()}
-            </span>
-          )}
-        </p>
-      )}
-      <p className="small">
-        New games appear automatically when Chess.com publishes them. Analysis
-        starts when you request it.
-      </p>
-      {(error || status?.error) && (
-        <p role="alert" className="notice error">
-          {error || status?.error}
-        </p>
-      )}
-    </section>
-  );
+  return <section aria-label="Connected game accounts">
+    <div className="row-between"><h2>Connected accounts</h2>{connected && button}</div>
+    <p className="small">Your latest 50 completed games per site from the last two months. Checks run while this page is visible, at most once a minute. Fetching games does not run engine analysis.</p>
+    <div className="provider-connections">{providers.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} />)}</div>
+    {error && <p role="alert" className="notice error">{error}</p>}
+  </section>;
 }

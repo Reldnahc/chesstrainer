@@ -1,6 +1,6 @@
 # Fieldwork — local chess practice
 
-A private chess trainer built around decisions in your own games. Import Chess.com history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
+A private chess trainer built around decisions in your own games. Import Chess.com or Lichess history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
 
 The shared [animated coach](docs/COACH.md) reacts to your moves and practice, with
 account-saved character and motion preferences. Choose from four men, four women,
@@ -44,7 +44,7 @@ and `PUBLIC_ORIGIN=https://your-chess-hostname`. Restart after changing modes.
 See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the original specification and the limits of each feature.
 
 - Multi-game PGN import, explicit learner matching, duplicate detection and original provenance. Only newly added games enter new analysis jobs.
-- Chess.com username import with time-class filters, lookback or exact dates, and a new-game limit. Downloads resume from archive checkpoints.
+- Chess.com and Lichess username imports with time-class filters, lookback or exact dates, and a new-game limit. Downloads resume from saved checkpoints.
 - Persistent jobs, progress, cancellation/retry and startup recovery. Bounded Stockfish and local classification pools reuse compatible completed work.
 - Two-pass native analysis, MultiPV, separate mate/centipawn scores and a durable cache. Practical grading accepts verified sound alternatives.
 - Local classification v4 reuses the pinned Lichess tactical tagger and separates material/mate outcomes from specific patterns, with auditable witnesses and explicit abstentions. Settings can deepen a capped batch of unclear positions without changing original exercise answers.
@@ -56,7 +56,7 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 - Full-game review in **Games**: saved analysis and Lichess accuracy for both players, nine move labels including **Book**, an evaluation timeline, an illustrated tactical coach, and playable branching variations. A bundled Lichess opening catalogue recognizes book moves locally, including named unsound lines, in saved games and branches. Accuracy appears beside players and in the move-quality breakdown; it uses every saved evaluation with no Elo adjustment or additional engine searches. Pause/resume preserves completed analysis; game review never changes scheduled practice. See [Game review](docs/GAME_REVIEW.md) for scoring and evidence limits.
 - FSRS scheduling, one failed recall per session, continued retries and permanent retirement above a configurable interval threshold (100 days by default).
 - Same-origin LAN operation, optional shared access token, or self-service accounts with private data and persistent device sessions. CLI backup/restore covers the single database.
-- Remembered Chess.com usernames and automatic recent-game fetching without engine analysis. Start full review or training analysis explicitly from a saved game.
+- Remembered Chess.com and Lichess usernames and automatic recent-game fetching without engine analysis. Start full review or training analysis explicitly from a saved game.
 
 Navigation is **Review, Games, Weaknesses, Settings**. The initial cold review board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Lessons, Repertoire and manual-position entry forms are removed. Historical records and compatibility APIs remain; see [Product](docs/PRODUCT.md#removed-and-archived).
 
@@ -116,7 +116,7 @@ Explicit migration commands are `alembic upgrade head` and `alembic check`. Run 
 
 ## First session
 
-1. Open Settings → Import games and enter your Chess.com username. Defaults fetch up to 100 **new** rapid games from the current and preceding two calendar months. Change time class, range or limit as needed, then click **Fetch & analyze games**. No login or API key is needed. Alternatively choose **PGN file**, identify your username(s), and explicitly assign a side only when it is yours in every game.
+1. Open Settings → Import games and choose Chess.com or Lichess and enter your username. Defaults fetch up to 100 **new** rapid games from the current and preceding two calendar months. Change time class, range or limit as needed, then click **Fetch games**. Enable the optional analysis checkbox to also create training exercises. No login or API key is needed. Alternatively choose **PGN file**, identify your username(s), and explicitly assign a side only when it is yours in every game.
 2. Watch progress; invalid or ambiguous games are reported separately. Completed work survives interruptions. Retry an older cancelled job separately; a new import only queues new games.
 3. Open Review. Meaningful errors become practice; small engine preferences usually do not. Try a move, inspect the saved counter/playback when useful, and continue to the next position.
 4. Open Weaknesses to inspect supported recurring patterns and their evidence. Choose a skill for focused practice; those attempts do not change your scheduled recalls. Unclassified mistakes remain available in Review.
@@ -182,14 +182,14 @@ Export uses SQLite's online backup API, including committed WAL state. Restore v
 
 Games, analysis, classification, explanations, exercises and review history stay on the host. There is no OpenAI SDK, model connection or outbound pedagogy payload. Legacy model audit records are retained locally for historical reference/export. No telemetry, remote fonts or external board assets are used. IBM Plex fonts are bundled locally; their license notices are in [docs/licenses](docs/licenses).
 
-Username import contacts Chess.com's public API from the backend, sending the requested username/archive paths and configured User-Agent. It downloads completed games and never sends moves, credentials, your database or existing local games to Chess.com. Archive data may be delayed by provider caching. Repeat imports deduplicate against both previous downloads and PGN uploads. See [Chess.com import details](docs/CHESSCOM_IMPORT.md).
+Username imports contact the selected site's public API from the backend, sending the requested username and filters. It downloads completed games and never sends moves, credentials, your database or existing local games to either provider. Archive data may be delayed by provider caching. Repeat imports deduplicate against both previous downloads and PGN uploads. See [game provider imports](docs/GAME_PROVIDERS.md) and [Chess.com transport details](docs/CHESSCOM_IMPORT.md).
 
 ## Documentation
 
 - [Product](docs/PRODUCT.md), [feature status](docs/FEATURE_STATUS.md) and [development plan](docs/DEVELOPMENT_PLAN.md)
 - [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/ANALYSIS_PIPELINE.md) and [data model](docs/DATA_MODEL.md)
 - [Local classification](docs/LOCAL_CLASSIFICATION.md), [assistant assessment](docs/CLASSIFICATION_ASSESSMENT.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
-- [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [Chess.com import](docs/CHESSCOM_IMPORT.md)
+- [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [game provider imports](docs/GAME_PROVIDERS.md)
 - [Testing procedure](docs/TESTING.md), [latest verification](docs/VERIFICATION.md), [decisions](docs/DECISIONS.md) and [implementation history](docs/IMPLEMENTATION_HISTORY.md)
 
 ## Forking and licensing

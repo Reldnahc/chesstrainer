@@ -16,7 +16,7 @@ from trainer.accounts import COOKIE, Accounts, csrf_token
 from trainer.api import create_app
 from trainer.exercises import manual_exercise
 from trainer.imports import import_games
-from trainer.models import AnalysisJob, Game, SRSState, User, now
+from trainer.models import AnalysisJob, Game, ProviderImport, SRSState, User, now
 from trainer.ownership import account_sessions
 from trainer.scheduling import FSRSScheduler
 
@@ -105,6 +105,18 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
                 )
         db.add(AnalysisJob(id="local-private", user_id="local", kind="game_review"))
         db.add(AnalysisJob(id="fetch", user_id=alice, kind="sync"))
+        db.flush()
+        db.add(
+            ProviderImport(
+                job_id="fetch",
+                user_id=alice,
+                provider="chesscom",
+                username="learner",
+                time_class="all",
+                months=2,
+                max_games=50,
+            )
+        )
         db.commit()
     entered, release, fetched = threading.Event(), threading.Event(), threading.Event()
     observed = []

@@ -3,7 +3,7 @@
 Settings in backend/trainer/config.py is the validated Pydantic boundary. Environment variables override root .env; defaults apply last. Relative paths resolve from the server working directory. Run from the repository root. Invalid recognized values fail startup with field-specific errors.
 
 Host configuration is changed in the environment, followed by a backend restart.
-Settings in the browser edits account preferences, including Chess.com username,
+Settings in the browser edits account preferences, including Chess.com and Lichess usernames,
 coach and motion; it is not a container configuration editor. Existing exercise
 policies and engine evidence keep their saved configuration. The optional LAN
 token is a SecretStr excluded from public serialization; only its configured
@@ -45,6 +45,9 @@ status is returned.
 | MAX_IMPORT_BYTES | 10000000 |
 | CHESSCOM_TIMEOUT_SECONDS | 20 seconds per provider request |
 | CHESSCOM_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per response |
+| PROVIDER_TIMEOUT_SECONDS | 20 seconds per Lichess network read |
+| PROVIDER_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per Lichess export |
+| PROVIDER_MAX_SCAN_GAMES | 10000 records per Lichess export; narrow date range when reached |
 | CHESSCOM_USER_AGENT | FieldworkChessTrainer/0.1 (local personal chess training) |
 
 See [.env.example](../.env.example) for a copyable starting point.

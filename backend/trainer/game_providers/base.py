@@ -12,6 +12,12 @@ class ProviderError(RuntimeError):
     pass
 
 
+class ProviderRateLimited(ProviderError):
+    """Pause requests to this provider across all accounts on the host."""
+
+    retry_after = 60
+
+
 class ImportCancelled(RuntimeError):
     pass
 

@@ -130,9 +130,7 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                     request.duplicates += result["duplicates"]
                     rejected += len(result["errors"])
                     errors.extend({"archive": url, **error} for error in result["errors"])
-                request.archives_total = (
-                    batch.total if batch.total is not None else request.archives_processed + 1
-                )
+                request.archives_total = batch.total if batch.total is not None else 0
                 request.filtered += filtered
                 request.rejected += rejected
                 request.errors = (request.errors + errors)[:50]

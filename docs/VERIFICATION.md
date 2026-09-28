@@ -2,6 +2,25 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Lichess and shared game providers — September 28, 2026
+
+Implemented on main after `d42ea35`; backend/migration/API foundation committed as
+`739b517`. [Provider integration](GAME_PROVIDERS.md) describes the shared adapter
+boundary, account connections, checkpoints, limits, cooldown and extension steps.
+
+Validation on Windows with the existing locked dependencies and native Stockfish:
+
+- Initial focused provider/Chess.com/sync/account/API regression set: **47 passed**.
+- Full backend run: `.venv/Scripts/python.exe -m pytest -q -ra -p no:cacheprovider --basetemp=data/verification/providers-full-2`, with `STOCKFISH_PATH=.tools/stockfish/stockfish-windows-x86-64-avx2.exe` and `HUMAN_MODEL_PATH=data/verification/deliberately-absent-maia.pt`: **633 passed, 3 optional native Maia skips, 1 fixture failure**. The hosted-runtime fixture created a sync job without a complete provider request. It now supplies the same required request fields as production.
+- Final follow-up: `.venv/Scripts/python.exe -m pytest backend/tests/test_hosted_runtime.py backend/tests/test_game_providers.py backend/tests/test_chesscom.py backend/tests/test_game_sync.py -q -p no:cacheprovider --basetemp=data/verification/providers-final-targeted`: **43 passed**, including the corrected fixture and final unknown-total progress/cooldown behavior. All observed backend failures are resolved; the full suite was not repeated after this fixture correction. An earlier full run also hit two missing-model assumptions because this machine has Maia installed; the explicit absent-model path above exercised those fallbacks successfully without modifying their tests or the installed model.
+- `ruff check backend scripts migrations`, `ruff format --check backend scripts migrations`, `python scripts/export_api_contract.py --check`, and `git diff --check`: passed.
+- `npm.cmd run build`: passed, including generated contract agreement, application/browser-test TypeScript, source packaging and Vite. Existing large-chunk advisory remains.
+- `npx.cmd playwright test providers.spec.ts training.spec.ts --grep 'Lichess|local saved connections|saved-name|Chess.com|PGN upload|compact workspace' --reporter=line`: **16 passed** across desktop/mobile. Covers both providers, PGNs, fetch-only versus opt-in native training, deduplication, saving both connections, refresh/reload and a delayed saved-name hydration regression. Earlier test failures led to disabling the username field until initial hydration completes, scoping status locators, and observing both syncs in the same polling cycle.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`: **2 passed**, including second-device connection persistence and private libraries.
+- Inspected generated desktop/mobile Settings screenshots. Browser tests use the real production frontend/backend with injected public-provider HTTP fixtures. No live Lichess/Chess.com import or Unraid deployment was performed. The complete unrelated coach/intelligence/browser suites were not rerun for this import feature.
+
+The two existing FastAPI TestClient/httpx/AnyIO deprecation warnings remain.
+
 ## Thirty-coach cast and behavior revamp - September 28, 2026
 
 Verified on `codex/coach-revamp`, based on `ddf1925`. The preserved owner brief is

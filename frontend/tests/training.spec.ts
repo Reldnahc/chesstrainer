@@ -89,14 +89,14 @@ test('PGN upload form imports a learner game and reports real analysis', async (
   await page.getByLabel('Your username(s)').fill('UI learner');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
   await page.getByRole('button', {name: 'Import & analyze'}).click();
-  await expect(page.locator('.settings-import').getByRole('status')).toContainText(/imported/);
+  await expect(page.locator('.import-form').getByRole('status')).toContainText(/imported/);
   await expect(page.locator('.job .badge').first()).toHaveText('completed', {timeout: 30000});
   await expect(page.locator('.job').first()).toContainText('2 decisions');
   const previousJobs = await page.locator('.job').count();
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
   await page.getByRole('button', {name: 'Import & analyze'}).click();
-  await expect(page.locator('.settings-import').getByRole('status')).toContainText('0 imported');
-  await expect(page.locator('.settings-import').getByRole('status')).toContainText('1 duplicate');
+  await expect(page.locator('.import-form').getByRole('status')).toContainText('0 imported');
+  await expect(page.locator('.import-form').getByRole('status')).toContainText('1 duplicate');
   await expect(page.locator('.job')).toHaveCount(previousJobs);
 });
 
@@ -169,13 +169,13 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   await page.getByLabel('From date').fill(startDate);
   await page.getByLabel('To date').fill(endDate);
   await expect(page.getByLabel('Look back')).toBeDisabled();
-  const queued = page.waitForResponse(r => r.url().endsWith('/api/imports/chesscom') && r.request().method() === 'POST');
+  const queued = page.waitForResponse(r => r.url().endsWith('/api/imports/provider/chesscom') && r.request().method() === 'POST');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
   await page.getByRole('button', {name: 'Fetch & analyze games'}).click();
   const response = await queued;
   expect(response.status()).toBe(202);
   expect(response.request().postDataJSON()).toEqual({username, analyze: true, time_class: 'rapid', months: 6, max_games: 25, start_date: startDate, end_date: endDate});
-  await expect(page.locator('.settings-import').getByRole('status')).toContainText('Import queued');
+  await expect(page.locator('.import-form').getByRole('status')).toContainText('Import queued');
   const job = page.locator('.job').filter({hasText: username}).first();
   await expect(job.locator('.badge')).toHaveText('completed', {timeout: 30000});
   await expect(job).toContainText('1 imported');

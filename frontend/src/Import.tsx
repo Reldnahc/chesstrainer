@@ -9,7 +9,7 @@ import {
   type PgnImportResult,
   type Schema,
 } from "./api";
-import { ChessComImportForm, ImportJob } from "./ChessComImport";
+import { ProviderImportForm, ImportJob } from "./ProviderImport";
 import GameSync from "./GameSync";
 function PgnInput({
   file,
@@ -58,7 +58,14 @@ export default function ImportSettings({
   health: Health | null;
   fail: (e: unknown) => void;
 }) {
-  const [source, setSource] = useState<"chesscom" | "pgn">("chesscom");
+  const [source, setSource] = useState<string>("chesscom");
+  const [providers, setProviders] = useState<Schema["GameProvider"][]>([]);
+  useEffect(() => {
+    let active = true;
+    read(api.GET("/api/game-providers")).then(value => { if (active) setProviders(value); }).catch(fail);
+    return () => { active = false; };
+  }, [fail]);
+  const selectedProvider = providers.find(provider => provider.id === source);
   const [file, setFile] = useState<File | null>(null),
     [text, setText] = useState("");
   const [names, setNames] = useState(""),
@@ -112,12 +119,9 @@ export default function ImportSettings({
         <div className="notice">{health.engine_error}</div>
       )}
       <div className="import-source" role="group" aria-label="Game source">
-        <button
-          aria-pressed={source === "chesscom"}
-          onClick={() => setSource("chesscom")}
-        >
-          Chess.com username
-        </button>
+        {providers.map(provider => <button key={provider.id} aria-pressed={source === provider.id} onClick={() => setSource(provider.id)}>
+          {provider.name} username
+        </button>)}
         <button
           aria-pressed={source === "pgn"}
           onClick={() => setSource("pgn")}
@@ -127,8 +131,8 @@ export default function ImportSettings({
       </div>
       <div className="import-layout">
         <div className="import-form">
-          {source === "chesscom" ? (
-            <ChessComImportForm onQueued={reload} fail={fail} />
+          {source !== "pgn" ? (
+            selectedProvider ? <ProviderImportForm key={source} provider={selectedProvider} onQueued={reload} fail={fail} /> : <p role="status">Loading game providers…</p>
           ) : (
             <form className="panel form-panel" onSubmit={submit}>
               <h2>Import PGN</h2>

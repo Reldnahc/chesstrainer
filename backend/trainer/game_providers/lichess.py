@@ -7,7 +7,12 @@ from datetime import datetime, timedelta, timezone
 
 import httpx
 
-from trainer.game_providers.base import ProviderBatch, ProviderError, check_cancel
+from trainer.game_providers.base import (
+    ProviderBatch,
+    ProviderError,
+    ProviderRateLimited,
+    check_cancel,
+)
 
 
 class LichessClient:
@@ -70,7 +75,7 @@ class LichessClient:
                 "GET", f"https://lichess.org/api/games/user/{request.username}", params=params
             ) as response:
                 if response.status_code == 429:
-                    raise ProviderError(
+                    raise ProviderRateLimited(
                         "Lichess is rate limiting requests. Wait at least a minute before retrying; saved games are retained."
                     )
                 if response.status_code == 404:

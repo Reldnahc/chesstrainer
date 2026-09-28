@@ -39,6 +39,7 @@ class JobRunner:
         self.provider_factories = (
             client_factories() | {"chesscom": chesscom_factory} | (provider_factories or {})
         )
+        self.provider_retry_at = {}
         self.provider_lock = threading.Lock()  # One active provider request per host.
 
         self.stop_event = threading.Event()
