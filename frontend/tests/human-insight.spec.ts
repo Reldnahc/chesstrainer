@@ -44,6 +44,13 @@ for (const [kind, code, phrase, label] of cases) {
     });
     const boardBefore = await geometry(".review-board-row");
     const bubbleBefore = await geometry(".coach-speech");
+    // Maia uses the existing bubble, not a context row beneath the actions.
+    await expect(page.locator(".coach-speech").getByRole("button", {name: `Maia: ${label}`, exact: true})).toBeVisible();
+    await expect(page.locator(".coach-context")).toHaveCount(0);
+    const insightBounds = await geometry(".human-insight-trigger");
+    expect(insightBounds.y).toBeGreaterThanOrEqual(bubbleBefore.y);
+    expect(insightBounds.y + insightBounds.height).toBeLessThanOrEqual(bubbleBefore.y + bubbleBefore.height);
+    expect(insightBounds.x + insightBounds.width).toBeLessThanOrEqual(bubbleBefore.x + bubbleBefore.width);
     await trigger.click();
     const detail = page.getByRole("dialog", {name: "Maia insight"});
     await expect(detail).toBeVisible();
