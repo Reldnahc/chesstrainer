@@ -11,6 +11,23 @@ export const humanInsightLabels: Readonly<Record<string, string>> = {
   human_defense_found: "Hard defense found",
 };
 
+/** Explain the supported label, independently of a coach's abbreviated reaction. */
+export function humanInsightExplanation(code: string, report: Report): string {
+  const played = report.actual.san, best = report.best.san;
+  const meanings: Record<string, string> = {
+    human_natural_error: `Maia models human move choices, not move strength. It sees ${played} as a natural choice, but Stockfish finds ${best} stronger.`,
+    human_rare: `Maia models human move choices, not move strength. ${played} is unusual in its predictions, yet Stockfish confirms it is strong.`,
+    human_natural_best: `Maia models human move choices, not move strength. ${played} is both a natural choice in its predictions and Stockfish's best move.`,
+    human_natural_strong: `Maia models human move choices, not move strength. ${played} is a natural choice in its predictions and a strong move, though Stockfish prefers ${best}.`,
+    human_challenging: `This describes how hard ${best} is to discover, not how strong it is. Fieldwork combines Maia's human-move predictions with Stockfish's alternatives to assess that difficulty.`,
+    difficult_defense: `Stockfish found ${best} as the only good move at the searched depth. Maia's human-move predictions and the available alternatives help identify it as a difficult resource to find.`,
+    human_defense_found: `You found ${best}, a difficult defensive resource. That difficulty comes from Maia's human-move predictions and Stockfish's alternatives, rather than the move's evaluation alone.`,
+  };
+  const explanation = meanings[code] ?? "";
+  return report.human?.provenance?.provider === "maia3"
+    ? explanation : explanation.replaceAll("Maia", "The human model").replaceAll("The human model's", "the human model's");
+}
+
 /** Present the saved practical assessment; never infer a new grade or difficulty. */
 export function humanClaims(report: Report, ply: number, mover: string | null): Claim[] {
   const human = report.human, practical = report.practical;
