@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import EvaluationScore from "./EvaluationScore";
 import { scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
@@ -14,6 +14,8 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
   frames: Frame[]; initialScore?: Score | null; selected: number; onSelect: (ply: number) => void;
 }) {
   const plot = useRef<SVGSVGElement>(null);
+  const drag = useRef<{ id: number; ply: number | null } | null>(null);
+  const [scrubbing, setScrubbing] = useState(false);
   const [width, setWidth] = useState(600);
   const height = 120;
   useEffect(() => {
@@ -54,19 +56,44 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
     onSelect(ply);
     plot.current?.querySelector<SVGCircleElement>(`[data-ply="${ply}"]`)?.focus({ preventScroll: true });
   };
+  const scrub = (event: PointerEvent<SVGSVGElement>) => {
+    if (drag.current?.id !== event.pointerId) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const position = (event.clientX - bounds.left) * width / bounds.width;
+    const ply = Math.max(0, Math.min(last, Math.round((position - left) / spacing)));
+    if (drag.current.ply === ply) return;
+    drag.current.ply = ply;
+    selectPoint(ply);
+  };
+  const stopScrubbing = (event: PointerEvent<SVGSVGElement>) => {
+    if (drag.current?.id !== event.pointerId) return;
+    drag.current = null;
+    setScrubbing(false);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+  };
   const pointName = (ply: number) => `${frames[ply].number}${frames[ply].actor === "white" ? "." : "..."} ${frames[ply].san}`;
   return <section className="game-graph" aria-label="Original-game evaluation">
     <div className="game-graph-heading">
       <div><strong>Game evaluation</strong><span>White ↑ · Black ↓</span></div>
       <div className="game-graph-reading"><span className="game-graph-verdict">{scoreSummary(current)}</span><EvaluationScore score={current}/></div>
     </div>
-    <svg ref={plot} className="game-evaluation-plot" style={{height}} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group"
-      aria-label="Evaluation across analyzed game moves" onClick={event => {
-        const bounds = event.currentTarget.getBoundingClientRect();
-        const position = (event.clientX - bounds.left) * width / bounds.width;
-        selectPoint(Math.max(0, Math.min(last, Math.round((position - left) / spacing))));
-      }}>
-      <title>Original-game evaluation from White's perspective. Numeric range −{limit} to +{limit} pawns; forced mates sit at the edges. Select a position to see its exact score.</title>
+    <svg ref={plot} className="game-evaluation-plot" data-scrubbing={scrubbing} style={{height}} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group"
+      aria-label="Evaluation across analyzed game moves"
+      onPointerDown={event => {
+        if (!event.isPrimary || event.button !== 0 || drag.current) return;
+        // Keep compatibility mouse events from overriding the selected point's focus.
+        event.preventDefault();
+        // Capture the stable plot, not a marker that moves/reorders as we scrub.
+        event.currentTarget.setPointerCapture(event.pointerId);
+        drag.current = { id: event.pointerId, ply: null };
+        setScrubbing(true);
+        scrub(event);
+      }}
+      onPointerMove={scrub}
+      onPointerUp={event => { scrub(event); stopScrubbing(event); }}
+      onPointerCancel={stopScrubbing}
+      onLostPointerCapture={stopScrubbing}>
+      <title>Original-game evaluation from White's perspective. Numeric range −{limit} to +{limit} pawns; forced mates sit at the edges. Click or drag to a position to see its exact score.</title>
       <g pointerEvents="none" aria-hidden="true">
         <rect className="game-graph-background" x={left} y={top} width={right - left} height={bottom - top}/>
         {segments.filter(segment => segment.length > 1).map(segment => {

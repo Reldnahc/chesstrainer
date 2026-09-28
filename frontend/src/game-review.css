@@ -304,8 +304,12 @@
 .game-graph .game-evaluation-plot {
   width: 100%;
   display: block;
-  cursor: pointer;
+  cursor: grab;
   touch-action: pan-y;
+  user-select: none;
+}
+.game-graph .game-evaluation-plot[data-scrubbing="true"] {
+  cursor: grabbing;
 }
 .game-graph-background {
   fill: #262c31;
