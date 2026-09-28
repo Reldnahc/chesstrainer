@@ -12,6 +12,7 @@ export default function ReviewCoach({
   actions,
   context,
   portraitCaption,
+  insight,
   reaction = { state: "neutral", key: "ready" },
   character,
 }: {
@@ -22,6 +23,7 @@ export default function ReviewCoach({
   actions: ReactNode;
   context?: ReactNode;
   portraitCaption?: ReactNode;
+  insight?: ReactNode;
   reaction?: CoachReaction;
   character?: ReactNode;
 }) {
@@ -41,12 +43,15 @@ export default function ReviewCoach({
           </div>
           {evaluation}
         </div>
-        <div
-          className="coach-message"
-          tabIndex={0}
-          aria-label="Coach explanation"
-        >
-          {children}
+        <div className="coach-body">
+          <div
+            className="coach-message"
+            tabIndex={0}
+            aria-label="Coach explanation"
+          >
+            {children}
+          </div>
+          {insight && <div className="coach-insight">{insight}</div>}
         </div>
       </div>
       <div className="coach-actions">{actions}</div>

@@ -133,8 +133,11 @@ including positions still being reviewed. The coach keeps its label, message are
 row in stable slots; longer explanations scroll inside the bubble. The desktop
 bubble and illustrated coach share a 116px height; narrow layouts use a 136px
 bubble with a smaller portrait. Actions stay outside the bubble in both review modes.
-On learner moves, a compact **Maia** insight sits beside Show why when saved human
-evidence supports one. Natural mistakes, hard finds, unusual strong moves, natural
+On learner moves, a compact **Maia** insight sits at the bottom-right inside the
+existing fixed-height coach bubble when saved human evidence supports one. Best
+remains beneath the portrait; neither insight adds a row below the action buttons.
+Long coaching text scrolls above the Maia link so the link remains accessible.
+Natural mistakes, hard finds, unusual strong moves, natural
 best choices and difficult defenses get plain-language labels. Tap the insight for
 the selected coach's explanation and source/domain uncertainty. It uses existing
 evidence, stays visible even when the bubble prioritizes tactics or opening text,

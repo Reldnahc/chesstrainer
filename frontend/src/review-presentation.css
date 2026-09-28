@@ -257,7 +257,26 @@ main:has(.review-workspace-layout) {
   background: #353d39;
   color: #c1cfc5;
 }
+.coach-body {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.coach-insight {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+.coach-insight:empty {
+  display: none;
+}
+.coach-speech:has(.human-insight-trigger) {
+  grid-template-rows: 28px minmax(0, 1fr);
+  gap: 4px;
+  padding-block: 10px;
+}
 .coach-message {
+  flex: 1;
   min-height: 0;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -317,15 +336,15 @@ main:has(.review-workspace-layout) {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.coach-context .human-insight-trigger {
+.coach-insight .human-insight-trigger {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 4px;
-  min-height: 28px;
+  min-height: 20px;
   width: auto;
   max-width: 100%;
-  padding: 2px 0;
+  padding: 0;
   border: 0;
   background: transparent;
   color: #a9d6e1;
