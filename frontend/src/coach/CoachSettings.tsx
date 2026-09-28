@@ -2,8 +2,9 @@ import { useState } from "react";
 import { CoachCharacter } from "./CoachAvatar";
 import { useCoachPreferences } from "./CoachProvider";
 import { coachCollections, getCoach, selectableCoaches } from "./registry";
-import type { CoachId, CoachMotion, CoachPreferences } from "./model";
-import { useReducedMotion } from "./useReducedMotion";
+import type { CoachId, CoachPreferences } from "./model";
+import { useReducedMotion } from "../useReducedMotion";
+import MotionSelect from "../MotionSelect";
 import "./settings.css";
 
 export default function CoachSettings() {
@@ -96,30 +97,8 @@ export default function CoachSettings() {
             </label>
           ))}
       </fieldset>
-      <div className="coach-motion-setting">
-        <div>
-          <label htmlFor="coach-motion">Coach motion</label>
-          <span id="coach-motion-help">
-            Uses your device setting by default. Animated or Still overrides it.
-          </span>
-        </div>
-        <select
-          id="coach-motion"
-          aria-describedby="coach-motion-help"
-          disabled={!ready || saving}
-          value={preferences.motion}
-          onChange={(event) =>
-            change({
-              ...preferences,
-              motion: event.target.value as CoachMotion,
-            })
-          }
-        >
-          <option value="system">Use device setting</option>
-          <option value="natural">Animated</option>
-          <option value="still">Still</option>
-        </select>
-      </div>
+      <MotionSelect id="coach-motion" label="Coach motion" disabled={!ready || saving}
+        value={preferences.motion} onChange={motion => change({...preferences, motion})} />
       <p className="coach-preference-status" role="status">
         {saving ? (
           "Saving…"

@@ -50,6 +50,7 @@ class UserPreferences(Owned, Base):
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), primary_key=True)
     coach_id: Mapped[str] = mapped_column(default="classic", server_default="classic")
     coach_motion: Mapped[str] = mapped_column(default="system", server_default="system")
+    interface_motion: Mapped[str] = mapped_column(default="system", server_default="system")
 
 
 class ImportBatch(Owned, Base):

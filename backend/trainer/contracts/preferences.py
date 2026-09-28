@@ -20,9 +20,14 @@ CoachId = Literal[
     "dog-corgi",
     "dog-collie",
 ]
-CoachMotion = Literal["system", "natural", "still"]
+MotionPreference = Literal["system", "natural", "still"]
+CoachMotion = MotionPreference
 
 
 class CoachPreferences(Contract):
     coach_id: CoachId = "classic"
     motion: CoachMotion = "system"
+
+
+class MotionPreferences(Contract):
+    motion: MotionPreference = "system"

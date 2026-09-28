@@ -756,15 +756,3 @@ footer > span:last-child {
     width: 100%;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-  }
-  *:not(.coach-avatar[data-motion="natural"], .coach-avatar[data-motion="natural"] *),
-  *:not(.coach-avatar[data-motion="natural"], .coach-avatar[data-motion="natural"] *)::before,
-  *:not(.coach-avatar[data-motion="natural"], .coach-avatar[data-motion="natural"] *)::after {
-    transition: none !important;
-  }
-}

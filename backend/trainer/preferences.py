@@ -4,7 +4,13 @@ from typing import get_args
 
 from sqlalchemy import select, update
 
-from trainer.contracts.preferences import CoachId, CoachMotion, CoachPreferences
+from trainer.contracts.preferences import (
+    CoachId,
+    CoachMotion,
+    CoachPreferences,
+    MotionPreference,
+    MotionPreferences,
+)
 from trainer.models import UserPreferences
 
 
@@ -22,13 +28,26 @@ def coach_preferences(db):
 
 
 def save_coach_preferences(db, value: CoachPreferences):
+    _save_preferences(db, coach_id=value.coach_id, coach_motion=value.motion)
+    return value
+
+
+def motion_preferences(db):
+    saved = db.scalar(select(UserPreferences))
+    motion = saved.interface_motion if saved else "system"
+    return MotionPreferences(motion=motion if motion in get_args(MotionPreference) else "system")
+
+
+def save_motion_preferences(db, value: MotionPreferences):
+    _save_preferences(db, interface_motion=value.motion)
+    return value
+
+
+def _save_preferences(db, **values):
     # Serialize the first insert as well as later updates across concurrent devices.
     # SQLite's busy timeout handles this short, engine-free transaction.
     owner = db.info["user_id"]
-    changed = db.execute(
-        update(UserPreferences).values(coach_id=value.coach_id, coach_motion=value.motion)
-    ).rowcount
+    changed = db.execute(update(UserPreferences).values(**values)).rowcount
     if not changed:
-        db.add(UserPreferences(user_id=owner, coach_id=value.coach_id, coach_motion=value.motion))
+        db.add(UserPreferences(user_id=owner, **values))
     db.commit()
-    return value

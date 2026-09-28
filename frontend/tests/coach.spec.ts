@@ -31,7 +31,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     await expect(notice).toBeVisible();
 
     await motion.selectOption("natural");
-    await expect(page.getByRole("status")).toContainText("Saved");
+    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
     await expect(portrait).toHaveAttribute("data-motion", "natural");
     await page.reload();
     await expect(motion).toHaveValue("natural");
@@ -43,7 +43,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     await expect(notice).toHaveCount(0);
 
     await motion.selectOption("still");
-    await expect(page.getByRole("status")).toContainText("Saved");
+    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.reload();
     await expect(motion).toHaveValue("still");
@@ -51,7 +51,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     expect(await portrait.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
 
     await motion.selectOption("system");
-    await expect(page.getByRole("status")).toContainText("Saved");
+    await expect(page.locator(".coach-preference-status")).toContainText("Saved");
     await page.reload();
     await expect(motion).toHaveValue("system");
     await expect(portrait).toHaveAttribute("data-motion", "natural");
@@ -196,6 +196,12 @@ test("preference failures keep the last saved choice and allow recovery", async 
 test("connecting with a LAN token restores preferences without a page reload", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.route("**/api/preferences/motion", (route) =>
+    route.request().headers().authorization === "Bearer coach-test-token"
+      ? route.fulfill({ json: { motion: "natural" } })
+      : route.fulfill({ status: 401, json: { detail: "LAN token required" } }),
+  );
   await page.route("**/api/preferences/coach", (route) =>
     route.request().headers().authorization === "Bearer coach-test-token"
       ? route.fulfill({ json: { coach_id: "classic", motion: "still" } })
@@ -212,6 +218,8 @@ test("connecting with a LAN token restores preferences without a page reload", a
   const motion = page.getByLabel("Coach motion", { exact: true });
   await expect(motion).toBeEnabled();
   await expect(motion).toHaveValue("still");
+  await expect(page.getByLabel("Piece & interface motion", {exact: true})).toHaveValue("natural");
+  await expect(page.locator("html")).toHaveAttribute("data-interface-motion", "natural");
   await expect(
     page.locator(".coach-option:has(input:checked) .coach-avatar"),
   ).toHaveAttribute("data-motion", "still");

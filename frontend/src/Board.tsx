@@ -2,7 +2,8 @@ import { Chessboard, type Arrow } from "react-chessboard";
 import { useEffect, useId, useRef, useState } from "react";
 import type { LegalMove, Promotion } from "./api";
 import MoveSymbol from "./MoveSymbol";
-import { MOVE_DURATION_MS, useReducedMotion } from "./reviewMotion";
+import { MOVE_DURATION_MS } from "./reviewMotion";
+import { useInterfaceMotion } from "./MotionProvider";
 
 export default function Board({
   fen,
@@ -27,7 +28,7 @@ export default function Board({
   disabled?: boolean;
   onMove?: (from: string, to: string, promotion?: Promotion) => void;
 }) {
-  const reducedMotion = useReducedMotion();
+  const motion = useInterfaceMotion();
   const boardId = "board-" + useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const [selected, setSelected] = useState<string | null>(null);
   const [promotion, setPromotion] = useState<{
@@ -82,7 +83,7 @@ export default function Board({
           arrows,
           allowDragging: interactive,
           animationDurationInMs: MOVE_DURATION_MS,
-          showAnimations: !reducedMotion,
+          showAnimations: motion === "natural",
           canDragPiece: ({ square }) => !!square && selectable(square),
           darkSquareStyle: { backgroundColor: "var(--board-dark)" },
           lightSquareStyle: { backgroundColor: "var(--board-light)" },

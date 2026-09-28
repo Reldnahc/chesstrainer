@@ -6,7 +6,8 @@ import {
   type CoachReaction,
 } from "./model";
 import { IDLE_GAP_MS, nextIdle } from "./idle";
-import { useReducedMotion } from "./useReducedMotion";
+import { useReducedMotion } from "../useReducedMotion";
+import { resolveMotion } from "../motion";
 
 export function usePerformance({
   reaction,
@@ -36,8 +37,7 @@ export function usePerformance({
   const [take, setTake] = useState(0);
   const played = useRef(0);
   const reduced = useReducedMotion();
-  const effectiveMotion =
-    motion === "system" ? (reduced ? "still" : "natural") : motion;
+  const effectiveMotion = resolveMotion(motion, reduced);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

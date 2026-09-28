@@ -22,6 +22,8 @@ test('account signup, engine-free sync, second-device login and private library'
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
+  await page.getByLabel('Piece & interface motion', {exact: true}).selectOption('natural');
+  await expect(page.locator('.motion-preference-status')).toContainText('Saved');
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   const jobs = await (await page.request.get('/api/jobs')).json();
   expect(jobs).toHaveLength(1);
@@ -47,6 +49,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.locator('.game-library-item')).toHaveCount(1);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
+    await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('natural');
     await expect(device.getByRole('button', {name: 'Women', exact: true})).toHaveAttribute('aria-pressed', 'true');
     await expect(device.getByRole('radio', {name: 'Golden braid', exact: true})).toBeChecked();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
@@ -66,6 +69,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('system');
+    await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('system');
     await expect(device.getByRole('radio', {name: 'Storyteller', exact: true})).toBeChecked();
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);

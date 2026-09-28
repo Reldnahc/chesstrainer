@@ -2,6 +2,34 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Piece and interface motion preferences: focused checks
+
+Settings offers device-default, Animated and Still for pieces/interface effects,
+independent of the same coach choices. One owned preference row persists both;
+the additive migration defaults existing accounts to device behavior without
+changing their coaches. Shared device resolution, preference lifecycle and CSS
+replace independent browser-only board/interface checks. Full verification is
+still deferred by owner request.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_motion_preferences.py backend/tests/test_coach_preferences.py -q --basetemp data/verification/interface-motion -o cache_dir=data/verification/interface-motion-cache`:
+  **31 passed**, with the two existing TestClient deprecation warnings. Covers
+  fresh/existing defaults, restart, unsupported values, account isolation/CSRF,
+  independent updates and concurrent first writes, migration integrity/FKs.
+- From `frontend`, `npx.cmd playwright test motion.spec.ts coach.spec.ts review-presentation.spec.ts --grep 'motion|preference failures|connecting with a LAN token|SRS shares animated' --reporter=line`:
+  **16 passed**, desktop/mobile. Checks actual piece transitions and badge CSS,
+  evaluation/interface transitions, browser overrides in both directions, coach
+  independence, reload, live device changes, failed load/save recovery and cold SRS.
+- `npx.cmd playwright test --config=playwright.accounts.config.ts --grep 'account signup' --reporter=line`:
+  **2 passed**, restoring the saved choice on another device and keeping a new
+  account's device default independent.
+- After widening the phone selector and explicitly testing both LAN-protected
+  preference endpoints, `npx.cmd playwright test motion.spec.ts coach.spec.ts --grep 'piece and interface motion saves|connecting with a LAN token' --reporter=line`:
+  **4 passed**. Desktop/320px phone Settings screenshots inspected.
+- App/browser TypeScript checks, Vite bundle, changed-Python Ruff lint/format,
+  API export/generated-type checks and Git whitespace checks passed. API outputs
+  were regenerated using the existing scripts. No full suites, Docker deployment
+  or engine-budget changes.
+
 ## Horizontal evaluation-bar score: focused checks
 
 The board bar displays a horizontal, one-decimal pawn score. Existing coach/graph

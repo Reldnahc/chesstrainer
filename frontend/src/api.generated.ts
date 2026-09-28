@@ -478,6 +478,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/preferences/motion": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Motion Preferences */
+        get: operations["get_motion_preferences_api_preferences_motion_get"];
+        /** Put Motion Preferences */
+        put: operations["put_motion_preferences_api_preferences_motion_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/review/queue": {
         parameters: {
             query?: never;
@@ -1775,6 +1793,15 @@ export interface components {
             model_revision: string;
             /** Provider */
             provider: string;
+        };
+        /** MotionPreferences */
+        MotionPreferences: {
+            /**
+             * Motion
+             * @default system
+             * @enum {string}
+             */
+            motion: "system" | "natural" | "still";
         };
         /** MoveExplanation */
         MoveExplanation: {
@@ -3281,6 +3308,59 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["CoachPreferences"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_motion_preferences_api_preferences_motion_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MotionPreferences"];
+                };
+            };
+        };
+    };
+    put_motion_preferences_api_preferences_motion_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MotionPreferences"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MotionPreferences"];
                 };
             };
             /** @description Validation Error */

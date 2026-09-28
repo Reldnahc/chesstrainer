@@ -18,7 +18,7 @@ const subscribe = (listener: () => void) => {
   listeners.add(listener);
   if (listeners.size === 1) {
     media?.addEventListener("change", change);
-    // Catch changes while no coach or settings panel was mounted.
+    // Catch changes while no motion consumer was mounted.
     publish(media?.matches ?? true);
   }
   return () => {

@@ -3455,6 +3455,23 @@
         "title": "ModelProvenance",
         "type": "object"
       },
+      "MotionPreferences": {
+        "additionalProperties": false,
+        "properties": {
+          "motion": {
+            "default": "system",
+            "enum": [
+              "system",
+              "natural",
+              "still"
+            ],
+            "title": "Motion",
+            "type": "string"
+          }
+        },
+        "title": "MotionPreferences",
+        "type": "object"
+      },
       "MoveExplanation": {
         "properties": {
           "accepted": {
@@ -6456,6 +6473,60 @@
           }
         },
         "summary": "Put Coach Preferences"
+      }
+    },
+    "/api/preferences/motion": {
+      "get": {
+        "operationId": "get_motion_preferences_api_preferences_motion_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotionPreferences"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Motion Preferences"
+      },
+      "put": {
+        "operationId": "put_motion_preferences_api_preferences_motion_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotionPreferences"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotionPreferences"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Motion Preferences"
       }
     },
     "/api/review/queue": {

@@ -28,8 +28,8 @@ Whole-game review and training analysis are separately requested from the game.
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
-| routes/workspace.py | Health, effective settings, account-owned coach preferences and statistics |
-| preferences.py | Validated coach choices in one owned user_preferences row; missing/unsupported choices have safe read defaults |
+| routes/workspace.py | Health, effective settings, account-owned coach/interface preferences and statistics |
+| preferences.py | Validated coach and motion choices in one owned user_preferences row; field-specific writes preserve independent choices and missing/unsupported choices have safe read defaults |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
@@ -70,11 +70,13 @@ lock, while other accounts have independent locks.
 | gameReview/usePositionAnalysis.ts | Serialized engine requests, per-history cache, browsing debounce and stale-response isolation |
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
-| Settings.tsx | Account, connected games, coach preferences and classification job controls |
+| Settings.tsx | Account, connected games, coach/interface preferences and classification job controls |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
+| useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
+| MotionProvider.tsx / MotionSettings.tsx / motion.ts / MotionSelect.tsx | Saved piece/interface motion, common device-default override rules and shared motion selector |
 | coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, event dwell, one-shot reactions and occasional idle gestures |
-| coach/useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits and controls |
+| useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits, boards and controls |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
 | coach/studies/ / coach/studio/ | Shared registered character artwork and a separate development-only comparison entry |
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |
@@ -95,6 +97,11 @@ Keep a component's normal and responsive rules together, with one block per
 breakpoint, rather than appending overrides to the entry point. Shared review
 presentation precedes the base element defaults to preserve the established
 cascade. Board dimensions and motion remain common to both review experiences.
+`motion.css` applies the resolved account motion choice to all interface CSS
+animations/transitions, excluding coach portrait subtrees with their independent
+choice. `Board` uses that same resolved state for native piece movement. Browser
+reduced motion supplies the default; explicit Animated/Still choices take
+precedence. Preferences remain still while loading or after a failed initial load.
 
 The [animated coach](COACH.md) uses the same `ReviewCoach` presentation in both
 review experiences. Artwork-specific poses, styles and finite CSS animations stay
@@ -102,6 +109,10 @@ with the registered character; semantic reaction and preference code are shared.
 The provider lives inside the account boundary, so switching users discards the
 previous preference state. Selection and motion use the existing owned SQLite
 database, including the reserved local user, with no new container settings.
+The independent piece/interface preference uses `/api/preferences/motion` and
+the `interface_motion` column in that same row. Both providers share the saved
+preference lifecycle and reset when the account boundary unmounts. The root CSS
+motion attribute is also removed on unmount; login screens use the device default.
 
 Navigation is Review, Games, Weaknesses, Import, Settings. A small History API
 router renders `/review`, `/games`, `/games/:id`, `/weaknesses`, `/import` and

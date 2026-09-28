@@ -124,8 +124,9 @@ clears timers. Replaying deliberately restarts only the SVG rig, not its layout.
 The default **Use device setting** follows system reduced motion. Choosing
 **Animated** or **Still** overrides the browser preference; Still disables both
 entrances and idle motion. The same resolved setting controls timers and CSS.
-`coach/useReducedMotion.ts` shares an event-driven snapshot between portraits,
-Settings and studio controls. It uses one native media listener while consumers
+`useReducedMotion.ts` shares an event-driven snapshot between portraits, boards,
+Settings and studio controls. `motion.ts` resolves both account motion choices
+with the same override rules. The device hook uses one native media listener while consumers
 are mounted, detaches it after the last unmount, and resynchronizes when a consumer
 returns. Animation renders never reread the live query: in Chromium that could
 consume a pending change notification and leave controls behind the portraits.
@@ -138,6 +139,16 @@ animation changes transforms/opacity inside a reserved box and does not move the
 board, bubble or controls. No flashes, audio or infinite animation loops are used.
 Eye masks belong to each SVG instance so idle glances stay within the eye shape
 even when many differently posed characters appear together in the studio.
+
+**Settings → Animations → Piece & interface motion** controls piece movement,
+rating entrances, evaluation-bar transitions and other interface animations.
+It has the same device-default/Animated/Still choices, saved independently from
+coach motion in the account's existing preference row. Both default to the
+device for existing/new users; adding this preference preserves saved coach
+choices. Interface Still does not stop an explicitly animated coach, and coach
+Still does not stop explicitly animated pieces. Boards in game review, SRS,
+explanations and evidence all use this shared preference. CSS uses the same
+resolved state as the board library; there is no second browser-only override.
 
 ## Adding a coach
 

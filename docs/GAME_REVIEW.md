@@ -27,6 +27,11 @@ size it had at full page width. Where necessary, the container expands beyond 80
 to fit the board and usable controls, never beyond the viewport. SRS and game
 review use this same sizing policy through `ReviewWorkspace`.
 
+**Settings → Animations → Piece & interface motion** controls piece movement,
+board feedback and interface transitions across all review screens. It follows
+the browser by default; saved Animated/Still choices override the browser and
+remain independent of coach motion.
+
 Each game opens at `/games/<id>`. Browser Back returns to the previous page and
 Forward reopens the review. You can bookmark a game or open its library link in
 another tab. Selecting a move records `?ply=<half-move>` in the same history entry,
