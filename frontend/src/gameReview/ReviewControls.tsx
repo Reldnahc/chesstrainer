@@ -25,7 +25,7 @@ export default function ReviewControls({
       role="group"
       aria-label="Game navigation"
     >
-      <Link className="button-link text-button game-library-link" href={libraryHref}>
+      <Link className="button-link game-library-link" href={libraryHref}>
         <ArrowLeft size={16} />
         All games
       </Link>
