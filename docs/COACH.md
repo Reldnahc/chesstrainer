@@ -109,8 +109,10 @@ pending work; existing review generation guards still discard stale engine repli
 An entrance lasts roughly 1.3–1.8 seconds, then retains a quieter static expression
 consistent with the bubble instead of returning to an unrelated neutral face.
 
-Idle gestures occur after variable 4.5–10 second pauses; subtle mode adds four
-seconds. The character avoids immediately repeating a gesture when alternatives
+Idle gestures occur after variable 2–5 second pauses for human coaches,
+2.5–5.5 seconds for cats, and 3–6 seconds for dogs. Subtle mode adds 1.5 seconds.
+Each gesture still lasts 1.2 seconds before scheduling the next pause.
+The character avoids immediately repeating a gesture when alternatives
 exist. Neutral, brilliant and blunder have distinct idle vocabularies. A small
 number of local timers schedule gestures; CSS performs the animation without a
 JavaScript frame loop. Offscreen or hidden characters stop active motion/timers.

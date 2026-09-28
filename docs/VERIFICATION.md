@@ -2,6 +2,38 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach idle cadence tuning
+
+Only existing idle delays changed: men/default 4.5–10 s to 2–5 s, women
+5.5–11.5 s to 2–5 s, cats 5.5–11.5 s to 2.5–5.5 s, and dogs 6–12 s to
+3–6 s. Subtle's extra delay is now 1.5 s instead of 4 s. Women's explicit idle
+range preserves their existing reaction timings. Gesture durations remain 1.2 s;
+artwork, reaction timing, scheduling and visibility/reduced-motion logic are unchanged.
+
+The new controlled-clock browser regression exercises the real studio scheduler
+for each collection on desktop/mobile: three automatic idle cycles after a
+reaction, unchanged gesture duration, Subtle's extra delay, and no reaction replay.
+It checks cancellation and resumption for Still, native reduced-motion preferences,
+real offscreen scrolling, and a simulated `document.hidden`/`visibilitychange`
+transition across multiple idle windows, without arbitrary sleeps.
+
+From `frontend`, with the documented Chromium/Stockfish environment:
+
+```powershell
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts idle-cadence.spec.ts --max-failures=2 --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+npx.cmd playwright test tests/coach.spec.ts tests/coach-logic.spec.ts tests/coach-selection.spec.ts --reporter=line
+```
+
+- Focused cadence checks: **10 passed**, 11.5 s.
+- Full coach studio: **28 passed**, 2.5 min.
+- Application coach suites: **26 passed**, 27.2 s.
+- No skips or failures. The ignored studio config reuses the owner's existing
+  server; the standard committed config is unchanged.
+- From the repository root, `npm.cmd --prefix frontend run build` passed,
+  including API consistency, strict application/browser-test types, endpoint
+  contracts and the production Vite build. `git diff --check` passed.
+
 ## PR #1 follow-up: browser-test type coverage
 
 Reproduced the previously recorded ad hoc TypeScript failure at `10bdaae`:
