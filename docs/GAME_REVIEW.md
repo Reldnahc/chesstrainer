@@ -119,7 +119,11 @@ edge markers visible. There is no legend or separate range slider. Previous/next
 buttons occupy fixed left and right slots around a centered move label, so changes
 in move number or notation cannot shift them.
 Click or tap a dot, or anywhere along the graph, to return to that ply in the
-original game. Arrow keys navigate reviewed dots when a dot is focused; Home/End
+original game. Drag across the graph with a mouse, touch or pen to scrub through
+positions: the cursor, board and coaching follow each new ply while held. Dragging
+past either end stops at the first/last position; release or cancellation ends the
+gesture. Vertical swipes still scroll the page on phones.
+Arrow keys navigate reviewed dots when a dot is focused; Home/End
 select the first/last reviewed move. The graph's buttons also navigate every ply,
 including positions still being reviewed. The coach keeps its label, message area, and action
 row in stable slots; longer explanations scroll inside the bubble. The desktop

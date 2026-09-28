@@ -2,6 +2,27 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Evaluation graph drag scrubbing: focused checks
+
+The graph captures mouse/touch/pen drags and selects each newly crossed ply,
+updating the original-game board and coaching while held. Release, cancellation
+and lost capture end the gesture; vertical phone scrolling remains native.
+Compatibility mouse events cannot override the selected marker's keyboard focus.
+
+- The new drag regression failed on both desktop and mobile before implementation:
+  moving a held pointer left the original position selected.
+- From `frontend`, `npx.cmd playwright test evaluation-scrub.spec.ts evaluation.spec.ts game-review.spec.ts --grep 'evaluation scrubs|evaluation scales|dense evaluation|review both players' --reporter=line`:
+  **8 passed**, desktop/mobile. Covers intermediate board/coach scores, endpoint
+  clamping outside the graph, release/cancellation/lost capture, repeated gestures,
+  native vertical touch scrolling, no new searches for saved positions, keyboard
+  focus, dense markers, clicks/taps and returning from variations.
+- The first combined run exposed a keyboard-focus regression (fixed) and one
+  mobile page-initialization timeout before the graph rendered. The complete
+  focused rerun passed without retries. Touch checks use Chromium emulation.
+- `npx.cmd tsc -b`, `npx.cmd tsc --project tsconfig.browser-tests.json`,
+  `npx.cmd vite build` and Git whitespace checks passed.
+- Full verification remains deferred by owner request; no push/deployment.
+
 ## Responsive Move quality comparison: focused checks
 
 Move quality now presents player names/colors above larger accuracy scores, with
