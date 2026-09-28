@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   type CoachDefinition,
   type CoachMicro,
@@ -6,21 +6,7 @@ import {
   type CoachReaction,
 } from "./model";
 import { nextIdle } from "./idle";
-
-const media =
-  typeof window === "undefined"
-    ? null
-    : window.matchMedia("(prefers-reduced-motion: reduce)");
-const subscribe = (listener: () => void) => {
-  media?.addEventListener("change", listener);
-  return () => media?.removeEventListener("change", listener);
-};
-export const useReducedMotion = () =>
-  useSyncExternalStore(
-    subscribe,
-    () => media?.matches ?? true,
-    () => true,
-  );
+import { useReducedMotion } from "./useReducedMotion";
 
 export function usePerformance({
   reaction,

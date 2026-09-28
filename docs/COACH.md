@@ -119,6 +119,13 @@ already seen entrance is not replayed. Unmounting removes observers/listeners an
 clears timers. Replaying deliberately restarts only the SVG rig, not its layout.
 
 System reduced motion and the Still preference disable entrances and idle motion.
+`coach/useReducedMotion.ts` shares an event-driven snapshot between portraits,
+Settings and studio controls. It uses one native media listener while consumers
+are mounted, detaches it after the last unmount, and resynchronizes when a consumer
+returns. Animation renders never reread the live query: in Chromium that could
+consume a pending change notification and leave controls behind the portraits.
+The studio's manual preview remains selected when the device preference switches
+off again; the device preference always takes precedence while enabled.
 Static facial poses, ratings, evaluation and explanatory text remain. Reactions
 are decorative: the existing accessible coaching text carries the analysis. The
 animation changes transforms/opacity inside a reserved box and does not move the

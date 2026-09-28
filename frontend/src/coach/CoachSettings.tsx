@@ -3,7 +3,7 @@ import { CoachCharacter } from "./CoachAvatar";
 import { useCoachPreferences } from "./CoachProvider";
 import { coachCollections, getCoach, selectableCoaches } from "./registry";
 import type { CoachId, CoachMotion, CoachPreferences } from "./model";
-import { useReducedMotion } from "./usePerformance";
+import { useReducedMotion } from "./useReducedMotion";
 import "./settings.css";
 
 export default function CoachSettings() {

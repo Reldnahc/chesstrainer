@@ -21,6 +21,61 @@ prevents this gap returning.
   **24 passed** (desktop/mobile), 9.1 s. Assertions and behavioral coverage remain.
 - `git diff --check`: passed.
 
+## PR #1 follow-up: synchronized reduced motion
+
+The original studio test passed 20 pre-fix repetitions, but the new focused
+native-media transition regression reproduced the unchecked checkbox twice before
+any production change. Trace instrumentation showed the shared MediaQueryList had
+changed to `true` without delivering its change event to any of the 31 registered
+listeners. Portrait animation renders read the new live value while the parent
+control retained the old value. Removing those render-time reads resolved the
+reproduction: all coach consumers now read one event-driven snapshot. Its single
+native listener detaches when unused and resynchronizes on remount. There is no
+polling, forced checkbox click, increased timeout or trace suppression.
+
+The new studio regression checks all portraits, the checkbox, notice, disabled
+state and absence of animations across repeated device changes, manual preview
+overrides and reload. A production Settings regression changes the device
+preference while no coach consumers are mounted, then returns without reloading.
+Both additional follow-ups from the previous correction pass are now resolved.
+
+From `frontend`, using the same Chromium/Stockfish environment documented below:
+
+```powershell
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts reduced-motion.spec.ts --repeat-each=20 --max-failures=1 --reporter=line
+npx.cmd playwright test tests/coach.spec.ts --reporter=line
+npx.cmd playwright test --reporter=line
+npx.cmd playwright test --config ../.tools/pr1-coach.config.ts --reporter=line
+npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line
+npx.cmd playwright test --config playwright.intelligence.config.ts --reporter=line
+```
+
+- Native media transition repetition: **40 passed**, 20 desktop + 20 mobile,
+  1.3 min. Real Settings/coach integration: **12 passed**, 17.6 s.
+- Full application: **141 passed, 3 expected viewport skips**, 2.7 min.
+- Full coach studio, including the original failed test: **18 passed**, 2.4 min.
+- Accounts: **2 passed**, 43.1 s. Intelligence laboratory: **30 passed**, 37.1 s.
+- The studio used the previously documented ignored config to preserve the
+  owner's running development server; the normal config still refuses to take
+  over an occupied port.
+
+From the repository root:
+
+```powershell
+npm.cmd --prefix frontend run build
+.venv/Scripts/python.exe -m pytest -q -ra --basetemp data/verification/pr1-followup-backend -o cache_dir=data/verification/pr1-followup-pytest-cache
+.venv/Scripts/ruff.exe check backend scripts migrations
+.venv/Scripts/ruff.exe format --check backend scripts migrations
+.venv/Scripts/python.exe scripts/export_api_contract.py --check
+git diff --check
+```
+
+All passed. Backend: **587 passed, 3 explicit native-Maia opt-in skips**, 152.14 s;
+`MAIA_CHECKPOINT_DIR` was unset. Native Stockfish ran. The two existing TestClient
+dependency deprecation warnings remain. Build includes the new strict browser-test
+type gate. No engine settings, model weights, chess evidence, account schema or
+container configuration changed. Temporary diagnostic code was removed.
+
 ## PR #1 correction pass: coach-selection lifecycle
 
 At reviewed head `7423d61`, the latest PR run `36360090312` failed on mobile
@@ -140,11 +195,12 @@ review/health and coach-preference persistence. No existing installation or live
 database was used.
 
 Additional, non-CI inspection: a direct `tsc --noEmit` invocation over Playwright
-test sources is not a configured repository check. It still reports absent Node
+test sources was not a configured repository check. That run reported absent Node
 type declarations and a pre-existing partial-context cast in `dialogue-logic.spec.ts`.
 No dependency or test-typechecking infrastructure changes were made in this
 targeted pass. The supported production build/type-contract checks and runtime
-browser suites pass; this separate test-source typing gap is a follow-up.
+browser suites passed. The browser-test type coverage follow-up above resolves
+this separate typing gap and adds it to the normal build gate.
 The additional command (from `frontend`) was:
 
 ```powershell

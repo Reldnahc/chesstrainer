@@ -12,7 +12,7 @@ import {
   type CoachMotion,
   type CoachMicro,
 } from "../model";
-import { useReducedMotion } from "../usePerformance";
+import { useReducedMotion } from "../useReducedMotion";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";

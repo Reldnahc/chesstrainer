@@ -73,7 +73,8 @@ lock, while other accounts have independent locks.
 | Settings.tsx | Account, connected games, coach preferences and classification job controls |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
-| coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, reduced motion, event dwell, one-shot reactions and occasional idle gestures |
+| coach/model.ts / registry.ts / usePerformance.ts | Coach definitions and fallbacks, event dwell, one-shot reactions and occasional idle gestures |
+| coach/useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits and controls |
 | coach/classic/ / coach/human/ | Original character, reusable human expression poses, facial layers and hand artwork |
 | coach/studies/ / coach/studio/ | Shared registered character artwork and a separate development-only comparison entry |
 | dialogue/ | Semantic claims and deterministic utterances shared by review, branches and authorized practice; registry-owned personalities rephrase facts with neutral fallback |

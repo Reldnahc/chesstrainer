@@ -56,6 +56,26 @@ test("coach preference saves, reloads and respects the device across real pages"
   }
 });
 
+test("coach motion resynchronizes after device changes while the settings page is unmounted", async ({ page }) => {
+  await page.request.put("/api/preferences/coach", {
+    data: { coach_id: "classic", motion: "natural" },
+  });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/settings");
+  const selected = page.locator(".coach-option:has(input:checked) .coach-avatar");
+  await expect(selected).toHaveAttribute("data-motion", "natural");
+  const deviceNotice = page.getByText("Your device requests reduced motion. The coach will stay still.");
+
+  for (const reducedMotion of ["reduce", "no-preference", "reduce"] as const) {
+    await page.getByRole("link", { name: "Games", exact: true }).click();
+    await expect(page.locator(".coach-avatar")).toHaveCount(0);
+    await page.emulateMedia({ reducedMotion });
+    await page.getByRole("link", { name: "Settings", exact: true }).click();
+    await expect(selected).toHaveAttribute("data-motion", reducedMotion === "reduce" ? "still" : "natural");
+    await expect(deviceNotice).toHaveCount(reducedMotion === "reduce" ? 1 : 0);
+  }
+});
+
 test("game navigation and SRS attempts drive the real shared coach", async ({
   page,
 }, info) => {
