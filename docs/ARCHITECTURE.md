@@ -1,5 +1,13 @@
 # Architecture
 
+The authored Study lesson framework lives in `trainer/study_lessons`: content
+validation, a pure player reducer, account-owned sessions/progress and narrow
+current-position projections. `routes/study_lessons.py` applies the existing
+workspace ownership/mutation boundary. On the frontend `LessonLibrary` and
+`LessonPlayer` use the existing board/workspace/coach; `useStudyPlayback` shares
+display-only frame timing with puzzles. No animation drives durable progress.
+See [Study](STUDY.md) for content, session and authority contracts.
+
 React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ owns chess rules, evaluation, grading, local classification, reviews and scheduling. SQLAlchemy 2 and Alembic manage SQLite with foreign keys, WAL and a busy timeout. Run one application process; no Redis, external worker service or cloud database is needed.
 
 ## HTTP interface ownership

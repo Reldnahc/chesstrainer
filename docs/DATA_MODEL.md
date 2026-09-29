@@ -47,6 +47,16 @@ Repertoire archival is a read-time source filter, not deletion or retirement. Le
 
 ## Migration history
 
+### Authored Study lessons: 6b138de291c5
+
+Adds account-owned `study_lesson_sessions`, `study_lesson_commands` and
+`study_lesson_progress`. Sessions pin course ID/revision, chapter, immutable
+content/hash, complete player state and monotonic command revision. Commands
+retain idempotent request/response pairs. Progress has one row per account,
+course revision and chapter, with viewed/attempted steps and first completion.
+Back or replay does not overwrite first completion. These tables are separate
+from archived generated lessons and do not alter Review or FSRS records.
+
 The following notes describe how retained fields and compatibility behavior were introduced. References to creating course sequences describe historical domain behavior, not an active application workflow.
 
 Revision `1c14f367bbe8` adds Chess.com query/progress and archive checkpoint tables without modifying existing game identities. A download and its checkpoint commit together; raw selected PGNs remain in game_imports. Backup/restore automatically includes these records. The same mutation lock protects PGN uploads and Chess.com ingestion from cross-source duplicate insertion races.

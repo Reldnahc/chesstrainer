@@ -45,14 +45,21 @@ function readRoute() {
   const path = url.pathname.replace(/\/$/, "");
   const gameMatch = path.match(/^\/games\/([^/]+)$/);
   const puzzleMatch = path.match(/^\/study\/puzzles\/sessions\/([^/]+)$/);
+  const lessonMatch = path.match(/^\/study\/openings\/sessions\/([^/]+)$/);
+  const courseMatch = path.match(/^\/study\/openings\/courses\/([^/]+)$/);
   let gameId: string | null = null;
   let puzzleSessionId: string | null = null;
+  let lessonSessionId: string | null = null;
+  let lessonCourseId: string | null = null;
   try { if (gameMatch) gameId = decodeURIComponent(gameMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (puzzleMatch) puzzleSessionId = decodeURIComponent(puzzleMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
+  try { if (lessonMatch) lessonSessionId = decodeURIComponent(lessonMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
+  try { if (courseMatch) lessonCourseId = decodeURIComponent(courseMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   const puzzleSource: "generic" | "games" | null = path === "/study/puzzles/generic" ? "generic"
     : path === "/study/puzzles/games" ? "games" : null;
   const studyMode: StudyMode | null = path === pagePaths.Study ? "home"
     : puzzleSessionId || puzzleSource ? "puzzles"
+    : lessonSessionId || lessonCourseId ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
   const tab: Tab | null = studyMode ? "Study" : gameId ? "Games"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
@@ -64,6 +71,9 @@ function readRoute() {
     studyMode,
     puzzleSessionId,
     puzzleSource,
+    lessonSessionId,
+    lessonCourseId,
+    lessonRevision: lessonCourseId ? url.searchParams.get("revision") : null,
     page: Math.max(1, Math.min(1_000_000, nonnegativeInteger(url.searchParams.get("page"), 1))),
     ply: nonnegativeInteger(url.searchParams.get("ply")),
     exercise: studyMode === "due" ? url.searchParams.get("exercise") : null,
@@ -96,6 +106,14 @@ export function gamesPath(page = 1, id?: string) {
 
 export function puzzleSessionPath(id: string) {
   return `${studyPaths.puzzles}/sessions/${encodeURIComponent(id)}`;
+}
+
+export function lessonSessionPath(id: string) {
+  return `${studyPaths.openings}/sessions/${encodeURIComponent(id)}`;
+}
+
+export function lessonCoursePath(id: string, revision?: string) {
+  return `${studyPaths.openings}/courses/${encodeURIComponent(id)}${revision ? `?revision=${encodeURIComponent(revision)}` : ""}`;
 }
 
 // These annotate the current page, rather than navigating away from it. Keeping

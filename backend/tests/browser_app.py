@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 
 import httpx
 from puzzle_fixtures import BrowserPuzzleProvider
+from study_lesson_fixtures import BrowserLessonProvider
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
 from trainer.game_providers.lichess import LichessClient
@@ -79,11 +80,38 @@ def create_app():
         return LichessClient(settings, transport=httpx.MockTransport(handler))
 
     puzzle_provider = BrowserPuzzleProvider()
+    lesson_provider = BrowserLessonProvider()
     app = production_app(
         chesscom_factory=factory,
         provider_factories={"lichess": lichess_factory},
         puzzle_providers=(puzzle_provider,),
+        lesson_providers=(lesson_provider,),
     )
+
+    @app.post("/__test/lesson-fixture/{key}")
+    def lesson_fixture(workspace: CurrentWorkspace, key: str):
+        from trainer.contracts.study_lessons import LessonStart
+        from trainer.study_lessons.providers import CourseProviders
+        from trainer.study_lessons.sessions import start_session
+
+        with workspace.mutation_lock, workspace.sessions() as db:
+            course = lesson_provider.install(workspace.user_id, key)
+            session = start_session(
+                db,
+                CourseProviders((lesson_provider,)),
+                LessonStart(
+                    course_id=course.id,
+                    course_revision=course.revision,
+                    chapter_id="connected",
+                    request_id=f"lesson-fixture-{key}",
+                ),
+            )
+            return {
+                "session_id": session["id"],
+                "course_id": course.id,
+                "revision": course.revision,
+                "chapter_id": "connected",
+            }
 
     @app.post("/__test/puzzle-fixture/{key}")
     def puzzle_fixture(workspace: CurrentWorkspace, key: str):

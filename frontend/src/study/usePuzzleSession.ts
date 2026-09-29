@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, read, type Promotion, type Schema } from "../api";
-import { useInterfaceMotion } from "../MotionProvider";
-import { COUNTER_REPLY_DELAY_MS } from "../reviewMotion";
-import { puzzleRequestId } from "./puzzleApi";
+import { studyRequestId } from "./requestId";
+import { useStudyPlayback } from "./useStudyPlayback";
 
 export type PuzzleSession = Schema["PuzzleSessionView"];
 type Frame = PuzzleSession["playback"][number];
@@ -13,21 +12,13 @@ export function usePuzzleSession(id: string) {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [frames, setFrames] = useState<Frame[]>([]);
-  const [frameIndex, setFrameIndex] = useState(0);
   const [retryReady, setRetryReady] = useState(false);
-  const [inspection, setInspection] = useState<Frame | null>(null);
-  const [showStart, setShowStart] = useState(false);
   const generation = useRef(0);
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
   const started = useRef(performance.now());
-  const motion = useInterfaceMotion();
-  const playing = motion === "natural" && frames.length > 0;
-  const frame = playing ? frames[frameIndex] || null : inspection;
-  const fen = playing && frameIndex < 0 ? frames[0].before_fen
-    : showStart ? session?.completion?.solution[0]?.before_fen
-    : frame?.after_fen || session?.fen;
+  const playback = useStudyPlayback(() => { started.current = performance.now(); });
+  const { reset, playing } = playback;
 
   const load = useCallback(async () => {
     const version = ++generation.current;
@@ -37,9 +28,7 @@ export function usePuzzleSession(id: string) {
     locked.current = true;
     setLoading(true);
     setError("");
-    setFrames([]);
-    setInspection(null);
-    setShowStart(false);
+    reset();
     try {
       const result = await read(api.GET("/api/puzzle-sessions/{session_id}", {
         params: { path: { session_id: id } }, signal: pending.signal,
@@ -57,34 +46,20 @@ export function usePuzzleSession(id: string) {
         setLoading(false);
       }
     }
-  }, [id]);
+  }, [id, reset]);
   useEffect(() => {
     void load();
     return () => { generation.current++; controller.current?.abort(); };
   }, [load]);
-
-  useEffect(() => {
-    if (!frames.length) return;
-    if (motion === "still") {
-      setFrames([]);
-      return;
-    }
-    const timer = window.setTimeout(() => {
-      if (frameIndex + 1 < frames.length) setFrameIndex(index => index + 1);
-      else { setFrames([]); started.current = performance.now(); }
-    }, COUNTER_REPLY_DELAY_MS);
-    return () => window.clearTimeout(timer);
-  }, [frames, frameIndex, motion]);
 
   async function act(uci?: string) {
     if (!session || locked.current || playing || error || session.status !== "active") return;
     locked.current = true;
     setBusy(true);
     setError("");
-    setInspection(null);
-    setShowStart(false);
+    reset();
     const version = generation.current;
-    const request = { request_id: puzzleRequestId(), revision: session.revision };
+    const request = { request_id: studyRequestId(), revision: session.revision };
     try {
       const result = uci
         ? await read(api.POST("/api/puzzle-sessions/{session_id}/move", {
@@ -98,8 +73,7 @@ export function usePuzzleSession(id: string) {
       if (version !== generation.current) return;
       setSession(result);
       setRetryReady(false);
-      setFrameIndex(0);
-      setFrames(result.playback);
+      playback.play(result.playback);
       started.current = performance.now();
     } catch (e) {
       // A lost response may already be committed, or another tab may have moved.
@@ -111,25 +85,17 @@ export function usePuzzleSession(id: string) {
   }
   const retrying = session?.feedback?.grade === "incorrect" && !retryReady;
   return {
-    session, loading, busy, error, playing, frame, fen, retrying, motion,
+    session, loading, busy, error, playing, frame: playback.frame, fen: playback.fen || session?.fen, retrying, motion: playback.motion,
     disabled: !session || loading || busy || playing || retrying || !!error || session.status !== "active",
     answer: (from: string, to: string, promotion?: Promotion) => act(from + to + (promotion || "")),
     reveal: () => act(),
     retry: () => { setRetryReady(true); started.current = performance.now(); },
     reload: load,
-    inspect: (selected: Frame) => { if (!playing && !busy) { setShowStart(false); setInspection(selected); } },
-    inspectStart: () => { if (!playing && !busy) { setInspection(null); setShowStart(true); } },
+    inspect: (selected: Frame) => { if (!busy) playback.inspect(selected); },
+    inspectStart: () => { if (!busy) playback.inspectStart(session?.completion?.solution[0]); },
     replay: () => {
       if (!session?.completion || busy || playing) return;
-      if (motion === "still") {
-        setInspection(null);
-        setShowStart(true);
-        return;
-      }
-      setInspection(null);
-      setShowStart(false);
-      setFrameIndex(-1);
-      setFrames(session.completion.solution);
+      playback.play(session.completion.solution, true);
     },
   };
 }
