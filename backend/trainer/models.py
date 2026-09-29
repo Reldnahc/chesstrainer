@@ -471,3 +471,142 @@ class Review(Owned, Base):
     scheduler_version: Mapped[str]
     scheduler_log: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class PuzzleSession(Owned, Base):
+    __tablename__ = "puzzle_sessions"
+    __table_args__ = (UniqueConstraint("user_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    request_id: Mapped[str]
+    provider_id: Mapped[str]
+    puzzle_key: Mapped[str]
+    definition_version: Mapped[str]
+    puzzle_source: Mapped[str]
+    snapshot: Mapped[dict] = mapped_column(JSON)
+    current_step: Mapped[int] = mapped_column(default=0)
+    revision: Mapped[int] = mapped_column(default=0)
+    status: Mapped[str] = mapped_column(default="active")
+    failed: Mapped[bool] = mapped_column(default=False)
+    first_response_ms: Mapped[int | None]
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class PuzzleAttempt(Owned, Base):
+    __tablename__ = "puzzle_attempts"
+    __table_args__ = (UniqueConstraint("session_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    session_id: Mapped[str] = mapped_column(ForeignKey("puzzle_sessions.id"), index=True)
+    request_id: Mapped[str]
+    request: Mapped[dict] = mapped_column(JSON)
+    step: Mapped[int]
+    uci: Mapped[str | None]
+    grade: Mapped[str]
+    elapsed_ms: Mapped[int]
+    response: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class StudyLessonSession(Owned, Base):
+    __tablename__ = "study_lesson_sessions"
+    __table_args__ = (UniqueConstraint("user_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    request_id: Mapped[str]
+    course_id: Mapped[str]
+    course_revision: Mapped[str]
+    course_title: Mapped[str]
+    chapter_id: Mapped[str]
+    chapter_title: Mapped[str]
+    content_hash: Mapped[str]
+    snapshot: Mapped[dict] = mapped_column(JSON)
+    state: Mapped[dict] = mapped_column(JSON)
+    revision: Mapped[int] = mapped_column(default=0)
+    status: Mapped[str] = mapped_column(default="active")
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class StudyLessonCommand(Owned, Base):
+    __tablename__ = "study_lesson_commands"
+    __table_args__ = (UniqueConstraint("session_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    session_id: Mapped[str] = mapped_column(ForeignKey("study_lesson_sessions.id"), index=True)
+    request_id: Mapped[str]
+    request: Mapped[dict] = mapped_column(JSON)
+    response: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class StudyLessonProgress(Owned, Base):
+    __tablename__ = "study_lesson_progress"
+    __table_args__ = (UniqueConstraint("user_id", "course_id", "course_revision", "chapter_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    course_id: Mapped[str]
+    course_revision: Mapped[str]
+    chapter_id: Mapped[str]
+    content_hash: Mapped[str]
+    viewed_steps: Mapped[list] = mapped_column(JSON, default=list)
+    attempted_steps: Mapped[list] = mapped_column(JSON, default=list)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class OpeningStudy(Owned, Base):
+    __tablename__ = "opening_studies"
+    __table_args__ = (
+        UniqueConstraint("user_id", "source", "source_key", "source_version", "color"),
+    )
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    source: Mapped[str]
+    source_key: Mapped[str]
+    source_version: Mapped[str]
+    name: Mapped[str]
+    eco: Mapped[str | None]
+    color: Mapped[str]
+    snapshot: Mapped[dict] = mapped_column(JSON)
+    active: Mapped[bool] = mapped_column(default=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class OpeningStudyMove(Owned, Base):
+    __tablename__ = "opening_study_moves"
+    study_id: Mapped[str] = mapped_column(ForeignKey("opening_studies.id"), primary_key=True)
+    ordinal: Mapped[int] = mapped_column(primary_key=True)
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
+    position_key: Mapped[str]
+    fen: Mapped[str]
+    ply: Mapped[int]
+    move_uci: Mapped[str]
+    move_san: Mapped[str]
+
+
+class OpeningCard(Owned, Base):
+    __tablename__ = "opening_cards"
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
+    revision: Mapped[int] = mapped_column(default=0)
+    active: Mapped[bool] = mapped_column(default=False)
+    last_active_answers: Mapped[list] = mapped_column(JSON, default=list)
+    retirement_guard_revision: Mapped[int | None]
+
+
+class OpeningRecallSnapshot(Owned, Base):
+    __tablename__ = "opening_recall_snapshots"
+    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"), primary_key=True)
+    answer_revision: Mapped[int]
+    fen: Mapped[str]
+    orientation: Mapped[str]
+    answers: Mapped[list] = mapped_column(JSON)
+    studies: Mapped[list] = mapped_column(JSON)
+    non_scheduling_reason: Mapped[str | None]
+
+
+class OpeningContentChange(Owned, Base):
+    __tablename__ = "opening_content_changes"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
+    revision: Mapped[int]
+    reason: Mapped[str]
+    details: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)

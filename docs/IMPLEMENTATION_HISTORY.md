@@ -2,6 +2,31 @@
 
 This preserves the earlier development journal, including superseded product plans, dated deployments and validation results. It is historical context, not current setup or feature guidance. Use [PRODUCT.md](PRODUCT.md), [FEATURE_STATUS.md](FEATURE_STATUS.md), [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) and [TESTING.md](TESTING.md) for current behavior and work. References below to lessons, Repertoire and model requests describe earlier versions.
 
+## Study frameworks and Italian pilot: September 28, 2026
+
+Implemented the approved sprint in [Fieldwork Study Expansion](../FIELDWORK_STUDY_EXPANSION.md)
+on `codex/study-frameworks`, created from local main at `5fa6ac4`. The existing
+archived course and Repertoire domains remain archived.
+
+| Phase | Commit | Completed slice |
+| --- | --- | --- |
+| 1 | `5c30aad` | Study navigation and private, durable multi-move puzzle framework. |
+| 2 | `557bf97` | Six-kind lesson player, explicit branch/full-game returns, pinned progress and independent rehearsal. |
+| 3 | `4fd6f6b` | Catalogue/course enrollment, shared opening cards in existing Review/FSRS, immutable answers and safe content changes. |
+| 4 | `d285218` | Three-chapter Italian course for White, original teaching text and three sourced historical scores. |
+| 5 | This completion record's commit | Final cross-domain review, account/device and fresh Docker checks, lesson explanation scroll correction, permanent documentation and ledger removal. |
+
+Decisions and contracts are maintained in [Study](STUDY.md). The pilot's original
+source record is [Italian course sources](ITALIAN_COURSE_SOURCES.md). Puzzles ship
+without production collections; generation and bulk acquisition remain later
+work. Lesson completion and dedicated practice never advance FSRS or weaknesses.
+
+Independent reviews corrected cold projections, source-game prelude playback,
+self-retirement versus stale-attempt reporting, persisted retirement guards,
+exact Due counts and retained explanation scroll positions. Final measured
+results and explicit skips are in [Verification](VERIFICATION.md). No deployment
+or merge is part of this branch's delivery.
+
 ## Review intelligence completion: September 27, 2026
 
 Implemented the owner-supplied [specification](REVIEW_INTELLIGENCE_PLAN.md) in

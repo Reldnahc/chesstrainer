@@ -53,8 +53,14 @@ def test_every_success_response_has_a_concrete_contract(settings):
                 if status.startswith("2"):
                     body = response["content"]["application/json"]["schema"]
                     assert body, (method, path, status)
-                    item = body.get("items", body)
-                    assert "$ref" in item or item.get("properties"), (method, path, body)
+                    # An empty selection may be null, but every non-null branch
+                    # still needs the same concrete object/array contract.
+                    branches = body.get("anyOf", [body])
+                    non_null = [branch for branch in branches if branch.get("type") != "null"]
+                    assert non_null, (method, path, body)
+                    for branch in non_null:
+                        item = branch.get("items", branch)
+                        assert "$ref" in item or item.get("properties"), (method, path, body)
 
 
 def test_incompatible_response_payload_is_rejected(settings):

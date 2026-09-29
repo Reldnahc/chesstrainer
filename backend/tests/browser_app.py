@@ -5,9 +5,13 @@ import re
 from datetime import datetime, timezone
 
 import httpx
+from puzzle_fixtures import BrowserPuzzleProvider
+from study_lesson_fixtures import BrowserLessonProvider
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
 from trainer.game_providers.lichess import LichessClient
+from trainer.study_lessons.bundled import bundled_providers
+from trainer.workspaces import CurrentWorkspace
 
 
 def create_app():
@@ -76,7 +80,129 @@ def create_app():
 
         return LichessClient(settings, transport=httpx.MockTransport(handler))
 
-    app = production_app(chesscom_factory=factory, provider_factories={"lichess": lichess_factory})
+    puzzle_provider = BrowserPuzzleProvider()
+    lesson_provider = BrowserLessonProvider()
+    app = production_app(
+        chesscom_factory=factory,
+        provider_factories={"lichess": lichess_factory},
+        puzzle_providers=(puzzle_provider,),
+        lesson_providers=(*bundled_providers(), lesson_provider),
+    )
+
+    @app.post("/__test/lesson-fixture/{key}")
+    def lesson_fixture(workspace: CurrentWorkspace, key: str):
+        from trainer.contracts.study_lessons import LessonStart
+        from trainer.study_lessons.providers import CourseProviders
+        from trainer.study_lessons.sessions import start_session
+
+        with workspace.mutation_lock, workspace.sessions() as db:
+            course = lesson_provider.install(workspace.user_id, key)
+            session = start_session(
+                db,
+                CourseProviders((lesson_provider,)),
+                LessonStart(
+                    course_id=course.id,
+                    course_revision=course.revision,
+                    chapter_id="connected",
+                    request_id=f"lesson-fixture-{key}",
+                ),
+            )
+            return {
+                "session_id": session["id"],
+                "course_id": course.id,
+                "revision": course.revision,
+                "chapter_id": "connected",
+            }
+
+    @app.post("/__test/puzzle-fixture/{key}")
+    @app.post("/api/__test/puzzle-fixture/{key}")
+    def puzzle_fixture(workspace: CurrentWorkspace, key: str):
+        from trainer.contracts.puzzles import PuzzleStart
+        from trainer.puzzles.providers import PuzzleProviders
+        from trainer.puzzles.sessions import start_session
+
+        with workspace.mutation_lock, workspace.sessions() as db:
+            definition = puzzle_provider.install(workspace.user_id, key)
+            session = start_session(
+                db,
+                PuzzleProviders((puzzle_provider,)),
+                PuzzleStart(
+                    provider_id=puzzle_provider.id,
+                    key=key,
+                    version=definition.version,
+                    request_id=f"fixture-{key}",
+                ),
+            )
+            return {"session_id": session["id"], "key": key, "source": definition.source}
+
+    @app.post("/__test/opening-recall-fixture/{key}")
+    def opening_recall_fixture(workspace: CurrentWorkspace, key: str):
+        import chess
+        from sqlalchemy import select
+        from trainer.contracts.opening_studies import OpeningEnrollment
+        from trainer.models import OpeningStudyMove
+        from trainer.opening_studies import service, sources
+        from trainer.reviews import start_review
+        from trainer.scheduling import FSRSScheduler
+        from trainer.study_lessons.content import CourseDefinition
+        from trainer.study_lessons.providers import CourseProviders
+
+        with workspace.mutation_lock, workspace.sessions() as db:
+            course = lesson_provider.install(workspace.user_id, f"recall-{key}")
+            record = course.model_dump(mode="json")
+            board = chess.Board()
+            board.push_uci("e2e4")
+            board.push_uci("e7e5")
+            # Distinct from real catalogue cards in the shared disposable browser
+            # account. Tests disable their studies after each scenario.
+            board.castling_rights = 0
+            record["lines"].extend(
+                {
+                    "id": line_id,
+                    "title": title,
+                    "position": {"initial_fen": board.fen()},
+                    "moves": [move],
+                    "repertoire": True,
+                }
+                for line_id, title, move in (
+                    ("queenside", "Queenside knight", "b1c3"),
+                    ("kingside", "Kingside knight", "g1f3"),
+                )
+            )
+            lesson_provider._accounts[workspace.user_id][course.id] = (
+                CourseDefinition.model_validate(record)
+            )
+            providers = CourseProviders((lesson_provider,))
+            studies = [
+                service.enroll_line(
+                    db,
+                    providers,
+                    OpeningEnrollment(
+                        source="course_line",
+                        source_key=sources.course_key(course.id, line_id),
+                        source_version=course.revision,
+                        course_id=course.id,
+                        line_id=line_id,
+                        color="white",
+                    ),
+                    FSRSScheduler(app.state.settings),
+                )
+                for line_id in ("queenside", "kingside")
+            ]
+            exercise_id = db.scalar(
+                select(OpeningStudyMove.exercise_id).where(
+                    OpeningStudyMove.study_id == studies[0]["id"]
+                )
+            )
+            session = start_review(db, exercise_id)
+            return {
+                "exercise_id": exercise_id,
+                "session_id": session["session_id"],
+                "study_ids": [study["id"] for study in studies],
+                "names": [study["name"] for study in studies],
+                "accepted_moves": ["b1c3", "g1f3"],
+                "wrong": "d2d4",
+            }
 
     @app.post("/__test/game-review-fixture/{key}")
     def game_review_fixture(key: str):

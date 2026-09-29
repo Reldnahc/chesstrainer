@@ -1,6 +1,12 @@
 # Fieldwork — local chess practice
 
-A private chess trainer built around decisions in your own games. Import Chess.com or Lichess history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
+A private chess trainer built around decisions in your own games. Import Chess.com or Lichess history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Study brings scheduled recall, guided opening lessons and separate puzzle practice together. See [Study](docs/STUDY.md) for content availability and the distinct learning modes.
+
+Start with **Study → Openings** for the included Italian Game course, or browse the
+opening catalogue and choose lines to remember. Lessons and line rehearsal save
+their own progress; only scheduled **Due** attempts advance FSRS. Puzzle players
+are implemented, with production puzzle collections intentionally left for a
+later content pass.
 
 The shared [animated coach](docs/COACH.md) reacts to your moves and practice, with
 account-saved character and motion preferences. Choose from four men, four women,
@@ -58,7 +64,7 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 - Same-origin LAN operation, optional shared access token, or self-service accounts with private data and persistent device sessions. CLI backup/restore covers the single database.
 - Remembered Chess.com and Lichess usernames and automatic recent-game fetching without engine analysis. Start full review or training analysis explicitly from a saved game.
 
-Navigation is **Review, Games, Weaknesses, Settings**. The initial cold review board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Lessons, Repertoire and manual-position entry forms are removed. Historical records and compatibility APIs remain; see [Product](docs/PRODUCT.md#removed-and-archived).
+Navigation is **Study, Games, Weaknesses, Settings**. **Study → Due** contains scheduled recalls; old Review bookmarks remain usable. The initial cold game-recall board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Study also hosts the new multi-move puzzle framework, with an honest empty library until production content is installed. Puzzle practice has its own saved progress and never changes FSRS or weaknesses. The historical course/Repertoire system and manual-position entry forms remain archived; see [Product](docs/PRODUCT.md#removed-and-archived).
 
 Pages and individual games have their own URLs, with browser Back/Forward,
 bookmarks and new-tab links. Refreshing a game review preserves the selected
@@ -120,7 +126,7 @@ New accounts get a short, one-time welcome: optional Chess.com/Lichess usernames
 
 1. Open Settings → Import games and choose Chess.com or Lichess and enter your username. Defaults fetch up to 100 **new** rapid games from the current and preceding two calendar months. Change time class, range or limit as needed, then click **Fetch games**. Enable the optional analysis checkbox to also create training exercises. No login or API key is needed. Alternatively choose **PGN file**, identify your username(s), and explicitly assign a side only when it is yours in every game.
 2. Watch progress; invalid or ambiguous games are reported separately. Completed work survives interruptions. Retry an older cancelled job separately; a new import only queues new games.
-3. Open Review. Meaningful errors become practice; small engine preferences usually do not. Try a move, inspect the saved counter/playback when useful, and continue to the next position.
+3. Open Study → Due. Meaningful errors become practice; small engine preferences usually do not. Try a move, inspect the saved counter/playback when useful, and continue to the next position.
 4. Open Weaknesses to inspect supported recurring patterns and their evidence. Choose a skill for focused practice; those attempts do not change your scheduled recalls. Unclassified mistakes remain available in Review.
 5. Use **Settings > Classify saved games** to classify existing analyses locally, or **Deepen unclear positions** for optional bounded Stockfish evidence. No model setup is needed.
 

@@ -9,6 +9,7 @@ const START = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 export default function ReviewScreen({
   requested,
+  requestedSession,
   focusSkill,
   onExitFocus,
   onImport,
@@ -16,13 +17,14 @@ export default function ReviewScreen({
   onEvidence,
 }: {
   requested: string | null;
+  requestedSession?: string | null;
   focusSkill: string | null;
   onExitFocus: () => void;
   onImport: () => void;
   fail: (e: unknown) => void;
   onEvidence: (id: string) => void;
 }) {
-  const session = useReviewSession({ requested, focusSkill, fail });
+  const session = useReviewSession({ requested, requestedSession, focusSkill, fail });
   const playback = useReviewPlayback(session.feedback);
   const { position, due, loading, busy, feedback, submittedMove, done } =
     session;
@@ -104,7 +106,7 @@ export default function ReviewScreen({
                 </span>
                 <span>
                   {position
-                    ? `${Math.max(0, due - (feedback?.completed ? 1 : 0))}${due === 30 ? "+" : ""} IN QUEUE`
+                    ? `${due} IN QUEUE`
                     : "NO POSITION LOADED"}
                 </span>
               </div>
