@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
-import Link from "../Link";
+import ResumeLink from "../ResumeLink";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import PageTitle from "../PageTitle";
@@ -99,7 +99,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         : openingSection === "studies" ? <OpeningStudies /> : <LessonLibrary courseId={courseId} revision={courseRevision} />}
     </>}
     {mode === "puzzles" && <>
-      {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <Link className="study-resume" href={puzzleSessionPath(session.id)} key={session.id}><span>Unfinished puzzle <small>{session.failed ? "Continue after a retry" : "Your position is saved"}</small></span><ArrowRight size={18} /></Link>)}</div></section>}
+      {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <ResumeLink href={puzzleSessionPath(session.id)} key={session.id} description={session.failed ? "Continue after a retry" : "Your position is saved"}>Unfinished puzzle</ResumeLink>)}</div></section>}
       <section className={`panel ${available ? "" : "study-empty"}`}>
         <Puzzle size={28} aria-hidden="true" />
         <h2>{available ? "Calculate the continuation." : "No puzzles available yet."}</h2>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
+import ResumeLink from "../ResumeLink";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths } from "../navigation";
@@ -60,13 +61,13 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
         <div><h3>{chapter.title}</h3><span className="muted">{chapter.completed ? "Completed · revisit any time" : "Guided lesson"}</span></div>
         <Button size="compact" variant={chapter.completed ? "secondary" : "primary"} disabled={!!busy} onClick={() => begin(chapter.id)}>{busy === chapter.id ? "Opening…" : chapter.completed ? "Revisit" : "Start"}<ArrowRight size={16} /></Button>
       </li>)}</ol>
-      {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <Link className="study-resume" href={courseLinePath(course.id, line.id, course.revision)} key={line.id}><span>{line.title}<small>Preview and add to study</small></span><ArrowRight size={17} /></Link>)}</section>}
+      {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <ResumeLink href={courseLinePath(course.id, line.id, course.revision)} key={line.id} description="Preview and add to study">{line.title}</ResumeLink>)}</section>}
       <LessonAttribution attributions={course.attributions} />
     </> : !error && <p role="status">Loading lesson chapters…</p>}
   </section>;
   if (!library) return <section className="panel">{error ? <p role="alert">{error}</p> : <p role="status">Loading opening lessons…</p>}</section>;
   return <>
-    {!!library.resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{library.resume.map(session => <Link className="study-resume" key={session.id} href={lessonSessionPath(session.id)}><span>{session.course_title}<small>{session.chapter_title}</small></span><ArrowRight size={18} /></Link>)}</div></section>}
+    {!!library.resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{library.resume.map(session => <ResumeLink key={session.id} href={lessonSessionPath(session.id)} description={session.chapter_title}>{session.course_title}</ResumeLink>)}</div></section>}
     {library.courses.length ? <div className="lesson-course-grid">{library.courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}<ArrowRight size={16} /></span></Link>)}</div>
       : <section className="panel study-empty"><BookOpen size={28} aria-hidden="true" /><h2>No opening lessons yet.</h2><p>Opening lessons will appear here when a course is available.</p><ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink></section>}
   </>;

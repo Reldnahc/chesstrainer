@@ -65,6 +65,7 @@ not React components.
 | Commands and button-styled destinations | [Button / IconButton](../frontend/src/Button.tsx), [ActionLink](../frontend/src/ActionLink.tsx), [action-controls.css](../frontend/src/action-controls.css) | Ordinary/compact sizing, primary/secondary/quiet variants, square labelled icons and 44px phone targets. Button defaults to type=button; forms must request submit. ActionLink retains Link semantics. Native disabled and aria-disabled stay independent. Containers own width/placement. |
 | Return from exploration | [ReturnButton](../frontend/src/ReturnButton.tsx) | Canonical purple action and return icon for game variations and lesson branches/full games. Caller supplies label, disabled state and command; long labels can wrap on narrow phones. |
 | Paged destinations | [Pagination](../frontend/src/Pagination.tsx) | Catalogue Previous/range/Next layout for Games and opening catalogue. Callers supply counts and destination URLs; unavailable directions are disabled buttons. |
+| Resume/continue row | [ResumeLink](../frontend/src/ResumeLink.tsx) | Existing raised title/subtitle/arrow row for saved lessons, puzzles and course lines. Callers supply destination and content; chapter commands and other row types remain separate. |
 | Move playback controls | [MovePlaybackControls](../frontend/src/MovePlaybackControls.tsx) | Labelled previous/counter/next group, optional first/last, stable digits and canonical lesson geometry. Callers own navigation and separate flip/back controls; disabled and aria-disabled remain independent. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
@@ -148,7 +149,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Complete | Promotion uses the shared native modal lifecycle, preserving legal choices, drag timing and board-relative placement; page shortcuts yield while a modal is open. |
 | UI-17 | Promote plain native-summary styling (A). | Planned | This choice stands. Preserve comfortable phone tap targets, native details behavior, rich history/review contents and cold-practice answer restrictions. |
 | UI-18 | Keep section headings and the distinct action-row layouts separate. | Keep existing | Do not extract a universal component for these different roles. |
-| UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Planned | Supply each destination and content; keep other row compositions separate. |
+| UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Complete | ResumeLink owns identical lesson, puzzle and course-line rows; native Link behavior and caller destinations/content are preserved. |
 | UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Planned | Keep the current appearance. |
 | UI-21 | Share only the turn indicator used by the board-status compositions. | Planned | Keep each mode's surrounding status content and cold-practice visibility rules. |
 | UI-22 | Extend the application's AccuracyReadout with a history presentation. | Complete | History shares formatting and completion descriptions; its numeric spans remain passive and queued reviews retain their action state. |
@@ -296,6 +297,13 @@ from Git; no live decision-gathering tool is needed.
   training: **39 passed, 1 intentional viewport skip**. Checks include 320px fit,
   9→10 counter stability, ply-zero exit, original-game restoration and explanation
   navigation. Commit subject: `UI-05: Share move playback controls across players`.
+
+- **UI-19 — resume rows:** shared the existing row and component-owned styles
+  across saved puzzles, lessons and course lines. Production build passed;
+  focused real-fixture navigation tests: **2 passed**, including keyboard/Back,
+  desktop modifier clicks, unchanged saved sessions and revision-specific course
+  links. Corrected a new test that omitted the course prefix from the actual
+  preview heading. Commit subject: `UI-19: Share saved-study resume links`.
 
 ## Audit findings and implementation boundaries
 
