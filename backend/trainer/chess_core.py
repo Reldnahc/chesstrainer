@@ -38,11 +38,12 @@ def engine_context(board: chess.Board) -> dict:
 
 def legal_move(board: chess.Board, uci: str) -> chess.Move:
     try:
-        move = board.parse_uci(uci)
+        move = chess.Move.from_uci(uci)
         # python-chess parses the UCI null move, but passing a turn is not legal chess.
+        # Check before normalization, which can discard an invalid castling promotion.
         if move not in board.legal_moves:
             raise ValueError("Null/illegal move")
-        return move
+        return board.parse_uci(uci)
     except ValueError as exc:
         raise ValueError("Move is not legal in this position") from exc
 

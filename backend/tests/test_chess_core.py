@@ -90,6 +90,35 @@ def test_rules_special_moves_and_facts():
         legal_move(chess.Board(), "0000")
 
 
+@pytest.mark.parametrize("black", [False, True])
+def test_legal_move_canonicalizes_castling_without_accepting_bogus_promotions(black):
+    board = valid_board("r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1")
+    if black:
+        board = board.mirror()
+    rank = "8" if black else "1"
+    before = board.fen()
+    for target, canonical_target in (("g", "g"), ("h", "g"), ("c", "c"), ("a", "c")):
+        uci = f"e{rank}{target}{rank}"
+        assert legal_move(board, uci).uci() == f"e{rank}{canonical_target}{rank}"
+        for promotion in "qrbnkp":
+            with pytest.raises(ValueError, match="^Move is not legal in this position$"):
+                legal_move(board, uci + promotion)
+    assert board.fen() == before and board.move_stack == []
+
+
+@pytest.mark.parametrize("black", [False, True])
+def test_legal_move_preserves_all_real_promotions(black):
+    board = valid_board("4k3/P7/8/8/8/8/8/4K3 w - - 0 1")
+    if black:
+        board = board.mirror()
+    prefix = "a2a1" if black else "a7a8"
+    for promotion in "qrbn":
+        assert legal_move(board, prefix + promotion).uci() == prefix + promotion
+    for promotion in "kp":
+        with pytest.raises(ValueError, match="^Move is not legal in this position$"):
+            legal_move(board, prefix + promotion)
+
+
 def test_terminal_mate_zero_keeps_winner():
     lost = Score.from_engine(chess.engine.PovScore(chess.engine.Mate(0), chess.WHITE), chess.WHITE)
     won = Score.from_engine(chess.engine.PovScore(chess.engine.Mate(0), chess.WHITE), chess.BLACK)

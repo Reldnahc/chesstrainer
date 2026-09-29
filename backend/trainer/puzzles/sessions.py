@@ -5,7 +5,7 @@ from fastapi import HTTPException
 from sqlalchemy import func, select, update
 from sqlalchemy.orm.attributes import set_committed_value
 
-from trainer.chess_core import legal_move_options
+from trainer.chess_core import legal_move, legal_move_options
 from trainer.contracts.puzzles import (
     PuzzleCompletion,
     PuzzleFeedback,
@@ -191,7 +191,7 @@ def command(db, session_id, request, *, reveal=False):
     submitted_san = None
     if not reveal:
         try:
-            move = board.parse_uci(request.uci)
+            move = legal_move(board, request.uci)
         except ValueError as exc:
             raise HTTPException(422, "Move is not legal in the current puzzle position") from exc
         submitted_san = board.san(move)
@@ -211,7 +211,7 @@ def command(db, session_id, request, *, reveal=False):
         grade = "revealed"
         session.current_step = len(frames)
         session.status = "revealed"
-    elif request.uci != definition.solution[step]:
+    elif move.uci() != definition.solution[step]:
         grade = "incorrect"
         session.failed = True
     else:

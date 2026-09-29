@@ -5,6 +5,7 @@ from typing import Literal
 import chess
 from pydantic import Field, model_validator
 
+from trainer.chess_core import legal_move
 from trainer.contracts.common import Color, Contract
 from trainer.contracts.puzzles import PuzzleFrame, PuzzleProvenance, PuzzleSource
 
@@ -33,11 +34,14 @@ class PuzzleDefinition(Contract):
             raise ValueError("Puzzle must end on a learner decision")
         if self.source == "games" and len(self.solution) < 3:
             raise ValueError("Game puzzles require at least two learner decisions")
+        canonical = []
         for uci in self.solution:
-            move = chess.Move.from_uci(uci)
-            if move not in board.legal_moves:
-                raise ValueError("Every puzzle continuation move must be legal")
+            move = legal_move(board, uci)
+            canonical.append(move.uci())
             board.push(move)
+        # Standard castling also accepts rook-square UCI aliases in python-chess.
+        # Store the same representation offered by the board's legal move list.
+        self.solution = tuple(canonical)
         if self.provenance.url and not self.provenance.url.startswith(("https://", "http://")):
             raise ValueError("Puzzle attribution URL must use HTTP or HTTPS")
         return self
