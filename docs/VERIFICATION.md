@@ -2,6 +2,30 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach idle revamp — milestone 3 — September 29, 2026
+
+The live cast now has 18–22 distinct gestures per coach, 8–14 eligible choices
+per expression and two authored signatures per coach (60 signatures across the
+current 30). All 6,740 configured slots use the real rig and canonical timings.
+Six shared directional/rhythmic variants augment individual anatomy and acting.
+
+- `npm.cmd run build`: passed API agreement, all TypeScript projects and production
+  build. Main JS gzip is 167.11 kB and CSS gzip 19.93 kB; the existing chunk advisory
+  remains. No new dependency or continuous JavaScript animation loop was added.
+- `npx.cmd playwright test --config test-results/idle-live.config.ts idle-repertoire.spec.ts idle-articulation.spec.ts idle-rig.spec.ts --reporter line`:
+  **12 passed** desktop/mobile in 3.6 minutes. Covers every coach/expression,
+  every actual CSS target/track/delay, complete signature eligibility and extended
+  400-event traces with two seeds for every repertoire. Traces verify cadence,
+  cooldowns, channel ownership, eye activity and reachability of every choice.
+- Updated `motion-vocabulary.spec.ts`: **3 desktop tests passed** for minimum
+  coverage, emotion exclusions, shared metadata and unchanged entrance timing.
+- Additional catalogue metadata case: **1 passed**. Browser-test TypeScript and
+  `git diff --check` passed (Git line-ending normalization notices only).
+- Independent integration review found no actionable issue. Live studio replay
+  checked the expanded menus, new character gestures and Wisp's anchored hem.
+  Full normal-size artistic review and application regression remain in M4–M5.
+- An earlier run began before stylesheets were finished, failed on missing
+  imports and was discarded. The complete final run above used the finished files.
 ## Coach idle revamp — milestone 2 — September 29, 2026
 
 Shared face context now separates entrance eye squeezes from the expressive

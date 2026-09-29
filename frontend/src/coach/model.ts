@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import type { Schema } from "../api";
 import type { CoachPersonality } from "../dialogue/personality";
+import { configuredGestures } from "./idleGestures";
 
 export const expressions = [
   "neutral",
@@ -64,7 +65,15 @@ export type CoachMicro =
   | "head-tilt"
   | "lean-in"
   | "posture-reset"
-  | "scan";
+  | "scan"
+  | "double-blink"
+  | "glance-right"
+  | "look-up"
+  | "nod-twice"
+  | "tilt-right"
+  | "weight-shift"
+  | "signature-a"
+  | "signature-b";
 export type CoachIdle = Exclude<CoachMicro, "">;
 export type CoachIdlePool = readonly CoachIdle[];
 export type CoachMotionProfile = {
@@ -237,6 +246,14 @@ export const microLabels: Record<Exclude<CoachMicro, "">, string> = {
   "lean-in": "Attentive lean",
   "posture-reset": "Settle posture",
   scan: "Follow the line",
+  "double-blink": "Two quick blinks",
+  "glance-right": "Glance right",
+  "look-up": "Look up thoughtfully",
+  "nod-twice": "Two approving nods",
+  "tilt-right": "Consider from the other side",
+  "weight-shift": "Shift and settle",
+  "signature-a": "Character gesture one",
+  "signature-b": "Character gesture two",
 };
 
 export function resolveAnimation(coach: CoachDefinition, family?: string) {
@@ -249,10 +266,8 @@ export function resolveAnimation(coach: CoachDefinition, family?: string) {
 
 export function availableIdles(coach: CoachDefinition, family?: string) {
   const animation = resolveAnimation(coach, family);
-  const configured = new Set([
-    ...animation.defaultIdle,
-    ...Object.values(animation.idleGestures).flat(),
-  ]);
+  const configured = new Set(coach.expressions.flatMap((expression) =>
+    configuredGestures(animation, expression).map((gesture) => gesture.id)));
   return (Object.keys(microLabels) as Exclude<CoachMicro, "">[]).filter(
     (gesture) => configured.has(gesture),
   );
@@ -264,7 +279,14 @@ export function expressionIdles(
   expression: CoachExpression,
 ): readonly CoachIdle[] {
   const animation = resolveAnimation(coach, family);
-  return (animation.idleGestures[expression] ?? animation.defaultIdle).filter(
-    (gesture): gesture is CoachIdle => gesture !== "",
-  );
+  return configuredGestures(animation, expression).map((gesture) => gesture.id as CoachIdle);
+}
+
+export function idlePresentation(
+  coach: CoachDefinition, family: string | undefined,
+  expression: CoachExpression, id: CoachIdle,
+) {
+  const gesture = configuredGestures(resolveAnimation(coach, family), expression)
+    .find(candidate => candidate.id === id);
+  return { label: gesture?.label ?? microLabels[id], description: gesture?.description };
 }

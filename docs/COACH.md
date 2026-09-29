@@ -142,12 +142,30 @@ tracks and CSS animation names. A normal blink lasts 260ms rather than occupying
 an artificial 1.2-second slot. `idleRig.ts` declares the SVG resources actually
 present in each character and expression, so optional tracks never reserve
 nonexistent parts. The pools choose
-only gestures supported by the rig and appropriate to the state. For example,
-worried faces do not borrow delighted glints, and closed eyes do not rely on an
-invisible pupil-only glance. `motionVocabulary.ts` provides complete expression
+only gestures supported by the settled rig and appropriate to the state. For
+example, worried faces do not borrow delighted glints or approving double nods.
+`motionVocabulary.ts` provides complete expression
 pools and per-coach acting profiles. Character-specific eyes, ears, hair, tail or
 lens gestures combine with common head-angle, breathing and stance movements.
 Profiles control idle amplitude, gaze and settling independently of reaction timing.
+
+Every registered coach has two authored signature performances in
+`idleSignatures/`, with labels, acting notes and explicit eligible expressions.
+These are coordinated timelines, not random combinations: Scout's gaze leads
+two listening ears; Storyteller's supporting palm accompanies his glasses;
+Rivet's lens adjustment precedes an antenna correction. Signatures require all
+their channels or are omitted entirely. Shared additions include a double blink,
+rightward glance/tilt, upward consideration, two unequal nods and a lateral
+weight transfer. Every expression supplies at least eight compatible choices
+across eyes, attention and body/detail groups. The live registry is the coverage
+source, so adding a coach also requires its repertoire and signatures.
+
+Arm and paw wrappers include the complete connected limb and pivot at the
+existing shoulder. Hand-to-face and held-book poses exclude incompatible limb
+performances. Wings, antenna, cap and trailing silhouette details use nested
+wrappers inside their held pose; idle transforms never overwrite that pose.
+Gesture metadata owns every duration and delay; CSS owns only the movement path.
+
 `idleCoordinator.ts` is a deterministic event-driven scheduler. It permits one
 noticeable and one quiet compatible performance, staggered by at least 180ms.
 Compound gestures atomically reserve every animated SVG channel; nested head and

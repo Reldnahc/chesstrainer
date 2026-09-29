@@ -38,23 +38,25 @@ function ScholarHands({ pose }: { pose: AnimalPose }) {
           key={index}
           className={`study-paw study-paw-${index ? "right" : "left"}`}
         >
-          <path
-            d={`M${index ? 77 : 23} 107Q${index ? 86 : 14} 104 ${x} ${y + 4}`}
-            stroke="#555384"
-            strokeWidth="13"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <g transform={`translate(${x} ${y}) rotate(${angle})`}>
-            <path d="M-6 7h12v6H-6Z" fill="#c3a566" />
+          <g className={`coach-idle-${index ? "rightArm" : "leftArm"}`}>
             <path
-              d="M-5 7q-4-4-3-8 1-3 4-1v-4q0-4 4-4 6 0 7 6L6 7Z"
-              fill="#dba786"
-              stroke="#ad775d"
-              strokeWidth=".8"
-              strokeLinejoin="round"
+              d={`M${index ? 77 : 23} 107Q${index ? 86 : 14} 104 ${x} ${y + 4}`}
+              stroke="#555384"
+              strokeWidth="13"
+              fill="none"
+              strokeLinecap="round"
             />
-            <path d="M-4 1q3 0 4 3" fill="none" stroke="#b57f64" />
+            <g transform={`translate(${x} ${y}) rotate(${angle})`}>
+              <path d="M-6 7h12v6H-6Z" fill="#c3a566" />
+              <path
+                d="M-5 7q-4-4-3-8 1-3 4-1v-4q0-4 4-4 6 0 7 6L6 7Z"
+                fill="#dba786"
+                stroke="#ad775d"
+                strokeWidth=".8"
+                strokeLinejoin="round"
+              />
+              <path d="M-4 1q3 0 4 3" fill="none" stroke="#b57f64" />
+            </g>
           </g>
         </g>
       ))}
@@ -115,17 +117,19 @@ export default function WizardCoach({ expression }: CoachArtworkProps) {
                   d="M26 46q0-20 24-20t24 20v24q-3 22-24 23-21-1-24-23Z"
                   fill="#dfb394"
                 />
-                <path
-                  d="M29 67q6 5 7 12l14 5 14-5q1-7 7-12l3 11-6 13-8 2-10 15-10-15-8-2-6-13Z"
-                  fill="#e6e3d9"
-                />
-                <path
-                  d="m32 83 9 9m27-9-9 9m-9-4v12"
-                  stroke="#bdbec5"
-                  strokeWidth="1.5"
-                  fill="none"
-                  strokeLinecap="round"
-                />
+                <g className="coach-idle-hem fantasy-beard">
+                  <path
+                    d="M29 67q6 5 7 12l14 5 14-5q1-7 7-12l3 11-6 13-8 2-10 15-10-15-8-2-6-13Z"
+                    fill="#e6e3d9"
+                  />
+                  <path
+                    d="m32 83 9 9m27-9-9 9m-9-4v12"
+                    stroke="#bdbec5"
+                    strokeWidth="1.5"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                </g>
                 <g transform="translate(0 14)">
                   <g
                     className="study-brows"

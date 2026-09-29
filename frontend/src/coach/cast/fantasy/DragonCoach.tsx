@@ -93,21 +93,23 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
                 <g
                   className={`fantasy-wing fantasy-wing-${right ? "right" : "left"}`}
                 >
-                  <path
-                    d="M28 106Q7 102 5 81L4 57q18 8 28 29Z"
-                    fill="#254f4e"
-                  />
-                  <path
-                    d="M8 64q14 9 19 23l-1 14q-3-12-12-10 1-9-6-12Z"
-                    fill="#b17669"
-                  />
-                  <path
-                    d="M8 64q9 16 18 36M13 81l10 13"
-                    stroke="#734e51"
-                    strokeWidth="1.4"
-                    fill="none"
-                  />
-                  <path d="m4 58 1-5 4 10" fill="#d8c693" />
+                  <g className="coach-idle-wings">
+                    <path
+                      d="M28 106Q7 102 5 81L4 57q18 8 28 29Z"
+                      fill="#254f4e"
+                    />
+                    <path
+                      d="M8 64q14 9 19 23l-1 14q-3-12-12-10 1-9-6-12Z"
+                      fill="#b17669"
+                    />
+                    <path
+                      d="M8 64q9 16 18 36M13 81l10 13"
+                      stroke="#734e51"
+                      strokeWidth="1.4"
+                      fill="none"
+                    />
+                    <path d="m4 58 1-5 4 10" fill="#d8c693" />
+                  </g>
                 </g>
               </g>
             </g>

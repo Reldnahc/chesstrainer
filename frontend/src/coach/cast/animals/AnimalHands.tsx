@@ -29,13 +29,15 @@ export default function AnimalHands({ pose, kind, fur, hand, line }: {
     <g className={`cast-hands cast-hands-${kind}`}>
       {positions[pose.paws].map(([x, y, angle], index) => (
         <g key={index} className={`study-paw study-paw-${index ? "right" : "left"}`}>
-          <path d={`M${index ? 72 : 28} 86Q${index ? 84 : 16} 102 ${x} ${y + 3}`} fill="none" stroke={fur} strokeWidth={kind === "knuckles" ? 20 : kind === "webbed" ? 8 : 12} strokeLinecap="round" />
-          <g transform={`translate(${x} ${y}) rotate(${angle})`}>
-            <path d={outlines[kind]} fill={hand} stroke={line} strokeWidth=".65" strokeLinejoin="round" />
-            {kind === "knuckles" && <path d="M-4-6v4m5-4v4m4-3v3M-5 3q5 2 10 0" fill="none" stroke={line} strokeWidth="1.2" strokeLinecap="round" />}
-            {kind === "rounded" && <path d="M-3 0v3m6-3v3" fill="none" stroke={line} strokeWidth="1" strokeLinecap="round" />}
-            {kind === "fingers" && <path d="M-2-6v6m4-6v6" fill="none" stroke={line} strokeWidth=".7" strokeLinecap="round" />}
-            {kind === "webbed" && <path d="M-5 0 0 4 5-1" fill="none" stroke={line} strokeWidth=".7" strokeLinecap="round" />}
+          <g className={`coach-idle-${index ? "rightPaw" : "leftPaw"}`}>
+            <path d={`M${index ? 72 : 28} 86Q${index ? 84 : 16} 102 ${x} ${y + 3}`} fill="none" stroke={fur} strokeWidth={kind === "knuckles" ? 20 : kind === "webbed" ? 8 : 12} strokeLinecap="round" />
+            <g transform={`translate(${x} ${y}) rotate(${angle})`}>
+              <path d={outlines[kind]} fill={hand} stroke={line} strokeWidth=".65" strokeLinejoin="round" />
+              {kind === "knuckles" && <path d="M-4-6v4m5-4v4m4-3v3M-5 3q5 2 10 0" fill="none" stroke={line} strokeWidth="1.2" strokeLinecap="round" />}
+              {kind === "rounded" && <path d="M-3 0v3m6-3v3" fill="none" stroke={line} strokeWidth="1" strokeLinecap="round" />}
+              {kind === "fingers" && <path d="M-2-6v6m4-6v6" fill="none" stroke={line} strokeWidth=".7" strokeLinecap="round" />}
+              {kind === "webbed" && <path d="M-5 0 0 4 5-1" fill="none" stroke={line} strokeWidth=".7" strokeLinecap="round" />}
+            </g>
           </g>
         </g>
       ))}

@@ -603,3 +603,19 @@ A stronger personality configuration should encode communication behavior in dat
 - Does the retained cat pair (Midnight Tactician + Velvet Night) cover enough cat personality before adding Pickle?
 
 *Working draft — intended for cast review before implementation.*
+
+## Implemented idle acting — September 2026
+
+The cast's visual acting now has an independent resting repertoire, with two
+authored signatures per registered coach. These change presentation only; the
+semantic reaction and supported dialogue remain the authority for the emotion.
+Human signatures use gaze, brow, shoulder, hair and connected arm follow-through.
+Dogs and cats use sequential listening ears, paw adjustments and restrained tail
+responses. The unusual cast uses its actual anatomy: Fergus's throat, Rivet's
+lens and antenna, Ember's wings, Button's cap and Wisp's trailing silhouette.
+
+Each signature names its intended performance and eligible emotional states in
+`frontend/src/coach/idleSignatures/`. The development studio resolves those same
+definitions, including explicit individual replay. Concerned states exclude
+celebratory gestures, and prop/contact poses exclude incompatible limb motion.
+See [the shared coach architecture](COACH.md) for scheduling and extension rules.

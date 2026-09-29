@@ -9,7 +9,7 @@ import {
   expressionIntent,
   expressionIdles,
   availableIdles,
-  microLabels,
+  idlePresentation,
   expressions,
   resolveFamily,
   type CoachExpression,
@@ -276,7 +276,7 @@ export default function CoachStudio() {
         >
           {idles.map((idle) => (
             <option key={idle} value={idle}>
-              {microLabels[idle]}
+              {idlePresentation(coach, family, expression, idle).label}
             </option>
           ))}
         </select>

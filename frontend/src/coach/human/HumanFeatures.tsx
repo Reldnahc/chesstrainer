@@ -35,8 +35,10 @@ export default function HumanFeatures({
         strokeWidth="2.3"
         strokeLinecap="round"
       >
-        <path className="coach-brow-left" d={pose.brows[0]} />
-        <path className="coach-brow-right" d={pose.brows[1]} />
+        <g className="coach-idle-brows">
+          <path className="coach-brow-left" d={pose.brows[0]} />
+          <path className="coach-brow-right" d={pose.brows[1]} />
+        </g>
       </g>
       <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
         {closedEyes ? (
