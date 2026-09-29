@@ -1,5 +1,12 @@
-import { Chessboard, type Arrow } from "react-chessboard";
-import { useEffect, useId, useRef, useState } from "react";
+import { Chessboard, type Arrow, type PieceHandlerArgs } from "react-chessboard";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import type { LegalMove, Promotion } from "./api";
 import MoveSymbol from "./MoveSymbol";
 import { MOVE_DURATION_MS } from "./reviewMotion";
@@ -44,6 +51,15 @@ export default function Board({
     return () => window.clearTimeout(promotionTimer.current);
   }, [fen, disabled]);
   const interactive = !disabled && !promotion;
+  const interactiveRef = useRef(interactive);
+  useLayoutEffect(() => {
+    interactiveRef.current = interactive;
+  }, [interactive]);
+  // react-chessboard retains its drag-start callback until the position changes.
+  // Lessons can unlock the same position, so read the current input state here.
+  const onPieceDrag = useCallback(({ square }: PieceHandlerArgs) => {
+    if (interactiveRef.current) setSelected(square);
+  }, []);
   const moves =
     interactive && selected
       ? legalMoves.filter((move) => move.from_square === selected)
@@ -140,9 +156,7 @@ export default function Board({
               )}
             </div>
           ),
-          onPieceDrag: ({ square }) => {
-            if (interactive) setSelected(square);
-          },
+          onPieceDrag,
           onPieceDragCancel: () => setSelected(null),
           onPieceDrop: ({ sourceSquare, targetSquare }) => {
             if (targetSquare) choose(sourceSquare, targetSquare, true);
