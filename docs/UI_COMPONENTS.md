@@ -79,6 +79,7 @@ not React components.
 | Practice move status | [MoveStatus](../frontend/src/MoveStatus.tsx) | Stable live region, delayed checking message and retry presentation. Do not copy its timer or imply SRS grading in other modes. |
 | Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx), [motion-select.css](../frontend/src/motion-select.css) | Device default / Animated / Still choices in Settings and Studio. Inline or stacked layout; callback and persistence stay caller-owned. Shared-safe styles; Settings status/layout remains in application-only motion.css. |
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
+| Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
 | Provider username | [ProviderUsernameField](../frontend/src/ProviderUsernameField.tsx) | Shared native rules, unique labels/help IDs and 50-character limit. Optional connection/onboarding versus required import and busy/draft state remain caller-owned. |
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
@@ -135,7 +136,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-07 | Share continuation-move markup. | Planned | Preserve numbering options, selection and playback-disabled behavior; full-game scored notation stays specialized. |
 | UI-08 | Share move-feedback announcement rules while retaining rich lesson layout. | Planned | Reuse existing feedback presentation where suitable; preserve practice outcomes, answer visibility and caller-specific content. |
 | UI-09 | Promote relative next-due time with an exact-time tooltip (A). | Planned | Share scheduling receipts while preserving saved/relearning/retired, unscheduled and previously recorded explanations. |
-| UI-10 | Share preference-status rendering with heading and field placements. | Planned | Remove duplicate presentation logic; preserve existing load/save persistence, retry labels and device-setting fallback. |
+| UI-10 | Share preference-status rendering with heading and field placements. | Complete | Coach selection and both motion fields use PreferenceStatus; providers, saved flags, retry labels and device fallback remain unchanged. |
 | UI-11 | Share compact/panel loading and unavailable states. | Planned | Fetching, retry/back actions and recovery policy remain caller-owned. |
 | UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
 | UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Planned | Retain compact activity and search-no-results variants. |
@@ -255,6 +256,12 @@ from Git; no live decision-gathering tool is needed.
   browser tests: **4 passed**, covering optional/required names, valid/invalid
   characters, length, accessible descriptions, unique IDs and onboarding save
   locks. Commit subject: `UI-14: Share provider username fields`.
+
+- **UI-10 — preference feedback:** centralized presentation and reserved geometry
+  without changing requests or account state. Production build passed; gated
+  load/save/error/retry coverage: **4 passed** across desktop/mobile, including
+  all three fields, fallback copy, reload and independent saved flags. Commit
+  subject: `UI-10: Share preference loading and save feedback`.
 
 ## Audit findings and implementation boundaries
 

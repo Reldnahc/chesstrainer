@@ -1,4 +1,4 @@
-import Button from "./Button";
+import PreferenceStatus from "./PreferenceStatus";
 import { useState } from "react";
 import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
@@ -17,14 +17,10 @@ function CoachMotionSetting() {
         setSaved(false);
         setSaved(await save({...preferences, motion}));
       }} />
-    <div className="coach-motion-preference-status" role="status" aria-atomic="true">
-      {saving ? "Saving…" : error ? <>
-        {error}{" "}<Button size="compact" variant="quiet" onClick={retry}>Reload coach motion preferences</Button>
-      </> : !ready ? "Loading…"
-        : saved ? "Saved"
-        : preferences.motion === "system" && reduced
-          ? "Still · device setting" : null}
-    </div>
+    <PreferenceStatus className="coach-motion-preference-status"
+      ready={ready} saving={saving} error={error} saved={saved}
+      retry={retry} retryLabel="Reload coach motion preferences"
+      idleText={preferences.motion === "system" && reduced ? "Still · device setting" : undefined} />
   </div>;
 }
 
@@ -43,14 +39,10 @@ export default function MotionSettings() {
             setSaved(false);
             setSaved(await save({motion}));
           }} />
-        <div className="motion-preference-status" role="status" aria-atomic="true">
-          {saving ? "Saving…" : error ? <>
-            {error}{" "}<Button size="compact" variant="quiet" onClick={retry}>Reload motion preferences</Button>
-          </> : !ready ? "Loading…"
-            : saved ? "Saved"
-            : preferences.motion === "system" && reduced
-              ? "Still · device setting" : null}
-        </div>
+        <PreferenceStatus className="motion-preference-status"
+          ready={ready} saving={saving} error={error} saved={saved}
+          retry={retry} retryLabel="Reload motion preferences"
+          idleText={preferences.motion === "system" && reduced ? "Still · device setting" : undefined} />
       </div>
     </div>
   </SettingsSection>;

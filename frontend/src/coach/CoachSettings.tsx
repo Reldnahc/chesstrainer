@@ -1,4 +1,4 @@
-import Button from "../Button";
+import PreferenceStatus from "../PreferenceStatus";
 import { useState } from "react";
 import SettingsSection from "../SettingsSection";
 import { CoachCharacter } from "./CoachAvatar";
@@ -23,22 +23,9 @@ export default function CoachSettings() {
       className="coach-settings"
       description={`${selected.name} joins you in game review and practice.`}
       actions={
-        <div className="coach-preference-status" role="status" aria-atomic="true">
-          {saving ? (
-            "Saving…"
-          ) : error ? (
-            <>
-              {error}{" "}
-              <Button size="compact" variant="quiet" onClick={retry}>
-                Reload preferences
-              </Button>
-            </>
-          ) : !ready ? (
-            "Loading…"
-          ) : saved ? (
-            "Saved"
-          ) : null}
-        </div>
+        <PreferenceStatus className="coach-preference-status" placement="heading"
+          ready={ready} saving={saving} error={error} saved={saved}
+          retry={retry} retryLabel="Reload preferences" />
       }
     >
       <fieldset disabled={!ready || saving} className="coach-options">
