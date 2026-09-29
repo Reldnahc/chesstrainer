@@ -210,10 +210,21 @@ test("full-game controls interrupt Mason-Lasker playback without waiting for its
   // for either timer before committing another navigation command.
   const first = await command(page, "Next game move");
   expect(first.game?.ply).toBe(1);
-  await expect(page.getByRole("heading", { name: "Follow the continuation." })).toBeVisible();
+  await expect(page.locator(".coach-title")).toHaveText(first.game!.title);
+  await expect(page.locator(".coach-message")).toHaveText("Explore the full game. Return to the lesson whenever you’re ready.");
   await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
   expect((await command(page, "Next game move")).game?.ply).toBe(2);
   expect((await command(page, "Previous game move")).game?.ply).toBe(1);
+  let annotated = first;
+  for (let ply = 2; ply <= 8; ply++) annotated = await command(page, "Next game move");
+  expect(annotated.game?.note?.text).toBeTruthy();
+  await expect(page.locator(".coach-title")).toHaveText(annotated.game!.title);
+  await expect(page.locator(".coach-message")).toHaveText(annotated.game!.note!.text);
+  const explanation = (await page.locator(".coach-speech").textContent())!;
+  await page.clock.runFor(1200);
+  await expect(page.locator(".coach-speech")).toHaveText(explanation);
+  expect((await command(page, "Previous game move")).game?.ply).toBe(7);
+  await expect(page.locator(".coach-message")).not.toContainText(annotated.game!.note!.text);
   await command(page, "Next game move");
   expect((await command(page, "From the beginning")).game?.ply).toBe(0);
   await expect(page.getByRole("button", { name: "Previous game move" })).toBeDisabled();

@@ -22,6 +22,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const { step, feedback } = session;
   const frame = playback.frame;
   const fen = playback.fen || session.fen;
+  const guidedPlayback = playback.playing && !session.game;
   const expression: CoachExpression = error ? "uncertain" : busy ? "thinking"
     : playback.playing || session.game ? "explaining"
     : feedback?.kind === "incorrect" ? "encouraging"
@@ -40,9 +41,9 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     boardControls={<div className="lesson-board-controls"><Link className="button-link secondary" href={lessonCoursePath(session.course_id, session.course_revision)}><ArrowLeft size={16} />Chapters</Link>{session.game && <div className="lesson-game-controls"><button aria-label="Previous game move" disabled={gameNavigationDisabled || session.game.ply === 0} onClick={() => state.command("game_seek", { ply: session.game!.ply - 1 })}><ChevronLeft size={18} /></button><span>{session.game.ply} / {session.game.total_plies}</span><button aria-label="Next game move" disabled={gameNavigationDisabled || session.game.ply === session.game.total_plies} onClick={() => state.command("game_seek", { ply: session.game!.ply + 1 })}><ChevronRight size={18} /></button></div>}</div>}
     board={<Board fen={fen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={disabled || !has("move")} onMove={state.answer} feedback={feedback?.kind === "incorrect" ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : annotations?.squares || []} arrows={annotations?.arrows?.map(arrow => ({ startSquare: arrow.from_square, endSquare: arrow.to_square, color: "#f5b56abb" })) || []} />}
   >
-    <ReviewCoach title={<h2>{error ? "Let’s restore your lesson." : playback.playing ? "Follow the continuation." : session.game ? session.game.title : finished ? "Chapter completed." : step.title}</h2>}
+    <ReviewCoach title={<h2>{error ? "Let’s restore your lesson." : guidedPlayback ? "Follow the continuation." : session.game ? session.game.title : finished ? "Chapter completed." : step.title}</h2>}
       reaction={{ state: expression, key: `${session.id}:${session.revision}:${expression}` }}
-      messageResetKey={`${session.id}:${session.revision}:${playback.playing}:${error || ""}`}
+      messageResetKey={`${session.id}:${session.revision}:${guidedPlayback}:${error || ""}`}
       actions={<>{error ? <button className="primary" onClick={state.reload}>Reload lesson</button> : <>
         {session.game ? <>{action("close_game", "Return to lesson", true, <Undo2 size={16} />)}<button className="secondary" disabled={gameNavigationDisabled || session.game.ply === 0} onClick={() => state.command("game_seek", { ply: 0 })}><Play size={16} />From the beginning</button></> : <>
           {action("back", "Back", false, <ChevronLeft size={16} />)}
@@ -54,7 +55,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}
         </>}
       </>}</>}
-    ><div role="status" aria-live="polite"><p>{error ? "Reload the saved lesson before continuing." : playback.playing ? "Watch how this position develops." : session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedback.text}</p>}</div></ReviewCoach>
+    ><div role="status" aria-live="polite"><p>{error ? "Reload the saved lesson before continuing." : guidedPlayback ? "Watch how this position develops." : session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedback.text}</p>}</div></ReviewCoach>
     {error && <p className="notice error" role="alert">{error}</p>}
     <section className="panel lesson-context" aria-label="Lesson progress">
       <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
