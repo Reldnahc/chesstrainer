@@ -1,13 +1,21 @@
 import { test, expect, type APIResponse, type Page } from '@playwright/test';
 import type { Schema } from '../src/api';
 
-test('account signup, engine-free sync, second-device login and private library', async ({page, browser}, info) => {
+async function submitSignup(page: Page) {
+  const [response] = await Promise.all([
+    page.waitForResponse(result => new URL(result.url()).pathname === '/api/auth/signup' && result.request().method() === 'POST'),
+    page.getByRole('button', {name: 'Create account', exact: true}).click(),
+  ]);
+  expect(response.status(), 'Account signup must succeed before onboarding').toBe(201);
+}
+
+test('account signup, engine-free sync, second-device login and private library', async ({page, browser, extraHTTPHeaders}, info) => {
   const username = `friend-${info.project.name}`;
   await page.goto('/');
   await page.getByRole('button', {name: 'New here? Create an account'}).click();
   await page.getByLabel('Username', {exact: true}).fill(username);
   await page.getByLabel('Password', {exact: true}).fill('test-only-password');
-  await page.getByRole('button', {name: 'Create account', exact: true}).click();
+  await submitSignup(page);
   await page.getByRole('button', {name: 'Continue', exact: true}).click();
   await page.getByRole('button', {name: 'Finish for now', exact: true}).click();
   await page.getByRole('link', {name: 'Games', exact: true}).click();
@@ -43,7 +51,7 @@ test('account signup, engine-free sync, second-device login and private library'
   await page.screenshot({path: `test-results/accounts-${info.project.name}.png`, fullPage: true});
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
-  const second = await browser.newContext({baseURL: 'http://127.0.0.1:8766'});
+  const second = await browser.newContext({baseURL: 'http://127.0.0.1:8766', extraHTTPHeaders});
   try {
     const device = await second.newPage();
     await device.goto(`${gameHref}?ply=3`);
@@ -78,7 +86,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('button', {name: 'New here? Create an account'}).click();
     await device.getByLabel('Username', {exact: true}).fill(`${username}-other`);
     await device.getByLabel('Password', {exact: true}).fill('test-only-password');
-    await device.getByRole('button', {name: 'Create account', exact: true}).click();
+    await submitSignup(device);
     await device.getByRole('button', {name: 'Continue', exact: true}).click();
     await device.getByRole('button', {name: 'Finish for now', exact: true}).click();
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
@@ -106,7 +114,7 @@ for (const connected of [false, true]) {
     await page.getByRole('button', {name: 'New here? Create an account'}).click();
     await page.getByLabel('Username', {exact: true}).fill(username);
     await page.getByLabel('Password', {exact: true}).fill('test-only-password');
-    await page.getByRole('button', {name: 'Create account', exact: true}).click();
+    await submitSignup(page);
     await expect(page.getByRole('heading', {name: 'Where do you play?'})).toBeVisible();
     if (connected) {
       await page.getByLabel('Chess.com username (optional)', {exact: true}).fill(username);
@@ -142,7 +150,7 @@ for (const connected of [false, true]) {
   });
 }
 
-test('Study progress and selected coach resume on another device without leaking to another account', async ({page, browser}, info) => {
+test('Study progress and selected coach resume on another device without leaking to another account', async ({page, browser, extraHTTPHeaders}, info) => {
   const username = `study-owner-${info.project.name}`;
   const password = 'test-only-password';
   async function json<T>(pending: Promise<APIResponse>): Promise<T> {
@@ -155,7 +163,7 @@ test('Study progress and selected coach resume on another device without leaking
     await device.getByRole('button', {name: 'New here? Create an account'}).click();
     await device.getByLabel('Username', {exact: true}).fill(name);
     await device.getByLabel('Password', {exact: true}).fill(password);
-    await device.getByRole('button', {name: 'Create account', exact: true}).click();
+    await submitSignup(device);
     await device.getByRole('button', {name: 'Continue', exact: true}).click();
     await device.getByRole('button', {name: 'Finish for now', exact: true}).click();
     await expect(device.getByRole('heading', {name: 'Study', exact: true})).toBeVisible();
@@ -211,7 +219,7 @@ test('Study progress and selected coach resume on another device without leaking
   const savedPuzzle = await json<Schema['PuzzleSessionView']>(page.request.get(`/api/puzzle-sessions/${fixture.session_id}`));
   expect(savedPuzzle.history.map(frame => frame.uci)).toEqual(['e2e4', 'e7e5']);
 
-  const second = await browser.newContext({baseURL: 'http://127.0.0.1:8766'});
+  const second = await browser.newContext({baseURL: 'http://127.0.0.1:8766', extraHTTPHeaders});
   try {
     const device = await second.newPage();
     await device.goto(lessonPath);

@@ -24,6 +24,13 @@ rather than accepted as flakes:
   with the actual pre-reload position. Both original less-than-two-pixel
   assertions remain unchanged; **30 focused repeats passed** (15 per viewport),
   along with deterministic delayed-font checks on desktop and mobile.
+- The account browser projects shared one client IP and together issued 16
+  signup/login requests against the real 15-per-minute IP limit. A trace showed
+  the final guest signup returning 429 immediately, followed by a misleading
+  onboarding timeout. Each viewport now represents a separate reserved client
+  IP through the test server's explicitly trusted loopback proxy; secondary
+  contexts inherit it. Signup helpers assert the 201 response immediately.
+  Production authentication limits and their enforcement are unchanged.
 
 Coach-study tests also drive the existing dwell/settle timers with Playwright's
 clock, preserving checks for a new replay take, visible portrait, active browser
@@ -34,12 +41,21 @@ are unchanged; no assertions were removed.
 
 Additional verification from this pass:
 
+- The corrected isolated account suite passed **8/8 in 58.7 seconds**, exit 0:
+  `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`.
+  This includes every signup/login within the rate-limit window, second-device
+  persistence, guest isolation and both onboarding paths. No production limit,
+  timeout or assertion was relaxed.
 - With the latest-entry observer correction, the new visibility-batch regression
   passed on **both desktop and mobile**, all **eight affected coach-study cases
   passed**, and the real six-times-CPU-throttled mobile Men probe passed. The
   old-callback served-module negative control failed the regression as expected.
-  Browser-test TypeScript and independent hook/test review passed. The complete
-  final studio suite now includes 44 cases; final-head CI remains the merge gate.
+  Browser-test TypeScript and independent hook/test review passed.
+- The complete corrected studio suite passed **44/44**, with no skips, in 8.2
+  minutes: `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output studio-test-results-final-visibility-f814bb5`.
+  After all tests completed, only the verified isolated Vite process was stopped
+  to release Windows teardown; the runner returned exit 0. The owner's studio
+  remained running on 5174.
 - The corrected coach-study cases passed on **all eight desktop/mobile
   combinations** within the full studio run, using
   `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output=studio-test-results-final-review-verified --reporter=line`.
@@ -75,6 +91,9 @@ Additional verification from this pass:
 A parallel local rerun encountered Chromium resource errors and timeouts. It was
 not counted as a pass; only verified test-owned processes were stopped, leaving
 the owner's running app/studio untouched. Follow-up checks run in isolation.
+The separate pre-existing HTML username-pattern warning (unescaped hyphens under
+Unicode Sets mode) was recorded during the account trace review, outside this
+Study correction. Server-side username validation remains enforced.
 
 The existing trusted-provider revision-reuse limitation remains documented in
 [Study](STUDY.md); it does not affect saved attempts or account isolation. Native
