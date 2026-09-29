@@ -102,8 +102,11 @@ main {
   gap: 24px;
   margin-bottom: 30px;
 }
-.page-title p {
-  margin-bottom: 0;
+.page-title h1 {
+  margin: 0;
+}
+.page-title .eyebrow {
+  margin-block: 0 8px;
 }
 .turn-dot {
   width: 9px;
@@ -384,9 +387,6 @@ footer > span:last-child {
     margin-bottom: 24px;
     align-items: flex-start;
   }
-  .page-title p {
-    font-size: 12px;
-  }
   .eyebrow {
     font-size: 9px;
     margin-bottom: 10px;
@@ -437,10 +437,6 @@ footer > span:last-child {
   }
   .workspace-page .page-title .eyebrow {
     display: none;
-  }
-  .workspace-page .page-title p {
-    margin-top: 6px;
-    line-height: 1.4;
   }
   .workspace-page .panel {
     padding: 16px;

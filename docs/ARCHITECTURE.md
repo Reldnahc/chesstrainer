@@ -126,6 +126,10 @@ reduced motion supplies the default; explicit Animated/Still choices take
 precedence. Preferences remain still while loading or after a failed initial load.
 `motion.css` contains only the application Settings controls for those preferences.
 
+Study (including Openings/Puzzles), Games, Weaknesses and Settings use `PageTitle`:
+a required eyebrow above the title on desktop, hidden on phones, with optional
+page actions and no subtitle. Compact board-workspace headings remain separate.
+
 Development entrypoints declare their own styles instead of importing the
 application stylesheet. The coach studio uses the foundation, coach presentation,
 interface motion and its own shell; the intelligence laboratory additionally

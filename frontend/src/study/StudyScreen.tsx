@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
+import PageTitle from "../PageTitle";
 import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
 import { createPuzzleStarter } from "./puzzleApi";
 import LessonLibrary from "./LessonLibrary";
@@ -61,11 +62,9 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
     }
   }
   const available = source ? puzzles?.sources.filter(item => item.source === source).reduce((sum, item) => sum + item.count, 0) : puzzles?.available;
-  return <div className="study-page">
-    <header className="study-heading">
-      <p className="eyebrow">YOUR NEXT MOVE</p>
-      <h1>{mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"}</h1>
-    </header>
+  return <>
+    <PageTitle eyebrow="YOUR NEXT MOVE" title={mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"} />
+    <div className="study-page">
     {error && <p className="notice error" role="alert">{error}</p>}
     {mode === "home" && <div className="study-options">
       <section className="panel study-option study-due">
@@ -107,5 +106,6 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
       </section>
       {puzzles && Object.values(puzzles.stats).some(value => value > 0) && <section className="panel"><h2>Your puzzle practice</h2><dl className="study-stats"><div><dt>Solved cleanly</dt><dd>{puzzles.stats.clean}</dd></div><div><dt>Failed, then solved</dt><dd>{puzzles.stats.failed_then_solved}</dd></div><div><dt>Revealed</dt><dd>{puzzles.stats.revealed}</dd></div></dl></section>}
     </>}
-  </div>;
+    </div>
+  </>;
 }

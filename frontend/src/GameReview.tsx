@@ -58,7 +58,6 @@ export default function GamesScreen({
       <PageTitle
         eyebrow="EVERY MOVE HAS A STORY"
         title="Your games"
-        description="Review the turning points. Follow the ideas. Try a different move."
       >
         <GameSync compact onChanged={() => setRevision((value) => value + 1)} />
       </PageTitle>

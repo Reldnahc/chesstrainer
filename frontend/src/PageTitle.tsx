@@ -2,12 +2,10 @@ import type { ReactNode } from "react";
 export default function PageTitle({
   eyebrow,
   title,
-  description,
   children,
 }: {
   eyebrow: string;
   title: string;
-  description: string;
   children?: ReactNode;
 }) {
   return (
@@ -15,7 +13,6 @@ export default function PageTitle({
       <div>
         <div className="eyebrow">{eyebrow}</div>
         <h1>{title}</h1>
-        <p>{description}</p>
       </div>
       {children}
     </div>

@@ -40,7 +40,6 @@ export default function SettingsScreen({
       <PageTitle
         eyebrow="YOUR WORKSPACE"
         title="Settings"
-        description="Your account, connected games and training."
       />
       <AccountSettings />
       <ImportSettings health={health} fail={fail} />

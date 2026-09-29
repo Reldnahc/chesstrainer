@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChevronRight, Flag } from "lucide-react";
 import { api, read, type Schema } from "./api";
+import PageTitle from "./PageTitle";
 
 export default function WeaknessScreen({
   onEvidence,
@@ -25,11 +26,7 @@ export default function WeaknessScreen({
   }, [fail]);
   return (
     <>
-      <div className="page-title">
-        <div>
-          <h1>Weaknesses</h1>
-        </div>
-      </div>
+      <PageTitle eyebrow="YOUR TRAINING FOCUS" title="Weaknesses" />
       {!data ? (
         <p role="status">Loading your evidence...</p>
       ) : (
