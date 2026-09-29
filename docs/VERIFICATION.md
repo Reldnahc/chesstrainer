@@ -4,21 +4,42 @@ The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain bel
 
 ## Study merge review — September 29, 2026
 
-A second independent code-health pass found no additional production defects in
-legality and immutable snapshots, opening recall/FSRS, frontend request/playback
-lifecycle, account isolation, or installation/migrations. The reviewed production
-code is `9ec3003`; the preceding full backend run (**806 passed, 3 opt-in Maia
-skips**) and account run (**8 passed**) apply unchanged.
+A second independent code-health pass covered legality and immutable snapshots,
+opening recall/FSRS, frontend request/playback lifecycle, account isolation and
+installation/migrations. Those production paths remain unchanged from `9ec3003`.
+Final-head CI subsequently exposed two browser issues, which were investigated
+rather than accepted as flakes:
 
-The old branch CI exposed a timing race in a coach-studio test: under load, the
-brief reaction could finish before its assertion ran. The test now drives the
-existing dwell/settle timers with Playwright's clock. It still verifies a new
-replay take, visible portrait, active browser animations, expression identity,
-return to rest, idle completion and reduced motion. Application timings and
-artwork are unchanged; no assertions were removed.
+- The shared coach observer used only the first entry from a visibility callback.
+  A real six-times-CPU-throttled browser trace showed a queued offscreen/onscreen
+  pair delivered together; the obsolete first entry left the visible portrait
+  paused. The hook now uses the latest entry. A deterministic regression batches
+  real browser observations in both directions and verifies active replay,
+  offscreen pausing and no replay of consumed reactions. A served-module negative
+  control restoring the old first-entry behavior fails this regression.
+- The library reload test compared against an older scroll position while a font
+  swap changed header height. Holding the Mono font response reproduced the exact
+  two-pixel CI failure through two one-pixel native scroll-anchor adjustments.
+  The fixture now waits for fonts before delivering its list and compares reload
+  with the actual pre-reload position. Both original less-than-two-pixel
+  assertions remain unchanged; **30 focused repeats passed** (15 per viewport),
+  along with deterministic delayed-font checks on desktop and mobile.
+
+Coach-study tests also drive the existing dwell/settle timers with Playwright's
+clock, preserving checks for a new replay take, visible portrait, active browser
+animations, expression identity, rest, idle completion and reduced motion. The
+first local full studio run passed all 42 tests, but CI demonstrated that clocks
+alone did not fix the underlying visibility bug. Application timings and artwork
+are unchanged; no assertions were removed.
 
 Additional verification from this pass:
 
+- With the latest-entry observer correction, the new visibility-batch regression
+  passed on **both desktop and mobile**, all **eight affected coach-study cases
+  passed**, and the real six-times-CPU-throttled mobile Men probe passed. The
+  old-callback served-module negative control failed the regression as expected.
+  Browser-test TypeScript and independent hook/test review passed. The complete
+  final studio suite now includes 44 cases; final-head CI remains the merge gate.
 - The corrected coach-study cases passed on **all eight desktop/mobile
   combinations** within the full studio run, using
   `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output=studio-test-results-final-review-verified --reporter=line`.
@@ -44,6 +65,16 @@ Additional verification from this pass:
 - A disposable database upgrade from main's `49e862bc710a` revision preserved
   seeded exercise, review and SRS rows, added all ten Study tables, and passed
   foreign-key and model-schema checks.
+- The first final-head Linux CI backend run passed **802 tests with 7 skips**:
+  three opt-in Maia tests and four optional developer Zstandard cases. The local
+  backend run passed **806 with 3 Maia skips**, exercising those Zstandard cases.
+  Both CI runs also passed Docker installation, account and intelligence checks.
+  Failed navigation/studio results were investigated as described above; a new
+  complete CI run is required before merge.
+
+A parallel local rerun encountered Chromium resource errors and timeouts. It was
+not counted as a pass; only verified test-owned processes were stopped, leaving
+the owner's running app/studio untouched. Follow-up checks run in isolation.
 
 The existing trusted-provider revision-reuse limitation remains documented in
 [Study](STUDY.md); it does not affect saved attempts or account isolation. Native
