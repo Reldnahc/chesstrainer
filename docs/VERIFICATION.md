@@ -2,6 +2,28 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Personal names for the remaining coaches — September 29, 2026
+
+The twelve title-style display names now match the rest of the cast: Walter,
+Desmond, Kenji, Arjun, Mara, Iris, Zoe, Poppy, Alfie, Waffles, Felix and Juniper.
+Stable coach/family IDs, default selection, personality definitions and saved
+preferences are unchanged. Catalogue consumers and living character documentation
+use the new names; historical verification entries retain their original wording.
+
+- `npx.cmd playwright test --config=studio-test-results-configs/character-polish.config.ts coach-names.spec.ts --reporter=line`:
+  **4 passed**, desktop/mobile. Checks all thirty unique names against stable IDs,
+  default/retired lookups, preview labels and a saved `cat-black` bookmark that
+  restores Juniper after reload and switches to Walter using `classic`.
+- `npx.cmd playwright test --config=studio-test-results-configs/opponent-book.config.ts coach-selection.spec.ts --reporter=line`:
+  **8 passed**, desktop/mobile. Every coach can be selected, saved, reloaded and
+  displayed in review; compact picker geometry, fallback choices and SRS feedback
+  still pass. These ignored configs reuse the normal project definitions with
+  independently managed studio/isolated fixture servers.
+- `npm.cmd run build`: passed API agreement, production/contract/browser-test
+  TypeScript and Vite. Local frontend rebuilt. Existing chunk advisory remains.
+- `git diff --check`: passed. Focused source review confirms display-name-only
+  production edits and no stale old display names in application/test code.
+
 ## Pickle, Fergus and Celeste artwork polish — September 29, 2026
 
 Pickle now has a kitten-specific head/body silhouette, large low-set round eyes,

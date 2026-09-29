@@ -9,13 +9,13 @@ his silhouette, beard and sage jacket.
 
 The men's collection has four complete characters, each with all 20 states:
 
-- **Storyteller:** open, warm facial acting, clear anticipation and recovery,
+- **Walter:** open, warm facial acting, clear anticipation and recovery,
   expressive shoulders and hands. Strong contrast between delight and concern.
-- **Club host:** a Black man with close curls, a neat beard and a terracotta
+- **Desmond:** a Black man with close curls, a neat beard and a terracotta
   overshirt. Open, welcoming gestures and an expressive double take.
-- **Endgame expert:** an older East Asian man with silver temples, a clean-shaven
+- **Kenji:** an older East Asian man with silver temples, a clean-shaven
   face and a slate cardigan. Measured head movements and attentive eyes.
-- **Creative partner:** a South Asian man with dark waves, a shaped beard and a
+- **Arjun:** a South Asian man with dark waves, a shaped beard and a
   forest-green waistcoat. Curious looks and generous encouragement.
 
 The [cast bible](COACH_CAST_BIBLE.md) defines the thirty selectable personalities.
@@ -29,18 +29,19 @@ practice and saved explanations, including after reload or on another device.
 
 | Group | Selectable coaches |
 |---|---|
-| Humans | Storyteller, Club host, Endgame expert, Creative partner, Club captain, Quiet analyst, Bright spark, Golden braid, Milo, Cleo |
-| Dogs | Gentle professor, Pocket captain, Scout, Biscuit |
-| Cats | Midnight tactician, Velvet night, Pickle |
+| Humans | Walter, Desmond, Kenji, Arjun, Mara, Iris, Zoe, Poppy, Milo, Cleo |
+| Dogs | Alfie, Waffles, Scout, Biscuit |
+| Cats | Felix, Juniper, Pickle |
 | Other animals | Monty, Bandit, Fergus, Winston |
 | Fantasy | Celeste, Orin, Ember, Wisp |
 | Sci-Fi | Ziggy, Rivet |
 | Silly & conceptual | Pip, Button, Percy |
 
 Display names belong to the catalogue and flow into Settings, review labels and
-the studio. Personal names replace generic species/age labels while preserving
-the established character titles. Saved preferences and bookmarks continue to use
-the same stable IDs, so renaming a coach never resets a selection or changes its voice.
+the studio. Every coach has a personal name, replacing generic labels and
+character titles while preserving the existing archetype. Saved preferences and
+bookmarks continue to use the same stable IDs, so renaming a coach never resets a
+selection or changes its voice.
 
 Pickle has a kitten-specific silhouette: a large round head, low-set round eyes,
 tiny muzzle, short seated body and soft paws. Cheek/chin hand positions fit that
@@ -105,7 +106,7 @@ same character catalogue and review bubble as the application; shared SVGs and m
 styles are bundled with the application so a selected coach is immediately
 available in reviews without an image request. Existing `coach=retriever`
 links resolve to the dog collection; unsupported families fall back to its retained
-Gentle professor. Retired production/preview IDs have the compatibility mappings
+Alfie. Retired production/preview IDs have the compatibility mappings
 listed below. The illustration assets are
 original SVG artwork maintained as React components; no external images or assets
 are required.
@@ -117,11 +118,11 @@ breathing, ears or hair rather than a happy tail wag. Still (and System when the
 browser requests reduced motion) keeps the expressive resting face without
 animation. Explicit Animated overrides the browser preference.
 
-Storyteller remains the default, retaining its artwork and entrance identity.
+Walter remains the default, retaining its artwork and entrance identity.
 The former Quiet mentor and Graphic spark variants of
 that same man have been retired in favor of three distinct people. Old family
-links fall back to Storyteller. The production registry and studio use the same
-catalogue, including individual animation overrides such as Storyteller's glasses
+links fall back to Walter. The production registry and studio use the same
+catalogue, including individual animation overrides such as Walter's glasses
 gestures. Switching a studio collection clears unsupported idle previews.
 Teaching, best-move and check poses use an outward-facing open palm. Avoid a
 single raised finger: its silhouette reads as an insulting gesture at review size.
@@ -172,7 +173,7 @@ Profiles control idle amplitude, gaze and settling independently of reaction tim
 Every registered coach has two authored signature performances in
 `idleSignatures/`, with labels, acting notes and explicit eligible expressions.
 These are coordinated timelines, not random combinations: Scout's gaze leads
-two listening ears; Storyteller's supporting palm accompanies his glasses;
+two listening ears; Walter's supporting palm accompanies his glasses;
 Rivet's lens adjustment precedes an antenna correction. Signatures require all
 their channels or are omitted entirely. Shared additions include a double blink,
 rightward glance/tilt, upward consideration, two unequal nods and a lateral
@@ -259,7 +260,7 @@ with each artwork component. Dog head geometry is separated from the common body
 rig and palettes, so a new breed does not duplicate facial animation. Dark-coated
 animals can supply a lighter eyelid stroke to keep closed expressions legible.
 The study CSS uses its own namespaced motion tracks; classic CSS is scoped to
-Storyteller so it cannot also animate the shared human rig of another man.
+Walter so it cannot also animate the shared human rig of another man.
 New artwork is organized under `cast/humansPets`, `cast/animals`, `cast/fantasy`
 and `cast/scifi`, with small local rig/face helpers. These source folders do not
 determine the Settings groups or persisted IDs.
@@ -300,7 +301,7 @@ The removed `subtle` choice reads as Animated without rewriting the stored value
 The motion-default migration updates the database default to `system` while
 preserving saved choices.
 
-The preference contract accepts 30 stable character IDs. Storyteller keeps
+The preference contract accepts 30 stable character IDs. Walter keeps
 `classic`; existing retained characters keep their original IDs. New coaches
 have explicit IDs registered in the same contract. IDs identify individuals,
 independent of their display name, artwork folder or presentation group.
@@ -321,7 +322,7 @@ choices resolve through explicit read-only replacements:
 These mappings are applied on API reads and stale frontend lookups/bookmarks;
 they do not rewrite preference rows. Choosing a coach explicitly saves its new
 ID. Retired IDs are rejected on new writes, so they cannot reenter the selectable
-roster. Unrecognized saved choices fall back to Storyteller for this release
+roster. Unrecognized saved choices fall back to Walter for this release
 without overwriting the stored value, allowing removed coaches or older releases
 to open the same database safely. Concurrent first saves serialize through the
 same SQLite write transaction. No Docker configuration is required.

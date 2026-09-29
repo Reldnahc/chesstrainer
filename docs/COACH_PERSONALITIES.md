@@ -12,18 +12,18 @@ The current cast's distinctions are deliberate:
 
 | Coach | Writing direction |
 | --- | --- |
-| Storyteller | Connects the present consequence to how the position arrived here. |
-| Club host | Welcomes comparison at a shared analysis board. |
-| Endgame expert | Economical, exact statements about what is retained or surrendered. |
-| Creative partner | Tests alternatives as small, evidence-backed experiments. |
-| Club captain | Clear standards, concrete tasks and steady motivation. |
-| Quiet analyst | Separates observation, searched conclusions and uncertainty. |
-| Bright spark | Quick delight in concrete tactical connections. |
-| Golden braid | Easygoing, candid and approachable without softening errors. |
-| Midnight tactician | Crisp, controlled confidence and occasional dry wit. |
-| Velvet night | Watchful, sparse observations with room for the fact to land. |
-| Gentle professor | Patient, sequential explanations; understanding ahead of spectacle. |
-| Pocket captain | Spirited confidence grounded in what the move actually accomplishes. |
+| Walter | Connects the present consequence to how the position arrived here. |
+| Desmond | Welcomes comparison at a shared analysis board. |
+| Kenji | Economical, exact statements about what is retained or surrendered. |
+| Arjun | Tests alternatives as small, evidence-backed experiments. |
+| Mara | Clear standards, concrete tasks and steady motivation. |
+| Iris | Separates observation, searched conclusions and uncertainty. |
+| Zoe | Quick delight in concrete tactical connections. |
+| Poppy | Easygoing, candid and approachable without softening errors. |
+| Felix | Crisp, controlled confidence and occasional dry wit. |
+| Juniper | Watchful, sparse observations with room for the fact to land. |
+| Alfie | Patient, sequential explanations; understanding ahead of spectacle. |
+| Waffles | Spirited confidence grounded in what the move actually accomplishes. |
 | Scout (border collie) | Focus on patterns, linked evidence and the next useful study task. |
 | Milo (young boy) | Excitable discoveries and short, plain explanations; no prodigy caricature. |
 | Cleo (young girl) | Isolates a clue, asks a useful question and lets the supported discovery land. |

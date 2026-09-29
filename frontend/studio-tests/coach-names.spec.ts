@@ -4,22 +4,22 @@ import path from "node:path";
 // Keep IDs independent of display names: existing saved choices and studio links
 // must keep finding the same character when a label becomes a personal name.
 const names = {
-  classic: "Storyteller",
-  "man-host": "Club host",
-  "man-expert": "Endgame expert",
-  "man-partner": "Creative partner",
-  "woman-captain": "Club captain",
-  "woman-analyst": "Quiet analyst",
-  "woman-spark": "Bright spark",
-  "woman-blonde": "Golden braid",
+  classic: "Walter",
+  "man-host": "Desmond",
+  "man-expert": "Kenji",
+  "man-partner": "Arjun",
+  "woman-captain": "Mara",
+  "woman-analyst": "Iris",
+  "woman-spark": "Zoe",
+  "woman-blonde": "Poppy",
   "human-boy": "Milo",
   "human-girl": "Cleo",
-  "dog-gentle": "Gentle professor",
-  "dog-corgi": "Pocket captain",
+  "dog-gentle": "Alfie",
+  "dog-corgi": "Waffles",
   "dog-collie": "Scout",
   "dog-puppy": "Biscuit",
-  "cat-tuxedo": "Midnight tactician",
-  "cat-black": "Velvet night",
+  "cat-tuxedo": "Felix",
+  "cat-black": "Juniper",
   "cat-kitten": "Pickle",
   gorilla: "Monty",
   raccoon: "Bandit",
@@ -73,13 +73,13 @@ test("personal names remain unique and share stable catalogue identities", async
 });
 
 test("old ID bookmarks show the new name and restore the same coach after reload", async ({ page }) => {
-  await page.goto("/?coach=dog-collie&expression=neutral");
-  const choice = page.getByRole("button", { name: "Preview Scout", exact: true });
+  await page.goto("/?coach=cat-black&expression=neutral");
+  const choice = page.getByRole("button", { name: "Preview Juniper", exact: true });
   await expect(choice).toHaveAttribute("aria-pressed", "true");
-  await expect(choice.locator(".coach-avatar")).toHaveAttribute("data-coach", "dog-collie");
+  await expect(choice.locator(".coach-avatar")).toHaveAttribute("data-coach", "cat-black");
   await page.reload();
   await expect(choice).toHaveAttribute("aria-pressed", "true");
-  await page.getByRole("button", { name: "Preview Rivet", exact: true }).click();
-  await expect(page).toHaveURL(/coach=robot(?:&|$)/);
-  await expect(page.getByRole("button", { name: "Preview Rivet", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Preview Walter", exact: true }).click();
+  await expect(page).toHaveURL(/coach=classic(?:&|$)/);
+  await expect(page.getByRole("button", { name: "Preview Walter", exact: true })).toHaveAttribute("aria-pressed", "true");
 });
