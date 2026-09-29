@@ -1,9 +1,23 @@
 # Fieldwork Study Expansion
-## Opening SRS, Generic Puzzles, and Puzzles From Your Games
+## Lesson Framework, Opening Recall, and Puzzle Framework
 
 **Status:** Design draft  
 **Scope:** Product and implementation plan  
 **Primary goal:** Add proactive study without weakening Fieldwork's existing evidence, review, and scheduling boundaries.
+
+### Agreed delivery boundary
+
+Build reusable lesson and puzzle infrastructure first, using small deterministic
+fixtures for development and testing. Do not populate production with unfinished
+courses or generate a large opening library. After the frameworks are working,
+build one carefully sourced **Italian Game** course to validate and refine the
+lesson experience. The learner side and exact chapters will be chosen during
+that content pass.
+
+Opening recall reuses FSRS; guided lessons, dedicated line rehearsal and puzzles
+do not update FSRS or weakness evidence. Game-derived puzzle generation and bulk
+generic puzzle-pack acquisition are later work, not this framework sprint.
+Their sections below describe future requirements, not current deliverables.
 
 ---
 
@@ -21,18 +35,23 @@ The two paths should meet where that is useful, but they must not be conflated.
 
 ### New product concepts
 
-1. **Opening SRS**
+1. **Guided opening lessons**
+   - Teach how positions arise, opening plans, opponent alternatives and game examples.
+   - Separate demonstration, guided decisions and independent line rehearsal.
+   - Persist chapter progress without treating completion as retention or mastery.
+
+2. **Opening SRS**
    - The player explicitly chooses an opening or variation to study.
    - Fieldwork converts the player's own-side decisions from that line into normal FSRS cards.
    - Those cards enter the existing scheduled-recall queue inside Study alongside mistake-derived cards.
    - The purpose is repertoire recall, not objective engine grading.
 
-2. **Generic puzzles**
+3. **Generic puzzles — framework now, production content later**
    - Multi-move tactical puzzles not tied to the player's games.
    - They use the normal Fieldwork board and coach presentation, but they are not SRS.
    - They maintain puzzle history/statistics separately from Review.
 
-3. **Puzzles from your games**
+4. **Puzzles from your games — future generation phase**
    - Fieldwork identifies suitable tactical moments from the player's saved games and turns them into real multi-move puzzles.
    - These are not copies of mistake SRS cards.
    - The player must calculate and play through a continuation, not merely find one move.
@@ -53,8 +72,8 @@ There is no separate top-level Review or Import destination.
 `Study` contains three primary sections:
 
 - **Due** — scheduled FSRS recalls from game mistakes and opening study
-- **Openings** — choose and manage repertoire material
-- **Puzzles** — generic puzzles and puzzles generated from saved games
+- **Openings** — guided lessons, dedicated line practice, and repertoire management
+- **Puzzles** — common player infrastructure; production sources follow later
 
 Suggested routes:
 
@@ -62,8 +81,8 @@ Suggested routes:
 - `/study/due`
 - `/study/openings`
 - `/study/puzzles`
-- `/study/puzzles/generic`
-- `/study/puzzles/games`
+- `/study/puzzles/generic` — when production content is available
+- `/study/puzzles/games` — deferred with generation
 
 `/study` should act as the learning home. It can surface the most relevant next action without hiding the distinct learning modes, for example:
 
@@ -76,13 +95,16 @@ Suggested routes:
 The product model is:
 
 - **Study** = everything the player actively does to improve.
-- **Games** = saved-game library, provider sync/add-game entry points, analysis and full-game review.
+- **Games** = saved-game library, compact Update games action, analysis and full-game review.
 - **Weaknesses** = evidence-backed recurring issues and focused practice entry points.
-- **Settings** = account, coach, motion, model and host/user preferences.
+- **Settings** = account, provider connections, PGN/provider import tools, coach, motion, model and host/user preferences.
 
 Removing the separate Review destination does **not** mean renaming or deleting the existing backend Review/FSRS domain model. In the product, that machinery is surfaced as **Study → Due**.
 
-Removing the separate Import destination also does not remove game ingestion. Provider sync, account connection and manual PGN/game addition belong with the Games library rather than occupying a permanent top-level destination.
+Import already lives in Settings. Preserve that placement, with only the compact
+**Update games** action in Games. Preserve `/review` bookmarks, exercise deep
+links and Weaknesses focused-practice links when introducing Study, including
+normal browser Back/Forward behavior.
 
 ### Study landing page
 
@@ -92,8 +114,8 @@ A compact first version can show:
 
 - **Due now** — scheduled recall count and a prominent **Start studying** action;
 - **Openings** — active studies, cards currently learning, and **Manage openings**;
-- **Generic puzzles** — start a puzzle session;
-- **From your games** — available/generated puzzle count and practice action;
+- **Puzzles** — practice when installed content is available;
+- **From your games** — later, when generation is implemented;
 - an unfinished Study session when one exists.
 
 The landing page can emphasize the most relevant next action, but it must not collapse the modes into one learning statistic. Scheduled recall, opening selection and puzzle practice remain distinct.
@@ -101,6 +123,10 @@ The landing page can emphasize the most relevant next action, but it must not co
 ---
 
 # Part I — Opening SRS
+
+Lessons teach, dedicated practice rehearses, and Due tests retention. The lesson
+framework is specified in Part I-A below; it must not be reduced to a catalogue
+preview followed by immediate testing of unfamiliar positions.
 
 ## 3. Opening SRS product behavior
 
@@ -137,9 +163,12 @@ Opening SRS should initially test:
 
 > "What is my repertoire move in this position?"
 
-Do not make Opening SRS itself a multi-move puzzle system. The existing Review/FSRS machinery is already very good at cold single-decision recall, and puzzles will own continuation solving.
+Do not make Opening SRS itself a multi-move puzzle system. Keep scheduled recall
+focused on single decisions; lessons own guided line learning and puzzles own
+tactical continuation solving.
 
-Continuation/branch drills can be added later if they prove useful.
+Guided lessons and dedicated line rehearsal own continuation/branch interaction;
+the scheduled card remains a single-decision task.
 
 ---
 
@@ -262,6 +291,11 @@ Study B contributes:
 
 If both lines are active, both moves are accepted repertoire recalls.
 
+This union applies to mixed scheduled Due reviews. Dedicated practice of Study A
+expects Study A's continuation, not Study B's move, and does not update FSRS.
+An unexpected legal move is described as outside the practiced line, not
+objectively bad without separate evidence.
+
 This is preferable to making the user review the exact same board twice.
 
 ---
@@ -281,6 +315,7 @@ Fields:
 - `source` — initially `lichess_catalogue`
 - `source_version`
 - `source_key`
+- immutable selected move sequence (including both colors), with content revision
 - `name`
 - `eco`
 - `color`
@@ -337,7 +372,9 @@ The answer set is rebuilt from active `opening_study_moves` that point at the ex
 
 ### Existing `SRSState`
 
-Reuse unchanged.
+Reuse the scheduler and stored learning history. Apply the explicit content-change
+and eligibility rules below rather than assuming every existing lifecycle guard
+can remain unchanged.
 
 Opening recall should use the same existing Review/FSRS mechanics:
 
@@ -346,7 +383,7 @@ Opening recall should use the same existing Review/FSRS mechanics:
 - timing;
 - retry behavior;
 - reveal behavior;
-- retirement policy;
+- retirement history, with explicit content-change reactivation;
 - restart persistence.
 
 Do not create a second scheduler.
@@ -396,6 +433,22 @@ Recommended behavior:
 - if a previously retired card's study content materially changes, reactivate it and make it due now rather than pretending the changed target is already mastered.
 
 Any such rescheduling should be explicitly recorded as a content-change policy, not an FSRS review.
+
+Retired cards with a changed answer set reactivate due now; unchanged retired
+cards remain retired. Record the content revision that caused reactivation so
+startup reconciliation cannot retire the card again based on its old interval.
+
+Each started attempt snapshots its answer set and contributing study provenance.
+An edit or deactivation in another tab does not change that attempt's grading or
+historical feedback. It may finish or reveal against its snapshot, but must not
+reactivate a disabled card or overwrite a newer content-change schedule. New
+attempts and queue entries use current eligibility and content. Test this
+explicitly across resume, submission and reveal.
+
+The catalogue provides named lines, not complete coverage of every opponent
+response. Show the actual continuation and study-position count before adding a
+line. Progress describes positions practiced or retained; recalling one accepted
+move does not establish mastery of every contributing variation.
 
 ---
 
@@ -474,6 +527,97 @@ The personality layer may change wording but not the answer authority.
 
 ---
 
+# Part I-A — Guided Lesson Framework
+
+## Teaching experience
+
+Lessons teach how an opening develops and what the learner is trying to achieve.
+The board carries the explanation; avoid long blocks of prose. Opening identity,
+selected variation and learner color are visible. Hints are appropriate during
+guided learning and are withdrawn during independent rehearsal.
+
+A course contains short chapters organized around questions: how we reach a
+position, our plan, what changes after another opponent response, and how the
+opening develops in actual games. A chapter can start from the initial position
+and walk into its target position rather than presenting an unexplained FEN.
+
+Use one active branch at a time with a clear return to its main-line anchor.
+Illustrative games should teach different ideas, not repeat the same lesson.
+Support annotated excerpts with a walkthrough of how the position arose, plus
+optional full-game playback. Learners need not step through irrelevant moves to
+reach an explanation.
+
+## Versioned course contract
+
+Author structured lesson files initially; a graphical course editor is deferred.
+Define a small versioned contract with stable course/chapter/step IDs, content
+revision, title, learner color, ordered chapters, source attribution and explicit
+line references. Validate all FENs, moves, branches and references through
+python-chess. Do not introduce another board or legality implementation.
+
+Supported step types:
+
+- **Explanation:** concise supported teaching text and optional board annotations.
+- **Demonstration:** play a legal move or short sequence with explanation.
+- **Learner decision:** explicit accepted moves, hint/reveal behavior and feedback.
+- **Branch:** explore a named alternative and return to a defined anchor.
+- **Game excerpt:** replay an annotated passage with access to its source game.
+- **Rehearsal:** play the selected line independently, with opponent replies.
+
+Step authority must be explicit. "Play this lesson's move" grades against authored
+content; it must not masquerade as "find any good move." Unexpected legal moves
+receive line-specific feedback, not invented engine judgments. Lesson facts and
+authored explanations remain independent of coach selection; personality only
+changes supported presentation.
+
+## Player and persistence
+
+Reuse the shared review workspace, board interaction, promotion controls, coach
+and motion preferences. On mobile the coach and its buttons stay above the board.
+Keep one short explanation or question visible, with Back, Continue and Show move
+when appropriate. Chapter navigation must not expose answers during rehearsal.
+
+Save account-owned progress, course revision, chapter/step, active branch and
+rehearsal position so leaving or reloading restores the exact logical state.
+Moving backward or replaying a demonstration must not create extra completions.
+Resume cannot double-play an automatic opponent move. Store completed content
+revision; updates must not silently reinterpret old progress. Preserve the old
+revision for an active session or explicitly offer starting the updated chapter.
+
+Progress means viewed, attempted or completed content, not mastery. Guided work
+and rehearsal create no Review rows, SRS changes or weakness evidence. Adding a
+course line to scheduled study is an explicit action using the opening-study
+domain; completing a lesson does not automatically enroll every line.
+
+## Framework first; Italian Game afterward
+
+Develop every step type with small deterministic fixtures. Fixtures are test/dev
+content and must not appear as unfinished production courses. Production handles
+an empty course library honestly until the first course is installed.
+
+The subsequent Italian Game course should cover introduction, a guided main
+continuation, meaningful opponent alternatives, several illustrative games, and
+independent rehearsal. Choose the actual learner side and chapter content during
+that pass. Do not generate other opening courses in this sprint.
+
+The existing opening catalogue provides move sequences, not a teaching curriculum
+or annotated game collection. Record provenance and verify reuse permissions for
+course sources; write or use permitted explanations and validate their chess
+claims. Resource availability alone is not permission to copy annotations.
+
+## Required verification
+
+- Legal replay and stable branch return points for every step type.
+- Correct/incorrect decisions, hints, reveal, rehearsal and promotion.
+- Exact account-isolated resume, including reload during automatic playback.
+- Content revision changes and preserved historical completion.
+- No FSRS/Review/weakness side effects from lessons or dedicated rehearsal.
+- Explicit line enrollment and correct dedicated-versus-mixed answer authority.
+- Shared desktop/mobile layout, motion preferences and coach switching.
+- Empty production library and exclusion of development fixtures.
+
+---
+
 # Part II — Puzzle System
 
 ## 12. Puzzles are not scheduled Review cards
@@ -543,6 +687,13 @@ Source-specific metadata is revealed only where appropriate.
 
 A puzzle is successful only when the player reaches the end of the required continuation.
 
+A wrong move leaves the learner at the same decision, preserving earlier correct
+steps. Retrying successfully records "failed then solved," never a clean solve.
+Keep solution authority on the server; active-session responses expose only the
+current position and permitted feedback, not future answers. Duplicate requests,
+simultaneous tabs and reloads during opponent playback must not advance twice.
+Resume restores committed chess state; animation is only its presentation.
+
 ### Minimum "real puzzle" shape
 
 For game-derived puzzles, require at least:
@@ -608,6 +759,10 @@ No mastery probability needs to be invented.
 ---
 
 # Part III — Generic Puzzles
+
+**Later content integration.** This sprint builds and tests the provider boundary
+and normalized player with fixtures. Bulk packs, acquisition UI and a production
+puzzle catalogue are not framework deliverables.
 
 ## 16. Generic puzzle source
 
@@ -715,6 +870,10 @@ The coach should not invent a game story for a generic puzzle.
 
 # Part IV — Puzzles From Your Games
 
+**Deferred in full.** Do not implement candidate discovery, puzzle generation or
+generation jobs in this sprint. Retain the following requirements for later work;
+the current framework only leaves a clean source interface for saved definitions.
+
 ## 20. Purpose
 
 Game-derived SRS currently asks:
@@ -780,11 +939,14 @@ Recommended gates:
 6. **No trivial forced move**
    - exclude positions where the learner has only one legal move.
 
-7. **Fair first move**
-   - the intended move must be meaningfully stronger than ordinary alternatives, or the accepted first-move set must include all verified sound alternatives.
+7. **Clear intended move at every learner decision**
+   - strictly verify every scored move, not just the first;
+   - reject ambiguous candidates unless supported alternative continuations are explicitly represented;
+   - a saved principal variation alone does not prove later moves are uniquely appropriate.
 
 8. **Settled endpoint**
    - do not generate a puzzle whose claimed tactical payoff exists only in an unfinished/noisy tail.
+   - independently validate defenses and the endpoint against the exact solution; do not copy shortened review playback frames as proof.
 
 9. **Versioned evidence**
    - generation records the source game, ply, engine evidence IDs, tactical/classification evidence IDs where relevant, and generator version.
@@ -1044,7 +1206,7 @@ Filters to `/api/puzzles/next` can include:
 - `rating_max`
 - `retry_failed`
 
-## Game puzzle generation
+## Game puzzle generation — deferred, not part of this sprint
 
 ```text
 POST /api/game-puzzles/generate
@@ -1063,6 +1225,7 @@ Reuse the existing persistent-job infrastructure where practical rather than inv
 |---|---|---:|---:|---:|
 | Game-derived Review | Stockfish + saved policy | Yes | Existing evidence only | Yes, for unknown legal alternatives |
 | Opening SRS | User-selected study continuations | Yes | No | No |
+| Guided lesson / dedicated line rehearsal | Versioned authored lesson / selected line | No | No | Not required |
 | Focused Weakness practice | Existing exercise authority | No | No | Existing behavior |
 | Generic puzzle | Puzzle provider / validated solution | No | No | Later optional alternative verification |
 | Game-derived puzzle | Saved Stockfish/evidence-backed solution | No | No | Optional bounded branch verification |
@@ -1138,7 +1301,7 @@ Browser:
 
 ---
 
-## 33. Game-puzzle tests
+## 33. Game-puzzle tests — future generation phase
 
 Backend:
 
@@ -1163,13 +1326,13 @@ Include deterministic fixtures for:
 - quiet engine improvement that must **not** become a puzzle;
 - one-legal-move position that must abstain;
 - unresolved tactical tail that must abstain;
-- multiple sound first moves.
+- multiple sound first moves and ambiguous later learner decisions.
 
 ---
 
 # Part IX — Implementation Order
 
-## Phase 1 — Puzzle solving foundation
+## Phase 1 — Study navigation and puzzle framework
 
 Build the common multi-step puzzle session contract and UI first.
 
@@ -1191,20 +1354,25 @@ Deliver:
 
 Use small deterministic fixture puzzles initially.
 
+Introduce minimal Study navigation, preserve existing review links, and expose
+honest empty states. Include the source interface, versioned definitions and
+account-isolated resume; do not install bulk packs or generate puzzles.
+
 ---
 
-## Phase 2 — Generic puzzles
+## Phase 2 — Lesson framework
 
-Add the first real puzzle provider.
+Build the structured lesson player described in Part I-A using development
+fixtures, not a production opening collection.
 
 Deliver:
 
-- local puzzle pack/provider;
-- selection filters;
-- unseen/retry history;
-- themes revealed after completion;
-- puzzle statistics;
-- source/version attribution.
+- course/chapter/step schema and legal-content validation;
+- explanations, demonstrations, learner decisions and branch return;
+- annotated game excerpts and full-game playback;
+- independent line rehearsal;
+- account-owned progress, exact resume and content revisions;
+- shared coach/board presentation with no learning-statistic side effects.
 
 ---
 
@@ -1219,39 +1387,44 @@ Deliver:
 - shared/transposed opening cards;
 - curated grading;
 - normal Study → Due integration;
-- visible opening context and post-answer continuation metadata.
+- visible opening context and post-answer continuation metadata;
+- explicit lesson-line enrollment and dedicated-practice answer scope;
+- answer snapshots, eligibility and content-change lifecycle tests.
 
 This phase must explicitly leave archived Repertoire untouched.
 
 ---
 
-## Phase 4 — Puzzles from your games
+## Phase 4 — First Italian Game course
 
-Once the puzzle player is mature, add the harder generator.
+After both frameworks work, author one carefully sourced course. Use it to refine
+the lesson player at real UI sizes rather than generating a broad opening library.
 
 Deliver:
 
-- candidate discovery;
-- strict evidence gates;
-- persisted multi-move definitions;
-- persistent generation job;
-- from-your-games queue;
-- original-game link after completion.
+- introduction and guided main continuation;
+- meaningful opponent alternatives;
+- several illustrative game passages with distinct teaching purposes;
+- independent rehearsal and optional line enrollment into Due;
+- verified chess content, attribution and reuse permissions.
 
 ---
 
-## Phase 5 — Polish
+## Phase 5 — Integration and release quality
 
-Potential polish once the three systems are stable:
+Verify the frameworks and Italian course together:
 
-- Study landing page counts;
-- "10 puzzles" sessions;
-- theme filters;
-- opening study progress counts;
-- review filters;
-- favorite puzzle;
-- favorite position → future puzzle action;
-- game review action: **Practice this tactic** when a compatible saved/generated puzzle exists.
+- accurate Study counts and distinct lesson/practice/retention progress;
+- desktop/mobile, motion settings, navigation and coach consistency;
+- account isolation, reload/resume, duplicate requests and content updates;
+- migration/install behavior, automated coverage and manual walkthroughs;
+- living documentation and coherent verified commits.
+
+## Later work — not part of this sprint
+
+Production generic puzzle-pack acquisition, game-derived puzzle generation and
+its jobs, additional opening courses, favorites and broader practice modes remain
+separate follow-ups. Future puzzle creation must meet the strict gates in Part IV.
 
 ---
 
@@ -1261,6 +1434,9 @@ Do not let these features expand uncontrollably.
 
 Not required for the first implementation:
 
+- game-derived puzzle creation or generation jobs;
+- bulk generic puzzle acquisition;
+- mass production of opening courses beyond the Italian Game pilot;
 - a full Chessable-style course authoring system;
 - opening explanations generated by an LLM;
 - a second scheduling algorithm;
@@ -1338,15 +1514,15 @@ Weaknesses ────────────────→ identify recurrin
 
 YOUR CHOSEN STUDY
    ↓
-Study → Openings ──────────→ choose repertoire material
+Study → Openings ──────────→ learn lessons, rehearse lines, choose recall material
    ↓
 Study → Due ──────────────→ retain that repertoire with FSRS
 
 TACTICAL PRACTICE
    ↓
 Study → Puzzles
-   ├─ Generic ─────────────→ practice broad calculation/patterns
-   └─ From your games ─────→ calculate concrete opportunities you actually encountered
+   ├─ Generic (later content) → practice broad calculation/patterns
+   └─ From your games (later) → calculate concrete opportunities you encountered
 ```
 
 All of them can share the same board, coach, interaction polish, and local-first philosophy.
@@ -1355,94 +1531,25 @@ They should **not** share learning claims they have not earned.
 
 ---
 
-# Review notes — September 28, 2026
+# Decision record — September 28, 2026
 
-These notes record the review against the current application. Section 1 reflects
-the owner's accepted decision and is incorporated above. The remaining notes are
-proposed clarifications for a later implementation pass.
+The earlier review notes are now incorporated into the main specification.
 
-The overall direction fits Fieldwork: reuse the existing scheduler and account
-infrastructure for opening recall, keep puzzle history separate, and share the
-board and coach presentation. Preserve the explicit answer authorities and the
-choice to reject unsuitable puzzle candidates.
+- Opening identity remains visible; actual recall answers stay hidden until feedback.
+- Dedicated variation practice uses that variation's answers and does not update FSRS.
+- Mixed Due uses the union of active study answers at a shared position.
+- Lessons teach positions in context, with branches and illustrative games; they are
+  a substantial framework deliverable, not a catalogue preview.
+- Build lesson and puzzle infrastructure with development fixtures first, then one
+  Italian Game course. Do not generate a large opening collection.
+- Puzzle generation is explicitly deferred. Future creation must verify clear
+  intended moves at every learner decision, defensive replies and the endpoint.
+- Opening content and active-attempt answers are versioned. Deactivation preserves
+  history; content changes have explicit scheduling rules distinct from reviews.
+- Imports remain in Settings; Games retains its compact Update games action.
+- Standard retry, resume and concurrency behavior is an engineering requirement,
+  not a separate product decision for the owner.
 
-## 1. Make the recall task clear without revealing the answer
-
-**Accepted owner decision:** Show the opening name in dedicated study and mixed
-scheduled reviews. Use **"Play your studied move"** instead of "Find a good move,"
-because an objectively sound move can fail solely for being outside the selected
-study. Dedicated study also shows the selected variation and color.
-
-Keep the expected moves and continuation hidden until attempt feedback or reveal.
-This intentionally supersedes the original proposal to hide opening identity.
-Knowing which opening is being studied does not mean remembering its moves.
-An unlabeled mixed drill is a possible later option, not the V1 default.
-
-## 2. Require puzzle fairness at every learner decision
-
-Expand the "Fair first move" gate to cover every scored learner move. A saved
-engine principal variation does not establish that its later moves are the only
-correct choices. V1 can retain a linear solution: verify each learner decision and
-reject ambiguous candidates unless their sound alternatives have supported
-continuations. A full solution graph can remain deferred.
-
-Validate defensive replies and the endpoint against the exact saved puzzle
-solution. A quiet endpoint in a finite analysis line does not prove that all
-defenses lose, and a review's playback frames can be shorter than its supporting
-analysis. Do not simply copy those frames and a settled-outcome flag into a puzzle.
-
-## 3. Preserve opening content and session grading versions
-
-Persist the selected move sequence as well as the catalogue key/version. The
-current Book index merges positions and moves; the catalogue browser needs the
-underlying line records to retain their relationships.
-
-Record the answer set and provenance used by each review session. Rebuilding the
-active answer union after a study edit must not silently change the grading of an
-already-open attempt or rewrite the explanation of historical attempts. Define
-what happens when a study changes or is disabled in another tab during a session.
-
-## 4. Specify deactivation and retirement lifecycle changes
-
-Opening integration cannot reuse every lifecycle rule unchanged. Today,
-unfinished-session queue queries do not enforce eligibility, and the direct review
-guard checks retirement rather than eligibility. Disabling a study must have
-explicit behavior for queueing, resuming, starting, submitting and revealing.
-
-Current retirement is designed to be permanent. Reopening a retired card after
-its study content changes needs an explicit content-change record and preserved
-retirement history. Ensure startup reconciliation does not immediately retire it
-again using the old interval. Content edits must not count as FSRS reviews or
-lapses.
-
-## 5. Describe opening coverage and progress honestly
-
-The bundled catalogue supplies named lines, not a complete repertoire against
-every opponent response. Preview the actual continuation and number of study
-positions before adding a line.
-
-Shared-position answer unions are useful, but recalling either accepted move
-does not demonstrate mastery of both variations. Progress should describe the
-positions practiced and retained, without implying that every contributing line
-or the entire opening has been mastered.
-
-## 6. Preserve the current import placement and existing links
-
-The draft's placement of provider connections and imports in Games conflicts with
-the owner's recent decision. Keep connections and PGN/provider import tools in
-Settings, with the compact **Update games** action in Games.
-
-When Review moves under Study, preserve existing `/review` bookmarks, exercise
-deep links and Weaknesses focused-practice links, including normal browser
-Back/Forward behavior.
-
-## Implementation order and principal risk
-
-Keep the proposed order: shared puzzle player, generic puzzles, Opening SRS, then
-puzzles from the player's games. Introduce the minimal Study navigation with the
-first phase; richer landing-page counts can follow later.
-
-Game-derived puzzle generation is the hardest part: fair follow-up choices,
-defensive replies and a defensible stopping point need independent validation.
-Prefer fewer reliable puzzles over a larger collection that rejects sound moves
-or ends before its claimed payoff is established.
+Remaining content decisions: the Italian course's learner side, precise chapters,
+example games and permitted source material will be selected during its content
+pass. The framework must not assume these choices in advance.
