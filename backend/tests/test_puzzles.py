@@ -327,6 +327,71 @@ def test_both_colors_special_moves(settings, black, fen, line):
         assert client.get("/api/puzzles").json()["stats"]["clean"] == 1
 
 
+@pytest.mark.parametrize("black", [False, True])
+@pytest.mark.parametrize("submit_alias", [False, True])
+@pytest.mark.parametrize(
+    ("aliases", "canonical"),
+    [
+        (("e1h1", "e8a8", "a1b1"), ("e1g1", "e8c8", "a1b1")),
+        (("e1a1", "e8h8", "h1g1"), ("e1c1", "e8g8", "h1g1")),
+    ],
+)
+def test_castling_aliases_use_canonical_solution_and_playback(
+    settings, black, submit_alias, aliases, canonical
+):
+    fen = "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1"
+    if black:
+        fen = chess.Board(fen).mirror().fen()
+
+        def mirror(line):
+            return tuple(
+                chess.Move(
+                    chess.square_mirror(chess.Move.from_uci(uci).from_square),
+                    chess.square_mirror(chess.Move.from_uci(uci).to_square),
+                ).uci()
+                for uci in line
+            )
+
+        aliases, canonical = mirror(aliases), mirror(canonical)
+    fixture = definition(
+        initial_fen=fen, solution=aliases, orientation="black" if black else "white"
+    )
+    assert fixture.solution == canonical
+    app = app_with(settings, fixture)
+    with TestClient(app) as client:
+        state = start(client)
+        with app.state.sessions() as db:
+            assert db.get(PuzzleSession, state["id"]).snapshot["solution"] == list(canonical)
+        response = move(client, state, aliases[0] if submit_alias else canonical[0])
+        assert response.status_code == 200, response.text
+        state = response.json()
+        assert state["feedback"]["grade"] == "correct" and not state["failed"]
+        assert [frame["uci"] for frame in state["playback"]] == list(canonical[:2])
+        state = move(client, state, canonical[-1]).json()
+        assert state["status"] == "solved" and not state["failed"]
+        assert [frame["uci"] for frame in state["completion"]["solution"]] == list(canonical)
+        assert client.get("/api/puzzles").json()["stats"]["clean"] == 1
+
+
+def test_legacy_castling_snapshot_and_invalid_move_commands(settings):
+    fixture = definition(
+        initial_fen="4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", solution=("e1g1",)
+    )
+    app = app_with(settings, fixture)
+    with TestClient(app) as client:
+        state = start(client)
+        with app.state.sessions() as db:
+            session = db.get(PuzzleSession, state["id"])
+            session.snapshot = session.snapshot | {"solution": ["e1h1"]}
+            db.commit()
+        for invalid in ("0000", "e1h1junk", "e1g1q", "e1e3"):
+            assert move(client, state, invalid).status_code == 422
+        assert client.get(f"/api/puzzle-sessions/{state['id']}").json() == state
+        state = move(client, state, "e1g1").json()
+        assert state["status"] == "solved" and not state["failed"]
+        assert [frame["uci"] for frame in state["completion"]["solution"]] == ["e1g1"]
+
+
 @pytest.mark.parametrize(
     "changes",
     [
@@ -337,6 +402,10 @@ def test_both_colors_special_moves(settings, black, fen, line):
         {"solution": ["c3d5", "e7d7"]},
         {"solution": ["c3c8"]},
         {"solution": ["0000"]},
+        {
+            "initial_fen": "4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1",
+            "solution": ["e1g1q"],
+        },
         {"source": "games", "solution": ["c3d5"]},
         {"provenance": {"attribution": "unsafe", "url": "javascript:alert(1)"}},
     ],

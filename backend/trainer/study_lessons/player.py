@@ -4,6 +4,7 @@ from copy import deepcopy
 
 from fastapi import HTTPException
 
+from trainer.chess_core import legal_move
 from trainer.study_lessons.content import Decision, Position
 
 
@@ -88,6 +89,7 @@ def available_actions(course, chapter, state):
 
 def decision(course, step, state, uci, reveal):
     position = Position.model_validate(state["position"])
+    board = position.board()
     if reveal:
         uci = (
             step.choices[0].uci
@@ -95,15 +97,19 @@ def decision(course, step, state, uci, reveal):
             else course.line(step.line_id).moves[state["cursor"]]
         )
     try:
-        move = position.board().parse_uci(uci)
+        move = legal_move(board, uci)
     except ValueError as exc:
         raise HTTPException(422, "Move is not legal in this lesson position") from exc
     if step.kind == "decision":
         choice = next((choice for choice in step.choices if choice.uci == uci), None)
+        if choice is None:
+            choice = next(
+                (choice for choice in step.choices if legal_move(board, choice.uci) == move), None
+            )
         correct = choice is not None
     else:
         line = course.line(step.line_id)
-        correct = line.moves[state["cursor"]] == uci
+        correct = legal_move(board, line.moves[state["cursor"]]) == move
     if not correct:
         state["failed"] = True
         state["feedback"] = {
@@ -115,7 +121,8 @@ def decision(course, step, state, uci, reveal):
     if reveal:
         state["assisted"] = True
     if step.kind == "decision":
-        playback = play(state, (uci, *choice.reply))
+        # Keep authored history stable even when the submitted UCI uses a castle alias.
+        playback = play(state, (choice.uci, *choice.reply))
         state["next_step"] = choice.next_step
         state["phase"] = "complete"
         text = choice.feedback
@@ -127,7 +134,7 @@ def decision(course, step, state, uci, reveal):
             state["phase"] = "complete"
         text = "That is the move in this line."
     if reveal:
-        text = f"The lesson plays {position.board().san(move)}."
+        text = f"The lesson plays {board.san(move)}."
     state["feedback"] = {"kind": "revealed" if reveal else "correct", "text": text}
     return playback
 

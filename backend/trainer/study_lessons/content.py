@@ -5,6 +5,7 @@ from typing import Annotated, Literal
 import chess
 from pydantic import Field, model_validator
 
+from trainer.chess_core import legal_move
 from trainer.contracts.common import Color, Contract
 from trainer.contracts.puzzles import PuzzleFrame
 from trainer.contracts.study_lessons import LessonAnnotations, LessonAttribution
@@ -37,10 +38,12 @@ class Position(Contract):
         board = chess.Board(self.initial_fen)
         frames = []
         for uci in self.moves:
-            move = chess.Move.from_uci(uci)
+            move = legal_move(board, uci)
             before, san = board.fen(), board.san(move)
             board.push(move)
-            frames.append(PuzzleFrame(uci=uci, san=san, before_fen=before, after_fen=board.fen()))
+            frames.append(
+                PuzzleFrame(uci=move.uci(), san=san, before_fen=before, after_fen=board.fen())
+            )
         return frames
 
 
