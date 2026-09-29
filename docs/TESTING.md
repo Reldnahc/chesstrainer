@@ -110,6 +110,96 @@ production feature flag. Legacy Review links remain part of navigation coverage.
 
 ## Full verification
 
+### GitHub Actions
+
+Pull requests run one change-aware `correctness` workflow. Branch pushes no
+longer start a duplicate run; open a PR or run the workflow manually for an
+unmerged branch. The **Run workflow** action defaults to full verification.
+With `full=false`, a manual run compares the selected branch with `origin/main`.
+
+`scripts/ci_plan.py` selects the union of checks for every changed path, including
+deleted paths and both sides of renames. It compares the PR base with the actual
+checked-out merge commit using Git, without an API file-count limit. Unknown
+paths, shared API contracts, dependencies, build tooling and workflow changes
+select everything. Missing/unresolvable history also selects everything.
+
+| Changed area | Checks selected |
+|---|---|
+| Regular documentation edits/additions | Selection and final CI gate only |
+| Documentation deletions/renames or symlinks | Full checks, since documentation is packaged and source symlinks are rejected |
+| Backend or migrations | Backend, build/types, application/accounts/intelligence browsers; runtime changes also test Docker |
+| Audited application-only TypeScript and public assets | Build/types, application/accounts/intelligence browsers, Docker |
+| Coach/dialogue source, shared styles/helpers, unclassified frontend modules | Build/types, all browser suites, Docker |
+| Coach studio source/tests | Build/types and coach studio |
+| Intelligence lab source/tests | Build/types and intelligence lab |
+| Account browser test/config | Build/types and accounts |
+| Other application browser tests/fixtures | Build/types and application/accounts/intelligence browsers |
+| Type-only regression tests | Build/types |
+
+Licenses/notices are build inputs, not documentation-only shortcuts. The Python
+intelligence fixtures import backend test modules, so backend/test-fixture edits
+must retain lab coverage. Keep the selector and its regression tests aligned
+when adding shared dependencies or another suite. The app-only source allowlist
+is conservative: new unclassified frontend modules still run all browser suites.
+Both development entrypoints import the shared stylesheet tree, so even a
+page-specific CSS edit retains coach coverage.
+
+The application and coach studio suites each run in four isolated jobs
+(desktop/mobile, two file shards each). Accounts and intelligence each have
+separate desktop and mobile jobs. Every job retains one Playwright worker, its own
+server and its own database; do not run these commands concurrently against a
+shared checkout.
+No test assertions or native-engine search budgets are reduced. The frontend
+build/type checks run once, and the browser jobs download that run's `dist`
+artifact. Coach studio installs neither Python dependencies nor Stockfish;
+intelligence retains Python for semantic fixtures but does not install Stockfish.
+Application/account tests and backend integration tests retain real Stockfish.
+
+The full-cast expression/repertoire checks are separate cases per coach, using
+the existing account contract's selectable IDs and verifying equality with the
+browser registry. Each gets an isolated page and the normal test timeout; the
+cases can be sharded without increasing the worker count or dropping expressions.
+
+The stable **CI** check runs even when all heavy jobs are intentionally skipped.
+It requires every selected job to succeed, and rejects failures, cancellations,
+missing results and unexpectedly skipped jobs. If branch protection is enabled,
+require **CI**, rather than individual conditional matrix jobs. New PR updates
+cancel obsolete runs. Failed browser jobs retain traces/screenshots for seven
+days; frontend build artifacts expire after one day. Backend logs include the
+20 slowest tests, and browser logs show individual case durations. Bounded job
+timeouts prevent a stuck runner from consuming hours; timing out still fails CI.
+
+Automatic `main` releases compare against the most recent successful ancestor
+release of `docker.yml`, using the same check selector as PRs. This includes
+unverified changes carried through failed, cancelled or superseded releases;
+comparing only with the previous push would miss those changes. Missing release
+history, API failures or an unresolvable baseline run full correctness. The
+baseline lookup alone has read access to Actions history. Manually running
+`build-and-push` defaults to full verification; `full=false` uses that verified
+release baseline. The release workflow skips the separate PR Docker-install job,
+then builds one image, runs local/account install smoke tests against it, and
+pushes that exact image under its commit and `latest` tags. Releases are
+serialized so concurrent builds do not race the `latest` update. Python/npm
+dependency downloads and Docker layers are cached; cache hits never replace
+test execution. QEMU is unnecessary for the existing native Linux image build.
+
+Inspect selection locally without running suites:
+
+```sh
+python scripts/ci_plan.py --paths docs/TESTING.md
+python scripts/ci_plan.py --paths frontend/src/coach/usePerformance.ts
+python scripts/ci_plan.py --base origin/main --head HEAD
+python scripts/ci_plan.py --full
+python -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q
+```
+
+The exhaustive browser-matrix collection check should continue to cover every
+test/project exactly once when shard settings change. Use Playwright `--list
+--reporter=json` with and without each matrix entry's `--project` and `--shard`
+arguments to compare IDs; collection is not a substitute for executing tests.
+
+### Local commands
+
 From an activated source checkout, install the locked Python dependencies and frontend dependencies as described in [README.md](../README.md). Build first: backend static-serving tests and Playwright consume frontend/dist. Do not rebuild it while those suites are running.
 
 ```sh

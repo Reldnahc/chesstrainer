@@ -2,6 +2,69 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Smarter CI integration with current main — September 29, 2026
+
+Merged `aa851c5` into the existing CI branch in `3a1261c`, preserving the current
+coach, grading and portable browser harness changes. The current selector skips
+coach tests for audited application-only TypeScript/public assets while keeping
+coach coverage for shared styles, dialogue, dependencies and unknown modules.
+Both application and coach suites use two shards per viewport: twelve browser
+jobs in a full run. The earlier smarter-CI entry below records its older baseline.
+
+Automatic releases now compare with a successful ancestor release rather than
+the previous push, retaining verification of changes from failed or superseded
+releases. Missing API/history evidence requests full checks. The release tests
+cover failure/cancellation, non-ancestors, forks, reruns, malformed metadata and
+manual full verification. Independent review also found documentation symlinks
+could skip builds despite source packaging rejecting them; changed Git tree
+modes now select full checks, with added/replaced symlinks tested without relying
+on Windows filesystem privileges.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q -p no:cacheprovider --basetemp data/verification/ci-merge-final-stable`:
+  **219 passed**, 19.45 seconds. Covers selection unions, exclusions, full fallback,
+  real Git history/renames/deletions/symlinks, release baselines and the final gate.
+- Playwright `--list --reporter=json`, comparing every matrix project/shard with
+  the unsharded configurations: all **542 test/project entries occur exactly
+  once** (application 300, accounts 8, coach 190, intelligence 44). This is a
+  collection check, not browser execution; GitHub execution remains the merge gate.
+- `npm.cmd run build`: passed API agreement, production/contract/browser-test
+  TypeScript and Vite. Existing large-chunk advisory remains.
+- Actionlint **1.7.12**, `ruff check backend scripts migrations`,
+  `ruff format --check backend scripts migrations` (**285 files**),
+  `scripts/export_api_contract.py --check` and `git diff --check`: passed.
+- Read-only selection against actual GitHub release metadata chose a successful
+  main ancestor; no workflow or container was dispatched for that probe.
+  Independent review covered shared frontend dependencies, all matrix entries,
+  stable gating, reusable workflow inputs, release history and image publication.
+
+The first real GitHub run (`36613634495`) passed backend **1,105 tests with 7
+optional skips**, frontend build/types, Docker installation, application
+**297 passed / 3 intentional skips**, accounts **8 passed**, and intelligence
+**44 passed**. All twelve browser jobs reused the same frontend artifact; coach
+jobs skipped Python/Stockfish and intelligence skipped Stockfish as intended.
+The coach suite passed **189 cases**, but its single mobile all-cast traversal
+exceeded the existing 240-second test timeout; the desktop traversal took about
+229 seconds. The stable CI gate correctly rejected the failure. This surfaced
+an oversized test case, with thirty coaches and twenty expressions sharing one
+deadline, rather than an assertion failure or missing suite.
+
+The correction splits that traversal into a roster check and one isolated case
+per coach, preserving every expression/repertoire/state assertion and screenshot.
+Each coach uses the normal 30-second timeout. The checked-in account contract
+provides IDs without loading artwork/CSS into Node, and the roster assertion
+requires exact agreement with the browser registry. Overflow is now checked for
+every coach. Independent review found no lost assertions or shared state.
+Repeating exhaustive matrix collection after the split assigns all **602 cases
+exactly once** (application 300, accounts 8, coach 250, intelligence 44).
+
+- From `frontend`, `.\node_modules\.bin\playwright.cmd test --config studio-test-results-configs/ci-full-cast-split.config.ts full-cast.spec.ts`:
+  **66 passed**, desktop/mobile, 332.37 seconds, no skips or retries. The ignored
+  config inherits the normal projects/one-worker limit and uses the existing
+  studio server with a separate output directory. Longest individual coach case:
+  **5.407 seconds desktop / 5.332 seconds mobile**, within the unchanged 30-second
+  default. The existing studio was left running.
+- Browser-test TypeScript and `git diff --check`: passed.
+
 ## Coach revamp review and portable browser harnesses — September 29, 2026
 
 Independent review covered coordinator liveness/cleanup, shared facial state,
@@ -367,6 +430,69 @@ Final validation of the combined correction:
   unverified. No test-owned processes remained, and the owner's app was left
   running. Full backend/browser/Docker verification was not completed in this
   pass; no CI or deployment is claimed.
+
+## Change-aware CI — September 29, 2026
+
+Correctness now selects dependency-aware suites for PRs, with a fail-closed
+final `CI` gate. Branch pushes no longer duplicate PR runs. Browser projects use
+isolated jobs (two application file shards per viewport), share one production
+build, and install only the runtime each suite needs. Main releases retain full
+correctness and build/smoke/publish one image. Python/npm downloads and Docker
+layers are cached. No product behavior, test assertion, engine budget or model
+configuration changed. See [TESTING.md](TESTING.md#github-actions) for selection
+rules, manual full runs and the required-check name.
+
+Verified locally:
+
+- `python -m pytest backend/tests/test_ci_plan.py -q -p no:cacheprovider
+  --basetemp data/verification/ci-planner-final-retry`: **133 passed**, 2.66s.
+  Coverage includes dependency unions, all viewports/shards, unknown paths,
+  missing history, real Git renames/deletions, documentation build inputs,
+  machine outputs, and rejection of failed/cancelled/missing/accidentally skipped
+  selected jobs. Independent workflow/helper reviews found no blockers.
+- Actionlint **1.7.12** passed both workflows. `ruff check backend scripts
+  migrations`, `ruff format --check backend scripts migrations` (280 files),
+  `python scripts/export_api_contract.py --check`, and `git diff --check` passed.
+- `npm run build` passed generated-type agreement, application/test TypeScript
+  checks and Vite. The existing large-chunk advisory remains.
+- Playwright **1.63.0** collection was compared by test/project ID, using
+  `node node_modules/playwright/cli.js test --config CONFIG --list --reporter=json`
+  and each generated entry's `--project PROJECT --shard SHARD`. The ten matrix
+  entries contain all **394** cases exactly once: application 298, accounts 8,
+  studio 44 and intelligence 44. No missing/extra/duplicate IDs. This is coverage
+  discovery, not a claim that 394 browser cases executed during this pass.
+- `docker buildx build --load -t fieldwork:ci-efficiency-check
+  data/verification/ci-efficiency-container/fieldwork` passed from a public-source
+  export. Native dependency layers were reused. The direct Windows checkout
+  could not be used because Docker could not read its local `.pytest_cache`.
+
+The host exhausted virtual memory during broader verification. Results are
+recorded explicitly rather than treating this as a clean full-suite run:
+
+- Full `pytest -q -ra --durations=20 -p no:cacheprovider` with native Stockfish:
+  **926 passed, 3 opt-in Maia skips, 2 failed**, 304.41s. It collected the first
+  122 CI regressions before the final documentation-deletion cases were added.
+  Both failures timed out during Stockfish startup; an immediate isolated retry
+  reported Windows **WinError 1455**, paging file too small. After cleanup, both
+  cases passed unchanged in **6.49s**: the imported clock/restart/branch case in
+  `test_review_clocks.py` and cancelled refinement in `test_review_refinement.py`.
+  The final 133 planner regressions were rerun separately as recorded above.
+- `npx playwright test --config playwright.accounts.config.ts --project desktop
+  --shard 1/1 --reporter=line`: final isolated retry **2 passed, 2 failed**.
+  Trace bodies for both failed signups are exactly
+  `{"detail":"[digital envelope routines] malloc failure"}` from password hashing.
+  An earlier attempt also recorded Chromium `ERR_INSUFFICIENT_RESOURCES`.
+  These are host allocation failures; account coverage is not reported passed.
+- `python scripts/smoke_install.py --image fieldwork:ci-efficiency-check` completed
+  the local-mode install/restart/native-review/Study portion, but the full smoke
+  run was interrupted by WinError 1455 during Docker subprocess startup. A later
+  retry hit an HTTP read timeout and Docker Desktop API 500 during cleanup.
+  Account-mode container smoke verification remains incomplete on this host.
+
+GitHub execution, cache reuse across Actions runs and actual CI wall-clock
+improvement cannot be claimed from local validation. These workflows have not
+been pushed during this pass. A published run must establish those results;
+neither failed tests nor installation smoke checks are bypassed by the new gate.
 
 ## Study merge review — September 29, 2026
 
