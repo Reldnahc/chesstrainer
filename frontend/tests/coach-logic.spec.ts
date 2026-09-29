@@ -172,7 +172,8 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
   expect(resolveExpression(coach, "blunder")).toBe("neutral");
   expect(resolveExpression(coach, "thinking")).toBe("neutral");
   expect(resolveFamily(coach, "removed")).toBe(coach.defaultFamily);
-  expect(availableIdles(coach)).toContain("glasses");
+  expect(availableIdles(coach)).toContain("breathe");
+  expect(availableIdles(coach)).not.toContain("glasses");
   expect(availableIdles(coach)).not.toContain("tail");
   const variant = {
     ...coach,
@@ -181,13 +182,13 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
         ...coach.families[0],
         animation: {
           ...classicPerformance,
-          defaultIdle: ["ears"] as const,
+          defaultIdle: ["ears", "head-tilt"] as const,
           idleGestures: {},
         },
       },
     ],
   };
-  expect(availableIdles(variant)).toEqual(["ears"]);
+  expect(availableIdles(variant)).toEqual(["head-tilt"]);
   expect(resolveAnimation(variant, "removed")).toBe(
     variant.families[0].animation,
   );
