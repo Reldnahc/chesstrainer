@@ -307,7 +307,7 @@ classification_quality.py and the read-only report script support blinded export
 
 ## Archives, privacy and deployment
 
-Lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Course generation and lesson progression code have been removed; active review cannot start, resume or finish a lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive.
+Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Legacy course generation and lesson progression code have been removed; active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive. The new authored Study domain and `source="opening"` recall have their own explicit contracts described above.
 
 OpenAI runtime integration is removed: no model SDK or model network calls remain.
 Historical classification and teaching responses stay local. Explicit Chess.com

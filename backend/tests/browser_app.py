@@ -115,6 +115,7 @@ def create_app():
             }
 
     @app.post("/__test/puzzle-fixture/{key}")
+    @app.post("/api/__test/puzzle-fixture/{key}")
     def puzzle_fixture(workspace: CurrentWorkspace, key: str):
         from trainer.contracts.puzzles import PuzzleStart
         from trainer.puzzles.providers import PuzzleProviders

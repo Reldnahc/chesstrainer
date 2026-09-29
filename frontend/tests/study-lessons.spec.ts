@@ -253,3 +253,52 @@ test("leaving during a lesson command discards late feedback and resumes committ
     await page.unroute(pattern);
   }
 });
+
+test("a new lesson explanation returns its scroll bubble to the start without replacing the coach or losing focus", async ({ page }, info) => {
+  const lesson = await fixture(page, `message-scroll-${info.project.name}`);
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  let handled: Promise<void> | undefined;
+  const pattern = `**/api/study/lesson-sessions/${lesson.session_id}**`;
+  await page.route(pattern, route => {
+    const operation = (async () => {
+      const response = await route.fetch();
+      const session: Schema["LessonSessionView"] = await response.json();
+      // Keep real saved state and transitions, but exercise two scrollable texts.
+      session.step.text = `${session.step.id === "welcome" ? "First explanation." : "Next explanation."} ${"This lesson connects the pieces, their development, and the plans available from this position. ".repeat(12)}`;
+      if (route.request().method() === "POST") await gate;
+      await route.fulfill({ response, json: session });
+    })();
+    handled = operation;
+    return operation;
+  });
+  await page.goto(lesson.path);
+  const message = page.getByLabel("Coach explanation", { exact: true });
+  await expect(message).toContainText("First explanation.");
+  const original = await page.evaluateHandle(() => ({
+    message: document.querySelector(".coach-message"),
+    avatar: document.querySelector(".coach-avatar"),
+  }));
+  try {
+    await message.evaluate(element => { element.scrollTop = element.scrollHeight; });
+    expect(await message.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
+    const pending = page.waitForResponse(response => response.url().endsWith(`/lesson-sessions/${lesson.session_id}/command`));
+    await page.getByRole("button", { name: "Continue", exact: true }).click();
+    await message.focus();
+    release();
+    expect((await pending).ok()).toBe(true);
+    await handled;
+    await expect(message).toContainText("Next explanation.");
+    await expect.poll(() => message.evaluate(element => element.scrollTop)).toBe(0);
+    expect(await original.evaluate(value => ({
+      sameMessage: value.message === document.querySelector(".coach-message"),
+      sameAvatar: value.avatar === document.querySelector(".coach-avatar"),
+      focused: value.message === document.activeElement,
+    }))).toEqual({ sameMessage: true, sameAvatar: true, focused: true });
+  } finally {
+    release();
+    await handled;
+    await original.dispose();
+    await page.unroute(pattern);
+  }
+});

@@ -18,6 +18,89 @@ def docker(*args):
     return subprocess.check_output(["docker", *args], text=True).strip()
 
 
+def study_before_restart(client, headers):
+    library = client.get("/api/study/courses", headers=headers)
+    library.raise_for_status()
+    courses = library.json()["courses"]
+    assert [course["id"] for course in courses] == ["italian-foundations"]
+    course = courses[0]
+    assert course["chapter_count"] == 3 and course["completed_chapters"] == 0
+    puzzles = client.get("/api/puzzles", headers=headers)
+    puzzles.raise_for_status()
+    assert puzzles.json()["available"] == 0 and puzzles.json()["sources"] == []
+    for source in ("generic", "games"):
+        response = client.get("/api/puzzles/next", params={"source": source}, headers=headers)
+        response.raise_for_status()
+        assert response.json() is None
+    assert client.get("/api/review/count", headers=headers).json() == {"due": 0}
+    session = client.post(
+        "/api/study/lesson-sessions",
+        headers=headers,
+        json={
+            "course_id": course["id"],
+            "course_revision": course["revision"],
+            "chapter_id": "quiet-development",
+            "request_id": uuid.uuid4().hex,
+        },
+    )
+    session.raise_for_status()
+    lesson = session.json()
+    # Leave the introduction, then play its first authored demonstration.
+    for _ in range(2):
+        response = client.post(
+            f"/api/study/lesson-sessions/{lesson['id']}/command",
+            headers=headers,
+            json={
+                "request_id": uuid.uuid4().hex,
+                "revision": lesson["revision"],
+                "action": "continue",
+            },
+        )
+        response.raise_for_status()
+        lesson = response.json()
+    assert [frame["uci"] for frame in lesson["history"]] == ["e2e4", "e7e5"]
+    assert lesson["revision"] == 2 and lesson["status"] == "active"
+    assert client.get("/api/review/count", headers=headers).json() == {"due": 0}
+    response = client.get(
+        f"/api/openings/course-lines/{course['id']}/quiet-italian",
+        params={"revision": course["revision"]},
+        headers=headers,
+    )
+    response.raise_for_status()
+    line = response.json()["line"]
+    response = client.post(
+        "/api/opening-studies",
+        headers=headers,
+        json={
+            key: line[key]
+            for key in ("source", "source_key", "source_version", "course_id", "line_id")
+        }
+        | {"color": "white"},
+    )
+    response.raise_for_status()
+    study = response.json()
+    assert study["active"] and study["positions"] > 0
+    assert client.get("/api/review/count", headers=headers).json() == {"due": study["positions"]}
+    assert client.get("/api/jobs", headers=headers).json() == []
+    return lesson, study
+
+
+def study_after_restart(client, headers, lesson, study):
+    response = client.get(f"/api/study/lesson-sessions/{lesson['id']}", headers=headers)
+    response.raise_for_status()
+    restored = response.json()
+    for key in ("revision", "history", "fen", "step", "status", "course_revision"):
+        assert restored[key] == lesson[key], key
+    response = client.get("/api/study/courses", headers=headers)
+    response.raise_for_status()
+    assert lesson["id"] in {session["id"] for session in response.json()["resume"]}
+    response = client.get(f"/api/opening-studies/{study['id']}", headers=headers)
+    response.raise_for_status()
+    assert response.json() == study
+    assert client.get("/api/review/count", headers=headers).json() == {"due": study["positions"]}
+    assert client.get("/api/jobs", headers=headers).json() == []
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--image", required=True)
@@ -84,6 +167,7 @@ def main():
                     "/api/preferences/motion", headers=headers, json=motion_preference
                 ).raise_for_status()
                 assert client.get("/api/preferences/coach", headers=headers).json() == preference
+                lesson, study = study_before_restart(client, headers)
                 health = client.get("/api/health", headers=headers).json()
                 assert health["engine_status"] == ("unchecked" if mode == "accounts" else "ready")
                 assert health["engine_available"] is (None if mode == "accounts" else True)
@@ -108,6 +192,7 @@ def main():
                     client.get("/api/preferences/motion", headers=headers).json()
                     == motion_preference
                 )
+                study_after_restart(client, headers, lesson, study)
                 assert (
                     docker(
                         "exec",
@@ -154,6 +239,9 @@ def main():
                             "native_review_and_health": "passed",
                             "coach_preferences": "passed",
                             "interface_motion_preferences": "passed",
+                            "study_lesson_restart": "passed",
+                            "empty_production_puzzles": "passed",
+                            "opening_enrollment_due_without_analysis": "passed",
                         }
                     ),
                     flush=True,

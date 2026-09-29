@@ -42,6 +42,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   >
     <ReviewCoach title={<h2>{error ? "Let’s restore your lesson." : playback.playing ? "Follow the continuation." : session.game ? session.game.title : finished ? "Chapter completed." : step.title}</h2>}
       reaction={{ state: expression, key: `${session.id}:${session.revision}:${expression}` }}
+      messageResetKey={`${session.id}:${session.revision}:${playback.playing}:${error || ""}`}
       actions={<>{error ? <button className="primary" onClick={state.reload}>Reload lesson</button> : <>
         {session.game ? <>{action("close_game", "Return to lesson", true, <Undo2 size={16} />)}<button className="secondary" disabled={disabled || session.game.ply === 0} onClick={() => state.command("game_seek", { ply: 0 })}><Play size={16} />From the beginning</button></> : <>
           {action("back", "Back", false, <ChevronLeft size={16} />)}

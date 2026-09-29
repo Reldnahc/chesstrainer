@@ -2,6 +2,49 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Study frameworks and Italian pilot — September 28, 2026
+
+Verified the approved Study sprint on `codex/study-frameworks`: private puzzle
+and lesson sessions, opening recall through existing Review/FSRS, and the shipped
+three-chapter Italian course. Production puzzle sources intentionally remain
+empty. Test fixtures exist only in injected test applications.
+
+- `.venv/Scripts/python.exe -m pytest -q -ra -p no:cacheprovider --basetemp=data/verification/study-phase5-backend-20260928-pb1`: **738 passed, 3 opt-in Maia skips**, with native Stockfish configured. The skips are `test_human_runtime.py:128` and `test_maia_feasibility.py:90,105`; the next command exercises all three.
+- `.tools/maia-runtime/Scripts/python.exe -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q -ra -p no:cacheprovider --basetemp=data/verification/study-final-maia-native`: **3 passed, 9 deselected**, using cached 79M weights, CPU and `HF_HUB_OFFLINE=1`. No model download.
+- `npx.cmd playwright test --reporter=line`: **271 passed, 3 deliberate viewport skips** (phone-only review on desktop; desktop modifier/new-tab and width-matrix tests on mobile). Includes the real Italian course and the lesson scroll-reset regression.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`: **8 passed**, including Study/coach persistence across browser sessions and foreign-account session/library isolation.
+- Full coach-studio suite: **42 passed**, zero skips, with `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output=studio-test-results-study-phase5 --reporter=line`. The temporary override uses the normal suite on port 5176 and an isolated Vite cache, preserving the owner's running 5174 studio.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --output=intelligence-test-results-study-phase5 --reporter=line`: **44 passed**, zero skips, using its normal 5175 server with a separate output directory. After workers finished, Windows retained the test server; stopping only that verified test-server PID allowed the runner to exit normally with the passing summary.
+- `npm.cmd run build`: passed, including API agreement, application/browser-test types, corresponding-source archive and Vite. Full Ruff lint/format (**276 files**), `python scripts/export_api_contract.py --check`, and `git diff --check`: passed. Existing Vite chunk-size and TestClient dependency advisories remain.
+- Fresh disposable database: `python -m alembic upgrade head` and `python -m alembic check`: passed at `7c249ef302d6`, no schema drift, SQLite integrity `ok`, no foreign-key violations.
+- `docker build -t fieldwork:study-verification .tools/study-release-context-20260928` and `python scripts/smoke_install.py --image fieldwork:study-verification`: passed in local and account modes. Covers installed Italian content, empty puzzle libraries, lesson progress through restart, explicit opening enrollment/Due without analysis jobs, existing native Stockfish review, health and preferences. Build context was a public tracked-source copy; no private databases, caches or models were included.
+
+Each framework checkpoint ran its focused HTTP and browser regression suites
+before committing. Italian acceptance/native coverage passed **6 tests** with no
+skips, including a bounded Stockfish gross-error check of guided decisions. All
+300 historical plies were legally replayed and checked against the source record;
+the unplayed Steinitz mating continuation is excluded. These checks do not claim
+that every historical move is best or that the course covers every Black reply.
+
+Manual checks used a separate disposable database and the actual application at
+1440×1000 and 390×844: puzzle retries/reload/completion, a connected lesson across
+all six step kinds, catalogue enrollment/Due feedback, and the real Italian
+guidance/alternative with reload and exact return. Desktop/mobile screenshots of
+the historical excerpts were also inspected. Testing found and fixed lesson
+explanations retaining an old scroll offset; the regression verifies reset
+without remounting the portrait/message or losing keyboard focus. Independent
+cross-domain reviews found no remaining scheduling, account or cold-answer leak.
+
+The current contracts and source decisions live in [Study](STUDY.md) and
+[Italian sources](ITALIAN_COURSE_SOURCES.md); milestone commits are recorded in
+[Implementation history](IMPLEMENTATION_HISTORY.md). No merge or deployment was
+performed as part of this verification.
+
+The studio also needed the same Windows server cleanup after all workers had
+exited; both runners returned exit 0 with their complete passing summaries.
+Artifacts remain under ignored `frontend/studio-test-results/study-phase5` and
+`frontend/intelligence-test-results/study-phase5`. No owner process was stopped.
+
 ## Full release verification — September 28, 2026
 
 Validated the accumulated main-branch UX, provider import and onboarding work.

@@ -88,6 +88,8 @@ browser playback starts. `useStudyPlayback` shares presentation timing between
 puzzles and lessons, while each mode keeps its own server state machine. Still
 mode changes presentation only. Annotations belong to the displayed position and
 are suppressed during intermediate animation frames.
+New lesson feedback or steps reset the explanation's scroll position without
+remounting the coach or moving keyboard focus.
 
 The `/study/openings` library links course chapters and recent resumable sessions.
 `/study/openings/courses/:id?revision=…` pins the chapter list, and

@@ -15,6 +15,13 @@ Stockfish for a bounded gross-error check of guided decisions, not as the lesson
 grader. `italian-course.spec.ts` exercises the real installed course on both
 viewports, including exact returns, reload and optional enrollment.
 
+The account browser suite resumes lessons, puzzle attempts, selected lines and
+the chosen coach on a second device, then confirms another account cannot read
+their private sessions or studies. Its authenticated puzzle fixture alias exists
+only in `browser_app.py`. `scripts/smoke_install.py` also checks the installed
+Italian course, empty production puzzle library, lesson restart and explicit
+opening enrollment in fresh local/account containers without starting analysis.
+
 Opening recall coverage: `test_opening_sources.py`, `test_opening_lifecycle.py`,
 `test_opening_isolation.py` and `test_opening_journey.py` cover both source kinds,
 transpositions/answer unions, source snapshots, content policy, ownership,
@@ -224,7 +231,7 @@ Synthetic legal positions and fabricated engine scores test detector and API con
 
 ## Browser coverage
 
-Desktop and phone-emulated Chromium cover all **five** navigation destinations, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
+Desktop and phone-emulated Chromium cover all **four** navigation destinations (Study, Games, Weaknesses, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
 
 Review journeys cover taps, drag/drop, legal dots/capture rings, promotion, failure/counter preview, Try again, Reveal move, solve/reload and saved scheduling. The phone-only test checks 390x700, 375x600 and 360x640 layouts; its desktop instance is intentionally skipped.
 
@@ -232,7 +239,7 @@ Regression checks preserve header/title/board/control geometry through loading, 
 
 Focused practice checks witness frames/square roles and unchanged recall counts. Chess.com tests submit dates, download mocked archives, run real analysis, repeat imports without analysis duplication, and show provider failures.
 
-Browser fixtures create manual exercises through the retained low-level API. There is no Repertoire/manual-entry screen or lesson browser journey. Test-only fixtures are in backend/tests/browser_app.py and are absent from production. Screenshots contain fixture data, not the user's games. Mobile emulation is not physical-phone LAN verification.
+Browser fixtures create manual exercises through the retained low-level API and inject puzzle/lesson sources through test providers. There is no Repertoire/manual-entry screen; authored Study lessons have connected browser journeys. Test-only fixtures are in backend/tests/browser_app.py and are absent from production. Screenshots contain fixture or bundled course data, not the user's games. Mobile emulation is not physical-phone LAN verification.
 
 ## Manual native smoke flow
 
