@@ -4,6 +4,7 @@ import type {Game} from "../src/gameReview/types";
 import {inspectPosition, MAX_BYTES, parseReview} from "./inspection";
 import {selectableCoaches, getCoach} from "../src/coach/registry";
 import {renderDialogue} from "../src/dialogue/neutral";
+import DialogueText from "../src/dialogue/DialogueText";
 import WritingLab, {CoachComparison} from "./CoachComparison";
 
 export default function IntelligenceLab() {
@@ -54,7 +55,7 @@ export default function IntelligenceLab() {
         <label>Voice<select aria-label="Dialogue coach" value={coachId} onChange={e => setCoachId(e.target.value)}><option value="neutral">Neutral reference</option>{selectableCoaches.map(coach => <option value={coach.id} key={coach.id}>{coach.name}</option>)}</select></label>
       </nav>
       <div className="lab-overview"><div><Board fen={game.frames[ply].fen} orientation={game.orientation} disabled /><p className="small">{source} · {game.white} / {game.black}</p></div>
-        <section aria-label="Rendered coach line"><h2>{coachId === "neutral" ? "Neutral coach" : getCoach(coachId).name}</h2><p className="lab-utterance">{utterance!.text}</p>
+        <section aria-label="Rendered coach line"><h2>{coachId === "neutral" ? "Neutral coach" : getCoach(coachId).name}</h2><DialogueText className="lab-utterance" utterance={utterance!} announce={false} />
           <p>{inspection.intent.purpose} · {inspection.intent.expression} · priority {inspection.intent.priority}</p>
           <code>{utterance!.id}</code><p>Deterministic seed: <code>{inspection.intent.id}</code></p>
           <p className="small">Stockfish → human policy → practical difficulty → supported events → context → dialogue intent → selected variant.</p>

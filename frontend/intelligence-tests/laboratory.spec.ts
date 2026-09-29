@@ -1,5 +1,7 @@
 import {test, expect} from "@playwright/test";
 import {readFileSync, readdirSync} from "node:fs";
+import path from "node:path";
+import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {inspectPosition, parseReview} from "../intelligence-lab/inspection";
 import type {Game} from "../src/gameReview/types";
@@ -34,6 +36,47 @@ test("inspection is the same deterministic production dialogue and malformed evi
   expect(() => parseReview(JSON.stringify({...fixture, frames: [{...fixture.frames[1], report: {label: "Best"}}]}))).toThrow(/incompatible/);
 });
 
+test("shared dialogue keeps production announcements and supports passive definition-list samples", async ({page}) => {
+  const utterance = inspectPosition(fixture, 1).utterance;
+  await page.goto("/");
+  const lines = await page.evaluate(async ({root, utterance}) => {
+    const {React, createRoot} = await import(`${root}/studio-tests/fixtures/runtime.ts`);
+    const {default: DialogueText} = await import(`${root}/src/dialogue/DialogueText.tsx`);
+    const container = document.createElement("div");
+    document.body.append(container);
+    const mounted = createRoot(container);
+    try {
+      await new Promise<void>(resolve => {
+        function Preview() {
+          React.useEffect(() => {resolve();}, []);
+          return React.createElement(React.Fragment, null,
+            React.createElement(DialogueText, {utterance}),
+            React.createElement("dl", null,
+              React.createElement("dt", null, "Sample"),
+              React.createElement(DialogueText, {utterance, as: "dd", announce: false})));
+        }
+        mounted.render(React.createElement(Preview));
+      });
+      return [...container.querySelectorAll("[data-utterance]")].map(element => ({
+        tag: element.tagName, parent: element.parentElement?.tagName,
+        live: element.getAttribute("aria-live"), text: element.textContent,
+        utterance: element.getAttribute("data-utterance"),
+        intent: element.getAttribute("data-intent"),
+        coach: element.getAttribute("data-dialogue-coach"),
+      }));
+    } finally {
+      mounted.unmount();
+      container.remove();
+    }
+  }, {root: viteFsPath(path.resolve(".")), utterance});
+  expect(lines).toHaveLength(2);
+  expect(lines[0]).toMatchObject({tag: "P", live: "polite"});
+  expect(lines[1]).toMatchObject({tag: "DD", parent: "DL", live: "off"});
+  for (const line of lines) {
+    expect(line).toMatchObject({utterance: utterance.id, intent: utterance.intentId, coach: utterance.coachId, text: utterance.text});
+  }
+});
+
 test("laboratory traces a local review without network or storage and retains it after invalid input", async ({page}, info) => {
   const apiCalls: string[] = [];
   page.on("request", r => {if (r.url().includes("/api/")) apiCalls.push(r.url());});
@@ -41,11 +84,18 @@ test("laboratory traces a local review without network or storage and retains it
   await expect(page.getByRole("heading", {name: "Review intelligence laboratory"})).toBeVisible();
   await page.getByLabel("Open game-detail JSON").setInputFiles({name: "synthetic.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(fixture))});
   await expect(page.locator(".lab-utterance")).toContainText("queen on e4 and king on h7");
+  const expected = inspectPosition(fixture, 1).utterance;
+  await expect(page.locator(".lab-utterance")).toHaveAttribute("aria-live", "off");
+  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-utterance", expected.id);
+  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-intent", expected.intentId);
+  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-dialogue-coach", "neutral");
   await expect(page.getByRole("region", {name: "Rendered coach line"})).toContainText(inspectPosition(fixture, 1).intent.id);
   await expect(page.locator(".lab-chain")).toContainText("synthetic-search");
   const neutral = await page.locator(".lab-utterance").innerText();
   await page.getByLabel("Dialogue coach").selectOption("classic");
   await expect(page.locator(".lab-utterance")).not.toHaveText(neutral);
+  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-dialogue-coach", "classic");
+  await expect(page.locator(".lab-utterance")).toHaveAttribute("data-intent", expected.intentId);
   await expect(page.locator(".lab-utterance")).toContainText("queen on e4 and king on h7");
   await expect(page.locator(".lab-chain")).toContainText("storyteller-");
   await page.getByRole("button", {name: "Previous", exact: true}).click();

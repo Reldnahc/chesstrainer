@@ -70,7 +70,7 @@ not React components.
 | Coach bubble, portrait and action geometry | [ReviewCoach](../frontend/src/ReviewCoach.tsx), [coach-presentation.css](../frontend/src/coach-presentation.css) | Shared title, badge, evaluation, explanation, insight, caption and actions. Preserve stable portrait identity and message-scroll reset behavior. |
 | Registered coach artwork/performance | [CoachAvatar / CoachCharacter](../frontend/src/coach/CoachAvatar.tsx), [registry](../frontend/src/coach/registry.ts) | App-selected avatar versus explicit preview character. Use registry metadata; do not maintain another cast list. |
 | Authored SVG rig layers | [ArtworkRig](../frontend/src/coach/ArtworkRig.tsx) | Decorative SVG frame and identical study body/head layers. Keep species art, CSS, poses, viewBoxes and accent placement with their family. Classic's distinct rig remains separate. |
-| Rendered coaching text | [DialogueText](../frontend/src/dialogue/DialogueText.tsx) | Supported utterance text and intent/variant metadata. Its live-announcement behavior matters when reusing it in a many-card diagnostic view. |
+| Rendered coaching text | [DialogueText](../frontend/src/dialogue/DialogueText.tsx) | Supported utterance text and intent/variant metadata. Production defaults to a polite paragraph; lab previews explicitly use announce=false and optionally as=dd for definition lists. |
 | Move-quality symbol and labelled badge | [MoveSymbol](../frontend/src/MoveSymbol.tsx), [MoveBadge](../frontend/src/MoveBadge.tsx) | One icon/label rendering path. Objective move quality and practice attempt outcomes remain different concepts. |
 | White-perspective position score | [EvaluationScore](../frontend/src/EvaluationScore.tsx), [evaluation helpers](../frontend/src/evaluation.ts) | Signed pawn/mate formatting, winning-side styling and accessible perspective. Never pass side-to-move candidate scores without conversion. |
 | Accuracy display | [AccuracyReadout / PlayerRow](../frontend/src/gameReview/Players.tsx) | Existing compact/summary accuracy, unavailable/completion wording and one-decimal display. |
@@ -150,7 +150,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-25 | Use the application's real EvaluationScore in Studio (B). | Complete | Board-size Studio previews use `EvaluationScore` with typed illustrative scores, correct White perspective, side styling and accessible text. |
 | UI-26 | Defer coach-card/selector extraction. | Deferred | Keep current Settings and Studio workflows, shared registry/artwork, and the Settings six-column grid. |
 | UI-27 | Share identical artwork/rig wrappers. | Complete | `ArtworkSvg`, `BodyRig` and `HeadRig` serve production family artwork; art, geometry, eyes, animation and species-specific layers remain unchanged. |
-| UI-28 | Share application dialogue text/metadata with explicit non-live lab rendering. | Planned | Preserve production announcements and lab semantics; do not announce every comparison card. |
+| UI-28 | Share application dialogue text/metadata with explicit non-live lab rendering. | Complete | Lab and comparison cards use `DialogueText` with announce=false; definition-list samples retain dd and production retains its polite default. |
 | UI-29 | Defer development-tool checkbox-row extraction. | Deferred | Leave current tool implementations in place for this pass. |
 | UI-30 | Leave the existing eye implementations alone. | Keep existing | Owner's later "just leave it" supersedes the initial mechanics-only extraction choice. No eye refactor in this pass. |
 
@@ -215,6 +215,14 @@ from Git; no live decision-gathering tool is needed.
   origins, species layers, existing animation and reduced motion. No eye, artwork,
   gesture or cadence changes. Commit subject: `UI-27: Share identical coach SVG
   rig layers`.
+- **UI-28 — shared dialogue rendering:** lab inspection and comparison samples
+  now reuse supported text and trace metadata without creating live announcements
+  for every coach. The component's production default is unchanged. Production
+  build/types passed. **10 desktop/mobile laboratory/corpus tests passed**,
+  including actual React rendering of both live paragraphs and passive definition
+  entries. Replaced an incompatible test-runner JSX/SSR test with real browser
+  rendering; no production workaround was required. Commit subject: `UI-28: Share
+  dialogue rendering with passive developer previews`.
 
 ## Audit findings and implementation boundaries
 

@@ -1,4 +1,6 @@
 import {test, expect} from "@playwright/test";
+import {renderCoaches} from "./render-coaches";
+import {exampleIntent, comparisonExamples, writingExamples} from "../intelligence-lab/examples";
 
 test("every current coach has a complete, varied, fact-preserving corpus", async ({page}, info) => {
   await page.goto("/");
@@ -8,6 +10,7 @@ test("every current coach has a complete, varied, fact-preserving corpus", async
   const cards = page.getByRole("region", {name: "Writing laboratory"}).getByTestId("voice-card");
   const count = await cards.count();
   expect(count).toBeGreaterThan(1);
+  await expect(cards.locator("p.lab-voice-line[aria-live=off][data-utterance][data-intent][data-dialogue-coach]")).toHaveCount(count);
   const choices = await page.getByLabel("Writing scenario").locator("option").count();
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -28,6 +31,16 @@ test("every current coach has a complete, varied, fact-preserving corpus", async
   await expect(cards.locator(".coach-avatar")).toHaveCount(0);
   await page.getByLabel("Compare ten shared situations together").check();
   await expect(cards.first().locator(".lab-voice-line")).toHaveCount(10);
+  await expect(cards.locator("dl.lab-voice-samples > div > dd.lab-voice-line[aria-live=off][data-utterance][data-intent][data-dialogue-coach]")).toHaveCount(count * comparisonExamples.length);
+  const firstCoachId = await cards.first().locator(".lab-voice-line").first().getAttribute("data-dialogue-coach");
+  for (const [index, example] of comparisonExamples.entries()) {
+    const sample = (await renderCoaches(page, exampleIntent(example, 1))).find(utterance => utterance.coachId === firstCoachId)!;
+    const entry = cards.first().locator(".lab-voice-samples > div").nth(index);
+    await expect(entry.locator("dt")).toHaveText(writingExamples[example].label ?? writingExamples[example].purpose.replaceAll("_", " "));
+    await expect(entry.locator("dd")).toHaveText(sample.text);
+    await expect(entry.locator("dd")).toHaveAttribute("data-utterance", sample.id);
+    await expect(entry.locator("dd")).toHaveAttribute("data-intent", sample.intentId);
+  }
   await expect(cards.first().getByRole("heading")).toHaveText("Voice 1");
   await expect(cards.locator(".coach-avatar")).toHaveCount(0);
   expect(errors).toEqual([]);

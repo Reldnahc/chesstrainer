@@ -2,6 +2,7 @@ import {useMemo, useState} from "react";
 import {selectableCoaches} from "../src/coach/registry";
 import {CoachCharacter} from "../src/coach/CoachAvatar";
 import {renderDialogue} from "../src/dialogue/neutral";
+import DialogueText from "../src/dialogue/DialogueText";
 import {stableKey, type DialogueIntent} from "../src/dialogue/model";
 import {writingExamples, exampleIntent, comparisonExamples} from "./examples";
 import {auditCorpus} from "./corpus";
@@ -18,8 +19,8 @@ export function CoachComparison({intent, samples}: {intent: DialogueIntent; samp
         <header><h3>{blind ? `Voice ${index + 1}` : coach.name}</h3>
           {!blind && <CoachCharacter coach={coach} reaction={{key: intent.id, state: utterance.expression}} motion="still" idle={false} />}</header>
         {samples ? <dl className="lab-voice-samples">{samples.map(sample => <div key={sample.label}>
-          <dt>{sample.label}</dt><dd className="lab-voice-line">{renderDialogue(sample.intent, coach).text}</dd>
-        </div>)}</dl> : <p className="lab-voice-line">{utterance.text}</p>}
+          <dt>{sample.label}</dt><DialogueText as="dd" className="lab-voice-line" utterance={renderDialogue(sample.intent, coach)} announce={false} />
+        </div>)}</dl> : <DialogueText className="lab-voice-line" utterance={utterance} announce={false} />}
         {!blind && <p className="lab-voice-shape">{composition?.strategy} · {composition?.claimCount} claims · {composition?.questionCount} questions</p>}
         <details><summary>{blind ? "Reveal identity and writing notes" : "Character bible and trace"}</summary>
           <strong>{coach.name}</strong><dl>{Object.entries(coach.personality.bible).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
