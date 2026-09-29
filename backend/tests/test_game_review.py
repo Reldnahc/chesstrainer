@@ -58,6 +58,12 @@ def test_great_only_good_and_both_opponent_error_transitions():
         )
 
 
+def test_a_forced_move_can_never_be_brilliant_even_with_saved_sacrifice_evidence():
+    report = quality(legal_count=1, sacrifice={"verified": True})
+    report["actual"] = dict(report["best"])
+    assert classify(report, 1000)[0] == "Best"
+
+
 def test_mate_is_not_centipawn_loss():
     report = quality()
     report["actual"]["score"] = {"kind": "mate", "value": -2}

@@ -18,6 +18,39 @@ not Miss or an exceptional grade. Shared SRS mate-outcome rules are unchanged.
   delayed mates and an ordinary bishop exchange incorrectly called Brilliant.
   The PGN and audit reports remain ignored local verification data.
 
+The Brilliant correction excludes material-restoring recaptures, promotion-pawn
+offers, downstream-only tactical support and forced moves. Seven production-path
+cases failed before the sacrifice correction; two additional forced-move cases
+failed before its guard. Saved offers are rechecked before grade, difficulty and
+semantic events without mutating stored evidence. Both-color forced-king tests
+also prove fresh analysis performs no sacrifice-acceptance search. Independent
+review found no remaining actionable issue, and replaying all 40 audited White
+reports changed the bishop exchange to Best, delayed mates to Good, and retained
+the alternative immediate checkmate as Best.
+
+Final validation of the combined correction:
+
+- `python -m pytest backend/tests/test_game_review.py backend/tests/test_review_sacrifices.py backend/tests/test_review_sacrifice_reports.py backend/tests/test_review_events.py backend/tests/test_review_difficulty.py -q -p no:cacheprovider -m 'not stockfish' --basetemp data/verification/grading-final-unit`:
+  **134 passed, 14 native cases deselected**.
+- `python -m pytest backend/tests/test_game_context.py backend/tests/test_cross_game_context.py backend/tests/test_game_accuracy.py backend/tests/test_chess_core.py backend/tests/test_human_review.py backend/tests/test_review_refinement.py backend/tests/test_refinement_storage.py backend/tests/test_refinement_search.py backend/tests/test_review_positions.py backend/tests/test_review_cues.py backend/tests/test_review_clocks.py -q -x -p no:cacheprovider -m 'not stockfish' --basetemp data/verification/grading-related`:
+  **136 passed, 7 native cases deselected**. Both commands used the repository
+  `.venv` Python. The final Windows `cmd.exe` invocations used the equivalent
+  marker expression `not(stockfish)` to avoid shell quoting differences.
+- Ruff lint, formatting (**281 files**), generated API agreement and
+  `git diff --check` passed. No contracts, engine budgets, accuracy calculation,
+  Maia policy, SRS rules or frontend code changed.
+- A preceding native-inclusive run passed **144 cases** (including the new
+  slower-mate and promotion regressions and the genuine queen sacrifice), but
+  **3 review worker/restart cases failed at Stockfish startup**. A prior attempt
+  likewise had two worker-start failures. These are not counted as green runs.
+  Windows reported `WinError 1455` / paging-file-too-small and Git/Powershell
+  allocation failures. Read-only host inspection found roughly 0.4–0.6 GB free
+  virtual memory, despite plentiful physical RAM. The broader non-native suite
+  was stopped after additional failures amid those allocation errors; it is
+  unverified. No test-owned processes remained, and the owner's app was left
+  running. Full backend/browser/Docker verification was not completed in this
+  pass; no CI or deployment is claimed.
+
 ## Study merge review — September 29, 2026
 
 A second independent code-health pass covered legality and immutable snapshots,
