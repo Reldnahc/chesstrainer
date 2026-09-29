@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 import type { CoachExpression, CoachMotion } from "../src/coach/model";
 import type { CoachPerformanceSnapshot } from "../src/coach/performanceDiagnostics";
 
@@ -34,10 +35,9 @@ async function mountDiagnostics(page: Page) {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
-  const root = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const root = viteFsPath(path.resolve("."));
   await page.evaluate(async (root) => {
-    const { default: React } = await import(`${root}/node_modules/.vite/deps/react.js`);
-    const { default: ReactDOM } = await import(`${root}/node_modules/.vite/deps/react-dom_client.js`);
+    const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
     const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
     const { getCoach } = await import(`${root}/src/coach/registry.ts`);
     const coach = getCoach("classic");
@@ -45,7 +45,7 @@ async function mountDiagnostics(page: Page) {
     container.id = "idle-diagnostics-harness";
     container.style.cssText = "position:fixed;inset:20px auto auto 20px;width:180px;height:220px;z-index:9999";
     document.body.append(container);
-    const mounted = ReactDOM.createRoot(container);
+    const mounted = createRoot(container);
     let current: Options = {
       seed: 1729, reset: 0, idle: true, observe: true, echo: false, label: "Diagnostics character",
       state: "neutral", key: "move:1", motion: "natural",

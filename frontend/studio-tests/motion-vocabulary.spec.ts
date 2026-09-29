@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 import { classicPerformance } from "../src/coach/classic/performance";
 import { IDLE_GAP_MS } from "../src/coach/idleModel";
 import { configuredGestures } from "../src/coach/idleGestures";
@@ -9,7 +10,7 @@ import { coachPerformance, motionDirections } from "../src/coach/motionVocabular
 
 test("every character has distinct expression-safe idles without changing entrance timing", async ({ page }) => {
   await page.goto("/");
-  const root = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const root = viteFsPath(path.resolve("."));
   const ids = await page.evaluate(async (root) => {
     const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
     return selectableCoaches.map((coach: { id: string }) => coach.id) as string[];

@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 import type { IdleGesture } from "../src/coach/idleModel";
 
 type VisualGesture = Pick<IdleGesture, "id" | "durationMs" | "tracks"> & {
@@ -27,10 +28,9 @@ test("actual-size signature contact sheets retain real tracks and fixed portrait
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
-  const moduleRoot = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const moduleRoot = viteFsPath(path.resolve("."));
   await page.evaluate(async root => {
-    const { default: React } = await import(`${root}/node_modules/.vite/deps/react.js`);
-    const { default: ReactDOM } = await import(`${root}/node_modules/.vite/deps/react-dom_client.js`);
+    const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
     const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
     const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
     const { configuredGestures } = await import(`${root}/src/coach/idleGestures.ts`);
@@ -59,7 +59,7 @@ test("actual-size signature contact sheets retain real tracks and fixed portrait
     `;
     document.head.append(styles);
     document.body.append(container);
-    const mounted = ReactDOM.createRoot(container);
+    const mounted = createRoot(container);
     const create = React.createElement;
     const fractions = [0, .4, .75, 1];
     const render = (id: string): Capture => {

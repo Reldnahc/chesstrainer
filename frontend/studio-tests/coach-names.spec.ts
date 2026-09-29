@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 
 // Keep IDs independent of display names: existing saved choices and studio links
 // must keep finding the same character when a label becomes a personal name.
@@ -40,7 +41,7 @@ type NamedCoach = { id: string; name: string; family: { name: string; coachId: s
 test("personal names remain unique and share stable catalogue identities", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
-  const frontend = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const frontend = viteFsPath(path.resolve("."));
   const roster: { coaches: NamedCoach[]; defaultId: string; retired: { id: string; name: string }[] } = await page.evaluate(async root => {
     const { selectableCoaches, getCoach } = await import(`${root}/src/coach/registry.ts`);
     return {

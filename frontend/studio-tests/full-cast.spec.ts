@@ -1,9 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 import { expressions, type CoachDefinition, type CoachExpression, type CoachIdle } from "../src/coach/model";
 
 async function readCast(page: Page) {
-  const root = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const root = viteFsPath(path.resolve("."));
   return page.evaluate(async (root) => {
     const [{ selectableCoaches }, { expressionIdles, expressions }] = await Promise.all([
       import(`${root}/src/coach/registry.ts`),
