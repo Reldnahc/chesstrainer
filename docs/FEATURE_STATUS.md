@@ -1,6 +1,6 @@
 # Feature status against the original specification
 
-Current direction: Review and local mistake classification. The user's September 12, 2026 instruction supersedes the original required OpenAI integration. Model connectivity and paid lesson generation have been removed; historical data remains. Course and lesson flows are removed pending a future redesign; historical rows are archived.
+Current direction: game review, local mistake classification and structured Study. The user's September 12, 2026 instruction supersedes the original required OpenAI integration. Model connectivity and paid lesson generation have been removed; historical data remains archived. New authored lessons have their own versioned content and account progress.
 
 | Area | Implemented | Missing / limits |
 |---|---|---|
@@ -22,11 +22,13 @@ Current direction: Review and local mistake classification. The user's September
 | Explanations | Automatic counter on failure, Try again, deeper Show me why; Reveal move plays answer; success explanation/playback | Witness buttons and square-role highlights where supported; quiet positional explanations remain limited |
 | Focused practice | Up to 12 distinct real positions per selected weakness, separate session/attempt/time records, no FSRS writes | A new batch can repeat earlier practice; reload returns to mixed review |
 | SRS | FSRS, automatic Again/Hard/Good, raw response times, persistent due queue, permanent retirement above configured 100 days | No personal parameter optimization; elapsed time includes idle/tab time |
-| Courses / lessons | Historical data preserved in backups; nonretired lesson-held positions released to Review | Removed from navigation and active API; future lesson design is deferred |
+| Guided Study lessons | Six authored step types, connected branches, annotated game playback, independent rehearsal, private versioned progress and exact resume; one sourced three-chapter Italian course for White | No graphical content editor, generated lessons or broad course library |
+| Archived courses / lessons | Historical data preserved in backups; nonretired lesson-held positions released to Due | Legacy product routes remain removed; not reused by authored Study lessons |
+| Opening study | Bundled catalogue and designated course lines, preview and side choice, transposed/shared cards in existing Due, immutable attempt answers, safe pause/restore/content revisions, dedicated rehearsal | One-decision scheduled recall; no arbitrary repertoire PGN import or automatic enrollment |
 | Repertoire | Historical records preserved for backup/export | Removed from the app and review queue; list/import and direct practice return 410 |
 | Manual exercises | Low-level validated API retained for existing integrations and deterministic review fixtures | Creation form removed; no product navigation |
 | Settings | Account sessions, Chess.com connection, training-label refresh and capped deeper-evidence jobs; compact source download link | Host configuration stays in the environment; restart after edits |
-| LAN/mobile | Same-origin frontend, configurable bind, optional token, compact five-screen mobile layout, expandable filters/settings/history, accessible evidence dialog, Windows firewall helper | Private LAN product, not secured for direct public hosting |
+| LAN/mobile | Same-origin frontend, configurable bind, optional token, compact four-screen mobile layout, expandable filters/settings/history, accessible evidence dialog, Windows firewall helper | Use the documented account/proxy configuration for shared hosting |
 | Data and backups | SQLite WAL, migrations, consistent backup/restore and preserved historical audits | CLI backup only; no cloud sync |
 | Quality | Rules/engine/API/browser tests, frozen HTTP contracts, independent app instances, migration preservation, blinded stratified export and frozen annotation comparison; first assistant assessment with preserved adjudications; offline Lichess positive-theme benchmark and per-theme failure corpus | External puzzle agreement tests the line detector only; initial recognition is uneven. Independent human precision, full-classifier recall and long-term improvement remain unmeasured |
 

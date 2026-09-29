@@ -26,6 +26,9 @@
   width: 100%;
   margin-bottom: 10px;
 }
+.practice-panel > .button-link {
+  display: flex;
+}
 .practice-panel > .primary {
   justify-content: space-between;
 }
@@ -176,6 +179,32 @@
   padding: 8px 0;
 }
 .review-schedule .review-due {
+  margin: 0;
+}
+.opening-recall-names {
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0 0 5px;
+}
+.opening-recall-names svg {
+  vertical-align: -2px;
+}
+.opening-recall-answers {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.opening-recall-answers h3,
+.opening-recall-line h4 {
+  font-size: 13px;
+  margin: 0 0 6px;
+}
+.opening-recall-line {
+  padding-block: 10px;
+  border-top: 1px solid var(--line);
+}
+.opening-recall-line p {
+  font: 12px/1.8 var(--mono);
+  overflow-wrap: anywhere;
   margin: 0;
 }
 .review-explanation .explanation-controls {

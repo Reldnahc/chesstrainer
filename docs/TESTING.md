@@ -1,5 +1,51 @@
 # Testing
 
+Study lesson coverage: `test_study_lessons.py` checks authored content and session
+boundaries; `test_lesson_journey.py` traverses a connected six-step-type chapter
+through HTTP/restart persistence. `study-lessons.spec.ts` runs that journey and
+resume/alternate-path checks on desktop and mobile. Run `study-puzzles.spec.ts`
+alongside it when changing the shared display-only playback helper. Test fixture
+providers are injected only by the test application, never production flags.
+
+`study-start-retry.spec.ts` drops responses after real session creation commits
+and verifies same-session retries for chapters, opening rehearsals and puzzles
+on both viewports. Its helper tests also check request identity after successful
+creation and after changing the selected target.
+
+`test_chess_core.py`, `test_puzzles.py`, `test_lesson_castling.py` and
+`test_opening_castling.py` cover equivalent castling notation, canonical playback
+and illegal promotion suffixes. Lesson/opening tests preserve authored snapshots
+and course fingerprints; opening tests also preserve scheduling across equivalent
+answer spellings. `test_opening_lifecycle.py` bounds SQL query counts as stale
+unfinished recalls accumulate, while retaining active-session queue precedence.
+
+`test_italian_course.py` walks every bundled Italian chapter, accepted decision,
+branch, source-game endpoint and rehearsal through the production paths. It
+verifies that completion leaves existing reviews, FSRS and weakness evidence
+untouched, and enrollment remains explicit. `test_italian_native.py` uses native
+Stockfish for a bounded gross-error check of guided decisions, not as the lesson
+grader. `italian-course.spec.ts` exercises the real installed course on both
+viewports, including exact returns, reload and optional enrollment.
+It also checks legal destinations during the first drag after lesson input is
+enabled, with both Natural and Still motion, across consecutive guided moves.
+
+The account browser suite resumes lessons, puzzle attempts, selected lines and
+the chosen coach on a second device, then confirms another account cannot read
+their private sessions or studies. Its authenticated puzzle fixture alias exists
+only in `browser_app.py`. `scripts/smoke_install.py` also checks the installed
+Italian course, empty production puzzle library, lesson restart and explicit
+opening enrollment in fresh local/account containers without starting analysis.
+
+Opening recall coverage: `test_opening_sources.py`, `test_opening_lifecycle.py`,
+`test_opening_isolation.py` and `test_opening_journey.py` cover both source kinds,
+transpositions/answer unions, source snapshots, content policy, ownership,
+concurrency and stale scheduling guards through actual Review/FSRS paths. Run the
+existing retirement, review-restart, repertoire-archive and focused-practice tests
+with them. `opening-library.spec.ts` and `opening-due.spec.ts` check browser
+enrollment, dedicated rehearsal, cold context, exact Due counts and stale resume
+on desktop/mobile. No engine is needed to grade opening recall; tests fail if one
+is unexpectedly called. Every browser study fixture is paused during cleanup.
+
 The review-intelligence synthetic baseline corpus and native benchmark commands
 are documented in [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Its contract
 tests run with ordinary pytest without Torch or a Maia checkpoint; native
@@ -52,6 +98,15 @@ across Stockfish binaries and available compute; identical model inputs remain
 deterministic within their recorded runtime identity.
 
 Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
+
+## Study frameworks
+
+`test_puzzles.py` exercises the production puzzle routes with injected local
+definitions: legal multi-step replay, fail/retry/reveal, durable snapshots,
+duplicate/stale commands, account isolation and unchanged Review/FSRS/weakness
+records. The production provider registry is empty. Browser fixtures are wired
+only in `backend/tests/browser_app.py`; they are not installed content or a
+production feature flag. Legacy Review links remain part of navigation coverage.
 
 ## Full verification
 
@@ -190,7 +245,7 @@ Synthetic legal positions and fabricated engine scores test detector and API con
 
 ## Browser coverage
 
-Desktop and phone-emulated Chromium cover all **five** navigation destinations, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
+Desktop and phone-emulated Chromium cover all **four** navigation destinations (Study, Games, Weaknesses, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
 
 Review journeys cover taps, drag/drop, legal dots/capture rings, promotion, failure/counter preview, Try again, Reveal move, solve/reload and saved scheduling. The phone-only test checks 390x700, 375x600 and 360x640 layouts; its desktop instance is intentionally skipped.
 
@@ -198,7 +253,7 @@ Regression checks preserve header/title/board/control geometry through loading, 
 
 Focused practice checks witness frames/square roles and unchanged recall counts. Chess.com tests submit dates, download mocked archives, run real analysis, repeat imports without analysis duplication, and show provider failures.
 
-Browser fixtures create manual exercises through the retained low-level API. There is no Repertoire/manual-entry screen or lesson browser journey. Test-only fixtures are in backend/tests/browser_app.py and are absent from production. Screenshots contain fixture data, not the user's games. Mobile emulation is not physical-phone LAN verification.
+Browser fixtures create manual exercises through the retained low-level API and inject puzzle/lesson sources through test providers. There is no Repertoire/manual-entry screen; authored Study lessons have connected browser journeys. Test-only fixtures are in backend/tests/browser_app.py and are absent from production. Screenshots contain fixture or bundled course data, not the user's games. Mobile emulation is not physical-phone LAN verification.
 
 ## Manual native smoke flow
 

@@ -2,6 +2,214 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Study merge review — September 29, 2026
+
+A second independent code-health pass covered legality and immutable snapshots,
+opening recall/FSRS, frontend request/playback lifecycle, account isolation and
+installation/migrations. Those production paths remain unchanged from `9ec3003`.
+Final-head CI subsequently exposed two browser issues, which were investigated
+rather than accepted as flakes:
+
+- The shared coach observer used only the first entry from a visibility callback.
+  A real six-times-CPU-throttled browser trace showed a queued offscreen/onscreen
+  pair delivered together; the obsolete first entry left the visible portrait
+  paused. The hook now uses the latest entry. A deterministic regression batches
+  real browser observations in both directions and verifies active replay,
+  offscreen pausing and no replay of consumed reactions. A served-module negative
+  control restoring the old first-entry behavior fails this regression.
+- The library reload test compared against an older scroll position while a font
+  swap changed header height. Holding the Mono font response reproduced the exact
+  two-pixel CI failure through two one-pixel native scroll-anchor adjustments.
+  The fixture now waits for fonts before delivering its list and compares reload
+  with the actual pre-reload position. Both original less-than-two-pixel
+  assertions remain unchanged; **30 focused repeats passed** (15 per viewport),
+  along with deterministic delayed-font checks on desktop and mobile.
+- The account browser projects shared one client IP and together issued 16
+  signup/login requests against the real 15-per-minute IP limit. A trace showed
+  the final guest signup returning 429 immediately, followed by a misleading
+  onboarding timeout. Each viewport now represents a separate reserved client
+  IP through the test server's explicitly trusted loopback proxy; secondary
+  contexts inherit it. Signup helpers assert the 201 response immediately.
+  Production authentication limits and their enforcement are unchanged.
+
+Coach-study tests also drive the existing dwell/settle timers with Playwright's
+clock, preserving checks for a new replay take, visible portrait, active browser
+animations, expression identity, rest, idle completion and reduced motion. The
+first local full studio run passed all 42 tests, but CI demonstrated that clocks
+alone did not fix the underlying visibility bug. Application timings and artwork
+are unchanged; no assertions were removed.
+
+Additional verification from this pass:
+
+- The corrected isolated account suite passed **8/8 in 58.7 seconds**, exit 0:
+  `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`.
+  This includes every signup/login within the rate-limit window, second-device
+  persistence, guest isolation and both onboarding paths. No production limit,
+  timeout or assertion was relaxed.
+- With the latest-entry observer correction, the new visibility-batch regression
+  passed on **both desktop and mobile**, all **eight affected coach-study cases
+  passed**, and the real six-times-CPU-throttled mobile Men probe passed. The
+  old-callback served-module negative control failed the regression as expected.
+  Browser-test TypeScript and independent hook/test review passed.
+- The complete corrected studio suite passed **44/44**, with no skips, in 8.2
+  minutes: `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output studio-test-results-final-visibility-f814bb5`.
+  After all tests completed, only the verified isolated Vite process was stopped
+  to release Windows teardown; the runner returned exit 0. The owner's studio
+  remained running on 5174.
+- The corrected coach-study cases passed on **all eight desktop/mobile
+  combinations** within the full studio run, using
+  `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output=studio-test-results-final-review-verified --reporter=line`.
+  This temporary override changes only the server port/cache to preserve the
+  owner's running studio on 5174. The final complete-suite result is recorded
+  with PR #2's verification; merge requires that run and final-head CI to pass.
+- From `frontend`, `npx.cmd playwright test --reporter=line`: **295 passed,
+  3 intentional viewport skips**, in 6.6 minutes, with native Stockfish configured.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --output=intelligence-test-results-final-review --reporter=line`:
+  **44 passed**, no skips. Completed artifacts were moved to ignored
+  `data/verification/study-merge-intelligence-results`.
+- `npm.cmd run build`: passed, including generated API agreement, application
+  and browser-test types, source archive and production Vite build.
+- `.venv/Scripts/python.exe -m ruff check backend scripts migrations`,
+  `.venv/Scripts/python.exe -m ruff format --check backend scripts migrations`,
+  `.venv/Scripts/python.exe scripts/export_api_contract.py --check`, and
+  `git diff --check`: passed (**278 formatted files**).
+- Independent reviewers also ran overlapping focused suites: **116 legality,
+  lesson and puzzle tests**, **83 opening/recall tests**, and **25 contract,
+  installation and account-boundary tests**, all passing. An independent
+  143,360-input legal-move comparison found only the intended rejection of bogus
+  castling promotion suffixes.
+- A disposable database upgrade from main's `49e862bc710a` revision preserved
+  seeded exercise, review and SRS rows, added all ten Study tables, and passed
+  foreign-key and model-schema checks.
+- The first final-head Linux CI backend run passed **802 tests with 7 skips**:
+  three opt-in Maia tests and four optional developer Zstandard cases. The local
+  backend run passed **806 with 3 Maia skips**, exercising those Zstandard cases.
+  Both CI runs also passed Docker installation, account and intelligence checks.
+  Failed navigation/studio results were investigated as described above; a new
+  complete CI run is required before merge.
+
+A parallel local rerun encountered Chromium resource errors and timeouts. It was
+not counted as a pass; only verified test-owned processes were stopped, leaving
+the owner's running app/studio untouched. Follow-up checks run in isolation.
+The separate pre-existing HTML username-pattern warning (unescaped hyphens under
+Unicode Sets mode) was recorded during the account trace review, outside this
+Study correction. Server-side username validation remains enforced.
+
+The existing trusted-provider revision-reuse limitation remains documented in
+[Study](STUDY.md); it does not affect saved attempts or account isolation. Native
+Maia was not rerun in this code-health pass. GitHub Actions supplies the fresh
+Linux backend/account and Docker installation checks for the final PR head.
+
+## Study code-health review — September 29, 2026
+
+Reviewed the Study branch's lesson/puzzle state machines, opening recall,
+account boundaries, frontend request lifecycle and shared playback. This pass
+made no layout or product changes.
+
+Confirmed and fixed:
+
+- A lost session-start response could create a duplicate lesson/rehearsal or
+  select a different puzzle on retry. One shared retry helper retains the exact
+  selected content and request ID until acknowledged or explicitly changed.
+- Opening queue/start queries loaded and checked every stale unfinished session.
+  A reproduction with 100 stale sessions issued 403 queue queries; the SQL
+  authority filter now uses three. Regression tests verify the bound with 1/25
+  stale sessions, queue precedence, limits and newest-current-session reuse.
+- Equivalent standard castling encodings could reject the board's canonical move
+  in puzzles, lessons and opening recalls. Comparisons and display frames now
+  use legal move identities. Immutable lesson/opening snapshots and fingerprints
+  remain intact; equivalent opening-answer repairs preserve schedules and
+  retirement. The shared legality helper also rejects bogus promotion suffixes
+  that python-chess's castling normalization otherwise discards.
+- Branch and context-reset transitions into a rehearsal committed an automatic
+  opponent move without returning its playback frame. Both transitions now
+  return the committed frames; reload still does not replay them.
+
+Focused regressions demonstrated failures before the fixes. The lesson suites
+passed 72 tests, core/puzzle/contracts passed 57, opening query/regression suites
+passed 68, and opening-castling cases passed 20. These overlapping focused runs
+preceded the aggregate verification below.
+
+- With `STOCKFISH_PATH=.tools/stockfish/stockfish-windows-x86-64-avx2.exe`,
+  `.venv/Scripts/python.exe -m pytest -q -ra -p no:cacheprovider --basetemp=data/verification/study-code-review-20260929`:
+  **806 passed, 3 opt-in Maia skips**, in 290.70 seconds. Native Stockfish ran;
+  the skips are `test_human_runtime.py:128` and
+  `test_maia_feasibility.py:90,105`, which require the separate pinned Torch/model
+  runtime. There were two existing TestClient dependency deprecation warnings.
+- `npm.cmd run build`: passed, including OpenAPI agreement, application and
+  browser-test TypeScript, source packaging and Vite.
+- `.venv/Scripts/python.exe -m ruff check backend scripts migrations` and
+  `ruff format --check backend scripts migrations`: passed, 278 formatted files.
+  The first aggregate format pass identified two mixed-line-ending files and
+  one test wrapping issue; formatting was corrected before the passing rerun.
+- `.venv/Scripts/python.exe scripts/export_api_contract.py --check` and
+  `git diff --check`: passed. No API/schema regeneration was necessary.
+- From `frontend`, `npx.cmd playwright test study-puzzles.spec.ts study-lessons.spec.ts study-start-retry.spec.ts italian-course.spec.ts opening-library.spec.ts opening-due.spec.ts navigation.spec.ts --reporter=line`:
+  **89 passed, 1 intentional mobile skip** for desktop modifier-click. The
+  navigation filename also selects the existing variation-navigation suite.
+  Tests use the production frontend and test backend on desktop/mobile, including
+  real server commits followed by deliberately lost responses.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`:
+  **8 passed**, including second-device persistence and account isolation.
+- The earlier focused `npx.cmd playwright test tests/study-start-retry.spec.ts`
+  run passed all 16 cases. Its Windows test-server teardown required stopping
+  only the verified test-owned Python PID after tests finished; the aggregate
+  browser/account runs exited normally.
+
+No Docker deployment, model-weight changes, native Maia rerun or unrelated
+coach-studio/intelligence-lab browser rerun was needed. Existing Vite bundle-size
+and Starlette/httpx advisories remain. A separate nonblocking trusted-provider
+revision-reuse limitation is documented in [Study](STUDY.md): before any lesson
+progress exists, opening-only enrollment pins individual lines rather than the
+complete course fingerprint. Previously saved studies and recalls remain safe.
+
+Fix commits: `e6fd39d` (rehearsal playback), `1820fb2` (bounded recall queries),
+`9aac92d` (shared/puzzle/lesson castling), `593701b` (retryable starts), and
+`e5a93dc` (opening castling). All are local; this pass did not publish the branch.
+
+## Study frameworks and Italian pilot — September 28, 2026
+
+Verified the approved Study sprint on `codex/study-frameworks`: private puzzle
+and lesson sessions, opening recall through existing Review/FSRS, and the shipped
+three-chapter Italian course. Production puzzle sources intentionally remain
+empty. Test fixtures exist only in injected test applications.
+
+- `.venv/Scripts/python.exe -m pytest -q -ra -p no:cacheprovider --basetemp=data/verification/study-phase5-backend-20260928-pb1`: **738 passed, 3 opt-in Maia skips**, with native Stockfish configured. The skips are `test_human_runtime.py:128` and `test_maia_feasibility.py:90,105`; the next command exercises all three.
+- `.tools/maia-runtime/Scripts/python.exe -m pytest backend/tests/test_maia_feasibility.py backend/tests/test_human_runtime.py -m maia -q -ra -p no:cacheprovider --basetemp=data/verification/study-final-maia-native`: **3 passed, 9 deselected**, using cached 79M weights, CPU and `HF_HUB_OFFLINE=1`. No model download.
+- `npx.cmd playwright test --reporter=line`: **271 passed, 3 deliberate viewport skips** (phone-only review on desktop; desktop modifier/new-tab and width-matrix tests on mobile). Includes the real Italian course and the lesson scroll-reset regression.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`: **8 passed**, including Study/coach persistence across browser sessions and foreign-account session/library isolation.
+- Full coach-studio suite: **42 passed**, zero skips, with `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output=studio-test-results-study-phase5 --reporter=line`. The temporary override uses the normal suite on port 5176 and an isolated Vite cache, preserving the owner's running 5174 studio.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --output=intelligence-test-results-study-phase5 --reporter=line`: **44 passed**, zero skips, using its normal 5175 server with a separate output directory. After workers finished, Windows retained the test server; stopping only that verified test-server PID allowed the runner to exit normally with the passing summary.
+- `npm.cmd run build`: passed, including API agreement, application/browser-test types, corresponding-source archive and Vite. Full Ruff lint/format (**276 files**), `python scripts/export_api_contract.py --check`, and `git diff --check`: passed. Existing Vite chunk-size and TestClient dependency advisories remain.
+- Fresh disposable database: `python -m alembic upgrade head` and `python -m alembic check`: passed at `7c249ef302d6`, no schema drift, SQLite integrity `ok`, no foreign-key violations.
+- `docker build -t fieldwork:study-verification .tools/study-release-context-20260928` and `python scripts/smoke_install.py --image fieldwork:study-verification`: passed in local and account modes. Covers installed Italian content, empty puzzle libraries, lesson progress through restart, explicit opening enrollment/Due without analysis jobs, existing native Stockfish review, health and preferences. Build context was a public tracked-source copy; no private databases, caches or models were included.
+
+Each framework checkpoint ran its focused HTTP and browser regression suites
+before committing. Italian acceptance/native coverage passed **6 tests** with no
+skips, including a bounded Stockfish gross-error check of guided decisions. All
+300 historical plies were legally replayed and checked against the source record;
+the unplayed Steinitz mating continuation is excluded. These checks do not claim
+that every historical move is best or that the course covers every Black reply.
+
+Manual checks used a separate disposable database and the actual application at
+1440×1000 and 390×844: puzzle retries/reload/completion, a connected lesson across
+all six step kinds, catalogue enrollment/Due feedback, and the real Italian
+guidance/alternative with reload and exact return. Desktop/mobile screenshots of
+the historical excerpts were also inspected. Testing found and fixed lesson
+explanations retaining an old scroll offset; the regression verifies reset
+without remounting the portrait/message or losing keyboard focus. Independent
+cross-domain reviews found no remaining scheduling, account or cold-answer leak.
+
+The current contracts and source decisions live in [Study](STUDY.md) and
+[Italian sources](ITALIAN_COURSE_SOURCES.md); milestone commits are recorded in
+[Implementation history](IMPLEMENTATION_HISTORY.md). No merge or deployment was
+performed as part of this verification.
+
+The studio also needed the same Windows server cleanup after all workers had
+exited; both runners returned exit 0 with their complete passing summaries.
+Artifacts remain under ignored `frontend/studio-test-results/study-phase5` and
+`frontend/intelligence-test-results/study-phase5`. No owner process was stopped.
+
 ## Full release verification — September 28, 2026
 
 Validated the accumulated main-branch UX, provider import and onboarding work.

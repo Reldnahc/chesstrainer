@@ -494,6 +494,127 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/opening-studies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Studies */
+        get: operations["studies_api_opening_studies_get"];
+        put?: never;
+        /** Enroll */
+        post: operations["enroll_api_opening_studies_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/opening-studies/{study_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Study */
+        get: operations["get_study_api_opening_studies__study_id__get"];
+        put?: never;
+        post?: never;
+        /** Disable */
+        delete: operations["disable_api_opening_studies__study_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/opening-studies/{study_id}/practice": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Practice */
+        post: operations["practice_api_opening_studies__study_id__practice_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/opening-studies/{study_id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore */
+        post: operations["restore_api_opening_studies__study_id__restore_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/openings/catalog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Catalog */
+        get: operations["catalog_api_openings_catalog_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/openings/catalog/{key}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Detail */
+        get: operations["detail_api_openings_catalog__key__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/openings/course-lines/{course_id}/{line_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Course Line */
+        get: operations["course_line_api_openings_course_lines__course_id___line_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/practice/queue": {
         parameters: {
             query?: never;
@@ -582,6 +703,125 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/puzzle-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Start */
+        post: operations["start_api_puzzle_sessions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzle-sessions/{session_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Session */
+        get: operations["get_session_api_puzzle_sessions__session_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzle-sessions/{session_id}/move": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Move */
+        post: operations["move_api_puzzle_sessions__session_id__move_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzle-sessions/{session_id}/reveal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Reveal */
+        post: operations["reveal_api_puzzle_sessions__session_id__reveal_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Library */
+        get: operations["library_api_puzzles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzles/next": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Next Puzzle */
+        get: operations["next_puzzle_api_puzzles_next_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/review/count": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Review Count */
+        get: operations["review_count_api_review_count_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/review/queue": {
         parameters: {
             query?: never;
@@ -591,6 +831,23 @@ export interface paths {
         };
         /** Review Queue */
         get: operations["review_queue_api_review_queue_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/review/sessions/{session_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Resume */
+        get: operations["resume_api_review_sessions__session_id__get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -695,6 +952,91 @@ export interface paths {
         get: operations["stats_api_stats_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/courses": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Library */
+        get: operations["library_api_study_courses_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/courses/{course_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Course */
+        get: operations["course_api_study_courses__course_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/lesson-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Start */
+        post: operations["start_api_study_lesson_sessions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/lesson-sessions/{session_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Session */
+        get: operations["get_session_api_study_lesson_sessions__session_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/study/lesson-sessions/{session_id}/command": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Command */
+        post: operations["command_api_study_lesson_sessions__session_id__command_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1074,16 +1416,22 @@ export interface components {
         };
         /** ColdPosition */
         ColdPosition: {
+            /** Completed */
+            completed?: boolean | null;
             /** Exercise Id */
             exercise_id: string;
             /** Failed */
             failed: boolean;
+            feedback?: components["schemas"]["ReviewFeedback"] | null;
             /** Fen */
             fen: string;
             /** Last Attempt Id */
             last_attempt_id: string | null;
             /** Legal Moves */
             legal_moves: components["schemas"]["LegalMove"][];
+            /** Non Scheduling Reason */
+            non_scheduling_reason?: string | null;
+            opening?: components["schemas"]["OpeningRecallContext"] | null;
             /**
              * Orientation
              * @enum {string}
@@ -1863,6 +2211,238 @@ export interface components {
             /** To Square */
             to_square: string;
         };
+        /** LessonAnnotations */
+        LessonAnnotations: {
+            /** Arrows */
+            arrows?: components["schemas"]["LessonArrow"][];
+            /** Squares */
+            squares?: string[];
+        };
+        /** LessonArrow */
+        LessonArrow: {
+            /** From Square */
+            from_square: string;
+            /** To Square */
+            to_square: string;
+        };
+        /** LessonAttribution */
+        LessonAttribution: {
+            /** License */
+            license?: string | null;
+            /** Text */
+            text: string;
+            /** Url */
+            url?: string | null;
+        };
+        /** LessonBranchView */
+        LessonBranchView: {
+            /** Title */
+            title: string;
+        };
+        /** LessonChapterSummary */
+        LessonChapterSummary: {
+            /** Completed */
+            completed: boolean;
+            /** Id */
+            id: string;
+            /** Title */
+            title: string;
+        };
+        /** LessonCommand */
+        LessonCommand: {
+            /**
+             * Action
+             * @enum {string}
+             */
+            action: "continue" | "back" | "move" | "hint" | "show_move" | "enter_branch" | "return_branch" | "open_game" | "close_game" | "game_seek";
+            /** Ply */
+            ply?: number | null;
+            /** Request Id */
+            request_id: string;
+            /** Revision */
+            revision: number;
+            /** Uci */
+            uci?: string | null;
+        };
+        /** LessonCourseSummary */
+        LessonCourseSummary: {
+            /** Chapter Count */
+            chapter_count: number;
+            /** Completed Chapters */
+            completed_chapters: number;
+            /** Description */
+            description: string;
+            /** Id */
+            id: string;
+            /**
+             * Learner Color
+             * @enum {string}
+             */
+            learner_color: "white" | "black";
+            /** Revision */
+            revision: string;
+            /** Title */
+            title: string;
+        };
+        /** LessonCourseView */
+        LessonCourseView: {
+            /** Attributions */
+            attributions: components["schemas"]["LessonAttribution"][];
+            /** Chapters */
+            chapters: components["schemas"]["LessonChapterSummary"][];
+            /** Description */
+            description: string;
+            /** Id */
+            id: string;
+            /**
+             * Learner Color
+             * @enum {string}
+             */
+            learner_color: "white" | "black";
+            /** Lines */
+            lines: components["schemas"]["LessonLineSummary"][];
+            /** Revision */
+            revision: string;
+            /** Title */
+            title: string;
+        };
+        /** LessonFeedback */
+        LessonFeedback: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "correct" | "incorrect" | "revealed" | "hint";
+            /** Text */
+            text: string;
+        };
+        /** LessonGameNote */
+        LessonGameNote: {
+            annotations: components["schemas"]["LessonAnnotations"];
+            /** Text */
+            text: string;
+        };
+        /** LessonGameView */
+        LessonGameView: {
+            /** Attributions */
+            attributions: components["schemas"]["LessonAttribution"][];
+            note: components["schemas"]["LessonGameNote"] | null;
+            /** Ply */
+            ply: number;
+            /** Title */
+            title: string;
+            /** Total Plies */
+            total_plies: number;
+        };
+        /** LessonLibrary */
+        LessonLibrary: {
+            /** Courses */
+            courses: components["schemas"]["LessonCourseSummary"][];
+            /** Resume */
+            resume: components["schemas"]["LessonResume"][];
+        };
+        /** LessonLineSummary */
+        LessonLineSummary: {
+            /** Id */
+            id: string;
+            /** Repertoire */
+            repertoire: boolean;
+            /** Title */
+            title: string;
+        };
+        /** LessonResume */
+        LessonResume: {
+            /** Chapter Id */
+            chapter_id: string;
+            /** Chapter Title */
+            chapter_title: string;
+            /** Course Id */
+            course_id: string;
+            /** Course Revision */
+            course_revision: string;
+            /** Course Title */
+            course_title: string;
+            /** Id */
+            id: string;
+            /** Updated At */
+            updated_at: string;
+        };
+        /** LessonSessionView */
+        LessonSessionView: {
+            /** Actions */
+            actions: ("continue" | "back" | "move" | "hint" | "show_move" | "enter_branch" | "return_branch" | "open_game" | "close_game" | "game_seek")[];
+            /** Assisted */
+            assisted: boolean;
+            branch: components["schemas"]["LessonBranchView"] | null;
+            /** Chapter Id */
+            chapter_id: string;
+            /** Chapter Title */
+            chapter_title: string;
+            /** Course Id */
+            course_id: string;
+            /** Course Revision */
+            course_revision: string;
+            /** Course Title */
+            course_title: string;
+            /** Failed */
+            failed: boolean;
+            feedback: components["schemas"]["LessonFeedback"] | null;
+            /** Fen */
+            fen: string;
+            game: components["schemas"]["LessonGameView"] | null;
+            /** History */
+            history: components["schemas"]["PuzzleFrame"][];
+            /** Id */
+            id: string;
+            /** Legal Moves */
+            legal_moves: components["schemas"]["LegalMove"][];
+            /**
+             * Orientation
+             * @enum {string}
+             */
+            orientation: "white" | "black";
+            /** Playback */
+            playback: components["schemas"]["PuzzleFrame"][];
+            /** Revision */
+            revision: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "active" | "completed";
+            step: components["schemas"]["LessonStepView"];
+        };
+        /** LessonStart */
+        LessonStart: {
+            /** Chapter Id */
+            chapter_id: string;
+            /** Course Id */
+            course_id: string;
+            /** Course Revision */
+            course_revision: string;
+            /** Request Id */
+            request_id: string;
+        };
+        /** LessonStepView */
+        LessonStepView: {
+            annotations: components["schemas"]["LessonAnnotations"];
+            /** Id */
+            id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "explanation" | "demonstration" | "decision" | "branch" | "game_excerpt" | "rehearsal";
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "ready" | "complete";
+            /** Text */
+            text: string;
+            /** Title */
+            title: string;
+        };
         /** ManualRequest */
         ManualRequest: {
             /**
@@ -1982,6 +2562,187 @@ export interface components {
             /** Ok */
             ok: boolean;
         };
+        /** OpeningCatalogue */
+        OpeningCatalogue: {
+            /** Items */
+            items: components["schemas"]["OpeningLineSummary"][];
+            /** Total */
+            total: number;
+            /** Version */
+            version: string;
+        };
+        /** OpeningContinuation */
+        OpeningContinuation: {
+            /** Moves */
+            moves: components["schemas"]["PuzzleFrame"][];
+            /** Name */
+            name: string;
+            /** Study Id */
+            study_id: string;
+        };
+        /** OpeningEnrollment */
+        OpeningEnrollment: {
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "white" | "black";
+            /** Course Id */
+            course_id?: string | null;
+            /** Line Id */
+            line_id?: string | null;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "lichess_catalogue" | "course_line";
+            /** Source Key */
+            source_key: string;
+            /** Source Version */
+            source_version: string;
+        };
+        /** OpeningLine */
+        OpeningLine: {
+            /** Course Id */
+            course_id?: string | null;
+            /** Eco */
+            eco: string | null;
+            /** Initial Fen */
+            initial_fen: string;
+            /** Line Id */
+            line_id?: string | null;
+            /** Moves */
+            moves: string[];
+            /** Name */
+            name: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "lichess_catalogue" | "course_line";
+            /** Source Key */
+            source_key: string;
+            /** Source Version */
+            source_version: string;
+        };
+        /** OpeningLineSummary */
+        OpeningLineSummary: {
+            /** Black Positions */
+            black_positions: number;
+            /** Eco */
+            eco: string | null;
+            /** Name */
+            name: string;
+            /** Plies */
+            plies: number;
+            /** Source Key */
+            source_key: string;
+            /** Source Version */
+            source_version: string;
+            /** White Positions */
+            white_positions: number;
+        };
+        /** OpeningLineView */
+        OpeningLineView: {
+            /** Black Positions */
+            black_positions: number;
+            /** Frames */
+            frames: components["schemas"]["PuzzleFrame"][];
+            line: components["schemas"]["OpeningLine"];
+            /** White Positions */
+            white_positions: number;
+        };
+        /** OpeningPracticeStart */
+        OpeningPracticeStart: {
+            /** Request Id */
+            request_id: string;
+        };
+        /** OpeningRecallContext */
+        OpeningRecallContext: {
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "white" | "black";
+            /** Names */
+            names: string[];
+            /** Prompt */
+            prompt: string;
+            /** Revision */
+            revision: number;
+        };
+        /** OpeningStudyLibrary */
+        OpeningStudyLibrary: {
+            /** Active Studies */
+            active_studies: number;
+            /** Due Positions */
+            due_positions: number;
+            /** Items */
+            items: components["schemas"]["OpeningStudySummary"][];
+            /** Learning Positions */
+            learning_positions: number;
+        };
+        /** OpeningStudySummary */
+        OpeningStudySummary: {
+            /** Active */
+            active: boolean;
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "white" | "black";
+            /** Due Positions */
+            due_positions: number;
+            /** Eco */
+            eco: string | null;
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Positions */
+            positions: number;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "lichess_catalogue" | "course_line";
+            /** Source Key */
+            source_key: string;
+            /** Source Version */
+            source_version: string;
+        };
+        /** OpeningStudyView */
+        OpeningStudyView: {
+            /** Active */
+            active: boolean;
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "white" | "black";
+            /** Due Positions */
+            due_positions: number;
+            /** Eco */
+            eco: string | null;
+            /** Frames */
+            frames: components["schemas"]["PuzzleFrame"][];
+            /** Id */
+            id: string;
+            line: components["schemas"]["OpeningLine"];
+            /** Name */
+            name: string;
+            /** Positions */
+            positions: number;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "lichess_catalogue" | "course_line";
+            /** Source Key */
+            source_key: string;
+            /** Source Version */
+            source_version: string;
+        };
         /** PgnImportResult */
         PgnImportResult: {
             /** Duplicates */
@@ -2096,6 +2857,176 @@ export interface components {
             /** Username */
             username: string;
         };
+        /** PuzzleCommand */
+        PuzzleCommand: {
+            /** Request Id */
+            request_id: string;
+            /** Revision */
+            revision: number;
+        };
+        /** PuzzleCompletion */
+        PuzzleCompletion: {
+            provenance: components["schemas"]["PuzzleProvenance"];
+            /** Rating */
+            rating: number | null;
+            /** Solution */
+            solution: components["schemas"]["PuzzleFrame"][];
+            /** Themes */
+            themes: string[];
+        };
+        /** PuzzleFeedback */
+        PuzzleFeedback: {
+            /**
+             * Grade
+             * @enum {string}
+             */
+            grade: "correct" | "incorrect" | "revealed";
+            /** Submitted San */
+            submitted_san: string | null;
+        };
+        /** PuzzleFrame */
+        PuzzleFrame: {
+            /** After Fen */
+            after_fen: string;
+            /** Before Fen */
+            before_fen: string;
+            /** San */
+            san: string;
+            /** Uci */
+            uci: string;
+        };
+        /** PuzzleKey */
+        PuzzleKey: {
+            /** Key */
+            key: string;
+            /** Provider Id */
+            provider_id: string;
+            /** Version */
+            version: string;
+        };
+        /** PuzzleLibrary */
+        PuzzleLibrary: {
+            /** Available */
+            available: number;
+            /** Resume */
+            resume: components["schemas"]["PuzzleResume"][];
+            /** Sources */
+            sources: components["schemas"]["PuzzleProviderInfo"][];
+            stats: components["schemas"]["PuzzleStats"];
+        };
+        /** PuzzleMove */
+        PuzzleMove: {
+            /**
+             * Elapsed Ms
+             * @default 0
+             */
+            elapsed_ms: number;
+            /** Request Id */
+            request_id: string;
+            /** Revision */
+            revision: number;
+            /** Uci */
+            uci: string;
+        };
+        /** PuzzleProvenance */
+        PuzzleProvenance: {
+            /** Attribution */
+            attribution: string;
+            /** Game Id */
+            game_id?: string | null;
+            /** Source Ply */
+            source_ply?: number | null;
+            /** Url */
+            url?: string | null;
+        };
+        /** PuzzleProviderInfo */
+        PuzzleProviderInfo: {
+            /** Count */
+            count: number;
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "generic" | "games";
+        };
+        /** PuzzleResume */
+        PuzzleResume: {
+            /** Failed */
+            failed: boolean;
+            /** Id */
+            id: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "generic" | "games";
+            /** Started At */
+            started_at: string;
+            /** Updated At */
+            updated_at: string;
+        };
+        /** PuzzleSessionView */
+        PuzzleSessionView: {
+            completion: components["schemas"]["PuzzleCompletion"] | null;
+            /** Current Step */
+            current_step: number;
+            /** Failed */
+            failed: boolean;
+            feedback: components["schemas"]["PuzzleFeedback"] | null;
+            /** Fen */
+            fen: string;
+            /** History */
+            history: components["schemas"]["PuzzleFrame"][];
+            /** Id */
+            id: string;
+            /** Legal Moves */
+            legal_moves: components["schemas"]["LegalMove"][];
+            /**
+             * Orientation
+             * @enum {string}
+             */
+            orientation: "white" | "black";
+            /** Playback */
+            playback: components["schemas"]["PuzzleFrame"][];
+            /** Revision */
+            revision: number;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "generic" | "games";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "active" | "solved" | "revealed";
+        };
+        /** PuzzleStart */
+        PuzzleStart: {
+            /** Key */
+            key: string;
+            /** Provider Id */
+            provider_id: string;
+            /** Request Id */
+            request_id: string;
+            /** Version */
+            version: string;
+        };
+        /** PuzzleStats */
+        PuzzleStats: {
+            /** Clean */
+            clean: number;
+            /** Failed Then Solved */
+            failed_then_solved: number;
+            /** Revealed */
+            revealed: number;
+            /** Solved */
+            solved: number;
+        };
         /** RefinementInfo */
         RefinementInfo: {
             /** Adopted */
@@ -2121,6 +3052,11 @@ export interface components {
         Rejected: {
             /** Rejected */
             rejected: boolean;
+        };
+        /** ReviewCount */
+        ReviewCount: {
+            /** Due */
+            due: number;
         };
         /** ReviewEvent */
         ReviewEvent: {
@@ -2161,6 +3097,8 @@ export interface components {
             candidates?: components["schemas"]["Candidate"][] | null;
             /** Completed */
             completed: boolean;
+            /** Continuations */
+            continuations?: components["schemas"]["OpeningContinuation"][] | null;
             counter_reply?: components["schemas"]["Frame"] | null;
             /** Decision Id */
             decision_id?: string | null;
@@ -2180,6 +3118,9 @@ export interface components {
             message?: string | null;
             /** Next Due */
             next_due?: string | null;
+            /** Non Scheduling Reason */
+            non_scheduling_reason?: string | null;
+            opening?: components["schemas"]["OpeningRecallContext"] | null;
             /** Played San */
             played_san?: string | null;
             /** Practice Only */
@@ -2189,6 +3130,8 @@ export interface components {
             /** Retired Interval Days */
             retired_interval_days?: number | null;
             reveal_frame?: components["schemas"]["Frame"] | null;
+            /** Scheduling Status */
+            scheduling_status?: ("recorded" | "previously_recorded" | "content_changed" | "practice") | null;
             /** Source */
             source?: string | null;
             /** Submitted San */
@@ -3465,6 +4408,286 @@ export interface operations {
             };
         };
     };
+    studies_api_opening_studies_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningStudyLibrary"];
+                };
+            };
+        };
+    };
+    enroll_api_opening_studies_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OpeningEnrollment"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningStudyView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_study_api_opening_studies__study_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                study_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningStudyView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    disable_api_opening_studies__study_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                study_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningStudyView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    practice_api_opening_studies__study_id__practice_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                study_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OpeningPracticeStart"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LessonSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restore_api_opening_studies__study_id__restore_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                study_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningStudyView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    catalog_api_openings_catalog_get: {
+        parameters: {
+            query?: {
+                q?: string;
+                eco?: string;
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningCatalogue"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    detail_api_openings_catalog__key__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                key: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningLineView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    course_line_api_openings_course_lines__course_id___line_id__get: {
+        parameters: {
+            query: {
+                revision: string;
+            };
+            header?: never;
+            path: {
+                course_id: string;
+                line_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OpeningLineView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     focused_queue_api_practice_queue_get: {
         parameters: {
             query: {
@@ -3699,6 +4922,211 @@ export interface operations {
             };
         };
     };
+    start_api_puzzle_sessions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PuzzleStart"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_session_api_puzzle_sessions__session_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    move_api_puzzle_sessions__session_id__move_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PuzzleMove"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    reveal_api_puzzle_sessions__session_id__reveal_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PuzzleCommand"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    library_api_puzzles_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleLibrary"];
+                };
+            };
+        };
+    };
+    next_puzzle_api_puzzles_next_get: {
+        parameters: {
+            query?: {
+                source?: ("generic" | "games") | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleKey"] | null;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    review_count_api_review_count_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReviewCount"];
+                };
+            };
+        };
+    };
     review_queue_api_review_queue_get: {
         parameters: {
             query?: {
@@ -3717,6 +5145,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ReviewQueueItem"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resume_api_review_sessions__session_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ColdPosition"];
                 };
             };
             /** @description Validation Error */
@@ -3899,6 +5358,158 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Stats"];
+                };
+            };
+        };
+    };
+    library_api_study_courses_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LessonLibrary"];
+                };
+            };
+        };
+    };
+    course_api_study_courses__course_id__get: {
+        parameters: {
+            query?: {
+                revision?: string | null;
+            };
+            header?: never;
+            path: {
+                course_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LessonCourseView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_api_study_lesson_sessions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LessonStart"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LessonSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_session_api_study_lesson_sessions__session_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LessonSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    command_api_study_lesson_sessions__session_id__command_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LessonCommand"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LessonSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

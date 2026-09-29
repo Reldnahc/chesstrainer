@@ -42,7 +42,12 @@ export function usePerformance({
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
+      (entries) => {
+        // A busy frame can deliver several queued changes for this portrait.
+        // Its latest entry describes whether it is currently visible.
+        const entry = entries.at(-1);
+        if (entry) setVisible(entry.isIntersecting);
+      },
       { threshold: 0.1 },
     );
     if (ref.current) observer.observe(ref.current);

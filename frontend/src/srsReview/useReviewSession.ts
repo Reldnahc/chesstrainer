@@ -7,15 +7,17 @@ import {
   type Promotion,
   type Schema,
 } from "../api";
-import { clearExerciseLink } from "../navigation";
+import { clearExerciseLink, clearReviewSessionLink, rememberReviewSession } from "../navigation";
 
 /** Owns grading and queues. Focused practice never changes the SRS queue policy. */
 export function useReviewSession({
   requested,
+  requestedSession,
   focusSkill,
   fail,
 }: {
   requested: string | null;
+  requestedSession?: string | null;
   focusSkill: string | null;
   fail: (e: unknown) => void;
 }) {
@@ -33,10 +35,22 @@ export function useReviewSession({
   const practiced = useRef(new Set<string>());
   const generation = useRef(0);
 
+  const refreshDue = useCallback(async (version: number) => {
+    try {
+      const count = await read(api.GET("/api/review/count"));
+      if (version === generation.current) setDue(count.due);
+    } catch {
+      if (version === generation.current)
+        fail(new Error("Could not refresh the due count. Your saved work is unchanged."));
+    }
+  }, [fail]);
+
   const load = useCallback(
-    async (id?: string | null, previous?: string | null) => {
+    async (id?: string | null, previous?: string | null, resumeSession?: string | null) => {
       const version = ++generation.current;
       setLoading(true);
+      setBusy(false);
+      setPosition(null);
       setFeedback(null);
       setSubmittedMove(null);
       setHadFailure(false);
@@ -57,15 +71,17 @@ export function useReviewSession({
           ? (practiceBatch.current || []).filter(
               (item) => !practiced.current.has(item.exercise_id),
             )
-          : await read(
-              api.GET("/api/review/queue", {
+          : await read(api.GET("/api/review/queue", {
                 params: { query: { last_id: previous || undefined } },
-              }),
-            );
+              }));
         if (version !== generation.current) return;
-        setDue(queue.length);
+        if (focusSkill) setDue(queue.length);
         const next = id || queue[0]?.exercise_id;
-        const result = next
+        const result = resumeSession
+          ? await read(api.GET("/api/review/sessions/{session_id}", {
+              params: { path: { session_id: resumeSession } },
+            }))
+          : next
           ? await read(
               api.POST("/api/review/{exercise_id}/start", {
                 params: {
@@ -75,29 +91,40 @@ export function useReviewSession({
               }),
             )
           : null;
-        if (version === generation.current) setPosition(result);
+        if (version === generation.current) {
+          setPosition(result);
+          if (result?.opening) {
+            // Pin the attempt, not only the exercise. Another tab can change
+            // its study answers while this learner still needs saved feedback.
+            rememberReviewSession(result.session_id);
+            setFeedback(result.feedback ?? null);
+            setHadFailure(result.failed);
+          }
+          if (!focusSkill) await refreshDue(version);
+        }
       } catch (e) {
         if (version === generation.current) fail(e);
       } finally {
         if (version === generation.current) setLoading(false);
       }
     },
-    [focusSkill, fail],
+    [focusSkill, fail, refreshDue],
   );
 
   useEffect(() => {
     practiceBatch.current = null;
     practiced.current.clear();
-    void load(requested);
+    void load(requested, null, requestedSession);
     return () => {
       generation.current++;
     };
-  }, [load, requested]);
+  }, [load, requested, requestedSession]);
 
-  function recordCompletion(exerciseId: string) {
+  function recordCompletion(exerciseId: string, countsAsReview: boolean) {
     practiced.current.add(exerciseId);
-    clearExerciseLink();
-    setDone((value) => value + 1);
+    if (!position?.opening) clearExerciseLink();
+    if (countsAsReview) setDone((value) => value + 1);
+    if (focusSkill) setDue(value => Math.max(0, value - 1));
     setLast(exerciseId);
   }
   async function answer(from: string, to: string, promotion?: Promotion) {
@@ -120,7 +147,10 @@ export function useReviewSession({
       setFeedback(result);
       if (!result.completed) setHadFailure(true);
       setSubmittedMove(from + to + (promotion || ""));
-      if (result.completed) recordCompletion(position.exercise_id);
+      if (result.completed) recordCompletion(position.exercise_id, !result.non_scheduling_reason);
+      // The exact count includes positions outside the bounded queue batch and
+      // may change in another tab. Never infer it from this session's outcome.
+      if (!focusSkill) await refreshDue(version);
     } catch (e) {
       if (version === generation.current) {
         setGradingError((e as Error).message);
@@ -143,7 +173,8 @@ export function useReviewSession({
       );
       if (version !== generation.current) return;
       setFeedback(result);
-      recordCompletion(position.exercise_id);
+      recordCompletion(position.exercise_id, !result.non_scheduling_reason);
+      if (!focusSkill) await refreshDue(version);
     } catch (e) {
       if (version === generation.current) {
         setGradingError((e as Error).message);
@@ -165,7 +196,10 @@ export function useReviewSession({
     done,
     answer,
     show,
-    next: () => load(null, last),
+    next: () => {
+      clearReviewSessionLink();
+      return load(null, last);
+    },
   };
 }
 

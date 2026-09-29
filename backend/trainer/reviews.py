@@ -1,6 +1,6 @@
 import logging
 
-from sqlalchemy import func, select
+from sqlalchemy import and_, func, or_, select
 
 from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
 from trainer.explanations import explain_review, replay_line
@@ -12,17 +12,38 @@ from trainer.models import (
     Exercise,
     ExerciseAnswer,
     Game,
+    OpeningCard,
+    OpeningRecallSnapshot,
     Review,
     ReviewSession,
     SRSState,
     now,
 )
+from trainer.opening_studies import recall as opening_recall
 from trainer.policy import MovePolicy
 from trainer.practice import require_focus
 from trainer.retirement import require_active_review, retire_if_ready
 from trainer.scheduling import behavior_rating, utc
 
 log = logging.getLogger(__name__)
+
+
+def _with_current_opening_authority(statement):
+    """Keep saved stale sessions out of queue and start lookups without loading them."""
+    return (
+        statement.outerjoin(OpeningCard, OpeningCard.exercise_id == Exercise.id)
+        .outerjoin(OpeningRecallSnapshot, OpeningRecallSnapshot.session_id == ReviewSession.id)
+        .where(
+            or_(
+                Exercise.source != "opening",
+                and_(
+                    OpeningCard.active.is_(True),
+                    OpeningCard.revision == OpeningRecallSnapshot.answer_revision,
+                    SRSState.eligible.is_(True),
+                ),
+            )
+        )
+    )
 
 
 def explanation_brief(db, session_id, attempt_id=None, solution=False, include_reply=False):
@@ -48,12 +69,15 @@ def queue(db, last_id=None, limit=30):
             .order_by(Review.created_at.desc(), Review.id)
             .limit(1)
         )
-    active_ids = db.scalars(
-        select(ReviewSession.exercise_id)
-        .join(SRSState, SRSState.exercise_id == ReviewSession.exercise_id)
-        .join(Exercise, Exercise.id == ReviewSession.exercise_id)
+    active_states = db.scalars(
+        _with_current_opening_authority(
+            select(SRSState)
+            .join(ReviewSession, ReviewSession.exercise_id == SRSState.exercise_id)
+            .join(Exercise, Exercise.id == ReviewSession.exercise_id)
+        )
         .where(
             Exercise.source != "repertoire",
+            SRSState.eligible.is_(True),
             SRSState.retired_at.is_(None),
             ReviewSession.completed.is_(False),
             ReviewSession.lesson_item_id.is_(None),
@@ -61,6 +85,9 @@ def queue(db, last_id=None, limit=30):
         )
         .order_by(ReviewSession.started_at.desc())
     ).all()
+    # Stale snapshots are retained for resuming saved attempts, but must not add
+    # work to every queue read. Filter their authority in SQL before loading rows.
+    active_by_id = {state.exercise_id: state for state in active_states}
     states = db.scalars(
         select(SRSState)
         .join(Exercise, Exercise.id == SRSState.exercise_id)
@@ -74,10 +101,10 @@ def queue(db, last_id=None, limit=30):
     ).all()
     # A failed first attempt already moved the due date. Reload must still resume
     # its unfinished session, rather than abandoning the learner's opportunity to retry.
-    states = [db.get(SRSState, key) for key in dict.fromkeys(active_ids)] + [
-        state for state in states if state.exercise_id not in active_ids
+    states = list(active_by_id.values()) + [
+        state for state in states if state.exercise_id not in active_by_id
     ]
-    if len(states) > 1 and states[0].exercise_id == last_id and last_id not in active_ids:
+    if len(states) > 1 and states[0].exercise_id == last_id and last_id not in active_by_id:
         states.append(states.pop(0))
     # The cold queue intentionally exposes no source, skill, answer, score or explanation.
     return [
@@ -95,13 +122,20 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         require_focus(db, exercise, focus_skill_id)
     mode = "focus" if focus_skill_id is not None else "review"
     existing = db.scalar(
-        select(ReviewSession).where(
+        _with_current_opening_authority(
+            select(ReviewSession)
+            .join(Exercise, Exercise.id == ReviewSession.exercise_id)
+            .join(SRSState, SRSState.exercise_id == ReviewSession.exercise_id)
+        )
+        .where(
             ReviewSession.exercise_id == exercise_id,
             ReviewSession.completed.is_(False),
             ReviewSession.lesson_item_id.is_(None),
             ReviewSession.mode == mode,
             ReviewSession.focus_skill_id == focus_skill_id,
         )
+        .order_by(ReviewSession.started_at.desc())
+        .limit(1)
     )
     resuming = existing is not None
     if existing is None:
@@ -111,8 +145,10 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
             focus_skill_id=focus_skill_id,
         )
         db.add(existing)
+        db.flush()
+        if exercise.source == "opening":
+            opening_recall.snapshot_session(db, existing, exercise)
         db.commit()
-    board = valid_board(exercise.fen)
     state = db.get(SRSState, exercise_id)
     reason = (
         "resume"
@@ -123,19 +159,47 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
         if utc(state.due) > now()
         else {1: "learning", 2: "review", 3: "relearning"}[state.card["state"]]
     )
-    return {
-        "session_id": existing.id,
-        "last_attempt_id": existing.last_attempt_id,
+    return review_position(db, existing, reason=reason)
+
+
+def review_position(db, session, *, reason="resume"):
+    exercise = db.get(Exercise, session.exercise_id)
+    state = db.get(SRSState, exercise.id)
+    snapshot = opening_recall.get_snapshot(db, session)
+    fen = snapshot.fen if snapshot else exercise.fen
+    result = {
+        "session_id": session.id,
+        "last_attempt_id": session.last_attempt_id,
         "exercise_id": exercise.id,
-        "fen": exercise.fen,
-        "orientation": exercise.orientation,
-        "failed": existing.failed,
+        "fen": fen,
+        "orientation": snapshot.orientation if snapshot else exercise.orientation,
+        "failed": session.failed,
         "review_reason": reason,
         "previous_reviews": state.reviews,
-        "practice_only": mode == "focus",
+        "practice_only": session.mode == "focus",
         # All legal moves, never just accepted answers: these are interaction aids.
-        "legal_moves": legal_move_options(board),
+        "legal_moves": legal_move_options(valid_board(fen)),
     }
+    if snapshot:
+        result["opening"] = opening_recall.context(snapshot)
+        if snapshot.non_scheduling_reason or not opening_recall.current(db, session, snapshot):
+            result["non_scheduling_reason"] = snapshot.non_scheduling_reason or (
+                opening_recall.CHANGED
+                if session.last_attempt_id or session.completed
+                else opening_recall.STALE_PROMPT
+            )
+    if session.completed:
+        result.update(completed=True, feedback=completed_feedback(db, exercise, session))
+    return result
+
+
+def resume_review(db, session_id):
+    session = db.get(ReviewSession, session_id)
+    if session is None:
+        raise ValueError("Review session not found")
+    if session.lesson_item_id is not None:
+        raise ValueError("This lesson attempt is archived. Start a position in Review.")
+    return review_position(db, session)
 
 
 def record_once(db, session, scheduler, settings, response_ms):
@@ -144,6 +208,9 @@ def record_once(db, session, scheduler, settings, response_ms):
     existing = db.scalar(select(Review).where(Review.session_id == session.id))
     if existing:
         return existing
+    snapshot = opening_recall.get_snapshot(db, session)
+    if snapshot and not opening_recall.scheduling_allowed(db, session, snapshot):
+        return None
     state = db.get(SRSState, session.exercise_id)
     rating = behavior_rating(
         session.failed, session.revealed, response_ms, settings.slow_answer_seconds
@@ -152,6 +219,8 @@ def record_once(db, session, scheduler, settings, response_ms):
     state.card, state.due = card, due
     state.reviews += 1
     state.lapses += int(rating.name == "Again")
+    if snapshot:
+        db.get(OpeningCard, session.exercise_id).retirement_guard_revision = None
     retire_if_ready(state, settings)
     review = Review(
         session_id=session.id,
@@ -185,6 +254,8 @@ def feedback(db, exercise, session=None):
     }
     if session and session.mode == "focus":
         result.update(practice_only=True, next_due=None)
+    if session and (snapshot := opening_recall.get_snapshot(db, session)):
+        result.update(opening_recall.feedback(db, exercise, session, snapshot))
     if exercise.decision_id:
         decision = db.get(Decision, exercise.decision_id)
         analysis = db.get(EngineAnalysis, decision.before_analysis_id)
@@ -201,6 +272,37 @@ def feedback(db, exercise, session=None):
     return result
 
 
+def completed_feedback(db, exercise, session):
+    snapshot = opening_recall.get_snapshot(db, session)
+    board = valid_board(snapshot.fen if snapshot else exercise.fen)
+    result = {"completed": True, "grade": "already_recorded", **feedback(db, exercise, session)}
+    if session.revealed:
+        answer = (
+            opening_recall.answer(snapshot, primary=True)
+            if snapshot
+            else db.scalar(
+                select(ExerciseAnswer).where(
+                    ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
+                )
+            )
+        )
+        if answer:
+            frame = replay_line(board, [answer.uci])[1]
+            result.update(
+                grade="revealed",
+                fen=frame.fen,
+                reveal_frame=frame.model_dump(),
+                submitted_san=frame.san,
+            )
+            result.update(explanation_brief(db, session.id, solution=True))
+    elif session.last_attempt_id:
+        attempt = db.get(Attempt, session.last_attempt_id)
+        frame = replay_line(board, [attempt.uci])[1]
+        result.update(attempt_id=attempt.id, fen=frame.fen, submitted_san=frame.san)
+        result.update(explanation_brief(db, session.id, attempt.id))
+    return result
+
+
 def submit_move(db, session_id, uci, engine, scheduler, settings):
     session = db.get(ReviewSession, session_id)
     if session is None:
@@ -209,12 +311,19 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
         raise ValueError("This lesson attempt is archived. Start a position in Review.")
     exercise = db.get(Exercise, session.exercise_id)
     if session.completed:
-        return {"completed": True, "grade": "already_recorded", **feedback(db, exercise, session)}
-    require_active_review(db, exercise.id)
-    board = valid_board(exercise.fen)
+        return completed_feedback(db, exercise, session)
+    snapshot = opening_recall.get_snapshot(db, session)
+    if not snapshot:
+        require_active_review(db, exercise.id)
+    fen = snapshot.fen if snapshot else exercise.fen
+    board = valid_board(fen)
     move = legal_move(board, uci)  # Illegal attempts never count as failed recall.
     elapsed = max(0, int((now() - utc(session.started_at)).total_seconds() * 1000))
-    answer = db.get(ExerciseAnswer, (exercise.id, uci))
+    answer = (
+        opening_recall.answer(snapshot, uci)
+        if snapshot
+        else db.get(ExerciseAnswer, (exercise.id, uci))
+    )
     if answer is None and exercise.source == "game":
         decision = db.get(Decision, exercise.decision_id)
         source_board = decision_board(db.get(Game, decision.game_id), decision.ply)
@@ -248,23 +357,31 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
         session.failed = True
         record_once(db, session, scheduler, settings, elapsed)
         db.commit()
-        return {
+        result = {
             "completed": False,
             "attempt_id": attempt.id,
             **explanation_brief(db, session.id, attempt.id, include_reply=True),
             "grade": grade,
-            "fen": exercise.fen,
+            "fen": fen,
             "practice_only": session.mode == "focus",
             "message": "Try again. This practice attempt is saved."
             if session.mode == "focus"
             else "Try again. Your first attempt has been recorded; take your time.",
         }
+        if snapshot:
+            result.update(feedback(db, exercise, session))
+            result["message"] = (
+                "This move is outside the opening moves you selected to study. Try again."
+            )
+            if result.get("non_scheduling_reason"):
+                result["message"] += " " + result["non_scheduling_reason"]
+        return result
     session.completed = True
     session.completed_at = now()
     record_once(db, session, scheduler, settings, elapsed)
     board.push(move)
     db.commit()
-    return {
+    result = {
         "completed": True,
         "attempt_id": attempt.id,
         **explanation_brief(db, session.id, attempt.id),
@@ -277,6 +394,12 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
         else "Good move.",
         **feedback(db, exercise, session),
     }
+    if snapshot:
+        result["message"] = "This matches a move in your selected opening studies. " + (
+            result.get("non_scheduling_reason")
+            or ("This recall stays marked for relearning." if session.failed else "Recall saved.")
+        )
+    return result
 
 
 def reveal(db, session_id, scheduler, settings):
@@ -286,18 +409,24 @@ def reveal(db, session_id, scheduler, settings):
     if session.lesson_item_id is not None:
         raise ValueError("This lesson attempt is archived. Start a position in Review.")
     exercise = db.get(Exercise, session.exercise_id)
-    answer = db.scalar(
-        select(ExerciseAnswer).where(
-            ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
+    snapshot = opening_recall.get_snapshot(db, session)
+    answer = (
+        opening_recall.answer(snapshot, primary=True)
+        if snapshot
+        else db.scalar(
+            select(ExerciseAnswer).where(
+                ExerciseAnswer.exercise_id == exercise.id, ExerciseAnswer.primary.is_(True)
+            )
         )
     )
     if answer is None:
         raise ValueError("No saved solution is available")
     # Apply the curated/verified answer even when deeper engine evidence is unavailable.
     # Validate before recording recall so an invalid saved move cannot consume a review.
-    frame = replay_line(valid_board(exercise.fen), [answer.uci])[1]
+    frame = replay_line(valid_board(snapshot.fen if snapshot else exercise.fen), [answer.uci])[1]
     if not session.completed:
-        require_active_review(db, exercise.id)
+        if not snapshot:
+            require_active_review(db, exercise.id)
         session.revealed = True
         session.failed = True
         elapsed = max(0, int((now() - utc(session.started_at)).total_seconds() * 1000))
@@ -312,7 +441,7 @@ def reveal(db, session_id, scheduler, settings):
         session.completed = True
         session.completed_at = now()
         db.commit()
-    return {
+    result = {
         "completed": True,
         "grade": "revealed",
         **explanation_brief(db, session.id, solution=True),
@@ -321,3 +450,6 @@ def reveal(db, session_id, scheduler, settings):
         "reveal_frame": frame.model_dump(),
         "submitted_san": frame.san,
     }
+    if result.get("non_scheduling_reason"):
+        result["message"] = result["non_scheduling_reason"]
+    return result

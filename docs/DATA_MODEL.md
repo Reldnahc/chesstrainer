@@ -18,6 +18,7 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | exercises, exercise_tags, exercise_answers | Game/manual practice and archived repertoire exercises, normalized answers/tags, policy snapshots and verification references |
 | srs_states | One serialized library card per exercise, due/review/lapse fields, eligibility and persistent retirement |
 | review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused and archived lesson attempts are separate |
+| puzzle_sessions, puzzle_attempts | Private immutable puzzle snapshots, revisioned solve progress and idempotent practice commands; independent of Review/FSRS |
 | courses, course_units, unit_evidence, course_revisions, lessons, lesson_items | Archived course snapshots, source evidence, ordered items and historical progress; no active generation/progression |
 | teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
 | repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
@@ -45,6 +46,28 @@ Backups contain a consistent SQLite snapshot, format manifest and safe settings.
 Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules. The interface refactor adds no migration or schema change. [VERIFICATION.md](VERIFICATION.md) records current copy-preservation checks.
 
 ## Migration history
+
+### Opening study: 7c249ef302d6
+
+Adds account-owned `opening_studies` (immutable selected line/source/color),
+`opening_study_moves` (position contributions), `opening_cards` (current authority
+revision, last active target and retirement guard), `opening_recall_snapshots`
+(existing ReviewSession's answers/provenance), and `opening_content_changes`
+(non-recall lifecycle audit). The existing Exercise, ExerciseAnswer, ReviewSession,
+Attempt, Review and SRSState remain the recall/scheduling domain. Opening exercises
+have source `opening`; archived repertoire rows are unchanged. No schema migration
+recomputes an old schedule or creates historical recalls. See [Study](STUDY.md)
+for current versus stale attempt and content-change rules.
+
+### Authored Study lessons: 6b138de291c5
+
+Adds account-owned `study_lesson_sessions`, `study_lesson_commands` and
+`study_lesson_progress`. Sessions pin course ID/revision, chapter, immutable
+content/hash, complete player state and monotonic command revision. Commands
+retain idempotent request/response pairs. Progress has one row per account,
+course revision and chapter, with viewed/attempted steps and first completion.
+Back or replay does not overwrite first completion. These tables are separate
+from archived generated lessons and do not alter Review or FSRS records.
 
 The following notes describe how retained fields and compatibility behavior were introduced. References to creating course sequences describe historical domain behavior, not an active application workflow.
 

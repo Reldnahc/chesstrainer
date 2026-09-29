@@ -1,5 +1,22 @@
 # Architecture
 
+The authored Study lesson framework lives in `trainer/study_lessons`: content
+validation, a pure player reducer, account-owned sessions/progress and narrow
+current-position projections. `routes/study_lessons.py` applies the existing
+workspace ownership/mutation boundary. On the frontend `LessonLibrary` and
+`LessonPlayer` use the existing board/workspace/coach; `useStudyPlayback` shares
+display-only frame timing with puzzles. No animation drives durable progress.
+See [Study](STUDY.md) for content, session and authority contracts.
+
+`trainer/opening_studies` normalizes pinned catalogue/course lines, projects active
+contributions into existing opening exercises, and snapshots each recall's answer
+authority. `reviews.py` keeps the common scheduler and first-failure behavior;
+opening-specific grading/explanations consult the saved snapshot. Before any new
+FSRS call, current eligible authority is checked under the account mutation lock
+and a conditional database write. Dedicated line practice constructs a pinned
+rehearsal in the existing lesson player. Source-specific frontend coaching avoids
+describing an out-of-repertoire move as an objective mistake.
+
 React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ owns chess rules, evaluation, grading, local classification, reviews and scheduling. SQLAlchemy 2 and Alembic manage SQLite with foreign keys, WAL and a busy timeout. Run one application process; no Redis, external worker service or cloud database is needed.
 
 ## HTTP interface ownership
@@ -33,6 +50,7 @@ Whole-game review and training analysis are separately requested from the game.
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
+| puzzles/ / routes/puzzles.py | Versioned provider definitions, private session snapshots and atomic multi-move practice; no engine or scheduler dependency |
 | routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
@@ -61,6 +79,7 @@ lock, while other accounts have independent locks.
 | Module in frontend/src | Responsibility |
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
+| study/ | Study landing, opening catalogue/enrollment, lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
@@ -144,14 +163,17 @@ the `interface_motion` column in that same row. Both providers share the saved
 preference lifecycle and reset when the account boundary unmounts. The root CSS
 motion attribute is also removed on unmount; login screens use the device default.
 
-Navigation is Review, Games, Weaknesses, Settings. A small History API
-router renders `/review`, `/games`, `/games/:id`, `/weaknesses` and
-`/settings`. Screen/game links push history entries; `popstate` restores the
-destination. The root URL aliases `/review` with `replaceState`, preserving old
-`?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
-starting a lesson. Unknown paths show a recoverable not-found screen.
+Navigation is Study, Games, Weaknesses, Settings. A small History API router
+renders `/study`, its Due/openings/puzzles subpages and saved session/source
+links, `/games`, `/games/:id`, `/weaknesses` and `/settings`. Screen/game links
+push history entries; `popstate` restores the destination. The root URL aliases
+`/study` with `replaceState`; old `/review` and root exercise/focus/session
+bookmarks resolve to `/study/due`. Removed `?unit=` links discard the archived
+unit/exercise identity without starting a lesson. Opening recalls pin their
+saved session in the URL so refresh resumes the same answer snapshot. Unknown
+paths show a recoverable not-found screen.
 Legacy `/import` URLs replace their history entry with `/settings`. Settings owns
-the saved Chess.com connection, filtered imports, PGN uploads and import activity.
+the saved provider connections, filtered imports, PGN uploads and import activity.
 Games keeps only a compact Update games control using the same sync component and
 polling behavior; without a connection it links to Settings. Sync still fetches
 games without starting engine analysis.
@@ -288,7 +310,7 @@ classification_quality.py and the read-only report script support blinded export
 
 ## Archives, privacy and deployment
 
-Lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Course generation and lesson progression code have been removed; active review cannot start, resume or finish a lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive.
+Legacy generated lesson/course and repertoire product routes are tombstones. Due/unfinished-session queries exclude archived repertoire exercises; direct archived practice is rejected. A one-time migration released nonretired lesson-held cards without resetting their schedules. Historical rows, manual exercises and teaching audit/rejection access remain. Legacy course generation and lesson progression code have been removed; active review cannot start, resume or finish an archived lesson attempt, including through direct domain calls. Normal review feedback no longer carries a `lesson_result` field. Tests seed explicit historical rows rather than keeping an unused course builder alive. The new authored Study domain and `source="opening"` recall have their own explicit contracts described above.
 
 OpenAI runtime integration is removed: no model SDK or model network calls remain.
 Historical classification and teaching responses stay local. Explicit Chess.com
