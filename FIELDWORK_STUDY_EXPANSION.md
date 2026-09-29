@@ -1651,6 +1651,10 @@ The earlier review notes are now incorporated into the main specification.
 - Standard retry, resume and concurrency behavior is an engineering requirement,
   not a separate product decision for the owner.
 
-Remaining content decisions: the Italian course's learner side, precise chapters,
-example games and permitted source material will be selected during its content
-pass. The framework must not assume these choices in advance.
+Pilot content decisions: White; three chapters covering quiet development,
+central preparation and the Two Knights. Mason–Lasker, Steinitz–von Bardeleben and
+Pollock–Schiffers (Hastings 1895) supply contrasting illustrative passages and
+complete game playback. Factual scores were transcribed from the public-domain
+1896 tournament book; lesson writing is original. Three short designated lines
+offer optional enrollment. See `docs/ITALIAN_COURSE_SOURCES.md` for provenance.
+The framework remains independent of these pilot choices.

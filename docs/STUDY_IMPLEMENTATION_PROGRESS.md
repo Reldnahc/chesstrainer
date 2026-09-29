@@ -5,12 +5,13 @@ Branch: `codex/study-frameworks`, created from local `main` at `5fa6ac4`.
 
 ## Current checkpoint
 
-Phase 3 — opening studies and existing Review/FSRS integration verified; committing.
+Phase 4 — Italian Game pilot verified; committing before final integration checks.
 
 ## Completed phases
 
 - Phase 1: `5c30aad` — Study navigation and durable multi-move puzzles.
 - Phase 2: `557bf97` — durable guided lessons, branches and independent rehearsal.
+- Phase 3: `4fd6f6b` — versioned opening studies and shared scheduled recall.
 
 ## Decisions carried forward
 
@@ -80,8 +81,17 @@ Phase 3 — opening studies and existing Review/FSRS integration verified; commi
 
 ## Follow-ups / blockers
 
-No blockers. Choose and source the Italian course content in Phase 4. Exact Study
-counts and specific subpage titles were completed during Phase 3.
+No blockers. Phase 4 provides three White-side chapters, three explicit repertoire
+lines and three historical scores (300 legal plies) from the public-domain 1896
+Hastings book. Content source details live in ITALIAN_COURSE_SOURCES.md.
+
+- Phase 4: 6 Italian backend/native tests passed, no skips; existing lesson and
+  opening provider regression subset: 41 passed. Independent acceptance rerun:
+  5 passed. Native guided moves were checked with bounded depth-18 searches.
+- `playwright test italian-course.spec.ts --reporter=line`: 4 passed across both
+  viewports. Production build and Ruff passed. Actual desktop lesson/library and
+  mobile screenshots inspected; source histories and excerpt facts independently
+  checked. Corrected semi-open-file and already-played-check wording during review.
 
 This temporary ledger will be consolidated into living documentation and removed
 at final verification.

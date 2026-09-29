@@ -10,6 +10,7 @@ from study_lesson_fixtures import BrowserLessonProvider
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
 from trainer.game_providers.lichess import LichessClient
+from trainer.study_lessons.bundled import bundled_providers
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -85,7 +86,7 @@ def create_app():
         chesscom_factory=factory,
         provider_factories={"lichess": lichess_factory},
         puzzle_providers=(puzzle_provider,),
-        lesson_providers=(lesson_provider,),
+        lesson_providers=(*bundled_providers(), lesson_provider),
     )
 
     @app.post("/__test/lesson-fixture/{key}")
