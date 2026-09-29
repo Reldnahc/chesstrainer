@@ -143,7 +143,7 @@ test("visible Maia insight survives coach selection and reload without new analy
     const before = await wording.innerText(), intent = await wording.getAttribute("data-intent");
     await page.keyboard.press("Escape");
     await page.getByRole("link", {name: "Settings", exact: true}).click();
-    const choice = page.getByRole("radio", {name: "Quiet analyst", exact: true});
+    const choice = page.getByRole("radio", {name: "Iris", exact: true});
     await choice.click();
     await expect(choice).toBeChecked();
     await expect(page.getByLabel("Coach motion", {exact: true})).toBeEnabled();

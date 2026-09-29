@@ -183,7 +183,7 @@ test("promotion and coach changes use the shared player without losing saved pro
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
   await page.getByRole("link", { name: "Settings", exact: true }).click();
   const selected = page.getByRole("radio", {
-    name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Storyteller" : "Scout",
+    name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Walter" : "Scout",
     exact: true,
   });
   const savedPreference = page.waitForResponse(response =>
