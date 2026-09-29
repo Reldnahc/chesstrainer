@@ -1,3 +1,4 @@
+import EmptyState from "../EmptyState";
 import { LoadingState, UnavailableState } from "../LoadState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
@@ -70,6 +71,6 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
   return <>
     {!!library.resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{library.resume.map(session => <ResumeLink key={session.id} href={lessonSessionPath(session.id)} description={session.chapter_title}>{session.course_title}</ResumeLink>)}</div></section>}
     {library.courses.length ? <div className="lesson-course-grid">{library.courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}<ArrowRight size={16} /></span></Link>)}</div>
-      : <section className="panel study-empty"><BookOpen size={28} aria-hidden="true" /><h2>No opening lessons yet.</h2><p>Opening lessons will appear here when a course is available.</p><ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink></section>}
+      : <EmptyState title="No opening lessons yet." icon={<BookOpen />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>Opening lessons will appear here when a course is available.</EmptyState>}
   </>;
 }

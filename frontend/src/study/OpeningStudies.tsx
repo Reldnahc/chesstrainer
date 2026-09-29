@@ -1,3 +1,4 @@
+import EmptyState from "../EmptyState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
@@ -50,7 +51,7 @@ export default function OpeningStudies() {
         {label: "Learning positions", value: library.learning_positions},
         {label: "Due now", value: library.due_positions},
       ]} />}
-      {library.items.length ? <div className="opening-study-list">{library.items.map(study => <article key={study.id} className="opening-study" aria-label={`${study.name} as ${study.color}`}><div><span className="opening-study-status">{study.active ? "Active" : "Paused"} · {study.color === "white" ? "White" : "Black"}{study.eco && ` · ${study.eco}`}</span><h3>{study.name}</h3><p className="small muted">{study.positions} recall positions · {study.due_positions} due{!study.active && " · History preserved"}</p></div><div className="button-row"><Button disabled={!!busy} onClick={() => act(study, true)}><Play size={15} />Practice line</Button><Button variant="secondary" disabled={!!busy} onClick={() => act(study)}>{busy === study.id ? "Saving…" : study.active ? "Pause recalls" : "Resume recalls"}</Button></div></article>)}</div> : <p>No lines selected yet. Preview a catalogue or course line to add it to your study.</p>}
+      {library.items.length ? <div className="opening-study-list">{library.items.map(study => <article key={study.id} className="opening-study" aria-label={`${study.name} as ${study.color}`}><div><span className="opening-study-status">{study.active ? "Active" : "Paused"} · {study.color === "white" ? "White" : "Black"}{study.eco && ` · ${study.eco}`}</span><h3>{study.name}</h3><p className="small muted">{study.positions} recall positions · {study.due_positions} due{!study.active && " · History preserved"}</p></div><div className="button-row"><Button disabled={!!busy} onClick={() => act(study, true)}><Play size={15} />Practice line</Button><Button variant="secondary" disabled={!!busy} onClick={() => act(study)}>{busy === study.id ? "Saving…" : study.active ? "Pause recalls" : "Resume recalls"}</Button></div></article>)}</div> : <EmptyState presentation="compact">No lines selected yet. Preview a catalogue or course line to add it to your study.</EmptyState>}
       {!!library.due_positions && <ActionLink variant="primary" href={studyPaths.due}>Review due positions<ArrowRight size={16} /></ActionLink>}
     </>}
   </section>;

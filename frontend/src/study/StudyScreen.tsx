@@ -1,3 +1,4 @@
+import EmptyState from "../EmptyState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
@@ -101,13 +102,14 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
     </>}
     {mode === "puzzles" && <>
       {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <ResumeLink href={puzzleSessionPath(session.id)} key={session.id} description={session.failed ? "Continue after a retry" : "Your position is saved"}>Unfinished puzzle</ResumeLink>)}</div></section>}
-      <section className={`panel ${available ? "" : "study-empty"}`}>
+      {available ? <section className="panel">
         <Puzzle size={28} aria-hidden="true" />
-        <h2>{available ? "Calculate the continuation." : "No puzzles available yet."}</h2>
-        <p>{available ? "Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls." : "There are no installed puzzle collections for this source. Your scheduled recalls are still available in Due."}</p>
-        {!!available && <Button variant="primary" disabled={busy} onClick={begin}>{busy ? "Opening puzzle…" : "Start a puzzle"}<ArrowRight size={16} /></Button>}
-        {!available && <ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}
-      </section>
+        <h2>Calculate the continuation.</h2>
+        <p>Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls.</p>
+        <Button variant="primary" disabled={busy} onClick={begin}>{busy ? "Opening puzzle…" : "Start a puzzle"}<ArrowRight size={16} /></Button>
+      </section> : <EmptyState title="No puzzles available yet." icon={<Puzzle />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>
+        There are no installed puzzle collections for this source. Your scheduled recalls are still available in Due.
+      </EmptyState>}
       {puzzles && Object.values(puzzles.stats).some(value => value > 0) && <section className="panel"><h2>Your puzzle practice</h2><StatList items={[
         {label: "Solved cleanly", value: puzzles.stats.clean},
         {label: "Failed, then solved", value: puzzles.stats.failed_then_solved},

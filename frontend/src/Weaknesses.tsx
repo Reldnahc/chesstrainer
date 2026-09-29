@@ -1,3 +1,4 @@
+import EmptyState from "./EmptyState";
 import { useEffect, useState } from "react";
 import { ChevronRight, Flag } from "lucide-react";
 import { api, read, type Schema } from "./api";
@@ -33,14 +34,10 @@ export default function WeaknessScreen({
       ) : (
         <>
           {!data.skills.length && (
-            <div className="empty-state panel">
-              <Flag />
-              <h2>No supported weaknesses yet.</h2>
-              <p>
+            <EmptyState title="No supported weaknesses yet." icon={<Flag />}>
                 Classify saved games in Settings. Positions remain available in
                 Review even when their cause is unclear.
-              </p>
-            </div>
+            </EmptyState>
           )}
           {(["mechanism", "outcome"] as const).map((kind) => {
             const skills = data.skills.filter((skill) => skill.kind === kind);

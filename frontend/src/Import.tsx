@@ -1,3 +1,4 @@
+import EmptyState from "./EmptyState";
 import Button from "./Button";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { FileUp, Layers, X } from "lucide-react";
@@ -202,7 +203,7 @@ export default function ImportSettings({
       </div>}
     </SettingsSection>
     <SettingsSection id="settings-activity" title="Import & analysis activity" className="import-activity">
-      {activity.length === 0 && <div className="import-empty"><Layers size={22} /><div><strong>No activity yet</strong><p className="small">Imports and analysis progress will appear here.</p></div></div>}
+      {activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}
       {activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}
       {visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}
       {hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>

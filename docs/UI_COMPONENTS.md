@@ -87,6 +87,7 @@ not React components.
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
 | Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
 | Pending/unavailable content | [LoadingState / UnavailableState](../frontend/src/LoadState.tsx) | Compact/panel states with message-only announcements and separate caller-supplied headings/actions. Requests, recovery commands and link destinations remain with each screen. |
+| Empty content | [EmptyState](../frontend/src/EmptyState.tsx) | Lessons/Puzzles presentation for full sections, with compact activity/search variants. Callers supply titles, descriptions, icons and recovery actions. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
 | Provider username | [ProviderUsernameField](../frontend/src/ProviderUsernameField.tsx) | Shared native rules, unique labels/help IDs and 50-character limit. Optional connection/onboarding versus required import and busy/draft state remain caller-owned. |
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
@@ -147,7 +148,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-10 | Share preference-status rendering with heading and field placements. | Complete | Coach selection and both motion fields use PreferenceStatus; providers, saved flags, retry labels and device fallback remain unchanged. |
 | UI-11 | Share compact/panel loading and unavailable states. | Complete | Seven audited consumers share LoadingState/UnavailableState without moving request or recovery logic; pending-to-error transitions preserve navigation focus. |
 | UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
-| UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Planned | Retain compact activity and search-no-results variants. |
+| UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Complete | EmptyState serves seven application consumers; activity/search remain compact and recovery destinations are preserved. |
 | UI-14 | Share provider username field rules. | Complete | ProviderUsernameField serves Settings connection, one-time import and onboarding; native validation and description association are centralized. |
 | UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Complete | ImportAnalysisOption and ImportSubmitButton serve both forms; onboarding says Import games and each form retains its request fields and busy copy. |
 | UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Complete | Promotion uses the shared native modal lifecycle, preserving legal choices, drag timing and board-relative placement; page shortcuts yield while a modal is open. |
@@ -342,6 +343,12 @@ from Git; no live decision-gathering tool is needed.
   motion/cold-answer checks passed. The separate board-sizing regression found
   during integration is tracked under UI-05. Commit subject:
   `UI-21: Share the board turn indicator without changing status content`.
+
+- **UI-13 — empty content:** promoted lesson/puzzle presentation to shared
+  section and compact variants. Production build passed; **4 desktop/mobile
+  checks passed** for consistent geometry, recovery links and compact embedded
+  activity/search states. Nonempty content and copy remain unchanged. Commit
+  subject: `UI-13: Share section and compact empty states`.
 
 ## Audit findings and implementation boundaries
 

@@ -1,3 +1,4 @@
+import EmptyState from "./EmptyState";
 import { useEffect, useState } from "react";
 import { api, read } from "./api";
 import PageTitle from "./PageTitle";
@@ -70,28 +71,20 @@ export default function GamesScreen({
       {loading ? (
         <p role="status">Loading your games…</p>
       ) : !items.length ? (
-        <section className="panel">
-          <h2>
-            {page > 1
+        <EmptyState title={page > 1
               ? "No games on this page."
               : "Your next insight starts with a game."}
-          </h2>
-          {page > 1 ? (
+          actions={page > 1 ? (
             <ActionLink href={gamesPath()}>
               Back to your games
             </ActionLink>
           ) : (
-            <>
-              <p>
-                Import a PGN or your Chess.com games to review both sides with
-                your local coach.
-              </p>
               <ActionLink href={pagePaths.Settings}>
                 Import games in Settings
               </ActionLink>
-            </>
-          )}
-        </section>
+          )}>
+          {page === 1 && <>Import a PGN or your Chess.com games to review both sides with your local coach.</>}
+        </EmptyState>
       ) : (
         <GameHistory items={items} page={page} />
       )}

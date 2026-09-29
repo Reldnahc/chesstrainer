@@ -1,3 +1,4 @@
+import EmptyState from "../EmptyState";
 import { useEffect, useState } from "react";
 import { ChevronRight, Search } from "lucide-react";
 import { api, read, type Schema } from "../api";
@@ -37,7 +38,7 @@ export default function OpeningCatalogue({ query, eco, offset }: { query: string
     {!catalogue && !error && <p role="status">Loading opening lines…</p>}
     {catalogue && <>
       <p className="small muted">{catalogue.total} matching {catalogue.total === 1 ? "line" : "lines"}</p>
-      {catalogue.items.length ? <div className="opening-results">{catalogue.items.map(line => <Link className="opening-result" key={line.source_key} href={openingCataloguePath(line.source_key)}><span className="opening-eco">{line.eco || "—"}</span><span><strong>{line.name}</strong><small>{line.white_positions} White decisions · {line.black_positions} Black decisions</small></span><ChevronRight size={18} /></Link>)}</div> : <p>No opening lines match this search.</p>}
+      {catalogue.items.length ? <div className="opening-results">{catalogue.items.map(line => <Link className="opening-result" key={line.source_key} href={openingCataloguePath(line.source_key)}><span className="opening-eco">{line.eco || "—"}</span><span><strong>{line.name}</strong><small>{line.white_positions} White decisions · {line.black_positions} Black decisions</small></span><ChevronRight size={18} /></Link>)}</div> : <EmptyState presentation="compact">No opening lines match this search.</EmptyState>}
       {(offset > 0 || offset + catalogue.items.length < catalogue.total) && <Pagination label="Opening catalogue pages"
         start={catalogue.items.length ? offset + 1 : 0} end={offset + catalogue.items.length} total={catalogue.total}
         previousHref={offset > 0 ? searchPath(Math.max(0, offset - 50)) : undefined}
