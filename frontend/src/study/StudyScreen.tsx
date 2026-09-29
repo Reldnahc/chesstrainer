@@ -4,6 +4,7 @@ import { api, read, type Schema } from "../api";
 import ResumeLink from "../ResumeLink";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import StatList from "../StatList";
 import PageTitle from "../PageTitle";
 import SectionNavigation from "../SectionNavigation";
 import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
@@ -107,7 +108,11 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         {!!available && <Button variant="primary" disabled={busy} onClick={begin}>{busy ? "Opening puzzle…" : "Start a puzzle"}<ArrowRight size={16} /></Button>}
         {!available && <ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}
       </section>
-      {puzzles && Object.values(puzzles.stats).some(value => value > 0) && <section className="panel"><h2>Your puzzle practice</h2><dl className="study-stats"><div><dt>Solved cleanly</dt><dd>{puzzles.stats.clean}</dd></div><div><dt>Failed, then solved</dt><dd>{puzzles.stats.failed_then_solved}</dd></div><div><dt>Revealed</dt><dd>{puzzles.stats.revealed}</dd></div></dl></section>}
+      {puzzles && Object.values(puzzles.stats).some(value => value > 0) && <section className="panel"><h2>Your puzzle practice</h2><StatList items={[
+        {label: "Solved cleanly", value: puzzles.stats.clean},
+        {label: "Failed, then solved", value: puzzles.stats.failed_then_solved},
+        {label: "Revealed", value: puzzles.stats.revealed},
+      ]} /></section>}
     </>}
     </div>
   </>;

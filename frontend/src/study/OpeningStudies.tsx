@@ -3,6 +3,7 @@ import { ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import StatList from "../StatList";
 import { lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
 
@@ -44,7 +45,11 @@ export default function OpeningStudies() {
     {error && <p className="notice error" role="alert">{error}</p>}
     {!library && !error && <p role="status">Loading your studies…</p>}
     {library && <>
-      {!!library.items.length && <dl className="study-stats"><div><dt>Active studies</dt><dd>{library.active_studies}</dd></div><div><dt>Learning positions</dt><dd>{library.learning_positions}</dd></div><div><dt>Due now</dt><dd>{library.due_positions}</dd></div></dl>}
+      {!!library.items.length && <StatList items={[
+        {label: "Active studies", value: library.active_studies},
+        {label: "Learning positions", value: library.learning_positions},
+        {label: "Due now", value: library.due_positions},
+      ]} />}
       {library.items.length ? <div className="opening-study-list">{library.items.map(study => <article key={study.id} className="opening-study" aria-label={`${study.name} as ${study.color}`}><div><span className="opening-study-status">{study.active ? "Active" : "Paused"} · {study.color === "white" ? "White" : "Black"}{study.eco && ` · ${study.eco}`}</span><h3>{study.name}</h3><p className="small muted">{study.positions} recall positions · {study.due_positions} due{!study.active && " · History preserved"}</p></div><div className="button-row"><Button disabled={!!busy} onClick={() => act(study, true)}><Play size={15} />Practice line</Button><Button variant="secondary" disabled={!!busy} onClick={() => act(study)}>{busy === study.id ? "Saving…" : study.active ? "Pause recalls" : "Resume recalls"}</Button></div></article>)}</div> : <p>No lines selected yet. Preview a catalogue or course line to add it to your study.</p>}
       {!!library.due_positions && <ActionLink variant="primary" href={studyPaths.due}>Review due positions<ArrowRight size={16} /></ActionLink>}
     </>}

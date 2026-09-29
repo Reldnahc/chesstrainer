@@ -66,6 +66,7 @@ not React components.
 | Return from exploration | [ReturnButton](../frontend/src/ReturnButton.tsx) | Canonical purple action and return icon for game variations and lesson branches/full games. Caller supplies label, disabled state and command; long labels can wrap on narrow phones. |
 | Paged destinations | [Pagination](../frontend/src/Pagination.tsx) | Catalogue Previous/range/Next layout for Games and opening catalogue. Callers supply counts and destination URLs; unavailable directions are disabled buttons. |
 | Resume/continue row | [ResumeLink](../frontend/src/ResumeLink.tsx) | Existing raised title/subtitle/arrow row for saved lessons, puzzles and course lines. Callers supply destination and content; chapter commands and other row types remain separate. |
+| Study statistics | [StatList](../frontend/src/StatList.tsx) | Shared definition-list markup and existing metric appearance; callers supply labels/values and visibility. |
 | Move playback controls | [MovePlaybackControls](../frontend/src/MovePlaybackControls.tsx) | Labelled previous/counter/next group, optional first/last, stable digits and canonical lesson geometry. Callers own navigation and separate flip/back controls; disabled and aria-disabled remain independent. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
@@ -151,7 +152,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-17 | Promote plain native-summary styling (A). | Planned | This choice stands. Preserve comfortable phone tap targets, native details behavior, rich history/review contents and cold-practice answer restrictions. |
 | UI-18 | Keep section headings and the distinct action-row layouts separate. | Keep existing | Do not extract a universal component for these different roles. |
 | UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Complete | ResumeLink owns identical lesson, puzzle and course-line rows; native Link behavior and caller destinations/content are preserved. |
-| UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Planned | Keep the current appearance. |
+| UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Complete | Both statistics panels share StatList with their original labels, values, visibility and appearance. |
 | UI-21 | Share only the turn indicator used by the board-status compositions. | Planned | Keep each mode's surrounding status content and cold-practice visibility rules. |
 | UI-22 | Extend the application's AccuracyReadout with a history presentation. | Complete | History shares formatting and completion descriptions; its numeric spans remain passive and queued reviews retain their action state. |
 | UI-23 | Share source/link formatting. | Planned | Retain lesson headings, optional licenses/revisions, multiple citations and distinct provenance records. |
@@ -312,6 +313,12 @@ from Git; no live decision-gathering tool is needed.
   edited drafts and captured request values. New test locators were corrected to
   use native textbox/combobox accessible names after filling. Commit subject:
   `UI-15: Share import analysis and submit controls`.
+
+- **UI-20 — statistics:** centralized definition-list markup and its existing
+  styles without changing metrics or visibility. Production build passed;
+  focused desktop/mobile tests: **2 passed**, checking labels, zero values,
+  shared geometry and no phone overflow. Commit subject: `UI-20: Share study
+  statistics markup and styles`.
 
 ## Audit findings and implementation boundaries
 
