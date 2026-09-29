@@ -66,7 +66,7 @@ export type CoachMicro =
   | "posture-reset"
   | "scan";
 export type CoachIdle = Exclude<CoachMicro, "">;
-export type CoachIdlePool = readonly [CoachIdle, CoachIdle, CoachIdle, CoachIdle];
+export type CoachIdlePool = readonly CoachIdle[];
 export type CoachMotionProfile = {
   id: string;
   amplitude: number;

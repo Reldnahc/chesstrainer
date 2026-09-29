@@ -285,6 +285,11 @@ export function coachPerformance(
     ...styles[direction.style],
     ...direction.pools,
   };
+  // Baseline eye activity is independently due, never dependent on winning a
+  // random draw. A quiet body track keeps every repertoire live during cooldowns.
+  for (const state of Object.keys(pools) as CoachExpression[]) {
+    pools[state] = [...new Set([...pools[state], "blink", "breathe"] as const)];
+  }
   return {
     ...base,
     defaultIdle: pools.neutral,

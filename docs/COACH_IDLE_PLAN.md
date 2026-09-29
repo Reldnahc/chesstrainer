@@ -1,9 +1,18 @@
 # Coach idle revamp — implementation plan
 
-Status: ready for implementation after three review rounds against the current
-code; no remaining actionable contradictions found. This document does not
-implement animations.
+Status: implementation in progress; Milestone 1 is complete. Next: resting faces.
+The plan passed three design-review rounds before implementation.
 Branch: `codex/coach-idle-revamp`, created from local `main` at `fa9dc64`.
+
+Owner addition: give generically labeled coaches personalized display names while
+preserving existing distinctive titles and stable account IDs. Completed in
+`fee508e`; naming/picker/bookmark coverage passed on desktop and mobile.
+
+Milestone 1: implemented the channel coordinator, canonical timings, independent
+blinking, rig capabilities, memoized artwork and variable-size studio gallery.
+84 focused desktop/mobile checks, production build, API/type agreement and diff
+checks passed. Independent review's unsupported-preview issue was fixed. Details
+and the Windows test-server workaround are recorded in `VERIFICATION.md`.
 
 ## Intended experience
 

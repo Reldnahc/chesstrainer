@@ -35,12 +35,13 @@ const names = {
   mushroom: "Button",
   "living-pawn": "Percy",
 };
+type NamedCoach = { id: string; name: string; family: { name: string; coachId: string } };
 
 test("personal names remain unique and share stable catalogue identities", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
   const frontend = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
-  const roster = await page.evaluate(async root => {
+  const roster: { coaches: NamedCoach[]; defaultId: string; retired: { id: string; name: string }[] } = await page.evaluate(async root => {
     const { selectableCoaches, getCoach } = await import(`${root}/src/coach/registry.ts`);
     return {
       coaches: selectableCoaches.map((coach: {
