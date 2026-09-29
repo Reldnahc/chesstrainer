@@ -1,6 +1,6 @@
 import logging
 
-from sqlalchemy import func, select
+from sqlalchemy import and_, func, or_, select
 
 from trainer.chess_core import Candidate, legal_move, legal_move_options, valid_board
 from trainer.explanations import explain_review, replay_line
@@ -13,6 +13,7 @@ from trainer.models import (
     ExerciseAnswer,
     Game,
     OpeningCard,
+    OpeningRecallSnapshot,
     Review,
     ReviewSession,
     SRSState,
@@ -25,6 +26,24 @@ from trainer.retirement import require_active_review, retire_if_ready
 from trainer.scheduling import behavior_rating, utc
 
 log = logging.getLogger(__name__)
+
+
+def _with_current_opening_authority(statement):
+    """Keep saved stale sessions out of queue and start lookups without loading them."""
+    return (
+        statement.outerjoin(OpeningCard, OpeningCard.exercise_id == Exercise.id)
+        .outerjoin(OpeningRecallSnapshot, OpeningRecallSnapshot.session_id == ReviewSession.id)
+        .where(
+            or_(
+                Exercise.source != "opening",
+                and_(
+                    OpeningCard.active.is_(True),
+                    OpeningCard.revision == OpeningRecallSnapshot.answer_revision,
+                    SRSState.eligible.is_(True),
+                ),
+            )
+        )
+    )
 
 
 def explanation_brief(db, session_id, attempt_id=None, solution=False, include_reply=False):
@@ -50,10 +69,12 @@ def queue(db, last_id=None, limit=30):
             .order_by(Review.created_at.desc(), Review.id)
             .limit(1)
         )
-    active_sessions = db.scalars(
-        select(ReviewSession)
-        .join(SRSState, SRSState.exercise_id == ReviewSession.exercise_id)
-        .join(Exercise, Exercise.id == ReviewSession.exercise_id)
+    active_states = db.scalars(
+        _with_current_opening_authority(
+            select(SRSState)
+            .join(ReviewSession, ReviewSession.exercise_id == SRSState.exercise_id)
+            .join(Exercise, Exercise.id == ReviewSession.exercise_id)
+        )
         .where(
             Exercise.source != "repertoire",
             SRSState.eligible.is_(True),
@@ -64,15 +85,9 @@ def queue(db, last_id=None, limit=30):
         )
         .order_by(ReviewSession.started_at.desc())
     ).all()
-    active_ids = [
-        session.exercise_id
-        for session in active_sessions
-        if db.get(Exercise, session.exercise_id).source != "opening"
-        or (
-            (snapshot := opening_recall.get_snapshot(db, session)) is not None
-            and opening_recall.current(db, session, snapshot)
-        )
-    ]
+    # Stale snapshots are retained for resuming saved attempts, but must not add
+    # work to every queue read. Filter their authority in SQL before loading rows.
+    active_by_id = {state.exercise_id: state for state in active_states}
     states = db.scalars(
         select(SRSState)
         .join(Exercise, Exercise.id == SRSState.exercise_id)
@@ -86,10 +101,10 @@ def queue(db, last_id=None, limit=30):
     ).all()
     # A failed first attempt already moved the due date. Reload must still resume
     # its unfinished session, rather than abandoning the learner's opportunity to retry.
-    states = [db.get(SRSState, key) for key in dict.fromkeys(active_ids)] + [
-        state for state in states if state.exercise_id not in active_ids
+    states = list(active_by_id.values()) + [
+        state for state in states if state.exercise_id not in active_by_id
     ]
-    if len(states) > 1 and states[0].exercise_id == last_id and last_id not in active_ids:
+    if len(states) > 1 and states[0].exercise_id == last_id and last_id not in active_by_id:
         states.append(states.pop(0))
     # The cold queue intentionally exposes no source, skill, answer, score or explanation.
     return [
@@ -106,8 +121,12 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
     if focus_skill_id is not None:
         require_focus(db, exercise, focus_skill_id)
     mode = "focus" if focus_skill_id is not None else "review"
-    candidates = db.scalars(
-        select(ReviewSession)
+    existing = db.scalar(
+        _with_current_opening_authority(
+            select(ReviewSession)
+            .join(Exercise, Exercise.id == ReviewSession.exercise_id)
+            .join(SRSState, SRSState.exercise_id == ReviewSession.exercise_id)
+        )
         .where(
             ReviewSession.exercise_id == exercise_id,
             ReviewSession.completed.is_(False),
@@ -116,18 +135,7 @@ def start_review(db, exercise_id, *, focus_skill_id=None):
             ReviewSession.focus_skill_id == focus_skill_id,
         )
         .order_by(ReviewSession.started_at.desc())
-    ).all()
-    existing = next(
-        (
-            candidate
-            for candidate in candidates
-            if exercise.source != "opening"
-            or (
-                (snapshot := opening_recall.get_snapshot(db, candidate)) is not None
-                and opening_recall.current(db, candidate, snapshot)
-            )
-        ),
-        None,
+        .limit(1)
     )
     resuming = existing is not None
     if existing is None:

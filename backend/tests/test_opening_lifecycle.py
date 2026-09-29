@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 import chess
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import select
+from sqlalchemy import event, select
 from test_opening_journey import (
     app_for,
     enroll_catalogue,
@@ -29,7 +29,7 @@ from trainer.models import (
     SRSState,
     now,
 )
-from trainer.opening_studies import recall, service, sources
+from trainer.opening_studies import projection, recall, service, sources
 from trainer.retirement import retire_existing, retire_if_ready
 from trainer.scheduling import FSRSScheduler, utc
 from trainer.study_lessons.content import CourseDefinition
@@ -179,6 +179,118 @@ def test_failed_current_attempt_counts_as_due_in_study_library(settings):
             response_json(client.get(f"/api/opening-studies/{study['id']}"))["due_positions"] == 1
         )
         assert response_json(client.get("/api/review/count"))["due"] == 1
+
+
+@pytest.mark.parametrize("stale_sessions", [1, 25])
+def test_queue_filters_stale_opening_sessions_without_per_session_queries(
+    settings, sessions, stale_sessions
+):
+    provider = FixtureCourses(
+        [
+            {
+                "id": "a",
+                "title": "Three opening decisions",
+                "repertoire": True,
+                "moves": ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4"],
+            }
+        ]
+    )
+    with sessions() as db:
+        enrolled = course_enroll(db, settings, provider, "a")
+        study = db.get(OpeningStudy, enrolled["id"])
+        exercise_ids = list(
+            db.scalars(
+                select(OpeningStudyMove.exercise_id)
+                .where(OpeningStudyMove.study_id == study.id)
+                .order_by(OpeningStudyMove.ordinal)
+            )
+        )
+        stale_id, active_id, due_id = exercise_ids
+        for _ in range(stale_sessions):
+            reviews.start_review(db, stale_id)
+            projection.set_active(db, study, False)
+            projection.set_active(db, study, True)
+            db.commit()
+        reviews.start_review(db, active_id)
+        for exercise_id in (stale_id, active_id):
+            db.get(SRSState, exercise_id).due = now() + timedelta(days=1)
+        db.commit()
+        engine = db.get_bind()
+
+    statements = []
+
+    def count_statement(*args):
+        statements.append(args[2])
+
+    event.listen(engine, "before_cursor_execute", count_statement)
+    try:
+        with sessions() as db:
+            queue = reviews.queue(db, limit=None)
+        assert [item["exercise_id"] for item in queue] == [active_id, due_id]
+        assert len(statements) == 3
+        statements.clear()
+        with sessions() as db:
+            limited = reviews.queue(db, limit=1)
+        assert limited == queue[:1]
+        assert len(statements) == 3
+    finally:
+        event.remove(engine, "before_cursor_execute", count_statement)
+
+
+def test_start_skips_stale_sessions_in_one_query_and_reuses_most_recent_current_session(
+    settings, sessions
+):
+    provider = FixtureCourses(
+        [{"id": "a", "title": "One decision", "repertoire": True, "moves": ["e2e4"]}]
+    )
+    with sessions() as db:
+        enrolled = course_enroll(db, settings, provider, "a")
+        study = db.get(OpeningStudy, enrolled["id"])
+        exercise_id = db.scalar(select(OpeningStudyMove.exercise_id))
+        stale_ids = set()
+        for _ in range(25):
+            stale_ids.add(reviews.start_review(db, exercise_id)["session_id"])
+            projection.set_active(db, study, False)
+            projection.set_active(db, study, True)
+            db.commit()
+        engine = db.get_bind()
+
+    statements = []
+
+    def count_statement(*args):
+        statements.append(args[2])
+
+    event.listen(engine, "before_cursor_execute", count_statement)
+    try:
+        with sessions() as db:
+            fresh = reviews.start_review(db, exercise_id)
+        assert fresh["session_id"] not in stale_ids
+        # Includes the new session/snapshot inserts and ownership validation.
+        assert len(statements) < 25
+    finally:
+        event.remove(engine, "before_cursor_execute", count_statement)
+
+    with sessions() as db:
+        current = db.get(ReviewSession, fresh["session_id"])
+        latest = ReviewSession(
+            exercise_id=exercise_id, started_at=current.started_at + timedelta(seconds=1)
+        )
+        db.add(latest)
+        db.flush()
+        recall.snapshot_session(db, latest, db.get(Exercise, exercise_id))
+        db.commit()
+        latest_id = latest.id
+
+    statements.clear()
+    event.listen(engine, "before_cursor_execute", count_statement)
+    try:
+        with sessions() as db:
+            resumed = reviews.start_review(db, exercise_id)
+        assert resumed["session_id"] == latest_id
+        assert resumed["review_reason"] == "resume"
+        assert len(statements) < 10
+    finally:
+        event.remove(engine, "before_cursor_execute", count_statement)
 
 
 def retire_card(app, exercise_id):
