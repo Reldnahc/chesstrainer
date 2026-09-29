@@ -37,6 +37,11 @@ for (const character of characters) {
     page.on("request", (request) => {
       if (request.url().includes("/api/")) apiRequests.push(request.url());
     });
+    // Drive the dwell and settle timers explicitly: on a loaded CI worker a
+    // wall-clock reaction can finish before its assertion reaches the browser.
+    await page.clock.install();
+    await page.clock.pauseAt(new Date());
+    await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto(`/?coach=${character.id}&expression=brilliant`);
     const concepts = page.locator(".studio-concepts .coach-avatar");
     const first = concepts.first();
@@ -47,12 +52,15 @@ for (const character of characters) {
       page.getByText("Available in Settings", { exact: true }),
     ).toHaveCount(character.families.length);
     await first.scrollIntoViewIfNeeded();
+    await expect(first).toBeInViewport();
+    await page.clock.runFor(110);
     await expect(first).toHaveAttribute("data-phase", "reaction");
     await expect
       .poll(() =>
         first.evaluate((el) => el.getAnimations({ subtree: true }).length),
       )
       .toBeGreaterThan(0);
+    await page.clock.runFor(2000);
     await expect(first).toHaveAttribute("data-phase", "rest");
     await page.locator(".studio-concepts").screenshot({
       path: `studio-test-results/studies-${character.id}-brilliant-${info.project.name}.png`,
@@ -68,6 +76,7 @@ for (const character of characters) {
       await page
         .getByRole("combobox", { name: "Expression", exact: true })
         .selectOption(expression);
+      await page.clock.runFor(expression === "thinking" ? 420 : 110);
       for (const avatar of await concepts.all())
         await expect(avatar).toHaveAttribute("data-expression", expression);
       expect(await geometry()).toEqual(before);
@@ -76,7 +85,10 @@ for (const character of characters) {
       .getByRole("combobox", { name: "Expression", exact: true })
       .selectOption("blunder");
     await first.scrollIntoViewIfNeeded();
+    await expect(first).toBeInViewport();
+    await page.clock.runFor(110);
     await expect(first).toHaveAttribute("data-phase", "reaction");
+    await page.clock.runFor(2000);
     await expect(first).toHaveAttribute("data-phase", "rest");
     await page.locator(".studio-concepts").screenshot({
       path: `studio-test-results/studies-${character.id}-blunder-${info.project.name}.png`,
@@ -113,9 +125,18 @@ for (const character of characters) {
         await page
           .getByRole("combobox", { name: "Expression", exact: true })
           .selectOption(state);
+        // Commit the selected expression first, so its pending dwell cannot
+        // satisfy the separate replay's new-take assertion below.
+        await page.clock.runFor(110);
+        const take = Number(await portrait.getAttribute("data-take"));
         await page
           .getByRole("button", { name: "Replay reaction", exact: true })
           .click();
+        // Replay must reveal the selected portrait, including collections
+        // farther down the stacked mobile layout, before the dwell completes.
+        await expect(portrait).toBeInViewport();
+        await page.clock.runFor(110);
+        await expect(portrait).toHaveAttribute("data-take", String(take + 1));
         await expect(portrait).toHaveAttribute("data-phase", "reaction");
         await expect(portrait).toHaveAttribute("data-expression", state);
         await expect
@@ -142,6 +163,8 @@ for (const character of characters) {
             ),
           ).toBe(false);
         }
+        await page.clock.runFor(2000);
+        await expect(portrait).toHaveAttribute("data-phase", "rest");
       }
     }
 
@@ -156,12 +179,15 @@ for (const character of characters) {
       .click();
     const chosen = concepts.last();
     await chosen.scrollIntoViewIfNeeded();
+    await expect(chosen).toBeInViewport();
+    await page.clock.runFor(110);
     await expect(chosen).toHaveAttribute("data-micro", idle!);
     await expect
       .poll(() =>
         chosen.evaluate((el) => el.getAnimations({ subtree: true }).length),
       )
       .toBeGreaterThan(0);
+    await page.clock.runFor(1200);
     await expect(chosen).toHaveAttribute("data-micro", "");
 
     await page.emulateMedia({ reducedMotion: "reduce" });

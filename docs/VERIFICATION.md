@@ -2,6 +2,54 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Study merge review — September 29, 2026
+
+A second independent code-health pass found no additional production defects in
+legality and immutable snapshots, opening recall/FSRS, frontend request/playback
+lifecycle, account isolation, or installation/migrations. The reviewed production
+code is `9ec3003`; the preceding full backend run (**806 passed, 3 opt-in Maia
+skips**) and account run (**8 passed**) apply unchanged.
+
+The old branch CI exposed a timing race in a coach-studio test: under load, the
+brief reaction could finish before its assertion ran. The test now drives the
+existing dwell/settle timers with Playwright's clock. It still verifies a new
+replay take, visible portrait, active browser animations, expression identity,
+return to rest, idle completion and reduced motion. Application timings and
+artwork are unchanged; no assertions were removed.
+
+Additional verification from this pass:
+
+- The corrected coach-study cases passed on **all eight desktop/mobile
+  combinations** within the full studio run, using
+  `npx.cmd playwright test --config ../.tools/playwright.coach.study-phase5.config.ts --output=studio-test-results-final-review-verified --reporter=line`.
+  This temporary override changes only the server port/cache to preserve the
+  owner's running studio on 5174. The final complete-suite result is recorded
+  with PR #2's verification; merge requires that run and final-head CI to pass.
+- From `frontend`, `npx.cmd playwright test --reporter=line`: **295 passed,
+  3 intentional viewport skips**, in 6.6 minutes, with native Stockfish configured.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts --output=intelligence-test-results-final-review --reporter=line`:
+  **44 passed**, no skips. Completed artifacts were moved to ignored
+  `data/verification/study-merge-intelligence-results`.
+- `npm.cmd run build`: passed, including generated API agreement, application
+  and browser-test types, source archive and production Vite build.
+- `.venv/Scripts/python.exe -m ruff check backend scripts migrations`,
+  `.venv/Scripts/python.exe -m ruff format --check backend scripts migrations`,
+  `.venv/Scripts/python.exe scripts/export_api_contract.py --check`, and
+  `git diff --check`: passed (**278 formatted files**).
+- Independent reviewers also ran overlapping focused suites: **116 legality,
+  lesson and puzzle tests**, **83 opening/recall tests**, and **25 contract,
+  installation and account-boundary tests**, all passing. An independent
+  143,360-input legal-move comparison found only the intended rejection of bogus
+  castling promotion suffixes.
+- A disposable database upgrade from main's `49e862bc710a` revision preserved
+  seeded exercise, review and SRS rows, added all ten Study tables, and passed
+  foreign-key and model-schema checks.
+
+The existing trusted-provider revision-reuse limitation remains documented in
+[Study](STUDY.md); it does not affect saved attempts or account isolation. Native
+Maia was not rerun in this code-health pass. GitHub Actions supplies the fresh
+Linux backend/account and Docker installation checks for the final PR head.
+
 ## Study code-health review — September 29, 2026
 
 Reviewed the Study branch's lesson/puzzle state machines, opening recall,
