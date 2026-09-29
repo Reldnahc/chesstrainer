@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { ChevronRight, Flag } from "lucide-react";
 import { api, read, type Schema } from "./api";
 import PageTitle from "./PageTitle";
+import Button from "./Button";
+import ActionLink from "./ActionLink";
+import { studyPaths } from "./navigation";
 
 export default function WeaknessScreen({
   onEvidence,
-  onPractice,
   fail,
 }: {
   onEvidence: (id: string) => void;
-  onPractice: (id: string) => void;
   fail: (e: unknown) => void;
 }) {
   const [data, setData] = useState<Schema["Weaknesses"] | null>(null);
@@ -96,23 +97,20 @@ export default function WeaknessScreen({
                             </summary>
                             <div className="evidence-links">
                               {skill.decision_ids.map((id, index) => (
-                                <button key={id} onClick={() => onEvidence(id)}>
+                                <Button size="compact" key={id} onClick={() => onEvidence(id)}>
                                   Example {index + 1}
                                   <ChevronRight size={15} />
-                                </button>
+                                </Button>
                               ))}
                             </div>
                           </details>
                         </div>
-                        <button
-                          className="secondary"
-                          disabled={!skill.practice_positions}
-                          onClick={() => onPractice(skill.skill_id)}
+                        {skill.practice_positions ? <ActionLink
+                          variant="secondary"
+                          href={`${studyPaths.due}?focus=${encodeURIComponent(skill.skill_id)}`}
                         >
-                          {skill.practice_positions
-                            ? `Practice ${skill.practice_positions} positions`
-                            : "No active positions"}
-                        </button>
+                          Practice {skill.practice_positions} positions
+                        </ActionLink> : <Button variant="secondary" disabled>No active positions</Button>}
                       </div>
                     ))}
                   </div>

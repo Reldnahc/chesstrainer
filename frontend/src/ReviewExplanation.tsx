@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
 import ReviewCoach from "./ReviewCoach";
+import Button from "./Button";
 import { explanationIntent } from "./dialogue/practiceIntent";
 import { claim, makeIntent } from "./dialogue/model";
 import { useDialogue } from "./dialogue/useDialogue";
@@ -84,10 +85,10 @@ export default function ReviewExplanation({
       });
   }, [frame, onFrame, finding, index]);
   const returnControl = (
-    <button ref={back} className="secondary" onClick={onClose}>
+    <Button ref={back} size="compact" variant="secondary" onClick={onClose}>
       <ArrowLeft size={17} />
       {completed ? "Back to review" : "Back to attempt"}
-    </button>
+    </Button>
   );
   const title = !data
     ? "Move explanation"
@@ -146,9 +147,9 @@ export default function ReviewExplanation({
             {!!data.findings?.length && (
               <div className="button-row pattern-tools">
                 {data.findings.map((item, i) => (
-                  <button
+                  <Button
                     key={`${item.skill_id}-${i}`}
-                    className="text-button"
+                    variant="quiet"
                     aria-pressed={
                       selectedFinding === i && index === item.frame_ply
                     }
@@ -161,7 +162,7 @@ export default function ReviewExplanation({
                     {item.skill_id === "missed_tactical_capture"
                       ? "undefended capture"
                       : item.skill_id.replaceAll("_", " ")}
-                  </button>
+                  </Button>
                 ))}
               </div>
             )}

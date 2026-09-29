@@ -12,16 +12,15 @@ import { claim, makeIntent } from "../dialogue/model";
 import { useDialogue } from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
 import OpeningRecallPanel from "./OpeningRecallPanel";
-import Link from "../Link";
-import { studyPaths } from "../navigation";
+import ActionLink from "../ActionLink";
+import Button from "../Button";
+import { pagePaths, studyPaths } from "../navigation";
 
 type ReviewPanelProps = {
   session: ReviewSession;
   playback: ReviewPlayback;
   feedbackLabel: string | null;
   focusSkill: string | null;
-  onExitFocus: () => void;
-  onImport: () => void;
   onEvidence: (id: string) => void;
 };
 
@@ -36,8 +35,6 @@ function GameRecallPanel({
   playback,
   feedbackLabel,
   focusSkill,
-  onExitFocus,
-  onImport,
   onEvidence,
 }: ReviewPanelProps) {
   const { position, feedback, busy, done, next, show } = session;
@@ -92,14 +89,14 @@ function GameRecallPanel({
                 ? "Your next reviews are scheduled. Come back when they’re due, or add more study material."
                 : "Choose opening lines to remember, or import games to practice decisions from your own play."}
           </p>
-          {!focusSkill && <Link className="button-link primary" href={studyPaths.openings}>Study openings <ArrowRight size={17} /></Link>}
-          <button
-            className={focusSkill ? "primary" : "secondary"}
-            onClick={focusSkill ? onExitFocus : onImport}
+          {!focusSkill && <ActionLink variant="primary" href={studyPaths.openings}>Study openings <ArrowRight size={17} /></ActionLink>}
+          <ActionLink
+            variant={focusSkill ? "primary" : "secondary"}
+            href={focusSkill ? studyPaths.due : pagePaths.Settings}
           >
             {focusSkill ? "Return to mixed review" : "Import games"}{" "}
             <ArrowRight size={17} />
-          </button>
+          </ActionLink>
           <div className="aside-note">
             <ShieldCheck size={19} />
             <p>
@@ -133,34 +130,37 @@ function GameRecallPanel({
             actions={
               <>
                 {feedback?.completed ? (
-                  <button
-                    className="primary"
+                  <Button
+                    size="compact"
+                    variant="primary"
                     disabled={busy}
                     onClick={next}
                   >
                     Next position <ArrowRight size={17} />
-                  </button>
+                  </Button>
                 ) : preview ? (
-                  <button className="primary" onClick={retry}>
+                  <Button size="compact" variant="primary" onClick={retry}>
                     Try again
-                  </button>
+                  </Button>
                 ) : (
-                  <button
-                    className="secondary"
+                  <Button
+                    size="compact"
+                    variant="secondary"
                     disabled={busy}
                     onClick={show}
                   >
                     Reveal move
-                  </button>
+                  </Button>
                 )}
-                <button
+                <Button
+                  size="compact"
                   ref={explanationOpener}
-                  className="secondary"
+                  variant="secondary"
                   disabled={busy || !(feedback || position.last_attempt_id)}
                   onClick={openExplanation}
                 >
                   {feedback?.completed ? "Show why" : "Show me why"}
-                </button>
+                </Button>
               </>
             }
           >
@@ -216,9 +216,9 @@ function GameRecallPanel({
               <p className="small practice-note">
                 Focused practice. Your review schedule is unchanged.
               </p>
-              <button className="text-button" onClick={onExitFocus}>
+              <ActionLink variant="quiet" href={studyPaths.due}>
                 Return to mixed review
-              </button>
+              </ActionLink>
             </>
           )}
           <ReviewDetails

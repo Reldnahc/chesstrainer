@@ -1,0 +1,74 @@
+/* Shared application actions; containers own placement and available width. */
+.action-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #44484f;
+  border-radius: 6px;
+  background: var(--raised);
+  color: #e8eaee;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.action-control.action-control--ordinary {
+  min-height: 42px;
+  gap: 9px;
+  padding: 10px 16px;
+  font-size: 13px;
+}
+.action-control.action-control--compact {
+  min-height: 36px;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.action-control > svg { flex-shrink: 0; }
+.action-control:hover {
+  background: #30343a;
+  border-color: #69707c;
+}
+.action-control.action-control--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #191a1c;
+  font-weight: 600;
+}
+.action-control.action-control--primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.action-control.action-control--secondary { background: transparent; }
+.action-control.action-control--secondary:hover { background: #30343a; }
+.action-control.action-control--quiet {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+  justify-content: flex-start;
+  padding-inline: 0;
+}
+.action-control.action-control--quiet:hover {
+  background: transparent;
+  border-color: transparent;
+  color: #fff;
+}
+.action-control.action-control--icon {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  justify-content: center;
+}
+.action-control--icon.action-control--compact { width: 36px; height: 36px; }
+.action-control:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.action-control[hidden] { display: none; }
+@media (max-width: 760px) {
+  .action-control.action-control--ordinary,
+  .action-control.action-control--compact { min-height: 44px; }
+  .action-control.action-control--icon { width: 44px; height: 44px; }
+}

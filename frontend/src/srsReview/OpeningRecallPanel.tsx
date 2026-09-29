@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import ReviewCoach from "../ReviewCoach";
+import Button from "../Button";
 import MoveStatus from "../MoveStatus";
 import type { CoachExpression } from "../coach/model";
 import type { ReviewSession } from "./useReviewSession";
@@ -29,8 +30,8 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
       reaction={{ state: expression, key: `${position.session_id}:${feedback?.attempt_id ?? "cold"}:${expression}` }}
       portraitCaption={<span>{opening.color === "white" ? "White" : "Black"} repertoire</span>}
       actions={completed
-        ? <button className="primary" disabled={busy} onClick={next}>Next position <ArrowRight size={17} /></button>
-        : <button className="secondary" disabled={busy} onClick={show}>Reveal move</button>}
+        ? <Button size="compact" variant="primary" disabled={busy} onClick={next}>Next position <ArrowRight size={17} /></Button>
+        : <Button size="compact" variant="secondary" disabled={busy} onClick={show}>Reveal move</Button>}
     >
       <p className="opening-recall-names"><BookOpen size={14} aria-hidden="true" /> <strong>{opening.names.join(" · ")}</strong></p>
       <MoveStatus busy={busy} failed={failed && !completed} text={message} />

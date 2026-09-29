@@ -1,6 +1,7 @@
+import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
-import Link from "./Link";
+import ActionLink from "./ActionLink";
 import { pagePaths } from "./navigation";
 
 type Sync = Schema["SyncStatus"];
@@ -27,7 +28,7 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
     <label>Username
       <input aria-label={`Remembered ${provider.name} username`} disabled={!status || busy} value={name} onChange={event => { edited.current = true; setName(event.target.value); }} maxLength={50} pattern="[A-Za-z0-9_-]*" autoComplete="off" placeholder={`Your ${provider.name} username`} />
     </label>
-    <button disabled={!status || busy}>Save username</button>
+    <Button type="submit" disabled={!status || busy}>Save username</Button>
   </form>;
   return <section className="panel game-sync" aria-label={`Recent ${provider.name} games`}>
     <h3>{provider.name}</h3>
@@ -41,7 +42,7 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
     </> : form}
     {status?.username && <p role="status">{running(status) ? `Checking ${provider.name}…` : status.status === "completed" ? `Last sync: ${status.imported} new ${status.imported === 1 ? "game" : "games"}` : "Ready to check for new games"}</p>}
     {status?.error && <p role="alert" className="notice error">{status.error}</p>}
-    {onImportOlderGames && <div className="connection-actions"><button className="secondary" onClick={() => onImportOlderGames(provider.id)}>Import older games</button></div>}
+    {onImportOlderGames && <div className="connection-actions"><Button variant="secondary" onClick={() => onImportOlderGames(provider.id)}>Import older games</Button></div>}
   </section>;
 }
 
@@ -136,9 +137,9 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
   }
   const connected = Object.values(statuses).some(value => value.username);
   const checking = Object.values(statuses).some(running);
-  const button = <button className="secondary" disabled={loading || busy || checking} onClick={refresh}>{busy || checking ? "Updating…" : "Update games"}</button>;
+  const button = <Button variant="secondary" disabled={loading || busy || checking} onClick={refresh}>{busy || checking ? "Updating…" : "Update games"}</Button>;
   if (compact) return <div className="game-sync-compact">
-    {!loading && !connected ? <Link className="button-link secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</Link> : button}
+    {!loading && !connected ? <ActionLink variant="secondary" href={pagePaths.Settings} title="Set up game imports in Settings">Update games</ActionLink> : button}
     {(error || Object.values(statuses).find(value => value.error)?.error) && <span role="alert" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</span>}
   </div>;
   return <section aria-label="Connected game accounts">

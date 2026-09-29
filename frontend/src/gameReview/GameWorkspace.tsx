@@ -3,7 +3,8 @@ import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
 import EvaluationGraph from "../EvaluationGraph";
 import { scoreText, strength } from "../evaluation";
-import Link from "../Link";
+import ActionLink from "../ActionLink";
+import Button from "../Button";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
@@ -99,10 +100,10 @@ export default function GameWorkspace({
   if (!game)
     return (
       <>
-        <Link className="button-link text-button" href={libraryHref}>
+        <ActionLink variant="quiet" href={libraryHref}>
           <ArrowLeft size={16} />
           All games
-        </Link>
+        </ActionLink>
         <p role={error ? "alert" : "status"}>{error || "Opening game…"}</p>
       </>
     );
@@ -117,7 +118,7 @@ export default function GameWorkspace({
       {error && (
         <p className="notice error" role="alert">
           {error}
-          <button onClick={dismissError}>Dismiss</button>
+          <Button onClick={dismissError}>Dismiss</Button>
         </p>
       )}
       <ReviewWorkspace

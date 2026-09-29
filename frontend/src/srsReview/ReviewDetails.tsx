@@ -1,4 +1,5 @@
 import { ChevronRight, CircleCheck } from "lucide-react";
+import Button from "../Button";
 import type { ColdPosition, Feedback } from "../api";
 
 export default function ReviewDetails({
@@ -54,12 +55,12 @@ export default function ReviewDetails({
             </p>
           )}
           {feedback.decision_id && (
-            <button
-              className="text-button"
+            <Button
+              variant="quiet"
               onClick={() => onEvidence(feedback.decision_id!)}
             >
               See the evidence <ChevronRight size={16} />
-            </button>
+            </Button>
           )}
         </>
       ) : (

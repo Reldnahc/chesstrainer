@@ -62,6 +62,7 @@ not React components.
 | Internal destination links | [Link](../frontend/src/Link.tsx), [navigation](../frontend/src/navigation.ts) | Normal anchors, modifier/new-tab clicks, history and scroll restoration. Do not implement another click-to-navigate wrapper. |
 | URL section navigation | [SectionNavigation](../frontend/src/SectionNavigation.tsx), [section-navigation.css](../frontend/src/section-navigation.css) | Settings and Openings share the framed tray and selected style. Callers supply destinations, selected ID and accessible name; account/course filtering remains caller-owned. |
 | Local single choice | [ChoiceGroup](../frontend/src/ChoiceGroup.tsx), [choice-group.css](../frontend/src/choice-group.css) | PGN source and Studio filters share rectangular pressed buttons. Controlled value/options/callback; no route or tab semantics. Caller owns input clearing and filtering. |
+| Commands and button-styled destinations | [Button / IconButton](../frontend/src/Button.tsx), [ActionLink](../frontend/src/ActionLink.tsx), [action-controls.css](../frontend/src/action-controls.css) | Ordinary/compact sizing, primary/secondary/quiet variants, square labelled icons and 44px phone targets. Button defaults to type=button; forms must request submit. ActionLink retains Link semantics. Native disabled and aria-disabled stay independent. Containers own width/placement. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
@@ -81,7 +82,7 @@ not React components.
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
 | Lesson source attribution | [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Course and illustrative-game citations, including optional license and external URL. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. |
-| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Button/link variants, native inputs, typography, panels, notices and action rows are currently CSS reuse. **There is no shared React Button, Pagination, EmptyState or Modal component yet.** |
+| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels, notices and action rows retain CSS foundations. Ordinary actions use Button/ActionLink. **There is no shared React Pagination, EmptyState or Modal component yet.** |
 
 ## Audit baseline and coverage
 
@@ -124,7 +125,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | --- | --- | --- | --- |
 | UI-01 | Promote the Settings section-navigation tray (A). | Complete | `SectionNavigation` serves Settings and Openings; URL history and account/course filtering are preserved. |
 | UI-02 | Promote the application's PGN rectangular choice buttons (A). | Complete | `ChoiceGroup` serves PGN source and Studio filters, preserving pressed-button semantics and caller-owned clearing/filtering. |
-| UI-03 | One shared button family with ordinary, compact and icon-only sizes, plus primary, secondary and purple return styles. | Planned | Owner accepted the explanation after initially marking this unclear. Keep links for destinations and buttons for commands; common sizing rules do not require identical widths for every button. |
+| UI-03 | One shared button family with ordinary, compact and icon-only sizes, plus primary, secondary and purple return styles. | Complete | Button, IconButton and ActionLink serve ordinary application actions and actual-size Studio coach actions. Purple appearance is consolidated separately in UI-04. Specialized choices/notation/playback remain distinct. |
 | UI-04 | Promote Game Review's purple return action (A). | Planned | Share the appearance; preserve each mode's return label, handler and variation/branch behavior. |
 | UI-05 | Promote lesson/opening playback geometry (C/D). | Planned | This choice stands. Preserve Game Review first/last/flip actions, ply zero, variation exit, stable counter width and keyboard shortcuts; retain lessons' focus-preserving pending-command behavior. |
 | UI-06 | Promote catalogue pagination labels and layout (B). | Planned | Preserve each screen's page size, range/count calculation and empty-page recovery. |
@@ -168,6 +169,19 @@ from Git; no live decision-gathering tool is needed.
   account filtering and hiding navigation inside courses. Inspected the rendered
   Openings tray in the application. Commit subject: `UI-01: Share Settings and
   Openings section navigation`.
+- **UI-03 — shared action family:** migrated application form, account, import,
+  settings, review, evidence and study actions, removing competing size rules.
+  Destination actions use links; submit buttons are explicit; focus/ref and
+  pending-command semantics remain intact. Independent review caught the Studio
+  board-size preview still using the old generic button; it now uses the same
+  compact action. Production build passed. Initial affected application run:
+  **99 passed, 3 intentional viewport skips, 2 failures** in a new test that omitted
+  a required import username. Corrected action-contract rerun: **7 passed, 1
+  intentional mobile modifier-click skip**. Account suite: **8 passed** after
+  correcting the local harness to use its existing second-device port. Studio
+  action preview: **2 passed**. Existing Settings, provider, review, variation,
+  training and lesson behavior passed; inspected phone Settings rendering.
+  Commit subject: `UI-03: Standardize application buttons and action links`.
 - **UI-02 — shared local choices:** promoted PGN source styling into `ChoiceGroup`
   and removed Studio's separate pill treatment. Production build passed, including
   both standalone CSS guards. Focused PGN and Studio filter checks passed **4

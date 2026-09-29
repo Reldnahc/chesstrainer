@@ -661,7 +661,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(page.getByRole('region', {name: 'Tactical patterns', exact: true})).toBeVisible();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
   const before = (await (await page.request.get('/api/stats')).json()).reviews;
-  await weakness.getByRole('button', {name: /Practice .* positions/}).click();
+  await weakness.getByRole('link', {name: /Practice .* positions/}).click();
   await expect(page).toHaveURL(/\/study\/due\?focus=/);
   const focusedUrl = page.url();
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
@@ -684,13 +684,13 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await page.getByRole('button', {name: 'Back to review', exact: true}).click();
   await expect(board.locator('[data-pattern-square]')).toHaveCount(0);
   expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before);
-  await page.getByRole('button', {name: 'Return to mixed review', exact: true}).click();
+  await page.getByRole('link', {name: 'Return to mixed review', exact: true}).click();
   await expect(page).toHaveURL('/study/due');
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toHaveCount(0);
   await page.goBack();
   await expect(page).toHaveURL(focusedUrl);
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
-  await expect(page.getByRole('button', {name: 'Return to mixed review', exact: true})).toBeVisible();
+  await expect(page.getByRole('link', {name: 'Return to mixed review', exact: true})).toBeVisible();
   await page.goBack();
   await expect(page).toHaveURL('/weaknesses');
   await expect(weakness).toBeVisible();

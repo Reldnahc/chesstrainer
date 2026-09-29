@@ -1,3 +1,4 @@
+import Button from "./Button";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowRight, FileUp, Layers, X } from "lucide-react";
 import {
@@ -163,10 +164,10 @@ export default function ImportSettings({
       <GameSync onChanged={reload} onStatusChange={connectionChanged} onImportOlderGames={selectSource} />
       <div className="pgn-import-launcher">
         <div><h3>Have a PGN file?</h3><p className="small">Import a game or a collection from any chess site.</p></div>
-        <button className="secondary" onClick={() => selectSource("pgn")}><FileUp size={17} />Import PGN</button>
+        <Button variant="secondary" onClick={() => selectSource("pgn")}><FileUp size={17} />Import PGN</Button>
       </div>
       {source && <div className="import-form" ref={formRef} tabIndex={-1}>
-        <div className="import-form-toolbar"><button className="text-button" onClick={() => selectSource(null)}><X size={16} />Close import form</button></div>
+        <div className="import-form-toolbar"><Button variant="quiet" onClick={() => selectSource(null)}><X size={16} />Close import form</Button></div>
         {health?.engine_status === "unavailable" && <div className="notice">{health.engine_error}</div>}
         {source !== "pgn" ? (
           selectedProvider
@@ -192,9 +193,9 @@ export default function ImportSettings({
             <input type="checkbox" checked={analyze} onChange={event => setAnalyze(event.target.checked)} />
             Also analyze these games for training
           </label>
-          <button className="primary" disabled={busy || (pgnMode === "file" ? !file : !text.trim())}>
+          <Button type="submit" variant="primary" disabled={busy || (pgnMode === "file" ? !file : !text.trim())}>
             {busy ? "Importing…" : analyze ? "Import & analyze games" : "Import games"}<ArrowRight size={17} />
-          </button>
+          </Button>
           {result && <div role="status" className="notice">
             <span>{result.imported} imported · {result.duplicates} duplicate(s).
               {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
@@ -207,9 +208,9 @@ export default function ImportSettings({
       {activity.length === 0 && <div className="import-empty"><Layers size={22} /><div><strong>No activity yet</strong><p className="small">Imports and analysis progress will appear here.</p></div></div>}
       {activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}
       {visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}
-      {hiddenHistoryCount > 0 && <button className="secondary history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
+      {hiddenHistoryCount > 0 && <Button variant="secondary" className="history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
         {showHistory ? "Show recent activity" : `Show older activity (${hiddenHistoryCount})`}
-      </button>}
+      </Button>}
     </SettingsSection>
   </div>;
 }

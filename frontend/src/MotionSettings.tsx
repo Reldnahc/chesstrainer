@@ -1,3 +1,4 @@
+import Button from "./Button";
 import { useState } from "react";
 import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
@@ -18,7 +19,7 @@ function CoachMotionSetting() {
       }} />
     <div className="coach-motion-preference-status" role="status" aria-atomic="true">
       {saving ? "Saving…" : error ? <>
-        {error}{" "}<button className="text-button" onClick={retry}>Reload coach motion preferences</button>
+        {error}{" "}<Button size="compact" variant="quiet" onClick={retry}>Reload coach motion preferences</Button>
       </> : !ready ? "Loading…"
         : saved ? "Saved"
         : preferences.motion === "system" && reduced
@@ -44,7 +45,7 @@ export default function MotionSettings() {
           }} />
         <div className="motion-preference-status" role="status" aria-atomic="true">
           {saving ? "Saving…" : error ? <>
-            {error}{" "}<button className="text-button" onClick={retry}>Reload motion preferences</button>
+            {error}{" "}<Button size="compact" variant="quiet" onClick={retry}>Reload motion preferences</Button>
           </> : !ready ? "Loading…"
             : saved ? "Saved"
             : preferences.motion === "system" && reduced

@@ -14,12 +14,14 @@ import GamesScreen from "./GameReview";
 import SettingsScreen from "./Settings";
 import WeaknessScreen from "./Weaknesses";
 import EvidenceDialog from "./EvidenceDialog";
-import { navigate, pagePaths, studyPaths, useRoute } from "./navigation";
+import { pagePaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
 import PuzzlePlayer from "./study/PuzzlePlayer";
 import LessonPlayer from "./study/LessonPlayer";
 import OpeningLinePreview from "./study/OpeningLinePreview";
 import Link from "./Link";
+import Button, { IconButton } from "./Button";
+import ActionLink from "./ActionLink";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
 import { useCoachPreferences } from "./coach/CoachProvider";
@@ -118,13 +120,13 @@ export default function App() {
         {error && (
           <div role="alert" className="notice error">
             {error}
-            <button
-              className="icon-button"
+            <IconButton
+              variant="quiet"
               aria-label="Dismiss error"
               onClick={() => setError("")}
             >
               <X size={18} />
-            </button>
+            </IconButton>
           </div>
         )}
         {connection ? (
@@ -152,7 +154,7 @@ export default function App() {
                   required
                 />
               </label>
-              <button className="primary">Connect</button>
+              <Button type="submit" variant="primary">Connect</Button>
             </form>
           </section>
         ) : (
@@ -161,10 +163,8 @@ export default function App() {
               <ReviewScreen
                 key={`${refresh}-${route.href}`}
                 focusSkill={focusSkill}
-                onExitFocus={() => navigate(studyPaths.due)}
                 requested={exercise}
                 requestedSession={route.reviewSessionId}
-                onImport={() => navigate(pagePaths.Settings)}
                 fail={fail}
                 onEvidence={setEvidenceId}
               />
@@ -189,11 +189,6 @@ export default function App() {
             )}
             {tab === "Weaknesses" && (
               <WeaknessScreen
-                onPractice={(skill) => {
-                  navigate(
-                    `${studyPaths.due}?focus=${encodeURIComponent(skill)}`,
-                  );
-                }}
                 onEvidence={setEvidenceId}
                 fail={fail}
               />
@@ -205,9 +200,9 @@ export default function App() {
               <section className="panel">
                 <h1>Page not found</h1>
                 <p>This address does not match a page in Fieldwork.</p>
-                <Link className="button-link primary" href={pagePaths.Games}>
+                <ActionLink variant="primary" href={pagePaths.Games}>
                   Go to your games
-                </Link>
+                </ActionLink>
               </section>
             )}
           </>

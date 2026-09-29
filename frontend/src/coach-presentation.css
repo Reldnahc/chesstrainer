@@ -188,15 +188,11 @@
   min-height: 44px;
   min-width: 0;
 }
-.coach-actions > button {
+.coach-actions > button,
+.coach-actions > .action-control {
   flex: 1 1 0;
   min-width: 0;
   max-width: calc((100% - var(--coach-action-gap)) / 2);
-  min-height: 44px;
-  padding: 6px 10px;
-  gap: 6px;
-  font-size: 12px;
-  line-height: 1.2;
 }
 .coach-actions button[aria-pressed="true"] {
   border-color: #b8cfc2;
@@ -264,14 +260,6 @@
   margin-bottom: 12px;
 }
 .human-insight-popover h3 { margin: 0; font-size: 15px; color: #a9d6e1; }
-.human-insight-popover button {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  min-height: 36px;
-  padding: 0;
-  flex: none;
-}
 .human-insight-popover p { margin: 6px 0 0; }
 .human-insight-source {
   display: flex;

@@ -385,10 +385,6 @@ footer > span:last-child {
   .panel {
     padding: 22px;
   }
-  .page-title > button {
-    padding: 9px;
-    font-size: 11px;
-  }
   footer {
     flex-wrap: wrap;
     font-size: 9px;
@@ -440,7 +436,7 @@ footer > span:last-child {
     font-size: 13px;
     line-height: 1.5;
   }
-  .workspace-page button,
+  .workspace-page button:not(.action-control),
   .workspace-page summary {
     min-height: 44px;
   }
@@ -456,7 +452,8 @@ footer > span:last-child {
   .workspace-page label {
     gap: 6px;
   }
-  .workspace-page .form-panel > .primary {
+  .workspace-page .form-panel > .primary,
+  .workspace-page .form-panel > .action-control--primary {
     width: 100%;
   }
   .workspace-page .section-heading {

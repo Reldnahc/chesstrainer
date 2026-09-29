@@ -1,3 +1,4 @@
+import Button from "../Button";
 import { useState } from "react";
 import SettingsSection from "../SettingsSection";
 import { CoachCharacter } from "./CoachAvatar";
@@ -28,9 +29,9 @@ export default function CoachSettings() {
           ) : error ? (
             <>
               {error}{" "}
-              <button className="text-button" onClick={retry}>
+              <Button size="compact" variant="quiet" onClick={retry}>
                 Reload preferences
-              </button>
+              </Button>
             </>
           ) : !ready ? (
             "Loading…"

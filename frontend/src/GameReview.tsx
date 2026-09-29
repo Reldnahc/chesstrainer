@@ -3,7 +3,8 @@ import { api, read } from "./api";
 import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
-import Link from "./Link";
+import ActionLink from "./ActionLink";
+import Button from "./Button";
 import { gamesPath, navigate as navigatePage, pagePaths } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
 
@@ -76,18 +77,18 @@ export default function GamesScreen({
               : "Your next insight starts with a game."}
           </h2>
           {page > 1 ? (
-            <Link className="button-link" href={gamesPath()}>
+            <ActionLink href={gamesPath()}>
               Back to your games
-            </Link>
+            </ActionLink>
           ) : (
             <>
               <p>
                 Import a PGN or your Chess.com games to review both sides with
                 your local coach.
               </p>
-              <Link className="button-link" href={pagePaths.Settings}>
+              <ActionLink href={pagePaths.Settings}>
                 Import games in Settings
-              </Link>
+              </ActionLink>
             </>
           )}
         </section>
@@ -96,21 +97,21 @@ export default function GamesScreen({
       )}
       {total > 30 && items.length > 0 && (
         <div className="game-pagination">
-          <button
+          <Button
             disabled={offset === 0}
             onClick={() => navigatePage(gamesPath(page - 1))}
           >
             Previous games
-          </button>
+          </Button>
           <span>
             {offset + 1}–{Math.min(offset + 30, total)} of {total}
           </span>
-          <button
+          <Button
             disabled={offset + 30 >= total}
             onClick={() => navigatePage(gamesPath(page + 1))}
           >
             More games
-          </button>
+          </Button>
         </div>
       )}
     </>

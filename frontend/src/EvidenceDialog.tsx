@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { api, read, type Evidence, type Schema } from "./api";
 import Board from "./Board";
+import Button, { IconButton } from "./Button";
 export default function EvidenceDialog({
   id,
   onClose,
@@ -44,13 +45,13 @@ export default function EvidenceDialog({
           <div className="eyebrow">VERIFIED GAME EVIDENCE</div>
           <h2>Decision evidence</h2>
         </div>
-        <button
-          className="icon-button"
+        <IconButton
+          variant="quiet"
           onClick={onClose}
           aria-label="Close evidence"
         >
           <X />
-        </button>
+        </IconButton>
       </div>
       {data ? (
         <div className="evidence-grid">
@@ -88,8 +89,8 @@ export default function EvidenceDialog({
                     : "HISTORICAL CLASSIFICATION"}
                 </span>
                 <p>{c.explanation}</p>
-                <button
-                  className="text-button small"
+                <Button
+                  variant="quiet" size="compact"
                   onClick={() =>
                     read(
                       api.GET("/api/classification-runs/{run_id}", {
@@ -101,9 +102,9 @@ export default function EvidenceDialog({
                   }
                 >
                   View classification audit
-                </button>
-                <button
-                  className="text-button small"
+                </Button>
+                <Button
+                  variant="quiet" size="compact"
                   onClick={() =>
                     read(
                       api.POST("/api/classification-runs/{run_id}/reject", {
@@ -122,7 +123,7 @@ export default function EvidenceDialog({
                   }
                 >
                   Reject unsupported classification
-                </button>
+                </Button>
               </div>
             ))}
             {audit && (

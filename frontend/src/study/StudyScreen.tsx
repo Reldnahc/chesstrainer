@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
+import ActionLink from "../ActionLink";
+import Button from "../Button";
 import PageTitle from "../PageTitle";
 import SectionNavigation from "../SectionNavigation";
 import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
@@ -73,18 +75,18 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         <h2>Due now</h2>
         <p>{due ? "Return to decisions worth remembering." : "Your scheduled recalls will appear here when they’re due."}</p>
         <p className="study-count">{due === null ? "—" : due} <span>Scheduled recalls</span></p>
-        <Link className="button-link primary" href={studyPaths.due}>Start studying <ArrowRight size={16} /></Link>
+        <ActionLink variant="primary" href={studyPaths.due}>Start studying <ArrowRight size={16} /></ActionLink>
       </section>
       <section className="panel study-option">
         <BookOpen aria-hidden="true" size={22} /><h2>Openings</h2>
         <p>Learn a line, practice it, and choose what to remember.</p>
         <p className="study-count">{openings?.active_studies ?? "—"} <span>{openings?.active_studies === 1 ? "Active opening line" : "Active opening lines"}</span></p>
-        <Link className="button-link secondary" href={studyPaths.openings}>Explore openings <ArrowRight size={16} /></Link>
+        <ActionLink variant="secondary" href={studyPaths.openings}>Explore openings <ArrowRight size={16} /></ActionLink>
       </section>
       <section className="panel study-option">
         <Puzzle aria-hidden="true" size={22} /><h2>Puzzles</h2>
         <p>{puzzles?.available ? `${puzzles.available} puzzles available for calculation practice.` : "No puzzle collections are installed yet."}</p>
-        <Link className="button-link secondary" href={studyPaths.puzzles}>{puzzles?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></Link>
+        <ActionLink variant="secondary" href={studyPaths.puzzles}>{puzzles?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></ActionLink>
       </section>
     </div>}
     {mode === "openings" && <>
@@ -102,8 +104,8 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         <Puzzle size={28} aria-hidden="true" />
         <h2>{available ? "Calculate the continuation." : "No puzzles available yet."}</h2>
         <p>{available ? "Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls." : "There are no installed puzzle collections for this source. Your scheduled recalls are still available in Due."}</p>
-        {!!available && <button className="primary" disabled={busy} onClick={begin}>{busy ? "Opening puzzle…" : "Start a puzzle"}<ArrowRight size={16} /></button>}
-        {!available && <Link className="button-link secondary" href={studyPaths.due}>Go to Due</Link>}
+        {!!available && <Button variant="primary" disabled={busy} onClick={begin}>{busy ? "Opening puzzle…" : "Start a puzzle"}<ArrowRight size={16} /></Button>}
+        {!available && <ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}
       </section>
       {puzzles && Object.values(puzzles.stats).some(value => value > 0) && <section className="panel"><h2>Your puzzle practice</h2><dl className="study-stats"><div><dt>Solved cleanly</dt><dd>{puzzles.stats.clean}</dd></div><div><dt>Failed, then solved</dt><dd>{puzzles.stats.failed_then_solved}</dd></div><div><dt>Revealed</dt><dd>{puzzles.stats.revealed}</dd></div></dl></section>}
     </>}

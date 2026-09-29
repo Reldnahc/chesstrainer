@@ -1,6 +1,7 @@
 import { CornerUpLeft } from "lucide-react";
 import MoveBadge from "../MoveBadge";
 import ReviewCoach from "../ReviewCoach";
+import Button from "../Button";
 import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
 import type { Game, Position, Report } from "./types";
@@ -100,7 +101,8 @@ export default function PositionCoach({
       }
       actions={
         <>
-          <button
+          <Button
+            size="compact"
             aria-pressed={explaining}
             disabled={!cues && !errorAtPosition}
             onClick={onExplain}
@@ -110,16 +112,17 @@ export default function PositionCoach({
               : explaining
                 ? "Hide why"
                 : "Show why"}
-          </button>
+          </Button>
           {variation && (
-            <button
+            <Button
+              size="compact"
               className="game-return"
               onClick={onReturnToGame}
               title="Return to game (Escape)"
             >
               <CornerUpLeft size={18} />
               Return to game
-            </button>
+            </Button>
           )}
         </>
       }

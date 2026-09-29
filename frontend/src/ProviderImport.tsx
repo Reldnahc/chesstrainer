@@ -1,3 +1,4 @@
+import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Job, type Schema } from "./api";
@@ -179,22 +180,22 @@ export function ProviderImportForm({
           blank for an open-ended range.
         </p>
         {(startDate || endDate) && (
-          <button
+          <Button
             type="button"
-            className="text-button"
+            variant="quiet"
             onClick={() => {
               setStartDate("");
               setEndDate("");
             }}
           >
             Clear dates
-          </button>
+          </Button>
         )}
       </details>
-      <button className="primary" disabled={busy || loadingUsername || !username.trim()}>
+      <Button type="submit" variant="primary" disabled={busy || loadingUsername || !username.trim()}>
         {busy ? "Queuing import…" : analyze ? "Import & analyze games" : "Import games"}
         <ArrowRight size={17} />
-      </button>
+      </Button>
       {message && (
         <div role="status" className="notice">
           {message}
@@ -378,15 +379,15 @@ export function ImportJob({
       )}
       <div className="button-row">
         {["queued", "running"].includes(job.status) && (
-          <button onClick={() => updateJob("cancel")}>
+          <Button onClick={() => updateJob("cancel")}>
             Cancel
-          </button>
+          </Button>
         )}
         {job.kind !== "teaching" &&
           ["failed", "cancelled"].includes(job.status) && (
-            <button onClick={() => updateJob("retry")}>
+            <Button onClick={() => updateJob("retry")}>
               Retry saved work
-            </button>
+            </Button>
           )}
       </div>
     </>;

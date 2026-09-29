@@ -1,3 +1,4 @@
+import Button from "./Button";
 import { useState } from "react";
 import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
@@ -56,15 +57,15 @@ export default function SettingsScreen({ health, fail, section, importSource, re
           <SettingsSection id="settings-training" title="Training tools">
             <div className="settings-tool">
               <div><h3>Refresh training patterns</h3><p>Update the labels on saved positions using their existing analysis.</p></div>
-              <button className="secondary" disabled={!!busy} onClick={() => classify()}>
+              <Button variant="secondary" disabled={!!busy} onClick={() => classify()}>
                 {busy === "classify" ? "Queuing…" : "Classify saved games"}
-              </button>
+              </Button>
             </div>
             <div className="settings-tool">
               <div><h3>Investigate unclear positions</h3><p>Run additional engine analysis where the training explanation needs more evidence.</p></div>
-              <button className="secondary" disabled={!!busy || !health} onClick={() => classify(true)}>
+              <Button variant="secondary" disabled={!!busy || !health} onClick={() => classify(true)}>
                 {busy === "deepen" ? "Queuing…" : "Deepen unclear positions"}
-              </button>
+              </Button>
             </div>
             <div className="settings-tool-status">
               <p role="status">{message}</p>

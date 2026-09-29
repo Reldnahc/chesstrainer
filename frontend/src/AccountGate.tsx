@@ -1,3 +1,4 @@
+import Button from "./Button";
 import {
   createContext,
   useContext,
@@ -31,16 +32,16 @@ export function AccountSettings() {
         Signed in as <strong>{user.username}</strong>
       </p>
       <div className="account-actions">
-        <button disabled={busy} onClick={() => logout()}>
+        <Button disabled={busy} onClick={() => logout()}>
           Sign out
-        </button>
-        <button
-          className="secondary"
+        </Button>
+        <Button
+          variant="secondary"
           disabled={busy}
           onClick={() => logout(true)}
         >
           Sign out all devices
-        </button>
+        </Button>
       </div>
       {error && (
         <p role="alert" className="notice error">
@@ -109,7 +110,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
         {error && (
           <p role="alert">
             {error}{" "}
-            <button onClick={() => window.location.reload()}>Retry</button>
+            <Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>
           </p>
         )}
       </main>
@@ -158,11 +159,11 @@ export default function AccountGate({ children }: { children: ReactNode }) {
                 password.
               </p>
             )}
-            <button className="primary" disabled={busy}>
+            <Button type="submit" variant="primary" disabled={busy}>
               {busy ? "Please wait…" : signup ? "Create account" : "Sign in"}
-            </button>
+            </Button>
           </form>
-          <button
+          <Button
             disabled={busy}
             onClick={() => {
               setSignup(!signup);
@@ -172,7 +173,7 @@ export default function AccountGate({ children }: { children: ReactNode }) {
             {signup
               ? "Already have an account? Sign in"
               : "New here? Create an account"}
-          </button>
+          </Button>
         </section>
       </main>
     );

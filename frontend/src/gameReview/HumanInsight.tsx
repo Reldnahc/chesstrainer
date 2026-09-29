@@ -4,6 +4,7 @@ import {humanInsightExplanation, humanInsightLabels, humanSourceNotes} from "../
 import {makeIntent, type DialogueIntent} from "../dialogue/model";
 import {useDialogue} from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
+import {IconButton} from "../Button";
 import type {Report} from "./types";
 
 export default function HumanInsight({intent, report}: {intent: DialogueIntent; report: Report}) {
@@ -20,7 +21,7 @@ export default function HumanInsight({intent, report}: {intent: DialogueIntent; 
     <div className="human-insight-popover" id={id} popover="auto" role="dialog" aria-labelledby={`${id}-title`}>
       <header>
         <h3 id={`${id}-title`}>{name} insight</h3>
-        <button popoverTarget={id} popoverTargetAction="hide" aria-label="Close insight"><X size={18} aria-hidden="true" /></button>
+        <IconButton size="compact" variant="quiet" popoverTarget={id} popoverTargetAction="hide" aria-label="Close insight"><X size={18} aria-hidden="true" /></IconButton>
       </header>
       <DialogueText utterance={utterance} />
       <p className="human-insight-meaning">{humanInsightExplanation(items[0].code, report)}</p>

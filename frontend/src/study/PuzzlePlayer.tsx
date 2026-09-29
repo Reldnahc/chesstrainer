@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import Board from "../Board";
-import Link from "../Link";
+import ActionLink from "../ActionLink";
+import Button from "../Button";
 import ReviewWorkspace from "../ReviewWorkspace";
 import ReviewCoach from "../ReviewCoach";
 import MoveBadge from "../MoveBadge";
@@ -36,7 +37,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     finally { if (!controller.signal.aborted) { setOpeningNext(false); nextRequest.current = null; } }
   }
   if (loading) return <div className="panel loading" role="status">Loading your puzzle…</div>;
-  if (!session) return <section className="panel"><h1>Puzzle unavailable</h1><p role="alert">{error}</p><button onClick={state.reload}>Try loading again</button><Link className="button-link secondary" href={studyPaths.puzzles}>All puzzles</Link></section>;
+  if (!session) return <section className="panel"><h1>Puzzle unavailable</h1><p role="alert">{error}</p><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.puzzles}>All puzzles</ActionLink></section>;
   const complete = session.status !== "active";
   const incorrect = retrying && !complete;
   const correct = session.feedback?.grade === "correct" && !complete;
@@ -68,15 +69,15 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     boardLabel="Puzzle position"
     aboveBoard={<div className="review-position-status"><span><span className={`turn-dot ${session.orientation === "black" ? "black" : ""}`} />{playing ? playbackTurn : complete ? "Solution review" : `${session.orientation === "white" ? "White" : "Black"} to move`}</span><span>{session.history.length} MOVES PLAYED</span></div>}
     belowBoard={<div className="review-board-hint">{playing ? "The saved position will be ready after playback." : complete ? "Select a solution move to inspect it." : "Select a piece to see legal moves. Tap a destination or drag."}</div>}
-    boardControls={<div><Link className="button-link secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</Link></div>}
+    boardControls={<div><ActionLink variant="secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</ActionLink></div>}
     board={<Board fen={displayedFen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={state.disabled} onMove={state.answer} feedback={incorrect ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
   >
     <ReviewCoach title={<h2>{title}</h2>}
       badge={complete ? <MoveBadge label={session.status === "revealed" ? "Revealed" : "Accepted"} /> : undefined}
       reaction={{ state: expression, key: `${session.id}:${session.revision}:${expression}` }}
-      actions={<>{error ? <button className="primary" onClick={state.reload}>Reload session</button>
-        : complete ? <><button className="primary" disabled={playing || openingNext} onClick={next}>Next puzzle <ArrowRight size={16} /></button><button disabled={playing || openingNext} onClick={state.replay}><Play size={15} />{state.motion === "still" ? "View solution" : "Replay solution"}</button></>
-        : <>{incorrect && <button className="primary" disabled={busy} onClick={state.retry}>Try again</button>}<button className="secondary" disabled={busy || playing} onClick={state.reveal}>Reveal solution</button></>}</>}
+      actions={<>{error ? <Button size="compact" variant="primary" onClick={state.reload}>Reload session</Button>
+        : complete ? <><Button size="compact" variant="primary" disabled={playing || openingNext} onClick={next}>Next puzzle <ArrowRight size={16} /></Button><Button size="compact" disabled={playing || openingNext} onClick={state.replay}><Play size={15} />{state.motion === "still" ? "View solution" : "Replay solution"}</Button></>
+        : <>{incorrect && <Button size="compact" variant="primary" disabled={busy} onClick={state.retry}>Try again</Button>}<Button size="compact" variant="secondary" disabled={busy || playing} onClick={state.reveal}>Reveal solution</Button></>}</>}
     ><p role="status" aria-live="polite">{message}</p></ReviewCoach>
     {(error || nextError) && <p className="notice error" role="alert">{error || nextError}</p>}
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">

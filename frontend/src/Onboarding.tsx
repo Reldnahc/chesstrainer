@@ -1,3 +1,4 @@
+import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
 import { navigate } from "./navigation";
@@ -60,7 +61,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
               onChange={event => setConnections(values => values.map(value => value.id === connection.id ? { ...value, username: event.target.value } : value))} />
           </label>)}
           {loading && <p role="status">Loading connections…</p>}
-          <button className="primary" disabled={busy || loading}>{busy ? "Saving…" : "Continue"}</button>
+          <Button type="submit" variant="primary" disabled={busy || loading}>{busy ? "Saving…" : "Continue"}</Button>
         </form>
       </> : <>
         {selected.length ? <>
@@ -80,12 +81,12 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
         </>}
         <p className="small">Importing saves your games without engine analysis. Review a game when you’re ready, or enable training analysis during import.</p>
         <div className="onboarding-actions">
-          <button className="primary" disabled={busy} onClick={() => finish(true)}>{busy ? "Finishing…" : "Open imports"}</button>
-          <button disabled={busy} onClick={() => finish(false)}>Finish for now</button>
-          <button className="text-button" disabled={busy} onClick={() => setStep(1)}>Back</button>
+          <Button variant="primary" disabled={busy} onClick={() => finish(true)}>{busy ? "Finishing…" : "Open imports"}</Button>
+          <Button disabled={busy} onClick={() => finish(false)}>Finish for now</Button>
+          <Button variant="quiet" disabled={busy} onClick={() => setStep(1)}>Back</Button>
         </div>
       </>}
-      {error && <p role="alert" className="notice error">{error}{loading && <button onClick={() => window.location.reload()}>Retry</button>}</p>}
+      {error && <p role="alert" className="notice error">{error}{loading && <Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>}</p>}
     </section>
   </main>;
 }

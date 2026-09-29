@@ -1,3 +1,4 @@
+import Button from "../Button";
 import type { Game } from "./types";
 
 export default function ReviewProgress({
@@ -32,17 +33,17 @@ export default function ReviewProgress({
                   : `${game.frames.length - 1} moves to review`}
             </span>
             {running ? (
-              <button disabled={busy || game.job?.cancel_requested} onClick={cancel}>
+              <Button size="compact" disabled={busy || game.job?.cancel_requested} onClick={cancel}>
                 Pause review
-              </button>
+              </Button>
             ) : (
-              <button className="primary" disabled={busy || reviewStarting} onClick={start}>
+              <Button size="compact" variant="primary" disabled={busy || reviewStarting} onClick={start}>
                 {reviewStarting
                   ? "Starting review…"
                   : !game.job || game.job.status === "failed"
                     ? "Retry review"
                     : "Resume review"}
-              </button>
+              </Button>
             )}
           </div>
           {game.job && (

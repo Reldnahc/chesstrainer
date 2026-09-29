@@ -11,16 +11,12 @@ export default function ReviewScreen({
   requested,
   requestedSession,
   focusSkill,
-  onExitFocus,
-  onImport,
   fail,
   onEvidence,
 }: {
   requested: string | null;
   requestedSession?: string | null;
   focusSkill: string | null;
-  onExitFocus: () => void;
-  onImport: () => void;
   fail: (e: unknown) => void;
   onEvidence: (id: string) => void;
 }) {
@@ -157,8 +153,6 @@ export default function ReviewScreen({
               playback={playback}
               feedbackLabel={feedbackLabel}
               focusSkill={focusSkill}
-              onExitFocus={onExitFocus}
-              onImport={onImport}
               onEvidence={onEvidence}
             />
           </ReviewWorkspace>

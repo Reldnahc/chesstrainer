@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
+import ActionLink from "../ActionLink";
+import Button from "../Button";
 import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths } from "../navigation";
 import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
@@ -42,7 +44,7 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
     finally { if (!controller.signal.aborted) { setBusy(null); request.current = null; } }
   }
   if (courseId) return <section className="panel lesson-course">
-    <Link className="text-button button-link" href={studyPaths.openings}><ArrowLeft size={16} />All openings</Link>
+    <ActionLink variant="quiet" href={studyPaths.openings}><ArrowLeft size={16} />All openings</ActionLink>
     {error && <p className="notice error" role="alert">{error}</p>}
     {course ? <>
       <header className="lesson-course-title">
@@ -56,7 +58,7 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
       <ol className="lesson-chapters">{course.chapters.map((chapter, index) => <li key={chapter.id}>
         <span className="lesson-chapter-number">{chapter.completed ? <Check size={18} aria-label="Completed" /> : index + 1}</span>
         <div><h3>{chapter.title}</h3><span className="muted">{chapter.completed ? "Completed · revisit any time" : "Guided lesson"}</span></div>
-        <button className={chapter.completed ? "secondary" : "primary"} disabled={!!busy} onClick={() => begin(chapter.id)}>{busy === chapter.id ? "Opening…" : chapter.completed ? "Revisit" : "Start"}<ArrowRight size={16} /></button>
+        <Button size="compact" variant={chapter.completed ? "secondary" : "primary"} disabled={!!busy} onClick={() => begin(chapter.id)}>{busy === chapter.id ? "Opening…" : chapter.completed ? "Revisit" : "Start"}<ArrowRight size={16} /></Button>
       </li>)}</ol>
       {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <Link className="study-resume" href={courseLinePath(course.id, line.id, course.revision)} key={line.id}><span>{line.title}<small>Preview and add to study</small></span><ArrowRight size={17} /></Link>)}</section>}
       <LessonAttribution attributions={course.attributions} />
@@ -66,6 +68,6 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
   return <>
     {!!library.resume.length && <section className="panel"><h2>Continue learning</h2><div className="study-resume-list">{library.resume.map(session => <Link className="study-resume" key={session.id} href={lessonSessionPath(session.id)}><span>{session.course_title}<small>{session.chapter_title}</small></span><ArrowRight size={18} /></Link>)}</div></section>}
     {library.courses.length ? <div className="lesson-course-grid">{library.courses.map(item => <Link key={`${item.id}:${item.revision}`} className="panel lesson-course-card" href={lessonCoursePath(item.id, item.revision)}><BookOpen size={22} aria-hidden="true" /><h2>{item.title}</h2><p>{item.description}</p><span>Study as {item.learner_color === "white" ? "White" : "Black"}<ArrowRight size={16} /></span></Link>)}</div>
-      : <section className="panel study-empty"><BookOpen size={28} aria-hidden="true" /><h2>No opening lessons yet.</h2><p>Opening lessons will appear here when a course is available.</p><Link className="button-link secondary" href={studyPaths.due}>Go to Due</Link></section>}
+      : <section className="panel study-empty"><BookOpen size={28} aria-hidden="true" /><h2>No opening lessons yet.</h2><p>Opening lessons will appear here when a course is available.</p><ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink></section>}
   </>;
 }
