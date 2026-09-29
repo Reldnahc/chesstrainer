@@ -301,6 +301,43 @@ def test_rehearsal_auto_reply_before_first_learner_move_and_no_hints(settings):
         assert state["assisted"] and state["step"]["phase"] == "complete"
 
 
+@pytest.mark.parametrize("entry", ["branch", "reset"])
+def test_entering_rehearsal_preserves_automatic_reply_playback(settings, entry):
+    record = tiny().model_dump(mode="json")
+    record["learner_color"] = "black"
+    record["lines"] = [{"id": "line", "title": "A line", "moves": ["d2d4", "d7d5"]}]
+    start = {"id": "decision", "title": "Enter rehearsal"}
+    if entry == "branch":
+        start.update(kind="branch", branch_start="recall")
+    else:
+        start.update(kind="explanation", position={"moves": ["e2e4"]}, next_step="recall")
+    record["chapters"][0]["steps"] = [
+        start,
+        {"id": "recall", "kind": "rehearsal", "line_id": "line", "title": "Rehearsal"},
+    ]
+    source = CourseDefinition.model_validate(record)
+    with TestClient(app_with(settings, source)) as client:
+        original = begin(client, source)
+        action = "enter_branch" if entry == "branch" else "continue"
+        response = post(client, original, action)
+        assert response.status_code == 200, response.text
+        state = response.json()
+        assert [frame["uci"] for frame in state["playback"]] == ["d2d4"]
+        assert state["playback"] == state["history"]
+        assert state["playback"][0]["before_fen"] == chess.STARTING_FEN
+        assert state["playback"][-1]["after_fen"] == state["fen"]
+        resumed = client.get(f"{BASE}/{state['id']}").json()
+        assert resumed["fen"] == state["fen"] and resumed["playback"] == []
+        restored = post(client, resumed, "return_branch" if entry == "branch" else "back").json()
+        assert restored["history"] == original["history"]
+        assert restored["step"] == original["step"]
+        replayed = post(client, restored, action).json()
+        assert replayed["playback"] == state["playback"]
+        completed = post(client, replayed, "move", uci="d7d5").json()
+        assert completed["step"]["phase"] == "complete"
+        assert completed["feedback"]["kind"] == "correct"
+
+
 def test_source_game_prefix_annotations_and_inspection_reload(settings):
     record = tiny().model_dump(mode="json")
     record["games"] = [
