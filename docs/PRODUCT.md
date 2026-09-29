@@ -15,7 +15,7 @@ these hints before an attempt or reveal.
 
 Import PGNs or completed public Chess.com games, analyze the learner's decisions locally, save verified evidence, and turn meaningful mistakes into review positions. Versioned local rules classify supported consequences and tactical mechanisms. A position can remain unclassified and still be useful in Review.
 
-The four screens are **Review, Games, Weaknesses and Settings**, in that order on desktop and mobile.
+The four screens are **Study, Games, Weaknesses and Settings**, in that order on desktop and mobile.
 All screens share the compact navigation header, including the Games library and
 game-review workspace. Desktop uses the same 56px navigation row throughout;
 phones retain the compact sticky navigation with full-size touch targets.
@@ -30,7 +30,8 @@ a browser-history stop for each move.
   continue in the background and update the review as results arrive. Interrupted
   or failed work retains recovery controls.
 
-- **Review** starts with an unlabeled board. The backend supplies legal moves and grades answers. A failed engine answer previews the opponent's saved counter; Try again restores the board and Show me why opens deeper playback. Success offers factual feedback and optional Show why. Reveal move performs the saved answer. Repeated retries create only one failed recall per session.
+- **Study → Due** starts scheduled game recall with an unlabeled board. The backend supplies legal moves and grades answers. A failed engine answer previews the opponent's saved counter; Try again restores the board and Show me why opens deeper playback. Success offers factual feedback and optional Show why. Reveal move performs the saved answer. Repeated retries create only one failed recall per session. Existing `/review` bookmarks and exercise/focused-practice links redirect to Due without an extra browser-history entry.
+- **Study → Puzzles** uses separate multi-move practice sessions. The server saves accepted moves and opponent replies together; reload restores that committed position. A wrong move keeps the same decision available and permanently marks that solve as non-clean. Reveal ends the solve. Themes, solutions and attribution remain hidden until completion. The framework ships without production puzzle packs; test fixtures are injected only into the test application. Puzzle practice never updates FSRS, ordinary recalls or weaknesses.
 - **Weaknesses** separates material/mate outcomes from tactical patterns, shows supporting decisions and practice cues, and starts focused batches of up to 12 distinct positions. Focused attempts are stored separately and never change FSRS.
 - **Import games in Settings** supports multi-game PGNs, explicit learner matching and filtered Chess.com username imports. Only new games enter new analysis jobs; cancellation/retry preserves completed work.
   Source selection sits above equally sized form and activity panels. Their

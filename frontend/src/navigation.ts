@@ -1,11 +1,17 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export const pagePaths = {
-  Review: "/review",
+  Study: "/study",
   Games: "/games",
   Weaknesses: "/weaknesses",
   Settings: "/settings",
 } as const;
+export const studyPaths = {
+  due: "/study/due",
+  openings: "/study/openings",
+  puzzles: "/study/puzzles",
+} as const;
+export type StudyMode = "home" | keyof typeof studyPaths;
 export type Tab = keyof typeof pagePaths;
 const navigationEvent = "fieldwork:navigate";
 const scrollKey = "fieldworkScroll";
@@ -24,29 +30,44 @@ function nonnegativeInteger(value: string | null, fallback = 0) {
 function readRoute() {
   const url = new URL(window.location.href);
   // Keep old bookmarks working without adding an extra Back-button stop.
-  if (url.pathname === "/") url.pathname = pagePaths.Review;
-  if (url.pathname.replace(/\/$/, "") === "/import") url.pathname = pagePaths.Settings;
   if (url.searchParams.has("unit")) {
     url.searchParams.delete("unit");
     url.searchParams.delete("exercise");
   }
+  if (url.pathname === "/")
+    url.pathname = url.searchParams.has("exercise") || url.searchParams.has("focus")
+      ? studyPaths.due : pagePaths.Study;
+  if (url.pathname.replace(/\/$/, "") === "/review") url.pathname = studyPaths.due;
+  if (url.pathname.replace(/\/$/, "") === "/import") url.pathname = pagePaths.Settings;
   const entry: string = window.history.state?.[entryKey] ?? newEntry();
   if (url.href !== window.location.href || !window.history.state?.[entryKey])
     window.history.replaceState({ ...window.history.state, [entryKey]: entry }, "", url);
   const path = url.pathname.replace(/\/$/, "");
   const gameMatch = path.match(/^\/games\/([^/]+)$/);
+  const puzzleMatch = path.match(/^\/study\/puzzles\/sessions\/([^/]+)$/);
   let gameId: string | null = null;
+  let puzzleSessionId: string | null = null;
   try { if (gameMatch) gameId = decodeURIComponent(gameMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
-  const tab = gameId ? "Games" : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
+  try { if (puzzleMatch) puzzleSessionId = decodeURIComponent(puzzleMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
+  const puzzleSource: "generic" | "games" | null = path === "/study/puzzles/generic" ? "generic"
+    : path === "/study/puzzles/games" ? "games" : null;
+  const studyMode: StudyMode | null = path === pagePaths.Study ? "home"
+    : puzzleSessionId || puzzleSource ? "puzzles"
+    : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
+  const tab: Tab | null = studyMode ? "Study" : gameId ? "Games"
+    : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
   return {
     entry,
     href: url.pathname + url.search,
     tab,
     gameId,
+    studyMode,
+    puzzleSessionId,
+    puzzleSource,
     page: Math.max(1, Math.min(1_000_000, nonnegativeInteger(url.searchParams.get("page"), 1))),
     ply: nonnegativeInteger(url.searchParams.get("ply")),
-    exercise: tab === "Review" ? url.searchParams.get("exercise") : null,
-    focusSkill: tab === "Review" ? url.searchParams.get("focus") : null,
+    exercise: studyMode === "due" ? url.searchParams.get("exercise") : null,
+    focusSkill: studyMode === "due" ? url.searchParams.get("focus") : null,
   };
 }
 
@@ -71,6 +92,10 @@ export function navigate(href: string) {
 
 export function gamesPath(page = 1, id?: string) {
   return `/games${id ? `/${encodeURIComponent(id)}` : ""}${page > 1 ? `?page=${page}` : ""}`;
+}
+
+export function puzzleSessionPath(id: string) {
+  return `${studyPaths.puzzles}/sessions/${encodeURIComponent(id)}`;
 }
 
 // These annotate the current page, rather than navigating away from it. Keeping

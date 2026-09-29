@@ -582,6 +582,108 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/puzzle-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Start */
+        post: operations["start_api_puzzle_sessions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzle-sessions/{session_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Session */
+        get: operations["get_session_api_puzzle_sessions__session_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzle-sessions/{session_id}/move": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Move */
+        post: operations["move_api_puzzle_sessions__session_id__move_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzle-sessions/{session_id}/reveal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Reveal */
+        post: operations["reveal_api_puzzle_sessions__session_id__reveal_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Library */
+        get: operations["library_api_puzzles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/puzzles/next": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Next Puzzle */
+        get: operations["next_puzzle_api_puzzles_next_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/review/queue": {
         parameters: {
             query?: never;
@@ -2095,6 +2197,176 @@ export interface components {
             time_class: string;
             /** Username */
             username: string;
+        };
+        /** PuzzleCommand */
+        PuzzleCommand: {
+            /** Request Id */
+            request_id: string;
+            /** Revision */
+            revision: number;
+        };
+        /** PuzzleCompletion */
+        PuzzleCompletion: {
+            provenance: components["schemas"]["PuzzleProvenance"];
+            /** Rating */
+            rating: number | null;
+            /** Solution */
+            solution: components["schemas"]["PuzzleFrame"][];
+            /** Themes */
+            themes: string[];
+        };
+        /** PuzzleFeedback */
+        PuzzleFeedback: {
+            /**
+             * Grade
+             * @enum {string}
+             */
+            grade: "correct" | "incorrect" | "revealed";
+            /** Submitted San */
+            submitted_san: string | null;
+        };
+        /** PuzzleFrame */
+        PuzzleFrame: {
+            /** After Fen */
+            after_fen: string;
+            /** Before Fen */
+            before_fen: string;
+            /** San */
+            san: string;
+            /** Uci */
+            uci: string;
+        };
+        /** PuzzleKey */
+        PuzzleKey: {
+            /** Key */
+            key: string;
+            /** Provider Id */
+            provider_id: string;
+            /** Version */
+            version: string;
+        };
+        /** PuzzleLibrary */
+        PuzzleLibrary: {
+            /** Available */
+            available: number;
+            /** Resume */
+            resume: components["schemas"]["PuzzleResume"][];
+            /** Sources */
+            sources: components["schemas"]["PuzzleProviderInfo"][];
+            stats: components["schemas"]["PuzzleStats"];
+        };
+        /** PuzzleMove */
+        PuzzleMove: {
+            /**
+             * Elapsed Ms
+             * @default 0
+             */
+            elapsed_ms: number;
+            /** Request Id */
+            request_id: string;
+            /** Revision */
+            revision: number;
+            /** Uci */
+            uci: string;
+        };
+        /** PuzzleProvenance */
+        PuzzleProvenance: {
+            /** Attribution */
+            attribution: string;
+            /** Game Id */
+            game_id?: string | null;
+            /** Source Ply */
+            source_ply?: number | null;
+            /** Url */
+            url?: string | null;
+        };
+        /** PuzzleProviderInfo */
+        PuzzleProviderInfo: {
+            /** Count */
+            count: number;
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "generic" | "games";
+        };
+        /** PuzzleResume */
+        PuzzleResume: {
+            /** Failed */
+            failed: boolean;
+            /** Id */
+            id: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "generic" | "games";
+            /** Started At */
+            started_at: string;
+            /** Updated At */
+            updated_at: string;
+        };
+        /** PuzzleSessionView */
+        PuzzleSessionView: {
+            completion: components["schemas"]["PuzzleCompletion"] | null;
+            /** Current Step */
+            current_step: number;
+            /** Failed */
+            failed: boolean;
+            feedback: components["schemas"]["PuzzleFeedback"] | null;
+            /** Fen */
+            fen: string;
+            /** History */
+            history: components["schemas"]["PuzzleFrame"][];
+            /** Id */
+            id: string;
+            /** Legal Moves */
+            legal_moves: components["schemas"]["LegalMove"][];
+            /**
+             * Orientation
+             * @enum {string}
+             */
+            orientation: "white" | "black";
+            /** Playback */
+            playback: components["schemas"]["PuzzleFrame"][];
+            /** Revision */
+            revision: number;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "generic" | "games";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "active" | "solved" | "revealed";
+        };
+        /** PuzzleStart */
+        PuzzleStart: {
+            /** Key */
+            key: string;
+            /** Provider Id */
+            provider_id: string;
+            /** Request Id */
+            request_id: string;
+            /** Version */
+            version: string;
+        };
+        /** PuzzleStats */
+        PuzzleStats: {
+            /** Clean */
+            clean: number;
+            /** Failed Then Solved */
+            failed_then_solved: number;
+            /** Revealed */
+            revealed: number;
+            /** Solved */
+            solved: number;
         };
         /** RefinementInfo */
         RefinementInfo: {
@@ -3686,6 +3958,191 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SyncStatus"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_api_puzzle_sessions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PuzzleStart"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_session_api_puzzle_sessions__session_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    move_api_puzzle_sessions__session_id__move_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PuzzleMove"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    reveal_api_puzzle_sessions__session_id__reveal_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PuzzleCommand"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleSessionView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    library_api_puzzles_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleLibrary"];
+                };
+            };
+        };
+    };
+    next_puzzle_api_puzzles_next_get: {
+        parameters: {
+            query?: {
+                source?: ("generic" | "games") | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PuzzleKey"] | null;
                 };
             };
             /** @description Validation Error */

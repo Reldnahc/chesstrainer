@@ -1,0 +1,90 @@
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
+import { api, read, type Schema } from "../api";
+import Link from "../Link";
+import { navigate, pagePaths, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
+import { startNextPuzzle } from "./puzzleApi";
+
+export default function StudyScreen({ mode, source }: {
+  mode: StudyMode;
+  source: "generic" | "games" | null;
+}) {
+  const [due, setDue] = useState<number | null>(null);
+  const [puzzles, setPuzzles] = useState<Schema["PuzzleLibrary"] | null>(null);
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const beginRequest = useRef<AbortController | null>(null);
+  useEffect(() => {
+    const controller = new AbortController();
+    read(api.GET("/api/review/queue", { signal: controller.signal }))
+      .then(queue => { if (!controller.signal.aborted) setDue(queue.length); })
+      .catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    read(api.GET("/api/puzzles", { signal: controller.signal }))
+      .then(result => { if (!controller.signal.aborted) setPuzzles(result); })
+      .catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    return () => { controller.abort(); beginRequest.current?.abort(); };
+  }, []);
+  useEffect(() => {
+    document.title = `${mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"} · Fieldwork`;
+  }, [mode]);
+  async function begin() {
+    if (beginRequest.current && !beginRequest.current.signal.aborted) return;
+    const controller = new AbortController();
+    beginRequest.current = controller;
+    setBusy(true);
+    setError("");
+    try {
+      const session = await startNextPuzzle(source || undefined, controller.signal);
+      if (controller.signal.aborted) return;
+      if (session) navigate(puzzleSessionPath(session.id));
+      else setError("There are no puzzles available from this source yet.");
+    } catch (e) { if (!controller.signal.aborted) setError((e as Error).message); }
+    finally {
+      if (!controller.signal.aborted) { setBusy(false); beginRequest.current = null; }
+    }
+  }
+  const available = source ? puzzles?.sources.filter(item => item.source === source).reduce((sum, item) => sum + item.count, 0) : puzzles?.available;
+  return <div className="study-page">
+    <header className="study-heading">
+      <div><p className="eyebrow">YOUR NEXT MOVE</p><h1>{mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"}</h1></div>
+      <nav aria-label="Study sections" className="study-sections">
+        <Link href={pagePaths.Study} aria-current={mode === "home" ? "page" : undefined}>Overview</Link>
+        <Link href={studyPaths.due}>Due</Link>
+        <Link href={studyPaths.openings} aria-current={mode === "openings" ? "page" : undefined}>Openings</Link>
+        <Link href={studyPaths.puzzles} aria-current={mode === "puzzles" ? "page" : undefined}>Puzzles</Link>
+      </nav>
+    </header>
+    {error && <p className="notice error" role="alert">{error}</p>}
+    {mode === "home" && <div className="study-options">
+      <section className="panel study-option study-due">
+        <Clock3 aria-hidden="true" size={22} />
+        <h2>Due now</h2>
+        <p className="study-count">{due === null ? "—" : `${due}${due === 30 ? "+" : ""}`} <span>scheduled recalls</span></p>
+        <p>{due ? "Return to decisions worth remembering." : "Your scheduled recalls will appear here when they’re due."}</p>
+        <Link className="button-link primary" href={studyPaths.due}>Start studying <ArrowRight size={16} /></Link>
+      </section>
+      <section className="panel study-option">
+        <BookOpen aria-hidden="true" size={22} /><h2>Openings</h2>
+        <p>Learn a line, practice it, and choose what to remember.</p>
+        <Link className="button-link secondary" href={studyPaths.openings}>Explore openings <ArrowRight size={16} /></Link>
+      </section>
+      <section className="panel study-option">
+        <Puzzle aria-hidden="true" size={22} /><h2>Puzzles</h2>
+        <p>{puzzles?.available ? `${puzzles.available} puzzles available for calculation practice.` : "No puzzle collections are installed yet."}</p>
+        <Link className="button-link secondary" href={studyPaths.puzzles}>{puzzles?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></Link>
+      </section>
+    </div>}
+    {mode === "openings" && <section className="panel study-empty"><BookOpen size={28} aria-hidden="true" /><h2>No opening lessons yet.</h2><p>Opening lessons and repertoire study will appear here when content is available.</p><Link className="button-link secondary" href={studyPaths.due}>Go to Due</Link></section>}
+    {mode === "puzzles" && <>
+      {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <Link className="study-resume" href={puzzleSessionPath(session.id)} key={session.id}><span>Unfinished puzzle <small>{session.failed ? "Continue after a retry" : "Your position is saved"}</small></span><ArrowRight size={18} /></Link>)}</div></section>}
+      <section className={`panel ${available ? "" : "study-empty"}`}>
+        <Puzzle size={28} aria-hidden="true" />
+        <h2>{available ? "Calculate the continuation." : "No puzzles available yet."}</h2>
+        <p>{available ? "Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls." : "There are no installed puzzle collections for this source. Your scheduled recalls are still available in Due."}</p>
+        {!!available && <button className="primary" disabled={busy} onClick={begin}>{busy ? "Opening puzzle…" : "Start a puzzle"}<ArrowRight size={16} /></button>}
+        {!available && <Link className="button-link secondary" href={studyPaths.due}>Go to Due</Link>}
+      </section>
+      {puzzles && Object.values(puzzles.stats).some(value => value > 0) && <section className="panel"><h2>Your puzzle practice</h2><dl className="study-stats"><div><dt>Solved cleanly</dt><dd>{puzzles.stats.clean}</dd></div><div><dt>Failed, then solved</dt><dd>{puzzles.stats.failed_then_solved}</dd></div><div><dt>Revealed</dt><dd>{puzzles.stats.revealed}</dd></div></dl></section>}
+    </>}
+  </div>;
+}

@@ -53,6 +53,15 @@ deterministic within their recorded runtime identity.
 
 Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
 
+## Study frameworks
+
+`test_puzzles.py` exercises the production puzzle routes with injected local
+definitions: legal multi-step replay, fail/retry/reveal, durable snapshots,
+duplicate/stale commands, account isolation and unchanged Review/FSRS/weakness
+records. The production provider registry is empty. Browser fixtures are wired
+only in `backend/tests/browser_app.py`; they are not installed content or a
+production feature flag. Legacy Review links remain part of navigation coverage.
+
 ## Full verification
 
 From an activated source checkout, install the locked Python dependencies and frontend dependencies as described in [README.md](../README.md). Build first: backend static-serving tests and Playwright consume frontend/dist. Do not rebuild it while those suites are running.

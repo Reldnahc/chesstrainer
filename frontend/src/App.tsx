@@ -14,14 +14,16 @@ import GamesScreen from "./GameReview";
 import SettingsScreen from "./Settings";
 import WeaknessScreen from "./Weaknesses";
 import EvidenceDialog from "./EvidenceDialog";
-import { navigate, pagePaths, useRoute } from "./navigation";
+import { navigate, pagePaths, studyPaths, useRoute } from "./navigation";
+import StudyScreen from "./study/StudyScreen";
+import PuzzlePlayer from "./study/PuzzlePlayer";
 import Link from "./Link";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
 import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
 const tabs = [
-  ["Review", Focus],
+  ["Study", Focus],
   ["Games", BookOpen],
   ["Weaknesses", Flag],
   ["Settings", Settings2],
@@ -72,7 +74,7 @@ export default function App() {
         <div className="header-inner">
           <Link
             className="brand"
-            href={pagePaths.Review}
+            href={pagePaths.Study}
             aria-label="Fieldwork home"
           >
             <img src={appMark} width="34" height="34" alt="" />
@@ -103,7 +105,7 @@ export default function App() {
         id="main-content"
         tabIndex={-1}
         className={
-          tab === "Review" || (tab === "Games" && route.gameId)
+          route.studyMode === "due" || route.puzzleSessionId || (tab === "Games" && route.gameId)
             ? "review-page"
             : "workspace-page"
         }
@@ -150,16 +152,22 @@ export default function App() {
           </section>
         ) : (
           <>
-            {tab === "Review" && (
+            {route.studyMode === "due" && (
               <ReviewScreen
                 key={`${refresh}-${route.href}`}
                 focusSkill={focusSkill}
-                onExitFocus={() => navigate(pagePaths.Review)}
+                onExitFocus={() => navigate(studyPaths.due)}
                 requested={exercise}
                 onImport={() => navigate(pagePaths.Settings)}
                 fail={fail}
                 onEvidence={setEvidenceId}
               />
+            )}
+            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && (
+              <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} />
+            )}
+            {route.puzzleSessionId && (
+              <PuzzlePlayer key={`${refresh}-${route.puzzleSessionId}`} sessionId={route.puzzleSessionId} />
             )}
             {tab === "Games" && (
               <GamesScreen
@@ -173,7 +181,7 @@ export default function App() {
               <WeaknessScreen
                 onPractice={(skill) => {
                   navigate(
-                    `${pagePaths.Review}?focus=${encodeURIComponent(skill)}`,
+                    `${studyPaths.due}?focus=${encodeURIComponent(skill)}`,
                   );
                 }}
                 onEvidence={setEvidenceId}
