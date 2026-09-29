@@ -30,6 +30,37 @@
 .puzzle-move-list button { min-height: 36px; padding: 5px 10px; font-family: var(--mono); }
 .puzzle-move-list button[aria-current] { border-color: var(--accent); }
 .puzzle-provenance { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.lesson-course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.lesson-course-card { display: flex; flex-direction: column; align-items: start; text-decoration: none; }
+.lesson-course-card > svg { color: var(--accent); }
+.lesson-course-card:hover { border-color: var(--accent); }
+.lesson-course-card > span { display: flex; justify-content: space-between; width: 100%; margin-top: auto; padding-top: 12px; color: var(--muted); font-size: 13px; }
+.lesson-course-title { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
+.lesson-course-title > svg { color: var(--accent); flex: none; }
+.lesson-course-title h2 { margin-block: 0 4px; }
+.lesson-course-title span { font-size: 13px; }
+.lesson-chapters { list-style: none; padding: 0; margin-block: 24px; display: flex; flex-direction: column; gap: 8px; }
+.lesson-chapters li { display: flex; align-items: center; gap: 16px; padding: 14px; background: var(--raised); border: 1px solid var(--line); border-radius: 6px; }
+.lesson-chapters li > div { min-width: 0; flex: 1; }
+.lesson-chapters h3 { font-size: 15px; margin: 0 0 4px; }
+.lesson-chapters .muted { font-size: 12px; }
+.lesson-chapters button { flex: none; }
+.lesson-chapter-number { display: grid; place-items: center; flex: 0 0 28px; width: 28px; height: 28px; font-family: var(--mono); color: var(--accent); }
+.lesson-attributions { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 12px; }
+.lesson-attributions h3 { margin: 0 0 8px; font-size: 12px; color: var(--muted); }
+.lesson-attributions p { color: var(--muted); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.lesson-context { padding: 18px; }
+.lesson-context h2 { margin: 0; font-size: 16px; }
+.lesson-context .eyebrow { font-size: 10px; margin: 0 0 8px; }
+.lesson-feedback { padding-top: 6px; border-top: 1px solid #47554d; }
+.lesson-feedback.incorrect { color: #ffd1a7; }
+.lesson-feedback.correct { color: #c4e4a8; }
+.coach-actions > .lesson-return { background: #b6a0ef; border-color: #c7b4ff; color: #201735; font-weight: 650; }
+.coach-actions > .lesson-return:hover { background: #c5b2f5; border-color: #d9caff; }
+.lesson-board-controls, .lesson-game-controls { display: flex; align-items: center; gap: 6px; }
+.lesson-board-controls { justify-content: space-between; }
+.lesson-game-controls > span { min-width: 7ch; text-align: center; font: 11px var(--mono); }
+.lesson-game-controls > button { padding-inline: 10px; }
 @media (max-width: 760px) {
   .study-page { gap: 14px; }
   .study-options { grid-template-columns: 1fr; gap: 12px; }
@@ -38,4 +69,8 @@
   .study-sections { width: 100%; justify-content: space-between; }
   .study-sections a { padding: 8px; }
   .puzzle-history { margin-top: 12px; }
+  .lesson-chapters li { gap: 8px; padding: 12px 8px; }
+  .lesson-chapters button { padding-inline: 10px; }
+  .lesson-context { margin-top: 12px; }
+  .lesson-board-controls > .button-link { font-size: 12px; padding-inline: 8px; }
 }

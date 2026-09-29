@@ -506,3 +506,48 @@ class PuzzleAttempt(Owned, Base):
     elapsed_ms: Mapped[int]
     response: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class StudyLessonSession(Owned, Base):
+    __tablename__ = "study_lesson_sessions"
+    __table_args__ = (UniqueConstraint("user_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    request_id: Mapped[str]
+    course_id: Mapped[str]
+    course_revision: Mapped[str]
+    course_title: Mapped[str]
+    chapter_id: Mapped[str]
+    chapter_title: Mapped[str]
+    content_hash: Mapped[str]
+    snapshot: Mapped[dict] = mapped_column(JSON)
+    state: Mapped[dict] = mapped_column(JSON)
+    revision: Mapped[int] = mapped_column(default=0)
+    status: Mapped[str] = mapped_column(default="active")
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class StudyLessonCommand(Owned, Base):
+    __tablename__ = "study_lesson_commands"
+    __table_args__ = (UniqueConstraint("session_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    session_id: Mapped[str] = mapped_column(ForeignKey("study_lesson_sessions.id"), index=True)
+    request_id: Mapped[str]
+    request: Mapped[dict] = mapped_column(JSON)
+    response: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class StudyLessonProgress(Owned, Base):
+    __tablename__ = "study_lesson_progress"
+    __table_args__ = (UniqueConstraint("user_id", "course_id", "course_revision", "chapter_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    course_id: Mapped[str]
+    course_revision: Mapped[str]
+    chapter_id: Mapped[str]
+    content_hash: Mapped[str]
+    viewed_steps: Mapped[list] = mapped_column(JSON, default=list)
+    attempted_steps: Mapped[list] = mapped_column(JSON, default=list)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)

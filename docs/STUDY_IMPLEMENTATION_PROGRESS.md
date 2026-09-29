@@ -5,12 +5,11 @@ Branch: `codex/study-frameworks`, created from local `main` at `5fa6ac4`.
 
 ## Current checkpoint
 
-Phase 1 — Study navigation and puzzle framework, verified and ready to commit.
-Next: Phase 2 — lesson framework and connected acceptance chapter.
+Phase 2 — lesson framework and connected acceptance chapter verified; committing.
 
 ## Completed phases
 
-Phase 1 is included with this ledger update; record its commit at the next boundary.
+- Phase 1: `5c30aad` — Study navigation and durable multi-move puzzles.
 
 ## Decisions carried forward
 
@@ -44,6 +43,21 @@ Phase 1 is included with this ledger update; record its commit at the next bound
   Separate disposable test server/database; no owner game data changed.
 - Independent backend/frontend reviews corrected null-move validation, consistent
   session GET reads, replay starting position and opponent-turn labels.
+- Phase 2: `pytest backend/tests/test_study_lessons.py
+  backend/tests/test_lesson_journey.py backend/tests/test_lessons.py
+  backend/tests/test_accounts.py backend/tests/test_api_contract.py
+  backend/tests/test_puzzles.py -q -p no:cacheprovider
+  --basetemp=data/verification/study-phase2-final`: 79 passed, no skips;
+  two existing dependency deprecation warnings.
+- Phase 2: `npm.cmd run build` passed; Ruff lint/format, API snapshot and
+  Git whitespace checks passed. `npx.cmd playwright test study-lessons.spec.ts
+  study-puzzles.spec.ts navigation.spec.ts --reporter=line`: 43 passed,
+  one existing mobile new-tab navigation skip.
+- Phase 2 independent reviews covered content graph edges, branch anchors,
+  account/CAS isolation, cold rehearsal, stale responses and existing learning
+  records. Fixed full-game seeking to include known source-game preludes.
+  Manual desktop/mobile inspection exercised demonstration, guidance, branch
+  reload/return, source-game start/return and independent rehearsal.
 
 ## Follow-ups / blockers
 

@@ -1,6 +1,6 @@
 # Fieldwork — local chess practice
 
-A private chess trainer built around decisions in your own games. Import Chess.com or Lichess history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Review is the primary product; lessons have been removed from the interface, with historical data preserved.
+A private chess trainer built around decisions in your own games. Import Chess.com or Lichess history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Study brings scheduled recall, guided opening lessons and separate puzzle practice together. See [Study](docs/STUDY.md) for content availability and the distinct learning modes.
 
 The shared [animated coach](docs/COACH.md) reacts to your moves and practice, with
 account-saved character and motion preferences. Choose from four men, four women,

@@ -17,6 +17,7 @@ import EvidenceDialog from "./EvidenceDialog";
 import { navigate, pagePaths, studyPaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
 import PuzzlePlayer from "./study/PuzzlePlayer";
+import LessonPlayer from "./study/LessonPlayer";
 import Link from "./Link";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
@@ -105,7 +106,7 @@ export default function App() {
         id="main-content"
         tabIndex={-1}
         className={
-          route.studyMode === "due" || route.puzzleSessionId || (tab === "Games" && route.gameId)
+          route.studyMode === "due" || route.puzzleSessionId || route.lessonSessionId || (tab === "Games" && route.gameId)
             ? "review-page"
             : "workspace-page"
         }
@@ -163,11 +164,14 @@ export default function App() {
                 onEvidence={setEvidenceId}
               />
             )}
-            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && (
-              <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} />
+            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && (
+              <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} courseId={route.lessonCourseId} courseRevision={route.lessonRevision} />
             )}
             {route.puzzleSessionId && (
               <PuzzlePlayer key={`${refresh}-${route.puzzleSessionId}`} sessionId={route.puzzleSessionId} />
+            )}
+            {route.lessonSessionId && (
+              <LessonPlayer key={`${refresh}-${route.lessonSessionId}`} sessionId={route.lessonSessionId} />
             )}
             {tab === "Games" && (
               <GamesScreen

@@ -1,5 +1,12 @@
 # Testing
 
+Study lesson coverage: `test_study_lessons.py` checks authored content and session
+boundaries; `test_lesson_journey.py` traverses a connected six-step-type chapter
+through HTTP/restart persistence. `study-lessons.spec.ts` runs that journey and
+resume/alternate-path checks on desktop and mobile. Run `study-puzzles.spec.ts`
+alongside it when changing the shared display-only playback helper. Test fixture
+providers are injected only by the test application, never production flags.
+
 The review-intelligence synthetic baseline corpus and native benchmark commands
 are documented in [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Its contract
 tests run with ordinary pytest without Torch or a Maia checkpoint; native

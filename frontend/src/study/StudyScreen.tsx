@@ -4,10 +4,13 @@ import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import { navigate, pagePaths, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
 import { startNextPuzzle } from "./puzzleApi";
+import LessonLibrary from "./LessonLibrary";
 
-export default function StudyScreen({ mode, source }: {
+export default function StudyScreen({ mode, source, courseId, courseRevision }: {
   mode: StudyMode;
   source: "generic" | "games" | null;
+  courseId: string | null;
+  courseRevision: string | null;
 }) {
   const [due, setDue] = useState<number | null>(null);
   const [puzzles, setPuzzles] = useState<Schema["PuzzleLibrary"] | null>(null);
@@ -74,7 +77,7 @@ export default function StudyScreen({ mode, source }: {
         <Link className="button-link secondary" href={studyPaths.puzzles}>{puzzles?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></Link>
       </section>
     </div>}
-    {mode === "openings" && <section className="panel study-empty"><BookOpen size={28} aria-hidden="true" /><h2>No opening lessons yet.</h2><p>Opening lessons and repertoire study will appear here when content is available.</p><Link className="button-link secondary" href={studyPaths.due}>Go to Due</Link></section>}
+    {mode === "openings" && <LessonLibrary courseId={courseId} revision={courseRevision} />}
     {mode === "puzzles" && <>
       {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <Link className="study-resume" href={puzzleSessionPath(session.id)} key={session.id}><span>Unfinished puzzle <small>{session.failed ? "Continue after a retry" : "Your position is saved"}</small></span><ArrowRight size={18} /></Link>)}</div></section>}
       <section className={`panel ${available ? "" : "study-empty"}`}>

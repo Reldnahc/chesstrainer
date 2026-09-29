@@ -3417,6 +3417,721 @@
         "title": "LegalMove",
         "type": "object"
       },
+      "LessonAnnotations": {
+        "additionalProperties": false,
+        "properties": {
+          "arrows": {
+            "items": {
+              "$ref": "#/components/schemas/LessonArrow"
+            },
+            "title": "Arrows",
+            "type": "array"
+          },
+          "squares": {
+            "items": {
+              "pattern": "^[a-h][1-8]$",
+              "type": "string"
+            },
+            "title": "Squares",
+            "type": "array"
+          }
+        },
+        "title": "LessonAnnotations",
+        "type": "object"
+      },
+      "LessonArrow": {
+        "additionalProperties": false,
+        "properties": {
+          "from_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "From Square",
+            "type": "string"
+          },
+          "to_square": {
+            "pattern": "^[a-h][1-8]$",
+            "title": "To Square",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_square",
+          "to_square"
+        ],
+        "title": "LessonArrow",
+        "type": "object"
+      },
+      "LessonAttribution": {
+        "additionalProperties": false,
+        "properties": {
+          "license": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "License"
+          },
+          "text": {
+            "minLength": 1,
+            "title": "Text",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "LessonAttribution",
+        "type": "object"
+      },
+      "LessonBranchView": {
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "LessonBranchView",
+        "type": "object"
+      },
+      "LessonChapterSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "completed": {
+            "title": "Completed",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "completed"
+        ],
+        "title": "LessonChapterSummary",
+        "type": "object"
+      },
+      "LessonCommand": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "continue",
+              "back",
+              "move",
+              "hint",
+              "show_move",
+              "enter_branch",
+              "return_branch",
+              "open_game",
+              "close_game",
+              "game_seek"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "ply": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ply"
+          },
+          "request_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Request Id",
+            "type": "string"
+          },
+          "revision": {
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "uci": {
+            "anyOf": [
+              {
+                "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uci"
+          }
+        },
+        "required": [
+          "request_id",
+          "revision",
+          "action"
+        ],
+        "title": "LessonCommand",
+        "type": "object"
+      },
+      "LessonCourseSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "chapter_count": {
+            "title": "Chapter Count",
+            "type": "integer"
+          },
+          "completed_chapters": {
+            "title": "Completed Chapters",
+            "type": "integer"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "learner_color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Learner Color",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "title",
+          "description",
+          "learner_color",
+          "chapter_count",
+          "completed_chapters"
+        ],
+        "title": "LessonCourseSummary",
+        "type": "object"
+      },
+      "LessonCourseView": {
+        "additionalProperties": false,
+        "properties": {
+          "attributions": {
+            "items": {
+              "$ref": "#/components/schemas/LessonAttribution"
+            },
+            "title": "Attributions",
+            "type": "array"
+          },
+          "chapters": {
+            "items": {
+              "$ref": "#/components/schemas/LessonChapterSummary"
+            },
+            "title": "Chapters",
+            "type": "array"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "learner_color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Learner Color",
+            "type": "string"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/LessonLineSummary"
+            },
+            "title": "Lines",
+            "type": "array"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "title",
+          "description",
+          "learner_color",
+          "chapters",
+          "attributions",
+          "lines"
+        ],
+        "title": "LessonCourseView",
+        "type": "object"
+      },
+      "LessonFeedback": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "correct",
+              "incorrect",
+              "revealed",
+              "hint"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "text"
+        ],
+        "title": "LessonFeedback",
+        "type": "object"
+      },
+      "LessonGameNote": {
+        "additionalProperties": false,
+        "properties": {
+          "annotations": {
+            "$ref": "#/components/schemas/LessonAnnotations"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "annotations"
+        ],
+        "title": "LessonGameNote",
+        "type": "object"
+      },
+      "LessonGameView": {
+        "additionalProperties": false,
+        "properties": {
+          "attributions": {
+            "items": {
+              "$ref": "#/components/schemas/LessonAttribution"
+            },
+            "title": "Attributions",
+            "type": "array"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LessonGameNote"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "total_plies": {
+            "title": "Total Plies",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "title",
+          "ply",
+          "total_plies",
+          "attributions",
+          "note"
+        ],
+        "title": "LessonGameView",
+        "type": "object"
+      },
+      "LessonLibrary": {
+        "additionalProperties": false,
+        "properties": {
+          "courses": {
+            "items": {
+              "$ref": "#/components/schemas/LessonCourseSummary"
+            },
+            "title": "Courses",
+            "type": "array"
+          },
+          "resume": {
+            "items": {
+              "$ref": "#/components/schemas/LessonResume"
+            },
+            "title": "Resume",
+            "type": "array"
+          }
+        },
+        "required": [
+          "courses",
+          "resume"
+        ],
+        "title": "LessonLibrary",
+        "type": "object"
+      },
+      "LessonLineSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "repertoire": {
+            "title": "Repertoire",
+            "type": "boolean"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "repertoire"
+        ],
+        "title": "LessonLineSummary",
+        "type": "object"
+      },
+      "LessonResume": {
+        "additionalProperties": false,
+        "properties": {
+          "chapter_id": {
+            "title": "Chapter Id",
+            "type": "string"
+          },
+          "chapter_title": {
+            "title": "Chapter Title",
+            "type": "string"
+          },
+          "course_id": {
+            "title": "Course Id",
+            "type": "string"
+          },
+          "course_revision": {
+            "title": "Course Revision",
+            "type": "string"
+          },
+          "course_title": {
+            "title": "Course Title",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "course_id",
+          "course_revision",
+          "course_title",
+          "chapter_id",
+          "chapter_title",
+          "updated_at"
+        ],
+        "title": "LessonResume",
+        "type": "object"
+      },
+      "LessonSessionView": {
+        "additionalProperties": false,
+        "properties": {
+          "actions": {
+            "items": {
+              "enum": [
+                "continue",
+                "back",
+                "move",
+                "hint",
+                "show_move",
+                "enter_branch",
+                "return_branch",
+                "open_game",
+                "close_game",
+                "game_seek"
+              ],
+              "type": "string"
+            },
+            "title": "Actions",
+            "type": "array"
+          },
+          "assisted": {
+            "title": "Assisted",
+            "type": "boolean"
+          },
+          "branch": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LessonBranchView"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "chapter_id": {
+            "title": "Chapter Id",
+            "type": "string"
+          },
+          "chapter_title": {
+            "title": "Chapter Title",
+            "type": "string"
+          },
+          "course_id": {
+            "title": "Course Id",
+            "type": "string"
+          },
+          "course_revision": {
+            "title": "Course Revision",
+            "type": "string"
+          },
+          "course_title": {
+            "title": "Course Title",
+            "type": "string"
+          },
+          "failed": {
+            "title": "Failed",
+            "type": "boolean"
+          },
+          "feedback": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LessonFeedback"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "game": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LessonGameView"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "History",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "legal_moves": {
+            "items": {
+              "$ref": "#/components/schemas/LegalMove"
+            },
+            "title": "Legal Moves",
+            "type": "array"
+          },
+          "orientation": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Orientation",
+            "type": "string"
+          },
+          "playback": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "Playback",
+            "type": "array"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "completed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "step": {
+            "$ref": "#/components/schemas/LessonStepView"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "course_id",
+          "course_revision",
+          "course_title",
+          "chapter_id",
+          "chapter_title",
+          "orientation",
+          "fen",
+          "history",
+          "playback",
+          "legal_moves",
+          "step",
+          "actions",
+          "feedback",
+          "branch",
+          "game",
+          "status",
+          "assisted",
+          "failed"
+        ],
+        "title": "LessonSessionView",
+        "type": "object"
+      },
+      "LessonStart": {
+        "additionalProperties": false,
+        "properties": {
+          "chapter_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Chapter Id",
+            "type": "string"
+          },
+          "course_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Course Id",
+            "type": "string"
+          },
+          "course_revision": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Course Revision",
+            "type": "string"
+          },
+          "request_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "course_id",
+          "course_revision",
+          "chapter_id",
+          "request_id"
+        ],
+        "title": "LessonStart",
+        "type": "object"
+      },
+      "LessonStepView": {
+        "additionalProperties": false,
+        "properties": {
+          "annotations": {
+            "$ref": "#/components/schemas/LessonAnnotations"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "explanation",
+              "demonstration",
+              "decision",
+              "branch",
+              "game_excerpt",
+              "rehearsal"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "phase": {
+            "enum": [
+              "ready",
+              "complete"
+            ],
+            "title": "Phase",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "text",
+          "phase",
+          "annotations"
+        ],
+        "title": "LessonStepView",
+        "type": "object"
+      },
       "ManualRequest": {
         "properties": {
           "explanation": {
@@ -7964,6 +8679,205 @@
           }
         },
         "summary": "Stats"
+      }
+    },
+    "/api/study/courses": {
+      "get": {
+        "operationId": "library_api_study_courses_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonLibrary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Library"
+      }
+    },
+    "/api/study/courses/{course_id}": {
+      "get": {
+        "operationId": "course_api_study_courses__course_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "title": "Course Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "revision",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonCourseView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Course"
+      }
+    },
+    "/api/study/lesson-sessions": {
+      "post": {
+        "operationId": "start_api_study_lesson_sessions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LessonStart"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Start"
+      }
+    },
+    "/api/study/lesson-sessions/{session_id}": {
+      "get": {
+        "operationId": "get_session_api_study_lesson_sessions__session_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Session"
+      }
+    },
+    "/api/study/lesson-sessions/{session_id}/command": {
+      "post": {
+        "operationId": "command_api_study_lesson_sessions__session_id__command_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LessonCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Command"
       }
     },
     "/api/sync": {

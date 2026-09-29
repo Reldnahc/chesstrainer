@@ -1,6 +1,6 @@
 # Feature status against the original specification
 
-Current direction: Review and local mistake classification. The user's September 12, 2026 instruction supersedes the original required OpenAI integration. Model connectivity and paid lesson generation have been removed; historical data remains. Course and lesson flows are removed pending a future redesign; historical rows are archived.
+Current direction: game review, local mistake classification and structured Study. The user's September 12, 2026 instruction supersedes the original required OpenAI integration. Model connectivity and paid lesson generation have been removed; historical data remains archived. New authored lessons have their own versioned content and account progress.
 
 | Area | Implemented | Missing / limits |
 |---|---|---|
@@ -22,7 +22,8 @@ Current direction: Review and local mistake classification. The user's September
 | Explanations | Automatic counter on failure, Try again, deeper Show me why; Reveal move plays answer; success explanation/playback | Witness buttons and square-role highlights where supported; quiet positional explanations remain limited |
 | Focused practice | Up to 12 distinct real positions per selected weakness, separate session/attempt/time records, no FSRS writes | A new batch can repeat earlier practice; reload returns to mixed review |
 | SRS | FSRS, automatic Again/Hard/Good, raw response times, persistent due queue, permanent retirement above configured 100 days | No personal parameter optimization; elapsed time includes idle/tab time |
-| Courses / lessons | Historical data preserved in backups; nonretired lesson-held positions released to Review | Removed from navigation and active API; future lesson design is deferred |
+| Guided Study lessons | Six authored step types, connected branches, annotated game playback, independent rehearsal, private versioned progress and exact resume | Framework currently has development fixtures only; no graphical content editor or generated lessons |
+| Archived courses / lessons | Historical data preserved in backups; nonretired lesson-held positions released to Due | Legacy product routes remain removed; not reused by authored Study lessons |
 | Repertoire | Historical records preserved for backup/export | Removed from the app and review queue; list/import and direct practice return 410 |
 | Manual exercises | Low-level validated API retained for existing integrations and deterministic review fixtures | Creation form removed; no product navigation |
 | Settings | Account sessions, Chess.com connection, training-label refresh and capped deeper-evidence jobs; compact source download link | Host configuration stays in the environment; restart after edits |
