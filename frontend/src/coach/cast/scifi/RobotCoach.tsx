@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { ArtworkSvg, BodyRig, HeadRig } from "../../ArtworkRig";
 import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachArtworkProps, CoachExpression } from "../../model";
 import Accents from "../../studies/Accents";
@@ -74,59 +75,51 @@ export default function RobotCoach({ expression }: CoachArtworkProps) {
   const screen = useId();
   const status = expression === "blunder" || expression === "mistake" ? "#e9a385" : "#a4d9c3";
   return (
-    <svg
+    <ArtworkSvg
       viewBox="0 0 100 125"
       className="coach-artwork study-artwork cast-scifi cast-robot"
       style={poseStyle(pose, 0.45)}
-      aria-hidden="true"
-      focusable="false"
     >
       <Accents expression={expression} />
-      <g className="study-body">
-        <g className="study-body-idle">
-          <path d="M38 74h24v17H38Z" fill="#586a70" />
-          <path d="M39 78h22m-22 5h22" stroke="#8fa2a5" strokeWidth="2" />
-          <rect x="24" y="86" width="52" height="34" rx="12" fill="#b9bbae" />
-          <path d="M29 91v20q0 5 6 5h31" stroke="#e2dbc5" strokeWidth="2" fill="none" />
-          <rect x="38" y="96" width="25" height="16" rx="4" fill="#4b6369" />
-          <circle cx="44" cy="104" r="3" fill={status} />
-          <path d="M52 101h6m-6 5h4" stroke="#c5d6c2" strokeWidth="1.5" strokeLinecap="round" />
-          <g className="study-head">
-            <g className="study-head-idle">
-              <g className="study-head-pose">
-                <g className="cast-antenna coach-idle-antenna">
-                  <path d="M50 21V12l7-5" fill="none" stroke="#849da1" strokeWidth="3" strokeLinecap="round" />
-                  <circle cx="59" cy="6" r="4" fill={status} />
-                  <circle cx="58" cy="5" r="1.2" fill="#e9f1d6" />
-                </g>
-                <rect x="9" y="39" width="11" height="21" rx="4" fill="#7d8e8e" />
-                <rect x="80" y="39" width="11" height="21" rx="4" fill="#7d8e8e" />
-                <path d="M12 43v13m76-13v13" stroke="#b8c4b7" strokeWidth="2" strokeLinecap="round" />
-                <rect x="17" y="20" width="66" height="60" rx="18" fill="#c9c7b4" />
-                <path d="M23 38V34q0-9 12-9h29" fill="none" stroke="#ece2cc" strokeWidth="2.5" strokeLinecap="round" />
-                <rect x="22" y="29" width="56" height="46" rx="12" fill="#243840" />
-                <RobotDisplay pose={pose} expression={expression} />
-                <defs><clipPath id={screen}><rect x="22" y="29" width="56" height="46" rx="12" /></clipPath></defs>
-                <g clipPath={`url(#${screen})`}>
-                  <g className="cast-scanline">
-                    <path d="M24 39h52" stroke="#d4efce" strokeWidth="1.5" />
-                    <path d="M24 37h52" stroke="#d4efce" strokeWidth="4" opacity=".1" />
-                  </g>
-                </g>
-                <circle cx="28" cy="24" r="1" fill="#788c8c" />
-                <circle cx="72" cy="24" r="1" fill="#788c8c" />
-              </g>
+      <BodyRig>
+        <path d="M38 74h24v17H38Z" fill="#586a70" />
+        <path d="M39 78h22m-22 5h22" stroke="#8fa2a5" strokeWidth="2" />
+        <rect x="24" y="86" width="52" height="34" rx="12" fill="#b9bbae" />
+        <path d="M29 91v20q0 5 6 5h31" stroke="#e2dbc5" strokeWidth="2" fill="none" />
+        <rect x="38" y="96" width="25" height="16" rx="4" fill="#4b6369" />
+        <circle cx="44" cy="104" r="3" fill={status} />
+        <path d="M52 101h6m-6 5h4" stroke="#c5d6c2" strokeWidth="1.5" strokeLinecap="round" />
+        <HeadRig>
+          <g className="cast-antenna coach-idle-antenna">
+            <path d="M50 21V12l7-5" fill="none" stroke="#849da1" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="59" cy="6" r="4" fill={status} />
+            <circle cx="58" cy="5" r="1.2" fill="#e9f1d6" />
+          </g>
+          <rect x="9" y="39" width="11" height="21" rx="4" fill="#7d8e8e" />
+          <rect x="80" y="39" width="11" height="21" rx="4" fill="#7d8e8e" />
+          <path d="M12 43v13m76-13v13" stroke="#b8c4b7" strokeWidth="2" strokeLinecap="round" />
+          <rect x="17" y="20" width="66" height="60" rx="18" fill="#c9c7b4" />
+          <path d="M23 38V34q0-9 12-9h29" fill="none" stroke="#ece2cc" strokeWidth="2.5" strokeLinecap="round" />
+          <rect x="22" y="29" width="56" height="46" rx="12" fill="#243840" />
+          <RobotDisplay pose={pose} expression={expression} />
+          <defs><clipPath id={screen}><rect x="22" y="29" width="56" height="46" rx="12" /></clipPath></defs>
+          <g clipPath={`url(#${screen})`}>
+            <g className="cast-scanline">
+              <path d="M24 39h52" stroke="#d4efce" strokeWidth="1.5" />
+              <path d="M24 37h52" stroke="#d4efce" strokeWidth="4" opacity=".1" />
             </g>
           </g>
-          {pose.hands === "book" && (
-            <g>
-              <rect x="28" y="91" width="44" height="24" rx="3" fill="#334b56" stroke="#8eabad" strokeWidth="2" />
-              <path d="M34 97h16m-16 5h30m-30 5h23" stroke="#a8d8c7" strokeWidth="2" strokeLinecap="round" />
-            </g>
-          )}
-          <CastHands pose={pose.hands} skin="#c9c7b4" sleeve="#758b8b" joint="#d9c598" />
-        </g>
-      </g>
-    </svg>
+          <circle cx="28" cy="24" r="1" fill="#788c8c" />
+          <circle cx="72" cy="24" r="1" fill="#788c8c" />
+        </HeadRig>
+        {pose.hands === "book" && (
+          <g>
+            <rect x="28" y="91" width="44" height="24" rx="3" fill="#334b56" stroke="#8eabad" strokeWidth="2" />
+            <path d="M34 97h16m-16 5h30m-30 5h23" stroke="#a8d8c7" strokeWidth="2" strokeLinecap="round" />
+          </g>
+        )}
+        <CastHands pose={pose.hands} skin="#c9c7b4" sleeve="#758b8b" joint="#d9c598" />
+      </BodyRig>
+    </ArtworkSvg>
   );
 }

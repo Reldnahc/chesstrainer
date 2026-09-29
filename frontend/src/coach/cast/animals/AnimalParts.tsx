@@ -1,4 +1,5 @@
 import { useId, type CSSProperties, type ReactNode } from "react";
+import { ArtworkSvg, BodyRig } from "../../ArtworkRig";
 import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachExpression } from "../../model";
 import type { AnimalPose } from "../../studies/animalPoses";
@@ -20,11 +21,9 @@ export function AnimalFrame({
   children: ReactNode;
 }) {
   return (
-    <svg
+    <ArtworkSvg
       viewBox="0 0 100 125"
       className={`coach-artwork study-artwork cast-${name}`}
-      aria-hidden="true"
-      focusable="false"
       style={
         {
           "--study-tilt": `${pose.tilt}deg`,
@@ -34,22 +33,12 @@ export function AnimalFrame({
       }
     >
       <Accents expression={expression} />
-      <g className="study-body">
-        <g className="study-body-idle">{children}</g>
-      </g>
-    </svg>
+      <BodyRig>{children}</BodyRig>
+    </ArtworkSvg>
   );
 }
 
-export function AnimalHead({ children }: { children: ReactNode }) {
-  return (
-    <g className="study-head">
-      <g className="study-head-idle">
-        <g className="study-head-pose">{children}</g>
-      </g>
-    </g>
-  );
-}
+export { HeadRig as AnimalHead } from "../../ArtworkRig";
 
 // Eye mechanics are shared; head silhouette, eye placement, muzzle, mouth and
 // the expressive pose adjustments remain species-specific in each artwork.

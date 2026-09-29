@@ -68,6 +68,7 @@ not React components.
 | Board/sidebar layout | [ReviewWorkspace](../frontend/src/ReviewWorkspace.tsx), [review-presentation.css](../frontend/src/review-presentation.css) | Shared board sizing and slots for status, evaluation, controls and sidebar; mobile coach placement. |
 | Coach bubble, portrait and action geometry | [ReviewCoach](../frontend/src/ReviewCoach.tsx), [coach-presentation.css](../frontend/src/coach-presentation.css) | Shared title, badge, evaluation, explanation, insight, caption and actions. Preserve stable portrait identity and message-scroll reset behavior. |
 | Registered coach artwork/performance | [CoachAvatar / CoachCharacter](../frontend/src/coach/CoachAvatar.tsx), [registry](../frontend/src/coach/registry.ts) | App-selected avatar versus explicit preview character. Use registry metadata; do not maintain another cast list. |
+| Authored SVG rig layers | [ArtworkRig](../frontend/src/coach/ArtworkRig.tsx) | Decorative SVG frame and identical study body/head layers. Keep species art, CSS, poses, viewBoxes and accent placement with their family. Classic's distinct rig remains separate. |
 | Rendered coaching text | [DialogueText](../frontend/src/dialogue/DialogueText.tsx) | Supported utterance text and intent/variant metadata. Its live-announcement behavior matters when reusing it in a many-card diagnostic view. |
 | Move-quality symbol and labelled badge | [MoveSymbol](../frontend/src/MoveSymbol.tsx), [MoveBadge](../frontend/src/MoveBadge.tsx) | One icon/label rendering path. Objective move quality and practice attempt outcomes remain different concepts. |
 | White-perspective position score | [EvaluationScore](../frontend/src/EvaluationScore.tsx), [evaluation helpers](../frontend/src/evaluation.ts) | Signed pawn/mate formatting, winning-side styling and accessible perspective. Never pass side-to-move candidate scores without conversion. |
@@ -147,7 +148,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-24 | Promote the application's existing MotionSelect into Studio (A). | Complete | Studio uses `MotionSelect` with shared-safe control styles and still clears its simulated reduced-motion setting on selection. |
 | UI-25 | Use the application's real EvaluationScore in Studio (B). | Complete | Board-size Studio previews use `EvaluationScore` with typed illustrative scores, correct White perspective, side styling and accessible text. |
 | UI-26 | Defer coach-card/selector extraction. | Deferred | Keep current Settings and Studio workflows, shared registry/artwork, and the Settings six-column grid. |
-| UI-27 | Share identical artwork/rig wrappers. | Planned | Preserve every character's art, geometry, classes, expression behavior and animation. This also serves production artwork. |
+| UI-27 | Share identical artwork/rig wrappers. | Complete | `ArtworkSvg`, `BodyRig` and `HeadRig` serve production family artwork; art, geometry, eyes, animation and species-specific layers remain unchanged. |
 | UI-28 | Share application dialogue text/metadata with explicit non-live lab rendering. | Planned | Preserve production announcements and lab semantics; do not announce every comparison card. |
 | UI-29 | Defer development-tool checkbox-row extraction. | Deferred | Leave current tool implementations in place for this pass. |
 | UI-30 | Leave the existing eye implementations alone. | Keep existing | Owner's later "just leave it" supersedes the initial mechanics-only extraction choice. No eye refactor in this pass. |
@@ -192,6 +193,14 @@ from Git; no live decision-gathering tool is needed.
   preview; assertions now check names on visible previews and metadata on both.
   **209 CI-planner tests** and focused Ruff checks passed. Commit subject:
   `UI-25: Use real evaluation scores in coach previews`.
+- **UI-27 — shared artwork layers:** extracted only identical decorative SVG,
+  body and head nesting across 14 artwork files. An expanded-source AST comparison
+  confirmed unchanged authored nodes, attributes, expressions and hierarchy.
+  Production build and **16 desktop/mobile rig and coach-study tests** passed,
+  covering every registered coach/expression's channels, framing, transform
+  origins, species layers, existing animation and reduced motion. No eye, artwork,
+  gesture or cadence changes. Commit subject: `UI-27: Share identical coach SVG
+  rig layers`.
 
 ## Audit findings and implementation boundaries
 

@@ -47,10 +47,51 @@ test("rig capabilities match mounted production artwork, including conditional a
       await expect(avatar).toHaveAttribute("data-expression", expression);
       await expect(avatar.locator('[data-eye-state="closed"]')).toHaveCount(0);
       expect(await avatar.locator('[data-eye-state="open"]').count()).toBeGreaterThan(0);
-      const rendered = await avatar.evaluate((element, selectors) =>
-        Object.entries(selectors).filter(([, selector]) => element.querySelector(selector))
-          .map(([channel]) => channel).sort(), selectors);
-      expect([...rigChannels(id, expression)].sort(), `${id}:${expression}`).toEqual(rendered);
+      const rendered = await avatar.evaluate((element, selectors) => {
+        const artwork = element.querySelector("svg.study-artwork");
+        const head = artwork?.querySelector(".study-head-pose");
+        return {
+          channels: Object.entries(selectors).filter(([, selector]) => element.querySelector(selector))
+            .map(([channel]) => channel).sort(),
+          rig: artwork && {
+            viewBox: artwork.getAttribute("viewBox"),
+            hidden: artwork.getAttribute("aria-hidden"),
+            focusable: artwork.getAttribute("focusable"),
+            bodies: artwork.querySelectorAll(".study-body").length,
+            heads: artwork.querySelectorAll(".study-head").length,
+            bodyLayers: artwork.querySelectorAll(":scope > .study-body > .study-body-idle").length,
+            headLayers: artwork.querySelectorAll(".study-body-idle .study-head > .study-head-idle > .study-head-pose").length,
+            headOrigin: head && getComputedStyle(head).transformOrigin,
+            pawnHead: !!artwork.querySelector(".study-body-idle > .cast-weight > .study-head"),
+            accentTransform: artwork.querySelector(":scope > g[transform]")?.getAttribute("transform") ?? null,
+          },
+        };
+      }, selectors);
+      expect([...rigChannels(id, expression)].sort(), `${id}:${expression}`).toEqual(rendered.channels);
+      if (id === "classic") {
+        expect(rendered.rig).toBeNull();
+      } else {
+        const human = /^(man-|woman-|human-)/.test(id);
+        const headOrigins: Record<string, string> = {
+          frog: "50px 72px",
+          "living-pawn": "50px 61px",
+          ghost: "50px 106px",
+          slime: "50px 106px",
+          mushroom: "50px 89px",
+        };
+        expect(rendered.rig, `${id}:${expression} authored rig`).toEqual({
+          viewBox: human ? "-6 -8 92 115" : "0 0 100 125",
+          hidden: "true",
+          focusable: "false",
+          bodies: 1,
+          heads: 1,
+          bodyLayers: 1,
+          headLayers: 1,
+          headOrigin: human ? "40px 67px" : headOrigins[id] ?? "50px 78px",
+          pawnHead: id === "living-pawn",
+          accentTransform: human ? "translate(-6 -8) scale(.92)" : null,
+        });
+      }
     }
   }
 });
