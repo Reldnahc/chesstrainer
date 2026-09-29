@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { useEyeClosure } from "../CoachFaceContext";
 import type { AnimalPose } from "./animalPoses";
 
 export type AnimalPalette = {
@@ -27,6 +28,7 @@ export default function AnimalFace({
   muzzleShape?: string;
 }) {
   const mask = useId();
+  const closedEyes = useEyeClosure(pose.closed);
   const { eye, gaze } = pose;
   const xs = dog ? [36, 64] : [35, 65];
   const eyeWidth = dog ? 5.5 : 6.5;
@@ -43,8 +45,8 @@ export default function AnimalFace({
         <path d={pose.brows[0]} />
         <path d={pose.brows[1]} />
       </g>
-      <g className="animal-eyes">
-        {pose.closed ? (
+      <g className="animal-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
+        {closedEyes ? (
           <g
             stroke={palette.lid ?? "#302b29"}
             strokeWidth="2"

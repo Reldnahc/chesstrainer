@@ -1,4 +1,5 @@
 import { useId, type CSSProperties } from "react";
+import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachArtworkProps } from "../../model";
 import { animalPoses, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
@@ -62,6 +63,7 @@ function DragonArms({ pose }: { pose: AnimalPose }) {
 
 export default function DragonCoach({ expression }: CoachArtworkProps) {
   const pose = animalPoses[expression];
+  const closedEyes = useEyeClosure(pose.closed);
   const eyeMask = useId();
   const openWings = expression === "brilliant" || expression === "winning";
   const tucked = expression === "losing" || expression === "mistake";
@@ -169,7 +171,7 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
                   <path d={pose.brows[0]} />
                   <path d={pose.brows[1]} />
                 </g>
-                <g className="animal-eyes coach-eyes">
+                <g className="animal-eyes coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
                   <defs>
                     <clipPath id={eyeMask}>
                       {[35, 65].map((x) => (
@@ -177,7 +179,7 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
                       ))}
                     </clipPath>
                   </defs>
-                  {pose.closed ? (
+                  {closedEyes ? (
                     <path
                       d={`M28 43q7 ${pose.mouth === "concern" ? 5 : -6} 14 0m16 0q7 ${pose.mouth === "concern" ? 5 : -6} 14 0`}
                       stroke="#173f3b"

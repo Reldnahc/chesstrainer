@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { useEyeClosure } from "../CoachFaceContext";
 import type { CoachExpression } from "../model";
 import type { Pose } from "./poses";
 
@@ -18,6 +19,7 @@ export default function HumanFeatures({
   glasses?: boolean;
 }) {
   const eyeClip = useId();
+  const closedEyes = useEyeClosure(pose.closedEyes);
   return (
     <>
       {pose.blush && (
@@ -36,8 +38,8 @@ export default function HumanFeatures({
         <path className="coach-brow-left" d={pose.brows[0]} />
         <path className="coach-brow-right" d={pose.brows[1]} />
       </g>
-      <g className="coach-eyes">
-        {pose.closedEyes ? (
+      <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
+        {closedEyes ? (
           <g
             fill="none"
             stroke="#393c42"

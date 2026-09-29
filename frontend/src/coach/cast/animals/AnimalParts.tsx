@@ -1,4 +1,5 @@
 import { useId, type CSSProperties, type ReactNode } from "react";
+import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachExpression } from "../../model";
 import type { AnimalPose } from "../../studies/animalPoses";
 import Accents from "../../studies/Accents";
@@ -72,9 +73,10 @@ export function AnimalEyes({
   pupilWidth?: number;
 }) {
   const mask = useId();
+  const closedEyes = useEyeClosure(pose.closed);
   return (
-    <g className="animal-eyes">
-      {pose.closed ? (
+    <g className="animal-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
+      {closedEyes ? (
         <g
           className="study-gaze"
           fill="none"

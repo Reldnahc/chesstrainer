@@ -2,6 +2,24 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach idle revamp — milestone 2 — September 29, 2026
+
+Shared face context now separates entrance eye squeezes from the expressive
+resting face. Still/paused portraits settle immediately; newer feedback cancels
+old transitions. No reaction timing or semantic inputs changed.
+
+- `npm.cmd run build`: passed API agreement, all TypeScript projects and production
+  build (existing chunk-size advisory only).
+- `npx.cmd playwright test --config test-results/idle-live.config.ts resting-faces.spec.ts`:
+  initial **34 passed** desktop/mobile; subsequent expanded interruption subset
+  **6 passed**, covering **38 distinct current cases**. Tests inspect actual eyes,
+  unchanged non-eye geometry, SVG identity, dwell/replay, newer feedback, hidden/
+  offscreen/Still interruption, browser preferences and one-shot previews.
+- `npx.cmd playwright test --config test-results/idle-live.config.ts idle-rig.spec.ts --project desktop`:
+  **2 passed**, including all 600 current rendered coach/expression combinations.
+- Browser-test TypeScript and `git diff --check` passed. Independent lifecycle
+  and artwork review found no material issue. Live studio confirmed reopening;
+  broader artistic acceptance continues with the expanded repertoire.
 ## Coach idle revamp — milestone 1 — September 29, 2026
 
 The shared coach now uses canonical gesture lengths and channel reservations,

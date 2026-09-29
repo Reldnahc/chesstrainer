@@ -1,4 +1,5 @@
 import { useId, type ReactNode } from "react";
+import { useEyeClosure } from "../../CoachFaceContext";
 import type { AnimalPose } from "../../studies/animalPoses";
 
 // A muzzle-free face keeps the same expression vocabulary as the existing rigs,
@@ -19,6 +20,7 @@ export default function FantasyFace({
   muzzle?: ReactNode;
 }) {
   const clip = useId();
+  const closedEyes = useEyeClosure(pose.closed);
   const eyeWidth = kind === "watchful" ? 4.7 : kind === "bright" ? 6 : 5.3;
   return (
     <>
@@ -32,8 +34,8 @@ export default function FantasyFace({
         <path d={pose.brows[0]} />
         <path d={pose.brows[1]} />
       </g>
-      <g className="animal-eyes">
-        {pose.closed ? (
+      <g className="animal-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
+        {closedEyes ? (
           <g stroke={ink} strokeWidth="2" strokeLinecap="round" fill="none">
             <path d={`M30 43q5 ${pose.mouth === "concern" ? 5 : -6} 10 0`} />
             <path d={`M60 43q5 ${pose.mouth === "concern" ? 5 : -6} 10 0`} />

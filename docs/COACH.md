@@ -93,11 +93,12 @@ are required.
 The quieter studies use a delayed look and a small response; the playful studies
 hold their anticipation before a quick reaction with overlapping hair/ear motion.
 Each character keeps its expression after the entrance settles. Blunder idles use
-breathing, ears or hair rather than a happy tail wag. Reduced motion keeps the
-full expressive silhouette while disabling all reaction and idle animations.
+breathing, ears or hair rather than a happy tail wag. Still (and System when the
+browser requests reduced motion) keeps the expressive resting face without
+animation. Explicit Animated overrides the browser preference.
 
-Storyteller remains the default, with its review artwork and
-performance unchanged. The former Quiet mentor and Graphic spark variants of
+Storyteller remains the default, retaining its artwork and entrance identity.
+The former Quiet mentor and Graphic spark variants of
 that same man have been retired in favor of three distinct people. Old family
 links fall back to Storyteller. The production registry and studio use the same
 catalogue, including individual animation overrides such as Storyteller's glasses
@@ -126,6 +127,13 @@ answers do not flash a loading face. Position/session keys and state changes can
 pending work; existing review generation guards still discard stale engine replies.
 An entrance lasts roughly 1.3–1.8 seconds, then retains a quieter static expression
 consistent with the bubble instead of returning to an unrelated neutral face.
+
+Eye squeezes belong to the entrance, not the indefinite resting face. Shared
+face context reopens eyes after the entrance while preserving the brows, mouth,
+pose and semantic reaction. Known feedback keeps its entrance face during dwell;
+there is no open/closed flash at commitment. Still, hidden or offscreen portraits
+settle immediately; resuming an interrupted entrance does not replay it. Eye
+context updates pass through the memoized artwork without remounting the SVG.
 
 Idle gestures occur after variable 0.5–1 second quiet pauses for every animated
 coach. `idleModel.ts` owns the shared cadence; character definitions choose

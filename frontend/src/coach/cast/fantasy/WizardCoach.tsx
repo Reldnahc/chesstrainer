@@ -1,4 +1,5 @@
 import { useId, type CSSProperties } from "react";
+import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachArtworkProps } from "../../model";
 import { animalPoses, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
@@ -63,6 +64,7 @@ function ScholarHands({ pose }: { pose: AnimalPose }) {
 
 export default function WizardCoach({ expression }: CoachArtworkProps) {
   const pose = animalPoses[expression];
+  const closedEyes = useEyeClosure(pose.closed);
   const eyeMask = useId();
   const vars = {
     "--study-tilt": `${pose.tilt * 0.65}deg`,
@@ -135,7 +137,7 @@ export default function WizardCoach({ expression }: CoachArtworkProps) {
                     <path d={pose.brows[0]} />
                     <path d={pose.brows[1]} />
                   </g>
-                  <g className="animal-eyes coach-eyes">
+                  <g className="animal-eyes coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
                     <defs>
                       <clipPath id={eyeMask}>
                         {[35, 65].map((x) => (
@@ -149,7 +151,7 @@ export default function WizardCoach({ expression }: CoachArtworkProps) {
                         ))}
                       </clipPath>
                     </defs>
-                    {pose.closed ? (
+                    {closedEyes ? (
                       <g
                         stroke="#59493e"
                         strokeWidth="1.8"

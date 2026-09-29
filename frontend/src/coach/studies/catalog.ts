@@ -49,7 +49,7 @@ const animalIntents: CoachDefinition["expressionIntents"] = {
     "A delighted double take. Bright eyes, lifted paws and an eager tail.",
   great: "An approving nod, an offered paw and a little tail movement.",
   best: "Focused eyes and a confident paw: that is the move.",
-  good: "Soft, closed eyes and an easy smile.",
+  good: "A soft eye squeeze that settles into an easy smile.",
   book: "Eyes down, paws around the book. Familiar territory.",
   inaccuracy: "A questioning tilt and one ear listening a little harder.",
   mistake: "Ears soften and the eyes close briefly. A sympathetic wince.",
