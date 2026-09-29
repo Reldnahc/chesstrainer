@@ -93,8 +93,11 @@ test('game links support opening a second tab without navigating the first', asy
 
 test('returning to the library restores its page and scroll after the list loads', async ({page}, info) => {
   const {id} = await (await page.request.post(`/__test/game-review-fixture/pagination-${info.project.name}`)).json();
-  await page.route('**/api/games?offset=*', route => {
+  await page.route('**/api/games?offset=*', async route => {
     const offset = Number(new URL(route.request().url()).searchParams.get('offset'));
+    // Font swaps can change the header height and trigger native scroll anchoring.
+    // Settle those metrics before this delayed list makes restoration possible.
+    await page.evaluate(() => document.fonts.ready);
     return route.fulfill({json: {total: 60, items: Array.from({length: offset < 60 ? 30 : 0}, (_, index) => ({
       id: index === 20 ? id : `library-${offset + index}`, white: `Library ${offset + index}`, black: 'Opponent',
       result: '0-1', played_on: '2026.09.26', status: 'not_started',
@@ -115,9 +118,10 @@ test('returning to the library restores its page and scroll after the list loads
   await expect(page).toHaveURL('/games?page=2');
   await expect(gameLink).toBeVisible();
   await expect.poll(async () => Math.abs(await page.evaluate(() => window.scrollY) - scroll)).toBeLessThan(2);
+  const beforeReload = await page.evaluate(() => window.scrollY);
   await page.reload();
   await expect(gameLink).toBeVisible();
-  await expect.poll(async () => Math.abs(await page.evaluate(() => window.scrollY) - scroll)).toBeLessThan(2);
+  await expect.poll(async () => Math.abs(await page.evaluate(() => window.scrollY) - beforeReload)).toBeLessThan(2);
   await page.goBack();
   await expect(page).toHaveURL('/games');
   await expect(page.locator('.game-pagination')).toContainText('1–30 of 60');
