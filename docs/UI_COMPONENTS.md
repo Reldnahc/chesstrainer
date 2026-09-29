@@ -72,6 +72,7 @@ not React components.
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
 | Native modal lifecycle | [useModalDialog](../frontend/src/useModalDialog.ts) | Evidence and promotion share native opening, Escape dismissal, keyboard isolation and connected-opener restoration. Promotion supplies board fallback and board-relative placement; Maia remains non-modal. |
+| Native disclosure styling | [disclosure.css](../frontend/src/disclosure.css) | Apply disclosure to native details, retaining browser-owned toggling and markers. Shared summaries have 44px minimum targets; rich import history retains its content layout. |
 | Board/sidebar layout | [ReviewWorkspace](../frontend/src/ReviewWorkspace.tsx), [review-presentation.css](../frontend/src/review-presentation.css) | Shared board sizing and slots for status, evaluation, controls and sidebar; mobile coach placement. |
 | Board turn indicator | [TurnIndicator](../frontend/src/TurnIndicator.tsx) | Decorative color dot with caller-supplied status text. Due, lessons and puzzles retain their distinct status and visibility rules. |
 | Coach bubble, portrait and action geometry | [ReviewCoach](../frontend/src/ReviewCoach.tsx), [coach-presentation.css](../frontend/src/coach-presentation.css) | Shared title, badge, evaluation, explanation, insight, caption and actions. Preserve stable portrait identity and message-scroll reset behavior. |
@@ -152,7 +153,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-14 | Share provider username field rules. | Complete | ProviderUsernameField serves Settings connection, one-time import and onboarding; native validation and description association are centralized. |
 | UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Complete | ImportAnalysisOption and ImportSubmitButton serve both forms; onboarding says Import games and each form retains its request fields and busy copy. |
 | UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Complete | Promotion uses the shared native modal lifecycle, preserving legal choices, drag timing and board-relative placement; page shortcuts yield while a modal is open. |
-| UI-17 | Promote plain native-summary styling (A). | Planned | This choice stands. Preserve comfortable phone tap targets, native details behavior, rich history/review contents and cold-practice answer restrictions. |
+| UI-17 | Promote plain native-summary styling (A). | Complete | Shared native-summary rules serve connection/import/review/weakness/variation disclosures, preserving 44px targets, rich history contents and cold-practice restrictions. |
 | UI-18 | Keep section headings and the distinct action-row layouts separate. | Keep existing | Do not extract a universal component for these different roles. |
 | UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Complete | ResumeLink owns identical lesson, puzzle and course-line rows; native Link behavior and caller destinations/content are preserved. |
 | UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Complete | Both statistics panels share StatList with their original labels, values, visibility and appearance. |
@@ -349,6 +350,13 @@ from Git; no live decision-gathering tool is needed.
   checks passed** for consistent geometry, recovery links and compact embedded
   activity/search states. Nonempty content and copy remain unchanged. Commit
   subject: `UI-13: Share section and compact empty states`.
+
+- **UI-17 — native disclosures:** centralized summary appearance, native markers,
+  open spacing and phone targets. Rich import-history rows retain their content
+  layout. Integration review also caught and migrated the Game Review variation
+  summary. Production build and **6 desktop/mobile disclosure checks passed**,
+  including keyboard/touch activation, rerender persistence and cold-answer
+  restrictions. Commit subject: `UI-17: Standardize native disclosure summaries`.
 
 ## Audit findings and implementation boundaries
 

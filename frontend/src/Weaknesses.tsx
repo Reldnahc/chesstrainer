@@ -87,7 +87,7 @@ export default function WeaknessScreen({
                               attempts.
                             </p>
                           )}
-                          <details>
+                          <details className="disclosure">
                             <summary>
                               Browse supporting positions (
                               {skill.decision_ids.length})

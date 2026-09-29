@@ -166,7 +166,7 @@ export default function ReviewExplanation({
               )}
             </div>
           )}
-          <details>
+          <details className="disclosure">
             <summary>About this explanation</summary>
             {data.notes.map((note, i) => (
               <p key={i}>{note}</p>

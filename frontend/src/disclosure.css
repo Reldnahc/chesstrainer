@@ -1,0 +1,17 @@
+/* Native details owns toggling, keyboard activation and open state. */
+.disclosure {
+  display: block;
+  min-width: 0;
+}
+.disclosure > summary {
+  display: list-item;
+  list-style-position: inside;
+  min-height: 44px;
+  padding: 10px 0;
+  color: #d1d6df;
+  font-size: 13px;
+  cursor: pointer;
+}
+.disclosure[open] > summary {
+  margin-bottom: 12px;
+}

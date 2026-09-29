@@ -15,7 +15,7 @@ export default function ReviewDetails({
 }) {
   return (
     <details
-      className="review-details"
+      className="disclosure review-details"
       key={`${position.session_id}-${!!feedback?.completed}`}
     >
       <summary>

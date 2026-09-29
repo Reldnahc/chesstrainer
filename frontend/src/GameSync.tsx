@@ -34,7 +34,7 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
     <h3>{provider.name}</h3>
     {status?.username ? <>
       <strong className="connection-username">{status.username}</strong>
-      <details>
+      <details className="disclosure">
         <summary>Change {provider.name} connection</summary>
         {form}
         <p className="small">Clear the username to disconnect.</p>

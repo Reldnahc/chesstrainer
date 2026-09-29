@@ -128,7 +128,7 @@ export default function ReviewMoves({
           })}
         </div>
         {!!branches.length && (
-          <details className="game-variations" open>
+          <details className="disclosure game-variations" open>
             <summary>Variations ({branches.length})</summary>
             {branches.map((b) => (
               <div key={b.id} className="game-variation-row">

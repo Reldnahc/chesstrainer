@@ -7,7 +7,6 @@
 .game-sync h3 { margin-bottom: 8px; }
 .connection-username { overflow-wrap: anywhere; margin-bottom: 10px; }
 .game-sync details { margin-bottom: 12px; }
-.game-sync summary { padding-block: 8px; }
 .game-sync .sync-form { margin: 12px 0 8px; }
 .game-sync .sync-form label { flex-basis: 180px; }
 .game-sync details > p { margin-bottom: 0; }
@@ -34,7 +33,6 @@
 .upload-zone strong { max-width: 100%; overflow-wrap: anywhere; }
 .upload-zone span { font-size: 12px; color: var(--muted); }
 .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; max-width: 100%; }
-.import-extra summary { min-height: 44px; padding-block: 12px; }
 .import-extra p { margin: 12px 0 0; }
 .import-activity { min-width: 0; }
 .job { padding: 22px; margin-bottom: 14px; }
@@ -46,20 +44,17 @@
 .job .row-between strong { overflow-wrap: anywhere; min-width: 0; }
 .job .badge { flex-shrink: 0; }
 .import-activity .job-history { padding-block: 0; }
-.job-summary { display: flex; align-items: center; gap: 14px; min-height: 64px; padding-block: 12px; list-style: none; }
-.job-summary::-webkit-details-marker { display: none; }
+.job-history .job-summary { min-height: 64px; }
+.job-summary-content { display: inline-flex; width: calc(100% - 1.5em); align-items: center; vertical-align: top; gap: 14px; }
 .job-summary-copy { display: flex; flex: 1; flex-direction: column; min-width: 0; gap: 4px; }
 .job-summary-copy strong { overflow-wrap: anywhere; font-weight: 500; }
 .job-summary-copy .small { color: var(--muted); }
 .job-inspect { color: var(--accent); white-space: nowrap; }
-.job-inspect::after { content: " +"; }
-.job-history details[open] > .job-summary .job-inspect::after { content: " −"; }
 .job-details { padding-block: 4px 16px; }
-.import-activity .history-toggle { margin-top: 18px; }
+.import-activity .history-toggle { width: 100%; margin-top: 18px; }
 @media (max-width: 760px) {
   .provider-connections { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .provider-connections .game-sync { padding: 16px; }
-  .game-sync summary { min-height: 44px; }
   .pgn-import-launcher { flex-wrap: wrap; gap: 12px; }
   .import-form { margin-top: 18px; }
   .import-form .form-panel { gap: 14px; }
@@ -69,7 +64,7 @@
   .workspace-page .job { margin-bottom: 0; }
   .workspace-page .job progress { margin: 12px 0 8px; }
   .workspace-page .job .import-phase { margin-top: 10px; }
-  .job-summary { flex-wrap: wrap; gap: 8px 12px; }
+  .job-summary-content { flex-wrap: wrap; gap: 8px 12px; }
   .job-summary-copy { flex-basis: calc(100% - 100px); }
   .job-inspect { flex-basis: 100%; }
 }

@@ -137,7 +137,7 @@ export function ProviderImportForm({
         </label>
       </div>
       <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
-      <details className="import-extra">
+      <details className="disclosure import-extra">
         <summary>
           Custom date range{startDate || endDate ? " (active)" : ""}
         </summary>
@@ -187,7 +187,7 @@ export function ProviderImportForm({
           {message}
         </div>
       )}
-      <details className="import-extra">
+      <details className="disclosure import-extra">
         <summary>How imports work</summary>
         <p className="small">
           Newest unsaved games first within your filters. Saved games do not use
@@ -273,7 +273,7 @@ export function ImportJob({
             </p>
           )}
           {source.errors.length > 0 && (
-            <details>
+            <details className="disclosure">
               <summary>Import issues ({source.rejected})</summary>
               {source.errors.map((error, index) => (
                 <p className="small" key={index}>
@@ -379,11 +379,13 @@ export function ImportJob({
     </>;
   return (
     <article className={`job${compact ? " job-history" : " panel"}`}>
-      {compact ? <details>
+      {compact ? <details className="disclosure">
         <summary className="job-summary">
-          <span className="job-summary-copy"><strong>{title}</strong><span className="small">{summary}</span></span>
-          {badge}
-          <span className="job-inspect small">View details</span>
+          <span className="job-summary-content">
+            <span className="job-summary-copy"><strong>{title}</strong><span className="small">{summary}</span></span>
+            {badge}
+            <span className="job-inspect small">View details</span>
+          </span>
         </summary>
         <div className="job-details">{contents}</div>
       </details> : <>
