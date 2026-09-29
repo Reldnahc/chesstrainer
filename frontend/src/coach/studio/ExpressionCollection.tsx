@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ChoiceGroup from "../../ChoiceGroup";
 import { CoachCharacter } from "../CoachAvatar";
 import {
   expressionInfo,
@@ -76,21 +77,8 @@ export default function ExpressionCollection({
           </select>
         </label>
       </div>
-      <div
-        className="studio-filters"
-        role="group"
-        aria-label="Filter expressions"
-      >
-        {groups.map((item, index) => (
-          <button
-            key={item.name}
-            aria-pressed={group === index}
-            onClick={() => setGroup(index)}
-          >
-            {item.name}
-          </button>
-        ))}
-      </div>
+      <ChoiceGroup label="Filter expressions" value={group} onChange={setGroup}
+        options={groups.map((item, index) => ({ value: index, label: item.name }))} />
       <div className="studio-expression-grid">
         {groups[group].states.map((state) => (
           <button

@@ -61,6 +61,7 @@ not React components.
 | --- | --- | --- |
 | Internal destination links | [Link](../frontend/src/Link.tsx), [navigation](../frontend/src/navigation.ts) | Normal anchors, modifier/new-tab clicks, history and scroll restoration. Do not implement another click-to-navigate wrapper. |
 | URL section navigation | [SectionNavigation](../frontend/src/SectionNavigation.tsx), [section-navigation.css](../frontend/src/section-navigation.css) | Settings and Openings share the framed tray and selected style. Callers supply destinations, selected ID and accessible name; account/course filtering remains caller-owned. |
+| Local single choice | [ChoiceGroup](../frontend/src/ChoiceGroup.tsx), [choice-group.css](../frontend/src/choice-group.css) | PGN source and Studio filters share rectangular pressed buttons. Controlled value/options/callback; no route or tab semantics. Caller owns input clearing and filtering. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
@@ -121,7 +122,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | ID | Decision | Status | Required interpretation |
 | --- | --- | --- | --- |
 | UI-01 | Promote the Settings section-navigation tray (A). | Complete | `SectionNavigation` serves Settings and Openings; URL history and account/course filtering are preserved. |
-| UI-02 | Promote the application's PGN rectangular choice buttons (A). | Planned | Share with applicable local choices, including studio filters; preserve pressed-button semantics and PGN input clearing. |
+| UI-02 | Promote the application's PGN rectangular choice buttons (A). | Complete | `ChoiceGroup` serves PGN source and Studio filters, preserving pressed-button semantics and caller-owned clearing/filtering. |
 | UI-03 | One shared button family with ordinary, compact and icon-only sizes, plus primary, secondary and purple return styles. | Planned | Owner accepted the explanation after initially marking this unclear. Keep links for destinations and buttons for commands; common sizing rules do not require identical widths for every button. |
 | UI-04 | Promote Game Review's purple return action (A). | Planned | Share the appearance; preserve each mode's return label, handler and variation/branch behavior. |
 | UI-05 | Promote lesson/opening playback geometry (C/D). | Planned | This choice stands. Preserve Game Review first/last/flip actions, ply zero, variation exit, stable counter width and keyboard shortcuts; retain lessons' focus-preserving pending-command behavior. |
@@ -166,6 +167,14 @@ from Git; no live decision-gathering tool is needed.
   account filtering and hiding navigation inside courses. Inspected the rendered
   Openings tray in the application. Commit subject: `UI-01: Share Settings and
   Openings section navigation`.
+- **UI-02 — shared local choices:** promoted PGN source styling into `ChoiceGroup`
+  and removed Studio's separate pill treatment. Production build passed, including
+  both standalone CSS guards. Focused PGN and Studio filter checks passed **4
+  desktop/mobile tests**, then passed again after correcting local fixture-server
+  teardown permissions. Cover inactive-input clearing, request payloads, all
+  expression groups, independent inspected expression, pressed state, 320px
+  wrapping and tap targets. Commit subject: `UI-02: Share PGN and Studio choice
+  controls`.
 
 ## Audit findings and implementation boundaries
 

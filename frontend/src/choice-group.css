@@ -1,0 +1,18 @@
+.choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.choice-group button {
+  background: transparent;
+}
+.choice-group button[aria-pressed="true"] {
+  background: var(--raised);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+@media (max-width: 760px) {
+  .choice-group button {
+    min-height: 44px;
+  }
+}

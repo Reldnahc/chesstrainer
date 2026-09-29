@@ -12,6 +12,7 @@ import {
 import { ProviderImportForm, ImportJob } from "./ProviderImport";
 import GameSync from "./GameSync";
 import SettingsSection from "./SettingsSection";
+import ChoiceGroup from "./ChoiceGroup";
 
 type PgnMode = "file" | "text";
 const isActive = (job: Job) => ["queued", "running"].includes(job.status);
@@ -41,10 +42,10 @@ function PgnInput({
     setText("");
   }
   return <>
-    <div className="pgn-input-mode" role="group" aria-label="PGN source">
-      <button type="button" aria-pressed={mode === "file"} onClick={() => selectMode("file")}>Choose a file</button>
-      <button type="button" aria-pressed={mode === "text"} onClick={() => selectMode("text")}>Paste PGN text</button>
-    </div>
+    <ChoiceGroup<PgnMode> label="PGN source" value={mode} onChange={selectMode} options={[
+      { value: "file", label: "Choose a file" },
+      { value: "text", label: "Paste PGN text" },
+    ]} />
     {mode === "file" ? <label className="upload-zone">
       <FileUp size={25} />
       <strong>{file?.name || "Choose a PGN file"}</strong>
