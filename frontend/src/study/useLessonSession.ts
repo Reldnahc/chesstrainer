@@ -6,6 +6,8 @@ import { useStudyPlayback } from "./useStudyPlayback";
 export type LessonSession = Schema["LessonSessionView"];
 export type LessonAction = Schema["LessonCommand"]["action"];
 
+const LESSON_MOVE_INTERVAL_MS = 1200;
+
 export function useLessonSession(id: string) {
   const [session, setSession] = useState<LessonSession | null>(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ export function useLessonSession(id: string) {
   const generation = useRef(0);
   const request = useRef<AbortController | null>(null);
   const locked = useRef(false);
-  const playback = useStudyPlayback();
+  const playback = useStudyPlayback(undefined, LESSON_MOVE_INTERVAL_MS);
   const { reset } = playback;
   const load = useCallback(async () => {
     const version = ++generation.current;
