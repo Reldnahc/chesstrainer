@@ -54,7 +54,7 @@ test('Back, Forward and refresh restore the game and move without a history entr
 test('every screen has a bookmarkable link and clicking the active page adds no history', async ({page}) => {
   await page.goto('/import');
   await expect(page).toHaveURL('/settings');
-  await expect(page.getByRole('heading', {name: 'Import games', exact: true})).toBeVisible();
+  await expect(page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Games & imports', exact: true})).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('navigation').getByRole('link', {name: 'Import', exact: true})).toHaveCount(0);
   for (const name of ['Study', 'Games', 'Weaknesses', 'Settings']) {
     const path = `/${name.toLowerCase()}`;

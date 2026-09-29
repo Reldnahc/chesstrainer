@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState, type FormEvent } from "react";
-import { ArrowRight, FileUp, Layers } from "lucide-react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { ArrowRight, FileUp, Layers, X } from "lucide-react";
 import {
   api,
   read,
@@ -11,220 +11,204 @@ import {
 } from "./api";
 import { ProviderImportForm, ImportJob } from "./ProviderImport";
 import GameSync from "./GameSync";
+import SettingsSection from "./SettingsSection";
+
+type PgnMode = "file" | "text";
+const isActive = (job: Job) => ["queued", "running"].includes(job.status);
+const recentHistoryLimit = 3;
+
 function PgnInput({
   file,
   setFile,
   text,
   setText,
+  mode,
+  setMode,
 }: {
   file: File | null;
   setFile: (file: File | null) => void;
   text: string;
   setText: (s: string) => void;
+  mode: PgnMode;
+  setMode: (mode: PgnMode) => void;
 }) {
-  return (
-    <>
-      <label className="upload-zone">
-        <FileUp size={25} />
-        <strong>{file?.name || "Choose a PGN file"}</strong>
-        <span>One game or a collection · UTF-8</span>
-        <input
-          type="file"
-          accept=".pgn,text/plain"
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-        />
-      </label>
-      <details>
-        <summary>Or paste PGN text</summary>
-        <label>
-          PGN
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            rows={7}
-            placeholder={
-              '[White "Your username"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'
-            }
-          />
-        </label>
-      </details>
-    </>
-  );
+  function selectMode(next: PgnMode) {
+    if (next === mode) return;
+    setMode(next);
+    // Unmounting also clears the native selection, so returning to file mode
+    // can select the same file again.
+    setFile(null);
+    setText("");
+  }
+  return <>
+    <div className="pgn-input-mode" role="group" aria-label="PGN source">
+      <button type="button" aria-pressed={mode === "file"} onClick={() => selectMode("file")}>Choose a file</button>
+      <button type="button" aria-pressed={mode === "text"} onClick={() => selectMode("text")}>Paste PGN text</button>
+    </div>
+    {mode === "file" ? <label className="upload-zone">
+      <FileUp size={25} />
+      <strong>{file?.name || "Choose a PGN file"}</strong>
+      <span>One game or a collection · UTF-8</span>
+      <input aria-label="PGN file" type="file" accept=".pgn,text/plain" onChange={event => setFile(event.target.files?.[0] || null)} />
+    </label> : <label>
+      PGN
+      <textarea value={text} onChange={event => setText(event.target.value)} rows={7}
+        placeholder={'[White "Your username"]\n[Black "Opponent"]\n\n1. e4 e5 2. Nf3 Nc6 *'} />
+    </label>}
+  </>;
 }
+
 export default function ImportSettings({
   health,
   fail,
+  importSource: source,
+  onImportSourceChange: selectSource,
+  restoringScroll = false,
 }: {
   health: Health | null;
   fail: (e: unknown) => void;
+  importSource: string | null;
+  onImportSourceChange: (source: string | null) => void;
+  restoringScroll?: boolean;
 }) {
-  const [source, setSource] = useState<string>(() => new URLSearchParams(window.location.search).get("import") || "chesscom");
   const [providers, setProviders] = useState<Schema["GameProvider"][]>([]);
+  const [loadingProviders, setLoadingProviders] = useState(true);
+  const [rememberedNames, setRememberedNames] = useState<Record<string, string>>({});
+  const connectionChanged = useCallback((status: Schema["SyncStatus"]) => {
+    setRememberedNames(previous => previous[status.provider] === status.username
+      ? previous : { ...previous, [status.provider]: status.username });
+  }, []);
   useEffect(() => {
     let active = true;
-    read(api.GET("/api/game-providers")).then(value => { if (active) { setProviders(value); setSource(current => current === "pgn" || value.some(provider => provider.id === current) ? current : value[0]?.id || "pgn"); } }).catch(fail);
+    read(api.GET("/api/game-providers"))
+      .then(value => { if (active) setProviders(value); })
+      .catch(error => { if (active) fail(error); })
+      .finally(() => { if (active) setLoadingProviders(false); });
     return () => { active = false; };
   }, [fail]);
   const selectedProvider = providers.find(provider => provider.id === source);
-  const [file, setFile] = useState<File | null>(null),
-    [text, setText] = useState("");
-  const [names, setNames] = useState(""),
-    [side, setSide] =
-      useState<NonNullable<Schema["Body_upload_pgn_api_imports_post"]["side"]>>(
-        "auto",
-      );
-  const [jobs, setJobs] = useState<Job[]>([]),
-    [result, setResult] = useState<PgnImportResult | null>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (restoringScroll || !source || (source !== "pgn" && !selectedProvider)) return;
+    formRef.current?.focus({ preventScroll: true });
+    formRef.current?.scrollIntoView({ block: "nearest" });
+  }, [source, selectedProvider, restoringScroll]);
+  const [file, setFile] = useState<File | null>(null);
+  const [text, setText] = useState("");
+  const [pgnMode, setPgnMode] = useState<PgnMode>("file");
+  const [names, setNames] = useState("");
+  const [side, setSide] = useState<NonNullable<Schema["Body_upload_pgn_api_imports_post"]["side"]>>("auto");
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [result, setResult] = useState<PgnImportResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [analyze, setAnalyze] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
-  const reload = useCallback(
-    () => read(api.GET("/api/jobs")).then(setJobs).catch(fail),
-    [fail],
-  );
+  const mounted = useRef(false);
+  const generation = useRef(0);
+  const jobsInFlight = useRef<number | null>(null);
+  const reload = useCallback(async () => {
+    const token = generation.current;
+    if (!mounted.current || jobsInFlight.current === token) return;
+    jobsInFlight.current = token;
+    try {
+      const value = await read(api.GET("/api/jobs"));
+      if (mounted.current && generation.current === token) setJobs(value);
+    } catch (error) {
+      if (mounted.current && generation.current === token) fail(error);
+    } finally {
+      if (jobsInFlight.current === token) jobsInFlight.current = null;
+    }
+  }, [fail]);
   useEffect(() => {
+    mounted.current = true;
+    generation.current++;
     reload();
     const timer = setInterval(reload, 2000);
-    return () => clearInterval(timer);
+    return () => {
+      mounted.current = false;
+      generation.current++;
+      clearInterval(timer);
+    };
   }, [reload]);
-  async function submit(e: FormEvent) {
-    e.preventDefault();
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    const input = pgnMode === "file" ? file : text.trim() ? new File([text], "pasted-games.pgn") : null;
+    if (!input) return;
+    const token = generation.current;
     setBusy(true);
+    setResult(null);
     try {
-      setResult(
-        await read(
-          api.POST("/api/imports", {
-            body: {
-              file: file || new File([text], "pasted-games.pgn"),
-              usernames: names,
-              side,
-              analyze,
-            },
-            bodySerializer: multipart,
-          }),
-        ),
-      );
+      const value = await read(api.POST("/api/imports", {
+        body: { file: input, usernames: names, side, analyze },
+        bodySerializer: multipart,
+      }));
+      if (!mounted.current || generation.current !== token) return;
+      setResult(value);
       await reload();
-    } catch (e) {
-      fail(e);
+    } catch (error) {
+      if (mounted.current && generation.current === token) fail(error);
     } finally {
-      setBusy(false);
+      if (mounted.current && generation.current === token) setBusy(false);
     }
   }
-  return (
-    <section className="settings-import" aria-labelledby="settings-import-title">
-      <h2 id="settings-import-title">Import games</h2>
-      <GameSync onChanged={reload} />
-      {health?.engine_status === "unavailable" && (
-        <div className="notice">{health.engine_error}</div>
-      )}
-      <div className="import-source" role="group" aria-label="Game source">
-        {providers.map(provider => <button key={provider.id} aria-pressed={source === provider.id} onClick={() => setSource(provider.id)}>
-          {provider.name} username
-        </button>)}
-        <button
-          aria-pressed={source === "pgn"}
-          onClick={() => setSource("pgn")}
-        >
-          PGN file
-        </button>
+  const activity = jobs.filter(job => job.kind !== "teaching");
+  const activeJobs = activity.filter(isActive);
+  const finishedJobs = activity.filter(job => !isActive(job));
+  const hiddenHistoryCount = Math.max(0, finishedJobs.length - recentHistoryLimit);
+  const visibleHistory = showHistory ? finishedJobs : finishedJobs.slice(0, recentHistoryLimit);
+
+  return <div className="settings-import">
+    <SettingsSection id="settings-imports" title="Import games">
+      <GameSync onChanged={reload} onStatusChange={connectionChanged} onImportOlderGames={selectSource} />
+      <div className="pgn-import-launcher">
+        <div><h3>Have a PGN file?</h3><p className="small">Import a game or a collection from any chess site.</p></div>
+        <button className="secondary" onClick={() => selectSource("pgn")}><FileUp size={17} />Import PGN</button>
       </div>
-      <div className="import-layout">
-        <div className="import-form">
-          {source !== "pgn" ? (
-            selectedProvider ? <ProviderImportForm key={source} provider={selectedProvider} onQueued={reload} fail={fail} /> : <p role="status">Loading game providers…</p>
-          ) : (
-            <form className="panel form-panel" onSubmit={submit}>
-              <h2>Import PGN</h2>
-              <PgnInput {...{ file, setFile, text, setText }} />
-              <label>
-                Your username(s)
-                <input
-                  value={names}
-                  onChange={(e) => setNames(e.target.value)}
-                  placeholder="Match the White or Black PGN headers"
-                  required={side === "auto"}
-                />
-                <small>
-                  Separate multiple usernames with commas. Matching ignores
-                  case.
-                </small>
-              </label>
-              <label>
-                Learner side
-                <select
-                  value={side}
-                  onChange={(e) => setSide(e.target.value as typeof side)}
-                >
-                  <option value="auto">Match my username in each game</option>
-                  <option value="white">I played White in every game</option>
-                  <option value="black">I played Black in every game</option>
-                </select>
-              </label>
-              <label className="import-analysis-option">
-                <input
-                  type="checkbox"
-                  checked={analyze}
-                  onChange={(e) => setAnalyze(e.target.checked)}
-                />
-                Also analyze these games for training
-              </label>
-              <button
-                className="primary"
-                disabled={busy || (!file && !text.trim())}
-              >
-                {busy ? "Importing…" : "Import & analyze"}
-                <ArrowRight size={17} />
-              </button>
-              {result && (
-                <div role="status" className="notice">
-                  <span>
-                    {result.imported} imported · {result.duplicates}{" "}
-                    duplicate(s).
-                    {result.errors.map((e, i) => (
-                      <p key={i}>
-                        Game {e.game}: {e.error}
-                      </p>
-                    ))}
-                  </span>
-                </div>
-              )}
-            </form>
-          )}
-        </div>
-        <section className="panel import-activity" aria-labelledby="import-activity-title">
-          <h2 id="import-activity-title">Analysis activity</h2>
-          {jobs.filter((job) => job.kind !== "teaching").length === 0 && (
-            <div className="empty-state">
-              <Layers />
-              <h3>No analysis jobs yet</h3>
-              <p>Your imports and their progress will appear here.</p>
-            </div>
-          )}
-          {jobs
-            .filter((job) => job.kind !== "teaching")
-            .filter(
-              (job, index) =>
-                showHistory ||
-                index < 3 ||
-                ["queued", "running", "failed", "cancelled"].includes(
-                  job.status,
-                ),
-            )
-            .map((job) => (
-              <ImportJob key={job.id} job={job} reload={reload} fail={fail} />
-            ))}
-          {jobs.filter((job) => job.kind !== "teaching").length > 3 && (
-            <button
-              className="secondary history-toggle"
-              aria-expanded={showHistory}
-              onClick={() => setShowHistory(!showHistory)}
-            >
-              {showHistory ? "Show recent activity" : "Show older activity"}
-            </button>
-          )}
-        </section>
-      </div>
-    </section>
-  );
+      {source && <div className="import-form" ref={formRef} tabIndex={-1}>
+        <div className="import-form-toolbar"><button className="text-button" onClick={() => selectSource(null)}><X size={16} />Close import form</button></div>
+        {health?.engine_status === "unavailable" && <div className="notice">{health.engine_error}</div>}
+        {source !== "pgn" ? (
+          selectedProvider
+            ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
+            : <p role="status">{loadingProviders ? "Loading game providers…" : "That game provider is unavailable. Choose an import action above."}</p>
+        ) : <form className="panel form-panel" onSubmit={submit}>
+          <h3>Import PGN</h3>
+          <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
+          <label>
+            Your username(s)
+            <input value={names} onChange={event => setNames(event.target.value)} placeholder="Match the White or Black PGN headers" required={side === "auto"} />
+            <small>Separate multiple usernames with commas. Matching ignores case.</small>
+          </label>
+          <label>
+            Learner side
+            <select value={side} onChange={event => setSide(event.target.value as typeof side)}>
+              <option value="auto">Match my username in each game</option>
+              <option value="white">I played White in every game</option>
+              <option value="black">I played Black in every game</option>
+            </select>
+          </label>
+          <label className="import-analysis-option">
+            <input type="checkbox" checked={analyze} onChange={event => setAnalyze(event.target.checked)} />
+            Also analyze these games for training
+          </label>
+          <button className="primary" disabled={busy || (pgnMode === "file" ? !file : !text.trim())}>
+            {busy ? "Importing…" : analyze ? "Import & analyze games" : "Import games"}<ArrowRight size={17} />
+          </button>
+          {result && <div role="status" className="notice">
+            <span>{result.imported} imported · {result.duplicates} duplicate(s).
+              {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
+            </span>
+          </div>}
+        </form>}
+      </div>}
+    </SettingsSection>
+    <SettingsSection id="settings-activity" title="Import & analysis activity" className="import-activity">
+      {activity.length === 0 && <div className="import-empty"><Layers size={22} /><div><strong>No activity yet</strong><p className="small">Imports and analysis progress will appear here.</p></div></div>}
+      {activeJobs.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} />)}
+      {visibleHistory.map(job => <ImportJob key={job.id} job={job} reload={reload} fail={fail} compact />)}
+      {hiddenHistoryCount > 0 && <button className="secondary history-toggle" aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>
+        {showHistory ? "Show recent activity" : `Show older activity (${hiddenHistoryCount})`}
+      </button>}
+    </SettingsSection>
+  </div>;
 }

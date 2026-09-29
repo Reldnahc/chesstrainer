@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SettingsSection from "../SettingsSection";
 import { CoachCharacter } from "./CoachAvatar";
 import { useCoachPreferences } from "./CoachProvider";
 import { getCoach, selectableCoaches } from "./registry";
@@ -15,37 +16,30 @@ export default function CoachSettings() {
     setSaved(await save(value));
   }
   return (
-    <section
-      className="panel coach-settings"
-      aria-labelledby="coach-settings-title"
-    >
-      <div className="coach-settings-heading">
-        <div>
-          <h2 id="coach-settings-title">Your coach</h2>
-          <p>
-            <strong>{selected.name}</strong> joins you in game review and
-            practice.
-          </p>
+    <SettingsSection
+      id="coach-settings"
+      title="Your coach"
+      className="coach-settings"
+      description={`${selected.name} joins you in game review and practice.`}
+      actions={
+        <div className="coach-preference-status" role="status" aria-atomic="true">
+          {saving ? (
+            "Saving…"
+          ) : error ? (
+            <>
+              {error}{" "}
+              <button className="text-button" onClick={retry}>
+                Reload preferences
+              </button>
+            </>
+          ) : !ready ? (
+            "Loading…"
+          ) : saved ? (
+            "Saved"
+          ) : null}
         </div>
-      </div>
-      <p className="coach-preference-status" role="status">
-        {saving ? (
-          "Saving…"
-        ) : error ? (
-          <>
-            {error}{" "}
-            <button className="text-button" onClick={retry}>
-              Reload preferences
-            </button>
-          </>
-        ) : !ready ? (
-          "Loading your coach…"
-        ) : saved ? (
-          "Saved. This choice follows your account."
-        ) : (
-          "Your coach is saved with your workspace."
-        )}
-      </p>
+      }
+    >
       <fieldset disabled={!ready || saving} className="coach-options">
         <legend className="sr-only">Choose your coach</legend>
         {selectableCoaches.map((coach) => (
@@ -86,6 +80,6 @@ export default function CoachSettings() {
             </label>
         ))}
       </fieldset>
-    </section>
+    </SettingsSection>
   );
 }

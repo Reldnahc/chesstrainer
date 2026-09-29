@@ -137,6 +137,7 @@ test("changing the opening coach preserves the exact cold recall across browser 
     await expect(page.getByRole("heading", { name: "Play your studied move.", exact: true })).toBeVisible();
     const before = await saved(page, data.session_id);
     await page.getByRole("navigation").getByRole("link", { name: "Settings", exact: true }).click();
+    await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
     const radio = page.locator(`input[name="coach"][value="${selected}"]`);
     await Promise.all([
       page.waitForResponse(response => response.request().method() === "PUT" && response.url().endsWith("/api/preferences/coach"))
@@ -144,6 +145,8 @@ test("changing the opening coach preserves the exact cold recall across browser 
       radio.click(),
     ]);
     await expect(radio).toBeChecked();
+    await page.goBack();
+    await expect(page).toHaveURL("/settings");
     await page.goBack();
     await expect(page.locator(".review-coach .coach-avatar")).toHaveAttribute("data-coach", selected);
     await expect(page).toHaveURL(`/study/due?session=${data.session_id}`);

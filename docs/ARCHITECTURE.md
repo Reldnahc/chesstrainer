@@ -28,10 +28,11 @@ account credentials and revocable device sessions live in that same SQLite file.
 See [ACCOUNTS.md](ACCOUNTS.md) for migration and recovery.
 
 Recent-game sync uses a separate fetch-only worker lane. It remembers the account's
-Chess.com username, checks at most once a minute while Games/Settings is visible,
+provider usernames, checks at most once a minute while Games or Settings' Games &
+imports section is visible,
 and fetches up to 50 completed games from the current and previous month. Repeated
 checks reuse a checkpoint rather than accumulating duplicate raw PGNs or gradually
-backfilling older games. Game ordering uses completion time from Chess.com, with
+backfilling older games. Game ordering uses provider completion time, with
 PGN UTC date/time as the upload fallback. Sync never invokes the analysis pipeline.
 Whole-game review and training analysis are separately requested from the game.
 
@@ -90,7 +91,7 @@ lock, while other accounts have independent locks.
 | gameReview/usePositionAnalysis.ts | Serialized engine requests, per-history cache, browsing debounce and stale-response isolation |
 | gameReview/Players.tsx / PositionCoach.tsx / ReviewControls.tsx / ReviewMoves.tsx / ReviewSummary.tsx | Focused player, coach, navigation, notation and progress/quality presentation |
 | Import.tsx | Import source selection, PGN form and job polling/actions |
-| Settings.tsx | Account, connected games, coach/interface preferences and classification job controls |
+| Settings.tsx / SettingsSection.tsx | URL-addressable Settings sections, shared section layout, account/preferences and classification job controls |
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
 | useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
@@ -193,6 +194,19 @@ saved session in the URL so refresh resumes the same answer snapshot. Unknown
 paths show a recoverable not-found screen.
 Legacy `/import` URLs replace their history entry with `/settings`. Settings owns
 the saved provider connections, filtered imports, PGN uploads and import activity.
+Settings opens on Games & imports; `?section=coach`, `?section=account` (hosted
+accounts only), and `?section=advanced` keep preferences and maintenance separate.
+These links participate in browser Back/Forward and survive reload. Shared
+`SettingsSection` and application-only `settings.css` own section spacing.
+Connections fetch recent games; optional older-history forms use the remembered
+username unless the user has edited their draft. `?import=chesscom|lichess|pgn`
+opens the corresponding form, including when navigating within Settings.
+PGN file/text inputs are mutually exclusive; engine analysis remains opt-in and
+the submit label reflects that choice. Activity expands active jobs and keeps
+completed/failed history compact and inspectable. Advanced training tools link
+directly to activity. Coach & animations puts the two independent motion controls
+above the existing six-column desktop coach picker; saving and errors remain
+local to each preference control.
 Games keeps only a compact Update games control using the same sync component and
 polling behavior; without a connection it links to Settings. Sync still fetches
 games without starting engine analysis.

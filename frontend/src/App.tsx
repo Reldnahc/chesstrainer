@@ -199,7 +199,7 @@ export default function App() {
               />
             )}
             {tab === "Settings" && (
-              <SettingsScreen health={health} fail={fail} />
+              <SettingsScreen health={health} fail={fail} section={route.settingsTab} importSource={route.importSource} restoringScroll={route.restoringScroll} />
             )}
             {!tab && (
               <section className="panel">

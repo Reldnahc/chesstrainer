@@ -1,8 +1,8 @@
 # Game provider imports
 
-Fieldwork imports public completed standard-chess games from Chess.com and Lichess without API keys. In **Settings → Import games**, choose a provider, username, time control, lookback/custom UTC dates, and maximum new games. Fetching alone is the default; training analysis is optional. Existing games do not consume the manual import's new-game limit. PGN uploads remain available.
+Fieldwork imports public completed standard-chess games from Chess.com and Lichess without API keys. In **Settings → Games & imports**, choose **Import older games** on a provider card to set the username, time control, lookback/custom UTC dates, and maximum new games. The form follows the remembered username until you edit it; a one-time import never changes the connection. Fetching alone is the default; training analysis is optional. Existing games do not consume the manual import's new-game limit. **Import PGN** accepts a file or pasted text, with the active input shown explicitly.
 
-Save each site's username under **Connected accounts** to fetch its latest 50 completed games from the current and previous calendar month. Games' **Update games** button checks all connected sites. Visible-page checks run at most once per minute per connection; no engine analysis starts during sync. Connections belong to the signed-in account (or the single local workspace), survive restart, and can be disconnected by clearing the username. Existing Chess.com connections migrate automatically.
+Save each site's username on its connection card to fetch its latest 50 completed games from the current and previous calendar month. Games' **Update games** button checks all connected sites. Visible-page checks run at most once per minute per connection; no engine analysis starts during sync. Connections belong to the signed-in account (or the single local workspace), survive restart, and can be disconnected by clearing the username. Existing Chess.com connections migrate automatically.
 
 ## Provider boundary
 

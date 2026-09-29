@@ -36,7 +36,7 @@ test("every registered coach can be chosen and restored in a real game", async (
     )
   ).json();
   try {
-    await page.goto("/settings");
+    await page.goto("/settings?section=coach");
     const choices = await page.getByRole("radio").evaluateAll((inputs) =>
       inputs.map((input) => (input as HTMLInputElement).value),
     );
@@ -69,6 +69,7 @@ test("every registered coach can be chosen and restored in a real game", async (
       });
       await expect(avatar.locator("svg")).toBeVisible();
       await page.getByRole("link", { name: "Settings", exact: true }).click();
+      await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
       await expect(radio).toBeChecked();
     }
     await page.screenshot({
@@ -89,7 +90,7 @@ test("every registered coach can be chosen and restored in a real game", async (
 
 test("the compact picker shows six by five cards on desktop and fits narrow phones", async ({page}, info) => {
   await page.setViewportSize({width: 1200, height: 900});
-  await page.goto("/settings");
+  await page.goto("/settings?section=coach");
   const grid = page.locator(".coach-options");
   await expect(grid.getByRole("radio")).toHaveCount(castIds.length);
   const cards = grid.locator(".coach-option");
@@ -134,7 +135,7 @@ test("legacy and unknown saved coaches display a selected safe fallback without 
     ["cat-calico", "cat-kitten"], ["future-coach", "classic"],
   ]) {
     savedCoach = legacy;
-    await page.goto("/settings");
+    await page.goto("/settings?section=coach");
     const selected = page.locator('.coach-option input:checked');
     await expect(selected).toHaveValue(fallback);
     await expect(page.locator('.coach-option:has(input:checked) .coach-avatar')).toHaveAttribute('data-coach', fallback);

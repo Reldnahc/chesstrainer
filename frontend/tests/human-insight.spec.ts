@@ -143,10 +143,13 @@ test("visible Maia insight survives coach selection and reload without new analy
     const before = await wording.innerText(), intent = await wording.getAttribute("data-intent");
     await page.keyboard.press("Escape");
     await page.getByRole("link", {name: "Settings", exact: true}).click();
+    await page.getByRole("navigation", {name: "Settings sections"}).getByRole("link", {name: "Coach & animations", exact: true}).click();
     const choice = page.getByRole("radio", {name: "Iris", exact: true});
     await choice.click();
     await expect(choice).toBeChecked();
     await expect(page.getByLabel("Coach motion", {exact: true})).toBeEnabled();
+    await page.goBack();
+    await expect(page).toHaveURL("/settings");
     await reopen(() => page.goBack());
     await expect(wording).toHaveAttribute("data-dialogue-coach", "woman-analyst");
     await expect(wording).not.toHaveText(before);

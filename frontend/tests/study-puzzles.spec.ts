@@ -182,6 +182,7 @@ test("promotion and coach changes use the shared player without losing saved pro
   await page.goto(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
   await page.getByRole("link", { name: "Settings", exact: true }).click();
+  await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
   const selected = page.getByRole("radio", {
     name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Walter" : "Scout",
     exact: true,
@@ -191,6 +192,8 @@ test("promotion and coach changes use the shared player without losing saved pro
   await selected.click();
   expect((await savedPreference).ok()).toBe(true);
   await expect(selected).toBeChecked();
+  await page.goBack();
+  await expect(page).toHaveURL("/settings");
   await page.goBack();
   await expect(page).toHaveURL(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();

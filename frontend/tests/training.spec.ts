@@ -21,7 +21,9 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
     await expect(page.getByRole('link', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
     if (tab === 'Settings') {
-      await expect(page.getByRole('heading', {name: 'Training', exact: true})).toBeVisible();
+      await expect(page.getByRole('region', {name: 'Recent Chess.com games', exact: true})).toBeVisible();
+      await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Advanced', exact: true}).click();
+      await expect(page.getByRole('heading', {name: 'Training tools', exact: true})).toBeVisible();
       const source = page.getByRole('link', {name: 'Download source code'});
       await expect(source).toHaveAttribute('href', '/assets/fieldwork-source.zip');
       const download = await page.request.get((await source.getAttribute('href'))!);
@@ -83,18 +85,18 @@ test('create a curated position, fail once, solve by tapping and retain after re
 test('PGN upload form imports a learner game and reports real analysis', async ({page}, testInfo) => {
   await page.goto('/');
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
-  await page.getByRole('button', {name: 'PGN file', exact: true}).click();
-  await page.getByText('Or paste PGN text', {exact: true}).click();
+  await page.getByRole('button', {name: 'Import PGN', exact: true}).click();
+  await page.getByRole('button', {name: 'Paste PGN text', exact: true}).click();
   await page.getByLabel('PGN', {exact: true}).fill(`[Round "${testInfo.project.name}"]\n[White "UI learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1`);
   await page.getByLabel('Your username(s)').fill('UI learner');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
-  await page.getByRole('button', {name: 'Import & analyze'}).click();
+  await page.getByRole('button', {name: 'Import & analyze games', exact: true}).click();
   await expect(page.locator('.import-form').getByRole('status')).toContainText(/imported/);
   await expect(page.locator('.job .badge').first()).toHaveText('completed', {timeout: 30000});
   await expect(page.locator('.job').first()).toContainText('2 decisions');
   const previousJobs = await page.locator('.job').count();
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
-  await page.getByRole('button', {name: 'Import & analyze'}).click();
+  await page.getByRole('button', {name: 'Import & analyze games', exact: true}).click();
   await expect(page.locator('.import-form').getByRole('status')).toContainText('0 imported');
   await expect(page.locator('.import-form').getByRole('status')).toContainText('1 duplicate');
   await expect(page.locator('.job')).toHaveCount(previousJobs);
@@ -156,6 +158,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   const username = `ui-import-${testInfo.project.name}`;
   await page.goto('/');
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
+  await page.getByRole('region', {name: 'Recent Chess.com games', exact: true}).getByRole('button', {name: 'Import older games', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Import from Chess.com'})).toBeVisible();
   await expect(page.getByLabel('Time control', {exact: true})).toHaveValue('rapid');
   await expect(page.getByLabel('Look back')).toHaveValue('3');
@@ -171,7 +174,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   await expect(page.getByLabel('Look back')).toBeDisabled();
   const queued = page.waitForResponse(r => r.url().endsWith('/api/imports/provider/chesscom') && r.request().method() === 'POST');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
-  await page.getByRole('button', {name: 'Fetch & analyze games'}).click();
+  await page.getByRole('button', {name: 'Import & analyze games', exact: true}).click();
   const response = await queued;
   expect(response.status()).toBe(202);
   expect(response.request().postDataJSON()).toEqual({username, analyze: true, time_class: 'rapid', months: 6, max_games: 25, start_date: startDate, end_date: endDate});
@@ -182,7 +185,7 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
   await expect(job).toContainText('2 decisions');
   await page.screenshot({path: `test-results/${testInfo.project.name}-chesscom-import.png`, fullPage: true});
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
-  await page.getByRole('button', {name: 'Fetch & analyze games'}).click();
+  await page.getByRole('button', {name: 'Import & analyze games', exact: true}).click();
   await expect(job).toContainText('0 imported · 1 duplicates', {timeout: 30000});
   await expect(job.locator('.badge')).toHaveText('completed', {timeout: 30000});
   await expect(job).toContainText('0 / 0 games');
@@ -193,11 +196,13 @@ test('Chess.com username import fetches, analyzes and deduplicates without OpenA
 test('Chess.com missing username reports a retryable provider error', async ({page}) => {
   await page.goto('/');
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
+  await page.getByRole('region', {name: 'Recent Chess.com games', exact: true}).getByRole('button', {name: 'Import older games', exact: true}).click();
   await page.getByLabel('Chess.com username', {exact: true}).fill('missing-player');
   await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
-  await page.getByRole('button', {name: 'Fetch & analyze games'}).click();
+  await page.getByRole('button', {name: 'Import & analyze games', exact: true}).click();
   const job = page.locator('.job').filter({hasText: 'missing-player'}).first();
   await expect(job.locator('.badge')).toHaveText('failed', {timeout: 10000});
+  await job.locator('summary').first().click();
   await expect(job).toContainText('not found');
   await expect(job.getByRole('button', {name: 'Retry saved work'})).toBeVisible();
 });
@@ -490,7 +495,8 @@ test('local classification settings and evidence work without model connectivity
   await expect.poll(async () => (await (await page.request.get('/api/jobs')).json()).find((j:{id:string}) => j.id === imported.job_id)?.status, {timeout:30000}).toBe('completed');
   await page.goto('/');
   await page.getByRole('link', {name:'Settings', exact:true}).click();
-  await expect(page.getByRole('heading', {name:'Training', exact:true})).toBeVisible();
+  await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Advanced', exact: true}).click();
+  await expect(page.getByRole('heading', {name:'Training tools', exact:true})).toBeVisible();
   await expect(page.getByRole('button', {name:'Classify saved games'})).toBeVisible();
   await expect(page.getByText('API key', {exact:true})).toHaveCount(0);
   const config = await (await page.request.get('/api/settings')).json();
@@ -519,17 +525,19 @@ test('compact workspace keeps navigation reachable and settings focused on user 
   await page.goto('/');
   if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 390, height: 700});
   for (const tab of ['Weaknesses', 'Settings']) {
-    await page.getByRole('navigation').getByRole('link', {name: tab, exact: true}).click();
+    await page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: tab, exact: true}).click();
     await expect(page.locator('main h1')).toHaveText(tab);
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
     if (testInfo.project.name === 'mobile') {
       expect((await page.locator('header').boundingBox())!.height).toBeLessThanOrEqual(60);
       await expect(page.locator('main h1')).toHaveCSS('font-size', '22px');
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      expect((await page.getByRole('navigation').boundingBox())!.y).toBeGreaterThanOrEqual(0);
+      expect((await page.getByRole('navigation', {name: 'Main navigation'}).boundingBox())!.y).toBeGreaterThanOrEqual(0);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
+  await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toHaveCount(0);
+  await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Advanced', exact: true}).click();
   await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toBeVisible();
   await expect(page.getByRole('button', {name: 'Deepen unclear positions', exact: true})).toBeEnabled();
   await expect(page.getByRole('link', {name: 'Download source code'})).toHaveAttribute('href', '/assets/fieldwork-source.zip');
@@ -538,6 +546,7 @@ test('compact workspace keeps navigation reachable and settings focused on user 
   }
   await expect(page.locator('.app-header')).not.toContainText(/Local|Private account/);
   await page.getByRole('navigation').getByRole('link', {name: 'Settings', exact: true}).click();
+  await page.getByRole('region', {name: 'Recent Chess.com games', exact: true}).getByRole('button', {name: 'Import older games', exact: true}).click();
   await expect(page.getByLabel('From date')).not.toBeVisible();
   await page.getByText('Custom date range', {exact: true}).click();
   await page.getByLabel('From date').fill('2026-01-01');

@@ -2,33 +2,37 @@ import { useState } from "react";
 import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
 import ImportSettings from "./Import";
-import { AccountSettings } from "./AccountGate";
+import { AccountSettings, useAccount } from "./AccountGate";
 import CoachSettings from "./coach/CoachSettings";
 import MotionSettings from "./MotionSettings";
+import SettingsSection from "./SettingsSection";
+import Link from "./Link";
+import { navigate, type SettingsTab } from "./navigation";
 
-export default function SettingsScreen({
-  health,
-  fail,
-}: {
+const sections: { id: SettingsTab; label: string }[] = [
+  { id: "imports", label: "Games & imports" },
+  { id: "coach", label: "Coach & animations" },
+  { id: "account", label: "Account" },
+  { id: "advanced", label: "Advanced" },
+];
+
+export default function SettingsScreen({ health, fail, section, importSource, restoringScroll }: {
   health: Health | null;
   fail: (e: unknown) => void;
+  section: SettingsTab;
+  importSource: string | null;
+  restoringScroll: boolean;
 }) {
+  const account = useAccount();
+  const active = section === "account" && !account ? "imports" : section;
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState<"classify" | "deepen" | null>(null);
   async function classify(enrich = false) {
     setBusy(enrich ? "deepen" : "classify");
     setMessage("");
     try {
-      await read(
-        api.POST(
-          enrich ? "/api/classifications/enrich" : "/api/classifications/retry",
-        ),
-      );
-      setMessage(
-        enrich
-          ? "Additional analysis queued for unclear training positions. Follow progress in Analysis activity above."
-          : "Training labels queued. Follow progress in Analysis activity above.",
-      );
+      await read(api.POST(enrich ? "/api/classifications/enrich" : "/api/classifications/retry"));
+      setMessage(enrich ? "Additional analysis queued for unclear training positions." : "Training labels queued.");
     } catch (e) {
       fail(e);
     } finally {
@@ -37,49 +41,42 @@ export default function SettingsScreen({
   }
   return (
     <>
-      <PageTitle
-        eyebrow="YOUR WORKSPACE"
-        title="Settings"
-      />
-      <AccountSettings />
-      <ImportSettings health={health} fail={fail} />
-      <CoachSettings />
-      <MotionSettings />
-      <section className="panel settings-panel">
-        <h2>Training</h2>
-        <p>
-          Refresh the patterns found in your saved games, or take another look
-          at unclear training positions.
-        </p>
-        <div className="button-row">
-          <button
-            className="secondary"
-            disabled={!!busy}
-            onClick={() => classify()}
-          >
-            {busy === "classify" ? "Queuing…" : "Classify saved games"}
-          </button>
-          <button
-            className="secondary"
-            disabled={!!busy || !health}
-            onClick={() => classify(true)}
-          >
-            {busy === "deepen" ? "Queuing…" : "Deepen unclear positions"}
-          </button>
-        </div>
-        {message && (
-          <p className="setting-message" role="status">
-            {message}
-          </p>
-        )}
-      </section>
-      <p className="settings-source small">
-        Fieldwork is open source.{" "}
-        <a href="/assets/fieldwork-source.zip" download>
-          Download source code
-        </a>{" "}
-        (GPL/AGPL).
-      </p>
+      <PageTitle eyebrow="YOUR WORKSPACE" title="Settings" />
+      <nav className="settings-navigation" aria-label="Settings sections">
+        {sections.filter(item => item.id !== "account" || account).map(item => (
+          <Link key={item.id} href={item.id === "imports" ? "/settings" : `/settings?section=${item.id}`}
+            aria-current={active === item.id ? "page" : undefined}>{item.label}</Link>
+        ))}
+      </nav>
+      <div className="settings-content">
+        {active === "imports" && <ImportSettings health={health} fail={fail} importSource={importSource} restoringScroll={restoringScroll}
+          onImportSourceChange={source => navigate(source ? `/settings?import=${encodeURIComponent(source)}` : "/settings")} />}
+        {active === "coach" && <><MotionSettings /><CoachSettings /></>}
+        {active === "account" && <AccountSettings />}
+        {active === "advanced" && <>
+          <SettingsSection id="settings-training" title="Training tools">
+            <div className="settings-tool">
+              <div><h3>Refresh training patterns</h3><p>Update the labels on saved positions using their existing analysis.</p></div>
+              <button className="secondary" disabled={!!busy} onClick={() => classify()}>
+                {busy === "classify" ? "Queuing…" : "Classify saved games"}
+              </button>
+            </div>
+            <div className="settings-tool">
+              <div><h3>Investigate unclear positions</h3><p>Run additional engine analysis where the training explanation needs more evidence.</p></div>
+              <button className="secondary" disabled={!!busy || !health} onClick={() => classify(true)}>
+                {busy === "deepen" ? "Queuing…" : "Deepen unclear positions"}
+              </button>
+            </div>
+            <div className="settings-tool-status">
+              <p role="status">{message}</p>
+              <Link href="/settings#settings-activity">View import & analysis activity</Link>
+            </div>
+          </SettingsSection>
+          <SettingsSection id="settings-source" title="Source code">
+            <p className="settings-source">Fieldwork is open source (GPL/AGPL). <a href="/assets/fieldwork-source.zip" download>Download source code</a></p>
+          </SettingsSection>
+        </>}
+      </div>
     </>
   );
 }

@@ -79,11 +79,14 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   await expect(page.getByRole("button", { name: "Return to main line" })).toBeVisible();
   expect((await saved(page, lesson.session_id)).history).toEqual(branch.history);
   await page.getByRole("link", { name: "Settings", exact: true }).click();
+  await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
   const radio = page.getByRole("radio", { name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Walter" : "Scout", exact: true });
   const preference = page.waitForResponse(response => response.url().endsWith("/api/preferences/coach") && response.request().method() === "PUT");
   await radio.click();
   expect((await preference).ok()).toBe(true);
   await expect(radio).toBeChecked();
+  await page.goBack();
+  await expect(page).toHaveURL("/settings");
   await page.goBack();
   await expect(page.getByRole("button", { name: "Return to main line" })).toBeVisible();
   expect((await saved(page, lesson.session_id)).fen).toBe(branch.fen);

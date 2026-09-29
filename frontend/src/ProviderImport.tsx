@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Job, type Schema } from "./api";
 
@@ -7,21 +7,29 @@ export function ProviderImportForm({
   provider,
   onQueued,
   fail,
+  rememberedUsername,
 }: {
   provider: Schema["GameProvider"];
   onQueued: () => void;
   fail: (e: unknown) => void;
+  rememberedUsername?: string;
 }) {
-  const [username, setUsername] = useState("");
-  const [loadingUsername, setLoadingUsername] = useState(true);
+  const [username, setUsername] = useState(rememberedUsername || "");
+  const [loadingUsername, setLoadingUsername] = useState(rememberedUsername === undefined);
+  const editedUsername = useRef(false);
   useEffect(() => {
+    if (rememberedUsername !== undefined) {
+      if (!editedUsername.current) setUsername(rememberedUsername);
+      setLoadingUsername(false);
+      return;
+    }
     let active = true;
     read(api.GET("/api/providers/{provider}/sync", { params: { path: { provider: provider.id } } }))
-      .then(value => { if (active) setUsername(current => current || value.username); })
+      .then(value => { if (active && !editedUsername.current) setUsername(value.username); })
       .catch(error => { if (active) fail(error); })
       .finally(() => { if (active) setLoadingUsername(false); });
     return () => { active = false; };
-  }, [provider.id, fail]);
+  }, [provider.id, rememberedUsername, fail]);
   const [analyze, setAnalyze] = useState(false);
   const [timeClass, setTimeClass] =
     useState(provider.time_classes.includes("rapid") ? "rapid" : provider.time_classes[0]);
@@ -31,6 +39,11 @@ export function ProviderImportForm({
   const [endDate, setEndDate] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
+  const mounted = useRef(false);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; };
+  }, []);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
@@ -51,23 +64,24 @@ export function ProviderImportForm({
           },
         }),
       );
+      if (!mounted.current) return;
       setMessage(
         `Import queued for ${username.trim()}. ${analyze ? "Fetching and training analysis continue in the background." : "Games will appear in Games without engine analysis."}`,
       );
       onQueued();
     } catch (e) {
-      fail(e);
+      if (mounted.current) fail(e);
     } finally {
-      setBusy(false);
+      if (mounted.current) setBusy(false);
     }
   }
 
   return (
     <form className="panel form-panel" onSubmit={submit}>
-      <h2>Import from {provider.name}</h2>
+      <h3>Import from {provider.name}</h3>
       <p className="small import-intro">
-        Enter your username to bring in your completed games. No login or API
-        key needed.
+        Bring in older games or a custom date range. This uses your saved username
+        unless you enter a different one here. No login or API key needed.
       </p>
       <label>
         {provider.name} username
@@ -76,7 +90,7 @@ export function ProviderImportForm({
           disabled={loadingUsername}
           autoComplete="off"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => { editedUsername.current = true; setUsername(e.target.value); }}
           required
           maxLength={50}
           pattern="[A-Za-z0-9_-]+"
@@ -178,7 +192,7 @@ export function ProviderImportForm({
         )}
       </details>
       <button className="primary" disabled={busy || loadingUsername || !username.trim()}>
-        {busy ? "Queuing import…" : analyze ? "Fetch & analyze games" : "Fetch games"}
+        {busy ? "Queuing import…" : analyze ? "Import & analyze games" : "Import games"}
         <ArrowRight size={17} />
       </button>
       {message && (
@@ -206,46 +220,51 @@ export function ImportJob({
   job,
   reload,
   fail,
+  compact = false,
 }: {
   job: Job;
   reload: () => void;
   fail: (e: unknown) => void;
+  compact?: boolean;
 }) {
   const source = job.provider_import || job.chesscom;
+  const mounted = useRef(false);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; };
+  }, []);
+  function updateJob(action: "cancel" | "retry") {
+    void read(api.POST(action === "cancel" ? "/api/jobs/{job_id}/cancel" : "/api/jobs/{job_id}/retry", {
+      params: { path: { job_id: job.id } },
+    }))
+      .then(() => { if (mounted.current) reload(); })
+      .catch(error => { if (mounted.current) fail(error); });
+  }
   const fetchOnly = ["sync", "chesscom_fetch", "provider_fetch"].includes(job.kind);
   const fetching = source && !source.fetch_completed;
-  return (
-    <article className="job panel">
-      <div className="row-between">
-        <strong>
-          {source
-            ? `${source.provider_name} · ${source.username}`
-            : job.kind === "sync"
-              ? "Recent-game sync"
-              : job.kind === "chesscom_fetch"
-                ? "Fetch games"
-                : job.kind === "training"
-                  ? "Training analysis"
-                  : job.kind === "game_review"
-                    ? "Full-game review"
-                    : job.kind === "enrichment"
-                      ? "Deeper classification evidence"
-                      : job.kind === "teaching"
-                        ? "Archived lesson summaries"
-                        : job.kind === "classification"
-                          ? "Skill classification"
-                          : "Game analysis"}
-        </strong>
-        <span className={`badge ${job.status}`}>{job.status}</span>
-      </div>
+  const title = source ? `${source.provider_name} · ${source.username}`
+    : job.kind === "sync" ? "Recent-game sync"
+      : fetchOnly ? "Fetch games"
+        : job.kind === "training" ? "Training analysis"
+          : job.kind === "game_review" ? "Full-game review"
+            : job.kind === "enrichment" ? "Deeper classification evidence"
+              : job.kind === "teaching" ? "Archived lesson summaries"
+                : job.kind === "classification" ? "Skill classification" : "Game analysis";
+  const summary = source ? `${source.games_imported} imported · ${source.duplicates} duplicates`
+    : fetchOnly ? `${job.games_processed} games fetched`
+      : job.kind === "game_review" ? `${job.positions_triaged} moves reviewed`
+        : job.kind === "enrichment" ? `${job.positions_triaged} / ${job.probe_total || 0} positions processed`
+          : `${job.games_processed} / ${job.games_total} games · ${job.positions_triaged} decisions`;
+  const badge = <span className={`badge ${job.status}`}>{job.status}</span>;
+  const contents = <>
       {source && (
         <>
           <p className="import-phase">
             {fetching
-              ? "Fetching public game archives"
+              ? ["queued", "running"].includes(job.status) ? "Fetching public game archives" : "Game download interrupted"
               : fetchOnly ? "Download complete" : "Download complete · local analysis"}
           </p>
-          {fetching && (
+          {fetching && ["queued", "running"].includes(job.status) && (
             <progress
               aria-label="Game download progress"
               value={source.archives_total ? source.archives_processed : undefined}
@@ -359,37 +378,31 @@ export function ImportJob({
       )}
       <div className="button-row">
         {["queued", "running"].includes(job.status) && (
-          <button
-            onClick={() =>
-              read(
-                api.POST("/api/jobs/{job_id}/cancel", {
-                  params: { path: { job_id: job.id } },
-                }),
-              )
-                .then(reload)
-                .catch(fail)
-            }
-          >
+          <button onClick={() => updateJob("cancel")}>
             Cancel
           </button>
         )}
         {job.kind !== "teaching" &&
           ["failed", "cancelled"].includes(job.status) && (
-            <button
-              onClick={() =>
-                read(
-                  api.POST("/api/jobs/{job_id}/retry", {
-                    params: { path: { job_id: job.id } },
-                  }),
-                )
-                  .then(reload)
-                  .catch(fail)
-              }
-            >
+            <button onClick={() => updateJob("retry")}>
               Retry saved work
             </button>
           )}
       </div>
+    </>;
+  return (
+    <article className={`job${compact ? " job-history" : " panel"}`}>
+      {compact ? <details>
+        <summary className="job-summary">
+          <span className="job-summary-copy"><strong>{title}</strong><span className="small">{summary}</span></span>
+          {badge}
+          <span className="job-inspect small">View details</span>
+        </summary>
+        <div className="job-details">{contents}</div>
+      </details> : <>
+        <div className="row-between"><strong>{title}</strong>{badge}</div>
+        {contents}
+      </>}
     </article>
   );
 }

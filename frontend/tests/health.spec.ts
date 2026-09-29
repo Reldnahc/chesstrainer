@@ -33,18 +33,16 @@ test("lazy and recovered engine use stays available without an endless checking 
       .getByRole("link", { name: "Settings", exact: true })
       .click();
     await expect(
-      page.getByRole("heading", { name: "Import games" }),
+      page.getByRole('region', { name: 'Recent Chess.com games', exact: true }),
     ).toBeVisible();
+    await page.getByRole('region', {name: 'Recent Chess.com games', exact: true}).getByRole('button', {name: 'Import older games', exact: true}).click();
     await expect(page.getByText("Checking engine availability…")).toHaveCount(
       0,
     );
     await expect(
       page.getByText("Stockfish is unavailable. Check the server logs."),
     ).toHaveCount(state === "unavailable" ? 1 : 0);
-    await page
-      .getByRole("navigation")
-      .getByRole("link", { name: "Settings" })
-      .click();
+    await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Advanced', exact: true}).click();
     await page
       .getByRole("button", { name: "Deepen unclear positions" })
       .click();

@@ -8,6 +8,7 @@ import {
 import { api, read, setAccountSession, type Schema } from "./api";
 
 import Onboarding from "./Onboarding";
+import SettingsSection from "./SettingsSection";
 
 export type Account = Schema["Account"];
 type Identity = Schema["Identity"];
@@ -25,11 +26,7 @@ export function AccountSettings() {
   if (!session) return null;
   const { user, logout, busy, error } = session;
   return (
-    <section
-      className="panel account-settings"
-      aria-labelledby="account-settings-title"
-    >
-      <h2 id="account-settings-title">Account</h2>
+    <SettingsSection id="account-settings" title="Account" className="account-settings">
       <p>
         Signed in as <strong>{user.username}</strong>
       </p>
@@ -50,7 +47,7 @@ export function AccountSettings() {
           {error}
         </p>
       )}
-    </section>
+    </SettingsSection>
   );
 }
 

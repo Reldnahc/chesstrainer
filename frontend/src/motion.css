@@ -1,20 +1,18 @@
 /* Account animation preference controls. */
+.motion-controls {
+  display: grid;
+  gap: 16px;
+}
+.motion-preference + .motion-preference {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
 .motion-setting {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 18px;
-  margin-top: 20px;
-}
-.motion-setting > div {
-  display: grid;
-  gap: 5px;
   margin: 0;
-}
-.motion-setting > div > span {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--muted);
 }
 .motion-setting label { margin: 0; }
 .motion-setting select {
@@ -25,10 +23,13 @@
 }
 .motion-preference-status,
 .coach-motion-preference-status {
-  min-height: 24px;
-  margin: 14px 0 0;
+  margin: 0;
   color: var(--muted);
   font-size: 12px;
+}
+.motion-preference-status:not(:empty),
+.coach-motion-preference-status:not(:empty) {
+  margin-top: 6px;
 }
 @media (max-width: 600px) {
   .motion-setting { flex-direction: column; align-items: stretch; gap: 10px; }

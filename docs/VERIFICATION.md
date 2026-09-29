@@ -2,6 +2,50 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Focused Settings sections and reliable imports — September 29, 2026
+
+Settings now separates Games & imports, Coach & animations, hosted Account, and
+Advanced tools. Shared section spacing and conditional mounting keep the page
+compact. Saved connections are separate from optional history/PGN forms; analysis
+is opt-in, file/text PGN inputs are exclusive, and activity shows active work plus
+three compact finished jobs. Coach art, six-column selection and motion policy
+are unchanged. Independent review findings concerning stale username polls,
+route identity, history scroll precedence and mouse-driven anchor cancellation
+were corrected before final verification.
+
+- From `frontend`, `npm.cmd run build`: passed generated API agreement,
+  production/contract/browser TypeScript, **7 style-boundary tests**, both
+  standalone dependency guards and Vite. Existing large-chunk advisory remains.
+- `npx.cmd playwright test --reporter=line`: **312 passed, 3 intentional viewport
+  skips, 3 failures** in the initial broad application run. Two failures were a
+  lesson test's obsolete Settings navigation; the third exposed a real two-pixel
+  mobile layout shift when the loading Update games button became a setup link.
+  The navigation was updated, control heights matched, and an exact geometry
+  regression added without loosening scroll tolerances.
+- Final `npx.cmd playwright test tests/settings.spec.ts tests/providers.spec.ts tests/navigation.spec.ts tests/study-lessons.spec.ts --reporter=line`:
+  **53 passed, 1 intentional mobile modifier-click skip**. Covers all corrected
+  failures plus URL sections, conditional mounting, narrow layouts, restored
+  scroll, exclusive PGN sources, opt-in analysis, manual/blank username drafts,
+  stale polls, bounded job history and late errors after leaving imports.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`:
+  **8 passed**, including second-device preferences/progress, account isolation,
+  account-only Settings controls and one-time provider/PGN onboarding.
+- `npx.cmd playwright test tests/navigation.spec.ts tests/providers.spec.ts --project=mobile --grep 'returning to the library|loading game connections' --repeat-each=3 --output=test-results-settings-repeat --reporter=line`:
+  **6 passed**. The geometry test gates connection responses instead of depending
+  on network timing; the existing scroll tolerance remains unchanged.
+- From the repository root,
+  `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q -p no:cacheprovider --basetemp data/verification/settings-ci`:
+  **239 passed**. The Settings stylesheet belongs to the application-only group.
+- Manually exercised desktop/phone imports, saved connections, coach/animation
+  settings and Advanced tools in an isolated local fixture. Screenshots inspected
+  at actual sizes. Git whitespace checks passed. Windows test runners again
+  stalled during fixture-server teardown; stopping only each identified fixture
+  server produced successful final reports. The owner's studio stayed running.
+
+No backend contract/schema, engine, coach artwork or animation behavior changed.
+The full backend, standalone coach animation matrix and Docker suites were not
+rerun. No remote push or deployment was performed for this pass.
+
 ## CSS ownership and selective coach coverage — September 29, 2026
 
 Separated shared fonts/controls, coach feedback and interface-motion policy from

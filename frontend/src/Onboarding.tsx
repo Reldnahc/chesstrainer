@@ -66,7 +66,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
         {selected.length ? <>
           <p>Your {selected.map(connection => connection.name).join(" and ")} usernames are saved.</p>
           <ol>
-            <li>In <strong>Settings → Import games</strong>, choose your site. Your username is already filled in.</li>
+            <li>In <strong>Settings → Games & imports</strong>, choose <strong>Import older games</strong> for your site. Your username is already filled in.</li>
             <li>Choose a time control and date range, then select <strong>Fetch games</strong>.</li>
             <li>Open a game from <strong>Games</strong> to start its review. Use <strong>Update games</strong> there for your latest games.</li>
           </ol>
@@ -74,7 +74,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
           <p>No connected account needed. Import a PGN—the standard file format for chess games.</p>
           <ol>
             <li>Download or export a PGN from the site or chess app where you played.</li>
-            <li>In <strong>Settings → Import games → PGN file</strong>, choose the file or paste its PGN text.</li>
+            <li>In <strong>Settings → Games & imports → Import PGN</strong>, choose a file or paste its PGN text.</li>
             <li>Enter the player name used in the game, or select your side, then import. Open it from <strong>Games</strong> to review.</li>
           </ol>
         </>}

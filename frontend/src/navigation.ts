@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 export const pagePaths = {
   Study: "/study",
@@ -13,6 +13,7 @@ export const studyPaths = {
 } as const;
 export type StudyMode = "home" | keyof typeof studyPaths;
 export type Tab = keyof typeof pagePaths;
+export type SettingsTab = "imports" | "coach" | "account" | "advanced";
 const navigationEvent = "fieldwork:navigate";
 const scrollKey = "fieldworkScroll";
 const entryKey = "fieldworkEntry";
@@ -71,10 +72,14 @@ function readRoute() {
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
   const tab: Tab | null = studyMode ? "Study" : gameId ? "Games"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
+  const settingsSection = url.searchParams.get("section");
   return {
     entry,
     href: url.pathname + url.search,
+    scrollAnchor: url.hash.slice(1),
     tab,
+    settingsTab: (["coach", "account", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
+    importSource: url.searchParams.get("import"),
     gameId,
     studyMode,
     puzzleSessionId,
@@ -170,7 +175,11 @@ export function rememberGamePly(id: string, ply: number) {
 }
 
 export function useRoute() {
-  const [location, setLocation] = useState(() => ({ route: readRoute(), scroll: (window.history.state?.[scrollKey] ?? null) as ScrollPosition | null }));
+  const [location, setLocation] = useState(() => ({
+    route: readRoute(),
+    scroll: (window.history.state?.[scrollKey] ?? null) as ScrollPosition | null,
+    restoringScroll: !!window.history.state?.[scrollKey],
+  }));
   const activeEntry = useRef(location.route.entry);
   useEffect(() => {
     const previous = window.history.scrollRestoration;
@@ -179,7 +188,8 @@ export function useRoute() {
       saveScroll(activeEntry.current);
       const route = readRoute();
       activeEntry.current = route.entry;
-      setLocation({ route, scroll: scrollPositions.get(route.entry) ?? window.history.state?.[scrollKey] ?? { x: 0, y: 0 } });
+      const savedScroll = scrollPositions.get(route.entry) ?? window.history.state?.[scrollKey];
+      setLocation({ route, scroll: savedScroll ?? { x: 0, y: 0 }, restoringScroll: !!savedScroll });
     };
     window.addEventListener("popstate", update);
     window.addEventListener(navigationEvent, update);
@@ -192,31 +202,41 @@ export function useRoute() {
     };
   }, []);
   useLayoutEffect(() => {
-    let restoring = !!location.scroll;
+    const anchor = !location.restoringScroll ? location.route.scrollAnchor : "";
+    let restoring = !!location.scroll || !!anchor;
     const target = location.scroll;
     // A returning library can still be loading. Retry as its content arrives,
     // but stop immediately if the user starts scrolling themselves.
     const observer = new ResizeObserver(restore);
     function stopRestoring() { restoring = false; observer.disconnect(); }
     function restore() {
-      if (!restoring || !target) return;
+      if (!restoring) return;
+      if (anchor) {
+        // A fresh deep link follows its section as asynchronous content loads.
+        // History navigation instead restores the reader's saved position.
+        document.getElementById(anchor)?.scrollIntoView();
+        return;
+      }
+      if (!target) return;
       window.scrollTo({ left: target.x, top: target.y, behavior: "instant" });
       if (Math.abs(window.scrollY - target.y) < 1) stopRestoring();
     }
-    if (target) {
+    if (target || anchor) {
       document.getElementById("main-content")?.focus({ preventScroll: true });
       observer.observe(document.body);
       restore();
     }
     window.addEventListener("wheel", stopRestoring, { passive: true });
     window.addEventListener("touchstart", stopRestoring, { passive: true });
+    window.addEventListener("pointerdown", stopRestoring, { passive: true });
     window.addEventListener("keydown", stopRestoring);
     return () => {
       observer.disconnect();
       window.removeEventListener("wheel", stopRestoring);
       window.removeEventListener("touchstart", stopRestoring);
+      window.removeEventListener("pointerdown", stopRestoring);
       window.removeEventListener("keydown", stopRestoring);
     };
   }, [location]);
-  return location.route;
+  return useMemo(() => ({ ...location.route, restoringScroll: location.restoringScroll }), [location]);
 }

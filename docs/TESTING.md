@@ -1,5 +1,13 @@
 # Testing
 
+Settings regressions in `settings.spec.ts` exercise section/deep-link navigation,
+Back/Forward/reload and scroll restoration, exclusive PGN file/text payloads,
+analysis opt-in, remembered usernames versus edited drafts, late connection polls,
+disposed activity requests, and bounded job history on desktop/mobile. Run with
+`providers.spec.ts` and `health.spec.ts` for real fixture imports, native opt-in
+training analysis and unavailable-engine feedback. Account and preference suites
+cover hosted section visibility, cross-device settings and save/retry behavior.
+
 Study lesson coverage: `test_study_lessons.py` checks authored content and session
 boundaries; `test_lesson_journey.py` traverses a connected six-step-type chapter
 through HTTP/restart persistence. `study-lessons.spec.ts` runs that journey and
