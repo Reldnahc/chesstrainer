@@ -104,7 +104,7 @@ test('returning to the library restores its page and scroll after the list loads
     }))}});
   });
   await page.goto('/games');
-  await page.getByRole('button', {name: 'More games', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Games pages'}).getByRole('link', {name: 'Next', exact: true}).click();
   await expect(page).toHaveURL('/games?page=2');
   const gameLink = page.getByRole('link', {name: /Library 50 vs Opponent/});
   await gameLink.scrollIntoViewIfNeeded();
@@ -124,10 +124,10 @@ test('returning to the library restores its page and scroll after the list loads
   await expect.poll(async () => Math.abs(await page.evaluate(() => window.scrollY) - beforeReload)).toBeLessThan(2);
   await page.goBack();
   await expect(page).toHaveURL('/games');
-  await expect(page.locator('.game-pagination')).toContainText('1–30 of 60');
+  await expect(page.getByRole('navigation', {name: 'Games pages'})).toContainText('1–30 of 60');
   await page.goto('/games?page=100');
   await expect(page.getByRole('heading', {name: 'No games on this page.'})).toBeVisible();
-  await expect(page.locator('.game-pagination')).toHaveCount(0);
+  await expect(page.getByRole('navigation', {name: 'Games pages'})).toHaveCount(0);
   await page.getByRole('link', {name: 'Back to your games', exact: true}).click();
   await expect(page).toHaveURL('/games');
 });

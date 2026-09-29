@@ -4,8 +4,8 @@ import PageTitle from "./PageTitle";
 import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
 import ActionLink from "./ActionLink";
-import Button from "./Button";
-import { gamesPath, navigate as navigatePage, pagePaths } from "./navigation";
+import Pagination from "./Pagination";
+import { gamesPath, pagePaths } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
 
 export default function GamesScreen({
@@ -96,23 +96,9 @@ export default function GamesScreen({
         <GameHistory items={items} page={page} />
       )}
       {total > 30 && items.length > 0 && (
-        <div className="game-pagination">
-          <Button
-            disabled={offset === 0}
-            onClick={() => navigatePage(gamesPath(page - 1))}
-          >
-            Previous games
-          </Button>
-          <span>
-            {offset + 1}–{Math.min(offset + 30, total)} of {total}
-          </span>
-          <Button
-            disabled={offset + 30 >= total}
-            onClick={() => navigatePage(gamesPath(page + 1))}
-          >
-            More games
-          </Button>
-        </div>
+        <Pagination label="Games pages" start={offset + 1} end={Math.min(offset + 30, total)} total={total}
+          previousHref={offset > 0 ? gamesPath(page - 1) : undefined}
+          nextHref={offset + 30 < total ? gamesPath(page + 1) : undefined} />
       )}
     </>
   );
