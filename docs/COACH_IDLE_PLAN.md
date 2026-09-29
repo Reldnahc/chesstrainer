@@ -1,6 +1,8 @@
 # Coach idle revamp — implementation plan
 
-Status: proposed for owner review; no animation implementation in this commit.
+Status: ready for implementation after three review rounds against the current
+code; no remaining actionable contradictions found. This document does not
+implement animations.
 Branch: `codex/coach-idle-revamp`, created from local `main` at `fa9dc64`.
 
 ## Intended experience
@@ -34,8 +36,11 @@ for visual acceptance; compilation and animation-name assertions are insufficien
 ## Coverage targets
 
 1. Every current coach/expression has **at least eight authored, compatible idle
-   choices**, replacing the four-element restriction. Cover at least three
-   suitable motion groups rather than filling a pool with eight eye variants.
+   choices** for its steady resting pose, replacing the four-element restriction.
+   Count anatomy/emotion-compatible variants before temporary cooldown, conflict
+   or visibility filtering. Each repertoire spans at least three suitable motion
+   groups, rather than eight eye variants. Basic blinking can count once when
+   supported, but its scheduling remains independent of the optional choice pool.
 2. Every coach receives **at least four new visibly distinct variants**, including
    **at least two character-directed signature performances**. Aim for roughly
    16–24 available variants per coach across expressions; anatomy and quality
@@ -44,8 +49,12 @@ for visual acceptance; compilation and animation-name assertions are insufficien
    anticipation, movement path, asymmetry, hold, secondary movement or rhythm is
    visibly different at review size. A tiny amplitude change, a different label,
    or reuse in another expression does not count as another animation.
-4. Compatible simultaneous motions do not inflate these counts. Basic blinking
-   remains independently scheduled and cannot be diluted by a larger choice pool.
+4. Arbitrary simultaneous combinations do not inflate these counts. An explicitly
+   authored compound performance can count when its coordinated timing is visibly
+   distinct. Count a variant reused across expressions only once toward a coach's
+   four new additions; compare against the recorded baseline catalogue. The two
+   signatures are required per coach, not per expression, and must be reachable
+   during normal idle playback in suitable states, not only through studio replay.
 5. Enumerate the live registry for coverage and validation; do not encode 30 as a
    permanent production limitation. The targets apply to every current coach.
 
@@ -62,30 +71,68 @@ eligible motion groups:
 | Character details | Ears, tail, hair, glasses, wings, antenna, cap | Anatomy-aware selection and character-specific emphasis |
 
 - A gesture declares its parts, complete duration, eligibility, cooldown,
-  selection weight and movement intensity. Compound gestures reserve all their
-  parts: scan uses head and gaze; sigh uses body and eyes. These declarations
-  also drive studio diagnostics and compatibility tests.
+  selection weight and movement intensity. The groups above organize behavior;
+  conflicts are determined by actual animated rig channels, including the SVG
+  wrapper/property being written. Competing writes to one transform are exclusive;
+  nested head, eyelid and gaze tracks may compose when explicitly compatible.
+  Compound reservations are atomic: scan uses head and gaze; sigh uses body and
+  eyes. These declarations also drive studio diagnostics and compatibility tests.
 - Allow small compatible motions to overlap, such as a blink during a tail
   settle. Keep one noticeable gesture at a time, with a bounded allowance for
   quiet secondary movement. Do not start every due part simultaneously.
-- Preserve the shared **500–1,000 ms visible quiet gap** while resting and
-  animated when no visible motion is active. Compatible overlapping gestures
-  need no gap between them. Measure quiet time after actual visible motion,
-  not after a fixed reserved slot. Part cooldowns prevent constant blinking/wagging without reintroducing
-  long whole-character freezes; provide quiet eligible fallback motion.
+- Preserve the shared **500–1,000 ms quiet gap** during uninterrupted, visible,
+  animated rest with automatic idles enabled. The gap starts when the last
+  authored gesture finishes; compatible overlapping gestures need no gap between
+  them. Use the true authored duration, not a fixed reserved slot or per-frame
+  motion detection. Reaction dwell/entrance, pauses and explicit studio replay
+  are outside this cadence contract.
+- Scheduling priority is pause/reaction first, then anatomy and channel safety,
+  then due baseline eye activity, then optional weighted gestures. A due blink
+  never interrupts an incompatible track or bypasses the minimum quiet gap.
+  Measure blink opportunities in active resting time; suspension does not accrue
+  debt. Bound deferral by the active incompatible gesture's remaining duration
+  plus the maximum quiet gap, and prevent optional gestures from extending that
+  deferral indefinitely. Poses without blink-capable eyes suspend this obligation.
+- Use one baseline-eye clock: a completed visible eye closure/reopen, including
+  one within a signature or sigh, satisfies it. Gaze motion alone does not.
+  Validate that eye cooldowns allow the next blink within the declared bound;
+  optional eye gestures cannot keep postponing that opportunity. Do not schedule
+  an unnecessary second blink immediately after a compound gesture's blink.
+- Cooldowns still apply to quiet fallback motion. Validate that each eligible
+  resting repertoire can supply a legal quiet action by the maximum gap; a
+  fallback must not secretly bypass exhausted cooldowns. Reject infeasible
+  catalogue configurations in tests and expose them in studio diagnostics.
+  Runtime safety wins over cadence if an invalid configuration reaches the UI.
 - Centralize full gesture timings for both scheduler and CSS, including delayed
-  child motion. Keep the existing appearance/speed of useful gestures rather
-  than stretching a blink to occupy an artificial slot.
+  child motion and intentional holds. Keep the existing appearance/speed of useful
+  gestures rather than stretching a blink to occupy an artificial slot.
 - Use weighted recent history and per-part cooldowns to avoid A/B/A/B loops and
   starvation. Inject time/randomness into scheduler tests for reproducibility.
 - CSS/SVG perform animation frames. Use bounded, cancellable scheduling rather
   than a continuously running JavaScript frame loop or a timer per SVG element.
-- Keep the existing entrance dwell, duration and priority. Cancel/reconcile idles
-  when the semantic state or coach changes. Do not remount artwork on every
-  micro-gesture or replay an entrance as an idle.
+- Keep the existing entrance dwell, duration and priority. A reaction key change
+  cancels stale tracks even when the expression is unchanged (two Best moves).
+  Known feedback stays readable immediately; only its entrance waits for the
+  dwell. Do not remount artwork on every micro-gesture or replay an entrance as
+  an idle.
+- Hidden/offscreen/Still states abort active tracks and retain only the latest
+  reaction. Resume with fresh idle deadlines, no catch-up burst and no replay of
+  an already-started entrance. A newer pending reaction still follows the existing
+  dwell/entrance policy. Preserve same-coach recent history across pauses; reset
+  deadlines without accruing hidden time. Coach/family changes discard prior rig
+  history and cooldowns. Ordinary rerenders do not reset either.
+- Keep automatic-idle disabling and reaction disabling independent. Unselected
+  Settings portraits remain static. A requested developer replay may run one
+  gesture with automatic idles disabled; it still honors effective motion and
+  visibility settings and must not silently start an idle loop.
 
 First validate this with Storyteller, Velvet night, Border collie, Frog, Robot
 and Slime, covering the main rig and temperament differences before full rollout.
+Bring the minimal pose-capability declarations and working studio replay/expanded
+gallery support into this milestone so the prototype is inspectable immediately.
+Update affected contract tests and four-entry assertions with that model change.
+Validate initial scheduling on blink-capable resting poses; Milestone 2 completes
+resting-face compatibility across expressions, and Milestone 4 polishes diagnostics.
 
 ## Milestone 2 — living resting faces
 
@@ -97,6 +144,14 @@ and Slime, covering the main rig and temperament differences before full rollout
 - Add suitable eyelid, small brow and gaze behavior. Avoid blinking already-closed
   strokes or moving nonexistent pupils. Expose anatomy/pose capabilities rather
   than relying on coach-name exceptions in the scheduler.
+- Still (including System with reduced motion) renders the chosen expressive
+  static resting face immediately, without a delayed eye-opening animation.
+  Animated entrance-to-rest changes remain within the existing reaction duration.
+  Do not briefly reopen eyes during the dwell only to close them for the entrance;
+  cancel pending face transitions on reaction-key changes, pause or unmount.
+  An interrupted entrance settles to its steady expressive face on resume
+  (immediately for Still); canceled reopening must not leave a closed entrance
+  face stuck in rest. A newer reaction takes precedence over that settling.
 - Layer transforms so idle head/body motion composes with the held pose. Retain
   expression-specific pivots, eye masks, fixed portrait bounds and layout stability.
 
@@ -150,15 +205,23 @@ matters: worried tail settling is distinct from happy wagging; avoid celebratory
 motion during mistakes, blunders or loss. Do not repeat surprise or distress
 entrances continuously.
 
+Hand/paw movement must retain joint attachment and held-prop contact. A hand may
+not detach from its sleeve or a shoulder from the torso; book-holding poses must
+exclude incompatible gestures or coordinate the supporting limb and prop.
+
 ## Milestone 4 — studio and live visual iteration
 
-- Replace four-card assumptions with a gallery for the expanded repertoire.
+- Finish the expanded gallery introduced in Milestone 1; remove remaining
+  four-card copy and layout assumptions.
 - Offer individual replay and sustained natural-idle preview. Keep actual
   desktop/mobile portrait-size examples and same-state coach comparisons.
 - Add developer-only visibility into active parts, next eligibility, cooldowns,
   recent gestures and skipped/conflicting candidates. Provide a reproducible
   playback seed and normal-versus-diagnostic viewing without changing production
   animation preferences or adding a production viewer.
+- Keep sustained playback opt-in per preview/comparison. Individual gallery cards
+  use bounded replay rather than all running continuously; offscreen cards pause.
+  Use the same scheduler as production, including in seeded diagnostic playback.
 - Observe each representative coach for 60–90 seconds at normal size to detect
   long pauses, distracting motion, repetition, awkward settling and barely
   visible movements. Inspect every coach's new signatures and every expression
@@ -176,16 +239,20 @@ Automated checks must cover:
 - Real gesture durations, bounded visible quiet gaps, independent eligibility,
   mandatory eye opportunities, cooldowns, anti-repeat history and conflict rules.
 - Compound actions and interruption; no stale finish callback clears a newer
-  gesture. Coach changes, rapid scrubbing, replay, unmount and offscreen/tab-hidden
-  changes cancel correctly. Returning to visibility causes no catch-up burst.
+  gesture. Coach/family changes, rapid same-expression navigation, replay, unmount
+  and offscreen/tab-hidden changes cancel correctly. Returning to visibility causes
+  no catch-up burst. Rerenders preserve history; motion/visibility resumes respect
+  the defined reset boundaries. Disabled automatic idles never restart themselves.
 - System follows browser reduced motion; explicit Animated overrides it; Still
   immediately stops all coach motion. Piece/interface motion stays independent.
 - All current coaches and expressions meet repertoire/part compatibility targets,
   use live SVG targets and retain readable static states under Still.
 - Eye reopening preserves emotion and does not mutate semantic reaction keys,
   dialogue, saved preferences or chess evidence.
-- Cold SRS remains neutral before allowed feedback. Animation inputs never use
-  hidden answers, grades, Maia hints or unrevealed tactical evidence.
+- Preserve cold SRS's existing public lifecycle feedback (readiness, busy/error
+  states and feedback from permitted attempts). Before an attempt/reveal, animation
+  inputs never use hidden answers, move grades, Maia hints or unrevealed tactical
+  evidence. Idle eligibility depends on public expression and rig capabilities.
 - No reaction replay during idles, no idle-driven SVG remount, no layout shift,
   and no unbounded timer/observer growth with large studio grids.
 
