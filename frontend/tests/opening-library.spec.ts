@@ -116,7 +116,7 @@ test("only designated course lines can be enrolled and dedicated practice leaves
 test("Study home uses the exact due count rather than its review batch size", async ({ page }) => {
   await page.route("**/api/review/count", route => route.fulfill({ json: { due: 83 } }));
   await page.goto("/study");
-  await expect(page.locator(".study-due .study-count")).toHaveText("83 scheduled recalls");
+  await expect(page.locator(".study-due .study-count")).toHaveText("83 Scheduled recalls");
   await page.getByRole("link", { name: "Start studying", exact: true }).click();
   await expect(page).toHaveTitle("Due · Fieldwork");
 });

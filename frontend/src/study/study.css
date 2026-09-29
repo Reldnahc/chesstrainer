@@ -2,10 +2,10 @@
 .study-heading h1 { margin-bottom: 0; }
 .study-heading .eyebrow { margin-block: 0 8px; }
 .study-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.study-option { display: flex; flex-direction: column; align-items: start; gap: 12px; }
+.study-option { display: grid; grid-template-rows: subgrid; grid-row: span 5; align-items: start; justify-items: start; gap: 12px; }
 .study-option > svg { color: var(--accent); }
 .study-option h2, .study-option p { margin: 0; }
-.study-option > .button-link { margin-top: auto; }
+.study-option > .button-link { grid-row: 5; margin-top: auto; }
 .study-option .study-count { font-size: 36px; font-weight: 650; color: #f3f0eb; }
 .study-count span { display: block; font-size: 13px; font-weight: 400; color: var(--muted); }
 .study-due { border-color: #705044; }
@@ -99,7 +99,7 @@
 @media (max-width: 760px) {
   .study-page { gap: 14px; }
   .study-options { grid-template-columns: 1fr; gap: 12px; }
-  .study-option { padding: 20px; }
+  .study-option { display: flex; flex-direction: column; grid-row: auto; padding: 20px; }
   .puzzle-history { margin-top: 12px; }
   .lesson-chapters li { gap: 8px; padding: 12px 8px; }
   .lesson-chapters button { padding-inline: 10px; }

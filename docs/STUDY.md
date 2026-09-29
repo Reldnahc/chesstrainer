@@ -22,6 +22,9 @@ history replacement. Legacy `unit` links are stripped, not revived. Imports stay
 in Settings and saved game analysis stays in Games.
 The Study home cards lead to Due, Openings and Puzzles. The main navigation's
 Study link returns to that overview; subpages do not repeat a section selector.
+Overview cards place descriptions below their headings and show the scheduled
+recall and active opening-line counts separately. Opening counts reflect enrolled
+active lines, including zero; merely viewing a lesson does not increase them.
 
 ## Puzzle boundary
 
