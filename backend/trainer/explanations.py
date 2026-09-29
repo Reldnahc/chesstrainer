@@ -118,6 +118,11 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
     session = db.get(ReviewSession, session_id)
     if session is None:
         raise ValueError("Review session not found")
+    from trainer.opening_studies import recall as opening_recall
+
+    snapshot = opening_recall.get_snapshot(db, session)
+    if snapshot:
+        return opening_recall.explain(db, session, snapshot, attempt_id, solution)
     exercise = db.get(Exercise, session.exercise_id)
     if solution:
         if not session.completed:

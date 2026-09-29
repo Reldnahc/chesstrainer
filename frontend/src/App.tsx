@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {
   BookOpen,
   Flag,
@@ -18,6 +18,7 @@ import { navigate, pagePaths, studyPaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
 import PuzzlePlayer from "./study/PuzzlePlayer";
 import LessonPlayer from "./study/LessonPlayer";
+import OpeningLinePreview from "./study/OpeningLinePreview";
 import Link from "./Link";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
@@ -64,7 +65,10 @@ export default function App() {
   useEffect(() => {
     setError("");
     setEvidenceId(null);
-    document.title = `${route.gameId ? "Game review" : (tab ?? "Page not found")} · Fieldwork`;
+  }, [route]);
+  // Set the route fallback before child effects apply a more specific title.
+  useLayoutEffect(() => {
+    document.title = `${route.gameId ? "Game review" : route.studyMode === "due" ? focusSkill ? "Focused practice" : "Due" : (tab ?? "Page not found")} · Fieldwork`;
   }, [route, tab]);
   return (
     <>
@@ -106,7 +110,7 @@ export default function App() {
         id="main-content"
         tabIndex={-1}
         className={
-          route.studyMode === "due" || route.puzzleSessionId || route.lessonSessionId || (tab === "Games" && route.gameId)
+          route.studyMode === "due" || route.puzzleSessionId || route.lessonSessionId || route.openingCatalogueKey || route.openingCourseLine || (tab === "Games" && route.gameId)
             ? "review-page"
             : "workspace-page"
         }
@@ -159,13 +163,14 @@ export default function App() {
                 focusSkill={focusSkill}
                 onExitFocus={() => navigate(studyPaths.due)}
                 requested={exercise}
+                requestedSession={route.reviewSessionId}
                 onImport={() => navigate(pagePaths.Settings)}
                 fail={fail}
                 onEvidence={setEvidenceId}
               />
             )}
-            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && (
-              <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} courseId={route.lessonCourseId} courseRevision={route.lessonRevision} />
+            {tab === "Study" && route.studyMode !== "due" && !route.puzzleSessionId && !route.lessonSessionId && !route.openingCatalogueKey && !route.openingCourseLine && (
+              <StudyScreen key={`${refresh}-${route.href}`} mode={route.studyMode || "home"} source={route.puzzleSource} courseId={route.lessonCourseId} courseRevision={route.lessonRevision} openingSection={route.openingSection} openingQuery={route.openingQuery} openingEco={route.openingEco} openingOffset={route.openingOffset} />
             )}
             {route.puzzleSessionId && (
               <PuzzlePlayer key={`${refresh}-${route.puzzleSessionId}`} sessionId={route.puzzleSessionId} />
@@ -173,6 +178,7 @@ export default function App() {
             {route.lessonSessionId && (
               <LessonPlayer key={`${refresh}-${route.lessonSessionId}`} sessionId={route.lessonSessionId} />
             )}
+            {(route.openingCatalogueKey || route.openingCourseLine) && <OpeningLinePreview key={`${refresh}-${route.href}`} catalogueKey={route.openingCatalogueKey} courseLine={route.openingCourseLine} />}
             {tab === "Games" && (
               <GamesScreen
                 key={route.href}

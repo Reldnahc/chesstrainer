@@ -551,3 +551,62 @@ class StudyLessonProgress(Owned, Base):
     attempted_steps: Mapped[list] = mapped_column(JSON, default=list)
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class OpeningStudy(Owned, Base):
+    __tablename__ = "opening_studies"
+    __table_args__ = (
+        UniqueConstraint("user_id", "source", "source_key", "source_version", "color"),
+    )
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    source: Mapped[str]
+    source_key: Mapped[str]
+    source_version: Mapped[str]
+    name: Mapped[str]
+    eco: Mapped[str | None]
+    color: Mapped[str]
+    snapshot: Mapped[dict] = mapped_column(JSON)
+    active: Mapped[bool] = mapped_column(default=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class OpeningStudyMove(Owned, Base):
+    __tablename__ = "opening_study_moves"
+    study_id: Mapped[str] = mapped_column(ForeignKey("opening_studies.id"), primary_key=True)
+    ordinal: Mapped[int] = mapped_column(primary_key=True)
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
+    position_key: Mapped[str]
+    fen: Mapped[str]
+    ply: Mapped[int]
+    move_uci: Mapped[str]
+    move_san: Mapped[str]
+
+
+class OpeningCard(Owned, Base):
+    __tablename__ = "opening_cards"
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), primary_key=True)
+    revision: Mapped[int] = mapped_column(default=0)
+    active: Mapped[bool] = mapped_column(default=False)
+    last_active_answers: Mapped[list] = mapped_column(JSON, default=list)
+    retirement_guard_revision: Mapped[int | None]
+
+
+class OpeningRecallSnapshot(Owned, Base):
+    __tablename__ = "opening_recall_snapshots"
+    session_id: Mapped[str] = mapped_column(ForeignKey("review_sessions.id"), primary_key=True)
+    answer_revision: Mapped[int]
+    fen: Mapped[str]
+    orientation: Mapped[str]
+    answers: Mapped[list] = mapped_column(JSON)
+    studies: Mapped[list] = mapped_column(JSON)
+    non_scheduling_reason: Mapped[str | None]
+
+
+class OpeningContentChange(Owned, Base):
+    __tablename__ = "opening_content_changes"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    exercise_id: Mapped[str] = mapped_column(ForeignKey("exercises.id"), index=True)
+    revision: Mapped[int]
+    reason: Mapped[str]
+    details: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)

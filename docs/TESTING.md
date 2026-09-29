@@ -7,6 +7,16 @@ resume/alternate-path checks on desktop and mobile. Run `study-puzzles.spec.ts`
 alongside it when changing the shared display-only playback helper. Test fixture
 providers are injected only by the test application, never production flags.
 
+Opening recall coverage: `test_opening_sources.py`, `test_opening_lifecycle.py`,
+`test_opening_isolation.py` and `test_opening_journey.py` cover both source kinds,
+transpositions/answer unions, source snapshots, content policy, ownership,
+concurrency and stale scheduling guards through actual Review/FSRS paths. Run the
+existing retirement, review-restart, repertoire-archive and focused-practice tests
+with them. `opening-library.spec.ts` and `opening-due.spec.ts` check browser
+enrollment, dedicated rehearsal, cold context, exact Due counts and stale resume
+on desktop/mobile. No engine is needed to grade opening recall; tests fail if one
+is unexpectedly called. Every browser study fixture is paused during cleanup.
+
 The review-intelligence synthetic baseline corpus and native benchmark commands
 are documented in [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Its contract
 tests run with ordinary pytest without Torch or a Maia checkpoint; native

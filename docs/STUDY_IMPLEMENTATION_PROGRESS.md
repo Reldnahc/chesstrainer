@@ -5,11 +5,12 @@ Branch: `codex/study-frameworks`, created from local `main` at `5fa6ac4`.
 
 ## Current checkpoint
 
-Phase 2 — lesson framework and connected acceptance chapter verified; committing.
+Phase 3 — opening studies and existing Review/FSRS integration verified; committing.
 
 ## Completed phases
 
 - Phase 1: `5c30aad` — Study navigation and durable multi-move puzzles.
+- Phase 2: `557bf97` — durable guided lessons, branches and independent rehearsal.
 
 ## Decisions carried forward
 
@@ -58,12 +59,29 @@ Phase 2 — lesson framework and connected acceptance chapter verified; committi
   records. Fixed full-game seeking to include known source-game preludes.
   Manual desktop/mobile inspection exercised demonstration, guidance, branch
   reload/return, source-game start/return and independent rehearsal.
+- Phase 3: source, journey, lifecycle, isolation, retirement, review restart,
+  repertoire archival, focused practice, accounts and API subset: 58 passed
+  (`--basetemp=data/verification/study-phase3-verified`), no skips. An earlier
+  run caught a temporary test typo (`reviews.submit` instead of `submit_move`);
+  all six special-move cases pass after correction.
+- Phase 3 browser: opening Due/library + lessons/puzzles + existing training and
+  navigation: 98 passed, two existing viewport-specific skips. Final production
+  build, Ruff lint/format, generated API snapshot and whitespace checks passed.
+  Final `playwright test opening-due.spec.ts opening-library.spec.ts --reporter=line`
+  after manual polish: 16 passed, no skips.
+- Phase 3 manual desktop/phone: catalogue search/preview, White enrollment,
+  opening-specific cold prompt, wrong move, saved retry after reload and successful
+  recall with its original failed-first-attempt schedule inspected. Compact side
+  selectors and completion copy refined after this walkthrough.
+- Independent audits corrected valid self-retirement being misreported as stale,
+  locked composite resume reads, shared unfinished-recall count semantics and
+  exact browser counts beyond the 30-item queue batch. Old opening attempts keep
+  snapshot feedback through ABA/deactivation without scheduling changed material.
 
 ## Follow-ups / blockers
 
-No blockers. Choose and source the Italian course content in Phase 4. Integration
-polish should give Study subpages specific document titles and replace the honest
-30+ queue count with an exact aggregate count.
+No blockers. Choose and source the Italian course content in Phase 4. Exact Study
+counts and specific subpage titles were completed during Phase 3.
 
 This temporary ledger will be consolidated into living documentation and removed
 at final verification.

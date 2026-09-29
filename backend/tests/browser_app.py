@@ -133,6 +133,75 @@ def create_app():
             )
             return {"session_id": session["id"], "key": key, "source": definition.source}
 
+    @app.post("/__test/opening-recall-fixture/{key}")
+    def opening_recall_fixture(workspace: CurrentWorkspace, key: str):
+        import chess
+        from sqlalchemy import select
+        from trainer.contracts.opening_studies import OpeningEnrollment
+        from trainer.models import OpeningStudyMove
+        from trainer.opening_studies import service, sources
+        from trainer.reviews import start_review
+        from trainer.scheduling import FSRSScheduler
+        from trainer.study_lessons.content import CourseDefinition
+        from trainer.study_lessons.providers import CourseProviders
+
+        with workspace.mutation_lock, workspace.sessions() as db:
+            course = lesson_provider.install(workspace.user_id, f"recall-{key}")
+            record = course.model_dump(mode="json")
+            board = chess.Board()
+            board.push_uci("e2e4")
+            board.push_uci("e7e5")
+            # Distinct from real catalogue cards in the shared disposable browser
+            # account. Tests disable their studies after each scenario.
+            board.castling_rights = 0
+            record["lines"].extend(
+                {
+                    "id": line_id,
+                    "title": title,
+                    "position": {"initial_fen": board.fen()},
+                    "moves": [move],
+                    "repertoire": True,
+                }
+                for line_id, title, move in (
+                    ("queenside", "Queenside knight", "b1c3"),
+                    ("kingside", "Kingside knight", "g1f3"),
+                )
+            )
+            lesson_provider._accounts[workspace.user_id][course.id] = (
+                CourseDefinition.model_validate(record)
+            )
+            providers = CourseProviders((lesson_provider,))
+            studies = [
+                service.enroll_line(
+                    db,
+                    providers,
+                    OpeningEnrollment(
+                        source="course_line",
+                        source_key=sources.course_key(course.id, line_id),
+                        source_version=course.revision,
+                        course_id=course.id,
+                        line_id=line_id,
+                        color="white",
+                    ),
+                    FSRSScheduler(app.state.settings),
+                )
+                for line_id in ("queenside", "kingside")
+            ]
+            exercise_id = db.scalar(
+                select(OpeningStudyMove.exercise_id).where(
+                    OpeningStudyMove.study_id == studies[0]["id"]
+                )
+            )
+            session = start_review(db, exercise_id)
+            return {
+                "exercise_id": exercise_id,
+                "session_id": session["session_id"],
+                "study_ids": [study["id"] for study in studies],
+                "names": [study["name"] for study in studies],
+                "accepted_moves": ["b1c3", "g1f3"],
+                "wrong": "d2d4",
+            }
+
     @app.post("/__test/game-review-fixture/{key}")
     def game_review_fixture(key: str):
         from sqlalchemy import select

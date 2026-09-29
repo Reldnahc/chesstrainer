@@ -5,31 +5,44 @@ import Link from "../Link";
 import { navigate, pagePaths, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
 import { startNextPuzzle } from "./puzzleApi";
 import LessonLibrary from "./LessonLibrary";
+import OpeningCatalogue from "./OpeningCatalogue";
+import OpeningStudies from "./OpeningStudies";
 
-export default function StudyScreen({ mode, source, courseId, courseRevision }: {
+export default function StudyScreen({ mode, source, courseId, courseRevision, openingSection, openingQuery, openingEco, openingOffset }: {
   mode: StudyMode;
   source: "generic" | "games" | null;
   courseId: string | null;
   courseRevision: string | null;
+  openingSection: "catalogue" | "studies" | "lessons";
+  openingQuery: string;
+  openingEco: string;
+  openingOffset: number;
 }) {
   const [due, setDue] = useState<number | null>(null);
   const [puzzles, setPuzzles] = useState<Schema["PuzzleLibrary"] | null>(null);
+  const [openings, setOpenings] = useState<Schema["OpeningStudyLibrary"] | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const beginRequest = useRef<AbortController | null>(null);
   useEffect(() => {
     const controller = new AbortController();
-    read(api.GET("/api/review/queue", { signal: controller.signal }))
-      .then(queue => { if (!controller.signal.aborted) setDue(queue.length); })
+    read(api.GET("/api/review/count", { signal: controller.signal }))
+      .then(result => { if (!controller.signal.aborted) setDue(result.due); })
       .catch(e => { if (!controller.signal.aborted) setError(e.message); });
     read(api.GET("/api/puzzles", { signal: controller.signal }))
       .then(result => { if (!controller.signal.aborted) setPuzzles(result); })
       .catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    if (mode === "home") read(api.GET("/api/opening-studies", { signal: controller.signal }))
+      .then(result => { if (!controller.signal.aborted) setOpenings(result); })
+      .catch(e => { if (!controller.signal.aborted) setError(e.message); });
     return () => { controller.abort(); beginRequest.current?.abort(); };
-  }, []);
-  useEffect(() => {
-    document.title = `${mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"} · Fieldwork`;
   }, [mode]);
+  useEffect(() => {
+    const title = mode === "home" ? "Study" : mode === "openings"
+      ? openingSection === "catalogue" ? "Opening catalogue" : openingSection === "studies" ? "My opening studies" : "Openings"
+      : "Puzzles";
+    document.title = `${title} · Fieldwork`;
+  }, [mode, openingSection]);
   async function begin() {
     if (beginRequest.current && !beginRequest.current.signal.aborted) return;
     const controller = new AbortController();
@@ -62,13 +75,13 @@ export default function StudyScreen({ mode, source, courseId, courseRevision }: 
       <section className="panel study-option study-due">
         <Clock3 aria-hidden="true" size={22} />
         <h2>Due now</h2>
-        <p className="study-count">{due === null ? "—" : `${due}${due === 30 ? "+" : ""}`} <span>scheduled recalls</span></p>
+        <p className="study-count">{due === null ? "—" : due} <span>scheduled recalls</span></p>
         <p>{due ? "Return to decisions worth remembering." : "Your scheduled recalls will appear here when they’re due."}</p>
         <Link className="button-link primary" href={studyPaths.due}>Start studying <ArrowRight size={16} /></Link>
       </section>
       <section className="panel study-option">
         <BookOpen aria-hidden="true" size={22} /><h2>Openings</h2>
-        <p>Learn a line, practice it, and choose what to remember.</p>
+        <p>{openings?.active_studies ? `${openings.active_studies} active studies · ${openings.learning_positions} learning positions.` : "Learn a line, practice it, and choose what to remember."}</p>
         <Link className="button-link secondary" href={studyPaths.openings}>Explore openings <ArrowRight size={16} /></Link>
       </section>
       <section className="panel study-option">
@@ -77,7 +90,15 @@ export default function StudyScreen({ mode, source, courseId, courseRevision }: 
         <Link className="button-link secondary" href={studyPaths.puzzles}>{puzzles?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></Link>
       </section>
     </div>}
-    {mode === "openings" && <LessonLibrary courseId={courseId} revision={courseRevision} />}
+    {mode === "openings" && <>
+      {!courseId && <nav className="opening-sections" aria-label="Opening study modes">
+        <Link href={studyPaths.openings} aria-current={openingSection === "lessons" ? "page" : undefined}>Lessons</Link>
+        <Link href={`${studyPaths.openings}/catalogue`} aria-current={openingSection === "catalogue" ? "page" : undefined}>Catalogue</Link>
+        <Link href={`${studyPaths.openings}/studies`} aria-current={openingSection === "studies" ? "page" : undefined}>My studies</Link>
+      </nav>}
+      {openingSection === "catalogue" ? <OpeningCatalogue query={openingQuery} eco={openingEco} offset={openingOffset} />
+        : openingSection === "studies" ? <OpeningStudies /> : <LessonLibrary courseId={courseId} revision={courseRevision} />}
+    </>}
     {mode === "puzzles" && <>
       {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <Link className="study-resume" href={puzzleSessionPath(session.id)} key={session.id}><span>Unfinished puzzle <small>{session.failed ? "Continue after a retry" : "Your position is saved"}</small></span><ArrowRight size={18} /></Link>)}</div></section>}
       <section className={`panel ${available ? "" : "study-empty"}`}>
