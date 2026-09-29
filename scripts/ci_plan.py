@@ -18,6 +18,39 @@ SUITES = {
 API_SUITES = {"local", "accounts"}
 # Intelligence regressions execute Python fixtures without starting an API server.
 PYTHON_SUITES = API_SUITES | {"intelligence-lab"}
+# These application modules are outside the standalone coach entrypoint and test
+# imports. Keep additions explicit: unclassified source still runs every suite.
+APPLICATION_FRONTEND_FILES = {
+    "frontend/src/AccountGate.tsx",
+    "frontend/src/App.tsx",
+    "frontend/src/EvaluationGraph.tsx",
+    "frontend/src/EvaluationScore.tsx",
+    "frontend/src/EvidenceDialog.tsx",
+    "frontend/src/GameHistory.tsx",
+    "frontend/src/GameReview.tsx",
+    "frontend/src/GameSync.tsx",
+    "frontend/src/Import.tsx",
+    "frontend/src/Link.tsx",
+    "frontend/src/MotionSelect.tsx",
+    "frontend/src/MotionSettings.tsx",
+    "frontend/src/MoveBadge.tsx",
+    "frontend/src/MoveStatus.tsx",
+    "frontend/src/Onboarding.tsx",
+    "frontend/src/PageTitle.tsx",
+    "frontend/src/ProviderImport.tsx",
+    "frontend/src/Review.tsx",
+    "frontend/src/ReviewExplanation.tsx",
+    "frontend/src/ReviewWorkspace.tsx",
+    "frontend/src/Settings.tsx",
+    "frontend/src/Weaknesses.tsx",
+    "frontend/src/main.tsx",
+    "frontend/src/navigation.ts",
+}
+APPLICATION_FRONTEND_PREFIXES = (
+    "frontend/src/study/",
+    "frontend/src/srsReview/",
+    "frontend/src/gameReview/",
+)
 SHARED_FILES = {
     "backend/trainer/api.py",
     "backend/trainer/config.py",
@@ -49,7 +82,7 @@ def browser_matrix(suites):
             }
             for suite in suites
             for project in ("desktop", "mobile")
-            for shard in (("1/2", "2/2") if suite == "local" else ("1/1",))
+            for shard in (("1/2", "2/2") if suite in {"local", "coach-studio"} else ("1/1",))
         ]
     }
 
@@ -104,10 +137,25 @@ def select_checks(paths, full=False):
                 # Python fixture imports cross test modules and production code.
                 suites.update(PYTHON_SUITES)
                 reason("Backend changes require Python and dependent browser checks.")
-            elif path.startswith(("frontend/src/", "frontend/public/")):
+            elif (
+                path in APPLICATION_FRONTEND_FILES
+                or (
+                    path.startswith(APPLICATION_FRONTEND_PREFIXES)
+                    and path.endswith((".ts", ".tsx"))
+                    and path != "frontend/src/gameReview/types.ts"
+                )
+                or path.startswith("frontend/public/")
+            ):
+                # The standalone entrypoints disable publicDir. Their shared
+                # stylesheet imports still require the broad source rule below,
+                # including CSS inside otherwise application-only directories.
+                build = docker = True
+                suites.update(PYTHON_SUITES)
+                reason("Application frontend changes require application and intelligence checks.")
+            elif path.startswith("frontend/src/"):
                 build = docker = True
                 suites.update(SUITES)
-                reason("Shared frontend runtime changes require all browser suites.")
+                reason("Shared or unclassified frontend source requires all browser suites.")
             elif path.startswith(("frontend/coach-studio/", "frontend/studio-tests/")) or (
                 path == "frontend/playwright.coach.config.ts"
             ):
@@ -155,7 +203,7 @@ def select_checks(paths, full=False):
     }
 
 
-def changed_paths(base, head, root=ROOT, *, deleted_only=False):
+def changed_paths(base, head, root=ROOT, *, deleted_only=False, symlinks_only=False):
     """Diff verified commits, representing renames as deletion plus addition."""
     commits = []
     for revision in (base, head):
@@ -171,12 +219,36 @@ def changed_paths(base, head, root=ROOT, *, deleted_only=False):
         commits.append(commit)
     flags = ["--diff-filter=D"] if deleted_only else []
     output = subprocess.run(
-        ["git", "diff", "--name-only", "--no-renames", "-z", *flags, *commits, "--"],
+        [
+            "git",
+            "diff",
+            "--raw" if symlinks_only else "--name-only",
+            "--no-renames",
+            "-z",
+            *flags,
+            *commits,
+            "--",
+        ],
         cwd=root,
         check=True,
         capture_output=True,
     ).stdout
-    return [name.decode("utf-8", errors="surrogateescape") for name in output.split(b"\0") if name]
+    records = output.split(b"\0")
+    if records.pop():
+        raise ValueError("Git returned an unterminated changed path")
+    if symlinks_only:
+        # --raw -z --no-renames emits alternating metadata and path records.
+        # Read the destination mode from Git, since Windows can check symlinks
+        # out as regular files and a filesystem check would miss them.
+        symlinks = []
+        for metadata, name in zip(records[::2], records[1::2], strict=True):
+            mode = re.fullmatch(rb":[0-7]{6} ([0-7]{6}) [0-9a-f]+ [0-9a-f]+ [A-Z][0-9]*", metadata)
+            if mode is None:
+                raise ValueError("Git returned malformed changed-path metadata")
+            if mode[1] == b"120000":
+                symlinks.append(name)
+        records = symlinks
+    return [name.decode("utf-8", errors="surrogateescape") for name in records]
 
 
 def write_outputs(plan):
@@ -266,13 +338,18 @@ def main(argv=None):
             try:
                 paths = changed_paths(args.base, args.head)
                 # Docker COPY requires README.md and the docs tree. Preserve
-                # docs-only edits, but fail broad when documentation is removed
-                # or renamed rather than silently hiding a missing build input.
+                # docs-only edits, but fail broad for removed/renamed inputs or
+                # symlinks, which the source archive rejects during the build.
                 deleted = changed_paths(args.base, args.head, deleted_only=True)
                 if any(_documentation(path) for path in deleted):
                     fallback = (
                         "Documentation was removed or renamed; verifying required build inputs."
                     )
+                elif any(
+                    _documentation(path)
+                    for path in changed_paths(args.base, args.head, symlinks_only=True)
+                ):
+                    fallback = "Documentation symlinks changed; verifying supported build inputs."
             except (OSError, subprocess.CalledProcessError, ValueError):
                 fallback = "Changed paths could not be determined; running full correctness."
     plan = select_checks(paths or [], full=args.full or fallback is not None)

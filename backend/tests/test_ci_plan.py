@@ -105,9 +105,65 @@ def test_backend_fixtures_and_their_transitive_test_imports_include_intelligence
 
 
 @pytest.mark.parametrize(
-    "path", ["frontend/src/coach/model.ts", "frontend/src/README.md", "frontend/public/icon.svg"]
+    "path",
+    [
+        "frontend/src/AccountGate.tsx",
+        "frontend/src/App.tsx",
+        "frontend/src/Settings.tsx",
+        "frontend/src/GameHistory.tsx",
+        "frontend/src/Import.tsx",
+        "frontend/src/navigation.ts",
+        "frontend/src/study/StudyScreen.tsx",
+        "frontend/src/study/puzzleApi.ts",
+        "frontend/src/srsReview/useReviewSession.ts",
+        "frontend/src/gameReview/useGameReviewSession.ts",
+        "frontend/public/icon.svg",
+    ],
+)
+def test_audited_application_frontend_paths_skip_coach_but_retain_other_browsers(path):
+    assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=PYTHON_SUITES)
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "frontend/src/coach/model.ts",
+        "frontend/src/coach/idleCoordinator.ts",
+        "frontend/src/dialogue/characters/robot.ts",
+        "frontend/src/dialogue/gameIntent.ts",
+        "frontend/src/ReviewCoach.tsx",
+        "frontend/src/motion.ts",
+        "frontend/src/useReducedMotion.ts",
+        "frontend/src/useSavedPreferences.ts",
+        "frontend/src/styles.css",
+        "frontend/src/base.css",
+        "frontend/src/study/study.css",
+        "frontend/src/srsReview/future.css",
+        "frontend/src/gameReview/future.css",
+        "frontend/src/gameReview/types.ts",
+        "frontend/src/Board.tsx",
+        "frontend/src/MotionProvider.tsx",
+        "frontend/src/MoveSymbol.tsx",
+        "frontend/src/reviewMotion.ts",
+        "frontend/src/evaluation.ts",
+        "frontend/src/README.md",
+    ],
 )
 def test_shared_frontend_runtime_runs_every_browser_suite_and_container(path):
+    assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=ALL_SUITES)
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "frontend/src/FutureSharedComponent.tsx",
+        "frontend/src/futureSharedHelper.ts",
+        "frontend/src/new-feature/feature.ts",
+        "frontend/src/study/runtime.json",
+        "frontend/src/study/StudyScreen.tsx.css",
+    ],
+)
+def test_unclassified_frontend_source_falls_back_to_every_browser_suite(path):
     assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=ALL_SUITES)
 
 
@@ -116,6 +172,8 @@ def test_shared_frontend_runtime_runs_every_browser_suite_and_container(path):
     [
         ("frontend/coach-studio/main.tsx", "coach-studio"),
         ("frontend/studio-tests/coach-studio.spec.ts", "coach-studio"),
+        ("frontend/studio-tests/fixtures/runtime.ts", "coach-studio"),
+        ("frontend/studio-tests/helpers/viteFsPath.ts", "coach-studio"),
         ("frontend/playwright.coach.config.ts", "coach-studio"),
         ("frontend/intelligence-lab/corpus.ts", "intelligence-lab"),
         ("frontend/intelligence-tests/causal-dialogue.spec.ts", "intelligence-lab"),
@@ -158,6 +216,22 @@ def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
     assert ci_plan.select_checks(paths) == ci_plan.select_checks(paths + paths)
 
 
+@pytest.mark.parametrize(
+    ("dependency", "suites"),
+    [
+        ("frontend/src/coach/idleCoordinator.ts", ALL_SUITES),
+        ("frontend/src/study/study.css", ALL_SUITES),
+        ("frontend/src/useSavedPreferences.ts", ALL_SUITES),
+        ("frontend/studio-tests/fixtures/runtime.ts", ALL_SUITES),
+        ("frontend/tests/semantic-fixtures.ts", PYTHON_SUITES),
+    ],
+)
+def test_application_exclusions_do_not_hide_changed_standalone_dependencies(dependency, suites):
+    paths = ["docs/TESTING.md", "frontend/src/study/StudyScreen.tsx", dependency]
+    assert_selection(ci_plan.select_checks(paths), build=True, docker=True, suites=suites)
+    assert ci_plan.select_checks(paths) == ci_plan.select_checks(paths + paths)
+
+
 @pytest.mark.parametrize("paths", [[], ["docs/TESTING.md"], ["frontend/type-tests/api.ts"]])
 def test_full_override_covers_every_check(paths):
     assert_selection(
@@ -169,13 +243,13 @@ def test_full_override_covers_every_check(paths):
     )
 
 
-def test_matrix_covers_every_viewport_and_local_shard_with_runtime_dependencies():
+def test_matrix_covers_every_viewport_and_application_coach_shard_with_runtime_dependencies():
     matrix = ci_plan.select_checks([], full=True)["matrix"]["include"]
-    assert len(matrix) == 10
-    assert len({(entry["suite"], entry["project"], entry["shard"]) for entry in matrix}) == 10
+    assert len(matrix) == 12
+    assert len({(entry["suite"], entry["project"], entry["shard"]) for entry in matrix}) == 12
     for suite in ALL_SUITES:
         entries = [entry for entry in matrix if entry["suite"] == suite]
-        shards = ["1/2", "2/2"] if suite == "local" else ["1/1"]
+        shards = ["1/2", "2/2"] if suite in {"local", "coach-studio"} else ["1/1"]
         assert {(entry["project"], entry["shard"]) for entry in entries} == {
             (project, shard) for project in ["desktop", "mobile"] for shard in shards
         }
@@ -198,8 +272,9 @@ def git_repository(tmp_path):
             ["git", *args], cwd=tmp_path, check=True, capture_output=True, text=True
         ).stdout.strip()
 
-    def commit():
-        git("add", ".")
+    def commit(*, stage=True):
+        if stage:
+            git("add", ".")
         git(
             "-c",
             "user.name=CI Test",
@@ -315,14 +390,17 @@ def test_full_cli_does_not_need_a_diff(monkeypatch, capsys):
 
 
 @pytest.mark.parametrize("path", ["README.md", "docs/TESTING.md"])
-@pytest.mark.parametrize("operation", ["rename", "delete", "edit"])
+@pytest.mark.parametrize("operation", ["rename", "delete", "edit", "add"])
 def test_documentation_edits_skip_but_removing_build_inputs_runs_full(
     git_repository, monkeypatch, capsys, path, operation
 ):
     tmp_path, commit = git_repository
     document = tmp_path / path
     document.parent.mkdir(parents=True, exist_ok=True)
-    document.write_text("Original documentation\n", encoding="utf-8")
+    if operation == "add":
+        (tmp_path / "existing.md").write_text("Existing documentation\n", encoding="utf-8")
+    else:
+        document.write_text("Original documentation\n", encoding="utf-8")
     base = commit()
     if operation == "rename":
         document.rename(document.with_name("RENAMED.md"))
@@ -333,17 +411,68 @@ def test_documentation_edits_skip_but_removing_build_inputs_runs_full(
     head = commit()
     changed_paths = ci_plan.changed_paths
 
-    def diff(base, head, *, deleted_only=False):
-        return changed_paths(base, head, root=tmp_path, deleted_only=deleted_only)
+    def diff(base, head, **options):
+        return changed_paths(base, head, root=tmp_path, **options)
 
     monkeypatch.setattr(ci_plan, "changed_paths", diff)
     assert ci_plan.main(["--base", base, "--head", head]) == 0
     plan = json.loads(capsys.readouterr().out)
-    if operation == "edit":
+    if operation in {"edit", "add"}:
         assert_selection(plan)
     else:
         assert_selection(plan, backend=True, build=True, docker=True, suites=ALL_SUITES)
         assert "removed or renamed" in plan["reasons"][0]
+
+
+@pytest.mark.parametrize("path", ["README.md", "docs/TESTING.md", "docs/a name.svg"])
+@pytest.mark.parametrize("operation", ["add", "replace", "retarget"])
+def test_changed_documentation_symlinks_run_full_checks(
+    git_repository, monkeypatch, capsys, path, operation
+):
+    tmp_path, commit = git_repository
+    (tmp_path / "existing.md").write_text("Existing documentation\n", encoding="utf-8")
+    document = tmp_path / path
+    if operation == "replace":
+        document.parent.mkdir(parents=True, exist_ok=True)
+        document.write_text("Original documentation\n", encoding="utf-8")
+    base = commit()
+
+    # Author a real symlink tree entry without requiring Windows symlink
+    # privileges or relying on how the working tree materializes that mode.
+    def stage_link(target):
+        blob = subprocess.run(
+            ["git", "hash-object", "-w", "--stdin"],
+            cwd=tmp_path,
+            input=target,
+            text=True,
+            check=True,
+            capture_output=True,
+        ).stdout.strip()
+        subprocess.run(
+            ["git", "update-index", "--add", "--cacheinfo", f"120000,{blob},{path}"],
+            cwd=tmp_path,
+            check=True,
+            capture_output=True,
+        )
+
+    if operation == "retarget":
+        stage_link("previous.md")
+        base = commit(stage=False)
+    stage_link("../existing.md" if path.startswith("docs/") else "existing.md")
+    head = commit(stage=False)
+    assert not document.is_symlink()
+    changed_paths = ci_plan.changed_paths
+    assert changed_paths(base, head, root=tmp_path, symlinks_only=True) == [path]
+    assert changed_paths(base, head, root=tmp_path, deleted_only=True) == []
+
+    def diff(base, head, **options):
+        return changed_paths(base, head, root=tmp_path, **options)
+
+    monkeypatch.setattr(ci_plan, "changed_paths", diff)
+    assert ci_plan.main(["--base", base, "--head", head]) == 0
+    plan = json.loads(capsys.readouterr().out)
+    assert_selection(plan, backend=True, build=True, docker=True, suites=ALL_SUITES)
+    assert "Documentation symlinks changed" in plan["reasons"][0]
 
 
 @pytest.fixture

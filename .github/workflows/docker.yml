@@ -4,6 +4,11 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      full:
+        description: Run all suites regardless of changes since the last successful release
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -14,10 +19,37 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  release-base:
+    name: Find verified release baseline
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      base: ${{ steps.baseline.outputs.base }}
+      full: ${{ steps.baseline.outputs.full }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Include changes from failed or superseded releases
+        id: baseline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI_FULL: ${{ github.event_name == 'workflow_dispatch' && inputs.full }}
+        run: python scripts/ci_release_base.py
+
   correctness:
+    needs: release-base
     uses: ./.github/workflows/test.yml
     with:
-      full: true
+      base: ${{ needs.release-base.outputs.base }}
+      # Missing/malformed baseline outputs must never fall back to the last push.
+      full: ${{ needs.release-base.outputs.full != 'false' || needs.release-base.outputs.base == '' }}
       skip_docker_install: true
 
   docker:
