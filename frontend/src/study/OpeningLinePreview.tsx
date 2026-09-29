@@ -6,7 +6,7 @@ import Link from "../Link";
 import ReviewCoach from "../ReviewCoach";
 import ReviewWorkspace from "../ReviewWorkspace";
 import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
-import { practiceStudy, setStudyActive } from "./openingApi";
+import { createPracticeStarter, setStudyActive } from "./openingApi";
 
 export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   catalogueKey: string | null;
@@ -19,6 +19,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [practiceStudy] = useState(createPracticeStarter);
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     setError("");
     try {
       const result = await practiceStudy(selectedStudy.id, signal);
-      if (!signal?.aborted) navigate(lessonSessionPath(result.id));
+      if (!signal?.aborted && result) navigate(lessonSessionPath(result.id));
     } catch (e) { if (!signal?.aborted) setError((e as Error).message); }
     finally { if (!signal?.aborted) { locked.current = false; setBusy(false); } }
   }

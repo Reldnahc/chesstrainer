@@ -14,6 +14,11 @@ supplies legal moves and accepted continuations. Motion never decides whether a
 move succeeded or advances a saved session. On phones the coach and its actions
 remain above the board. Each active experience has a bookmarkable session URL.
 
+Session-start controls retain the selected content and request ID after an
+ambiguous network failure. Retrying the same action resumes the committed
+lesson, rehearsal or puzzle rather than creating a duplicate or selecting a
+different puzzle. An acknowledged start or a different target uses a new ID.
+
 ## Navigation compatibility
 
 `/study` is the learning home; `/study/due` exposes the existing recall domain.
