@@ -2,6 +2,81 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach idle revamp — final integration — September 29, 2026
+
+Implementation units were committed as `fee508e` (personal names), `2bb514a`
+(coordinator), `7f4a64b` (resting faces), `77ee6a0` (cast signatures) and `0b1dfea`
+(studio/visual polish), followed by `12cc08c` (rig-compatible fallback test).
+Stable account IDs, chess evidence, reaction mapping and entrance timing are
+unchanged. No new runtime dependency or container setting.
+
+- `.venv/Scripts/python.exe -m pytest -q backend/tests/test_coach_preferences.py backend/tests/test_motion_preferences.py backend/tests/test_api_contract.py backend/tests/test_api.py backend/tests/test_review_events.py --basetemp .tools/pytest-coach-idle-m5-20260929-02 -o cache_dir=.tools/pytest-cache-coach-idle-m5-20260929-02`:
+  **92 passed, 0 skipped**, 66.50 seconds. Includes all saved coach IDs, account
+  ownership/restart, motion preferences, API contracts and cold SRS answer/
+  intelligence isolation. Existing Starlette HTTPX and AnyIO alias warnings remain.
+- `.venv/Scripts/python.exe -m ruff check backend scripts migrations`,
+  `.venv/Scripts/python.exe -m ruff format --check backend scripts migrations`
+  (**281 files**) and `.venv/Scripts/python.exe scripts/export_api_contract.py --check`:
+  all passed. No generated API contract changed.
+- `npx.cmd playwright test --config playwright.accounts.config.ts`: **8 passed,
+  0 skipped**, desktop/mobile, 2.1 minutes.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts`: **44 passed,
+  0 skipped**, desktop/mobile, 2.3 minutes. Both normal configurations exited 0
+  after stopping only their own stuck Windows test-server processes during
+  teardown; accounts logged a Windows Proactor connection reset on client close.
+  These cleanup issues did not affect assertions. No broad process kill was used.
+- `npx.cmd playwright test --reporter=line`: **296 cases collected** on desktop
+  and mobile in 9.2 minutes: **291 passed, 3 intentional skips, 2 failures** from
+  one stale synthetic-coach assertion. The old test expected glasses/ears on an
+  unknown rig. It now asserts unsupported parts are omitted and a supported head
+  gesture still honors the family override. No production fix was needed.
+  `npx.cmd playwright test tests/coach-logic.spec.ts --reporter=line` then passed the
+  entire logic file: **8 passed, 0 skipped**, covering both corrected instances
+  and neighboring semantic/fallback checks. Browser-test TypeScript passed.
+  Both runs needed only their owned Windows server process stopped after the
+  assertions to release Playwright's teardown.
+  The three intentional skips were mobile modifier-click/new-tab navigation,
+  mobile execution of the desktop width policy, and desktop execution of the
+  phone-only retry/detail geometry test. Each runs on its applicable project.
+- Full studio coverage: **188 distinct passing cases**, 94 desktop and 94 mobile.
+  `node node_modules/@playwright/test/cli.js test --config test-results/idle-full-m4.config.ts`
+  used the existing live studio with the standard coach configuration and an
+  isolated output directory. All 94 desktop cases passed, then another suite
+  cleaned the temporary config directory: 16 mobile workers could not start and
+  78 mobile cases did not run. This was a configuration-lifetime error, not a
+  failing animation assertion. Moving the config outside that shared cleanup
+  directory and running
+  `node node_modules/@playwright/test/cli.js test --config studio-test-results-configs/idle-full-m4.config.ts --project mobile`
+  passed **all 94 mobile cases, 0 skipped, 0 flaky**, in 9.0 minutes. Both reports
+  are retained under ignored `frontend/studio-test-results-configs/`. The two
+  completed projects cover every expression/rig, lifecycle, cadence, signatures,
+  diagnostics, motion preference and studio control, including all 60 expression
+  sheets and 60 signature sheets across desktop/mobile. No source changes were
+  required after these runs.
+- Final `npm.cmd run build`: passed API agreement, production/contract/browser
+  TypeScript and Vite. Main JS gzip **167.39 kB**, CSS gzip **19.95 kB**; the existing
+  500 kB chunk advisory remains. The public source archive includes the committed
+  coordinator, signatures and diagnostics, and excludes the completed temporary
+  plan. `git diff --check` passed.
+- Manual production-build checks used an isolated fixture database on port 8767,
+  not the owner's workspace. Native game review completed; rapid backward/forward
+  navigation kept the latest reaction, then terminal loss settled into restrained
+  idles. Phone review used the 52.5px portrait. SRS was neutral before an attempt,
+  concerned after a wrong move, encouraging on retry, recovered on success and
+  explanatory on reveal. Desktop/mobile board and bubble geometry stayed stable.
+  Selecting Scout/Animated and Winston/Still in Settings survived navigation and
+  reload; Still displayed expressive settled feedback with no idle tracks.
+  The disposable server was stopped; the standalone studio remains available.
+- Independent final code review found no remaining actionable lifecycle, channel,
+  cold-SRS or cleanup defects. Visual acceptance and focused regressions are
+  recorded under the preceding milestones. Physical-phone timing, Docker rebuilds
+  and unrelated native model benchmarks were outside this animation-only pass.
+
+All five milestones are complete. Durable behavior and architecture are documented
+in `COACH.md`, `COACH_CAST_BIBLE.md`, `ARCHITECTURE.md` and `TESTING.md`; the temporary
+`COACH_IDLE_PLAN.md` has been removed. Work remains local on
+`codex/coach-idle-revamp`; no push, merge or deployment was requested.
+
 ## Coach idle revamp — milestone 4 — September 29, 2026
 
 The separate development studio adds opt-in natural playback, independent cast
