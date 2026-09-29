@@ -1,4 +1,3 @@
-import EmptyState from "./EmptyState";
 import { useEffect, useState } from "react";
 import { api, read } from "./api";
 import PageTitle from "./PageTitle";
@@ -6,6 +5,8 @@ import GameSync from "./GameSync";
 import GameHistory, { type HistoryItem } from "./GameHistory";
 import ActionLink from "./ActionLink";
 import Pagination from "./Pagination";
+import Notice from "./Notice";
+import EmptyState from "./EmptyState";
 import { gamesPath, pagePaths } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
 
@@ -64,9 +65,9 @@ export default function GamesScreen({
         <GameSync compact onChanged={() => setRevision((value) => value + 1)} />
       </PageTitle>
       {error && (
-        <p role="alert" className="notice error">
+        <Notice announcement="alert" tone="error">
           {error}
-        </p>
+        </Notice>
       )}
       {loading ? (
         <p role="status">Loading your games…</p>

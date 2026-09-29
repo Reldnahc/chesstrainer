@@ -1,15 +1,16 @@
-import { LoadingState, UnavailableState } from "../LoadState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import { LoadingState, UnavailableState } from "../LoadState";
 import ReviewWorkspace from "../ReviewWorkspace";
-import SourceLine from "../SourceLine";
 import ReviewCoach from "../ReviewCoach";
 import MoveBadge from "../MoveBadge";
 import MoveStatus from "../MoveStatus";
+import Notice from "../Notice";
+import SourceLine from "../SourceLine";
 import type { CoachExpression } from "../coach/model";
 import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
 import { createPuzzleStarter } from "./puzzleApi";
@@ -82,7 +83,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
         : complete ? <><Button size="compact" variant="primary" disabled={playing || openingNext} onClick={next}>Next puzzle <ArrowRight size={16} /></Button><Button size="compact" disabled={playing || openingNext} onClick={state.replay}><Play size={15} />{state.motion === "still" ? "View solution" : "Replay solution"}</Button></>
         : <>{incorrect && <Button size="compact" variant="primary" disabled={busy} onClick={state.retry}>Try again</Button>}<Button size="compact" variant="secondary" disabled={busy || playing} onClick={state.reveal}>Reveal solution</Button></>}</>}
     ><MoveStatus busy={busy} failed={incorrect && !error} text={message} /></ReviewCoach>
-    {(error || nextError) && <p className="notice error" role="alert">{error || nextError}</p>}
+    {(error || nextError) && <Notice announcement="alert" tone="error">{error || nextError}</Notice>}
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
       <h2>{session.completion.themes.length ? session.completion.themes.map(theme => theme.replaceAll("_", " ")).join(" · ") : "The continuation"}</h2>
       <div className="puzzle-move-list"><button disabled={playing} aria-current={displayedFen === session.completion.solution[0]?.before_fen ? "step" : undefined} onClick={state.inspectStart}>Start</button>{session.completion.solution.map((move, index) => <button key={`${index}:${move.uci}`} disabled={playing} aria-current={frame === move ? "step" : undefined} onClick={() => state.inspect(move)}>{move.san}</button>)}</div>

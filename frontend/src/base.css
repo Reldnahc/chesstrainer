@@ -191,33 +191,6 @@ progress::-webkit-progress-value {
   gap: 8px;
   margin-top: 10px;
 }
-.notice {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  padding: 14px 16px;
-  background: #262d36;
-  border: 1px solid #424f61;
-  border-radius: 6px;
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #c9d6e8;
-}
-.notice.error {
-  background: #342329;
-  border-color: #74505a;
-  color: #ffc0c7;
-  justify-content: space-between;
-}
-.notice.retry {
-  background: #362b25;
-  color: #f4c19c;
-  border-color: #70503c;
-}
-.notice p:last-child {
-  margin-bottom: 0;
-}
 footer {
   width: var(--page-width);
   margin: auto;
@@ -421,10 +394,5 @@ footer > span:last-child {
   }
   .workspace-page .section-heading {
     margin-bottom: 10px;
-  }
-  .workspace-page .notice {
-    padding: 10px 12px;
-    margin-bottom: 14px;
-    font-size: 12px;
   }
 }

@@ -1,4 +1,3 @@
-import EmptyState from "./EmptyState";
 import Button from "./Button";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { FileUp, Layers, X } from "lucide-react";
@@ -14,8 +13,10 @@ import {
 import { ProviderImportForm, ImportJob } from "./ProviderImport";
 import GameSync from "./GameSync";
 import SettingsSection from "./SettingsSection";
+import EmptyState from "./EmptyState";
 import ChoiceGroup from "./ChoiceGroup";
 import { ImportAnalysisOption, ImportSubmitButton } from "./ImportControls";
+import Notice from "./Notice";
 
 type PgnMode = "file" | "text";
 const isActive = (job: Job) => ["queued", "running"].includes(job.status);
@@ -170,7 +171,7 @@ export default function ImportSettings({
       </div>
       {source && <div className="import-form" ref={formRef} tabIndex={-1}>
         <div className="import-form-toolbar"><Button variant="quiet" onClick={() => selectSource(null)}><X size={16} />Close import form</Button></div>
-        {health?.engine_status === "unavailable" && <div className="notice">{health.engine_error}</div>}
+        {health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}
         {source !== "pgn" ? (
           selectedProvider
             ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
@@ -194,11 +195,10 @@ export default function ImportSettings({
           <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
           <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Importing…"
             disabled={pgnMode === "file" ? !file : !text.trim()} />
-          {result && <div role="status" className="notice">
-            <span>{result.imported} imported · {result.duplicates} duplicate(s).
-              {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
-            </span>
-          </div>}
+          {result && <Notice announcement="status">
+            <p>{result.imported} imported · {result.duplicates} duplicate(s).</p>
+            {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
+          </Notice>}
         </form>}
       </div>}
     </SettingsSection>

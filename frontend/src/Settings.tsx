@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Notice from "./Notice";
 import { useState } from "react";
 import { api, read, type Health } from "./api";
 import PageTitle from "./PageTitle";
@@ -68,7 +69,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
               </Button>
             </div>
             <div className="settings-tool-status">
-              <p role="status">{message}</p>
+              <Notice announcement="status" appearance="inline">{message}</Notice>
               <Link href="/settings#settings-activity">View import & analysis activity</Link>
             </div>
           </SettingsSection>

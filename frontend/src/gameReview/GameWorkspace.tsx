@@ -1,4 +1,3 @@
-import { LoadingState, UnavailableState } from "../LoadState";
 import { ArrowLeft } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -6,6 +5,8 @@ import EvaluationGraph from "../EvaluationGraph";
 import { scoreText, strength } from "../evaluation";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import Notice from "../Notice";
+import { LoadingState, UnavailableState } from "../LoadState";
 import { PlayerRow } from "./Players";
 import PositionCoach from "./PositionCoach";
 import ReviewControls from "./ReviewControls";
@@ -119,10 +120,9 @@ export default function GameWorkspace({
   return (
     <div className="game-workspace">
       {error && (
-        <p className="notice error" role="alert">
+        <Notice announcement="alert" tone="error" actions={<Button onClick={dismissError}>Dismiss</Button>}>
           {error}
-          <Button onClick={dismissError}>Dismiss</Button>
-        </p>
+        </Notice>
       )}
       <ReviewWorkspace
         boardLabel="Game board and navigation"

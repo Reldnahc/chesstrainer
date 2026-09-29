@@ -22,6 +22,7 @@ import OpeningLinePreview from "./study/OpeningLinePreview";
 import Link from "./Link";
 import Button, { IconButton } from "./Button";
 import ActionLink from "./ActionLink";
+import Notice from "./Notice";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
 import { useCoachPreferences } from "./coach/CoachProvider";
@@ -118,16 +119,15 @@ export default function App() {
         }
       >
         {error && (
-          <div role="alert" className="notice error">
-            {error}
-            <IconButton
+          <Notice announcement="alert" tone="error" actions={<IconButton
               variant="quiet"
               aria-label="Dismiss error"
               onClick={() => setError("")}
             >
               <X size={18} />
-            </IconButton>
-          </div>
+            </IconButton>}>
+            {error}
+          </Notice>
         )}
         {connection ? (
           <section className="panel connection">

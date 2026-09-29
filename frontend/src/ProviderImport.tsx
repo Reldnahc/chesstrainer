@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, read, type Job, type Schema } from "./api";
 import ProviderUsernameField from "./ProviderUsernameField";
 import { ImportAnalysisOption, ImportSubmitButton } from "./ImportControls";
+import Notice from "./Notice";
 
 
 export function ProviderImportForm({
@@ -183,9 +184,9 @@ export function ProviderImportForm({
       <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Queuing import…"
         disabled={loadingUsername || !username.trim()} />
       {message && (
-        <div role="status" className="notice">
+        <Notice announcement="status">
           {message}
-        </div>
+        </Notice>
       )}
       <details className="disclosure import-extra">
         <summary>How imports work</summary>
@@ -276,10 +277,10 @@ export function ImportJob({
             <details className="disclosure">
               <summary>Import issues ({source.rejected})</summary>
               {source.errors.map((error, index) => (
-                <p className="small" key={index}>
+                <Notice announcement="passive" tone="error" appearance="inline" className="small" key={index}>
                   {error.game ? `Game ${error.game}: ` : ""}
                   {error.error}
-                </p>
+                </Notice>
               ))}
             </details>
           )}
@@ -347,7 +348,7 @@ export function ImportJob({
           </p>
         </>
       )}
-      {job.error && <p className="error-text">{job.error}</p>}
+      {job.error && <Notice announcement="passive" tone="error" appearance="inline">{job.error}</Notice>}
       {job.activity && (
         <p className="small">
           Parallel work: {job.activity.games.active} game workers ·{" "}

@@ -1,10 +1,11 @@
-import EmptyState from "../EmptyState";
 import { useEffect, useState } from "react";
 import { ChevronRight, Search } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import Button from "../Button";
 import Pagination from "../Pagination";
+import Notice from "../Notice";
+import EmptyState from "../EmptyState";
 import { navigate, openingCataloguePath } from "../navigation";
 
 export default function OpeningCatalogue({ query, eco, offset }: { query: string; eco: string; offset: number }) {
@@ -34,7 +35,7 @@ export default function OpeningCatalogue({ query, eco, offset }: { query: string
       <label>ECO<input value={code} onChange={event => setCode(event.target.value)} placeholder="C50" maxLength={3} /></label>
       <Button variant="primary" type="submit"><Search size={16} />Search</Button>
     </form>
-    {error && <p className="notice error" role="alert">{error}</p>}
+    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     {!catalogue && !error && <p role="status">Loading opening lines…</p>}
     {catalogue && <>
       <p className="small muted">{catalogue.total} matching {catalogue.total === 1 ? "line" : "lines"}</p>

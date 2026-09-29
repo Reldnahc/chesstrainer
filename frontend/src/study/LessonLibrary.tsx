@@ -1,12 +1,13 @@
-import EmptyState from "../EmptyState";
-import { LoadingState, UnavailableState } from "../LoadState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import ResumeLink from "../ResumeLink";
+import EmptyState from "../EmptyState";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import { LoadingState, UnavailableState } from "../LoadState";
+import Notice from "../Notice";
 import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths } from "../navigation";
 import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
@@ -48,7 +49,7 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
   }
   if (courseId) return <section className="panel lesson-course">
     <ActionLink variant="quiet" href={studyPaths.openings}><ArrowLeft size={16} />All openings</ActionLink>
-    {error && (course ? <p className="notice error" role="alert">{error}</p> : <UnavailableState>{error}</UnavailableState>)}
+    {error && (course ? <Notice announcement="alert" tone="error">{error}</Notice> : <UnavailableState>{error}</UnavailableState>)}
     {course ? <>
       <header className="lesson-course-title">
         <BookOpen size={26} aria-hidden="true" />

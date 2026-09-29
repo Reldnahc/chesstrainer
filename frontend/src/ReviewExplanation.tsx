@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
 import ReviewCoach from "./ReviewCoach";
+import Notice from "./Notice";
 import Button from "./Button";
 import MovePlaybackControls from "./MovePlaybackControls";
 import { explanationIntent } from "./dialogue/practiceIntent";
@@ -110,7 +111,7 @@ export default function ReviewExplanation({
         actions={returnControl}
       >
         {error ? (
-          <p role="alert">{error}</p>
+          <Notice announcement="alert" tone="error" appearance="inline">{error}</Notice>
         ) : !data || !frame ? (
           <p role="status">Loading the saved continuation...</p>
         ) : (

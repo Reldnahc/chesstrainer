@@ -1,9 +1,10 @@
-import EmptyState from "../EmptyState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import Notice from "../Notice";
+import EmptyState from "../EmptyState";
 import StatList from "../StatList";
 import { lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
@@ -43,7 +44,7 @@ export default function OpeningStudies() {
   }
   return <section className="panel opening-studies">
     <div className="opening-management-heading"><div><h2>Your selected lines</h2><p className="small muted">Rehearse one line here. Due accepts the combined moves from your active studies.</p></div><ActionLink variant="secondary" href={openingCataloguePath()}>Browse catalogue<ArrowRight size={16} /></ActionLink></div>
-    {error && <p className="notice error" role="alert">{error}</p>}
+    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     {!library && !error && <p role="status">Loading your studies…</p>}
     {library && <>
       {!!library.items.length && <StatList items={[

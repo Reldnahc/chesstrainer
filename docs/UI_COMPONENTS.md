@@ -89,6 +89,7 @@ not React components.
 | Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
 | Pending/unavailable content | [LoadingState / UnavailableState](../frontend/src/LoadState.tsx) | Compact/panel states with message-only announcements and separate caller-supplied headings/actions. Requests, recovery commands and link destinations remain with each screen. |
 | Empty content | [EmptyState](../frontend/src/EmptyState.tsx) | Lessons/Puzzles presentation for full sections, with compact activity/search variants. Callers supply titles, descriptions, icons and recovery actions. |
+| Application notices | [Notice](../frontend/src/Notice.tsx) | Explicit alert/status/passive policy, tone, panel/inline presentation and separate actions. Historical import errors remain passive; persistent live regions can stay mounted empty without blank spacing. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
 | Provider username | [ProviderUsernameField](../frontend/src/ProviderUsernameField.tsx) | Shared native rules, unique labels/help IDs and 50-character limit. Optional connection/onboarding versus required import and busy/draft state remain caller-owned. |
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
@@ -148,7 +149,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-09 | Promote relative next-due time with an exact-time tooltip (A). | Complete | RecallReceipt serves game and opening recalls while their existing domain rules choose saved/relearning/retired/unscheduled copy. |
 | UI-10 | Share preference-status rendering with heading and field placements. | Complete | Coach selection and both motion fields use PreferenceStatus; providers, saved flags, retry labels and device fallback remain unchanged. |
 | UI-11 | Share compact/panel loading and unavailable states. | Complete | Seven audited consumers share LoadingState/UnavailableState without moving request or recovery logic; pending-to-error transitions preserve navigation focus. |
-| UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
+| UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Complete | Shared Notice preserves current alerts, passive history and mounted Settings result announcements. Move feedback and preference lifecycle remain distinct. |
 | UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Complete | EmptyState serves seven application consumers; activity/search remain compact and recovery destinations are preserved. |
 | UI-14 | Share provider username field rules. | Complete | ProviderUsernameField serves Settings connection, one-time import and onboarding; native validation and description association are centralized. |
 | UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Complete | ImportAnalysisOption and ImportSubmitButton serve both forms; onboarding says Import games and each form retains its request fields and busy copy. |
@@ -362,6 +363,13 @@ from Git; no live decision-gathering tool is needed.
   summary. Production build and **6 desktop/mobile disclosure checks passed**,
   including keyboard/touch activation, rerender persistence and cold-answer
   restrictions. Commit subject: `UI-17: Standardize native disclosure summaries`.
+
+- **UI-12 — notices:** centralized tones/actions with required announcement
+  policy. Historical job errors stay passive; Settings' live status region
+  remains mounted between results. Production build and **12 desktop/mobile
+  checks passed**, including account/import/sync failures, dismissal, unchanged
+  announcement nodes and passive historical errors. Commit subject:
+  `UI-12: Share notices with explicit announcement behavior`.
 
 ## Audit findings and implementation boundaries
 

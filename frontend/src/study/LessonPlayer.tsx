@@ -1,14 +1,15 @@
-import { LoadingState, UnavailableState } from "../LoadState";
 import { useEffect, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, Lightbulb, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
 import ReturnButton from "../ReturnButton";
 import ReviewCoach from "../ReviewCoach";
 import MoveStatus from "../MoveStatus";
+import Notice from "../Notice";
 import ReviewWorkspace from "../ReviewWorkspace";
 import type { CoachExpression } from "../coach/model";
 import { lessonCoursePath, studyPaths } from "../navigation";
@@ -74,7 +75,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
         </>}
       </>}</>}
     ><MoveStatus><p>{error ? "Reload the saved lesson before continuing." : guidedPlayback ? "Watch how this position develops." : session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedback.text}</p>}</MoveStatus></ReviewCoach>
-    {error && <p className="notice error" role="alert">{error}</p>}
+    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     <section className="panel lesson-context" aria-label="Lesson progress">
       <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
       <h2>{session.branch?.title || session.game?.title || session.chapter_title}</h2>

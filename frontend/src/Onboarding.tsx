@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
 import { navigate } from "./navigation";
 import ProviderUsernameField from "./ProviderUsernameField";
+import Notice from "./Notice";
 
 type Connection = { id: string; name: string; username: string };
 
@@ -86,7 +87,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
           <Button variant="quiet" disabled={busy} onClick={() => setStep(1)}>Back</Button>
         </div>
       </>}
-      {error && <p role="alert" className="notice error">{error}{loading && <Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>}</p>}
+      {error && <Notice announcement="alert" tone="error" actions={loading && <Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>}>{error}</Notice>}
     </section>
   </main>;
 }

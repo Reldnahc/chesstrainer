@@ -10,6 +10,7 @@ import { api, read, setAccountSession, type Schema } from "./api";
 
 import Onboarding from "./Onboarding";
 import SettingsSection from "./SettingsSection";
+import Notice from "./Notice";
 
 export type Account = Schema["Account"];
 type Identity = Schema["Identity"];
@@ -44,9 +45,9 @@ export function AccountSettings() {
         </Button>
       </div>
       {error && (
-        <p role="alert" className="notice error">
+        <Notice announcement="alert" tone="error">
           {error}
-        </p>
+        </Notice>
       )}
     </SettingsSection>
   );
@@ -108,10 +109,10 @@ export default function AccountGate({ children }: { children: ReactNode }) {
       <main className="workspace-page">
         <p role="status">Connecting to Fieldwork…</p>
         {error && (
-          <p role="alert">
-            {error}{" "}
-            <Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>
-          </p>
+          <Notice announcement="alert" tone="error" appearance="inline"
+            actions={<Button size="compact" variant="quiet" onClick={() => window.location.reload()}>Retry</Button>}>
+            {error}
+          </Notice>
         )}
       </main>
     );
@@ -124,9 +125,9 @@ export default function AccountGate({ children }: { children: ReactNode }) {
           <h1>{signup ? "Create your account" : "Welcome back"}</h1>
           <p>Your games and training progress, on every device.</p>
           {error && (
-            <p role="alert" className="notice error">
+            <Notice announcement="alert" tone="error">
               {error}
-            </p>
+            </Notice>
           )}
           <form onSubmit={submit}>
             <label>

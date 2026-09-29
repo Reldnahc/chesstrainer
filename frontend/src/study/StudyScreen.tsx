@@ -1,12 +1,13 @@
-import EmptyState from "../EmptyState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ResumeLink from "../ResumeLink";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import Notice from "../Notice";
 import StatList from "../StatList";
 import PageTitle from "../PageTitle";
+import EmptyState from "../EmptyState";
 import SectionNavigation from "../SectionNavigation";
 import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
 import { createPuzzleStarter } from "./puzzleApi";
@@ -70,7 +71,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   return <>
     <PageTitle eyebrow="YOUR NEXT MOVE" title={mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"} />
     <div className="study-page">
-    {error && <p className="notice error" role="alert">{error}</p>}
+    {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     {mode === "home" && <div className="study-options">
       <section className="panel study-option study-due">
         <Clock3 aria-hidden="true" size={22} />

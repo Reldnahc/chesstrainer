@@ -1,6 +1,7 @@
 import MoveBadge from "../MoveBadge";
 import ReviewCoach from "../ReviewCoach";
 import Button from "../Button";
+import Notice from "../Notice";
 import ReturnButton from "../ReturnButton";
 import EvaluationScore from "../EvaluationScore";
 import type { Score } from "../evaluation";
@@ -126,7 +127,7 @@ export default function PositionCoach({
       insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
     >
       <DialogueText utterance={utterance} />
-      {errorAtPosition && <p role="alert">{errorAtPosition}</p>}
+      {errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}
     </ReviewCoach>
   );
 }

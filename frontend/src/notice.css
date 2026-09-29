@@ -1,0 +1,58 @@
+.notice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+.notice-content {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.notice--panel {
+  padding: 14px 16px;
+  background: #262d36;
+  border: 1px solid #424f61;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  color: #c9d6e8;
+}
+.notice--panel[data-tone="error"] {
+  background: #342329;
+  border-color: #74505a;
+  color: #ffc0c7;
+}
+.notice--inline {
+  margin-bottom: 14px;
+}
+.notice--inline[data-tone="error"] {
+  color: #ffacb4;
+}
+.notice[data-tone="success"] {
+  color: #c6d7ef;
+}
+.notice-content > :last-child {
+  margin-bottom: 0;
+}
+/* Keep empty live regions mounted without leaving a blank notice or hiding
+ * them from assistive technology before their text changes. */
+.notice:has(> .notice-content:empty):not(:has(> .notice-actions)) {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+}
+@media (max-width: 760px) {
+  .notice--panel {
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    font-size: 12px;
+  }
+}
