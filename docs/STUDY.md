@@ -20,6 +20,8 @@ remain above the board. Each active experience has a bookmarkable session URL.
 `/review`, root exercise links and focused Weakness links resolve to Due through
 history replacement. Legacy `unit` links are stripped, not revived. Imports stay
 in Settings and saved game analysis stays in Games.
+Section tabs stay anchored independently of the changing page title on desktop;
+on mobile they occupy a separate full-width row.
 
 ## Puzzle boundary
 

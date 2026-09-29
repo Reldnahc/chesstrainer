@@ -1,8 +1,9 @@
+html:has(.study-page) { scrollbar-gutter: stable; }
 .study-page { display: flex; flex-direction: column; gap: 20px; }
 .study-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
 .study-heading h1 { margin-bottom: 0; }
 .study-heading .eyebrow { margin-block: 0 8px; }
-.study-sections { display: flex; flex-wrap: wrap; gap: 4px; }
+.study-sections { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 4px; }
 .study-sections a { padding: 9px 12px; border-radius: 5px; color: var(--muted); text-decoration: none; }
 .study-sections a:hover, .study-sections a[aria-current] { background: var(--raised); color: #fff; }
 .study-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
