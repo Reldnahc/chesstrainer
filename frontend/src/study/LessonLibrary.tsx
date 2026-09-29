@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths } from "../navigation";
-import { studyRequestId } from "./requestId";
+import { retryableStart } from "./retryableStart";
 import LessonAttribution from "./LessonAttribution";
 
 export default function LessonLibrary({ courseId, revision }: { courseId: string | null; revision: string | null }) {
@@ -11,6 +11,10 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
   const [course, setCourse] = useState<Schema["LessonCourseView"] | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
+  const [startLesson] = useState(() => retryableStart(
+    async (body: Omit<Schema["LessonStart"], "request_id">) => body,
+    (body, signal) => read(api.POST("/api/study/lesson-sessions", { body, signal })),
+  ));
   const request = useRef<AbortController | null>(null);
   useEffect(() => {
     const controller = new AbortController();
@@ -32,10 +36,8 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
     setBusy(chapterId);
     setError("");
     try {
-      const session = await read(api.POST("/api/study/lesson-sessions", {
-        body: { course_id: course.id, course_revision: course.revision, chapter_id: chapterId, request_id: studyRequestId() }, signal: controller.signal,
-      }));
-      if (!controller.signal.aborted) navigate(lessonSessionPath(session.id));
+      const session = await startLesson({ course_id: course.id, course_revision: course.revision, chapter_id: chapterId }, controller.signal);
+      if (!controller.signal.aborted && session) navigate(lessonSessionPath(session.id));
     } catch (e) { if (!controller.signal.aborted) setError((e as Error).message); }
     finally { if (!controller.signal.aborted) { setBusy(null); request.current = null; } }
   }

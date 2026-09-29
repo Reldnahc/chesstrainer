@@ -7,7 +7,7 @@ import ReviewCoach from "../ReviewCoach";
 import MoveBadge from "../MoveBadge";
 import type { CoachExpression } from "../coach/model";
 import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
-import { startNextPuzzle } from "./puzzleApi";
+import { createPuzzleStarter } from "./puzzleApi";
 import { usePuzzleSession } from "./usePuzzleSession";
 
 export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
@@ -15,6 +15,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   const { session, frame, loading, busy, playing, retrying, error } = state;
   const [nextError, setNextError] = useState("");
   const [openingNext, setOpeningNext] = useState(false);
+  const [startNextPuzzle] = useState(createPuzzleStarter);
   const nextRequest = useRef<AbortController | null>(null);
   useEffect(() => {
     document.title = "Puzzle practice · Fieldwork";

@@ -3,12 +3,13 @@ import { ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import { lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
-import { practiceStudy, setStudyActive } from "./openingApi";
+import { createPracticeStarter, setStudyActive } from "./openingApi";
 
 export default function OpeningStudies() {
   const [library, setLibrary] = useState<Schema["OpeningStudyLibrary"] | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
+  const [practiceStudy] = useState(createPracticeStarter);
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function OpeningStudies() {
     try {
       if (practice) {
         const session = await practiceStudy(study.id, signal);
-        if (!signal?.aborted) navigate(lessonSessionPath(session.id));
+        if (!signal?.aborted && session) navigate(lessonSessionPath(session.id));
       } else {
         await setStudyActive(study.id, !study.active, signal);
         const result = await read(api.GET("/api/opening-studies", { signal }));

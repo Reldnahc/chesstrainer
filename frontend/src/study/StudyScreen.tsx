@@ -3,7 +3,7 @@ import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
-import { startNextPuzzle } from "./puzzleApi";
+import { createPuzzleStarter } from "./puzzleApi";
 import LessonLibrary from "./LessonLibrary";
 import OpeningCatalogue from "./OpeningCatalogue";
 import OpeningStudies from "./OpeningStudies";
@@ -23,6 +23,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   const [openings, setOpenings] = useState<Schema["OpeningStudyLibrary"] | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [startNextPuzzle] = useState(createPuzzleStarter);
   const beginRequest = useRef<AbortController | null>(null);
   useEffect(() => {
     const controller = new AbortController();
