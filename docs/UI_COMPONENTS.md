@@ -303,6 +303,11 @@ from Git; no live decision-gathering tool is needed.
   training: **39 passed, 1 intentional viewport skip**. Checks include 320px fit,
   9→10 counter stability, ply-zero exit, original-game restoration and explanation
   navigation. Commit subject: `UI-05: Share move playback controls across players`.
+  Integration follow-up: the shared empty-toolbar reservation now matches the
+  ordinary 42px control, fixing a six-pixel Game/SRS board-size difference.
+  Review presentation checks passed (**5 passed, 1 intentional mobile skip**),
+  including exact board and coach geometry equality. Follow-up commit subject:
+  `UI-05: Keep review board sizes aligned with shared playback controls`.
 
 - **UI-19 — resume rows:** shared the existing row and component-owned styles
   across saved puzzles, lessons and course lines. Production build passed;

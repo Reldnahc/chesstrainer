@@ -6,7 +6,8 @@ main:has(.review-workspace-layout) {
 .review-workspace-layout {
   --review-gutter: 35px;
   --review-meta-height: 24px;
-  --review-controls-height: 36px;
+  /* Reserve the ordinary playback controls even when this mode has none. */
+  --review-controls-height: 42px;
   --review-sidebar-min: 300px;
   display: grid;
   grid-template-columns:
