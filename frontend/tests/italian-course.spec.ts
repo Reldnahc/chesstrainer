@@ -186,6 +186,48 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   await expect(page.getByRole("button", { name: "Added to study", exact: true })).toBeDisabled();
 });
 
+test("full-game controls interrupt Mason-Lasker playback without waiting for its timer", async ({ page }) => {
+  let session = await start(page, "quiet-development");
+  for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
+    const label = session.actions.includes("show_move") ? "Show move"
+      : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
+    session = await command(page, label);
+  }
+  expect(session.step.kind).toBe("game_excerpt");
+  const excerpt = await command(page, "Play continuation");
+  const boardPieces = () => page.locator('.board-shell [data-square] [data-piece]').evaluateAll(pieces => pieces.map(piece => `${piece.closest('[data-square]')!.getAttribute('data-square')}:${piece.getAttribute('data-piece')}`).sort());
+  const anchorPieces = await boardPieces();
+  const opened = await command(page, "Explore full game");
+  expect(opened.game?.title).toContain("Mason–Lasker");
+  await command(page, "From the beginning");
+  expect((await page.request.put("/api/preferences/motion", { data: { motion: "natural" } })).ok()).toBe(true);
+  await page.reload();
+  await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
+  await page.clock.install();
+  await page.clock.pauseAt(new Date());
+
+  // Freeze both the piece animation and the lesson dwell: controls must not wait
+  // for either timer before committing another navigation command.
+  const first = await command(page, "Next game move");
+  expect(first.game?.ply).toBe(1);
+  await expect(page.getByRole("heading", { name: "Follow the continuation." })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Next game move" })).toBeEnabled();
+  expect((await command(page, "Next game move")).game?.ply).toBe(2);
+  expect((await command(page, "Previous game move")).game?.ply).toBe(1);
+  await command(page, "Next game move");
+  expect((await command(page, "From the beginning")).game?.ply).toBe(0);
+  await expect(page.getByRole("button", { name: "Previous game move" })).toBeDisabled();
+  await command(page, "Next game move");
+  const returned = await command(page, "Return to lesson");
+  expect(returned.game).toBeNull();
+  expect(returned.history).toEqual(excerpt.history);
+  expect(returned.fen).toBe(excerpt.fen);
+  await page.clock.runFor(5000);
+  await expect(page.getByRole("heading", { name: returned.step.title, exact: true })).toBeVisible();
+  expect(await boardPieces()).toEqual(anchorPieces);
+  expect((await saved(page, session.id)).revision).toBe(returned.revision);
+});
+
 test("the other Italian chapters show distinct sourced game passages with exact returns from full-game playback", async ({ page }, info) => {
   const games = new Set<string>();
   for (const chapterId of ["central-break", "two-knights"]) {

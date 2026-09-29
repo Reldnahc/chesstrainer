@@ -93,7 +93,10 @@ browser playback starts. `useStudyPlayback` shares playback behavior between
 puzzles and lessons, while each mode keeps its own server state machine. Lessons
 hold each move for 1.2 seconds so continuations are readable; puzzle replies keep
 their 0.4-second cadence. Piece travel still takes 280 milliseconds. Still
-mode changes presentation only. Annotations belong to the displayed position and
+mode changes presentation only. Full-game next/previous, restart and return
+controls interrupt playback rather than waiting for its timer. Commands remain
+serialized while requests are pending; guided lesson controls still wait for
+their continuation to finish. Annotations belong to the displayed position and
 are suppressed during intermediate animation frames.
 New lesson feedback or steps reset the explanation's scroll position without
 remounting the coach or moving keyboard focus.
