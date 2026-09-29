@@ -405,14 +405,16 @@ The **Due** queue inside Study should remain mixed.
 
 A due opening card and a due game-derived card are both genuine recall tasks.
 
-Cold opening cards should preserve the existing no-hint rule:
+Opening recall tests the studied move, not whether the learner can identify an
+unlabeled opening. Show the opening name in both dedicated opening study and the
+mixed Due queue, with the prompt **"Play your studied move."** Dedicated study
+also shows the selected variation and study color. For shared-position cards,
+do not imply that only one contributing study's move is accepted: the active
+answer union remains authoritative.
 
-- no opening name;
-- no ECO;
-- no answer;
-- no source label;
-- no engine score;
-- no tactical theme.
+Before the attempt, keep expected moves, future continuations, engine scores and
+tactical hints hidden. The opening label is intentional study context, not an
+answer leak. Game-derived recall and puzzles retain their existing no-hint rules.
 
 After the attempt or reveal, feedback may show:
 
@@ -422,7 +424,8 @@ After the attempt or reveal, feedback may show:
 - expected move(s);
 - optional short continuation preview.
 
-This makes the cold review actually test recognition rather than letting the label answer half the question.
+An unlabeled mixed opening drill may be considered later; it is not required for
+V1 and must not dictate the normal opening-study experience.
 
 ### Optional queue filters
 
@@ -444,7 +447,8 @@ Opening cards should use the same selected coach and the same shared review work
 
 Before an attempt:
 
-- coach provides no opening hint.
+- coach may name the opening and ask the learner to play their studied move;
+- coach must not reveal the expected move, continuation or tactical hints.
 
 After success:
 
@@ -1083,7 +1087,9 @@ Backend:
 - archived `source="repertoire"` remains excluded and untouched;
 - out-of-study legal moves fail without Stockfish fallback;
 - opening cards enter the normal Study → Due queue;
-- cold queue leaks no opening name/source/answer;
+- opening name and studied-move prompt appear before attempts in dedicated study and mixed Due;
+- expected answers, future continuations and tactical hints remain hidden before feedback;
+- game-derived cold recall retains its existing no-hint behavior;
 - account isolation;
 - restart persistence;
 - promotion/castling/en-passant where applicable.
@@ -1095,7 +1101,7 @@ Browser:
 - see card in Study → Due;
 - fail/retry/reveal;
 - correct answer;
-- post-answer opening metadata;
+- visible opening context and post-answer continuation metadata;
 - mobile layout;
 - coach switching preserves chess state.
 
@@ -1213,7 +1219,7 @@ Deliver:
 - shared/transposed opening cards;
 - curated grading;
 - normal Study → Due integration;
-- post-answer opening metadata.
+- visible opening context and post-answer continuation metadata.
 
 This phase must explicitly leave archived Repertoire untouched.
 
@@ -1300,7 +1306,10 @@ If Fieldwork cannot build a fair multi-move puzzle from a game position, it shou
 
 ### 5. Cold exercises stay cold
 
-Do not leak the opening name, tactical theme, source game, or future solution before the learner commits to a move.
+Do not reveal expected moves, tactical hints or future solutions before feedback
+is allowed. Game-derived recall and puzzles also hide answer-revealing source
+context. Opening recall deliberately shows the opening name and studied-move
+prompt: the task is remembering the repertoire move, not identifying the opening.
 
 ### 6. Preserve history
 
@@ -1348,9 +1357,9 @@ They should **not** share learning claims they have not earned.
 
 # Review notes — September 28, 2026
 
-These notes record the review against the current application. They are proposed
-clarifications for a later implementation pass; the draft above is preserved.
-Implementation is deferred while other work takes priority.
+These notes record the review against the current application. Section 1 reflects
+the owner's accepted decision and is incorporated above. The remaining notes are
+proposed clarifications for a later implementation pass.
 
 The overall direction fits Fieldwork: reuse the existing scheduler and account
 infrastructure for opening recall, keep puzzle history separate, and share the
@@ -1359,14 +1368,15 @@ choice to reject unsuitable puzzle candidates.
 
 ## 1. Make the recall task clear without revealing the answer
 
-The mixed Due queue currently proposed hides the card type, although opening
-cards require a studied move and game cards accept objectively sound alternatives.
-The current review prompt, "Find a good move," would be misleading for opening
-recall: an objectively good move can fail solely because it is outside the study.
+**Accepted owner decision:** Show the opening name in dedicated study and mixed
+scheduled reviews. Use **"Play your studied move"** instead of "Find a good move,"
+because an objectively sound move can fail solely for being outside the selected
+study. Dedicated study also shows the selected variation and color.
 
-Recommend a neutral task cue such as "Recall your studied move" for opening cards.
-Continue hiding the opening name, ECO, expected moves and tactical hints. This
-requires a deliberate exception to the draft's blanket prohibition on source cues.
+Keep the expected moves and continuation hidden until attempt feedback or reveal.
+This intentionally supersedes the original proposal to hide opening identity.
+Knowing which opening is being studied does not mean remembering its moves.
+An unlabeled mixed drill is a possible later option, not the V1 default.
 
 ## 2. Require puzzle fairness at every learner decision
 
