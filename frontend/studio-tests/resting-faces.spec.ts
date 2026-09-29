@@ -157,6 +157,38 @@ for (const coach of ["robot", "frog"]) {
   });
 }
 
+for (const coach of ["frog", "capybara"]) {
+  test(`${coach} settles Good into calmer eyes than Brilliant while retaining its closed entrance`, async ({ page }) => {
+    const avatar = await mountFace(page, { coach, state: "good" });
+    await eyeState(avatar, "closed");
+    await page.clock.runFor(110);
+    const geometry = await nonEyeGeometry(avatar);
+    const reactionDuration = await duration(page);
+    await page.clock.runFor(reactionDuration - 1);
+    await eyeState(avatar, "closed");
+    await page.clock.runFor(1);
+    await expectOpenEyes(avatar);
+    expect(await nonEyeGeometry(avatar)).toBe(geometry);
+
+    const eyeHeights = () => avatar.locator(".animal-eyes > ellipse").evaluateAll(
+      (eyes) => eyes.map((eye) => Number(eye.getAttribute("ry"))),
+    );
+    const goodHeights = await eyeHeights();
+    expect(goodHeights).toHaveLength(2);
+    await update(page, { state: "neutral", key: "neutral", motion: "still" });
+    await expectOpenEyes(avatar);
+    expect(await eyeHeights()).toEqual(goodHeights);
+    await update(page, { state: "brilliant", key: "brilliant" });
+    await expectOpenEyes(avatar);
+    const brilliantHeights = await eyeHeights();
+    expect(brilliantHeights).toHaveLength(2);
+    expect(goodHeights.every((height, index) => height < brilliantHeights[index] * 0.7)).toBe(true);
+    await update(page, { state: "good", key: "still-good" });
+    await expectOpenEyes(avatar);
+    expect(await eyeHeights()).toEqual(goodHeights);
+  });
+}
+
 for (const motion of ["still", "system"] as const) {
   test(`${motion} renders expressive open resting eyes immediately without delayed motion`, async ({ page }) => {
     const avatar = await mountFace(page, { state: "mistake", motion }, motion === "system");

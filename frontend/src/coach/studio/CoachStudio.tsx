@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Play, RotateCcw, Sparkles } from "lucide-react";
 import { getCoachStudy } from "../studies/catalog";
 import {
@@ -21,6 +21,8 @@ import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
 import { CastComparison, IdleVariants } from "./PerformanceCollections";
+import IdlePlayback from "./IdlePlayback";
+import type { CoachPerformanceSnapshot } from "../performanceDiagnostics";
 import "./studio.css";
 
 const sequence: CoachExpression[] = [
@@ -77,6 +79,13 @@ export default function CoachStudio() {
   const [reactionReplay, setReactionReplay] = useState(0);
   const [idlePreview, setIdlePreview] = useState<CoachMicro>("");
   const [idleVariant, setIdleVariant] = useState<CoachMicro>("blink");
+  const [naturalIdle, setNaturalIdle] = useState(false);
+  const [diagnostic, setDiagnostic] = useState(false);
+  const [seed, setSeed] = useState("1729");
+  const [idleSeed, setIdleSeed] = useState<number>();
+  const [idleReset, setIdleReset] = useState(0);
+  const [snapshot, setSnapshot] = useState<CoachPerformanceSnapshot | null>(null);
+  const observePerformance = useCallback((value: CoachPerformanceSnapshot) => setSnapshot(value), []);
   const chosenIdle = idles.find((idle) => idle === idleVariant) ?? idles[0] ?? "";
   const [playing, setPlaying] = useState(false);
   const deviceReduced = useReducedMotion();
@@ -94,6 +103,9 @@ export default function CoachStudio() {
     replay,
     reactionReplay,
     previewIdle: idlePreview,
+    idle: naturalIdle,
+    idleSeed,
+    idleReset,
   };
   useEffect(() => {
     const url = new URL(location.href);
@@ -257,7 +269,27 @@ export default function CoachStudio() {
         </div>
         <p>{expressionIntent(coach, expression)}</p>
       </div>
-      <ConceptComparison preview={preview} onFamily={selectFamily} />
+      <ConceptComparison preview={preview} onFamily={selectFamily}
+        onPerformance={diagnostic ? observePerformance : undefined} />
+      <IdlePlayback
+        natural={naturalIdle}
+        onNatural={(value) => {
+          setNaturalIdle(value);
+          if (value) revealPerformance();
+        }}
+        diagnostic={diagnostic}
+        onDiagnostic={(value) => { setSnapshot(null); setDiagnostic(value); }}
+        seed={seed}
+        onSeed={setSeed}
+        appliedSeed={idleSeed}
+        onRestart={() => {
+          setIdlePreview("");
+          setIdleSeed(Number(seed));
+          setIdleReset((value) => value + 1);
+          revealPerformance();
+        }}
+        snapshot={snapshot?.identity === `${coach.id}:${family}` && snapshot.expression === expression ? snapshot : null}
+      />
       <section className="studio-idle-bar" aria-label="Idle previews">
         <div>
           <h2>The quieter moments</h2>

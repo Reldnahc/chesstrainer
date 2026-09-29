@@ -25,6 +25,7 @@ async function settledCoach(page: Page, coach: string, reaction: number, express
   await page.clock.pauseAt(new Date());
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto(`/?coach=${coach}&expression=${expression}`);
+  await page.getByRole("checkbox", { name: "Natural idle playback", exact: true }).check();
   const avatar = page.locator(`.studio-concepts .coach-avatar[data-motion-profile="${coach}"]`);
   await avatar.scrollIntoViewIfNeeded();
   await expect(avatar).toBeInViewport();

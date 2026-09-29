@@ -1,6 +1,6 @@
 # Coach idle revamp — implementation plan
 
-Status: implementation in progress; Milestones 1–3 are complete. Next: studio and visual polish.
+Status: implementation in progress; Milestones 1–4 are complete. Next: final application validation.
 The plan passed three design-review rounds before implementation.
 Branch: `codex/coach-idle-revamp`, created from local `main` at `fa9dc64`.
 
@@ -27,6 +27,14 @@ shared variants. Resolved repertoires contain 18–22 distinct gestures per coac
 8–14 per expression and 6,740 total configured slots. Build/type checks, 12
 exhaustive desktop/mobile cases, vocabulary coverage and independent review
 passed. New limb/detail wrappers preserve attachment and prop eligibility.
+Committed as `77ee6a0`.
+
+Milestone 4: the development studio now has opt-in natural playback, independent
+comparisons, optional event-driven diagnostics and seeded resets. Focused checks
+passed: 18 lifecycle/observer, 38 cadence, 8 studio UI and a complete signature
+capture pass. Production build and independent review passed. Live previews and
+all-cast contact sheets were inspected at actual portrait sizes; detailed evidence
+is in `VERIFICATION.md`. Full studio/application regression continues in M5.
 
 ## Intended experience
 

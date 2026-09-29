@@ -14,6 +14,7 @@ import {
 } from "./model";
 import { usePerformance } from "./usePerformance";
 import { CoachFaceProvider } from "./CoachFaceContext";
+import type { CoachPerformanceSnapshot } from "./performanceDiagnostics";
 import "./coach.css";
 
 // Idle bookkeeping changes the wrapper's channel styles, not the SVG tree.
@@ -32,6 +33,9 @@ export function CoachCharacter({
   idle = true,
   previewIdle,
   label = "Your chess coach",
+  idleSeed,
+  idleReset,
+  onPerformance,
 }: {
   coach: CoachDefinition;
   reaction: CoachReaction;
@@ -41,6 +45,9 @@ export function CoachCharacter({
   idle?: boolean;
   previewIdle?: CoachMicro;
   label?: string;
+  idleSeed?: number;
+  idleReset?: number;
+  onPerformance?: (snapshot: CoachPerformanceSnapshot) => void;
 }) {
   const direction = resolveFamily(coach, family);
   const animation = resolveAnimation(coach, direction);
@@ -54,6 +61,9 @@ export function CoachCharacter({
     idleEnabled: idle && coach.capabilities.idle,
     animation,
     previewIdle,
+    idleSeed,
+    idleReset,
+    onPerformance,
   });
   const Artwork = coach.Artwork;
   const profile = animation.motionProfile;

@@ -148,13 +148,21 @@ verify the same preference survives another browser session and remains private.
 Backend preference tests cover every ID, restart, unknown IDs and explicit
 retired mappings without rewriting stored rows during reads.
 
-`studio-tests/motion-vocabulary.spec.ts` checks every 20-expression/four-idle pool,
-nonrepetition and anatomy-specific gestures. `idle-articulation.spec.ts` mounts
-all 2,400 slots and checks their browser animation targets. `idle-cadence.spec.ts`
-checks repeated 500–1000ms gaps, 1200ms gestures, expression changes, reaction
-isolation, motion preferences and hidden/offscreen pausing with controlled time.
-`full-cast.spec.ts` exercises the complete studio, independent idle replay,
-same-expression comparisons and the tablet singleton layout.
+`studio-tests/motion-vocabulary.spec.ts` and `idle-repertoire.spec.ts` enumerate
+the live registry: every expression needs at least eight compatible choices in
+three groups, and every coach has two authored signatures. Seeded coordinator
+traces verify cooldowns, fairness, independent blinking and channel ownership.
+`idle-articulation.spec.ts` and `idle-rig.spec.ts` inspect actual SVG targets,
+CSS tracks, delays and authored durations. `idle-cadence.spec.ts` checks repeated
+500–1000ms empty gaps, expression changes, reaction isolation, motion preferences
+and hidden/offscreen pausing with controlled time. `resting-faces.spec.ts` checks
+eye reopening without loss of emotion, stale transitions or artwork remounts.
+`idle-diagnostics.spec.ts` covers observer lifecycle and seeded resets;
+`studio-diagnostics.spec.ts` checks opt-in playback and diagnostic controls.
+`idle-visual.spec.ts` captures signatures at four animation times and both actual
+portrait sizes. `full-cast.spec.ts` exercises the complete expression collection,
+independent replay, same-expression comparisons and the tablet singleton layout.
+Screenshots supplement sustained live viewing; they do not prove smooth timing.
 
 The intelligence suite compares ten shared situations across the full cast,
 including tactical mistakes, human-policy evidence, recovery, positional play,

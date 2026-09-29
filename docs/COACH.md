@@ -80,6 +80,17 @@ Switching characters stops a running sequence, clears the pending idle preview
 and selects a valid family/idle gesture. Preview controls offer only the
 gestures valid for the current coach and expression.
 
+**Natural idle playback** opts the selected character and board-size samples into
+sustained idles. Comparisons have a separate playback toggle. Other portraits
+remain static after their one-shot entrance or explicit gesture replay. Signature
+cards include acting notes, making each coordinated performance easy to inspect.
+**Show motion diagnostics** observes the real selected portrait: active parts,
+next event, shared eye deadline, recent history, cooldowns and rejected candidates.
+Times describe the last scheduler event rather than a constantly ticking display.
+The numeric seed and **Restart idle sequence** reproduce a sequence through the
+production coordinator without replaying the entrance. These controls never
+change account preferences and are excluded from the production app entry point.
+
 The studio never connects to accounts or submits engine work. It imports the
 same character catalogue and review bubble as the application; shared SVGs and motion
 styles are bundled with the application so a selected coach is immediately
@@ -186,7 +197,8 @@ even when the expression stays the same. Neutral, brilliant and blunder retain
 different eligible motion.
 The latest unseen reaction can play when it becomes visible; an interrupted or
 already seen entrance is not replayed. Unmounting removes observers/listeners and
-clears timers. Replaying deliberately restarts only the SVG rig, not its layout.
+clears timers. Deliberately replaying an entrance restarts the SVG rig, not its
+layout; restarting the seeded idle sequence does not remount it.
 
 **Settings → Animations** groups **Coach motion** and **Piece & interface motion**,
 each with its own save/error feedback. **Your coach** contains character selection.
