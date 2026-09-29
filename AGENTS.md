@@ -11,6 +11,7 @@ The project owner requires commits throughout development.
 ## Frontend component reuse
 
 - Before adding or changing UI, read [UI component reuse and standardization](docs/UI_COMPONENTS.md) and inspect the existing components and their consumers.
+- Follow the [owner decision record](docs/UI_COMPONENTS.md#owner-decision-record), including its implementation status. Main-application components take precedence over versions from coach studios, performance tools and other developer surfaces.
 - Reuse or extend the existing component for the same job. Do not recreate selectors, controls, feedback, layouts or their responsive CSS in a page-specific implementation.
 - Preserve semantic differences (links, commands, tabs and form choices), domain ownership and standalone development-tool boundaries. Document justified differences instead of silently creating a parallel component.
 - Keep the component inventory current when shared UI changes. Proposed audit items are not implemented components or automatic authorization for a broader refactor.

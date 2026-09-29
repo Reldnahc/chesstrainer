@@ -2,9 +2,9 @@
 
 This is the component lookup and reuse policy for Fieldwork frontend work. Read
 it before adding or changing UI. It records what exists today separately from
-proposed extractions, so an agent must not assume a proposed component is already
-implemented. Keep this document current when a reusable component is added,
-renamed, extended or retired.
+the [owner's standardization decisions](#owner-decision-record), so an agent must
+not assume a planned component is already implemented. Keep this document current
+when a reusable component is added, renamed, extended or retired.
 
 ## Rules for contributors and agents
 
@@ -39,7 +39,10 @@ renamed, extended or retired.
    lab have separate CSS/dependency boundaries. Reusing a small control must not
    pull application shells into development tools. Use the existing
    [style manifest](../frontend/scripts/style-boundaries.json) and guard; do not
-   weaken it or broaden CI solely to accommodate a misplaced import.
+   weaken it or broaden CI solely to accommodate a misplaced import. **The main
+   application is canonical:** promote its components and presentation before
+   versions from performance tools, coach studios or other development surfaces.
+   Adapt tools to shared application primitives, retaining tool-specific behavior.
 9. **Record justified differences.** If reuse is unsuitable, state the semantic
    reason and list the existing alternative here. Cosmetic preference alone is
    not a reason for two implementations of the same control.
@@ -98,47 +101,66 @@ of engine/backend correctness. Findings below distinguish actual divergent
 implementations from smaller opportunities that already share styling. No UI
 migration is approved or completed merely because it appears here.
 
-## Standardization backlog
+## Owner decision record
 
-All items below are **open proposals**. Names in the recommendations are design
-directions, not existing modules. When an item is implemented, replace its open
-status with the canonical component, migrated consumers and verification record.
+Recorded September 29, 2026 from the owner's completed 30-item comparison and
+subsequent conversation. This is the authoritative decision record; the later
+clarifications below supersede the original browser answers. It is committed
+repository documentation and does not depend on browser storage.
 
-### Compare and choose the current versions
+**Implementation is paused at the owner's request.** The directions are agreed,
+but no standardization implementation is completed or authorized to start yet.
+The owner authorized recording these decisions and removing the temporary
+comparison tool. When implementation resumes, update each Planned row with its
+canonical component, migrated consumers, verification and commit.
 
-[Open the component comparison gallery](UI_COMPONENT_COMPARISON.html) for all
-**30 items**, with **127 current-source examples**, file/line references,
-recommendations and an individual decision/notes field for each item. The gallery
-is a review document, not a production route or a new component library.
+The main application always takes precedence over development tools when
+choosing a shared implementation. Promotion centralizes equivalent UI; it does
+not erase differences in navigation semantics, domain behavior or accessibility.
 
-The snapshot is based on **18be413** (September 29, 2026). It combines static
-source-derived excerpts and directly rendered small components with sample data,
-current styles and real coach portraits. Controls inside examples are inactive;
-source excerpts explain behavioral differences. Artwork-internal comparisons
-show code where there is no visual mismatch. Phone preview uses the real
-responsive rules within a 390px-or-smaller frame; outer page padding and animations
-are omitted for inspection. This is not a substitute for testing migrated
-components in their actual screens.
+| ID | Decision | Status | Required interpretation |
+| --- | --- | --- | --- |
+| UI-01 | Promote the Settings section-navigation tray (A). | Planned | Use its appearance for Settings and Openings; keep URL navigation, history and account/course filtering. |
+| UI-02 | Promote the application's PGN rectangular choice buttons (A). | Planned | Share with applicable local choices, including studio filters; preserve pressed-button semantics and PGN input clearing. |
+| UI-03 | One shared button family with ordinary, compact and icon-only sizes, plus primary, secondary and purple return styles. | Planned | Owner accepted the explanation after initially marking this unclear. Keep links for destinations and buttons for commands; common sizing rules do not require identical widths for every button. |
+| UI-04 | Promote Game Review's purple return action (A). | Planned | Share the appearance; preserve each mode's return label, handler and variation/branch behavior. |
+| UI-05 | Promote lesson/opening playback geometry (C/D). | Planned | This choice stands. Preserve Game Review first/last/flip actions, ply zero, variation exit, stable counter width and keyboard shortcuts; retain lessons' focus-preserving pending-command behavior. |
+| UI-06 | Promote catalogue pagination labels and layout (B). | Planned | Preserve each screen's page size, range/count calculation and empty-page recovery. |
+| UI-07 | Share continuation-move markup. | Planned | Preserve numbering options, selection and playback-disabled behavior; full-game scored notation stays specialized. |
+| UI-08 | Share move-feedback announcement rules while retaining rich lesson layout. | Planned | Reuse existing feedback presentation where suitable; preserve practice outcomes, answer visibility and caller-specific content. |
+| UI-09 | Promote relative next-due time with an exact-time tooltip (A). | Planned | Share scheduling receipts while preserving saved/relearning/retired, unscheduled and previously recorded explanations. |
+| UI-10 | Share preference-status rendering with heading and field placements. | Planned | Remove duplicate presentation logic; preserve existing load/save persistence, retry labels and device-setting fallback. |
+| UI-11 | Share compact/panel loading and unavailable states. | Planned | Fetching, retry/back actions and recovery policy remain caller-owned. |
+| UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
+| UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Planned | Retain compact activity and search-no-results variants. |
+| UI-14 | Share provider username field rules. | Planned | Preserve required one-time import versus optional connection/onboarding names, and each caller's busy behavior. |
+| UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Planned | Remove duplicate markup and correct onboarding's stale "Fetch games" wording; retain request-specific fields and busy copy. |
+| UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Planned | Owner accepted this after explanation, superseding the initial deferral. Move focus into the chooser, contain it appropriately, support Escape and restore focus; preserve the board-specific promotion appearance. |
+| UI-17 | Promote plain native-summary styling (A). | Planned | This choice stands. Preserve comfortable phone tap targets, native details behavior, rich history/review contents and cold-practice answer restrictions. |
+| UI-18 | Keep section headings and the distinct action-row layouts separate. | Keep existing | Do not extract a universal component for these different roles. |
+| UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Planned | Supply each destination and content; keep other row compositions separate. |
+| UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Planned | Keep the current appearance. |
+| UI-21 | Share only the turn indicator used by the board-status compositions. | Planned | Keep each mode's surrounding status content and cold-practice visibility rules. |
+| UI-22 | Extend the application's AccuracyReadout with a history presentation. | Planned | Retain history's review-action state, compact two-player layout and accessible description. |
+| UI-23 | Share source/link formatting. | Planned | Retain lesson headings, optional licenses/revisions, multiple citations and distinct provenance records. |
+| UI-24 | Promote the application's existing MotionSelect into Studio (A). | Planned | Preserve Studio's callback clearing simulated reduced motion; share control styling without importing the application shell. |
+| UI-25 | Use the application's real EvaluationScore in Studio (B). | Planned | Use typed illustrative scores with correct perspective, winning-side styling and accessible text. |
+| UI-26 | Defer coach-card/selector extraction. | Deferred | Keep current Settings and Studio workflows, shared registry/artwork, and the Settings six-column grid. |
+| UI-27 | Share identical artwork/rig wrappers. | Planned | Preserve every character's art, geometry, classes, expression behavior and animation. This also serves production artwork. |
+| UI-28 | Share application dialogue text/metadata with explicit non-live lab rendering. | Planned | Preserve production announcements and lab semantics; do not announce every comparison card. |
+| UI-29 | Defer development-tool checkbox-row extraction. | Deferred | Leave current tool implementations in place for this pass. |
+| UI-30 | Leave the existing eye implementations alone. | Keep existing | Owner's later "just leave it" supersedes the initial mechanics-only extraction choice. No eye refactor in this pass. |
 
-Serve the repository locally to use the gallery, for example with
-`.venv/Scripts/python.exe -m http.server 8770 --bind 127.0.0.1`, then visit
-`http://127.0.0.1:8770/docs/UI_COMPONENT_COMPARISON.html`. Fonts use the existing
-installed frontend dependencies, with a system-font fallback. No application
-server, account, game data, engine or external request is needed.
+The temporary gallery presented 127 source-based examples against snapshot
+**18be413** and was committed in **51da684**. It was removed at the owner's
+request after capturing these decisions. Historical examples remain recoverable
+from Git; no live decision-gathering tool is needed.
 
-No choice is selected by default. Choices are stored only in that browser for
-this snapshot. **Review choices** copies/downloads a Markdown decision list to
-share with the implementer; it does not send anything or modify Fieldwork.
-Promotion means replacing duplicate implementations with the chosen shared
-owner while retaining the documented domain and accessibility boundaries.
-After implementation, update the live inventory/backlog rather than treating
-this historical comparison snapshot as the current component specification.
+## Audit findings and implementation boundaries
 
-Gallery validation: all 30 comparisons navigated at desktop and 390px phone
-width without page overflow; selection and notes survived reload, the export
-contained all 30 IDs, and test decisions were cleared. All 127 source references
-and wrapper contexts were checked; embedded JavaScript passed syntax validation.
-Application/backend/coach suites were not run for this documentation artifact.
+The source evidence below explains the decisions. Proposed component names are
+design directions, not existing modules. The owner decision record above governs
+scope and takes precedence over optional extraction suggestions in this audit.
 
 ### Visible and behavioral mismatches
 
@@ -169,11 +191,11 @@ from one markup owner. Do not give them the same priority as the controls above.
 
 | ID | Evidence / mismatch | Proposed scope |
 | --- | --- | --- |
-| UI-18 | [SettingsSection](../frontend/src/SettingsSection.tsx), [OpeningStudies heading/rows](../frontend/src/study/OpeningStudies.tsx), [PGN launcher](../frontend/src/Import.tsx), [Weaknesses rows](../frontend/src/Weaknesses.tsx) and [Training tools](../frontend/src/Settings.tsx) independently lay out title/body alongside actions and stack them on phones. | A small SectionHeading/ActionRow layout, if these consumers can use it without flags. Keep SettingsSection composed from it; do not turn every content card into the same data model. |
+| UI-18 | [SettingsSection](../frontend/src/SettingsSection.tsx), [OpeningStudies heading/rows](../frontend/src/study/OpeningStudies.tsx), [PGN launcher](../frontend/src/Import.tsx), [Weaknesses rows](../frontend/src/Weaknesses.tsx) and [Training tools](../frontend/src/Settings.tsx) independently lay out title/body alongside actions and stack them on phones. | Owner chose to keep these distinct layouts. No shared SectionHeading/ActionRow extraction in this pass. |
 | UI-19 | [StudyScreen](../frontend/src/study/StudyScreen.tsx) and [LessonLibrary](../frontend/src/study/LessonLibrary.tsx) repeat title/subtitle/arrow resume links using shared `.study-resume`. | ResumeLink for the identical row; catalogue links, chapter command rows and game history remain separate compositions. |
-| UI-20 | [Puzzle stats](../frontend/src/study/StudyScreen.tsx) and [opening stats](../frontend/src/study/OpeningStudies.tsx) repeat `<dl>` metric items with shared `.study-stats`. | A data-driven StatList is optional; current visual consistency already comes from shared CSS. |
-| UI-21 | [Review](../frontend/src/Review.tsx), [LessonPlayer](../frontend/src/study/LessonPlayer.tsx), [PuzzlePlayer](../frontend/src/study/PuzzlePlayer.tsx), [OpeningLinePreview](../frontend/src/study/OpeningLinePreview.tsx) repeat `.review-position-status` and turn-dot markup. | BoardStatus / TurnIndicator preserve the existing common style. Never reveal hidden scores/source information in cold practice. |
-| UI-22 | [GameHistory](../frontend/src/GameHistory.tsx) independently formats accuracy while [Players / AccuracyReadout](../frontend/src/gameReview/Players.tsx) is reused by review summary. History also independently renders names/ratings/colors. | Share the accuracy value/availability contract and, if useful, a small player-identity primitive. Retain the compact two-player history grid and row-level accessible description; do not force it into a board player row or generic table. |
+| UI-20 | [Puzzle stats](../frontend/src/study/StudyScreen.tsx) and [opening stats](../frontend/src/study/OpeningStudies.tsx) repeat `<dl>` metric items with shared `.study-stats`. | Owner selected a small shared StatList; keep the existing appearance supplied by shared CSS. |
+| UI-21 | [Review](../frontend/src/Review.tsx), [LessonPlayer](../frontend/src/study/LessonPlayer.tsx), [PuzzlePlayer](../frontend/src/study/PuzzlePlayer.tsx), [OpeningLinePreview](../frontend/src/study/OpeningLinePreview.tsx) repeat `.review-position-status` and turn-dot markup. | Share only the turn indicator, as selected by the owner; retain each status composition. Never reveal hidden scores/source information in cold practice. |
+| UI-22 | [GameHistory](../frontend/src/GameHistory.tsx) independently formats accuracy while [Players / AccuracyReadout](../frontend/src/gameReview/Players.tsx) is reused by review summary. History also independently renders names/ratings/colors. | Owner selected an AccuracyReadout history presentation. Retain its review action, compact two-player history grid and row-level accessible description; do not force it into a board player row or generic table. |
 | UI-23 | [LessonAttribution](../frontend/src/study/LessonAttribution.tsx), [puzzle source footer](../frontend/src/study/PuzzlePlayer.tsx), [opening source footer](../frontend/src/study/OpeningLinePreview.tsx) repeat source text and external-link conventions. | Shared source-line/link formatting where applicable, with safe protocols and explicit optional license/revision. Distinct source records and provenance stay intact. |
 
 ### Development tools and artwork internals
@@ -185,11 +207,11 @@ Keep their standalone dependency boundaries intact.
 | --- | --- | --- |
 | UI-24 | [CoachStudio](../frontend/src/coach/studio/CoachStudio.tsx) repeats all three motion options instead of [MotionSelect](../frontend/src/MotionSelect.tsx). | Reuse the selector after separating its shared control styling from application-only layout. Preserve the studio callback that clears simulated reduced motion. |
 | UI-25 | [BoardSizePreview](../frontend/src/coach/studio/PreviewPanels.tsx) hand-renders `.evaluation-score` from strings instead of [EvaluationScore](../frontend/src/EvaluationScore.tsx). | Use typed illustrative scores and the real component. Current preview omits winning-side styling and the accessible White-perspective description, so negative samples do not match production. |
-| UI-26 | [CoachSettings](../frontend/src/coach/CoachSettings.tsx) and [studio CoachPicker](../frontend/src/coach/studio/CoachPicker.tsx) separately compose portrait + name choices. They already share registry/artwork. Cast dropdown options also repeat in [PerformanceCollections](../frontend/src/coach/studio/PerformanceCollections.tsx) and [IntelligenceLab](../frontend/intelligence-lab/IntelligenceLab.tsx). | Optional shared portrait/card content and cast-option renderer. Settings' persisted native radio gallery and studio's temporary preview buttons/counts are intentionally different workflows; the lab has an extra neutral-reference option. Preserve the six-column Settings grid. |
+| UI-26 | [CoachSettings](../frontend/src/coach/CoachSettings.tsx) and [studio CoachPicker](../frontend/src/coach/studio/CoachPicker.tsx) separately compose portrait + name choices. They already share registry/artwork. Cast dropdown options also repeat in [PerformanceCollections](../frontend/src/coach/studio/PerformanceCollections.tsx) and [IntelligenceLab](../frontend/intelligence-lab/IntelligenceLab.tsx). | Deferred by owner. Settings' persisted native radio gallery and studio's temporary preview buttons/counts remain separate; the lab retains its extra neutral-reference option and Settings its six-column grid. |
 | UI-27 | [AnimalHead/AnimalFrame](../frontend/src/coach/cast/animals/AnimalParts.tsx) and [FantasyHead/FantasyShell](../frontend/src/coach/cast/fantasy/FantasyShell.tsx) duplicate head-layer nesting and SVG/body/pose scaffolding. Head layers also appear inline in human, dog and robot artwork. | A neutral rig wrapper could own the identical nesting, with explicit class/style slots. Keep species geometry, family CSS, expression tables and hands distinct. This is internal maintenance, not a mascot redesign. |
-| UI-28 | [IntelligenceLab](../frontend/intelligence-lab/IntelligenceLab.tsx) and [CoachComparison](../frontend/intelligence-lab/CoachComparison.tsx) hand-render utterance text rather than using [DialogueText](../frontend/src/dialogue/DialogueText.tsx). | Optional shared non-live text/metadata rendering, composed into the current production live paragraph and diagnostic layouts. Preserve lab `<dd>` semantics and avoid announcing every comparison card. |
-| UI-29 | Checkbox rows in [CoachStudio](../frontend/src/coach/studio/CoachStudio.tsx), [IdlePlayback](../frontend/src/coach/studio/IdlePlayback.tsx), [PerformanceCollections](../frontend/src/coach/studio/PerformanceCollections.tsx), [CoachComparison](../frontend/intelligence-lab/CoachComparison.tsx) and [IntelligenceLab](../frontend/intelligence-lab/IntelligenceLab.tsx) use separate `.studio-reduced`, `.studio-toggle` and lab inline styling. | Low-priority CheckboxField/row convention for label and target geometry. Keep the distinct effects of each checkbox in its caller; importing settings CSS is not an acceptable shortcut. |
-| UI-30 | [AnimalEyes](../frontend/src/coach/cast/animals/AnimalParts.tsx), [AnimalFace](../frontend/src/coach/studies/AnimalFace.tsx) and [FantasyFace](../frontend/src/coach/cast/fantasy/FantasyFace.tsx) repeat clipped gaze and open/closed eye mechanics around different art. | Optional mechanics-only extraction if inspection shows it simplifies those consumers. Eyelid curves, highlights, pupils, dimensions and expression poses are authored art; this is not a mandate to unify the faces. Lower value and higher visual risk than the identical wrappers in UI-27. |
+| UI-28 | [IntelligenceLab](../frontend/intelligence-lab/IntelligenceLab.tsx) and [CoachComparison](../frontend/intelligence-lab/CoachComparison.tsx) hand-render utterance text rather than using [DialogueText](../frontend/src/dialogue/DialogueText.tsx). | Owner selected shared application text/metadata rendering with an explicit non-live lab mode. Preserve production announcements, lab `<dd>` semantics and diagnostic layouts; avoid announcing every comparison card. |
+| UI-29 | Checkbox rows in [CoachStudio](../frontend/src/coach/studio/CoachStudio.tsx), [IdlePlayback](../frontend/src/coach/studio/IdlePlayback.tsx), [PerformanceCollections](../frontend/src/coach/studio/PerformanceCollections.tsx), [CoachComparison](../frontend/intelligence-lab/CoachComparison.tsx) and [IntelligenceLab](../frontend/intelligence-lab/IntelligenceLab.tsx) use separate `.studio-reduced`, `.studio-toggle` and lab inline styling. | Deferred by owner. Keep current tool checkbox implementations for this pass. |
+| UI-30 | [AnimalEyes](../frontend/src/coach/cast/animals/AnimalParts.tsx), [AnimalFace](../frontend/src/coach/studies/AnimalFace.tsx) and [FantasyFace](../frontend/src/coach/cast/fantasy/FantasyFace.tsx) repeat clipped gaze and open/closed eye mechanics around different art. | Owner chose to leave these implementations alone. No mechanics or artwork extraction in this pass. |
 
 ## Similar-looking components that should stay distinct
 
@@ -221,19 +243,19 @@ Keep their standalone dependency boundaries intact.
   progress elements are already reusable browser behavior. Introduce components
   for actual common contracts, not to eliminate all native JSX.
 
-## Proposed implementation order — owner discussion pending
+## Suggested implementation order after the owner resumes work
 
-1. **Selector foundation:** UI-01 first. Recommendation: the compact footprint of
-   Openings with a clear accent selected state, consistent target height and one
-   responsive treatment. Apply it to both screenshots together. Reuse its visual
-   tokens for real tabs/local choices without changing their semantics.
+1. **Selector foundation:** UI-01 uses the selected Settings tray for Settings
+   and Openings. UI-02 uses the application's PGN choice treatment. Preserve the
+   distinction between URL links, real tabs and local choices.
 2. **Action/control foundation:** UI-03 through UI-07 and modal lifecycle UI-16.
    Standardize dimensions, purple return actions, navigation and focus behavior.
 3. **Feedback and page states:** UI-08 through UI-13, then provider/form fragments
    UI-14/15 and disclosure conventions UI-17.
-4. **Small markup and tooling gaps:** UI-18 through UI-30 where the extraction is
-   demonstrably simpler than the current consumers. Keep optional items optional;
-   don't manufacture a large design-system framework to close the table.
+4. **Small markup and tooling gaps:** Implement the Planned items UI-19 through
+   UI-25 and UI-27/28. Keep UI-18 and UI-30 unchanged; UI-26 and UI-29 remain
+   deferred. Application components are canonical before development-tool copies.
 
-The immediate audit/documentation pass changes no JSX, CSS, component behavior,
-schema or engine policy. UI choices above await discussion with the owner.
+This records agreed directions and retires the temporary comparison tool. It
+does not start UI implementation or change JSX, CSS, component behavior, schemas
+or engine policy.

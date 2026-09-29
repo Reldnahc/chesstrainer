@@ -148,7 +148,8 @@ Optionally set LAN_ACCESS_TOKEN and enter it in the browser. The token is kept i
 
 Before changing frontend UI, read the [component inventory and reuse rules](docs/UI_COMPONENTS.md).
 It identifies existing shared components, records the site-wide consistency audit,
-and distinguishes proposed standardization from intentional differences. Reuse or
+and holds the [owner's standardization decisions](docs/UI_COMPONENTS.md#owner-decision-record).
+Promote main-application components before development-tool versions. Reuse or
 extend the existing component for a job rather than recreating it on another page.
 
 The Vite proxy targets **127.0.0.1:8000**. Stop an existing backend using the same database before starting a development instance. If .env is configured for a LAN address or another port, override those values in the development backend terminal.
