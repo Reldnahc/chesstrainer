@@ -40,7 +40,6 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/GameSync.tsx",
     "frontend/src/Import.tsx",
     "frontend/src/Link.tsx",
-    "frontend/src/MotionSelect.tsx",
     "frontend/src/MotionSettings.tsx",
     "frontend/src/MoveBadge.tsx",
     "frontend/src/MoveStatus.tsx",

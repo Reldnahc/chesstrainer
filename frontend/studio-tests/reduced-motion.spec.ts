@@ -60,4 +60,14 @@ test("device motion changes keep the studio controls and every portrait synchron
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await expect(portrait).toHaveAttribute("data-motion", "still");
   expect(await portrait.evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
+
+  // The shared application field must still clear Studio's temporary simulation.
+  await checkbox.check();
+  await expect(notice).toContainText("Reduced-motion preview is on.");
+  await motion.selectOption("natural");
+  await expect(checkbox).not.toBeChecked();
+  await expect(notice).toHaveCount(0);
+  await expect(portrait).toHaveAttribute("data-motion", "natural");
+  expect((await motion.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

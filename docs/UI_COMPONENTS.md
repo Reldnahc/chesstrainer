@@ -73,7 +73,7 @@ not React components.
 | White-perspective position score | [EvaluationScore](../frontend/src/EvaluationScore.tsx), [evaluation helpers](../frontend/src/evaluation.ts) | Signed pawn/mate formatting, winning-side styling and accessible perspective. Never pass side-to-move candidate scores without conversion. |
 | Accuracy display | [AccuracyReadout / PlayerRow](../frontend/src/gameReview/Players.tsx) | Existing compact/summary accuracy, unavailable/completion wording and one-decimal display. |
 | Practice move status | [MoveStatus](../frontend/src/MoveStatus.tsx) | Stable live region, delayed checking message and retry presentation. Do not copy its timer or imply SRS grading in other modes. |
-| Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx) | Device default / Animated / Still choices. Uses [motion policy](../frontend/src/motion.ts); its current layout CSS is application-only. |
+| Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx), [motion-select.css](../frontend/src/motion-select.css) | Device default / Animated / Still choices in Settings and Studio. Inline or stacked layout; callback and persistence stay caller-owned. Shared-safe styles; Settings status/layout remains in application-only motion.css. |
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
@@ -144,7 +144,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-21 | Share only the turn indicator used by the board-status compositions. | Planned | Keep each mode's surrounding status content and cold-practice visibility rules. |
 | UI-22 | Extend the application's AccuracyReadout with a history presentation. | Planned | Retain history's review-action state, compact two-player layout and accessible description. |
 | UI-23 | Share source/link formatting. | Planned | Retain lesson headings, optional licenses/revisions, multiple citations and distinct provenance records. |
-| UI-24 | Promote the application's existing MotionSelect into Studio (A). | Planned | Preserve Studio's callback clearing simulated reduced motion; share control styling without importing the application shell. |
+| UI-24 | Promote the application's existing MotionSelect into Studio (A). | Complete | Studio uses `MotionSelect` with shared-safe control styles and still clears its simulated reduced-motion setting on selection. |
 | UI-25 | Use the application's real EvaluationScore in Studio (B). | Planned | Use typed illustrative scores with correct perspective, winning-side styling and accessible text. |
 | UI-26 | Defer coach-card/selector extraction. | Deferred | Keep current Settings and Studio workflows, shared registry/artwork, and the Settings six-column grid. |
 | UI-27 | Share identical artwork/rig wrappers. | Planned | Preserve every character's art, geometry, classes, expression behavior and animation. This also serves production artwork. |
@@ -175,6 +175,13 @@ from Git; no live decision-gathering tool is needed.
   expression groups, independent inspected expression, pressed state, 320px
   wrapping and tap targets. Commit subject: `UI-02: Share PGN and Studio choice
   controls`.
+- **UI-24 — shared motion selector:** Studio now uses the application control,
+  including its values, native label association and 44px minimum target. Added
+  a stacked layout for toolbars while preserving Settings' inline layout. CI now
+  recognizes the control as shared. Production build passed; **6 application
+  motion tests**, **2 Studio device/simulation tests**, **207 CI-planner tests**
+  and focused Ruff checks passed. Commit subject: `UI-24: Reuse application motion
+  selector in Studio`.
 
 ## Audit findings and implementation boundaries
 

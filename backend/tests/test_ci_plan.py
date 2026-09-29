@@ -149,6 +149,8 @@ def test_audited_application_frontend_paths_skip_coach_but_retain_other_browsers
         "frontend/src/MoveSymbol.tsx",
         "frontend/src/reviewMotion.ts",
         "frontend/src/evaluation.ts",
+        "frontend/src/MotionSelect.tsx",
+        "frontend/src/motion-select.css",
         "frontend/src/README.md",
     ],
 )
@@ -224,6 +226,7 @@ def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
     [
         ("frontend/src/coach/idleCoordinator.ts", ALL_SUITES),
         ("frontend/src/foundation.css", ALL_SUITES),
+        ("frontend/src/MotionSelect.tsx", ALL_SUITES),
         ("frontend/src/useSavedPreferences.ts", ALL_SUITES),
         ("frontend/studio-tests/fixtures/runtime.ts", ALL_SUITES),
         ("frontend/tests/semantic-fixtures.ts", PYTHON_SUITES),

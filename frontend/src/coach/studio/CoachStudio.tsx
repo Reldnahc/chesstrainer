@@ -17,6 +17,7 @@ import {
   type CoachMicro,
 } from "../model";
 import { useReducedMotion } from "../../useReducedMotion";
+import MotionSelect from "../../MotionSelect";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
@@ -210,20 +211,8 @@ export default function CoachStudio() {
             ))}
           </select>
         </label>
-        <label>
-          Motion intensity
-          <select
-            value={motion}
-            onChange={(event) => {
-              setMotion(event.target.value as CoachMotion);
-              setReduced(false);
-            }}
-          >
-            <option value="system">Use device setting</option>
-            <option value="natural">Animated</option>
-            <option value="still">Still</option>
-          </select>
-        </label>
+        <MotionSelect id="studio-motion" label="Motion intensity" layout="stacked"
+          value={motion} onChange={value => { setMotion(value); setReduced(false); }} />
         <button
           onClick={() => {
             setPlaying(false);
