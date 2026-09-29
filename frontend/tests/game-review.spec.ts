@@ -147,6 +147,9 @@ test('book moves appear on the board, coach and branches with original-game accu
 
   await page.getByRole('tab', {name: 'Moves', exact: true}).click();
   await page.getByRole('button', {name: '1... e5, Book', exact: true}).click();
+  await expect(page.locator('.coach-avatar')).toHaveAttribute('data-expression', 'book');
+  await page.reload();
+  await expect(page.locator('.coach-avatar')).toHaveAttribute('data-expression', 'book');
   await page.locator('.board-shell [data-square="g1"]').click();
   await page.locator('.board-shell [data-square="f3"]').click();
   await expect(page.locator('.coach-speech .move-badge')).toContainText('Book', {timeout: 30_000});
