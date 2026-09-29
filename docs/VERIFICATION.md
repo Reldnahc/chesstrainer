@@ -2,6 +2,34 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Pickle, Fergus and Celeste artwork polish — September 29, 2026
+
+Pickle now has a kitten-specific head/body silhouette, large low-set round eyes,
+small muzzle and shorter seated proportions. Cheek/chin paw positions keep the
+larger eyes visible. Fergus has broader eye whites and taller openings in all
+20 states, superseding the earlier small-eye Good treatment. Celeste has a low
+equine mouth seam and restrained surprised opening, without human teeth/tongue.
+Shared face/paw overrides retain the previous defaults for other characters.
+No reaction timing, idle scheduling, account IDs or dialogue changed.
+
+- `npx playwright test --config=studio-test-results-configs/character-polish.config.ts resting-faces.spec.ts idle-rig.spec.ts`:
+  **46 passed**, desktop/mobile, 2.7 minutes. Uses the normal studio projects with
+  an isolated output directory and the existing live server. All cast/state rig
+  targets remain mounted; eye lifecycle, Still/reduced-motion handling, reaction
+  interruption and non-eye geometry checks remain green. Frog's Good test now
+  expects broad near-neutral eyes while retaining a larger Brilliant expression;
+  Capybara's previous eye contract remains unchanged.
+- Temporary visual capture spec through `character-polish-capture.config.ts`:
+  **4 passed**, 4.9 seconds. All three complete expression grids and actual review
+  portraits at 92.8px/52.5px were inspected, plus a comparison strip. Ignored images
+  are under `data/verification/character-polish/`. Live studio checks covered
+  animated kitten idles, Book and Blunder, frog neutral and unicorn Brilliant.
+  Initial kitten cheek paws obscured the enlarged eyes; lowered placements were
+  checked in the final grids. No clipping or disconnected anatomy found.
+- `npm.cmd run build`: passed API agreement, production/contract/browser TypeScript
+  and Vite. Public source archive includes `KittenFace.tsx`. Existing chunk advisory
+  remains. `git diff --check` and independent focused source review passed.
+
 ## Opponent Book reactions — September 29, 2026
 
 One-sided review now retains the incoming Book reaction for a known opponent's

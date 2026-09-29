@@ -42,6 +42,15 @@ the studio. Personal names replace generic species/age labels while preserving
 the established character titles. Saved preferences and bookmarks continue to use
 the same stable IDs, so renaming a coach never resets a selection or changes its voice.
 
+Pickle has a kitten-specific silhouette: a large round head, low-set round eyes,
+tiny muzzle, short seated body and soft paws. Cheek/chin hand positions fit that
+face without obscuring the eyes. The shared paw rig accepts optional positions;
+other cats and dogs keep their original proportions and gesture targets.
+Fergus keeps his restrained poses with broader, taller eyes across all expressions.
+Celeste uses small equine mouth shapes below the nostrils, including a closed smile
+for delighted states, instead of the shared fantasy face's teeth and tongue.
+All three retain the existing expression, blink and idle channels.
+
 Each selectable character also has a curated writing voice and character bible.
 The shared dialogue layer selects supported facts before the chosen personality
 phrases them; switching coaches never changes grades, evidence or engine work.
