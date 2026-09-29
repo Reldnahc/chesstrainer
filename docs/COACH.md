@@ -29,13 +29,18 @@ practice and saved explanations, including after reload or on another device.
 
 | Group | Selectable coaches |
 |---|---|
-| Humans | Storyteller, Club host, Endgame expert, Creative partner, Club captain, Quiet analyst, Bright spark, Golden braid, Young Boy, Young Girl |
-| Dogs | Gentle professor, Pocket captain, Border collie, Puppy |
-| Cats | Midnight tactician, Velvet night, Kitten |
-| Other animals | Gorilla, Raccoon, Frog, Capybara |
-| Fantasy | Unicorn, Wizard, Dragon, Ghost |
-| Sci-Fi | Alien, Robot |
-| Silly & conceptual | Slime, Mushroom, Living Pawn |
+| Humans | Storyteller, Club host, Endgame expert, Creative partner, Club captain, Quiet analyst, Bright spark, Golden braid, Milo, Cleo |
+| Dogs | Gentle professor, Pocket captain, Scout, Biscuit |
+| Cats | Midnight tactician, Velvet night, Pickle |
+| Other animals | Monty, Bandit, Fergus, Winston |
+| Fantasy | Celeste, Orin, Ember, Wisp |
+| Sci-Fi | Ziggy, Rivet |
+| Silly & conceptual | Pip, Button, Percy |
+
+Display names belong to the catalogue and flow into Settings, review labels and
+the studio. Personal names replace generic species/age labels while preserving
+the established character titles. Saved preferences and bookmarks continue to use
+the same stable IDs, so renaming a coach never resets a selection or changes its voice.
 
 Each selectable character also has a curated writing voice and character bible.
 The shared dialogue layer selects supported facts before the chosen personality
@@ -247,9 +252,9 @@ choices resolve through explicit read-only replacements:
 
 | Retired selection | Replacement | Reason |
 |---|---|---|
-| Sunny companion (`dog-sunny`) | Puppy (`dog-puppy`) | Retains the eager, affectionate teammate role |
-| Library tabby (`cat-tabby`) | Kitten (`cat-kitten`) | Keeps a curious feline companion in the consolidated cast |
-| Curious calico (`cat-calico`) | Kitten (`cat-kitten`) | Retains playful investigative curiosity |
+| Sunny companion (`dog-sunny`) | Biscuit (`dog-puppy`) | Retains the eager, affectionate teammate role |
+| Library tabby (`cat-tabby`) | Pickle (`cat-kitten`) | Keeps a curious feline companion in the consolidated cast |
+| Curious calico (`cat-calico`) | Pickle (`cat-kitten`) | Retains playful investigative curiosity |
 
 These mappings are applied on API reads and stale frontend lookups/bookmarks;
 they do not rewrite preference rows. Choosing a coach explicitly saves its new

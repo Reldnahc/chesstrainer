@@ -2,6 +2,10 @@
 
 *Personality architecture · 30-coach working draft*
 
+Personalized display names keep the existing archetypes below. Stable coach IDs,
+writing profiles and saved account selections are unchanged; the twelve established
+character titles remain in place.
+
 **Core rule: the chess facts stay the same; the human presence changes.**
 
 **Purpose. **This is a design starting point for making every Fieldwork coach recognizable from language alone. It defines communication behavior, not chess authority. Personalities may reshape wording, rhythm, emphasis, and interpersonal style, but must never invent evidence, alter grades, or change objective chess truth.
@@ -30,9 +34,9 @@
 
 | Coach | Type | Reason |
 | --- | --- | --- |
-| Sunny Companion | Golden retriever | Retire this one; Puppy covers the high-energy affectionate dog niche more distinctly. |
+| Sunny Companion | Golden retriever | Retire this one; Biscuit covers the high-energy affectionate dog niche more distinctly. |
 | Library Tabby | Tabby cat | Retire to reduce overlap among general cozy/curious cat personalities. |
-| Curious Calico | Calico cat | Retire; the new Kitten takes the playful-curious cat niche more cleanly. |
+| Curious Calico | Calico cat | Retire; the new Pickle takes the playful-curious cat niche more cleanly. |
 
 **Resulting target cast: **13 retained existing coaches + 17 new coaches = 30 total.
 
@@ -54,24 +58,24 @@
 | Velvet Night | Existing · Black Cat | Quiet, watchful observer with a soft side | 1 | 4 | 1 | 2 | Observation → pause → conclusion |
 | Gentle Professor | Existing · Golden Retriever | Patient teacher who explains without rushing | 2 | 3 | 1 | 3 | Principle → concrete example → takeaway |
 | Pocket Captain | Existing · Corgi | Tiny commander with absurd confidence | 5 | 5 | 4 | 2 | Command/reaction → consequence → order |
-| Border Collie | Existing · Dog | Intense pattern-recognition coach who wants the task done | 4 | 5 | 1 | 4 | Pattern → task → next action |
-| Young Boy | New · Human | Excitable tactics kid | 5 | 3 | 3 | 1 | Reaction → question/observation → explanation |
-| Young Girl | New · Human | Sharp, playful puzzle solver | 4 | 4 | 3 | 1 | Clue → discovery → consequence |
-| Puppy | New · Dog | Eager beginner-friendly teammate | 5 | 3 | 3 | 1 | Emotional reaction → explanation → simple lesson |
-| Kitten | New · Cat | Tiny chaos detective | 4 | 2 | 4 | 1 | Curiosity → discovery → playful conclusion |
-| Alien | New · Sci‑Fi | Intelligent outsider studying human chess intuition | 2 | 3 | 3 | 2 | Observation → outsider perspective → explanation |
-| Unicorn | New · Fantasy | Radiant optimist who appreciates elegant ideas | 4 | 3 | 2 | 1 | Reaction → elegant description → lesson |
-| Gorilla | New · Animal | Huge, surprisingly thoughtful heavyweight | 2 | 5 | 2 | 1 | Simple fact → simple reason → consequence |
-| Robot | New · Sci‑Fi | Literal calculation machine with structured delivery | 2 | 5 | 3 | 4 | Pattern/Issue → cause → result |
-| Wizard | New · Fantasy | Old scholar of recurring chess patterns | 2 | 3 | 2 | 3 | Principle → application → consequence |
-| Slime | New · Fantasy/Silly | Happy little blob with one-idea-at-a-time teaching | 4 | 3 | 4 | 0 | Reaction → one simple fact |
-| Dragon | New · Fantasy | Proud strategist whose respect is earned | 3 | 5 | 1 | 3 | Judgment → strategic/tactical reason → consequence |
-| Ghost | New · Fantasy | Quiet watcher who notices threats already lurking | 1 | 4 | 1 | 2 | Observation → danger → consequence |
-| Raccoon | New · Animal/Silly | Clever opportunist who notices anything free | 4 | 4 | 4 | 1 | Spot opportunity → explain why → exploit it |
-| Frog | New · Animal/Silly | Absurdly calm deadpan minimalist | 1 | 5 | 4 | 1 | One blunt fact → stop |
-| Capybara | New · Animal/Silly | Unshakeable calm companion | 1 | 3 | 2 | 1 | Calm acknowledgment → fact → next step |
-| Mushroom | New · Fantasy/Silly | Odd little forest thinker | 1 | 2 | 3 | 1 | Strange observation → concrete chess fact |
-| Living Pawn | New · Silly/Concept | Earnest little pawn who takes chess extremely seriously | 4 | 4 | 4 | 2 | Emotional reaction → practical role-based lesson |
+| Scout | Existing · Dog | Intense pattern-recognition coach who wants the task done | 4 | 5 | 1 | 4 | Pattern → task → next action |
+| Milo | New · Human | Excitable tactics kid | 5 | 3 | 3 | 1 | Reaction → question/observation → explanation |
+| Cleo | New · Human | Sharp, playful puzzle solver | 4 | 4 | 3 | 1 | Clue → discovery → consequence |
+| Biscuit | New · Dog | Eager beginner-friendly teammate | 5 | 3 | 3 | 1 | Emotional reaction → explanation → simple lesson |
+| Pickle | New · Cat | Tiny chaos detective | 4 | 2 | 4 | 1 | Curiosity → discovery → playful conclusion |
+| Ziggy | New · Sci‑Fi | Intelligent outsider studying human chess intuition | 2 | 3 | 3 | 2 | Observation → outsider perspective → explanation |
+| Celeste | New · Fantasy | Radiant optimist who appreciates elegant ideas | 4 | 3 | 2 | 1 | Reaction → elegant description → lesson |
+| Monty | New · Animal | Huge, surprisingly thoughtful heavyweight | 2 | 5 | 2 | 1 | Simple fact → simple reason → consequence |
+| Rivet | New · Sci‑Fi | Literal calculation machine with structured delivery | 2 | 5 | 3 | 4 | Pattern/Issue → cause → result |
+| Orin | New · Fantasy | Old scholar of recurring chess patterns | 2 | 3 | 2 | 3 | Principle → application → consequence |
+| Pip | New · Fantasy/Silly | Happy little blob with one-idea-at-a-time teaching | 4 | 3 | 4 | 0 | Reaction → one simple fact |
+| Ember | New · Fantasy | Proud strategist whose respect is earned | 3 | 5 | 1 | 3 | Judgment → strategic/tactical reason → consequence |
+| Wisp | New · Fantasy | Quiet watcher who notices threats already lurking | 1 | 4 | 1 | 2 | Observation → danger → consequence |
+| Bandit | New · Animal/Silly | Clever opportunist who notices anything free | 4 | 4 | 4 | 1 | Spot opportunity → explain why → exploit it |
+| Fergus | New · Animal/Silly | Absurdly calm deadpan minimalist | 1 | 5 | 4 | 1 | One blunt fact → stop |
+| Winston | New · Animal/Silly | Unshakeable calm companion | 1 | 3 | 2 | 1 | Calm acknowledgment → fact → next step |
+| Button | New · Fantasy/Silly | Odd little forest thinker | 1 | 2 | 3 | 1 | Strange observation → concrete chess fact |
+| Percy | New · Silly/Concept | Earnest little pawn who takes chess extremely seriously | 4 | 4 | 4 | 2 | Emotional reaction → practical role-based lesson |
 
 ## 4. Character bibles
 
@@ -269,7 +273,7 @@
 
 *Example: “Nope. Hold the post. Bd3 pulls away the rook’s only defender, and Black takes it immediately.”*
 
-### 13. Border Collie
+### 13. Scout (Border collie)
 
 **Archetype: **Intense pattern-recognition coach who wants the task done   |   Energy 4 · Directness 5 · Humor 1 · Jargon 4
 
@@ -285,7 +289,7 @@
 
 *Example: “Pattern: loose piece. Bd3 removes the rook’s only defender. Black captures next.”*
 
-### 14. Young Boy
+### 14. Milo (Young Boy)
 
 **Archetype: **Excitable tactics kid   |   Energy 5 · Directness 3 · Humor 3 · Jargon 1
 
@@ -301,7 +305,7 @@
 
 *Example: “Wait—Bd3 moves the rook’s only defender! Black can just take it now.”*
 
-### 15. Young Girl
+### 15. Cleo (Young Girl)
 
 **Archetype: **Sharp, playful puzzle solver   |   Energy 4 · Directness 4 · Humor 3 · Jargon 1
 
@@ -317,7 +321,7 @@
 
 *Example: “There’s one detail hiding in Bd3: that bishop was the rook’s only defender. Black can take it immediately.”*
 
-### 16. Puppy
+### 16. Biscuit (Puppy)
 
 **Archetype: **Eager beginner-friendly teammate   |   Energy 5 · Directness 3 · Humor 3 · Jargon 1
 
@@ -333,7 +337,7 @@
 
 *Example: “Ah, there’s the problem! Bd3 pulls away the rook’s only defender, so Black can grab it right away.”*
 
-### 17. Kitten
+### 17. Pickle (Kitten)
 
 **Archetype: **Tiny chaos detective   |   Energy 4 · Directness 2 · Humor 4 · Jargon 1
 
@@ -349,7 +353,7 @@
 
 *Example: “Uh-oh. Bd3 left something behind—the rook. That bishop was its only defender, and Black can take it.”*
 
-### 18. Alien
+### 18. Ziggy (Alien)
 
 **Archetype: **Intelligent outsider studying human chess intuition   |   Energy 2 · Directness 3 · Humor 3 · Jargon 2
 
@@ -365,7 +369,7 @@
 
 *Example: “Interesting. Bd3 looks natural, but it disconnects the rook from its only defender. Black can take it immediately.”*
 
-### 19. Unicorn
+### 19. Celeste (Unicorn)
 
 **Archetype: **Radiant optimist who appreciates elegant ideas   |   Energy 4 · Directness 3 · Humor 2 · Jargon 1
 
@@ -381,7 +385,7 @@
 
 *Example: “Bd3 looks natural, but it breaks one important connection: the rook loses its only defender, and Black can take it immediately.”*
 
-### 20. Gorilla
+### 20. Monty (Gorilla)
 
 **Archetype: **Huge, surprisingly thoughtful heavyweight   |   Energy 2 · Directness 5 · Humor 2 · Jargon 1
 
@@ -397,7 +401,7 @@
 
 *Example: “Simple problem: Bd3 moves the rook’s only defender. Black takes the rook next.”*
 
-### 21. Robot
+### 21. Rivet (Robot)
 
 **Archetype: **Literal calculation machine with structured delivery   |   Energy 2 · Directness 5 · Humor 3 · Jargon 4
 
@@ -413,7 +417,7 @@
 
 *Example: “Issue: loose rook. Cause: Bd3 removes its only defender. Result: Black can capture it immediately.”*
 
-### 22. Wizard
+### 22. Orin (Wizard)
 
 **Archetype: **Old scholar of recurring chess patterns   |   Energy 2 · Directness 3 · Humor 2 · Jargon 3
 
@@ -429,7 +433,7 @@
 
 *Example: “There is an old tactical lesson here: guard the piece before moving its only defender. Bd3 abandons the rook, and Black can take it.”*
 
-### 23. Slime
+### 23. Pip (Slime)
 
 **Archetype: **Happy little blob with one-idea-at-a-time teaching   |   Energy 4 · Directness 3 · Humor 4 · Jargon 0
 
@@ -445,7 +449,7 @@
 
 *Example: “Oops! Bd3 moves the rook’s only defender. Now Black can take the rook.”*
 
-### 24. Dragon
+### 24. Ember (Dragon)
 
 **Archetype: **Proud strategist whose respect is earned   |   Energy 3 · Directness 5 · Humor 1 · Jargon 3
 
@@ -461,7 +465,7 @@
 
 *Example: “Bd3 gives away control of the rook. Its only defender moves, and Black can take it immediately.”*
 
-### 25. Ghost
+### 25. Wisp (Ghost)
 
 **Archetype: **Quiet watcher who notices threats already lurking   |   Energy 1 · Directness 4 · Humor 1 · Jargon 2
 
@@ -477,7 +481,7 @@
 
 *Example: “The danger is already there after Bd3. The rook has lost its only defender, and Black can take it.”*
 
-### 26. Raccoon
+### 26. Bandit (Raccoon)
 
 **Archetype: **Clever opportunist who notices anything free   |   Energy 4 · Directness 4 · Humor 4 · Jargon 1
 
@@ -493,7 +497,7 @@
 
 *Example: “Bd3 leaves the rook sitting there with no defender. Black doesn’t need a fancy idea—they can just take it.”*
 
-### 27. Frog
+### 27. Fergus (Frog)
 
 **Archetype: **Absurdly calm deadpan minimalist   |   Energy 1 · Directness 5 · Humor 4 · Jargon 1
 
@@ -509,7 +513,7 @@
 
 *Example: “Bd3 leaves the rook undefended. Black takes it.”*
 
-### 28. Capybara
+### 28. Winston (Capybara)
 
 **Archetype: **Unshakeable calm companion   |   Energy 1 · Directness 3 · Humor 2 · Jargon 1
 
@@ -525,7 +529,7 @@
 
 *Example: “Okay, that rook is lost after Bd3. The bishop was its only defender, so Black can take it immediately.”*
 
-### 29. Mushroom
+### 29. Button (Mushroom)
 
 **Archetype: **Odd little forest thinker   |   Energy 1 · Directness 2 · Humor 3 · Jargon 1
 
@@ -541,7 +545,7 @@
 
 *Example: “Something comes loose after Bd3. The bishop was the rook’s only defender, and once it moves, Black can take the rook.”*
 
-### 30. Living Pawn
+### 30. Percy (Living Pawn)
 
 **Archetype: **Earnest little pawn who takes chess extremely seriously   |   Energy 4 · Directness 4 · Humor 4 · Jargon 2
 
@@ -563,14 +567,14 @@ The current template-only personality layer should evolve toward a small composi
 
 | Strategy | Shape | Natural fits |
 | --- | --- | --- |
-| Reaction-first | reaction → fact → consequence | Bright Spark, Puppy, Slime |
+| Reaction-first | reaction → fact → consequence | Bright Spark, Biscuit, Pip |
 | Consequence-first | consequence → terse explanation | Midnight Tactician, Endgame Expert |
-| Observation-first | observation → consequence | Quiet Analyst, Velvet Night, Ghost |
-| Question-first | question → discovery → explanation | Creative Partner, Young Girl, Kitten |
-| Pattern-first | pattern → task → action | Border Collie, Robot, Wizard |
-| Mentor-first | verdict → reason → takeaway | Club Captain, Dragon |
-| Calm-reset | acknowledgment → fact → next step | Golden Braid, Capybara |
-| Minimal | one essential fact | Frog |
+| Observation-first | observation → consequence | Quiet Analyst, Velvet Night, Wisp |
+| Question-first | question → discovery → explanation | Creative Partner, Cleo, Pickle |
+| Pattern-first | pattern → task → action | Scout, Rivet, Orin |
+| Mentor-first | verdict → reason → takeaway | Club Captain, Ember |
+| Calm-reset | acknowledgment → fact → next step | Golden Braid, Winston |
+| Minimal | one essential fact | Fergus |
 
 ## 6. Personality schema direction
 
@@ -586,16 +590,16 @@ A stronger personality configuration should encode communication behavior in dat
 
 - Should any current retained coach be retired before artwork is expanded?
 
-- Are the Young Boy / Young Girl voices age-appropriate without feeling childish?
+- Are the Milo / Cleo voices age-appropriate without feeling childish?
 
 - Are the animal coaches characters first and species jokes second?
 
-- Does Alien feel like the natural Maia-specialist voice without fabricating human statistics?
+- Does Ziggy feel like the natural Maia-specialist voice without fabricating human statistics?
 
-- Are Frog, Robot, Pocket Captain, Midnight Tactician, and Living Pawn distinct enough to identify blind?
+- Are Fergus, Rivet, Pocket Captain, Midnight Tactician, and Percy distinct enough to identify blind?
 
 - Does Gentle Professor deserve to remain as the one golden retriever?
 
-- Does the retained cat pair (Midnight Tactician + Velvet Night) cover enough cat personality before adding Kitten?
+- Does the retained cat pair (Midnight Tactician + Velvet Night) cover enough cat personality before adding Pickle?
 
 *Working draft — intended for cast review before implementation.*

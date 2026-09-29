@@ -262,7 +262,7 @@ export const dogStudy: CoachCollection = {
       id: "collie",
       coachId: "dog-collie",
       personality: collie,
-      name: "Border collie",
+      name: "Scout",
       description:
         "Intense pattern recognition and precise, task-focused feedback.",
       character: "Intent eyes · attentive ears · a feathery white-tipped tail",
