@@ -15,7 +15,7 @@ const castIds = castGroups.flatMap(group => [...group.ids]);
 const retainedNames = [
   "Storyteller", "Club host", "Endgame expert", "Creative partner",
   "Club captain", "Quiet analyst", "Bright spark", "Golden braid",
-  "Gentle professor", "Pocket captain", "Border collie",
+  "Gentle professor", "Pocket captain", "Scout",
   "Midnight tactician", "Velvet night",
 ];
 
