@@ -7,13 +7,14 @@
     "dev": "vite --host 127.0.0.1",
     "dev:coach": "vite --config vite.coach.config.ts",
     "dev:intelligence": "vite --config vite.intelligence.config.ts",
-    "build": "tsc -b && npm run test:types && vite build",
+    "build": "tsc -b && npm run test:types && npm run test:styles && vite build",
     "preview": "vite preview",
     "prebuild": "npm run api:check && node ../scripts/source_archive.mjs",
     "predev": "node ../scripts/source_archive.mjs",
     "api:generate": "node scripts/api-types.mjs",
     "api:check": "node scripts/api-types.mjs --check",
-    "test:types": "tsc --project tsconfig.contracts.json && tsc --project tsconfig.browser-tests.json"
+    "test:types": "tsc --project tsconfig.contracts.json && tsc --project tsconfig.browser-tests.json",
+    "test:styles": "node --test scripts/style-boundaries.test.mjs && node scripts/style-boundaries.mjs"
   },
   "dependencies": {
     "@fontsource-variable/ibm-plex-sans": "^5.3.0",

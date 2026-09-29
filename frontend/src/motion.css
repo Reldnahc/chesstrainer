@@ -1,25 +1,4 @@
-/* Coach portraits own their own motion choice. All other interface effects use
-   this policy, including inline transitions from the board library. */
-:root[data-interface-motion="still"],
-:root[data-interface-motion="still"] *:not(.coach-avatar, .coach-avatar *),
-:root[data-interface-motion="still"] *:not(.coach-avatar, .coach-avatar *)::before,
-:root[data-interface-motion="still"] *:not(.coach-avatar, .coach-avatar *)::after {
-  animation: none !important;
-  transition: none !important;
-  scroll-behavior: auto !important;
-}
-/* Before account preferences load, login and standalone development surfaces
-   still honor the browser. An explicit Animated choice takes precedence. */
-@media (prefers-reduced-motion: reduce) {
-  :root:not([data-interface-motion="natural"]),
-  :root:not([data-interface-motion="natural"]) *:not(.coach-avatar, .coach-avatar *),
-  :root:not([data-interface-motion="natural"]) *:not(.coach-avatar, .coach-avatar *)::before,
-  :root:not([data-interface-motion="natural"]) *:not(.coach-avatar, .coach-avatar *)::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-}
+/* Account animation preference controls. */
 .motion-setting {
   display: flex;
   justify-content: space-between;

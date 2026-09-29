@@ -2,6 +2,46 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## CSS ownership and selective coach coverage — September 29, 2026
+
+Separated shared fonts/controls, coach feedback and interface-motion policy from
+application shell, workspace and page styles. Each development entrypoint now
+imports only its actual styles. One manifest drives both CI exclusions and a
+build-time Vite dependency guard, including nested CSS imports. Application-only
+CSS (including `styles.css`) selects application/accounts coverage; board CSS
+also selects intelligence; shared and unknown styles still select every suite.
+Independent review found no remaining correctness or packaging issues.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q -p no:cacheprovider --basetemp data/verification/css-split-ci`:
+  **238 passed**. After classifying the app aggregate, the planner's **203 tests**
+  passed again. Selection unions preserve shared-style coverage.
+- `npm.cmd run build`: passed API agreement, production/contract/browser-test
+  TypeScript, **7 style-boundary regressions**, both real standalone dependency
+  graphs and Vite. The existing large-chunk advisory remains. Boundary checks
+  write no bundles and start no servers; the real graph checks took about five
+  seconds locally. Direct/nested application-style imports deliberately fail.
+- From `frontend`, `npx.cmd playwright test --reporter=line`:
+  **297 passed, 3 intentional viewport skips**. The complete accounts and
+  intelligence suites (`--config playwright.accounts.config.ts` and
+  `--config playwright.intelligence.config.ts`) passed **8** and **44** tests.
+  All three Windows runners stalled during temporary web-server teardown;
+  stopping only their identified fixture servers allowed exit code 0 and final
+  passing reports. The owner's existing studio server remained running.
+- Focused coach checks from `frontend`:
+  `node node_modules/playwright/cli.js test --config ../.tools/coach-css-split.config.mts coach-studio.spec.ts coach-studies.spec.ts reduced-motion.spec.ts --reporter=line`:
+  **18 passed**, desktop/mobile. The ignored config retains the normal projects
+  and single worker, reuses the existing studio and redirects output. An initial
+  launch from the wrong working directory was cancelled and is not counted.
+- Flattened application CSS retains all **2,025 selector/property value
+  sequences**. Studio computed geometry/style snapshots for **562 elements**
+  matched before/after at 1920, 1440, 1000 and 390px widths, aside from its intended
+  wrapper-class rename. Application, studio and laboratory screenshots were
+  inspected at actual desktop/phone layouts.
+- `ruff check backend scripts migrations`, `ruff format --check backend scripts migrations`
+  (**285 files**), `scripts/export_api_contract.py --check`, and Git whitespace
+  checks passed. This pass did not rerun the full backend, full coach animation
+  matrix or Docker installation suites; no engine or runtime behavior changed.
+
 ## Smarter CI integration with current main — September 29, 2026
 
 Merged `aa851c5` into the existing CI branch in `3a1261c`, preserving the current

@@ -54,6 +54,8 @@ def test_documentation_skips_heavy_checks(path):
         "frontend/tsconfig.browser-tests.json",
         "frontend/vite.config.ts",
         "frontend/scripts/api-types.mjs",
+        "frontend/scripts/style-boundaries.json",
+        "frontend/scripts/style-boundaries.mjs",
         "backend/trainer/contracts/games.py",
         "backend/trainer/routes/games.py",
         "backend/trainer/api.py",
@@ -135,9 +137,10 @@ def test_audited_application_frontend_paths_skip_coach_but_retain_other_browsers
         "frontend/src/motion.ts",
         "frontend/src/useReducedMotion.ts",
         "frontend/src/useSavedPreferences.ts",
-        "frontend/src/styles.css",
-        "frontend/src/base.css",
-        "frontend/src/study/study.css",
+        "frontend/src/foundation.css",
+        "frontend/src/coach-presentation.css",
+        "frontend/src/interface-motion.css",
+        "frontend/src/coach/coach.css",
         "frontend/src/srsReview/future.css",
         "frontend/src/gameReview/future.css",
         "frontend/src/gameReview/types.ts",
@@ -220,7 +223,7 @@ def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
     ("dependency", "suites"),
     [
         ("frontend/src/coach/idleCoordinator.ts", ALL_SUITES),
-        ("frontend/src/study/study.css", ALL_SUITES),
+        ("frontend/src/foundation.css", ALL_SUITES),
         ("frontend/src/useSavedPreferences.ts", ALL_SUITES),
         ("frontend/studio-tests/fixtures/runtime.ts", ALL_SUITES),
         ("frontend/tests/semantic-fixtures.ts", PYTHON_SUITES),
@@ -230,6 +233,43 @@ def test_application_exclusions_do_not_hide_changed_standalone_dependencies(depe
     paths = ["docs/TESTING.md", "frontend/src/study/StudyScreen.tsx", dependency]
     assert_selection(ci_plan.select_checks(paths), build=True, docker=True, suites=suites)
     assert ci_plan.select_checks(paths) == ci_plan.select_checks(paths + paths)
+
+
+@pytest.mark.parametrize("path", sorted(ci_plan.APPLICATION_CSS))
+def test_application_styles_skip_both_standalone_browser_suites(path):
+    assert (ci_plan.ROOT / path).is_file()
+    assert_selection(
+        ci_plan.select_checks([path]), build=True, docker=True, suites=["local", "accounts"]
+    )
+
+
+@pytest.mark.parametrize("path", sorted(ci_plan.APPLICATION_AND_INTELLIGENCE_CSS))
+def test_board_styles_skip_coach_but_keep_intelligence(path):
+    assert (ci_plan.ROOT / path).is_file()
+    assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=PYTHON_SUITES)
+
+
+@pytest.mark.parametrize(
+    "path", ["frontend/src/foundation.css", "frontend/src/coach-presentation.css"]
+)
+def test_application_style_exclusions_cannot_hide_shared_styles(path):
+    assert_selection(
+        ci_plan.select_checks([*ci_plan.APPLICATION_CSS, path]),
+        build=True,
+        docker=True,
+        suites=ALL_SUITES,
+    )
+
+
+def test_board_and_application_styles_keep_all_their_consumers():
+    assert_selection(
+        ci_plan.select_checks(
+            [*ci_plan.APPLICATION_CSS, *ci_plan.APPLICATION_AND_INTELLIGENCE_CSS]
+        ),
+        build=True,
+        docker=True,
+        suites=PYTHON_SUITES,
+    )
 
 
 @pytest.mark.parametrize("paths", [[], ["docs/TESTING.md"], ["frontend/type-tests/api.ts"]])

@@ -55,7 +55,8 @@ no fixed 1280px/560px page caps.
 
 SRS, focused practice and explanation playback use the same `ReviewCoach`,
 `MoveBadge`, `MoveSymbol` and `Board` components as full-game review. Shared styles
-live in `frontend/src/review-presentation.css`; `reviewMotion.ts` owns the 280 ms
+live in `frontend/src/review-presentation.css` (workspace) and
+`frontend/src/coach-presentation.css` (coach and ratings); `reviewMotion.ts` owns the 280 ms
 piece duration, reply delay and live reduced-motion preference. The opponent's
 counter starts after the attempted move finishes. Reduced motion disables piece
 transitions and badge entrance animations in both modes.

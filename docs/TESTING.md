@@ -129,6 +129,8 @@ select everything. Missing/unresolvable history also selects everything.
 | Documentation deletions/renames or symlinks | Full checks, since documentation is packaged and source symlinks are rejected |
 | Backend or migrations | Backend, build/types, application/accounts/intelligence browsers; runtime changes also test Docker |
 | Audited application-only TypeScript and public assets | Build/types, application/accounts/intelligence browsers, Docker |
+| Audited application-only CSS (page layouts, settings, review workspace) | Build/types, application/accounts browsers, Docker |
+| Board CSS | Build/types, application/accounts/intelligence browsers, Docker |
 | Coach/dialogue source, shared styles/helpers, unclassified frontend modules | Build/types, all browser suites, Docker |
 | Coach studio source/tests | Build/types and coach studio |
 | Intelligence lab source/tests | Build/types and intelligence lab |
@@ -141,8 +143,14 @@ intelligence fixtures import backend test modules, so backend/test-fixture edits
 must retain lab coverage. Keep the selector and its regression tests aligned
 when adding shared dependencies or another suite. The app-only source allowlist
 is conservative: new unclassified frontend modules still run all browser suites.
-Both development entrypoints import the shared stylesheet tree, so even a
-page-specific CSS edit retains coach coverage.
+The development entrypoints import only their own shell and the shared styles
+they use. `frontend/scripts/style-boundaries.json` declares application-only CSS
+and board CSS. The selector and the build's Vite dependency guard use that same
+manifest: an accidental direct or nested CSS import into an excluded developer
+surface fails the build. New, unclassified CSS remains conservative. Shared
+foundation, coach presentation and motion policy retain all browser suites;
+ordinary page CSS and the application import aggregate no longer select the
+coach studio.
 
 The application and coach studio suites each run in four isolated jobs
 (desktop/mobile, two file shards each). Accounts and intelligence each have
@@ -188,6 +196,7 @@ Inspect selection locally without running suites:
 ```sh
 python scripts/ci_plan.py --paths docs/TESTING.md
 python scripts/ci_plan.py --paths frontend/src/coach/usePerformance.ts
+python scripts/ci_plan.py --paths frontend/src/game-history.css
 python scripts/ci_plan.py --base origin/main --head HEAD
 python scripts/ci_plan.py --full
 python -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q
@@ -227,6 +236,12 @@ coach selection but no expression viewer, and that `/coach-studio` is not an app
 route. CI runs the application, account and standalone studio suites separately.
 The independent [intelligence laboratory](INTELLIGENCE_LAB.md) runs on port 5175;
 its suite verifies evidence inspection, production-renderer parity and isolation.
+
+`npm run test:styles` checks the style-boundary guard against direct JavaScript
+imports and nested CSS imports, then checks both real development entrypoints.
+It resolves their production Vite dependency graphs without starting servers or
+writing build artifacts. This runs in the normal frontend build; it adds a short
+dependency check rather than running character animation browser tests.
 
 ### Coach cast and behavior
 

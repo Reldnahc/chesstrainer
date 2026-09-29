@@ -18,6 +18,15 @@ SUITES = {
 API_SUITES = {"local", "accounts"}
 # Intelligence regressions execute Python fixtures without starting an API server.
 PYTHON_SUITES = API_SUITES | {"intelligence-lab"}
+# The frontend build enforces these same exclusions against Vite's resolved
+# standalone dependencies, including nested CSS imports.
+STYLE_BOUNDARIES = json.loads(
+    (ROOT / "frontend/scripts/style-boundaries.json").read_text(encoding="utf-8")
+)
+APPLICATION_CSS = {f"frontend/{path}" for path in STYLE_BOUNDARIES["applicationOnly"]}
+APPLICATION_AND_INTELLIGENCE_CSS = {
+    f"frontend/{path}" for path in STYLE_BOUNDARIES["applicationAndIntelligence"]
+}
 # These application modules are outside the standalone coach entrypoint and test
 # imports. Keep additions explicit: unclassified source still runs every suite.
 APPLICATION_FRONTEND_FILES = {
@@ -137,6 +146,14 @@ def select_checks(paths, full=False):
                 # Python fixture imports cross test modules and production code.
                 suites.update(PYTHON_SUITES)
                 reason("Backend changes require Python and dependent browser checks.")
+            elif path in APPLICATION_CSS:
+                build = docker = True
+                suites.update(API_SUITES)
+                reason("Application-only styles require application and account browser checks.")
+            elif path in APPLICATION_AND_INTELLIGENCE_CSS:
+                build = docker = True
+                suites.update(PYTHON_SUITES)
+                reason("Board styles require application and intelligence browser checks.")
             elif (
                 path in APPLICATION_FRONTEND_FILES
                 or (
@@ -146,9 +163,8 @@ def select_checks(paths, full=False):
                 )
                 or path.startswith("frontend/public/")
             ):
-                # The standalone entrypoints disable publicDir. Their shared
-                # stylesheet imports still require the broad source rule below,
-                # including CSS inside otherwise application-only directories.
+                # The standalone entrypoints disable publicDir. CSS exclusions
+                # are separately declared and enforced by the frontend build.
                 build = docker = True
                 suites.update(PYTHON_SUITES)
                 reason("Application frontend changes require application and intelligence checks.")
