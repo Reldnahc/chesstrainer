@@ -123,11 +123,28 @@ def scheduling_allowed(db, session, snapshot):
     return True
 
 
+def answer_rows(snapshot):
+    """Present canonical answers without rewriting immutable recall snapshots."""
+    board = valid_board(snapshot.fen)
+    answers = {}
+    for row in snapshot.answers:
+        uci = legal_move(board, row["uci"]).uci()
+        previous = answers.get(uci)
+        answers[uci] = row | {
+            "uci": uci,
+            "primary": row["primary"] or bool(previous and previous["primary"]),
+        }
+    return list(answers.values())
+
+
 def answer(snapshot, uci=None, *, primary=False):
+    rows = answer_rows(snapshot)
+    if uci is not None and not primary:
+        uci = legal_move(valid_board(snapshot.fen), uci).uci()
     row = (
-        next((row for row in snapshot.answers if row["primary"]), None)
+        next((row for row in rows if row["primary"]), None)
         if primary
-        else next((row for row in snapshot.answers if row["uci"] == uci), None)
+        else next((row for row in rows if row["uci"] == uci), None)
     )
     return SimpleNamespace(**row, analysis_id=None) if row else None
 
@@ -145,7 +162,7 @@ def feedback(db, exercise, session, snapshot):
     return {
         "opening": context(snapshot),
         "answers": [
-            {key: row[key] for key in ("uci", "san", "primary")} for row in snapshot.answers
+            {key: row[key] for key in ("uci", "san", "primary")} for row in answer_rows(snapshot)
         ],
         "continuations": continuations,
         "explanation": "Accepted moves come from the studies selected when this attempt started.",

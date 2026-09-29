@@ -19,6 +19,11 @@ ambiguous network failure. Retrying the same action resumes the committed
 lesson, rehearsal or puzzle rather than creating a duplicate or selecting a
 different puzzle. An acknowledged start or a different target uses a new ID.
 
+Answer comparisons use python-chess move identities, including equivalent
+castling notation. Playback and answer views expose canonical UCI moves. Course
+and opening source snapshots remain immutable; normalizing an opening answer's
+spelling alone does not invalidate recalls or change retirement and due dates.
+
 ## Navigation compatibility
 
 `/study` is the learning home; `/study/due` exposes the existing recall domain.

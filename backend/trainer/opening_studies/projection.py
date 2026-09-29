@@ -48,7 +48,7 @@ def contribute(db, study, scheduler):
                     position_key=key,
                     fen=board.fen(),
                     ply=ply,
-                    move_uci=uci,
+                    move_uci=move.uci(),
                     move_san=board.san(move),
                 )
             )
@@ -64,11 +64,16 @@ def contribute(db, study, scheduler):
 def rebuild(db, exercise_id, *, invalidate=False, reason="study_added"):
     card = db.get(OpeningCard, exercise_id)
     state = db.get(SRSState, exercise_id)
-    old = set(
+    board = valid_board(db.get(Exercise, exercise_id).fen)
+    saved = set(
         db.scalars(select(ExerciseAnswer.uci).where(ExerciseAnswer.exercise_id == exercise_id))
     )
-    new = set(
-        db.scalars(
+    # Older projections may retain castling aliases. Compare legal move identities
+    # so repairing their spelling does not reset retirement or invalidate recall.
+    old = {legal_move(board, uci).uci() for uci in saved}
+    new = {
+        legal_move(board, uci).uci()
+        for uci in db.scalars(
             select(OpeningStudyMove.move_uci)
             .join(
                 OpeningStudy,
@@ -76,15 +81,29 @@ def rebuild(db, exercise_id, *, invalidate=False, reason="study_added"):
             )
             .where(OpeningStudyMove.exercise_id == exercise_id, OpeningStudy.active.is_(True))
         )
-    )
+    }
     active = bool(new)
-    previous_target = set(card.last_active_answers)
+    previous_target = {legal_move(board, uci).uci() for uci in card.last_active_answers}
     target_changed = active and bool(previous_target) and new != previous_target
     authority_changed = old != new or card.active != active or invalidate
+    if saved != new or authority_changed:
+        db.execute(delete(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise_id))
+        for index, uci in enumerate(sorted(new)):
+            db.add(
+                ExerciseAnswer(
+                    exercise_id=exercise_id,
+                    uci=uci,
+                    san=board.san(legal_move(board, uci)),
+                    grade="correct",
+                    primary=index == 0,
+                )
+            )
+    if active:
+        card.last_active_answers = sorted(new)
     if not authority_changed:
         return
     before = {
-        "answers": sorted(old),
+        "answers": sorted(saved),
         "active": card.active,
         "due": utc(state.due).isoformat(),
         "retired_at": state.retired_at.isoformat() if state.retired_at else None,
@@ -100,19 +119,6 @@ def rebuild(db, exercise_id, *, invalidate=False, reason="study_added"):
             card.retirement_guard_revision = card.revision
         elif previous_target - new and utc(state.due) > now():
             state.due = now()
-        card.last_active_answers = sorted(new)
-    db.execute(delete(ExerciseAnswer).where(ExerciseAnswer.exercise_id == exercise_id))
-    board = valid_board(db.get(Exercise, exercise_id).fen)
-    for index, uci in enumerate(sorted(new)):
-        db.add(
-            ExerciseAnswer(
-                exercise_id=exercise_id,
-                uci=uci,
-                san=board.san(legal_move(board, uci)),
-                grade="correct",
-                primary=index == 0,
-            )
-        )
     db.add(
         OpeningContentChange(
             exercise_id=exercise_id,
