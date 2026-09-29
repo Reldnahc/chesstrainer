@@ -2,6 +2,73 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Study code-health review — September 29, 2026
+
+Reviewed the Study branch's lesson/puzzle state machines, opening recall,
+account boundaries, frontend request lifecycle and shared playback. This pass
+made no layout or product changes.
+
+Confirmed and fixed:
+
+- A lost session-start response could create a duplicate lesson/rehearsal or
+  select a different puzzle on retry. One shared retry helper retains the exact
+  selected content and request ID until acknowledged or explicitly changed.
+- Opening queue/start queries loaded and checked every stale unfinished session.
+  A reproduction with 100 stale sessions issued 403 queue queries; the SQL
+  authority filter now uses three. Regression tests verify the bound with 1/25
+  stale sessions, queue precedence, limits and newest-current-session reuse.
+- Equivalent standard castling encodings could reject the board's canonical move
+  in puzzles, lessons and opening recalls. Comparisons and display frames now
+  use legal move identities. Immutable lesson/opening snapshots and fingerprints
+  remain intact; equivalent opening-answer repairs preserve schedules and
+  retirement. The shared legality helper also rejects bogus promotion suffixes
+  that python-chess's castling normalization otherwise discards.
+- Branch and context-reset transitions into a rehearsal committed an automatic
+  opponent move without returning its playback frame. Both transitions now
+  return the committed frames; reload still does not replay them.
+
+Focused regressions demonstrated failures before the fixes. The lesson suites
+passed 72 tests, core/puzzle/contracts passed 57, opening query/regression suites
+passed 68, and opening-castling cases passed 20. These overlapping focused runs
+preceded the aggregate verification below.
+
+- With `STOCKFISH_PATH=.tools/stockfish/stockfish-windows-x86-64-avx2.exe`,
+  `.venv/Scripts/python.exe -m pytest -q -ra -p no:cacheprovider --basetemp=data/verification/study-code-review-20260929`:
+  **806 passed, 3 opt-in Maia skips**, in 290.70 seconds. Native Stockfish ran;
+  the skips are `test_human_runtime.py:128` and
+  `test_maia_feasibility.py:90,105`, which require the separate pinned Torch/model
+  runtime. There were two existing TestClient dependency deprecation warnings.
+- `npm.cmd run build`: passed, including OpenAPI agreement, application and
+  browser-test TypeScript, source packaging and Vite.
+- `.venv/Scripts/python.exe -m ruff check backend scripts migrations` and
+  `ruff format --check backend scripts migrations`: passed, 278 formatted files.
+  The first aggregate format pass identified two mixed-line-ending files and
+  one test wrapping issue; formatting was corrected before the passing rerun.
+- `.venv/Scripts/python.exe scripts/export_api_contract.py --check` and
+  `git diff --check`: passed. No API/schema regeneration was necessary.
+- From `frontend`, `npx.cmd playwright test study-puzzles.spec.ts study-lessons.spec.ts study-start-retry.spec.ts italian-course.spec.ts opening-library.spec.ts opening-due.spec.ts navigation.spec.ts --reporter=line`:
+  **89 passed, 1 intentional mobile skip** for desktop modifier-click. The
+  navigation filename also selects the existing variation-navigation suite.
+  Tests use the production frontend and test backend on desktop/mobile, including
+  real server commits followed by deliberately lost responses.
+- `npx.cmd playwright test --config playwright.accounts.config.ts --reporter=line`:
+  **8 passed**, including second-device persistence and account isolation.
+- The earlier focused `npx.cmd playwright test tests/study-start-retry.spec.ts`
+  run passed all 16 cases. Its Windows test-server teardown required stopping
+  only the verified test-owned Python PID after tests finished; the aggregate
+  browser/account runs exited normally.
+
+No Docker deployment, model-weight changes, native Maia rerun or unrelated
+coach-studio/intelligence-lab browser rerun was needed. Existing Vite bundle-size
+and Starlette/httpx advisories remain. A separate nonblocking trusted-provider
+revision-reuse limitation is documented in [Study](STUDY.md): before any lesson
+progress exists, opening-only enrollment pins individual lines rather than the
+complete course fingerprint. Previously saved studies and recalls remain safe.
+
+Fix commits: `e6fd39d` (rehearsal playback), `1820fb2` (bounded recall queries),
+`9aac92d` (shared/puzzle/lesson castling), `593701b` (retryable starts), and
+`e5a93dc` (opening castling). All are local; this pass did not publish the branch.
+
 ## Study frameworks and Italian pilot — September 28, 2026
 
 Verified the approved Study sprint on `codex/study-frameworks`: private puzzle

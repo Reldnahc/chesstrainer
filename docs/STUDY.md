@@ -96,6 +96,13 @@ are persistent. Back/replay never erases assistance/failure flags or first
 completion time. Chapter progress records viewing, attempts and completion, not
 mastery. None of these actions writes ordinary Review, FSRS or weakness evidence.
 
+Provider revisions must remain immutable. Whole-course fingerprint enforcement
+starts when lesson progress exists; opening-only enrollment pins each selected
+line. Before any lesson is started, reusing a revision for a changed course can
+still admit a different newly selected line. Existing study and recall snapshots
+remain unchanged. Enforcing whole-course identity at the first opening-only
+enrollment is a remaining provider-validation hardening opportunity.
+
 Rehearsal responses withhold future moves, answers and annotations. Decisions may
 offer authored guidance; a wrong move stays on the same decision. Show move is
 explicit assistance. Accepted moves and automatic replies commit together before

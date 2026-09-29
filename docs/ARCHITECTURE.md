@@ -79,7 +79,7 @@ lock, while other accounts have independent locks.
 | Module in frontend/src | Responsibility |
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
-| study/ | Study landing and puzzle player; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state |
+| study/ | Study landing, opening catalogue/enrollment, lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
@@ -163,14 +163,17 @@ the `interface_motion` column in that same row. Both providers share the saved
 preference lifecycle and reset when the account boundary unmounts. The root CSS
 motion attribute is also removed on unmount; login screens use the device default.
 
-Navigation is Review, Games, Weaknesses, Settings. A small History API
-router renders `/review`, `/games`, `/games/:id`, `/weaknesses` and
-`/settings`. Screen/game links push history entries; `popstate` restores the
-destination. The root URL aliases `/review` with `replaceState`, preserving old
-`?exercise=` bookmarks. Removed `?unit=` links return to mixed Review without
-starting a lesson. Unknown paths show a recoverable not-found screen.
+Navigation is Study, Games, Weaknesses, Settings. A small History API router
+renders `/study`, its Due/openings/puzzles subpages and saved session/source
+links, `/games`, `/games/:id`, `/weaknesses` and `/settings`. Screen/game links
+push history entries; `popstate` restores the destination. The root URL aliases
+`/study` with `replaceState`; old `/review` and root exercise/focus/session
+bookmarks resolve to `/study/due`. Removed `?unit=` links discard the archived
+unit/exercise identity without starting a lesson. Opening recalls pin their
+saved session in the URL so refresh resumes the same answer snapshot. Unknown
+paths show a recoverable not-found screen.
 Legacy `/import` URLs replace their history entry with `/settings`. Settings owns
-the saved Chess.com connection, filtered imports, PGN uploads and import activity.
+the saved provider connections, filtered imports, PGN uploads and import activity.
 Games keeps only a compact Update games control using the same sync component and
 polling behavior; without a connection it links to Settings. Sync still fetches
 games without starting engine analysis.
