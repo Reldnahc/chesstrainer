@@ -374,9 +374,7 @@ def test_castling_aliases_use_canonical_solution_and_playback(
 
 
 def test_legacy_castling_snapshot_and_invalid_move_commands(settings):
-    fixture = definition(
-        initial_fen="4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", solution=("e1g1",)
-    )
+    fixture = definition(initial_fen="4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1", solution=("e1g1",))
     app = app_with(settings, fixture)
     with TestClient(app) as client:
         state = start(client)
