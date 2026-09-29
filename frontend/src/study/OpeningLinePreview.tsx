@@ -8,6 +8,7 @@ import Button from "../Button";
 import MovePlaybackControls from "../MovePlaybackControls";
 import ReviewCoach from "../ReviewCoach";
 import ReviewWorkspace from "../ReviewWorkspace";
+import SourceLine from "../SourceLine";
 import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
 import { createPracticeStarter, setStudyActive } from "./openingApi";
 
@@ -100,7 +101,8 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
       <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall decisions. This line does not cover every opponent response.</p>
       {saved && <p role="status" className="small">Study saved. Eligible positions are now included in Due.</p>}
       <div className="button-row"><ActionLink variant="secondary" href={`${studyPaths.openings}/studies`}>My studies</ActionLink>{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</div>
-      <p className="opening-source">{line.line.source === "lichess_catalogue" ? "Lichess opening catalogue · CC0" : "Authored course repertoire line"} · Revision {line.line.source_version}</p>
+      <SourceLine className="opening-source" text={line.line.source === "lichess_catalogue" ? "Lichess opening catalogue" : "Authored course repertoire line"}
+        license={line.line.source === "lichess_catalogue" ? "CC0" : undefined} revision={line.line.source_version} />
     </section>
   </ReviewWorkspace>;
 }

@@ -5,6 +5,7 @@ import Board from "../Board";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ReviewWorkspace from "../ReviewWorkspace";
+import SourceLine from "../SourceLine";
 import ReviewCoach from "../ReviewCoach";
 import MoveBadge from "../MoveBadge";
 import MoveStatus from "../MoveStatus";
@@ -85,10 +86,9 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
       <h2>{session.completion.themes.length ? session.completion.themes.map(theme => theme.replaceAll("_", " ")).join(" · ") : "The continuation"}</h2>
       <div className="puzzle-move-list"><button disabled={playing} aria-current={displayedFen === session.completion.solution[0]?.before_fen ? "step" : undefined} onClick={state.inspectStart}>Start</button>{session.completion.solution.map((move, index) => <button key={`${index}:${move.uci}`} disabled={playing} aria-current={frame === move ? "step" : undefined} onClick={() => state.inspect(move)}>{move.san}</button>)}</div>
       {session.completion.rating != null && <p className="small">Puzzle rating: {session.completion.rating}</p>}
-      <p className="puzzle-provenance">Puzzle practice · {session.source === "games" ? "From your games" : "Collection puzzle"}</p>
-      <p className="puzzle-provenance">{session.completion.provenance.attribution}
-        {session.completion.provenance.url && /^https?:\/\//i.test(session.completion.provenance.url) && <> · <a href={session.completion.provenance.url} target="_blank" rel="noreferrer">Source</a></>}
-      </p>
+      <SourceLine className="puzzle-provenance" text={`Puzzle practice · ${session.source === "games" ? "From your games" : "Collection puzzle"}`} />
+      <SourceLine className="puzzle-provenance" text={session.completion.provenance.attribution}
+        url={session.completion.provenance.url} linkLabel="Source" />
     </section>}
   </ReviewWorkspace>;
 }

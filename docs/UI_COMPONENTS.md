@@ -91,7 +91,7 @@ not React components.
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
 | Import option and submit action | [ImportControls](../frontend/src/ImportControls.tsx) | Shared optional training-analysis checkbox and submit label/icon/busy presentation. PGN matching, provider filters and request payloads remain caller-owned. |
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
-| Lesson source attribution | [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Course and illustrative-game citations, including optional license and external URL. |
+| Source attribution | [SourceLine](../frontend/src/SourceLine.tsx), [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Shared text, optional license/revision and valid absolute HTTP(S) external links. Lesson sources remain multiple records; puzzle provenance remains completion-only. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. |
 | Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels, notices and action rows retain CSS foundations. Ordinary actions use Button/ActionLink. **There is no shared React Pagination, EmptyState or Modal component yet.** |
 
@@ -156,7 +156,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Complete | Both statistics panels share StatList with their original labels, values, visibility and appearance. |
 | UI-21 | Share only the turn indicator used by the board-status compositions. | Planned | Keep each mode's surrounding status content and cold-practice visibility rules. |
 | UI-22 | Extend the application's AccuracyReadout with a history presentation. | Complete | History shares formatting and completion descriptions; its numeric spans remain passive and queued reviews retain their action state. |
-| UI-23 | Share source/link formatting. | Planned | Retain lesson headings, optional licenses/revisions, multiple citations and distinct provenance records. |
+| UI-23 | Share source/link formatting. | Complete | SourceLine serves lessons, puzzle completion and opening previews, preserving optional license/revision and multiple records while validating external protocols. |
 | UI-24 | Promote the application's existing MotionSelect into Studio (A). | Complete | Studio uses `MotionSelect` with shared-safe control styles and still clears its simulated reduced-motion setting on selection. |
 | UI-25 | Use the application's real EvaluationScore in Studio (B). | Complete | Board-size Studio previews use `EvaluationScore` with typed illustrative scores, correct White perspective, side styling and accessible text. |
 | UI-26 | Defer coach-card/selector extraction. | Deferred | Keep current Settings and Studio workflows, shared registry/artwork, and the Settings six-column grid. |
@@ -327,6 +327,13 @@ from Git; no live decision-gathering tool is needed.
   **20 passed** across desktop/320px mobile. Checks preserve retries, links,
   keyboard focus and cold-practice silence while loading. Commit subject:
   `UI-11: Share loading and unavailable content states`.
+
+- **UI-23 — source attribution:** shared source lines and safe external-link
+  formatting without changing provenance or exposing puzzle sources before
+  completion. Production build passed; browser coverage: **6 passed**, including
+  multiple/empty citations, unsafe and malformed URLs, puzzle reveal gating,
+  catalogue CC0 revisions and authored-course identity. Commit subject:
+  `UI-23: Share source attribution across study players`.
 
 ## Audit findings and implementation boundaries
 
