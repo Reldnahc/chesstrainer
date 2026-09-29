@@ -1,6 +1,6 @@
 # Coach idle revamp — implementation plan
 
-Status: implementation in progress; Milestone 1 is complete. Next: resting faces.
+Status: implementation in progress; Milestones 1–2 are complete. Next: repertoire.
 The plan passed three design-review rounds before implementation.
 Branch: `codex/coach-idle-revamp`, created from local `main` at `fa9dc64`.
 
@@ -13,6 +13,13 @@ blinking, rig capabilities, memoized artwork and variable-size studio gallery.
 84 focused desktop/mobile checks, production build, API/type agreement and diff
 checks passed. Independent review's unsupported-preview issue was fixed. Details
 and the Windows test-server workaround are recorded in `VERIFICATION.md`.
+Committed as `2bb514a`.
+
+Milestone 2: entrance eye squeezes now settle into attentive eyes across the cast
+without changing the semantic face, other geometry or reaction timing. Rendered
+rig coverage checked all 600 current coach/expression pairs. Resting-face tests
+covered 38 distinct desktop/mobile cases; TypeScript and production build passed.
+Independent review found no material issue. Details are in `VERIFICATION.md`.
 
 ## Intended experience
 

@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachArtworkProps, CoachExpression } from "../../model";
 import Accents from "../../studies/Accents";
 import { CastHands } from "./CastHands";
@@ -7,6 +8,7 @@ import "../../studies/motion.css";
 import "./scifi.css";
 
 function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachExpression }) {
+  const closedEyes = useEyeClosure(pose.closed);
   const alarm = expression === "blunder";
   const brilliant = expression === "brilliant";
   const color = alarm ? "#f5b493" : "#a7dfcd";
@@ -16,7 +18,7 @@ function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachE
         <g key={x} transform={`translate(${x} 46)`}>
           <g className="cast-lens">
             <circle r="10" fill="#354e55" stroke="#617d7e" strokeWidth="1.2" />
-            <g className="coach-eyes">
+            <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
               <g className="study-gaze">
                 <g transform={`translate(${pose.gaze[0] * 0.6} ${pose.gaze[1] * 0.6})`}>
                   {brilliant ? (
@@ -24,7 +26,7 @@ function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachE
                       <path d="m0-8 2.5 5.5L8 0 2.5 2.5 0 8-2.5 2.5-8 0-2.5-2.5Z" fill={color} />
                       <circle r="2" fill="#f3f0cb" className="study-eye-glint" />
                     </>
-                  ) : pose.closed ? (
+                  ) : closedEyes ? (
                     <path d="M-6 0q6-6 12 0" stroke={color} strokeWidth="2.8" strokeLinecap="round" fill="none" />
                   ) : alarm ? (
                     <>

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { rigChannels } from "../src/coach/idleRig";
-import { expressions, type CoachExpression } from "../src/coach/model";
+import { expressions } from "../src/coach/model";
 import type { IdleChannel } from "../src/coach/idleModel";
 
 const selectors: Record<IdleChannel, string> = {
@@ -33,11 +33,11 @@ test("rig capabilities match mounted production artwork, including conditional a
     await page.locator(`.studio-cast button:has([data-coach="${id}"])`).click();
     await expect(page.locator(".studio-expression .coach-avatar").first())
       .toHaveAttribute("data-motion-profile", id);
-    // These expressions have open resting eyes already. The separate settled-
-    // face tests cover expressions whose entrance briefly closes the eyelids.
-    for (const expression of ["neutral", "brilliant", "blunder"] satisfies CoachExpression[]) {
+    for (const expression of expressions) {
       const avatar = page.locator(`.studio-expression .coach-avatar[data-requested="${expression}"]`);
       await expect(avatar).toHaveAttribute("data-expression", expression);
+      await expect(avatar.locator('[data-eye-state="closed"]')).toHaveCount(0);
+      expect(await avatar.locator('[data-eye-state="open"]').count()).toBeGreaterThan(0);
       const rendered = await avatar.evaluate((element, selectors) =>
         Object.entries(selectors).filter(([, selector]) => element.querySelector(selector))
           .map(([channel]) => channel).sort(), selectors);

@@ -79,16 +79,16 @@ export function usePerformance({
   const gestures = useMemo(() => configuredGestures(animation, expression), [animation, expression]);
   const coordinator = useMemo(() => createIdleCoordinator(gestures, { now: performance.now() }), [gestures, identity]);
   const owner = `${identity}:${reaction.key}:${reaction.state}:${take}`;
+  const idlePreview = gestures.find((entry) => entry.id === previewIdle);
   useEffect(() => {
     let timer: number | undefined;
     const running = effectiveMotion !== "still" && visible && active && current;
     setFrame(null);
     coordinator.suspend(performance.now());
     const fresh = current && played.current !== take;
-    const gesture = gestures.find((entry) => entry.id === previewIdle);
     if (running) played.current = take;
     setPhase(
-      running && fresh && reactionsEnabled && !gesture
+      running && fresh && reactionsEnabled && !idlePreview
         ? "reaction"
         : "rest",
     );
@@ -102,7 +102,8 @@ export function usePerformance({
     const scheduleIdle = () => {
       if (idleEnabled) publish(coordinator.resume(performance.now()));
     };
-    if (gesture && fresh) {
+    if (idlePreview && fresh) {
+      const gesture = idlePreview;
       const startedAt = performance.now();
       const preview = { gesture, startedAt, endsAt: startedAt + gesture.durationMs, sequence: take };
       setFrame({ owner, value: { ...coordinator.snapshot(startedAt), active: [preview], started: [preview], nextAt: null } });
@@ -135,11 +136,17 @@ export function usePerformance({
     owner,
     coordinator,
     gestures,
+    idlePreview,
   ]);
 
   const tracks = current && visible && active && effectiveMotion !== "still" && frame?.owner === owner ? frame.value.active : [];
+  const animated = visible && active && effectiveMotion !== "still";
+  // The face is already meaningful during the dwell. Only a fresh entrance may
+  // hold its authored eye squeeze; paused/seen entrances settle without replay.
+  const face: "entrance" | "settled" = animated && reactionsEnabled && !idlePreview
+    && (!current || played.current !== take || phase === "reaction") ? "entrance" : "settled";
   return {
-    ref, expression, phase, micro: tracks[0]?.gesture.id ?? "", take,
+    ref, expression, face, phase: current && animated ? phase : "rest", micro: tracks[0]?.gesture.id ?? "", take,
     motion: effectiveMotion, idles: tracks.map((track) => track.gesture.id).join(" "),
     idleStyle: idleTrackStyle(tracks), diagnostics: frame?.owner === owner ? frame.value.diagnostics : null,
   };
