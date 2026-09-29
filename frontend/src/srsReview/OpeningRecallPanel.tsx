@@ -2,6 +2,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import ReviewCoach from "../ReviewCoach";
 import Button from "../Button";
 import MoveStatus from "../MoveStatus";
+import RecallReceipt from "./RecallReceipt";
 import type { CoachExpression } from "../coach/model";
 import type { ReviewSession } from "./useReviewSession";
 
@@ -13,6 +14,17 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
   const completed = !!feedback?.completed;
   const failed = position.failed || hadFailure;
   const unscheduled = feedback?.non_scheduling_reason ?? position.non_scheduling_reason;
+  const receipt = unscheduled
+    ? { message: <>{unscheduled}{feedback?.scheduling_status === "previously_recorded" ? " Your earlier recall remains recorded." : ""}</> }
+    : completed && feedback.retired
+      ? { message: "Recall saved. This position is retired until its study material changes." }
+      : completed && feedback.next_due
+        ? {
+          message: <>Recall saved.{(failed || feedback.grade === "revealed")
+            && " Your first attempt stays marked for relearning."}</>,
+          nextDue: feedback.next_due,
+        }
+        : {};
   const expression: CoachExpression = gradingError ? "uncertain" : busy ? "thinking"
     : feedback?.grade === "revealed" ? "explaining"
     : completed ? failed ? "recovered" : "good"
@@ -36,12 +48,7 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
       <p className="opening-recall-names"><BookOpen size={14} aria-hidden="true" /> <strong>{opening.names.join(" · ")}</strong></p>
       <MoveStatus busy={busy} failed={failed && !completed} text={message} />
     </ReviewCoach>
-    <div className="review-schedule">
-      {unscheduled ? <p className="review-due" role="status">{unscheduled}{feedback?.scheduling_status === "previously_recorded" ? " Your earlier recall remains recorded." : ""}</p>
-        : completed && feedback.retired ? <p className="review-due" role="status">Recall saved. This position is retired until its study material changes.</p>
-        : completed && feedback.next_due ? <p className="review-due" role="status">Recall saved. {failed || feedback.grade === "revealed" ? "Your first attempt stays marked for relearning. " : ""}Next review: <time dateTime={feedback.next_due}>{new Date(feedback.next_due).toLocaleString()}</time>.</p>
-        : null}
-    </div>
+    <RecallReceipt {...receipt} />
     {completed && <section className="opening-recall-answers" aria-label="Studied continuations">
       <h3>Studied {feedback.answers?.length === 1 ? "move" : "moves"}</h3>
       <p className="review-move">{feedback.answers?.map(answer => answer.san).join(" · ")}</p>

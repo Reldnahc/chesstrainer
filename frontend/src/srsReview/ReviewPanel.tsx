@@ -12,6 +12,7 @@ import { claim, makeIntent } from "../dialogue/model";
 import { useDialogue } from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
 import OpeningRecallPanel from "./OpeningRecallPanel";
+import RecallReceipt from "./RecallReceipt";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { pagePaths, studyPaths } from "../navigation";
@@ -56,6 +57,15 @@ function GameRecallPanel({
   const utterance = useDialogue(position ? practiceIntent({position, feedback, frame: previewFrame,
     hadFailure: session.hadFailure, expression: reaction.state, error: !!session.gradingError})
     : makeIntent("practice-empty", "neutral", "practice", "neutral", [claim("cold")]));
+  const receipt = feedback?.completed && feedback.retired
+    ? { message: "Progress saved. Retired from future reviews." }
+    : feedback?.completed && feedback.next_due
+      ? {
+        message: <>Progress saved.{(position?.failed || session.hadFailure || feedback.grade === "revealed")
+          && " This recall stays marked for relearning."}</>,
+        nextDue: feedback.next_due,
+      }
+      : {};
   return (
     <div
       ref={practicePanel}
@@ -191,26 +201,7 @@ function GameRecallPanel({
               />
             )}
           </ReviewCoach>
-          <div className="review-schedule">
-            {feedback?.completed && feedback.retired ? (
-              <p className="review-due" role="status">
-                Progress saved. Retired from future reviews.
-              </p>
-            ) : feedback?.completed && feedback.next_due ? (
-              <p className="review-due" role="status">
-                Progress saved.{" "}
-                {(position.failed || session.hadFailure || feedback.grade === "revealed") && "This recall stays marked for relearning. "}
-                Next review:{" "}
-                <time
-                  dateTime={feedback.next_due}
-                  title={new Date(feedback.next_due).toLocaleString()}
-                >
-                  {relativeDue(feedback.next_due)}
-                </time>
-                .
-              </p>
-            ) : null}
-          </div>
+          <RecallReceipt {...receipt} />
           {focusSkill && (
             <>
               <p className="small practice-note">
@@ -231,16 +222,4 @@ function GameRecallPanel({
       )}
     </div>
   );
-}
-function relativeDue(value: string) {
-  const seconds = Math.max(0, (new Date(value).getTime() - Date.now()) / 1000);
-  if (seconds < 60) return "in less than a minute";
-  const formatter = new Intl.RelativeTimeFormat(undefined, {
-    numeric: "always",
-  });
-  if (seconds < 3600)
-    return formatter.format(Math.round(seconds / 60), "minute");
-  if (seconds < 86400)
-    return formatter.format(Math.round(seconds / 3600), "hour");
-  return formatter.format(Math.round(seconds / 86400), "day");
 }

@@ -77,6 +77,7 @@ not React components.
 | White-perspective position score | [EvaluationScore](../frontend/src/EvaluationScore.tsx), [evaluation helpers](../frontend/src/evaluation.ts) | Signed pawn/mate formatting, winning-side styling and accessible perspective. Never pass side-to-move candidate scores without conversion. |
 | Accuracy display | [AccuracyReadout / PlayerRow](../frontend/src/gameReview/Players.tsx) | Player, summary and passive history presentations share unavailable/completion wording and one-decimal formatting. History keeps its row-level accessible description. |
 | Practice move status | [MoveStatus](../frontend/src/MoveStatus.tsx), [move-status.css](../frontend/src/move-status.css) | Stable atomic live region, 350ms delayed checking and retry presentation. Optional rich content retains lesson paragraphs; do not pass general playback/navigation busy state as move grading. |
+| Saved recall receipt | [RecallReceipt](../frontend/src/srsReview/RecallReceipt.tsx) | Relative next-due text with exact date/time tooltip. Callers supply scheduling explanations and whether a due time applies; cold positions render no receipt. |
 | Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx), [motion-select.css](../frontend/src/motion-select.css) | Device default / Animated / Still choices in Settings and Studio. Inline or stacked layout; callback and persistence stay caller-owned. Shared-safe styles; Settings status/layout remains in application-only motion.css. |
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
 | Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
@@ -135,7 +136,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-06 | Promote catalogue pagination labels and layout (B). | Complete | Shared Pagination uses real destination links; 30-game/50-line ranges, filters, history and empty-page recovery remain caller-owned. |
 | UI-07 | Share continuation-move markup. | Planned | Preserve numbering options, selection and playback-disabled behavior; full-game scored notation stays specialized. |
 | UI-08 | Share move-feedback announcement rules while retaining rich lesson layout. | Complete | Due, puzzles and lessons use MoveStatus. Puzzles share delayed checking; lesson paragraphs remain rich and navigation never replaces them with Checking. |
-| UI-09 | Promote relative next-due time with an exact-time tooltip (A). | Planned | Share scheduling receipts while preserving saved/relearning/retired, unscheduled and previously recorded explanations. |
+| UI-09 | Promote relative next-due time with an exact-time tooltip (A). | Complete | RecallReceipt serves game and opening recalls while their existing domain rules choose saved/relearning/retired/unscheduled copy. |
 | UI-10 | Share preference-status rendering with heading and field placements. | Complete | Coach selection and both motion fields use PreferenceStatus; providers, saved flags, retry labels and device fallback remain unchanged. |
 | UI-11 | Share compact/panel loading and unavailable states. | Planned | Fetching, retry/back actions and recovery policy remain caller-owned. |
 | UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
@@ -269,6 +270,13 @@ from Git; no live decision-gathering tool is needed.
   requests, timer cancellation, rich lesson results and stable full-game
   commentary during pending navigation. Commit subject: `UI-08: Share practice
   feedback announcements without lesson flicker`.
+
+- **UI-09 — scheduling receipts:** both recall players share relative due text and
+  an exact-time tooltip. Domain messages, retirement and unscheduled precedence
+  remain caller-owned. Production build passed; receipt coverage: **8 passed**,
+  including minute/hour/day boundaries, no cold disclosure, both players'
+  relearning/retired states and previously recorded opening recalls. Commit
+  subject: `UI-09: Share relative due receipts across recall modes`.
 
 ## Audit findings and implementation boundaries
 
