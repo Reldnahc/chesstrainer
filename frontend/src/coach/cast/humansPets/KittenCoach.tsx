@@ -1,135 +1,72 @@
-import type { CSSProperties } from "react";
 import type { CoachArtworkProps } from "../../model";
-import AnimalFace, { type AnimalPalette } from "../../studies/AnimalFace";
+import type { AnimalPalette } from "../../studies/AnimalFace";
 import AnimalPaws from "../../studies/AnimalPaws";
-import {
-  animalPoses,
-  tailTransform,
-  type AnimalPose,
-} from "../../studies/animalPoses";
-import Accents from "../../studies/Accents";
+import { animalPoses, tailTransform, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
-import "../../studies/motion.css";
+import { AnimalFrame, AnimalHead } from "../animals/AnimalParts";
+import KittenFace from "./KittenFace";
 
 const palette: AnimalPalette = {
-  fur: "#899aa9",
-  dark: "#586b7e",
-  light: "#c5d1d5",
-  muzzle: "#e0e6df",
-  nose: "#9a747c",
-  iris: "#9fad72",
-  accent: "#bd845b",
-  brow: "#4f5b6b",
-  paw: "#c6d3d6",
+  fur: "#a7bac8", dark: "#6f879d", light: "#e2e9e7",
+  muzzle: "#f4eee0", nose: "#bc878a", iris: "#79aeb5",
+  accent: "#81a799", brow: "#526c80", paw: "#e2e9e7",
 };
 
 export default function KittenCoach({ expression }: CoachArtworkProps) {
   const original = animalPoses[expression];
   const pose: AnimalPose = {
     ...original,
-    eye: original.eye + 0.6,
-    tilt: original.tilt * 1.1,
+    eye: original.eye * 1.05 + 3,
+    tilt: original.tilt * .85,
     paws: expression === "brilliant" ? "offer" : original.paws,
   };
-  const vars = {
-    "--study-tilt": `${pose.tilt}deg`,
-    "--study-lift": `${pose.lift}px`,
-    "--study-temperament": 1.05,
-  } as CSSProperties;
-
   return (
-    <svg
-      viewBox="0 0 100 125"
-      className="coach-artwork study-artwork study-cat study-kitten"
-      style={vars}
-      aria-hidden="true"
-      focusable="false"
-    >
-      <Accents expression={expression} />
-      <g className="study-body">
-        <g className="study-body-idle">
-          <g transform={tailTransform(pose)}>
-            <g className="study-tail">
-              <path
-                d="M71 111q20 0 17-18-2-11 1-15 6-8 1-13"
-                fill="none"
-                stroke={palette.fur}
-                strokeWidth="8"
-                strokeLinecap="round"
-              />
-              <path
-                d="m87.5 101 1-4m-.2-13 .8-4m.9-10-1-4"
-                fill="none"
-                stroke={palette.dark}
-                strokeWidth="8"
-                strokeLinecap="round"
-              />
-            </g>
-          </g>
-          <path d="M27 118v-17q0-20 23-21 23 1 23 21v17Z" fill={palette.fur} />
-          <path d="M38 82q12 6 24 0l-3 23-9 10-9-10Z" fill={palette.muzzle} />
-          <path
-            d="m28 102 7 2m-7 4 7 2m37-8-7 2m7 4-7 2"
-            stroke={palette.dark}
-            strokeWidth="2.2"
-            strokeLinecap="round"
-          />
-          <g className="study-head">
-            <g className="study-head-idle">
-              <g className="study-head-pose">
-                {[false, true].map((right) => (
-                  <g
-                    key={String(right)}
-                    transform={
-                      right ? "translate(100 0) scale(-1 1)" : undefined
-                    }
-                  >
-                    <g
-                      transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 25 31)`}
-                    >
-                      <g
-                        className={`study-ear-motion study-ear-${right ? "right" : "left"}`}
-                      >
-                        <path d="M13 42 9 9Q20 4 36 28Z" fill={palette.fur} />
-                        <path d="M17 32 14 14q10 2 16 13Z" fill="#bd9697" />
-                        <path d="m15 33 6-9 5 10" fill={palette.muzzle} />
-                        <path d="m10 10-1-4 4 3" fill={palette.dark} />
-                      </g>
-                    </g>
-                  </g>
-                ))}
-                <path
-                  d="M14 37Q22 20 50 24q28-4 36 13l1 19-5 3 4 7-10 1Q66 86 50 87 34 86 24 67l-10-1 4-7-5-3Z"
-                  fill={palette.fur}
-                />
-                <path
-                  d="m40 25 4 11 6-10 6 10 4-11-2 16-8-5-8 5Z"
-                  fill={palette.dark}
-                />
-                <path
-                  d="m15 43 8 3-8 3m1 6 8 2-6 3m67-17-8 3 8 3m-1 6-8 2 6 3"
-                  fill={palette.dark}
-                />
-                <path
-                  d="M28 66q22 11 44 0-8 19-22 21-14-2-22-21Z"
-                  fill={palette.muzzle}
-                />
-                <g transform="translate(0 5)">
-                  <AnimalFace pose={pose} palette={palette} />
-                </g>
+    <AnimalFrame name="kitten" expression={expression} pose={pose} temperament={1.05}>
+      <g transform={tailTransform(pose)}>
+        <g className="study-tail">
+          <path d="M69 112q17 2 17-10 0-8-7-9-6 0-5 5" fill="none"
+            stroke={palette.fur} strokeWidth="9" strokeLinecap="round" />
+          <path d="M79 93q-6 0-5 5" fill="none"
+            stroke={palette.muzzle} strokeWidth="9" strokeLinecap="round" />
+        </g>
+      </g>
+      <path className="kitten-body-silhouette" d="M30 116v-9q0-21 20-22 20 1 20 22v9q-20 9-40 0Z" fill={palette.fur} />
+      <ellipse cx="50" cy="105" rx="12" ry="14" fill={palette.muzzle} />
+      <ellipse cx="31" cy="117" rx="11" ry="5" fill={palette.light} />
+      <ellipse cx="69" cy="117" rx="11" ry="5" fill={palette.light} />
+      <path d="m26 115 0 3m6-3v3m36-3v3m6-3v3" stroke={palette.dark} strokeWidth=".8" strokeLinecap="round" />
+      <AnimalHead>
+        {[false, true].map(right => (
+          <g key={String(right)} transform={right ? "translate(100 0) scale(-1 1)" : undefined}>
+            <g transform={`rotate(${right ? -pose.ears[1] : pose.ears[0]} 25 31)`}>
+              <g className={`study-ear-motion study-ear-${right ? "right" : "left"}`}>
+                <path d="M12 45Q6 23 12 10q3-6 12 2l17 20Z" fill={palette.fur} />
+                <path d="M17 36q-5-16-2-21 9 1 18 15Z" fill="#d5a7ab" />
+                <path d="m17 37 4-10 3 7 5-3 2 10Z" fill={palette.muzzle} />
               </g>
             </g>
           </g>
-          <path d="M34 84q16 7 32 0v6q-16 7-32 0Z" fill={palette.accent} />
-          <path
-            d="M52 91q6-7 10-4l-1 8q-5 1-9-4m0 0q-7-7-10-4l1 8q5 1 9-4Z"
-            fill="#d1a174"
-          />
-          <circle cx="52" cy="91" r="2" fill="#af784e" />
-          {pose.paws === "book" && <Book color={palette.accent} />}
-          <AnimalPaws pose={pose} palette={palette} mittens />
+        ))}
+        <path className="kitten-head-silhouette"
+          d="M12 48Q12 24 50 25t38 23q6 11 2 20l-4-1 2 6-6 1q-8 18-32 19-24-1-32-19l-6-1 2-6-4 1q-4-10 2-20Z"
+          fill={palette.fur} />
+        <path d="M20 68q5-4 14 0 8 6 16 6t16-6q9-4 14 0-5 21-30 23-25-2-30-23Z" fill={palette.muzzle} />
+        <g fill={palette.dark} opacity=".8">
+          <path d="M42 27q-1 6 4 11l1-10Z" />
+          <path d="M50 26q-2 8 0 13 4-6 4-13Z" />
+          <path d="m58 28-5 10q7-3 9-9Z" />
+          <path d="m13 59 8 3-7 2m73-5-8 3 7 2" />
         </g>
-      </g>
-    </svg>
+        <KittenFace pose={pose} palette={palette} />
+      </AnimalHead>
+      <path d="M35 90q15 6 30 0l-1 4q-14 5-28 0Z" fill={palette.accent} />
+      <circle cx="50" cy="97" r="3.3" fill="#e4bc70" />
+      <path d="M48 97h4m-2 0v2" stroke="#ad864e" strokeWidth=".8" strokeLinecap="round" />
+      {pose.paws === "book" && <Book color={palette.accent} />}
+      <AnimalPaws pose={pose} palette={palette} mittens positions={
+        pose.paws === "cheeks" ? [[21, 76, -12], [79, 76, 12]]
+          : pose.paws === "chin" ? [[30, 107, -8], [54, 86, -25]] : undefined
+      } />
+    </AnimalFrame>
   );
 }

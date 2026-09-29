@@ -83,7 +83,7 @@ export default function MushroomCoach({ expression }: CoachArtworkProps) {
           fill="none"
           opacity=".7"
         />
-        <g className="fantasy-cap">
+        <g className="fantasy-cap coach-idle-cap">
           <path
             d="M5 47Q9 17 33 12q16-7 34 2 25 9 28 33-9 13-45 13T5 47Z"
             fill="#a45245"

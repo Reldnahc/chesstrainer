@@ -1,115 +1,35 @@
-/* Idle tracks are nested inside entrance tracks: a small gesture can never
-   restart a full reaction or overwrite the held expression's pose transform. */
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="blink"]
-  :is(.coach-eyes, .animal-eyes) {
-  animation: coach-idle-blink 260ms both;
+/* Canonical track durations come from idleGestures; each resource has one writer.
+   These tracks are nested inside entrances and outside held-pose transforms. */
+.coach-avatar[data-phase="rest"][data-motion="natural"] {
+  :is(.coach-eyes, .animal-eyes) { animation: var(--idle-eyes, none); }
+  :is(.coach-gaze, .study-gaze) { animation: var(--idle-gaze-track, none); }
+  :is(.coach-head-idle, .study-head-idle) { animation: var(--idle-head, none); }
+  :is(.coach-body-idle, .study-body-idle) { animation: var(--idle-body, none); }
+  .coach-glasses { animation: var(--idle-glasses, none); }
+  .study-hair-motion { animation: var(--idle-hair, none); }
+  .study-ear-left { animation: var(--idle-leftEar, none); }
+  .study-ear-right { animation: var(--idle-rightEar, none); }
+  .study-whiskers { animation: var(--idle-whiskers, none); }
+  .study-tail { animation: var(--idle-tail, none); }
+  :is(.coach-stars, .study-stars) { animation: var(--idle-stars, none); }
+  :is(.coach-lens-glint, .study-eye-glint) { animation: var(--idle-glint, none); }
+  .cast-scanline { animation: var(--idle-scanline, none); }
+  .cast-lens { animation: var(--idle-lens, none); }
+  .cast-frog-throat { animation: var(--idle-throat, none); }
+  .coach-idle-brows { animation: var(--idle-brows, none); }
+  .coach-idle-leftArm { animation: var(--idle-leftArm, none); }
+  .coach-idle-rightArm { animation: var(--idle-rightArm, none); }
+  .coach-idle-leftPaw { animation: var(--idle-leftPaw, none); }
+  .coach-idle-rightPaw { animation: var(--idle-rightPaw, none); }
+  .coach-idle-wings { animation: var(--idle-wings, none); }
+  .coach-idle-antenna { animation: var(--idle-antenna, none); }
+  .coach-idle-cap { animation: var(--idle-cap, none); }
+  .coach-idle-hem { animation: var(--idle-hem, none); }
+  :is(.cast-lens, .cast-frog-throat) {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
 }
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="slow-blink"]
-  :is(.coach-eyes, .animal-eyes) {
-  animation: coach-idle-slow-blink 1100ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="glance"]
-  :is(.coach-gaze, .study-gaze) {
-  animation: coach-idle-glance 1150ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="breathe"]
-  :is(.coach-body-idle, .study-body-idle) {
-  animation: coach-idle-breathe 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="nod"]
-  :is(.coach-head-idle, .study-head-idle) {
-  animation: coach-idle-nod 1100ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="glasses"]
-  .coach-glasses {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: coach-idle-glasses 1050ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="hair"]
-  .study-hair-motion {
-  animation: coach-idle-hair 1150ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="ears"]
-  .study-ear-left {
-  animation: coach-idle-ears 850ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="ears"]
-  .study-ear-right {
-  animation: coach-idle-ears 850ms 120ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="ears"]
-  .study-whiskers {
-  animation: coach-idle-whiskers 1000ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="tail"]
-  .study-tail {
-  animation: coach-idle-tail 1150ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="sigh"]
-  :is(.coach-body-idle, .study-body-idle) {
-  animation: coach-idle-sigh 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="sigh"]
-  :is(.coach-eyes, .animal-eyes) {
-  animation: coach-idle-slow-blink 1000ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="twinkle"]
-  :is(.coach-stars, .study-stars) {
-  animation: coach-idle-twinkle 1100ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="twinkle"]
-  :is(.coach-lens-glint, .study-eye-glint) {
-  animation: coach-idle-glint 1100ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="head-tilt"]
-  :is(.coach-head-idle, .study-head-idle) {
-  animation: coach-idle-tilt 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="lean-in"]
-  :is(.coach-body-idle, .study-body-idle) {
-  animation: coach-idle-lean 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="posture-reset"]
-  :is(.coach-body-idle, .study-body-idle) {
-  animation: coach-idle-reset 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="look-down"]
-  :is(.coach-head-idle, .study-head-idle) {
-  animation: coach-idle-look-down 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="look-down"]
-  :is(.coach-gaze, .study-gaze) {
-  animation: coach-idle-gaze-down 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
-  :is(.coach-head-idle, .study-head-idle) {
-  animation: coach-idle-scan 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
-  :is(.coach-gaze, .study-gaze) {
-  animation: coach-idle-gaze-scan 1200ms both;
-}
-
-/* Optional secondary articulation adds character without another timer. */
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
-  .cast-scanline {
-  animation: coach-idle-screen-scan 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"][data-micro="scan"]
-  .cast-lens {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: coach-idle-lens 1200ms both;
-}
-.coach-avatar[data-phase="rest"][data-motion="natural"]:is(
-    [data-micro="breathe"], [data-micro="sigh"]
-  ) .cast-frog-throat {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: coach-idle-throat 1200ms both;
-}
-
 @keyframes coach-idle-blink {
   0%, 100% { transform: scaleY(1); }
   45%, 60% { transform: scaleY(0.07); }

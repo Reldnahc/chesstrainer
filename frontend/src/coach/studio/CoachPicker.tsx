@@ -1,5 +1,6 @@
 import { CoachCharacter } from "../CoachAvatar";
 import { selectableCoaches } from "../registry";
+import { availableIdles } from "../model";
 
 export default function CoachPicker({
   selected,
@@ -26,7 +27,9 @@ export default function CoachPicker({
           />
           <span>
             <strong>{coach.name}</strong>
-            <small>{coach.expressions.length} expressions · 4 idles each</small>
+            <small>
+              {coach.expressions.length} expressions · {availableIdles(coach).length} idle performances
+            </small>
           </span>
         </button>
       ))}

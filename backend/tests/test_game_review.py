@@ -27,7 +27,7 @@ def quality(best=0, actual=0, **changes):
 
 def test_labels_and_elo_only_change_blunder_severity():
     for best, actual, expected in [
-        (20, 15, "Best"),
+        (20, 15, "Good"),
         (30, 0, "Good"),
         (70, 0, "Inaccuracy"),
         (120, 0, "Mistake"),
@@ -46,9 +46,9 @@ def test_great_only_good_and_both_opponent_error_transitions():
     only["actual"]["uci"] = only["best"]["uci"]
     assert classify(only, 1000)[0] == "Great"
     assert classify(only | {"legal_count": 1}, 1000)[0] == "Best"
-    assert (
-        classify(quality(-400, -400, second_score={"kind": "cp", "value": -800}), 1000)[0] == "Best"
-    )
+    losing = quality(-400, -400, second_score={"kind": "cp", "value": -800})
+    losing["actual"]["uci"] = losing["best"]["uci"]
+    assert classify(losing, 1000)[0] == "Best"
     for prior, current in [(0, 250), (-250, 0)]:
         assert (
             classify(
@@ -58,15 +58,51 @@ def test_great_only_good_and_both_opponent_error_transitions():
         )
 
 
+def test_a_forced_move_can_never_be_brilliant_even_with_saved_sacrifice_evidence():
+    report = quality(legal_count=1, sacrifice={"verified": True})
+    report["actual"] = dict(report["best"])
+    assert classify(report, 1000)[0] == "Best"
+
+
 def test_mate_is_not_centipawn_loss():
     report = quality()
     report["actual"]["score"] = {"kind": "mate", "value": -2}
     assert classify(report, 400)[0] == "Blunder"
     report["best"]["score"] = {"kind": "mate", "value": -3}
-    assert classify(report, 400)[0] == "Best"  # Already lost, no new allowed mate.
+    assert classify(report, 400)[0] == "Good"  # Already lost, no new allowed mate.
     report["best"]["score"] = {"kind": "mate", "value": 2}
     report["actual"]["score"] = {"kind": "cp", "value": 0}
     assert classify(report, 400)[0] == "Miss"
+
+
+@pytest.mark.parametrize("loss", [0, 1, 5, 10])
+@pytest.mark.parametrize("rating", [400, 2500])
+def test_best_requires_the_top_move_not_a_nearby_evaluation(loss, rating):
+    report = quality(20, 20 - loss)
+    assert classify(report, rating)[0] == "Good"
+    report["actual"] = dict(report["best"])
+    assert classify(report, rating)[0] == "Best"
+
+
+@pytest.mark.parametrize("best_mate,played_mate", [(1, 2), (1, 5), (2, 5)])
+def test_retaining_a_slower_mate_is_good_not_missed_or_exceptional(best_mate, played_mate):
+    report = quality(
+        previous_score={"kind": "cp", "value": 0},
+        sacrifice={"verified": True},
+    )
+    report["best"]["score"] = {"kind": "mate", "value": best_mate}
+    report["actual"]["score"] = {"kind": "mate", "value": played_mate}
+    assert classify(report, 1000)[0] == "Good"
+    report["actual"]["score"] = {"kind": "cp", "value": 500}
+    assert classify(report, 1000)[0] == "Miss"
+
+
+@pytest.mark.parametrize("distance,expected", [(1, "Best"), (2, "Good")])
+def test_different_mating_moves_only_tie_for_best_when_both_are_immediate(distance, expected):
+    report = quality(second_score={"kind": "mate", "value": distance})
+    report["best"]["score"] = {"kind": "mate", "value": distance}
+    report["actual"]["score"] = {"kind": "mate", "value": distance}
+    assert classify(report, 1000)[0] == expected
 
 
 def seed(app, pgn='[White "Learner"]\n[Black "Opponent"]\n\n1. f3 e5 2. g4 Qh4# 0-1'):
@@ -223,6 +259,41 @@ def test_native_positive_fork_coaching(settings, sessions, stockfish_path):
         assert any(f["skill_id"] == "fork" for f in report["actual_line"]["findings"])
         for frame in report["actual_line"]["frames"]:
             assert chess.Board(frame["fen"]).is_valid()
+    finally:
+        engine.close()
+
+
+@pytest.mark.stockfish
+@pytest.mark.parametrize("mirror", [False, True])
+@pytest.mark.parametrize(
+    "fen,uci",
+    [
+        ("8/2p5/1p3PQ1/p6p/2P4k/8/PP3K2/8 w - - 0 37", "f6f7"),
+        ("8/2p2P2/1p4Q1/p6p/2P5/7k/PP3K2/8 w - - 1 38", "f7f8q"),
+        ("5Q2/2p5/1p4Q1/p6p/2P5/8/PP3K1k/8 w - - 1 39", "f8h8"),
+    ],
+)
+def test_native_slower_mate_stays_good(settings, sessions, stockfish_path, mirror, fen, uci):
+    from trainer.engine import Stockfish
+    from trainer.game_review import public_report
+
+    settings.stockfish_path = stockfish_path
+    settings.deep_depth, settings.deep_time = 16, 0.8
+    board, move = chess.Board(fen), chess.Move.from_uci(uci)
+    if mirror:
+        board = board.mirror()
+        move = chess.Move(
+            chess.square_mirror(move.from_square),
+            chess.square_mirror(move.to_square),
+            promotion=move.promotion,
+        )
+    assert board.is_valid() and move in board.legal_moves
+    engine = Stockfish(settings, sessions)
+    try:
+        report = analyze_move(engine, board, move)
+        assert Score.model_validate(report["best"]["score"]) == Score(kind="mate", value=1)
+        assert Score.model_validate(report["actual"]["score"]) == Score(kind="mate", value=2)
+        assert public_report(report, 650)["engine_label"] == "Good"
     finally:
         engine.close()
 

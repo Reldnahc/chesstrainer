@@ -10,7 +10,6 @@ import {
   resolveAnimation,
   type CoachDefinition,
 } from "../src/coach/model";
-import { nextIdle } from "../src/coach/idle";
 import type { ColdPosition, Feedback } from "../src/api";
 
 const game = {
@@ -173,7 +172,8 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
   expect(resolveExpression(coach, "blunder")).toBe("neutral");
   expect(resolveExpression(coach, "thinking")).toBe("neutral");
   expect(resolveFamily(coach, "removed")).toBe(coach.defaultFamily);
-  expect(availableIdles(coach)).toContain("glasses");
+  expect(availableIdles(coach)).toContain("breathe");
+  expect(availableIdles(coach)).not.toContain("glasses");
   expect(availableIdles(coach)).not.toContain("tail");
   const variant = {
     ...coach,
@@ -182,13 +182,13 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
         ...coach.families[0],
         animation: {
           ...classicPerformance,
-          defaultIdle: ["ears"] as const,
+          defaultIdle: ["ears", "head-tilt"] as const,
           idleGestures: {},
         },
       },
     ],
   };
-  expect(availableIdles(variant)).toEqual(["ears"]);
+  expect(availableIdles(variant)).toEqual(["head-tilt"]);
   expect(resolveAnimation(variant, "removed")).toBe(
     variant.families[0].animation,
   );
@@ -205,17 +205,4 @@ test("future coaches can omit reactions and even have cyclic fallbacks safely", 
   expect(expressionIntent(coach, "neutral")).toContain("welcoming");
   for (const state of expressions)
     expect(resolveExpression({ ...coach, expressions }, state)).toBe(state);
-});
-
-test("idle variations avoid immediate repeats and handle limited capabilities", () => {
-  const animation = classicPerformance;
-  expect(nextIdle(animation, "neutral", "blink", 0)).not.toBe("blink");
-  for (const state of ["brilliant", "blunder"] as const)
-    expect(nextIdle(animation, state, "", 0.6)).not.toBe("");
-  expect(
-    nextIdle({ ...animation, defaultIdle: ["blink"] }, "neutral", "blink", 0.2),
-  ).toBe("blink");
-  expect(nextIdle({ ...animation, defaultIdle: [] }, "neutral", "", 0.2)).toBe(
-    "",
-  );
 });

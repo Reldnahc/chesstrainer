@@ -200,8 +200,10 @@ rating; the review rating is a fallback when that player's rating is missing.
 It changes presentation, never evaluations or tactical facts.
 It defaults to 1000 and is stored with the review; changing it reuses engine evidence.
 
-- Best: engine top choice or at most 10 cp loss.
-- Good: less than 50 cp loss.
+- Best: engine top choice, or an equally immediate checkmate. A different move
+  with an equal or nearly equal centipawn score is not Best.
+- Good: less than 50 cp loss without qualifying for a higher label. Keeping a
+  forced win but taking longer to mate is Good, never Best, Great, or Brilliant.
 - Inaccuracy: 50–99 cp loss.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
 - Blunder: newly allowed forced mate, a transition from at least -50 cp to -200 cp
@@ -209,7 +211,8 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   pawn losses therefore remain Blunders at low ratings. Already-lost mate positions
   are not treated as newly allowed mate.
 - Miss: lost forced mate or a concrete missed gain supported by a settled comparison
-  and a tactical witness. Severe losses still take precedence as Blunder.
+  and a tactical witness. Retaining mate in two instead of mate in one is not a
+  Miss. Severe losses still take precedence as Blunder.
 - Great: at most 20 cp loss and more than one legal move, plus either the strongest
   alternative loses at least 150 cp / drops a mate outcome while the played move
   retains at least -50 cp; or successful exploitation of the preceding opponent
@@ -217,12 +220,25 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   position at most -200 becomes at least -50). Previous scores use the position
   before the opponent's move, normalized to the current mover. The same rules
   apply in variations. A sole legal move is not Great.
-- Brilliant: a sound move below 50 cp loss with a tactical witness or winning mate,
-  a non-pawn sacrifice at an immediate net material cost, and an explicit native
+- Brilliant: a sound move below 50 cp loss with a current-mover tactical witness
+  involving the played move, or a winning mate; a non-pawn sacrifice at an
+  immediate net material cost; and an explicit native
   acceptance test leaving at least -50 cp. The unrestricted played line must also
   retain at least -50 cp, and the strongest alternative must be below +300 cp. At most
-  two legal non-pawn capture candidates are probed. Ordinary equal trades do not
-  qualify. Recognition is deliberately conservative and can miss sacrifices.
+  two eligible legal non-pawn capture candidates are probed. Promoting and losing
+  that pawn's new piece is not a non-pawn sacrifice. Ordinary equal trades do not
+  qualify: if a legal immediate recapture restores the pre-move material balance,
+  the detector abstains, even when the searched line delays that recapture. This
+  material filter does not assert the recapture is tactically sound; recognition
+  is deliberately conservative and can miss sacrifices. Later unrelated tactics
+  cannot justify a Brilliant label for the current move.
+  A forced move with only one legal option can never be Brilliant, including a
+  forced king move; it does not trigger sacrifice-acceptance searches.
+
+Saved sacrifice offers are revalidated before grading, practical assessment and
+semantic events. Unsupported legacy offers are omitted from the display report
+without modifying saved engine evidence or rerunning Stockfish. Labels are also
+computed on read, so existing reviews gain these grading corrections on reload.
 
 Book takes precedence when the actual position and move appear in the bundled
 [Lichess opening catalogue](../backend/trainer/_vendor/lichess_openings/README.md).

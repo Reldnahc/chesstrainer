@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { useEyeClosure } from "../CoachFaceContext";
 import type { CoachArtworkProps } from "../model";
 import HumanFeatures from "../human/HumanFeatures";
 import Arm from "../human/Arm";
@@ -67,6 +68,7 @@ export default function WomanCoach({ expression, family }: CoachArtworkProps) {
         : source.mouth,
   };
   const hands = handPoses[pose.gesture];
+  const closedEyes = useEyeClosure(pose.closedEyes);
   const vars = {
     "--study-tilt": `${pose.tilt}deg`,
     "--study-lift": `${pose.lift}px`,
@@ -138,7 +140,7 @@ export default function WomanCoach({ expression, family }: CoachArtworkProps) {
                   browColor={color.hair}
                   glasses={look === "analyst"}
                 />
-                {!pose.closedEyes && (
+                {!closedEyes && (
                   <path
                     d="m25 41-1.3-1m30 1 1.3-1"
                     stroke={color.hair}

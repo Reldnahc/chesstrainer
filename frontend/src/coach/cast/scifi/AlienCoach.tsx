@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachArtworkProps } from "../../model";
 import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
@@ -11,6 +12,7 @@ const eyes = "M22 39Q34 36 44 47q-3 11-12 8-11-3-10-16ZM78 39Q66 36 56 47q3 11 1
 
 export default function AlienCoach({ expression }: CoachArtworkProps) {
   const pose = castPoses[expression];
+  const closedEyes = useEyeClosure(pose.closed);
   const clip = useId();
   const curious = expression === "thinking" || expression === "uncertain";
   return (
@@ -38,12 +40,14 @@ export default function AlienCoach({ expression }: CoachArtworkProps) {
                 <path d="M25 30Q29 15 48 16" stroke="#c3e3c9" strokeWidth="3" strokeLinecap="round" fill="none" />
                 <path d="M24 54q9 15 26 20 17-5 26-20-10 25-26 28-16-3-26-28Z" fill="#7caf98" opacity=".5" />
                 <g stroke="#4b7e70" strokeWidth="2" strokeLinecap="round" fill="none">
-                  <path d="M26 34q8-3 15 1" transform={`rotate(${pose.brows[0]} 34 34)`} />
+                  <g className="cast-alien-brow-idle coach-idle-brows">
+                    <path d="M26 34q8-3 15 1" transform={`rotate(${pose.brows[0]} 34 34)`} />
+                  </g>
                   <path d="M59 35q7-4 15-1" transform={`rotate(${pose.brows[1]} 66 34)`} />
                 </g>
                 <g transform={`translate(0 ${47 * (1 - pose.eye)}) scale(1 ${pose.eye})`}>
-                  <g className="coach-eyes">
-                    {pose.closed ? (
+                  <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
+                    {closedEyes ? (
                       <path d="M25 47q8-8 17 3m16 0q9-11 17-3" stroke="#283d46" strokeWidth="2.8" strokeLinecap="round" fill="none" />
                     ) : (
                       <>
