@@ -2,6 +2,22 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Review grading correction — September 29, 2026
+
+The Best allowance admitted different moves up to 10 cp below the top choice and
+also treated retained slower mates as zero loss. Eleven new cases failed against
+that behavior before the correction. Best now requires the top move, with a tie
+only for another immediate checkmate. Retaining a slower forced mate is Good,
+not Miss or an exceptional grade. Shared SRS mate-outcome rules are unchanged.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_game_review.py -q -p no:cacheprovider --basetemp data/verification/strict-best-native`:
+  **43 passed**, including native Stockfish, both-color mate-in-one versus
+  mate-in-two examples, promotion, genuine queen sacrifice, review restart and
+  training isolation. Two existing dependency deprecation warnings remain.
+- A bounded native audit of the owner's supplied public game reproduced three
+  delayed mates and an ordinary bishop exchange incorrectly called Brilliant.
+  The PGN and audit reports remain ignored local verification data.
+
 ## Study merge review — September 29, 2026
 
 A second independent code-health pass covered legality and immutable snapshots,
