@@ -104,6 +104,42 @@ All items below are **open proposals**. Names in the recommendations are design
 directions, not existing modules. When an item is implemented, replace its open
 status with the canonical component, migrated consumers and verification record.
 
+### Compare and choose the current versions
+
+[Open the component comparison gallery](UI_COMPONENT_COMPARISON.html) for all
+**30 items**, with **127 current-source examples**, file/line references,
+recommendations and an individual decision/notes field for each item. The gallery
+is a review document, not a production route or a new component library.
+
+The snapshot is based on **18be413** (September 29, 2026). It combines static
+source-derived excerpts and directly rendered small components with sample data,
+current styles and real coach portraits. Controls inside examples are inactive;
+source excerpts explain behavioral differences. Artwork-internal comparisons
+show code where there is no visual mismatch. Phone preview uses the real
+responsive rules within a 390px-or-smaller frame; outer page padding and animations
+are omitted for inspection. This is not a substitute for testing migrated
+components in their actual screens.
+
+Serve the repository locally to use the gallery, for example with
+`.venv/Scripts/python.exe -m http.server 8770 --bind 127.0.0.1`, then visit
+`http://127.0.0.1:8770/docs/UI_COMPONENT_COMPARISON.html`. Fonts use the existing
+installed frontend dependencies, with a system-font fallback. No application
+server, account, game data, engine or external request is needed.
+
+No choice is selected by default. Choices are stored only in that browser for
+this snapshot. **Review choices** copies/downloads a Markdown decision list to
+share with the implementer; it does not send anything or modify Fieldwork.
+Promotion means replacing duplicate implementations with the chosen shared
+owner while retaining the documented domain and accessibility boundaries.
+After implementation, update the live inventory/backlog rather than treating
+this historical comparison snapshot as the current component specification.
+
+Gallery validation: all 30 comparisons navigated at desktop and 390px phone
+width without page overflow; selection and notes survived reload, the export
+contained all 30 IDs, and test decisions were cleared. All 127 source references
+and wrapper contexts were checked; embedded JavaScript passed syntax validation.
+Application/backend/coach suites were not run for this documentation artifact.
+
 ### Visible and behavioral mismatches
 
 | ID | Same job, separate implementations | Observed mismatch | Proposed standard / preserved boundary |
