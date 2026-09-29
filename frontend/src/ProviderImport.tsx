@@ -1,8 +1,8 @@
 import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
 import { api, read, type Job, type Schema } from "./api";
 import ProviderUsernameField from "./ProviderUsernameField";
+import { ImportAnalysisOption, ImportSubmitButton } from "./ImportControls";
 
 
 export function ProviderImportForm({
@@ -136,14 +136,7 @@ export function ProviderImportForm({
           />
         </label>
       </div>
-      <label className="import-analysis-option">
-        <input
-          type="checkbox"
-          checked={analyze}
-          onChange={(e) => setAnalyze(e.target.checked)}
-        />
-        Also analyze these games for training
-      </label>
+      <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
       <details className="import-extra">
         <summary>
           Custom date range{startDate || endDate ? " (active)" : ""}
@@ -187,10 +180,8 @@ export function ProviderImportForm({
           </Button>
         )}
       </details>
-      <Button type="submit" variant="primary" disabled={busy || loadingUsername || !username.trim()}>
-        {busy ? "Queuing import…" : analyze ? "Import & analyze games" : "Import games"}
-        <ArrowRight size={17} />
-      </Button>
+      <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Queuing import…"
+        disabled={loadingUsername || !username.trim()} />
       {message && (
         <div role="status" className="notice">
           {message}

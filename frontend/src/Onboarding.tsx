@@ -68,7 +68,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
           <p>Your {selected.map(connection => connection.name).join(" and ")} usernames are saved.</p>
           <ol>
             <li>In <strong>Settings → Games & imports</strong>, choose <strong>Import older games</strong> for your site. Your username is already filled in.</li>
-            <li>Choose a time control and date range, then select <strong>Fetch games</strong>.</li>
+            <li>Choose a time control and date range, then select <strong>Import games</strong>.</li>
             <li>Open a game from <strong>Games</strong> to start its review. Use <strong>Update games</strong> there for your latest games.</li>
           </ol>
         </> : <>

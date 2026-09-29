@@ -87,6 +87,7 @@ not React components.
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
 | Provider username | [ProviderUsernameField](../frontend/src/ProviderUsernameField.tsx) | Shared native rules, unique labels/help IDs and 50-character limit. Optional connection/onboarding versus required import and busy/draft state remain caller-owned. |
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
+| Import option and submit action | [ImportControls](../frontend/src/ImportControls.tsx) | Shared optional training-analysis checkbox and submit label/icon/busy presentation. PGN matching, provider filters and request payloads remain caller-owned. |
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
 | Lesson source attribution | [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Course and illustrative-game citations, including optional license and external URL. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. |
@@ -145,7 +146,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
 | UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Planned | Retain compact activity and search-no-results variants. |
 | UI-14 | Share provider username field rules. | Complete | ProviderUsernameField serves Settings connection, one-time import and onboarding; native validation and description association are centralized. |
-| UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Planned | Remove duplicate markup and correct onboarding's stale "Fetch games" wording; retain request-specific fields and busy copy. |
+| UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Complete | ImportAnalysisOption and ImportSubmitButton serve both forms; onboarding says Import games and each form retains its request fields and busy copy. |
 | UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Complete | Promotion uses the shared native modal lifecycle, preserving legal choices, drag timing and board-relative placement; page shortcuts yield while a modal is open. |
 | UI-17 | Promote plain native-summary styling (A). | Planned | This choice stands. Preserve comfortable phone tap targets, native details behavior, rich history/review contents and cold-practice answer restrictions. |
 | UI-18 | Keep section headings and the distinct action-row layouts separate. | Keep existing | Do not extract a universal component for these different roles. |
@@ -304,6 +305,13 @@ from Git; no live decision-gathering tool is needed.
   desktop modifier clicks, unchanged saved sessions and revision-specific course
   links. Corrected a new test that omitted the course prefix from the actual
   preview heading. Commit subject: `UI-19: Share saved-study resume links`.
+
+- **UI-15 — import controls:** shared checkbox/action presentation while retaining
+  PGN multipart and provider-filter request contracts. Production build passed;
+  gated import tests: **4 passed**, including pending-state actions, independently
+  edited drafts and captured request values. New test locators were corrected to
+  use native textbox/combobox accessible names after filling. Commit subject:
+  `UI-15: Share import analysis and submit controls`.
 
 ## Audit findings and implementation boundaries
 

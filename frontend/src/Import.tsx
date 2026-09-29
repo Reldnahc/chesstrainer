@@ -1,6 +1,6 @@
 import Button from "./Button";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowRight, FileUp, Layers, X } from "lucide-react";
+import { FileUp, Layers, X } from "lucide-react";
 import {
   api,
   read,
@@ -14,6 +14,7 @@ import { ProviderImportForm, ImportJob } from "./ProviderImport";
 import GameSync from "./GameSync";
 import SettingsSection from "./SettingsSection";
 import ChoiceGroup from "./ChoiceGroup";
+import { ImportAnalysisOption, ImportSubmitButton } from "./ImportControls";
 
 type PgnMode = "file" | "text";
 const isActive = (job: Job) => ["queued", "running"].includes(job.status);
@@ -189,13 +190,9 @@ export default function ImportSettings({
               <option value="black">I played Black in every game</option>
             </select>
           </label>
-          <label className="import-analysis-option">
-            <input type="checkbox" checked={analyze} onChange={event => setAnalyze(event.target.checked)} />
-            Also analyze these games for training
-          </label>
-          <Button type="submit" variant="primary" disabled={busy || (pgnMode === "file" ? !file : !text.trim())}>
-            {busy ? "Importing…" : analyze ? "Import & analyze games" : "Import games"}<ArrowRight size={17} />
-          </Button>
+          <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
+          <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Importing…"
+            disabled={pgnMode === "file" ? !file : !text.trim()} />
           {result && <div role="status" className="notice">
             <span>{result.imported} imported · {result.duplicates} duplicate(s).
               {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
