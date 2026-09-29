@@ -234,9 +234,19 @@ Historical Repertoire remains historical.
 
 ---
 
-## 6. Opening catalogue source
+## 6. Opening study sources
 
-V1 should reuse the existing bundled Lichess opening catalogue already used for local Book recognition.
+V1 supports two sources through the same opening-study domain:
+
+- **Catalogue line:** reuse the bundled Lichess opening catalogue already used
+  for local Book recognition.
+- **Course line:** use an explicitly designated repertoire line from an immutable
+  authored course revision. It need not also exist in the opening catalogue.
+
+Both sources normalize to an initial FEN, a complete legal move sequence including
+both colors, a name, optional ECO, study color and versioned source identity.
+The same enrollment, answer-union, eligibility and scheduling rules apply to both.
+This does not add general PGN import or a second scheduler.
 
 Study UI should support:
 
@@ -247,7 +257,15 @@ Study UI should support:
 - showing whether the line is already active;
 - removing/disabling a selected line.
 
-The catalogue version must be retained with the study so later catalogue updates cannot silently rewrite what a user originally selected.
+Retain the selected content as well as its source key/version; later catalogue or
+course updates must not silently rewrite a study. Course identity includes the
+course ID, course revision and stable repertoire-line ID. Repeated enrollment of
+the same source revision/line/color reuses the account's study.
+
+Only course lines explicitly marked as repertoire material may be enrolled.
+Demonstration games, opponent mistakes, counterexamples and arbitrary playback
+branches are not automatically study targets. A course may teach many positions
+while offering only a few designated lines for recall.
 
 ### Later, not V1
 
@@ -312,12 +330,13 @@ Fields:
 
 - `id`
 - `user_id`
-- `source` — initially `lichess_catalogue`
-- `source_version`
-- `source_key`
+- `source` — `lichess_catalogue` or `course_line`
+- `source_version` — catalogue version or immutable course revision
+- `source_key` — catalogue record key or course ID plus repertoire-line ID
+- `initial_fen`
 - immutable selected move sequence (including both colors), with content revision
 - `name`
-- `eco`
+- `eco` — optional
 - `color`
 - `active`
 - `created_at`
@@ -394,7 +413,7 @@ Do not create a second scheduler.
 
 ### Adding a study
 
-1. Parse/validate the selected catalogue line.
+1. Resolve and validate the selected catalogue or designated course line at its saved revision.
 2. Walk every position.
 3. For positions where the selected color is to move:
    - create or reuse the stable opening exercise;
@@ -437,13 +456,43 @@ Any such rescheduling should be explicitly recorded as a content-change policy, 
 Retired cards with a changed answer set reactivate due now; unchanged retired
 cards remain retired. Record the content revision that caused reactivation so
 startup reconciliation cannot retire the card again based on its old interval.
+This retired-card rule takes precedence over the answer-added scheduling rule.
 
-Each started attempt snapshots its answer set and contributing study provenance.
-An edit or deactivation in another tab does not change that attempt's grading or
-historical feedback. It may finish or reveal against its snapshot, but must not
-reactivate a disabled card or overwrite a newer content-change schedule. New
-attempts and queue entries use current eligibility and content. Test this
-explicitly across resume, submission and reveal.
+Disabling the final contributor is an eligibility change, not a new learning
+target. When restoring an inactive card, compare its restored answers with its
+last active answer set, not the empty inactive projection. Restoring unchanged
+material preserves its schedule and retirement; changed material follows the
+content-change rules above.
+
+### Attempts spanning a content change
+
+Each opening recall session snapshots its accepted-answer revision, answers and
+contributing study provenance before the first attempt. Use a monotonic revision
+that changes when the accepted answers change; changing them and later restoring
+the same set must not make an old session current again. A title-only edit does
+not change answer authority or invalidate a recall.
+
+Deactivation also invalidates prior sessions for scheduling even if the same
+material is restored later; this session guard does not itself reset a card's
+schedule or retirement.
+
+An edit or deactivation in another tab does not change that session's grading or
+historical feedback. The learner may resume, finish or reveal against its saved
+answers. Before recording an FSRS recall, atomically check that the answer revision
+is still current and the card is eligible and active.
+
+If the revision changed or the card became inactive, save the attempt and session
+outcome with an explicit non-scheduling reason, but do not call FSRS, create a new
+ordinary Review row, or change the serialized card, due date, review/lapse counts
+or retirement. The current card keeps the content-change schedule. Feedback must
+say that the attempt was saved without updating the current review schedule.
+
+If a first failure had already recorded a recall before the content changed,
+preserve that valid historical review and its effects; later retries/reveal must
+not schedule again or undo it. New sessions and automatic queue entries use the
+current eligible content. Old sessions are directly resumable for feedback but
+must not displace current material in the Due queue. Apply this rule consistently
+to submit, reveal and reload, with no effect on ordinary unchanged game recalls.
 
 The catalogue provides named lines, not complete coverage of every opponent
 response. Show the actual continuation and study-position count before adding a
@@ -460,10 +509,11 @@ A due opening card and a due game-derived card are both genuine recall tasks.
 
 Opening recall tests the studied move, not whether the learner can identify an
 unlabeled opening. Show the opening name in both dedicated opening study and the
-mixed Due queue, with the prompt **"Play your studied move."** Dedicated study
-also shows the selected variation and study color. For shared-position cards,
-do not imply that only one contributing study's move is accepted: the active
-answer union remains authoritative.
+mixed Due queue, with the prompt **"Play your studied move."** Dedicated practice
+also shows the selected variation and study color and accepts that line's moves
+only. Mixed Due uses the combined active answers at a shared position, snapshotted
+when its recall session starts. Its context must not imply that only one
+contributing study's move is accepted. Dedicated practice does not update FSRS.
 
 Before the attempt, keep expected moves, future continuations, engine scores and
 tactical hints hidden. The opening label is intentional study context, not an
@@ -564,6 +614,13 @@ Supported step types:
 - **Game excerpt:** replay an annotated passage with access to its source game.
 - **Rehearsal:** play the selected line independently, with opponent replies.
 
+Every accepted move must have a defined next step or explicit terminal outcome;
+an accepted alternative cannot fall through to a continuation for another move.
+Validate that transitions start from their actual resulting positions. A branch
+return restores its anchor's board/history and lesson context, not merely a step
+index. Keep these rules in the lesson player; presentation animation must not
+decide which chess state or lesson step is authoritative.
+
 Step authority must be explicit. "Play this lesson's move" grades against authored
 content; it must not masquerade as "find any good move." Unexpected legal moves
 receive line-specific feedback, not invented engine judgments. Lesson facts and
@@ -586,8 +643,10 @@ revision for an active session or explicitly offer starting the updated chapter.
 
 Progress means viewed, attempted or completed content, not mastery. Guided work
 and rehearsal create no Review rows, SRS changes or weakness evidence. Adding a
-course line to scheduled study is an explicit action using the opening-study
-domain; completing a lesson does not automatically enroll every line.
+designated repertoire line to scheduled study is an explicit action using the
+shared opening-study domain and its `course_line` source. Persist its immutable
+move sequence and source revision. Completing a lesson or viewing an example
+game does not automatically enroll its moves.
 
 ## Framework first; Italian Game afterward
 
@@ -615,6 +674,23 @@ claims. Resource availability alone is not permission to copy annotations.
 - Explicit line enrollment and correct dedicated-versus-mixed answer authority.
 - Shared desktop/mobile layout, motion preferences and coach switching.
 - Empty production library and exclusion of development fixtures.
+
+The lesson-player checkpoint is completed in Phase 2. Line-enrollment integration
+is verified in Phase 3 after the opening-study domain is available.
+
+### Connected framework acceptance chapter
+
+Before declaring the lesson framework complete, exercise one short development
+chapter that connects explanation → demonstration → learner decision → alternative
+branch → return → game excerpt → independent rehearsal. Keep it as a small
+test/dev fixture, not an early production course.
+
+Automated coverage and manual walkthroughs must exercise Back, Show move/reveal,
+reload and coach switching across this sequence, including reload during automatic
+playback and while inside the branch. Check exact board/history and step restoration,
+defined continuation for every accepted move, stable branch return, no duplicate
+completion and no FSRS/Review/weakness effects. Test the combined flow on desktop
+and mobile; isolated step-type tests alone do not complete this checkpoint.
 
 ---
 
@@ -768,7 +844,7 @@ puzzle catalogue are not framework deliverables.
 
 Use a provider boundary.
 
-V1 should use a **local Lichess-compatible puzzle pack** because:
+The future generic-puzzle release should use a **local Lichess-compatible puzzle pack** because:
 
 - Fieldwork already has Lichess puzzle parsing/tagging work;
 - the official puzzle dataset is suitable source material;
@@ -792,13 +868,13 @@ After installation:
 - the installed pack has a version/hash;
 - no network request is required per puzzle.
 
-The exact pack size can be decided during implementation.
+The exact pack size can be decided during that future content-integration work.
 
 ---
 
 ## 17. Generic puzzle selection
 
-V1 filters:
+Future generic-puzzle release filters:
 
 - mixed;
 - rating range/difficulty;
@@ -834,7 +910,7 @@ The production importer must:
 
 ### Alternative correct moves
 
-V1 may use the provider's accepted line exactly.
+The future generic-puzzle release may use the provider's accepted line exactly.
 
 However, Fieldwork should not architect itself into falsely rejecting alternatives forever.
 
@@ -844,7 +920,8 @@ The normalized contract should leave room for:
 - future local Stockfish verification of unlisted alternatives;
 - branch continuation after an accepted alternative.
 
-That can be a later enhancement if it makes V1 too large.
+That can follow the initial generic-puzzle content integration; it is not part of
+the current framework sprint.
 
 ---
 
@@ -892,7 +969,8 @@ A puzzle should not simply wrap an existing single-move exercise in a new screen
 
 ## 21. Candidate puzzle types
 
-V1 should prioritize positions where the learner **missed** a concrete tactical opportunity.
+The future game-puzzle release should prioritize positions where the learner
+**missed** a concrete tactical opportunity.
 
 Examples:
 
@@ -909,7 +987,8 @@ Later, optional game-puzzle categories can include:
 - defensive survival puzzles;
 - selected/favorited positions converted into puzzles.
 
-The first release should favor missed opportunities because they provide the clearest learning value and strongest evidence.
+That future release should favor missed opportunities because they provide the
+clearest learning value and strongest evidence.
 
 ---
 
@@ -922,7 +1001,7 @@ A game position is eligible only when all required evidence gates pass.
 Recommended gates:
 
 1. **Learner to move**
-   - V1 puzzle orientation stays with the learner.
+   - the initial game-puzzle release keeps orientation with the learner.
 
 2. **Concrete missed opportunity**
    - missed mate, meaningful material gain, or supported tactical best line.
@@ -979,7 +1058,8 @@ They do not regenerate "what the tactic probably was."
 
 Long term, game puzzles should support a solution graph rather than one brittle PV.
 
-V1 can begin with a verified principal continuation if generation gates are strict enough.
+The future game-puzzle release can begin with a verified principal continuation
+if generation gates are strict enough.
 
 The model should still leave room for multiple accepted solver moves at each solver node.
 
@@ -1240,13 +1320,23 @@ This matrix should remain explicit in code and documentation.
 
 Backend:
 
-- catalogue line validation;
+- catalogue and designated course-line validation through the shared study domain;
+- course-line enrollment works without a matching catalogue entry and pins its revision/content;
+- repeated source revision/line/color enrollment reuses the account's study;
+- example games, counterexamples and undesignated branches cannot be enrolled as course repertoire lines;
 - White-only and Black-only card creation;
 - transpositions merge into one exercise;
 - multiple active studies union their accepted moves;
+- dedicated practice uses only its selected line and never updates FSRS;
+- mixed Due snapshots the combined active answer set and displays context consistent with it;
 - disabling one study removes only its contribution;
 - disabling the final contributor makes the card ineligible;
 - re-enabling preserves prior FSRS history;
+- disabling/restoring unchanged material preserves its schedule and retirement, while pre-deactivation sessions remain non-scheduling;
+- stale sessions retain their original grading/feedback but cannot update the current FSRS card, due date, counts or retirement;
+- changing answers back does not revalidate a stale session; title-only edits do not invalidate a current one;
+- a first-failure recall recorded before a content change remains intact, with no second recall on retry/reveal;
+- submit/reveal versus content changes is atomic, and stale sessions cannot displace current Due material;
 - archived `source="repertoire"` remains excluded and untouched;
 - out-of-study legal moves fail without Stockfish fallback;
 - opening cards enter the normal Study → Due queue;
@@ -1261,6 +1351,7 @@ Browser:
 
 - browse/search catalogue;
 - add study;
+- explicitly enroll a designated lesson line and verify its provenance in Due;
 - see card in Study → Due;
 - fail/retry/reveal;
 - correct answer;
@@ -1372,7 +1463,8 @@ Deliver:
 - annotated game excerpts and full-game playback;
 - independent line rehearsal;
 - account-owned progress, exact resume and content revisions;
-- shared coach/board presentation with no learning-statistic side effects.
+- shared coach/board presentation with no learning-statistic side effects;
+- the connected acceptance chapter passes automated and manual desktop/mobile checks.
 
 ---
 
@@ -1388,8 +1480,8 @@ Deliver:
 - curated grading;
 - normal Study → Due integration;
 - visible opening context and post-answer continuation metadata;
-- explicit lesson-line enrollment and dedicated-practice answer scope;
-- answer snapshots, eligibility and content-change lifecycle tests.
+- explicit catalogue/course-line enrollment and dedicated-practice answer scope;
+- answer snapshots, stale-session scheduling isolation and content-change lifecycle tests.
 
 This phase must explicitly leave archived Repertoire untouched.
 
@@ -1459,9 +1551,12 @@ These features should preserve the rules that already make Fieldwork coherent.
 
 ### 1. Scheduled recall means something specific
 
-Only scheduled recall inside **Study → Due** changes FSRS.
+Only eligible, current scheduled recall inside **Study → Due** advances the FSRS
+memory model. Enrollment and documented eligibility/content-change policies may
+manage a card's schedule without counting as a recall or a lapse.
 
-Puzzles do not.
+Puzzle solving, guided lessons and dedicated rehearsal never advance FSRS or
+change review schedules.
 
 ### 2. Practice is not evidence of transfer
 
@@ -1546,6 +1641,12 @@ The earlier review notes are now incorporated into the main specification.
   intended moves at every learner decision, defensive replies and the endpoint.
 - Opening content and active-attempt answers are versioned. Deactivation preserves
   history; content changes have explicit scheduling rules distinct from reviews.
+- Catalogue and designated course lines share enrollment; example games are not
+  implicitly repertoire material.
+- Outdated recall sessions preserve feedback/history without changing the current
+  card's FSRS state. Already-recorded valid recalls are not erased.
+- Lesson framework completion requires a connected acceptance chapter, not only
+  isolated demonstrations of each step type.
 - Imports remain in Settings; Games retains its compact Update games action.
 - Standard retry, resume and concurrency behavior is an engineering requirement,
   not a separate product decision for the owner.
