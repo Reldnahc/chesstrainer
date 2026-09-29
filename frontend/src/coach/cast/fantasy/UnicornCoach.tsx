@@ -3,6 +3,26 @@ import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
 
+function UnicornMouth({ mouth }: { mouth: AnimalPose["mouth"] }) {
+  // Equine expressions sit low on the muzzle, with a quiet lip seam rather
+  // than the shared face's toothy smile. Eyes, ears and posture carry the joy.
+  const seams: Record<Exclude<AnimalPose["mouth"], "oh">, string> = {
+    smile: "M43 69q7 2.5 14 0",
+    grin: "M42 67.5q8 5 16 0",
+    ponder: "M44 69q6 1 12-.5",
+    concern: "M44 70q6-2 12 0",
+  };
+  return mouth === "oh" ? (
+    <path
+      d="M46.5 69Q50 67.5 53.5 69Q50 72.5 46.5 69Z"
+      fill="currentColor"
+      strokeWidth="1"
+    />
+  ) : (
+    <path d={seams[mouth]} strokeWidth="1.4" />
+  );
+}
+
 function Hooves({ pose }: { pose: AnimalPose }) {
   const lifted =
     pose.paws === "cheeks" || pose.paws === "celebrate" || pose.paws === "pair";
@@ -113,16 +133,35 @@ export default function UnicornCoach({ expression }: CoachArtworkProps) {
           pose={pose}
           ink="#5c4c65"
           iris="#83a9a8"
-          mouthColor="#856775"
+          mouthColor="#9b808e"
           kind="bright"
+          mouth={
+            <g color="#9b808e">
+              <UnicornMouth mouth={pose.mouth} />
+            </g>
+          }
           muzzle={
             <>
               <path
                 d="M33 56q17-7 34 0 8 8 2 16-19 12-38 0-6-8 2-16Z"
-                fill="#d7c6d3"
+                fill="#e0d1d9"
               />
-              <ellipse cx="38" cy="59" rx="2" ry="1.4" fill="#9d809b" />
-              <ellipse cx="62" cy="59" rx="2" ry="1.4" fill="#9d809b" />
+              <ellipse
+                cx="39"
+                cy="60"
+                rx="1.8"
+                ry="1.2"
+                transform="rotate(25 39 60)"
+                fill="#ad929f"
+              />
+              <ellipse
+                cx="61"
+                cy="60"
+                rx="1.8"
+                ry="1.2"
+                transform="rotate(-25 61 60)"
+                fill="#ad929f"
+              />
             </>
           }
         />

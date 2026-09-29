@@ -158,7 +158,7 @@ for (const coach of ["robot", "frog"]) {
 }
 
 for (const coach of ["frog", "capybara"]) {
-  test(`${coach} settles Good into calmer eyes than Brilliant while retaining its closed entrance`, async ({ page }) => {
+  test(`${coach} settles Good near Neutral with smaller eyes than Brilliant while retaining its closed entrance`, async ({ page }) => {
     const avatar = await mountFace(page, { coach, state: "good" });
     await eyeState(avatar, "closed");
     await page.clock.runFor(110);
@@ -177,12 +177,22 @@ for (const coach of ["frog", "capybara"]) {
     expect(goodHeights).toHaveLength(2);
     await update(page, { state: "neutral", key: "neutral", motion: "still" });
     await expectOpenEyes(avatar);
-    expect(await eyeHeights()).toEqual(goodHeights);
+    const neutralHeights = await eyeHeights();
+    if (coach === "frog") {
+      // Fergus keeps broad, attentive eyes even in quiet expressions, with a
+      // little more openness in Neutral than his contented Good expression.
+      expect(neutralHeights).toHaveLength(2);
+      expect(goodHeights.every((height) => height >= 5.5)).toBe(true);
+      expect(goodHeights.every((height, index) => Math.abs(height - neutralHeights[index]) <= 0.25)).toBe(true);
+    } else {
+      expect(neutralHeights).toEqual(goodHeights);
+    }
     await update(page, { state: "brilliant", key: "brilliant" });
     await expectOpenEyes(avatar);
     const brilliantHeights = await eyeHeights();
     expect(brilliantHeights).toHaveLength(2);
-    expect(goodHeights.every((height, index) => height < brilliantHeights[index] * 0.7)).toBe(true);
+    const goodToBrilliantRatio = coach === "frog" ? 0.8 : 0.7;
+    expect(goodHeights.every((height, index) => height < brilliantHeights[index] * goodToBrilliantRatio)).toBe(true);
     await update(page, { state: "good", key: "still-good" });
     await expectOpenEyes(avatar);
     expect(await eyeHeights()).toEqual(goodHeights);

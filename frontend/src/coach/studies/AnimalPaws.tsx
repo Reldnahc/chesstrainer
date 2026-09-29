@@ -36,14 +36,16 @@ export default function AnimalPaws({
   pose,
   palette,
   mittens = false,
+  positions = hands[pose.paws],
 }: {
   pose: AnimalPose;
   palette: AnimalPalette;
   mittens?: boolean;
+  positions?: readonly [number, number, number][];
 }) {
   return (
     <g>
-      {hands[pose.paws].map(([x, y, angle], index) => (
+      {positions.map(([x, y, angle], index) => (
         <g
           className={`study-paw study-paw-${index ? "right" : "left"}`}
           key={index}

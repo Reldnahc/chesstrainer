@@ -4,28 +4,29 @@ import Book from "../../studies/Book";
 import { AnimalEyes, AnimalFrame, AnimalHead } from "./AnimalParts";
 import AnimalHands from "./AnimalHands";
 
-// Big feeling is a rare opening of the eyes, not a change into a frantic frog.
+// Broad, open eyes keep Fergus attentive; their height still distinguishes
+// relaxed attention from delight or surprise without changing his quiet pose.
 const emphasis: Record<CoachExpression, Partial<AnimalPose>> = {
-  neutral: { tilt: 0, eye: 2.8, mouth: "ponder" },
-  idle: { tilt: -1.5, eye: 2.5, mouth: "ponder" },
-  brilliant: { tilt: -2, lift: -1, eye: 5, mouth: "smile", paws: "pair" },
-  great: { tilt: 1.5, eye: 3.4, mouth: "smile", paws: "offer" },
-  best: { tilt: -1, eye: 2.7, mouth: "smile", paws: "rest" },
-  good: { tilt: 1, eye: 2.8, closed: true, mouth: "smile" },
-  book: { tilt: 2, eye: 2.6, paws: "book" },
-  inaccuracy: { tilt: 3, eye: 2.9, paws: "chin" },
-  mistake: { tilt: -2, lift: 1, paws: "offer" },
-  blunder: { tilt: 0, lift: 1, eye: 7, mouth: "oh", paws: "pair" },
-  missed: { tilt: -3, eye: 3.6, mouth: "ponder" },
-  check: { tilt: 0, eye: 3.2, paws: "offer" },
-  winning: { tilt: -1, lift: -1, closed: true, mouth: "grin", paws: "rest" },
-  losing: { tilt: 1, lift: 2, eye: 2.2, paws: "rest" },
-  thinking: { tilt: -2, eye: 2.9, paws: "chin" },
-  uncertain: { tilt: 3, eye: 4, paws: "pair" },
-  encouraging: { tilt: -1, eye: 3.2, mouth: "smile" },
-  recovered: { tilt: 1.5, lift: -1, closed: false, eye: 4, mouth: "smile", paws: "pair" },
-  explaining: { tilt: 1, eye: 3.1, mouth: "ponder" },
-  draw: { tilt: -1, eye: 2.5, mouth: "smile" },
+  neutral: { tilt: 0, eye: 6.1, mouth: "ponder" },
+  idle: { tilt: -1.5, eye: 5.6, mouth: "ponder" },
+  brilliant: { tilt: -2, lift: -1, eye: 8.3, mouth: "smile", paws: "pair" },
+  great: { tilt: 1.5, eye: 6.9, mouth: "smile", paws: "offer" },
+  best: { tilt: -1, eye: 5.9, mouth: "smile", paws: "rest" },
+  good: { tilt: 1, eye: 6, closed: true, mouth: "smile" },
+  book: { tilt: 2, eye: 5.8, paws: "book" },
+  inaccuracy: { tilt: 3, eye: 6.2, paws: "chin" },
+  mistake: { tilt: -2, lift: 1, eye: 6.2, paws: "offer" },
+  blunder: { tilt: 0, lift: 1, eye: 9.5, mouth: "oh", paws: "pair" },
+  missed: { tilt: -3, eye: 7.1, mouth: "ponder" },
+  check: { tilt: 0, eye: 6.4, paws: "offer" },
+  winning: { tilt: -1, lift: -1, eye: 6.3, closed: true, mouth: "grin", paws: "rest" },
+  losing: { tilt: 1, lift: 2, eye: 5.2, paws: "rest" },
+  thinking: { tilt: -2, eye: 6.2, paws: "chin" },
+  uncertain: { tilt: 3, eye: 7.5, paws: "pair" },
+  encouraging: { tilt: -1, eye: 6.5, mouth: "smile" },
+  recovered: { tilt: 1.5, lift: -1, closed: false, eye: 7.4, mouth: "smile", paws: "pair" },
+  explaining: { tilt: 1, eye: 6.4, mouth: "ponder" },
+  draw: { tilt: -1, eye: 5.8, mouth: "smile" },
 };
 
 function FrogMouth({ pose }: { pose: AnimalPose }) {
@@ -54,8 +55,8 @@ export default function FrogCoach({ expression }: CoachArtworkProps) {
         <path d="M15 40Q12 14 29 14q17 0 19 24h4q2-24 19-24 17 0 14 26l3 9q7 27-38 30T12 49Z" fill="#83a56a" />
         <path d="M19 32q0-13 11-13 10 0 13 14m14 0q3-14 13-14 11 0 11 13" fill="none" stroke="#aac188" strokeWidth="3" strokeLinecap="round" />
         <path className="cast-frog-throat" d="M17 54q33 17 66 0 0 24-33 26-33-2-33-26Z" fill="#d9d8a0" />
-        <AnimalEyes pose={pose} xs={[29, 71]} y={35} width={8.7} height={pose.eye} iris="#c3ad58" pupilWidth={4.5} lid="#46623d" />
-        <g className="study-brows" transform="translate(0 -5)" stroke="#527648" strokeWidth="2" fill="none" strokeLinecap="round">
+        <AnimalEyes pose={pose} xs={[29, 71]} y={35} width={10.6} height={pose.eye} iris="#c3ad58" pupilWidth={4.5} lid="#46623d" />
+        <g className="study-brows" transform="translate(0 -7)" stroke="#527648" strokeWidth="2" fill="none" strokeLinecap="round">
           <path d={pose.brows[0]} transform="translate(-6 0)" />
           <path d={pose.brows[1]} transform="translate(6 0)" />
         </g>
