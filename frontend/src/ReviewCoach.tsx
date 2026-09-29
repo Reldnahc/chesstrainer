@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 import CoachAvatar from "./coach/CoachAvatar";
 import type { CoachReaction } from "./coach/model";
 
@@ -15,6 +15,7 @@ export default function ReviewCoach({
   insight,
   reaction = { state: "neutral", key: "ready" },
   character,
+  messageResetKey,
 }: {
   title: ReactNode;
   badge?: ReactNode;
@@ -26,7 +27,14 @@ export default function ReviewCoach({
   insight?: ReactNode;
   reaction?: CoachReaction;
   character?: ReactNode;
+  messageResetKey?: string;
 }) {
+  const message = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    // New lesson content starts at its first sentence without remounting the
+    // focused explanation or interrupting the avatar's performance.
+    if (messageResetKey !== undefined && message.current) message.current.scrollTop = 0;
+  }, [messageResetKey]);
   return (
     <section className="review-coach" aria-label="Chess coach">
       <div className="coach-portrait">
@@ -45,6 +53,7 @@ export default function ReviewCoach({
         </div>
         <div className="coach-body">
           <div
+            ref={message}
             className="coach-message"
             tabIndex={0}
             aria-label="Coach explanation"
