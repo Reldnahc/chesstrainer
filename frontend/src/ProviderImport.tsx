@@ -2,6 +2,7 @@ import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { api, read, type Job, type Schema } from "./api";
+import ProviderUsernameField from "./ProviderUsernameField";
 
 
 export function ProviderImportForm({
@@ -84,21 +85,15 @@ export function ProviderImportForm({
         Bring in older games or a custom date range. This uses your saved username
         unless you enter a different one here. No login or API key needed.
       </p>
-      <label>
-        {provider.name} username
-        <input
-          aria-label={`${provider.name} username`}
-          disabled={loadingUsername}
-          autoComplete="off"
-          value={username}
-          onChange={(e) => { editedUsername.current = true; setUsername(e.target.value); }}
-          required
-          maxLength={50}
-          pattern="[A-Za-z0-9_-]+"
-          placeholder={`Your ${provider.name} username`}
-        />
-        <small>Your side is identified separately in every game.</small>
-      </label>
+      <ProviderUsernameField
+        providerName={provider.name}
+        disabled={loadingUsername}
+        value={username}
+        onChange={value => { editedUsername.current = true; setUsername(value); }}
+        required
+        placeholder={`Your ${provider.name} username`}
+        description="Your side is identified separately in every game."
+      />
       <label>
         Time control
         <select

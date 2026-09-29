@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
 import ActionLink from "./ActionLink";
 import { pagePaths } from "./navigation";
+import ProviderUsernameField from "./ProviderUsernameField";
 
 type Sync = Schema["SyncStatus"];
 type Provider = Schema["GameProvider"];
@@ -25,9 +26,8 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
     }
   }
   const form = <form className="sync-form" onSubmit={submit}>
-    <label>Username
-      <input aria-label={`Remembered ${provider.name} username`} disabled={!status || busy} value={name} onChange={event => { edited.current = true; setName(event.target.value); }} maxLength={50} pattern="[A-Za-z0-9_-]*" autoComplete="off" placeholder={`Your ${provider.name} username`} />
-    </label>
+    <ProviderUsernameField providerName={provider.name} label="Username" accessibleLabel={`Remembered ${provider.name} username`}
+      disabled={!status || busy} value={name} onChange={value => { edited.current = true; setName(value); }} placeholder={`Your ${provider.name} username`} />
     <Button type="submit" disabled={!status || busy}>Save username</Button>
   </form>;
   return <section className="panel game-sync" aria-label={`Recent ${provider.name} games`}>

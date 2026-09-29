@@ -2,6 +2,7 @@ import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
 import { navigate } from "./navigation";
+import ProviderUsernameField from "./ProviderUsernameField";
 
 type Connection = { id: string; name: string; username: string };
 
@@ -55,11 +56,10 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
       {step === 1 ? <>
         <p>Add either username, both, or leave them blank. You can change them in Settings later.</p>
         <form onSubmit={next}>
-          {connections.map(connection => <label key={connection.id}>
-            {connection.name} username (optional)
-            <input value={connection.username} disabled={busy || loading} autoComplete="off" maxLength={50} pattern="[A-Za-z0-9_-]*"
-              onChange={event => setConnections(values => values.map(value => value.id === connection.id ? { ...value, username: event.target.value } : value))} />
-          </label>)}
+          {connections.map(connection => <ProviderUsernameField key={connection.id}
+            providerName={connection.name} label={`${connection.name} username (optional)`}
+            value={connection.username} disabled={busy || loading}
+            onChange={username => setConnections(values => values.map(value => value.id === connection.id ? { ...value, username } : value))} />)}
           {loading && <p role="status">Loading connections…</p>}
           <Button type="submit" variant="primary" disabled={busy || loading}>{busy ? "Saving…" : "Continue"}</Button>
         </form>

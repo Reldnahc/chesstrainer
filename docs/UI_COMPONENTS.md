@@ -80,6 +80,7 @@ not React components.
 | Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx), [motion-select.css](../frontend/src/motion-select.css) | Device default / Animated / Still choices in Settings and Studio. Inline or stacked layout; callback and persistence stay caller-owned. Shared-safe styles; Settings status/layout remains in application-only motion.css. |
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
+| Provider username | [ProviderUsernameField](../frontend/src/ProviderUsernameField.tsx) | Shared native rules, unique labels/help IDs and 50-character limit. Optional connection/onboarding versus required import and busy/draft state remain caller-owned. |
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
 | Lesson source attribution | [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Course and illustrative-game citations, including optional license and external URL. |
@@ -138,7 +139,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-11 | Share compact/panel loading and unavailable states. | Planned | Fetching, retry/back actions and recovery policy remain caller-owned. |
 | UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
 | UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Planned | Retain compact activity and search-no-results variants. |
-| UI-14 | Share provider username field rules. | Planned | Preserve required one-time import versus optional connection/onboarding names, and each caller's busy behavior. |
+| UI-14 | Share provider username field rules. | Complete | ProviderUsernameField serves Settings connection, one-time import and onboarding; native validation and description association are centralized. |
 | UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Planned | Remove duplicate markup and correct onboarding's stale "Fetch games" wording; retain request-specific fields and busy copy. |
 | UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Planned | Owner accepted this after explanation, superseding the initial deferral. Move focus into the chooser, contain it appropriately, support Escape and restore focus; preserve the board-specific promotion appearance. |
 | UI-17 | Promote plain native-summary styling (A). | Planned | This choice stands. Preserve comfortable phone tap targets, native details behavior, rich history/review contents and cold-practice answer restrictions. |
@@ -247,6 +248,13 @@ from Git; no live decision-gathering tool is needed.
   modifier-click skip**, covering ranges, boundaries, search filters, empty pages,
   keyboard activation and browser scroll/history restoration. Commit subject:
   `UI-06: Share linked pagination across game and opening libraries`.
+
+- **UI-14 — provider usernames:** shared the field without moving draft, hydration,
+  submission or persistence logic. Escaped the literal hyphen for native pattern
+  validation. Production build and independent source review passed; focused
+  browser tests: **4 passed**, covering optional/required names, valid/invalid
+  characters, length, accessible descriptions, unique IDs and onboarding save
+  locks. Commit subject: `UI-14: Share provider username fields`.
 
 ## Audit findings and implementation boundaries
 
