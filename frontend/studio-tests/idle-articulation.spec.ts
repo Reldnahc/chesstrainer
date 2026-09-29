@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 import { configuredGestures, idleTrackStyle } from "../src/coach/idleGestures";
 import { expressions } from "../src/coach/model";
 import { classicPerformance } from "../src/coach/classic/performance";
@@ -12,7 +13,7 @@ test("every configured idle has distinct canonical tracks on its actual expressi
   const ids = await page.locator(".studio-cast .coach-avatar").evaluateAll(
     (avatars) => avatars.map((avatar) => avatar.getAttribute("data-coach")!),
   );
-  const root = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const root = viteFsPath(path.resolve("."));
   const registered = await page.evaluate(async (root) => {
     const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
     return selectableCoaches.map((coach: { id: string }) => coach.id) as string[];

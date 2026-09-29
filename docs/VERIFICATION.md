@@ -2,6 +2,50 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach revamp review and portable browser harnesses — September 29, 2026
+
+Independent review covered coordinator liveness/cleanup, shared facial state,
+artwork/channel ownership, developer diagnostics, stable names, opponent Book
+feedback and the pending Best/Brilliant grading changes. No production findings
+remained. A deterministic coordinator stress check traversed 3,000 repertoire
+combinations with 700 events each without a cadence or liveness violation.
+
+The first Linux CI pass found a test-harness defect: four browser harnesses
+imported React through Vite's private dependency-cache URLs, with a doubled slash
+before the Linux absolute path. All 64 failures were module-fetch errors before
+the animation assertions. The corrected harnesses use a normal source fixture
+for React/createRoot, and all nine studio filesystem import roots share canonical
+Windows/Linux path handling. Production code and animation behavior are unchanged.
+
+- Before the harness correction, the complete local application suite passed
+  **297 tests with 3 intentional viewport-specific skips**, and the complete local
+  studio suite passed **188 tests**, both desktop/mobile. Commands used
+  `npx.cmd playwright test --config=studio-test-results-configs/opponent-book.config.ts --reporter=line`
+  and `--config=studio-test-results-configs/character-polish.config.ts --reporter=line`.
+  These ignored configs retain the normal projects and use independently managed
+  fixture/studio servers.
+- The focused backend grading/evidence suite passed **131 tests**, including
+  native Stockfish, using `.venv/Scripts/python.exe -m pytest -q` with
+  `backend/tests/test_game_review.py`, `test_review_events.py`,
+  `test_review_sacrifices.py` and `test_review_sacrifice_reports.py`.
+- After correction, `npx.cmd playwright test --config=studio-test-results-configs/character-polish.config.ts idle-cadence.spec.ts idle-diagnostics.spec.ts resting-faces.spec.ts idle-visual.spec.ts vite-path.spec.ts --reporter=line`:
+  **102 passed**, desktop/mobile, 3.2 minutes. Includes all previously failing
+  harnesses and regression assertions for Linux and both Windows path forms.
+- Fresh Linux Node 20 container reproduction: the old dependency URL returned
+  **504**, while its canonical form returned **200**. Browser probes against that
+  Linux server mounted the real coach through the new source fixture on desktop
+  and mobile; each completed five autonomous idle gestures with zero browser
+  errors. The temporary container was removed after verification.
+- `npm.cmd run build`: passed API agreement, production/contract/browser-test
+  TypeScript and Vite. Existing chunk-size advisory remains. Ruff lint/format
+  (**281 files**), generated backend API check and `git diff --check` passed.
+- Initial CI run `36602748137` passed backend (**886 passed, 7 skipped**), the
+  application (**297 passed, 3 skipped**), accounts (**8 passed**), intelligence
+  laboratory (**44 passed**), migrations and fresh Docker installation. Its studio
+  result was **124 passed, 64 failed** for the reproduced harness error above.
+  A clean CI rerun on the correction remains the merge gate; final checks are
+  recorded on [PR #3](https://github.com/Reldnahc/chesstrainer/pull/3).
+
 ## Personal names for the remaining coaches — September 29, 2026
 
 The twelve title-style display names now match the rest of the cast: Walter,

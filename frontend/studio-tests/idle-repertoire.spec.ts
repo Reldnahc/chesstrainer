@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 import { BLINK_INTERVAL_MS, CHANNEL_COOLDOWN_MS, createIdleCoordinator, IDLE_STAGGER_MS } from "../src/coach/idleCoordinator";
 import { IDLE_GAP_MS, type IdleGesture } from "../src/coach/idleModel";
 import { expressions, type CoachDefinition, type CoachExpression } from "../src/coach/model";
@@ -17,7 +18,7 @@ const baselineIds = new Set([
 
 async function castRepertoires(page: Page): Promise<CastRepertoire[]> {
   await page.goto("/");
-  const root = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const root = viteFsPath(path.resolve("."));
   return page.evaluate(async (root) => {
     const { selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
     const { configuredGestures } = await import(`${root}/src/coach/idleGestures.ts`);

@@ -1,5 +1,6 @@
 import { test, expect, type Locator, type Page } from "@playwright/test";
 import path from "node:path";
+import { viteFsPath } from "./helpers/viteFsPath";
 import { configuredGestures } from "../src/coach/idleGestures";
 import { IDLE_GAP_MS, type IdleGesture } from "../src/coach/idleModel";
 import type { CoachExpression, CoachIdle } from "../src/coach/model";
@@ -214,12 +215,11 @@ test("same-expression navigation cancels stale tracks before its dwell and unmou
   await page.goto("/");
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  const root = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  const root = viteFsPath(path.resolve("."));
   await page.evaluate(async (root) => {
     // The studio's controls replay a reaction rather than navigating to another
     // chess move. Mount the real shared component to exercise semantic keys.
-    const { default: React } = await import(`${root}/node_modules/.vite/deps/react.js`);
-    const { default: ReactDOM } = await import(`${root}/node_modules/.vite/deps/react-dom_client.js`);
+    const { React, createRoot } = await import(`${root}/studio-tests/fixtures/runtime.ts`);
     const { CoachCharacter } = await import(`${root}/src/coach/CoachAvatar.tsx`);
     const { getCoach } = await import(`${root}/src/coach/registry.ts`);
     const original = getCoach("classic");
@@ -232,7 +232,7 @@ test("same-expression navigation cancels stale tracks before its dwell and unmou
     container.id = "idle-lifecycle-harness";
     container.style.cssText = "position:fixed;inset:20px auto auto 20px;width:180px;height:220px;z-index:9999";
     document.body.append(container);
-    const mounted = ReactDOM.createRoot(container);
+    const mounted = createRoot(container);
     const render = (key: string) => mounted.render(React.createElement(CoachCharacter, {
       coach, reaction: { state: "best", key }, motion: "natural",
     }));
