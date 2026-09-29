@@ -10,6 +10,7 @@ import {
   type CoachMicro,
 } from "../model";
 import { examples } from "./examples";
+import type { CoachPerformanceSnapshot } from "../performanceDiagnostics";
 
 export type StudioPreview = {
   coach: CoachDefinition;
@@ -19,14 +20,19 @@ export type StudioPreview = {
   replay: number;
   reactionReplay: number;
   previewIdle: CoachMicro;
+  idle: boolean;
+  idleSeed?: number;
+  idleReset: number;
 };
 
 export function ConceptComparison({
   preview,
   onFamily,
+  onPerformance,
 }: {
   preview: StudioPreview;
   onFamily: (family: string) => void;
+  onPerformance?: (snapshot: CoachPerformanceSnapshot) => void;
 }) {
   const { coach, reaction, family } = preview;
   return (
@@ -52,6 +58,8 @@ export function ConceptComparison({
               family={direction.id}
               replay={direction.id === family ? preview.replay : preview.reactionReplay}
               previewIdle={direction.id === family ? preview.previewIdle : ""}
+              idle={direction.id === family && preview.idle}
+              onPerformance={direction.id === family ? onPerformance : undefined}
               label={`${direction.name}: ${expressionInfo[reaction.state].label}`}
             />
           </div>

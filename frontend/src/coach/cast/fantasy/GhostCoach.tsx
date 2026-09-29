@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { CoachArtworkProps } from "../../model";
 import { animalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
@@ -5,6 +6,7 @@ import FantasyShell, { FantasyHead } from "./FantasyShell";
 
 export default function GhostCoach({ expression }: CoachArtworkProps) {
   const pose = animalPose(expression, false);
+  const cut = useId();
   const open = ["brilliant", "winning", "encouraging", "explaining"].includes(
     expression,
   );
@@ -23,20 +25,38 @@ export default function GhostCoach({ expression }: CoachArtworkProps) {
     >
       <ellipse cx="50" cy="121" rx="24" ry="2.8" fill="#86a8b2" opacity=".16" />
       <FantasyHead>
-        <path
-          d={body}
-          fill="#d5e4df"
-          fillOpacity=".93"
-          stroke="#9bcbc8"
-          strokeWidth="1.6"
-          strokeLinejoin="round"
-        />
-        <path
-          className="fantasy-hem"
-          d="M24 92q9 8 16 4 12 7 25 0 8 3 15-4l5 15q-8-6-14 5-11-7-20 3-9-9-20-3-7-9-17-5Z"
-          fill="#9ac4c3"
-          opacity=".6"
-        />
+        <defs>
+          <clipPath id={`${cut}-upper`}><rect width="100" height="92" /></clipPath>
+          <clipPath id={`${cut}-lower`}><rect y="92" width="100" height="33" /></clipPath>
+        </defs>
+        <g clipPath={`url(#${cut}-upper)`}>
+          <path
+            d={body}
+            fill="#d5e4df"
+            fillOpacity=".93"
+            stroke="#9bcbc8"
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
+        </g>
+        <g className="coach-idle-hem fantasy-ghost-hem">
+          <g clipPath={`url(#${cut}-lower)`}>
+            <path
+              d={body}
+              fill="#d5e4df"
+              fillOpacity=".93"
+              stroke="#9bcbc8"
+              strokeWidth="1.6"
+              strokeLinejoin="round"
+            />
+            <path
+              className="fantasy-hem"
+              d="M24 92q9 8 16 4 12 7 25 0 8 3 15-4l5 15q-8-6-14 5-11-7-20 3-9-9-20-3-7-9-17-5Z"
+              fill="#9ac4c3"
+              opacity=".6"
+            />
+          </g>
+        </g>
         <path
           d="M31 39q5-11 18-11"
           stroke="#f5f6dd"

@@ -104,7 +104,7 @@ def test_restricted_played_root_can_disprove_an_only_good_move_claim():
     assert practical.components.acceptable_count_lower_bound == 2
     assert not practical.components.only_good_move_at_depth
     assert not events(report, kind="critical_resource")
-    assert public_report(report, 1000)["engine_label"] == "Best"
+    assert public_report(report, 1000)["engine_label"] == "Good"
     report["second_score"] = None
     report["actual"]["score"]["value"] = -500
     assert assess_difficulty(report).components.only_good_move_at_depth is None

@@ -1,4 +1,5 @@
 import type { CoachArtworkProps } from "../../model";
+import { useEyeClosure } from "../../CoachFaceContext";
 import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
 import { CastHands } from "./CastHands";
@@ -8,6 +9,7 @@ import "./scifi.css";
 
 export default function LivingPawnCoach({ expression }: CoachArtworkProps) {
   const pose = castPoses[expression];
+  const closedEyes = useEyeClosure(pose.closed);
   const bright = expression === "brilliant";
   const startled = expression === "blunder";
   return (
@@ -42,8 +44,8 @@ export default function LivingPawnCoach({ expression }: CoachArtworkProps) {
                     <path d="M34 27q5-2 9 0" transform={`rotate(${pose.brows[0]} 39 27)`} />
                     <path d="M57 27q4-2 9 0" transform={`rotate(${pose.brows[1]} 61 27)`} />
                   </g>
-                  <g className="coach-eyes">
-                    {pose.closed ? (
+                  <g className="coach-eyes" data-eye-state={closedEyes ? "closed" : "open"}>
+                    {closedEyes ? (
                       <path d="M35 35q5-6 10 0m10 0q5-6 10 0" stroke="#3f5359" strokeWidth="2.5" strokeLinecap="round" fill="none" />
                     ) : (
                       <g className="study-gaze">

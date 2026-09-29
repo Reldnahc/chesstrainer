@@ -10,6 +10,7 @@ const emphasis: Partial<Record<CoachExpression, Partial<AnimalPose>>> = {
   brilliant: { tilt: -3, lift: -1, eye: 4.6, mouth: "grin", paws: "pair" },
   great: { tilt: 2, eye: 3.5, mouth: "smile" },
   best: { tilt: -1, eye: 2.5, mouth: "ponder", paws: "rest" },
+  good: { eye: 2.7 },
   blunder: { tilt: 2, lift: 1, eye: 5.8, mouth: "oh", paws: "chin" },
   missed: { tilt: -3, eye: 3.6, mouth: "concern" },
   winning: { tilt: -2, lift: -1, closed: true, mouth: "grin", paws: "pair" },
