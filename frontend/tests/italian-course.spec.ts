@@ -68,6 +68,42 @@ async function studyIds(page: Page) {
   return library.items.map(item => item.id).sort();
 }
 
+for (const motion of ["still", "natural"] as const) {
+  test(`first lesson drags show legal destinations after instructions with ${motion} motion`, async ({ page }) => {
+    expect((await page.request.put("/api/preferences/motion", { data: { motion } })).ok()).toBe(true);
+    await start(page, "quiet-development");
+    await command(page, "Continue");
+    await command(page, "Play continuation");
+    const board = page.locator(".board-shell");
+    for (const uci of ["g1f3", "f1c4"]) {
+      const position = await command(page, "Continue");
+      await expect(page.getByRole("heading", { name: position.step.title, exact: true })).toBeVisible();
+      const source = board.locator(`[data-square="${uci.slice(0, 2)}"]`);
+      const target = board.locator(`[data-square="${uci.slice(2, 4)}"]`);
+      await source.scrollIntoViewIfNeeded();
+      const from = (await source.boundingBox())!, to = (await target.boundingBox())!;
+      const expected = position.legal_moves.filter(move => move.from_square === uci.slice(0, 2)).map(move => move.to_square).sort();
+      expect(expected.length).toBeGreaterThan(1);
+      await expect(board.locator("[data-legal-destination]")).toHaveCount(0);
+      await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
+      await page.mouse.down();
+      try {
+        await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 12 });
+        await expect.poll(() => board.locator("[data-legal-destination]").evaluateAll(markers => markers.map(marker => marker.getAttribute("data-legal-destination")).sort())).toEqual(expected);
+        const pending = page.waitForResponse(response => response.url().includes("/lesson-sessions/") && response.url().endsWith("/command"));
+        await page.mouse.up();
+        const response = await pending;
+        expect(response.ok()).toBe(true);
+        const result: Schema["LessonSessionView"] = await response.json();
+        expect(result.feedback?.kind).toBe("correct");
+      } finally {
+        await page.mouse.up();
+      }
+      await expect(board.locator("[data-legal-destination]")).toHaveCount(0);
+    }
+  });
+}
+
 test("the real Italian course teaches a quiet line, returns from its alternative, rehearses and enrolls only on request", async ({ page }, info) => {
   const before = await studyIds(page);
   const session = await start(page, "quiet-development");

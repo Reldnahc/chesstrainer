@@ -14,6 +14,8 @@ untouched, and enrollment remains explicit. `test_italian_native.py` uses native
 Stockfish for a bounded gross-error check of guided decisions, not as the lesson
 grader. `italian-course.spec.ts` exercises the real installed course on both
 viewports, including exact returns, reload and optional enrollment.
+It also checks legal destinations during the first drag after lesson input is
+enabled, with both Natural and Still motion, across consecutive guided moves.
 
 The account browser suite resumes lessons, puzzle attempts, selected lines and
 the chosen coach on a second device, then confirms another account cannot read
