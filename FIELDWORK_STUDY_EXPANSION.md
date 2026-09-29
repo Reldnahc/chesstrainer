@@ -1,7 +1,7 @@
 # Fieldwork Study Expansion
 ## Lesson Framework, Opening Recall, and Puzzle Framework
 
-**Status:** Design draft  
+**Status:** Approved specification; implementation in progress
 **Scope:** Product and implementation plan  
 **Primary goal:** Add proactive study without weakening Fieldwork's existing evidence, review, and scheduling boundaries.
 

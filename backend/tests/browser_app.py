@@ -5,9 +5,11 @@ import re
 from datetime import datetime, timezone
 
 import httpx
+from puzzle_fixtures import BrowserPuzzleProvider
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
 from trainer.game_providers.lichess import LichessClient
+from trainer.workspaces import CurrentWorkspace
 
 
 def create_app():
@@ -76,7 +78,32 @@ def create_app():
 
         return LichessClient(settings, transport=httpx.MockTransport(handler))
 
-    app = production_app(chesscom_factory=factory, provider_factories={"lichess": lichess_factory})
+    puzzle_provider = BrowserPuzzleProvider()
+    app = production_app(
+        chesscom_factory=factory,
+        provider_factories={"lichess": lichess_factory},
+        puzzle_providers=(puzzle_provider,),
+    )
+
+    @app.post("/__test/puzzle-fixture/{key}")
+    def puzzle_fixture(workspace: CurrentWorkspace, key: str):
+        from trainer.contracts.puzzles import PuzzleStart
+        from trainer.puzzles.providers import PuzzleProviders
+        from trainer.puzzles.sessions import start_session
+
+        with workspace.mutation_lock, workspace.sessions() as db:
+            definition = puzzle_provider.install(workspace.user_id, key)
+            session = start_session(
+                db,
+                PuzzleProviders((puzzle_provider,)),
+                PuzzleStart(
+                    provider_id=puzzle_provider.id,
+                    key=key,
+                    version=definition.version,
+                    request_id=f"fixture-{key}",
+                ),
+            )
+            return {"session_id": session["id"], "key": key, "source": definition.source}
 
     @app.post("/__test/game-review-fixture/{key}")
     def game_review_fixture(key: str):

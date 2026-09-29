@@ -33,6 +33,7 @@ Whole-game review and training analysis are separately requested from the game.
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
+| puzzles/ / routes/puzzles.py | Versioned provider definitions, private session snapshots and atomic multi-move practice; no engine or scheduler dependency |
 | routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
@@ -61,6 +62,7 @@ lock, while other accounts have independent locks.
 | Module in frontend/src | Responsibility |
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
+| study/ | Study landing and puzzle player; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |

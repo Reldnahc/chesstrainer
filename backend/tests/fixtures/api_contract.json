@@ -4043,6 +4043,520 @@
         "title": "ProviderImportRequest",
         "type": "object"
       },
+      "PuzzleCommand": {
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Request Id",
+            "type": "string"
+          },
+          "revision": {
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "request_id",
+          "revision"
+        ],
+        "title": "PuzzleCommand",
+        "type": "object"
+      },
+      "PuzzleCompletion": {
+        "additionalProperties": false,
+        "properties": {
+          "provenance": {
+            "$ref": "#/components/schemas/PuzzleProvenance"
+          },
+          "rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating"
+          },
+          "solution": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "Solution",
+            "type": "array"
+          },
+          "themes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Themes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "themes",
+          "rating",
+          "provenance",
+          "solution"
+        ],
+        "title": "PuzzleCompletion",
+        "type": "object"
+      },
+      "PuzzleFeedback": {
+        "additionalProperties": false,
+        "properties": {
+          "grade": {
+            "enum": [
+              "correct",
+              "incorrect",
+              "revealed"
+            ],
+            "title": "Grade",
+            "type": "string"
+          },
+          "submitted_san": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted San"
+          }
+        },
+        "required": [
+          "grade",
+          "submitted_san"
+        ],
+        "title": "PuzzleFeedback",
+        "type": "object"
+      },
+      "PuzzleFrame": {
+        "additionalProperties": false,
+        "properties": {
+          "after_fen": {
+            "title": "After Fen",
+            "type": "string"
+          },
+          "before_fen": {
+            "title": "Before Fen",
+            "type": "string"
+          },
+          "san": {
+            "title": "San",
+            "type": "string"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          }
+        },
+        "required": [
+          "uci",
+          "san",
+          "before_fen",
+          "after_fen"
+        ],
+        "title": "PuzzleFrame",
+        "type": "object"
+      },
+      "PuzzleKey": {
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Key",
+            "type": "string"
+          },
+          "provider_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "version": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "key",
+          "version"
+        ],
+        "title": "PuzzleKey",
+        "type": "object"
+      },
+      "PuzzleLibrary": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "title": "Available",
+            "type": "integer"
+          },
+          "resume": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleResume"
+            },
+            "title": "Resume",
+            "type": "array"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleProviderInfo"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/PuzzleStats"
+          }
+        },
+        "required": [
+          "available",
+          "sources",
+          "resume",
+          "stats"
+        ],
+        "title": "PuzzleLibrary",
+        "type": "object"
+      },
+      "PuzzleMove": {
+        "additionalProperties": false,
+        "properties": {
+          "elapsed_ms": {
+            "default": 0,
+            "maximum": 86400000.0,
+            "minimum": 0.0,
+            "title": "Elapsed Ms",
+            "type": "integer"
+          },
+          "request_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Request Id",
+            "type": "string"
+          },
+          "revision": {
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "uci": {
+            "pattern": "^[a-h][1-8][a-h][1-8][qrbn]?$",
+            "title": "Uci",
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id",
+          "revision",
+          "uci"
+        ],
+        "title": "PuzzleMove",
+        "type": "object"
+      },
+      "PuzzleProvenance": {
+        "additionalProperties": false,
+        "properties": {
+          "attribution": {
+            "title": "Attribution",
+            "type": "string"
+          },
+          "game_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Id"
+          },
+          "source_ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Ply"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": [
+          "attribution"
+        ],
+        "title": "PuzzleProvenance",
+        "type": "object"
+      },
+      "PuzzleProviderInfo": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "generic",
+              "games"
+            ],
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "source",
+          "count"
+        ],
+        "title": "PuzzleProviderInfo",
+        "type": "object"
+      },
+      "PuzzleResume": {
+        "additionalProperties": false,
+        "properties": {
+          "failed": {
+            "title": "Failed",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "generic",
+              "games"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "started_at": {
+            "title": "Started At",
+            "type": "string"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "started_at",
+          "updated_at",
+          "failed"
+        ],
+        "title": "PuzzleResume",
+        "type": "object"
+      },
+      "PuzzleSessionView": {
+        "additionalProperties": false,
+        "properties": {
+          "completion": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PuzzleCompletion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_step": {
+            "title": "Current Step",
+            "type": "integer"
+          },
+          "failed": {
+            "title": "Failed",
+            "type": "boolean"
+          },
+          "feedback": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PuzzleFeedback"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "fen": {
+            "title": "Fen",
+            "type": "string"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "History",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "legal_moves": {
+            "items": {
+              "$ref": "#/components/schemas/LegalMove"
+            },
+            "title": "Legal Moves",
+            "type": "array"
+          },
+          "orientation": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Orientation",
+            "type": "string"
+          },
+          "playback": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "Playback",
+            "type": "array"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          },
+          "source": {
+            "enum": [
+              "generic",
+              "games"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "solved",
+              "revealed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "fen",
+          "orientation",
+          "legal_moves",
+          "history",
+          "revision",
+          "current_step",
+          "status",
+          "failed",
+          "feedback",
+          "playback",
+          "completion"
+        ],
+        "title": "PuzzleSessionView",
+        "type": "object"
+      },
+      "PuzzleStart": {
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Key",
+            "type": "string"
+          },
+          "provider_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "request_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Request Id",
+            "type": "string"
+          },
+          "version": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "key",
+          "version",
+          "request_id"
+        ],
+        "title": "PuzzleStart",
+        "type": "object"
+      },
+      "PuzzleStats": {
+        "additionalProperties": false,
+        "properties": {
+          "clean": {
+            "title": "Clean",
+            "type": "integer"
+          },
+          "failed_then_solved": {
+            "title": "Failed Then Solved",
+            "type": "integer"
+          },
+          "revealed": {
+            "title": "Revealed",
+            "type": "integer"
+          },
+          "solved": {
+            "title": "Solved",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "solved",
+          "clean",
+          "failed_then_solved",
+          "revealed"
+        ],
+        "title": "PuzzleStats",
+        "type": "object"
+      },
       "RefinementInfo": {
         "additionalProperties": false,
         "properties": {
@@ -6905,6 +7419,257 @@
           }
         },
         "summary": "Provider Sync"
+      }
+    },
+    "/api/puzzle-sessions": {
+      "post": {
+        "operationId": "start_api_puzzle_sessions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuzzleStart"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuzzleSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Start"
+      }
+    },
+    "/api/puzzle-sessions/{session_id}": {
+      "get": {
+        "operationId": "get_session_api_puzzle_sessions__session_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuzzleSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Session"
+      }
+    },
+    "/api/puzzle-sessions/{session_id}/move": {
+      "post": {
+        "operationId": "move_api_puzzle_sessions__session_id__move_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuzzleMove"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuzzleSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Move"
+      }
+    },
+    "/api/puzzle-sessions/{session_id}/reveal": {
+      "post": {
+        "operationId": "reveal_api_puzzle_sessions__session_id__reveal_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PuzzleCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuzzleSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reveal"
+      }
+    },
+    "/api/puzzles": {
+      "get": {
+        "operationId": "library_api_puzzles_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PuzzleLibrary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Library"
+      }
+    },
+    "/api/puzzles/next": {
+      "get": {
+        "operationId": "next_puzzle_api_puzzles_next_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "generic",
+                    "games"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PuzzleKey"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Next Puzzle Api Puzzles Next Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Next Puzzle"
       }
     },
     "/api/review/queue": {

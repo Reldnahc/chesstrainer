@@ -471,3 +471,38 @@ class Review(Owned, Base):
     scheduler_version: Mapped[str]
     scheduler_log: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class PuzzleSession(Owned, Base):
+    __tablename__ = "puzzle_sessions"
+    __table_args__ = (UniqueConstraint("user_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    request_id: Mapped[str]
+    provider_id: Mapped[str]
+    puzzle_key: Mapped[str]
+    definition_version: Mapped[str]
+    puzzle_source: Mapped[str]
+    snapshot: Mapped[dict] = mapped_column(JSON)
+    current_step: Mapped[int] = mapped_column(default=0)
+    revision: Mapped[int] = mapped_column(default=0)
+    status: Mapped[str] = mapped_column(default="active")
+    failed: Mapped[bool] = mapped_column(default=False)
+    first_response_ms: Mapped[int | None]
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class PuzzleAttempt(Owned, Base):
+    __tablename__ = "puzzle_attempts"
+    __table_args__ = (UniqueConstraint("session_id", "request_id"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    session_id: Mapped[str] = mapped_column(ForeignKey("puzzle_sessions.id"), index=True)
+    request_id: Mapped[str]
+    request: Mapped[dict] = mapped_column(JSON)
+    step: Mapped[int]
+    uci: Mapped[str | None]
+    grade: Mapped[str]
+    elapsed_ms: Mapped[int]
+    response: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)

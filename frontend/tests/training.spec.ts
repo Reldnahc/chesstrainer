@@ -8,7 +8,7 @@ const documentBox = (locator: Locator) => locator.evaluate(element => {
 });
 
 test('redesigned screens fit the viewport and load local fonts and favicon', async ({page}, testInfo) => {
-  await page.goto('/');
+  await page.goto('/study/due');
   await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
   expect(await page.evaluate(() => document.fonts.check('14px "IBM Plex Sans"'))).toBe(true);
@@ -16,7 +16,7 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
   const response = await page.request.get(icon!);
   expect(response.headers()['content-type']).toContain('image/svg+xml');
   expect(await response.text()).toContain('<svg');
-  for (const tab of ['Review', 'Games', 'Weaknesses', 'Settings']) {
+  for (const tab of ['Study', 'Games', 'Weaknesses', 'Settings']) {
     await page.getByRole('link', {name: tab, exact: true}).click();
     await expect(page.getByRole('link', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
@@ -36,7 +36,7 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
 });
 
 test('create a curated position, fail once, solve by tapping and retain after reload', async ({page}, testInfo) => {
-  await page.goto('/');
+  await page.goto('/study/due');
   await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
   const savedPosition = await page.request.post('/api/exercises/manual', {data: {
     fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
@@ -203,12 +203,13 @@ test('Chess.com missing username reports a retryable provider error', async ({pa
 });
 
 
-test('removed lesson links return to Review without starting a lesson', async ({page}) => {
+test('removed lesson links return to Study without starting a lesson', async ({page}) => {
   const requests: string[] = [];
   page.on('request', request => {if (request.url().includes('/api/course')) requests.push(request.url());});
   await page.goto('/?unit=archived-unit');
-  await expect(page.getByRole('heading', {name: 'Your move.'})).toBeVisible();
-  await expect(page.getByRole('navigation').getByRole('link')).toHaveText(['Review', 'Games', 'Weaknesses', 'Settings']);
+  await expect(page).toHaveURL('/study');
+  await expect(page.locator('main h1')).toBeVisible();
+  await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link')).toHaveText(['Study', 'Games', 'Weaknesses', 'Settings']);
   await expect(page.getByRole('button', {name: 'Course', exact: true})).toHaveCount(0);
   expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
   expect(requests).toEqual([]);
@@ -652,7 +653,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
   const before = (await (await page.request.get('/api/stats')).json()).reviews;
   await weakness.getByRole('button', {name: /Practice .* positions/}).click();
-  await expect(page).toHaveURL(/\/review\?focus=/);
+  await expect(page).toHaveURL(/\/study\/due\?focus=/);
   const focusedUrl = page.url();
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
   await expect(page.getByText('practiced this session', {exact: true})).toBeVisible();
@@ -675,7 +676,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(board.locator('[data-pattern-square]')).toHaveCount(0);
   expect((await (await page.request.get('/api/stats')).json()).reviews).toBe(before);
   await page.getByRole('button', {name: 'Return to mixed review', exact: true}).click();
-  await expect(page).toHaveURL('/review');
+  await expect(page).toHaveURL('/study/due');
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toHaveCount(0);
   await page.goBack();
   await expect(page).toHaveURL(focusedUrl);

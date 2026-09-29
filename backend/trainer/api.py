@@ -16,6 +16,7 @@ from trainer.human_models.service import HumanModels
 from trainer.jobs import JobRunner
 from trainer.local_classifier import LocalClassifier
 from trainer.multiuser import configure_accounts
+from trainer.puzzles.providers import PuzzleProviders
 from trainer.retirement import retire_existing
 from trainer.routes import (
     classification,
@@ -23,6 +24,7 @@ from trainer.routes import (
     games,
     imports,
     jobs,
+    puzzles,
     review,
     sync,
     workspace,
@@ -45,6 +47,7 @@ def create_app(
     start_engine=True,
     human_provider=None,
     provider_factories=None,
+    puzzle_providers=(),
 ):
     settings = (settings or Settings()).for_runtime()
     sql_engine, sessions = database(settings.database_path)
@@ -127,6 +130,7 @@ def create_app(
     app.include_router(sync.create_router())
     app.include_router(games.create_router(settings=settings, engine_factory=engine_factory))
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
+    app.include_router(puzzles.create_router(providers=PuzzleProviders(puzzle_providers)))
     app.include_router(classification.create_router(settings=settings, classifier=classifier))
     app.include_router(compatibility.create_router(scheduler=scheduler))
     serve_frontend(app)
