@@ -37,6 +37,34 @@ on Windows filesystem privileges.
   Independent review covered shared frontend dependencies, all matrix entries,
   stable gating, reusable workflow inputs, release history and image publication.
 
+The first real GitHub run (`36613634495`) passed backend **1,105 tests with 7
+optional skips**, frontend build/types, Docker installation, application
+**297 passed / 3 intentional skips**, accounts **8 passed**, and intelligence
+**44 passed**. All twelve browser jobs reused the same frontend artifact; coach
+jobs skipped Python/Stockfish and intelligence skipped Stockfish as intended.
+The coach suite passed **189 cases**, but its single mobile all-cast traversal
+exceeded the existing 240-second test timeout; the desktop traversal took about
+229 seconds. The stable CI gate correctly rejected the failure. This surfaced
+an oversized test case, with thirty coaches and twenty expressions sharing one
+deadline, rather than an assertion failure or missing suite.
+
+The correction splits that traversal into a roster check and one isolated case
+per coach, preserving every expression/repertoire/state assertion and screenshot.
+Each coach uses the normal 30-second timeout. The checked-in account contract
+provides IDs without loading artwork/CSS into Node, and the roster assertion
+requires exact agreement with the browser registry. Overflow is now checked for
+every coach. Independent review found no lost assertions or shared state.
+Repeating exhaustive matrix collection after the split assigns all **602 cases
+exactly once** (application 300, accounts 8, coach 250, intelligence 44).
+
+- From `frontend`, `.\node_modules\.bin\playwright.cmd test --config studio-test-results-configs/ci-full-cast-split.config.ts full-cast.spec.ts`:
+  **66 passed**, desktop/mobile, 332.37 seconds, no skips or retries. The ignored
+  config inherits the normal projects/one-worker limit and uses the existing
+  studio server with a separate output directory. Longest individual coach case:
+  **5.407 seconds desktop / 5.332 seconds mobile**, within the unchanged 30-second
+  default. The existing studio was left running.
+- Browser-test TypeScript and `git diff --check`: passed.
+
 ## Coach revamp review and portable browser harnesses — September 29, 2026
 
 Independent review covered coordinator liveness/cleanup, shared facial state,

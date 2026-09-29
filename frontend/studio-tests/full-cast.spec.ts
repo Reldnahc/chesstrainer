@@ -1,7 +1,13 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import { viteFsPath } from "./helpers/viteFsPath";
 import { expressions, type CoachDefinition, type CoachExpression, type CoachIdle } from "../src/coach/model";
+
+// Use the canonical selectable IDs without importing artwork/CSS into Node.
+// The roster test below requires this collection to match the browser registry.
+const contract = JSON.parse(readFileSync(path.resolve("../backend/tests/fixtures/api_contract.json"), "utf8"));
+const coachIds: string[] = contract.components.schemas.CoachPreferences.properties.coach_id.enum;
 
 async function readCast(page: Page) {
   const root = viteFsPath(path.resolve("."));
@@ -19,8 +25,7 @@ async function readCast(page: Page) {
   }, root);
 }
 
-test("the complete cast exposes every expression and its configured idle repertoire", async ({ page }, info) => {
-  test.setTimeout(240_000);
+test("the complete cast matches the canonical selectable roster", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
   const cast = await readCast(page);
@@ -28,37 +33,48 @@ test("the complete cast exposes every expression and its configured idle reperto
   await expect(roster).toHaveCount(cast.length);
   const ids = await roster.locator(".coach-avatar").evaluateAll((avatars) => avatars.map((avatar) => avatar.getAttribute("data-coach")!));
   expect([...new Set(ids)].sort()).toEqual(cast.map((coach) => coach.id).sort());
+  expect(cast.map((coach) => coach.id).sort()).toEqual([...coachIds].sort());
   for (const retired of ["dog-sunny", "cat-tabby", "cat-calico"]) expect(ids).not.toContain(retired);
   for (const retained of ["classic", "dog-gentle", "cat-tuxedo", "cat-black"]) expect(ids).toContain(retained);
+});
 
-  for (const id of ids) {
-    const coach = cast.find((entry) => entry.id === id)!;
-    await page.locator(`.studio-cast button:has([data-coach="${id}"])`).click();
-    await expect(page.locator(`.studio-cast button:has([data-coach="${id}"])`)).toHaveAttribute("aria-pressed", "true");
-    await expect(page.locator(".studio-expression")).toHaveCount(expressions.length);
-    for (const state of expressions) {
-      await page.getByRole("combobox", { name: "Expression", exact: true }).selectOption(state);
-      const repertoire = coach.repertoire[state];
-      const cards = page.locator(".studio-idle-card");
-      await expect(cards).toHaveCount(repertoire.length);
-      const gestures = await cards.evaluateAll((elements) => elements.map((element) => element.getAttribute("data-gesture")));
-      expect(gestures, `${id}:${state}`).toEqual(repertoire);
-      expect(new Set(gestures).size, `${id}:${state}`).toBe(repertoire.length);
-      await expect(cards.locator(".coach-avatar").first()).toHaveAttribute("data-expression", state);
-      const states = await cards.locator(".coach-avatar").evaluateAll((avatars) => avatars.map((avatar) => ({
-        expression: avatar.getAttribute("data-expression"),
-        motion: avatar.getAttribute("data-motion"),
-        phase: avatar.getAttribute("data-phase"),
-        micro: avatar.getAttribute("data-micro"),
-      })));
-      expect(states).toEqual(repertoire.map(() => ({ expression: state, motion: "still", phase: "rest", micro: "" })));
-      await expect(page.getByRole("combobox", { name: "Idle gesture", exact: true }).locator("option")).toHaveCount(repertoire.length);
-    }
-    await page.locator(".studio-expression-grid").screenshot({
-      path: `studio-test-results/cast-expressions-${id}-${info.project.name}.png`,
+test.describe("each selectable coach", () => {
+  // Each coach gets an isolated page and the normal per-test timeout.
+  // Parallel eligibility also lets CI distribute these cases between shards;
+  // the suite's existing worker limit still controls simultaneous browsers.
+  test.describe.configure({ mode: "parallel" });
+  for (const id of coachIds) {
+    test(`${id} exposes every expression and its configured idle repertoire`, async ({ page }, info) => {
+      await page.goto("/");
+      await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
+      const coach = (await readCast(page)).find((entry) => entry.id === id)!;
+      await page.locator(`.studio-cast button:has([data-coach="${id}"])`).click();
+      await expect(page.locator(`.studio-cast button:has([data-coach="${id}"])`)).toHaveAttribute("aria-pressed", "true");
+      await expect(page.locator(".studio-expression")).toHaveCount(expressions.length);
+      for (const state of expressions) {
+        await page.getByRole("combobox", { name: "Expression", exact: true }).selectOption(state);
+        const repertoire = coach.repertoire[state];
+        const cards = page.locator(".studio-idle-card");
+        await expect(cards).toHaveCount(repertoire.length);
+        const gestures = await cards.evaluateAll((elements) => elements.map((element) => element.getAttribute("data-gesture")));
+        expect(gestures, `${id}:${state}`).toEqual(repertoire);
+        expect(new Set(gestures).size, `${id}:${state}`).toBe(repertoire.length);
+        await expect(cards.locator(".coach-avatar").first()).toHaveAttribute("data-expression", state);
+        const states = await cards.locator(".coach-avatar").evaluateAll((avatars) => avatars.map((avatar) => ({
+          expression: avatar.getAttribute("data-expression"),
+          motion: avatar.getAttribute("data-motion"),
+          phase: avatar.getAttribute("data-phase"),
+          micro: avatar.getAttribute("data-micro"),
+        })));
+        expect(states).toEqual(repertoire.map(() => ({ expression: state, motion: "still", phase: "rest", micro: "" })));
+        await expect(page.getByRole("combobox", { name: "Idle gesture", exact: true }).locator("option")).toHaveCount(repertoire.length);
+      }
+      await page.locator(".studio-expression-grid").screenshot({
+        path: `studio-test-results/cast-expressions-${id}-${info.project.name}.png`,
+      });
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     });
   }
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("expression idles replay independently while full cast comparisons share the same moment", async ({ page }, info) => {

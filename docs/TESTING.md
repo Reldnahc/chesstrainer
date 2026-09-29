@@ -155,6 +155,11 @@ artifact. Coach studio installs neither Python dependencies nor Stockfish;
 intelligence retains Python for semantic fixtures but does not install Stockfish.
 Application/account tests and backend integration tests retain real Stockfish.
 
+The full-cast expression/repertoire checks are separate cases per coach, using
+the existing account contract's selectable IDs and verifying equality with the
+browser registry. Each gets an isolated page and the normal test timeout; the
+cases can be sharded without increasing the worker count or dropping expressions.
+
 The stable **CI** check runs even when all heavy jobs are intentionally skipped.
 It requires every selected job to succeed, and rejects failures, cancellations,
 missing results and unexpectedly skipped jobs. If branch protection is enabled,
