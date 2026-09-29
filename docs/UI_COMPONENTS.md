@@ -68,6 +68,7 @@ not React components.
 | Resume/continue row | [ResumeLink](../frontend/src/ResumeLink.tsx) | Existing raised title/subtitle/arrow row for saved lessons, puzzles and course lines. Callers supply destination and content; chapter commands and other row types remain separate. |
 | Study statistics | [StatList](../frontend/src/StatList.tsx) | Shared definition-list markup and existing metric appearance; callers supply labels/values and visibility. |
 | Move playback controls | [MovePlaybackControls](../frontend/src/MovePlaybackControls.tsx) | Labelled previous/counter/next group, optional first/last, stable digits and canonical lesson geometry. Callers own navigation and separate flip/back controls; disabled and aria-disabled remain independent. |
+| Selectable continuation | [ContinuationMoves](../frontend/src/ContinuationMoves.tsx) | Start/SAN controls, optional move numbering, explicit selected occurrence and playback-disabled state. Callers own inspection; full-game scored notation stays separate. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
@@ -144,7 +145,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-04 | Promote Game Review's purple return action (A). | Complete | ReturnButton shares the purple style and icon while each mode retains its label, handler, disabled/focus behavior and branch state. |
 | UI-05 | Promote lesson/opening playback geometry (C/D). | Complete | Four playback surfaces share controls and fixed counter geometry; game variation/ply-zero behavior, separate flip, responsive toolbar and lesson pending-focus rules remain intact. |
 | UI-06 | Promote catalogue pagination labels and layout (B). | Complete | Shared Pagination uses real destination links; 30-game/50-line ranges, filters, history and empty-page recovery remain caller-owned. |
-| UI-07 | Share continuation-move markup. | Planned | Preserve numbering options, selection and playback-disabled behavior; full-game scored notation stays specialized. |
+| UI-07 | Share continuation-move markup. | Complete | Puzzles and opening previews share ContinuationMoves with caller-owned numbering, selection and disabled state. Full-game scored notation stays specialized. |
 | UI-08 | Share move-feedback announcement rules while retaining rich lesson layout. | Complete | Due, puzzles and lessons use MoveStatus. Puzzles share delayed checking; lesson paragraphs remain rich and navigation never replaces them with Checking. |
 | UI-09 | Promote relative next-due time with an exact-time tooltip (A). | Complete | RecallReceipt serves game and opening recalls while their existing domain rules choose saved/relearning/retired/unscheduled copy. |
 | UI-10 | Share preference-status rendering with heading and field placements. | Complete | Coach selection and both motion fields use PreferenceStatus; providers, saved flags, retry labels and device fallback remain unchanged. |
@@ -370,6 +371,14 @@ from Git; no live decision-gathering tool is needed.
   checks passed**, including account/import/sync failures, dismissal, unchanged
   announcement nodes and passive historical errors. Commit subject:
   `UI-12: Share notices with explicit announcement behavior`.
+
+- **UI-07 — continuation selection:** shared Start/SAN markup with explicit
+  numbering and selection. Production build passed; **18 checks passed** across
+  three desktop/mobile repetitions, covering cold gating, disabled playback,
+  numbered openings and repeated SAN positions. Fixed new tests to wait for
+  observable board commits with the virtual animation clock and to create
+  independent sessions on repetition. Commit subject:
+  `UI-07: Share selectable continuation controls`.
 
 ## Audit findings and implementation boundaries
 

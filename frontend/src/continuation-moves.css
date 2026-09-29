@@ -1,0 +1,13 @@
+.continuation-moves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.continuation-moves .action-control {
+  padding: 5px 10px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.continuation-moves .action-control[aria-current="step"] {
+  border-color: var(--accent);
+}

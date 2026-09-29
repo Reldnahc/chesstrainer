@@ -59,7 +59,7 @@ test("shared move playback preserves counter geometry and fits the complete game
   const openingSize = (await next.boundingBox())!;
   expect(openingSize.height).toBe(nextSize.height);
   if (info.project.name === "desktop") expect(openingSize.width).toBe(nextSize.width);
-  await page.locator(".puzzle-move-list button").nth(9).click();
+  await page.getByRole("group", { name: "Opening continuation", exact: true }).getByRole("button").nth(9).click();
   await expect(counter).toHaveText(`9 / ${line!.plies}`);
   const before = await geometry(openingControls);
   await next.click();

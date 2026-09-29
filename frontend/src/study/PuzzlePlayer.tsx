@@ -4,6 +4,7 @@ import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import ContinuationMoves from "../ContinuationMoves";
 import { LoadingState, UnavailableState } from "../LoadState";
 import ReviewWorkspace from "../ReviewWorkspace";
 import ReviewCoach from "../ReviewCoach";
@@ -86,7 +87,10 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     {(error || nextError) && <Notice announcement="alert" tone="error">{error || nextError}</Notice>}
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
       <h2>{session.completion.themes.length ? session.completion.themes.map(theme => theme.replaceAll("_", " ")).join(" · ") : "The continuation"}</h2>
-      <div className="puzzle-move-list"><button disabled={playing} aria-current={displayedFen === session.completion.solution[0]?.before_fen ? "step" : undefined} onClick={state.inspectStart}>Start</button>{session.completion.solution.map((move, index) => <button key={`${index}:${move.uci}`} disabled={playing} aria-current={frame === move ? "step" : undefined} onClick={() => state.inspect(move)}>{move.san}</button>)}</div>
+      <ContinuationMoves label="Solution moves" moves={session.completion.solution} disabled={playing}
+        selectedIndex={session.completion.solution.findIndex(move => frame === move)}
+        startSelected={displayedFen === session.completion.solution[0]?.before_fen}
+        onStart={state.inspectStart} onSelect={index => state.inspect(session.completion!.solution[index])} />
       {session.completion.rating != null && <p className="small">Puzzle rating: {session.completion.rating}</p>}
       <SourceLine className="puzzle-provenance" text={`Puzzle practice · ${session.source === "games" ? "From your games" : "Collection puzzle"}`} />
       <SourceLine className="puzzle-provenance" text={session.completion.provenance.attribution}

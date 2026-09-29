@@ -4,6 +4,7 @@ import { api, read, type Schema } from "../api";
 import Board from "../Board";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import ContinuationMoves from "../ContinuationMoves";
 import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
 import ReviewCoach from "../ReviewCoach";
@@ -98,7 +99,8 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     <section className="panel opening-preview-details">
       <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{side === "white" ? line.white_positions : line.black_positions} decisions</small></label>)}</fieldset>
       <h2>The selected continuation</h2>
-      <div className="puzzle-move-list"><button aria-current={!ply ? "step" : undefined} onClick={() => setPly(0)}>Start</button>{line.frames.map((move, index) => <button key={index} aria-current={ply === index + 1 ? "step" : undefined} onClick={() => setPly(index + 1)}>{move.before_fen.split(" ")[5]}{move.before_fen.split(" ")[1] === "w" ? "." : "…"} {move.san}</button>)}</div>
+      <ContinuationMoves label="Opening continuation" moves={line.frames} numbered selectedIndex={ply - 1} startSelected={!ply}
+        onStart={() => setPly(0)} onSelect={index => setPly(index + 1)} />
       <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall decisions. This line does not cover every opponent response.</p>
       {saved && <Notice announcement="status" tone="success" appearance="inline" className="small">Study saved. Eligible positions are now included in Due.</Notice>}
       <div className="button-row"><ActionLink variant="secondary" href={`${studyPaths.openings}/studies`}>My studies</ActionLink>{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</div>
