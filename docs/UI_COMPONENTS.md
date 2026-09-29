@@ -68,6 +68,7 @@ not React components.
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
+| Native modal lifecycle | [useModalDialog](../frontend/src/useModalDialog.ts) | Evidence and promotion share native opening, Escape dismissal, keyboard isolation and connected-opener restoration. Promotion supplies board fallback and board-relative placement; Maia remains non-modal. |
 | Board/sidebar layout | [ReviewWorkspace](../frontend/src/ReviewWorkspace.tsx), [review-presentation.css](../frontend/src/review-presentation.css) | Shared board sizing and slots for status, evaluation, controls and sidebar; mobile coach placement. |
 | Coach bubble, portrait and action geometry | [ReviewCoach](../frontend/src/ReviewCoach.tsx), [coach-presentation.css](../frontend/src/coach-presentation.css) | Shared title, badge, evaluation, explanation, insight, caption and actions. Preserve stable portrait identity and message-scroll reset behavior. |
 | Registered coach artwork/performance | [CoachAvatar / CoachCharacter](../frontend/src/coach/CoachAvatar.tsx), [registry](../frontend/src/coach/registry.ts) | App-selected avatar versus explicit preview character. Use registry metadata; do not maintain another cast list. |
@@ -143,7 +144,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Planned | Retain compact activity and search-no-results variants. |
 | UI-14 | Share provider username field rules. | Complete | ProviderUsernameField serves Settings connection, one-time import and onboarding; native validation and description association are centralized. |
 | UI-15 | Share the existing PGN/provider analysis option and import action (A/B). | Planned | Remove duplicate markup and correct onboarding's stale "Fetch games" wording; retain request-specific fields and busy copy. |
-| UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Planned | Owner accepted this after explanation, superseding the initial deferral. Move focus into the chooser, contain it appropriately, support Escape and restore focus; preserve the board-specific promotion appearance. |
+| UI-16 | Adopt the evidence dialog's modal keyboard/focus behavior for promotion. | Complete | Promotion uses the shared native modal lifecycle, preserving legal choices, drag timing and board-relative placement; page shortcuts yield while a modal is open. |
 | UI-17 | Promote plain native-summary styling (A). | Planned | This choice stands. Preserve comfortable phone tap targets, native details behavior, rich history/review contents and cold-practice answer restrictions. |
 | UI-18 | Keep section headings and the distinct action-row layouts separate. | Keep existing | Do not extract a universal component for these different roles. |
 | UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Planned | Supply each destination and content; keep other row compositions separate. |
@@ -277,6 +278,15 @@ from Git; no live decision-gathering tool is needed.
   including minute/hour/day boundaries, no cold disclosure, both players'
   relearning/retired states and previously recorded opening recalls. Commit
   subject: `UI-09: Share relative due receipts across recall modes`.
+
+- **UI-16 — promotion modal:** shared EvidenceDialog's native lifecycle through
+  useModalDialog and retained promotion's board-relative responsive placement.
+  Focus returns to the opener or board; native Tab/Escape work without triggering
+  game shortcuts. Production build passed. Focused component browser coverage:
+  **18 passed, 4 intentional mobile skips** for mouse-only drag cases. Actual
+  Due and puzzle promotion checks also passed on desktop/mobile. Reviewed modal
+  screenshots at both sizes. Commit subject: `UI-16: Share native modal focus
+  behavior with board promotion`.
 
 ## Audit findings and implementation boundaries
 

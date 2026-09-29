@@ -73,14 +73,24 @@
   border: 5px solid #17202d88;
 }
 .promotion {
-  position: absolute;
-  inset: 25% 8% auto;
+  --promotion-inline-inset: 0.08;
+  --promotion-block-inset: 0.25;
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  max-width: none;
+  max-height: calc(100dvh - 16px);
+  overflow: auto;
+  color: inherit;
   background: var(--surface);
   border: 1px solid #757d89;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 12px 50px #0008;
   z-index: 10;
+}
+.promotion::backdrop {
+  background: transparent;
 }
 .playback-highlight {
   box-shadow: inset 0 0 0 3px #ff8059;
@@ -96,7 +106,8 @@
 }
 @media (max-width: 760px) {
   .promotion {
-    inset: 20% 3% auto;
+    --promotion-inline-inset: 0.03;
+    --promotion-block-inset: 0.2;
     padding: 16px;
   }
   .promotion button {

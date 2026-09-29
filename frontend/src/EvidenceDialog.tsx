@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { api, read, type Evidence, type Schema } from "./api";
 import Board from "./Board";
 import Button, { IconButton } from "./Button";
+import useModalDialog from "./useModalDialog";
 export default function EvidenceDialog({
   id,
   onClose,
@@ -14,16 +15,7 @@ export default function EvidenceDialog({
 }) {
   const [data, setData] = useState<Evidence | null>(null),
     [audit, setAudit] = useState<Schema["ClassificationAudit"] | null>(null);
-  const dialog = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const opener = document.activeElement as HTMLElement | null;
-    const element = dialog.current;
-    element?.showModal();
-    return () => {
-      element?.close();
-      opener?.focus({ preventScroll: true });
-    };
-  }, []);
+  const dialog = useModalDialog(onClose);
   useEffect(() => {
     read(
       api.GET("/api/evidence/{decision_id}", {
@@ -35,8 +27,7 @@ export default function EvidenceDialog({
   }, [id, fail]);
   return (
     <dialog
-      ref={dialog}
-      onCancel={onClose}
+      {...dialog}
       aria-label="Decision evidence"
       className="evidence-dialog panel"
     >

@@ -6,11 +6,70 @@ import {
   useLayoutEffect,
   useRef,
   useState,
+  type RefObject,
 } from "react";
 import type { LegalMove, Promotion } from "./api";
 import MoveSymbol from "./MoveSymbol";
 import { MOVE_DURATION_MS } from "./reviewMotion";
 import { useInterfaceMotion } from "./MotionProvider";
+import useModalDialog from "./useModalDialog";
+
+type PromotionChoice = { from: string; to: string; choices: Promotion[] };
+
+function PromotionDialog({ board, promotion, onChoose, onClose }: {
+  board: RefObject<HTMLDivElement | null>;
+  promotion: PromotionChoice;
+  onChoose: (value: Promotion) => void;
+  onClose: () => void;
+}) {
+  const dialog = useModalDialog(onClose, board);
+  useLayoutEffect(() => {
+    const element = dialog.ref.current!;
+    const anchor = board.current!;
+    const position = () => {
+      const bounds = anchor.getBoundingClientRect();
+      const styles = getComputedStyle(element);
+      const inlineInset = Number.parseFloat(styles.getPropertyValue("--promotion-inline-inset"));
+      const blockInset = Number.parseFloat(styles.getPropertyValue("--promotion-block-inset"));
+      const width = Math.min(bounds.width * (1 - inlineInset * 2), window.innerWidth - 16);
+      element.style.width = `${width}px`;
+      element.style.left = `${Math.max(8, Math.min(bounds.left + bounds.width * inlineInset, window.innerWidth - width - 8))}px`;
+      element.style.top = `${Math.max(8, Math.min(bounds.top + bounds.height * blockInset, window.innerHeight - element.offsetHeight - 8))}px`;
+    };
+    position();
+    const observer = new ResizeObserver(position);
+    observer.observe(anchor);
+    observer.observe(element);
+    window.addEventListener("resize", position);
+    window.addEventListener("scroll", position, true);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", position);
+      window.removeEventListener("scroll", position, true);
+    };
+  }, [board, dialog.ref]);
+
+  return (
+    <dialog {...dialog} aria-label="Choose promotion" className="promotion">
+      <h3>Promote to</h3>
+      <div className="button-row">
+        {([
+          ["q", "Queen"],
+          ["r", "Rook"],
+          ["b", "Bishop"],
+          ["n", "Knight"],
+        ] as const)
+          .filter(([value]) => promotion.choices.includes(value))
+          .map(([value, name]) => (
+            <button key={value} type="button" onClick={() => onChoose(value)}>
+              {name}
+            </button>
+          ))}
+        <button type="button" onClick={onClose}>Cancel</button>
+      </div>
+    </dialog>
+  );
+}
 
 export default function Board({
   fen,
@@ -36,13 +95,10 @@ export default function Board({
   onMove?: (from: string, to: string, promotion?: Promotion) => void;
 }) {
   const motion = useInterfaceMotion();
+  const board = useRef<HTMLDivElement>(null);
   const boardId = "board-" + useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const [selected, setSelected] = useState<string | null>(null);
-  const [promotion, setPromotion] = useState<{
-    from: string;
-    to: string;
-    choices: Promotion[];
-  } | null>(null);
+  const [promotion, setPromotion] = useState<PromotionChoice | null>(null);
   const promotionTimer = useRef<number | undefined>(undefined);
   useEffect(() => {
     setSelected(null);
@@ -90,7 +146,7 @@ export default function Board({
     } else onMove?.(from, to);
   }
   return (
-    <div className="board-shell" data-feedback={feedback}>
+    <div ref={board} tabIndex={-1} className="board-shell" data-feedback={feedback}>
       <Chessboard
         options={{
           id: boardId,
@@ -172,37 +228,15 @@ export default function Board({
         }}
       />
       {promotion && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Choose promotion"
-          className="promotion"
-        >
-          <h3>Promote to</h3>
-          <div className="button-row">
-            {(
-              [
-                ["q", "Queen"],
-                ["r", "Rook"],
-                ["b", "Bishop"],
-                ["n", "Knight"],
-              ] as const
-            )
-              .filter(([value]) => promotion.choices.includes(value))
-              .map(([value, name]) => (
-                <button
-                  key={value}
-                  onClick={() => {
-                    onMove?.(promotion.from, promotion.to, value);
-                    setPromotion(null);
-                  }}
-                >
-                  {name}
-                </button>
-              ))}
-            <button onClick={() => setPromotion(null)}>Cancel</button>
-          </div>
-        </div>
+        <PromotionDialog
+          board={board}
+          promotion={promotion}
+          onChoose={(value) => {
+            onMove?.(promotion.from, promotion.to, value);
+            setPromotion(null);
+          }}
+          onClose={() => setPromotion(null)}
+        />
       )}
     </div>
   );
