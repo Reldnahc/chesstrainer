@@ -33,7 +33,6 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/AccountGate.tsx",
     "frontend/src/App.tsx",
     "frontend/src/EvaluationGraph.tsx",
-    "frontend/src/EvaluationScore.tsx",
     "frontend/src/EvidenceDialog.tsx",
     "frontend/src/GameHistory.tsx",
     "frontend/src/GameReview.tsx",

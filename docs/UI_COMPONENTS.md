@@ -145,7 +145,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-22 | Extend the application's AccuracyReadout with a history presentation. | Planned | Retain history's review-action state, compact two-player layout and accessible description. |
 | UI-23 | Share source/link formatting. | Planned | Retain lesson headings, optional licenses/revisions, multiple citations and distinct provenance records. |
 | UI-24 | Promote the application's existing MotionSelect into Studio (A). | Complete | Studio uses `MotionSelect` with shared-safe control styles and still clears its simulated reduced-motion setting on selection. |
-| UI-25 | Use the application's real EvaluationScore in Studio (B). | Planned | Use typed illustrative scores with correct perspective, winning-side styling and accessible text. |
+| UI-25 | Use the application's real EvaluationScore in Studio (B). | Complete | Board-size Studio previews use `EvaluationScore` with typed illustrative scores, correct White perspective, side styling and accessible text. |
 | UI-26 | Defer coach-card/selector extraction. | Deferred | Keep current Settings and Studio workflows, shared registry/artwork, and the Settings six-column grid. |
 | UI-27 | Share identical artwork/rig wrappers. | Planned | Preserve every character's art, geometry, classes, expression behavior and animation. This also serves production artwork. |
 | UI-28 | Share application dialogue text/metadata with explicit non-live lab rendering. | Planned | Preserve production announcements and lab semantics; do not announce every comparison card. |
@@ -182,6 +182,16 @@ from Git; no live decision-gathering tool is needed.
   motion tests**, **2 Studio device/simulation tests**, **207 CI-planner tests**
   and focused Ruff checks passed. Commit subject: `UI-24: Reuse application motion
   selector in Studio`.
+- **UI-25 — shared evaluation display:** removed the Studio's manually formatted
+  score span. Illustrative centipawn/mate values now use the same typed score and
+  renderer as the application; missing values remain honestly unavailable.
+  Corrected CI's former application-only classification. Production build passed;
+  **2 desktop/mobile preview tests** verify positive/negative, mate for either
+  side, equal and unknown scores in both panel sizes. The initial mobile assertion
+  incorrectly expected an accessible name on the intentionally hidden roomy
+  preview; assertions now check names on visible previews and metadata on both.
+  **209 CI-planner tests** and focused Ruff checks passed. Commit subject:
+  `UI-25: Use real evaluation scores in coach previews`.
 
 ## Audit findings and implementation boundaries
 

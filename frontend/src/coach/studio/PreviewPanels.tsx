@@ -1,4 +1,5 @@
 import ReviewCoach from "../../ReviewCoach";
+import EvaluationScore from "../../EvaluationScore";
 import { CoachCharacter } from "../CoachAvatar";
 import { ArrowRight } from "lucide-react";
 import { selectableCoaches } from "../registry";
@@ -114,7 +115,7 @@ export function BoardSizePreview({ preview }: { preview: StudioPreview }) {
             <ReviewCoach
               title={<strong>{example.title}</strong>}
               evaluation={
-                <span className="evaluation-score">{example.evaluation}</span>
+                <EvaluationScore score={example.evaluation} />
               }
               character={<CoachCharacter {...preview} />}
               actions={<button disabled>Show why</button>}
