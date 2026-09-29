@@ -1,5 +1,6 @@
 import type { Promotion } from "./api";
 import Board from "./Board";
+import TurnIndicator from "./TurnIndicator";
 import { LoadingState } from "./LoadState";
 import ReviewWorkspace from "./ReviewWorkspace";
 import ReviewPanel from "./srsReview/ReviewPanel";
@@ -81,10 +82,7 @@ export default function ReviewScreen({
             boardLabel="Chess position"
             aboveBoard={
               <div className="review-position-status">
-                <span>
-                  <span
-                    className={`turn-dot ${position?.fen.split(" ")[1] === "b" ? "black" : ""}`}
-                  />
+                <TurnIndicator color={position?.fen.split(" ")[1] === "b" ? "black" : "white"}>
                   {explaining
                     ? "Line playback"
                     : preview
@@ -100,7 +98,7 @@ export default function ReviewScreen({
                               ? "White"
                               : "Black") + " to move"
                           : "Your next move starts here"}
-                </span>
+                </TurnIndicator>
                 <span>
                   {position
                     ? `${due} IN QUEUE`

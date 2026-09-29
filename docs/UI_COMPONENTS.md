@@ -73,6 +73,7 @@ not React components.
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
 | Native modal lifecycle | [useModalDialog](../frontend/src/useModalDialog.ts) | Evidence and promotion share native opening, Escape dismissal, keyboard isolation and connected-opener restoration. Promotion supplies board fallback and board-relative placement; Maia remains non-modal. |
 | Board/sidebar layout | [ReviewWorkspace](../frontend/src/ReviewWorkspace.tsx), [review-presentation.css](../frontend/src/review-presentation.css) | Shared board sizing and slots for status, evaluation, controls and sidebar; mobile coach placement. |
+| Board turn indicator | [TurnIndicator](../frontend/src/TurnIndicator.tsx) | Decorative color dot with caller-supplied status text. Due, lessons and puzzles retain their distinct status and visibility rules. |
 | Coach bubble, portrait and action geometry | [ReviewCoach](../frontend/src/ReviewCoach.tsx), [coach-presentation.css](../frontend/src/coach-presentation.css) | Shared title, badge, evaluation, explanation, insight, caption and actions. Preserve stable portrait identity and message-scroll reset behavior. |
 | Registered coach artwork/performance | [CoachAvatar / CoachCharacter](../frontend/src/coach/CoachAvatar.tsx), [registry](../frontend/src/coach/registry.ts) | App-selected avatar versus explicit preview character. Use registry metadata; do not maintain another cast list. |
 | Authored SVG rig layers | [ArtworkRig](../frontend/src/coach/ArtworkRig.tsx) | Decorative SVG frame and identical study body/head layers. Keep species art, CSS, poses, viewBoxes and accent placement with their family. Classic's distinct rig remains separate. |
@@ -154,7 +155,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-18 | Keep section headings and the distinct action-row layouts separate. | Keep existing | Do not extract a universal component for these different roles. |
 | UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Complete | ResumeLink owns identical lesson, puzzle and course-line rows; native Link behavior and caller destinations/content are preserved. |
 | UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Complete | Both statistics panels share StatList with their original labels, values, visibility and appearance. |
-| UI-21 | Share only the turn indicator used by the board-status compositions. | Planned | Keep each mode's surrounding status content and cold-practice visibility rules. |
+| UI-21 | Share only the turn indicator used by the board-status compositions. | Complete | Due, lessons and puzzles share the dot; surrounding status and cold-practice visibility stay caller-owned. Opening preview has no existing dot and remains unchanged. |
 | UI-22 | Extend the application's AccuracyReadout with a history presentation. | Complete | History shares formatting and completion descriptions; its numeric spans remain passive and queued reviews retain their action state. |
 | UI-23 | Share source/link formatting. | Complete | SourceLine serves lessons, puzzle completion and opening previews, preserving optional license/revision and multiple records while validating external protocols. |
 | UI-24 | Promote the application's existing MotionSelect into Studio (A). | Complete | Studio uses `MotionSelect` with shared-safe control styles and still clears its simulated reduced-motion setting on selection. |
@@ -334,6 +335,13 @@ from Git; no live decision-gathering tool is needed.
   multiple/empty citations, unsafe and malformed URLs, puzzle reveal gating,
   catalogue CC0 revisions and authored-course identity. Commit subject:
   `UI-23: Share source attribution across study players`.
+
+- **UI-21 — turn indicator:** extracted the existing decorative dot and its styles
+  from Due, lessons and puzzles without changing their status text. Production
+  build passed; all **14 connected lesson checks** and both desktop/mobile SRS
+  motion/cold-answer checks passed. The separate board-sizing regression found
+  during integration is tracked under UI-05. Commit subject:
+  `UI-21: Share the board turn indicator without changing status content`.
 
 ## Audit findings and implementation boundaries
 

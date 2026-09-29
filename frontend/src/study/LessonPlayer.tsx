@@ -2,6 +2,7 @@ import { LoadingState, UnavailableState } from "../LoadState";
 import { useEffect, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, Lightbulb, Play } from "lucide-react";
 import Board from "../Board";
+import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import MovePlaybackControls from "../MovePlaybackControls";
@@ -51,7 +52,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   return <ReviewWorkspace
     boardLabel="Lesson position"
     heading={<div className="puzzle-player-heading"><h1>{session.course_title}</h1><span className="muted">{session.orientation === "white" ? "White" : "Black"}</span></div>}
-    aboveBoard={<div className="review-position-status"><span><span className={`turn-dot ${turn === "Black" ? "black" : ""}`} />{playback.playing ? frame ? `${frame.before_fen.split(" ")[1] === (session.orientation === "white" ? "w" : "b") ? "Your move" : "Opponent reply"} · ${frame.san}` : "Line start" : session.game ? "Game playback" : has("move") ? `${turn} to move` : "Guided lesson"}</span><span>{session.branch ? "ALTERNATIVE LINE" : session.game ? `PLY ${session.game.ply} / ${session.game.total_plies}` : finished ? "CHAPTER COMPLETED" : session.chapter_title}</span></div>}
+    aboveBoard={<div className="review-position-status"><TurnIndicator color={turn === "Black" ? "black" : "white"}>{playback.playing ? frame ? `${frame.before_fen.split(" ")[1] === (session.orientation === "white" ? "w" : "b") ? "Your move" : "Opponent reply"} · ${frame.san}` : "Line start" : session.game ? "Game playback" : has("move") ? `${turn} to move` : "Guided lesson"}</TurnIndicator><span>{session.branch ? "ALTERNATIVE LINE" : session.game ? `PLY ${session.game.ply} / ${session.game.total_plies}` : finished ? "CHAPTER COMPLETED" : session.chapter_title}</span></div>}
     belowBoard={<div className="review-board-hint">{has("move") ? step.kind === "rehearsal" ? "Play your studied continuation." : "Play this lesson’s move." : session.branch ? "Explore the alternative, then return to the main line." : "Use the lesson controls to continue."}</div>}
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={lessonCoursePath(session.course_id, session.course_revision)}><ArrowLeft size={16} />Chapters</ActionLink>{session.game && <MovePlaybackControls label="Lesson game playback" current={session.game.ply} maximum={session.game.total_plies}
       previous={{ "aria-label": "Previous game move", ...gameButtonState(session.game.ply === 0), onClick: () => state.command("game_seek", { ply: session.game!.ply - 1 }) }}
