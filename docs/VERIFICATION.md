@@ -2,6 +2,55 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach idle revamp — milestone 4 — September 29, 2026
+
+The separate development studio adds opt-in natural playback, independent cast
+comparison playback, event-driven diagnostics and reproducible numeric seeds.
+Bounded individual replays remain available for every eligible gesture. Diagnostics
+observe the production coordinator without a polling loop or account writes.
+
+- `npx.cmd playwright test --config test-results/idle-lifecycle.config.ts idle-diagnostics.spec.ts`:
+  **18 passed**, desktop/mobile. Covers seed/reset determinism, stale-track masking,
+  observer replacement/detachment, inline callback safety, pause history/time,
+  snapshot/DOM agreement and unmount cleanup.
+- Same live-server config with `idle-cadence.spec.ts`: **38 passed**, desktop/mobile.
+- `node node_modules/@playwright/test/cli.js test --config=test-results/studio-diagnostics.config.ts studio-diagnostics.spec.ts --reporter=line`:
+  **8 passed**, desktop/mobile. Initial seed-test timeouts came from repeated
+  browser-protocol reads; atomic observations fixed the test without sleeps,
+  reduced assertions or increased timeouts.
+- `idle-visual.spec.ts --project desktop`: **1 passed** twice, latest 15.5 seconds.
+  All 30 signature sheets sample both authored signatures at 0%, 40%, 75%, 100%
+  and portrait widths 92.8px/52.5px. Checks actual CSS tracks, timings/delays,
+  settled eyes, unchanged SVG identity and fixed bounds. Images are ignored under
+  `data/verification/coach-idle-visual/desktop`, not shipped assets.
+- `npm.cmd run build`: passed API agreement, all TypeScript projects and Vite.
+  Existing chunk advisory remains; main JS gzip 167.39 kB, CSS gzip 19.95 kB.
+  Browser-test TypeScript and `git diff --check` passed independently.
+- Live in-app preview watched Storyteller/Velvet night/Scout and Fergus/Rivet/Pip
+  in sustained 60–90-second desktop sessions, then the more restrained analyst,
+  Monty and Winston. Separate glances, posture and appendage motion remain legible
+  without repeated entrances or shifting the portrait box. Mobile 390px preview
+  checked the 52.5px blunder portrait. Brilliant, Blunder, Still and seeded restart
+  were inspected. Still cleared every idle and retained expressive settled faces.
+- Visual review covered all 60 authored signature performances (30 sheets, two
+  signatures each) and the full settled-expression cast. It caught overly wide
+  resting Good eyes on Fergus and Winston; explicit character-sized eye heights
+  restore calm approval while retaining the closed-eye entrance. No sampled
+  clipping or broken joint/prop attachment was found. Static
+  captures supplement live observation; they do not establish frame-by-frame
+  smoothness on physical phones.
+- Focused `resting-faces.spec.ts -g "settles Good"` regression: **4 passed**,
+  desktop/mobile. The two characters retain closed eyes until the original entrance
+  ends, then reopen to their neutral eye height, distinctly below Brilliant;
+  non-eye geometry and Still parity remain unchanged. Live preview confirmed the
+  calmer result. Production build passed again after this polish.
+- Independent code review found and resolved an inline observer render-loop risk
+  and paused diagnostic-history loss before the passing runs. Final review found
+  no remaining substantive M4 issue. Full application regression follows in M5.
+- An initial full-suite run was intentionally stopped after 13 passing desktop
+  cases and all 30 expression sheets to apply that visual polish. It is not counted
+  as a completed full-suite run; the stable final rerun is recorded under M5.
+
 ## Coach idle revamp — milestone 3 — September 29, 2026
 
 The live cast now has 18–22 distinct gestures per coach, 8–14 eligible choices

@@ -11,6 +11,7 @@ export type ActiveIdle = {
   sequence: number;
 };
 export type IdleFrame = {
+  at: number;
   active: readonly ActiveIdle[];
   started: readonly ActiveIdle[];
   nextAt: number | null;
@@ -159,7 +160,7 @@ export function createIdleCoordinator(
       issues.add("Resting repertoire cannot supply a legal idle within the maximum quiet gap.");
     }
     return {
-      active: [...active], started, nextAt: deadline,
+      at: time, active: [...active], started, nextAt: deadline,
       diagnostics: {
         recent: [...recent], blinkDueAt,
         cooldowns: gestures.map((entry) => ({ id: entry.id, readyAt: gestureReady.get(entry.id) ?? time })),

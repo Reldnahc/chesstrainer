@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { CoachCharacter } from "../CoachAvatar";
 import { getCoach, selectableCoaches } from "../registry";
@@ -16,7 +16,9 @@ function IdleCard({ preview, gesture, index }: {
   index: number;
 }) {
   const [replay, setReplay] = useState(0);
+  const descriptionId = useId();
   const { label, description } = idlePresentation(preview.coach, preview.family, preview.reaction.state, gesture);
+  const signature = gesture.startsWith("signature-") && description;
   return (
     <article className="studio-idle-card" data-gesture={gesture}>
       <span className="studio-size-label">
@@ -32,9 +34,11 @@ function IdleCard({ preview, gesture, index }: {
         idle={false}
         label={`${expressionInfo[preview.reaction.state].label}: ${label}`}
       />
-      <h3 title={description}>{label}</h3>
+      <h3>{label}</h3>
+      {signature && <p id={descriptionId} className="studio-idle-description">{description}</p>}
       <button
         aria-label={`Replay idle ${index + 1}: ${label}`}
+        aria-describedby={signature ? descriptionId : undefined}
         disabled={preview.motion === "still"}
         onClick={() => setReplay((value) => value + 1)}
       >
@@ -71,6 +75,7 @@ export function CastComparison({ preview, selected }: {
 }) {
   const [comparisons, setComparisons] = useState(["woman-analyst", "frog"]);
   const [replay, setReplay] = useState(0);
+  const [natural, setNatural] = useState(false);
   return (
     <section
       className="studio-cast-comparison"
@@ -81,9 +86,15 @@ export function CastComparison({ preview, selected }: {
           <p className="eyebrow">SAME MOMENT · DIFFERENT CHARACTER</p>
           <h2>Compare the cast</h2>
         </div>
-        <button onClick={() => setReplay((value) => value + 1)}>
-          <RotateCcw size={15} /> Replay comparison
-        </button>
+        <div className="studio-comparison-controls">
+          <label className="studio-toggle">
+            <input type="checkbox" checked={natural} onChange={(event) => setNatural(event.target.checked)} />
+            Comparison idle playback
+          </label>
+          <button onClick={() => setReplay((value) => value + 1)}>
+            <RotateCcw size={15} /> Replay comparison
+          </button>
+        </div>
       </div>
       <div className="studio-comparison-grid">
         {[selected, ...comparisons].map((id, index) => {
@@ -118,6 +129,9 @@ export function CastComparison({ preview, selected }: {
                 reaction={preview.reaction}
                 motion={preview.motion}
                 replay={replay}
+                idle={natural}
+                idleSeed={preview.idleSeed}
+                idleReset={preview.idleReset}
                 label={`${coach.name}: ${expressionInfo[preview.reaction.state].label}`}
               />
               <p>{expressionInfo[preview.reaction.state].label}</p>

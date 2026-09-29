@@ -9,6 +9,7 @@ import { configuredGestures, idleTrackStyle } from "./idleGestures";
 import { createIdleCoordinator, type IdleFrame } from "./idleCoordinator";
 import { useReducedMotion } from "../useReducedMotion";
 import { resolveMotion } from "../motion";
+import { seededIdleRandom, type CoachPerformanceSnapshot } from "./performanceDiagnostics";
 
 export function usePerformance({
   reaction,
@@ -19,6 +20,9 @@ export function usePerformance({
   previewIdle = "",
   animation,
   reactionsEnabled = true,
+  idleSeed,
+  idleReset = 0,
+  onPerformance,
 }: {
   reaction: CoachReaction;
   identity: string;
@@ -28,6 +32,9 @@ export function usePerformance({
   previewIdle?: CoachMicro;
   animation: CoachDefinition["animation"];
   reactionsEnabled?: boolean;
+  idleSeed?: number;
+  idleReset?: number;
+  onPerformance?: (snapshot: CoachPerformanceSnapshot) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
@@ -37,6 +44,9 @@ export function usePerformance({
   const [frame, setFrame] = useState<{ owner: string; value: IdleFrame } | null>(null);
   const [take, setTake] = useState(0);
   const played = useRef(0);
+  const diagnosticObserver = useRef(onPerformance);
+  const observing = Boolean(onPerformance);
+  useEffect(() => { diagnosticObserver.current = onPerformance; }, [onPerformance]);
   const reduced = useReducedMotion();
   const effectiveMotion = resolveMotion(motion, reduced);
 
@@ -77,8 +87,11 @@ export function usePerformance({
   const expression =
     reaction.state === "thinking" && !current ? "neutral" : reaction.state;
   const gestures = useMemo(() => configuredGestures(animation, expression), [animation, expression]);
-  const coordinator = useMemo(() => createIdleCoordinator(gestures, { now: performance.now() }), [gestures, identity]);
-  const owner = `${identity}:${reaction.key}:${reaction.state}:${take}`;
+  const coordinator = useMemo(() => createIdleCoordinator(gestures, {
+    now: performance.now(),
+    random: idleSeed === undefined ? undefined : seededIdleRandom(idleSeed),
+  }), [gestures, identity, idleSeed, idleReset]);
+  const owner = `${identity}:${reaction.key}:${reaction.state}:${take}:${idleSeed ?? "random"}:${idleReset}`;
   const idlePreview = gestures.find((entry) => entry.id === previewIdle);
   useEffect(() => {
     let timer: number | undefined;
@@ -145,6 +158,23 @@ export function usePerformance({
   // hold its authored eye squeeze; paused/seen entrances settle without replay.
   const face: "entrance" | "settled" = animated && reactionsEnabled && !idlePreview
     && (!current || played.current !== take || phase === "reaction") ? "entrance" : "settled";
+  useEffect(() => {
+    if (!observing) return;
+    const value = frame?.owner === owner ? frame.value : null;
+    const paused = !active ? "hidden" : !visible ? "offscreen"
+      : effectiveMotion === "still" ? "still" : !current ? "pending"
+        : phase === "reaction" ? "reaction"
+          : !idleEnabled && !value?.active.length ? "disabled" : null;
+    const observed = paused ? coordinator.snapshot() : value ?? coordinator.snapshot();
+    diagnosticObserver.current?.({
+      at: observed.at, identity, expression, face, motion: effectiveMotion,
+      phase: current && animated ? phase : "rest", paused,
+      active: current && animated ? value?.active ?? [] : [],
+      nextAt: current && animated ? value?.nextAt ?? null : null,
+      diagnostics: observed.diagnostics,
+    });
+  }, [observing, active, visible, effectiveMotion, current, phase, idleEnabled,
+    frame, owner, identity, expression, face, animated, coordinator]);
   return {
     ref, expression, face, phase: current && animated ? phase : "rest", micro: tracks[0]?.gesture.id ?? "", take,
     motion: effectiveMotion, idles: tracks.map((track) => track.gesture.id).join(" "),
