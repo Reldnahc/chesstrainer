@@ -52,9 +52,11 @@ The two-sided graph is preserved. Opponent errors can still explain the learner'
 next opportunity or recovery, including explicit acknowledgement of their help.
 
 Opponent moves keep objective grades, tactical/positional consequences and reply
-explanations. Their intent/expression is explanatory rather than personal praise
-or correction; rendering uses neutral factual templates so personality wording
-cannot address an opponent achievement as the learner's. Terminal outcomes still
+explanations. Their intent stays explanatory rather than personal praise or
+correction. Recognized Book moves retain the Book reaction on either side, with
+the existing check and explicit explanation precedence; other opponent moves use
+the explaining expression. Rendering uses neutral factual templates so personality
+wording cannot address an opponent achievement as the learner's. Terminal outcomes still
 use the saved learner's side. Missing mover identity never implies the learner.
 Cold practice retains its separate gated intent path.
 

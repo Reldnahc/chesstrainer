@@ -2,6 +2,33 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Opponent Book reactions — September 29, 2026
+
+One-sided review now retains the incoming Book reaction for a known opponent's
+recognized opening move. Opponent dialogue remains factual; check, terminal and
+Show why precedence remain intact. No grading, evidence or animation timing changed.
+
+- Both-color regression tests first failed with `explaining` instead of `book`.
+  The same tests now pass through reaction, intent and rendered utterance, covering
+  branches, legacy reports, unknown movers, explicit explanations and check.
+- Targeted desktop/mobile run across `coach-logic`, `dialogue-logic`,
+  `game-review` and `learner-perspective`: **20 passed, 12 stale expectations**.
+  The recovery fixtures themselves contain Book moves; their old opponent-face
+  expectations were updated while retaining all history/recovery isolation and
+  non-Book praise suppression assertions. Rerunning the complete
+  `learner-perspective.spec.ts` produced **20 passed**, so all **32 distinct
+  targeted cases passed**, with no skips. The real Book review test verifies the
+  opponent portrait after navigation/reload and still exercises analyzed branches.
+  Commands used `node node_modules/@playwright/test/cli.js test --config
+  studio-test-results-configs/opponent-book.config.ts` with the standard projects
+  and an independently managed isolated fixture server on port 8765. The first
+  run selected `learner-perspective.spec.ts coach-logic.spec.ts dialogue-logic.spec.ts
+  game-review.spec.ts --grep "learner|opponent|semantic reaction|check respects|practice protects|future coaches|book moves appear|book" --reporter=line`;
+  the second selected `learner-perspective.spec.ts --reporter=line`.
+- `npm.cmd run build`, browser-test TypeScript and `git diff --check`: passed.
+  Existing Vite chunk and test dependency deprecation warnings remain.
+  Independent focused code review found no actionable issues.
+
 ## Coach idle revamp — final integration — September 29, 2026
 
 Implementation units were committed as `fee508e` (personal names), `2bb514a`
