@@ -280,7 +280,7 @@ test("full-game seeking keeps the coach and controls steady while serializing re
       expression: element.getAttribute("data-expression"),
       take: element.getAttribute("data-take"),
     }));
-    const buttons = () => page.locator(".lesson-game-controls button, .coach-actions button").evaluateAll(elements => elements.map(element => {
+    const buttons = () => page.locator(".move-playback-controls button, .coach-actions button").evaluateAll(elements => elements.map(element => {
       const style = getComputedStyle(element);
       const rect = element.getBoundingClientRect();
       return { opacity: style.opacity, background: style.backgroundColor, width: rect.width, height: rect.height };

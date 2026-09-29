@@ -1,12 +1,7 @@
-import {
-  ArrowLeft,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-  FlipVertical2,
-} from "lucide-react";
-import Link from "../Link";
+import { ArrowLeft, FlipVertical2 } from "lucide-react";
+import ActionLink from "../ActionLink";
+import { IconButton } from "../Button";
+import MovePlaybackControls from "../MovePlaybackControls";
 import type { GameExploration } from "./useGameExploration";
 
 export default function ReviewControls({
@@ -25,45 +20,18 @@ export default function ReviewControls({
       role="group"
       aria-label="Game navigation"
     >
-      <Link className="button-link game-library-link" href={libraryHref}>
+      <ActionLink size="compact" className="game-library-link" href={libraryHref}>
         <ArrowLeft size={16} />
         All games
-      </Link>
-      <button
-        aria-label="Start of game"
-        title="Starting position of the original game"
-        disabled={!branch && cursor.ply === 0}
-        onClick={() => navigate(0)}
-      >
-        <ChevronsLeft size={19} />
-      </button>
-      <button
-        aria-label="Previous move"
-        disabled={current === 0}
-        onClick={() => step(-1)}
-      >
-        <ChevronLeft size={19} />
-      </button>
-      <span className="game-move-counter">
-        <span>{current}</span> / <span>{maximum}</span>
-      </span>
-      <button
-        aria-label="Next move"
-        disabled={current === maximum}
-        onClick={() => step(1)}
-      >
-        <ChevronRight size={19} />
-      </button>
-      <button
-        aria-label="Last move"
-        disabled={current === maximum}
-        onClick={() => selectStep(maximum)}
-      >
-        <ChevronsRight size={19} />
-      </button>
-      <button aria-label="Flip board" onClick={flip}>
+      </ActionLink>
+      <MovePlaybackControls label="Game move playback" current={current} maximum={maximum}
+        first={{ "aria-label": "Start of game", title: "Starting position of the original game", disabled: !branch && cursor.ply === 0, onClick: () => navigate(0) }}
+        previous={{ "aria-label": "Previous move", disabled: current === 0, onClick: () => step(-1) }}
+        next={{ "aria-label": "Next move", disabled: current === maximum, onClick: () => step(1) }}
+        last={{ "aria-label": "Last move", disabled: current === maximum, onClick: () => selectStep(maximum) }} />
+      <IconButton aria-label="Flip board" onClick={flip}>
         <FlipVertical2 size={17} />
-      </button>
+      </IconButton>
     </div>
   );
 }

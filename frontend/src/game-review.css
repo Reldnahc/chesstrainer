@@ -77,38 +77,22 @@
 }
 .game-board-controls {
   display: grid;
-  grid-template-columns: minmax(36px, 1fr) repeat(2, 36px) max-content repeat(2, 36px) minmax(36px, 1fr);
-  gap: 5px;
+  grid-template-columns: minmax(max-content, 1fr) minmax(0, max-content) minmax(42px, 1fr);
+  gap: 6px;
   align-items: center;
 }
 .game-library-link {
   justify-self: start;
-  min-height: 36px;
-  padding: 6px 8px;
-  font-size: 12px;
   white-space: nowrap;
 }
-.game-move-counter {
-  flex: 0 0 9ch;
-  font: 12px var(--mono);
-  white-space: nowrap;
-  text-align: center;
+.game-board-controls > .action-control--icon {
+  justify-self: end;
 }
-.game-move-counter > span {
-  display: inline-block;
-  width: 3ch;
-  text-align: right;
-}
-.game-move-counter > span:last-child {
-  text-align: left;
-}
-.game-board-controls button {
-  min-height: 36px;
-  min-width: 36px;
-  padding: 6px;
-}
-.game-board-controls button:last-child {
-  margin-left: auto;
+/* Short windows can constrain the board even at desktop widths. The canonical
+   button widths shrink only when this complete toolbar cannot fit them. */
+.game-board-controls .move-playback-controls > .action-control--icon {
+  flex: 0 1 auto;
+  min-width: 20px;
 }
 .game-notation {
   display: flex;
@@ -479,24 +463,16 @@
     flex-wrap: nowrap;
     gap: 2px;
   }
-  .game-library-link {
+  .game-library-link.action-control {
     flex: 0 0 auto;
-    min-height: 44px;
     padding: 5px 6px;
     gap: 4px;
     font-size: 11px;
   }
-  .game-board-controls button {
-    flex: 1 1 0;
-    min-height: 44px;
+  .game-board-controls > .move-playback-controls {
+    flex: 1 1 auto;
     min-width: 0;
-    padding: 5px 2px;
-  }
-  .game-move-counter {
-    font-size: 11px;
-  }
-  .game-board-controls button:last-child {
-    margin-left: 0;
+    gap: 2px;
   }
   .game-notation {
     flex: none;

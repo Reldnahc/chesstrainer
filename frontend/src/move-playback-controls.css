@@ -1,0 +1,22 @@
+.move-playback-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+.move-playback-counter {
+  flex: none;
+  font: 11px var(--mono);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
+}
+.move-playback-counter > span {
+  display: inline-block;
+  width: calc(var(--playback-digits) * 1ch);
+  text-align: right;
+}
+.move-playback-counter > span:last-child {
+  text-align: left;
+}

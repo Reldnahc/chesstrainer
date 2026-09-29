@@ -42,7 +42,7 @@ test('evaluation scrubs continuously, captures the pointer, and stops on release
     else await page.mouse.up();
   };
   const selected = async (ply: number) => {
-    await expect(page.locator('.game-move-counter')).toHaveText(`${ply} / 4`);
+    await expect(page.locator('.move-playback-counter')).toHaveText(`${ply} / 4`);
     await expect(page).toHaveURL(new RegExp(`/games/${id}${ply ? `\\?ply=${ply}` : ''}$`));
     if (ply) {
       await expect(node(ply)).toHaveAttribute('aria-current', 'step');

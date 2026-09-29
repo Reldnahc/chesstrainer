@@ -102,7 +102,7 @@ test('progress merges only new reports without reloading the board or duplicatin
   await expect(page.getByRole('button', {name: '1... e5, Good', exact: true})).toHaveAttribute('aria-current', 'step');
   await expect(page.locator('.game-move-symbol')).toHaveCount(4);
   await page.getByRole('button', {name: 'Start of game', exact: true}).click();
-  await expect(page.locator('.game-move-counter')).toHaveText('0 / 4');
+  await expect(page.locator('.move-playback-counter')).toHaveText('0 / 4');
   await expect(page.getByLabel('Evaluation for White: +0.3', {exact: true})).toBeVisible();
   expect(cursors).toEqual([0, 1, 3]);
   expect(fullLoads).toBe(2);
@@ -371,9 +371,9 @@ test('refinement continues in the background without progress or moving the sele
     await expect(page.getByRole('button', {name: 'Pause review', exact: true})).toHaveCount(0);
     await expect(page.locator('.coach-message')).toContainText('Baseline feedback.');
     await page.getByRole('button', {name: 'Next move', exact: true}).click();
-    await expect(page.locator('.game-move-counter')).toHaveText('2 / 4');
+    await expect(page.locator('.move-playback-counter')).toHaveText('2 / 4');
     await page.getByRole('button', {name: 'Previous move', exact: true}).click();
-    await expect(page.locator('.game-move-counter')).toHaveText('1 / 4');
+    await expect(page.locator('.move-playback-counter')).toHaveText('1 / 4');
     const before = await page.locator('.review-board-square').boundingBox();
     release();
     await expect(page.locator('.coach-message')).toContainText('The deeper comparison confirms a concession.');
@@ -454,7 +454,7 @@ test('dense evaluation dots resize and select the matching ply by pointer and ke
   await expect(page.locator('.coach-message')).toHaveText(/A sound choice|This remains close/);
   await expect(utterance).not.toHaveAttribute('data-intent', opponentIntent!);
   await expect(dot(60)).toHaveAttribute('aria-current', 'step');
-  await expect(page.locator('.game-move-counter')).toHaveText('60 / 120');
+  await expect(page.locator('.move-playback-counter')).toHaveText('60 / 120');
   await expect(page.getByText('Review tools & details', {exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Find training mistakes'})).toHaveCount(0);
   await page.screenshot({path: `test-results/evaluation-dense-${info.project.name}.png`, fullPage: true});

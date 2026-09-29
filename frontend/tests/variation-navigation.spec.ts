@@ -121,7 +121,7 @@ test("start of game always exits variations at original-game ply zero", async ({
   await expect(first).toBeEnabled();
   await first.click();
   await onMainline(0);
-  await expect(page.locator(".game-move-counter")).toHaveText("0 / 4");
+  await expect(page.locator(".move-playback-counter")).toHaveText("0 / 4");
   await expect(page.locator('.board-shell [data-square="f2"] [data-piece="wP"]')).toHaveCount(1);
   await expect(page.locator('.board-shell [data-square="e7"] [data-piece="bP"]')).toHaveCount(1);
   await expect(first).toBeDisabled();

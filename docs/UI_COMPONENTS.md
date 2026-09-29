@@ -65,6 +65,7 @@ not React components.
 | Commands and button-styled destinations | [Button / IconButton](../frontend/src/Button.tsx), [ActionLink](../frontend/src/ActionLink.tsx), [action-controls.css](../frontend/src/action-controls.css) | Ordinary/compact sizing, primary/secondary/quiet variants, square labelled icons and 44px phone targets. Button defaults to type=button; forms must request submit. ActionLink retains Link semantics. Native disabled and aria-disabled stay independent. Containers own width/placement. |
 | Return from exploration | [ReturnButton](../frontend/src/ReturnButton.tsx) | Canonical purple action and return icon for game variations and lesson branches/full games. Caller supplies label, disabled state and command; long labels can wrap on narrow phones. |
 | Paged destinations | [Pagination](../frontend/src/Pagination.tsx) | Catalogue Previous/range/Next layout for Games and opening catalogue. Callers supply counts and destination URLs; unavailable directions are disabled buttons. |
+| Move playback controls | [MovePlaybackControls](../frontend/src/MovePlaybackControls.tsx) | Labelled previous/counter/next group, optional first/last, stable digits and canonical lesson geometry. Callers own navigation and separate flip/back controls; disabled and aria-disabled remain independent. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
@@ -133,7 +134,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-02 | Promote the application's PGN rectangular choice buttons (A). | Complete | `ChoiceGroup` serves PGN source and Studio filters, preserving pressed-button semantics and caller-owned clearing/filtering. |
 | UI-03 | One shared button family with ordinary, compact and icon-only sizes, plus primary, secondary and purple return styles. | Complete | Button, IconButton and ActionLink serve ordinary application actions and actual-size Studio coach actions. Purple appearance is consolidated separately in UI-04. Specialized choices/notation/playback remain distinct. |
 | UI-04 | Promote Game Review's purple return action (A). | Complete | ReturnButton shares the purple style and icon while each mode retains its label, handler, disabled/focus behavior and branch state. |
-| UI-05 | Promote lesson/opening playback geometry (C/D). | Planned | This choice stands. Preserve Game Review first/last/flip actions, ply zero, variation exit, stable counter width and keyboard shortcuts; retain lessons' focus-preserving pending-command behavior. |
+| UI-05 | Promote lesson/opening playback geometry (C/D). | Complete | Four playback surfaces share controls and fixed counter geometry; game variation/ply-zero behavior, separate flip, responsive toolbar and lesson pending-focus rules remain intact. |
 | UI-06 | Promote catalogue pagination labels and layout (B). | Complete | Shared Pagination uses real destination links; 30-game/50-line ranges, filters, history and empty-page recovery remain caller-owned. |
 | UI-07 | Share continuation-move markup. | Planned | Preserve numbering options, selection and playback-disabled behavior; full-game scored notation stays specialized. |
 | UI-08 | Share move-feedback announcement rules while retaining rich lesson layout. | Complete | Due, puzzles and lessons use MoveStatus. Puzzles share delayed checking; lesson paragraphs remain rich and navigation never replaces them with Checking. |
@@ -287,6 +288,14 @@ from Git; no live decision-gathering tool is needed.
   Due and puzzle promotion checks also passed on desktop/mobile. Reviewed modal
   screenshots at both sizes. Commit subject: `UI-16: Share native modal focus
   behavior with board promotion`.
+
+- **UI-05 — playback controls:** Game Review, SRS explanations, lesson full games
+  and opening previews use MovePlaybackControls. Removed duplicate geometry;
+  preserved caption text and every caller's commands. Production build passed;
+  playback/variation tests: **8 passed**, connected lessons: **14 passed**, and
+  training: **39 passed, 1 intentional viewport skip**. Checks include 320px fit,
+  9→10 counter stability, ply-zero exit, original-game restoration and explanation
+  navigation. Commit subject: `UI-05: Share move playback controls across players`.
 
 ## Audit findings and implementation boundaries
 

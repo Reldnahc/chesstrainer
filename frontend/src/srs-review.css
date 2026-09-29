@@ -102,16 +102,11 @@
 }
 .explanation-controls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 12px;
   margin: 10px 0;
 }
-.explanation-controls button {
-  min-width: 54px;
-  min-height: 44px;
-}
-.explanation-controls span {
+.explanation-move-caption {
   font: 12px var(--mono);
 }
 .explanation-caption {
@@ -170,9 +165,6 @@
   font: 12px/1.8 var(--mono);
   overflow-wrap: anywhere;
   margin: 0;
-}
-.review-explanation .explanation-controls {
-  font-variant-numeric: tabular-nums;
 }
 .review-explanation .explanation-caption {
   min-height: 0;

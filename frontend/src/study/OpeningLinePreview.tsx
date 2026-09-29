@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Board from "../Board";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import MovePlaybackControls from "../MovePlaybackControls";
 import ReviewCoach from "../ReviewCoach";
 import ReviewWorkspace from "../ReviewWorkspace";
 import { lessonCoursePath, lessonSessionPath, navigate, openingCataloguePath, studyPaths } from "../navigation";
@@ -81,7 +82,9 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     boardLabel="Opening line preview"
     aboveBoard={<div className="review-position-status"><span>Line preview</span><span>{ply} / {line.frames.length} PLIES</span></div>}
     belowBoard={<div className="review-board-hint">{frame ? frame.san : "Starting position"} · Preview the continuation before adding it to study.</div>}
-    boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back</ActionLink><div className="lesson-game-controls"><button aria-label="Previous line move" disabled={!ply} onClick={() => setPly(value => value - 1)}><ChevronLeft size={18} /></button><span>{ply} / {line.frames.length}</span><button aria-label="Next line move" disabled={ply === line.frames.length} onClick={() => setPly(value => value + 1)}><ChevronRight size={18} /></button></div></div>}
+    boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back</ActionLink><MovePlaybackControls label="Opening line playback" current={ply} maximum={line.frames.length}
+      previous={{ "aria-label": "Previous line move", disabled: !ply, onClick: () => setPly(value => value - 1) }}
+      next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => setPly(value => value + 1) }} /></div>}
     board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
   >
     <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>}

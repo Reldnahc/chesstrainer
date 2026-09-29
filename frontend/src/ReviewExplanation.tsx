@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
 import ReviewCoach from "./ReviewCoach";
 import Button from "./Button";
+import MovePlaybackControls from "./MovePlaybackControls";
 import { explanationIntent } from "./dialogue/practiceIntent";
 import { claim, makeIntent } from "./dialogue/model";
 import { useDialogue } from "./dialogue/useDialogue";
@@ -118,30 +119,11 @@ export default function ReviewExplanation({
       </ReviewCoach>
       {data && frame && (
         <>
-          <div
-            className="explanation-controls"
-            role="group"
-            aria-label="Continuation playback"
-          >
-            <button
-              aria-label="Previous move"
-              disabled={index === 0}
-              onClick={() => setIndex((i) => i - 1)}
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <span>
-              {index === 0
-                ? "Start"
-                : `${index} / ${data.frames.length - 1} - ${frame.san}`}
-            </span>
-            <button
-              aria-label="Next move"
-              disabled={index === data.frames.length - 1}
-              onClick={() => setIndex((i) => i + 1)}
-            >
-              <ChevronRight size={20} />
-            </button>
+          <div className="explanation-controls">
+            <MovePlaybackControls label="Continuation playback" current={index} maximum={data.frames.length - 1}
+              previous={{ "aria-label": "Previous move", disabled: index === 0, onClick: () => setIndex(i => i - 1) }}
+              next={{ "aria-label": "Next move", disabled: index === data.frames.length - 1, onClick: () => setIndex(i => i + 1) }} />
+            <span className="explanation-move-caption">{index === 0 ? "Start" : frame.san}</span>
           </div>
           <div className="explanation-actions">
             {!!data.findings?.length && (
