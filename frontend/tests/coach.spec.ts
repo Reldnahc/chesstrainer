@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("the app offers coach selection without an expression viewer route", async ({ page }) => {
   await page.goto("/settings");
-  await expect(page.getByRole("radio", { name: "Storyteller", exact: true })).toBeVisible();
+  await expect(page.getByRole("radio", { name: "Walter", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Preview expressions" })).toHaveCount(0);
   await page.goto("/coach-studio");
   await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
@@ -24,7 +24,7 @@ test("coach motion follows the device by default and saved overrides survive rel
     const portrait = page.locator(".coach-option:has(input:checked) .coach-avatar");
     const notice = page.getByText("Your device requests reduced motion. The coach will stay still.");
     await expect(page.getByRole("radio")).toHaveCount(30);
-    await expect(page.getByRole("radio", { name: "Storyteller", exact: true })).toBeChecked();
+    await expect(page.getByRole("radio", { name: "Walter", exact: true })).toBeChecked();
     await expect(motion).toHaveValue("system");
     await expect(motion.locator("option")).toHaveText(["Use device setting", "Animated", "Still"]);
     await expect(portrait).toHaveAttribute("data-motion", "still");
@@ -171,7 +171,7 @@ test("preference failures keep the last saved choice and allow recovery", async 
     await page.getByRole("button", { name: "Reload coach motion preferences", exact: true }).click();
     await expect(motion).toBeEnabled();
     await expect(motion).toHaveValue("natural");
-    const cat = page.getByRole("radio", { name: "Velvet night", exact: true });
+    const cat = page.getByRole("radio", { name: "Juniper", exact: true });
     await cat.click();
     await expect(status).toContainText("Preference was not saved");
     await expect(cat).not.toBeChecked();

@@ -77,7 +77,7 @@ test("saved coach selection changes reviewed wording without new searches or alt
   };
   try {
     await page.getByRole("link", {name: "Settings", exact: true}).click();
-    const choice = page.getByRole("radio", {name: "Quiet analyst", exact: true});
+    const choice = page.getByRole("radio", {name: "Iris", exact: true});
     await choice.click();
     await expect(choice).toBeChecked();
     await expect(page.getByLabel("Coach motion", {exact: true})).toBeEnabled();

@@ -40,7 +40,9 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   const learnerMove = !!mover && mover === game.orientation;
   const subject = learnerMove ? "learner" : mover ? "opponent" : "position";
   let purpose: DialoguePurpose = learnerMove ? purposes[report.label] : "explanation";
-  if (!learnerMove) expression = "explaining";
+  // Recognized theory is shared by both players; it is not personal praise.
+  // Keep the incoming reaction so check and explicit explanations still win.
+  if (!learnerMove && !(mover && report.label === "Book")) expression = "explaining";
   const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.engine_label ?? report.label);
   const side = mover === "white" ? "White" : mover === "black" ? "Black" : "The mover";
   const opponent = mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent";

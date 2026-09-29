@@ -20,6 +20,43 @@ for (const game of games) {
   const recovery = game.context!.relationships.find(r => r.kind === "recovery" && r.actor === learner)!;
   const ply = recovery.plies.at(-1)!;
 
+  test(`${learner} opponent Book moves retain their reaction without learner praise`, () => {
+    const modified = structuredClone(game);
+    modified.context = null;
+    modified.history = null;
+    const bookPly = learner === "white" ? 2 : 1;
+    const frame = modified.frames[bookPly], report = frame.report!;
+    report.label = "Book";
+    report.engine_label = "Good";
+    report.opening = {name: "King's Pawn Game", eco: "C20", version: "opening-fixture"};
+    report.intelligence!.events = [];
+    const saved = JSON.stringify(modified);
+    for (const variation of [false, true]) {
+      const input = {game: modified, frame, report, ply: bookPly, key: "opponent-book", variation};
+      const reaction = gameReaction({key: input.key, frame, report, learner,
+        explaining: false, pending: false, error: false});
+      const intent = gameIntent({...input, expression: reaction.state});
+      expect(intent.expression).toBe("book");
+      expect(intent.subject).toBe("opponent");
+      expect(intent.purpose).toBe("explanation");
+      const rendered = renderDialogue(intent, {id: "unsafe-praise", personality: {...neutralPersonality,
+        templates: {book_sound: ["You remembered {opening}! Great job!"]}}});
+      expect(rendered.expression).toBe("book");
+      expect(rendered.text).toContain("King's Pawn Game");
+      expect(rendered.text).not.toMatch(/You remembered|Great job/);
+      expect(rendered.trace.variants.find(v => v.code === "book_sound")?.source).toBe("neutral-1");
+      expect(gameIntent({...input, report: {...report, intelligence: null}, expression: reaction.state}).expression).toBe("book");
+      expect(gameIntent({...input, explaining: true, expression: "explaining",
+        report: {...report, board_cues: {caption: "Opening explanation", fen: frame.fen, arrows: [], roles: {}}}}).expression).toBe("explaining");
+      const checkFrame = {...frame, san: "Bb5+"};
+      const checkReaction = gameReaction({key: input.key, frame: checkFrame, report, learner,
+        explaining: false, pending: false, error: false});
+      expect(gameIntent({...input, frame: checkFrame, expression: checkReaction.state}).expression).toBe("check");
+      expect(gameIntent({...input, frame: undefined, variation: true, expression: "book"}).expression).toBe("explaining");
+    }
+    expect(JSON.stringify(modified)).toBe(saved);
+  });
+
   test(`${learner} learner owns recovery while the opponent's help stays factual`, () => {
     const own = intentAt(game, ply);
     expect(own.purpose).toBe("recovery");
@@ -29,7 +66,8 @@ for (const game of games) {
     expect(own.claims.some(c => c.code === "punishment")).toBe(true);
     const other = intentAt({...game, orientation: opposite(learner)}, ply);
     expect(other.purpose).toBe("explanation");
-    expect(other.expression).toBe("explaining");
+    // These opening fixtures still recognize theory without celebrating the opponent's recovery.
+    expect(other.expression).toBe("book");
     expect(other.claims.some(c => ["recovery", "punishment"].includes(c.code))).toBe(false);
     expect(renderNeutral(other).text).not.toMatch(/recovered|playable again|setback|opponent's errors/i);
   });
@@ -51,7 +89,7 @@ for (const game of games) {
       const opposing = intentAt({...modified, orientation: opposite(learner)}, ply);
       expect(opposing.claims.map(c => c.code)).not.toEqual(expect.arrayContaining([code]));
       expect(opposing.claims.some(c => c.code === "history")).toBe(false);
-      expect(opposing.expression).toBe("explaining");
+      expect(opposing.expression).toBe("book");
     }
   });
 
@@ -83,12 +121,12 @@ for (const game of games) {
     await page.route(`**/api/games/${game.id}/review`, route => route.fulfill({json: {job_id: game.job!.id, status: "completed"}}));
     await page.goto(`/games/${game.id}?ply=${ply}`);
     const coach = page.getByRole("region", {name: "Chess coach"});
-    await expect(coach.locator(".coach-avatar")).toHaveAttribute("data-expression", "explaining");
+    await expect(coach.locator(".coach-avatar")).toHaveAttribute("data-expression", "book");
     const text = await coach.locator("[data-utterance]").innerText();
     await page.getByRole("button", {name: "Flip board"}).click();
     await expect(coach.locator("[data-utterance]")).toHaveText(text);
     await page.reload();
-    await expect(coach.locator(".coach-avatar")).toHaveAttribute("data-expression", "explaining");
+    await expect(coach.locator(".coach-avatar")).toHaveAttribute("data-expression", "book");
     await expect(coach.locator("[data-utterance]")).toHaveText(text);
   });
 }
