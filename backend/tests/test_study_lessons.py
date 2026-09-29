@@ -97,7 +97,9 @@ def post(client, state, action, request_id=None, headers=None, **kwargs):
 
 
 def test_empty_library_and_archived_paths_stay_distinct(settings):
-    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+    with TestClient(
+        create_app(settings, workers=False, start_engine=False, lesson_providers=())
+    ) as client:
         assert client.get("/api/study/courses").json() == {"courses": [], "resume": []}
         assert client.get("/api/course").status_code == 410
         assert client.get("/api/study/courses/no-course").status_code == 404

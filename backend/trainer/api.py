@@ -34,6 +34,7 @@ from trainer.routes import (
 from trainer.routes.compatibility import ManualRequest as ManualRequest
 from trainer.routes.review import MoveRequest as MoveRequest
 from trainer.scheduling import FSRSScheduler
+from trainer.study_lessons.bundled import bundled_providers
 from trainer.study_lessons.providers import CourseProviders
 from trainer.taxonomy import seed_skills
 from trainer.web import configure_http, serve_frontend
@@ -51,9 +52,10 @@ def create_app(
     human_provider=None,
     provider_factories=None,
     puzzle_providers=(),
-    lesson_providers=(),
+    lesson_providers=None,
 ):
     settings = (settings or Settings()).for_runtime()
+    courses = CourseProviders(bundled_providers() if lesson_providers is None else lesson_providers)
     sql_engine, sessions = database(settings.database_path)
     health = EngineHealth()
     engine_factory = health.observe(engine_factory)
@@ -135,12 +137,8 @@ def create_app(
     app.include_router(games.create_router(settings=settings, engine_factory=engine_factory))
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
     app.include_router(puzzles.create_router(providers=PuzzleProviders(puzzle_providers)))
-    app.include_router(study_lessons.create_router(providers=CourseProviders(lesson_providers)))
-    app.include_router(
-        opening_studies.create_router(
-            providers=CourseProviders(lesson_providers), scheduler=scheduler
-        )
-    )
+    app.include_router(study_lessons.create_router(providers=courses))
+    app.include_router(opening_studies.create_router(providers=courses, scheduler=scheduler))
     app.include_router(classification.create_router(settings=settings, classifier=classifier))
     app.include_router(compatibility.create_router(scheduler=scheduler))
     serve_frontend(app)

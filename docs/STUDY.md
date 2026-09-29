@@ -93,6 +93,23 @@ The `/study/openings` library links course chapters and recent resumable session
 `/study/openings/courses/:id?revision=…` pins the chapter list, and
 `/study/openings/sessions/:id` resumes the exact private player state.
 
+### Included Italian course
+
+The bundled `italian-foundations` course (`2026-09-v1`) teaches White through three
+chapters: develop and castle, prepare the center, and meet the Two Knights. Its
+25 authored steps include a returnable opponent alternative, three contrasting
+historical game passages and independent rehearsal. Three short designated lines
+are available for optional enrollment; viewing or completing a chapter never
+adds them to Due automatically.
+
+Mason–Lasker, Steinitz–von Bardeleben and Pollock–Schiffers (Hastings 1895) provide
+complete game context. Their scores come from the public-domain original
+tournament book; Fieldwork's explanations are original. These games illustrate
+choices, not a claim that every move was best. Source differences and exact
+endpoints are recorded in [Italian course sources](ITALIAN_COURSE_SOURCES.md).
+The library loads locally without downloads or engine jobs. New material must
+use a new revision rather than changing a saved course's meaning.
+
 ## Opening study and recall
 
 Catalogue records come from the already bundled, pinned CC0 Lichess opening

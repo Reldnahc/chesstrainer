@@ -7,6 +7,14 @@ resume/alternate-path checks on desktop and mobile. Run `study-puzzles.spec.ts`
 alongside it when changing the shared display-only playback helper. Test fixture
 providers are injected only by the test application, never production flags.
 
+`test_italian_course.py` walks every bundled Italian chapter, accepted decision,
+branch, source-game endpoint and rehearsal through the production paths. It
+verifies that completion leaves existing reviews, FSRS and weakness evidence
+untouched, and enrollment remains explicit. `test_italian_native.py` uses native
+Stockfish for a bounded gross-error check of guided decisions, not as the lesson
+grader. `italian-course.spec.ts` exercises the real installed course on both
+viewports, including exact returns, reload and optional enrollment.
+
 Opening recall coverage: `test_opening_sources.py`, `test_opening_lifecycle.py`,
 `test_opening_isolation.py` and `test_opening_journey.py` cover both source kinds,
 transpositions/answer unions, source snapshots, content policy, ownership,
