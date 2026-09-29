@@ -200,8 +200,10 @@ rating; the review rating is a fallback when that player's rating is missing.
 It changes presentation, never evaluations or tactical facts.
 It defaults to 1000 and is stored with the review; changing it reuses engine evidence.
 
-- Best: engine top choice or at most 10 cp loss.
-- Good: less than 50 cp loss.
+- Best: engine top choice, or an equally immediate checkmate. A different move
+  with an equal or nearly equal centipawn score is not Best.
+- Good: less than 50 cp loss without qualifying for a higher label. Keeping a
+  forced win but taking longer to mate is Good, never Best, Great, or Brilliant.
 - Inaccuracy: 50–99 cp loss.
 - Mistake: at least 100 cp loss below the Blunder threshold, absent a verified Miss.
 - Blunder: newly allowed forced mate, a transition from at least -50 cp to -200 cp
@@ -209,7 +211,8 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   pawn losses therefore remain Blunders at low ratings. Already-lost mate positions
   are not treated as newly allowed mate.
 - Miss: lost forced mate or a concrete missed gain supported by a settled comparison
-  and a tactical witness. Severe losses still take precedence as Blunder.
+  and a tactical witness. Retaining mate in two instead of mate in one is not a
+  Miss. Severe losses still take precedence as Blunder.
 - Great: at most 20 cp loss and more than one legal move, plus either the strongest
   alternative loses at least 150 cp / drops a mate outcome while the played move
   retains at least -50 cp; or successful exploitation of the preceding opponent
