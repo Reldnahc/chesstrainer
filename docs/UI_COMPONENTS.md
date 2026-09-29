@@ -73,7 +73,7 @@ not React components.
 | Rendered coaching text | [DialogueText](../frontend/src/dialogue/DialogueText.tsx) | Supported utterance text and intent/variant metadata. Production defaults to a polite paragraph; lab previews explicitly use announce=false and optionally as=dd for definition lists. |
 | Move-quality symbol and labelled badge | [MoveSymbol](../frontend/src/MoveSymbol.tsx), [MoveBadge](../frontend/src/MoveBadge.tsx) | One icon/label rendering path. Objective move quality and practice attempt outcomes remain different concepts. |
 | White-perspective position score | [EvaluationScore](../frontend/src/EvaluationScore.tsx), [evaluation helpers](../frontend/src/evaluation.ts) | Signed pawn/mate formatting, winning-side styling and accessible perspective. Never pass side-to-move candidate scores without conversion. |
-| Accuracy display | [AccuracyReadout / PlayerRow](../frontend/src/gameReview/Players.tsx) | Existing compact/summary accuracy, unavailable/completion wording and one-decimal display. |
+| Accuracy display | [AccuracyReadout / PlayerRow](../frontend/src/gameReview/Players.tsx) | Player, summary and passive history presentations share unavailable/completion wording and one-decimal formatting. History keeps its row-level accessible description. |
 | Practice move status | [MoveStatus](../frontend/src/MoveStatus.tsx) | Stable live region, delayed checking message and retry presentation. Do not copy its timer or imply SRS grading in other modes. |
 | Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx), [motion-select.css](../frontend/src/motion-select.css) | Device default / Animated / Still choices in Settings and Studio. Inline or stacked layout; callback and persistence stay caller-owned. Shared-safe styles; Settings status/layout remains in application-only motion.css. |
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
@@ -144,7 +144,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-19 | Promote the existing resume-row style and share its markup (A/B/C). | Planned | Supply each destination and content; keep other row compositions separate. |
 | UI-20 | Share the existing puzzle/opening statistics markup in a small StatList. | Planned | Keep the current appearance. |
 | UI-21 | Share only the turn indicator used by the board-status compositions. | Planned | Keep each mode's surrounding status content and cold-practice visibility rules. |
-| UI-22 | Extend the application's AccuracyReadout with a history presentation. | Planned | Retain history's review-action state, compact two-player layout and accessible description. |
+| UI-22 | Extend the application's AccuracyReadout with a history presentation. | Complete | History shares formatting and completion descriptions; its numeric spans remain passive and queued reviews retain their action state. |
 | UI-23 | Share source/link formatting. | Planned | Retain lesson headings, optional licenses/revisions, multiple citations and distinct provenance records. |
 | UI-24 | Promote the application's existing MotionSelect into Studio (A). | Complete | Studio uses `MotionSelect` with shared-safe control styles and still clears its simulated reduced-motion setting on selection. |
 | UI-25 | Use the application's real EvaluationScore in Studio (B). | Complete | Board-size Studio previews use `EvaluationScore` with typed illustrative scores, correct White perspective, side styling and accessible text. |
@@ -223,6 +223,14 @@ from Git; no live decision-gathering tool is needed.
   entries. Replaced an incompatible test-runner JSX/SSR test with real browser
   rendering; no production workaround was required. Commit subject: `UI-28: Share
   dialogue rendering with passive developer previews`.
+
+- **UI-22 — history accuracy:** history now uses the same accuracy readout as
+  player rows and move quality, including one-decimal values and unavailable
+  descriptions. Queued/stale results retain their review action; library polling
+  does not announce every numeric value. Validation: production build (including
+  type/API/style checks) and game-history/game-review-presentation browser tests:
+  **8 passed** across desktop/mobile. Commit subject: `UI-22: Share accuracy
+  readouts across history and review`.
 
 ## Audit findings and implementation boundaries
 

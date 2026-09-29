@@ -2,6 +2,7 @@ import type { Schema } from "./api";
 import { ChevronRight, Clock3 } from "lucide-react";
 import Link from "./Link";
 import { gamesPath } from "./navigation";
+import { AccuracyReadout } from "./gameReview/Players";
 
 export type HistoryItem = Schema["GameHistoryItem"];
 
@@ -161,13 +162,13 @@ export default function GameHistory({
                 >
                   {accuracy || item.status === "completed" ? (
                     (["white", "black"] as const).map((color) => (
-                      <span
+                      <AccuracyReadout
                         key={color}
-                        className="history-line"
-                        data-color={color}
-                      >
-                        {accuracy?.[color].toFixed(1) ?? "—"}
-                      </span>
+                        color={color}
+                        accuracy={accuracy}
+                        complete={item.status === "completed"}
+                        presentation="history"
+                      />
                     ))
                   ) : (
                     <span className="history-review-action">{reviewLabel}</span>

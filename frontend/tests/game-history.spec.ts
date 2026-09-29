@@ -13,7 +13,8 @@ test('history aligns players, results and accuracy with compact metadata and wor
     {...base, id: 'black-win', white: 'LongOpponentNameThatNeedsToFitOnAPhone', black: 'HistoryMe', learner_color: 'black',
       white_rating: null, status: 'completed', result: '0-1', time_control_label: '3 min + 2 sec',
       played_on: '????.??.??', played_at: '2026-09-25T23:00:00+00:00', accuracy: {white: 78.123, black: 92.345}},
-    {...base, id: 'daily-draw', status: 'queued', result: '1/2-1/2', time_control_label: '3 days / move', move_count: 60},
+    {...base, id: 'daily-draw', status: 'queued', result: '1/2-1/2', time_control_label: '3 days / move', move_count: 60,
+      accuracy: {white: 99.9, black: 88.8}},
     {...base, id: 'unknown', white_rating: null, black_rating: null, status: 'completed', result: '*',
       played_on: null, played_at: null, move_count: 0, time_control_label: null},
     {...base, id: 'paused', status: 'cancelled'},
@@ -42,6 +43,8 @@ test('history aligns players, results and accuracy with compact metadata and wor
   await expect(first).toHaveAccessibleDescription(/White: HistoryMe, rated 637.*Black: PlayerOne, rated 630.*You won/);
   await expect(reviewed.locator('[data-color="white"]')).toHaveText('71.2');
   await expect(reviewed.locator('[data-color="black"]')).toHaveText('67.2');
+  await expect(reviewed.locator('[data-color="white"]')).toHaveAttribute('title', "Original-game accuracy out of 100, using Lichess's method.");
+  await expect(reviewed).toHaveAccessibleDescription(/Accuracy: White 71\.2, Black 67\.2\./);
   await expect(reviewed.locator('.history-outcome')).toHaveText('Lost');
   await expect(blackWin.locator('.history-outcome')).toHaveText('Won');
   await expect(blackWin.locator('.history-player').first().locator('.history-rating')).toHaveText('');
@@ -50,7 +53,12 @@ test('history aligns players, results and accuracy with compact metadata and wor
   await expect(draw.locator('.history-scores')).toHaveText('½½');
   await expect(draw.locator('.history-outcome')).toHaveText('Draw');
   await expect(draw.locator('.history-review-action')).toHaveText('Queued');
+  await expect(draw.locator('.history-accuracy [data-color]')).toHaveCount(0);
   await expect(unknown.locator('.history-accuracy')).toHaveText('——');
+  await expect(unknown.locator('[data-color="white"]')).toHaveAttribute('title', 'Accuracy unavailable. Both players need moves with complete analysis.');
+  await expect(unknown.locator('[data-color="black"]')).toHaveAttribute('title', 'Accuracy unavailable. Both players need moves with complete analysis.');
+  await expect(unknown).toHaveAccessibleDescription(/Accuracy unavailable\./);
+  await expect(rows.getByRole('status')).toHaveCount(0);
   await expect(unknown.locator('.history-date')).toHaveText('—');
   await expect(rows.nth(5).locator('.history-review-action')).toHaveText('Resume');
   await expect(rows.nth(6).locator('.history-review-action')).toHaveText('Retry');

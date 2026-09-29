@@ -51,12 +51,12 @@ export default function ReviewSummary({ game }: { game: Game }) {
           <tr className="game-summary-accuracy">
             <td>
               <AccuracyReadout color="white" accuracy={game.accuracy}
-                complete={game.job?.status === "completed"} summary />
+                complete={game.job?.status === "completed"} presentation="summary" />
             </td>
             <th scope="row">Accuracy</th>
             <td>
               <AccuracyReadout color="black" accuracy={game.accuracy}
-                complete={game.job?.status === "completed"} summary />
+                complete={game.job?.status === "completed"} presentation="summary" />
             </td>
           </tr>
           {summary.map((s) => (
