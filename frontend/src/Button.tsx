@@ -2,7 +2,7 @@ import type { ComponentPropsWithRef } from "react";
 import "./action-controls.css";
 
 export type ActionStyle = {
-  variant?: "default" | "primary" | "secondary" | "quiet";
+  variant?: "default" | "primary" | "secondary" | "quiet" | "return";
   size?: "ordinary" | "compact";
   className?: string;
 };

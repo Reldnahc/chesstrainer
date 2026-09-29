@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
+import { expectReturnAction } from "./return-action";
 
 const preferences = new WeakMap<Page, { coach: Schema["CoachPreferences"]; motion: Schema["MotionPreferences"] }>();
 test.beforeEach(async ({ page }) => {
@@ -77,6 +78,14 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   expect(branch.step.id).toBe("quiet-explanation");
   await page.reload();
   await expect(page.getByRole("button", { name: "Return to main line" })).toBeVisible();
+  const branchReturn = page.getByRole("button", { name: "Return to main line", exact: true });
+  const returnPresentation = await expectReturnAction(branchReturn);
+  const viewport = page.viewportSize()!;
+  await page.setViewportSize({ width: 320, height: 700 });
+  await expectReturnAction(branchReturn);
+  expect(await branchReturn.evaluate(element => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.setViewportSize(viewport);
   expect((await saved(page, lesson.session_id)).history).toEqual(branch.history);
   await page.getByRole("link", { name: "Settings", exact: true }).click();
   await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
@@ -109,6 +118,7 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   await expect(page.locator('.board-shell [data-square="c3"] .playback-highlight')).toHaveCount(0);
   await page.reload();
   await expect(page.getByRole("button", { name: "Return to lesson" })).toBeVisible();
+  expect(await expectReturnAction(page.getByRole("button", { name: "Return to lesson", exact: true }))).toEqual(returnPresentation);
   const closed = await command(page, "Return to lesson");
   expect(closed.fen).toBe(excerpt.fen);
   expect(closed.history).toEqual(excerpt.history);

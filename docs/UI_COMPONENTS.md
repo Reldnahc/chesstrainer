@@ -63,6 +63,7 @@ not React components.
 | URL section navigation | [SectionNavigation](../frontend/src/SectionNavigation.tsx), [section-navigation.css](../frontend/src/section-navigation.css) | Settings and Openings share the framed tray and selected style. Callers supply destinations, selected ID and accessible name; account/course filtering remains caller-owned. |
 | Local single choice | [ChoiceGroup](../frontend/src/ChoiceGroup.tsx), [choice-group.css](../frontend/src/choice-group.css) | PGN source and Studio filters share rectangular pressed buttons. Controlled value/options/callback; no route or tab semantics. Caller owns input clearing and filtering. |
 | Commands and button-styled destinations | [Button / IconButton](../frontend/src/Button.tsx), [ActionLink](../frontend/src/ActionLink.tsx), [action-controls.css](../frontend/src/action-controls.css) | Ordinary/compact sizing, primary/secondary/quiet variants, square labelled icons and 44px phone targets. Button defaults to type=button; forms must request submit. ActionLink retains Link semantics. Native disabled and aria-disabled stay independent. Containers own width/placement. |
+| Return from exploration | [ReturnButton](../frontend/src/ReturnButton.tsx) | Canonical purple action and return icon for game variations and lesson branches/full games. Caller supplies label, disabled state and command; long labels can wrap on narrow phones. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
@@ -126,7 +127,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-01 | Promote the Settings section-navigation tray (A). | Complete | `SectionNavigation` serves Settings and Openings; URL history and account/course filtering are preserved. |
 | UI-02 | Promote the application's PGN rectangular choice buttons (A). | Complete | `ChoiceGroup` serves PGN source and Studio filters, preserving pressed-button semantics and caller-owned clearing/filtering. |
 | UI-03 | One shared button family with ordinary, compact and icon-only sizes, plus primary, secondary and purple return styles. | Complete | Button, IconButton and ActionLink serve ordinary application actions and actual-size Studio coach actions. Purple appearance is consolidated separately in UI-04. Specialized choices/notation/playback remain distinct. |
-| UI-04 | Promote Game Review's purple return action (A). | Planned | Share the appearance; preserve each mode's return label, handler and variation/branch behavior. |
+| UI-04 | Promote Game Review's purple return action (A). | Complete | ReturnButton shares the purple style and icon while each mode retains its label, handler, disabled/focus behavior and branch state. |
 | UI-05 | Promote lesson/opening playback geometry (C/D). | Planned | This choice stands. Preserve Game Review first/last/flip actions, ply zero, variation exit, stable counter width and keyboard shortcuts; retain lessons' focus-preserving pending-command behavior. |
 | UI-06 | Promote catalogue pagination labels and layout (B). | Planned | Preserve each screen's page size, range/count calculation and empty-page recovery. |
 | UI-07 | Share continuation-move markup. | Planned | Preserve numbering options, selection and playback-disabled behavior; full-game scored notation stays specialized. |
@@ -231,6 +232,13 @@ from Git; no live decision-gathering tool is needed.
   type/API/style checks) and game-history/game-review-presentation browser tests:
   **8 passed** across desktop/mobile. Commit subject: `UI-22: Share accuracy
   readouts across history and review`.
+
+- **UI-04 — return actions:** game variations and both lesson return paths use
+  ReturnButton. Removed duplicate colors/icons/hover rules; long labels fit narrow
+  phones. Production build passed; variation-navigation and study-lessons:
+  **20 passed** across desktop/mobile, including 320px fit, canonical appearance,
+  branch restoration, ply-zero exit and lesson focus/context preservation. Commit
+  subject: `UI-04: Share prominent return actions across review and lessons`.
 
 ## Audit findings and implementation boundaries
 

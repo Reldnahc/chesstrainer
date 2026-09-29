@@ -1,8 +1,9 @@
 import { useEffect, type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Lightbulb, Play, Undo2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, Lightbulb, Play } from "lucide-react";
 import Board from "../Board";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
+import ReturnButton from "../ReturnButton";
 import ReviewCoach from "../ReviewCoach";
 import ReviewWorkspace from "../ReviewWorkspace";
 import type { CoachExpression } from "../coach/model";
@@ -37,7 +38,13 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   // Pending navigation remains locked in the session hook and announced as
   // unavailable, without dimming the controls or losing keyboard focus per move.
   const gameButtonState = (atBoundary = false) => ({ disabled: !!error || atBoundary, "aria-disabled": gameNavigationDisabled || atBoundary });
-  const action = (name: LessonAction, label: string, primary = false, icon?: ReactNode) => has(name) && <Button key={name} size="compact" className={name === "return_branch" || name === "close_game" ? "lesson-return" : undefined} variant={name === "return_branch" || name === "close_game" ? "default" : primary ? "primary" : "secondary"} {...(name === "close_game" ? gameButtonState() : { disabled })} onClick={() => state.command(name)}>{icon}{label}</Button>;
+  const action = (name: LessonAction, label: string, primary = false, icon?: ReactNode) => {
+    if (!has(name)) return null;
+    const props = { ...(name === "close_game" ? gameButtonState() : { disabled }), onClick: () => state.command(name) };
+    return name === "return_branch" || name === "close_game"
+      ? <ReturnButton key={name} {...props}>{label}</ReturnButton>
+      : <Button key={name} size="compact" variant={primary ? "primary" : "secondary"} {...props}>{icon}{label}</Button>;
+  };
   return <ReviewWorkspace
     boardLabel="Lesson position"
     heading={<div className="puzzle-player-heading"><h1>{session.course_title}</h1><span className="muted">{session.orientation === "white" ? "White" : "Black"}</span></div>}
@@ -50,11 +57,11 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
       reaction={{ state: expression, key: reactionKey }}
       messageResetKey={`${session.id}:${session.revision}:${guidedPlayback}:${error || ""}`}
       actions={<>{error ? <Button size="compact" variant="primary" onClick={state.reload}>Reload lesson</Button> : <>
-        {session.game ? <>{action("close_game", "Return to lesson", true, <Undo2 size={16} />)}<Button size="compact" variant="secondary" {...gameButtonState(session.game.ply === 0)} onClick={() => state.command("game_seek", { ply: 0 })}><Play size={16} />From the beginning</Button></> : <>
+        {session.game ? <>{action("close_game", "Return to lesson")}<Button size="compact" variant="secondary" {...gameButtonState(session.game.ply === 0)} onClick={() => state.command("game_seek", { ply: 0 })}><Play size={16} />From the beginning</Button></> : <>
           {action("back", "Back", false, <ChevronLeft size={16} />)}
           {action("continue", (step.kind === "demonstration" || step.kind === "game_excerpt") && step.phase === "ready" ? "Play continuation" : finished ? "Review chapter" : "Continue", true, <ArrowRight size={16} />)}
           {action("enter_branch", "Explore alternative", true, <Play size={16} />)}
-          {action("return_branch", "Return to main line", true, <Undo2 size={16} />)}
+          {action("return_branch", "Return to main line")}
           {action("show_move", "Show move")}
           {action("hint", "Hint", false, <Lightbulb size={16} />)}
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}

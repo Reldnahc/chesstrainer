@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { expectReturnAction } from "./return-action";
 
 async function openGame(page: Page, suffix: string) {
   const { id } = await (await page.request.post(`/__test/game-review-fixture/variation-nav-${suffix}`)).json();
@@ -48,6 +49,7 @@ test("variation return is a prominent coach action and restores the original pos
   }
   await play("e2e4");
   const back = page.getByRole("button", {name: "Return to game", exact: true});
+  await expectReturnAction(back);
   await expect(page.locator(".coach-actions").getByRole("button", {name: "Return to game"})).toBeVisible();
   await expect(page.getByRole("group", {name: "Game navigation"}).getByRole("button", {name: "Return to game"})).toHaveCount(0);
   const layout = await back.evaluate(button => {
