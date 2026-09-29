@@ -2,6 +2,41 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Smarter CI integration with current main — September 29, 2026
+
+Merged `aa851c5` into the existing CI branch in `3a1261c`, preserving the current
+coach, grading and portable browser harness changes. The current selector skips
+coach tests for audited application-only TypeScript/public assets while keeping
+coach coverage for shared styles, dialogue, dependencies and unknown modules.
+Both application and coach suites use two shards per viewport: twelve browser
+jobs in a full run. The earlier smarter-CI entry below records its older baseline.
+
+Automatic releases now compare with a successful ancestor release rather than
+the previous push, retaining verification of changes from failed or superseded
+releases. Missing API/history evidence requests full checks. The release tests
+cover failure/cancellation, non-ancestors, forks, reruns, malformed metadata and
+manual full verification. Independent review also found documentation symlinks
+could skip builds despite source packaging rejecting them; changed Git tree
+modes now select full checks, with added/replaced symlinks tested without relying
+on Windows filesystem privileges.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q -p no:cacheprovider --basetemp data/verification/ci-merge-final-stable`:
+  **219 passed**, 19.45 seconds. Covers selection unions, exclusions, full fallback,
+  real Git history/renames/deletions/symlinks, release baselines and the final gate.
+- Playwright `--list --reporter=json`, comparing every matrix project/shard with
+  the unsharded configurations: all **542 test/project entries occur exactly
+  once** (application 300, accounts 8, coach 190, intelligence 44). This is a
+  collection check, not browser execution; GitHub execution remains the merge gate.
+- `npm.cmd run build`: passed API agreement, production/contract/browser-test
+  TypeScript and Vite. Existing large-chunk advisory remains.
+- Actionlint **1.7.12**, `ruff check backend scripts migrations`,
+  `ruff format --check backend scripts migrations` (**285 files**),
+  `scripts/export_api_contract.py --check` and `git diff --check`: passed.
+- Read-only selection against actual GitHub release metadata chose a successful
+  main ancestor; no workflow or container was dispatched for that probe.
+  Independent review covered shared frontend dependencies, all matrix entries,
+  stable gating, reusable workflow inputs, release history and image publication.
+
 ## Coach revamp review and portable browser harnesses — September 29, 2026
 
 Independent review covered coordinator liveness/cleanup, shared facial state,

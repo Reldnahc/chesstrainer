@@ -10,6 +10,10 @@ on:
         default: true
   workflow_call:
     inputs:
+      base:
+        description: Verified comparison commit supplied by the release caller
+        type: string
+        default: ''
       full:
         type: boolean
         default: true
@@ -47,7 +51,7 @@ jobs:
       - name: Select checks from the complete changed-path set
         id: plan
         env:
-          CI_BASE: ${{ github.event.pull_request.base.sha || github.event.before || 'origin/main' }}
+          CI_BASE: ${{ inputs.base || github.event.pull_request.base.sha || github.event.before || 'origin/main' }}
           CI_FULL: ${{ inputs.full }}
         run: |
           args=()

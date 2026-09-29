@@ -125,10 +125,11 @@ select everything. Missing/unresolvable history also selects everything.
 
 | Changed area | Checks selected |
 |---|---|
-| Documentation edits/additions | Selection and final CI gate only |
-| Documentation deletions/renames | Full checks, since Docker copies documentation |
+| Regular documentation edits/additions | Selection and final CI gate only |
+| Documentation deletions/renames or symlinks | Full checks, since documentation is packaged and source symlinks are rejected |
 | Backend or migrations | Backend, build/types, application/accounts/intelligence browsers; runtime changes also test Docker |
-| Shared frontend source/assets | Build/types, all browser suites, Docker |
+| Audited application-only TypeScript and public assets | Build/types, application/accounts/intelligence browsers, Docker |
+| Coach/dialogue source, shared styles/helpers, unclassified frontend modules | Build/types, all browser suites, Docker |
 | Coach studio source/tests | Build/types and coach studio |
 | Intelligence lab source/tests | Build/types and intelligence lab |
 | Account browser test/config | Build/types and accounts |
@@ -138,12 +139,16 @@ select everything. Missing/unresolvable history also selects everything.
 Licenses/notices are build inputs, not documentation-only shortcuts. The Python
 intelligence fixtures import backend test modules, so backend/test-fixture edits
 must retain lab coverage. Keep the selector and its regression tests aligned
-when adding shared dependencies or another suite.
+when adding shared dependencies or another suite. The app-only source allowlist
+is conservative: new unclassified frontend modules still run all browser suites.
+Both development entrypoints import the shared stylesheet tree, so even a
+page-specific CSS edit retains coach coverage.
 
-The application suite runs in four isolated jobs (desktop/mobile, two file
-shards each). Accounts, coach studio and intelligence each have separate desktop
-and mobile jobs. Every job retains one Playwright worker, its own server and its
-own database; do not run these commands concurrently against a shared checkout.
+The application and coach studio suites each run in four isolated jobs
+(desktop/mobile, two file shards each). Accounts and intelligence each have
+separate desktop and mobile jobs. Every job retains one Playwright worker, its own
+server and its own database; do not run these commands concurrently against a
+shared checkout.
 No test assertions or native-engine search budgets are reduced. The frontend
 build/type checks run once, and the browser jobs download that run's `dist`
 artifact. Coach studio installs neither Python dependencies nor Stockfish;
@@ -159,8 +164,14 @@ days; frontend build artifacts expire after one day. Backend logs include the
 20 slowest tests, and browser logs show individual case durations. Bounded job
 timeouts prevent a stuck runner from consuming hours; timing out still fails CI.
 
-Publishing from `main` (or manually running `build-and-push`) always requires
-full correctness. The release workflow skips the separate PR Docker-install job,
+Automatic `main` releases compare against the most recent successful ancestor
+release of `docker.yml`, using the same check selector as PRs. This includes
+unverified changes carried through failed, cancelled or superseded releases;
+comparing only with the previous push would miss those changes. Missing release
+history, API failures or an unresolvable baseline run full correctness. The
+baseline lookup alone has read access to Actions history. Manually running
+`build-and-push` defaults to full verification; `full=false` uses that verified
+release baseline. The release workflow skips the separate PR Docker-install job,
 then builds one image, runs local/account install smoke tests against it, and
 pushes that exact image under its commit and `latest` tags. Releases are
 serialized so concurrent builds do not race the `latest` update. Python/npm
@@ -174,7 +185,7 @@ python scripts/ci_plan.py --paths docs/TESTING.md
 python scripts/ci_plan.py --paths frontend/src/coach/usePerformance.ts
 python scripts/ci_plan.py --base origin/main --head HEAD
 python scripts/ci_plan.py --full
-python -m pytest backend/tests/test_ci_plan.py -q
+python -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_base.py -q
 ```
 
 The exhaustive browser-matrix collection check should continue to cover every
