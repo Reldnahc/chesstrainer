@@ -11,16 +11,11 @@ import { practiceIntent } from "../dialogue/practiceIntent";
 import { claim, makeIntent } from "../dialogue/model";
 import { useDialogue } from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
+import OpeningRecallPanel from "./OpeningRecallPanel";
+import Link from "../Link";
+import { studyPaths } from "../navigation";
 
-export default function ReviewPanel({
-  session,
-  playback,
-  feedbackLabel,
-  focusSkill,
-  onExitFocus,
-  onImport,
-  onEvidence,
-}: {
+type ReviewPanelProps = {
   session: ReviewSession;
   playback: ReviewPlayback;
   feedbackLabel: string | null;
@@ -28,7 +23,23 @@ export default function ReviewPanel({
   onExitFocus: () => void;
   onImport: () => void;
   onEvidence: (id: string) => void;
-}) {
+};
+
+export default function ReviewPanel(props: ReviewPanelProps) {
+  return props.session.position?.opening
+    ? <OpeningRecallPanel session={props.session} />
+    : <GameRecallPanel {...props} />;
+}
+
+function GameRecallPanel({
+  session,
+  playback,
+  feedbackLabel,
+  focusSkill,
+  onExitFocus,
+  onImport,
+  onEvidence,
+}: ReviewPanelProps) {
   const { position, feedback, busy, done, next, show } = session;
   const {
     practicePanel,
@@ -72,17 +83,18 @@ export default function ReviewPanel({
               ? "Practice complete."
               : done
                 ? "You’re caught up."
-                : "Train from your games."}
+                : "Build your study queue."}
           </h2>
           <p>
             {focusSkill
               ? "Your practice is saved separately. Review schedules and retirement progress are unchanged."
               : done
-                ? "Your next reviews are scheduled. Come back when they’re due, or add another game."
-                : "Bring in a PGN. We’ll look for decisions worth practicing and keep the useful positions here."}
+                ? "Your next reviews are scheduled. Come back when they’re due, or add more study material."
+                : "Choose opening lines to remember, or import games to practice decisions from your own play."}
           </p>
+          {!focusSkill && <Link className="button-link primary" href={studyPaths.openings}>Study openings <ArrowRight size={17} /></Link>}
           <button
-            className="primary"
+            className={focusSkill ? "primary" : "secondary"}
             onClick={focusSkill ? onExitFocus : onImport}
           >
             {focusSkill ? "Return to mixed review" : "Import games"}{" "}
@@ -91,8 +103,8 @@ export default function ReviewPanel({
           <div className="aside-note">
             <ShieldCheck size={19} />
             <p>
-              Practice useful decisions from your own games, with feedback
-              grounded in saved chess analysis.
+              {focusSkill ? "Practice useful decisions from your own games, with feedback grounded in saved chess analysis."
+                : "Due combines your selected opening recall with useful decisions from your games."}
             </p>
           </div>
         </>

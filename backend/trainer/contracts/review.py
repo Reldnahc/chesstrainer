@@ -4,6 +4,7 @@ from pydantic import JsonValue
 
 from trainer.chess_core import Candidate
 from trainer.contracts.common import Color, Contract, LegalMove
+from trainer.contracts.opening_studies import OpeningContinuation, OpeningRecallContext
 from trainer.explanations import Frame
 
 
@@ -27,6 +28,10 @@ class ColdPosition(Contract):
     previous_reviews: int
     practice_only: bool
     legal_moves: list[LegalMove]
+    opening: OpeningRecallContext | None = None
+    non_scheduling_reason: str | None = None
+    completed: bool | None = None
+    feedback: "ReviewFeedback | None" = None
 
 
 class AcceptedAnswer(Contract):
@@ -58,3 +63,12 @@ class ReviewFeedback(Contract):
     candidates: list[Candidate] | None = None
     # Historical evidence retains versioned JSON shapes.
     facts: dict[str, JsonValue] | None = None
+    opening: OpeningRecallContext | None = None
+    continuations: list[OpeningContinuation] | None = None
+    non_scheduling_reason: str | None = None
+    scheduling_status: (
+        Literal["recorded", "previously_recorded", "content_changed", "practice"] | None
+    ) = None
+
+
+ColdPosition.model_rebuild()

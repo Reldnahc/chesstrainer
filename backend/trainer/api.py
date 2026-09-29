@@ -24,6 +24,7 @@ from trainer.routes import (
     games,
     imports,
     jobs,
+    opening_studies,
     puzzles,
     review,
     study_lessons,
@@ -135,6 +136,11 @@ def create_app(
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
     app.include_router(puzzles.create_router(providers=PuzzleProviders(puzzle_providers)))
     app.include_router(study_lessons.create_router(providers=CourseProviders(lesson_providers)))
+    app.include_router(
+        opening_studies.create_router(
+            providers=CourseProviders(lesson_providers), scheduler=scheduler
+        )
+    )
     app.include_router(classification.create_router(settings=settings, classifier=classifier))
     app.include_router(compatibility.create_router(scheduler=scheduler))
     serve_frontend(app)

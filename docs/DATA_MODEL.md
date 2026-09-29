@@ -47,6 +47,18 @@ Repertoire archival is a read-time source filter, not deletion or retirement. Le
 
 ## Migration history
 
+### Opening study: 7c249ef302d6
+
+Adds account-owned `opening_studies` (immutable selected line/source/color),
+`opening_study_moves` (position contributions), `opening_cards` (current authority
+revision, last active target and retirement guard), `opening_recall_snapshots`
+(existing ReviewSession's answers/provenance), and `opening_content_changes`
+(non-recall lifecycle audit). The existing Exercise, ExerciseAnswer, ReviewSession,
+Attempt, Review and SRSState remain the recall/scheduling domain. Opening exercises
+have source `opening`; archived repertoire rows are unchanged. No schema migration
+recomputes an old schedule or creates historical recalls. See [Study](STUDY.md)
+for current versus stale attempt and content-change rules.
+
 ### Authored Study lessons: 6b138de291c5
 
 Adds account-owned `study_lesson_sessions`, `study_lesson_commands` and

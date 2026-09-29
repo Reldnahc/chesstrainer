@@ -35,7 +35,7 @@ function readRoute() {
     url.searchParams.delete("exercise");
   }
   if (url.pathname === "/")
-    url.pathname = url.searchParams.has("exercise") || url.searchParams.has("focus")
+    url.pathname = url.searchParams.has("exercise") || url.searchParams.has("focus") || url.searchParams.has("session")
       ? studyPaths.due : pagePaths.Study;
   if (url.pathname.replace(/\/$/, "") === "/review") url.pathname = studyPaths.due;
   if (url.pathname.replace(/\/$/, "") === "/import") url.pathname = pagePaths.Settings;
@@ -47,19 +47,27 @@ function readRoute() {
   const puzzleMatch = path.match(/^\/study\/puzzles\/sessions\/([^/]+)$/);
   const lessonMatch = path.match(/^\/study\/openings\/sessions\/([^/]+)$/);
   const courseMatch = path.match(/^\/study\/openings\/courses\/([^/]+)$/);
+  const catalogueMatch = path.match(/^\/study\/openings\/catalogue\/([^/]+)$/);
+  const courseLineMatch = path.match(/^\/study\/openings\/courses\/([^/]+)\/lines\/([^/]+)$/);
   let gameId: string | null = null;
   let puzzleSessionId: string | null = null;
   let lessonSessionId: string | null = null;
   let lessonCourseId: string | null = null;
+  let openingCatalogueKey: string | null = null;
+  let openingCourseLine: { courseId: string; lineId: string; revision: string } | null = null;
   try { if (gameMatch) gameId = decodeURIComponent(gameMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (puzzleMatch) puzzleSessionId = decodeURIComponent(puzzleMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (lessonMatch) lessonSessionId = decodeURIComponent(lessonMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (courseMatch) lessonCourseId = decodeURIComponent(courseMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
+  try { if (catalogueMatch) openingCatalogueKey = decodeURIComponent(catalogueMatch[1]); } catch { /* Invalid source links show the not-found screen. */ }
+  try { if (courseLineMatch) openingCourseLine = { courseId: decodeURIComponent(courseLineMatch[1]), lineId: decodeURIComponent(courseLineMatch[2]), revision: url.searchParams.get("revision") || "" }; } catch { /* Invalid source links show the not-found screen. */ }
+  const openingSection: "catalogue" | "studies" | "lessons" = path === `${studyPaths.openings}/catalogue` || openingCatalogueKey ? "catalogue"
+    : path === `${studyPaths.openings}/studies` ? "studies" : "lessons";
   const puzzleSource: "generic" | "games" | null = path === "/study/puzzles/generic" ? "generic"
     : path === "/study/puzzles/games" ? "games" : null;
   const studyMode: StudyMode | null = path === pagePaths.Study ? "home"
     : puzzleSessionId || puzzleSource ? "puzzles"
-    : lessonSessionId || lessonCourseId ? "openings"
+    : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
   const tab: Tab | null = studyMode ? "Study" : gameId ? "Games"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
@@ -74,9 +82,16 @@ function readRoute() {
     lessonSessionId,
     lessonCourseId,
     lessonRevision: lessonCourseId ? url.searchParams.get("revision") : null,
+    openingSection,
+    openingCatalogueKey,
+    openingCourseLine,
+    openingQuery: url.searchParams.get("q") || "",
+    openingEco: url.searchParams.get("eco") || "",
+    openingOffset: nonnegativeInteger(url.searchParams.get("offset")),
     page: Math.max(1, Math.min(1_000_000, nonnegativeInteger(url.searchParams.get("page"), 1))),
     ply: nonnegativeInteger(url.searchParams.get("ply")),
     exercise: studyMode === "due" ? url.searchParams.get("exercise") : null,
+    reviewSessionId: studyMode === "due" ? url.searchParams.get("session") : null,
     focusSkill: studyMode === "due" ? url.searchParams.get("focus") : null,
   };
 }
@@ -114,6 +129,27 @@ export function lessonSessionPath(id: string) {
 
 export function lessonCoursePath(id: string, revision?: string) {
   return `${studyPaths.openings}/courses/${encodeURIComponent(id)}${revision ? `?revision=${encodeURIComponent(revision)}` : ""}`;
+}
+
+export function openingCataloguePath(key?: string) {
+  return `${studyPaths.openings}/catalogue${key ? `/${encodeURIComponent(key)}` : ""}`;
+}
+
+export function courseLinePath(courseId: string, lineId: string, revision: string) {
+  return `${studyPaths.openings}/courses/${encodeURIComponent(courseId)}/lines/${encodeURIComponent(lineId)}?revision=${encodeURIComponent(revision)}`;
+}
+
+export function rememberReviewSession(id: string) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("session", id);
+  url.searchParams.delete("exercise");
+  window.history.replaceState(window.history.state, "", url);
+}
+
+export function clearReviewSessionLink() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete("session");
+  window.history.replaceState(window.history.state, "", url);
 }
 
 // These annotate the current page, rather than navigating away from it. Keeping

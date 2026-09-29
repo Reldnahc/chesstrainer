@@ -784,6 +784,17 @@
       "ColdPosition": {
         "additionalProperties": false,
         "properties": {
+          "completed": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed"
+          },
           "exercise_id": {
             "title": "Exercise Id",
             "type": "string"
@@ -791,6 +802,16 @@
           "failed": {
             "title": "Failed",
             "type": "boolean"
+          },
+          "feedback": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReviewFeedback"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "fen": {
             "title": "Fen",
@@ -813,6 +834,27 @@
             },
             "title": "Legal Moves",
             "type": "array"
+          },
+          "non_scheduling_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Non Scheduling Reason"
+          },
+          "opening": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OpeningRecallContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "orientation": {
             "enum": [
@@ -4481,6 +4523,529 @@
         "title": "Ok",
         "type": "object"
       },
+      "OpeningCatalogue": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/OpeningLineSummary"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "total",
+          "items"
+        ],
+        "title": "OpeningCatalogue",
+        "type": "object"
+      },
+      "OpeningContinuation": {
+        "additionalProperties": false,
+        "properties": {
+          "moves": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "Moves",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "study_id": {
+            "title": "Study Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "study_id",
+          "name",
+          "moves"
+        ],
+        "title": "OpeningContinuation",
+        "type": "object"
+      },
+      "OpeningEnrollment": {
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Color",
+            "type": "string"
+          },
+          "course_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Course Id"
+          },
+          "line_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Line Id"
+          },
+          "source": {
+            "enum": [
+              "lichess_catalogue",
+              "course_line"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "source_key": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Source Key",
+            "type": "string"
+          },
+          "source_version": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Source Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "source_key",
+          "source_version",
+          "color"
+        ],
+        "title": "OpeningEnrollment",
+        "type": "object"
+      },
+      "OpeningLine": {
+        "additionalProperties": false,
+        "properties": {
+          "course_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Course Id"
+          },
+          "eco": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eco"
+          },
+          "initial_fen": {
+            "title": "Initial Fen",
+            "type": "string"
+          },
+          "line_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Line Id"
+          },
+          "moves": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Moves",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "lichess_catalogue",
+              "course_line"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "source_key": {
+            "title": "Source Key",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "source_key",
+          "source_version",
+          "name",
+          "eco",
+          "initial_fen",
+          "moves"
+        ],
+        "title": "OpeningLine",
+        "type": "object"
+      },
+      "OpeningLineSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "black_positions": {
+            "title": "Black Positions",
+            "type": "integer"
+          },
+          "eco": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eco"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "plies": {
+            "title": "Plies",
+            "type": "integer"
+          },
+          "source_key": {
+            "title": "Source Key",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          },
+          "white_positions": {
+            "title": "White Positions",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "source_key",
+          "source_version",
+          "name",
+          "eco",
+          "plies",
+          "white_positions",
+          "black_positions"
+        ],
+        "title": "OpeningLineSummary",
+        "type": "object"
+      },
+      "OpeningLineView": {
+        "additionalProperties": false,
+        "properties": {
+          "black_positions": {
+            "title": "Black Positions",
+            "type": "integer"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "line": {
+            "$ref": "#/components/schemas/OpeningLine"
+          },
+          "white_positions": {
+            "title": "White Positions",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "line",
+          "frames",
+          "white_positions",
+          "black_positions"
+        ],
+        "title": "OpeningLineView",
+        "type": "object"
+      },
+      "OpeningPracticeStart": {
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id"
+        ],
+        "title": "OpeningPracticeStart",
+        "type": "object"
+      },
+      "OpeningRecallContext": {
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Color",
+            "type": "string"
+          },
+          "names": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Names",
+            "type": "array"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "names",
+          "color",
+          "prompt",
+          "revision"
+        ],
+        "title": "OpeningRecallContext",
+        "type": "object"
+      },
+      "OpeningStudyLibrary": {
+        "additionalProperties": false,
+        "properties": {
+          "active_studies": {
+            "title": "Active Studies",
+            "type": "integer"
+          },
+          "due_positions": {
+            "title": "Due Positions",
+            "type": "integer"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/OpeningStudySummary"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "learning_positions": {
+            "title": "Learning Positions",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "active_studies",
+          "learning_positions",
+          "due_positions"
+        ],
+        "title": "OpeningStudyLibrary",
+        "type": "object"
+      },
+      "OpeningStudySummary": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "title": "Active",
+            "type": "boolean"
+          },
+          "color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Color",
+            "type": "string"
+          },
+          "due_positions": {
+            "title": "Due Positions",
+            "type": "integer"
+          },
+          "eco": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eco"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "positions": {
+            "title": "Positions",
+            "type": "integer"
+          },
+          "source": {
+            "enum": [
+              "lichess_catalogue",
+              "course_line"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "source_key": {
+            "title": "Source Key",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "source_key",
+          "source_version",
+          "name",
+          "eco",
+          "color",
+          "active",
+          "positions",
+          "due_positions"
+        ],
+        "title": "OpeningStudySummary",
+        "type": "object"
+      },
+      "OpeningStudyView": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "title": "Active",
+            "type": "boolean"
+          },
+          "color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Color",
+            "type": "string"
+          },
+          "due_positions": {
+            "title": "Due Positions",
+            "type": "integer"
+          },
+          "eco": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Eco"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleFrame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "line": {
+            "$ref": "#/components/schemas/OpeningLine"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "positions": {
+            "title": "Positions",
+            "type": "integer"
+          },
+          "source": {
+            "enum": [
+              "lichess_catalogue",
+              "course_line"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "source_key": {
+            "title": "Source Key",
+            "type": "string"
+          },
+          "source_version": {
+            "title": "Source Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "source_key",
+          "source_version",
+          "name",
+          "eco",
+          "color",
+          "active",
+          "positions",
+          "due_positions",
+          "line",
+          "frames"
+        ],
+        "title": "OpeningStudyView",
+        "type": "object"
+      },
       "PgnImportResult": {
         "additionalProperties": false,
         "properties": {
@@ -5357,6 +5922,20 @@
         "title": "Rejected",
         "type": "object"
       },
+      "ReviewCount": {
+        "additionalProperties": false,
+        "properties": {
+          "due": {
+            "title": "Due",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "due"
+        ],
+        "title": "ReviewCount",
+        "type": "object"
+      },
       "ReviewEvent": {
         "additionalProperties": false,
         "properties": {
@@ -5490,6 +6069,20 @@
             "title": "Completed",
             "type": "boolean"
           },
+          "continuations": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/OpeningContinuation"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Continuations"
+          },
           "counter_reply": {
             "anyOf": [
               {
@@ -5584,6 +6177,27 @@
             ],
             "title": "Next Due"
           },
+          "non_scheduling_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Non Scheduling Reason"
+          },
+          "opening": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OpeningRecallContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "played_san": {
             "anyOf": [
               {
@@ -5637,6 +6251,23 @@
                 "type": "null"
               }
             ]
+          },
+          "scheduling_status": {
+            "anyOf": [
+              {
+                "enum": [
+                  "recorded",
+                  "previously_recorded",
+                  "content_changed",
+                  "practice"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scheduling Status"
           },
           "source": {
             "anyOf": [
@@ -7860,6 +8491,393 @@
         "summary": "Retry Job"
       }
     },
+    "/api/opening-studies": {
+      "get": {
+        "operationId": "studies_api_opening_studies_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningStudyLibrary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Studies"
+      },
+      "post": {
+        "operationId": "enroll_api_opening_studies_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpeningEnrollment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningStudyView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Enroll"
+      }
+    },
+    "/api/opening-studies/{study_id}": {
+      "delete": {
+        "operationId": "disable_api_opening_studies__study_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "study_id",
+            "required": true,
+            "schema": {
+              "title": "Study Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningStudyView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Disable"
+      },
+      "get": {
+        "operationId": "get_study_api_opening_studies__study_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "study_id",
+            "required": true,
+            "schema": {
+              "title": "Study Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningStudyView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Study"
+      }
+    },
+    "/api/opening-studies/{study_id}/practice": {
+      "post": {
+        "operationId": "practice_api_opening_studies__study_id__practice_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "study_id",
+            "required": true,
+            "schema": {
+              "title": "Study Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpeningPracticeStart"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonSessionView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Practice"
+      }
+    },
+    "/api/opening-studies/{study_id}/restore": {
+      "post": {
+        "operationId": "restore_api_opening_studies__study_id__restore_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "study_id",
+            "required": true,
+            "schema": {
+              "title": "Study Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningStudyView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Restore"
+      }
+    },
+    "/api/openings/catalog": {
+      "get": {
+        "operationId": "catalog_api_openings_catalog_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "eco",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Eco",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningCatalogue"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Catalog"
+      }
+    },
+    "/api/openings/catalog/{key}": {
+      "get": {
+        "operationId": "detail_api_openings_catalog__key__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "title": "Key",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningLineView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detail"
+      }
+    },
+    "/api/openings/course-lines/{course_id}/{line_id}": {
+      "get": {
+        "operationId": "course_line_api_openings_course_lines__course_id___line_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "title": "Course Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "line_id",
+            "required": true,
+            "schema": {
+              "title": "Line Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "revision",
+            "required": true,
+            "schema": {
+              "title": "Revision",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpeningLineView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Course Line"
+      }
+    },
     "/api/practice/queue": {
       "get": {
         "operationId": "focused_queue_api_practice_queue_get",
@@ -8387,6 +9405,24 @@
         "summary": "Next Puzzle"
       }
     },
+    "/api/review/count": {
+      "get": {
+        "operationId": "review_count_api_review_count_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewCount"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Review Count"
+      }
+    },
     "/api/review/queue": {
       "get": {
         "operationId": "review_queue_api_review_queue_get",
@@ -8435,6 +9471,45 @@
           }
         },
         "summary": "Review Queue"
+      }
+    },
+    "/api/review/sessions/{session_id}": {
+      "get": {
+        "operationId": "resume_api_review_sessions__session_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "title": "Session Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColdPosition"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Resume"
       }
     },
     "/api/review/sessions/{session_id}/explanation": {

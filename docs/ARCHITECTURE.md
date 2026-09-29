@@ -8,6 +8,15 @@ workspace ownership/mutation boundary. On the frontend `LessonLibrary` and
 display-only frame timing with puzzles. No animation drives durable progress.
 See [Study](STUDY.md) for content, session and authority contracts.
 
+`trainer/opening_studies` normalizes pinned catalogue/course lines, projects active
+contributions into existing opening exercises, and snapshots each recall's answer
+authority. `reviews.py` keeps the common scheduler and first-failure behavior;
+opening-specific grading/explanations consult the saved snapshot. Before any new
+FSRS call, current eligible authority is checked under the account mutation lock
+and a conditional database write. Dedicated line practice constructs a pinned
+rehearsal in the existing lesson player. Source-specific frontend coaching avoids
+describing an out-of-repertoire move as an objective mistake.
+
 React/TypeScript/Vite is a thin same-origin client for FastAPI. Python 3.12+ owns chess rules, evaluation, grading, local classification, reviews and scheduling. SQLAlchemy 2 and Alembic manage SQLite with foreign keys, WAL and a busy timeout. Run one application process; no Redis, external worker service or cloud database is needed.
 
 ## HTTP interface ownership

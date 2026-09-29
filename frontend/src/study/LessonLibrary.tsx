@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, Check } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
-import { lessonCoursePath, lessonSessionPath, navigate, studyPaths } from "../navigation";
+import { courseLinePath, lessonCoursePath, lessonSessionPath, navigate, studyPaths } from "../navigation";
 import { studyRequestId } from "./requestId";
 import LessonAttribution from "./LessonAttribution";
 
@@ -50,6 +50,7 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
         <div><h3>{chapter.title}</h3><span className="muted">{chapter.completed ? "Completed · revisit any time" : "Guided lesson"}</span></div>
         <button className={chapter.completed ? "secondary" : "primary"} disabled={!!busy} onClick={() => begin(chapter.id)}>{busy === chapter.id ? "Opening…" : chapter.completed ? "Revisit" : "Start"}<ArrowRight size={16} /></button>
       </li>)}</ol>
+      {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <Link className="study-resume" href={courseLinePath(course.id, line.id, course.revision)} key={line.id}><span>{line.title}<small>Preview and add to study</small></span><ArrowRight size={17} /></Link>)}</section>}
       <LessonAttribution attributions={course.attributions} />
     </> : !error && <p role="status">Loading lesson chapters…</p>}
   </section>;
