@@ -98,7 +98,7 @@ not React components.
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
 | Source attribution | [SourceLine](../frontend/src/SourceLine.tsx), [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Shared text, optional license/revision and valid absolute HTTP(S) external links. Lesson sources remain multiple records; puzzle provenance remains completion-only. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. |
-| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels, notices and action rows retain CSS foundations. Ordinary actions use Button/ActionLink. **There is no shared React Pagination, EmptyState or Modal component yet.** |
+| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
 
 ## Audit baseline and coverage
 
@@ -129,9 +129,9 @@ clarifications below supersede the original browser answers. It is committed
 repository documentation and does not depend on browser storage.
 
 **Implementation is authorized.** Each completed choice receives its own verified
-commit so it can be reviewed or reverted independently. Keep the deferred and
-keep-existing choices unchanged. Update each Planned row and the implementation
-notes below as its shared component and consumers are verified.
+commit so it can be reviewed or reverted independently. All 26 approved choices
+are complete; UI-18 and UI-30 remain unchanged, and UI-26 and UI-29 remain deferred.
+The implementation notes below record each choice's checks and commit subject.
 
 The main application always takes precedence over development tools when
 choosing a shared implementation. Promotion centralizes equivalent UI; it does
@@ -461,25 +461,26 @@ Keep their standalone dependency boundaries intact.
   AnimalFace, AnimalEyes, FantasyFace, Arm and family hands already share mechanics
   where appropriate. Similar SVG shapes alone are not grounds to homogenize them.
 - **Diagnostic dialogue:** The lab compares many utterances at once, whereas
-  DialogueText announces the current in-game utterance. Reusing its text/metadata
-  formatting would need a non-live mode; do not announce every comparison card.
+  DialogueText announces the current in-game utterance. The lab uses its explicit
+  non-live mode; do not announce every comparison card.
 - **Native fields and disclosures:** Native select, radio, label, details and
   progress elements are already reusable browser behavior. Introduce components
   for actual common contracts, not to eliminate all native JSX.
 
-## Suggested implementation order after the owner resumes work
+## Maintenance and validation boundaries
 
-1. **Selector foundation:** UI-01 uses the selected Settings tray for Settings
-   and Openings. UI-02 uses the application's PGN choice treatment. Preserve the
-   distinction between URL links, real tabs and local choices.
-2. **Action/control foundation:** UI-03 through UI-07 and modal lifecycle UI-16.
-   Standardize dimensions, purple return actions, navigation and focus behavior.
-3. **Feedback and page states:** UI-08 through UI-13, then provider/form fragments
-   UI-14/15 and disclosure conventions UI-17.
-4. **Small markup and tooling gaps:** Implement the Planned items UI-19 through
-   UI-25 and UI-27/28. Keep UI-18 and UI-30 unchanged; UI-26 and UI-29 remain
-   deferred. Application components are canonical before development-tool copies.
+The temporary comparison tool is retired. This document, linked from README and
+AGENTS, is the durable inventory and decision record. Use the implemented owners
+above when changing these interactions; the historical audit explains why they
+were consolidated. Do not interpret a deferred row as authorization to implement
+it later.
 
-This records agreed directions and retires the temporary comparison tool. It
-does not start UI implementation or change JSX, CSS, component behavior, schemas
-or engine policy.
+Application-only primitives and styles are explicitly classified in the CI
+planner/style manifest. Shared Button, ChoiceGroup, MotionSelect, score, rig,
+modal and dialogue code retain coverage for their development-tool consumers.
+Unknown shared files still take the conservative path. Planner regression tests
+check that application-only classifications cannot hide shared styles.
+
+Whole-pass verification and any environment limitations are recorded in
+[VERIFICATION.md](VERIFICATION.md). No schemas, chess authority, engine policy,
+coach selection rules or animation timing were changed by this standardization.

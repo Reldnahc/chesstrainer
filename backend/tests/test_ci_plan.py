@@ -108,13 +108,8 @@ def test_backend_fixtures_and_their_transitive_test_imports_include_intelligence
 
 @pytest.mark.parametrize(
     "path",
-    [
-        "frontend/src/AccountGate.tsx",
-        "frontend/src/App.tsx",
-        "frontend/src/Settings.tsx",
-        "frontend/src/GameHistory.tsx",
-        "frontend/src/Import.tsx",
-        "frontend/src/navigation.ts",
+    sorted(ci_plan.APPLICATION_FRONTEND_FILES)
+    + [
         "frontend/src/study/StudyScreen.tsx",
         "frontend/src/study/puzzleApi.ts",
         "frontend/src/srsReview/useReviewSession.ts",
@@ -123,6 +118,8 @@ def test_backend_fixtures_and_their_transitive_test_imports_include_intelligence
     ],
 )
 def test_audited_application_frontend_paths_skip_coach_but_retain_other_browsers(path):
+    if path in ci_plan.APPLICATION_FRONTEND_FILES:
+        assert (ci_plan.ROOT / path).is_file()
     assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=PYTHON_SUITES)
 
 
@@ -152,6 +149,14 @@ def test_audited_application_frontend_paths_skip_coach_but_retain_other_browsers
         "frontend/src/MotionSelect.tsx",
         "frontend/src/EvaluationScore.tsx",
         "frontend/src/motion-select.css",
+        "frontend/src/Button.tsx",
+        "frontend/src/ActionLink.tsx",
+        "frontend/src/action-controls.css",
+        "frontend/src/ChoiceGroup.tsx",
+        "frontend/src/choice-group.css",
+        "frontend/src/coach/ArtworkRig.tsx",
+        "frontend/src/dialogue/DialogueText.tsx",
+        "frontend/src/useModalDialog.ts",
         "frontend/src/README.md",
     ],
 )
@@ -229,6 +234,13 @@ def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
         ("frontend/src/foundation.css", ALL_SUITES),
         ("frontend/src/MotionSelect.tsx", ALL_SUITES),
         ("frontend/src/EvaluationScore.tsx", ALL_SUITES),
+        ("frontend/src/ChoiceGroup.tsx", ALL_SUITES),
+        ("frontend/src/choice-group.css", ALL_SUITES),
+        ("frontend/src/Button.tsx", ALL_SUITES),
+        ("frontend/src/action-controls.css", ALL_SUITES),
+        ("frontend/src/useModalDialog.ts", ALL_SUITES),
+        ("frontend/src/coach/ArtworkRig.tsx", ALL_SUITES),
+        ("frontend/src/dialogue/DialogueText.tsx", ALL_SUITES),
         ("frontend/src/useSavedPreferences.ts", ALL_SUITES),
         ("frontend/studio-tests/fixtures/runtime.ts", ALL_SUITES),
         ("frontend/tests/semantic-fixtures.ts", PYTHON_SUITES),
@@ -255,7 +267,14 @@ def test_board_styles_skip_coach_but_keep_intelligence(path):
 
 
 @pytest.mark.parametrize(
-    "path", ["frontend/src/foundation.css", "frontend/src/coach-presentation.css"]
+    "path",
+    [
+        "frontend/src/foundation.css",
+        "frontend/src/coach-presentation.css",
+        "frontend/src/action-controls.css",
+        "frontend/src/choice-group.css",
+        "frontend/src/motion-select.css",
+    ],
 )
 def test_application_style_exclusions_cannot_hide_shared_styles(path):
     assert_selection(
