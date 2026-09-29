@@ -89,8 +89,10 @@ mastery. None of these actions writes ordinary Review, FSRS or weakness evidence
 Rehearsal responses withhold future moves, answers and annotations. Decisions may
 offer authored guidance; a wrong move stays on the same decision. Show move is
 explicit assistance. Accepted moves and automatic replies commit together before
-browser playback starts. `useStudyPlayback` shares presentation timing between
-puzzles and lessons, while each mode keeps its own server state machine. Still
+browser playback starts. `useStudyPlayback` shares playback behavior between
+puzzles and lessons, while each mode keeps its own server state machine. Lessons
+hold each move for 1.2 seconds so continuations are readable; puzzle replies keep
+their 0.4-second cadence. Piece travel still takes 280 milliseconds. Still
 mode changes presentation only. Annotations belong to the displayed position and
 are suppressed during intermediate animation frames.
 New lesson feedback or steps reset the explanation's scroll position without

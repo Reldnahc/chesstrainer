@@ -6,7 +6,7 @@ import { COUNTER_REPLY_DELAY_MS } from "../reviewMotion";
 type Frame = Schema["PuzzleFrame"];
 
 /** Display committed server frames. Timers never advance a puzzle or lesson. */
-export function useStudyPlayback(onFinish?: () => void) {
+export function useStudyPlayback(onFinish?: () => void, intervalMs = COUNTER_REPLY_DELAY_MS) {
   const [frames, setFrames] = useState<Frame[]>([]);
   const [index, setIndex] = useState(0);
   const [inspection, setInspection] = useState<{ fen: string; frame: Frame | null } | null>(null);
@@ -26,9 +26,9 @@ export function useStudyPlayback(onFinish?: () => void) {
     const timer = window.setTimeout(() => {
       if (index + 1 < frames.length) setIndex(value => value + 1);
       else { setFrames([]); finish.current?.(); }
-    }, COUNTER_REPLY_DELAY_MS);
+    }, intervalMs);
     return () => window.clearTimeout(timer);
-  }, [frames, index, motion]);
+  }, [frames, index, motion, intervalMs]);
   const reset = useCallback(() => {
     setFrames([]);
     setInspection(null);
