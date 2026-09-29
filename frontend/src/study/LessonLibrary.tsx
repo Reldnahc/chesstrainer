@@ -43,8 +43,14 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
     <Link className="text-button button-link" href={studyPaths.openings}><ArrowLeft size={16} />All openings</Link>
     {error && <p className="notice error" role="alert">{error}</p>}
     {course ? <>
-      <div className="lesson-course-title"><BookOpen size={26} aria-hidden="true" /><div><h2>{course.title}</h2><span className="muted">Study as {course.learner_color === "white" ? "White" : "Black"}</span></div></div>
-      <p>{course.description}</p>
+      <header className="lesson-course-title">
+        <BookOpen size={26} aria-hidden="true" />
+        <div>
+          <h2>{course.title}</h2>
+          <span className="muted">Study as {course.learner_color === "white" ? "White" : "Black"}</span>
+          <p>{course.description}</p>
+        </div>
+      </header>
       <ol className="lesson-chapters">{course.chapters.map((chapter, index) => <li key={chapter.id}>
         <span className="lesson-chapter-number">{chapter.completed ? <Check size={18} aria-label="Completed" /> : index + 1}</span>
         <div><h3>{chapter.title}</h3><span className="muted">{chapter.completed ? "Completed · revisit any time" : "Guided lesson"}</span></div>
