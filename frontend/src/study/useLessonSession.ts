@@ -42,7 +42,8 @@ export function useLessonSession(id: string) {
     return () => { generation.current++; request.current?.abort(); };
   }, [load]);
   async function command(action: LessonAction, extra?: { uci?: string; ply?: number }) {
-    if (!session || locked.current || playback.playing || error || !session.actions.includes(action)) return;
+    const navigatingGame = !!session?.game && (action === "game_seek" || action === "close_game");
+    if (!session || locked.current || (playback.playing && !navigatingGame) || error || !session.actions.includes(action)) return;
     locked.current = true;
     setBusy(true);
     const version = generation.current;
@@ -65,6 +66,7 @@ export function useLessonSession(id: string) {
   return {
     session, loading, busy, error, command, reload: load, playback,
     disabled: busy || playback.playing || !!error,
+    gameNavigationDisabled: busy || !!error,
     answer: (from: string, to: string, promotion?: Promotion) => command("move", { uci: from + to + (promotion || "") }),
   };
 }
