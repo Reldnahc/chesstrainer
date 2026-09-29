@@ -239,6 +239,127 @@ test("full-game controls interrupt Mason-Lasker playback without waiting for its
   expect((await saved(page, session.id)).revision).toBe(returned.revision);
 });
 
+test("full-game seeking keeps the coach and controls steady while serializing requests", async ({ page }, info) => {
+  const preference = await page.request.get("/api/preferences/coach");
+  expect(preference.ok()).toBe(true);
+  const originalCoach: Schema["CoachPreferences"] = await preference.json();
+  try {
+    let session = await start(page, "quiet-development");
+    for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
+      const label = session.actions.includes("show_move") ? "Show move"
+        : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
+      session = await command(page, label);
+    }
+    expect(session.step.kind).toBe("game_excerpt");
+    await command(page, "Play continuation");
+    const opened = await command(page, "Explore full game");
+    expect(opened.game?.title).toContain("Mason–Lasker");
+    await command(page, "From the beginning");
+    expect((await page.request.put("/api/preferences/motion", { data: { motion: "natural" } })).ok()).toBe(true);
+    expect((await page.request.put("/api/preferences/coach", { data: { coach_id: "classic", motion: "natural" } })).ok()).toBe(true);
+    await page.reload();
+    const next = page.getByRole("button", { name: "Next game move", exact: true });
+    const previous = page.getByRole("button", { name: "Previous game move", exact: true });
+    const beginning = page.getByRole("button", { name: "From the beginning", exact: true });
+    await expect(next).toBeEnabled();
+    await expect(previous).toBeDisabled();
+    await expect(beginning).toBeDisabled();
+    await page.clock.install();
+    await page.clock.pauseAt(new Date());
+    const first = await command(page, "Next game move");
+    expect(first.game?.ply).toBe(1);
+    const avatar = page.locator(".coach-avatar");
+    await expect(avatar).toHaveAttribute("data-motion", "natural");
+    await next.hover();
+    // Let the initial reaction dwell and hover transition settle before recording
+    // the in-range state; the next request must preserve this same performance.
+    await page.clock.runFor(200);
+    await expect.poll(() => next.evaluate(element => element.getAnimations().filter(animation => animation.playState === "running").length)).toBe(0);
+    const portrait = () => avatar.evaluate(element => ({
+      requested: element.getAttribute("data-requested"),
+      expression: element.getAttribute("data-expression"),
+      take: element.getAttribute("data-take"),
+    }));
+    const buttons = () => page.locator(".lesson-game-controls button, .coach-actions button").evaluateAll(elements => elements.map(element => {
+      const style = getComputedStyle(element);
+      const rect = element.getBoundingClientRect();
+      return { opacity: style.opacity, background: style.backgroundColor, width: rect.width, height: rect.height };
+    }));
+    const originalPortrait = await portrait();
+    expect(originalPortrait.requested).toBe("explaining");
+    expect(originalPortrait.expression).toBe("explaining");
+    expect(Number(originalPortrait.take)).toBeGreaterThan(0);
+    const originalButtons = await buttons();
+    const artwork = await avatar.locator("svg").first().elementHandle();
+    expect(artwork).not.toBeNull();
+    await page.screenshot({ path: `test-results/italian-game-steady-before-${info.project.name}.png`, fullPage: true });
+
+    let release!: () => void;
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    let entered!: () => void;
+    const requested = new Promise<void>(resolve => { entered = resolve; });
+    const operations: Promise<void>[] = [];
+    let requests = 0;
+    const pattern = `**/api/study/lesson-sessions/${session.id}/command`;
+    await page.route(pattern, route => {
+      const number = ++requests;
+      const operation = (async () => {
+        const response = await route.fetch();
+        if (number === 1) {
+          entered();
+          await gate;
+        }
+        await route.fulfill({ response });
+      })();
+      operations.push(operation);
+      return operation;
+    });
+    try {
+      await next.click();
+      await requested;
+      await expect(next).toBeDisabled();
+      await expect(page.getByRole("button", { name: "Return to lesson", exact: true })).toBeDisabled();
+      await page.clock.runFor(500);
+      await page.screenshot({ path: `test-results/italian-game-steady-pending-${info.project.name}.png`, fullPage: true });
+      expect.soft(await buttons()).toEqual(originalButtons);
+      expect.soft(await portrait()).toEqual(originalPortrait);
+      expect.soft(await artwork!.evaluate(element => element === document.querySelector(".coach-avatar svg"))).toBe(true);
+      // Dispatch bypasses the browser's disabled-button behavior to exercise the
+      // synchronous request guard, including when pending uses aria-disabled.
+      await next.dispatchEvent("click");
+      expect(requests).toBe(1);
+      const response = page.waitForResponse(value => value.url().endsWith(`/lesson-sessions/${session.id}/command`));
+      release();
+      const completed = await response;
+      expect(completed.ok()).toBe(true);
+      const sought: Schema["LessonSessionView"] = await completed.json();
+      await Promise.all(operations);
+      expect(sought.game?.ply).toBe(2);
+      await expect(next).toBeEnabled();
+      await expect(previous).toBeEnabled();
+      await expect(beginning).toBeEnabled();
+      await expect(page.getByRole("button", { name: "Return to lesson", exact: true })).toBeEnabled();
+      await page.clock.runFor(150);
+      expect.soft(await buttons()).toEqual(originalButtons);
+      expect.soft(await portrait()).toEqual(originalPortrait);
+      expect.soft(await artwork!.evaluate(element => element === document.querySelector(".coach-avatar svg"))).toBe(true);
+      expect(requests).toBe(1);
+      expect((await saved(page, session.id)).game?.ply).toBe(2);
+    } finally {
+      release();
+      await page.unroute(pattern);
+      await Promise.all(operations);
+      await artwork!.dispose();
+    }
+    expect((await command(page, "From the beginning")).game?.ply).toBe(0);
+    await expect(previous).toBeDisabled();
+    await expect(beginning).toBeDisabled();
+    await expect(next).toBeEnabled();
+  } finally {
+    expect((await page.request.put("/api/preferences/coach", { data: originalCoach })).ok()).toBe(true);
+  }
+});
+
 test("the other Italian chapters show distinct sourced game passages with exact returns from full-game playback", async ({ page }, info) => {
   const games = new Set<string>();
   for (const chapterId of ["central-break", "two-knights"]) {

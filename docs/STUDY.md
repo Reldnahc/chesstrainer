@@ -96,8 +96,11 @@ their 0.4-second cadence. Piece travel still takes 280 milliseconds. Still
 mode changes presentation only. Full-game next/previous, restart and return
 controls interrupt playback rather than waiting for its timer. The game title and
 current position note stay visible throughout animation, without a temporary
-demonstration prompt or a second explanation scroll reset. Commands remain
-serialized while requests are pending; guided lesson controls still wait for
+demonstration prompt or a second explanation scroll reset. The game-view coach
+keeps its expression and ongoing animation across seeks. Pending game controls
+use `aria-disabled` without fading; native disabled styling is reserved for
+actual game boundaries or errors. Commands remain serialized while requests
+are pending; guided lesson controls still wait for
 their continuation to finish. Annotations belong to the displayed position and
 are suppressed during intermediate animation frames.
 New lesson feedback or steps reset the explanation's scroll position without
