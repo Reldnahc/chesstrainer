@@ -9,13 +9,13 @@ his silhouette, beard and sage jacket.
 
 The men's collection has four complete characters, each with all 20 states:
 
-- **Storyteller:** open, warm facial acting, clear anticipation and recovery,
+- **Walter:** open, warm facial acting, clear anticipation and recovery,
   expressive shoulders and hands. Strong contrast between delight and concern.
-- **Club host:** a Black man with close curls, a neat beard and a terracotta
+- **Desmond:** a Black man with close curls, a neat beard and a terracotta
   overshirt. Open, welcoming gestures and an expressive double take.
-- **Endgame expert:** an older East Asian man with silver temples, a clean-shaven
+- **Kenji:** an older East Asian man with silver temples, a clean-shaven
   face and a slate cardigan. Measured head movements and attentive eyes.
-- **Creative partner:** a South Asian man with dark waves, a shaped beard and a
+- **Arjun:** a South Asian man with dark waves, a shaped beard and a
   forest-green waistcoat. Curious looks and generous encouragement.
 
 The [cast bible](COACH_CAST_BIBLE.md) defines the thirty selectable personalities.
@@ -29,13 +29,28 @@ practice and saved explanations, including after reload or on another device.
 
 | Group | Selectable coaches |
 |---|---|
-| Humans | Storyteller, Club host, Endgame expert, Creative partner, Club captain, Quiet analyst, Bright spark, Golden braid, Young Boy, Young Girl |
-| Dogs | Gentle professor, Pocket captain, Border collie, Puppy |
-| Cats | Midnight tactician, Velvet night, Kitten |
-| Other animals | Gorilla, Raccoon, Frog, Capybara |
-| Fantasy | Unicorn, Wizard, Dragon, Ghost |
-| Sci-Fi | Alien, Robot |
-| Silly & conceptual | Slime, Mushroom, Living Pawn |
+| Humans | Walter, Desmond, Kenji, Arjun, Mara, Iris, Zoe, Poppy, Milo, Cleo |
+| Dogs | Alfie, Waffles, Scout, Biscuit |
+| Cats | Felix, Juniper, Pickle |
+| Other animals | Monty, Bandit, Fergus, Winston |
+| Fantasy | Celeste, Orin, Ember, Wisp |
+| Sci-Fi | Ziggy, Rivet |
+| Silly & conceptual | Pip, Button, Percy |
+
+Display names belong to the catalogue and flow into Settings, review labels and
+the studio. Every coach has a personal name, replacing generic labels and
+character titles while preserving the existing archetype. Saved preferences and
+bookmarks continue to use the same stable IDs, so renaming a coach never resets a
+selection or changes its voice.
+
+Pickle has a kitten-specific silhouette: a large round head, low-set round eyes,
+tiny muzzle, short seated body and soft paws. Cheek/chin hand positions fit that
+face without obscuring the eyes. The shared paw rig accepts optional positions;
+other cats and dogs keep their original proportions and gesture targets.
+Fergus keeps his restrained poses with broader, taller eyes across all expressions.
+Celeste uses small equine mouth shapes below the nostrils, including a closed smile
+for delighted states, instead of the shared fantasy face's teeth and tongue.
+All three retain the existing expression, blink and idle channels.
 
 Each selectable character also has a curated writing voice and character bible.
 The shared dialogue layer selects supported facts before the chosen personality
@@ -61,7 +76,7 @@ collection, replay entrances and idle gestures, run a transition sequence, and
 preview device-default, animated or still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
 
-The studio offers the whole production cast, all 20 expressions and a four-card
+The studio offers the whole production cast, all 20 expressions and a variable-size
 idle gallery for the selected expression. Each idle can replay independently
 without starting the entrance reaction. A comparison panel places three selected
 coaches in the same semantic state. The older human/pet collections still provide
@@ -72,15 +87,26 @@ the same bounded motion lifecycle.
 Use the character picker above the expression controls. `coach`, `family` and
 `expression` query parameters restore a comparison on the studio's own server.
 Switching characters stops a running sequence, clears the pending idle preview
-and selects a valid family/idle gesture. Preview controls offer only the four
+and selects a valid family/idle gesture. Preview controls offer only the
 gestures valid for the current coach and expression.
+
+**Natural idle playback** opts the selected character and board-size samples into
+sustained idles. Comparisons have a separate playback toggle. Other portraits
+remain static after their one-shot entrance or explicit gesture replay. Signature
+cards include acting notes, making each coordinated performance easy to inspect.
+**Show motion diagnostics** observes the real selected portrait: active parts,
+next event, shared eye deadline, recent history, cooldowns and rejected candidates.
+Times describe the last scheduler event rather than a constantly ticking display.
+The numeric seed and **Restart idle sequence** reproduce a sequence through the
+production coordinator without replaying the entrance. These controls never
+change account preferences and are excluded from the production app entry point.
 
 The studio never connects to accounts or submits engine work. It imports the
 same character catalogue and review bubble as the application; shared SVGs and motion
 styles are bundled with the application so a selected coach is immediately
 available in reviews without an image request. Existing `coach=retriever`
 links resolve to the dog collection; unsupported families fall back to its retained
-Gentle professor. Retired production/preview IDs have the compatibility mappings
+Alfie. Retired production/preview IDs have the compatibility mappings
 listed below. The illustration assets are
 original SVG artwork maintained as React components; no external images or assets
 are required.
@@ -88,14 +114,15 @@ are required.
 The quieter studies use a delayed look and a small response; the playful studies
 hold their anticipation before a quick reaction with overlapping hair/ear motion.
 Each character keeps its expression after the entrance settles. Blunder idles use
-breathing, ears or hair rather than a happy tail wag. Reduced motion keeps the
-full expressive silhouette while disabling all reaction and idle animations.
+breathing, ears or hair rather than a happy tail wag. Still (and System when the
+browser requests reduced motion) keeps the expressive resting face without
+animation. Explicit Animated overrides the browser preference.
 
-Storyteller remains the default, with its review artwork and
-performance unchanged. The former Quiet mentor and Graphic spark variants of
+Walter remains the default, retaining its artwork and entrance identity.
+The former Quiet mentor and Graphic spark variants of
 that same man have been retired in favor of three distinct people. Old family
-links fall back to Storyteller. The production registry and studio use the same
-catalogue, including individual animation overrides such as Storyteller's glasses
+links fall back to Walter. The production registry and studio use the same
+catalogue, including individual animation overrides such as Walter's glasses
 gestures. Switching a studio collection clears unsupported idle previews.
 Teaching, best-move and check poses use an outward-facing open palm. Avoid a
 single raised finger: its silhouette reads as an insulting gesture at review size.
@@ -122,25 +149,66 @@ pending work; existing review generation guards still discard stale engine repli
 An entrance lasts roughly 1.3–1.8 seconds, then retains a quieter static expression
 consistent with the bubble instead of returning to an unrelated neutral face.
 
-Idle gestures occur after variable 0.5–1 second pauses for every animated coach.
-The shared range lives in `coach/idle.ts`; character
-definitions choose gestures, not cadence.
-Each gesture still lasts 1.2 seconds before scheduling the next pause.
-Every selectable coach resolves exactly four distinct idle variants for each of
-the 20 expressions: 80 slots per coach, 2,400 across this cast. The pools choose
-only gestures supported by the rig and appropriate to the state. For example,
-worried faces do not borrow delighted glints, and closed eyes do not rely on an
-invisible pupil-only glance. `motionVocabulary.ts` provides complete expression
+Eye squeezes belong to the entrance, not the indefinite resting face. Shared
+face context reopens eyes after the entrance while preserving the brows, mouth,
+pose and semantic reaction. Known feedback keeps its entrance face during dwell;
+there is no open/closed flash at commitment. Still, hidden or offscreen portraits
+settle immediately; resuming an interrupted entrance does not replay it. Eye
+context updates pass through the memoized artwork without remounting the SVG.
+
+Idle gestures occur after variable 0.5–1 second quiet pauses for every animated
+coach. `idleModel.ts` owns the shared cadence; character definitions choose
+gestures, not cadence. `idleGestures.ts` owns actual durations, delayed child
+tracks and CSS animation names. A normal blink lasts 260ms rather than occupying
+an artificial 1.2-second slot. `idleRig.ts` declares the SVG resources actually
+present in each character and expression, so optional tracks never reserve
+nonexistent parts. The pools choose
+only gestures supported by the settled rig and appropriate to the state. For
+example, worried faces do not borrow delighted glints or approving double nods.
+`motionVocabulary.ts` provides complete expression
 pools and per-coach acting profiles. Character-specific eyes, ears, hair, tail or
 lens gestures combine with common head-angle, breathing and stance movements.
 Profiles control idle amplitude, gaze and settling independently of reaction timing.
-The character avoids immediately repeating a gesture when alternatives
-exist. Neutral, brilliant and blunder have distinct idle vocabularies. A small
-number of local timers schedule gestures; CSS performs the animation without a
-JavaScript frame loop. Offscreen or hidden characters stop active motion/timers.
+
+Every registered coach has two authored signature performances in
+`idleSignatures/`, with labels, acting notes and explicit eligible expressions.
+These are coordinated timelines, not random combinations: Scout's gaze leads
+two listening ears; Walter's supporting palm accompanies his glasses;
+Rivet's lens adjustment precedes an antenna correction. Signatures require all
+their channels or are omitted entirely. Shared additions include a double blink,
+rightward glance/tilt, upward consideration, two unequal nods and a lateral
+weight transfer. Every expression supplies at least eight compatible choices
+across eyes, attention and body/detail groups. The live registry is the coverage
+source, so adding a coach also requires its repertoire and signatures.
+
+Arm and paw wrappers include the complete connected limb and pivot at the
+existing shoulder. Hand-to-face and held-book poses exclude incompatible limb
+performances. Wings, antenna, cap and trailing silhouette details use nested
+wrappers inside their held pose; idle transforms never overwrite that pose.
+Gesture metadata owns every duration and delay; CSS owns only the movement path.
+
+`idleCoordinator.ts` is a deterministic event-driven scheduler. It permits one
+noticeable and one quiet compatible performance, staggered by at least 180ms.
+Compound gestures atomically reserve every animated SVG channel; nested head and
+gaze can compose, while two body transforms cannot compete. Independent baseline
+eye activity is due every 3–5 seconds of active rest; a complete blink inside a
+compound performance satisfies the same clock. Busy channels can defer it, but
+optional gestures cannot starve it. Gesture and channel cooldowns, recent-history
+weighting and an age backstop prevent immediate repeats, alternating loops and
+starvation. Every repertoire supplies quiet breathing during other cooldowns.
+Infeasible configurations remain safe and expose diagnostics instead of bypassing
+resource ownership or cooldowns.
+
+One next-deadline timer drives idles per portrait; CSS performs the frames without
+a JavaScript animation loop. Offscreen, hidden and Still characters abort active
+tracks. Resume preserves recent history and remaining cooldowns with fresh
+deadlines, never accumulated blink debt. New reaction keys cancel stale gestures
+even when the expression stays the same. Neutral, brilliant and blunder retain
+different eligible motion.
 The latest unseen reaction can play when it becomes visible; an interrupted or
 already seen entrance is not replayed. Unmounting removes observers/listeners and
-clears timers. Replaying deliberately restarts only the SVG rig, not its layout.
+clears timers. Deliberately replaying an entrance restarts the SVG rig, not its
+layout; restarting the seeded idle sequence does not remount it.
 
 **Settings → Animations** groups **Coach motion** and **Piece & interface motion**,
 each with its own save/error feedback. **Your coach** contains character selection.
@@ -192,7 +260,7 @@ with each artwork component. Dog head geometry is separated from the common body
 rig and palettes, so a new breed does not duplicate facial animation. Dark-coated
 animals can supply a lighter eyelid stroke to keep closed expressions legible.
 The study CSS uses its own namespaced motion tracks; classic CSS is scoped to
-Storyteller so it cannot also animate the shared human rig of another man.
+Walter so it cannot also animate the shared human rig of another man.
 New artwork is organized under `cast/humansPets`, `cast/animals`, `cast/fantasy`
 and `cast/scifi`, with small local rig/face helpers. These source folders do not
 determine the Settings groups or persisted IDs.
@@ -233,7 +301,7 @@ The removed `subtle` choice reads as Animated without rewriting the stored value
 The motion-default migration updates the database default to `system` while
 preserving saved choices.
 
-The preference contract accepts 30 stable character IDs. Storyteller keeps
+The preference contract accepts 30 stable character IDs. Walter keeps
 `classic`; existing retained characters keep their original IDs. New coaches
 have explicit IDs registered in the same contract. IDs identify individuals,
 independent of their display name, artwork folder or presentation group.
@@ -247,14 +315,14 @@ choices resolve through explicit read-only replacements:
 
 | Retired selection | Replacement | Reason |
 |---|---|---|
-| Sunny companion (`dog-sunny`) | Puppy (`dog-puppy`) | Retains the eager, affectionate teammate role |
-| Library tabby (`cat-tabby`) | Kitten (`cat-kitten`) | Keeps a curious feline companion in the consolidated cast |
-| Curious calico (`cat-calico`) | Kitten (`cat-kitten`) | Retains playful investigative curiosity |
+| Sunny companion (`dog-sunny`) | Biscuit (`dog-puppy`) | Retains the eager, affectionate teammate role |
+| Library tabby (`cat-tabby`) | Pickle (`cat-kitten`) | Keeps a curious feline companion in the consolidated cast |
+| Curious calico (`cat-calico`) | Pickle (`cat-kitten`) | Retains playful investigative curiosity |
 
 These mappings are applied on API reads and stale frontend lookups/bookmarks;
 they do not rewrite preference rows. Choosing a coach explicitly saves its new
 ID. Retired IDs are rejected on new writes, so they cannot reenter the selectable
-roster. Unrecognized saved choices fall back to Storyteller for this release
+roster. Unrecognized saved choices fall back to Walter for this release
 without overwriting the stored value, allowing removed coaches or older releases
 to open the same database safely. Concurrent first saves serialize through the
 same SQLite write transaction. No Docker configuration is required.

@@ -1,0 +1,311 @@
+/* Idle wrappers sit inside the entrance wrappers. The entire connected limb
+   rotates around its shoulder; no sleeve, cuff or hand is animated separately. */
+.coach-brows > .coach-idle-brows { transform-origin: 40px 31px; }
+.coach-arm > .coach-idle-leftArm { transform-origin: 18px 78px; }
+.coach-arm > .coach-idle-rightArm { transform-origin: 62px 78px; }
+
+@keyframes coach-idle-human-story-peer {
+  0%, 100% { transform: none; }
+  24% { transform: translateY(0.6px) rotate(-1deg); }
+  42%, 64% { transform: translateY(1.5px) rotate(-2.2deg); }
+  84% { transform: translateY(-0.3px); }
+}
+@keyframes coach-idle-human-story-frames {
+  0%, 100% { transform: none; }
+  28%, 50% { transform: translateY(0.9px) rotate(0.6deg); }
+  72% { transform: translateY(-0.45px); }
+}
+@keyframes coach-idle-human-story-gaze {
+  0%, 100% { transform: none; }
+  30%, 70% { transform: translate(0.3px, 1.1px); }
+}
+@keyframes coach-idle-human-story-palm {
+  0%, 100% { transform: none; }
+  25%, 55% { transform: rotate(6deg); }
+  78% { transform: rotate(1.5deg); }
+}
+@keyframes coach-idle-human-story-settle {
+  0%, 100% { transform: none; }
+  24% { transform: translateY(0.8px) scaleY(0.992); }
+  62% { transform: translateY(-0.3px); }
+}
+@keyframes coach-idle-human-story-nods {
+  0%, 100% { transform: none; }
+  24%, 31% { transform: translateY(1.9px) rotate(2.1deg); }
+  46% { transform: translateY(-0.5px) rotate(-0.7deg); }
+  65%, 71% { transform: translateY(1.1px) rotate(1.2deg); }
+  87% { transform: translateY(-0.2px); }
+}
+
+@keyframes coach-idle-human-host-left {
+  0%, 100% { transform: none; }
+  20% { transform: rotate(-1.5deg); }
+  42%, 62% { transform: rotate(8deg); }
+  84% { transform: rotate(2deg); }
+}
+@keyframes coach-idle-human-host-right {
+  0%, 100% { transform: none; }
+  34%, 60% { transform: rotate(-7deg); }
+  82% { transform: rotate(-1.5deg); }
+}
+@keyframes coach-idle-human-host-lean {
+  0%, 100% { transform: none; }
+  32%, 67% { transform: translateY(-1.1px) scale(1.012); }
+  84% { transform: translateY(0.2px); }
+}
+@keyframes coach-idle-human-host-return {
+  0%, 100% { transform: none; }
+  24%, 40% { transform: translateY(0.7px) scale(0.988); }
+  66%, 76% { transform: translateY(-0.7px) scale(1.01); }
+}
+@keyframes coach-idle-human-host-head {
+  0%, 100% { transform: none; }
+  24%, 40% { transform: rotate(2.6deg); }
+  64%, 76% { transform: rotate(-1.8deg) translateY(0.5px); }
+}
+@keyframes coach-idle-human-host-look {
+  0%, 100% { transform: none; }
+  20%, 38% { transform: translateX(1.4px); }
+  58%, 74% { transform: translateX(-0.7px); }
+}
+
+@keyframes coach-idle-human-expert-compare {
+  0%, 100% { transform: none; }
+  16%, 36% { transform: translateX(-1.15px); }
+  54%, 74% { transform: translateX(1.05px); }
+  86% { transform: translateY(0.4px); }
+}
+@keyframes coach-idle-human-expert-confirm {
+  0%, 100% { transform: none; }
+  28%, 45% { transform: rotate(1.7deg); }
+  63%, 73% { transform: rotate(0.4deg) translateY(1px); }
+}
+@keyframes coach-idle-human-expert-posture {
+  0%, 100% { transform: none; }
+  20% { transform: translateY(0.35px); }
+  44%, 70% { transform: translateY(-0.8px) scaleX(1.009); }
+  88% { transform: translateY(-0.2px); }
+}
+@keyframes coach-idle-human-expert-brows {
+  0%, 100% { transform: none; }
+  30%, 58% { transform: translateY(-0.7px); }
+}
+@keyframes coach-idle-human-expert-chin {
+  0%, 100% { transform: none; }
+  30%, 65% { transform: translateY(-0.6px) rotate(-1.4deg); }
+  84% { transform: translateY(0.35px); }
+}
+
+@keyframes coach-idle-human-partner-angle {
+  0%, 100% { transform: none; }
+  24%, 46% { transform: rotate(-4deg); }
+  64%, 76% { transform: rotate(1.8deg); }
+}
+@keyframes coach-idle-human-partner-counterlook {
+  0%, 100% { transform: none; }
+  28%, 48% { transform: translate(1.5px, -0.2px); }
+  64%, 78% { transform: translate(-0.7px, 0.5px); }
+}
+@keyframes coach-idle-human-partner-brow {
+  0%, 100% { transform: none; }
+  25%, 68% { transform: rotate(-2.4deg) translateY(-0.6px); }
+}
+@keyframes coach-idle-human-partner-offer {
+  0%, 100% { transform: none; }
+  28%, 58% { transform: rotate(-8deg); }
+  77% { transform: rotate(-3deg); }
+}
+@keyframes coach-idle-human-partner-follow {
+  0%, 100% { transform: none; }
+  35%, 62% { transform: rotate(5deg); }
+}
+@keyframes coach-idle-human-partner-open {
+  0%, 100% { transform: none; }
+  40%, 68% { transform: rotate(-0.8deg) translateY(-0.7px); }
+}
+
+@keyframes coach-idle-human-captain-square {
+  0%, 100% { transform: none; }
+  18% { transform: scaleX(0.994) translateY(0.45px); }
+  40%, 64% { transform: scaleX(1.018) translateY(-1px); }
+  82% { transform: scaleX(1.005); }
+}
+@keyframes coach-idle-human-captain-left {
+  0%, 100% { transform: none; }
+  30%, 64% { transform: rotate(4deg); }
+}
+@keyframes coach-idle-human-captain-right {
+  0%, 100% { transform: none; }
+  30%, 64% { transform: rotate(-4deg); }
+}
+@keyframes coach-idle-human-captain-ready {
+  0%, 100% { transform: none; }
+  22%, 46% { transform: translateY(-1.1px); }
+}
+@keyframes coach-idle-human-captain-nod {
+  0%, 100% { transform: none; }
+  13% { transform: translateY(-0.55px); }
+  34%, 52% { transform: translateY(2px) rotate(1.4deg); }
+  73% { transform: translateY(-0.35px); }
+}
+
+@keyframes coach-idle-human-analyst-read {
+  0%, 100% { transform: none; }
+  18%, 47% { transform: translate(0.2px, 1px); }
+  65%, 78% { transform: translate(-0.8px, 0.3px); }
+}
+@keyframes coach-idle-human-analyst-dip {
+  0%, 100% { transform: none; }
+  28%, 66% { transform: translateY(1.1px) rotate(1.1deg); }
+}
+@keyframes coach-idle-human-analyst-frames {
+  0%, 100% { transform: none; }
+  22% { transform: translateY(0.4px); }
+  44%, 68% { transform: translateY(-0.65px) rotate(-0.4deg); }
+}
+@keyframes coach-idle-human-analyst-question {
+  0%, 100% { transform: none; }
+  30%, 68% { transform: rotate(2deg) translateY(-0.3px); }
+}
+@keyframes coach-idle-human-analyst-refocus {
+  0%, 100% { transform: none; }
+  25%, 52% { transform: translateX(1.1px); }
+  72%, 82% { transform: translateX(0.3px); }
+}
+@keyframes coach-idle-human-analyst-release {
+  0%, 100% { transform: none; }
+  34% { transform: scaleY(1.01) translateY(-0.3px); }
+  74% { transform: scaleY(0.994) translateY(0.45px); }
+}
+
+@keyframes coach-idle-human-spark-look {
+  0%, 100% { transform: none; }
+  18%, 32% { transform: translateX(1.7px); }
+  45%, 63% { transform: translateX(-1.1px); }
+}
+@keyframes coach-idle-human-spark-double {
+  0%, 100% { transform: none; }
+  20%, 31% { transform: rotate(3.4deg); }
+  45%, 57% { transform: rotate(-2.4deg) translateY(-0.5px); }
+  74% { transform: rotate(0.8deg); }
+}
+@keyframes coach-idle-human-spark-curls {
+  0%, 100% { transform: none; }
+  20% { transform: rotate(2.7deg); }
+  43% { transform: rotate(-3.2deg); }
+  67% { transform: rotate(1.2deg); }
+  84% { transform: rotate(-0.35deg); }
+}
+@keyframes coach-idle-human-spark-lean {
+  0%, 100% { transform: none; }
+  16% { transform: translateY(0.6px) scale(0.994); }
+  38%, 57% { transform: translateY(-1.9px) scale(1.016); }
+  76% { transform: translateY(0.3px); }
+}
+@keyframes coach-idle-human-spark-brows {
+  0%, 100% { transform: none; }
+  28%, 50% { transform: translateY(-1.4px) rotate(-1.5deg); }
+  73% { transform: translateY(-0.3px); }
+}
+@keyframes coach-idle-human-spark-follow {
+  0%, 100% { transform: none; }
+  23% { transform: rotate(-2.6deg); }
+  50% { transform: rotate(1.8deg); }
+  75% { transform: rotate(-0.7deg); }
+}
+
+@keyframes coach-idle-human-braid-turn {
+  0%, 100% { transform: none; }
+  28%, 57% { transform: rotate(3.2deg); }
+  79% { transform: rotate(-0.65deg); }
+}
+@keyframes coach-idle-human-braid-look {
+  0%, 100% { transform: none; }
+  28%, 66% { transform: translate(1.15px, 0.2px); }
+}
+@keyframes coach-idle-human-braid-sway {
+  0%, 100% { transform: none; }
+  28% { transform: rotate(3.2deg); }
+  54% { transform: rotate(-2deg); }
+  77% { transform: rotate(0.65deg); }
+}
+@keyframes coach-idle-human-braid-release {
+  0%, 100% { transform: none; }
+  26% { transform: translateY(-0.6px) scaleY(1.008); }
+  60%, 73% { transform: translateY(0.75px) scaleY(0.994); }
+}
+@keyframes coach-idle-human-braid-left {
+  0%, 100% { transform: none; }
+  35%, 63% { transform: rotate(4.5deg); }
+}
+@keyframes coach-idle-human-braid-right {
+  0%, 100% { transform: none; }
+  37%, 60% { transform: rotate(-3.5deg); }
+}
+
+@keyframes coach-idle-human-milo-rock {
+  0%, 100% { transform: none; }
+  18% { transform: translateY(0.65px); }
+  36%, 48% { transform: translateY(-1.7px) scale(1.015); }
+  66% { transform: translateY(0.55px) scale(0.998); }
+  84% { transform: translateY(-0.3px); }
+}
+@keyframes coach-idle-human-milo-check {
+  0%, 100% { transform: none; }
+  27%, 46% { transform: rotate(-2.2deg) translateY(-0.4px); }
+  67% { transform: rotate(1deg); }
+}
+@keyframes coach-idle-human-milo-hair {
+  0%, 100% { transform: none; }
+  22% { transform: rotate(-3.1deg); }
+  43% { transform: rotate(2.4deg); }
+  67% { transform: rotate(-1deg); }
+  84% { transform: rotate(0.4deg); }
+}
+@keyframes coach-idle-human-milo-spot {
+  0%, 100% { transform: none; }
+  16%, 37% { transform: translate(1.9px, -0.35px); }
+  57%, 69% { transform: translateX(-0.45px); }
+}
+@keyframes coach-idle-human-milo-follow {
+  0%, 100% { transform: none; }
+  24%, 52% { transform: rotate(3.4deg); }
+  73% { transform: rotate(-0.8deg); }
+}
+@keyframes coach-idle-human-milo-hand {
+  0%, 100% { transform: none; }
+  30%, 57% { transform: rotate(7deg); }
+  76% { transform: rotate(1.5deg); }
+}
+
+@keyframes coach-idle-human-cleo-trace {
+  0%, 100% { transform: none; }
+  22%, 35% { transform: translateX(-1.4px); }
+  52%, 70% { transform: translate(-0.5px, 1.1px); }
+}
+@keyframes coach-idle-human-cleo-tilt {
+  0%, 100% { transform: none; }
+  27%, 54% { transform: rotate(-3.8deg); }
+  74%, 82% { transform: rotate(1deg); }
+}
+@keyframes coach-idle-human-cleo-question {
+  0%, 100% { transform: none; }
+  28%, 64% { transform: rotate(-2.8deg) translateY(-0.6px); }
+}
+@keyframes coach-idle-human-cleo-found {
+  0%, 100% { transform: none; }
+  22%, 45% { transform: translateY(-1.35px); }
+  64%, 75% { transform: translateY(-0.45px); }
+}
+@keyframes coach-idle-human-cleo-lift {
+  0%, 100% { transform: none; }
+  24%, 45% { transform: translateY(-1.4px) rotate(1.1deg); }
+  65% { transform: translateY(0.55px); }
+  82% { transform: translateY(-0.2px); }
+}
+@keyframes coach-idle-human-cleo-bounce {
+  0%, 100% { transform: none; }
+  23% { transform: rotate(2.2deg); }
+  46% { transform: rotate(-1.5deg); }
+  72% { transform: rotate(0.5deg); }
+}

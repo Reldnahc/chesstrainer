@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Play, RotateCcw, Sparkles } from "lucide-react";
 import { getCoachStudy } from "../studies/catalog";
 import {
@@ -8,7 +8,8 @@ import {
   expressionInfo,
   expressionIntent,
   expressionIdles,
-  microLabels,
+  availableIdles,
+  idlePresentation,
   expressions,
   resolveFamily,
   type CoachExpression,
@@ -20,6 +21,8 @@ import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
 import { CastComparison, IdleVariants } from "./PerformanceCollections";
+import IdlePlayback from "./IdlePlayback";
+import type { CoachPerformanceSnapshot } from "../performanceDiagnostics";
 import "./studio.css";
 
 const sequence: CoachExpression[] = [
@@ -76,6 +79,13 @@ export default function CoachStudio() {
   const [reactionReplay, setReactionReplay] = useState(0);
   const [idlePreview, setIdlePreview] = useState<CoachMicro>("");
   const [idleVariant, setIdleVariant] = useState<CoachMicro>("blink");
+  const [naturalIdle, setNaturalIdle] = useState(false);
+  const [diagnostic, setDiagnostic] = useState(false);
+  const [seed, setSeed] = useState("1729");
+  const [idleSeed, setIdleSeed] = useState<number>();
+  const [idleReset, setIdleReset] = useState(0);
+  const [snapshot, setSnapshot] = useState<CoachPerformanceSnapshot | null>(null);
+  const observePerformance = useCallback((value: CoachPerformanceSnapshot) => setSnapshot(value), []);
   const chosenIdle = idles.find((idle) => idle === idleVariant) ?? idles[0] ?? "";
   const [playing, setPlaying] = useState(false);
   const deviceReduced = useReducedMotion();
@@ -93,6 +103,9 @@ export default function CoachStudio() {
     replay,
     reactionReplay,
     previewIdle: idlePreview,
+    idle: naturalIdle,
+    idleSeed,
+    idleReset,
   };
   useEffect(() => {
     const url = new URL(location.href);
@@ -172,8 +185,8 @@ export default function CoachStudio() {
           </h1>
         </div>
         <p>
-          {selectableCoaches.length} coaches to explore. Every expression has four
-          idle performances.
+          {selectableCoaches.length} coaches to explore, with {expressions.length}{" "}
+          expressions and character-specific idle performances.
           <br />
           Compare the acting, replay a moment, then see how it reads beside the
           board.
@@ -256,12 +269,32 @@ export default function CoachStudio() {
         </div>
         <p>{expressionIntent(coach, expression)}</p>
       </div>
-      <ConceptComparison preview={preview} onFamily={selectFamily} />
+      <ConceptComparison preview={preview} onFamily={selectFamily}
+        onPerformance={diagnostic ? observePerformance : undefined} />
+      <IdlePlayback
+        natural={naturalIdle}
+        onNatural={(value) => {
+          setNaturalIdle(value);
+          if (value) revealPerformance();
+        }}
+        diagnostic={diagnostic}
+        onDiagnostic={(value) => { setSnapshot(null); setDiagnostic(value); }}
+        seed={seed}
+        onSeed={setSeed}
+        appliedSeed={idleSeed}
+        onRestart={() => {
+          setIdlePreview("");
+          setIdleSeed(Number(seed));
+          setIdleReset((value) => value + 1);
+          revealPerformance();
+        }}
+        snapshot={snapshot?.identity === `${coach.id}:${family}` && snapshot.expression === expression ? snapshot : null}
+      />
       <section className="studio-idle-bar" aria-label="Idle previews">
         <div>
           <h2>The quieter moments</h2>
           <p>
-            Four gestures for {selected.name} · {expressionInfo[expression].label}.
+            {idles.length} gestures for {selected.name} · {expressionInfo[expression].label}.
             Idle previews never replay the reaction.
           </p>
         </div>
@@ -275,7 +308,7 @@ export default function CoachStudio() {
         >
           {idles.map((idle) => (
             <option key={idle} value={idle}>
-              {microLabels[idle]}
+              {idlePresentation(coach, family, expression, idle).label}
             </option>
           ))}
         </select>
@@ -303,7 +336,8 @@ export default function CoachStudio() {
         <Sparkles size={20} />
         <p>
           <strong>
-            {selected.name}: {expressions.length} expressions, four idles each.
+            {selected.name}: {selected.expressions.length} expressions,{" "}
+            {availableIdles(coach, family).length} idle performances.
           </strong>{" "}
           {selected.description} All of these coaches are available in Settings for
           game review and practice. Preview controls never change your account

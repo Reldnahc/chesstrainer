@@ -13,10 +13,10 @@ const castGroups = [
 ] as const;
 const castIds = castGroups.flatMap(group => [...group.ids]);
 const retainedNames = [
-  "Storyteller", "Club host", "Endgame expert", "Creative partner",
-  "Club captain", "Quiet analyst", "Bright spark", "Golden braid",
-  "Gentle professor", "Pocket captain", "Border collie",
-  "Midnight tactician", "Velvet night",
+  "Walter", "Desmond", "Kenji", "Arjun",
+  "Mara", "Iris", "Zoe", "Poppy",
+  "Alfie", "Waffles", "Scout",
+  "Felix", "Juniper",
 ];
 
 test("every registered coach can be chosen and restored in a real game", async ({

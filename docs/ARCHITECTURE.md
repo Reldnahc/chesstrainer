@@ -151,8 +151,11 @@ review experiences. Artwork-specific poses, styles and finite CSS animations sta
 with the registered character; semantic reaction and preference code are shared.
 The registry derives one stable selectable roster from authoring collections.
 Presentation groups order the unified Settings grid but never filter it or decide
-which coach IDs are valid. Every registered family receives its complete 20-by-4
-idle configuration from the shared motion vocabulary, including in the studio.
+which coach IDs are valid. Every registered family resolves an anatomy- and
+expression-compatible idle repertoire from shared gestures and authored signatures.
+The same channel coordinator and canonical timings serve production and studio
+previews; CSS/SVG animate frames while one deadline timer coordinates safe overlap.
+Resting eyes settle separately from the semantic reaction without changing feedback.
 Retired selection aliases are explicit read-only mappings shared in behavior with
 the API; no account rows or stored chess evidence are rewritten on load.
 The provider lives inside the account boundary, so switching users discards the

@@ -1,0 +1,48 @@
+/* Opposite directions and authored rhythms extend the same resting rig. */
+@keyframes coach-idle-double-blink {
+  0%, 42%, 88%, 100% { transform: scaleY(1); }
+  18%, 24%, 58%, 64% { transform: scaleY(0.07); }
+}
+@keyframes coach-idle-glance-right {
+  0%, 100% { transform: none; }
+  28%, 64% { transform: translateX(calc(1.6px * var(--idle-gaze))); }
+  82% { transform: translateX(calc(-0.2px * var(--idle-gaze))); }
+}
+@keyframes coach-idle-look-up {
+  0%, 100% { transform: none; }
+  30%, 65% {
+    transform: translateY(calc(-1.3px * var(--idle-strength))) rotate(calc(-0.8deg * var(--idle-strength)));
+  }
+  84% { transform: translateY(calc(0.25px * var(--idle-strength))); }
+}
+@keyframes coach-idle-gaze-up {
+  0%, 100% { transform: none; }
+  25%, 68% { transform: translateY(calc(-1.2px * var(--idle-gaze))); }
+}
+@keyframes coach-idle-nod-twice {
+  0%, 84%, 100% { transform: none; }
+  23% {
+    transform: translateY(calc(2.7px * var(--idle-strength))) rotate(calc(1.8deg * var(--idle-strength)));
+  }
+  41% { transform: translateY(calc(-0.35px * var(--idle-strength))); }
+  60% {
+    transform: translateY(calc(1.6px * var(--idle-strength))) rotate(calc(0.8deg * var(--idle-strength)));
+  }
+}
+@keyframes coach-idle-tilt-right {
+  0%, 100% { transform: none; }
+  32%, 62% { transform: rotate(calc(4deg * var(--idle-strength))); }
+  84% { transform: rotate(calc(-0.5deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-gaze-consider {
+  0%, 100% { transform: none; }
+  25%, 62% { transform: translate(calc(0.8px * var(--idle-gaze)), calc(-0.35px * var(--idle-gaze))); }
+}
+@keyframes coach-idle-weight-shift {
+  0%, 100% { transform: none; }
+  18% { transform: translateX(calc(-0.4px * var(--idle-settle))); }
+  44%, 61% {
+    transform: translateX(calc(2.2px * var(--idle-settle))) rotate(calc(0.7deg * var(--idle-strength)));
+  }
+  82% { transform: translateX(calc(0.6px * var(--idle-settle))); }
+}

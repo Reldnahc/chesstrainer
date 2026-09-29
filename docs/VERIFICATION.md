@@ -2,6 +2,372 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach revamp review and portable browser harnesses — September 29, 2026
+
+Independent review covered coordinator liveness/cleanup, shared facial state,
+artwork/channel ownership, developer diagnostics, stable names, opponent Book
+feedback and the pending Best/Brilliant grading changes. No production findings
+remained. A deterministic coordinator stress check traversed 3,000 repertoire
+combinations with 700 events each without a cadence or liveness violation.
+
+The first Linux CI pass found a test-harness defect: four browser harnesses
+imported React through Vite's private dependency-cache URLs, with a doubled slash
+before the Linux absolute path. All 64 failures were module-fetch errors before
+the animation assertions. The corrected harnesses use a normal source fixture
+for React/createRoot, and all nine studio filesystem import roots share canonical
+Windows/Linux path handling. Production code and animation behavior are unchanged.
+
+- Before the harness correction, the complete local application suite passed
+  **297 tests with 3 intentional viewport-specific skips**, and the complete local
+  studio suite passed **188 tests**, both desktop/mobile. Commands used
+  `npx.cmd playwright test --config=studio-test-results-configs/opponent-book.config.ts --reporter=line`
+  and `--config=studio-test-results-configs/character-polish.config.ts --reporter=line`.
+  These ignored configs retain the normal projects and use independently managed
+  fixture/studio servers.
+- The focused backend grading/evidence suite passed **131 tests**, including
+  native Stockfish, using `.venv/Scripts/python.exe -m pytest -q` with
+  `backend/tests/test_game_review.py`, `test_review_events.py`,
+  `test_review_sacrifices.py` and `test_review_sacrifice_reports.py`.
+- After correction, `npx.cmd playwright test --config=studio-test-results-configs/character-polish.config.ts idle-cadence.spec.ts idle-diagnostics.spec.ts resting-faces.spec.ts idle-visual.spec.ts vite-path.spec.ts --reporter=line`:
+  **102 passed**, desktop/mobile, 3.2 minutes. Includes all previously failing
+  harnesses and regression assertions for Linux and both Windows path forms.
+- Fresh Linux Node 20 container reproduction: the old dependency URL returned
+  **504**, while its canonical form returned **200**. Browser probes against that
+  Linux server mounted the real coach through the new source fixture on desktop
+  and mobile; each completed five autonomous idle gestures with zero browser
+  errors. The temporary container was removed after verification.
+- `npm.cmd run build`: passed API agreement, production/contract/browser-test
+  TypeScript and Vite. Existing chunk-size advisory remains. Ruff lint/format
+  (**281 files**), generated backend API check and `git diff --check` passed.
+- Initial CI run `36602748137` passed backend (**886 passed, 7 skipped**), the
+  application (**297 passed, 3 skipped**), accounts (**8 passed**), intelligence
+  laboratory (**44 passed**), migrations and fresh Docker installation. Its studio
+  result was **124 passed, 64 failed** for the reproduced harness error above.
+  A clean CI rerun on the correction remains the merge gate; final checks are
+  recorded on [PR #3](https://github.com/Reldnahc/chesstrainer/pull/3).
+
+## Personal names for the remaining coaches — September 29, 2026
+
+The twelve title-style display names now match the rest of the cast: Walter,
+Desmond, Kenji, Arjun, Mara, Iris, Zoe, Poppy, Alfie, Waffles, Felix and Juniper.
+Stable coach/family IDs, default selection, personality definitions and saved
+preferences are unchanged. Catalogue consumers and living character documentation
+use the new names; historical verification entries retain their original wording.
+
+- `npx.cmd playwright test --config=studio-test-results-configs/character-polish.config.ts coach-names.spec.ts --reporter=line`:
+  **4 passed**, desktop/mobile. Checks all thirty unique names against stable IDs,
+  default/retired lookups, preview labels and a saved `cat-black` bookmark that
+  restores Juniper after reload and switches to Walter using `classic`.
+- `npx.cmd playwright test --config=studio-test-results-configs/opponent-book.config.ts coach-selection.spec.ts --reporter=line`:
+  **8 passed**, desktop/mobile. Every coach can be selected, saved, reloaded and
+  displayed in review; compact picker geometry, fallback choices and SRS feedback
+  still pass. These ignored configs reuse the normal project definitions with
+  independently managed studio/isolated fixture servers.
+- `npm.cmd run build`: passed API agreement, production/contract/browser-test
+  TypeScript and Vite. Local frontend rebuilt. Existing chunk advisory remains.
+- `git diff --check`: passed. Focused source review confirms display-name-only
+  production edits and no stale old display names in application/test code.
+
+## Pickle, Fergus and Celeste artwork polish — September 29, 2026
+
+Pickle now has a kitten-specific head/body silhouette, large low-set round eyes,
+small muzzle and shorter seated proportions. Cheek/chin paw positions keep the
+larger eyes visible. Fergus has broader eye whites and taller openings in all
+20 states, superseding the earlier small-eye Good treatment. Celeste has a low
+equine mouth seam and restrained surprised opening, without human teeth/tongue.
+Shared face/paw overrides retain the previous defaults for other characters.
+No reaction timing, idle scheduling, account IDs or dialogue changed.
+
+- `npx playwright test --config=studio-test-results-configs/character-polish.config.ts resting-faces.spec.ts idle-rig.spec.ts`:
+  **46 passed**, desktop/mobile, 2.7 minutes. Uses the normal studio projects with
+  an isolated output directory and the existing live server. All cast/state rig
+  targets remain mounted; eye lifecycle, Still/reduced-motion handling, reaction
+  interruption and non-eye geometry checks remain green. Frog's Good test now
+  expects broad near-neutral eyes while retaining a larger Brilliant expression;
+  Capybara's previous eye contract remains unchanged.
+- Temporary visual capture spec through `character-polish-capture.config.ts`:
+  **4 passed**, 4.9 seconds. All three complete expression grids and actual review
+  portraits at 92.8px/52.5px were inspected, plus a comparison strip. Ignored images
+  are under `data/verification/character-polish/`. Live studio checks covered
+  animated kitten idles, Book and Blunder, frog neutral and unicorn Brilliant.
+  Initial kitten cheek paws obscured the enlarged eyes; lowered placements were
+  checked in the final grids. No clipping or disconnected anatomy found.
+- `npm.cmd run build`: passed API agreement, production/contract/browser TypeScript
+  and Vite. Public source archive includes `KittenFace.tsx`. Existing chunk advisory
+  remains. `git diff --check` and independent focused source review passed.
+
+## Opponent Book reactions — September 29, 2026
+
+One-sided review now retains the incoming Book reaction for a known opponent's
+recognized opening move. Opponent dialogue remains factual; check, terminal and
+Show why precedence remain intact. No grading, evidence or animation timing changed.
+
+- Both-color regression tests first failed with `explaining` instead of `book`.
+  The same tests now pass through reaction, intent and rendered utterance, covering
+  branches, legacy reports, unknown movers, explicit explanations and check.
+- Targeted desktop/mobile run across `coach-logic`, `dialogue-logic`,
+  `game-review` and `learner-perspective`: **20 passed, 12 stale expectations**.
+  The recovery fixtures themselves contain Book moves; their old opponent-face
+  expectations were updated while retaining all history/recovery isolation and
+  non-Book praise suppression assertions. Rerunning the complete
+  `learner-perspective.spec.ts` produced **20 passed**, so all **32 distinct
+  targeted cases passed**, with no skips. The real Book review test verifies the
+  opponent portrait after navigation/reload and still exercises analyzed branches.
+  Commands used `node node_modules/@playwright/test/cli.js test --config
+  studio-test-results-configs/opponent-book.config.ts` with the standard projects
+  and an independently managed isolated fixture server on port 8765. The first
+  run selected `learner-perspective.spec.ts coach-logic.spec.ts dialogue-logic.spec.ts
+  game-review.spec.ts --grep "learner|opponent|semantic reaction|check respects|practice protects|future coaches|book moves appear|book" --reporter=line`;
+  the second selected `learner-perspective.spec.ts --reporter=line`.
+- `npm.cmd run build`, browser-test TypeScript and `git diff --check`: passed.
+  Existing Vite chunk and test dependency deprecation warnings remain.
+  Independent focused code review found no actionable issues.
+
+## Coach idle revamp — final integration — September 29, 2026
+
+Implementation units were committed as `fee508e` (personal names), `2bb514a`
+(coordinator), `7f4a64b` (resting faces), `77ee6a0` (cast signatures) and `0b1dfea`
+(studio/visual polish), followed by `12cc08c` (rig-compatible fallback test).
+Stable account IDs, chess evidence, reaction mapping and entrance timing are
+unchanged. No new runtime dependency or container setting.
+
+- `.venv/Scripts/python.exe -m pytest -q backend/tests/test_coach_preferences.py backend/tests/test_motion_preferences.py backend/tests/test_api_contract.py backend/tests/test_api.py backend/tests/test_review_events.py --basetemp .tools/pytest-coach-idle-m5-20260929-02 -o cache_dir=.tools/pytest-cache-coach-idle-m5-20260929-02`:
+  **92 passed, 0 skipped**, 66.50 seconds. Includes all saved coach IDs, account
+  ownership/restart, motion preferences, API contracts and cold SRS answer/
+  intelligence isolation. Existing Starlette HTTPX and AnyIO alias warnings remain.
+- `.venv/Scripts/python.exe -m ruff check backend scripts migrations`,
+  `.venv/Scripts/python.exe -m ruff format --check backend scripts migrations`
+  (**281 files**) and `.venv/Scripts/python.exe scripts/export_api_contract.py --check`:
+  all passed. No generated API contract changed.
+- `npx.cmd playwright test --config playwright.accounts.config.ts`: **8 passed,
+  0 skipped**, desktop/mobile, 2.1 minutes.
+- `npx.cmd playwright test --config playwright.intelligence.config.ts`: **44 passed,
+  0 skipped**, desktop/mobile, 2.3 minutes. Both normal configurations exited 0
+  after stopping only their own stuck Windows test-server processes during
+  teardown; accounts logged a Windows Proactor connection reset on client close.
+  These cleanup issues did not affect assertions. No broad process kill was used.
+- `npx.cmd playwright test --reporter=line`: **296 cases collected** on desktop
+  and mobile in 9.2 minutes: **291 passed, 3 intentional skips, 2 failures** from
+  one stale synthetic-coach assertion. The old test expected glasses/ears on an
+  unknown rig. It now asserts unsupported parts are omitted and a supported head
+  gesture still honors the family override. No production fix was needed.
+  `npx.cmd playwright test tests/coach-logic.spec.ts --reporter=line` then passed the
+  entire logic file: **8 passed, 0 skipped**, covering both corrected instances
+  and neighboring semantic/fallback checks. Browser-test TypeScript passed.
+  Both runs needed only their owned Windows server process stopped after the
+  assertions to release Playwright's teardown.
+  The three intentional skips were mobile modifier-click/new-tab navigation,
+  mobile execution of the desktop width policy, and desktop execution of the
+  phone-only retry/detail geometry test. Each runs on its applicable project.
+- Full studio coverage: **188 distinct passing cases**, 94 desktop and 94 mobile.
+  `node node_modules/@playwright/test/cli.js test --config test-results/idle-full-m4.config.ts`
+  used the existing live studio with the standard coach configuration and an
+  isolated output directory. All 94 desktop cases passed, then another suite
+  cleaned the temporary config directory: 16 mobile workers could not start and
+  78 mobile cases did not run. This was a configuration-lifetime error, not a
+  failing animation assertion. Moving the config outside that shared cleanup
+  directory and running
+  `node node_modules/@playwright/test/cli.js test --config studio-test-results-configs/idle-full-m4.config.ts --project mobile`
+  passed **all 94 mobile cases, 0 skipped, 0 flaky**, in 9.0 minutes. Both reports
+  are retained under ignored `frontend/studio-test-results-configs/`. The two
+  completed projects cover every expression/rig, lifecycle, cadence, signatures,
+  diagnostics, motion preference and studio control, including all 60 expression
+  sheets and 60 signature sheets across desktop/mobile. No source changes were
+  required after these runs.
+- Final `npm.cmd run build`: passed API agreement, production/contract/browser
+  TypeScript and Vite. Main JS gzip **167.39 kB**, CSS gzip **19.95 kB**; the existing
+  500 kB chunk advisory remains. The public source archive includes the committed
+  coordinator, signatures and diagnostics, and excludes the completed temporary
+  plan. `git diff --check` passed.
+- Manual production-build checks used an isolated fixture database on port 8767,
+  not the owner's workspace. Native game review completed; rapid backward/forward
+  navigation kept the latest reaction, then terminal loss settled into restrained
+  idles. Phone review used the 52.5px portrait. SRS was neutral before an attempt,
+  concerned after a wrong move, encouraging on retry, recovered on success and
+  explanatory on reveal. Desktop/mobile board and bubble geometry stayed stable.
+  Selecting Scout/Animated and Winston/Still in Settings survived navigation and
+  reload; Still displayed expressive settled feedback with no idle tracks.
+  The disposable server was stopped; the standalone studio remains available.
+- Independent final code review found no remaining actionable lifecycle, channel,
+  cold-SRS or cleanup defects. Visual acceptance and focused regressions are
+  recorded under the preceding milestones. Physical-phone timing, Docker rebuilds
+  and unrelated native model benchmarks were outside this animation-only pass.
+
+All five milestones are complete. Durable behavior and architecture are documented
+in `COACH.md`, `COACH_CAST_BIBLE.md`, `ARCHITECTURE.md` and `TESTING.md`; the temporary
+`COACH_IDLE_PLAN.md` has been removed. Work remains local on
+`codex/coach-idle-revamp`; no push, merge or deployment was requested.
+
+## Coach idle revamp — milestone 4 — September 29, 2026
+
+The separate development studio adds opt-in natural playback, independent cast
+comparison playback, event-driven diagnostics and reproducible numeric seeds.
+Bounded individual replays remain available for every eligible gesture. Diagnostics
+observe the production coordinator without a polling loop or account writes.
+
+- `npx.cmd playwright test --config test-results/idle-lifecycle.config.ts idle-diagnostics.spec.ts`:
+  **18 passed**, desktop/mobile. Covers seed/reset determinism, stale-track masking,
+  observer replacement/detachment, inline callback safety, pause history/time,
+  snapshot/DOM agreement and unmount cleanup.
+- Same live-server config with `idle-cadence.spec.ts`: **38 passed**, desktop/mobile.
+- `node node_modules/@playwright/test/cli.js test --config=test-results/studio-diagnostics.config.ts studio-diagnostics.spec.ts --reporter=line`:
+  **8 passed**, desktop/mobile. Initial seed-test timeouts came from repeated
+  browser-protocol reads; atomic observations fixed the test without sleeps,
+  reduced assertions or increased timeouts.
+- `idle-visual.spec.ts --project desktop`: **1 passed** twice, latest 15.5 seconds.
+  All 30 signature sheets sample both authored signatures at 0%, 40%, 75%, 100%
+  and portrait widths 92.8px/52.5px. Checks actual CSS tracks, timings/delays,
+  settled eyes, unchanged SVG identity and fixed bounds. Images are ignored under
+  `data/verification/coach-idle-visual/desktop`, not shipped assets.
+- `npm.cmd run build`: passed API agreement, all TypeScript projects and Vite.
+  Existing chunk advisory remains; main JS gzip 167.39 kB, CSS gzip 19.95 kB.
+  Browser-test TypeScript and `git diff --check` passed independently.
+- Live in-app preview watched Storyteller/Velvet night/Scout and Fergus/Rivet/Pip
+  in sustained 60–90-second desktop sessions, then the more restrained analyst,
+  Monty and Winston. Separate glances, posture and appendage motion remain legible
+  without repeated entrances or shifting the portrait box. Mobile 390px preview
+  checked the 52.5px blunder portrait. Brilliant, Blunder, Still and seeded restart
+  were inspected. Still cleared every idle and retained expressive settled faces.
+- Visual review covered all 60 authored signature performances (30 sheets, two
+  signatures each) and the full settled-expression cast. It caught overly wide
+  resting Good eyes on Fergus and Winston; explicit character-sized eye heights
+  restore calm approval while retaining the closed-eye entrance. No sampled
+  clipping or broken joint/prop attachment was found. Static
+  captures supplement live observation; they do not establish frame-by-frame
+  smoothness on physical phones.
+- Focused `resting-faces.spec.ts -g "settles Good"` regression: **4 passed**,
+  desktop/mobile. The two characters retain closed eyes until the original entrance
+  ends, then reopen to their neutral eye height, distinctly below Brilliant;
+  non-eye geometry and Still parity remain unchanged. Live preview confirmed the
+  calmer result. Production build passed again after this polish.
+- Independent code review found and resolved an inline observer render-loop risk
+  and paused diagnostic-history loss before the passing runs. Final review found
+  no remaining substantive M4 issue. Full application regression follows in M5.
+- An initial full-suite run was intentionally stopped after 13 passing desktop
+  cases and all 30 expression sheets to apply that visual polish. It is not counted
+  as a completed full-suite run; the stable final rerun is recorded under M5.
+
+## Coach idle revamp — milestone 3 — September 29, 2026
+
+The live cast now has 18–22 distinct gestures per coach, 8–14 eligible choices
+per expression and two authored signatures per coach (60 signatures across the
+current 30). All 6,740 configured slots use the real rig and canonical timings.
+Six shared directional/rhythmic variants augment individual anatomy and acting.
+
+- `npm.cmd run build`: passed API agreement, all TypeScript projects and production
+  build. Main JS gzip is 167.11 kB and CSS gzip 19.93 kB; the existing chunk advisory
+  remains. No new dependency or continuous JavaScript animation loop was added.
+- `npx.cmd playwright test --config test-results/idle-live.config.ts idle-repertoire.spec.ts idle-articulation.spec.ts idle-rig.spec.ts --reporter line`:
+  **12 passed** desktop/mobile in 3.6 minutes. Covers every coach/expression,
+  every actual CSS target/track/delay, complete signature eligibility and extended
+  400-event traces with two seeds for every repertoire. Traces verify cadence,
+  cooldowns, channel ownership, eye activity and reachability of every choice.
+- Updated `motion-vocabulary.spec.ts`: **3 desktop tests passed** for minimum
+  coverage, emotion exclusions, shared metadata and unchanged entrance timing.
+- Additional catalogue metadata case: **1 passed**. Browser-test TypeScript and
+  `git diff --check` passed (Git line-ending normalization notices only).
+- Independent integration review found no actionable issue. Live studio replay
+  checked the expanded menus, new character gestures and Wisp's anchored hem.
+  Full normal-size artistic review and application regression remain in M4–M5.
+- An earlier run began before stylesheets were finished, failed on missing
+  imports and was discarded. The complete final run above used the finished files.
+## Coach idle revamp — milestone 2 — September 29, 2026
+
+Shared face context now separates entrance eye squeezes from the expressive
+resting face. Still/paused portraits settle immediately; newer feedback cancels
+old transitions. No reaction timing or semantic inputs changed.
+
+- `npm.cmd run build`: passed API agreement, all TypeScript projects and production
+  build (existing chunk-size advisory only).
+- `npx.cmd playwright test --config test-results/idle-live.config.ts resting-faces.spec.ts`:
+  initial **34 passed** desktop/mobile; subsequent expanded interruption subset
+  **6 passed**, covering **38 distinct current cases**. Tests inspect actual eyes,
+  unchanged non-eye geometry, SVG identity, dwell/replay, newer feedback, hidden/
+  offscreen/Still interruption, browser preferences and one-shot previews.
+- `npx.cmd playwright test --config test-results/idle-live.config.ts idle-rig.spec.ts --project desktop`:
+  **2 passed**, including all 600 current rendered coach/expression combinations.
+- Browser-test TypeScript and `git diff --check` passed. Independent lifecycle
+  and artwork review found no material issue. Live studio confirmed reopening;
+  broader artistic acceptance continues with the expanded repertoire.
+## Coach idle revamp — milestone 1 — September 29, 2026
+
+The shared coach now uses canonical gesture lengths and channel reservations,
+independent blinking, bounded overlap, cooldown/history selection and one idle
+deadline timer. Artwork is memoized independently of idle bookkeeping. Personal
+display names preserve stable account IDs. No chess or account contracts changed.
+
+- `npm.cmd run build`: passed API agreement, application/contract/browser-test
+  TypeScript and production Vite build. Existing large-chunk advisory remains.
+- `npx.cmd playwright test --config test-results/idle-live.config.ts idle-coordinator.spec.ts idle-rig.spec.ts motion-vocabulary.spec.ts coach-names.spec.ts`:
+  **44 passed** on desktop/mobile. The ignored local config is the normal coach
+  config without its server launcher, using the running development studio.
+- `npx.cmd playwright test --config test-results/idle-lifecycle.config.ts idle-cadence.spec.ts idle-articulation.spec.ts --reporter line`:
+  **40 passed** on desktop/mobile. Six pilots in neutral/brilliant exercise
+  repeated actual-duration cycles, safe overlap, 500–1,000ms quiet gaps, pause/
+  resume, preference overrides, same-expression navigation, unmounting and stable
+  SVG identity/render counts. The complete registered rigs are checked against
+  canonical animation tracks. Fake-clock DOM observations permit one 50ms render
+  step; pure coordinator tests assert exact deadlines.
+- Independent lifecycle review found an unsupported idle-preview inconsistency;
+  entrance selection now uses the same resolved eligible gesture as replay.
+  Live in-app studio inspection confirmed the integrated component and normal-size
+  preview; wider artistic acceptance follows the face/repertoire milestones.
+- `git diff --check`: passed. An earlier isolated-server run completed its 40
+  cases but stalled during Windows server teardown and was interrupted. It is
+  not counted as a successful run; the later live-server run above exited cleanly.
+
+The full final application/account/backend checks and complete artistic review
+are still pending subsequent milestones.
+
+## Review grading correction — September 29, 2026
+
+The Best allowance admitted different moves up to 10 cp below the top choice and
+also treated retained slower mates as zero loss. Eleven new cases failed against
+that behavior before the correction. Best now requires the top move, with a tie
+only for another immediate checkmate. Retaining a slower forced mate is Good,
+not Miss or an exceptional grade. Shared SRS mate-outcome rules are unchanged.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_game_review.py -q -p no:cacheprovider --basetemp data/verification/strict-best-native`:
+  **43 passed**, including native Stockfish, both-color mate-in-one versus
+  mate-in-two examples, promotion, genuine queen sacrifice, review restart and
+  training isolation. Two existing dependency deprecation warnings remain.
+- A bounded native audit of the owner's supplied public game reproduced three
+  delayed mates and an ordinary bishop exchange incorrectly called Brilliant.
+  The PGN and audit reports remain ignored local verification data.
+
+The Brilliant correction excludes material-restoring recaptures, promotion-pawn
+offers, downstream-only tactical support and forced moves. Seven production-path
+cases failed before the sacrifice correction; two additional forced-move cases
+failed before its guard. Saved offers are rechecked before grade, difficulty and
+semantic events without mutating stored evidence. Both-color forced-king tests
+also prove fresh analysis performs no sacrifice-acceptance search. Independent
+review found no remaining actionable issue, and replaying all 40 audited White
+reports changed the bishop exchange to Best, delayed mates to Good, and retained
+the alternative immediate checkmate as Best.
+
+Final validation of the combined correction:
+
+- `python -m pytest backend/tests/test_game_review.py backend/tests/test_review_sacrifices.py backend/tests/test_review_sacrifice_reports.py backend/tests/test_review_events.py backend/tests/test_review_difficulty.py -q -p no:cacheprovider -m 'not stockfish' --basetemp data/verification/grading-final-unit`:
+  **134 passed, 14 native cases deselected**.
+- `python -m pytest backend/tests/test_game_context.py backend/tests/test_cross_game_context.py backend/tests/test_game_accuracy.py backend/tests/test_chess_core.py backend/tests/test_human_review.py backend/tests/test_review_refinement.py backend/tests/test_refinement_storage.py backend/tests/test_refinement_search.py backend/tests/test_review_positions.py backend/tests/test_review_cues.py backend/tests/test_review_clocks.py -q -x -p no:cacheprovider -m 'not stockfish' --basetemp data/verification/grading-related`:
+  **136 passed, 7 native cases deselected**. Both commands used the repository
+  `.venv` Python. The final Windows `cmd.exe` invocations used the equivalent
+  marker expression `not(stockfish)` to avoid shell quoting differences.
+- Ruff lint, formatting (**281 files**), generated API agreement and
+  `git diff --check` passed. No contracts, engine budgets, accuracy calculation,
+  Maia policy, SRS rules or frontend code changed.
+- A preceding native-inclusive run passed **144 cases** (including the new
+  slower-mate and promotion regressions and the genuine queen sacrifice), but
+  **3 review worker/restart cases failed at Stockfish startup**. A prior attempt
+  likewise had two worker-start failures. These are not counted as green runs.
+  Windows reported `WinError 1455` / paging-file-too-small and Git/Powershell
+  allocation failures. Read-only host inspection found roughly 0.4–0.6 GB free
+  virtual memory, despite plentiful physical RAM. The broader non-native suite
+  was stopped after additional failures amid those allocation errors; it is
+  unverified. No test-owned processes remained, and the owner's app was left
+  running. Full backend/browser/Docker verification was not completed in this
+  pass; no CI or deployment is claimed.
+
 ## Change-aware CI — September 29, 2026
 
 Correctness now selects dependency-aware suites for PRs, with a fail-closed

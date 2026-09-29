@@ -26,6 +26,7 @@ export default function SlimeCoach({ expression }: CoachArtworkProps) {
       <FantasyHead>
         <path d={body} fill="#76cba6" stroke="#469781" strokeWidth="1.7" />
         <path
+          className="coach-idle-hem fantasy-slime-rim"
           d="M21 99q-1 9 13 10 16 7 34 0 12 1 13-7-7 5-17 3-14 6-29 0-10 1-14-6Z"
           fill="#54ae92"
         />

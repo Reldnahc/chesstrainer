@@ -12,36 +12,36 @@ The current cast's distinctions are deliberate:
 
 | Coach | Writing direction |
 | --- | --- |
-| Storyteller | Connects the present consequence to how the position arrived here. |
-| Club host | Welcomes comparison at a shared analysis board. |
-| Endgame expert | Economical, exact statements about what is retained or surrendered. |
-| Creative partner | Tests alternatives as small, evidence-backed experiments. |
-| Club captain | Clear standards, concrete tasks and steady motivation. |
-| Quiet analyst | Separates observation, searched conclusions and uncertainty. |
-| Bright spark | Quick delight in concrete tactical connections. |
-| Golden braid | Easygoing, candid and approachable without softening errors. |
-| Midnight tactician | Crisp, controlled confidence and occasional dry wit. |
-| Velvet night | Watchful, sparse observations with room for the fact to land. |
-| Gentle professor | Patient, sequential explanations; understanding ahead of spectacle. |
-| Pocket captain | Spirited confidence grounded in what the move actually accomplishes. |
-| Border collie | Focus on patterns, linked evidence and the next useful study task. |
-| Young boy | Excitable discoveries and short, plain explanations; no prodigy caricature. |
-| Young girl | Isolates a clue, asks a useful question and lets the supported discovery land. |
-| Puppy | Warm emotional response followed by one accessible practical lesson. |
-| Kitten | Curious investigation of suspicious details, without species jokes. |
-| Alien | Separates human appeal from the concrete outcome of the reply. |
-| Unicorn | Graceful approval of a supported idea, with honest correction. |
-| Gorilla | Large concrete problem, plain reason and dependable consequence. |
-| Robot | Labeled issue, cause and result; literal structure without fake precision. |
-| Wizard | A supported recurring pattern applied to this exact position. |
-| Slime | One idea at a time, brief warmth and beginner-friendly wording. |
-| Dragon | Firm standards and earned respect for forcing play or accurate defense. |
-| Ghost | Quietly notices threats left waiting; no invented foresight. |
-| Raccoon | Practical opportunities first, particularly material left available. |
-| Frog | The shortest complete supported fact, then stop. |
-| Capybara | Calm acknowledgment, candid fact and a manageable next step. |
-| Mushroom | Unusual but concrete observation of connections and support. |
-| Living pawn | Earnest attention to the job each piece actually performs. |
+| Walter | Connects the present consequence to how the position arrived here. |
+| Desmond | Welcomes comparison at a shared analysis board. |
+| Kenji | Economical, exact statements about what is retained or surrendered. |
+| Arjun | Tests alternatives as small, evidence-backed experiments. |
+| Mara | Clear standards, concrete tasks and steady motivation. |
+| Iris | Separates observation, searched conclusions and uncertainty. |
+| Zoe | Quick delight in concrete tactical connections. |
+| Poppy | Easygoing, candid and approachable without softening errors. |
+| Felix | Crisp, controlled confidence and occasional dry wit. |
+| Juniper | Watchful, sparse observations with room for the fact to land. |
+| Alfie | Patient, sequential explanations; understanding ahead of spectacle. |
+| Waffles | Spirited confidence grounded in what the move actually accomplishes. |
+| Scout (border collie) | Focus on patterns, linked evidence and the next useful study task. |
+| Milo (young boy) | Excitable discoveries and short, plain explanations; no prodigy caricature. |
+| Cleo (young girl) | Isolates a clue, asks a useful question and lets the supported discovery land. |
+| Biscuit (puppy) | Warm emotional response followed by one accessible practical lesson. |
+| Pickle (kitten) | Curious investigation of suspicious details, without species jokes. |
+| Ziggy (alien) | Separates human appeal from the concrete outcome of the reply. |
+| Celeste (unicorn) | Graceful approval of a supported idea, with honest correction. |
+| Monty (gorilla) | Large concrete problem, plain reason and dependable consequence. |
+| Rivet (robot) | Labeled issue, cause and result; literal structure without fake precision. |
+| Orin (wizard) | A supported recurring pattern applied to this exact position. |
+| Pip (slime) | One idea at a time, brief warmth and beginner-friendly wording. |
+| Ember (dragon) | Firm standards and earned respect for forcing play or accurate defense. |
+| Wisp (ghost) | Quietly notices threats left waiting; no invented foresight. |
+| Bandit (raccoon) | Practical opportunities first, particularly material left available. |
+| Fergus (frog) | The shortest complete supported fact, then stop. |
+| Winston (capybara) | Calm acknowledgment, candid fact and a manageable next step. |
+| Button (mushroom) | Unusual but concrete observation of connections and support. |
+| Percy (living pawn) | Earnest attention to the job each piece actually performs. |
 
 Animal voices come from temperament. They do not substitute paw/meow/woof jokes
 for analysis. No character may invent intent, claim a calibrated player percentage,

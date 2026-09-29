@@ -49,7 +49,7 @@ const animalIntents: CoachDefinition["expressionIntents"] = {
     "A delighted double take. Bright eyes, lifted paws and an eager tail.",
   great: "An approving nod, an offered paw and a little tail movement.",
   best: "Focused eyes and a confident paw: that is the move.",
-  good: "Soft, closed eyes and an easy smile.",
+  good: "A soft eye squeeze that settles into an easy smile.",
   book: "Eyes down, paws around the book. Familiar territory.",
   inaccuracy: "A questioning tilt and one ear listening a little harder.",
   mistake: "Ears soften and the eyes close briefly. A sympathetic wince.",
@@ -78,7 +78,7 @@ export const manStudy: CoachCollection = {
   defaultFamily: "storyteller",
   name: "Men",
   description:
-    "Storyteller and three new faces, each with a distinct silhouette and wardrobe.",
+    "Walter and three new faces, each with a distinct silhouette and wardrobe.",
   animation: {
     ...classicPerformance,
     idleGestures: {
@@ -92,7 +92,7 @@ export const manStudy: CoachCollection = {
       id: "storyteller",
       coachId: "classic",
       personality: storyteller,
-      name: "Storyteller",
+      name: "Walter",
       description:
         "A warm veteran who connects this move to the game's turning points.",
       character: "Anticipation · open gestures · soft settling",
@@ -102,7 +102,7 @@ export const manStudy: CoachCollection = {
       id: "host",
       coachId: "man-host",
       personality: host,
-      name: "Club host",
+      name: "Desmond",
       description:
         "Friendly, candid analysis as if you were sitting across the club table.",
       character: "Open palms · warm grins · an expressive double take",
@@ -111,7 +111,7 @@ export const manStudy: CoachCollection = {
       id: "expert",
       coachId: "man-expert",
       personality: expert,
-      name: "Endgame expert",
+      name: "Kenji",
       description:
         "Exact consequences, measured approval and no extra words.",
       character: "Measured tilts · attentive eyes · quiet delight",
@@ -120,7 +120,7 @@ export const manStudy: CoachCollection = {
       id: "partner",
       coachId: "man-partner",
       personality: partner,
-      name: "Creative partner",
+      name: "Arjun",
       description:
         "Curious questions and candidate ideas to explore together.",
       character: "Curious looks · bright smiles · generous encouragement",
@@ -160,7 +160,7 @@ export const womanStudy: CoachCollection = {
       id: "captain",
       coachId: "woman-captain",
       personality: captain,
-      name: "Club captain",
+      name: "Mara",
       description:
         "A confident mentor: a clear verdict, a concrete reason and a habit to build.",
       character: "Open hands · generous smiles · confident nods",
@@ -169,7 +169,7 @@ export const womanStudy: CoachCollection = {
       id: "analyst",
       coachId: "woman-analyst",
       personality: analyst,
-      name: "Quiet analyst",
+      name: "Iris",
       description:
         "A restrained observer who identifies exactly what changed.",
       character: "Small tilts · considered pauses · a reassuring smile",
@@ -178,7 +178,7 @@ export const womanStudy: CoachCollection = {
       id: "spark",
       coachId: "woman-spark",
       personality: spark,
-      name: "Bright spark",
+      name: "Zoe",
       description:
         "Quick, lively explanations and real excitement for clever tactics.",
       character: "Anticipation · lively poses · hair follow-through",
@@ -187,7 +187,7 @@ export const womanStudy: CoachCollection = {
       id: "blonde",
       coachId: "woman-blonde",
       personality: blonde,
-      name: "Golden braid",
+      name: "Poppy",
       description:
         "Relaxed encouragement that keeps the chess honest and the next step clear.",
       character: "Warm smiles · open gestures · a gently settling braid",
@@ -211,7 +211,7 @@ export const catStudy: CoachCollection = {
       id: "tuxedo",
       coachId: "cat-tuxedo",
       personality: tuxedo,
-      name: "Midnight tactician",
+      name: "Felix",
       description:
         "Consequences first. Terse, dry and tactically unforgiving, without cruelty.",
       character: "Measured looks · precise nods · slow tail punctuation",
@@ -220,7 +220,7 @@ export const catStudy: CoachCollection = {
       id: "black",
       coachId: "cat-black",
       personality: velvet,
-      name: "Velvet night",
+      name: "Juniper",
       description:
         "Quiet, watchful explanations with a soft edge and very little drama.",
       character: "Tall ears · luminous eyes · quiet whisker movements",
@@ -244,7 +244,7 @@ export const dogStudy: CoachCollection = {
       id: "gentle",
       coachId: "dog-gentle",
       personality: professor,
-      name: "Gentle professor",
+      name: "Alfie",
       description:
         "Patient, connected explanations: the principle, this position and the lesson.",
       character: "Soft brows · unhurried nods · gentle encouragement",
@@ -253,7 +253,7 @@ export const dogStudy: CoachCollection = {
       id: "corgi",
       coachId: "dog-corgi",
       personality: corgi,
-      name: "Pocket captain",
+      name: "Waffles",
       description:
         "A tiny commander with enormous confidence. Short orders, clear consequences.",
       character: "Eager ears · buoyant double takes · a full-body smile",
@@ -262,7 +262,7 @@ export const dogStudy: CoachCollection = {
       id: "collie",
       coachId: "dog-collie",
       personality: collie,
-      name: "Border collie",
+      name: "Scout",
       description:
         "Intense pattern recognition and precise, task-focused feedback.",
       character: "Intent eyes · attentive ears · a feathery white-tipped tail",

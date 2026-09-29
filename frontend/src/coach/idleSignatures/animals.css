@@ -1,0 +1,365 @@
+.coach-idle-leftPaw { transform-origin: 31px 88px; }
+.coach-idle-rightPaw { transform-origin: 69px 88px; }
+.cast-hands .coach-idle-leftPaw { transform-origin: 28px 86px; }
+.cast-hands .coach-idle-rightPaw { transform-origin: 72px 86px; }
+
+/* Golden retriever: successive listening ears and a reassuring afterthought. */
+@keyframes coach-idle-animal-professor-listen {
+  0%, 100% { transform: none; }
+  24%, 43% { transform: rotate(calc(-7deg * var(--idle-strength))); }
+  68% { transform: rotate(calc(2deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-professor-answer {
+  0%, 100% { transform: none; }
+  35%, 58% { transform: rotate(calc(-4deg * var(--idle-strength))); }
+  82% { transform: rotate(calc(1.5deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-professor-incline {
+  0%, 100% { transform: none; }
+  36%, 65% { transform: translateY(.5px) rotate(calc(2.5deg * var(--idle-strength))); }
+  86% { transform: rotate(calc(.4deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-professor-assurance {
+  0%, 100% { transform: none; }
+  23% { transform: translateY(1.6px) rotate(calc(1.8deg * var(--idle-strength))); }
+  41% { transform: translateY(-.3px); }
+  60%, 69% { transform: translateY(.8px) rotate(calc(.8deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-professor-tail {
+  0%, 100% { transform: none; }
+  30%, 43% { transform: rotate(calc(-4deg * var(--idle-strength))); }
+  70% { transform: rotate(calc(1.2deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-professor-blink {
+  0%, 100% { transform: scaleY(1); }
+  35%, 44% { transform: scaleY(.08); }
+  68% { transform: scaleY(.78); }
+}
+
+/* Corgi: compressed preparation, then an upright, businesslike finish. */
+@keyframes coach-idle-animal-corgi-attention {
+  0%, 100% { transform: none; }
+  18% { transform: translateY(.9px) scaleY(.987); }
+  42%, 61% { transform: translateY(-1.1px) scaleY(1.017); }
+  78% { transform: translateY(.2px) scaleY(.997); }
+}
+@keyframes coach-idle-animal-corgi-chin {
+  0%, 100% { transform: none; }
+  28%, 54% { transform: translateY(-.7px) rotate(calc(-2deg * var(--idle-strength))); }
+  76% { transform: rotate(calc(.6deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-corgi-prick {
+  0%, 100% { transform: none; }
+  26%, 50% { transform: rotate(calc(-4.5deg * var(--idle-strength))) scaleY(1.018); }
+  73% { transform: rotate(calc(1deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-corgi-question {
+  0%, 100% { transform: none; }
+  23%, 62% { transform: rotate(calc(-8deg * var(--idle-strength))); }
+  82% { transform: rotate(calc(1.3deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-corgi-reply {
+  0%, 100% { transform: none; }
+  31%, 56% { transform: rotate(calc(4deg * var(--idle-strength))); }
+  76% { transform: rotate(calc(-1.5deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-corgi-side-eye {
+  0%, 100% { transform: none; }
+  20%, 68% { transform: translate(calc(1.5px * var(--idle-gaze)), -.25px); }
+  84% { transform: translateX(calc(.35px * var(--idle-gaze))); }
+}
+
+/* Collie: eyes lead a three-point scan; a second performance resets the stance. */
+@keyframes coach-idle-animal-collie-three-points {
+  0%, 100% { transform: none; }
+  15%, 29% { transform: translate(calc(-1.35px * var(--idle-gaze)), -.25px); }
+  40%, 53% { transform: translate(0, .9px); }
+  64%, 77% { transform: translate(calc(1.1px * var(--idle-gaze)), .2px); }
+}
+@keyframes coach-idle-animal-collie-follow {
+  0%, 100% { transform: none; }
+  20%, 31% { transform: rotate(calc(-1.8deg * var(--idle-strength))); }
+  45%, 56% { transform: translateY(.5px); }
+  71%, 81% { transform: rotate(calc(1.3deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-collie-locate {
+  0%, 100% { transform: none; }
+  23%, 53% { transform: rotate(calc(-5deg * var(--idle-strength))); }
+  76% { transform: rotate(calc(1.1deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-collie-paw-left {
+  0%, 100% { transform: none; }
+  23%, 48% { transform: rotate(calc(7deg * var(--idle-strength))); }
+  75% { transform: rotate(calc(-1.5deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-collie-paw-right {
+  0%, 100% { transform: none; }
+  31%, 52% { transform: rotate(calc(-4.5deg * var(--idle-strength))); }
+  79% { transform: rotate(calc(.8deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-collie-balance {
+  0%, 100% { transform: none; }
+  25%, 47% { transform: rotate(calc(-.9deg * var(--idle-strength))) translateY(.35px); }
+  69% { transform: rotate(calc(.5deg * var(--idle-strength))); }
+}
+
+/* Puppy: the floppy ears lag behind the head instead of moving as one shape. */
+@keyframes coach-idle-animal-puppy-perk {
+  0%, 100% { transform: none; }
+  24% { transform: translateY(-1.3px) rotate(calc(-2.4deg * var(--idle-strength))); }
+  44%, 54% { transform: translateY(-.6px) rotate(calc(-1.2deg * var(--idle-strength))); }
+  73% { transform: translateY(.45px) rotate(calc(.6deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-puppy-ear-first {
+  0%, 100% { transform: none; }
+  20% { transform: rotate(calc(-8deg * var(--idle-strength))); }
+  43% { transform: rotate(calc(4deg * var(--idle-strength))); }
+  65% { transform: rotate(calc(-2deg * var(--idle-strength))); }
+  83% { transform: rotate(calc(.6deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-puppy-ear-late {
+  0%, 100% { transform: none; }
+  25% { transform: rotate(calc(-5.5deg * var(--idle-strength))); }
+  53% { transform: rotate(calc(2.5deg * var(--idle-strength))); }
+  77% { transform: rotate(calc(-.8deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-puppy-shuffle {
+  0%, 100% { transform: none; }
+  22% { transform: rotate(calc(7deg * var(--idle-strength))); }
+  38%, 52% { transform: rotate(calc(4deg * var(--idle-strength))); }
+  75% { transform: rotate(calc(-1.2deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-puppy-shuffle-right {
+  0%, 100% { transform: none; }
+  22% { transform: rotate(calc(-6deg * var(--idle-strength))); }
+  42%, 57% { transform: rotate(calc(-3.5deg * var(--idle-strength))); }
+  78% { transform: rotate(calc(.8deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-puppy-tail-answer {
+  0%, 100% { transform: none; }
+  27% { transform: rotate(calc(-6deg * var(--idle-strength))); }
+  55% { transform: rotate(calc(3.5deg * var(--idle-strength))); }
+  77% { transform: rotate(calc(-1deg * var(--idle-strength))); }
+}
+
+/* Tuxedo: hold the look; the tail and one skeptical ear supply the punctuation. */
+@keyframes coach-idle-animal-tuxedo-reconsider {
+  0%, 100% { transform: none; }
+  19%, 61% { transform: translate(calc(-1.8px * var(--idle-gaze)), .15px); }
+  76%, 86% { transform: translate(calc(-.35px * var(--idle-gaze)), .15px); }
+}
+@keyframes coach-idle-animal-tuxedo-punctuation {
+  0%, 100% { transform: none; }
+  22%, 34% { transform: rotate(calc(-3.5deg * var(--idle-strength))); }
+  48% { transform: none; }
+  65%, 74% { transform: rotate(calc(-1.8deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-tuxedo-reserve {
+  0%, 100% { transform: none; }
+  32%, 65% { transform: rotate(calc(-1.7deg * var(--idle-strength))) translateY(.2px); }
+}
+@keyframes coach-idle-animal-tuxedo-skeptic {
+  0%, 100% { transform: none; }
+  22%, 67% { transform: rotate(calc(9deg * var(--idle-strength))); }
+  84% { transform: rotate(calc(-1deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-tuxedo-appraise {
+  0%, 100% { transform: scaleY(1); }
+  25%, 46% { transform: scaleY(.58); }
+  61%, 67% { transform: scaleY(.08); }
+  82% { transform: scaleY(.82); }
+}
+@keyframes coach-idle-animal-tuxedo-countertilt {
+  0%, 100% { transform: none; }
+  34%, 70% { transform: rotate(calc(-2.8deg * var(--idle-strength))); }
+}
+
+/* Black cat: the blink reopens deliberately; tucked paws preserve calmness. */
+@keyframes coach-idle-animal-velvet-soft-blink {
+  0%, 100% { transform: scaleY(1); }
+  26%, 39% { transform: scaleY(.06); }
+  59%, 69% { transform: scaleY(.56); }
+  87% { transform: scaleY(.94); }
+}
+@keyframes coach-idle-animal-velvet-ear-settle {
+  0%, 100% { transform: none; }
+  30%, 52% { transform: rotate(calc(3.8deg * var(--idle-strength))); }
+  77% { transform: rotate(calc(-.7deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-velvet-tuck {
+  0%, 100% { transform: none; }
+  30%, 65% { transform: rotate(calc(-9deg * var(--idle-strength))); }
+  83% { transform: rotate(calc(-2deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-velvet-counterpaw {
+  0%, 100% { transform: none; }
+  35%, 62% { transform: rotate(calc(3.2deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-velvet-curl {
+  0%, 100% { transform: none; }
+  35%, 63% { transform: rotate(calc(-3deg * var(--idle-strength))) scaleY(.975); }
+  84% { transform: rotate(calc(-.8deg * var(--idle-strength))) scaleY(.992); }
+}
+
+/* Kitten: sharp curiosity and a tentative two-part reach, not a full paw wave. */
+@keyframes coach-idle-animal-kitten-investigate {
+  0%, 100% { transform: none; }
+  15%, 31% { transform: translate(calc(-1.3px * var(--idle-gaze)), .2px); }
+  48%, 70% { transform: translate(calc(.9px * var(--idle-gaze)), -.8px); }
+  86% { transform: translate(.15px, -.2px); }
+}
+@keyframes coach-idle-animal-kitten-follow {
+  0%, 100% { transform: none; }
+  22%, 36% { transform: rotate(calc(-2.8deg * var(--idle-strength))); }
+  56%, 75% { transform: rotate(calc(2.1deg * var(--idle-strength))) translateY(-.5px); }
+}
+@keyframes coach-idle-animal-kitten-catch {
+  0%, 100% { transform: none; }
+  21% { transform: rotate(calc(-6deg * var(--idle-strength))); }
+  46%, 58% { transform: rotate(calc(-2.5deg * var(--idle-strength))); }
+  77% { transform: rotate(calc(1.3deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-kitten-test-paw {
+  0%, 100% { transform: none; }
+  24%, 34% { transform: rotate(calc(-11deg * var(--idle-strength))); }
+  46% { transform: rotate(calc(-3deg * var(--idle-strength))); }
+  62%, 72% { transform: rotate(calc(-7deg * var(--idle-strength))); }
+  87% { transform: rotate(calc(-1deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-kitten-watch-paw {
+  0%, 100% { transform: none; }
+  19%, 71% { transform: translate(calc(1px * var(--idle-gaze)), .8px); }
+}
+@keyframes coach-idle-animal-kitten-anticipate {
+  0%, 100% { transform: none; }
+  21%, 38% { transform: rotate(calc(2.1deg * var(--idle-strength))) translateY(.5px); }
+  57%, 73% { transform: rotate(calc(.9deg * var(--idle-strength))) translateY(.25px); }
+}
+
+/* Gorilla: long weight transfers keep the character grounded rather than bouncy. */
+@keyframes coach-idle-animal-gorilla-ground {
+  0%, 100% { transform: none; }
+  25%, 40% { transform: translateY(.8px) scaleY(.992); }
+  60%, 70% { transform: rotate(-.6deg) translateY(.25px); }
+}
+@keyframes coach-idle-animal-gorilla-open-left {
+  0%, 100% { transform: none; }
+  34%, 60% { transform: rotate(calc(6deg * var(--idle-strength))); }
+  83% { transform: rotate(calc(1.4deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-gorilla-open-right {
+  0%, 100% { transform: none; }
+  36%, 58% { transform: rotate(calc(-5deg * var(--idle-strength))); }
+  81% { transform: rotate(calc(-1deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-gorilla-consider {
+  0%, 100% { transform: none; }
+  18%, 41% { transform: translate(calc(-1.7px * var(--idle-gaze)), .4px); }
+  56%, 76% { transform: translate(0, .7px); }
+}
+@keyframes coach-idle-animal-gorilla-acknowledge {
+  0%, 100% { transform: none; }
+  28%, 42% { transform: rotate(-1deg); }
+  62%, 73% { transform: translateY(1.25px) rotate(.8deg); }
+}
+@keyframes coach-idle-animal-gorilla-knuckle-reset {
+  0%, 100% { transform: none; }
+  27%, 52% { transform: rotate(calc(-5deg * var(--idle-strength))); }
+  78% { transform: rotate(calc(1deg * var(--idle-strength))); }
+}
+
+/* Raccoon: nimble hands and a second listening check distinguish its curiosity. */
+@keyframes coach-idle-animal-raccoon-inspect {
+  0%, 100% { transform: none; }
+  24%, 37% { transform: rotate(calc(-8deg * var(--idle-strength))); }
+  59%, 73% { transform: rotate(calc(3deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-raccoon-counterhand {
+  0%, 100% { transform: none; }
+  29%, 48% { transform: rotate(calc(4.5deg * var(--idle-strength))); }
+  71% { transform: rotate(calc(-2deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-raccoon-inventory {
+  0%, 100% { transform: none; }
+  18%, 38% { transform: translate(calc(1.3px * var(--idle-gaze)), .7px); }
+  57%, 76% { transform: translate(calc(-.8px * var(--idle-gaze)), .45px); }
+}
+@keyframes coach-idle-animal-raccoon-notice {
+  0%, 100% { transform: none; }
+  17%, 61% { transform: translate(calc(-1.6px * var(--idle-gaze)), -.35px); }
+  81% { transform: translate(calc(-.3px * var(--idle-gaze)), 0); }
+}
+@keyframes coach-idle-animal-raccoon-follow {
+  0%, 100% { transform: none; }
+  33%, 66% { transform: rotate(calc(-2.2deg * var(--idle-strength))) translateY(-.4px); }
+}
+@keyframes coach-idle-animal-raccoon-double-ear {
+  0%, 100% { transform: none; }
+  18% { transform: rotate(calc(-7deg * var(--idle-strength))); }
+  39% { transform: rotate(calc(1.5deg * var(--idle-strength))); }
+  62% { transform: rotate(calc(-4deg * var(--idle-strength))); }
+  80% { transform: rotate(calc(-1deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-raccoon-listen {
+  0%, 100% { transform: none; }
+  27%, 62% { transform: rotate(calc(-3deg * var(--idle-strength))); }
+  80% { transform: rotate(calc(.8deg * var(--idle-strength))); }
+}
+@keyframes coach-idle-animal-raccoon-whiskers {
+  0%, 100% { transform: none; }
+  30% { transform: rotate(-1deg) scaleX(1.018); }
+  60% { transform: rotate(.45deg) scaleX(1.005); }
+}
+
+/* Frog: visible timing and eye direction provide character without large acting. */
+@keyframes coach-idle-animal-frog-long-breath {
+  0%, 100% { transform: none; }
+  31%, 55% { transform: scale(1.035, 1.045); }
+  77% { transform: scale(1.013, 1.018); }
+}
+@keyframes coach-idle-animal-frog-unhurried-lids {
+  0%, 100% { transform: scaleY(1); }
+  34%, 49% { transform: scaleY(.08); }
+  72%, 79% { transform: scaleY(.72); }
+}
+@keyframes coach-idle-animal-frog-dry-glance {
+  0%, 100% { transform: none; }
+  20%, 48% { transform: translate(1.25px, .05px); }
+  66%, 78% { transform: translate(.15px, .55px); }
+}
+@keyframes coach-idle-animal-frog-small-reconsider {
+  0%, 100% { transform: none; }
+  35%, 58% { transform: rotate(.95deg) translateY(.15px); }
+  77%, 84% { transform: rotate(-.35deg); }
+}
+
+/* Capybara: the ears arrive separately; a long, soft weight shift never bounces. */
+@keyframes coach-idle-animal-capybara-ear-left {
+  0%, 100% { transform: none; }
+  32%, 60% { transform: rotate(-3.2deg); }
+  82% { transform: rotate(.5deg); }
+}
+@keyframes coach-idle-animal-capybara-ear-right {
+  0%, 100% { transform: none; }
+  31%, 57% { transform: rotate(2.8deg); }
+  80% { transform: rotate(-.4deg); }
+}
+@keyframes coach-idle-animal-capybara-soften {
+  0%, 100% { transform: none; }
+  39%, 67% { transform: translateY(.65px) rotate(.7deg); }
+}
+@keyframes coach-idle-animal-capybara-comfort {
+  0%, 100% { transform: none; }
+  28%, 47% { transform: rotate(-.8deg) translateY(.6px) scaleY(.995); }
+  66%, 78% { transform: rotate(.3deg) translateY(.15px); }
+}
+@keyframes coach-idle-animal-capybara-late-blink {
+  0%, 100% { transform: scaleY(1); }
+  30%, 46% { transform: scaleY(.07); }
+  71% { transform: scaleY(.82); }
+}
+@keyframes coach-idle-animal-capybara-release {
+  0%, 100% { transform: none; }
+  39%, 61% { transform: scaleX(1.024) rotate(-.45deg); }
+  82% { transform: scaleX(1.006); }
+}

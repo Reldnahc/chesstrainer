@@ -37,7 +37,7 @@ test('account signup, engine-free sync, second-device login and private library'
   expect(await page.locator('.app-header').evaluate(header => header.getBoundingClientRect().top)).toBe(0);
   const gameHref = (await page.locator('.game-library-item').getAttribute('href'))!;
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
-  await page.getByRole('radio', {name: 'Golden braid', exact: true}).click();
+  await page.getByRole('radio', {name: 'Poppy', exact: true}).click();
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
   await expect(page.locator('.coach-motion-preference-status')).toContainText('Saved');
@@ -72,7 +72,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('natural');
     await expect(device.getByRole('radio')).toHaveCount(30);
-    await expect(device.getByRole('radio', {name: 'Golden braid', exact: true})).toBeChecked();
+    await expect(device.getByRole('radio', {name: 'Poppy', exact: true})).toBeChecked();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByRole('region', {name: 'Account', exact: true})).toContainText(`Signed in as ${username}`);
     await device.getByRole('button', {name: 'Sign out', exact: true}).click();
@@ -93,7 +93,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('system');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('system');
-    await expect(device.getByRole('radio', {name: 'Storyteller', exact: true})).toBeChecked();
+    await expect(device.getByRole('radio', {name: 'Walter', exact: true})).toBeChecked();
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveCount(0);
@@ -171,9 +171,9 @@ test('Study progress and selected coach resume on another device without leaking
   await signup(page, username);
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
   const coachSave = page.waitForResponse(response => response.url().endsWith('/api/preferences/coach') && response.request().method() === 'PUT');
-  await page.getByRole('radio', {name: 'Border collie', exact: true}).click();
+  await page.getByRole('radio', {name: 'Scout', exact: true}).click();
   expect((await coachSave).ok()).toBe(true);
-  await expect(page.getByRole('radio', {name: 'Border collie', exact: true})).toBeChecked();
+  await expect(page.getByRole('radio', {name: 'Scout', exact: true})).toBeChecked();
   const motionSave = page.waitForResponse(response => response.url().endsWith('/api/preferences/motion') && response.request().method() === 'PUT');
   await page.getByLabel('Piece & interface motion', {exact: true}).selectOption('still');
   expect((await motionSave).ok()).toBe(true);

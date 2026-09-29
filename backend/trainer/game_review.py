@@ -11,7 +11,6 @@ from trainer.chess_core import (
     evaluation_loss,
     legal_move,
     legal_move_options,
-    material,
 )
 from trainer.continuations import replay, settled_delta
 from trainer.explanations import replay_line
@@ -20,7 +19,12 @@ from trainer.opening_book import book_move
 from trainer.review_cues import review_cues
 from trainer.review_intelligence.difficulty import assess_difficulty
 from trainer.review_intelligence.events import describe_move
-from trainer.review_scores import strongest_alternative
+from trainer.review_sacrifices import (
+    has_sacrifice_support,
+    is_sacrifice_offer,
+    supported_sacrifice,
+)
+from trainer.review_scores import score_order, strongest_alternative
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
 VERSION = "game-review-1"
@@ -59,6 +63,14 @@ def classify(report, rating):
     blunder_cp = 300 if rating < 1200 else 200
     if decisive or cp >= blunder_cp:
         return "Blunder", "This move gives away a decisive advantage or allows a severe loss."
+    # Mate distance is not a centipawn loss. Keeping a slower forced win is
+    # still good, but cannot qualify for an exceptional or Best label.
+    if (
+        best.kind == actual.kind == "mate"
+        and best.outcome() == actual.outcome() == 1
+        and score_order(actual) < score_order(best)
+    ):
+        return "Good", "This keeps a forced checkmate, but a faster mate was available."
     missed = report["opportunity_missed"]
     if loss.mate_lost or missed:
         return "Miss", "A concrete tactical opportunity was available and went unused."
@@ -66,7 +78,7 @@ def classify(report, rating):
         return "Mistake", "This move makes a meaningful avoidable concession."
     if cp >= 50:
         return "Inaccuracy", "There was a stronger way to keep your position intact."
-    if report["sacrifice"]:
+    if report["sacrifice"] and report["legal_count"] > 1:
         return "Brilliant", "You found a sound piece sacrifice with a verified tactical idea."
     # Great is best/near-best AND critical; a sole legal reply is never an achievement.
     if cp <= 20 and report["legal_count"] > 1:
@@ -95,8 +107,11 @@ def classify(report, rating):
                 "Great",
                 "You capitalized on the opponent's mistake and changed the course of the game.",
             )
-    if report["actual"]["uci"] == report["best"]["uci"] or cp <= 10:
-        return "Best", "This is one of the strongest moves in the position."
+    immediate_mate = best.kind == actual.kind == "mate" and best.value == actual.value == 1
+    if report["actual"]["uci"] == report["best"]["uci"]:
+        return "Best", "This is the engine's top move."
+    if immediate_mate:
+        return "Best", "This gives an equally immediate checkmate."
     return "Good", "A sound move that keeps the important opportunities intact."
 
 
@@ -165,24 +180,19 @@ def analyze_move(engine, board, move, previous_score=None):
     sacrifice = None
     alternatives = [c for c in candidates if c.uci != move.uci()]
     already_winning_without_sacrifice = any(numeric(c.score) >= 300 for c in alternatives)
-    if not poor and numeric(actual.score) >= -50 and not already_winning_without_sacrifice:
-        tactical = actual_line["findings"] or actual.score.outcome() == 1
-        if tactical:
-            baseline = material(board, board.turn) - material(board, not board.turn)
+    if (
+        board.legal_moves.count() > 1
+        and not poor
+        and numeric(actual.score) >= -50
+        and not already_winning_without_sacrifice
+    ):
+        if has_sacrifice_support(board, actual.score, actual_line):
             captures = [
                 m
                 for m in after.legal_moves
-                if after.is_capture(m)
-                and after.piece_at(m.to_square)
-                and after.piece_at(m.to_square).piece_type not in {chess.PAWN, chess.KING}
+                if after.is_capture(m) and is_sacrifice_offer(board, move, m)
             ]
             for capture in captures[:2]:
-                accepted = after.copy(stack=True)
-                accepted.push(capture)
-                balance = material(accepted, board.turn) - material(accepted, not board.turn)
-                # Exclude ordinary equal trades, including recapture of the mover.
-                if balance >= baseline:
-                    continue
                 tested = engine.analyze(after, deep=True, root_moves=[capture.uci()], multipv=1)
                 response = Candidate.model_validate(tested.candidates[0])
                 if numeric(response.score.negate()) >= -50:
@@ -221,6 +231,10 @@ def analyze_move(engine, board, move, previous_score=None):
 
 
 def public_report(report, rating, *, context=None):
+    # Apply current evidence admission to saved reports too. Keep engine facts
+    # untouched in storage; all displayed derivatives share the corrected offer.
+    if report.get("sacrifice") and not supported_sacrifice(report):
+        report = report | {"sacrifice": None}
     label, reason = classify(report, rating)
     engine_label = label
     findings = report["actual_line"]["findings"]
