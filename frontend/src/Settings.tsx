@@ -6,6 +6,7 @@ import { AccountSettings, useAccount } from "./AccountGate";
 import CoachSettings from "./coach/CoachSettings";
 import MotionSettings from "./MotionSettings";
 import SettingsSection from "./SettingsSection";
+import SectionNavigation from "./SectionNavigation";
 import Link from "./Link";
 import { navigate, type SettingsTab } from "./navigation";
 
@@ -42,12 +43,10 @@ export default function SettingsScreen({ health, fail, section, importSource, re
   return (
     <>
       <PageTitle eyebrow="YOUR WORKSPACE" title="Settings" />
-      <nav className="settings-navigation" aria-label="Settings sections">
-        {sections.filter(item => item.id !== "account" || account).map(item => (
-          <Link key={item.id} href={item.id === "imports" ? "/settings" : `/settings?section=${item.id}`}
-            aria-current={active === item.id ? "page" : undefined}>{item.label}</Link>
-        ))}
-      </nav>
+      <SectionNavigation label="Settings sections" current={active}
+        items={sections.filter(item => item.id !== "account" || account).map(item => ({
+          ...item, href: item.id === "imports" ? "/settings" : `/settings?section=${item.id}`,
+        }))} />
       <div className="settings-content">
         {active === "imports" && <ImportSettings health={health} fail={fail} importSource={importSource} restoringScroll={restoringScroll}
           onImportSourceChange={source => navigate(source ? `/settings?import=${encodeURIComponent(source)}` : "/settings")} />}

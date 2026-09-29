@@ -60,6 +60,7 @@ not React components.
 | Job | Existing owner | Reuse contract |
 | --- | --- | --- |
 | Internal destination links | [Link](../frontend/src/Link.tsx), [navigation](../frontend/src/navigation.ts) | Normal anchors, modifier/new-tab clicks, history and scroll restoration. Do not implement another click-to-navigate wrapper. |
+| URL section navigation | [SectionNavigation](../frontend/src/SectionNavigation.tsx), [section-navigation.css](../frontend/src/section-navigation.css) | Settings and Openings share the framed tray and selected style. Callers supply destinations, selected ID and accessible name; account/course filtering remains caller-owned. |
 | Ordinary page heading | [PageTitle](../frontend/src/PageTitle.tsx) | Eyebrow, title and optional actions. Phones hide the eyebrow. Compact board-workspace headings remain a separate use case. |
 | Settings section | [SettingsSection](../frontend/src/SettingsSection.tsx), [settings.css](../frontend/src/settings.css) | Labelled section, heading, optional description/actions and consistent spacing. Currently application/Settings-specific. |
 | Board rendering and interaction | [Board](../frontend/src/Board.tsx), [board.css](../frontend/src/board.css) | Legal destination markers, tap/drag, promotion, highlights, piece motion and quality markers. Backend-supplied legality remains authoritative. |
@@ -78,7 +79,7 @@ not React components.
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
 | Lesson source attribution | [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Course and illustrative-game citations, including optional license and external URL. |
 | Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. |
-| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Button/link variants, native inputs, typography, panels, notices and action rows are currently CSS reuse. **There is no shared React Button, SectionNavigation, Pagination, EmptyState or Modal component yet.** |
+| Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Button/link variants, native inputs, typography, panels, notices and action rows are currently CSS reuse. **There is no shared React Button, Pagination, EmptyState or Modal component yet.** |
 
 ## Audit baseline and coverage
 
@@ -108,11 +109,10 @@ subsequent conversation. This is the authoritative decision record; the later
 clarifications below supersede the original browser answers. It is committed
 repository documentation and does not depend on browser storage.
 
-**Implementation is paused at the owner's request.** The directions are agreed,
-but no standardization implementation is completed or authorized to start yet.
-The owner authorized recording these decisions and removing the temporary
-comparison tool. When implementation resumes, update each Planned row with its
-canonical component, migrated consumers, verification and commit.
+**Implementation is authorized.** Each completed choice receives its own verified
+commit so it can be reviewed or reverted independently. Keep the deferred and
+keep-existing choices unchanged. Update each Planned row and the implementation
+notes below as its shared component and consumers are verified.
 
 The main application always takes precedence over development tools when
 choosing a shared implementation. Promotion centralizes equivalent UI; it does
@@ -120,7 +120,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 
 | ID | Decision | Status | Required interpretation |
 | --- | --- | --- | --- |
-| UI-01 | Promote the Settings section-navigation tray (A). | Planned | Use its appearance for Settings and Openings; keep URL navigation, history and account/course filtering. |
+| UI-01 | Promote the Settings section-navigation tray (A). | Complete | `SectionNavigation` serves Settings and Openings; URL history and account/course filtering are preserved. |
 | UI-02 | Promote the application's PGN rectangular choice buttons (A). | Planned | Share with applicable local choices, including studio filters; preserve pressed-button semantics and PGN input clearing. |
 | UI-03 | One shared button family with ordinary, compact and icon-only sizes, plus primary, secondary and purple return styles. | Planned | Owner accepted the explanation after initially marking this unclear. Keep links for destinations and buttons for commands; common sizing rules do not require identical widths for every button. |
 | UI-04 | Promote Game Review's purple return action (A). | Planned | Share the appearance; preserve each mode's return label, handler and variation/branch behavior. |
@@ -155,6 +155,17 @@ The temporary gallery presented 127 source-based examples against snapshot
 **18be413** and was committed in **51da684**. It was removed at the owner's
 request after capturing these decisions. Historical examples remain recoverable
 from Git; no live decision-gathering tool is needed.
+
+### Implementation and verification
+
+- **UI-01 — shared section navigation:** promoted the Settings tray, removed both
+  page-specific navigation styles, and scoped main-header `nav` rules to the
+  header. Production build (API, TypeScript, style boundaries and Vite) passed.
+  `ui-standardization`, `settings` and `opening-library` browser suites passed
+  **30 desktop/mobile tests**, including 320px targets/overflow, URL history,
+  account filtering and hiding navigation inside courses. Inspected the rendered
+  Openings tray in the application. Commit subject: `UI-01: Share Settings and
+  Openings section navigation`.
 
 ## Audit findings and implementation boundaries
 

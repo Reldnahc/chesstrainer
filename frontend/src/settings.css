@@ -1,36 +1,5 @@
-.settings-navigation {
-  display: flex;
-  flex: none;
-  order: initial;
-  width: 100%;
-  justify-content: flex-start;
-  gap: 4px;
-  padding: 4px;
-  margin-bottom: 24px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-}
-.settings-navigation a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 10px 18px;
-  border-radius: 5px;
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-}
-.settings-navigation a:hover {
-  background: #292c31;
-  color: #eceef1;
-}
-.settings-navigation a[aria-current="page"] {
-  background: #39302d;
-  color: #ffb098;
-  box-shadow: inset 0 -2px var(--accent);
+.settings-content {
+  margin-top: 24px;
 }
 .settings-content,
 .settings-import {
@@ -97,17 +66,8 @@
   color: var(--muted);
 }
 @media (max-width: 760px) {
-  .settings-navigation {
-    gap: 2px;
-    margin-bottom: 16px;
-  }
-  .settings-navigation a {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 8px 5px;
-    text-align: center;
-    font-size: 12px;
-    line-height: 1.3;
+  .settings-content {
+    margin-top: 16px;
   }
   .settings-content,
   .settings-import {

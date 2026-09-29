@@ -3,6 +3,7 @@ import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
 import PageTitle from "../PageTitle";
+import SectionNavigation from "../SectionNavigation";
 import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
 import { createPuzzleStarter } from "./puzzleApi";
 import LessonLibrary from "./LessonLibrary";
@@ -87,11 +88,11 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
       </section>
     </div>}
     {mode === "openings" && <>
-      {!courseId && <nav className="opening-sections" aria-label="Opening study modes">
-        <Link href={studyPaths.openings} aria-current={openingSection === "lessons" ? "page" : undefined}>Lessons</Link>
-        <Link href={`${studyPaths.openings}/catalogue`} aria-current={openingSection === "catalogue" ? "page" : undefined}>Catalogue</Link>
-        <Link href={`${studyPaths.openings}/studies`} aria-current={openingSection === "studies" ? "page" : undefined}>My studies</Link>
-      </nav>}
+      {!courseId && <SectionNavigation label="Opening study modes" current={openingSection} items={[
+        { id: "lessons", label: "Lessons", href: studyPaths.openings },
+        { id: "catalogue", label: "Catalogue", href: `${studyPaths.openings}/catalogue` },
+        { id: "studies", label: "My studies", href: `${studyPaths.openings}/studies` },
+      ]} />}
       {openingSection === "catalogue" ? <OpeningCatalogue query={openingQuery} eco={openingEco} offset={openingOffset} />
         : openingSection === "studies" ? <OpeningStudies /> : <LessonLibrary courseId={courseId} revision={courseRevision} />}
     </>}
