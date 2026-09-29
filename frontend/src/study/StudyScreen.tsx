@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, BookOpen, Clock3, Puzzle } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import Link from "../Link";
-import { navigate, pagePaths, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
+import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
 import { startNextPuzzle } from "./puzzleApi";
 import LessonLibrary from "./LessonLibrary";
 import OpeningCatalogue from "./OpeningCatalogue";
@@ -62,13 +62,8 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   const available = source ? puzzles?.sources.filter(item => item.source === source).reduce((sum, item) => sum + item.count, 0) : puzzles?.available;
   return <div className="study-page">
     <header className="study-heading">
-      <div><p className="eyebrow">YOUR NEXT MOVE</p><h1>{mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"}</h1></div>
-      <nav aria-label="Study sections" className="study-sections">
-        <Link href={pagePaths.Study} aria-current={mode === "home" ? "page" : undefined}>Overview</Link>
-        <Link href={studyPaths.due}>Due</Link>
-        <Link href={studyPaths.openings} aria-current={mode === "openings" ? "page" : undefined}>Openings</Link>
-        <Link href={studyPaths.puzzles} aria-current={mode === "puzzles" ? "page" : undefined}>Puzzles</Link>
-      </nav>
+      <p className="eyebrow">YOUR NEXT MOVE</p>
+      <h1>{mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"}</h1>
     </header>
     {error && <p className="notice error" role="alert">{error}</p>}
     {mode === "home" && <div className="study-options">
