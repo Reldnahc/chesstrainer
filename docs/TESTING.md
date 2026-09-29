@@ -7,6 +7,18 @@ resume/alternate-path checks on desktop and mobile. Run `study-puzzles.spec.ts`
 alongside it when changing the shared display-only playback helper. Test fixture
 providers are injected only by the test application, never production flags.
 
+`study-start-retry.spec.ts` drops responses after real session creation commits
+and verifies same-session retries for chapters, opening rehearsals and puzzles
+on both viewports. Its helper tests also check request identity after successful
+creation and after changing the selected target.
+
+`test_chess_core.py`, `test_puzzles.py`, `test_lesson_castling.py` and
+`test_opening_castling.py` cover equivalent castling notation, canonical playback
+and illegal promotion suffixes. Lesson/opening tests preserve authored snapshots
+and course fingerprints; opening tests also preserve scheduling across equivalent
+answer spellings. `test_opening_lifecycle.py` bounds SQL query counts as stale
+unfinished recalls accumulate, while retaining active-session queue precedence.
+
 `test_italian_course.py` walks every bundled Italian chapter, accepted decision,
 branch, source-game endpoint and rehearsal through the production paths. It
 verifies that completion leaves existing reviews, FSRS and weakness evidence
