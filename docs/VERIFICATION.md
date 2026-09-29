@@ -2,6 +2,69 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Change-aware CI — September 29, 2026
+
+Correctness now selects dependency-aware suites for PRs, with a fail-closed
+final `CI` gate. Branch pushes no longer duplicate PR runs. Browser projects use
+isolated jobs (two application file shards per viewport), share one production
+build, and install only the runtime each suite needs. Main releases retain full
+correctness and build/smoke/publish one image. Python/npm downloads and Docker
+layers are cached. No product behavior, test assertion, engine budget or model
+configuration changed. See [TESTING.md](TESTING.md#github-actions) for selection
+rules, manual full runs and the required-check name.
+
+Verified locally:
+
+- `python -m pytest backend/tests/test_ci_plan.py -q -p no:cacheprovider
+  --basetemp data/verification/ci-planner-final-retry`: **133 passed**, 2.66s.
+  Coverage includes dependency unions, all viewports/shards, unknown paths,
+  missing history, real Git renames/deletions, documentation build inputs,
+  machine outputs, and rejection of failed/cancelled/missing/accidentally skipped
+  selected jobs. Independent workflow/helper reviews found no blockers.
+- Actionlint **1.7.12** passed both workflows. `ruff check backend scripts
+  migrations`, `ruff format --check backend scripts migrations` (280 files),
+  `python scripts/export_api_contract.py --check`, and `git diff --check` passed.
+- `npm run build` passed generated-type agreement, application/test TypeScript
+  checks and Vite. The existing large-chunk advisory remains.
+- Playwright **1.63.0** collection was compared by test/project ID, using
+  `node node_modules/playwright/cli.js test --config CONFIG --list --reporter=json`
+  and each generated entry's `--project PROJECT --shard SHARD`. The ten matrix
+  entries contain all **394** cases exactly once: application 298, accounts 8,
+  studio 44 and intelligence 44. No missing/extra/duplicate IDs. This is coverage
+  discovery, not a claim that 394 browser cases executed during this pass.
+- `docker buildx build --load -t fieldwork:ci-efficiency-check
+  data/verification/ci-efficiency-container/fieldwork` passed from a public-source
+  export. Native dependency layers were reused. The direct Windows checkout
+  could not be used because Docker could not read its local `.pytest_cache`.
+
+The host exhausted virtual memory during broader verification. Results are
+recorded explicitly rather than treating this as a clean full-suite run:
+
+- Full `pytest -q -ra --durations=20 -p no:cacheprovider` with native Stockfish:
+  **926 passed, 3 opt-in Maia skips, 2 failed**, 304.41s. It collected the first
+  122 CI regressions before the final documentation-deletion cases were added.
+  Both failures timed out during Stockfish startup; an immediate isolated retry
+  reported Windows **WinError 1455**, paging file too small. After cleanup, both
+  cases passed unchanged in **6.49s**: the imported clock/restart/branch case in
+  `test_review_clocks.py` and cancelled refinement in `test_review_refinement.py`.
+  The final 133 planner regressions were rerun separately as recorded above.
+- `npx playwright test --config playwright.accounts.config.ts --project desktop
+  --shard 1/1 --reporter=line`: final isolated retry **2 passed, 2 failed**.
+  Trace bodies for both failed signups are exactly
+  `{"detail":"[digital envelope routines] malloc failure"}` from password hashing.
+  An earlier attempt also recorded Chromium `ERR_INSUFFICIENT_RESOURCES`.
+  These are host allocation failures; account coverage is not reported passed.
+- `python scripts/smoke_install.py --image fieldwork:ci-efficiency-check` completed
+  the local-mode install/restart/native-review/Study portion, but the full smoke
+  run was interrupted by WinError 1455 during Docker subprocess startup. A later
+  retry hit an HTTP read timeout and Docker Desktop API 500 during cleanup.
+  Account-mode container smoke verification remains incomplete on this host.
+
+GitHub execution, cache reuse across Actions runs and actual CI wall-clock
+improvement cannot be claimed from local validation. These workflows have not
+been pushed during this pass. A published run must establish those results;
+neither failed tests nor installation smoke checks are bypassed by the new gate.
+
 ## Study merge review — September 29, 2026
 
 A second independent code-health pass covered legality and immutable snapshots,
