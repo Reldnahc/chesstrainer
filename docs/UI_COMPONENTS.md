@@ -85,6 +85,7 @@ not React components.
 | Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx), [motion-select.css](../frontend/src/motion-select.css) | Device default / Animated / Still choices in Settings and Studio. Inline or stacked layout; callback and persistence stay caller-owned. Shared-safe styles; Settings status/layout remains in application-only motion.css. |
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
 | Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
+| Pending/unavailable content | [LoadingState / UnavailableState](../frontend/src/LoadState.tsx) | Compact/panel states with message-only announcements and separate caller-supplied headings/actions. Requests, recovery commands and link destinations remain with each screen. |
 | Provider connection UI | [GameSync](../frontend/src/GameSync.tsx) | Compact Games action and expanded Settings cards use the same provider discovery/sync state. |
 | Provider username | [ProviderUsernameField](../frontend/src/ProviderUsernameField.tsx) | Shared native rules, unique labels/help IDs and 50-character limit. Optional connection/onboarding versus required import and busy/draft state remain caller-owned. |
 | Provider history import | [ProviderImportForm](../frontend/src/ProviderImport.tsx) | One data-driven form for all registered providers. Do not add separate Chess.com and Lichess forms. |
@@ -143,7 +144,7 @@ not erase differences in navigation semantics, domain behavior or accessibility.
 | UI-08 | Share move-feedback announcement rules while retaining rich lesson layout. | Complete | Due, puzzles and lessons use MoveStatus. Puzzles share delayed checking; lesson paragraphs remain rich and navigation never replaces them with Checking. |
 | UI-09 | Promote relative next-due time with an exact-time tooltip (A). | Complete | RecallReceipt serves game and opening recalls while their existing domain rules choose saved/relearning/retired/unscheduled copy. |
 | UI-10 | Share preference-status rendering with heading and field placements. | Complete | Coach selection and both motion fields use PreferenceStatus; providers, saved flags, retry labels and device fallback remain unchanged. |
-| UI-11 | Share compact/panel loading and unavailable states. | Planned | Fetching, retry/back actions and recovery policy remain caller-owned. |
+| UI-11 | Share compact/panel loading and unavailable states. | Complete | Seven audited consumers share LoadingState/UnavailableState without moving request or recovery logic; pending-to-error transitions preserve navigation focus. |
 | UI-12 | Share notice tone/actions with explicit alert, status and passive modes. | Planned | Historical errors stay passive; do not conflate notices with move feedback or preference-save state. |
 | UI-13 | Promote Lessons/Puzzles empty-state styling (C/D) for full sections. | Planned | Retain compact activity and search-no-results variants. |
 | UI-14 | Share provider username field rules. | Complete | ProviderUsernameField serves Settings connection, one-time import and onboarding; native validation and description association are centralized. |
@@ -319,6 +320,13 @@ from Git; no live decision-gathering tool is needed.
   focused desktop/mobile tests: **2 passed**, checking labels, zero values,
   shared geometry and no phone overflow. Commit subject: `UI-20: Share study
   statistics markup and styles`.
+
+- **UI-11 — loading and recovery:** shared compact/panel messages and action
+  layout across review, evidence, lessons, puzzles and opening previews. Removed
+  the unused loading class. Production build passed; API-gated browser tests:
+  **20 passed** across desktop/320px mobile. Checks preserve retries, links,
+  keyboard focus and cold-practice silence while loading. Commit subject:
+  `UI-11: Share loading and unavailable content states`.
 
 ## Audit findings and implementation boundaries
 

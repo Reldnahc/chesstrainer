@@ -1,5 +1,6 @@
 import type { Promotion } from "./api";
 import Board from "./Board";
+import { LoadingState } from "./LoadState";
 import ReviewWorkspace from "./ReviewWorkspace";
 import ReviewPanel from "./srsReview/ReviewPanel";
 import { useReviewSession } from "./srsReview/useReviewSession";
@@ -71,7 +72,7 @@ export default function ReviewScreen({
       {loading ? (
         <>
           <div className="review-workspace-heading">{heading}</div>
-          <div className="panel loading">Loading your practice…</div>
+          <LoadingState presentation="panel">Loading your practice…</LoadingState>
         </>
       ) : (
         <div className="review-session">

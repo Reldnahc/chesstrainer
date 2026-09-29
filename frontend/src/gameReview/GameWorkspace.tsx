@@ -1,3 +1,4 @@
+import { LoadingState, UnavailableState } from "../LoadState";
 import { ArrowLeft } from "lucide-react";
 import Board from "../Board";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -104,7 +105,9 @@ export default function GameWorkspace({
           <ArrowLeft size={16} />
           All games
         </ActionLink>
-        <p role={error ? "alert" : "status"}>{error || "Opening game…"}</p>
+        {error
+          ? <UnavailableState>{error}</UnavailableState>
+          : <LoadingState>Opening game…</LoadingState>}
       </>
     );
   const playerName = (color: "white" | "black") => {

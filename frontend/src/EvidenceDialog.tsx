@@ -4,6 +4,7 @@ import { api, read, type Evidence, type Schema } from "./api";
 import Board from "./Board";
 import Button, { IconButton } from "./Button";
 import useModalDialog from "./useModalDialog";
+import { LoadingState } from "./LoadState";
 export default function EvidenceDialog({
   id,
   onClose,
@@ -123,7 +124,7 @@ export default function EvidenceDialog({
           </div>
         </div>
       ) : (
-        <p>Loading evidence…</p>
+        <LoadingState>Loading evidence…</LoadingState>
       )}
     </dialog>
   );

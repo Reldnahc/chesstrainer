@@ -1,3 +1,4 @@
+import { LoadingState, UnavailableState } from "../LoadState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import Board from "../Board";
@@ -37,8 +38,8 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     } catch (e) { if (!controller.signal.aborted) setNextError((e as Error).message); }
     finally { if (!controller.signal.aborted) { setOpeningNext(false); nextRequest.current = null; } }
   }
-  if (loading) return <div className="panel loading" role="status">Loading your puzzle…</div>;
-  if (!session) return <section className="panel"><h1>Puzzle unavailable</h1><p role="alert">{error}</p><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.puzzles}>All puzzles</ActionLink></section>;
+  if (loading) return <LoadingState presentation="panel">Loading your puzzle…</LoadingState>;
+  if (!session) return <UnavailableState presentation="panel" heading={<h1>Puzzle unavailable</h1>} actions={<><Button onClick={state.reload}>Try loading again</Button><ActionLink variant="secondary" href={studyPaths.puzzles}>All puzzles</ActionLink></>}>{error}</UnavailableState>;
   const complete = session.status !== "active";
   const incorrect = retrying && !complete;
   const correct = session.feedback?.grade === "correct" && !complete;

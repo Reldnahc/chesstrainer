@@ -1,3 +1,4 @@
+import { LoadingState, UnavailableState } from "../LoadState";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
@@ -74,7 +75,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     finally { if (!signal?.aborted) { locked.current = false; setBusy(false); } }
   }
   const back = courseLine ? lessonCoursePath(courseLine.courseId, courseLine.revision) : openingCataloguePath();
-  if (!line) return <section className="panel"><h1>Opening preview</h1>{error ? <p role="alert">{error}</p> : <p role="status">Loading the selected line…</p>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
+  if (!line) return <section className="panel"><h1>Opening preview</h1>{error ? <UnavailableState>{error}</UnavailableState> : <LoadingState>Loading the selected line…</LoadingState>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
   const frame = ply ? line.frames[ply - 1] : null;
   const positions = color === "white" ? line.white_positions : line.black_positions;
   return <ReviewWorkspace
