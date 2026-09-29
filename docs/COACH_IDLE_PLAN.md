@@ -1,6 +1,6 @@
 # Coach idle revamp — implementation plan
 
-Status: implementation in progress; Milestones 1–2 are complete. Next: repertoire.
+Status: implementation in progress; Milestones 1–3 are complete. Next: studio and visual polish.
 The plan passed three design-review rounds before implementation.
 Branch: `codex/coach-idle-revamp`, created from local `main` at `fa9dc64`.
 
@@ -19,7 +19,14 @@ Milestone 2: entrance eye squeezes now settle into attentive eyes across the cas
 without changing the semantic face, other geometry or reaction timing. Rendered
 rig coverage checked all 600 current coach/expression pairs. Resting-face tests
 covered 38 distinct desktop/mobile cases; TypeScript and production build passed.
-Independent review found no material issue. Details are in `VERIFICATION.md`.
+Independent review found no material issue. Committed as `7f4a64b`.
+Details are in `VERIFICATION.md`.
+
+Milestone 3: all 30 current coaches now have two authored signatures and six new
+shared variants. Resolved repertoires contain 18–22 distinct gestures per coach,
+8–14 per expression and 6,740 total configured slots. Build/type checks, 12
+exhaustive desktop/mobile cases, vocabulary coverage and independent review
+passed. New limb/detail wrappers preserve attachment and prop eligibility.
 
 ## Intended experience
 

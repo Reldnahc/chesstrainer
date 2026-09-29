@@ -94,7 +94,7 @@ export default function RobotCoach({ expression }: CoachArtworkProps) {
           <g className="study-head">
             <g className="study-head-idle">
               <g className="study-head-pose">
-                <g className="cast-antenna">
+                <g className="cast-antenna coach-idle-antenna">
                   <path d="M50 21V12l7-5" fill="none" stroke="#849da1" strokeWidth="3" strokeLinecap="round" />
                   <circle cx="59" cy="6" r="4" fill={status} />
                   <circle cx="58" cy="5" r="1.2" fill="#e9f1d6" />

@@ -5,7 +5,7 @@ import { getCoach, selectableCoaches } from "../registry";
 import {
   expressionIdles,
   expressionInfo,
-  microLabels,
+  idlePresentation,
   type CoachIdle,
 } from "../model";
 import type { StudioPreview } from "./PreviewPanels";
@@ -16,6 +16,7 @@ function IdleCard({ preview, gesture, index }: {
   index: number;
 }) {
   const [replay, setReplay] = useState(0);
+  const { label, description } = idlePresentation(preview.coach, preview.family, preview.reaction.state, gesture);
   return (
     <article className="studio-idle-card" data-gesture={gesture}>
       <span className="studio-size-label">
@@ -29,11 +30,11 @@ function IdleCard({ preview, gesture, index }: {
         previewIdle={gesture}
         replay={replay}
         idle={false}
-        label={`${expressionInfo[preview.reaction.state].label}: ${microLabels[gesture]}`}
+        label={`${expressionInfo[preview.reaction.state].label}: ${label}`}
       />
-      <h3>{microLabels[gesture]}</h3>
+      <h3 title={description}>{label}</h3>
       <button
-        aria-label={`Replay idle ${index + 1}: ${microLabels[gesture]}`}
+        aria-label={`Replay idle ${index + 1}: ${label}`}
         disabled={preview.motion === "still"}
         onClick={() => setReplay((value) => value + 1)}
       >

@@ -1,0 +1,180 @@
+@import "./scifi.css";
+
+/* New detail wrappers sit inside the expression pose, so idle transforms never
+   replace a wing's tucked angle, the beard attachment or a sleeve's joint. */
+.fantasy-dragon .coach-idle-wings { transform-origin: 28px 103px; }
+.fantasy-wizard .coach-idle-leftArm { transform-origin: 23px 107px; }
+.fantasy-wizard .coach-idle-rightArm { transform-origin: 77px 107px; }
+.fantasy-wizard .coach-glasses { transform-origin: 50px 46px; }
+.fantasy-beard { transform-origin: 50px 69px; }
+.fantasy-ghost-hem { transform-origin: 50px 92px; }
+.fantasy-slime-rim { transform-origin: 50px 109px; }
+.fantasy-mushroom .coach-idle-cap { transform-origin: 50px 47px; }
+
+@keyframes coach-idle-unusual-unicorn-turn {
+  0%, 100% { transform: none; }
+  22% { transform: rotate(-1deg); }
+  48%, 60% { transform: rotate(3deg) translateY(-.8px); }
+  83% { transform: rotate(-.4deg); }
+}
+@keyframes coach-idle-unusual-mane-follow {
+  0%, 100% { transform: none; }
+  20% { transform: rotate(-2deg); }
+  48% { transform: rotate(3deg) skewX(-1.3deg); }
+  72% { transform: rotate(-1.1deg); }
+  88% { transform: rotate(.4deg); }
+}
+@keyframes coach-idle-unusual-unicorn-listen {
+  0%, 100% { transform: none; }
+  23%, 42% { transform: rotate(-9deg); }
+  68% { transform: rotate(2deg); }
+}
+@keyframes coach-idle-unusual-unicorn-answer {
+  0%, 100% { transform: none; }
+  32%, 52% { transform: rotate(-6deg); }
+  77% { transform: rotate(1.5deg); }
+}
+@keyframes coach-idle-unusual-muzzle-lift {
+  0%, 100% { transform: none; }
+  36%, 62% { transform: translateY(-1.7px) rotate(.8deg); }
+  82% { transform: translateY(.35px); }
+}
+@keyframes coach-idle-unusual-scholar-peer {
+  0%, 100% { transform: none; }
+  28%, 52% { transform: translateY(1.6px) rotate(1.3deg); }
+  72% { transform: translateY(-.5px); }
+}
+@keyframes coach-idle-unusual-rims-settle {
+  0%, 100% { transform: none; }
+  23%, 50% { transform: translateY(-1.5px) rotate(-.5deg); }
+  70% { transform: translateY(.3px); }
+}
+@keyframes coach-idle-unusual-scholar-refocus {
+  0%, 100% { transform: none; }
+  18%, 44% { transform: translateY(-1px); }
+  64%, 80% { transform: translate(.4px, .4px); }
+}
+@keyframes coach-idle-unusual-scholar-shoulders {
+  0%, 100% { transform: none; }
+  25% { transform: translateY(-.5px) scaleX(.992); }
+  55%, 68% { transform: translateY(.7px) scaleX(1.008); }
+}
+@keyframes coach-idle-unusual-sleeve-settle {
+  0%, 100% { transform: none; }
+  34%, 56% { transform: rotate(-6deg); }
+  78% { transform: rotate(1deg); }
+}
+@keyframes coach-idle-unusual-beard-follow {
+  0%, 100% { transform: none; }
+  33% { transform: skewX(-2.5deg) scaleY(1.025); }
+  63% { transform: skewX(1.2deg) scaleY(.99); }
+  83% { transform: skewX(-.4deg); }
+}
+@keyframes coach-idle-unusual-wing-fold {
+  0%, 100% { transform: none; }
+  26%, 48% { transform: rotate(6deg) scaleX(.93); }
+  73% { transform: rotate(-1.7deg) scaleX(1.015); }
+  90% { transform: rotate(.5deg); }
+}
+@keyframes coach-idle-unusual-dragon-anchor {
+  0%, 100% { transform: none; }
+  30%, 53% { transform: translateY(.65px) scaleY(.993); }
+  77% { transform: translateY(-.2px); }
+}
+@keyframes coach-idle-unusual-dragon-watch {
+  0%, 100% { transform: none; }
+  18%, 45% { transform: translate(1.4px, -.35px); }
+  69%, 80% { transform: translate(-.35px, .4px); }
+}
+@keyframes coach-idle-unusual-dragon-turn {
+  0%, 100% { transform: none; }
+  34%, 54% { transform: rotate(2.8deg) translateY(-.4px); }
+  78% { transform: rotate(-.5deg); }
+}
+@keyframes coach-idle-unusual-dragon-ear {
+  0%, 100% { transform: none; }
+  32%, 47% { transform: rotate(-8deg); }
+  73% { transform: rotate(1.5deg); }
+}
+@keyframes coach-idle-unusual-ghost-float {
+  0%, 100% { transform: none; }
+  28%, 43% { transform: translateY(-2.1px); }
+  73% { transform: translateY(.65px); }
+}
+@keyframes coach-idle-unusual-ghost-trail {
+  0%, 100% { transform: none; }
+  29%, 45% { transform: scaleY(1.055) skewX(-2deg); }
+  72% { transform: scaleY(.975) skewX(.8deg); }
+}
+@keyframes coach-idle-unusual-ghost-drift {
+  0%, 100% { transform: none; }
+  35%, 50% { transform: translateX(-2.4px) rotate(-1.2deg); }
+  79% { transform: translateX(.5px) rotate(.3deg); }
+}
+@keyframes coach-idle-unusual-ghost-look {
+  0%, 100% { transform: none; }
+  34%, 58% { transform: translateX(-1px); }
+  80% { transform: translateX(.25px); }
+}
+@keyframes coach-idle-unusual-ghost-counterflow {
+  0%, 100% { transform: none; }
+  33%, 48% { transform: skewX(4deg) scaleY(1.015); }
+  76% { transform: skewX(-1.4deg); }
+}
+@keyframes coach-idle-unusual-slime-transfer {
+  0%, 100% { transform: none; }
+  22% { transform: skewX(-2.1deg) scale(1.012, .984); }
+  47% { transform: skewX(1.8deg) scale(.991, 1.015); }
+  73% { transform: skewX(-.7deg) scale(1.008, .995); }
+}
+@keyframes coach-idle-unusual-slime-refocus {
+  0%, 100% { transform: none; }
+  22% { transform: translateX(1.25px); }
+  49% { transform: translateX(-.9px); }
+  74% { transform: translateX(.3px); }
+}
+@keyframes coach-idle-unusual-slime-ripple {
+  0%, 100% { transform: none; }
+  24% { transform: skewX(4deg) scaleY(.88); }
+  52% { transform: skewX(-3deg) scaleY(1.06); }
+  78% { transform: skewX(1deg) scaleY(.98); }
+}
+@keyframes coach-idle-unusual-slime-rebound {
+  0%, 100% { transform: none; }
+  18%, 28% { transform: scale(1.035, .955); }
+  51% { transform: scale(.982, 1.03); }
+  75% { transform: scale(1.009, .985); }
+  90% { transform: scale(.997, 1.005); }
+}
+@keyframes coach-idle-unusual-slime-afterwave {
+  0%, 100% { transform: none; }
+  23% { transform: scale(1.018, .86); }
+  50% { transform: scale(.99, 1.1); }
+  75% { transform: scale(1.005, .96); }
+}
+@keyframes coach-idle-unusual-cap-settle {
+  0%, 100% { transform: none; }
+  23%, 35% { transform: rotate(-2deg) scaleY(.976); }
+  61% { transform: rotate(1.3deg) scaleY(1.01); }
+  82% { transform: rotate(-.45deg); }
+}
+@keyframes coach-idle-unusual-mushroom-blink {
+  0%, 16%, 68%, 100% { transform: scaleY(1); }
+  35%, 44% { transform: scaleY(.08); }
+}
+@keyframes coach-idle-unusual-stem-lean {
+  0%, 100% { transform: none; }
+  34%, 54% { transform: rotate(-2.8deg); }
+  79% { transform: rotate(.45deg); }
+}
+@keyframes coach-idle-unusual-cap-follow {
+  0%, 100% { transform: none; }
+  24%, 43% { transform: rotate(2.1deg); }
+  69% { transform: rotate(-1.3deg); }
+  86% { transform: rotate(.3deg); }
+}
+@keyframes coach-idle-unusual-mushroom-look {
+  0%, 100% { transform: none; }
+  23%, 52% { transform: translate(-1px, .5px); }
+  78% { transform: translate(.25px, -.15px); }
+}

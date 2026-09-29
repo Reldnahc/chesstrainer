@@ -8,8 +8,8 @@ import type {
 
 type Pools = Record<CoachExpression, CoachIdlePool>;
 
-// Each slot animates a different part or action. Concern never borrows a
-// celebration, and closed-eye expressions never rely on a pupil-only glance.
+// Character directions retain their preferred actions. Shared resting additions
+// broaden the repertoire without borrowing celebratory gestures for concern.
 const expressionPools: Pools = {
   neutral: ["blink", "glance", "breathe", "head-tilt"],
   idle: ["slow-blink", "scan", "breathe", "posture-reset"],
@@ -77,7 +77,7 @@ type MotionDirection = Omit<CoachMotionProfile, "id"> & {
 };
 
 // Acting choices belong beside the rig, independently of chess facts or prose.
-// Signature gestures appear only on characters with the corresponding part.
+// Rig compatibility and signature emotion eligibility are resolved at playback.
 export const motionDirections = {
   classic: {
     style: "reassuring", amplitude: 1, gaze: 1, settle: 1,
@@ -271,6 +271,16 @@ export const motionDirections = {
   },
 } satisfies Record<CoachId, MotionDirection>;
 
+const affirmingStates: readonly CoachExpression[] = [
+  "brilliant", "great", "best", "good", "winning", "encouraging", "recovered",
+];
+const reflectiveStates: readonly CoachExpression[] = [
+  "neutral", "idle", "book", "thinking", "uncertain", "explaining", "draw",
+];
+const sharedRestingChoices: CoachIdlePool = [
+  "blink", "breathe", "double-blink", "glance-right", "tilt-right", "weight-shift",
+];
+
 export function coachPerformance(
   coachId: string,
   base: CoachDefinition["animation"],
@@ -285,10 +295,18 @@ export function coachPerformance(
     ...styles[direction.style],
     ...direction.pools,
   };
-  // Baseline eye activity is independently due, never dependent on winning a
-  // random draw. A quiet body track keeps every repertoire live during cooldowns.
+  // Blink and breath guarantee eye opportunities and a quiet cooldown fallback.
+  // Directional attention, eye rhythm and lateral posture add visible variety;
+  // signature definitions independently gate emotional and held-prop safety.
   for (const state of Object.keys(pools) as CoachExpression[]) {
-    pools[state] = [...new Set([...pools[state], "blink", "breathe"] as const)];
+    const affirming = affirmingStates.includes(state);
+    const additions: CoachIdlePool = [
+      ...sharedRestingChoices,
+      ...(affirming || reflectiveStates.includes(state) ? ["look-up" as const] : []),
+      ...(affirming ? ["nod-twice" as const] : []),
+      "signature-a", "signature-b",
+    ];
+    pools[state] = [...new Set([...pools[state], ...additions])];
   }
   return {
     ...base,

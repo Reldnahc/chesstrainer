@@ -2,8 +2,11 @@ import type { CSSProperties } from "react";
 import type { CoachDefinition, CoachExpression, CoachIdle } from "./model";
 import { gesture, idleChannels, track, type IdleGesture } from "./idleModel";
 import { rigChannels } from "./idleRig";
+import { sharedIdleGestures } from "./idleShared";
+import { signatureFor } from "./idleSignatures";
 
-export const idleGestures: Record<CoachIdle, IdleGesture> = {
+export const idleGestures: Record<Exclude<CoachIdle, "signature-a" | "signature-b">, IdleGesture> = {
+  ...sharedIdleGestures,
   blink: gesture("blink", "eyes", [track("eyes", "blink", 260)], { blink: true, intensity: "quiet", cooldownMs: 2400 }),
   "slow-blink": gesture("slow-blink", "eyes", [track("eyes", "slow-blink", 1100)], { blink: true, intensity: "quiet", cooldownMs: 3500 }),
   glance: gesture("glance", "attention", [track("gaze", "glance", 1150)], { intensity: "quiet" }),
@@ -22,11 +25,20 @@ export const idleGestures: Record<CoachIdle, IdleGesture> = {
   scan: gesture("scan", "attention", [track("head", "scan", 1200), track("gaze", "gaze-scan", 1200), track("scanline", "screen-scan", 1200), track("lens", "lens", 1200)]),
 };
 
-export function configuredGestures(animation: CoachDefinition["animation"], expression: CoachExpression) {
+export type PresentedIdleGesture = IdleGesture & { label?: string; description?: string };
+
+export function configuredGestures(animation: CoachDefinition["animation"], expression: CoachExpression): PresentedIdleGesture[] {
   const ids = animation.idleGestures[expression] ?? animation.defaultIdle;
-  const channels = rigChannels(animation.motionProfile?.id ?? "unknown", expression);
-  return [...new Set(ids)].flatMap((id) => {
+  const coachId = animation.motionProfile?.id ?? "unknown";
+  const channels = rigChannels(coachId, expression);
+  return [...new Set(ids)].flatMap<PresentedIdleGesture>((id) => {
     if (!id) return [];
+    if (id === "signature-a" || id === "signature-b") {
+      const signature = signatureFor(coachId, id, expression);
+      // A coordinated signature is one performance. Missing a limb must not
+      // silently turn it into a partial (or differently meaningful) gesture.
+      return signature?.tracks.every(part => channels.includes(part.channel)) ? [signature] : [];
+    }
     const definition = idleGestures[id];
     const tracks = definition.tracks.filter((part) => channels.includes(part.channel));
     return tracks.length ? [{ ...definition, tracks,

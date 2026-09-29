@@ -19,6 +19,15 @@ const selectors: Record<IdleChannel, string> = {
   scanline: ".cast-scanline",
   lens: ".cast-lens",
   throat: ".cast-frog-throat",
+  brows: ".coach-idle-brows",
+  leftArm: ".coach-idle-leftArm",
+  rightArm: ".coach-idle-rightArm",
+  leftPaw: ".coach-idle-leftPaw",
+  rightPaw: ".coach-idle-rightPaw",
+  wings: ".coach-idle-wings",
+  antenna: ".coach-idle-antenna",
+  cap: ".coach-idle-cap",
+  hem: ".coach-idle-hem",
 };
 
 test("rig capabilities match mounted production artwork, including conditional accents", async ({ page }) => {

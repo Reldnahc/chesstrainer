@@ -5,6 +5,7 @@ export const IDLE_GAP_MS = [500, 1000] as const;
 export const idleChannels = [
   "eyes", "gaze", "head", "body", "glasses", "hair", "leftEar", "rightEar",
   "whiskers", "tail", "stars", "glint", "scanline", "lens", "throat",
+  "brows", "leftArm", "rightArm", "leftPaw", "rightPaw", "wings", "antenna", "cap", "hem",
 ] as const;
 export type IdleChannel = (typeof idleChannels)[number];
 export type IdleTrack = {

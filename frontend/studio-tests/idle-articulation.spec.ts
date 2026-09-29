@@ -34,6 +34,7 @@ test("every configured idle has distinct canonical tracks on its actual expressi
       configuredGestures(coachPerformance(id, classicPerformance), expression).map((gesture) => ({
         id: gesture.id,
         style: idleTrackStyle([{ gesture }]),
+        authoredTracks: gesture.tracks,
       })),
     ]));
     const expected = Object.values(pools).reduce((sum, pool) => sum + pool.length, 0);
@@ -43,6 +44,23 @@ test("every configured idle has distinct canonical tracks on its actual expressi
       // This proves actual SVG targets exist; clock tests own their scheduling.
       const failures: string[] = [];
       let checked = 0;
+      const keyframes = new Map<string, string>();
+      const collectKeyframes = (rules: CSSRuleList) => {
+        for (const rule of rules) {
+          if (rule instanceof CSSKeyframesRule) {
+            keyframes.set(rule.name, [...rule.cssRules].map((frame) => frame.cssText).join("|"));
+          } else if (rule instanceof CSSImportRule && rule.styleSheet) {
+            collectKeyframes(rule.styleSheet.cssRules);
+          } else if ("cssRules" in rule) collectKeyframes((rule as CSSGroupingRule).cssRules);
+        }
+      };
+      for (const sheet of document.styleSheets) {
+        try { collectKeyframes(sheet.cssRules); }
+        catch (error) {
+          // Cross-origin font sheets do not own any coach animation rules.
+          if (!(error instanceof DOMException && error.name === "SecurityError")) throw error;
+        }
+      }
       for (const avatar of avatars) {
         const state = avatar.getAttribute("data-expression")!;
         const pool = pools[state] ?? [];
@@ -51,7 +69,7 @@ test("every configured idle has distinct canonical tracks on its actual expressi
         const originalStyle = portrait.getAttribute("style");
         portrait.setAttribute("data-phase", "rest");
         portrait.setAttribute("data-motion", "natural");
-        for (const { id, style } of pool) {
+        for (const { id, style, authoredTracks } of pool) {
           Object.entries(style).forEach(([property, value]) => portrait.style.setProperty(property, String(value)));
           portrait.setAttribute("data-idles", id);
           const tracks = [...portrait.querySelectorAll("*")].flatMap((node) => {
@@ -65,10 +83,22 @@ test("every configured idle has distinct canonical tracks on its actual expressi
             }];
           });
           if (!tracks.length) failures.push(`${coachId}:${state}:${id} has no target`);
-          if (tracks.some((track) => !track.name.startsWith("coach-idle-"))) {
+          if (tracks.some((track) => track.name.split(",").some((name) => !name.trim().startsWith("coach-idle-")))) {
             failures.push(`${coachId}:${state}:${id} borrowed a full reaction`);
           }
-          const signature = JSON.stringify(tracks);
+          if (tracks.some((track) => !keyframes.has(track.name))) {
+            failures.push(`${coachId}:${state}:${id} references missing keyframe artwork`);
+          }
+          for (const authored of authoredTracks) {
+            if (!tracks.some((track) => track.name === authored.keyframes
+              && Math.abs(Number.parseFloat(track.duration) * 1000 - authored.durationMs) < 0.01
+              && Math.abs(Number.parseFloat(track.delay) * 1000 - (authored.delayMs ?? 0)) < 0.01)) {
+              failures.push(`${coachId}:${state}:${id} has no canonical live track for ${authored.channel}`);
+            }
+          }
+          const signature = JSON.stringify(tracks.map(({ name, ...track }) => ({
+            ...track, motion: keyframes.get(name) ?? name,
+          })));
           if (signatures.has(signature)) failures.push(`${coachId}:${state}:${id} duplicates a motion track and timing`);
           signatures.add(signature);
           checked++;
