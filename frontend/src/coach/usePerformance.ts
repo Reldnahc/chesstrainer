@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   type CoachDefinition,
   type CoachMicro,
   type CoachMotion,
   type CoachReaction,
 } from "./model";
-import { IDLE_GAP_MS, IDLE_GESTURE_MS, nextIdle } from "./idle";
+import { configuredGestures, idleTrackStyle } from "./idleGestures";
+import { createIdleCoordinator, type IdleFrame } from "./idleCoordinator";
 import { useReducedMotion } from "../useReducedMotion";
 import { resolveMotion } from "../motion";
 
@@ -31,12 +32,11 @@ export function usePerformance({
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
   const [active, setActive] = useState(!document.hidden);
-  const [committed, setCommitted] = useState<CoachReaction | null>(null);
+  const [committed, setCommitted] = useState<(CoachReaction & { identity: string }) | null>(null);
   const [phase, setPhase] = useState<"reaction" | "rest">("rest");
-  const [micro, setMicro] = useState<CoachMicro>("");
+  const [frame, setFrame] = useState<{ owner: string; value: IdleFrame } | null>(null);
   const [take, setTake] = useState(0);
   const played = useRef(0);
-  const previousIdle = useRef({ identity: "", expression: "", gesture: "" as CoachMicro });
   const reduced = useReducedMotion();
   const effectiveMotion = resolveMotion(motion, reduced);
 
@@ -64,59 +64,52 @@ export function usePerformance({
     // so a cached/fast answer doesn't flash a loading expression.
     const delay = reaction.state === "thinking" ? 420 : 110;
     const timer = window.setTimeout(() => {
-      setCommitted(reaction);
+      setCommitted({ ...reaction, identity });
       setTake((value) => value + 1);
     }, delay);
     return () => window.clearTimeout(timer);
   }, [reaction.key, reaction.state, identity, replay]);
 
   const current =
-    committed?.key === reaction.key && committed?.state === reaction.state;
+    committed?.key === reaction.key && committed?.state === reaction.state && committed?.identity === identity;
   // Known feedback is readable immediately. Only the entrance waits for a dwell;
   // inserting a neutral face between two known moves creates visible flicker.
   const expression =
     reaction.state === "thinking" && !current ? "neutral" : reaction.state;
+  const gestures = useMemo(() => configuredGestures(animation, expression), [animation, expression]);
+  const coordinator = useMemo(() => createIdleCoordinator(gestures, { now: performance.now() }), [gestures, identity]);
+  const owner = `${identity}:${reaction.key}:${reaction.state}:${take}`;
   useEffect(() => {
     let timer: number | undefined;
-    let finish: number | undefined;
     const running = effectiveMotion !== "still" && visible && active && current;
-    setMicro("");
+    setFrame(null);
+    coordinator.suspend(performance.now());
     const fresh = current && played.current !== take;
+    const gesture = gestures.find((entry) => entry.id === previewIdle);
     if (running) played.current = take;
     setPhase(
-      running && fresh && reactionsEnabled && !previewIdle
+      running && fresh && reactionsEnabled && !gesture
         ? "reaction"
         : "rest",
     );
     if (!running) return;
-    let last: CoachMicro =
-      previousIdle.current.identity === identity &&
-      previousIdle.current.expression === expression
-        ? previousIdle.current.gesture
-        : "";
-    const scheduleIdle = () => {
-      if (!idleEnabled) return;
-      timer = window.setTimeout(
-        () => {
-          last = nextIdle(animation, expression, last);
-          previousIdle.current = { identity, expression, gesture: last };
-          setMicro(last);
-          finish = window.setTimeout(() => {
-            setMicro("");
-            scheduleIdle();
-          }, IDLE_GESTURE_MS);
-        },
-        IDLE_GAP_MS[0] + Math.random() * (IDLE_GAP_MS[1] - IDLE_GAP_MS[0]),
-      );
+    const publish = (value: IdleFrame) => {
+      setFrame({ owner, value });
+      if (value.nextAt !== null) {
+        timer = window.setTimeout(() => publish(coordinator.advance(performance.now())), Math.max(1, value.nextAt - performance.now()));
+      }
     };
-    if (previewIdle && fresh) {
-      last = previewIdle;
-      setMicro(previewIdle);
-      previousIdle.current = { identity, expression, gesture: previewIdle };
-      finish = window.setTimeout(() => {
-        setMicro("");
+    const scheduleIdle = () => {
+      if (idleEnabled) publish(coordinator.resume(performance.now()));
+    };
+    if (gesture && fresh) {
+      const startedAt = performance.now();
+      const preview = { gesture, startedAt, endsAt: startedAt + gesture.durationMs, sequence: take };
+      setFrame({ owner, value: { ...coordinator.snapshot(startedAt), active: [preview], started: [preview], nextAt: null } });
+      timer = window.setTimeout(() => {
+        setFrame(null);
         scheduleIdle();
-      }, IDLE_GESTURE_MS);
+      }, gesture.durationMs);
     } else if (fresh && reactionsEnabled) {
       timer = window.setTimeout(() => {
         setPhase("rest");
@@ -125,7 +118,7 @@ export function usePerformance({
     } else scheduleIdle();
     return () => {
       window.clearTimeout(timer);
-      window.clearTimeout(finish);
+      coordinator.suspend(performance.now());
     };
   }, [
     take,
@@ -139,7 +132,15 @@ export function usePerformance({
     animation,
     reactionsEnabled,
     identity,
+    owner,
+    coordinator,
+    gestures,
   ]);
 
-  return { ref, expression, phase, micro, take, motion: effectiveMotion };
+  const tracks = current && visible && active && effectiveMotion !== "still" && frame?.owner === owner ? frame.value.active : [];
+  return {
+    ref, expression, phase, micro: tracks[0]?.gesture.id ?? "", take,
+    motion: effectiveMotion, idles: tracks.map((track) => track.gesture.id).join(" "),
+    idleStyle: idleTrackStyle(tracks), diagnostics: frame?.owner === owner ? frame.value.diagnostics : null,
+  };
 }

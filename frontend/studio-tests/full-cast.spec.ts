@@ -1,27 +1,48 @@
-import { expect, test } from "@playwright/test";
-import { expressions } from "../src/coach/model";
+import { expect, test, type Page } from "@playwright/test";
+import path from "node:path";
+import { expressions, type CoachDefinition, type CoachExpression, type CoachIdle } from "../src/coach/model";
 
-test("the complete cast exposes twenty expressions and four real idle variants per expression", async ({ page }, info) => {
+async function readCast(page: Page) {
+  const root = `/@fs/${path.resolve(".").replaceAll("\\", "/")}`;
+  return page.evaluate(async (root) => {
+    const [{ selectableCoaches }, { expressionIdles, expressions }] = await Promise.all([
+      import(`${root}/src/coach/registry.ts`),
+      import(`${root}/src/coach/model.ts`),
+    ]);
+    return selectableCoaches.map((coach: CoachDefinition) => ({
+      id: coach.id,
+      repertoire: Object.fromEntries(expressions.map((state: CoachExpression) => [
+        state, expressionIdles(coach, coach.defaultFamily, state),
+      ])) as Record<CoachExpression, CoachIdle[]>,
+    })) as { id: string; repertoire: Record<CoachExpression, CoachIdle[]> }[];
+  }, root);
+}
+
+test("the complete cast exposes every expression and its configured idle repertoire", async ({ page }, info) => {
   test.setTimeout(240_000);
   await page.goto("/");
   await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
+  const cast = await readCast(page);
   const roster = page.locator(".studio-cast button");
-  await expect(roster).toHaveCount(30);
+  await expect(roster).toHaveCount(cast.length);
   const ids = await roster.locator(".coach-avatar").evaluateAll((avatars) => avatars.map((avatar) => avatar.getAttribute("data-coach")!));
-  expect(new Set(ids).size).toBe(30);
+  expect([...new Set(ids)].sort()).toEqual(cast.map((coach) => coach.id).sort());
   for (const retired of ["dog-sunny", "cat-tabby", "cat-calico"]) expect(ids).not.toContain(retired);
   for (const retained of ["classic", "dog-gentle", "cat-tuxedo", "cat-black"]) expect(ids).toContain(retained);
 
   for (const id of ids) {
+    const coach = cast.find((entry) => entry.id === id)!;
     await page.locator(`.studio-cast button:has([data-coach="${id}"])`).click();
     await expect(page.locator(`.studio-cast button:has([data-coach="${id}"])`)).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator(".studio-expression")).toHaveCount(expressions.length);
     for (const state of expressions) {
       await page.getByRole("combobox", { name: "Expression", exact: true }).selectOption(state);
+      const repertoire = coach.repertoire[state];
       const cards = page.locator(".studio-idle-card");
-      await expect(cards).toHaveCount(4);
+      await expect(cards).toHaveCount(repertoire.length);
       const gestures = await cards.evaluateAll((elements) => elements.map((element) => element.getAttribute("data-gesture")));
-      expect(new Set(gestures).size, `${id}:${state}`).toBe(4);
+      expect(gestures, `${id}:${state}`).toEqual(repertoire);
+      expect(new Set(gestures).size, `${id}:${state}`).toBe(repertoire.length);
       await expect(cards.locator(".coach-avatar").first()).toHaveAttribute("data-expression", state);
       const states = await cards.locator(".coach-avatar").evaluateAll((avatars) => avatars.map((avatar) => ({
         expression: avatar.getAttribute("data-expression"),
@@ -29,8 +50,8 @@ test("the complete cast exposes twenty expressions and four real idle variants p
         phase: avatar.getAttribute("data-phase"),
         micro: avatar.getAttribute("data-micro"),
       })));
-      expect(states).toEqual(Array.from({ length: 4 }, () => ({ expression: state, motion: "still", phase: "rest", micro: "" })));
-      await expect(page.getByRole("combobox", { name: "Idle gesture", exact: true }).locator("option")).toHaveCount(4);
+      expect(states).toEqual(repertoire.map(() => ({ expression: state, motion: "still", phase: "rest", micro: "" })));
+      await expect(page.getByRole("combobox", { name: "Idle gesture", exact: true }).locator("option")).toHaveCount(repertoire.length);
     }
     await page.locator(".studio-expression-grid").screenshot({
       path: `studio-test-results/cast-expressions-${id}-${info.project.name}.png`,
@@ -43,7 +64,10 @@ test("expression idles replay independently while full cast comparisons share th
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/?coach=cat-tuxedo&expression=blunder");
   const cards = page.locator(".studio-idle-card");
-  for (let index = 0; index < 4; index++) {
+  const coach = (await readCast(page)).find((entry) => entry.id === "cat-tuxedo")!;
+  const repertoire = coach.repertoire.blunder;
+  await expect(cards).toHaveCount(repertoire.length);
+  for (let index = 0; index < repertoire.length; index++) {
     const card = cards.nth(index);
     const avatar = card.locator(".coach-avatar");
     const gesture = await card.getAttribute("data-gesture");

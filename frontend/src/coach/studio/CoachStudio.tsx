@@ -8,6 +8,7 @@ import {
   expressionInfo,
   expressionIntent,
   expressionIdles,
+  availableIdles,
   microLabels,
   expressions,
   resolveFamily,
@@ -172,8 +173,8 @@ export default function CoachStudio() {
           </h1>
         </div>
         <p>
-          {selectableCoaches.length} coaches to explore. Every expression has four
-          idle performances.
+          {selectableCoaches.length} coaches to explore, with {expressions.length}{" "}
+          expressions and character-specific idle performances.
           <br />
           Compare the acting, replay a moment, then see how it reads beside the
           board.
@@ -261,7 +262,7 @@ export default function CoachStudio() {
         <div>
           <h2>The quieter moments</h2>
           <p>
-            Four gestures for {selected.name} · {expressionInfo[expression].label}.
+            {idles.length} gestures for {selected.name} · {expressionInfo[expression].label}.
             Idle previews never replay the reaction.
           </p>
         </div>
@@ -303,7 +304,8 @@ export default function CoachStudio() {
         <Sparkles size={20} />
         <p>
           <strong>
-            {selected.name}: {expressions.length} expressions, four idles each.
+            {selected.name}: {selected.expressions.length} expressions,{" "}
+            {availableIdles(coach, family).length} idle performances.
           </strong>{" "}
           {selected.description} All of these coaches are available in Settings for
           game review and practice. Preview controls never change your account

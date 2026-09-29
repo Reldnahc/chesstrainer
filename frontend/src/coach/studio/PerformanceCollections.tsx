@@ -48,7 +48,10 @@ export function IdleVariants({ preview }: { preview: StudioPreview }) {
     preview.coach, preview.family, preview.reaction.state,
   );
   return (
-    <section className="studio-idle-grid" aria-label="Four expression idle variants">
+    <section
+      className="studio-idle-grid"
+      aria-label={`${pool.length} expression idle variants`}
+    >
       {pool.map((gesture, index) => (
         <IdleCard
           key={`${preview.coach.id}:${preview.family}:${preview.reaction.state}:${gesture}`}

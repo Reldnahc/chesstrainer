@@ -2,6 +2,36 @@
 
 The repeatable procedure is in [TESTING.md](TESTING.md). Prior passes remain below with their original scope and results.
 
+## Coach idle revamp — milestone 1 — September 29, 2026
+
+The shared coach now uses canonical gesture lengths and channel reservations,
+independent blinking, bounded overlap, cooldown/history selection and one idle
+deadline timer. Artwork is memoized independently of idle bookkeeping. Personal
+display names preserve stable account IDs. No chess or account contracts changed.
+
+- `npm.cmd run build`: passed API agreement, application/contract/browser-test
+  TypeScript and production Vite build. Existing large-chunk advisory remains.
+- `npx.cmd playwright test --config test-results/idle-live.config.ts idle-coordinator.spec.ts idle-rig.spec.ts motion-vocabulary.spec.ts coach-names.spec.ts`:
+  **44 passed** on desktop/mobile. The ignored local config is the normal coach
+  config without its server launcher, using the running development studio.
+- `npx.cmd playwright test --config test-results/idle-lifecycle.config.ts idle-cadence.spec.ts idle-articulation.spec.ts --reporter line`:
+  **40 passed** on desktop/mobile. Six pilots in neutral/brilliant exercise
+  repeated actual-duration cycles, safe overlap, 500–1,000ms quiet gaps, pause/
+  resume, preference overrides, same-expression navigation, unmounting and stable
+  SVG identity/render counts. The complete registered rigs are checked against
+  canonical animation tracks. Fake-clock DOM observations permit one 50ms render
+  step; pure coordinator tests assert exact deadlines.
+- Independent lifecycle review found an unsupported idle-preview inconsistency;
+  entrance selection now uses the same resolved eligible gesture as replay.
+  Live in-app studio inspection confirmed the integrated component and normal-size
+  preview; wider artistic acceptance follows the face/repertoire milestones.
+- `git diff --check`: passed. An earlier isolated-server run completed its 40
+  cases but stalled during Windows server teardown and was interrupted. It is
+  not counted as a successful run; the later live-server run above exited cleanly.
+
+The full final application/account/backend checks and complete artistic review
+are still pending subsequent milestones.
+
 ## Review grading correction — September 29, 2026
 
 The Best allowance admitted different moves up to 10 cp below the top choice and

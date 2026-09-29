@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { memo, type ComponentType, type CSSProperties } from "react";
 import { useCoachPreferences } from "./CoachProvider";
 import { getCoach } from "./registry";
 import {
@@ -7,12 +7,20 @@ import {
   resolveFamily,
   resolveAnimation,
   type CoachDefinition,
+  type CoachArtworkProps,
   type CoachMotion,
   type CoachMicro,
   type CoachReaction,
 } from "./model";
 import { usePerformance } from "./usePerformance";
 import "./coach.css";
+
+// Idle bookkeeping changes the wrapper's channel styles, not the SVG tree.
+const CharacterArtwork = memo(function CharacterArtwork({ Artwork, ...props }: CoachArtworkProps & {
+  Artwork: ComponentType<CoachArtworkProps>;
+}) {
+  return <Artwork {...props} />;
+});
 
 export function CoachCharacter({
   coach,
@@ -49,6 +57,7 @@ export function CoachCharacter({
   const Artwork = coach.Artwork;
   const profile = animation.motionProfile;
   const idleStyle = {
+    ...performance.idleStyle,
     "--idle-strength": profile?.amplitude ?? 1,
     "--idle-gaze": profile?.gaze ?? 1,
     "--idle-settle": profile?.settle ?? 1,
@@ -65,13 +74,15 @@ export function CoachCharacter({
       data-requested={requested}
       data-phase={performance.phase}
       data-micro={performance.micro}
+      data-idles={performance.idles}
       data-motion={performance.motion}
       data-take={performance.take}
       data-motion-profile={profile?.id ?? "default"}
       style={idleStyle}
       title={`${coach.name} · ${expressionInfo[performance.expression].label}`}
     >
-      <Artwork
+      <CharacterArtwork
+        Artwork={Artwork}
         key={performance.take}
         expression={performance.expression}
         family={direction}

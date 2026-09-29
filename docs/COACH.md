@@ -66,7 +66,7 @@ collection, replay entrances and idle gestures, run a transition sequence, and
 preview device-default, animated or still motion. The two context samples use the real coach
 bubble at 92.8px and 52.5px portrait widths. Expression/family URLs are bookmarkable.
 
-The studio offers the whole production cast, all 20 expressions and a four-card
+The studio offers the whole production cast, all 20 expressions and a variable-size
 idle gallery for the selected expression. Each idle can replay independently
 without starting the entrance reaction. A comparison panel places three selected
 coaches in the same semantic state. The older human/pet collections still provide
@@ -77,7 +77,7 @@ the same bounded motion lifecycle.
 Use the character picker above the expression controls. `coach`, `family` and
 `expression` query parameters restore a comparison on the studio's own server.
 Switching characters stops a running sequence, clears the pending idle preview
-and selects a valid family/idle gesture. Preview controls offer only the four
+and selects a valid family/idle gesture. Preview controls offer only the
 gestures valid for the current coach and expression.
 
 The studio never connects to accounts or submits engine work. It imports the
@@ -127,22 +127,37 @@ pending work; existing review generation guards still discard stale engine repli
 An entrance lasts roughly 1.3–1.8 seconds, then retains a quieter static expression
 consistent with the bubble instead of returning to an unrelated neutral face.
 
-Idle gestures occur after variable 0.5–1 second pauses for every animated coach.
-The shared range lives in `coach/idle.ts`; character
-definitions choose gestures, not cadence.
-Each gesture still lasts 1.2 seconds before scheduling the next pause.
-Every selectable coach resolves exactly four distinct idle variants for each of
-the 20 expressions: 80 slots per coach, 2,400 across this cast. The pools choose
+Idle gestures occur after variable 0.5–1 second quiet pauses for every animated
+coach. `idleModel.ts` owns the shared cadence; character definitions choose
+gestures, not cadence. `idleGestures.ts` owns actual durations, delayed child
+tracks and CSS animation names. A normal blink lasts 260ms rather than occupying
+an artificial 1.2-second slot. `idleRig.ts` declares the SVG resources actually
+present in each character and expression, so optional tracks never reserve
+nonexistent parts. The pools choose
 only gestures supported by the rig and appropriate to the state. For example,
 worried faces do not borrow delighted glints, and closed eyes do not rely on an
 invisible pupil-only glance. `motionVocabulary.ts` provides complete expression
 pools and per-coach acting profiles. Character-specific eyes, ears, hair, tail or
 lens gestures combine with common head-angle, breathing and stance movements.
 Profiles control idle amplitude, gaze and settling independently of reaction timing.
-The character avoids immediately repeating a gesture when alternatives
-exist. Neutral, brilliant and blunder have distinct idle vocabularies. A small
-number of local timers schedule gestures; CSS performs the animation without a
-JavaScript frame loop. Offscreen or hidden characters stop active motion/timers.
+`idleCoordinator.ts` is a deterministic event-driven scheduler. It permits one
+noticeable and one quiet compatible performance, staggered by at least 180ms.
+Compound gestures atomically reserve every animated SVG channel; nested head and
+gaze can compose, while two body transforms cannot compete. Independent baseline
+eye activity is due every 3–5 seconds of active rest; a complete blink inside a
+compound performance satisfies the same clock. Busy channels can defer it, but
+optional gestures cannot starve it. Gesture and channel cooldowns, recent-history
+weighting and an age backstop prevent immediate repeats, alternating loops and
+starvation. Every repertoire supplies quiet breathing during other cooldowns.
+Infeasible configurations remain safe and expose diagnostics instead of bypassing
+resource ownership or cooldowns.
+
+One next-deadline timer drives idles per portrait; CSS performs the frames without
+a JavaScript animation loop. Offscreen, hidden and Still characters abort active
+tracks. Resume preserves recent history and remaining cooldowns with fresh
+deadlines, never accumulated blink debt. New reaction keys cancel stale gestures
+even when the expression stays the same. Neutral, brilliant and blunder retain
+different eligible motion.
 The latest unseen reaction can play when it becomes visible; an interrupted or
 already seen entrance is not replayed. Unmounting removes observers/listeners and
 clears timers. Replaying deliberately restarts only the SVG rig, not its layout.
