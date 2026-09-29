@@ -28,8 +28,10 @@ def enter_step(course, chapter, state, step_id):
     if step.kind == "rehearsal":
         line = course.line(step.line_id)
         if step.position.board().turn != (course.learner_color == "white"):
-            play(state, (line.moves[0],))
+            playback = play(state, (line.moves[0],))
             state["cursor"] = 1
+            return playback
+    return []
 
 
 def initial_state(course, chapter):
@@ -48,10 +50,11 @@ def play(state, moves):
 def advance(course, chapter, state):
     if state["next_step"] is not None:
         old = Position.model_validate(state["position"])
-        enter_step(course, chapter, state, state["next_step"])
+        playback = enter_step(course, chapter, state, state["next_step"])
         new = Position.model_validate(state["position"])
         if old.initial_fen == new.initial_fen and new.moves[: len(old.moves)] == old.moves:
             return [frame.model_dump(mode="json") for frame in new.frames()[len(old.moves) :]]
+        return playback
     elif state["branch"] is None:
         state["status"] = "completed"
     return []
@@ -153,8 +156,7 @@ def transition(course, chapter, previous, request):
     state["trail"].append(core(state))
     if action == "enter_branch":
         state["branch"] = {"anchor": core(state), "title": step.title}
-        enter_step(course, chapter, state, step.branch_start)
-        return state, []
+        return state, enter_step(course, chapter, state, step.branch_start)
     if action == "return_branch":
         anchor = state["branch"]["anchor"]
         state.update(anchor)
