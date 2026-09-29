@@ -6,6 +6,7 @@ import Button from "../Button";
 import ReviewWorkspace from "../ReviewWorkspace";
 import ReviewCoach from "../ReviewCoach";
 import MoveBadge from "../MoveBadge";
+import MoveStatus from "../MoveStatus";
 import type { CoachExpression } from "../coach/model";
 import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
 import { createPuzzleStarter } from "./puzzleApi";
@@ -53,7 +54,6 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     : correct ? "Keep going."
     : "Find the continuation.";
   const message = error ? "Reload the saved session before making another move."
-    : busy ? "Checking your move…"
     : playing ? "The board is playing the verified line."
     : session.status === "revealed" ? "This attempt is saved as revealed. You can replay the solution below."
     : complete ? session.failed ? "You found the whole continuation after a retry. Saved as failed, then solved." : "You found the whole continuation. Saved as a clean solve."
@@ -78,7 +78,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
       actions={<>{error ? <Button size="compact" variant="primary" onClick={state.reload}>Reload session</Button>
         : complete ? <><Button size="compact" variant="primary" disabled={playing || openingNext} onClick={next}>Next puzzle <ArrowRight size={16} /></Button><Button size="compact" disabled={playing || openingNext} onClick={state.replay}><Play size={15} />{state.motion === "still" ? "View solution" : "Replay solution"}</Button></>
         : <>{incorrect && <Button size="compact" variant="primary" disabled={busy} onClick={state.retry}>Try again</Button>}<Button size="compact" variant="secondary" disabled={busy || playing} onClick={state.reveal}>Reveal solution</Button></>}</>}
-    ><p role="status" aria-live="polite">{message}</p></ReviewCoach>
+    ><MoveStatus busy={busy} failed={incorrect && !error} text={message} /></ReviewCoach>
     {(error || nextError) && <p className="notice error" role="alert">{error || nextError}</p>}
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
       <h2>{session.completion.themes.length ? session.completion.themes.map(theme => theme.replaceAll("_", " ")).join(" · ") : "The continuation"}</h2>

@@ -5,6 +5,7 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import ReturnButton from "../ReturnButton";
 import ReviewCoach from "../ReviewCoach";
+import MoveStatus from "../MoveStatus";
 import ReviewWorkspace from "../ReviewWorkspace";
 import type { CoachExpression } from "../coach/model";
 import { lessonCoursePath, studyPaths } from "../navigation";
@@ -67,7 +68,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}
         </>}
       </>}</>}
-    ><div role="status" aria-live="polite"><p>{error ? "Reload the saved lesson before continuing." : guidedPlayback ? "Watch how this position develops." : session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedback.text}</p>}</div></ReviewCoach>
+    ><MoveStatus><p>{error ? "Reload the saved lesson before continuing." : guidedPlayback ? "Watch how this position develops." : session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedback.text}</p>}</MoveStatus></ReviewCoach>
     {error && <p className="notice error" role="alert">{error}</p>}
     <section className="panel lesson-context" aria-label="Lesson progress">
       <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>
