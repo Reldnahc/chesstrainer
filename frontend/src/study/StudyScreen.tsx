@@ -70,13 +70,14 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
       <section className="panel study-option study-due">
         <Clock3 aria-hidden="true" size={22} />
         <h2>Due now</h2>
-        <p className="study-count">{due === null ? "—" : due} <span>scheduled recalls</span></p>
         <p>{due ? "Return to decisions worth remembering." : "Your scheduled recalls will appear here when they’re due."}</p>
+        <p className="study-count">{due === null ? "—" : due} <span>Scheduled recalls</span></p>
         <Link className="button-link primary" href={studyPaths.due}>Start studying <ArrowRight size={16} /></Link>
       </section>
       <section className="panel study-option">
         <BookOpen aria-hidden="true" size={22} /><h2>Openings</h2>
-        <p>{openings?.active_studies ? `${openings.active_studies} active studies · ${openings.learning_positions} learning positions.` : "Learn a line, practice it, and choose what to remember."}</p>
+        <p>Learn a line, practice it, and choose what to remember.</p>
+        <p className="study-count">{openings?.active_studies ?? "—"} <span>{openings?.active_studies === 1 ? "Active opening line" : "Active opening lines"}</span></p>
         <Link className="button-link secondary" href={studyPaths.openings}>Explore openings <ArrowRight size={16} /></Link>
       </section>
       <section className="panel study-option">
