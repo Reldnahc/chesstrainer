@@ -261,7 +261,7 @@ test('phone reviews keep a full-width board and reachable actions through retrie
     await expect(page.getByText('A detailed explanation.', {exact: false})).toBeVisible();
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await page.getByRole('button', {name: 'Next position', exact: true}).click();
-    await expect(page.locator('.loading')).toHaveCount(0);
+    await expect(page.locator('.load-state')).toHaveCount(0);
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
   }
 });
