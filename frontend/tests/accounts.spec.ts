@@ -2,7 +2,7 @@ import { test, expect, type APIResponse, type Page } from '@playwright/test';
 import type { Schema } from '../src/api';
 import {audioCues, captureAudio} from './helpers/audio';
 
-async function settingsSection(page: Page, name: 'Coach & sound' | 'Account') {
+async function settingsSection(page: Page, name: 'Coach & animations' | 'Sound' | 'Account') {
   await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name, exact: true}).click();
 }
 
@@ -44,13 +44,14 @@ test('account signup, engine-free sync, second-device login and private library'
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
   await expect(page.getByRole('region', {name: 'Account', exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Sign out', exact: true})).toHaveCount(0);
-  await settingsSection(page, 'Coach & sound');
+  await settingsSection(page, 'Coach & animations');
   await page.getByRole('radio', {name: 'Poppy', exact: true}).click();
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
   await expect(page.locator('.coach-motion-preference-status')).toContainText('Saved');
   await page.getByLabel('Piece & interface motion', {exact: true}).selectOption('natural');
   await expect(page.locator('.motion-preference-status')).toContainText('Saved');
+  await settingsSection(page, 'Sound');
   const sound = page.getByRole('region', {name: 'Sound', exact: true});
   await sound.getByRole('checkbox', {name: /^Board moves/}).uncheck();
   await expect(sound.locator('.preference-status')).toHaveAttribute('data-state', 'saved');
@@ -97,17 +98,18 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await device.getByText('Change Chess.com connection', {exact: true}).click();
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue(username);
-    await settingsSection(device, 'Coach & sound');
+    await settingsSection(device, 'Coach & animations');
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('natural');
+    await expect(device.getByRole('radio')).toHaveCount(30);
+    await expect(device.getByRole('radio', {name: 'Poppy', exact: true})).toBeChecked();
+    await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
+    await settingsSection(device, 'Sound');
     const deviceSound = device.getByRole('region', {name: 'Sound', exact: true});
     await expect(deviceSound.getByRole('checkbox', {name: /^Board moves/})).not.toBeChecked();
     await expect(deviceSound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
     await expect(deviceSound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
     await expect(deviceSound.getByRole('button', {name: 'Test sound', exact: true})).toBeDisabled();
-    await expect(device.getByRole('radio')).toHaveCount(30);
-    await expect(device.getByRole('radio', {name: 'Poppy', exact: true})).toBeChecked();
-    await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByRole('region', {name: 'Account', exact: true})).toHaveCount(0);
     await settingsSection(device, 'Account');
     await expect(device).toHaveURL('/settings?section=account');
@@ -133,11 +135,12 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(recentGames.locator('.game-library-item')).toHaveCount(0);
     await expect(recentGames).not.toContainText(username);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
-    await settingsSection(device, 'Coach & sound');
+    await settingsSection(device, 'Coach & animations');
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('system');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('system');
     await expect(device.getByRole('radio', {name: 'Walter', exact: true})).toBeChecked();
+    await settingsSection(device, 'Sound');
     await expect(deviceSound.getByRole('checkbox', {name: /^Board moves/})).toBeChecked();
     await expect(deviceSound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
     await expect(deviceSound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
@@ -222,7 +225,7 @@ test('Study progress and selected coach resume on another device without leaking
   }
   await signup(page, username);
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
-  await settingsSection(page, 'Coach & sound');
+  await settingsSection(page, 'Coach & animations');
   const coachSave = page.waitForResponse(response => response.url().endsWith('/api/preferences/coach') && response.request().method() === 'PUT');
   await page.getByRole('radio', {name: 'Scout', exact: true}).click();
   expect((await coachSave).ok()).toBe(true);
@@ -295,7 +298,7 @@ test('Study progress and selected coach resume on another device without leaking
     await expect(learning.locator(`a[href="${lessonPath}"]`)).toBeVisible();
     await expect(learning.getByRole('definition')).toHaveText(['1']);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
-    await settingsSection(device, 'Coach & sound');
+    await settingsSection(device, 'Coach & animations');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('still');
     await settingsSection(device, 'Account');
     await device.getByRole('button', {name: 'Sign out', exact: true}).click();

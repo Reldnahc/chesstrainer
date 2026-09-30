@@ -47,7 +47,7 @@ test('piece and interface motion saves independently and follows the device only
     await page.emulateMedia({reducedMotion: 'no-preference'});
     await expect(root).toHaveAttribute('data-interface-motion', 'natural');
     await page.getByRole('link', {name: 'Settings', exact: true}).click();
-    await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Coach & sound', exact: true}).click();
+    await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Coach & animations', exact: true}).click();
     await expect(motion).toHaveValue('system');
     if (info.project.name === 'mobile') await page.setViewportSize({width: 320, height: 700});
     await animations.screenshot({path: `test-results/motion-settings-${info.project.name}.png`});

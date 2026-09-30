@@ -21,7 +21,7 @@ test('settings sections mount only their controls and restore through Back, Forw
   const documents: string[] = [];
   page.on('request', request => { if (request.isNavigationRequest()) documents.push(request.url()); });
   await page.goto('/settings');
-  await expect(sections(page).getByRole('link')).toHaveText(['Games & imports', 'Coach & sound', 'Advanced']);
+  await expect(sections(page).getByRole('link')).toHaveText(['Games & imports', 'Coach & animations', 'Sound', 'Advanced']);
   await expect(sections(page).getByRole('link', {name: 'Games & imports', exact: true})).toHaveAttribute('aria-current', 'page');
   await expect(connection(page, 'Chess.com')).toBeVisible();
   await expect(connection(page, 'Lichess')).toBeVisible();
@@ -30,6 +30,7 @@ test('settings sections mount only their controls and restore through Back, Forw
   await expect(page.getByLabel('PGN', {exact: true})).toHaveCount(0);
   await expect(page.getByRole('radio')).toHaveCount(0);
   await expect(page.getByRole('region', {name: 'Animations', exact: true})).toHaveCount(0);
+  await expect(page.getByRole('region', {name: 'Sound', exact: true})).toHaveCount(0);
   await expect(page.getByRole('region', {name: 'Account', exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toHaveCount(0);
   await expect(connection(page, 'Lichess').getByLabel('Remembered Lichess username')).toBeEnabled();
@@ -39,20 +40,32 @@ test('settings sections mount only their controls and restore through Back, Forw
   await sections(page).getByRole('link', {name: 'Games & imports', exact: true}).click();
   expect(await page.evaluate(() => history.length)).toBe(initialHistory);
 
-  await sections(page).getByRole('link', {name: 'Coach & sound', exact: true}).click();
+  await sections(page).getByRole('link', {name: 'Coach & animations', exact: true}).click();
   await expect(page).toHaveURL('/settings?section=coach');
   await expect(page.getByRole('radio')).toHaveCount(30);
   await expect(page.getByRole('region', {name: 'Animations', exact: true})).toBeVisible();
+  await expect(page.getByRole('region', {name: 'Sound', exact: true})).toHaveCount(0);
   await expect(connection(page, 'Chess.com')).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toHaveCount(0);
   await page.screenshot({path: `test-results/settings-coaches-${info.project.name}.png`, fullPage: true});
+  await sections(page).getByRole('link', {name: 'Sound', exact: true}).click();
+  await expect(page).toHaveURL('/settings?section=sound');
+  await expect(page.getByRole('region', {name: 'Sound', exact: true})).toBeVisible();
+  await expect(page.getByRole('radio')).toHaveCount(0);
+  await expect(page.getByRole('region', {name: 'Animations', exact: true})).toHaveCount(0);
+  await expect(connection(page, 'Chess.com')).toHaveCount(0);
+  await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toHaveCount(0);
   await sections(page).getByRole('link', {name: 'Advanced', exact: true}).click();
   await expect(page).toHaveURL('/settings?section=advanced');
   await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toBeVisible();
   await expect(page.getByRole('button', {name: 'Deepen unclear positions', exact: true})).toBeEnabled();
   await expect(page.getByRole('radio')).toHaveCount(0);
+  await expect(page.getByRole('region', {name: 'Sound', exact: true})).toHaveCount(0);
   await expect(connection(page, 'Chess.com')).toHaveCount(0);
-  expect(await page.evaluate(() => history.length)).toBe(initialHistory + 2);
+  expect(await page.evaluate(() => history.length)).toBe(initialHistory + 3);
+  await page.goBack();
+  await expect(page).toHaveURL('/settings?section=sound');
+  await expect(page.getByRole('region', {name: 'Sound', exact: true})).toBeVisible();
   await page.goBack();
   await expect(page).toHaveURL('/settings?section=coach');
   await expect(page.getByRole('radio')).toHaveCount(30);
@@ -61,10 +74,13 @@ test('settings sections mount only their controls and restore through Back, Forw
   await expect(connection(page, 'Chess.com')).toBeVisible();
   await page.goForward();
   await expect(page).toHaveURL('/settings?section=coach');
+  await page.goForward();
+  await expect(page).toHaveURL('/settings?section=sound');
   expect(documents).toHaveLength(1);
   await page.reload();
-  await expect(sections(page).getByRole('link', {name: 'Coach & sound', exact: true})).toHaveAttribute('aria-current', 'page');
-  await expect(page.getByRole('radio')).toHaveCount(30);
+  await expect(sections(page).getByRole('link', {name: 'Sound', exact: true})).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('region', {name: 'Sound', exact: true})).toBeVisible();
+  await expect(page.getByRole('radio')).toHaveCount(0);
 });
 
 test('local account links fall back to imports and settings fit narrow viewports', async ({page}) => {
@@ -74,7 +90,7 @@ test('local account links fall back to imports and settings fit narrow viewports
   await expect(page.getByRole('button', {name: 'Sign out', exact: true})).toHaveCount(0);
   for (const width of [320, 390, 768]) {
     await page.setViewportSize({width, height: 700});
-    for (const name of ['Games & imports', 'Coach & sound', 'Advanced']) {
+    for (const name of ['Games & imports', 'Coach & animations', 'Sound', 'Advanced']) {
       await sections(page).getByRole('link', {name, exact: true}).click();
       await expect(sections(page).getByRole('link', {name, exact: true})).toBeInViewport();
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -117,7 +133,7 @@ test('Back restores the saved scroll instead of repeating activity and import-fo
   await expect(page.getByRole('region', {name: 'Import & analysis activity', exact: true})).toBeInViewport();
   await page.evaluate(() => scrollTo(0, 0));
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
-  await sections(page).getByRole('link', {name: 'Coach & sound', exact: true}).click();
+  await sections(page).getByRole('link', {name: 'Coach & animations', exact: true}).click();
   await expect(page).toHaveURL('/settings?section=coach');
   await page.goBack();
   await expect(page).toHaveURL('/settings#settings-activity');
@@ -129,7 +145,7 @@ test('Back restores the saved scroll instead of repeating activity and import-fo
   await expect(page.getByLabel('Chess.com username', {exact: true})).toBeInViewport();
   await page.evaluate(() => scrollTo(0, 0));
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
-  await sections(page).getByRole('link', {name: 'Coach & sound', exact: true}).click();
+  await sections(page).getByRole('link', {name: 'Coach & animations', exact: true}).click();
   await page.goBack();
   await expect(page).toHaveURL('/settings?import=chesscom');
   await expect(page.getByLabel('Chess.com username', {exact: true})).toBeEnabled();
@@ -316,7 +332,7 @@ test('leaving imports discards a late activity loading error', async ({page}) =>
     const loading = page.waitForRequest(request => new URL(request.url()).pathname === '/api/jobs');
     await page.goto('/settings');
     await loading;
-    await sections(page).getByRole('link', {name: 'Coach & sound', exact: true}).click();
+    await sections(page).getByRole('link', {name: 'Coach & animations', exact: true}).click();
     await expect(page).toHaveURL('/settings?section=coach');
     await expect(page.getByRole('region', {name: 'Animations', exact: true})).toBeVisible();
     const delivered = page.waitForResponse(response => new URL(response.url()).pathname === '/api/jobs');

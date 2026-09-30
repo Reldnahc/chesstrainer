@@ -24,10 +24,10 @@ async function savedChange(page: Page, action: () => Promise<unknown>) {
 }
 
 test('sound choices save independently, survive reload and keep a usable narrow layout', async ({page}, info) => {
-  await page.goto('/settings?section=coach');
+  await page.goto('/settings?section=sound');
   const sound = soundSettings(page);
   const volume = volumeControl(page);
-  await expect(page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Coach & sound', exact: true})).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Sound', exact: true})).toHaveAttribute('aria-current', 'page');
   await expect(sound.getByRole('checkbox', {name: 'Enable sound', exact: true})).toBeChecked();
   await expect(volume).toBeEnabled();
   await expect(volume).toHaveValue('35');
@@ -58,7 +58,7 @@ test('sound choices save independently, survive reload and keep a usable narrow 
 });
 
 test('the test button plays a real cue from an enabled category and respects silence', async ({page}) => {
-  await page.goto('/settings?section=coach');
+  await page.goto('/settings?section=sound');
   const sound = soundSettings(page);
   const preview = sound.getByRole('button', {name: 'Test sound', exact: true});
   await expect(preview).toBeEnabled();
@@ -92,7 +92,7 @@ test('sound load and save failures preserve the saved value and offer recovery',
       ? route.fulfill({status: 503, json: {detail: 'Sound preferences unavailable'}})
       : route.continue();
   });
-  await page.goto('/settings?section=coach');
+  await page.goto('/settings?section=sound');
   const sound = soundSettings(page);
   const status = sound.locator('.preference-status');
   const volume = volumeControl(page);
@@ -133,7 +133,7 @@ test('leaving Settings cancels a preview whose real audio file is still loading'
     await route.continue();
   });
   try {
-    await page.goto('/settings?section=coach');
+    await page.goto('/settings?section=sound');
     const preview = soundSettings(page).getByRole('button', {name: 'Test sound', exact: true});
     await expect(preview).toBeEnabled();
     // Observe the native decoder as well as starts: a finished HTTP response
@@ -162,7 +162,7 @@ test('leaving Settings cancels a preview whose real audio file is still loading'
     });
     expect(await audioCues(page)).toEqual([]);
     await page.getByRole('link', {name: 'Settings', exact: true}).click();
-    await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Coach & sound', exact: true}).click();
+    await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Sound', exact: true}).click();
     await preview.click();
     await expect.poll(() => audioCues(page)).toEqual(['move']);
   } finally { release(); }
@@ -181,7 +181,7 @@ for (const input of ['pointer', 'keyboard'] as const) {
       await route.continue();
     });
     try {
-      await page.goto('/settings?section=coach');
+      await page.goto('/settings?section=sound');
       const sound = soundSettings(page);
       const volume = volumeControl(page);
       await expect(volume).toBeEnabled();
@@ -234,7 +234,7 @@ test('quick mute persists only on this device and never writes account preferenc
   expect(await audioCues(page)).toEqual([]);
   expect(await (await page.request.get(preferencePath)).json()).toEqual(defaults);
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
-  await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Coach & sound', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Sound', exact: true}).click();
   const sound = soundSettings(page);
   await expect(sound.getByRole('button', {name: 'Test sound', exact: true})).toBeDisabled();
   await expect(sound.locator('.preference-status')).toContainText('Muted on this device');
@@ -258,6 +258,7 @@ test('audio remains available with Still motion and a reduced-motion device', as
       await page.goto('/settings?section=coach');
       await expect(page.locator('html')).toHaveAttribute('data-interface-motion', 'still');
       await expect(page.locator('.coach-option:has(input:checked) .coach-avatar')).toHaveAttribute('data-motion', 'still');
+      await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Sound', exact: true}).click();
       const preview = soundSettings(page).getByRole('button', {name: 'Test sound', exact: true});
       await expect(preview).toBeEnabled();
       expect(await audioCues(page)).toEqual([]);

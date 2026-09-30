@@ -203,8 +203,9 @@ saved session in the URL so refresh resumes the same answer snapshot. Unknown
 paths show a recoverable not-found screen.
 Legacy `/import` URLs replace their history entry with `/settings`. Settings owns
 the saved provider connections, filtered imports, PGN uploads and import activity.
-Settings opens on Games & imports; `?section=coach`, `?section=account` (hosted
-accounts only), and `?section=advanced` keep preferences and maintenance separate.
+Settings opens on Games & imports; `?section=coach`, `?section=sound`,
+`?section=account` (hosted accounts only), and `?section=advanced` keep preferences
+and maintenance separate. Sound has its own tab for playback preferences.
 These links participate in browser Back/Forward and survive reload. Shared
 `SettingsSection` and application-only `settings.css` own section spacing.
 Connections fetch recent games; optional older-history forms use the remembered

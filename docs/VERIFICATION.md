@@ -4,6 +4,27 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Separate Sound settings tab — September 30, 2026
+
+Moved the existing AudioSettings component to `?section=sound`, using the shared
+Settings navigation. Coach & animations retains motion controls and coach
+selection. Preference storage, playback and assets are unchanged. Updated test
+navigation labels and mixed account flows to visit the appropriate tab explicitly.
+
+- `npm.cmd --prefix frontend run build`: passed, including API/type checks,
+  **11** style tests and entrypoint boundaries. Existing chunk-size warning only.
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test settings.spec.ts audio-preferences.spec.ts --reporter=line`:
+  **36 passed**, desktop/mobile, no skips. Covers independent tab contents,
+  Sound deep links, Back/Forward/reload, narrow layouts, sound persistence,
+  error recovery, mute and pending-preview cancellation.
+- Same environment,
+  `node node_modules/@playwright/test/cli.js test --config playwright.accounts.config.ts --grep "account signup, engine-free sync" --reporter=line`:
+  **2 passed**, desktop/mobile, no skips. Account sound/coach preferences restore
+  across devices and remain isolated after account changes with the new tabs.
+- Inspected the focused diffs and narrow sound-control screenshot; whitespace
+  checks passed. No full backend/coach suite or Docker deployment for this UI move.
+
 ## Final sound inventory cleanup — September 30, 2026
 
 Removed 18 unselected WAVs, their unused recipes/source credits, and the studio's

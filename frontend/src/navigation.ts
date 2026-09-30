@@ -14,7 +14,7 @@ export const studyPaths = {
 } as const;
 export type StudyMode = "home" | keyof typeof studyPaths;
 export type Tab = keyof typeof pagePaths;
-export type SettingsTab = "imports" | "coach" | "account" | "advanced";
+export type SettingsTab = "imports" | "coach" | "sound" | "account" | "advanced";
 export type WeaknessCategory = "patterns" | "outcomes";
 const navigationEvent = "fieldwork:navigate";
 const scrollKey = "fieldworkScroll";
@@ -80,7 +80,7 @@ function readRoute() {
     href: url.pathname + url.search,
     scrollAnchor: url.hash.slice(1),
     tab,
-    settingsTab: (["coach", "account", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
+    settingsTab: (["coach", "sound", "account", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
     importSource: url.searchParams.get("import"),
     weaknessCategory: (url.searchParams.get("category") === "outcomes" ? "outcomes" : "patterns") as WeaknessCategory,
     gameId,

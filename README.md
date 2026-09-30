@@ -16,7 +16,7 @@ The dogs include two goldens, a corgi and a border collie. Existing users keep S
 until they choose another coach; the choice follows their account across devices.
 
 The shared [audio system](docs/AUDIO.md) adds board sounds and practice feedback.
-Move ratings have no sounds. Adjust it in **Settings → Coach & sound** or quickly
+Move ratings have no sounds. Adjust it in **Settings → Sound** or quickly
 mute the current device from a board. The separate development sound studio
 (`npm --prefix frontend run dev:audio`, port 5176) previews the nine approved
 sounds individually and in context. Coach speech is deferred.

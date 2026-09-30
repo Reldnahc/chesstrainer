@@ -9,7 +9,7 @@ Rejected auditions and their selection/export UI have been removed.
 
 ## Controls and defaults
 
-**Settings → Coach & sound → Sound** contains the master switch, volume,
+**Settings → Sound** contains the master switch, volume,
 board/practice switches and an explicit test button. Defaults are sound
 enabled, volume 35%, and board and practice enabled.
 Account preferences use the existing owned `user_preferences` row, including the
