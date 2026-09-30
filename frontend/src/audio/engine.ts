@@ -1,4 +1,4 @@
-import { cueCatalog, soundAssetUrl } from "./catalog";
+import { cueCatalog, productionCuePalettes, soundAssetUrl } from "./catalog";
 import {
   defaultAudioPreferences, soundCues, soundPalettes,
   type AudioPreferences, type PreparedSpeechClip, type SoundCategory,
@@ -147,11 +147,15 @@ export class AudioEngine {
   play(request: SoundRequest): void {
     // Audio is enhancement-only: a malformed/unsupported cue must not break a chess command.
     try {
-      const palette = request.palette ?? "recorded-chess";
+      const palette = request.palette ?? productionCuePalettes[request.cue] ?? undefined;
       const event: AudioEvent = {type: "requested", bus: "effects", scope: request.scope,
         eventId: request.eventId, cue: request.cue, palette};
-      if (!soundCues.includes(request.cue) || !soundPalettes.includes(palette)) {
+      if (!soundCues.includes(request.cue) || (palette !== undefined && !soundPalettes.includes(palette))) {
         this.emit({...event, type: "suppressed", reason: "unknown-cue"});
+        return;
+      }
+      if (!palette) {
+        this.emit({...event, type: "suppressed", reason: "no-selected-sound"});
         return;
       }
       const definition = definitions.get(request.cue)!;
@@ -278,7 +282,7 @@ export class AudioEngine {
       const gain = context.createGain();
       source.buffer = buffer;
       source.loop = false;
-      gain.gain.value = ticket.category === "board" ? .85 : ticket.category === "review" ? .75 : 1;
+      gain.gain.value = ticket.category === "board" ? .85 : 1;
       source.connect(gain);
       gain.connect(ticket.event.bus === "speech" ? this.speech! : this.effects!);
       const voice = {source, gain};

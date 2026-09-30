@@ -46,8 +46,7 @@ function Fixture() {
     const played = await exploration.play(from, to);
     setOutcome(played ? "accepted" : "ignored");
     if (played) {
-      const result = await analysis.request(played.root, played.moves);
-      played.announceAnalysis(result?.report?.label);
+      await analysis.request(played.root, played.moves);
       setOutcome("analyzed");
     }
   }
@@ -177,7 +176,7 @@ test("hydration, flipping, report refresh and no-op navigation remain silent", a
 
 test("explicit navigation uses server SAN forwards and neutral placement backwards or on jumps", async ({page}) => {
   await page.getByRole("button", {name: "Next", exact: true}).click();
-  expect(await sounds(page)).toMatchObject([{kind: "move", san: "e4"}, {kind: "play", cue: "brilliant"}]);
+  expect(await sounds(page)).toMatchObject([{kind: "move", san: "e4"}]);
   await clearSounds(page);
   await page.getByRole("button", {name: "Next", exact: true}).click();
   expect(await sounds(page)).toMatchObject([{kind: "move", san: "e5"}]);
@@ -192,10 +191,8 @@ test("explicit navigation uses server SAN forwards and neutral placement backwar
   expect(await sounds(page)).toMatchObject([{kind: "play", cue: "move"}]);
 });
 
-test("quality accents belong to the learner and only supported labels have a cue", async ({page}) => {
+test("every move rating stays silent while learner and opponent board moves still sound", async ({page}) => {
   await page.getByRole("button", {name: "Flip board", exact: true}).click();
-  const supported = new Map([["Brilliant", "brilliant"], ["Great", "great"], ["Miss", "miss"],
-    ["Mistake", "mistake"], ["Blunder", "blunder"]]);
   const eventIds: string[] = [];
   for (const label of ["Brilliant", "Great", "Miss", "Mistake", "Blunder", "Good", "Best", "Book", "Inaccuracy"]) {
     await page.getByRole("button", {name: "Start", exact: true}).click();
@@ -203,8 +200,7 @@ test("quality accents belong to the learner and only supported labels have a cue
     await clearSounds(page);
     await page.getByRole("button", {name: "Next", exact: true}).click();
     const events = await sounds(page);
-    expect(events.filter(event => event.kind === "move")).toMatchObject([{san: "e4"}]);
-    expect(events.filter(event => event.kind === "play").map(event => event.cue)).toEqual(supported.has(label) ? [supported.get(label)] : []);
+    expect(events).toMatchObject([{kind: "move", san: "e4"}]);
     eventIds.push(events[0].eventId!);
   }
   expect(new Set(eventIds).size).toBe(eventIds.length);
@@ -287,10 +283,10 @@ test("a delayed move response cannot play after navigating away and back to its 
   } finally { release(); }
 });
 
-test("accepted moves announce their analysis once, while a later navigation invalidates delayed quality", async ({page}) => {
+test("accepted variations sound the board move and completed or delayed analysis stays silent", async ({page}) => {
   await page.getByRole("button", {name: "Play e4", exact: true}).click();
   await expect(page.getByTestId("outcome")).toHaveText("analyzed");
-  expect(await sounds(page)).toMatchObject([{kind: "move", san: "e4"}, {kind: "play", cue: "brilliant"}]);
+  expect(await sounds(page)).toMatchObject([{kind: "move", san: "e4"}]);
   await clearSounds(page);
   await page.getByRole("button", {name: "Play d5", exact: true}).click();
   await expect(page.getByTestId("current")).toHaveText("0:e2e4,d7d5");

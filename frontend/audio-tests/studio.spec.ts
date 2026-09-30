@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { cueCatalog, paletteCatalog } from "../src/audio/catalog";
+import { cueCatalog, paletteCatalog, productionCuePalettes } from "../src/audio/catalog";
 import recordedSources from "../src/audio/assets/sources.json" with { type: "json" };
 import { studioStorageKey } from "../src/audio/studio/selections";
 
@@ -28,7 +28,7 @@ test("cue favorites persist only in the studio and export the selected mapping",
   await page.goto("/");
   await page.getByRole("radio", { name: "Choose Soft objects for Move", exact: true }).check();
   await page.getByRole("button", { name: "Practice", exact: true }).click();
-  await expect(page.locator(".audio-studio-cue-row")).toHaveCount(3);
+  await expect(page.locator(".audio-studio-cue-row")).toHaveCount(cueCatalog.filter(cue => cue.category === "practice").length);
   await page.getByRole("radio", { name: "Choose Tabletop for Correct", exact: true }).check();
   const stored = await page.evaluate(key => ({ keys: Object.keys(localStorage), value: JSON.parse(localStorage.getItem(key)!) }), studioStorageKey);
   expect(stored).toEqual({ keys: [studioStorageKey], value: { move: "soft-objects", correct: "tabletop" } });
@@ -37,10 +37,50 @@ test("cue favorites persist only in the studio and export the selected mapping",
   await expect(page.getByRole("radio", { name: "Choose Tabletop for Correct", exact: true })).toBeChecked();
   await page.getByText("View cue mapping", { exact: true }).click();
   const mapping = JSON.parse((await page.getByLabel("Cue mapping JSON").textContent())!);
-  expect(mapping).toEqual({ schemaVersion: 2, purpose: "fieldwork-audio-audition", fallbackPalette: "recorded-chess", cuePalettes: { move: "soft-objects", correct: "tabletop" } });
+  expect(mapping).toEqual({ schemaVersion: 3, purpose: "fieldwork-audio-audition", fallbackCuePalettes: productionCuePalettes, cuePalettes: { move: "soft-objects", correct: "tabletop" } });
   const downloadEvent = page.waitForEvent("download");
   await page.getByRole("button", { name: "Download", exact: true }).click();
   expect((await downloadEvent).suggestedFilename()).toBe("fieldwork-audio-picks.json");
+});
+
+test("approved browser picks survive removing rating sounds", async ({ page }) => {
+  const approved = {
+    move: "soft-objects", capture: "soft-objects", castle: "soft-objects", promotion: "soft-objects", mate: "soft-objects",
+    check: "tabletop", correct: "tabletop", complete: "tabletop",
+  };
+  await page.addInitScript(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), { key: studioStorageKey, picks: approved });
+  await page.goto("/");
+  await expect(page.locator('.audio-studio-cue-option input:checked')).toHaveCount(8);
+  await expect(page.getByRole("button", { name: "Review", exact: true })).toHaveCount(0);
+  for (const rating of ["brilliant", "great", "miss", "mistake", "blunder"]) {
+    await expect(page.locator(`.audio-studio-cue-row[data-cue="${rating}"]`)).toHaveCount(0);
+  }
+  await page.getByText("View cue mapping", { exact: true }).click();
+  const mapping = JSON.parse((await page.getByLabel("Cue mapping JSON").textContent())!);
+  expect(mapping.cuePalettes).toEqual(approved);
+  expect(mapping.fallbackCuePalettes).toEqual({ ...approved, retry: null });
+  expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!), studioStorageKey)).toEqual(approved);
+});
+
+test("My picks uses per-cue production defaults and keeps unapproved retry silent", async ({ page }) => {
+  const soundRequests: string[] = [];
+  page.on("request", request => {
+    if (request.url().endsWith(".wav")) soundRequests.push(request.url());
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Play scenario", exact: true }).click();
+  await expect(page.locator('[data-event-type="started"][data-cue="capture"]')).toContainText("Soft objects");
+  await expect(page.locator('[data-event-type="started"][data-cue="check"]')).toContainText("Tabletop");
+  await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("retry");
+  const requestCount = soundRequests.length;
+  await page.getByRole("button", { name: "Play scenario", exact: true }).click();
+  await expect(page.locator(".audio-studio-now")).toHaveText("No sound is selected for this scenario.");
+  await expect(page.locator('[data-event-type="started"][data-cue="retry"]')).toHaveCount(0);
+  expect(soundRequests).toHaveLength(requestCount);
+  await page.getByRole("radio", { name: "Choose Recorded chess for Capture", exact: true }).check();
+  await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("capture-check");
+  await page.getByRole("button", { name: "Play scenario", exact: true }).click();
+  await expect(page.locator('[data-event-type="started"][data-cue="capture"]').first()).toContainText("Recorded chess");
 });
 
 test("each recorded candidate exposes its source and CC0 attribution", async ({ page }) => {
@@ -72,7 +112,7 @@ test("rejected synthetic picks are never carried over to recorded candidates", a
   }, studioStorageKey);
   await page.goto("/");
   await expect(page.locator('.audio-studio-cue-option input:checked')).toHaveCount(0);
-  await expect(page.locator(".audio-studio-count")).toHaveText("0 / 14 picked");
+  await expect(page.locator(".audio-studio-count")).toHaveText(`0 / ${cueCatalog.length} picked`);
   await page.getByText("View cue mapping", { exact: true }).click();
   expect(JSON.parse((await page.getByLabel("Cue mapping JSON").textContent())!).cuePalettes).toEqual({});
   await page.getByRole("radio", { name: "Choose Recorded chess for Move", exact: true }).check();
@@ -125,15 +165,15 @@ test("scenario playback uses the engine, respects mute and cancels stale feedbac
   await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("skipped-playback");
   await page.getByRole("button", { name: "Play scenario", exact: true }).click();
   await expect(page.locator('[data-event-type="cancelled"][data-cue="check"][data-reason="scope-cancelled"]')).toHaveCount(1);
-  await expect(page.locator('[data-event-type="cancelled"][data-cue="brilliant"][data-reason="scope-cancelled"]')).toHaveCount(1);
+  await expect(page.locator('[data-event-type="cancelled"][data-cue="complete"][data-reason="scope-cancelled"]')).toHaveCount(1);
   await expect(page.locator('[data-event-type="started"][data-cue="move"]')).toHaveCount(2);
 
-  await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("brilliant-blunder");
+  await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("game-finish");
   await page.getByRole("button", { name: "Play scenario", exact: true }).click();
-  await expect(page.locator('[data-event-type="started"][data-cue="brilliant"]')).toHaveCount(1);
+  await expect(page.locator('[data-event-type="started"][data-cue="mate"]')).toHaveCount(1);
   await page.getByRole("button", { name: "Stop all", exact: true }).click();
-  await expect(page.locator('[data-event-type="cancelled"][data-cue="blunder"][data-reason="stopped"]')).toHaveCount(1);
-  await expect(page.locator('[data-event-type="started"][data-cue="blunder"]')).toHaveCount(0);
+  await expect(page.locator('[data-event-type="cancelled"][data-cue="complete"][data-reason="stopped"]')).toHaveCount(1);
+  await expect(page.locator('[data-event-type="started"][data-cue="complete"]')).toHaveCount(0);
 
   await page.getByRole("button", { name: "Mute audio", exact: true }).click();
   await page.getByRole("button", { name: "Play Move · Recorded chess", exact: true }).click();

@@ -54,4 +54,3 @@ class AudioPreferences(Contract):
     volume: float = Field(default=0.35, ge=0, le=1, strict=True, allow_inf_nan=False)
     board: bool = Field(default=True, strict=True)
     practice: bool = Field(default=True, strict=True)
-    review: bool = Field(default=False, strict=True)

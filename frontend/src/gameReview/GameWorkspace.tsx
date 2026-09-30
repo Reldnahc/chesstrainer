@@ -98,8 +98,7 @@ export default function GameWorkspace({
   async function play(from: string, to: string, promotion?: string) {
     const played = await exploration.play(from, to, promotion);
     if (played) {
-      const result = await analysis.request(played.root, played.moves);
-      played.announceAnalysis(result?.report?.label);
+      await analysis.request(played.root, played.moves);
     }
   }
   if (!game)

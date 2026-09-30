@@ -2,12 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, read } from "../api";
 import { rememberGamePly } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
-import type { SoundCue } from "../audio/model";
 import type { Branch, Cursor, Game, Position } from "./types";
-
-const reviewCues: Record<string, SoundCue | undefined> = {
-  Brilliant: "brilliant", Great: "great", Miss: "miss", Mistake: "mistake", Blunder: "blunder",
-};
 
 /** Owns variation history and navigation without mutating the original game. */
 export function useGameExploration(
@@ -107,10 +102,6 @@ export function useGameExploration(
     audio.cancel();
     return ++actionVersion.current;
   }
-  function announceQuality(label: string | undefined, eventId: number) {
-    const cue = label ? reviewCues[label] : undefined;
-    if (cue) audio.play(cue, `${eventId}:quality`, { delayMs: 130 });
-  }
   function navigate(ply: number, options?: { silent?: boolean }) {
     if (!game) return;
     const next = Math.max(0, Math.min(game.frames.length - 1, ply));
@@ -122,7 +113,6 @@ export function useGameExploration(
         const target = game.frames[next];
         if (!branch && next === cursor.ply + 1) audio.move(target.san, `${eventId}:board`);
         else audio.play("move", `${eventId}:board`);
-        if (target.actor === game.orientation) announceQuality(target.report?.label, eventId);
       }
       activeKey.current = nextKey;
     }
@@ -218,7 +208,6 @@ export function useGameExploration(
       return null;
     }
     const eventId = beginAction();
-    const learnerMove = frame.turn === game?.orientation;
     setMoving(true);
     fail("");
     try {
@@ -243,12 +232,6 @@ export function useGameExploration(
       return {
         root,
         moves,
-        // Only the analysis explicitly requested for this accepted move can
-        // add an accent. Polling and later cached-report renders stay silent.
-        announceAnalysis: (label: string | undefined) => {
-          if (learnerMove && mounted.current && actionVersion.current === eventId && activeKey.current === nextKey)
-            announceQuality(label, eventId);
-        },
       };
     } catch (e) {
       if (mounted.current && activeKey.current === requestKey && actionVersion.current === eventId)

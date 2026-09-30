@@ -5,7 +5,7 @@ import ChoiceGroup from "../../ChoiceGroup";
 import SourceLine from "../../SourceLine";
 import "../../disclosure.css";
 import recordedSources from "../assets/sources.json";
-import { cueCatalog, paletteCatalog } from "../catalog";
+import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { SoundCategory, SoundCue, SoundPalette } from "../model";
 import { auditionScenarios, type AuditionScenario } from "./scenarios";
@@ -15,7 +15,7 @@ import "./studio.css";
 type CueFilter = "all" | SoundCategory;
 const cueFilters: readonly { value: CueFilter; label: string }[] = [
   { value: "all", label: "All cues" }, { value: "board", label: "Board" },
-  { value: "practice", label: "Practice" }, { value: "review", label: "Review" },
+  { value: "practice", label: "Practice" },
 ];
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";
 const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => item.id === palette)?.label ?? "";
@@ -72,7 +72,7 @@ export default function AudioStudio() {
       }
     } });
     engine.setReady(true);
-    engine.setPreferences({ enabled: true, volume: .35, board: true, practice: true, review: true });
+    engine.setPreferences({ enabled: true, volume: .35, board: true, practice: true });
     engineRef.current = engine;
     const pauseScenario = () => {
       if (document.visibilityState !== "hidden") return;
@@ -97,7 +97,7 @@ export default function AudioStudio() {
       timersRef.current.forEach(clearTimeout);
       timersRef.current = [];
     }
-    engineRef.current?.setPreferences({ enabled: true, volume: volume / 100, board: true, practice: true, review: true });
+    engineRef.current?.setPreferences({ enabled: true, volume: volume / 100, board: true, practice: true });
   }, [volume]);
   useEffect(() => {
     if (muted) {
@@ -141,15 +141,21 @@ export default function AudioStudio() {
     const audition = await begin();
     if (!audition) return;
     const { engine, take, scope } = audition;
-    const paletteFor = (cue: SoundCue) => scenarioPalette === "picks" ? selections[cue] ?? "recorded-chess" : scenarioPalette;
+    const paletteFor = (cue: SoundCue) => scenarioPalette === "picks" ? selections[cue] ?? productionCuePalettes[cue] : scenarioPalette;
+    if (item.steps.every(step => paletteFor(step.cue) === null)) {
+      setStatus("No sound is selected for this scenario.");
+      return;
+    }
     for (const [index, step] of item.steps.entries()) {
-      engine.play({ ...step, palette: paletteFor(step.cue), scope, eventId: `${scope}:${index}` });
+      const palette = paletteFor(step.cue);
+      if (palette !== null) engine.play({ ...step, palette, scope, eventId: `${scope}:${index}` });
     }
     if (item.skipAfterMs !== undefined && !muted && volume > 0) {
       timersRef.current.push(setTimeout(() => {
         if (take !== takeRef.current) return;
         engine.cancel(scope);
-        engine.play({ cue: "move", palette: paletteFor("move"), scope: `${scope}:next`, eventId: `${scope}:next:move` });
+        const palette = paletteFor("move");
+        if (palette !== null) engine.play({ cue: "move", palette, scope: `${scope}:next`, eventId: `${scope}:next:move` });
         setStatus("Jumped ahead. Feedback from the previous position was cancelled.");
       }, item.skipAfterMs));
     }
@@ -263,7 +269,7 @@ export default function AudioStudio() {
           </select></label>
           <p className="audio-studio-scenario-description">{scenario.description}</p>
           <Button variant="primary" onClick={() => void playScenario(scenario)}><Play size={15} aria-hidden="true" />Play scenario</Button>
-          <p className="audio-studio-footnote">{scenarioPalette === "picks" ? "Unpicked cues use Recorded chess." : "This audition leaves your individual picks unchanged."}</p>
+          <p className="audio-studio-footnote">{scenarioPalette === "picks" ? "Unpicked cues use approved production sounds. Cues without an approved sound stay silent." : "This audition leaves your individual picks unchanged."}</p>
         </section>
 
         <section className="audio-studio-panel" aria-labelledby="picks-heading">

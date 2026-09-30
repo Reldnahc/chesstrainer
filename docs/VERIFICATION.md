@@ -4,6 +4,53 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Owner sound selections and removal of rating audio — September 30, 2026
+
+Applied the eight choices read from the owner's visible studio mapping:
+Soft objects for move/capture/castle/promotion/mate; Tabletop for
+check/correct/complete. Try again has no approved clip and stays silent before
+fetching or scheduling. Rating cues, callers, assets, settings and preference
+storage are removed; board and practice playback remain independent of grading.
+Migration `342fd86bc105` drops only `audio_review`.
+
+- `.venv/Scripts/python.exe -m pytest -q backend/tests/test_audio_preferences.py backend/tests/test_api_contract.py --basetemp=data/verification/remove-rating-green -o cache_dir=data/verification/remove-rating-cache`:
+  **14 passed**. The new migration test failed before the fix with the obsolete
+  column still present. It now preserves all remaining preference values and user
+  rows for two accounts, verifies foreign keys/integrity and checks schema parity.
+- `.venv/Scripts/python.exe -m pytest -q backend/tests/test_coach_preferences.py backend/tests/test_motion_preferences.py backend/tests/test_accounts.py --basetemp=data/verification/remove-rating-neighbors -o cache_dir=data/verification/remove-rating-cache`:
+  **63 passed**. Both backend runs report two existing dependency deprecations.
+- `.venv/Scripts/ruff.exe check backend/trainer/contracts/preferences.py backend/trainer/models.py backend/trainer/preferences.py backend/tests/test_audio_preferences.py migrations/versions/342fd86bc105_remove_rating_audio.py`
+  and the same paths with `ruff format --check`: passed.
+  `scripts/export_api_contract.py` and `npm.cmd --prefix frontend run api:generate`
+  regenerated contracts; their `--check` / `api:check` counterparts passed.
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config ../.tools/ui-standardization.config.ts tests/game-audio.spec.ts --reporter=line`:
+  **18 passed**, desktop/mobile. The all-ratings regression first failed on an
+  unwanted Brilliant event. It now covers all nine qualities, silent completed
+  analysis and existing graph/variation cancellation and delayed-response cases.
+- From `frontend`, with the same browser cache,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **52 passed**, desktop/mobile. The ignored wrapper reuses the live studio.
+  Covers the exact approved asset mapping, no loading/timer for unapproved retry,
+  runtime rejection of stale rating cues, preservation of the owner's eight
+  browser picks, per-cue scenario defaults and the existing engine lifecycle.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/audio-preferences.spec.ts tests/audio-study.spec.ts tests/game-audio-browser.spec.ts --reporter=line`:
+  **34 passed** across desktop/mobile. Checks real settings, board moves, silent
+  rejected answers, successful practice, cold/reloaded silence and cancellation.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py accounts --reporter=line`:
+  **8 passed**, desktop/mobile, including cross-device sound persistence, absence
+  of the retired setting and account isolation.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including API/types,
+  **11** style tests and dependency boundaries. Existing chunk-size advisory only.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **27** remaining
+  files, **1,971,510 bytes**, valid. Independent review compared every retained
+  hash/recipe to the previous commit: the auditioned clips were not changed.
+
+Independent code review found no actionable defects. Manual studio reload
+confirmed all eight owner choices persisted and rating choices were absent.
+No full unrelated coach matrix, Docker/deployment or remote CI run is claimed.
+
 ## Recorded audio audition replacements — September 30, 2026
 
 The rejected synthetic palettes and their generator are removed. Three recorded

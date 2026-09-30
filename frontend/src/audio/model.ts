@@ -2,21 +2,20 @@ import type { CoachUtterance } from "../dialogue/model";
 
 export const soundCues = [
   "move", "capture", "castle", "promotion", "check", "mate", "correct", "retry",
-  "complete", "brilliant", "great", "miss", "mistake", "blunder",
+  "complete",
 ] as const;
 export type SoundCue = typeof soundCues[number];
 export const soundPalettes = ["recorded-chess", "tabletop", "soft-objects"] as const;
 export type SoundPalette = typeof soundPalettes[number];
-export type SoundCategory = "board" | "practice" | "review";
+export type SoundCategory = "board" | "practice";
 export type AudioPreferences = {
   enabled: boolean;
   volume: number;
   board: boolean;
   practice: boolean;
-  review: boolean;
 };
 export const defaultAudioPreferences: AudioPreferences = {
-  enabled: true, volume: .35, board: true, practice: true, review: false,
+  enabled: true, volume: .35, board: true, practice: true,
 };
 
 /** Only pass server-supplied SAN for an accepted/displayed move. No board inference. */

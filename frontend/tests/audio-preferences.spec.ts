@@ -3,7 +3,7 @@ import type {AudioPreferences} from '../src/audio/model';
 import {audioCues, captureAudio, clearAudio} from './helpers/audio';
 
 const preferencePath = '/api/preferences/audio';
-const defaults: AudioPreferences = {enabled: true, volume: .35, board: true, practice: true, review: false};
+const defaults: AudioPreferences = {enabled: true, volume: .35, board: true, practice: true};
 const test = base.extend<{restoreAudio: void}>({
   restoreAudio: [async ({page}, use) => {
     const original = await (await page.request.get(preferencePath)).json();
@@ -33,20 +33,20 @@ test('sound choices save independently, survive reload and keep a usable narrow 
   await expect(volume).toHaveValue('35');
   await expect(sound.getByRole('checkbox', {name: /^Board moves/})).toBeChecked();
   await expect(sound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
-  await expect(sound.getByRole('checkbox', {name: /^Review accents/})).not.toBeChecked();
+  await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
+  await expect(sound.getByRole('checkbox')).toHaveCount(3);
   await savedChange(page, () => sound.getByRole('checkbox', {name: /^Board moves/}).uncheck());
-  await savedChange(page, () => sound.getByRole('checkbox', {name: /^Review accents/}).check());
   await savedChange(page, () => volume.press('End'));
-  const expected = {...defaults, board: false, review: true, volume: 1};
+  const expected = {...defaults, board: false, volume: 1};
   expect(await (await page.request.get(preferencePath)).json()).toEqual(expected);
   await page.reload();
   await expect(volume).toHaveValue('100');
   await expect(sound.getByRole('checkbox', {name: /^Board moves/})).not.toBeChecked();
   await expect(sound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
-  await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toBeChecked();
+  await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
   await savedChange(page, () => sound.getByRole('checkbox', {name: 'Enable sound', exact: true}).uncheck());
   await expect(volume).toBeDisabled();
-  for (const name of [/^Board moves/, /^Practice feedback/, /^Review accents/]) await expect(sound.getByRole('checkbox', {name})).toBeDisabled();
+  for (const name of [/^Board moves/, /^Practice feedback/]) await expect(sound.getByRole('checkbox', {name})).toBeDisabled();
   await expect(sound.getByRole('button', {name: 'Test sound', exact: true})).toBeDisabled();
   expect(await (await page.request.get(preferencePath)).json()).toEqual({...expected, enabled: false});
   await page.reload();
@@ -72,17 +72,15 @@ test('the test button plays a real cue from an enabled category and respects sil
   await clearAudio(page);
   await savedChange(page, () => sound.getByRole('checkbox', {name: /^Practice feedback/}).uncheck());
   await expect(preview).toBeDisabled();
-  await savedChange(page, () => sound.getByRole('checkbox', {name: /^Review accents/}).check());
-  await preview.click();
-  await expect.poll(() => audioCues(page)).toEqual(['great']);
-  await clearAudio(page);
+  expect(await audioCues(page)).toEqual([]);
+  await savedChange(page, () => sound.getByRole('checkbox', {name: /^Practice feedback/}).check());
   await savedChange(page, () => volumeControl(page).press('Home'));
   await expect(preview).toBeDisabled();
   await expect(volumeControl(page)).toHaveValue('0');
   expect(await audioCues(page)).toEqual([]);
   await savedChange(page, () => volumeControl(page).press('ArrowRight'));
   await preview.click();
-  await expect.poll(() => audioCues(page)).toEqual(['great']);
+  await expect.poll(() => audioCues(page)).toEqual(['correct']);
 });
 
 test('sound load and save failures preserve the saved value and offer recovery', async ({page}) => {

@@ -1,9 +1,12 @@
 # Recorded audio candidates
 
 These are edits of real recordings, replacing the rejected procedural palettes.
-There are 42 cue slots across Recorded chess, Tabletop and Soft objects, derived
-from 11 sources. They are offered for owner audition, not approved final sound
-design. Some slots reuse a recording with a different excerpt/tail. Neither
+There are 27 cue slots across Recorded chess, Tabletop and Soft objects, derived
+from 11 sources. The owner chose Soft objects for move/capture/castle/promotion/
+mate and Tabletop for check/correct/complete; see [Audio](../../../../docs/AUDIO.md).
+Try again has no approved sound and is silent in production. Remaining variants
+are audition alternatives. All rating sounds have been removed.
+Some slots reuse a recording with a different excerpt/tail. Neither
 recording nor AI generation is attributed to Fieldwork.
 
 All source pages declare **CC0-1.0**. The full dedication is in
@@ -32,12 +35,12 @@ audio; it does not make lossy input lossless. Exact URLs and input hashes are in
 placement offsets, level target, peak ceiling and output hash.
 
 Editing uses excerpts, mono/sample-rate conversion, DC-offset removal, gain
-matching and boundary fades. Castling combines two recorded placements; Tabletop
-blunder combines two wood-block hits. No oscillators, synthesized noise, pitch
+matching and boundary fades. Castling combines two recorded placements.
+No oscillators, synthesized noise, pitch
 shifting or game rips are used. Levels stay below 65.01% peak amplitude. Clips have
-an exact silent tail and last approximately 0.117–2.056 seconds. The 42 mono
-44.1 kHz / 16-bit WAVs total **3,051,748 bytes**. Listening preferences remain
-subjective and are left for the owner in the studio.
+an exact silent tail and last approximately 0.117–2.056 seconds. The 27 mono
+44.1 kHz / 16-bit WAVs total **1,971,510 bytes**. Retained clips are byte-for-byte
+unchanged from the owner's audition round.
 
 ## Verify or reproduce
 

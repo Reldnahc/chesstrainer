@@ -1,4 +1,5 @@
 import { soundCues, soundPalettes, type SoundCue, type SoundPalette } from "../model";
+import { productionCuePalettes } from "../catalog";
 
 export const studioStorageKey = "fieldwork.audio-studio.picks.v2";
 export type StudioSelections = Partial<Record<SoundCue, SoundPalette>>;
@@ -19,9 +20,9 @@ export function readStudioSelections(): StudioSelections {
 
 export function exportStudioSelections(selections: StudioSelections) {
   return JSON.stringify({
-    schemaVersion: 2,
+    schemaVersion: 3,
     purpose: "fieldwork-audio-audition",
-    fallbackPalette: "recorded-chess",
+    fallbackCuePalettes: productionCuePalettes,
     cuePalettes: Object.fromEntries(soundCues.flatMap(cue => selections[cue] ? [[cue, selections[cue]]] : [])),
   }, null, 2);
 }

@@ -1183,11 +1183,6 @@ export interface components {
              */
             practice: boolean;
             /**
-             * Review
-             * @default false
-             */
-            review: boolean;
-            /**
              * Volume
              * @default 0.35
              */

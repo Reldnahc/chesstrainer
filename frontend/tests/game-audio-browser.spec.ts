@@ -15,7 +15,7 @@ test("game review plays explicit moves through the audio service and keeps graph
   await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
   await page.route(`**/api/games/${id}/review`, route => route.fulfill({json: {job_id: "audio-review", status: "completed"}}));
   await page.route("**/api/preferences/audio", route => route.fulfill({json: {
-    enabled: true, volume: .35, board: true, practice: true, review: true,
+    enabled: true, volume: .35, board: true, practice: true,
   }}));
   await captureAudio(page);
   const preferences = page.waitForResponse(response => response.url().endsWith("/api/preferences/audio"));
@@ -27,12 +27,12 @@ test("game review plays explicit moves through the audio service and keeps graph
   await page.getByRole("button", {name: "Flip board", exact: true}).click();
   expect(await audioCues(page)).toEqual([]);
   await page.getByRole("button", {name: "Next move", exact: true}).click();
-  await expect.poll(() => audioCues(page)).toEqual(["move", "brilliant"]);
+  await expect.poll(() => audioCues(page)).toEqual(["move"]);
   await clearAudio(page);
   await page.getByRole("button", {name: "Next move", exact: true}).click();
   await expect.poll(() => audioCues(page)).toEqual(["mate"]);
   await page.getByRole("button", {name: "Previous move", exact: true}).click();
-  await expect.poll(() => audioCues(page)).toEqual(["mate", "move", "brilliant"]);
+  await expect.poll(() => audioCues(page)).toEqual(["mate", "move"]);
   await clearAudio(page);
 
   const plot = page.locator(".game-evaluation-plot");

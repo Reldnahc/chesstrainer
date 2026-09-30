@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
     motion: await (await page.request.get("/api/preferences/motion")).json(),
   });
   expect((await page.request.put("/api/preferences/audio", { data: {
-    enabled: true, volume: .4, board: true, practice: true, review: true,
+    enabled: true, volume: .4, board: true, practice: true,
   } })).ok()).toBe(true);
   expect((await page.request.put("/api/preferences/motion", { data: { motion: "still" } })).ok()).toBe(true);
   await captureAudio(page);
@@ -73,14 +73,14 @@ async function expectSilent(page: Page, expected: SoundCue[] = []) {
 const piece = (page: Page, square: string, symbol: string) =>
   page.locator(`.board-shell [data-square="${square}"] [data-piece="${symbol}"]`);
 
-test("Still puzzle feedback sounds once, survives retries, and replaces correct with complete", async ({ page }, info) => {
+test("Still puzzle feedback keeps rejected answers neutral and replaces correct with complete", async ({ page }, info) => {
   const puzzle = await fixture(page, "puzzle", `still-${info.project.name}`);
   await page.goto(puzzle.path);
   await expect(page.getByRole("heading", { name: "Find the continuation.", exact: true })).toBeVisible();
   await expectSilent(page);
   await move(page, "d2d4");
   await expect(page.getByRole("heading", { name: "Try a different move.", exact: true })).toBeVisible();
-  await expectCues(page, ["move", "retry"]);
+  await expectSilent(page, ["move"]);
   await page.reload();
   await expect(page.getByRole("heading", { name: "Try a different move.", exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Try again", exact: true }).click();
@@ -133,9 +133,9 @@ test("lesson demonstrations and accepted decisions sound only their live transit
   await expect(page.getByRole("heading", { name: "Develop a knight", exact: true })).toBeVisible();
   await expectSilent(page);
   await move(page, "d2d4");
-  await expectCues(page, ["move", "retry"]);
+  await expectSilent(page, ["move"]);
   await move(page, "b1c3");
-  await expectCues(page, ["move", "retry", "move", "correct"]);
+  await expectCues(page, ["move", "move", "correct"]);
   await page.reload();
   await expect(piece(page, "c3", "wN")).toBeVisible();
   await expectSilent(page);
@@ -188,10 +188,10 @@ test("opening recall retries and acceptance stay distinct from reveal and hydrat
   await expect(page.getByRole("heading", { name: "Play your studied move.", exact: true })).toBeVisible();
   await expectSilent(page);
   await move(page, recall.wrong);
-  await expectCues(page, ["move", "retry"]);
+  await expectSilent(page, ["move"]);
   await move(page, recall.accepted_moves[0]);
   await expect(page.getByRole("heading", { name: "Opening recalled.", exact: true })).toBeVisible();
-  await expectCues(page, ["move", "retry", "move", "correct"]);
+  await expectCues(page, ["move", "move", "correct"]);
   await page.reload();
   await expect(page.getByRole("heading", { name: "Opening recalled.", exact: true })).toBeVisible();
   await expectSilent(page);
@@ -214,7 +214,7 @@ test("SRS sounds the visible counter reply and retry cancels a pending reply", a
   await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
   await move(page, recall.wrong);
   await expect(piece(page, "a1", "bQ")).toBeVisible();
-  await expectCues(page, ["move", "retry", "check"]);
+  await expectSilent(page, ["move", "check"]);
   await page.getByRole("button", { name: "Try again", exact: true }).click();
 
   // Freeze the presentation timer while the real server grades the retry.
@@ -222,15 +222,15 @@ test("SRS sounds the visible counter reply and retry cancels a pending reply", a
   await page.clock.pauseAt(new Date(Date.now() + 1000));
   await move(page, recall.wrong);
   await page.clock.runFor(200);
-  await expectCues(page, ["move", "retry", "check", "move", "retry"]);
+  await expectCues(page, ["move", "check", "move"]);
   await page.getByRole("button", { name: "Try again", exact: true }).click();
   await page.clock.runFor(700);
   await expect(piece(page, "a1", "wR")).toBeVisible();
-  expect(await audioCues(page)).toEqual(["move", "retry", "check", "move", "retry"]);
+  expect(await audioCues(page)).toEqual(["move", "check", "move"]);
   await page.clock.resume();
   await move(page, recall.best);
   await expect(page.getByRole("heading", { name: "Good decision.", exact: true })).toBeVisible();
-  await expectCues(page, ["move", "retry", "check", "move", "retry", "capture", "correct"]);
+  await expectCues(page, ["move", "check", "move", "capture", "correct"]);
 });
 
 test("leaving a lesson discards sound from its late committed demonstration", async ({ page }, info) => {

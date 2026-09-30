@@ -13,12 +13,20 @@ export const cueCatalog: readonly CueDefinition[] = [
   {id: "correct", label: "Correct", description: "An accepted practice answer.", category: "practice", priority: 50},
   {id: "retry", label: "Try again", description: "A gentle prompt to reconsider.", category: "practice", priority: 40},
   {id: "complete", label: "Complete", description: "A finished practice sequence.", category: "practice", priority: 100},
-  {id: "brilliant", label: "Brilliant", description: "A light, distinctive sparkle.", category: "review", priority: 85},
-  {id: "great", label: "Great", description: "A restrained positive accent.", category: "review", priority: 65},
-  {id: "miss", label: "Miss", description: "An unresolved opening to reconsider.", category: "review", priority: 60},
-  {id: "mistake", label: "Mistake", description: "A brief cue to reconsider the move.", category: "review", priority: 70},
-  {id: "blunder", label: "Blunder", description: "A deeper, soft caution.", category: "review", priority: 80},
 ];
+
+/** Owner-approved production choices. Null intentionally leaves an unselected cue silent. */
+export const productionCuePalettes: Readonly<Record<SoundCue, SoundPalette | null>> = {
+  move: "soft-objects",
+  capture: "soft-objects",
+  castle: "soft-objects",
+  promotion: "soft-objects",
+  check: "tabletop",
+  mate: "soft-objects",
+  correct: "tabletop",
+  retry: null,
+  complete: "tabletop",
+};
 export const paletteCatalog: readonly {id: SoundPalette; label: string; description: string}[] = [
   {id: "recorded-chess", label: "Recorded chess", description: "Actual chess-piece recordings, with bell feedback."},
   {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents."},

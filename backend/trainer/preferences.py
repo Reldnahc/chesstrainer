@@ -60,7 +60,6 @@ def audio_preferences(db):
         volume=saved.audio_volume,
         board=saved.audio_board,
         practice=saved.audio_practice,
-        review=saved.audio_review,
     )
 
 

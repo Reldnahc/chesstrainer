@@ -1,6 +1,6 @@
 import {test, expect} from "@playwright/test";
 import {AudioEngine, type AudioDriver, type AudioEvent} from "../src/audio/engine";
-import {cueForMove, defaultAudioPreferences, type PreparedSpeechClip} from "../src/audio/model";
+import {cueForMove, defaultAudioPreferences, type PreparedSpeechClip, type SoundCue} from "../src/audio/model";
 
 class Gain {
   value = 1;
@@ -98,6 +98,41 @@ test("authoritative SAN selects one semantic cue in explicit precedence", () => 
     .toEqual(["move", "capture", "castle", "castle", "promotion", "check", "check", "mate"]);
 });
 
+test("production uses the owner's per-cue choices and leaves unapproved retry silent", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  for (const [cue, palette] of [
+    ["move", "soft-objects"], ["capture", "soft-objects"], ["castle", "soft-objects"],
+    ["promotion", "soft-objects"], ["check", "tabletop"], ["mate", "soft-objects"],
+    ["correct", "tabletop"], ["complete", "tabletop"],
+  ] as const) {
+    f.engine.play({cue, scope: "selected", eventId: cue});
+    await flush();
+    expect(f.loads.at(-1)).toContain(`${palette}/${cue}.wav`);
+    expect(f.events.at(-1)).toMatchObject({type: "started", cue, palette});
+    f.context.sources.at(-1)!.finish();
+  }
+  f.engine.play({cue: "retry", scope: "selected", eventId: "not-approved", delayMs: 160});
+  await flush();
+  expect(f.loads).toHaveLength(8);
+  expect(f.timers.size).toBe(0);
+  expect(f.events.at(-1)).toMatchObject({type: "suppressed", reason: "no-selected-sound"});
+  f.engine.dispose();
+});
+
+test("removed rating cues cannot play even when supplied by stale callers", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  for (const rating of ["best", "good", "book", "brilliant", "great", "miss", "mistake", "blunder", "inaccuracy"]) {
+    f.engine.play({cue: rating as SoundCue, scope: "stale", eventId: rating, palette: "tabletop"});
+  }
+  await flush();
+  expect(f.loads).toEqual([]);
+  expect(f.started()).toEqual([]);
+  expect(f.events.every(event => event.type === "suppressed" && event.reason === "unknown-cue")).toBe(true);
+  f.engine.dispose();
+});
+
 test("context creation is gesture-lazy and blocked events never replay after unlocking", async () => {
   const f = fixture();
   f.engine.play(move("blocked"));
@@ -179,11 +214,11 @@ test("feedback is limited to two voices and a lower priority event cannot replac
   await f.engine.unlock();
   f.engine.play({cue: "complete", scope: "a", eventId: "complete-a"});
   f.engine.play({cue: "complete", scope: "b", eventId: "complete-b"});
-  f.engine.play({cue: "retry", scope: "c", eventId: "retry"});
+  f.engine.play({cue: "correct", scope: "c", eventId: "correct"});
   f.engine.play(move("board"));
   await flush();
   expect(f.started()).toEqual(["complete-a", "complete-b", "board"]);
-  expect(f.events.find(event => event.eventId === "retry" && event.type === "suppressed")?.reason).toBe("priority");
+  expect(f.events.find(event => event.eventId === "correct" && event.type === "suppressed")?.reason).toBe("priority");
   f.engine.dispose();
 });
 
@@ -238,7 +273,6 @@ test("preference gating cancels pending categories and updates volume without re
   f.engine.setPreferences({...defaultAudioPreferences, board: false, volume: .7});
   f.tick();
   f.engine.play(move("disabled-category"));
-  f.engine.play({cue: "brilliant", scope: "game", eventId: "default-review-off"});
   f.engine.play({cue: "correct", scope: "practice", eventId: "practice"});
   await flush();
   expect(f.started()).toEqual(["practice"]);

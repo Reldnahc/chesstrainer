@@ -56,7 +56,6 @@ class UserPreferences(Owned, Base):
     audio_volume: Mapped[float] = mapped_column(default=0.35, server_default="0.35")
     audio_board: Mapped[bool] = mapped_column(default=True, server_default="1")
     audio_practice: Mapped[bool] = mapped_column(default=True, server_default="1")
-    audio_review: Mapped[bool] = mapped_column(default=False, server_default="0")
 
 
 class ImportBatch(Owned, Base):

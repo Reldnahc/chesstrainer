@@ -15,10 +15,10 @@ four cats and four dogs in **Settings → Your coach**, each with all 20 express
 The dogs include two goldens, a corgi and a border collie. Existing users keep Storyteller
 until they choose another coach; the choice follows their account across devices.
 
-The shared [audio system](docs/AUDIO.md) adds board sounds and practice feedback,
-with optional review accents. Adjust it in **Settings → Coach & sound** or quickly
+The shared [audio system](docs/AUDIO.md) adds board sounds and practice feedback.
+Move ratings have no sounds. Adjust it in **Settings → Coach & sound** or quickly
 mute the current device from a board. The separate development sound studio
-(`npm --prefix frontend run dev:audio`, port 5176) compares three provisional
+(`npm --prefix frontend run dev:audio`, port 5176) compares three recorded
 palettes and saves per-cue favorites for auditioning. Coach speech is deferred.
 
 Game review now connects supported tactics, immediate positional changes, human

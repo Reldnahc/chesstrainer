@@ -46,19 +46,18 @@ export default function AudioSettings() {
         <legend>Play sounds for</legend>
         {([
           ["board", "Board moves", "Moves, captures, castling, promotion, check and checkmate."],
-          ["practice", "Practice feedback", "Accepted answers, retries and completed practice."],
-          ["review", "Review accents", "Brilliant, Great, Miss, Mistake and Blunder."],
+          ["practice", "Practice feedback", "Accepted answers and completed practice."],
         ] as const).map(([key, label, description]) => <label className="audio-setting-check" key={key}>
           <input type="checkbox" checked={draft[key]} onChange={event => void update({[key]: event.target.checked})} />
           <span>{label}<small>{description}</small></span>
         </label>)}
       </fieldset>
       <div className="button-row audio-setting-preview">
-        <Button variant="secondary" disabled={disabled || !preferences.enabled || volume === 0 || muted || (!preferences.board && !preferences.practice && !preferences.review)}
+        <Button variant="secondary" disabled={disabled || !preferences.enabled || volume === 0 || muted || (!preferences.board && !preferences.practice)}
           onClick={async () => {
             await sound.unlock();
             sound.cancel();
-            sound.play(preferences.board ? "move" : preferences.practice ? "correct" : "great", `preview:${++sequence.current}`);
+            sound.play(preferences.board ? "move" : "correct", `preview:${++sequence.current}`);
           }}>Test sound</Button>
         {muted && <Button variant="quiet" onClick={() => setMuted(false)}>Unmute this device</Button>}
       </div>

@@ -4,7 +4,7 @@ from threading import Barrier
 import pytest
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
-from sqlalchemy import select, text
+from sqlalchemy import inspect, select, text
 from trainer.api import create_app
 from trainer.contracts.preferences import AudioPreferences, CoachPreferences, MotionPreferences
 from trainer.db import database, migrate
@@ -20,8 +20,8 @@ from trainer.preferences import (
 )
 
 PATH = "/api/preferences/audio"
-DEFAULT = {"enabled": True, "volume": 0.35, "board": True, "practice": True, "review": False}
-SAVED = {"enabled": False, "volume": 0.6, "board": False, "practice": False, "review": True}
+DEFAULT = {"enabled": True, "volume": 0.35, "board": True, "practice": True}
+SAVED = {"enabled": False, "volume": 0.6, "board": False, "practice": False}
 
 
 def test_audio_defaults_restart_and_independent_preference_updates(settings):
@@ -61,7 +61,7 @@ def test_audio_validation_volume_boundaries_and_missing_field_defaults(settings)
             {"enabled": "false"},
             {"board": 1},
             {"practice": None},
-            {"review": "yes"},
+            {"review": True},
             {"user_id": "other"},
         ):
             assert client.put(PATH, json=invalid).status_code == 422
@@ -175,4 +175,64 @@ def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(set
         assert connection.exec_driver_sql("PRAGMA integrity_check").scalar() == "ok"
         config.attributes["connection"] = connection
         command.check(config)
+    engine.dispose()
+
+
+def test_removing_rating_audio_preserves_saved_account_preferences(settings):
+    from alembic import command
+    from alembic.config import Config
+
+    engine, _ = database(settings.database_path)
+    config = Config("alembic.ini")
+    with engine.begin() as connection:
+        config.attributes["connection"] = connection
+        command.upgrade(config, "0d6a3c81f294")
+        connection.execute(
+            text(
+                "INSERT INTO users (id, username, password, admin, disabled, chesscom_username, "
+                "created) VALUES ('alice', 'alice', '', 0, 0, '', 0)"
+            )
+        )
+        for owner, audio, coach, motion in (
+            ("local", DEFAULT, "classic", "natural"),
+            ("alice", SAVED, "cat-black", "still"),
+        ):
+            connection.execute(
+                text(
+                    "INSERT INTO user_preferences (user_id, coach_id, coach_motion, "
+                    "interface_motion, audio_enabled, audio_volume, audio_board, "
+                    "audio_practice, audio_review) VALUES (:owner, :coach, :motion, "
+                    ":motion, :enabled, :volume, :board, :practice, 1)"
+                ),
+                {"owner": owner, "coach": coach, "motion": motion, **audio},
+            )
+        before_users = connection.execute(text("SELECT * FROM users ORDER BY id")).mappings().all()
+        before_preferences = [
+            {key: value for key, value in row.items() if key != "audio_review"}
+            for row in connection.execute(
+                text("SELECT * FROM user_preferences ORDER BY user_id")
+            ).mappings()
+        ]
+    migrate(engine)
+    with engine.connect() as connection:
+        assert "audio_review" not in {
+            column["name"] for column in inspect(connection).get_columns("user_preferences")
+        }
+        assert (
+            connection.execute(text("SELECT * FROM users ORDER BY id")).mappings().all()
+            == before_users
+        )
+        assert (
+            connection.execute(text("SELECT * FROM user_preferences ORDER BY user_id"))
+            .mappings()
+            .all()
+            == before_preferences
+        )
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
+        assert connection.exec_driver_sql("PRAGMA integrity_check").scalar() == "ok"
+        config.attributes["connection"] = connection
+        command.check(config)
+    for owner, expected in (("local", DEFAULT), ("alice", SAVED)):
+        with account_sessions(engine, owner)() as db:
+            assert audio_preferences(db).model_dump() == expected
     engine.dispose()

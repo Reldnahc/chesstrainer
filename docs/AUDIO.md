@@ -1,17 +1,17 @@
 # Audio
 
-Fieldwork uses one browser audio service for board moves, practice feedback and
-optional review accents. Audio is presentation only: it never grades a move,
+Fieldwork uses one browser audio service for board moves and practice feedback.
+Audio is presentation only: it never grades a move,
 advances a session, changes the engine budget or infers a tactic from the board.
-The bundled selection is provisional **Recorded chess**. The separate audition
-studio exists so the owner can compare and choose the final sounds. The original
+The bundled selection is the owner's mixed recording set, listed below. The
+separate audition studio remains available for comparing sounds. The original
 procedurally synthesized audition sets were rejected and have been removed.
 
 ## Controls and defaults
 
 **Settings → Coach & sound → Sound** contains the master switch, volume,
-board/practice/review switches and an explicit test button. Defaults are sound
-enabled, volume 35%, board and practice enabled, and review accents disabled.
+board/practice switches and an explicit test button. Defaults are sound
+enabled, volume 35%, and board and practice enabled.
 Account preferences use the existing owned `user_preferences` row, including the
 reserved local user. A failed initial preference load keeps audio silent until
 retried. Audio changes do not overwrite coach or motion choices.
@@ -28,17 +28,32 @@ from a trusted interaction, remains silent if blocked, and never queues blocked
 sounds to surprise the user later. Hidden tabs stop playback. Reopening a tab
 does not replay missed events. All feedback remains understandable without sound.
 
+## Selected sounds
+
+| Cues | Owner's selection |
+| --- | --- |
+| Move, capture, castle, promotion, checkmate | Soft objects |
+| Check, correct answer, completion | Tabletop |
+| Try again | Silent; none of the audition candidates was approved |
+
+`productionCuePalettes` is the single per-cue default mapping. A null selection
+suppresses playback before a download or timer is created. The studio can
+explicitly audition a different candidate without changing production choices.
+Ratings never have sounds: their cue types, emitters, assets, settings and saved
+preference have been removed. The forward database migration drops only the
+retired `audio_review` column and preserves remaining account preferences.
+
 ## Cue policy
 
 | Cue | Meaning |
 | --- | --- |
 | Move / capture / castle / promotion | One committed or explicitly inspected board move |
 | Check / mate | The server-supplied move notation contains check/checkmate; these take precedence over ordinary placement |
-| Correct / retry | The current practice attempt was accepted/rejected by its existing answer authority |
+| Correct | The current practice attempt was accepted by its existing answer authority |
+| Retry | A rejected practice attempt; reserved semantic cue, currently silent |
 | Complete | A puzzle or lesson has just completed; replaces the ordinary correct cue |
-| Brilliant / Great / Miss / Mistake / Blunder | Optional accents for supported learner move classifications in game review |
 
-Ordinary Best, Good and Book moves do not have separate accents. Checkmate in a
+No move classification triggers a sound. Checkmate in a
 historical game has a neutral finish, rather than implying the learner won.
 Revealing an answer plays the board cue without a success reward. A correct
 opening rehearsal is an accepted authored answer, not a claim of objective Best.
@@ -49,8 +64,7 @@ dragging is silent until release, with at most one neutral cue; cancellation doe
 not commit a sound. Initial loads, page reloads, board flips, return-to-game,
 background refinement and analysis polling are silent. An uncached variation
 step sounds only after its matching position response is accepted; failed or
-superseded navigation stays silent. Optional variation accents require the
-still-current explicit analysis request.
+superseded navigation stays silent. Completed variation analysis is silent.
 
 Study playback sounds track explicitly displayed frames. Still mode collapses a
 continuation to the visible final move without a burst of skipped sounds. Reset,
@@ -62,7 +76,8 @@ before an attempt or reveal permits feedback.
 
 - `frontend/src/audio/model.ts` owns semantic cue, preference and prepared-speech
   types. `cueForMove` interprets canonical server SAN, not FEN or local chess rules.
-- `catalog.ts` owns cue categories, priorities, palette metadata and asset URLs.
+- `catalog.ts` owns cue categories, priorities, approved production choices,
+  palette metadata and asset URLs.
 - `engine.ts` owns a lazily created Web Audio context, decoded asset cache, master
   gain, separate effects/speech buses, bounded playback, short cancellation fades,
   duplicate suppression, visibility and disposal. Suppressed requests are dropped.
@@ -85,8 +100,8 @@ not restore information removed by MP3 encoding.
 `frontend/src/audio/assets/sources.json` records every source, author, license,
 input/output hash and exact edit recipe. The asset README and `CC0-1.0.txt` retain
 the notices. `scripts/prepare_audio.py --check` verifies assets offline; explicit
-authoring can reproduce the edits from hash-checked source files. The 42 candidate
-WAVs cover 14 cues in three palettes and total approximately **3.05 MB**; some cues
+authoring can reproduce the edits from hash-checked source files. The 27 candidate
+WAVs cover nine cues in three palettes and total approximately **1.97 MB**; some cues
 share a source recording. Assets are bundled locally, fetched and decoded only
 as needed; normal installation/build/playback does not contact a sound provider.
 Additional palettes need not change event producers.
@@ -104,17 +119,20 @@ connection and no production navigation route. It uses the actual audio engine.
 
 - Compare Recorded chess, Tabletop and Soft objects for each cue.
 - Open a candidate's Source disclosure for its recording, author and CC0 license.
-  These are audition candidates, not approved final sound design; exact edit
-  recipes are recorded in the asset manifest.
+  Approved production choices are listed above; other variants remain audition
+  candidates. Exact edit recipes are recorded in the asset manifest.
 - Pick a different palette for each cue; picks persist only in studio storage.
   Clear picks resets that audition selection without changing account settings.
 - Play short scenarios using one palette or the current mixed selection.
+  Unpicked cues use their approved production choice; Try again stays silent.
 - Adjust volume, mute, stop or inspect the playback history.
 - Copy/download the selected mapping for review and a later deliberate product
   change. Studio selections do not silently alter production account preferences.
 
-Selection storage/export is version 2. Previous synthetic-set picks cannot
-silently approve replacement sounds; old palette IDs are discarded.
+Selection storage remains version 2, preserving the owner's eight choices.
+Export is version 3 and includes the explicit per-cue production fallback map,
+including null for silence. Previous synthetic-set picks cannot silently approve
+replacement sounds; old palette IDs and removed rating cues are discarded.
 
 The studio shares application buttons and choice controls but owns its layout.
 Its style boundary rejects application/board styles. CI has a dedicated audio
