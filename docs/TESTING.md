@@ -42,12 +42,17 @@ and course fingerprints; opening tests also preserve scheduling across equivalen
 answer spellings. `test_opening_lifecycle.py` bounds SQL query counts as stale
 unfinished recalls accumulate, while retaining active-session queue precedence.
 
-`test_italian_course.py` walks every bundled Italian chapter, accepted decision,
+`test_italian_course.py` walks every bundled course chapter, accepted decision,
 branch, source-game endpoint and rehearsal through the production paths. It
 verifies that completion leaves existing reviews, FSRS and weakness evidence
 untouched, and enrollment remains explicit. `test_italian_native.py` uses native
 Stockfish for a bounded gross-error check of guided decisions, not as the lesson
-grader. `italian-course.spec.ts` exercises the real installed course on both
+grader. `test_italian_black_claims.py` and `test_kings_gambit_claims.py` verify
+concrete teaching claims against legal positions and historical endpoints.
+`opening-courses.spec.ts` exercises both new courses on desktop and mobile,
+including Black orientation, source-game exploration, rehearsal, reload and
+side-appropriate explicit enrollment. `italian-course.spec.ts` exercises the
+original installed White course on both
 viewports, including exact returns, reload and optional enrollment.
 It also checks legal destinations during the first drag after lesson input is
 enabled, with both Natural and Still motion, across consecutive guided moves.
@@ -56,7 +61,8 @@ The account browser suite resumes lessons, puzzle attempts, selected lines and
 the chosen coach on a second device, then confirms another account cannot read
 their private sessions or studies. Its authenticated puzzle fixture alias exists
 only in `browser_app.py`. `scripts/smoke_install.py` also checks the installed
-Italian course, empty production puzzle library, lesson restart and explicit
+course registry, original Italian course, empty production puzzle library,
+lesson restart and explicit
 opening enrollment in fresh local/account containers without starting analysis.
 
 Opening recall coverage: `test_opening_sources.py`, `test_opening_lifecycle.py`,

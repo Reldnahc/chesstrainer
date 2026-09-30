@@ -22,9 +22,15 @@ def study_before_restart(client, headers):
     library = client.get("/api/study/courses", headers=headers)
     library.raise_for_status()
     courses = library.json()["courses"]
-    assert [course["id"] for course in courses] == ["italian-foundations"]
-    course = courses[0]
-    assert course["chapter_count"] == 3 and course["completed_chapters"] == 0
+    installed = {course["id"]: course for course in courses}
+    assert {
+        "italian-foundations",
+        "italian-black-foundations",
+        "kings-gambit-foundations",
+    } <= installed.keys()
+    assert all(course["completed_chapters"] == 0 for course in courses)
+    course = installed["italian-foundations"]
+    assert course["chapter_count"] == 3
     puzzles = client.get("/api/puzzles", headers=headers)
     puzzles.raise_for_status()
     assert puzzles.json()["available"] == 0 and puzzles.json()["sources"] == []

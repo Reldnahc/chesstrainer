@@ -3,12 +3,13 @@
 import chess
 import chess.engine
 import pytest
-from trainer.study_lessons.bundled import BundledCourses
+from test_italian_course import COURSE_IDS, installed_course
 
 
 @pytest.mark.stockfish
-def test_italian_guided_decisions_do_not_teach_objective_blunders(stockfish_path):
-    course = next(iter(BundledCourses().courses(None)))
+@pytest.mark.parametrize("course_id", COURSE_IDS)
+def test_bundled_guided_decisions_do_not_teach_objective_blunders(stockfish_path, course_id):
+    course = installed_course(course_id)
     verified = set()
     with chess.engine.SimpleEngine.popen_uci(stockfish_path) as engine:
         engine.configure({"Threads": 1, "Hash": 32})
@@ -33,10 +34,11 @@ def test_italian_guided_decisions_do_not_teach_objective_blunders(stockfish_path
                     # This is a broad content-authoring check, not a product grading rule.
                     # A sound teaching choice need not be Stockfish's first preference.
                     assert best_score - actual_score <= 150, (
+                        course.id,
                         chapter.id,
                         step.id,
                         choice.uci,
                         best_score,
                         actual_score,
                     )
-    assert verified, "The Italian pilot must contain guided learner decisions"
+    assert verified, f"{course.id} must contain guided learner decisions"

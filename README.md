@@ -2,9 +2,10 @@
 
 A private chess trainer built around decisions in your own games. Import Chess.com or Lichess history by username or upload PGNs, analyze learner moves with native Stockfish, practice meaningful mistakes, and retain them with FSRS. Local rules classify supported tactical patterns from saved engine evidence. Study brings scheduled recall, guided opening lessons and separate puzzle practice together. See [Study](docs/STUDY.md) for content availability and the distinct learning modes.
 
-Start with **Study → Openings** for the included Italian Game course, or browse the
-opening catalogue and choose lines to remember. Lessons and line rehearsal save
-their own progress; only scheduled **Due** attempts advance FSRS. Puzzle players
+Start with **Study → Openings** for Italian Game courses for White and Black or a
+King’s Gambit course for White, or browse the opening catalogue and choose lines
+to remember. Lessons and line rehearsal save their own progress; only scheduled
+**Due** attempts advance FSRS. Puzzle players
 are implemented, with production puzzle collections intentionally left for a
 later content pass.
 

@@ -57,13 +57,13 @@ function readRoute() {
   let lessonSessionId: string | null = null;
   let lessonCourseId: string | null = null;
   let openingCatalogueKey: string | null = null;
-  let openingCourseLine: { courseId: string; lineId: string; revision: string } | null = null;
+  let openingCourseLine: { courseId: string; lineId: string; revision: string; color: "white" | "black" } | null = null;
   try { if (gameMatch) gameId = decodeURIComponent(gameMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (puzzleMatch) puzzleSessionId = decodeURIComponent(puzzleMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (lessonMatch) lessonSessionId = decodeURIComponent(lessonMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (courseMatch) lessonCourseId = decodeURIComponent(courseMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (catalogueMatch) openingCatalogueKey = decodeURIComponent(catalogueMatch[1]); } catch { /* Invalid source links show the not-found screen. */ }
-  try { if (courseLineMatch) openingCourseLine = { courseId: decodeURIComponent(courseLineMatch[1]), lineId: decodeURIComponent(courseLineMatch[2]), revision: url.searchParams.get("revision") || "" }; } catch { /* Invalid source links show the not-found screen. */ }
+  try { if (courseLineMatch) openingCourseLine = { courseId: decodeURIComponent(courseLineMatch[1]), lineId: decodeURIComponent(courseLineMatch[2]), revision: url.searchParams.get("revision") || "", color: url.searchParams.get("color") === "black" ? "black" : "white" }; } catch { /* Invalid source links show the not-found screen. */ }
   const openingSection: "catalogue" | "studies" | "lessons" = path === `${studyPaths.openings}/catalogue` || openingCatalogueKey ? "catalogue"
     : path === `${studyPaths.openings}/studies` ? "studies" : "lessons";
   const puzzleSource: "generic" | "games" | null = path === "/study/puzzles/generic" ? "generic"
@@ -143,8 +143,8 @@ export function openingCataloguePath(key?: string) {
   return `${studyPaths.openings}/catalogue${key ? `/${encodeURIComponent(key)}` : ""}`;
 }
 
-export function courseLinePath(courseId: string, lineId: string, revision: string) {
-  return `${studyPaths.openings}/courses/${encodeURIComponent(courseId)}/lines/${encodeURIComponent(lineId)}?revision=${encodeURIComponent(revision)}`;
+export function courseLinePath(courseId: string, lineId: string, revision: string, color: "white" | "black" = "white") {
+  return `${studyPaths.openings}/courses/${encodeURIComponent(courseId)}/lines/${encodeURIComponent(lineId)}?revision=${encodeURIComponent(revision)}${color === "black" ? "&color=black" : ""}`;
 }
 
 export function rememberReviewSession(id: string) {

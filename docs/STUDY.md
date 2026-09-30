@@ -129,7 +129,28 @@ The `/study/openings` library links course chapters and recent resumable session
 `/study/openings/courses/:id?revision=…` pins the chapter list, and
 `/study/openings/sessions/:id` resumes the exact private player state.
 
-### Included Italian course
+### Included courses
+
+All three courses ship locally and use the same player, account progress and
+explicit line-enrollment flow. They are focused repertoires: an authored answer
+is a move chosen for that lesson, not a claim that every other legal move is bad.
+Historical games illustrate plans and mistakes; their moves are not all
+recommendations. No course starts an engine job or downloads material at runtime.
+
+| Course | Side | Chapters | Source record |
+|---|---|---|---|
+| Italian Game · A quiet White repertoire | White | Develop and castle; prepare the center; meet the Two Knights | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
+| Italian Game · A practical Black repertoire | Black | Quiet development; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
+| King's Gambit · Active play with White | White | Accepted development; the ...g5 pawn chain; declined play and the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
+
+The new courses are `italian-black-foundations` and `kings-gambit-foundations`,
+both revision `2026-09-v1`. Black decisions and rehearsal use Black orientation
+and automatically play White’s intervening replies. All three course definitions
+are cached as immutable source data and returned as independent copies. Shared
+SAN authoring helpers produce the same validated content format; the original
+White Italian revision and saved progress remain unchanged.
+
+#### Original White Italian course
 
 The bundled `italian-foundations` course (`2026-09-v1`) teaches White through three
 chapters: develop and castle, prepare the center, and meet the Two Knights. Its
@@ -155,6 +176,9 @@ counts for either side. Authored courses may designate additional repertoire
 lines; illustrative games and arbitrary branches cannot be enrolled. Both sources
 normalize to the same full legal line, starting FEN and versioned identity. A
 study pins that content and color instead of following future provider updates.
+Course-line links preserve the course's learner side in the URL, so Black course
+previews default to Black even after reload. The existing side selector still
+allows choosing either side before enrollment.
 
 Enrollment creates `source="opening"` exercises only for the chosen side's
 decisions. One account/position/orientation has one opening card, even if several

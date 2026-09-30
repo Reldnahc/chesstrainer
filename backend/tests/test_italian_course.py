@@ -3,6 +3,7 @@
 from copy import deepcopy
 
 import chess
+import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 from test_focused_practice import seed_classified
@@ -15,12 +16,22 @@ from trainer.opening_studies.sources import course_key
 from trainer.study_lessons.bundled import BundledCourses
 from trainer.study_lessons.content import Position
 from trainer.study_lessons.player import enter_step, initial_state, transition
+from trainer.study_lessons.queries import fingerprint
 
 BASE = "/api/study/lesson-sessions"
+COURSE_IDS = (
+    "italian-foundations",
+    "italian-black-foundations",
+    "kings-gambit-foundations",
+)
+
+
+def installed_course(course_id):
+    return next(course for course in BundledCourses().courses(None) if course.id == course_id)
 
 
 def pilot():
-    return next(iter(BundledCourses().courses(None)))
+    return installed_course("italian-foundations")
 
 
 def start(client, course, chapter):
@@ -28,7 +39,7 @@ def start(client, course, chapter):
         client.post(
             BASE,
             json={
-                "request_id": f"italian-{chapter.id}",
+                "request_id": f"{course.id}-{chapter.id}",
                 "course_id": course.id,
                 "course_revision": course.revision,
                 "chapter_id": chapter.id,
@@ -66,6 +77,7 @@ def inspect_source_game(client, state, source):
 
 def walk_chapter(client, course, chapter):
     state = start(client, course, chapter)
+    assert state["orientation"] == course.learner_color
     seen, explored, source_games = set(), set(), set()
     branch_anchor = None
     for _ in range(300):
@@ -91,6 +103,7 @@ def walk_chapter(client, course, chapter):
             source_games.add(step.id)
             state = inspect_source_game(client, state, course.game(step.game_id))
         if "move" in state["actions"]:
+            assert chess.Board(state["fen"]).turn == (course.learner_color == "white")
             if step.kind == "decision":
                 expected = step.choices[0].uci
                 wrong = next(
@@ -113,6 +126,8 @@ def walk_chapter(client, course, chapter):
                 assert state["step"]["text"] == "Play this line from memory."
                 assert not state["step"]["annotations"]["arrows"]
                 assert not state["step"]["annotations"]["squares"]
+                assert "hint" not in state["actions"]
+                assert not any(key in state for key in ("choices", "solution", "line"))
             state = command(client, state, "move", uci=expected)
             continue
         assert "continue" in state["actions"], state
@@ -128,10 +143,10 @@ def walk_chapter(client, course, chapter):
             after = command(client, rewound, "continue")
             assert after["playback"] == playback
         state = after
-    raise AssertionError("Italian chapter failed to terminate")
+    raise AssertionError(f"{course.id}/{chapter.id} failed to terminate")
 
 
-def test_default_library_ships_only_pilot_and_explicit_empty_override_works(settings):
+def test_default_library_ships_reviewed_courses_and_explicit_empty_override_works(settings):
     course = pilot()
     assert "Italian" in course.title
     assert len(course.games) >= 3
@@ -144,21 +159,26 @@ def test_default_library_ships_only_pilot_and_explicit_empty_override_works(sett
         "rehearsal",
     }
     # Cached source must not become shared mutable state across accounts/requests.
-    copy = pilot()
-    copy.title = "Changed by a consumer"
-    assert pilot().title == course.title
+    for course_id in COURSE_IDS:
+        original = installed_course(course_id)
+        copy = installed_course(course_id)
+        copy.title = "Changed by a consumer"
+        copy.chapters[0].title = "Changed nested chapter"
+        assert installed_course(course_id).title == original.title
+        assert installed_course(course_id).chapters[0].title == original.chapters[0].title
     with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
         library = response_json(client.get("/api/study/courses"))
-        assert [item["id"] for item in library["courses"]] == [course.id]
-        assert library["courses"][0]["completed_chapters"] == 0
+        assert {item["id"] for item in library["courses"]} == set(COURSE_IDS)
+        assert all(item["completed_chapters"] == 0 for item in library["courses"])
     with TestClient(
         create_app(settings, workers=False, start_engine=False, lesson_providers=())
     ) as client:
         assert response_json(client.get("/api/study/courses")) == {"courses": [], "resume": []}
 
 
-def test_all_pilot_chapters_branches_games_rehearsal_and_progress_preserve_learning(settings):
-    course = pilot()
+@pytest.mark.parametrize("course_id", COURSE_IDS)
+def test_all_chapters_branches_games_rehearsal_and_progress_preserve_learning(settings, course_id):
+    course = installed_course(course_id)
     app = create_app(settings, workers=False, start_engine=False)
     with TestClient(app) as client:
         # Protect existing positive review/skill evidence, not only an empty database.
@@ -179,7 +199,11 @@ def test_all_pilot_chapters_branches_games_rehearsal_and_progress_preserve_learn
         assert learning(app) == before
         assert response_json(client.get("/api/opening-studies"))["items"] == []
         library = response_json(client.get("/api/study/courses"))
-        assert library["courses"][0]["completed_chapters"] == len(course.chapters)
+        summaries = {item["id"]: item for item in library["courses"]}
+        assert summaries[course.id]["completed_chapters"] == len(course.chapters)
+        assert all(
+            item["completed_chapters"] == 0 for key, item in summaries.items() if key != course.id
+        )
         with app.state.sessions() as db:
             assert len(list(db.scalars(select(StudyLessonProgress)))) == len(course.chapters)
             assert not list(db.scalars(select(OpeningStudy)))
@@ -191,8 +215,9 @@ def test_all_pilot_chapters_branches_games_rehearsal_and_progress_preserve_learn
             assert saved["status"] == "completed" and saved["course_revision"] == course.revision
 
 
-def test_every_authored_accepted_choice_preserves_its_own_continuation():
-    course = pilot()
+@pytest.mark.parametrize("course_id", COURSE_IDS)
+def test_every_authored_accepted_choice_preserves_its_own_continuation(course_id):
+    course = installed_course(course_id)
     for chapter in course.chapters:
         for step in chapter.steps:
             if step.kind != "decision":
@@ -221,8 +246,9 @@ def test_every_authored_accepted_choice_preserves_its_own_continuation():
                     assert advanced["step_id"] == choice.next_step
 
 
-def test_pilot_enrollment_is_explicit_and_only_designated_lines_enter_due(settings):
-    course = pilot()
+@pytest.mark.parametrize("course_id", COURSE_IDS)
+def test_enrollment_is_explicit_and_only_designated_lines_enter_due(settings, course_id):
+    course = installed_course(course_id)
     app = create_app(settings, workers=False, start_engine=False)
     with TestClient(app) as client:
         assert response_json(client.get("/api/review/count"))["due"] == 0
@@ -249,9 +275,11 @@ def test_pilot_enrollment_is_explicit_and_only_designated_lines_enter_due(settin
             assert study["line"] == preview["line"]
             assert study["line"]["moves"] == list((*line.position.moves, *line.moves))
             assert study["positions"] > 0
+            assert study["color"] == course.learner_color
         assert response_json(client.get("/api/review/count"))["due"] > 0
-        assert (
-            response_json(client.get("/api/study/courses"))["courses"][0]["completed_chapters"] == 0
+        assert all(
+            item["completed_chapters"] == 0
+            for item in response_json(client.get("/api/study/courses"))["courses"]
         )
 
 
@@ -283,3 +311,10 @@ def test_illustrative_passages_support_their_specific_board_claims():
     assert chess.F6 in sharp.attackers(chess.BLACK, chess.E4)
     castled = board("pollock-schiffers", 20)
     assert castled.king(chess.WHITE) == chess.G1 and castled.king(chess.BLACK) == chess.C8
+
+
+def test_original_italian_revision_remains_compatible_with_saved_progress():
+    # Shared authoring helpers/new courses must not rewrite an already shipped revision.
+    course = pilot()
+    assert course.revision == "2026-09-v1"
+    assert fingerprint(course) == "83e7c311667cfc663063943a34ef28d418038463506168dcfe275a9161e9df1a"

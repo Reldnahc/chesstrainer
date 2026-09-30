@@ -4,6 +4,45 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Black Italian and King's Gambit courses — September 30, 2026
+
+Two bundled three-chapter courses reuse the existing lesson player and explicit
+opening enrollment. Both include guided decisions, historical game passages,
+returnable alternatives and rehearsal. Shared SAN authoring helpers preserve the
+original White Italian revision exactly. Black course previews retain their
+learner side across reload; users can still choose either side before enrollment.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_italian_course.py backend/tests/test_italian_native.py backend/tests/test_italian_black_claims.py backend/tests/test_kings_gambit_claims.py -q`:
+  **25 passed**, including native Stockfish checks of all three courses. Two
+  existing deprecation warnings. Every chapter/accepted decision is exercised;
+  concrete chess claims, source endpoints, independent progress, immutable
+  snapshots and no automatic recall scheduling are covered.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_study_lessons.py backend/tests/test_lesson_journey.py backend/tests/test_lesson_castling.py backend/tests/test_opening_sources.py backend/tests/test_opening_castling.py -q`:
+  **96 passed**, with two existing deprecation warnings.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/opening-courses.spec.ts tests/italian-course.spec.ts --reporter=line`:
+  **16 passed** across desktop/mobile. Covers both new courses and the original
+  White Italian player, source-game navigation, reload, rehearsal, optional
+  enrollment, Black orientation and the selected enrollment side.
+- The same app wrapper with
+  `tests/opening-library.spec.ts tests/navigation.spec.ts --grep 'catalogue search|only designated|every screen' --reporter=line`:
+  **6 passed** across desktop/mobile for existing library/navigation consumers.
+- `npm.cmd --prefix frontend run build`: passed API agreement, application/browser
+  TypeScript, seven style-boundary checks and Vite. Existing large-chunk advisory
+  remains. `npm.cmd --prefix frontend run test:types` passed after final test edits.
+- `.venv/Scripts/ruff.exe check backend/trainer/study_lessons backend/tests/test_italian_course.py backend/tests/test_italian_native.py backend/tests/test_italian_black_claims.py backend/tests/test_kings_gambit_claims.py scripts/smoke_install.py`
+  and the same paths with `ruff format --check`: passed.
+  `.venv/Scripts/python.exe scripts/export_api_contract.py --check` and
+  `git diff --check`: passed; no API/schema change.
+- Inspected desktop/mobile course captures and manually played the first Black
+  decision in an isolated production app. Independent code/content review found
+  no remaining actionable issues. Native authoring checks caught a loose h-pawn
+  in the draft King's Gambit line; the final line supports it with g3. The Black
+  central line was refined to the sounder Bd2 continuation before final checks.
+
+Focused verification only; full backend, account, coach, lab and Docker suites
+were not run. Fresh-container smoke expectations were updated for the three-course
+registry, but the Docker smoke itself was not run. No push or deployment.
+
 ## Home recent-games presentation — September 29, 2026
 
 Home uses a compact variant of shared GameHistory inside a matching panel. Player

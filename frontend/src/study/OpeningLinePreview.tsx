@@ -16,11 +16,11 @@ import { createPracticeStarter, setStudyActive } from "./openingApi";
 
 export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   catalogueKey: string | null;
-  courseLine: { courseId: string; lineId: string; revision: string } | null;
+  courseLine: { courseId: string; lineId: string; revision: string; color?: "white" | "black" } | null;
 }) {
   const [line, setLine] = useState<Schema["OpeningLineView"] | null>(null);
   const [studies, setStudies] = useState<Schema["OpeningStudySummary"][]>([]);
-  const [color, setColor] = useState<"white" | "black">("white");
+  const [color, setColor] = useState<"white" | "black">(courseLine?.color ?? "white");
   const [ply, setPly] = useState(0);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -39,7 +39,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
         if (pending.signal.aborted) return;
         setLine(result);
         setStudies(library.items);
-        if (!result.white_positions) setColor("black");
+        setColor(preferred => result[`${preferred}_positions`] ? preferred : preferred === "white" ? "black" : "white");
       }).catch(e => { if (!pending.signal.aborted) setError(e.message); });
     return () => pending.abort();
   }, [catalogueKey, courseLine]);

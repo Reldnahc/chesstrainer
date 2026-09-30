@@ -1,56 +1,16 @@
 """Original White-side pilot. Historical games illustrate, never prescribe, moves."""
 
-import chess
-
-from trainer.study_lessons.content import CourseDefinition, GameAnnotation, Position
+from trainer.study_lessons.content import CourseDefinition, GameAnnotation
+from trainer.study_lessons.courses.authoring import decision as _decision
+from trainer.study_lessons.courses.authoring import demo as _demo
+from trainer.study_lessons.courses.authoring import position
+from trainer.study_lessons.courses.authoring import step as _step
 from trainer.study_lessons.courses.italian_games import source_games
-
-
-def position(san=""):
-    board = chess.Board()
-    moves = []
-    for token in san.split():
-        moves.append(board.push_san(token).uci())
-    return Position(moves=tuple(moves))
-
 
 ITALIAN = "e4 e5 Nf3 Nc6 Bc4"
 QUIET = ITALIAN + " Bc5 d3 Nf6 O-O d6"
 PREPARED = QUIET + " c3 O-O Re1 a6"
 TWO_KNIGHTS = ITALIAN + " Nf6 d3 Bc5 O-O d6"
-
-
-def _step(kind, identity, title, text, san="", **fields):
-    return dict(kind=kind, id=identity, title=title, text=text, position=position(san), **fields)
-
-
-def _demo(identity, title, text, before, after, next_step):
-    start, end = position(before), position(after)
-    assert end.moves[: len(start.moves)] == start.moves
-    return _step(
-        "demonstration",
-        identity,
-        title,
-        text,
-        before,
-        moves=end.moves[len(start.moves) :],
-        next_step=next_step,
-    )
-
-
-def _decision(identity, title, text, before, san, reply, next_step, feedback, hint):
-    board = position(before).board()
-    move = board.push_san(san).uci()
-    replies = [board.push_san(reply).uci()] if reply else []
-    return _step(
-        "decision",
-        identity,
-        title,
-        text,
-        before,
-        hint=hint,
-        choices=[dict(uci=move, reply=replies, next_step=next_step, feedback=feedback)],
-    )
 
 
 def course():

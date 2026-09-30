@@ -64,7 +64,7 @@ export default function LessonLibrary({ courseId, revision }: { courseId: string
         <div><h3>{chapter.title}</h3><span className="muted">{chapter.completed ? "Completed · revisit any time" : "Guided lesson"}</span></div>
         <Button size="compact" variant={chapter.completed ? "secondary" : "primary"} disabled={!!busy} onClick={() => begin(chapter.id)}>{busy === chapter.id ? "Opening…" : chapter.completed ? "Revisit" : "Start"}<ArrowRight size={16} /></Button>
       </li>)}</ol>
-      {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <ResumeLink href={courseLinePath(course.id, line.id, course.revision)} key={line.id} description="Preview and add to study">{line.title}</ResumeLink>)}</section>}
+      {course.lines.some(line => line.repertoire) && <section className="lesson-repertoire-lines" aria-label="Course recall lines"><h3>Keep these lines in memory</h3><p className="small muted">Adding a line is optional. Lesson completion does not enroll it automatically.</p>{course.lines.filter(line => line.repertoire).map(line => <ResumeLink href={courseLinePath(course.id, line.id, course.revision, course.learner_color)} key={line.id} description="Preview and add to study">{line.title}</ResumeLink>)}</section>}
       <LessonAttribution attributions={course.attributions} />
     </> : !error && <LoadingState>Loading lesson chapters…</LoadingState>}
   </section>;
