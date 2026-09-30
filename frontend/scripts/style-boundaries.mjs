@@ -8,6 +8,7 @@ const manifestUrl = new URL("./style-boundaries.json", import.meta.url);
 const standaloneConfigs = {
   "coach-studio": "vite.coach.config.ts",
   "intelligence-lab": "vite.intelligence.config.ts",
+  "audio-studio": "vite.audio.config.ts",
 };
 
 export function loadStyleBoundaries() {
@@ -35,7 +36,7 @@ export function styleBoundaryPlugin(surface, root = frontendRoot, manifest = loa
   if (!(surface in standaloneConfigs)) throw new Error(`Unknown standalone surface: ${surface}`);
   const forbidden = new Map([
     ...manifest.applicationOnly,
-    ...(surface === "coach-studio" ? manifest.applicationAndIntelligence : []),
+    ...(surface !== "intelligence-lab" ? manifest.applicationAndIntelligence : []),
   ].map((path) => [normalized(resolve(root, path)), path]));
   return {
     name: "fieldwork-style-boundaries",

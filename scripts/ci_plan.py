@@ -14,6 +14,7 @@ SUITES = {
     "accounts": "playwright.accounts.config.ts",
     "coach-studio": "playwright.coach.config.ts",
     "intelligence-lab": "playwright.intelligence.config.ts",
+    "audio-studio": "playwright.audio.config.ts",
 }
 API_SUITES = {"local", "accounts"}
 # Intelligence regressions execute Python fixtures without starting an API server.
@@ -168,6 +169,16 @@ def select_checks(paths, full=False):
                 build = docker = True
                 suites.update(PYTHON_SUITES)
                 reason("Board styles require application and intelligence browser checks.")
+            elif path.startswith(
+                ("frontend/audio-studio/", "frontend/audio-tests/", "frontend/src/audio/studio/")
+            ) or path in {"frontend/playwright.audio.config.ts", "frontend/vite.audio.config.ts"}:
+                build = True
+                suites.add("audio-studio")
+                reason("Audio studio changes require its browser suite and the build.")
+            elif path.startswith("frontend/src/audio/"):
+                build = docker = True
+                suites.update(PYTHON_SUITES | {"audio-studio"})
+                reason("Shared audio changes require application, intelligence and audio checks.")
             elif (
                 path in APPLICATION_FRONTEND_FILES
                 or (

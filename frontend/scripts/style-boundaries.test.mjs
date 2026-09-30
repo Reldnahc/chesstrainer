@@ -39,7 +39,7 @@ async function fixture(t, imported, nested = false) {
   };
 }
 
-for (const surface of ["coach-studio", "intelligence-lab"]) {
+for (const surface of ["coach-studio", "intelligence-lab", "audio-studio"]) {
   for (const nested of [false, true]) {
     test(`${surface} rejects application CSS via ${nested ? "CSS @import" : "JS import"}`, async (t) => {
       const source = await fixture(t, appStyle, nested);
@@ -56,10 +56,14 @@ for (const surface of ["coach-studio", "intelligence-lab"]) {
   });
 }
 
-test("board styles stay available to the intelligence lab but are excluded from the coach studio", async (t) => {
-  const source = await fixture(t, boardStyle, true);
-  await source.check("intelligence-lab");
-  await assert.rejects(source.check("coach-studio"), {
-    message: new RegExp(`coach-studio imports application styles: ${boardStyle}`),
+for (const nested of [false, true]) {
+  test(`board styles stay in the intelligence lab via ${nested ? "CSS @import" : "JS import"}`, async (t) => {
+    const source = await fixture(t, boardStyle, nested);
+    await source.check("intelligence-lab");
+    for (const surface of ["coach-studio", "audio-studio"]) {
+      await assert.rejects(source.check(surface), {
+        message: new RegExp(`${surface} imports application styles: ${boardStyle}`),
+      });
+    }
   });
-});
+}

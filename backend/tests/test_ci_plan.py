@@ -7,8 +7,9 @@ import pytest
 
 from scripts import ci_plan
 
-ALL_SUITES = ["local", "accounts", "coach-studio", "intelligence-lab"]
+ALL_SUITES = ["local", "accounts", "coach-studio", "intelligence-lab", "audio-studio"]
 PYTHON_SUITES = ["local", "accounts", "intelligence-lab"]
+AUDIO_CONSUMER_SUITES = ["local", "accounts", "intelligence-lab", "audio-studio"]
 
 
 @pytest.fixture(autouse=True)
@@ -179,6 +180,56 @@ def test_unclassified_frontend_source_falls_back_to_every_browser_suite(path):
 
 
 @pytest.mark.parametrize(
+    "path",
+    [
+        "frontend/src/audio/engine.ts",
+        "frontend/src/audio/model.ts",
+        "frontend/src/audio/catalog.ts",
+        "frontend/src/audio/AudioProvider.tsx",
+        "frontend/src/audio/assets/move.wav",
+        "frontend/src/audio/assets/NOTICE.md",
+    ],
+)
+def test_shared_audio_retains_application_consumers_without_coach_artwork(path):
+    assert_selection(
+        ci_plan.select_checks([path]), build=True, docker=True, suites=AUDIO_CONSUMER_SUITES
+    )
+
+
+@pytest.mark.parametrize("path", ["frontend/src/AccountGate.tsx", "frontend/src/Settings.tsx"])
+def test_account_and_settings_keep_existing_checks_and_shared_audio_adds_its_suite(path):
+    assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=PYTHON_SUITES)
+    assert_selection(
+        ci_plan.select_checks([path, "frontend/src/audio/AudioProvider.tsx"]),
+        build=True,
+        docker=True,
+        suites=AUDIO_CONSUMER_SUITES,
+    )
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "frontend/src/Button.tsx",
+        "frontend/src/action-controls.css",
+        "frontend/src/ChoiceGroup.tsx",
+        "frontend/src/choice-group.css",
+        "frontend/src/foundation.css",
+        "frontend/src/interface-motion.css",
+        "frontend/src/useSavedPreferences.ts",
+        "frontend/src/MotionProvider.tsx",
+    ],
+)
+def test_audio_only_paths_cannot_hide_changed_shared_dependencies(path):
+    assert_selection(
+        ci_plan.select_checks(["frontend/src/audio/studio/AudioStudio.tsx", path]),
+        build=True,
+        docker=True,
+        suites=ALL_SUITES,
+    )
+
+
+@pytest.mark.parametrize(
     ("path", "suite"),
     [
         ("frontend/coach-studio/main.tsx", "coach-studio"),
@@ -189,6 +240,14 @@ def test_unclassified_frontend_source_falls_back_to_every_browser_suite(path):
         ("frontend/intelligence-lab/corpus.ts", "intelligence-lab"),
         ("frontend/intelligence-tests/causal-dialogue.spec.ts", "intelligence-lab"),
         ("frontend/playwright.intelligence.config.ts", "intelligence-lab"),
+        ("frontend/audio-studio/main.tsx", "audio-studio"),
+        ("frontend/audio-studio/index.html", "audio-studio"),
+        ("frontend/src/audio/studio/AudioStudio.tsx", "audio-studio"),
+        ("frontend/src/audio/studio/studio.css", "audio-studio"),
+        ("frontend/audio-tests/studio.spec.ts", "audio-studio"),
+        ("frontend/audio-tests/engine.spec.ts", "audio-studio"),
+        ("frontend/playwright.audio.config.ts", "audio-studio"),
+        ("frontend/vite.audio.config.ts", "audio-studio"),
         ("frontend/tests/accounts.spec.ts", "accounts"),
         ("frontend/playwright.accounts.config.ts", "accounts"),
     ],
@@ -222,7 +281,11 @@ def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
         "backend/trainer/game_review.py",
     ]
     assert_selection(
-        ci_plan.select_checks(paths), backend=True, build=True, docker=True, suites=ALL_SUITES
+        ci_plan.select_checks(paths),
+        backend=True,
+        build=True,
+        docker=True,
+        suites=["local", "accounts", "coach-studio", "intelligence-lab"],
     )
     assert ci_plan.select_checks(paths) == ci_plan.select_checks(paths + paths)
 
@@ -242,7 +305,12 @@ def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
         ("frontend/src/coach/ArtworkRig.tsx", ALL_SUITES),
         ("frontend/src/dialogue/DialogueText.tsx", ALL_SUITES),
         ("frontend/src/useSavedPreferences.ts", ALL_SUITES),
-        ("frontend/studio-tests/fixtures/runtime.ts", ALL_SUITES),
+        (
+            "frontend/studio-tests/fixtures/runtime.ts",
+            ["local", "accounts", "coach-studio", "intelligence-lab"],
+        ),
+        ("frontend/src/audio/engine.ts", AUDIO_CONSUMER_SUITES),
+        ("frontend/audio-tests/studio.spec.ts", AUDIO_CONSUMER_SUITES),
         ("frontend/tests/semantic-fixtures.ts", PYTHON_SUITES),
     ],
 )
@@ -253,7 +321,7 @@ def test_application_exclusions_do_not_hide_changed_standalone_dependencies(depe
 
 
 @pytest.mark.parametrize("path", sorted(ci_plan.APPLICATION_CSS))
-def test_application_styles_skip_both_standalone_browser_suites(path):
+def test_application_styles_skip_standalone_browser_suites(path):
     assert (ci_plan.ROOT / path).is_file()
     assert_selection(
         ci_plan.select_checks([path]), build=True, docker=True, suites=["local", "accounts"]
@@ -309,8 +377,8 @@ def test_full_override_covers_every_check(paths):
 
 def test_matrix_covers_every_viewport_and_application_coach_shard_with_runtime_dependencies():
     matrix = ci_plan.select_checks([], full=True)["matrix"]["include"]
-    assert len(matrix) == 12
-    assert len({(entry["suite"], entry["project"], entry["shard"]) for entry in matrix}) == 12
+    assert len(matrix) == 14
+    assert len({(entry["suite"], entry["project"], entry["shard"]) for entry in matrix}) == 14
     for suite in ALL_SUITES:
         entries = [entry for entry in matrix if entry["suite"] == suite]
         shards = ["1/2", "2/2"] if suite in {"local", "coach-studio"} else ["1/1"]

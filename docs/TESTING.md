@@ -168,6 +168,8 @@ select everything. Missing/unresolvable history also selects everything.
 | Coach/dialogue source, shared styles/helpers, unclassified frontend modules | Build/types, all browser suites, Docker |
 | Coach studio source/tests | Build/types and coach studio |
 | Intelligence lab source/tests | Build/types and intelligence lab |
+| Audio studio source/tests and its dedicated Vite/Playwright configs | Build/types and audio studio |
+| Shared audio engine, catalog, preferences and bundled sound assets | Build/types, application/accounts/intelligence/audio browsers, Docker |
 | Account browser test/config | Build/types and accounts |
 | Other application browser tests/fixtures | Build/types and application/accounts/intelligence browsers |
 | Type-only regression tests | Build/types |
@@ -184,16 +186,20 @@ manifest: an accidental direct or nested CSS import into an excluded developer
 surface fails the build. New, unclassified CSS remains conservative. Shared
 foundation, coach presentation and motion policy retain all browser suites;
 ordinary page CSS and the application import aggregate no longer select the
-coach studio.
+coach studio or audio studio. The audio studio also excludes board CSS. Its
+dedicated `audio-tests` directory keeps audio tests out of application test
+discovery; changes to cross-surface shared controls or unclassified providers
+still retain every browser suite. Audio-only changes do not select the coach
+artwork matrix.
 
 The application and coach studio suites each run in four isolated jobs
-(desktop/mobile, two file shards each). Accounts and intelligence each have
+(desktop/mobile, two file shards each). Accounts, intelligence and audio each have
 separate desktop and mobile jobs. Every job retains one Playwright worker, its own
-server and its own database; do not run these commands concurrently against a
+server and, when needed, its own database; do not run these commands concurrently against a
 shared checkout.
 No test assertions or native-engine search budgets are reduced. The frontend
 build/type checks run once, and the browser jobs download that run's `dist`
-artifact. Coach studio installs neither Python dependencies nor Stockfish;
+artifact. Coach and audio studios install neither Python dependencies nor Stockfish;
 intelligence retains Python for semantic fixtures but does not install Stockfish.
 Application/account tests and backend integration tests retain real Stockfish.
 
@@ -259,6 +265,7 @@ npx playwright test
 npx playwright test --config playwright.accounts.config.ts
 npx playwright test --config playwright.coach.config.ts
 npx playwright test --config playwright.intelligence.config.ts
+npx playwright test --config playwright.audio.config.ts
 ```
 
 Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Tests run serially against the production build and a test server on 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
@@ -275,9 +282,13 @@ coach selection but no expression viewer, and that `/coach-studio` is not an app
 route. CI runs the application, account and standalone studio suites separately.
 The independent [intelligence laboratory](INTELLIGENCE_LAB.md) runs on port 5175;
 its suite verifies evidence inspection, production-renderer parity and isolation.
+The standalone audio studio runs `npm run dev:audio` on port 5176 and its
+`frontend/audio-tests` suite uses `playwright.audio.config.ts`, without an API
+server, account, database or Stockfish. Audio changes are checked on desktop and
+mobile, and the full correctness plan always includes this suite.
 
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
-imports and nested CSS imports, then checks both real development entrypoints.
+imports and nested CSS imports, then checks all three real development entrypoints.
 It resolves their production Vite dependency graphs without starting servers or
 writing build artifacts. This runs in the normal frontend build; it adds a short
 dependency check rather than running character animation browser tests.
@@ -349,9 +360,9 @@ no workers or engines and does not read the configured application database.
 `python scripts/export_api_contract.py --check` verifies backend/schema agreement.
 `npm --prefix frontend run api:check` verifies schema/TypeScript agreement.
 `npm --prefix frontend run test:types` checks endpoint inference, rejects
-intentionally invalid calls, and strictly typechecks all application, coach-studio
-and intelligence-lab browser tests and their Playwright configs. The browser-test
-project includes Node 24 declarations for its runner and fixture helpers; fixtures
+intentionally invalid calls, and strictly typechecks all application, coach-studio,
+intelligence-lab and audio-studio browser tests and their Playwright configs. The
+browser-test project includes Node 24 declarations for its runner and fixture helpers; fixtures
 must satisfy the same generated API contracts as the application. Both frontend
 checks run as part of `npm run build`;
 backend contract tests and the export check run in correctness CI. Browser tests
