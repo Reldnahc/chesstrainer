@@ -4,6 +4,41 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Home dashboard — September 29, 2026
+
+Home at `/` combines authoritative due counts, four saved games, lesson resumes,
+active opening lines and three server-ranked tactical practice priorities. It
+reads existing account-scoped metadata only. Shared GameHistory now responds to
+container width; StatList owns featured count sizing and ResumeLink owns wrapping.
+
+- `npm.cmd --prefix frontend run build`: passed generated API agreement,
+  application/browser TypeScript checks, seven style-boundary checks and Vite.
+  The existing large-chunk advisory remains.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py -q`:
+  **275 passed**, including the new app-only Home module/style selection.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/dashboard.spec.ts tests/navigation.spec.ts tests/game-history.spec.ts --reporter=line`:
+  **31 passed, 1 intentional mobile modifier-click skip**. Covers metadata-only
+  loading, no engine/session writes, authoritative counts, bounded priorities,
+  independent loading/retries, stale responses, history/reload and 320–1440px layout.
+- The same app wrapper with
+  `tests/training.spec.ts tests/study-puzzles.spec.ts tests/study-lessons.spec.ts tests/statistics.spec.ts --grep 'Study home|removed lesson|redesigned screens|compact workspace|lesson library resumes|statistics|statistic' --reporter=line`:
+  **10 passed** (Study, lessons and training navigation). The unmatched statistics
+  filename selected no tests; the actual shared statistics suite ran below.
+- The app wrapper with `tests/stat-list.spec.ts tests/resume-links.spec.ts --reporter=line`:
+  **4 passed** for existing shared-component consumers.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py accounts --grep 'account signup|Study progress' --reporter=line`:
+  **4 passed**, including Home game/lesson/opening-count isolation across devices,
+  sign-out and different accounts.
+- Final app-wrapper check with
+  `tests/dashboard.spec.ts tests/study-puzzles.spec.ts --grep 'Home presents|Study home' --reporter=line`:
+  **4 passed** after the last compatibility adjustment; desktop/mobile captures saved.
+- Manually inspected empty/populated Home at desktop and 390px, followed scheduled
+  recall into its cold board and returned through browser history. Independent
+  review moved long-label wrapping into the shared component. `git diff --check`
+  passed.
+
+Focused checks only; no full backend, coach, lab or Docker suites, push or deployment.
+
 ## Weaknesses page normalization — September 29, 2026
 
 Weaknesses reuses SectionNavigation for bookmarkable Tactical patterns and

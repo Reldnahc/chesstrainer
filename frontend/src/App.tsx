@@ -3,6 +3,7 @@ import {
   BookOpen,
   Flag,
   Focus,
+  House,
   LockKeyhole,
   Settings2,
   ShieldCheck,
@@ -13,6 +14,7 @@ import ReviewScreen from "./Review";
 import GamesScreen from "./GameReview";
 import SettingsScreen from "./Settings";
 import WeaknessScreen from "./Weaknesses";
+import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
 import { pagePaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
@@ -28,6 +30,7 @@ import { useAccount } from "./AccountGate";
 import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
 const tabs = [
+  ["Home", House],
   ["Study", Focus],
   ["Games", BookOpen],
   ["Weaknesses", Flag],
@@ -82,7 +85,7 @@ export default function App() {
         <div className="header-inner">
           <Link
             className="brand"
-            href={pagePaths.Study}
+            href={pagePaths.Home}
             aria-label="Fieldwork home"
           >
             <img src={appMark} width="34" height="34" alt="" />
@@ -159,6 +162,7 @@ export default function App() {
           </section>
         ) : (
           <>
+            {tab === "Home" && <HomeScreen key={refresh} />}
             {route.studyMode === "due" && (
               <ReviewScreen
                 key={`${refresh}-${route.href}`}

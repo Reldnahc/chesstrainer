@@ -15,7 +15,7 @@ these hints before an attempt or reveal.
 
 Import PGNs or completed public Chess.com games, analyze the learner's decisions locally, save verified evidence, and turn meaningful mistakes into review positions. Versioned local rules classify supported consequences and tactical mechanisms. A position can remain unclassified and still be useful in Review.
 
-The four screens are **Study, Games, Weaknesses and Settings**, in that order on desktop and mobile.
+The five screens are **Home, Study, Games, Weaknesses and Settings**, in that order on desktop and mobile.
 All screens share the compact navigation header, including the Games library and
 game-review workspace. Desktop uses the same 56px navigation row throughout;
 phones retain the compact sticky navigation with full-size touch targets.
@@ -25,6 +25,7 @@ Games library restores its page and scroll position; returning to a game restore
 the selected move. Moving through a game updates the current URL without adding
 a browser-history stop for each move.
 
+- **Home** is the default landing page at `/`: the authoritative due count and a study action, four latest saved games, up to two resumable lessons (or an available course), active opening-line count and up to three supported tactical practice priorities. Priorities retain backend evidence ordering and mark early evidence. Each area loads and retries independently. Home starts no sessions, imports or analysis; its links open the existing pages. It never previews cold recall answers or boards.
 - **Games** browses imported games, runs resumable analysis of both colors, and shows Lichess accuracy for each player, move-quality labels, a timeline and an illustrated tactical coach. Accuracy uses saved evaluations with no Elo adjustment or extra engine searches. The board accepts variations at any point, with undo, saved in-session branches and a return to the original game. Coach evidence and variation analysis never count as scheduled recalls. See [Game review](GAME_REVIEW.md) for scoring rules and limits.
   The progress panel closes after baseline analysis. Targeted deeper checks
   continue in the background and update the review as results arrive. Interrupted

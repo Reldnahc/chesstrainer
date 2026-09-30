@@ -73,6 +73,10 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.getByRole('button', {name: /^2\. g4(?:, .+)?$/})).toHaveAttribute('aria-current', 'step');
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(1);
+    await device.getByRole('link', {name: 'Home', exact: true}).click();
+    const recentGames = device.getByRole('region', {name: 'Recent games', exact: true});
+    await expect(recentGames.locator('.game-library-item')).toHaveCount(1);
+    await expect(recentGames).toContainText(username);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await device.getByText('Change Chess.com connection', {exact: true}).click();
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveValue(username);
@@ -102,6 +106,10 @@ test('account signup, engine-free sync, second-device login and private library'
     await submitSignup(device);
     await device.getByRole('button', {name: 'Continue', exact: true}).click();
     await device.getByRole('button', {name: 'Finish for now', exact: true}).click();
+    await device.getByRole('link', {name: 'Home', exact: true}).click();
+    await expect(recentGames.getByRole('heading', {name: 'Your next insight starts with a game.', exact: true})).toBeVisible();
+    await expect(recentGames.locator('.game-library-item')).toHaveCount(0);
+    await expect(recentGames).not.toContainText(username);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await settingsSection(device, 'Coach & animations');
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
@@ -180,7 +188,7 @@ test('Study progress and selected coach resume on another device without leaking
     await submitSignup(device);
     await device.getByRole('button', {name: 'Continue', exact: true}).click();
     await device.getByRole('button', {name: 'Finish for now', exact: true}).click();
-    await expect(device.getByRole('heading', {name: 'Study', exact: true})).toBeVisible();
+    await expect(device.getByRole('heading', {name: 'Home', exact: true})).toBeVisible();
   }
   await signup(page, username);
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
@@ -252,6 +260,10 @@ test('Study progress and selected coach resume on another device without leaking
     expect(await json<Schema['PuzzleSessionView']>(device.request.get(`/api/puzzle-sessions/${fixture.session_id}`))).toEqual(savedPuzzle);
     await device.goto('/study/openings/studies');
     await expect(device.getByRole('article', {name: `${study.name} as white`, exact: true})).toBeVisible();
+    await device.getByRole('link', {name: 'Home', exact: true}).click();
+    const learning = device.getByRole('region', {name: 'Keep learning', exact: true});
+    await expect(learning.locator(`a[href="${lessonPath}"]`)).toBeVisible();
+    await expect(learning.getByRole('definition')).toHaveText(['1']);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();
     await settingsSection(device, 'Coach & animations');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('still');
@@ -259,6 +271,8 @@ test('Study progress and selected coach resume on another device without leaking
     await device.getByRole('button', {name: 'Sign out', exact: true}).click();
 
     await signup(device, `study-guest-${info.project.name}`);
+    await expect(learning.locator('a[href^="/study/openings/sessions/"]')).toHaveCount(0);
+    await expect(learning.getByRole('definition')).toHaveText(['0']);
     expect((await json<Schema['OpeningStudyLibrary']>(device.request.get('/api/opening-studies'))).items).toEqual([]);
     expect((await json<Schema['LessonLibrary']>(device.request.get('/api/study/courses'))).resume).toEqual([]);
     expect((await json<Schema['PuzzleLibrary']>(device.request.get('/api/puzzles'))).resume).toEqual([]);

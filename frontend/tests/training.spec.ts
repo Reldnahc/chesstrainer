@@ -16,7 +16,7 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
   const response = await page.request.get(icon!);
   expect(response.headers()['content-type']).toContain('image/svg+xml');
   expect(await response.text()).toContain('<svg');
-  for (const tab of ['Study', 'Games', 'Weaknesses', 'Settings']) {
+  for (const tab of ['Home', 'Study', 'Games', 'Weaknesses', 'Settings']) {
     await page.getByRole('link', {name: tab, exact: true}).click();
     await expect(page.getByRole('link', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
@@ -214,7 +214,7 @@ test('removed lesson links return to Study without starting a lesson', async ({p
   await page.goto('/?unit=archived-unit');
   await expect(page).toHaveURL('/study');
   await expect(page.locator('main h1')).toBeVisible();
-  await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link')).toHaveText(['Study', 'Games', 'Weaknesses', 'Settings']);
+  await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link')).toHaveText(['Home', 'Study', 'Games', 'Weaknesses', 'Settings']);
   await expect(page.getByRole('button', {name: 'Course', exact: true})).toHaveCount(0);
   expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
   expect(requests).toEqual([]);

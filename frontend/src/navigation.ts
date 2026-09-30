@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 export const pagePaths = {
+  Home: "/",
   Study: "/study",
   Games: "/games",
   Weaknesses: "/weaknesses",
@@ -35,16 +36,16 @@ function readRoute() {
   if (url.searchParams.has("unit")) {
     url.searchParams.delete("unit");
     url.searchParams.delete("exercise");
+    if (url.pathname === "/" && !url.searchParams.has("focus") && !url.searchParams.has("session")) url.pathname = pagePaths.Study;
   }
-  if (url.pathname === "/")
-    url.pathname = url.searchParams.has("exercise") || url.searchParams.has("focus") || url.searchParams.has("session")
-      ? studyPaths.due : pagePaths.Study;
+  if (url.pathname === "/" && (url.searchParams.has("exercise") || url.searchParams.has("focus") || url.searchParams.has("session")))
+    url.pathname = studyPaths.due;
   if (url.pathname.replace(/\/$/, "") === "/review") url.pathname = studyPaths.due;
   if (url.pathname.replace(/\/$/, "") === "/import") url.pathname = pagePaths.Settings;
   const entry: string = window.history.state?.[entryKey] ?? newEntry();
   if (url.href !== window.location.href || !window.history.state?.[entryKey])
     window.history.replaceState({ ...window.history.state, [entryKey]: entry }, "", url);
-  const path = url.pathname.replace(/\/$/, "");
+  const path = url.pathname.replace(/\/$/, "") || "/";
   const gameMatch = path.match(/^\/games\/([^/]+)$/);
   const puzzleMatch = path.match(/^\/study\/puzzles\/sessions\/([^/]+)$/);
   const lessonMatch = path.match(/^\/study\/openings\/sessions\/([^/]+)$/);

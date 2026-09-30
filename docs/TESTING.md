@@ -1,5 +1,13 @@
 # Testing
 
+`dashboard.spec.ts` covers the Home route, account-scoped metadata summaries,
+bounded recent games/practice priorities, empty states, independent retry/loading,
+late response disposal and desktop/tablet/phone layout. Home must never start a
+review, import or engine job, or fetch a cold position/answer. Run it alongside
+`navigation.spec.ts` and `game-history.spec.ts` when changing Home or shared
+history layout. `accounts.spec.ts` checks that Home's games, saved lessons and
+opening counts follow the signed-in account across devices and sign-out.
+
 `weaknesses.spec.ts` covers the shared category navigation, Back/Forward/reload,
 one evidence fetch across category switches, card statistics, targeted practice
 links, evidence-dialog focus return, category/global empty states, retry and
@@ -378,7 +386,7 @@ Synthetic legal positions and fabricated engine scores test detector and API con
 
 ## Browser coverage
 
-Desktop and phone-emulated Chromium cover all **four** navigation destinations (Study, Games, Weaknesses, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
+Desktop and phone-emulated Chromium cover all **five** navigation destinations (Home, Study, Games, Weaknesses, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
 
 Review journeys cover taps, drag/drop, legal dots/capture rings, promotion, failure/counter preview, Try again, Reveal move, solve/reload and saved scheduling. The phone-only test checks 390x700, 375x600 and 360x640 layouts; its desktop instance is intentionally skipped.
 

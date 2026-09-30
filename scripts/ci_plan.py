@@ -39,6 +39,7 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/GameHistory.tsx",
     "frontend/src/GameReview.tsx",
     "frontend/src/GameSync.tsx",
+    "frontend/src/Home.tsx",
     "frontend/src/Import.tsx",
     "frontend/src/ImportControls.tsx",
     "frontend/src/Link.tsx",

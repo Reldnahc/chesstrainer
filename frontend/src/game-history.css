@@ -1,4 +1,5 @@
 .game-library {
+  container-type: inline-size;
   --history-columns: 92px minmax(0, 1fr) 88px 80px 54px 112px 17px;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -174,8 +175,9 @@
 .history-mobile-label {
   display: none;
 }
-@media (max-width: 760px) {
-  .game-library {
+@container (max-width: 760px) {
+  .game-library-heading,
+  .game-library-item {
     --history-columns: minmax(0, 1fr) 64px 62px 14px;
   }
   .game-library-heading,

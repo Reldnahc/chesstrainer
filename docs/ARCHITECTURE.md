@@ -80,6 +80,7 @@ lock, while other accounts have independent locks.
 | Module in frontend/src | Responsibility |
 |---|---|
 | App.tsx | Navigation, connection/token form, shared errors, health and selected evidence/deep link |
+| Home.tsx | Read-only dashboard over existing account-scoped count, game history, lesson, opening-study and weakness endpoints; independent abortable requests and retries, shared game rows and destination controls |
 | study/ | Study landing, opening catalogue/enrollment, lesson and puzzle players; shared Board/ReviewWorkspace/ReviewCoach presentation over server-committed state |
 | Review.tsx / srsReview/ReviewPanel.tsx / ReviewDetails.tsx | SRS workspace composition, coach actions and review details |
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
@@ -127,7 +128,7 @@ reduced motion supplies the default; explicit Animated/Still choices take
 precedence. Preferences remain still while loading or after a failed initial load.
 `motion.css` contains only the application Settings controls for those preferences.
 
-Study (including Openings/Puzzles), Games, Weaknesses and Settings use `PageTitle`:
+Home, Study (including Openings/Puzzles), Games, Weaknesses and Settings use `PageTitle`:
 a required eyebrow above the title on desktop, hidden on phones, with optional
 page actions and no subtitle. Compact board-workspace headings remain separate.
 
@@ -183,13 +184,12 @@ the `interface_motion` column in that same row. Both providers share the saved
 preference lifecycle and reset when the account boundary unmounts. The root CSS
 motion attribute is also removed on unmount; login screens use the device default.
 
-Navigation is Study, Games, Weaknesses, Settings. A small History API router
-renders `/study`, its Due/openings/puzzles subpages and saved session/source
+Navigation is Home, Study, Games, Weaknesses, Settings. A small History API router
+renders `/` (Home), `/study`, its Due/openings/puzzles subpages and saved session/source
 links, `/games`, `/games/:id`, `/weaknesses` and `/settings`. Screen/game links
-push history entries; `popstate` restores the destination. The root URL aliases
-`/study` with `replaceState`; old `/review` and root exercise/focus/session
+push history entries; `popstate` restores the destination. Old `/review` and root exercise/focus/session
 bookmarks resolve to `/study/due`. Removed `?unit=` links discard the archived
-unit/exercise identity without starting a lesson. Opening recalls pin their
+unit/exercise identity and retain the Study destination without starting a lesson. Opening recalls pin their
 saved session in the URL so refresh resumes the same answer snapshot. Unknown
 paths show a recoverable not-found screen.
 Legacy `/import` URLs replace their history entry with `/settings`. Settings owns

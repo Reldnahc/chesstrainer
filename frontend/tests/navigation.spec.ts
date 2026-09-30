@@ -11,7 +11,8 @@ test('Back, Forward and refresh restore the game and move without a history entr
   const documents: string[] = [];
   page.on('request', request => { if (request.isNavigationRequest()) documents.push(request.url()); });
   await page.goto('/');
-  await expect(page).toHaveURL('/study');
+  await expect(page).toHaveURL('/');
+  await expect(page.getByRole('heading', {name: 'Home', exact: true})).toBeVisible();
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   await expect(page).toHaveURL('/games');
   const gameLink = page.getByRole('link', {name: new RegExp(`Review-history-${info.project.name} vs CoachFixture`)});
@@ -56,8 +57,8 @@ test('every screen has a bookmarkable link and clicking the active page adds no 
   await expect(page).toHaveURL('/settings');
   await expect(page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Games & imports', exact: true})).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('navigation').getByRole('link', {name: 'Import', exact: true})).toHaveCount(0);
-  for (const name of ['Study', 'Games', 'Weaknesses', 'Settings']) {
-    const path = `/${name.toLowerCase()}`;
+  for (const name of ['Home', 'Study', 'Games', 'Weaknesses', 'Settings']) {
+    const path = name === 'Home' ? '/' : `/${name.toLowerCase()}`;
     const response = await page.goto(path);
     expect(response?.ok()).toBe(true);
     const link = page.getByRole('navigation').getByRole('link', {name, exact: true});

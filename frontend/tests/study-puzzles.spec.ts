@@ -36,7 +36,7 @@ test("Study home keeps modes distinct and preserves old recall bookmarks without
   await page.route("**/api/puzzles", route => route.fulfill({ json: {
     available: 0, sources: [], resume: [], stats: { solved: 0, clean: 0, failed_then_solved: 0, revealed: 0 },
   } }));
-  await page.goto("/");
+  await page.goto("/study");
   await expect(page).toHaveURL("/study");
   await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Study", exact: true })).toHaveAttribute("aria-current", "page");
@@ -58,9 +58,35 @@ test("Study home keeps modes distinct and preserves old recall bookmarks without
     await expect(page).toHaveURL(`/study/due?exercise=${id}`);
     expect(await page.evaluate(() => history.length)).toBe(length + 1);
   }
-  await page.goto("/review?focus=fork");
-  await expect(page).toHaveURL("/study/due?focus=fork");
-  await expect(page.getByText("FOCUSED PRACTICE", { exact: true })).toHaveCount(1);
+  const started = await page.request.post(`/api/review/${id}/start`);
+  expect(started.ok()).toBe(true);
+  const session: Schema["ColdPosition"] = await started.json();
+  expect(session.exercise_id).toBe(id);
+  for (const bookmark of [
+    { path: "/review?focus=fork", destination: "/study/due?focus=fork", focused: true },
+    { path: "/?focus=fork", destination: "/study/due?focus=fork", focused: true },
+    { path: `/?session=${session.session_id}`, destination: `/study/due?session=${session.session_id}`, focused: false },
+  ]) {
+    await page.goto("/study");
+    const resumed = bookmark.focused ? null : page.waitForResponse(response =>
+      new URL(response.url()).pathname === `/api/review/sessions/${session.session_id}` && response.request().method() === "GET");
+    await page.goto(bookmark.path);
+    await expect(page).toHaveURL(bookmark.destination);
+    if (bookmark.focused) await expect(page.getByText("FOCUSED PRACTICE", { exact: true })).toHaveCount(1);
+    else {
+      expect((await resumed!).ok()).toBe(true);
+      await expect(page.getByRole("button", { name: "Reveal move", exact: true })).toBeVisible();
+    }
+    const length = await page.evaluate(() => history.length);
+    await page.getByRole("link", { name: "Home", exact: true }).click();
+    await expect(page).toHaveURL("/");
+    await expect(page.getByRole("heading", { name: "Home", exact: true })).toBeVisible();
+    await page.goBack();
+    await expect(page).toHaveURL(bookmark.destination);
+    expect(await page.evaluate(() => history.length)).toBe(length + 1);
+    await page.goBack();
+    await expect(page).toHaveURL("/study");
+  }
   await page.goto("/?unit=archived&exercise=archived-card");
   await expect(page).toHaveURL("/study");
   await expect(page.getByRole("heading", { name: "Study", exact: true })).toBeVisible();
