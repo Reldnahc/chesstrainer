@@ -47,7 +47,10 @@ branch, source-game endpoint and rehearsal through the production paths. It
 verifies that completion leaves existing reviews, FSRS and weakness evidence
 untouched, and enrollment remains explicit. `test_italian_native.py` uses native
 Stockfish for a bounded gross-error check of guided decisions, not as the lesson
-grader. `test_italian_black_claims.py` and `test_kings_gambit_claims.py` verify
+grader or a certification of instructional quality. Course changes also require
+the [authored-content review](STUDY.md#reviewing-authored-course-quality): independent
+source comparison, critical opponent replies and the plans at each line's end.
+`test_italian_black_claims.py` and `test_kings_gambit_claims.py` verify
 concrete teaching claims against legal positions and historical endpoints.
 `opening-courses.spec.ts` exercises both new courses on desktop and mobile,
 including Black orientation, source-game exploration, rehearsal, reload and

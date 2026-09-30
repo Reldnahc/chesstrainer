@@ -4,6 +4,65 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Opening-course teaching-quality review — September 30, 2026
+
+Both new courses now use revision `2026-09-v2`; existing saved sessions remain
+pinned to their original snapshots. The original White Italian revision is
+unchanged. Research decisions and attribution are recorded in
+[Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) and
+[King's Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md).
+
+The review found accommodating Black replies in two King's Gambit scripts,
+incorrect material wording, and insufficient explanation of plans after the
+opening. The revised King's Gambit uses stronger resistance, concrete optional
+mistake demonstrations and a directly relevant historical Black win. The Black
+Italian retains its recall lines while explaining the f7 defense, quiet
+middlegame plan, isolated d-pawn tradeoffs and an actual Evans central break.
+These remain bounded starter courses, not exhaustive opening repertoires.
+
+Authoring research included a separate Stockfish 18 audit of both players'
+scripted moves: 86 unique original move/position pairs, each with independent
+unrestricted and forced-root searches at two million nodes (depths 19–30).
+Ten concerns were repeated at ten million nodes; eight line endpoints received
+ten-million-node MultiPV searches. Added Italian continuations and revised
+King's Gambit choices received further five-million-node comparisons. Hash was
+cleared between independent searches. The audit found no tactical refutation of
+the originally taught learner moves; it did expose weaker opponent replies and
+the difference between a playable instructional choice and an engine preference.
+In particular, it does not support declaring the old `6.d4` line refuted. These
+bounded authoring searches are not an opening-proof claim or a production engine
+budget change. Local probe scripts/results remain outside Git.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_italian_course.py backend/tests/test_italian_native.py backend/tests/test_italian_black_claims.py backend/tests/test_kings_gambit_claims.py -q`:
+  **32 passed**, including native Stockfish coverage, with two existing
+  deprecation warnings. Checks include exact attacks/defenders, pawn counts,
+  exchange consequences, historical mate geometry, branch contracts, unchanged
+  White-course content, and revision/snapshot behavior.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_kings_gambit_claims.py backend/tests/test_italian_black_claims.py -q`:
+  **17 passed** after the final wording correction. The declined-gambit example
+  no longer claims that fxe5 opens queen diagonals which were already open.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/opening-courses.spec.ts tests/italian-course.spec.ts --reporter=line`:
+  **16 browser tests passed**, desktop/mobile. The wrapper then exited with a
+  server-cleanup permission/timeout error; this was not a browser-test failure.
+  The exact disposable server process was identified and stopped. Repeating
+  `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/opening-courses.spec.ts --reporter=line`
+  with sufficient process-cleanup permission passed **4 tests**, exited zero,
+  and cleaned up successfully. New assertions cover optional contrast branches,
+  reload at their endpoints, exact return to the main line, and the distinction
+  between a bad-move demonstration and a required/rehearsed answer.
+- `npm.cmd --prefix frontend run test:types`: passed.
+- `.venv/Scripts/ruff.exe check backend/trainer/study_lessons/courses backend/tests/test_italian_black_claims.py backend/tests/test_kings_gambit_claims.py`
+  and the same paths with `ruff format --check`: passed. `git diff --check` passed.
+- Inspected desktop/mobile captures and manually used an isolated production app
+  to resume an existing v1 Black session, start the revised King's Gambit, watch
+  the declined-gambit counterexample through checkmate, and return to the exact
+  main-line decision. Independent content/code review found no remaining
+  actionable issues.
+
+Focused content verification only. No full backend, account, coach, lab, Docker
+or frontend production-build rerun; production frontend code and API contracts
+are unchanged. No push or deployment.
+
 ## Black Italian and King's Gambit courses — September 30, 2026
 
 Two bundled three-chapter courses reuse the existing lesson player and explicit

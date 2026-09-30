@@ -1,7 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
 
-const revision = "2026-09-v1";
+const revision = "2026-09-v2";
 const courses = [
   {
     id: "italian-black-foundations", color: "black", chapter: "quiet-development",
@@ -10,7 +10,7 @@ const courses = [
   },
   {
     id: "kings-gambit-foundations", color: "white", chapter: "pawn-chain",
-    moves: ["h2h4", "f3e5", "d2d4", "e5d3", "c1f4", "g2g3"],
+    moves: ["h2h4", "f3e5", "f1c4", "e4d5", "d2d4", "e1g1"],
     line: "challenge-pawn-chain",
   },
 ] as const;
@@ -83,8 +83,33 @@ for (const content of courses) {
 
       let decisions = 0;
       let sourceInspected = false;
-      for (let step = 0; session.step.kind !== "rehearsal" && step < 40; step++) {
-        if (session.actions.includes("move")) {
+      let branchAnchor: Schema["LessonSessionView"] | null = null;
+      const explored = new Set<string>();
+      // Include the new teaching contrasts, then resume the exact main-line board.
+      for (let step = 0; session.step.kind !== "rehearsal" && step < 70; step++) {
+        if (session.step.kind === "branch" && !session.branch && !explored.has(session.step.id)) {
+          explored.add(session.step.id);
+          branchAnchor = session;
+          session = await command(page, "Explore alternative");
+          expect(session.branch).not.toBeNull();
+        } else if (session.branch && !session.actions.includes("continue")) {
+          expect(session.actions).not.toContain("move");
+          expect(branchAnchor).not.toBeNull();
+          const branch = session;
+          await page.reload();
+          await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
+          const restored = await saved(page, session.id);
+          expect(restored.fen).toBe(branch.fen);
+          expect(restored.branch).toEqual(branch.branch);
+          await expect(page.locator(".coach-message")).toContainText(branch.step.text);
+          await page.screenshot({ path: `test-results/${content.id}-contrast-${info.project.name}.png`, fullPage: true });
+          session = await command(page, "Return to main line");
+          expect(session.fen).toBe(branchAnchor!.fen);
+          expect(session.history).toEqual(branchAnchor!.history);
+          expect(session.step.id).toBe(branchAnchor!.step.id);
+          expect(session.branch).toBeNull();
+          branchAnchor = null;
+        } else if (session.actions.includes("move")) {
           expect(session.step.kind).toBe("decision");
           expect(session.fen.split(" ")[1]).toBe(content.color === "white" ? "w" : "b");
           expect(decisions).toBeLessThan(content.moves.length);
@@ -113,6 +138,8 @@ for (const content of courses) {
         }
       }
       expect(decisions).toBe(content.moves.length);
+      expect(explored.size).toBeGreaterThan(0);
+      expect(branchAnchor).toBeNull();
       expect(sourceInspected).toBe(true);
       expect(session.step.kind).toBe("rehearsal");
       expect(session.fen.split(" ")[1]).toBe(content.color === "white" ? "w" : "b");

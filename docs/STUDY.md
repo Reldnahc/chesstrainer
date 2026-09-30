@@ -144,11 +144,39 @@ recommendations. No course starts an engine job or downloads material at runtime
 | King's Gambit · Active play with White | White | Accepted development; the ...g5 pawn chain; declined play and the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
 
 The new courses are `italian-black-foundations` and `kings-gambit-foundations`,
-both revision `2026-09-v1`. Black decisions and rehearsal use Black orientation
+both revision `2026-09-v2`. Black decisions and rehearsal use Black orientation
 and automatically play White’s intervening replies. All three course definitions
 are cached as immutable source data and returned as independent copies. Shared
 SAN authoring helpers produce the same validated content format; the original
 White Italian revision and saved progress remain unchanged.
+
+### Reviewing authored course quality
+
+Legal histories and passing player tests establish that a course works, not that
+it teaches good chess. Before publishing or revising a course:
+
+- Check the actual chosen move orders against identified instructional sources.
+  An old game's legal score does not establish that its opening choices remain
+  good recommendations. Separate historical play from taught continuations.
+- Investigate both sides of the scripted line. A reasonable learner move can look
+  deceptively easy if the supplied opponent reply avoids the critical defense.
+  Compare important alternatives with bounded native engine analysis, and record
+  the engine/budget and uncertainty in the source record.
+- Explain the purpose of decisions and important tempting mistakes. Use existing
+  returnable demonstrations for counterexamples; do not put deliberate mistakes
+  into the learner's required answers or recall lines.
+- End a line with a concrete plan grounded in that position: remaining development,
+  king safety, central breaks and the opponent's resources. Avoid promising an
+  advantage from development or an attack merely because the opening is a gambit.
+- Check that historical excerpts teach a transferable idea and clearly identify
+  where they differ from the repertoire. Keep their factual scores, original
+  teaching prose and source attribution distinct.
+- Bump the course revision when content changes. Saved sessions and enrolled lines
+  retain their original snapshots; a new revision must not rewrite a learner's
+  old progress or scheduled answers.
+
+The September 2026 second review corrected substantive gaps in both new courses;
+their source records document the research, decisions and remaining boundaries.
 
 #### Original White Italian course
 

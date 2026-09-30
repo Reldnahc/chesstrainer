@@ -10,6 +10,8 @@ from trainer.study_lessons.courses.italian_games import (
 
 ITALIAN = "e4 e5 Nf3 Nc6 Bc4 Bc5"
 QUIET = ITALIAN + " d3 Nf6 O-O d6 c3 O-O"
+QUIET_PLAN = QUIET + " Re1 a5 Nbd2 Be6"
+KNIGHT_THREAT = ITALIAN + " d3 Nf6"
 CENTRAL = ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5 exd5 Nxd5 O-O O-O"
 EVANS = ITALIAN + " b4 Bb6 c3 d6 a4 a6 a5 Ba7"
 EVANS_QUIET = EVANS + " d3 Nf6 O-O O-O"
@@ -41,7 +43,7 @@ def _games():
             (9, "White pushes d4 before castling. Black must account for the attack on e5 and c5."),
             (
                 12,
-                "Bb4+ develops with check; White must answer the check before carrying on with the center.",
+                "Bb4+ saves the attacked bishop with check; White must answer before carrying on with the center.",
             ),
             (14, "With White's knight on c3, d5 attacks both the e4-pawn and c4-bishop."),
             (
@@ -163,7 +165,7 @@ def course():
         decision(
             "bishop",
             "Choose the bishop-first setup",
-            "Bring the f8-bishop to c5, aiming toward f2.",
+            "Place your kingside bishop on the diagonal toward f2 and clear part of the castling route.",
             "e4 e5 Nf3 Nc6 Bc4",
             "Bc5",
             "d3",
@@ -177,10 +179,43 @@ def course():
             "Develop your kingside knight toward the center.",
             ITALIAN + " d3",
             "Nf6",
-            "O-O",
-            "support",
-            "Nf6 attacks e4, but d3 protects it. White castles; this is development, not a free pawn.",
+            None,
+            "quiet-threat-choice",
+            "Nf6 attacks e4, but d3 protects it. This is development, not a free pawn. Your bishop and knight have now cleared the route for castling.",
             "Move g8 to f6.",
+        ),
+        step(
+            "branch",
+            "quiet-threat-choice",
+            "What if White attacks f7?",
+            "White need not castle next. You can inspect Ng5 and a useful defensive purpose of castling, or continue with White's quiet plan.",
+            KNIGHT_THREAT,
+            branch_start="quiet-knight-threat",
+            next_step="quiet-white-castles",
+        ),
+        demo(
+            "quiet-knight-threat",
+            "Castle to reinforce f7",
+            "Ng5 joins the c4-bishop in attacking f7. Castling brings the rook from h8 to f8, adding a defender while making the king safer.",
+            KNIGHT_THREAT,
+            KNIGHT_THREAT + " Ng5 O-O",
+            "quiet-threat-summary",
+        ),
+        step(
+            "explanation",
+            "quiet-threat-summary",
+            "Check the defenders, not just the threat",
+            "The rook on f8 and king on g8 now defend f7. If White captures there with the knight, Rxf7 is available. This is why the bishop-first move order matters: you can castle after developing Nf6. Return to the quiet line when ready.",
+            KNIGHT_THREAT + " Ng5 O-O",
+            annotations={"squares": ["f7", "f8", "g8"]},
+        ),
+        demo(
+            "quiet-white-castles",
+            "White chooses the quiet plan",
+            "White castles instead of attacking f7. Now support your center and complete your own king safety.",
+            KNIGHT_THREAT,
+            KNIGHT_THREAT + " O-O",
+            "support",
         ),
         decision(
             "support",
@@ -200,9 +235,29 @@ def course():
             ITALIAN + " d3 Nf6 O-O d6 c3",
             "O-O",
             None,
-            "quiet-game",
-            "The king reaches g8 and the rook f8. Finish developing the c8-bishop and judge the central breaks from the next position.",
+            "quiet-plan",
+            "The king reaches g8 and the rook f8. Castling is a checkpoint, not the end of your opening plan: the c8-bishop still needs a job.",
             "Move e8 to g8.",
+        ),
+        demo(
+            "quiet-plan",
+            "Give the remaining bishop a job",
+            "Here is one possible continuation. After Re1, a5 controls b4 and makes White's queenside expansion harder. Following Nbd2, Be6 develops your remaining bishop and offers an exchange of White's active bishop on c4.",
+            QUIET,
+            QUIET_PLAN,
+            "quiet-plan-summary",
+        ),
+        step(
+            "explanation",
+            "quiet-plan-summary",
+            "A plan, not an automatic sequence",
+            "The bishops on e6 and c4 attack each other. Bxe6 can be met by fxe6: Black would get doubled e-pawns but a semi-open f-file. Decide whether that trade suits the position. Keep watching White's c3–d4 break; the next move depends on White's reply.",
+            QUIET_PLAN,
+            next_step="quiet-game",
+            annotations={
+                "squares": ["b4", "c4", "e6"],
+                "arrows": [{"from_square": "e6", "to_square": "c4"}],
+            },
         ),
         excerpt(
             "quiet-game",
@@ -226,7 +281,7 @@ def course():
             "explanation",
             "central-welcome",
             "When White opens the center early",
-            "After c3, White can push d4 before castling. A quiet d6 setup is no longer the whole story: meet the central contact, develop with check and look for your own d5 break.",
+            "c3 alone does not promise an immediate attack: White can still play d3 and reach a quiet setup. This chapter examines d4 before castling instead. Meet the pawn contact, save your attacked bishop with check and look for your own d5 break.",
             next_step="central-arrival",
         ),
         demo(
@@ -301,7 +356,7 @@ def course():
         decision(
             "central-recapture",
             "Recapture with a piece",
-            "Use the f6-knight to recapture on d5.",
+            "Restore the material balance with a knight and occupy the square in front of White's d-pawn.",
             ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5 exd5",
             "Nxd5",
             "O-O",
@@ -316,9 +371,18 @@ def course():
             ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5 exd5 Nxd5 O-O",
             "O-O",
             None,
-            "central-game",
-            "Both kings are castled and material is level. Continue developing rather than assuming the opening plan has finished the game.",
+            "central-plan",
+            "Both kings are castled and material is level. The exchanges have left a useful structural target to understand before you continue.",
             "Move e8 to g8.",
+        ),
+        step(
+            "explanation",
+            "central-plan",
+            "Play against the isolated d-pawn",
+            "White's d4-pawn has no friendly pawn on the c- or e-file to protect it. Your knight on d5 blocks its advance. Keep control of d5, finish developing and look for pressure on d4. Safe piece exchanges can reduce White's activity, but the pawn also gives White space and control of e5: it is a target, not a pawn you have already won.",
+            CENTRAL,
+            next_step="central-game",
+            annotations={"squares": ["d4", "d5", "e5"]},
         ),
         excerpt(
             "central-game",
@@ -378,7 +442,7 @@ def course():
         decision(
             "evans-room",
             "Make a retreat square",
-            "Move the a-pawn one square so your bishop can retreat to a7 if a5 comes.",
+            "White threatens to gain time with a5. Use your a-pawn to make a safe retreat square for the bishop.",
             ITALIAN + " b4 Bb6 c3 d6 a4",
             "a6",
             "a5",
@@ -431,11 +495,11 @@ def course():
         ),
         excerpt(
             "evans-game",
-            "Lasker declines, then develops",
-            "Pollock–Lasker, Hastings 1895. Follow the declined gambit from b4 to Black's castling. You can open the whole game to see how Black later found activity in the center.",
+            "Answer flank space with central activity",
+            "Pollock–Lasker, Hastings 1895. White pushes the queenside pawns. Black preserves the bishop, castles and develops; then d5 challenges e4 while White's king is still in the center. Watch how the prepared break gives Black active play instead of endlessly defending the queenside.",
             "pollock-lasker",
             6,
-            20,
+            26,
             "evans-recall",
         ),
         step(
@@ -449,7 +513,7 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="italian-black-foundations",
-            revision="2026-09-v1",
+            revision="2026-09-v2",
             title="Italian Game · A practical Black repertoire",
             description="Develop with Bc5, meet the early d4 break, and decline the Evans Gambit. Three guided chapters with historical examples and optional recall lines.",
             learner_color="black",

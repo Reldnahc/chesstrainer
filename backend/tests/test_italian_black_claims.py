@@ -35,6 +35,37 @@ def test_quiet_development_supports_both_e_pawns_before_castling():
     _piece(castled, chess.F8, chess.ROOK, chess.BLACK)
 
 
+def test_f7_warning_shows_castling_adds_a_defender_before_any_capture():
+    chapter = course().chapter("quiet-development")
+    branch = chapter.step("quiet-threat-choice")
+    demo = chapter.step(branch.branch_start)
+    threatened = demo.position.after(demo.moves[:1]).board()
+    assert {chess.G5, chess.C4} <= set(threatened.attackers(chess.WHITE, chess.F7))
+    castled = demo.position.after(demo.moves).board()
+    assert {chess.G8, chess.F8} <= set(castled.attackers(chess.BLACK, chess.F7))
+    captured = castled.copy()
+    captured.push_san("Nxf7")
+    assert captured.parse_san("Rxf7") == chess.Move(chess.F8, chess.F7)
+    summary = chapter.step(demo.next_step)
+    assert summary.position.board().fen() == castled.fen()
+    assert chapter.step(branch.next_step).position == branch.position
+
+
+def test_quiet_continuation_explains_real_bishop_exchange_tradeoffs():
+    chapter = course().chapter("quiet-development")
+    demo = chapter.step("quiet-plan")
+    board = demo.position.after(demo.moves).board()
+    assert chess.A5 in board.attackers(chess.BLACK, chess.B4)
+    assert chess.E6 in board.attackers(chess.BLACK, chess.C4)
+    assert chess.C4 in board.attackers(chess.WHITE, chess.E6)
+    assert chapter.step(demo.next_step).position.board().fen() == board.fen()
+    board.push_san("Bxe6")
+    board.push_san("fxe6")
+    assert len(board.pieces(chess.PAWN, chess.BLACK) & chess.BB_FILE_E) == 2
+    assert not board.pieces(chess.PAWN, chess.BLACK) & chess.BB_FILE_F
+    assert board.pieces(chess.PAWN, chess.WHITE) & chess.BB_FILE_F
+
+
 def test_central_sequence_checks_exchanges_breaks_and_castles_as_described():
     threatened = _before("central-break", "central-capture")
     assert chess.E5 in threatened.attacks(chess.D4)
@@ -62,6 +93,17 @@ def test_central_sequence_checks_exchanges_breaks_and_castles_as_described():
     castled = _after("central-break", "central-castle")
     assert castled.king(chess.WHITE) == chess.G1
     assert castled.king(chess.BLACK) == chess.G8
+
+
+def test_central_endpoint_is_an_isolated_pawn_blockade_with_white_space():
+    board = _before("central-break", "central-plan")
+    _piece(board, chess.D4, chess.PAWN, chess.WHITE)
+    _piece(board, chess.D5, chess.KNIGHT, chess.BLACK)
+    white_pawns = board.pieces(chess.PAWN, chess.WHITE)
+    assert not white_pawns & (chess.BB_FILE_C | chess.BB_FILE_E)
+    assert chess.Move(chess.D4, chess.D5) not in board.legal_moves
+    assert chess.E5 in board.attacks(chess.D4)
+    assert chess.F3 in board.attackers(chess.WHITE, chess.D4)
 
 
 def test_evans_retreat_is_prepared_and_keeps_material_equal():
@@ -111,6 +153,16 @@ def test_pollock_lasker_score_has_exact_opening_and_recorded_fork_endpoint():
     _piece(final, chess.C3, chess.QUEEN, chess.WHITE)
     assert {chess.C3, chess.G1} <= set(final.attacks(chess.E2))
     assert final.is_check() and not final.is_checkmate()
+
+
+def test_evans_excerpt_reaches_the_central_break_not_just_repeated_development():
+    excerpt = course().chapter("evans-declined").step("evans-game")
+    board = _game(excerpt.game_id, excerpt.to_ply)
+    _piece(board, chess.D5, chess.PAWN, chess.BLACK)
+    assert chess.E4 in board.attacks(chess.D5)
+    assert {chess.F6, chess.B7, chess.E7} <= set(board.attackers(chess.BLACK, chess.D5))
+    assert board.king(chess.BLACK) == chess.G8
+    assert board.king(chess.WHITE) == chess.E1
 
 
 def test_new_course_annotations_do_not_change_the_existing_white_course():
