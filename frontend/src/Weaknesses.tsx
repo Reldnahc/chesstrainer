@@ -85,7 +85,6 @@ export default function WeaknessScreen({ onEvidence, category }: {
             <h2 id="weakness-category-title">{title}</h2>
             <span className="small muted">{skills.length} {countLabel}{skills.length === 1 ? "" : "s"}</span>
           </div>
-          {category === "outcomes" && <p className="weakness-category-note">What happened in the game; the specific tactical cause may still be unknown.</p>}
           {skills.length ? <>
             <div className="weakness-list">
               {skills.map(skill => <WeaknessCard key={skill.skill_id} skill={skill} onEvidence={onEvidence} />)}
