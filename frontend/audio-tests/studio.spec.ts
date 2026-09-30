@@ -21,7 +21,7 @@ test("studio stays silent on entry and auditions every available candidate", asy
       await expect(page.locator('[data-event-type="started"]').first()).toContainText(palette.label);
     }
   }
-  expect(candidateCount).toBe(41);
+  expect(candidateCount).toBe(30);
   expect(new Set(requests.filter(url => url.endsWith(".wav"))).size).toBe(candidateCount);
   expect(requests.filter(url => new URL(url).pathname.startsWith("/api/"))).toEqual([]);
   expect(errors).toEqual([]);
@@ -103,6 +103,7 @@ test("each candidate exposes its source, actual license and modifications", asyn
     .toBe(candidateCount);
   await expect(page.locator(".audio-studio-source")).toHaveCount(recordedSources.assets.length);
   for (const source of recordedSources.assets) {
+    if (source.cue === "retry" && source.palette !== "retry-soft-error") expect(source.license).toBe("CC0-1.0");
     const disclosure = page.locator(`.audio-studio-cue-row[data-cue="${source.cue}"] [data-palette="${source.palette}"] .audio-studio-source`);
     await expect(disclosure).not.toHaveAttribute("open");
     await expect(disclosure.locator(".source-line")).toContainText(`${source.title} — ${source.author}`);
@@ -121,18 +122,16 @@ test("each candidate exposes its source, actual license and modifications", asyn
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test("retry offers seventeen described candidates in a responsive grid without changing the other cue choices", async ({ page }, info) => {
+test("retry offers six described candidates in a responsive grid without changing the other cue choices", async ({ page }, info) => {
   await page.goto("/");
   if (info.project.name === "mobile") await page.setViewportSize({ width: 320, height: 780 });
   const retry = page.locator('.audio-studio-cue-row[data-cue="retry"]');
   const candidates = palettesForCue("retry");
   expect(candidates.map(candidate => candidate.id)).toEqual([
-    "retry-soft-error", "retry-pitch-lift", "retry-pitch-octave", "retry-pitch-bright",
-    "retry-pitch-high", "retry-pitch-highest", "retry-double-tap", "retry-double-drop",
-    "retry-double-steep", "retry-triple-step", "retry-stutter", "retry-peep-pair",
-    "retry-peep-fall", "retry-peep-triple", "retry-bell-drop", "retry-question", "retry-short-high",
+    "retry-relay-buzzer", "retry-real-buzzer", "retry-piano-slip", "retry-muted-brass",
+    "retry-whistle-fall", "retry-soft-error",
   ]);
-  await expect(retry.locator(".audio-studio-cue-option")).toHaveCount(17);
+  await expect(retry.locator(".audio-studio-cue-option")).toHaveCount(candidates.length);
   for (const candidate of candidates) {
     const option = retry.locator(`.audio-studio-cue-option[data-palette="${candidate.id}"]`);
     await expect(option.getByRole("heading", { name: candidate.label, exact: true })).toBeVisible();
@@ -149,7 +148,7 @@ test("retry offers seventeen described candidates in a responsive grid without c
     return { x, y, width, height };
   }));
   const columns = info.project.name === "mobile" ? 2 : 3;
-  expect(cells).toHaveLength(17);
+  expect(cells).toHaveLength(candidates.length);
   expect(cells.every(cell => cell.width > 70)).toBe(true);
   for (const [index, cell] of cells.entries()) {
     const column = index % columns;
@@ -178,6 +177,9 @@ test("rejected retry picks are dropped while approved picks and new retry choice
     "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
     "retry-downturn", "retry-oops",
     "retry-soft-warm", "retry-soft-short", "retry-soft-gentle",
+    "retry-pitch-lift", "retry-pitch-octave", "retry-pitch-bright", "retry-pitch-high", "retry-pitch-highest",
+    "retry-double-tap", "retry-double-drop", "retry-double-steep", "retry-triple-step", "retry-stutter",
+    "retry-peep-pair", "retry-peep-fall", "retry-peep-triple", "retry-bell-drop", "retry-question", "retry-short-high",
   ]) {
     await page.evaluate(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), {
       key: studioStorageKey, picks: { ...approved, retry: rejected },
@@ -194,10 +196,10 @@ test("rejected retry picks are dropped while approved picks and new retry choice
   await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("retry");
   await page.getByRole("button", { name: "Play scenario", exact: true }).click();
   await expect(page.locator('[data-event-type="started"][data-cue="retry"]')).toContainText("Soft error");
-  await page.evaluate(key => localStorage.setItem(key, JSON.stringify({ move: "retry-soft-error", retry: "retry-pitch-lift" })), studioStorageKey);
+  await page.evaluate(key => localStorage.setItem(key, JSON.stringify({ move: "retry-soft-error", retry: "retry-relay-buzzer" })), studioStorageKey);
   await page.reload();
   await expect(page.locator('.audio-studio-cue-row[data-cue="move"] input:checked')).toHaveCount(0);
-  await expect(page.getByRole("radio", { name: "Choose Lifted for Try again", exact: true })).toBeChecked();
+  await expect(page.getByRole("radio", { name: "Choose Mechanical buzzer for Try again", exact: true })).toBeChecked();
 });
 
 test("rejected synthetic picks are never carried over to recorded candidates", async ({ page }) => {

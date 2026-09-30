@@ -4,6 +4,35 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Recorded retry source comparison — September 30, 2026
+
+The owner rejected the electronic texture of the pitch/pattern set. Replaced
+those 16 variants with five independently sourced CC0 recordings: real relay
+and door buzzers, a misplayed piano note, muted trombone and slide whistle.
+Retained the exact previous Soft error as a labelled electronic comparison.
+All 25 retained binaries and recipes match `020d04f`. Excerpts retain original
+speed and pitch; no runtime/authoring architecture or production choices changed.
+
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **62 passed**, desktop/mobile. The wrapper reuses the owner's studio. Covers
+  playback of all 30 files, attribution, new source licenses, responsive six-way
+  comparison, preserved picks, rejected old choices and unapproved retry silence.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including API/type
+  checks, **11** style tests and entrypoint boundaries.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **30** assets,
+  **2,238,714 bytes**, valid. Cached `--prepare` with the pinned NumPy/SoundFile
+  environment reproduced every output exactly without updating hashes.
+- `git diff --check` and `git diff --cached --check`: passed.
+
+Independent review verified the five primary publisher pages, recorded origins,
+CC0 declarations, output levels and zero-valued edit boundaries; no actionable
+defects. Manual studio reload showed the new sources, eight preserved picks and
+successful Mechanical buzzer playback. Auditory preference is not claimed as
+verified; these are candidates for the owner. No unrelated backend/coach matrix,
+deployment or remote CI was run.
+
 ## Broader higher-pitched retry auditions — September 30, 2026
 
 Replaced three rejected subtle edits with 16 stronger pitch/pattern alternatives;

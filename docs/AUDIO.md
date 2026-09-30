@@ -93,13 +93,12 @@ before an attempt or reveal permits feedback.
 The approved cue alternatives retain **11 CC0 recordings**: real chess/wooden
 pieces, wood block, music box, bronze bell, triangle, glass and a soft gong.
 They are trimmed, level matched and faded; castling combines two recorded hits.
-Retry auditions use one authored soft error effect (LorenzoTheGreat, CC BY 3.0).
-The original Soft error remains unchanged beside 16 pitch/pattern alternatives:
-five higher-pitch choices (about +7 to +28 semitones), five repeated/interrupted
-error patterns, and six short-note/envelope variations. These include descending
-pairs, three-step errors and isolated high peeps. The rejected subtle Warmer,
-Shorter and Gentler onset variants are removed. All edits are baked into the
-bundled WAVs. Fieldwork generates no new oscillator tones.
+Retry auditions now compare five CC0 recordings: a real relay buzzer, a door
+buzzer, a misplayed piano note, muted trombone and a falling slide whistle. These
+are trimmed and level matched at their original pitch/speed. The rejected
+electronic Soft error (LorenzoTheGreat, CC BY 3.0) remains unchanged only as a
+comparison reference; its pitch/pattern variants are removed. All edits are
+baked into bundled WAVs. Fieldwork generates no new oscillator tones.
 The Freesound inputs are public HQ MP3 previews rather than original WAV downloads.
 The other inputs are the publisher's downloadable MP3s. Resaving them as WAV does
 not restore information removed by MP3 encoding.
@@ -108,9 +107,9 @@ not restore information removed by MP3 encoding.
 input/output hash and exact edit recipe. Its license map and the asset README
 retain attribution and the applicable license links, alongside `CC0-1.0.txt`.
 `scripts/prepare_audio.py --check` verifies assets offline; explicit authoring can
-reproduce the edits from hash-checked source files. The 41 candidate WAVs comprise
-eight cues in three palettes and 17 retry-only choices, totaling approximately
-**2.46 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
+reproduce the edits from hash-checked source files. The 30 candidate WAVs comprise
+eight cues in three palettes and six retry-only choices, totaling approximately
+**2.24 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
 as needed; normal installation/build/playback does not contact a sound provider.
 Additional palettes need not change event producers.
 
@@ -126,10 +125,9 @@ Open **http://127.0.0.1:5176**. This is a separate Vite process with no account/
 connection and no production navigation route. It uses the actual audio engine.
 
 - Compare Recorded chess, Tabletop and Soft objects for the eight approved cues.
-  Try again compares 17 clearly labeled pitch/pattern options with short
-  descriptions in a three-column desktop/two-column phone grid.
-  The original Soft error clip is preserved as the listening reference;
-  the other clips and their production defaults are unchanged.
+  Try again compares five new recorded sources plus the old Soft error reference,
+  with short descriptions in a three-column desktop/two-column phone grid.
+  The other clips and their production defaults are unchanged.
 - Open a candidate's Source disclosure for its source, author, edits and actual license.
   Approved production choices are listed above; other variants remain audition
   candidates. Exact edit recipes are recorded in the asset manifest.

@@ -9,13 +9,13 @@ Other dependencies retain their own licenses; Stockfish is installed separately.
 
 The audio candidates under `frontend/src/audio/assets` include CC0-1.0 recordings
 by el_boss, simone_ds, taure and zachrau (Freesound), Pierre SIBANARCO and Joseph
-SARDIN (BigSoundBank).
-Soft error and its 16 audition variants adapt
+SARDIN (BigSoundBank). Recorded retry auditions also use CC0 recordings by scruss,
+scarfield, VizAion, crashoverride6 and jcookvoice (Freesound).
+The retained Soft error comparison reference adapts
 [Error.wav by LorenzoTheGreat](https://freesound.org/people/LorenzoTheGreat/sounds/417794/)
 under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 Fieldwork's edits trim silence, convert to mono, adjust gain and fade boundaries;
-the audition variants also raise pitch through resampling, isolate notes, and
-resequence excerpts into repeated or differently pitched patterns.
+the recorded retry excerpts retain their original pitch and playback speed.
 The assets and edits retain their respective CC terms; the application's license
 does not replace them. The directory includes the complete CC0 text, license
 links and per-file sources, hashes and recipes in `sources.json` and its README.
