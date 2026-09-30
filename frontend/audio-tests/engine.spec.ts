@@ -176,6 +176,7 @@ test("rejected retry candidates from stale callers never fetch or schedule playb
   for (const palette of [
     "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
     "retry-downturn", "retry-oops",
+    "retry-soft-warm", "retry-soft-short", "retry-soft-gentle",
   ]) {
     for (const delayMs of [0, 160]) {
       const eventId = `${palette}:${delayMs}`;

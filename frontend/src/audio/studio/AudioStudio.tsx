@@ -41,14 +41,16 @@ function CueOption({ cue, palette, picked, named = false, onPlay, onChoose }: {
   onPlay: (cue: SoundCue, palette: SoundPalette) => void;
   onChoose: (cue: SoundCue, palette: SoundPalette) => void;
 }) {
+  const descriptionId = named ? `candidate-description-${cue.id}-${palette.id}` : undefined;
   return <div className="audio-studio-cue-option" data-picked={picked} data-palette={palette.id}>
     {named && <h4 className="audio-studio-candidate-name">{palette.label}</h4>}
-    <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} onClick={() => onPlay(cue.id, palette.id)}>
+    {named && <p id={descriptionId} className="audio-studio-candidate-description">{palette.description}</p>}
+    <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} aria-describedby={descriptionId} onClick={() => onPlay(cue.id, palette.id)}>
       <Play size={13} aria-hidden="true" /><span>Play</span>
     </Button>
     <label className="audio-studio-pick">
       <input type="radio" name={`pick-${cue.id}`} value={palette.id} checked={picked}
-        onChange={() => onChoose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} />
+        onChange={() => onChoose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} aria-describedby={descriptionId} />
       <span>{picked ? "Picked" : "Pick"}</span>
     </label>
     <CueSource cue={cue.id} palette={palette.id} />

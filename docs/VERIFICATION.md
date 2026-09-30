@@ -4,6 +4,37 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Broader higher-pitched retry auditions — September 30, 2026
+
+Replaced three rejected subtle edits with 16 stronger pitch/pattern alternatives;
+the unchanged Soft error reference makes 17 retry choices. Five pitch levels
+span approximately +7 to +28 semitones, with separate repeated, descending,
+isolated-note and envelope alternatives. Source edits remain offline. All 25
+retained WAVs and recipes match `9b0739a`; the 16 new hashes are distinct. No
+production choices, account preferences or engine behavior changed.
+
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **62 passed**, desktop/mobile. The local wrapper reuses the owner's running
+  studio. Tests play all 41 assets, check descriptions/source attribution,
+  three-column desktop/two-column 320px phone layout, retained selections,
+  retired-choice filtering, cancellation and production retry silence.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including API/type
+  checks, **11** style tests and entrypoint boundaries. Existing chunk-size
+  advisory only.
+- `.venv/Scripts/ruff.exe check scripts/prepare_audio.py` and
+  `.venv/Scripts/ruff.exe format --check scripts/prepare_audio.py`: passed.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **41** assets,
+  **2,464,756 bytes**, valid. Cached `--prepare` reproduced every output exactly
+  without hash updates using the pinned NumPy/SoundFile authoring environment.
+
+Independent review found no actionable defects; retry edit boundaries are zero,
+durations are 0.116–0.766s and level limits/attribution remain intact. Manual
+studio inspection confirmed 17 choices, eight preserved picks and successful
+Highest error playback. Listening preference remains for the owner to judge.
+No unrelated backend/coach matrix, deployment or remote CI was run.
+
 ## Soft error refinements — September 30, 2026
 
 Kept the original Soft error audition byte-for-byte and added Warmer (89% speed),

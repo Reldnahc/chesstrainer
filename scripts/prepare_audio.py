@@ -95,15 +95,24 @@ def prepare(manifest: dict, source_dir: Path, fetch: bool, update_hashes: bool) 
         rate = asset["sampleRate"]
         playback_rate = float(asset.get("playbackRate", 1))
         fade_in_seconds = float(asset.get("fadeInSeconds", 0.001))
-        if not 0.5 <= playback_rate <= 2 or not 0 <= fade_in_seconds <= 0.5:
+        if not 0.5 <= playback_rate <= 6 or not 0 <= fade_in_seconds <= 0.5:
             raise ValueError(f"Invalid playback rate or onset fade: {asset['palette']}")
-        length = max(t["at"] + (t["end"] - t["start"]) / playback_rate for t in asset["takes"])
+        take_rates = [float(t.get("playbackRate", playback_rate)) for t in asset["takes"]]
+        if any(not 0.5 <= speed <= 6 for speed in take_rates):
+            raise ValueError(f"Invalid take playback rate: {asset['palette']}")
+        length = max(
+            t["at"] + (t["end"] - t["start"]) / speed
+            for t, speed in zip(asset["takes"], take_rates, strict=True)
+        )
         samples = np.zeros(round(length * rate) + round(0.006 * rate))
-        for take in asset["takes"]:
+        for take, speed in zip(asset["takes"], take_rates, strict=True):
             original, original_rate = recordings[take["source"]]
             assert 0 <= take["start"] < take["end"] <= len(original) / original_rate
-            frames = round((take["end"] - take["start"]) * rate / playback_rate)
-            times = take["start"] + np.arange(frames) / rate * playback_rate
+            gain = float(take.get("gain", 1))
+            if not 0 < gain <= 1 or take["at"] < 0:
+                raise ValueError(f"Invalid take gain or offset: {asset['palette']}")
+            frames = round((take["end"] - take["start"]) * rate / speed)
+            times = take["start"] + np.arange(frames) / rate * speed
             clip = np.interp(times * original_rate, np.arange(len(original)), original)
             # Remove recording DC offset and soften only the edit boundaries.
             clip -= clip.mean()
@@ -112,7 +121,7 @@ def prepare(manifest: dict, source_dir: Path, fetch: bool, update_hashes: bool) 
             clip[:fade_in] *= np.linspace(0, 1, fade_in)
             clip[-fade_out:] *= np.linspace(1, 0, fade_out)
             start = round(take["at"] * rate)
-            samples[start : start + len(clip)] += clip
+            samples[start : start + len(clip)] += clip * gain
         peak = float(np.max(np.abs(samples)))
         active = samples[np.abs(samples) > peak * 0.05]
         rms = float(np.sqrt(np.mean(active**2)))

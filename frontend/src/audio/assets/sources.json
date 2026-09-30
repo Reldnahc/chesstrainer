@@ -694,59 +694,38 @@
       "fadeOutSeconds": 0.1
     },
     {
-      "palette": "retry-soft-warm",
+      "palette": "retry-pitch-lift",
       "cue": "retry",
       "title": "Error.wav",
       "author": "LorenzoTheGreat",
       "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
       "license": "CC-BY-3.0",
-      "modifications": "Edited by Fieldwork from Error.wav by LorenzoTheGreat: excerpt 0.04–0.8s, mono conversion, level matching and boundary fades; played at 89% speed (about two semitones lower) for a lower-pitched contour. No new tones generated.",
-      "sha256": "94f98434cf6230b87922023b51c1149248fbac2ac508b108322001eeb8087db8",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: source excerpt 0.04–0.80s resampled at 1.5× speed (about +7 semitones); mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "0ef631bf14f404b0e8f5d414175122de6f1bda885e0b572dca407990e2fe5f01",
       "takes": [
         {
           "source": "retry-soft-error",
           "start": 0.04,
           "end": 0.8,
-          "at": 0
-        }
-      ],
-      "sampleRate": 44100,
-      "targetRms": 0.065,
-      "peakLimit": 0.35,
-      "fadeOutSeconds": 0.1,
-      "playbackRate": 0.89
-    },
-    {
-      "palette": "retry-soft-short",
-      "cue": "retry",
-      "title": "Error.wav",
-      "author": "LorenzoTheGreat",
-      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
-      "license": "CC-BY-3.0",
-      "modifications": "Edited by Fieldwork from Error.wav by LorenzoTheGreat: excerpt 0.04–0.57s, mono conversion, level matching and boundary fades; shortened source tail with a 220ms fade on the second tone. No new tones generated.",
-      "sha256": "78187965a56e5fedecd0bee915160413ad74b7b419b4099db4e857db384ede13",
-      "takes": [
-        {
-          "source": "retry-soft-error",
-          "start": 0.04,
-          "end": 0.57,
           "at": 0
         }
       ],
       "sampleRate": 44100,
       "targetRms": 0.07,
       "peakLimit": 0.35,
-      "fadeOutSeconds": 0.22
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 1.5,
+      "fadeInSeconds": 0.003
     },
     {
-      "palette": "retry-soft-gentle",
+      "palette": "retry-pitch-octave",
       "cue": "retry",
       "title": "Error.wav",
       "author": "LorenzoTheGreat",
       "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
       "license": "CC-BY-3.0",
-      "modifications": "Edited by Fieldwork from Error.wav by LorenzoTheGreat: excerpt 0.04–0.8s, mono conversion, level matching and boundary fades; 85ms onset fade and quieter 0.05 active RMS target. No new tones generated.",
-      "sha256": "bdcf955d80a45a464b02d6750e50244320971174c9e98592aa6e6e0eb746fd51",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: source excerpt 0.04–0.80s resampled at 2× speed (about +12 semitones); mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "d3b4c7cecb449f9b7004154a2c78c348ed35cf7a27cc8de3bf89877552b184d5",
       "takes": [
         {
           "source": "retry-soft-error",
@@ -756,10 +735,439 @@
         }
       ],
       "sampleRate": 44100,
-      "targetRms": 0.05,
+      "targetRms": 0.07,
       "peakLimit": 0.35,
-      "fadeOutSeconds": 0.1,
-      "fadeInSeconds": 0.085
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 2,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-pitch-bright",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: source excerpt 0.04–0.80s resampled at 3× speed (about +19 semitones); mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "711f9494c8ed6b9c043ead53253b83607484981b6a6e702004d5a8811c792976",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.8,
+          "at": 0
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 3,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-pitch-high",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: source excerpt 0.04–0.80s resampled at 4× speed (about +24 semitones); mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "4279327635085dde3e7f5664f95749417492d52f5d3ee0779e6a444fe6f7b96e",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.8,
+          "at": 0
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 4,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-pitch-highest",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: source excerpt 0.04–0.80s resampled at 5× speed (about +27.9 semitones); mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "fd5c83acad881dbca18cb5097417cb96e1e30df76adb8ee0d351e91655cf1a47",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.8,
+          "at": 0
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 5,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-double-tap",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: two complete downward cues at 3× speed, 270ms between onsets; second at 85% gain; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "e605bfe09cecef8661ccc7d74b5af998cffcc8191517d637cb168f6a0b234f7a",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0.27,
+          "gain": 0.85
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 3,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-double-drop",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: two downward cues, first at 3× and second at 2× speed; 290ms between onsets; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "88e6bc55b4e76a01573d43362a6a4a5bf66613492a75dbcc61b22cfb7314614e",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0,
+          "playbackRate": 3
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0.29,
+          "playbackRate": 2,
+          "gain": 0.9
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 1,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-double-steep",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: high downward cue at 5× followed by a low cue at 1.5× speed; 200ms between onsets; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "876f34fcc5ce9116777186bc0be6f1f65e248f1592e12c0d0862aaf1050961bf",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0,
+          "playbackRate": 5
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0.2,
+          "playbackRate": 1.5,
+          "gain": 0.8
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 1,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-triple-step",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: three downward cues at 4×, 3× and 2.25× speed, starting at 0/190/430ms with diminishing gain; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "1d486b08168dfdb0ed89853ba152a07d90396d98f5121b7b35c44f022a044b5a",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0,
+          "playbackRate": 4
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0.19,
+          "playbackRate": 3,
+          "gain": 0.85
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0.43,
+          "playbackRate": 2.25,
+          "gain": 0.7
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.025,
+      "playbackRate": 1,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-stutter",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: isolated opening tone at 3× speed, followed 135ms later by a complete 4× downward cue; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "98643bde2d8753d87f5c613ac8aefab22d89c24367b015e1ef483c925811e4b8",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0,
+          "playbackRate": 3,
+          "gain": 0.65
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.65,
+          "at": 0.135,
+          "playbackRate": 4
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.018,
+      "playbackRate": 1,
+      "fadeInSeconds": 0.003
+    },
+    {
+      "palette": "retry-peep-pair",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: opening tone (0.06–0.23s) repeated at 3.2× speed, 200ms between onsets; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "8f4b82cc8ef70ed8b32d5181ede15a9b7d8875343e0a8116821ca86ad064d051",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0.2,
+          "gain": 0.9
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.012,
+      "playbackRate": 3.2,
+      "fadeInSeconds": 0.004
+    },
+    {
+      "palette": "retry-peep-fall",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: two isolated opening tones at 4× then 2.25× speed, 180ms between onsets; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "23a943ec66ca95923c967d47a27279be6f44586c69ef6165a526b777ceb1d77a",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0,
+          "playbackRate": 4
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0.18,
+          "playbackRate": 2.25
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.012,
+      "playbackRate": 1,
+      "fadeInSeconds": 0.004
+    },
+    {
+      "palette": "retry-peep-triple",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: three isolated opening tones at 2.8×/2.3×/1.8× speed, starting at 0/140/290ms; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "dcee768fe26ccad56c4d5ba310171d310372309b27412895e21fa5fbe8a70a26",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0,
+          "playbackRate": 2.8
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0.14,
+          "playbackRate": 2.3,
+          "gain": 0.9
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0.29,
+          "playbackRate": 1.8,
+          "gain": 0.8
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.012,
+      "playbackRate": 1,
+      "fadeInSeconds": 0.004
+    },
+    {
+      "palette": "retry-bell-drop",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: one downward cue at 2.75× speed with a 35ms entrance and 160ms exit fade; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "8af9dea2155b8158b16d5c348f33730d854326e229d60acd146ca97093ce3556",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.04,
+          "end": 0.7,
+          "at": 0
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.16,
+      "playbackRate": 2.75,
+      "fadeInSeconds": 0.035
+    },
+    {
+      "palette": "retry-question",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: two isolated opening tones at 2× then 4× speed, 170ms between onsets; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "51c357def650a4a0d0ea0f003b7031ded78f3e98e0da095818ced937d8c91a8b",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0,
+          "playbackRate": 2
+        },
+        {
+          "source": "retry-soft-error",
+          "start": 0.06,
+          "end": 0.23,
+          "at": 0.17,
+          "playbackRate": 4,
+          "gain": 0.9
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.012,
+      "playbackRate": 1,
+      "fadeInSeconds": 0.004
+    },
+    {
+      "palette": "retry-short-high",
+      "cue": "retry",
+      "title": "Error.wav",
+      "author": "LorenzoTheGreat",
+      "sourceUrl": "https://freesound.org/people/LorenzoTheGreat/sounds/417794/",
+      "license": "CC-BY-3.0",
+      "modifications": "Edited from LorenzoTheGreat's Error.wav: source excerpt 0.08–0.52s resampled at 4× speed with a 45ms fading finish; mono conversion, DC-offset removal, level matching and boundary fades. Pitch and timing edits are baked into the WAV; no new oscillator tones.",
+      "sha256": "1a254b5df17d763e07790b6d283c3cc8036ca7b42c54dad9777ef97472252c7f",
+      "takes": [
+        {
+          "source": "retry-soft-error",
+          "start": 0.08,
+          "end": 0.52,
+          "at": 0
+        }
+      ],
+      "sampleRate": 44100,
+      "targetRms": 0.07,
+      "peakLimit": 0.35,
+      "fadeOutSeconds": 0.045,
+      "playbackRate": 4,
+      "fadeInSeconds": 0.003
     }
   ],
   "licenses": {
