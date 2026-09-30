@@ -20,14 +20,16 @@ const cueFilters: readonly { value: CueFilter; label: string }[] = [
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";
 const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => item.id === palette)?.label ?? "";
 const assetSources = new Map(recordedSources.assets.map(source => [`${source.palette}:${source.cue}`, source]));
+const sourceLicenses: Readonly<Record<string, { label: string; url: string } | undefined>> = recordedSources.licenses;
 
 function CueSource({ cue, palette }: { cue: SoundCue; palette: SoundPalette }) {
   const source = assetSources.get(`${palette}:${cue}`);
   if (!source) return null;
+  const license = sourceLicenses[source.license];
   return <details className="disclosure audio-studio-source">
     <summary aria-label={`Source for ${cueLabel(cue)} · ${paletteLabel(palette)}`}>Source</summary>
-    <SourceLine text={`${source.title} — ${source.author}`} url={source.sourceUrl}
-      license="CC0" licenseUrl="https://creativecommons.org/publicdomain/zero/1.0/" />
+    <SourceLine text={`${source.title} — ${source.author}. ${source.modifications}`} url={source.sourceUrl}
+      license={license?.label ?? source.license} licenseUrl={license?.url} />
   </details>;
 }
 

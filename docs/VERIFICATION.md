@@ -4,6 +4,37 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Focused soft retry audition — September 30, 2026
+
+The owner rejected the six object/instrument clips as unsuitable for a soft
+"oops, try again". Replaced them with Soft error (LorenzoTheGreat's authored
+error effect), Gentle downturn (SFXMint's AI-generated failure cue), and Quiet
+oops (WIM's recorded voice). Trimmed silent tails and set quieter audition level
+targets. These are listening candidates only; production retry remains null,
+all eight picks are preserved and all 24 non-retry assets/recipes match `8efb6e9`.
+Studio source disclosures now retain each clip's actual CC0/CC BY license and
+Fieldwork edits instead of incorrectly labeling all sources CC0.
+
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **62 passed**, desktop/mobile. Covers actual playback, source/license/edit
+  disclosures, three choices at 320px, all six retired IDs rejected without
+  fetching/scheduling, preserved eight picks and new retry selection persistence.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including API/types,
+  **11** style tests and entrypoint boundaries. Existing chunk-size advisory only.
+- `.venv/Scripts/ruff.exe check scripts/prepare_audio.py` and
+  `.venv/Scripts/ruff.exe format --check scripts/prepare_audio.py`: passed.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **27** assets,
+  **2,021,432 bytes**; hashes, metadata, duration, peak levels and silent tails pass.
+- `.venv/Scripts/python.exe -c "import sys,runpy; sys.path.insert(0,'.tools/audio-authoring'); sys.argv=['scripts/prepare_audio.py','--prepare']; runpy.run_path('scripts/prepare_audio.py',run_name='__main__')"`:
+  reproduced all outputs exactly from cached sources without updating hashes.
+
+Manual reload confirmed eight saved picks and three unselected retry candidates;
+Soft error reached played status. Publisher descriptions establish intended use;
+automated checks do not establish subjective sound quality. No new production
+sound was approved, and no backend/coach matrix, deployment or remote CI ran.
+
 ## Six new recorded Try again candidates — September 30, 2026
 
 Replaced the three rejected retry clips with six distinct recordings: cork pop,

@@ -7,13 +7,18 @@ Existing Fieldwork source keeps its original license. The combined application
 also carries the applicable AGPL obligations, including the network source offer.
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
-The recorded audio candidates under `frontend/src/audio/assets` derive from
-CC0-1.0 recordings by el_boss, simone_ds, taure, zachrau, Err0rC0de, chiller345,
-hollandm and Sassaby (Freesound), and
-Pierre SIBANARCO and Joseph SARDIN (BigSoundBank). Those assets retain CC0;
-Fieldwork's source-code license does not replace their public-domain dedication.
-The directory includes the complete CC0 text and per-file sources, hashes and
-editing notes in `sources.json` and its README. No Chess.com sound assets are used.
+The audio candidates under `frontend/src/audio/assets` include CC0-1.0 recordings
+by el_boss, simone_ds, taure and zachrau (Freesound), Pierre SIBANARCO and Joseph
+SARDIN (BigSoundBank), and an AI-generated CC0 effect from SFXMint.
+Soft error adapts [Error.wav by LorenzoTheGreat](https://freesound.org/people/LorenzoTheGreat/sounds/417794/)
+under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/); Quiet oops adapts
+[oops.wav by WIM](https://freesound.org/people/WIM/sounds/9020/) under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Fieldwork's edits trim silence, convert to mono, adjust gain and fade boundaries.
+The assets and edits retain their respective CC terms; the application's license
+does not replace them. The directory includes the complete CC0 text, license
+links and per-file sources, hashes and recipes in `sources.json` and its README.
+No Chess.com sound assets are used.
 
 The optional human-move adapter and developer benchmarks use CSSLab's AGPL-3.0 inference primitives at
 [1e13597c42d4858b7cfd7cfdae01e297263364b2](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2).

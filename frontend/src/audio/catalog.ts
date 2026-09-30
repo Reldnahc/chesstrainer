@@ -35,12 +35,9 @@ export const paletteCatalog: readonly PaletteDefinition[] = [
   {id: "recorded-chess", label: "Recorded chess", description: "Actual chess-piece recordings, with bell feedback.", cues: approvedCues},
   {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents.", cues: approvedCues},
   {id: "soft-objects", label: "Soft objects", description: "Lighter object recordings and gentle resonant accents.", cues: approvedCues},
-  {id: "retry-pop", label: "Cork pop", description: "A brief cork pop.", cues: ["retry"]},
-  {id: "retry-paper", label: "Page flick", description: "A quick flick of a paper page.", cues: ["retry"]},
-  {id: "retry-zip", label: "Short zip", description: "A short zipper movement.", cues: ["retry"]},
-  {id: "retry-guitar", label: "Muted strum", description: "A muted guitar strum.", cues: ["retry"]},
-  {id: "retry-kalimba", label: "Soft kalimba", description: "A softly plucked kalimba.", cues: ["retry"]},
-  {id: "retry-conga", label: "Conga tap", description: "A light conga tap.", cues: ["retry"]},
+  {id: "retry-soft-error", label: "Soft error", description: "A subdued error cue.", cues: ["retry"]},
+  {id: "retry-downturn", label: "Gentle downturn", description: "A brief descending cue.", cues: ["retry"]},
+  {id: "retry-oops", label: "Quiet oops", description: "A short spoken oops.", cues: ["retry"]},
 ];
 
 /** The original palettes span the approved cues; retry candidates are cue-specific. */

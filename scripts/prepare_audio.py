@@ -1,4 +1,4 @@
-"""Verify recorded assets offline, or explicitly prepare them from pinned sources.
+"""Verify audio assets offline, or explicitly prepare them from pinned sources.
 
 --check uses only the standard library. --prepare additionally needs NumPy and
 SoundFile; see the assets README. Nothing downloads during an application build.
@@ -43,7 +43,13 @@ def check(manifest: dict) -> None:
         data = path.read_bytes()
         if digest(data) != asset["sha256"]:
             raise ValueError(f"Asset hash mismatch: {path}")
-        if asset["license"] != "CC0-1.0" or not asset["sourceUrl"].startswith("https://"):
+        license_info = manifest["licenses"].get(asset["license"])
+        if (
+            not license_info
+            or not license_info["url"].startswith("https://creativecommons.org/")
+            or not asset["sourceUrl"].startswith("https://")
+            or not all(asset.get(key) for key in ("title", "author", "modifications"))
+        ):
             raise ValueError(f"Missing provenance: {path}")
         with wave.open(io.BytesIO(data)) as stream:
             assert stream.getnchannels() == 1 and stream.getsampwidth() == 2, path
@@ -58,7 +64,7 @@ def check(manifest: dict) -> None:
     if actual != expected:
         raise ValueError(f"Uncatalogued or missing WAVs: {actual ^ expected}")
     print(
-        f"Verified {len(expected)} recorded candidates; {total:,} bytes; hashes, levels and provenance intact."
+        f"Verified {len(expected)} audio candidates; {total:,} bytes; hashes, levels and provenance intact."
     )
 
 
