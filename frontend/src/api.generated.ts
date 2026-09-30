@@ -632,6 +632,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/preferences/audio": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Audio Preferences */
+        get: operations["get_audio_preferences_api_preferences_audio_get"];
+        /** Put Audio Preferences */
+        put: operations["put_audio_preferences_api_preferences_audio_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/preferences/coach": {
         parameters: {
             query?: never;
@@ -1146,6 +1164,34 @@ export interface components {
         ApiError: {
             /** Detail */
             detail: string;
+        };
+        /** AudioPreferences */
+        AudioPreferences: {
+            /**
+             * Board
+             * @default true
+             */
+            board: boolean;
+            /**
+             * Enabled
+             * @default true
+             */
+            enabled: boolean;
+            /**
+             * Practice
+             * @default true
+             */
+            practice: boolean;
+            /**
+             * Review
+             * @default false
+             */
+            review: boolean;
+            /**
+             * Volume
+             * @default 0.35
+             */
+            volume: number;
         };
         /** BoardArrow */
         BoardArrow: {
@@ -4706,6 +4752,59 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PracticeQueueItem"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_audio_preferences_api_preferences_audio_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AudioPreferences"];
+                };
+            };
+        };
+    };
+    put_audio_preferences_api_preferences_audio_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AudioPreferences"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AudioPreferences"];
                 };
             };
             /** @description Validation Error */

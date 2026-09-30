@@ -22,6 +22,13 @@ Game fingerprints and exercise/classification identities deduplicate per account
 The immutable Stockfish position cache and skill taxonomy are shared internally.
 No API exposes arbitrary engine-cache rows.
 
+Audio choices are saved in the same account-owned `user_preferences` row as coach
+and motion choices, including for the reserved local user. `/api/preferences/audio`
+reads and replaces the sound settings without changing either of those independent
+preferences. Defaults enable sound at 35% volume, with board and practice sounds
+enabled and game-review feedback sounds disabled. Existing accounts receive these
+defaults when upgraded; saving them on one device applies to later account loads.
+
 Request services and background workers receive an `AccountSession` factory bound
 to one explicit user. ORM read/update/delete criteria apply to all private models,
 including aggregates and guessed IDs. Flush validation assigns ownership and

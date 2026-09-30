@@ -52,6 +52,11 @@ class UserPreferences(Owned, Base):
     coach_id: Mapped[str] = mapped_column(default="classic", server_default="classic")
     coach_motion: Mapped[str] = mapped_column(default="system", server_default="system")
     interface_motion: Mapped[str] = mapped_column(default="system", server_default="system")
+    audio_enabled: Mapped[bool] = mapped_column(default=True, server_default="1")
+    audio_volume: Mapped[float] = mapped_column(default=0.35, server_default="0.35")
+    audio_board: Mapped[bool] = mapped_column(default=True, server_default="1")
+    audio_practice: Mapped[bool] = mapped_column(default=True, server_default="1")
+    audio_review: Mapped[bool] = mapped_column(default=False, server_default="0")
 
 
 class ImportBatch(Owned, Base):

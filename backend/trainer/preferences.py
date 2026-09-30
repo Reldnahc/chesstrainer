@@ -5,6 +5,7 @@ from typing import get_args
 from sqlalchemy import select, update
 
 from trainer.contracts.preferences import (
+    AudioPreferences,
     CoachId,
     CoachMotion,
     CoachPreferences,
@@ -47,6 +48,24 @@ def motion_preferences(db):
 
 def save_motion_preferences(db, value: MotionPreferences):
     _save_preferences(db, interface_motion=value.motion)
+    return value
+
+
+def audio_preferences(db):
+    saved = db.scalar(select(UserPreferences))
+    if saved is None:
+        return AudioPreferences()
+    return AudioPreferences(
+        enabled=saved.audio_enabled,
+        volume=saved.audio_volume,
+        board=saved.audio_board,
+        practice=saved.audio_practice,
+        review=saved.audio_review,
+    )
+
+
+def save_audio_preferences(db, value: AudioPreferences):
+    _save_preferences(db, **{f"audio_{key}": item for key, item in value.model_dump().items()})
     return value
 
 
