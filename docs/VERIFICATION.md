@@ -4,6 +4,23 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Home recent-games presentation — September 29, 2026
+
+Home uses a compact variant of shared GameHistory inside a matching panel. Player
+rows keep aligned scores; a wrapping footer carries outcome, time, date, completed
+accuracy and review state. The Games library retains its comparison layout.
+
+- `npm.cmd --prefix frontend run build`: passed API agreement, TypeScript,
+  seven style-boundary checks and Vite; existing large-chunk advisory remains.
+- `npm.cmd --prefix frontend run test:types`: passed after the final test edits.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/dashboard.spec.ts tests/game-history.spec.ts --reporter=line`:
+  **24 passed** across desktop and mobile. Includes long names at 320–1440px,
+  queued/running/cancelled/failed review states, completed-only accuracy, missing
+  accuracy, scores, review links and the unchanged full Games library.
+- Inspected real-application desktop/mobile screenshots. `git diff --check` passed.
+
+Focused frontend checks only; no full backend, coach, lab or Docker suites.
+
 ## Home dashboard — September 29, 2026
 
 Home at `/` combines authoritative due counts, four saved games, lesson resumes,

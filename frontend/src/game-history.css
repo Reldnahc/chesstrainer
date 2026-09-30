@@ -252,3 +252,45 @@
     margin-left: auto;
   }
 }
+
+/* A summary list for constrained surfaces. The library keeps its comparison columns. */
+.game-library--compact { border: 0; border-radius: 0; overflow: visible; }
+.game-library--compact .game-library-list > li { background: transparent; }
+.game-library--compact .game-library-list > li:first-child { border-top: 0; }
+.game-library--compact .game-library-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 9px;
+  padding: 14px 0;
+  border-radius: 4px;
+}
+.game-library--compact .game-library-list > li:first-child .game-library-item { padding-top: 0; }
+.game-library--compact .game-library-list > li:last-child .game-library-item { padding-bottom: 0; }
+.game-library--compact .history-player { gap: 8px; }
+.game-library--compact .history-player strong { font-size: 15px; }
+.history-player-score { margin-left: auto; padding-left: 12px; font: 13px var(--mono); }
+.history-recent-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+.game-library--compact .history-meta { display: contents; color: var(--muted); }
+.game-library--compact .history-time { flex-direction: row; gap: 5px; }
+.game-library--compact .history-time > svg { width: 14px; height: 14px; }
+.game-library--compact .history-date { margin-left: 0; font-size: 11px; }
+.game-library--compact .history-moves { display: none; }
+.game-library--compact .history-mobile-label { display: inline; }
+.history-recent-accuracy, .history-recent-side, .history-recent-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.history-recent-accuracy { gap: 12px; font-size: 11px; color: var(--muted); }
+.history-recent-side .history-line { min-height: 0; color: #eceef1; font: 11px var(--mono); }
+.history-recent-action { margin-left: auto; font-size: 12px; font-weight: 500; color: #c1d6c8; }
+@container (max-width: 400px) {
+  .game-library--compact .history-player strong { font-size: 14px; }
+  .history-recent-details { gap: 6px 8px; }
+}

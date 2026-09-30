@@ -65,16 +65,41 @@ function historyResult(item: HistoryItem) {
   };
 }
 
+function HistoryPlayers({ item, scores }: { item: HistoryItem; scores?: string[] }) {
+  return <span className="history-players">
+    {(["white", "black"] as const).map((color, index) => <span key={color}
+      className={`history-player history-line ${item.learner_color === color ? "is-learner" : ""}`}>
+      <span className={`history-color ${color}`} title={color === "white" ? "White pieces" : "Black pieces"} />
+      <strong title={item[color]}>{item[color]}</strong>
+      <span className="history-rating">{item[`${color}_rating`] != null ? `(${item[`${color}_rating`]})` : ""}</span>
+      {scores && <span className="history-player-score">{scores[index]}</span>}
+    </span>)}
+  </span>;
+}
+
+function HistoryMetadata({ item, date }: { item: HistoryItem; date: ReturnType<typeof gameDate> }) {
+  return <span className="history-meta">
+    <span className="history-time" title={item.time_control_label || "Time control unknown"}>
+      <Clock3 size={19} aria-hidden="true" /><span>{item.time_control_label || "—"}</span>
+    </span>
+    <span className="history-moves">{item.move_count ?? "—"}<span className="history-mobile-label"> moves</span></span>
+    <span className="history-date">{date ? <time dateTime={date.iso}>{date.label}</time> : <span title="Date unknown">—</span>}</span>
+  </span>;
+}
+
 export default function GameHistory({
   items,
   page,
+  presentation = "library",
 }: {
   items: HistoryItem[];
   page: number;
+  presentation?: "library" | "compact";
 }) {
+  const compact = presentation === "compact";
   return (
-    <section className="game-library" aria-label="Game history">
-      <div className="game-library-heading" aria-hidden="true">
+    <section className={`game-library${compact ? " game-library--compact" : ""}`} aria-label="Game history">
+      {!compact && <div className="game-library-heading" aria-hidden="true">
         <span className="history-time">Time</span>
         <span className="history-players">Players</span>
         <span className="history-result">Result</span>
@@ -82,7 +107,7 @@ export default function GameHistory({
         <span className="history-moves">Moves</span>
         <span className="history-date">Date</span>
         <span />
-      </div>
+      </div>}
       <ul className="game-library-list">
         {items.map((item) => {
           const result = historyResult(item),
@@ -117,28 +142,23 @@ export default function GameHistory({
                 aria-label={`${action}: ${item.white} vs ${item.black}`}
                 aria-describedby={`history-${item.id}`}
               >
-                <span className="history-players">
-                  {(["white", "black"] as const).map((color) => (
-                    <span
-                      key={color}
-                      className={`history-player history-line ${item.learner_color === color ? "is-learner" : ""}`}
-                    >
-                      <span
-                        className={`history-color ${color}`}
-                        title={
-                          color === "white" ? "White pieces" : "Black pieces"
-                        }
-                      />
-                      <strong title={item[color]}>{item[color]}</strong>
-                      <span className="history-rating">
-                        {item[`${color}_rating`] != null
-                          ? `(${item[`${color}_rating`]})`
-                          : ""}
-                      </span>
+                <HistoryPlayers item={item} scores={compact ? result.scores : undefined} />
+                {compact ? <>
+                  <span className="history-recent-details">
+                    <span className={`history-outcome outcome-${result.outcome}`} title={result.description}>
+                      {result.outcome === "unknown" ? result.description : result.label}
                     </span>
-                  ))}
-                </span>
-                <span className="history-result" title={result.description}>
+                    <HistoryMetadata item={item} date={date} />
+                    {item.status === "completed" && <span className="history-recent-accuracy">
+                      <span>Accuracy</span>
+                      {accuracy ? (["white", "black"] as const).map(color => <span className="history-recent-side" key={color}>
+                        <span className={`history-color ${color}`} title={color === "white" ? "White accuracy" : "Black accuracy"} />
+                        <AccuracyReadout color={color} accuracy={accuracy} complete presentation="history" />
+                      </span>) : <span>Unavailable</span>}
+                    </span>}
+                    <span className="history-recent-action">{["running", "queued"].includes(item.status) ? reviewLabel : action}<ChevronRight size={15} aria-hidden="true" /></span>
+                  </span>
+                </> : <><span className="history-result" title={result.description}>
                   <span className="history-scores">
                     {result.scores.map((score, i) => (
                       <span className="history-line" key={i}>
@@ -174,31 +194,13 @@ export default function GameHistory({
                     <span className="history-review-action">{reviewLabel}</span>
                   )}
                 </span>
-                <span className="history-meta">
-                  <span
-                    className="history-time"
-                    title={item.time_control_label || "Time control unknown"}
-                  >
-                    <Clock3 size={19} aria-hidden="true" />
-                    <span>{item.time_control_label || "—"}</span>
-                  </span>
-                  <span className="history-moves">
-                    {item.move_count ?? "—"}
-                    <span className="history-mobile-label"> moves</span>
-                  </span>
-                  <span className="history-date">
-                    {date ? (
-                      <time dateTime={date.iso}>{date.label}</time>
-                    ) : (
-                      <span title="Date unknown">—</span>
-                    )}
-                  </span>
-                </span>
+                <HistoryMetadata item={item} date={date} />
                 <ChevronRight
                   className="history-open"
                   size={17}
                   aria-hidden="true"
                 />
+                </>}
                 <span id={`history-${item.id}`} className="sr-only">
                   {description}
                 </span>

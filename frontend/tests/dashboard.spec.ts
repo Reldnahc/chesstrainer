@@ -135,8 +135,21 @@ test("Home presents bounded, actionable summaries without opening positions or s
   const recent = region(page, "Recent games");
   const history = recent.getByRole("region", { name: "Game history", exact: true });
   await expect(history.getByRole("link")).toHaveCount(4);
+  await expect(history.locator(".game-library-heading")).toHaveCount(0);
   await expect(history.getByRole("link").first()).toHaveAttribute("href", "/games/home-game-0");
   await expect(history.getByRole("link").first()).toHaveAccessibleDescription(/Accuracy: White 82\.1, Black 75\.1/);
+  const reviewed = history.getByRole("link").first();
+  await expect(reviewed.locator(".history-player strong")).toHaveText(["HomeLearner", "RecentOpponent0"]);
+  await expect(reviewed.locator(".history-rating")).toHaveText(["(1200)", "(1250)"]);
+  await expect(reviewed.locator(".history-player-score")).toHaveText(["1", "0"]);
+  await expect(reviewed.locator(".history-outcome")).toHaveText("Won");
+  await expect(reviewed.locator(".history-recent-accuracy")).toContainText("Accuracy");
+  await expect(reviewed.locator('.history-recent-accuracy [data-color="white"]')).toHaveText("82.1");
+  await expect(reviewed.locator('.history-recent-accuracy [data-color="black"]')).toHaveText("75.1");
+  await expect(reviewed.locator(".history-recent-accuracy .history-color.white")).toHaveAttribute("title", "White accuracy");
+  await expect(reviewed.locator(".history-recent-accuracy .history-color.black")).toHaveAttribute("title", "Black accuracy");
+  await expect(reviewed.locator("time")).toHaveAttribute("dateTime", "2026-09-26");
+  await expect(reviewed.locator(".history-recent-action")).toHaveText("Open review");
   expect(fixture.requests.filter(request => request.path === "/api/games").map(request => Object.fromEntries(new URLSearchParams(request.query))))
     .toEqual([{ offset: "0", limit: "4" }]);
   const focus = region(page, "Practice focus");
@@ -156,12 +169,12 @@ test("Home presents bounded, actionable summaries without opening positions or s
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const firstGame = history.getByRole("link").first();
-    for (const selector of [".history-time", ".history-date", ".history-moves", ".history-accuracy", ".history-player"]) {
+    for (const selector of [".history-time", ".history-date", ".history-recent-accuracy", ".history-player", ".history-recent-action"]) {
       for (const detail of await firstGame.locator(selector).all()) await expect(detail).toBeVisible();
     }
     if (width === 1200) {
       const players = (await firstGame.locator(".history-players").boundingBox())!;
-      const details = (await firstGame.locator(".history-meta").boundingBox())!;
+      const details = (await firstGame.locator(".history-recent-details").boundingBox())!;
       expect(details.y).toBeGreaterThanOrEqual(players.y + players.height);
     }
     for (const link of await navigation.getByRole("link").all()) {
@@ -170,6 +183,56 @@ test("Home presents bounded, actionable summaries without opening positions or s
     }
   }
   await page.screenshot({ path: `test-results/dashboard-${info.project.name}.png`, fullPage: true });
+  expectReadOnly(fixture.requests);
+});
+
+test("recent games retain review states and readable player rows without changing the Games library", async ({ page }, info) => {
+  const data = dashboardData();
+  const base = data.games.items[0];
+  data.games.items = (["queued", "running", "cancelled", "failed"] as const).map((status, index) => ({
+    ...base, id: `recent-state-${status}`, status,
+    white: index === 2 ? "LongOpponentNameThatNeedsToFitOnAPhone" : "HomeLearner",
+    white_rating: index === 2 ? null : 1200,
+    learner_color: index === 2 ? "black" : "white",
+    result: index === 2 ? "0-1" : "1/2-1/2",
+  }));
+  const fixture = await mockDashboard(page, data);
+  await page.goto("/");
+  const history = region(page, "Recent games").getByRole("region", { name: "Game history", exact: true });
+  const rows = history.getByRole("link");
+  await expect(rows).toHaveCount(4);
+  await expect(history.locator(".history-recent-action")).toHaveText(["Queued", "Reviewing…", "Resume review", "Retry review"]);
+  await expect(rows.nth(0)).toHaveAccessibleDescription(/Queued\./);
+  await expect(rows.nth(1)).toHaveAccessibleDescription(/Reviewing…\./);
+  await expect(rows.nth(2)).toHaveAccessibleDescription(/White: LongOpponentNameThatNeedsToFitOnAPhone, rating unknown.*You won.*Resume\./);
+  await expect(rows.nth(3)).toHaveAccessibleDescription(/Retry\./);
+  await expect(rows.nth(0).locator(".history-player-score")).toHaveText(["½", "½"]);
+  await expect(rows.nth(2).locator(".history-player-score")).toHaveText(["0", "1"]);
+  await expect(history.locator(".history-recent-accuracy")).toHaveCount(0);
+  await expect(history.getByRole("status")).toHaveCount(0);
+  for (const width of info.project.name === "mobile" ? [320, 390] : [1200, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const longName = rows.nth(2).locator(".history-player").first();
+    await expect(longName.locator("strong")).toHaveAttribute("title", "LongOpponentNameThatNeedsToFitOnAPhone");
+    const player = (await longName.boundingBox())!;
+    const name = (await longName.locator("strong").boundingBox())!;
+    const score = (await longName.locator(".history-player-score").boundingBox())!;
+    expect(name.width).toBeGreaterThan(100);
+    expect(name.x + name.width).toBeLessThanOrEqual(score.x);
+    expect(score.x + score.width).toBeLessThanOrEqual(player.x + player.width + 1);
+  }
+  data.games.items[0] = { ...data.games.items[0], status: "completed", accuracy: null };
+  await page.reload();
+  await expect(rows.nth(0).locator(".history-recent-accuracy")).toHaveText("AccuracyUnavailable");
+  await expect(rows.nth(0).locator(".history-recent-action")).toHaveText("Open review");
+  await expect(rows.nth(0)).toHaveAccessibleDescription(/Accuracy unavailable\./);
+  await region(page, "Recent games").getByRole("link", { name: "All games", exact: true }).click();
+  await expect(page).toHaveURL("/games");
+  await expect(page.locator(".game-library-heading")).toBeVisible();
+  await expect(page.locator(".game-library-item")).toHaveCount(4);
+  await expect(page.locator(".history-recent-details")).toHaveCount(0);
+  await expect(page.locator(".game-library-item").first().locator(".history-accuracy")).toHaveText("——");
   expectReadOnly(fixture.requests);
 });
 

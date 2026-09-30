@@ -107,7 +107,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await device.getByRole('button', {name: 'Continue', exact: true}).click();
     await device.getByRole('button', {name: 'Finish for now', exact: true}).click();
     await device.getByRole('link', {name: 'Home', exact: true}).click();
-    await expect(recentGames.getByRole('heading', {name: 'Your next insight starts with a game.', exact: true})).toBeVisible();
+    await expect(recentGames.getByText('Your next insight starts with a game.', {exact: true})).toBeVisible();
     await expect(recentGames.locator('.game-library-item')).toHaveCount(0);
     await expect(recentGames).not.toContainText(username);
     await device.getByRole('link', {name: 'Settings', exact: true}).click();

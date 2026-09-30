@@ -88,13 +88,13 @@ export default function HomeScreen() {
         ]} />}</HomeResult>
       </section>
 
-      <section className="home-games" aria-labelledby="home-games-title">
-        <div className="home-section-heading"><h2 id="home-games-title">Recent games</h2>
+      <section className="panel home-games" aria-labelledby="home-games-title">
+        <div className="home-section-heading"><h2 id="home-games-title"><BookOpen size={20} aria-hidden="true" />Recent games</h2>
           <ActionLink variant="quiet" size="compact" href={pagePaths.Games}>All games<ArrowRight size={16} aria-hidden="true" /></ActionLink>
         </div>
         <HomeResult query={games} label="recent games">{data => data.items.length
-          ? <GameHistory items={data.items} page={1} />
-          : <EmptyState title="Your next insight starts with a game." actions={<ActionLink variant="secondary" href={pagePaths.Settings}>Import games</ActionLink>}>
+          ? <GameHistory items={data.items} page={1} presentation="compact" />
+          : <EmptyState presentation="compact" title="Your next insight starts with a game." actions={<ActionLink variant="secondary" href={pagePaths.Settings}>Import games</ActionLink>}>
             Connect Chess.com or Lichess, or bring a PGN.
           </EmptyState>}
         </HomeResult>
