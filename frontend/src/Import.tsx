@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button, { IconButton } from "./Button";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { FileUp, Layers, X } from "lucide-react";
 import {
@@ -169,32 +169,38 @@ export default function ImportSettings({
         <div><h3>Have a PGN file?</h3><p className="small">Import a game or a collection from any chess site.</p></div>
         <Button variant="secondary" onClick={() => selectSource("pgn")}><FileUp size={17} />Import PGN</Button>
       </div>
-      {source && <div className="import-form" ref={formRef} tabIndex={-1}>
-        <div className="import-form-toolbar"><Button variant="quiet" onClick={() => selectSource(null)}><X size={16} />Close import form</Button></div>
+      {source && <div className="import-form" ref={formRef} tabIndex={-1} aria-labelledby="import-form-title">
+        <div className="import-form-heading">
+          <h3 id="import-form-title">{source === "pgn" ? "Import PGN" : selectedProvider ? `Import from ${selectedProvider.name}` : "Import games"}</h3>
+          <IconButton variant="quiet" aria-label="Close import form" title="Close import form" onClick={() => selectSource(null)}><X size={18} aria-hidden="true" /></IconButton>
+        </div>
         {health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}
         {source !== "pgn" ? (
           selectedProvider
             ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
             : <p role="status">{loadingProviders ? "Loading game providers…" : "That game provider is unavailable. Choose an import action above."}</p>
-        ) : <form className="panel form-panel" onSubmit={submit}>
-          <h3>Import PGN</h3>
+        ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
           <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
-          <label>
-            Your username(s)
-            <input value={names} onChange={event => setNames(event.target.value)} placeholder="Match the White or Black PGN headers" required={side === "auto"} />
-            <small>Separate multiple usernames with commas. Matching ignores case.</small>
-          </label>
-          <label>
-            Learner side
-            <select value={side} onChange={event => setSide(event.target.value as typeof side)}>
-              <option value="auto">Match my username in each game</option>
-              <option value="white">I played White in every game</option>
-              <option value="black">I played Black in every game</option>
-            </select>
-          </label>
-          <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
-          <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Importing…"
-            disabled={pgnMode === "file" ? !file : !text.trim()} />
+          <div className="import-options">
+            <label>
+              Your username(s)
+              <input value={names} onChange={event => setNames(event.target.value)} placeholder="Match the White or Black PGN headers" required={side === "auto"} />
+              <small>Separate multiple usernames with commas. Matching ignores case.</small>
+            </label>
+            <label>
+              Learner side
+              <select value={side} onChange={event => setSide(event.target.value as typeof side)}>
+                <option value="auto">Match my username in each game</option>
+                <option value="white">I played White in every game</option>
+                <option value="black">I played Black in every game</option>
+              </select>
+            </label>
+          </div>
+          <div className="import-form-actions">
+            <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
+            <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Importing…"
+              disabled={pgnMode === "file" ? !file : !text.trim()} />
+          </div>
           {result && <Notice announcement="status">
             <p>{result.imported} imported · {result.duplicates} duplicate(s).</p>
             {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}

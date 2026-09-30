@@ -80,33 +80,34 @@ export function ProviderImportForm({
   }
 
   return (
-    <form className="panel form-panel" onSubmit={submit}>
-      <h3>Import from {provider.name}</h3>
+    <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
       <p className="small import-intro">
         Bring in older games or a custom date range. This uses your saved username
         unless you enter a different one here. No login or API key needed.
       </p>
-      <ProviderUsernameField
-        providerName={provider.name}
-        disabled={loadingUsername}
-        value={username}
-        onChange={value => { editedUsername.current = true; setUsername(value); }}
-        required
-        placeholder={`Your ${provider.name} username`}
-        description="Your side is identified separately in every game."
-      />
-      <label>
-        Time control
-        <select
-          aria-label="Time control"
-          value={timeClass}
-          onChange={(e) => setTimeClass(e.target.value as typeof timeClass)}
-        >
-          {provider.time_classes.map(value => <option key={value} value={value}>
-            {value === "all" ? "All time controls" : value === "ultraBullet" ? "Ultra bullet" : value[0].toUpperCase() + value.slice(1)}
-          </option>)}
-        </select>
-      </label>
+      <div className="import-options">
+        <ProviderUsernameField
+          providerName={provider.name}
+          disabled={loadingUsername}
+          value={username}
+          onChange={value => { editedUsername.current = true; setUsername(value); }}
+          required
+          placeholder={`Your ${provider.name} username`}
+          description="Your side is identified separately in every game."
+        />
+        <label>
+          Time control
+          <select
+            aria-label="Time control"
+            value={timeClass}
+            onChange={(e) => setTimeClass(e.target.value as typeof timeClass)}
+          >
+            {provider.time_classes.map(value => <option key={value} value={value}>
+              {value === "all" ? "All time controls" : value === "ultraBullet" ? "Ultra bullet" : value[0].toUpperCase() + value.slice(1)}
+            </option>)}
+          </select>
+        </label>
+      </div>
       <div className="import-options">
         <label>
           Look back
@@ -137,7 +138,6 @@ export function ProviderImportForm({
           />
         </label>
       </div>
-      <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
       <details className="disclosure import-extra">
         <summary>
           Custom date range{startDate || endDate ? " (active)" : ""}
@@ -181,8 +181,11 @@ export function ProviderImportForm({
           </Button>
         )}
       </details>
-      <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Queuing import…"
-        disabled={loadingUsername || !username.trim()} />
+      <div className="import-form-actions">
+        <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
+        <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Queuing import…"
+          disabled={loadingUsername || !username.trim()} />
+      </div>
       {message && (
         <Notice announcement="status">
           {message}

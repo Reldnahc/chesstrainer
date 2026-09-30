@@ -4,6 +4,31 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Import form spacing and entrance — September 29, 2026
+
+Provider and PGN forms share the enclosing ImportSettings title/Close row and
+aligned fields/action footer, without a second panel inset or detached toolbar.
+A 240ms CSS entrance follows the existing interface-motion preference; form state,
+polling, focus/scroll restoration and import payloads remain unchanged.
+
+- `npm.cmd --prefix frontend run build`: passed API agreement, TypeScript,
+  seven style-boundary checks and Vite; existing large-chunk advisory remains.
+  `npm.cmd --prefix frontend run test:types` passed after the new tests were added.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/settings.spec.ts tests/providers.spec.ts tests/import-controls.spec.ts --reporter=line`:
+  **33 passed, 1 failed** at initial navigation with Chromium
+  `ERR_NO_BUFFER_SPACE`. The mobile saved-scroll test passed both reruns with
+  `tests/settings.spec.ts --project=mobile --grep 'Back restores the saved scroll' --repeat-each=2`.
+- The same isolated wrapper with `tests/import-presentation.spec.ts --reporter=line`:
+  **6 passed**. Covers desktop/320px/390px geometry, expanded dates, both import
+  sources, actual entrance events under all four motion/device combinations,
+  no replay or lost drafts/focus during polling, and close/reopen behavior.
+- Manually inspected desktop and phone forms in the application. Independent
+  code review found no actionable issues; `git diff --check` passed.
+
+Only focused application checks ran; no full backend, coach, lab or Docker suite.
+The first wrapper lacked permission to stop its fixture server; it was explicitly
+cleaned up and subsequent runs had reliable teardown. No push or deployment.
+
 ## Repository cleanup — September 29, 2026
 
 Removed eight completed/superseded planning documents, the obsolete screenshot
