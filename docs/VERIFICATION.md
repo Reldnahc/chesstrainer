@@ -18,6 +18,12 @@ accuracy and review state. The Games library retains its comparison layout.
   queued/running/cancelled/failed review states, completed-only accuracy, missing
   accuracy, scores, review links and the unchanged full Games library.
 - Inspected real-application desktop/mobile screenshots. `git diff --check` passed.
+- Follow-up layout balance: Home now uses equal-width desktop columns with paired
+  card bottoms aligned to the tallest content in each row, retaining natural
+  stacked heights on phones. `node node_modules/vite/bin/vite.js build` from
+  `frontend` passed. The app wrapper with `tests/dashboard.spec.ts --grep
+  'Home presents|recent games retain' --reporter=line` passed **4 tests** across
+  desktop/mobile; inspected both updated screenshots and checked the diff.
 
 Focused frontend checks only; no full backend, coach, lab or Docker suites.
 
