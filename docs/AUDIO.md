@@ -93,10 +93,11 @@ before an attempt or reveal permits feedback.
 The approved cue alternatives retain **11 CC0 recordings**: real chess/wooden
 pieces, wood block, music box, bronze bell, triangle, glass and a soft gong.
 They are trimmed, level matched and faded; castling combines two recorded hits.
-Three retry-only sources add an authored soft error effect (LorenzoTheGreat,
-CC BY 3.0), an AI-generated descending cue (SFXMint, CC0) and a recorded spoken
-oops (WIM, CC BY 4.0). They replace the rejected object/instrument retry set.
-Fieldwork edits these supplied clips; it does not generate tones or shift pitch.
+Retry auditions use one authored soft error effect (LorenzoTheGreat, CC BY 3.0).
+The original Soft error remains unchanged beside Warmer, Shorter and Gentler
+onset variants. Warmer resamples at 89% speed (about two semitones lower); Shorter
+fades the second tone sooner; Gentler onset eases the entrance and lowers the
+level. All edits are baked into the bundled WAVs. Fieldwork generates no new tones.
 The Freesound inputs are public HQ MP3 previews rather than original WAV downloads.
 The other inputs are the publisher's downloadable MP3s. Resaving them as WAV does
 not restore information removed by MP3 encoding.
@@ -105,9 +106,9 @@ not restore information removed by MP3 encoding.
 input/output hash and exact edit recipe. Its license map and the asset README
 retain attribution and the applicable license links, alongside `CC0-1.0.txt`.
 `scripts/prepare_audio.py --check` verifies assets offline; explicit authoring can
-reproduce the edits from hash-checked source files. The 27 candidate WAVs comprise
-eight cues in three palettes and three retry-only choices, totaling approximately
-**2.02 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
+reproduce the edits from hash-checked source files. The 28 candidate WAVs comprise
+eight cues in three palettes and four retry-only choices, totaling approximately
+**2.15 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
 as needed; normal installation/build/playback does not contact a sound provider.
 Additional palettes need not change event producers.
 
@@ -123,8 +124,8 @@ Open **http://127.0.0.1:5176**. This is a separate Vite process with no account/
 connection and no production navigation route. It uses the actual audio engine.
 
 - Compare Recorded chess, Tabletop and Soft objects for the eight approved cues.
-  Try again has three named choices: Soft error, Gentle downturn and Quiet oops.
-  These replace the rejected six object/instrument clips;
+  Try again compares the original Soft error against Warmer, Shorter and Gentler
+  onset edits. The original clip is preserved as the listening reference;
   the other clips and their production defaults are unchanged.
 - Open a candidate's Source disclosure for its source, author, edits and actual license.
   Approved production choices are listed above; other variants remain audition

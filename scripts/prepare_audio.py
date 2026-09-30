@@ -93,16 +93,21 @@ def prepare(manifest: dict, source_dir: Path, fetch: bool, update_hashes: bool) 
     outputs = []
     for asset in manifest["assets"]:
         rate = asset["sampleRate"]
-        length = max(t["at"] + t["end"] - t["start"] for t in asset["takes"])
+        playback_rate = float(asset.get("playbackRate", 1))
+        fade_in_seconds = float(asset.get("fadeInSeconds", 0.001))
+        if not 0.5 <= playback_rate <= 2 or not 0 <= fade_in_seconds <= 0.5:
+            raise ValueError(f"Invalid playback rate or onset fade: {asset['palette']}")
+        length = max(t["at"] + (t["end"] - t["start"]) / playback_rate for t in asset["takes"])
         samples = np.zeros(round(length * rate) + round(0.006 * rate))
         for take in asset["takes"]:
             original, original_rate = recordings[take["source"]]
             assert 0 <= take["start"] < take["end"] <= len(original) / original_rate
-            times = take["start"] + np.arange(round((take["end"] - take["start"]) * rate)) / rate
+            frames = round((take["end"] - take["start"]) * rate / playback_rate)
+            times = take["start"] + np.arange(frames) / rate * playback_rate
             clip = np.interp(times * original_rate, np.arange(len(original)), original)
             # Remove recording DC offset and soften only the edit boundaries.
             clip -= clip.mean()
-            fade_in = min(len(clip), round(0.001 * rate))
+            fade_in = min(len(clip), round(fade_in_seconds * rate))
             fade_out = min(len(clip), round(asset["fadeOutSeconds"] * rate))
             clip[:fade_in] *= np.linspace(0, 1, fade_in)
             clip[-fade_out:] *= np.linspace(1, 0, fade_out)

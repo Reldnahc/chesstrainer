@@ -21,7 +21,7 @@ test("studio stays silent on entry and auditions every available candidate", asy
       await expect(page.locator('[data-event-type="started"]').first()).toContainText(palette.label);
     }
   }
-  expect(candidateCount).toBe(27);
+  expect(candidateCount).toBe(28);
   expect(new Set(requests.filter(url => url.endsWith(".wav"))).size).toBe(candidateCount);
   expect(requests.filter(url => new URL(url).pathname.startsWith("/api/"))).toEqual([]);
   expect(errors).toEqual([]);
@@ -46,23 +46,25 @@ test("cue favorites persist only in the studio and export the selected mapping",
   expect((await downloadEvent).suggestedFilename()).toBe("fieldwork-audio-picks.json");
 });
 
-test("approved browser picks survive removing rating sounds", async ({ page }) => {
+test("approved browser picks and the original retry choice survive catalog updates", async ({ page }) => {
   const approved = {
     move: "soft-objects", capture: "soft-objects", castle: "soft-objects", promotion: "soft-objects", mate: "soft-objects",
     check: "tabletop", correct: "tabletop", complete: "tabletop",
   };
-  await page.addInitScript(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), { key: studioStorageKey, picks: approved });
+  const picks = { ...approved, retry: "retry-soft-error" };
+  await page.addInitScript(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), { key: studioStorageKey, picks });
   await page.goto("/");
-  await expect(page.locator('.audio-studio-cue-option input:checked')).toHaveCount(8);
+  await expect(page.locator('.audio-studio-cue-option input:checked')).toHaveCount(9);
+  await expect(page.getByRole("radio", { name: "Choose Soft error for Try again", exact: true })).toBeChecked();
   await expect(page.getByRole("button", { name: "Review", exact: true })).toHaveCount(0);
   for (const rating of ["brilliant", "great", "miss", "mistake", "blunder"]) {
     await expect(page.locator(`.audio-studio-cue-row[data-cue="${rating}"]`)).toHaveCount(0);
   }
   await page.getByText("View cue mapping", { exact: true }).click();
   const mapping = JSON.parse((await page.getByLabel("Cue mapping JSON").textContent())!);
-  expect(mapping.cuePalettes).toEqual(approved);
+  expect(mapping.cuePalettes).toEqual(picks);
   expect(mapping.fallbackCuePalettes).toEqual({ ...approved, retry: null });
-  expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!), studioStorageKey)).toEqual(approved);
+  expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!), studioStorageKey)).toEqual(picks);
 });
 
 test("My picks uses per-cue production defaults and keeps unapproved retry silent", async ({ page }) => {
@@ -119,15 +121,15 @@ test("each candidate exposes its source, actual license and modifications", asyn
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test("retry offers three named candidates in one row without changing the other cue choices", async ({ page }, info) => {
+test("retry offers four named candidates in two columns without changing the other cue choices", async ({ page }, info) => {
   await page.goto("/");
   if (info.project.name === "mobile") await page.setViewportSize({ width: 320, height: 780 });
   const retry = page.locator('.audio-studio-cue-row[data-cue="retry"]');
   const candidates = palettesForCue("retry");
   expect(candidates.map(candidate => candidate.id)).toEqual([
-    "retry-soft-error", "retry-downturn", "retry-oops",
+    "retry-soft-error", "retry-soft-warm", "retry-soft-short", "retry-soft-gentle",
   ]);
-  await expect(retry.locator(".audio-studio-cue-option")).toHaveCount(3);
+  await expect(retry.locator(".audio-studio-cue-option")).toHaveCount(4);
   for (const candidate of candidates) {
     await expect(retry.getByRole("heading", { name: candidate.label, exact: true })).toBeVisible();
   }
@@ -137,13 +139,18 @@ test("retry offers three named candidates in one row without changing the other 
   }
   await expect(page.getByRole("combobox", { name: "Sound palette", exact: true }).locator("option")).toHaveCount(4);
   const cells = await retry.locator(".audio-studio-cue-option").evaluateAll(elements => elements.map(element => {
-    const { x, y, width } = element.getBoundingClientRect();
-    return { x, y, width };
+    const { x, y, width, height } = element.getBoundingClientRect();
+    return { x, y, width, height };
   }));
   expect(cells.every(cell => cell.width > 70)).toBe(true);
-  expect(Math.max(...cells.map(cell => cell.y)) - Math.min(...cells.map(cell => cell.y))).toBeLessThan(1);
-  expect(cells[1].x).toBeGreaterThanOrEqual(cells[0].x + cells[0].width);
-  expect(cells[2].x).toBeGreaterThanOrEqual(cells[1].x + cells[1].width);
+  for (const start of [0, 2]) {
+    expect(Math.abs(cells[start].y - cells[start + 1].y)).toBeLessThan(1);
+    expect(cells[start + 1].x).toBeGreaterThanOrEqual(cells[start].x + cells[start].width);
+  }
+  for (const column of [0, 1]) {
+    expect(Math.abs(cells[column].x - cells[column + 2].x)).toBeLessThan(1);
+    expect(cells[column + 2].y).toBeGreaterThanOrEqual(cells[column].y + cells[column].height);
+  }
   const controls = await retry.locator("button, summary, .audio-studio-pick").evaluateAll(elements => elements.map(element => element.getBoundingClientRect().height));
   if (info.project.name === "mobile") expect(controls.every(height => height >= 44)).toBe(true);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -159,6 +166,7 @@ test("rejected retry picks are dropped while approved picks and new retry choice
   for (const rejected of [
     ...fullPaletteCatalog.map(palette => palette.id),
     "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
+    "retry-downturn", "retry-oops",
   ]) {
     await page.evaluate(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), {
       key: studioStorageKey, picks: { ...approved, retry: rejected },
@@ -175,10 +183,10 @@ test("rejected retry picks are dropped while approved picks and new retry choice
   await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("retry");
   await page.getByRole("button", { name: "Play scenario", exact: true }).click();
   await expect(page.locator('[data-event-type="started"][data-cue="retry"]')).toContainText("Soft error");
-  await page.evaluate(key => localStorage.setItem(key, JSON.stringify({ move: "retry-soft-error", retry: "retry-downturn" })), studioStorageKey);
+  await page.evaluate(key => localStorage.setItem(key, JSON.stringify({ move: "retry-soft-error", retry: "retry-soft-warm" })), studioStorageKey);
   await page.reload();
   await expect(page.locator('.audio-studio-cue-row[data-cue="move"] input:checked')).toHaveCount(0);
-  await expect(page.getByRole("radio", { name: "Choose Gentle downturn for Try again", exact: true })).toBeChecked();
+  await expect(page.getByRole("radio", { name: "Choose Warmer for Try again", exact: true })).toBeChecked();
 });
 
 test("rejected synthetic picks are never carried over to recorded candidates", async ({ page }) => {

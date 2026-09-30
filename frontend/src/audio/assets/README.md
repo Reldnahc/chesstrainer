@@ -1,20 +1,22 @@
 # Audio candidates and credits
 
 There are 24 recorded cue slots across Recorded chess, Tabletop and Soft objects,
-plus three Try again candidates, derived from 14 sources. The owner chose Soft objects for move/capture/castle/promotion/
+plus four Try again candidates, derived from 12 sources. The owner chose Soft objects for move/capture/castle/promotion/
 mate and Tabletop for check/correct/complete; see [Audio](../../../../docs/AUDIO.md).
 Try again has no approved sound and is silent in production. Remaining variants
 are audition alternatives. The rejected object/instrument retry clips are removed.
-The new set aims for a recognizable, quiet correction: Soft error (authored UI
-effect), Gentle downturn (publisher-generated AI effect), and Quiet oops (human
-voice). These are candidates for listening, not owner-approved production sounds.
+The owner preferred the direction of Soft error but has not approved it. That
+exact audition remains beside three edits of the same source: Warmer (89% playback
+speed, about two semitones lower), Shorter (faster fading finish) and Gentler onset
+(85ms entrance fade and lower level). Gentle downturn and Quiet oops are removed.
+These are candidates for listening, not owner-approved production sounds.
 All rating sounds have been removed.
 Some slots reuse a recording with a different excerpt/tail. Neither
 recording nor AI generation is attributed to Fieldwork.
 
-The original recordings and Gentle downturn use **CC0-1.0**, retained in
-[CC0-1.0.txt](CC0-1.0.txt). Soft error uses **CC BY 3.0** and Quiet oops uses
-**CC BY 4.0**, linked below. Their source titles, authors, licenses and Fieldwork
+The original recordings use **CC0-1.0**, retained in
+[CC0-1.0.txt](CC0-1.0.txt). All four Soft error auditions use **CC BY 3.0**,
+linked below. Their source titles, authors, licenses and Fieldwork
 modifications are also visible in each studio Source disclosure. The assets and
 Fieldwork's edits retain those respective terms independently of the application's
 source-code license. Verified September 30, 2026.
@@ -32,27 +34,26 @@ source-code license. Verified September 30, 2026.
 | Music box, C #1 | Joseph SARDIN | [BigSoundBank 1867](https://bigsoundbank.com/music-box-c-1-s1867.html) |
 | Triangle #3 | Joseph SARDIN | [BigSoundBank 1689](https://bigsoundbank.com/triangle-3-s1689.html) |
 | Cheers, Champagne Flute #1 | Joseph SARDIN | [BigSoundBank 1335](https://bigsoundbank.com/cheers-champagne-flute-1-s1335.html) |
-| Error.wav — Soft error | LorenzoTheGreat | [Freesound 417794](https://freesound.org/people/LorenzoTheGreat/sounds/417794/) · [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
-| Digital Failure Descending Tone 04 — Gentle downturn | SFXMint | [Publisher](https://sfxmint.com/sounds/feedback-fail-04) · CC0 · AI-generated |
-| oops.wav — Quiet oops | WIM | [Freesound 9020](https://freesound.org/people/WIM/sounds/9020/) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| Error.wav — Soft error, Warmer, Shorter, Gentler onset | LorenzoTheGreat | [Freesound 417794](https://freesound.org/people/LorenzoTheGreat/sounds/417794/) · [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 
 Freesound inputs are openly served HQ MP3 previews, not login-required original
-downloads. BigSoundBank and SFXMint inputs are downloadable MP3s. WAV output preserves decoded
+downloads. BigSoundBank inputs are downloadable MP3s. WAV output preserves decoded
 audio; it does not make lossy input lossless. Exact URLs and input hashes are in
 [sources.json](sources.json), alongside every output's attribution, time ranges,
 placement offsets, level target, peak ceiling and output hash.
 
 Editing uses excerpts, mono/sample-rate conversion, DC-offset removal, gain
 matching and boundary fades. Castling combines two recorded placements.
-Fieldwork does not generate tones or shift pitch. The SFXMint source is explicitly
-AI-generated; the origin of LorenzoTheGreat's authored UI effect is not described
-as a physical recording. Levels stay below 65.01% peak amplitude. Clips have an
-exact silent tail and last approximately 0.117–2.056 seconds. The 27 mono
-44.1 kHz / 16-bit WAVs total **2,021,432 bytes**. All 24 non-retry clips are
-byte-for-byte unchanged from the owner's audition round. The three new retry
-edits last 0.332–0.766 seconds, target active RMS 0.06–0.07 (versus the previous
-retry set's 0.11) and cap peaks at 0.35. Leading/trailing silence is trimmed;
-the source contour and spoken word are preserved.
+Fieldwork generates no new tones. Warmer resamples the supplied clip at 89% speed,
+lowering its pitch and lengthening it; the optional `playbackRate` and
+`fadeInSeconds` authoring fields are baked into WAVs, not applied at runtime.
+The origin of LorenzoTheGreat's authored UI effect is not described as a physical
+recording. Levels stay below 65.01% peak amplitude. Clips have an exact silent tail
+and last approximately 0.117–2.056 seconds. The 28 mono 44.1 kHz / 16-bit WAVs total
+**2,152,358 bytes**. All 24 non-retry clips and the original Soft error audition
+are byte-for-byte unchanged. The four retry edits last 0.536–0.860 seconds,
+target active RMS 0.05–0.07 and cap peaks at 0.35. Each recipe is explicit in the
+manifest, with no extra runtime dependency or synthesis.
 
 ## Verify or reproduce
 

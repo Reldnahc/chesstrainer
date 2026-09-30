@@ -39,7 +39,7 @@
 .audio-studio-pick { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px; min-height: 34px; font-size: 11px; color: var(--muted); cursor: pointer; }
 .audio-studio-pick input { width: 14px; height: 14px; min-height: 0; margin: 0; padding: 0; accent-color: var(--palette-color); }
 .audio-studio-cue-option[data-picked="true"] .audio-studio-pick { color: var(--palette-color); }
-.audio-studio-candidates { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; --palette-color: #b9d7c6; }
+.audio-studio-candidates { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; --palette-color: #b9d7c6; }
 .audio-studio-candidate-name { font-size: 12px; text-align: center; margin: 4px 0 8px; }
 .audio-studio-source { max-width: 100%; }
 .audio-studio-sidebar { display: grid; gap: 18px; }

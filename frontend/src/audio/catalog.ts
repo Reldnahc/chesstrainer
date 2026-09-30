@@ -36,8 +36,9 @@ export const paletteCatalog: readonly PaletteDefinition[] = [
   {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents.", cues: approvedCues},
   {id: "soft-objects", label: "Soft objects", description: "Lighter object recordings and gentle resonant accents.", cues: approvedCues},
   {id: "retry-soft-error", label: "Soft error", description: "A subdued error cue.", cues: ["retry"]},
-  {id: "retry-downturn", label: "Gentle downturn", description: "A brief descending cue.", cues: ["retry"]},
-  {id: "retry-oops", label: "Quiet oops", description: "A short spoken oops.", cues: ["retry"]},
+  {id: "retry-soft-warm", label: "Warmer", description: "Less brightness, same contour.", cues: ["retry"]},
+  {id: "retry-soft-short", label: "Shorter", description: "A shorter, fading finish.", cues: ["retry"]},
+  {id: "retry-soft-gentle", label: "Gentler onset", description: "A softer entrance and lower level.", cues: ["retry"]},
 ];
 
 /** The original palettes span the approved cues; retry candidates are cue-specific. */

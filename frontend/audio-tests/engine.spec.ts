@@ -173,7 +173,10 @@ test("an explicit retry candidate plays when its scheduled audition is due", asy
 test("rejected retry candidates from stale callers never fetch or schedule playback", async () => {
   const f = fixture();
   await f.engine.unlock();
-  for (const palette of ["retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga"]) {
+  for (const palette of [
+    "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
+    "retry-downturn", "retry-oops",
+  ]) {
     for (const delayMs of [0, 160]) {
       const eventId = `${palette}:${delayMs}`;
       f.engine.play({cue: "retry", palette: palette as SoundPalette, scope: "stale", eventId, delayMs});

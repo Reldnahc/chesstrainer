@@ -9,12 +9,12 @@ Other dependencies retain their own licenses; Stockfish is installed separately.
 
 The audio candidates under `frontend/src/audio/assets` include CC0-1.0 recordings
 by el_boss, simone_ds, taure and zachrau (Freesound), Pierre SIBANARCO and Joseph
-SARDIN (BigSoundBank), and an AI-generated CC0 effect from SFXMint.
-Soft error adapts [Error.wav by LorenzoTheGreat](https://freesound.org/people/LorenzoTheGreat/sounds/417794/)
-under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/); Quiet oops adapts
-[oops.wav by WIM](https://freesound.org/people/WIM/sounds/9020/) under
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-Fieldwork's edits trim silence, convert to mono, adjust gain and fade boundaries.
+SARDIN (BigSoundBank).
+Soft error and its three audition variants adapt
+[Error.wav by LorenzoTheGreat](https://freesound.org/people/LorenzoTheGreat/sounds/417794/)
+under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+Fieldwork's edits trim silence, convert to mono, adjust gain and fade boundaries;
+the Warmer variant also slows playback to lower pitch.
 The assets and edits retain their respective CC terms; the application's license
 does not replace them. The directory includes the complete CC0 text, license
 links and per-file sources, hashes and recipes in `sources.json` and its README.

@@ -7,7 +7,7 @@ export const soundCues = [
 export type SoundCue = typeof soundCues[number];
 export const soundPalettes = [
   "recorded-chess", "tabletop", "soft-objects",
-  "retry-soft-error", "retry-downturn", "retry-oops",
+  "retry-soft-error", "retry-soft-warm", "retry-soft-short", "retry-soft-gentle",
 ] as const;
 export type SoundPalette = typeof soundPalettes[number];
 export type SoundCategory = "board" | "practice";

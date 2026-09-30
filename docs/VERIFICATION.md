@@ -4,6 +4,33 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Soft error refinements — September 30, 2026
+
+Kept the original Soft error audition byte-for-byte and added Warmer (89% speed),
+Shorter (earlier fading finish), and Gentler onset (85ms onset, lower level).
+Removed the other two retry directions. All 25 retained assets and recipes match
+`5780678`; new derivatives retain LorenzoTheGreat's CC BY 3.0 attribution. Rate
+and onset edits are offline authoring options, with unchanged defaults for old
+recipes. No production selection or account behavior changed.
+
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **62 passed**, desktop/mobile, including all assets, 2×2 layout at 320px,
+  preservation of original retry/approved picks and rejection of retired choices.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including types/API,
+  **11** style tests and boundaries; existing chunk-size advisory only.
+- `.venv/Scripts/ruff.exe check scripts/prepare_audio.py` and
+  `.venv/Scripts/ruff.exe format --check scripts/prepare_audio.py`: passed.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **28** assets,
+  **2,152,358 bytes**, valid. The cached `--prepare` invocation documented below
+  reproduced all outputs exactly without updating hashes.
+
+Independent review found no actionable issues and confirmed the retained files,
+actual variant levels/durations, silent tails and attribution. Manual studio
+reload preserved eight owner picks and Warmer reached played status. Subjective
+approval remains with the owner. No unrelated backend/coach matrix or deployment.
+
 ## Focused soft retry audition — September 30, 2026
 
 The owner rejected the six object/instrument clips as unsuitable for a soft
