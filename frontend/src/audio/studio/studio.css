@@ -1,0 +1,107 @@
+/* Standalone audio audition layout. Shared controls retain their own styles. */
+.audio-studio {
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 42px 36px 24px;
+}
+.audio-studio-heading { position: relative; padding-bottom: 14px; }
+.audio-studio-brand { display: flex; align-items: center; gap: 10px; color: var(--accent); margin-bottom: 24px; font: 10px var(--mono); letter-spacing: 1.5px; }
+.audio-studio-heading h1 { font-size: clamp(28px, 3.2vw, 42px); letter-spacing: -1.4px; }
+.audio-studio-heading > p { max-width: 680px; margin-bottom: 14px; }
+.audio-studio-badge { position: absolute; top: 0; right: 0; padding: 7px 10px; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; font: 10px var(--mono); }
+.audio-studio-transport { display: flex; align-items: center; gap: 20px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); margin: 8px 0 32px; }
+.audio-studio-volume { display: grid; grid-template-columns: auto auto 120px; align-items: center; gap: 10px; }
+.audio-studio-volume label { display: flex; gap: 3px; font-size: 11px; color: var(--muted); min-width: 43px; }
+.audio-studio-volume output { font: 12px var(--mono); color: #eceef1; }
+.audio-studio-volume input { padding: 0; accent-color: var(--accent); }
+.audio-studio-now { flex: 1; margin: 0; font-size: 12px; line-height: 1.4; }
+.audio-studio-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: start; gap: 30px; }
+.audio-studio-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.audio-studio-section-heading h2, .audio-studio-panel h2 { font-size: 23px; margin: 7px 0 0; }
+.audio-studio-step { color: var(--muted); font: 10px var(--mono); letter-spacing: 1.2px; }
+.audio-studio-count { color: var(--accent); font: 11px var(--mono); white-space: nowrap; }
+.audio-studio-palette-headings, .audio-studio-cue-row { display: grid; grid-template-columns: minmax(130px, 1.15fr) repeat(3, minmax(0, 1fr)); gap: 12px; }
+.audio-studio-palette-headings { margin-top: 24px; align-items: end; }
+.audio-studio-cue-heading { font: 10px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 1px; padding-bottom: 14px; }
+.audio-studio-palette { min-width: 0; padding: 16px 10px 13px; border-top: 2px solid var(--palette-color); }
+.audio-studio [data-palette="warm-wood"] { --palette-color: #dcad83; }
+.audio-studio [data-palette="clean-minimal"] { --palette-color: #b9d7c6; }
+.audio-studio [data-palette="soft-digital"] { --palette-color: #b8b0ee; }
+.audio-studio-palette-number { display: block; color: var(--palette-color); font: 10px var(--mono); margin-bottom: 8px; }
+.audio-studio-palette h3 { margin-bottom: 5px; font-size: 14px; }
+.audio-studio-palette p { margin: 0; font-size: 11px; line-height: 1.5; min-height: 50px; }
+.audio-studio-cue-row { border: 0; border-top: 1px solid var(--line); padding: 12px 0; margin: 0; min-width: 0; align-items: stretch; }
+.audio-studio-cue-name { align-self: center; }
+.audio-studio-cue-name h3 { margin: 0 0 3px; font-size: 14px; }
+.audio-studio-cue-name p { margin: 0; font-size: 11px; line-height: 1.45; }
+.audio-studio-cue-option { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 7px 6px 0; border-radius: 6px; background: var(--surface); border: 1px solid transparent; }
+.audio-studio-cue-option[data-picked="true"] { border-color: color-mix(in srgb, var(--palette-color) 65%, transparent); background: color-mix(in srgb, var(--palette-color) 7%, var(--surface)); }
+.audio-studio-pick { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px; min-height: 34px; font-size: 11px; color: var(--muted); cursor: pointer; }
+.audio-studio-pick input { width: 14px; height: 14px; min-height: 0; margin: 0; padding: 0; accent-color: var(--palette-color); }
+.audio-studio-cue-option[data-picked="true"] .audio-studio-pick { color: var(--palette-color); }
+.audio-studio-sidebar { display: grid; gap: 18px; }
+.audio-studio-panel { padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.audio-studio-panel > p { font-size: 12px; margin: 12px 0 16px; }
+.audio-studio-panel > label { margin-top: 15px; }
+.audio-studio-panel .audio-studio-scenario-description { min-height: 58px; margin-bottom: 12px; }
+.audio-studio-panel > .action-control { width: 100%; }
+.audio-studio-panel .audio-studio-footnote { font-size: 11px; margin: 12px 0 0; }
+.audio-studio-export-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.audio-studio-panel .audio-studio-save-status { font-size: 11px; min-height: 36px; margin: 12px 0 6px; }
+.audio-studio-details > summary { display: list-item; min-height: 44px; align-content: center; font-size: 12px; }
+.audio-studio-details[open] > summary { margin-bottom: 8px; }
+.audio-studio-details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 10px; line-height: 1.6; padding: 12px; border-radius: 5px; background: #141517; margin: 0; }
+.audio-studio-history { padding-block: 5px; }
+.audio-studio-history summary > span { float: right; font: 10px var(--mono); color: var(--muted); }
+.audio-studio-history p { font-size: 11px; margin-bottom: 12px; }
+.audio-studio-history ol { list-style: none; padding: 0; margin: 0 0 12px; max-height: 360px; overflow-y: auto; }
+.audio-studio-history li { display: grid; grid-template-columns: 85px 1fr; gap: 4px 8px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 11px; }
+.audio-studio-history li > span { display: flex; align-items: center; gap: 5px; color: var(--muted); }
+.audio-studio-history li[data-event-type="started"] > span { color: #b9d7c6; }
+.audio-studio-history li > strong { font-weight: 500; }
+.audio-studio-history li > small { grid-column: 2; color: var(--muted); overflow-wrap: anywhere; }
+.audio-studio-speech-note { font-size: 11px; margin: 0 5px; }
+.audio-studio-footer { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 16px; color: var(--muted); font-size: 11px; }
+@media (max-width: 1100px) {
+  .audio-studio { padding: 28px 22px 20px; }
+  .audio-studio-workspace { gap: 20px; grid-template-columns: minmax(0, 1fr) 260px; }
+  .audio-studio-palette-headings, .audio-studio-cue-row { grid-template-columns: minmax(110px, 1fr) repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .audio-studio-palette { padding-inline: 4px; }
+  .audio-studio-palette p { min-height: 68px; }
+  .audio-studio-panel { padding: 16px; }
+}
+@media (max-width: 850px) {
+  .audio-studio-workspace { grid-template-columns: minmax(0, 1fr); }
+  .audio-studio-sidebar { grid-template-columns: 1fr 1fr; align-items: start; }
+  .audio-studio-palette p { min-height: 0; }
+  .audio-studio-now { order: 3; flex-basis: 100%; }
+  .audio-studio-transport { justify-content: space-between; flex-wrap: wrap; }
+}
+@media (max-width: 560px) {
+  .audio-studio { padding: 20px 12px max(20px, env(safe-area-inset-bottom)); }
+  .audio-studio-brand { font-size: 9px; gap: 7px; letter-spacing: .8px; margin-bottom: 18px; }
+  .audio-studio-badge { position: static; display: inline-block; padding: 5px 7px; font-size: 9px; margin-bottom: 15px; }
+  .audio-studio-heading h1 { font-size: 30px; letter-spacing: -.8px; max-width: 320px; }
+  .audio-studio-heading > p { font-size: 13px; line-height: 1.6; }
+  .audio-studio-transport { gap: 8px; padding: 8px; margin: 6px 0 26px; }
+  .audio-studio-volume { grid-template-columns: auto auto minmax(42px, 1fr); flex: 1; gap: 8px; }
+  .audio-studio-volume input { width: 100%; }
+  .audio-studio-section-heading h2, .audio-studio-panel h2 { font-size: 21px; }
+  .audio-studio-step { font-size: 9px; letter-spacing: .8px; }
+  .audio-studio-count { font-size: 10px; }
+  .audio-studio-palette-headings, .audio-studio-cue-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .audio-studio-palette-headings { margin-top: 20px; }
+  .audio-studio-cue-heading { display: none; }
+  .audio-studio-palette { padding: 12px 2px; }
+  .audio-studio-palette h3 { font-size: 12px; }
+  .audio-studio-palette p { display: none; }
+  .audio-studio-cue-name { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; }
+  .audio-studio-cue-name h3 { flex-shrink: 0; font-size: 13px; }
+  .audio-studio-cue-name p { font-size: 10px; }
+  .audio-studio-cue-row { padding-block: 12px; }
+  .audio-studio-pick { min-height: 44px; }
+  .audio-studio-cue-option { padding: 5px 3px 0; }
+  .audio-studio-sidebar { grid-template-columns: 1fr; }
+  .audio-studio-panel { padding: 20px; }
+  .audio-studio-panel .audio-studio-scenario-description { min-height: 0; }
+}
