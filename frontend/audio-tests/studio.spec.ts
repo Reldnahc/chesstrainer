@@ -62,11 +62,11 @@ test("approved browser picks and the finalist retry choice survive catalog updat
   await page.getByText("View cue mapping", { exact: true }).click();
   const mapping = JSON.parse((await page.getByLabel("Cue mapping JSON").textContent())!);
   expect(mapping.cuePalettes).toEqual(picks);
-  expect(mapping.fallbackCuePalettes).toEqual({ ...approved, retry: null });
+  expect(mapping.fallbackCuePalettes).toEqual({ ...approved, retry: "retry-muted-tongue" });
   expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!), studioStorageKey)).toEqual(picks);
 });
 
-test("My picks uses per-cue production defaults and keeps unapproved retry silent", async ({ page }) => {
+test("My picks uses per-cue production defaults including the approved retry sound", async ({ page }) => {
   const soundRequests: string[] = [];
   page.on("request", request => {
     if (request.url().endsWith(".wav")) soundRequests.push(request.url());
@@ -76,11 +76,11 @@ test("My picks uses per-cue production defaults and keeps unapproved retry silen
   await expect(page.locator('[data-event-type="started"][data-cue="capture"]')).toContainText("Soft objects");
   await expect(page.locator('[data-event-type="started"][data-cue="check"]')).toContainText("Tabletop");
   await page.getByRole("combobox", { name: "Scenario", exact: true }).selectOption("retry");
-  const requestCount = soundRequests.length;
   await page.getByRole("button", { name: "Play scenario", exact: true }).click();
-  await expect(page.locator(".audio-studio-now")).toHaveText("No sound is selected for this scenario.");
-  await expect(page.locator('[data-event-type="started"][data-cue="retry"]')).toHaveCount(0);
-  expect(soundRequests).toHaveLength(requestCount);
+  await expect(page.locator('[data-event-type="started"][data-cue="retry"]')).toHaveAttribute("data-palette", "retry-muted-tongue");
+  expect(soundRequests.some(url => url.includes("retry-muted-tongue/retry.wav"))).toBe(true);
+  expect(await page.evaluate(key => localStorage.getItem(key), studioStorageKey)).toBeNull();
+  const requestCount = soundRequests.length;
   for (const palette of fullPaletteCatalog) {
     await page.getByRole("combobox", { name: "Sound palette", exact: true }).selectOption(palette.id);
     await page.getByRole("button", { name: "Play scenario", exact: true }).click();

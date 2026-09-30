@@ -99,13 +99,13 @@ test("authoritative SAN selects one semantic cue in explicit precedence", () => 
     .toEqual(["move", "capture", "castle", "castle", "promotion", "check", "check", "mate"]);
 });
 
-test("production uses the owner's per-cue choices and leaves unapproved retry silent", async () => {
+test("production uses all nine owner-approved cue choices", async () => {
   const f = fixture();
   await f.engine.unlock();
   for (const [cue, palette] of [
     ["move", "soft-objects"], ["capture", "soft-objects"], ["castle", "soft-objects"],
     ["promotion", "soft-objects"], ["check", "tabletop"], ["mate", "soft-objects"],
-    ["correct", "tabletop"], ["complete", "tabletop"],
+    ["correct", "tabletop"], ["retry", "retry-muted-tongue"], ["complete", "tabletop"],
   ] as const) {
     f.engine.play({cue, scope: "selected", eventId: cue});
     await flush();
@@ -113,11 +113,15 @@ test("production uses the owner's per-cue choices and leaves unapproved retry si
     expect(f.events.at(-1)).toMatchObject({type: "started", cue, palette});
     f.context.sources.at(-1)!.finish();
   }
-  f.engine.play({cue: "retry", scope: "selected", eventId: "not-approved", delayMs: 160});
+  f.engine.play({cue: "retry", scope: "selected", eventId: "lesson-retry", delayMs: 160});
   await flush();
-  expect(f.loads).toHaveLength(8);
-  expect(f.timers.size).toBe(0);
-  expect(f.events.at(-1)).toMatchObject({type: "suppressed", reason: "no-selected-sound"});
+  expect(f.loads).toHaveLength(9);
+  expect(f.timers.size).toBe(1);
+  expect(f.started()).not.toContain("lesson-retry");
+  f.tick();
+  await flush();
+  expect(f.events.at(-1)).toMatchObject({type: "started", cue: "retry", palette: "retry-muted-tongue", eventId: "lesson-retry"});
+  expect(f.loads).toHaveLength(9);
   f.engine.dispose();
 });
 

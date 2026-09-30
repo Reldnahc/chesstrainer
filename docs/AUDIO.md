@@ -34,10 +34,11 @@ does not replay missed events. All feedback remains understandable without sound
 | --- | --- |
 | Move, capture, castle, promotion, checkmate | Soft objects |
 | Check, correct answer, completion | Tabletop |
-| Try again | Silent; none of the audition candidates was approved |
+| Try again | Muted tongue drum (audition 13) |
 
-`productionCuePalettes` is the single per-cue default mapping. A null selection
-suppresses playback before a download or timer is created. The studio can
+All nine cues now have owner-approved sounds. `productionCuePalettes` is the
+single per-cue default mapping. A null selection remains supported and suppresses
+playback before a download or timer is created. The studio can
 explicitly audition a different candidate without changing production choices.
 Ratings never have sounds: their cue types, emitters, assets, settings and saved
 preference have been removed. The forward database migration drops only the
@@ -50,7 +51,7 @@ retired `audio_review` column and preserves remaining account preferences.
 | Move / capture / castle / promotion | One committed or explicitly inspected board move |
 | Check / mate | The server-supplied move notation contains check/checkmate; these take precedence over ordinary placement |
 | Correct | The current practice attempt was accepted by its existing answer authority |
-| Retry | A rejected practice attempt; reserved semantic cue, currently silent |
+| Retry | A rejected practice attempt; the approved muted tongue drum follows the attempted move |
 | Complete | A puzzle or lesson has just completed; replaces the ordinary correct cue |
 
 No move classification triggers a sound. Checkmate in a
@@ -93,8 +94,9 @@ before an attempt or reveal permits feedback.
 The approved cue alternatives retain **11 CC0 recordings**: real chess/wooden
 pieces, wood block, music box, bronze bell, triangle, glass and a soft gong.
 They are trimmed, level matched and faded; castling combines two recorded hits.
-Retry auditions now contain only the owner's three finalists: **13 Muted tongue
-drum**, **18 Fret catch**, and **29 Wood & damped strings**. Their IDs, original
+Retry auditions retain the owner's three finalists: **13 Muted tongue drum**
+(the approved production choice), **18 Fret catch**, and **29 Wood & damped strings**.
+Their IDs, original
 numbers and WAV bytes remain unchanged from the broad comparison. Other retry
 candidates are removed; stale selections are discarded without touching the
 eight approved cue choices. Fifteen source recordings remain: the original
@@ -145,9 +147,9 @@ connection and no production navigation route. It uses the actual audio engine.
 - Pick a different palette for each cue; picks persist only in studio storage.
   Clear picks resets that audition selection without changing account settings.
 - Play short scenarios using one palette or the current mixed selection.
-  Unpicked cues use their approved production choice. Try again stays silent
-  unless explicitly picked in My picks; it is not available in the three
-  general palettes. Engine requests for unavailable pairs never load or schedule.
+  Unpicked cues use their approved production choice, including Muted tongue
+  drum for Try again. Retry is not available in the three general palettes;
+  engine requests for unavailable pairs never load or schedule.
 - Adjust volume, mute, stop or inspect the playback history.
 - Copy/download the selected mapping for review and a later deliberate product
   change. Studio selections do not silently alter production account preferences.
@@ -155,8 +157,8 @@ connection and no production navigation route. It uses the actual audio engine.
 Selection storage remains version 2, preserving the owner's eight choices.
 Retired retry/palette pairs are discarded independently; a new retry choice
 persists without resetting other picks.
-Export is version 3 and includes the explicit per-cue production fallback map,
-including null for silence. Previous synthetic-set picks cannot silently approve
+Export is version 3 and includes the explicit per-cue production fallback map
+with all nine approved sounds. Previous synthetic-set picks cannot silently approve
 replacement sounds; old palette IDs and removed rating cues are discarded.
 
 The studio shares application buttons and choice controls but owns its layout.

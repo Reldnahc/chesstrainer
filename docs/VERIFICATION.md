@@ -4,6 +4,29 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Approved Try again sound — September 30, 2026
+
+Promoted audition 13, Muted tongue drum, to the production `retry` default.
+The other eight approved choices, all sound files, feedback timing and engine
+behavior are unchanged. Updated the previous silence assertions to verify the
+selected sound while preserving cold-position/reload silence and cancellation.
+
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **78 passed**, desktop/mobile, including default selection and studio fallback.
+- `node node_modules/@playwright/test/cli.js test audio-study.spec.ts --reporter=line`
+  in the same environment: **16 passed**, desktop/mobile. Exercises actual
+  puzzle, lesson, opening recall and SRS rejected-answer audio, reveals, reloads,
+  counter-reply cancellation and late responses after navigation. No skips.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including API/type
+  checks and **11** style checks. Existing production chunk-size warning remains.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **27 assets**,
+  **1,999,734 bytes**, unchanged hashes/levels/provenance valid.
+- Live studio restored **9 / 9 picked** with Muted tongue drum selected. Current
+  documentation records all nine approvals. Working/staged whitespace checks
+  passed. No full backend/coach matrix, Docker deployment, push or remote CI run.
+
 ## Retry finalists and longer context — September 30, 2026
 
 Shortlisted original candidates 13 (Muted tongue drum), 18 (Fret catch) and 29

@@ -1,7 +1,8 @@
 # Audio candidates and credits
 
 The studio contains **27 recorded cue slots**: the 24 original alternatives for
-the eight approved cues and three owner-shortlisted Try again auditions.
+the eight board/success cues and three Try again choices, including the owner's
+approved Muted tongue drum.
 Original audition numbers and audio are preserved:
 
 | Number | Candidate | Recorded texture | Duration |
@@ -12,9 +13,10 @@ Original audition numbers and audio are preserved:
 
 All 27 retained WAVs are byte-for-byte unchanged from `6fb6b7c`. The other retry
 candidates are removed from the current catalogue and remain in Git history.
-The owner's eight production choices remain Soft objects for move/capture/castle/
-promotion/mate and Tabletop for check/correct/complete. Retry remains unapproved
-and silent in production. No rating sounds are included.
+All nine production cues now have owner-approved sounds: Soft objects for move/
+capture/castle/promotion/mate, Tabletop for check/correct/complete, and **13 Muted
+tongue drum** (`retry-muted-tongue`) for Try again. The other two finalists remain
+available in the studio. No rating sounds are included.
 
 Each finalist can play alone or with the selected **Comparison context**:
 One retry (~3 seconds), Repeated attempts (~10 seconds, the default) or Full sound

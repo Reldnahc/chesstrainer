@@ -24,7 +24,7 @@ export const productionCuePalettes: Readonly<Record<SoundCue, SoundPalette | nul
   check: "tabletop",
   mate: "soft-objects",
   correct: "tabletop",
-  retry: null,
+  retry: "retry-muted-tongue",
   complete: "tabletop",
 };
 export type PaletteDefinition = {
