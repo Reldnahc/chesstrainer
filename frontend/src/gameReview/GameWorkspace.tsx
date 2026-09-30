@@ -97,7 +97,10 @@ export default function GameWorkspace({
       : null;
   async function play(from: string, to: string, promotion?: string) {
     const played = await exploration.play(from, to, promotion);
-    if (played) void analysis.request(played.root, played.moves);
+    if (played) {
+      const result = await analysis.request(played.root, played.moves);
+      played.announceAnalysis(result?.report?.label);
+    }
   }
   if (!game)
     return (
@@ -236,6 +239,9 @@ export default function GameWorkspace({
           initialScore={initialScore}
           selected={cursor.ply}
           onSelect={navigate}
+          onScrubStart={exploration.beginScrubbing}
+          onScrubSelect={(ply) => navigate(ply, { silent: true })}
+          onScrubEnd={exploration.finishScrubbing}
         />
       </ReviewWorkspace>
     </div>

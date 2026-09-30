@@ -9,8 +9,8 @@ export type AuditionScenario = {
 };
 
 export const auditionScenarios: readonly AuditionScenario[] = [
-  { id: "capture-check", label: "Capture + check", description: "A capture lands, followed by a clear check cue.",
-    steps: [{ cue: "capture", delayMs: 0 }, { cue: "check", delayMs: 260 }] },
+  { id: "capture-check", label: "Capture, then check", description: "Two moves: a capture, then a checking move.",
+    steps: [{ cue: "capture", delayMs: 0 }, { cue: "check", delayMs: 900 }] },
   { id: "correct-practice", label: "Correct practice", description: "The move lands, then a restrained confirmation.",
     steps: [{ cue: "move", delayMs: 0 }, { cue: "correct", delayMs: 260 }] },
   { id: "retry", label: "Try again", description: "Gentle feedback while the learner keeps thinking.",

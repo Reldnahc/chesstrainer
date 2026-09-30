@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
+import { useAudioScope } from "../audio/AudioProvider";
 import Board from "../Board";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
@@ -28,6 +29,16 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
   const [practiceStudy] = useState(createPracticeStarter);
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
+  const audio = useAudioScope(`opening-preview:${catalogueKey || `${courseLine?.courseId}:${courseLine?.lineId}:${courseLine?.revision}`}`);
+  const navigationId = useRef(0);
+  function seek(next: number) {
+    if (!line || next === ply || next < 0 || next > line.frames.length) return;
+    audio.cancel();
+    const eventId = `seek:${++navigationId.current}`;
+    if (next === ply + 1) audio.move(line.frames[next - 1].san, eventId);
+    else audio.play("move", eventId);
+    setPly(next);
+  }
   useEffect(() => {
     const pending = new AbortController();
     controller.current = pending;
@@ -87,8 +98,8 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     aboveBoard={<div className="review-position-status"><span>Line preview</span><span>{ply} / {line.frames.length} PLIES</span></div>}
     belowBoard={<div className="review-board-hint">{frame ? frame.san : "Starting position"} · Preview the continuation before adding it to study.</div>}
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back</ActionLink><MovePlaybackControls label="Opening line playback" current={ply} maximum={line.frames.length}
-      previous={{ "aria-label": "Previous line move", disabled: !ply, onClick: () => setPly(value => value - 1) }}
-      next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => setPly(value => value + 1) }} /></div>}
+      previous={{ "aria-label": "Previous line move", disabled: !ply, onClick: () => seek(ply - 1) }}
+      next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => seek(ply + 1) }} /></div>}
     board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
   >
     <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>}
@@ -100,7 +111,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
       <fieldset className="opening-color"><legend>Study as</legend>{(["white", "black"] as const).map(side => <label key={side}><input type="radio" name="study-color" value={side} checked={color === side} disabled={busy || !(side === "white" ? line.white_positions : line.black_positions)} onChange={() => { setColor(side); setSaved(false); }} /><span>{side === "white" ? "White" : "Black"}</span><small>{side === "white" ? line.white_positions : line.black_positions} decisions</small></label>)}</fieldset>
       <h2>The selected continuation</h2>
       <ContinuationMoves label="Opening continuation" moves={line.frames} numbered selectedIndex={ply - 1} startSelected={!ply}
-        onStart={() => setPly(0)} onSelect={index => setPly(index + 1)} />
+        onStart={() => seek(0)} onSelect={index => seek(index + 1)} />
       <p className="small muted">{positions} {color === "white" ? "White" : "Black"} recall decisions. This line does not cover every opponent response.</p>
       {saved && <Notice announcement="status" tone="success" appearance="inline" className="small">Study saved. Eligible positions are now included in Due.</Notice>}
       <div className="button-row"><ActionLink variant="secondary" href={`${studyPaths.openings}/studies`}>My studies</ActionLink>{selectedStudy?.active && <ActionLink variant="primary" href={studyPaths.due}>Go to Due</ActionLink>}</div>

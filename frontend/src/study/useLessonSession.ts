@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, read, type Promotion, type Schema } from "../api";
+import { useAudioScope } from "../audio/AudioProvider";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
 
@@ -16,7 +17,8 @@ export function useLessonSession(id: string) {
   const generation = useRef(0);
   const request = useRef<AbortController | null>(null);
   const locked = useRef(false);
-  const playback = useStudyPlayback(undefined, LESSON_MOVE_INTERVAL_MS);
+  const audio = useAudioScope(`lesson:${id}`);
+  const playback = useStudyPlayback(undefined, LESSON_MOVE_INTERVAL_MS, audio, session?.fen);
   const { reset } = playback;
   const load = useCallback(async () => {
     const version = ++generation.current;
@@ -56,6 +58,19 @@ export function useLessonSession(id: string) {
       if (generation.current !== version) return;
       setSession(result);
       playback.play(result.playback);
+      const eventId = `revision:${result.revision}`;
+      if (!result.playback.length && (action === "move" || result.fen !== session.fen)) {
+        // Rewinds and source-game jumps are navigation, not the move at the
+        // destination. Incorrect lessons have no submitted SAN in the response.
+        audio.play("move", `${eventId}:board`);
+      }
+      if (session.status !== "completed" && result.status === "completed" && action !== "show_move") {
+        audio.play("complete", `${eventId}:feedback`, { delayMs: 160 });
+      } else if (action === "move" && result.feedback?.kind === "correct") {
+        audio.play("correct", `${eventId}:feedback`, { delayMs: 160 });
+      } else if (action === "move" && result.feedback?.kind === "incorrect") {
+        audio.play("retry", `${eventId}:feedback`, { delayMs: 160 });
+      }
     } catch (e) {
       // A command may have committed despite a lost response. Reconcile first.
       if (generation.current === version) setError((e as Error).message);

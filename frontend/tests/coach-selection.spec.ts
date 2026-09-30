@@ -69,7 +69,7 @@ test("every registered coach can be chosen and restored in a real game", async (
       });
       await expect(avatar.locator("svg")).toBeVisible();
       await page.getByRole("link", { name: "Settings", exact: true }).click();
-      await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
+      await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & sound", exact: true }).click();
       await expect(radio).toBeChecked();
     }
     await page.screenshot({

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
+import { useAudioScope } from "./audio/AudioProvider";
 import ReviewCoach from "./ReviewCoach";
 import Notice from "./Notice";
 import Button from "./Button";
@@ -32,6 +33,16 @@ export default function ReviewExplanation({
   const [index, setIndex] = useState(1);
   const [selectedFinding, setSelectedFinding] = useState<number | null>(null);
   const [error, setError] = useState("");
+  const audio = useAudioScope(`explanation:${sessionId}:${attemptId || "solution"}:${solution}`);
+  const navigationId = useRef(0);
+  function seek(next: number) {
+    if (!data || next === index || !data.frames[next]) return;
+    audio.cancel();
+    const eventId = `seek:${++navigationId.current}`;
+    if (next === index + 1) audio.move(data.frames[next].san, eventId);
+    else audio.play("move", eventId);
+    setIndex(next);
+  }
   useEffect(() => {
     back.current?.focus({ preventScroll: true });
     const escape = (event: KeyboardEvent) => {
@@ -122,8 +133,8 @@ export default function ReviewExplanation({
         <>
           <div className="explanation-controls">
             <MovePlaybackControls label="Continuation playback" current={index} maximum={data.frames.length - 1}
-              previous={{ "aria-label": "Previous move", disabled: index === 0, onClick: () => setIndex(i => i - 1) }}
-              next={{ "aria-label": "Next move", disabled: index === data.frames.length - 1, onClick: () => setIndex(i => i + 1) }} />
+              previous={{ "aria-label": "Previous move", disabled: index === 0, onClick: () => seek(index - 1) }}
+              next={{ "aria-label": "Next move", disabled: index === data.frames.length - 1, onClick: () => seek(index + 1) }} />
             <span className="explanation-move-caption">{index === 0 ? "Start" : frame.san}</span>
           </div>
           <div className="explanation-actions">
@@ -138,7 +149,7 @@ export default function ReviewExplanation({
                     }
                     onClick={() => {
                       setSelectedFinding(i);
-                      setIndex(item.frame_ply);
+                      seek(item.frame_ply);
                     }}
                   >
                     Show{" "}

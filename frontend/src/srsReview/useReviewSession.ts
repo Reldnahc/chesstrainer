@@ -8,6 +8,7 @@ import {
   type Schema,
 } from "../api";
 import { clearExerciseLink, clearReviewSessionLink, rememberReviewSession } from "../navigation";
+import { useAudioScope } from "../audio/AudioProvider";
 
 /** Owns grading and queues. Focused practice never changes the SRS queue policy. */
 export function useReviewSession({
@@ -26,6 +27,7 @@ export function useReviewSession({
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [feedbackEventId, setFeedbackEventId] = useState<string | null>(null);
   const [submittedMove, setSubmittedMove] = useState<string | null>(null);
   const [hadFailure, setHadFailure] = useState(false);
   const [gradingError, setGradingError] = useState<string | null>(null);
@@ -34,6 +36,10 @@ export function useReviewSession({
   const practiceBatch = useRef<Schema["PracticeQueueItem"][] | null>(null);
   const practiced = useRef(new Set<string>());
   const generation = useRef(0);
+  const responseSequence = useRef(0);
+  const audio = useAudioScope(`review:${requestedSession || requested || focusSkill || "queue"}`);
+  const sound = useRef(audio);
+  sound.current = audio;
 
   const refreshDue = useCallback(async (version: number) => {
     try {
@@ -48,10 +54,12 @@ export function useReviewSession({
   const load = useCallback(
     async (id?: string | null, previous?: string | null, resumeSession?: string | null) => {
       const version = ++generation.current;
+      sound.current.cancel();
       setLoading(true);
       setBusy(false);
       setPosition(null);
       setFeedback(null);
+      setFeedbackEventId(null);
       setSubmittedMove(null);
       setHadFailure(false);
       setGradingError(null);
@@ -130,6 +138,7 @@ export function useReviewSession({
   async function answer(from: string, to: string, promotion?: Promotion) {
     if (!position || busy || feedback?.completed) return;
     const version = generation.current;
+    audio.cancel();
     setBusy(true);
     setGradingError(null);
     try {
@@ -144,7 +153,15 @@ export function useReviewSession({
         }),
       );
       if (version !== generation.current) return;
+      const eventId = result.attempt_id || `response:${++responseSequence.current}`;
+      const san = result.submitted_san || result.attempt_frame?.san;
+      if (san) audio.move(san, `${eventId}:board`);
+      else audio.play("move", `${eventId}:board`);
+      if (result.grade !== "revealed") {
+        audio.play(result.completed ? "correct" : "retry", `${eventId}:feedback`, { delayMs: 160 });
+      }
       setFeedback(result);
+      setFeedbackEventId(eventId);
       if (!result.completed) setHadFailure(true);
       setSubmittedMove(from + to + (promotion || ""));
       if (result.completed) recordCompletion(position.exercise_id, !result.non_scheduling_reason);
@@ -163,6 +180,7 @@ export function useReviewSession({
   async function show() {
     if (!position || busy || feedback?.completed) return;
     const version = generation.current;
+    audio.cancel();
     setBusy(true);
     setGradingError(null);
     try {
@@ -172,7 +190,12 @@ export function useReviewSession({
         }),
       );
       if (version !== generation.current) return;
+      const eventId = `reveal:${++responseSequence.current}`;
+      const san = result.reveal_frame?.san || result.submitted_san;
+      if (san) audio.move(san, `${eventId}:board`);
+      else audio.play("move", `${eventId}:board`);
       setFeedback(result);
+      setFeedbackEventId(eventId);
       recordCompletion(position.exercise_id, !result.non_scheduling_reason);
       if (!focusSkill) await refreshDue(version);
     } catch (e) {
@@ -190,6 +213,8 @@ export function useReviewSession({
     loading,
     busy,
     feedback,
+    feedbackEventId,
+    audio,
     submittedMove,
     hadFailure,
     gradingError,

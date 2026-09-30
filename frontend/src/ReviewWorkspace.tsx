@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, type ReactNode } from "react";
+import AudioMuteButton from "./audio/AudioMuteButton";
 
 /** The single layout and sizing policy for game review and spaced repetition. */
 export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard, belowBoard, boardControls, evaluation, children }: {
@@ -57,7 +58,10 @@ export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard
         <div className="review-board-square">{board}</div>
       </div>
       <div className="review-board-meta" data-review-chrome>{belowBoard}</div>
-      <div className="review-board-toolbar" data-review-chrome>{boardControls}</div>
+      <div className="review-board-toolbar" data-review-chrome>
+        {boardControls && <div className="review-board-controls">{boardControls}</div>}
+        <AudioMuteButton />
+      </div>
     </section>
     <aside className="review-sidebar">
       {heading && <div className="review-workspace-heading">{heading}</div>}

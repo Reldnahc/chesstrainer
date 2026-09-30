@@ -9,8 +9,11 @@ type Frame = {
 type Point = { ply: number; score: Score };
 const marked = new Set(["Brilliant", "Great", "Best", "Inaccuracy", "Mistake", "Miss", "Blunder"]);
 
-export default function EvaluationGraph({ frames, initialScore, selected, onSelect }: {
+export default function EvaluationGraph({ frames, initialScore, selected, onSelect, onScrubStart, onScrubSelect, onScrubEnd }: {
   frames: Frame[]; initialScore?: Score | null; selected: number; onSelect: (ply: number) => void;
+  onScrubStart?: () => void;
+  onScrubSelect?: (ply: number) => void;
+  onScrubEnd?: (ply: number) => void;
 }) {
   const plot = useRef<SVGSVGElement>(null);
   const drag = useRef<{ id: number; ply: number | null } | null>(null);
@@ -51,8 +54,8 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
     else segments.push([point]);
   }
   const tickPlies = [...new Set([0, ...(width < 400 ? [Math.round(last / 2)] : [1, 2, 3].map(n => Math.round(last * n / 4))), last])];
-  const selectPoint = (ply: number) => {
-    onSelect(ply);
+  const selectPoint = (ply: number, preview = false) => {
+    (preview && onScrubSelect ? onScrubSelect : onSelect)(ply);
     plot.current?.querySelector<SVGCircleElement>(`[data-ply="${ply}"]`)?.focus({ preventScroll: true });
   };
   const scrub = (event: PointerEvent<SVGSVGElement>) => {
@@ -62,12 +65,14 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
     const ply = Math.max(0, Math.min(last, Math.round((position - left) / spacing)));
     if (drag.current.ply === ply) return;
     drag.current.ply = ply;
-    selectPoint(ply);
+    selectPoint(ply, true);
   };
-  const stopScrubbing = (event: PointerEvent<SVGSVGElement>) => {
+  const stopScrubbing = (event: PointerEvent<SVGSVGElement>, commit = false) => {
     if (drag.current?.id !== event.pointerId) return;
+    const ply = drag.current.ply;
     drag.current = null;
     setScrubbing(false);
+    if (commit && ply !== null) onScrubEnd?.(ply);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   };
   const pointName = (ply: number) => `${frames[ply].number}${frames[ply].actor === "white" ? "." : "..."} ${frames[ply].san}`;
@@ -85,13 +90,14 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
         // Capture the stable plot, not a marker that moves/reorders as we scrub.
         event.currentTarget.setPointerCapture(event.pointerId);
         drag.current = { id: event.pointerId, ply: null };
+        onScrubStart?.();
         setScrubbing(true);
         scrub(event);
       }}
       onPointerMove={scrub}
-      onPointerUp={event => { scrub(event); stopScrubbing(event); }}
-      onPointerCancel={stopScrubbing}
-      onLostPointerCapture={stopScrubbing}>
+      onPointerUp={event => { scrub(event); stopScrubbing(event, true); }}
+      onPointerCancel={event => stopScrubbing(event)}
+      onLostPointerCapture={event => stopScrubbing(event)}>
       <title>Original-game evaluation from White's perspective. Numeric range −{limit} to +{limit} pawns; forced mates sit at the edges. Click or drag to a position to see its exact score.</title>
       <g pointerEvents="none" aria-hidden="true">
         <rect className="game-graph-background" x={left} y={top} width={right - left} height={bottom - top}/>

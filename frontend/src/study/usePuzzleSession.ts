@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, read, type Promotion, type Schema } from "../api";
+import { useAudioScope } from "../audio/AudioProvider";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
 
@@ -17,7 +18,8 @@ export function usePuzzleSession(id: string) {
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
   const started = useRef(performance.now());
-  const playback = useStudyPlayback(() => { started.current = performance.now(); });
+  const audio = useAudioScope(`puzzle:${id}`);
+  const playback = useStudyPlayback(() => { started.current = performance.now(); }, undefined, audio, session?.fen);
   const { reset, playing } = playback;
 
   const load = useCallback(async () => {
@@ -74,6 +76,18 @@ export function usePuzzleSession(id: string) {
       setSession(result);
       setRetryReady(false);
       playback.play(result.playback);
+      const eventId = `revision:${result.revision}`;
+      if (uci && !result.playback.length) {
+        if (result.feedback?.submitted_san) audio.move(result.feedback.submitted_san, `${eventId}:board`);
+        else audio.play("move", `${eventId}:board`);
+      }
+      if (uci && result.status === "solved") {
+        audio.play("complete", `${eventId}:feedback`, { delayMs: 160 });
+      } else if (uci && result.feedback?.grade === "correct") {
+        audio.play("correct", `${eventId}:feedback`, { delayMs: 160 });
+      } else if (uci && result.feedback?.grade === "incorrect") {
+        audio.play("retry", `${eventId}:feedback`, { delayMs: 160 });
+      }
       started.current = performance.now();
     } catch (e) {
       // A lost response may already be committed, or another tab may have moved.
@@ -89,7 +103,7 @@ export function usePuzzleSession(id: string) {
     disabled: !session || loading || busy || playing || retrying || !!error || session.status !== "active",
     answer: (from: string, to: string, promotion?: Promotion) => act(from + to + (promotion || "")),
     reveal: () => act(),
-    retry: () => { setRetryReady(true); started.current = performance.now(); },
+    retry: () => { audio.cancel(); setRetryReady(true); started.current = performance.now(); },
     reload: load,
     inspect: (selected: Frame) => { if (!busy) playback.inspect(selected); },
     inspectStart: () => { if (!busy) playback.inspectStart(session?.completion?.solution[0]); },

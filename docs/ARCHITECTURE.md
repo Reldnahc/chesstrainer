@@ -47,7 +47,7 @@ Whole-game review and training analysis are separately requested from the game.
 | human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
 | routes/workspace.py | Health, effective settings, account-owned coach/interface preferences and statistics |
-| preferences.py | Validated coach and motion choices in one owned user_preferences row; field-specific writes preserve independent choices and missing/unsupported choices have safe read defaults |
+| preferences.py | Validated coach, motion and audio choices in one owned user_preferences row; field-specific writes preserve independent choices and missing/unsupported choices have safe read defaults |
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
@@ -96,6 +96,8 @@ lock, while other accounts have independent locks.
 | coach/reactions.ts | Typed chess/SRS events translated into semantic expressions; no artwork dependencies |
 | coach/CoachProvider.tsx / CoachSettings.tsx | Account-bound preference loading, saving, retry and selection UI |
 | useSavedPreferences.ts | Shared account-bound preference load/save lifecycle, failure recovery and stale-response guards |
+| audio/AudioProvider.tsx / AudioSettings.tsx | Existing account preference lifecycle, device-local mute, trusted browser activation and stable scoped sound controls |
+| audio/engine.ts / model.ts / catalog.ts | Semantic sound playback, local asset cache, cancellation/priority, independent speech bus and metadata; no grading, rules, TTS or coach-text generation |
 | MotionProvider.tsx / MotionSettings.tsx / motion.ts / MotionSelect.tsx | Saved piece/interface motion, common device-default override rules and shared motion selector |
 | coach/model.ts / registry.ts / motionVocabulary.ts / usePerformance.ts | Coach definitions, explicit display groups, compatibility fallbacks, expression-specific idle pools, event dwell and one-shot reactions |
 | useReducedMotion.ts | Shared event-driven device preference, native subscription cleanup and resynchronization for portraits, boards and controls |
@@ -127,6 +129,13 @@ choice. `Board` uses that same resolved state for native piece movement. Browser
 reduced motion supplies the default; explicit Animated/Still choices take
 precedence. Preferences remain still while loading or after a failed initial load.
 `motion.css` contains only the application Settings controls for those preferences.
+
+[Audio](AUDIO.md) is independent of motion. Session handlers emit cues only after
+their accepted-response guards; playback owners emit cues for displayed moves.
+The shared Board never derives sound from FEN changes. Account and route teardown
+cancel pending audio, while initial loads and background analysis remain silent.
+The standalone audio studio exercises the same engine without an account/API
+connection and is absent from production navigation.
 
 Home, Study (including Openings/Puzzles), Games, Weaknesses and Settings use `PageTitle`:
 a required eyebrow above the title on desktop, hidden on phones, with optional

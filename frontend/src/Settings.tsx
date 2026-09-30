@@ -7,6 +7,7 @@ import ImportSettings from "./Import";
 import { AccountSettings, useAccount } from "./AccountGate";
 import CoachSettings from "./coach/CoachSettings";
 import MotionSettings from "./MotionSettings";
+import AudioSettings from "./audio/AudioSettings";
 import SettingsSection from "./SettingsSection";
 import SectionNavigation from "./SectionNavigation";
 import Link from "./Link";
@@ -14,7 +15,7 @@ import { navigate, type SettingsTab } from "./navigation";
 
 const sections: { id: SettingsTab; label: string }[] = [
   { id: "imports", label: "Games & imports" },
-  { id: "coach", label: "Coach & animations" },
+  { id: "coach", label: "Coach & sound" },
   { id: "account", label: "Account" },
   { id: "advanced", label: "Advanced" },
 ];
@@ -52,7 +53,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
       <div className="settings-content">
         {active === "imports" && <ImportSettings health={health} fail={fail} importSource={importSource} restoringScroll={restoringScroll}
           onImportSourceChange={source => navigate(source ? `/settings?import=${encodeURIComponent(source)}` : "/settings")} />}
-        {active === "coach" && <><MotionSettings /><CoachSettings /></>}
+        {active === "coach" && <><MotionSettings /><AudioSettings /><CoachSettings /></>}
         {active === "account" && <AccountSettings />}
         {active === "advanced" && <>
           <SettingsSection id="settings-training" title="Training tools">

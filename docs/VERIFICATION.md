@@ -4,6 +4,68 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Shared audio and audition studio — September 30, 2026
+
+Board, practice and optional learner-side review cues now use one cancellable
+browser service. Account preferences, device-local mute and a separate audition
+studio are wired through real application paths. Coach speech has a prepared-clip
+boundary and playback bus only; no speech generation or narration is enabled.
+See [Audio](AUDIO.md) for cue policy, defaults and ownership.
+
+- `.venv/Scripts/python.exe -m pytest -q backend/tests/test_audio_preferences.py backend/tests/test_coach_preferences.py backend/tests/test_motion_preferences.py backend/tests/test_api_contract.py --basetemp data/verification/audio-backend-tests -o cache_dir=data/verification/audio-backend-cache`:
+  **70 passed**. Includes strict preference validation, account isolation,
+  preservation of coach/motion choices, and an upgrade from the previous schema
+  with local/named users. Alembic reported no schema drift and SQLite integrity
+  and foreign-key checks passed. Two existing dependency deprecation warnings.
+- `.venv/Scripts/ruff.exe check backend/trainer/contracts/preferences.py backend/trainer/preferences.py backend/trainer/routes/workspace.py backend/trainer/models.py backend/tests/test_audio_preferences.py migrations/versions/0d6a3c81f294_audio_preferences.py` and
+  `.venv/Scripts/ruff.exe format --check backend/tests/test_audio_preferences.py migrations/versions/0d6a3c81f294_audio_preferences.py`: passed.
+- `.venv/Scripts/python.exe scripts/export_api_contract.py --check` and
+  `npm.cmd --prefix frontend run api:check`: backend schema and generated types agree.
+- `.venv/Scripts/python.exe scripts/generate_audio.py --check`: all **42** original
+  assets reproduced byte-for-byte, **662,016 bytes** total.
+- `npm.cmd --prefix frontend run test:audio`: **38 passed**, covering the engine
+  and real-asset studio at desktop/mobile sizes. Covers activation rejection,
+  duplicate suppression, pending decode cancellation, voice limits, category/mute
+  behavior, hidden tabs, prepared speech, persisted audition picks and scenario
+  cancellation. `npm.cmd --prefix frontend run build:audio-studio` also passed.
+- From `frontend`, `npm exec playwright test -- --config=test-results/game-audio.config.ts game-audio.spec.ts`:
+  **18 passed**, using an ignored copy of the normal app config with no external
+  webServer; this fixture starts its own ephemeral Vite server. Includes explicit
+  navigation, learner-only accents, graph scrubbing, stale analysis and delayed,
+  failed or superseded variation-position responses. No sound precedes a missing
+  variation board; cached positions can sound immediately.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/audio-preferences.spec.ts tests/settings.spec.ts tests/motion.spec.ts tests/game-review.spec.ts tests/review-lifecycle.spec.ts tests/study-puzzles.spec.ts tests/study-lessons.spec.ts tests/opening-due.spec.ts --reporter=line`:
+  **104 passed** across desktop/mobile.
+- After the final variation timing and settings layout corrections,
+  `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/audio-preferences.spec.ts tests/audio-study.spec.ts tests/game-audio-browser.spec.ts tests/game-review.spec.ts --reporter=line`:
+  **53 passed, 1 failed** on an ambiguous test locator matching both notation and
+  a newly analyzed graph node. Scoped both notation assertions to the move list;
+  `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/audio-preferences.spec.ts --reporter=line`
+  then passed **all 16** cases. The other **38** final-build cases passed in the
+  preceding run. Real Web Audio source starts are observed after native playback
+  succeeds, without production test globals. Coverage includes cold/restored
+  silence, reveal without praise, Still/natural playback, visible replies,
+  cancellation after navigation/unmount, settings failure recovery and pending saves.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py accounts --reporter=line`:
+  **8 passed**. Sound choices follow the account onto another browser, quick mute
+  stays local, sign-out/account changes preserve isolation, and actual preview
+  audio follows those preferences. An initial **7 passed / 1 failed** run exposed
+  the same notation/graph locator ambiguity; the final run uses a scoped selector.
+- `npm.cmd --prefix frontend run build`: passed API agreement, application,
+  browser and contract type checks, **11** style-boundary tests, all three
+  standalone dependency graphs and production Vite build. Existing large-chunk
+  advisory remains. The CI planner's **302** tests passed after adding the audio
+  lane; audio-only work does not select the full coach artwork matrix.
+
+Independent review found and resolved early variation-navigation audio. Manual
+studio interaction confirmed cue playback status; desktop and 320px application
+sound settings and studio screenshots were inspected. The final scenario wording
+distinguishes a capture followed by a separate checking move from the single-cue
+policy for a checking capture. No subjective speaker/headphone calibration,
+physical iOS/Safari check, fresh Docker build, full unrelated backend/coach matrix
+or remote CI run is claimed for this local pass. No production database or
+deployment was changed.
+
 ## Opening curriculum restructuring — September 30, 2026
 
 Chapter boundaries now follow distinct learning problems, with no standard

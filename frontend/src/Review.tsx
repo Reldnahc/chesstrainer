@@ -23,7 +23,7 @@ export default function ReviewScreen({
   onEvidence: (id: string) => void;
 }) {
   const session = useReviewSession({ requested, requestedSession, focusSkill, fail });
-  const playback = useReviewPlayback(session.feedback);
+  const playback = useReviewPlayback(session.feedback, session.audio, session.feedbackEventId);
   const { position, due, loading, busy, feedback, submittedMove, done } =
     session;
   const { explaining, explanationFrame, preview, previewFrame, mistakeCue } =

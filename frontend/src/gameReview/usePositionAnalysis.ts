@@ -24,8 +24,8 @@ export function usePositionAnalysis({
   browse: boolean;
 }) {
   const cache = useRef(new Map<string, Analysis>());
-  const requests = useRef(new Map<string, Promise<void>>());
-  const inFlight = useRef<Promise<void> | null>(null);
+  const requests = useRef(new Map<string, Promise<Analysis | undefined>>());
+  const inFlight = useRef<Promise<Analysis | undefined> | null>(null);
   const generation = useRef(0);
   const mounted = useRef(false);
   const [, setRevision] = useState(0);
@@ -51,7 +51,7 @@ export function usePositionAnalysis({
   const request = useCallback(
     (ply: number, moves: string[]) => {
       const key = cacheKey(ply, moves, rating);
-      if (cache.current.has(key)) return Promise.resolve();
+      if (cache.current.has(key)) return Promise.resolve(cache.current.get(key));
       const pending = requests.current.get(key);
       if (pending) return pending;
       const version = generation.current;
@@ -70,6 +70,7 @@ export function usePositionAnalysis({
             cache.current.set(key, value);
             setRevision((value) => value + 1);
             setFailure((previous) => (previous?.key === key ? null : previous));
+            return value;
           } catch (e) {
             if (current()) setFailure({ key, message: (e as Error).message });
           }

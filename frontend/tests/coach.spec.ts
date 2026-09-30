@@ -80,7 +80,7 @@ test("coach motion resynchronizes after device changes while the settings page i
     await expect(page.locator(".coach-avatar")).toHaveCount(0);
     await page.emulateMedia({ reducedMotion });
     await page.getByRole("link", { name: "Settings", exact: true }).click();
-    await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
+    await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & sound", exact: true }).click();
     await expect(selected).toHaveAttribute("data-motion", reducedMotion === "reduce" ? "still" : "natural");
     await expect(motionStatus).toHaveText(reducedMotion === "reduce" ? "Still · device setting" : "");
   }

@@ -35,8 +35,8 @@ when a reusable component is added, renamed, extended or retired.
    associations, keyboard focus, tab order, announcements and link modifiers.
    Loading or selection must not change control geometry unexpectedly. Moving
    JSX must not remount a coach, replay an animation or reset a user's draft.
-8. **Respect entrypoint boundaries.** Application, coach studio and intelligence
-   lab have separate CSS/dependency boundaries. Reusing a small control must not
+8. **Respect entrypoint boundaries.** Application, coach studio, intelligence
+   lab and audio studio have separate CSS/dependency boundaries. Reusing a small control must not
    pull application shells into development tools. Use the existing
    [style manifest](../frontend/scripts/style-boundaries.json) and guard; do not
    weaken it or broaden CI solely to accommodate a misplaced import. **The main
@@ -88,6 +88,7 @@ not React components.
 | Saved recall receipt | [RecallReceipt](../frontend/src/srsReview/RecallReceipt.tsx) | Relative next-due text with exact date/time tooltip. Callers supply scheduling explanations and whether a due time applies; cold positions render no receipt. |
 | Motion preference field | [MotionSelect](../frontend/src/MotionSelect.tsx), [motion-select.css](../frontend/src/motion-select.css) | Device default / Animated / Still choices in Settings and Studio. Inline or stacked layout; callback and persistence stay caller-owned. Shared-safe styles; Settings status/layout remains in application-only motion.css. |
 | Account preference lifecycle | [useSavedPreferences](../frontend/src/useSavedPreferences.ts), [CoachProvider](../frontend/src/coach/CoachProvider.tsx), [MotionProvider](../frontend/src/MotionProvider.tsx) | Existing shared load/save/retry and stale-response handling. Reuse the contexts; presentation extraction does not need new storage. |
+| Audio preferences and playback | [AudioProvider / useAudioScope](../frontend/src/audio/AudioProvider.tsx), [AudioSettings](../frontend/src/audio/AudioSettings.tsx), [AudioMuteButton](../frontend/src/audio/AudioMuteButton.tsx) | Reuses account preference persistence; the shared workspace owns quick device mute. Session/playback handlers send explicit semantic events through scoped controls. Do not add Audio instances, FEN-driven sound effects, coach-expression audio or separate page sound schedulers. See [Audio](AUDIO.md). |
 | Preference save feedback | [PreferenceStatus](../frontend/src/PreferenceStatus.tsx) | Shared saving/error/loading/saved/idle precedence, retry action and reserved line. Heading or field placement; persistence and saved flags stay with the caller. |
 | Pending/unavailable content | [LoadingState / UnavailableState](../frontend/src/LoadState.tsx) | Compact/panel states with message-only announcements and separate caller-supplied headings/actions. Requests, recovery commands and link destinations remain with each screen. |
 | Empty content | [EmptyState](../frontend/src/EmptyState.tsx) | Lessons/Puzzles presentation for full sections, with compact activity/search variants. Callers supply titles, descriptions, icons and recovery actions. |
