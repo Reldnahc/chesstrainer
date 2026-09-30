@@ -4,6 +4,77 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Opening curriculum restructuring — September 30, 2026
+
+Chapter boundaries now follow distinct learning problems, with no standard
+chapter count. White Italian v2 has three substantially rebuilt chapters:
+quiet setup, completing development, and choosing the central break. The former
+standalone Two Knights setup is an optional comparison rather than a duplicate
+unit. Black Italian v3 has four chapters: its post-castling bishop plan becomes
+active instruction, while the connected central sequence stays together. King's
+Gambit v3 has four chapters: the Falkbeer countergambit separates from the bishop
+refusal, and the Modern chapter asks learners to apply its central-support plan.
+Later rehearsals start at their chapter's established position. Explicit Due
+enrollment still uses full line history and deduplicates shared positions.
+
+The source records explain retained, condensed and expanded material:
+[White Italian](ITALIAN_COURSE_SOURCES.md),
+[Black Italian](ITALIAN_BLACK_COURSE_SOURCES.md), and
+[King's Gambit](KINGS_GAMBIT_COURSE_SOURCES.md).
+These are deeper starter courses, not exhaustive opening repertoires.
+
+A separate Stockfish 18 authoring audit examined 104 unique position/move pairs,
+including rejected candidates, through 220 independent unrestricted/forced-root
+searches and 15 MultiPV position searches. Baseline searches used two million
+nodes; concerns were repeated at five or ten million nodes, reaching depths
+20–35. Hash was cleared between searches; concurrency was bounded to four
+processes, each with one thread and 64 MB hash. The audit distinguishes the
+premature early ...d5 pawn concession from a later sound ...d5 break; motivates
+Bxe6 before cxd4 to avoid ...Bg4; and identifies ...exf4 as the stronger Falkbeer
+reply than the classical ...e4 teaching branch. The latter is labeled honestly
+and linked to the already taught Modern transposition. These bounded searches
+are authoring evidence, not exhaustive proof or a production engine-budget
+change. Temporary probes and results remain outside Git.
+
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_italian_course.py backend/tests/test_italian_native.py backend/tests/test_italian_black_claims.py backend/tests/test_kings_gambit_claims.py backend/tests/test_study_lessons.py backend/tests/test_lesson_journey.py backend/tests/test_opening_sources.py backend/tests/test_opening_castling.py backend/tests/test_lesson_castling.py -q`:
+  **136 passed**, including native Stockfish, exact histories, branches,
+  rehearsal, snapshots and explicit enrollment. Two existing deprecation warnings.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_italian_white_claims.py -q`:
+  **10 passed**, checking defenders, blockers, material, recaptures, early versus
+  prepared ...d5, branch returns and chapter rehearsal anchors.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_italian_course.py -k content_identity -q`:
+  **3 passed, 11 deselected** after strengthening the publication fingerprints
+  to cover all three revised courses. Two existing deprecation warnings.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/italian-course.spec.ts tests/opening-courses.spec.ts tests/source-attribution.spec.ts --reporter=line`:
+  **30 passed** across desktop/mobile; wrapper exited zero and cleaned up its
+  server. Coverage includes every new chapter's guided moves, optional branches,
+  reload/return, anchored rehearsal, cold feedback boundaries, source attribution,
+  drag targets and source-game navigation without coach/control flashing.
+- `.venv/Scripts/python.exe .tools/check_curriculum_upgrade.py`: all three
+  actual previous course definitions passed a disposable-database upgrade check.
+  Saved lesson responses remained identical, old sessions continued with their
+  original revisions, and enrolled lines retained their original versions and
+  full histories while the library exposed the new revisions. This temporary
+  probe supplements the committed generic snapshot regression tests.
+- `npm.cmd --prefix frontend run build`: passed generated API agreement,
+  application/browser/contract type checks, seven style-boundary checks and the
+  production bundle. The existing large-chunk advisory remains. The source
+  archive and Vite bundle were refreshed after staging new content modules so
+  the downloadable source includes them.
+- `.venv/Scripts/ruff.exe check backend/trainer/study_lessons/courses backend/tests/test_italian_course.py backend/tests/test_italian_white_claims.py backend/tests/test_italian_black_claims.py backend/tests/test_kings_gambit_claims.py scripts/smoke_install.py`
+  and the same paths with `ruff format --check`: passed, 18 files formatted.
+  `git diff --check` passed.
+- Manually used an isolated production app to open the revised course library,
+  play Ng3 and d4 in the new White center chapter, and enter the prepared ...d5
+  comparison. Inspected desktop/mobile browser captures. Independent final
+  content/code review found no remaining actionable issues.
+
+Focused curriculum verification only; no full backend, account, coach, lab or
+Docker suite. The installation smoke assertion was updated to validate actual
+chapter metadata instead of imposing three chapters, but Docker smoke was not
+run. Production frontend code, API contracts and the lesson framework are
+unchanged. No push or deployment.
+
 ## Opening-course teaching-quality review — September 30, 2026
 
 Both new courses now use revision `2026-09-v2`; existing saved sessions remain

@@ -139,22 +139,30 @@ recommendations. No course starts an engine job or downloads material at runtime
 
 | Course | Side | Chapters | Source record |
 |---|---|---|---|
-| Italian Game · A quiet White repertoire | White | Develop and castle; prepare the center; meet the Two Knights | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
-| Italian Game · A practical Black repertoire | Black | Quiet development; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
-| King's Gambit · Active play with White | White | Accepted development; the ...g5 pawn chain; declined play and the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
+| Italian Game · A quiet White repertoire | White | Recognize the setup; finish development and adapt to threats; carry out and reassess the central break | [Italian sources](ITALIAN_COURSE_SOURCES.md) |
+| Italian Game · A practical Black repertoire | Black | Quiet development; choose a post-castling plan; meet c3/d4; respond to the Evans Gambit | [Black Italian sources](ITALIAN_BLACK_COURSE_SOURCES.md) |
+| King's Gambit · Active play with White | White | Modern Defense; the ...g5 pawn chain; bishop-first refusal; the Falkbeer countergambit | [King’s Gambit sources](KINGS_GAMBIT_COURSE_SOURCES.md) |
 
-The new courses are `italian-black-foundations` and `kings-gambit-foundations`,
-both revision `2026-09-v2`. Black decisions and rehearsal use Black orientation
+The current revisions are `2026-09-v2` for `italian-foundations`, and
+`2026-09-v3` for `italian-black-foundations` and `kings-gambit-foundations`.
+Black decisions and rehearsal use Black orientation
 and automatically play White’s intervening replies. All three course definitions
 are cached as immutable source data and returned as independent copies. Shared
-SAN authoring helpers produce the same validated content format; the original
-White Italian revision and saved progress remain unchanged.
+SAN authoring helpers produce the same validated content format. Existing saved
+sessions, enrolled lines and their earlier revisions retain their own snapshots.
 
 ### Reviewing authored course quality
 
 Legal histories and passing player tests establish that a course works, not that
 it teaches good chess. Before publishing or revising a course:
 
+- Choose chapter boundaries from the opening's actual decisions and learning
+  prerequisites. There is no standard chapter count. Split when a new pawn
+  structure, opponent plan or independently useful skill needs its own practice;
+  condense repeated move orders into a comparison when they reach the same plan.
+  Keep a connected tactical sequence together when splitting would hide its
+  consequences. Record what each chapter teaches and why it is a separate unit
+  in the course's source record.
 - Check the actual chosen move orders against identified instructional sources.
   An old game's legal score does not establish that its opening choices remain
   good recommendations. Separate historical play from taught continuations.
@@ -165,6 +173,12 @@ it teaches good chess. Before publishing or revising a course:
 - Explain the purpose of decisions and important tempting mistakes. Use existing
   returnable demonstrations for counterexamples; do not put deliberate mistakes
   into the learner's required answers or recall lines.
+- Give the learner a chance to apply the explanation. Purpose-based prompts may
+  scaffold a decision; explicit destinations belong in hints where practical.
+  A longer line or more prose is not evidence of better teaching. Later rehearsal
+  may begin at an already established position while retaining its complete legal
+  history. Optional Due enrollment still uses the complete source line and the
+  existing position-based deduplication; anchoring rehearsal does not change it.
 - End a line with a concrete plan grounded in that position: remaining development,
   king safety, central breaks and the opponent's resources. Avoid promising an
   advantage from development or an attack merely because the opening is a gambit.
@@ -178,14 +192,16 @@ it teaches good chess. Before publishing or revising a course:
 The September 2026 second review corrected substantive gaps in both new courses;
 their source records document the research, decisions and remaining boundaries.
 
-#### Original White Italian course
+#### White Italian course
 
-The bundled `italian-foundations` course (`2026-09-v1`) teaches White through three
-chapters: develop and castle, prepare the center, and meet the Two Knights. Its
-25 authored steps include a returnable opponent alternative, three contrasting
-historical game passages and independent rehearsal. Three short designated lines
-are available for optional enrollment; viewing or completing a chapter never
-adds them to Due automatically.
+The original pilot's repeated Two Knights setup is now a returnable comparison
+within the introduction. The later chapters connect development to bishop
+management and recapture choices, then actually play d4 and respond to Black's
+central resources. Short optional comparisons distinguish a premature break
+from a prepared one and require responding to a bishop threat rather than
+blindly repeating the setup. Later rehearsal starts from an established position,
+retaining its full legal history. Only designated lines are available for optional
+enrollment; viewing or completing a chapter never adds them to Due automatically.
 
 Mason–Lasker, Steinitz–von Bardeleben and Pollock–Schiffers (Hastings 1895) provide
 complete game context. Their scores come from the public-domain original

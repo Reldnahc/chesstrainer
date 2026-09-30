@@ -30,7 +30,15 @@ def study_before_restart(client, headers):
     } <= installed.keys()
     assert all(course["completed_chapters"] == 0 for course in courses)
     course = installed["italian-foundations"]
-    assert course["chapter_count"] == 3
+    detail = client.get(
+        f"/api/study/courses/{course['id']}",
+        params={"revision": course["revision"]},
+        headers=headers,
+    )
+    detail.raise_for_status()
+    chapters = detail.json()["chapters"]
+    assert course["chapter_count"] == len(chapters) and chapters
+    assert any(chapter["id"] == "quiet-development" for chapter in chapters)
     puzzles = client.get("/api/puzzles", headers=headers)
     puzzles.raise_for_status()
     assert puzzles.json()["available"] == 0 and puzzles.json()["sources"] == []

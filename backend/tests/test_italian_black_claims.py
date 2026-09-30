@@ -51,19 +51,58 @@ def test_f7_warning_shows_castling_adds_a_defender_before_any_capture():
     assert chapter.step(branch.next_step).position == branch.position
 
 
-def test_quiet_continuation_explains_real_bishop_exchange_tradeoffs():
-    chapter = course().chapter("quiet-development")
-    demo = chapter.step("quiet-plan")
-    board = demo.position.after(demo.moves).board()
-    assert chess.A5 in board.attackers(chess.BLACK, chess.B4)
-    assert chess.E6 in board.attackers(chess.BLACK, chess.C4)
-    assert chess.C4 in board.attackers(chess.WHITE, chess.E6)
-    assert chapter.step(demo.next_step).position.board().fen() == board.fen()
-    board.push_san("Bxe6")
-    board.push_san("fxe6")
+def test_quiet_plan_adds_pawn_restraint_without_claiming_b4_is_impossible():
+    restrained = _after("quiet-bishop-plan", "plan-restrain")
+    assert {chess.A5, chess.C5} <= set(restrained.attackers(chess.BLACK, chess.B4))
+    # White has just played Nbd2; examine White's legal resources before it.
+    step = course().chapter("quiet-bishop-plan").step("plan-restrain")
+    after_a5 = step.position.after((step.choices[0].uci,)).board()
+    assert chess.Move(chess.B2, chess.B4) in after_a5.legal_moves
+    bishop = course().chapter("quiet-bishop-plan").step("plan-bishop")
+    offered = bishop.position.after((bishop.choices[0].uci,)).board()
+    assert chess.E6 in offered.attackers(chess.BLACK, chess.C4)
+    assert chess.C4 in offered.attackers(chess.WHITE, chess.E6)
+    assert offered.parse_san("Bb3") in offered.legal_moves
+
+
+def test_quiet_plan_explains_real_recapture_costs_without_an_instant_rook_attack():
+    before = _before("quiet-bishop-plan", "plan-recapture")
+    assert [move.uci() for move in before.legal_moves if move.to_square == chess.E6] == ["f7e6"]
+    board = _after("quiet-bishop-plan", "plan-recapture")
     assert len(board.pieces(chess.PAWN, chess.BLACK) & chess.BB_FILE_E) == 2
     assert not board.pieces(chess.PAWN, chess.BLACK) & chess.BB_FILE_F
     assert board.pieces(chess.PAWN, chess.WHITE) & chess.BB_FILE_F
+    assert {chess.D5, chess.F5} <= set(board.attacks(chess.E6))
+    assert chess.E5 not in board.attacks(chess.E6)
+    assert chess.E6 not in board.attacks(chess.E5)
+    _piece(board, chess.F6, chess.KNIGHT, chess.BLACK)
+    assert chess.F2 not in board.attacks(chess.F8)
+    _piece(board, chess.C5, chess.BISHOP, chess.BLACK)
+    for piece_type in chess.PIECE_TYPES:
+        assert len(board.pieces(piece_type, chess.WHITE)) == len(
+            board.pieces(piece_type, chess.BLACK)
+        )
+
+
+def test_quiet_plan_rehearses_new_decisions_from_the_learned_castled_position():
+    definition = course()
+    old_setup = definition.line("black-quiet-italian")
+    plan = definition.line("black-quiet-bishop-plan")
+    assert plan.position == old_setup.position.after(old_setup.moves)
+    chapter = definition.chapter("quiet-bishop-plan")
+    assert chapter.step("plan-recall").position == plan.position
+    board = plan.position.board()
+    decisions = []
+    for uci in plan.moves:
+        if board.turn == chess.BLACK:
+            decisions.append((board.fen(), uci))
+        board.push_uci(uci)
+    assert decisions == [
+        (step.position.board().fen(), step.choices[0].uci)
+        for step in chapter.steps
+        if step.kind == "decision"
+    ]
+    assert board.fen() == chapter.step("plan-summary").position.board().fen()
 
 
 def test_central_sequence_checks_exchanges_breaks_and_castles_as_described():
@@ -121,6 +160,30 @@ def test_evans_retreat_is_prepared_and_keeps_material_equal():
     final = line.position.after(line.moves).board()
     assert final.king(chess.WHITE) == chess.G1
     assert final.king(chess.BLACK) == chess.G8
+
+
+def test_evans_rehearsal_does_not_introduce_untaught_development_decisions():
+    definition = course()
+    chapter = definition.chapter("evans-declined")
+    guided = {
+        (step.position.board().fen(), choice.uci)
+        for step in chapter.steps
+        if step.kind == "decision"
+        for choice in step.choices
+    }
+    line = definition.line("black-evans-declined")
+    board = line.position.board()
+    evans_seen = False
+    for uci in line.moves:
+        if uci == "b2b4":
+            evans_seen = True
+        if evans_seen and board.turn == chess.BLACK:
+            assert (board.fen(), uci) in guided
+        board.push_uci(uci)
+    developed = _after("evans-declined", "evans-develop")
+    assert chess.F6 in developed.attackers(chess.BLACK, chess.E4)
+    assert chess.D3 in developed.attackers(chess.WHITE, chess.E4)
+    assert _after("evans-declined", "evans-castle").fen() == board.fen()
 
 
 def test_historical_annotations_describe_the_exact_saved_ply():

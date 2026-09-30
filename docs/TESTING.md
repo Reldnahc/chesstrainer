@@ -50,13 +50,15 @@ Stockfish for a bounded gross-error check of guided decisions, not as the lesson
 grader or a certification of instructional quality. Course changes also require
 the [authored-content review](STUDY.md#reviewing-authored-course-quality): independent
 source comparison, critical opponent replies and the plans at each line's end.
-`test_italian_black_claims.py` and `test_kings_gambit_claims.py` verify
+`test_italian_white_claims.py`, `test_italian_black_claims.py` and
+`test_kings_gambit_claims.py` verify
 concrete teaching claims against legal positions and historical endpoints.
 `opening-courses.spec.ts` exercises both new courses on desktop and mobile,
 including Black orientation, source-game exploration, rehearsal, reload and
-side-appropriate explicit enrollment. `italian-course.spec.ts` exercises the
-original installed White course on both
-viewports, including exact returns, reload and optional enrollment.
+side-appropriate explicit enrollment. It also plays the post-castling Black plan
+and Falkbeer chapter, including their anchored rehearsals and comparison branches.
+`italian-course.spec.ts` exercises the installed White course on both
+viewports, including central decisions, exact returns, reload and optional enrollment.
 It also checks legal destinations during the first drag after lesson input is
 enabled, with both Natural and Still motion, across consecutive guided moves.
 

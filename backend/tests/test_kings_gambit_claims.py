@@ -32,13 +32,23 @@ def test_modern_defense_explains_counterdevelopment_and_actual_pawn_balance():
     assert_piece(resolved, "c6", "n")
     assert_piece(resolved, "b5", "B")
     assert resolved.is_pinned(chess.BLACK, chess.C6)
-    final = after_choice(chapter, "finish-development")
+    pinned = after_choice(chapter, "finish-development")
+    assert_piece(pinned, "g4", "b")
+    assert chess.F3 in pinned.attacks(chess.G4)
+    assert pinned.piece_at(chess.C3) is None
+    final = after_choice(chapter, "support-d4")
     assert_piece(final, "g1", "K")
     assert_piece(final, "g8", "k")
     assert_piece(final, "f1", "R")
     assert_piece(final, "f4", "p")
     assert_piece(final, "d2", "N")
     assert_piece(final, "d4", "P")
+    assert_piece(final, "c3", "P")
+    assert chess.D4 in final.attacks(chess.C3)
+    assert chess.G4 not in final.attacks(chess.C3)
+    # Supporting d4 has not removed the relative pin of Nf3 against Qd1.
+    assert chess.F3 in final.attacks(chess.G4)
+    assert not final.is_pinned(chess.WHITE, chess.F3)
     assert len(final.pieces(chess.PAWN, chess.WHITE)) == 6
     assert len(final.pieces(chess.PAWN, chess.BLACK)) == 6
     # The rook has a file to work on, not immediate contact with f7 through f4.
@@ -108,11 +118,109 @@ def test_declined_and_countergambit_keep_distinct_centers():
     assert_piece(restored, "e4", "P")
     assert_piece(restored, "f4", "P")
     assert_piece(restored, "b6", "b")
-    falkbeer = chapter.step("falkbeer-summary").position.board()
+    falkbeer = course().chapter("falkbeer-countergambit").step("falkbeer-knight").position.board()
     assert_piece(falkbeer, "d5", "P")
     assert_piece(falkbeer, "f4", "P")
     assert_piece(falkbeer, "e4", "n")
     assert falkbeer.piece_at(chess.D3) is None
+
+
+def test_falkbeer_has_its_own_recall_and_does_not_repeat_the_bishop_first_chapter():
+    bundled = course()
+    chapter = bundled.chapter("falkbeer-countergambit")
+    line = bundled.line("falkbeer-center")
+    assert len(line.position.moves) == 4
+    assert line.position == chapter.step("falkbeer-take").position
+    assert line.position == chapter.step("falkbeer-rehearsal").position
+    assert chapter.step("falkbeer-rehearsal").line_id == line.id
+    assert not any(
+        step.id.startswith("falkbeer") for step in bundled.chapter("declined-center").steps
+    )
+    assert line.moves[0] == "e4d5"
+    assert line.moves[-1] == "c1e3"
+    assert line.position.after(line.moves) == chapter.step("falkbeer-summary").position
+    # Alternative move orders and the exchange illustration are not forced recall.
+    assert chapter.step("falkbeer-modern").moves[0] == "e5f4"
+    assert line.moves[1] == "e5e4"
+    assert chapter.step("falkbeer-resolution").moves[0] == "e4c3"
+    assert len(line.moves) == 13
+
+
+def test_falkbeer_removes_the_pawn_wedge_before_developing_the_knight():
+    chapter = course().chapter("falkbeer-countergambit")
+    wedge = chapter.step("falkbeer-challenge").position.board()
+    assert_piece(wedge, "e4", "p")
+    assert {chess.D3, chess.F3} <= set(wedge.attacks(chess.E4))
+    ignored = wedge.copy()
+    ignored.push_san("Nf3")
+    ignored.push_san("exf3")
+    assert len(ignored.pieces(chess.KNIGHT, chess.WHITE)) == 1
+    resolved = after_choice(chapter, "falkbeer-exchange")
+    assert_piece(resolved, "e4", "n")
+    assert chess.F3 not in resolved.attacks(chess.E4)
+    assert_piece(resolved, "d5", "P")
+    assert_piece(resolved, "f4", "P")
+    assert len(resolved.pieces(chess.PAWN, chess.WHITE)) == 7
+    assert len(resolved.pieces(chess.PAWN, chess.BLACK)) == 6
+    developed = after_choice(chapter, "falkbeer-knight")
+    assert chess.H4 in developed.attacks(chess.F3)
+
+
+def test_falkbeer_pin_changes_when_the_queens_and_bishop_intervene():
+    chapter = course().chapter("falkbeer-countergambit")
+    pinned = after_choice(chapter, "falkbeer-queen")
+    assert_piece(pinned, "e2", "Q")
+    assert pinned.is_pinned(chess.BLACK, chess.E4)
+    assert chess.E4 in pinned.attacks(chess.F5)
+    shielded = after_choice(chapter, "falkbeer-queenside-knight")
+    assert_piece(shielded, "e7", "q")
+    assert not shielded.is_pinned(chess.BLACK, chess.E4)
+    assert chess.E4 in shielded.attacks(chess.C3)
+    assert chess.E4 in shielded.attacks(chess.E2)
+    developed = after_choice(chapter, "falkbeer-bishop")
+    assert_piece(developed, "e3", "B")
+    assert chess.E4 not in developed.attacks(chess.E2)
+    assert chess.C5 in developed.attacks(chess.E3)
+    assert chess.Move(chess.E4, chess.C3) in developed.legal_moves
+    assert developed.piece_at(chess.C1) is None
+    assert developed.piece_at(chess.D1) is None
+    # The f1-bishop has not developed; the lesson must not imply all pieces are active.
+    assert_piece(developed, "f1", "B")
+
+
+def test_falkbeer_transposes_to_modern_without_replacing_its_history():
+    bundled = course()
+    comparison = bundled.chapter("falkbeer-countergambit").step("falkbeer-modern")
+    other_history = comparison.position.after(comparison.moves)
+    modern = bundled.chapter("accepted-development").step("develop-bishop").position
+    assert other_history.moves != modern.moves
+    left, right = other_history.board(), modern.board()
+    assert left.board_fen() == right.board_fen()
+    assert left.turn == right.turn == chess.WHITE
+    assert left.castling_rights == right.castling_rights
+    assert left.ep_square == right.ep_square
+    assert left.parse_san("Bb5+") in left.legal_moves
+
+
+def test_falkbeer_exchange_comparison_counts_minor_pieces_and_removes_castling():
+    chapter = course().chapter("falkbeer-countergambit")
+    demonstration = chapter.step("falkbeer-resolution")
+    attacked = demonstration.position.after(demonstration.moves[:1]).board()
+    assert chess.E2 in attacked.attacks(chess.C3)
+    counterattack = demonstration.position.after(demonstration.moves[:2]).board()
+    assert chess.E7 in counterattack.attacks(chess.C5)
+    exchanged = demonstration.position.after(demonstration.moves[:3]).board()
+    assert exchanged.is_check()
+    final = demonstration.position.after(demonstration.moves).board()
+    assert not final.pieces(chess.QUEEN, chess.WHITE)
+    assert not final.pieces(chess.QUEEN, chess.BLACK)
+    for side in (chess.WHITE, chess.BLACK):
+        assert len(final.pieces(chess.BISHOP, side)) == 1
+        assert len(final.pieces(chess.KNIGHT, side)) == 1
+    assert len(final.pieces(chess.PAWN, chess.WHITE)) == 7
+    assert len(final.pieces(chess.PAWN, chess.BLACK)) == 6
+    assert_piece(final, "e2", "K")
+    assert not final.has_castling_rights(chess.WHITE)
 
 
 def test_declined_capture_warning_distinguishes_mate_from_the_other_legal_defense():

@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
 
 const courseId = "italian-foundations";
-const courseRevision = "2026-09-v1";
+const courseRevision = "2026-09-v2";
 const coursePath = `/study/openings/courses/${courseId}?revision=${courseRevision}`;
 const savedMotion = new WeakMap<Page, Schema["MotionPreferences"]>();
 const enrolled = new WeakMap<Page, string[]>();
@@ -122,9 +122,32 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   expect(anchor.step.id).toBe("black-choice");
   await command(page, "Explore alternative");
   const alternative = await command(page, "Play continuation");
-  expect(alternative.playback.map(frame => frame.uci)).toEqual(["g8f6", "d2d3", "f8c5"]);
-  const branch = await command(page, "Continue");
+  expect(alternative.playback.map(frame => frame.uci)).toEqual(["g8f6"]);
+  await command(page, "Continue");
+  const defended = await move(page, "d2d3");
+  expect(defended.playback.map(frame => frame.uci)).toEqual(["d2d3", "f8c5"]);
+  let branch = await command(page, "Continue");
+  let sourceInspected = false;
+  for (let steps = 0; branch.actions.includes("continue") && steps < 12; steps++) {
+    if (branch.step.kind === "game_excerpt" && branch.step.phase === "complete" && !sourceInspected) {
+      const game = await command(page, "Explore full game");
+      expect(game.game?.title).toContain("Pollock–Schiffers");
+      expect(game.game?.attributions.length).toBeGreaterThan(0);
+      await expect(page.locator(".lesson-attributions")).toContainText(game.game!.attributions[0].text);
+      await command(page, "From the beginning");
+      await command(page, "Next game move");
+      const closed = await command(page, "Return to lesson");
+      expect(closed.history).toEqual(branch.history);
+      expect(closed.fen).toBe(branch.fen);
+      branch = closed;
+      sourceInspected = true;
+    } else {
+      branch = await command(page, ["demonstration", "game_excerpt"].includes(branch.step.kind) && branch.step.phase === "ready" ? "Play continuation" : "Continue");
+    }
+  }
+  expect(sourceInspected).toBe(true);
   expect(branch.branch).not.toBeNull();
+  expect(branch.actions).not.toContain("continue");
   await page.reload();
   await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
   expect((await saved(page, session.id)).history).toEqual(branch.history);
@@ -134,19 +157,11 @@ test("the real Italian course teaches a quiet line, returns from its alternative
   await command(page, "Continue");
   await command(page, "Play continuation");
   await command(page, "Continue");
+  await move(page, "d2d3");
+  await command(page, "Continue");
   const castled = await move(page, "e1g1");
   expect(castled.playback.map(frame => frame.uci)).toEqual(["e1g1", "d7d6"]);
   await command(page, "Continue");
-  const excerpt = await command(page, "Play continuation");
-  expect(excerpt.step.id).toBe("quiet-game");
-  await expect(page.locator(".coach-message")).toContainText(excerpt.step.text);
-  const game = await command(page, "Explore full game");
-  expect(game.game?.attributions.length).toBeGreaterThan(0);
-  await expect(page.locator(".lesson-attributions")).toContainText(game.game!.attributions[0].text);
-  await command(page, "From the beginning");
-  await command(page, "Next game move");
-  const closed = await command(page, "Return to lesson");
-  expect(closed.history).toEqual(excerpt.history);
   const rehearsal = await command(page, "Continue");
   expect(rehearsal.step.id).toBe("quiet-recall");
   await expect(page.getByRole("button", { name: "Hint", exact: true })).toHaveCount(0);
@@ -187,7 +202,7 @@ test("the real Italian course teaches a quiet line, returns from its alternative
 });
 
 test("full-game controls interrupt Mason-Lasker playback without waiting for its timer", async ({ page }) => {
-  let session = await start(page, "quiet-development");
+  let session = await start(page, "finish-development");
   for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
     const label = session.actions.includes("show_move") ? "Show move"
       : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
@@ -244,7 +259,7 @@ test("full-game seeking keeps the coach and controls steady while serializing re
   expect(preference.ok()).toBe(true);
   const originalCoach: Schema["CoachPreferences"] = await preference.json();
   try {
-    let session = await start(page, "quiet-development");
+    let session = await start(page, "finish-development");
     for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
       const label = session.actions.includes("show_move") ? "Show move"
         : session.step.kind === "demonstration" && session.step.phase === "ready" ? "Play continuation" : "Continue";
@@ -360,9 +375,9 @@ test("full-game seeking keeps the coach and controls steady while serializing re
   }
 });
 
-test("the other Italian chapters show distinct sourced game passages with exact returns from full-game playback", async ({ page }, info) => {
+test("the development and central-break chapters show distinct sourced game passages with exact returns from full-game playback", async ({ page }, info) => {
   const games = new Set<string>();
-  for (const chapterId of ["central-break", "two-knights"]) {
+  for (const chapterId of ["central-break", "finish-development"]) {
     let session = await start(page, chapterId);
     // Walk authored guidance to its real game passage; no fixture curriculum.
     for (let steps = 0; session.step.kind !== "game_excerpt" && steps < 24; steps++) {
@@ -392,3 +407,97 @@ test("the other Italian chapters show distinct sourced game passages with exact 
   }
   expect(games.size).toBe(2);
 });
+
+
+const continuationChapters: {
+  id: string;
+  anchor: string[];
+  moves: string[];
+  branchMoves: Record<string, string>;
+  branches: number;
+}[] = [
+  {
+    id: "finish-development",
+    anchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6"],
+    moves: ["c2c3", "f1e1", "c4b3", "b1d2", "d2f1", "c1e3", "f1e3"],
+    branchMoves: { "capture-break": "e4d5", "win-center-pawn": "f3e5", "recover-knight": "e1e5", "save-bishop": "b3c2" },
+    branches: 2,
+  },
+  {
+    id: "central-break",
+    anchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6", "c2c3", "e8g8", "f1e1", "a7a6", "c4b3", "c5a7", "b1d2", "h7h6", "d2f1", "f8e8"],
+    moves: ["f1g3", "d3d4", "b3e6", "c3d4", "c1e3"],
+    branchMoves: { "answer-active-break": "d4e5", "centralize-under-pressure": "f3d4" },
+    branches: 1,
+  },
+];
+
+for (const content of continuationChapters) {
+  test(`${content.id} teaches the continuation and counterplay before anchored recall`, async ({ page }) => {
+    const before = await studyIds(page);
+    const dueBefore = await (await page.request.get("/api/review/count")).json();
+    let session = await start(page, content.id);
+    const anchorMoves = content.anchor;
+    expect(session.history.map(frame => frame.uci)).toEqual(anchorMoves);
+    const initial = session;
+    await page.reload();
+    session = await saved(page, session.id);
+    expect(session.history).toEqual(initial.history);
+    expect(session.fen).toBe(initial.fen);
+    const mainMoves = content.moves;
+    const branchMoves = content.branchMoves;
+    let decisions = 0;
+    let branchAnchor: Schema["LessonSessionView"] | null = null;
+    const explored = new Set<string>();
+    const attemptedBranches = new Set<string>();
+    for (let step = 0; session.step.kind !== "rehearsal" && step < 80; step++) {
+      if (session.step.kind === "branch" && !session.branch && !explored.has(session.step.id)) {
+        explored.add(session.step.id);
+        branchAnchor = session;
+        session = await command(page, "Explore alternative");
+      } else if (session.branch && !session.actions.includes("continue") && !session.actions.includes("move")) {
+        expect(branchAnchor).not.toBeNull();
+        const terminal = session;
+        await page.reload();
+        await expect(page.getByRole("button", { name: "Return to main line", exact: true })).toBeVisible();
+        expect((await saved(page, session.id)).history).toEqual(terminal.history);
+        session = await command(page, "Return to main line");
+        expect(session.history).toEqual(branchAnchor!.history);
+        expect(session.fen).toBe(branchAnchor!.fen);
+        expect(session.step.id).toBe(branchAnchor!.step.id);
+        branchAnchor = null;
+      } else if (session.actions.includes("move")) {
+        expect(session.fen.split(" ")[1]).toBe("w");
+        const uci = session.branch ? branchMoves[session.step.id] : mainMoves[decisions++];
+        expect(uci).toBeTruthy();
+        if (session.branch) attemptedBranches.add(session.step.id);
+        session = await move(page, uci);
+      } else {
+        session = await command(page, ["demonstration", "game_excerpt"].includes(session.step.kind) && session.step.phase === "ready" ? "Play continuation" : "Continue");
+      }
+    }
+    expect(decisions).toBe(mainMoves.length);
+    expect([...attemptedBranches].sort()).toEqual(Object.keys(branchMoves).sort());
+    expect(explored.size).toBe(content.branches);
+    expect(branchAnchor).toBeNull();
+    expect(session.step.kind).toBe("rehearsal");
+    expect(session.history.map(frame => frame.uci)).toEqual(anchorMoves);
+    expect(session.step.annotations).toEqual({ squares: [], arrows: [] });
+    expect(session.step.text).toBe("Play this line from memory.");
+    const rehearsal = session;
+    await page.reload();
+    await expect(page.locator(".coach-message")).toHaveText("Play this line from memory.");
+    await expect(page.getByRole("button", { name: "Hint", exact: true })).toHaveCount(0);
+    session = await saved(page, session.id);
+    expect(session.history).toEqual(rehearsal.history);
+    expect(session.playback).toEqual([]);
+    for (const uci of mainMoves) session = await move(page, uci);
+    if (session.status !== "completed") session = await command(page, "Continue");
+    expect(session.status).toBe("completed");
+    expect(session.failed).toBe(false);
+    expect(session.assisted).toBe(false);
+    expect(session.history.slice(0, rehearsal.history.length)).toEqual(rehearsal.history);
+    expect(await studyIds(page)).toEqual(before);
+    expect(await (await page.request.get("/api/review/count")).json()).toEqual(dueBefore);
+  });
+}

@@ -2,17 +2,19 @@
 
 from trainer.study_lessons.content import CourseDefinition, GameAnnotation
 from trainer.study_lessons.courses.authoring import decision, demo, position, step
+from trainer.study_lessons.courses.kings_gambit_falkbeer import chapter as falkbeer_chapter
+from trainer.study_lessons.courses.kings_gambit_falkbeer import recall_line as falkbeer_line
 from trainer.study_lessons.courses.kings_gambit_games import source_games
 
 GAMBIT = "e4 e5 f4"
 ACCEPTED = GAMBIT + " exf4 Nf3"
 MODERN_CENTER = ACCEPTED + " d5 exd5 Nf6 Bb5+ c6 dxc6 Nxc6 d4 Bd6"
-MODERN = MODERN_CENTER + " O-O O-O Nbd2"
+MODERN_DEVELOPMENT = MODERN_CENTER + " O-O O-O Nbd2"
+MODERN = MODERN_DEVELOPMENT + " Bg4 c3"
 CHAIN_CENTER = ACCEPTED + " g5 h4 g4 Ne5 Nf6 Bc4 d5 exd5 Bd6"
 CHAIN = CHAIN_CENTER + " d4 Nh5 O-O"
 DECLINED_SETUP = GAMBIT + " Bc5 Nf3 d6 c3 Nf6"
 DECLINED = DECLINED_SETUP + " d4 exd4 cxd4 Bb6 Nc3"
-FALKBEER = GAMBIT + " d5 exd5 e4"
 
 
 def course():
@@ -92,7 +94,7 @@ def course():
             "explanation",
             "accepted-welcome",
             "Offer a pawn, keep a plan",
-            "The King's Gambit offers the f-pawn to draw Black's e-pawn away from the center. White wants development and central space; Black can counterattack before White castles. We will learn one response to a central break, one to g5, and one to a declined gambit.",
+            "The King's Gambit offers the f-pawn to draw Black's e-pawn away from the center. White wants development and central space; Black can counterattack before White castles. We will study the Modern Defense, the g5 pawn chain, and two distinct refusals: Bc5 and the Falkbeer countergambit. These are selected responses, not every possible defense.",
             next_step="offer-pawn",
         ),
         demo(
@@ -186,16 +188,27 @@ def course():
             "Develop the b1-knight to d2. It reinforces f3 and leaves c3 free for a pawn that can support d4.",
             MODERN_CENTER + " O-O O-O",
             "Nbd2",
+            "Bg4",
+            "support-d4",
+            "Nbd2 completes the knights' development. Black develops Bg4, pinning Nf3 against your queen. Carry out the support plan while keeping that pin in mind.",
+            "Move the knight from b1 to d2.",
+        ),
+        decision(
+            "support-d4",
+            "Use the square you kept free",
+            "Use the c-pawn to support d4. You deliberately left c3 free when developing Nb1; now put that plan into practice.",
+            MODERN_DEVELOPMENT + " Bg4",
+            "c3",
             None,
             "accepted-summary",
-            "Nbd2 completes the knights' development. It blocks the c1-bishop for now, so moving that knight again or developing the bishop on another diagonal will be part of your next plan.",
-            "Move the knight from b1 to d2.",
+            "c3 supports d4. Bg4 still pins Nf3 against your queen, and Nd2 still blocks Bc1: supporting the center does not finish development or remove Black's threats.",
+            "Move c2 to c3.",
         ),
         step(
             "explanation",
             "accepted-summary",
             "Use the center without rushing",
-            "Material is equal. Plan c3 to support d4, then bring the c1-bishop and queen into play. Nd2 currently blocks that bishop; moving the knight to c4 could also challenge Bd6, which defends f4. Watch for Black's Bg4 pin against Nf3 rather than expecting to carry out the plan uninterrupted.",
+            "Material is equal and c3 now supports d4. Your queen and c1-bishop still need useful squares. Nd2 blocks that bishop; moving the knight to c4 could clear the diagonal and challenge Bd6, which defends f4. Black's Bg4 pin is already on the board, so moving Nf3 without checking the queen behind it would be careless.",
             MODERN,
             next_step="accepted-rehearsal",
         ),
@@ -343,68 +356,14 @@ def course():
             "explanation",
             "declined-welcome",
             "Black can refuse the offer",
-            "You cannot force Black to accept a gambit. Against Bc5, develop and prepare a central break. The optional branch shows a different refusal: d5 challenges the center immediately.",
+            "You cannot force Black to accept a gambit. Against Bc5, cover the queen-check square and prepare a central break. This chapter follows the bishop-first refusal; the Falkbeer countergambit has its own chapter because it creates a different center.",
             next_step="declined-arrival",
         ),
         demo(
             "declined-arrival",
-            "Reach Black's choice",
-            "After f4, Black can capture, develop a bishop, or strike at the center.",
-            "",
-            GAMBIT,
-            "declined-choice",
-        ),
-        step(
-            "branch",
-            "declined-choice",
-            "Development or counterattack",
-            "Continue for Bc5. Explore the Falkbeer d5 response if you want to compare the immediate central counterattack, then return to this position.",
-            GAMBIT,
-            branch_start="falkbeer-arrival",
-            next_step="declined-bishop",
-        ),
-        demo(
-            "falkbeer-arrival",
-            "Meet the Falkbeer",
-            "Black plays d5. White takes on d5, but Black pushes e4 instead of immediately recovering the pawn.",
-            GAMBIT,
-            FALKBEER,
-            "falkbeer-challenge",
-        ),
-        decision(
-            "falkbeer-challenge",
-            "Challenge the advanced center",
-            "Use d3 to challenge the black pawn on e4.",
-            FALKBEER,
-            "d3",
-            "Nf6",
-            "falkbeer-exchange",
-            "d3 attacks e4. Black develops Nf6, which can recapture there.",
-            "Move d2 to d3.",
-        ),
-        decision(
-            "falkbeer-exchange",
-            "Trade the central pawn",
-            "Capture e4 with the d-pawn in this demonstration line.",
-            FALKBEER + " d3 Nf6",
-            "dxe4",
-            "Nxe4",
-            "falkbeer-summary",
-            "The advanced e-pawn is gone, but Black has a knight on e4. This countergambit is about central activity, not defending a pawn on f4.",
-            "Move the pawn from d3 to e4.",
-        ),
-        step(
-            "explanation",
-            "falkbeer-summary",
-            "A different center needs a different plan",
-            "Your f-pawn remains on f4 and your e-pawn has reached d5. Black has put a knight on e4; develop Nf3 next and pay attention to checks along the open e-file. Return to the branch point for Bc5: the countergambit demands its own plan, not the pawn-chain moves from the previous chapter.",
-            FALKBEER + " d3 Nf6 dxe4 Nxe4",
-        ),
-        demo(
-            "declined-bishop",
             "The bishop-first refusal",
-            "Bc5 develops along the diagonal toward f2 and g1. Since your f-pawn has left f2, the bishop already affects your king's safety. First cover h4, where the queen could give check.",
-            GAMBIT,
+            "Bc5 develops along the diagonal toward f2 and g1. Since your f-pawn has left f2, the bishop affects your king's safety. First cover h4, where the queen could give check.",
+            "",
             GAMBIT + " Bc5",
             "declined-trap-choice",
         ),
@@ -515,9 +474,9 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="kings-gambit-foundations",
-            revision="2026-09-v2",
+            revision="2026-09-v3",
             title="King's Gambit · Active play with White",
-            description="Meet a central counterattack, challenge the g5 pawn chain, and build a center when Black declines. Three short lines explain the threats behind the moves, with trap comparisons and two contrasting historical games.",
+            description="Meet the Modern Defense, challenge the g5 pawn chain, build a center against Bc5, and untangle the Falkbeer countergambit. Separate chapters follow the different decisions each defense demands, with comparisons and two contrasting historical games.",
             learner_color="white",
             attributions=[
                 dict(
@@ -543,14 +502,16 @@ def course():
                     ),
                     ("declined-center", "King's Gambit Declined · prepare d4", DECLINED, "C30"),
                 )
-            ],
+            ]
+            + [falkbeer_line()],
             chapters=[
                 dict(id=identity, title=title, entry_step=steps[0]["id"], steps=steps)
                 for identity, title, steps in (
                     ("accepted-development", "A pawn for active play", accepted_steps),
                     ("pawn-chain", "Challenge the pawn chain", chain_steps),
-                    ("declined-center", "When Black declines", declined_steps),
+                    ("declined-center", "Build a center against Bc5", declined_steps),
                 )
-            ],
+            ]
+            + [falkbeer_chapter()],
         )
     )

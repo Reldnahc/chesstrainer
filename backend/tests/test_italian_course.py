@@ -313,8 +313,31 @@ def test_illustrative_passages_support_their_specific_board_claims():
     assert castled.king(chess.WHITE) == chess.G1 and castled.king(chess.BLACK) == chess.C8
 
 
-def test_original_italian_revision_remains_compatible_with_saved_progress():
-    # Shared authoring helpers/new courses must not rewrite an already shipped revision.
-    course = pilot()
-    assert course.revision == "2026-09-v1"
-    assert fingerprint(course) == "83e7c311667cfc663063943a34ef28d418038463506168dcfe275a9161e9df1a"
+@pytest.mark.parametrize(
+    "course_id, revision, content_hash",
+    (
+        (
+            "italian-foundations",
+            "2026-09-v2",
+            "24fc8d981a2877da78707070ef8e1f33d0375e26b19251b139b7801b7c53f8e2",
+        ),
+        (
+            "italian-black-foundations",
+            "2026-09-v3",
+            "8cabe1539ed054cc969607652ed564d51411aedbdd2046c5dc6d73f2410c16b7",
+        ),
+        (
+            "kings-gambit-foundations",
+            "2026-09-v3",
+            "3df293a3335fa108b6b075883cb898e1cc98b153a6508691f1242b09779769dc",
+        ),
+    ),
+)
+def test_published_curriculum_revisions_keep_their_content_identity(
+    course_id, revision, content_hash
+):
+    # Intentional edits require a new revision and hash together. A refactor must
+    # not silently change content already saved under a published revision.
+    course = installed_course(course_id)
+    assert course.revision == revision
+    assert fingerprint(course) == content_hash

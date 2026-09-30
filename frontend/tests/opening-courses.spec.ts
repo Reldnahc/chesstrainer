@@ -1,19 +1,42 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
 
-const revision = "2026-09-v2";
-const courses = [
+type CourseJourney = {
+  id: string;
+  revision: string;
+  color: "white" | "black";
+  chapter: string;
+  moves: string[];
+  line: string;
+  branches: number;
+  sourceGame: boolean;
+  rehearsalAnchor?: string[];
+};
+const courses: CourseJourney[] = [
   {
-    id: "italian-black-foundations", color: "black", chapter: "quiet-development",
+    id: "italian-black-foundations", revision: "2026-09-v3", color: "black", chapter: "quiet-development",
     moves: ["e7e5", "b8c6", "f8c5", "g8f6", "d7d6", "e8g8"],
-    line: "black-quiet-italian",
+    line: "black-quiet-italian", branches: 1, sourceGame: true,
   },
   {
-    id: "kings-gambit-foundations", color: "white", chapter: "pawn-chain",
-    moves: ["h2h4", "f3e5", "f1c4", "e4d5", "d2d4", "e1g1"],
-    line: "challenge-pawn-chain",
+    id: "italian-black-foundations", revision: "2026-09-v3", color: "black", chapter: "quiet-bishop-plan",
+    moves: ["a7a5", "c8e6", "f7e6"],
+    line: "black-quiet-bishop-plan", branches: 0, sourceGame: false,
+    // Rehearsal retains the opening history and automatically plays White's Re1.
+    rehearsalAnchor: ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "d2d3", "g8f6", "e1g1", "d7d6", "c2c3", "e8g8", "f1e1"],
   },
-] as const;
+  {
+    id: "kings-gambit-foundations", revision: "2026-09-v3", color: "white", chapter: "pawn-chain",
+    moves: ["h2h4", "f3e5", "f1c4", "e4d5", "d2d4", "e1g1"],
+    line: "challenge-pawn-chain", branches: 1, sourceGame: true,
+  },
+  {
+    id: "kings-gambit-foundations", revision: "2026-09-v3", color: "white", chapter: "falkbeer-countergambit",
+    moves: ["e4d5", "d2d3", "d3e4", "g1f3", "d1e2", "b1c3", "c1e3"],
+    line: "falkbeer-center", branches: 2, sourceGame: false,
+    rehearsalAnchor: ["e2e4", "e7e5", "f2f4", "d7d5"],
+  },
+];
 
 async function saved(page: Page, id: string): Promise<Schema["LessonSessionView"]> {
   const response = await page.request.get(`/api/study/lesson-sessions/${id}`);
@@ -48,7 +71,7 @@ async function studyIds(page: Page) {
 }
 
 for (const content of courses) {
-  test(`${content.id} teaches its own side and preserves source exploration without automatic recalls`, async ({ page }, info) => {
+  test(`${content.id}/${content.chapter} teaches its own side and preserves exploration without automatic recalls`, async ({ page }, info) => {
     const preferences = await page.request.get("/api/preferences/motion");
     expect(preferences.ok()).toBe(true);
     const originalMotion: Schema["MotionPreferences"] = await preferences.json();
@@ -57,14 +80,14 @@ for (const content of courses) {
       expect((await page.request.put("/api/preferences/motion", { data: { motion: "still" } })).ok()).toBe(true);
       const before = await studyIds(page);
       const dueBefore = await (await page.request.get("/api/review/count")).json();
-      const detail = await page.request.get(`/api/study/courses/${content.id}?revision=${revision}`);
+      const detail = await page.request.get(`/api/study/courses/${content.id}?revision=${content.revision}`);
       expect(detail.ok()).toBe(true);
       const course: Schema["LessonCourseView"] = await detail.json();
       expect(course.learner_color).toBe(content.color);
       const chapter = course.chapters.find(item => item.id === content.chapter)!;
       expect(chapter).toBeTruthy();
       await page.goto("/study/openings");
-      await page.locator(`.lesson-course-card[href="/study/openings/courses/${content.id}?revision=${revision}"]`).click();
+      await page.locator(`.lesson-course-card[href="/study/openings/courses/${content.id}?revision=${content.revision}"]`).click();
       await expect(page.getByRole("heading", { name: course.title, exact: true })).toBeVisible();
       const row = page.locator(".lesson-chapters li").filter({ has: page.getByRole("heading", { name: chapter.title, exact: true }) });
       const pending = page.waitForResponse(response => new URL(response.url()).pathname === "/api/study/lesson-sessions" && response.request().method() === "POST");
@@ -73,6 +96,15 @@ for (const content of courses) {
       expect(response.ok()).toBe(true);
       let session: Schema["LessonSessionView"] = await response.json();
       expect(session.orientation).toBe(content.color);
+      expect(session.course_revision).toBe(content.revision);
+      await expect(page).toHaveURL(`/study/openings/sessions/${session.id}`);
+      await expect(page.getByRole("region", { name: "Lesson position" })).toBeVisible();
+      const initial = session;
+      await page.reload();
+      session = await saved(page, session.id);
+      expect(session.step.id).toBe(initial.step.id);
+      expect(session.fen).toBe(initial.fen);
+      expect(session.history).toEqual(initial.history);
       await expect(page).toHaveURL(`/study/openings/sessions/${session.id}`);
       await expect(page.getByRole("region", { name: "Lesson position" })).toBeVisible();
       const left = await page.locator('.board-shell [data-square="a1"]').boundingBox();
@@ -102,7 +134,7 @@ for (const content of courses) {
           expect(restored.fen).toBe(branch.fen);
           expect(restored.branch).toEqual(branch.branch);
           await expect(page.locator(".coach-message")).toContainText(branch.step.text);
-          await page.screenshot({ path: `test-results/${content.id}-contrast-${info.project.name}.png`, fullPage: true });
+          await page.screenshot({ path: `test-results/${content.id}-${content.chapter}-${branch.step.id}-contrast-${info.project.name}.png`, fullPage: true });
           session = await command(page, "Return to main line");
           expect(session.fen).toBe(branchAnchor!.fen);
           expect(session.history).toEqual(branchAnchor!.history);
@@ -113,6 +145,9 @@ for (const content of courses) {
           expect(session.step.kind).toBe("decision");
           expect(session.fen.split(" ")[1]).toBe(content.color === "white" ? "w" : "b");
           expect(decisions).toBeLessThan(content.moves.length);
+          if (decisions === 0 && content.rehearsalAnchor) {
+            expect(session.history.map(frame => frame.uci)).toEqual(content.rehearsalAnchor);
+          }
           session = await move(page, content.moves[decisions++]);
         } else if (session.step.kind === "game_excerpt" && session.step.phase === "complete" && !sourceInspected) {
           const anchor = session;
@@ -138,9 +173,9 @@ for (const content of courses) {
         }
       }
       expect(decisions).toBe(content.moves.length);
-      expect(explored.size).toBeGreaterThan(0);
+      expect(explored.size).toBe(content.branches);
       expect(branchAnchor).toBeNull();
-      expect(sourceInspected).toBe(true);
+      expect(sourceInspected).toBe(content.sourceGame);
       expect(session.step.kind).toBe("rehearsal");
       expect(session.fen.split(" ")[1]).toBe(content.color === "white" ? "w" : "b");
       expect(session.step.text).toBe("Play this line from memory.");
@@ -152,9 +187,31 @@ for (const content of courses) {
       expect(session.failed).toBe(false);
       expect(session.assisted).toBe(false);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-      await page.screenshot({ path: `test-results/${content.id}-${info.project.name}.png`, fullPage: true });
+      await page.screenshot({ path: `test-results/${content.id}-${content.chapter}-${info.project.name}.png`, fullPage: true });
+      if (content.rehearsalAnchor) {
+        expect(session.history.map(frame => frame.uci)).toEqual(content.rehearsalAnchor);
+        const rehearsal = session;
+        await page.reload();
+        await expect(page.locator(".coach-message")).toHaveText("Play this line from memory.");
+        session = await saved(page, session.id);
+        expect(session.history).toEqual(rehearsal.history);
+        expect(session.fen).toBe(rehearsal.fen);
+        expect(session.playback).toEqual([]);
+        expect(session.step.annotations).toEqual({ squares: [], arrows: [] });
+        await expect(page.getByRole("button", { name: "Hint", exact: true })).toHaveCount(0);
+        for (const uci of content.moves) session = await move(page, uci);
+        if (session.status !== "completed") session = await command(page, "Continue");
+        expect(session.status).toBe("completed");
+        expect(session.failed).toBe(false);
+        expect(session.assisted).toBe(false);
+        expect(session.history.slice(0, rehearsal.history.length)).toEqual(rehearsal.history);
+        expect(await studyIds(page)).toEqual(before);
+        expect(await (await page.request.get("/api/review/count")).json()).toEqual(dueBefore);
+        await page.getByRole("link", { name: "Choose a chapter", exact: true }).click();
+      } else {
+        await page.getByRole("link", { name: "Chapters", exact: true }).click();
+      }
 
-      await page.getByRole("link", { name: "Chapters", exact: true }).click();
       const line = course.lines.find(item => item.id === content.line)!;
       expect(line.repertoire).toBe(true);
       await page.getByRole("region", { name: "Course recall lines" }).getByRole("link", { name: new RegExp(line.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) }).click();
@@ -175,7 +232,7 @@ for (const content of courses) {
       expect(study.color).toBe(content.color);
       expect(study.line.course_id).toBe(content.id);
       expect(study.line.line_id).toBe(content.line);
-      expect(study.source_version).toBe(revision);
+      expect(study.source_version).toBe(content.revision);
       expect(study.positions).toBeGreaterThan(0);
       await expect(page.getByRole("button", { name: "Added to study", exact: true })).toBeDisabled();
     } finally {

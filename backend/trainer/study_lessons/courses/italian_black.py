@@ -2,6 +2,7 @@
 
 from trainer.study_lessons.content import CourseDefinition, GameAnnotation, SourceGame
 from trainer.study_lessons.courses.authoring import decision, demo, position, step
+from trainer.study_lessons.courses.italian_black_plan import quiet_plan
 from trainer.study_lessons.courses.italian_games import (
     BOOK_URL,
     PUBLIC_DOMAIN_ATTRIBUTION,
@@ -10,7 +11,6 @@ from trainer.study_lessons.courses.italian_games import (
 
 ITALIAN = "e4 e5 Nf3 Nc6 Bc4 Bc5"
 QUIET = ITALIAN + " d3 Nf6 O-O d6 c3 O-O"
-QUIET_PLAN = QUIET + " Re1 a5 Nbd2 Be6"
 KNIGHT_THREAT = ITALIAN + " d3 Nf6"
 CENTRAL = ITALIAN + " c3 Nf6 d4 exd4 cxd4 Bb4+ Bd2 Bxd2+ Nbxd2 d5 exd5 Nxd5 O-O O-O"
 EVANS = ITALIAN + " b4 Bb6 c3 d6 a4 a6 a5 Ba7"
@@ -109,6 +109,7 @@ def _games():
 
 def course():
     games = _games()
+    plan_chapter, plan_line = quiet_plan(QUIET)
 
     def excerpt(identity, title, text, game_id, start, end, next_step):
         game = games[game_id]
@@ -235,29 +236,9 @@ def course():
             ITALIAN + " d3 Nf6 O-O d6 c3",
             "O-O",
             None,
-            "quiet-plan",
+            "quiet-game",
             "The king reaches g8 and the rook f8. Castling is a checkpoint, not the end of your opening plan: the c8-bishop still needs a job.",
             "Move e8 to g8.",
-        ),
-        demo(
-            "quiet-plan",
-            "Give the remaining bishop a job",
-            "Here is one possible continuation. After Re1, a5 controls b4 and makes White's queenside expansion harder. Following Nbd2, Be6 develops your remaining bishop and offers an exchange of White's active bishop on c4.",
-            QUIET,
-            QUIET_PLAN,
-            "quiet-plan-summary",
-        ),
-        step(
-            "explanation",
-            "quiet-plan-summary",
-            "A plan, not an automatic sequence",
-            "The bishops on e6 and c4 attack each other. Bxe6 can be met by fxe6: Black would get doubled e-pawns but a semi-open f-file. Decide whether that trade suits the position. Keep watching White's c3–d4 break; the next move depends on White's reply.",
-            QUIET_PLAN,
-            next_step="quiet-game",
-            annotations={
-                "squares": ["b4", "c4", "e6"],
-                "arrows": [{"from_square": "e6", "to_square": "c4"}],
-            },
         ),
         excerpt(
             "quiet-game",
@@ -468,7 +449,7 @@ def course():
             "Our rehearsal uses d3 followed by castling. Explore White's b5 advance to see Lasker's historical response, then return here to the quiet continuation.",
             EVANS,
             branch_start="evans-flank",
-            next_step="evans-develop",
+            next_step="evans-quiet-reply",
         ),
         demo(
             "evans-flank",
@@ -486,12 +467,34 @@ def course():
             EVANS + " b5 axb5 Bxb5 Nf6 a6 O-O",
         ),
         demo(
-            "evans-develop",
-            "Return to ordinary development",
-            "After d3, Black develops Nf6. Both sides then castle. The gambit was declined, and development is still the job.",
+            "evans-quiet-reply",
+            "White returns to development",
+            "White supports e4 with d3 instead of pushing another queenside pawn. Return to your own development now that the bishop is safe.",
             EVANS,
-            EVANS_QUIET,
+            EVANS + " d3",
+            "evans-develop",
+        ),
+        decision(
+            "evans-develop",
+            "Finish clearing the castling route",
+            "Develop the remaining kingside knight toward the center. White's d3-pawn protects e4, so the attack on e4 is pressure rather than a free pawn.",
+            EVANS + " d3",
+            "Nf6",
+            "O-O",
+            "evans-castle",
+            "Nf6 clears g8. White castles; you have no piece left between your king and h8-rook either.",
+            "Develop the knight from g8 to f6.",
+        ),
+        decision(
+            "evans-castle",
+            "Secure the king before a central break",
+            "Use the route you have prepared to bring your king to safety.",
+            EVANS + " d3 Nf6 O-O",
+            "O-O",
+            None,
             "evans-game",
+            "Both kings are castled. White has queenside space, but you have finished kingside development without losing material. Look next for chances to challenge the center, as the historical example illustrates.",
+            "Castle kingside by moving e8 to g8.",
         ),
         excerpt(
             "evans-game",
@@ -513,9 +516,9 @@ def course():
     return CourseDefinition.model_validate(
         dict(
             id="italian-black-foundations",
-            revision="2026-09-v2",
+            revision="2026-09-v3",
             title="Italian Game · A practical Black repertoire",
-            description="Develop with Bc5, meet the early d4 break, and decline the Evans Gambit. Three guided chapters with historical examples and optional recall lines.",
+            description="Develop with Bc5, choose a plan after castling, meet the early d4 break, and decline the Evans Gambit. Guided decisions connect the moves to their resulting positions.",
             learner_color="black",
             attributions=[
                 dict(
@@ -536,11 +539,20 @@ def course():
                         "C51",
                     ),
                 )
-            ],
+            ]
+            + [plan_line],
             chapters=[
+                dict(
+                    id="quiet-development",
+                    title="Develop and castle",
+                    entry_step=quiet[0]["id"],
+                    steps=quiet,
+                ),
+                plan_chapter,
+            ]
+            + [
                 dict(id=identity, title=title, entry_step=steps[0]["id"], steps=steps)
                 for identity, title, steps in (
-                    ("quiet-development", "Develop and castle", quiet),
                     ("central-break", "Meet the central advance", central),
                     ("evans-declined", "Decline the Evans Gambit", evans),
                 )
