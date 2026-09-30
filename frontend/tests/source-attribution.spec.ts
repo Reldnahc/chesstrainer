@@ -46,6 +46,12 @@ test("lesson sources retain multiple citations and licenses but only link valid 
   await page.reload();
   await expect(page.getByRole("heading", { name: course.title, exact: true })).toBeVisible();
   await expect(sources).toHaveCount(0);
+
+  await page.goto("/study/openings/courses/italian-foundations?revision=2026-09-v1");
+  const license = sources.getByRole("link", { name: "Repository license", exact: true });
+  await expect(license).toHaveAttribute("href", "https://github.com/Reldnahc/chesstrainer/blob/main/LICENSE");
+  await expect(license).toHaveAttribute("target", "_blank");
+  await expect(license).toHaveAttribute("rel", "noopener noreferrer");
 });
 
 test("puzzle attribution remains hidden until reveal and preserves its distinct source label", async ({ page }, info) => {
