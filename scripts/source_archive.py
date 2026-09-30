@@ -26,6 +26,8 @@ EXCLUDED = {
     "dist",
     "test-results",
     "playwright-report",
+    "blob-report",
+    ".cache",
 }
 
 
@@ -65,7 +67,9 @@ def safe_source(root: Path, name: str) -> Path | None:
         or filename.startswith(".env")
         and filename != ".env.example"
         or ".sqlite" in filename
-        or filename.endswith((".db", ".db-wal", ".db-shm", ".pyc", ".log", ".zip", ".exe", ".dll"))
+        or filename.endswith(
+            (".db", ".db-wal", ".db-shm", ".pyc", ".log", ".zip", ".exe", ".dll", ".pt", ".pth")
+        )
         or filename == MANIFEST.lower()
     ):
         return None

@@ -3,9 +3,17 @@
 !.env.example
 *.sqlite
 *.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
 *.db
 *.db-wal
 *.db-shm
+*.exe
+*.dll
+*.pt
+*.pth
 .venv/
 .tools/
 data/
@@ -22,6 +30,8 @@ frontend/studio-test-results*/
 frontend/intelligence-test-results/
 frontend/account-test-results/
 frontend/playwright-report/
+frontend/blob-report/
+frontend/playwright/.cache/
 *.tsbuildinfo
 *.log
 .DS_Store
