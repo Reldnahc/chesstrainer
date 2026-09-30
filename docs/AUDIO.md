@@ -77,7 +77,8 @@ before an attempt or reveal permits feedback.
 - `frontend/src/audio/model.ts` owns semantic cue, preference and prepared-speech
   types. `cueForMove` interprets canonical server SAN, not FEN or local chess rules.
 - `catalog.ts` owns cue categories, priorities, approved production choices,
-  palette metadata and asset URLs.
+  palette metadata, per-cue candidate availability and asset URLs. Engine,
+  studio and stored selections all validate cue/candidate pairs against it.
 - `engine.ts` owns a lazily created Web Audio context, decoded asset cache, master
   gain, separate effects/speech buses, bounded playback, short cancellation fades,
   duplicate suppression, visibility and disposal. Suppressed requests are dropped.
@@ -89,8 +90,9 @@ before an attempt or reveal permits feedback.
   Display-only playback handlers emit move cues. Explicit replays get fresh event
   identities; deduplication does not globally suppress repeated chess positions.
 
-The current candidates are excerpts of **11 CC0 recordings**: real chess/wooden
-pieces, wood block, music box, bronze bell, triangle, glass and a soft gong.
+The current candidates are excerpts of **17 CC0 recordings**: real chess/wooden
+pieces, wood block, music box, bronze bell, triangle, glass, a soft gong, cork,
+paper, zipper, muted guitar, kalimba and conga.
 They are trimmed, level matched and faded; castling combines two recorded hits.
 No tones are generated, no pitch is synthesized, and no AI generation is claimed.
 The Freesound inputs are public HQ MP3 previews rather than original WAV downloads.
@@ -100,9 +102,9 @@ not restore information removed by MP3 encoding.
 `frontend/src/audio/assets/sources.json` records every source, author, license,
 input/output hash and exact edit recipe. The asset README and `CC0-1.0.txt` retain
 the notices. `scripts/prepare_audio.py --check` verifies assets offline; explicit
-authoring can reproduce the edits from hash-checked source files. The 27 candidate
-WAVs cover nine cues in three palettes and total approximately **1.97 MB**; some cues
-share a source recording. Assets are bundled locally, fetched and decoded only
+authoring can reproduce the edits from hash-checked source files. The 30 candidate
+WAVs comprise eight cues in three palettes and six retry-only choices, totaling
+approximately **2.17 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
 as needed; normal installation/build/playback does not contact a sound provider.
 Additional palettes need not change event producers.
 
@@ -117,19 +119,26 @@ npm --prefix frontend run dev:audio
 Open **http://127.0.0.1:5176**. This is a separate Vite process with no account/API
 connection and no production navigation route. It uses the actual audio engine.
 
-- Compare Recorded chess, Tabletop and Soft objects for each cue.
+- Compare Recorded chess, Tabletop and Soft objects for the eight approved cues.
+  Try again has six named choices: Cork pop, Page flick, Short zip, Muted strum,
+  Soft kalimba and Conga tap. These replace its rejected original three clips;
+  the other clips and their production defaults are unchanged.
 - Open a candidate's Source disclosure for its recording, author and CC0 license.
   Approved production choices are listed above; other variants remain audition
   candidates. Exact edit recipes are recorded in the asset manifest.
 - Pick a different palette for each cue; picks persist only in studio storage.
   Clear picks resets that audition selection without changing account settings.
 - Play short scenarios using one palette or the current mixed selection.
-  Unpicked cues use their approved production choice; Try again stays silent.
+  Unpicked cues use their approved production choice. Try again stays silent
+  unless explicitly picked in My picks; it is not available in the three
+  general palettes. Engine requests for unavailable pairs never load or schedule.
 - Adjust volume, mute, stop or inspect the playback history.
 - Copy/download the selected mapping for review and a later deliberate product
   change. Studio selections do not silently alter production account preferences.
 
 Selection storage remains version 2, preserving the owner's eight choices.
+Retired retry/palette pairs are discarded independently; a new retry choice
+persists without resetting other picks.
 Export is version 3 and includes the explicit per-cue production fallback map,
 including null for silence. Previous synthetic-set picks cannot silently approve
 replacement sounds; old palette IDs and removed rating cues are discarded.

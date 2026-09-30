@@ -39,6 +39,8 @@
 .audio-studio-pick { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px; min-height: 34px; font-size: 11px; color: var(--muted); cursor: pointer; }
 .audio-studio-pick input { width: 14px; height: 14px; min-height: 0; margin: 0; padding: 0; accent-color: var(--palette-color); }
 .audio-studio-cue-option[data-picked="true"] .audio-studio-pick { color: var(--palette-color); }
+.audio-studio-candidates { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; --palette-color: #b9d7c6; }
+.audio-studio-candidate-name { font-size: 12px; text-align: center; margin: 4px 0 8px; }
 .audio-studio-source { max-width: 100%; }
 .audio-studio-sidebar { display: grid; gap: 18px; }
 .audio-studio-panel { padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
@@ -95,6 +97,7 @@
   .audio-studio-palette h3 { font-size: 12px; }
   .audio-studio-palette p { display: none; }
   .audio-studio-cue-name { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; }
+  .audio-studio-candidates { grid-column: 1 / -1; gap: 8px; }
   .audio-studio-cue-name h3 { flex-shrink: 0; font-size: 13px; }
   .audio-studio-cue-name p { font-size: 10px; }
   .audio-studio-cue-row { padding-block: 12px; }

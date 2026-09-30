@@ -133,6 +133,43 @@ test("removed rating cues cannot play even when supplied by stale callers", asyn
   f.engine.dispose();
 });
 
+test("unavailable cue and candidate pairs never fetch or schedule playback", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  for (const [cue, palette] of [
+    ["retry", "recorded-chess"], ["retry", "tabletop"], ["retry", "soft-objects"],
+    ["move", "retry-pop"],
+  ] as const) {
+    for (const delayMs of [0, 160]) {
+      const eventId = `${cue}:${palette}:${delayMs}`;
+      f.engine.play({cue, palette, scope: "unavailable", eventId, delayMs});
+      expect(f.events.at(-1)).toMatchObject({type: "suppressed", cue, palette, eventId, reason: "unavailable-candidate"});
+      expect(f.loads).toEqual([]);
+      expect(f.timers.size).toBe(0);
+    }
+  }
+  await flush();
+  expect(f.context.decodes).toBe(0);
+  expect(f.started()).toEqual([]);
+  f.engine.dispose();
+});
+
+test("an explicit retry candidate plays when its scheduled audition is due", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  f.engine.play({cue: "retry", palette: "retry-pop", scope: "audition", eventId: "retry-candidate", delayMs: 160});
+  expect(f.loads).toEqual([]);
+  expect(f.timers.size).toBe(1);
+  f.tick();
+  await flush();
+  expect(f.loads).toHaveLength(1);
+  expect(f.loads[0]).toContain("retry-pop/retry.wav");
+  expect(f.started()).toEqual(["retry-candidate"]);
+  expect(f.events.at(-1)).toMatchObject({type: "started", cue: "retry", palette: "retry-pop"});
+  expect(f.timers.size).toBe(0);
+  f.engine.dispose();
+});
+
 test("context creation is gesture-lazy and blocked events never replay after unlocking", async () => {
   const f = fixture();
   f.engine.play(move("blocked"));

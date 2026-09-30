@@ -4,6 +4,37 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Six new recorded Try again candidates — September 30, 2026
+
+Replaced the three rejected retry clips with six distinct recordings: cork pop,
+page flick, short zip, muted guitar strum, soft kalimba and conga tap. The studio
+supports candidates for individual cues without inventing complete palettes.
+All 24 non-retry WAVs and recipes match `cf58500`; the eight approved production
+choices are unchanged. Retry remains silent in production and ratings stay absent.
+
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **60 passed**, desktop/mobile. The ignored wrapper reuses the live studio.
+  Checks all 30 actual assets, source disclosures, six named choices at 320px,
+  preserved eight picks, dropped rejected retry picks, new retry persistence and
+  scenario playback. Unavailable cue/candidate pairs never fetch or schedule;
+  existing silence, cancellation, visibility and speech-foundation tests pass.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including API checks,
+  app/browser/contract types, **11** style tests and standalone boundaries.
+  Existing production chunk-size advisory only.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **30** candidates,
+  **2,171,240 bytes**, hashes/format/duration/levels/tails/provenance valid.
+- `.venv/Scripts/python.exe -c "import sys,runpy; sys.path.insert(0,'.tools/audio-authoring'); sys.argv=['scripts/prepare_audio.py','--prepare']; runpy.run_path('scripts/prepare_audio.py',run_name='__main__')"`:
+  all **30** outputs reproduced exactly from cached sources without hash updates.
+  Authoring dependencies and downloaded inputs remain ignored.
+
+Independent review found no actionable defects and confirmed all six primary
+publisher pages declare CC0. Manual studio reload preserved eight owner picks;
+Practice displays all six new choices and Cork pop reached the played state.
+Listening preference is for the owner to judge; no subjective audio-quality
+approval is claimed. No unrelated backend/coach matrix, deployment or remote CI.
+
 ## Owner sound selections and removal of rating audio — September 30, 2026
 
 Applied the eight choices read from the owner's visible studio mapping:

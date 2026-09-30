@@ -1,11 +1,13 @@
 # Recorded audio candidates
 
 These are edits of real recordings, replacing the rejected procedural palettes.
-There are 27 cue slots across Recorded chess, Tabletop and Soft objects, derived
-from 11 sources. The owner chose Soft objects for move/capture/castle/promotion/
+There are 24 cue slots across Recorded chess, Tabletop and Soft objects, plus six
+Try again candidates, derived from 17 sources. The owner chose Soft objects for move/capture/castle/promotion/
 mate and Tabletop for check/correct/complete; see [Audio](../../../../docs/AUDIO.md).
 Try again has no approved sound and is silent in production. Remaining variants
-are audition alternatives. All rating sounds have been removed.
+are audition alternatives. Its rejected original three clips have been replaced
+with Cork pop, Page flick, Short zip, Muted strum, Soft kalimba and Conga tap.
+All rating sounds have been removed.
 Some slots reuse a recording with a different excerpt/tail. Neither
 recording nor AI generation is attributed to Fieldwork.
 
@@ -27,6 +29,12 @@ not require it. Verified September 30, 2026.
 | Music box, C #1 | Joseph SARDIN | [BigSoundBank 1867](https://bigsoundbank.com/music-box-c-1-s1867.html) |
 | Triangle #3 | Joseph SARDIN | [BigSoundBank 1689](https://bigsoundbank.com/triangle-3-s1689.html) |
 | Cheers, Champagne Flute #1 | Joseph SARDIN | [BigSoundBank 1335](https://bigsoundbank.com/cheers-champagne-flute-1-s1335.html) |
+| Champagne Cork #1 | Joseph SARDIN | [BigSoundBank 0211](https://bigsoundbank.com/champagne-cork-s0211.html) |
+| Pages that turn #6 | Joseph SARDIN | [BigSoundBank 2213](https://bigsoundbank.com/pages-that-turn-6-s2213.html) |
+| Quick zipper open | Err0rC0de | [Freesound 488582](https://freesound.org/people/Err0rC0de/sounds/488582/) |
+| Muted Guitar Strum | chiller345 | [Freesound 353605](https://freesound.org/people/chiller345/sounds/353605/) |
+| G4 soft - kalimba | hollandm | [Freesound 691805](https://freesound.org/people/hollandm/sounds/691805/) |
+| White Conga (E) - slap | Sassaby | [Freesound 512070](https://freesound.org/people/Sassaby/sounds/512070/) |
 
 Freesound inputs are openly served HQ MP3 previews, not login-required original
 downloads. BigSoundBank inputs are downloadable MP3s. WAV output preserves decoded
@@ -38,9 +46,11 @@ Editing uses excerpts, mono/sample-rate conversion, DC-offset removal, gain
 matching and boundary fades. Castling combines two recorded placements.
 No oscillators, synthesized noise, pitch
 shifting or game rips are used. Levels stay below 65.01% peak amplitude. Clips have
-an exact silent tail and last approximately 0.117–2.056 seconds. The 27 mono
-44.1 kHz / 16-bit WAVs total **1,971,510 bytes**. Retained clips are byte-for-byte
-unchanged from the owner's audition round.
+an exact silent tail and last approximately 0.117–2.056 seconds. The 30 mono
+44.1 kHz / 16-bit WAVs total **2,171,240 bytes**. All 24 non-retry clips are
+byte-for-byte unchanged from the owner's audition round. The six new Try again
+edits last 0.256–0.906 seconds and target slightly lower active RMS (0.11 versus
+0.12 for the existing clips); the peak ceiling is unchanged.
 
 ## Verify or reproduce
 

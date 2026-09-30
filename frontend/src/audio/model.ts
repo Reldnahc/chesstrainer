@@ -5,7 +5,10 @@ export const soundCues = [
   "complete",
 ] as const;
 export type SoundCue = typeof soundCues[number];
-export const soundPalettes = ["recorded-chess", "tabletop", "soft-objects"] as const;
+export const soundPalettes = [
+  "recorded-chess", "tabletop", "soft-objects",
+  "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
+] as const;
 export type SoundPalette = typeof soundPalettes[number];
 export type SoundCategory = "board" | "practice";
 export type AudioPreferences = {

@@ -5,7 +5,7 @@ import ChoiceGroup from "../../ChoiceGroup";
 import SourceLine from "../../SourceLine";
 import "../../disclosure.css";
 import recordedSources from "../assets/sources.json";
-import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
+import { cueCatalog, fullPaletteCatalog, isPaletteForCue, paletteCatalog, palettesForCue, productionCuePalettes, type CueDefinition, type PaletteDefinition } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { SoundCategory, SoundCue, SoundPalette } from "../model";
 import { auditionScenarios, type AuditionScenario } from "./scenarios";
@@ -29,6 +29,28 @@ function CueSource({ cue, palette }: { cue: SoundCue; palette: SoundPalette }) {
     <SourceLine text={`${source.title} — ${source.author}`} url={source.sourceUrl}
       license="CC0" licenseUrl="https://creativecommons.org/publicdomain/zero/1.0/" />
   </details>;
+}
+
+function CueOption({ cue, palette, picked, named = false, onPlay, onChoose }: {
+  cue: CueDefinition;
+  palette: PaletteDefinition;
+  picked: boolean;
+  named?: boolean;
+  onPlay: (cue: SoundCue, palette: SoundPalette) => void;
+  onChoose: (cue: SoundCue, palette: SoundPalette) => void;
+}) {
+  return <div className="audio-studio-cue-option" data-picked={picked} data-palette={palette.id}>
+    {named && <h4 className="audio-studio-candidate-name">{palette.label}</h4>}
+    <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} onClick={() => onPlay(cue.id, palette.id)}>
+      <Play size={13} aria-hidden="true" /><span>Play</span>
+    </Button>
+    <label className="audio-studio-pick">
+      <input type="radio" name={`pick-${cue.id}`} value={palette.id} checked={picked}
+        onChange={() => onChoose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} />
+      <span>{picked ? "Picked" : "Pick"}</span>
+    </label>
+    <CueSource cue={cue.id} palette={palette.id} />
+  </div>;
 }
 
 function eventLabel(event: AudioEvent) {
@@ -141,7 +163,10 @@ export default function AudioStudio() {
     const audition = await begin();
     if (!audition) return;
     const { engine, take, scope } = audition;
-    const paletteFor = (cue: SoundCue) => scenarioPalette === "picks" ? selections[cue] ?? productionCuePalettes[cue] : scenarioPalette;
+    const paletteFor = (cue: SoundCue) => {
+      const palette = scenarioPalette === "picks" ? selections[cue] ?? productionCuePalettes[cue] : scenarioPalette;
+      return isPaletteForCue(cue, palette) ? palette : null;
+    };
     if (item.steps.every(step => paletteFor(step.cue) === null)) {
       setStatus("No sound is selected for this scenario.");
       return;
@@ -208,7 +233,7 @@ export default function AudioStudio() {
       <div className="audio-studio-brand"><AudioLines size={22} aria-hidden="true" /><span>FIELDWORK / AUDIO STUDIO</span></div>
       <span className="audio-studio-badge">Development only</span>
       <h1>A little sound. A clearer game.</h1>
-      <p>Compare three sound palettes, choose a favorite for each cue, then hear your picks in context.</p>
+      <p>Compare sounds, choose a favorite for each cue, then hear your picks in context.</p>
     </header>
 
     <section className="audio-studio-transport" aria-label="Audition controls">
@@ -233,7 +258,7 @@ export default function AudioStudio() {
         <ChoiceGroup label="Cue category" value={filter} options={cueFilters} onChange={setFilter} />
         <div className="audio-studio-palette-headings">
           <span className="audio-studio-cue-heading">Cue</span>
-          {paletteCatalog.map((palette, index) => <div key={palette.id} className="audio-studio-palette" data-palette={palette.id}>
+          {fullPaletteCatalog.map((palette, index) => <div key={palette.id} className="audio-studio-palette" data-palette={palette.id}>
             <span className="audio-studio-palette-number">0{index + 1}</span>
             <h3>{palette.label}</h3><p>{palette.description}</p>
           </div>)}
@@ -242,17 +267,11 @@ export default function AudioStudio() {
           {visibleCues.map(cue => <fieldset key={cue.id} className="audio-studio-cue-row" data-cue={cue.id}>
             <legend className="sr-only">{cue.label} palette</legend>
             <div className="audio-studio-cue-name"><h3>{cue.label}</h3><p>{cue.description}</p></div>
-            {paletteCatalog.map(palette => <div key={palette.id} className="audio-studio-cue-option" data-picked={selections[cue.id] === palette.id} data-palette={palette.id}>
-              <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} onClick={() => void playCue(cue.id, palette.id)}>
-                <Play size={13} aria-hidden="true" /><span>Play</span>
-              </Button>
-              <label className="audio-studio-pick">
-                <input type="radio" name={`pick-${cue.id}`} value={palette.id} checked={selections[cue.id] === palette.id}
-                  onChange={() => choose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} />
-                <span>{selections[cue.id] === palette.id ? "Picked" : "Pick"}</span>
-              </label>
-              <CueSource cue={cue.id} palette={palette.id} />
-            </div>)}
+            {cue.id === "retry" ? <div className="audio-studio-candidates">
+              {palettesForCue(cue.id).map(palette => <CueOption key={palette.id} cue={cue} palette={palette}
+                picked={selections[cue.id] === palette.id} named onPlay={playCue} onChoose={choose} />)}
+            </div> : palettesForCue(cue.id).map(palette => <CueOption key={palette.id} cue={cue} palette={palette}
+              picked={selections[cue.id] === palette.id} onPlay={playCue} onChoose={choose} />)}
           </fieldset>)}
         </div>
       </section>
@@ -262,7 +281,7 @@ export default function AudioStudio() {
           <span className="audio-studio-step">02 / IN CONTEXT</span><h2 id="scenario-heading">Hear the flow</h2>
           <p>A good cue should feel right in a real sequence.</p>
           <label>Sound palette<select value={scenarioPalette} onChange={event => { stop(); setScenarioPalette(event.target.value as typeof scenarioPalette); }}>
-            <option value="picks">My picks</option>{paletteCatalog.map(palette => <option key={palette.id} value={palette.id}>{palette.label}</option>)}
+            <option value="picks">My picks</option>{fullPaletteCatalog.map(palette => <option key={palette.id} value={palette.id}>{palette.label}</option>)}
           </select></label>
           <label>Scenario<select value={selectedScenario} onChange={event => { stop(); setSelectedScenario(event.target.value); }}>
             {auditionScenarios.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}

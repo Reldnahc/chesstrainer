@@ -1,5 +1,5 @@
-import { soundCues, soundPalettes, type SoundCue, type SoundPalette } from "../model";
-import { productionCuePalettes } from "../catalog";
+import { soundCues, type SoundCue, type SoundPalette } from "../model";
+import { isPaletteForCue, productionCuePalettes } from "../catalog";
 
 export const studioStorageKey = "fieldwork.audio-studio.picks.v2";
 export type StudioSelections = Partial<Record<SoundCue, SoundPalette>>;
@@ -11,7 +11,7 @@ export function readStudioSelections(): StudioSelections {
     if (!saved || typeof saved !== "object" || Array.isArray(saved)) return {};
     return Object.fromEntries(soundCues.flatMap(cue => {
       const palette = (saved as Record<string, unknown>)[cue];
-      return soundPalettes.includes(palette as SoundPalette) ? [[cue, palette]] : [];
+      return isPaletteForCue(cue, palette) ? [[cue, palette]] : [];
     }));
   } catch {
     return {};
@@ -23,6 +23,9 @@ export function exportStudioSelections(selections: StudioSelections) {
     schemaVersion: 3,
     purpose: "fieldwork-audio-audition",
     fallbackCuePalettes: productionCuePalettes,
-    cuePalettes: Object.fromEntries(soundCues.flatMap(cue => selections[cue] ? [[cue, selections[cue]]] : [])),
+    cuePalettes: Object.fromEntries(soundCues.flatMap(cue => {
+      const palette = selections[cue];
+      return isPaletteForCue(cue, palette) ? [[cue, palette]] : [];
+    })),
   }, null, 2);
 }

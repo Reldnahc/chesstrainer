@@ -1,4 +1,4 @@
-import type { SoundCategory, SoundCue, SoundPalette } from "./model";
+import { soundCues, type SoundCategory, type SoundCue, type SoundPalette } from "./model";
 
 export type CueDefinition = {
   id: SoundCue; label: string; description: string; category: SoundCategory; priority: number;
@@ -27,11 +27,32 @@ export const productionCuePalettes: Readonly<Record<SoundCue, SoundPalette | nul
   retry: null,
   complete: "tabletop",
 };
-export const paletteCatalog: readonly {id: SoundPalette; label: string; description: string}[] = [
-  {id: "recorded-chess", label: "Recorded chess", description: "Actual chess-piece recordings, with bell feedback."},
-  {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents."},
-  {id: "soft-objects", label: "Soft objects", description: "Lighter object recordings and gentle resonant accents."},
+export type PaletteDefinition = {
+  id: SoundPalette; label: string; description: string; cues: readonly SoundCue[];
+};
+const approvedCues = soundCues.filter(cue => cue !== "retry");
+export const paletteCatalog: readonly PaletteDefinition[] = [
+  {id: "recorded-chess", label: "Recorded chess", description: "Actual chess-piece recordings, with bell feedback.", cues: approvedCues},
+  {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents.", cues: approvedCues},
+  {id: "soft-objects", label: "Soft objects", description: "Lighter object recordings and gentle resonant accents.", cues: approvedCues},
+  {id: "retry-pop", label: "Cork pop", description: "A brief cork pop.", cues: ["retry"]},
+  {id: "retry-paper", label: "Page flick", description: "A quick flick of a paper page.", cues: ["retry"]},
+  {id: "retry-zip", label: "Short zip", description: "A short zipper movement.", cues: ["retry"]},
+  {id: "retry-guitar", label: "Muted strum", description: "A muted guitar strum.", cues: ["retry"]},
+  {id: "retry-kalimba", label: "Soft kalimba", description: "A softly plucked kalimba.", cues: ["retry"]},
+  {id: "retry-conga", label: "Conga tap", description: "A light conga tap.", cues: ["retry"]},
 ];
+
+/** The original palettes span the approved cues; retry candidates are cue-specific. */
+export const fullPaletteCatalog = paletteCatalog.filter(palette => palette.cues.includes("move"));
+
+export function palettesForCue(cue: SoundCue): readonly PaletteDefinition[] {
+  return paletteCatalog.filter(palette => palette.cues.includes(cue));
+}
+
+export function isPaletteForCue(cue: SoundCue, palette: unknown): palette is SoundPalette {
+  return paletteCatalog.some(candidate => candidate.id === palette && candidate.cues.includes(cue));
+}
 
 // Vite resolves these local files to hashed asset URLs in every entrypoint.
 export function soundAssetUrl(cue: SoundCue, palette: SoundPalette): string {

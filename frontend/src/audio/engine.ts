@@ -1,4 +1,4 @@
-import { cueCatalog, productionCuePalettes, soundAssetUrl } from "./catalog";
+import { cueCatalog, isPaletteForCue, productionCuePalettes, soundAssetUrl } from "./catalog";
 import {
   defaultAudioPreferences, soundCues, soundPalettes,
   type AudioPreferences, type PreparedSpeechClip, type SoundCategory,
@@ -156,6 +156,10 @@ export class AudioEngine {
       }
       if (!palette) {
         this.emit({...event, type: "suppressed", reason: "no-selected-sound"});
+        return;
+      }
+      if (!isPaletteForCue(request.cue, palette)) {
+        this.emit({...event, type: "suppressed", reason: "unavailable-candidate"});
         return;
       }
       const definition = definitions.get(request.cue)!;

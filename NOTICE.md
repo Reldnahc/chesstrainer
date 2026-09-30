@@ -8,7 +8,8 @@ also carries the applicable AGPL obligations, including the network source offer
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
 The recorded audio candidates under `frontend/src/audio/assets` derive from
-CC0-1.0 recordings by el_boss, simone_ds, taure and zachrau (Freesound), and
+CC0-1.0 recordings by el_boss, simone_ds, taure, zachrau, Err0rC0de, chiller345,
+hollandm and Sassaby (Freesound), and
 Pierre SIBANARCO and Joseph SARDIN (BigSoundBank). Those assets retain CC0;
 Fieldwork's source-code license does not replace their public-domain dedication.
 The directory includes the complete CC0 text and per-file sources, hashes and
