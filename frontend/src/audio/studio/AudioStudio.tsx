@@ -8,7 +8,7 @@ import recordedSources from "../assets/sources.json";
 import { cueCatalog, fullPaletteCatalog, isPaletteForCue, paletteCatalog, palettesForCue, productionCuePalettes, type CueDefinition, type PaletteDefinition } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { SoundCategory, SoundCue, SoundPalette } from "../model";
-import { auditionScenarios, candidateContextSteps, type AuditionScenario } from "./scenarios";
+import { auditionScenarios, candidateContexts, type AuditionScenario, type CandidateContextId } from "./scenarios";
 import { exportStudioSelections, readStudioSelections, studioStorageKey, type StudioSelections } from "./selections";
 import "./studio.css";
 
@@ -17,6 +17,7 @@ const cueFilters: readonly { value: CueFilter; label: string }[] = [
   { value: "all", label: "All cues" }, { value: "board", label: "Board" },
   { value: "practice", label: "Practice" },
 ];
+const candidateContextOptions = candidateContexts.map(({ id, label }) => ({ value: id, label }));
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";
 const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => item.id === palette)?.label ?? "";
 const assetSources = new Map(recordedSources.assets.map(source => [`${source.palette}:${source.cue}`, source]));
@@ -59,7 +60,7 @@ function CueOption({ cue, palette, picked, named = false, number, onPlay, onCont
     <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} aria-describedby={descriptionId} onClick={() => onPlay(cue.id, palette.id)}>
       <Play size={13} aria-hidden="true" /><span>Play</span>
     </Button>
-    {onContext && <Button size="compact" aria-label={`Hear ${palette.label} in context`} aria-describedby={descriptionId} onClick={() => onContext(palette.id)}>In context</Button>}
+    {onContext && <Button size="compact" aria-label={`Hear ${palette.label} in context`} aria-describedby={[descriptionId, "retry-context-description"].filter(Boolean).join(" ")} onClick={() => onContext(palette.id)}>In context</Button>}
     <label className="audio-studio-pick">
       <input type="radio" name={`pick-${cue.id}`} value={palette.id} checked={picked}
         onChange={() => onChoose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} aria-describedby={descriptionId} />
@@ -72,7 +73,7 @@ function CueOption({ cue, palette, picked, named = false, number, onPlay, onCont
 const retryGroups = [...palettesForCue("retry").reduce((groups, palette, index) => {
   const group = palette.auditionGroup ?? "Try again candidates";
   const candidates = groups.get(group) ?? [];
-  candidates.push({ palette, number: index + 1 });
+  candidates.push({ palette, number: palette.auditionNumber ?? index + 1 });
   groups.set(group, candidates);
   return groups;
 }, new Map<string, { palette: PaletteDefinition; number: number }[]>())];
@@ -96,6 +97,7 @@ export default function AudioStudio() {
   const [error, setError] = useState("");
   const [scenarioPalette, setScenarioPalette] = useState<SoundPalette | "picks">("picks");
   const [selectedScenario, setSelectedScenario] = useState(auditionScenarios[0].id);
+  const [candidateContextId, setCandidateContextId] = useState<CandidateContextId>("repeated");
   const engineRef = useRef<AudioEngine | null>(null);
   const takeRef = useRef(0);
   const traceRef = useRef(0);
@@ -104,6 +106,7 @@ export default function AudioStudio() {
   const chosenCount = Object.keys(selections).length;
   const selectionJson = exportStudioSelections(selections);
   const scenario = auditionScenarios.find(item => item.id === selectedScenario)!;
+  const candidateContext = candidateContexts.find(item => item.id === candidateContextId)!;
 
   useEffect(() => {
     let mounted = true;
@@ -187,7 +190,7 @@ export default function AudioStudio() {
     const audition = await begin();
     if (!audition) return;
     const { engine, scope } = audition;
-    for (const [index, step] of candidateContextSteps.entries()) {
+    for (const [index, step] of candidateContext.steps.entries()) {
       const palette = step.cue === "retry" ? candidate : selections[step.cue] ?? productionCuePalettes[step.cue];
       if (isPaletteForCue(step.cue, palette)) {
         engine.play({ ...step, palette, scope, eventId: `${scope}:${index}` });
@@ -304,7 +307,12 @@ export default function AudioStudio() {
             <legend className="sr-only">{cue.label} palette</legend>
             <div className="audio-studio-cue-name"><h3>{cue.label}</h3><p>{cue.description}</p></div>
             {cue.id === "retry" ? <div className="audio-studio-candidate-groups">
-              <p className="audio-studio-context-description">Use In context to hear a move, this cue, another move, then your correct sound.</p>
+              <div className="audio-studio-context-controls">
+                <ChoiceGroup label="Comparison context" value={candidateContextId} options={candidateContextOptions}
+                  onChange={value => { stop(); setCandidateContextId(value); }} />
+                <p id="retry-context-description" className="audio-studio-context-description"><strong>About {candidateContext.durationSeconds} seconds.</strong> {candidateContext.description}</p>
+                <p className="audio-studio-context-footnote">In context uses your saved sounds, or approved defaults for unpicked cues. Listening does not change your picks.</p>
+              </div>
               {retryGroups.map(([group, candidates]) => <section key={group} className="audio-studio-candidate-group" data-audition-group={group}>
                 <h4>{group}</h4>
                 <div className="audio-studio-candidates">

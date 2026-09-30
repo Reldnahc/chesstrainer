@@ -32,7 +32,7 @@
 .audio-studio-palette p { margin: 0; font-size: 11px; line-height: 1.5; min-height: 50px; }
 .audio-studio-cue-row { border: 0; border-top: 1px solid var(--line); padding: 12px 0; margin: 0; min-width: 0; align-items: stretch; }
 .audio-studio-cue-name { align-self: center; }
-.audio-studio-cue-row[data-cue="retry"] .audio-studio-cue-name { align-self: start; }
+.audio-studio-cue-row[data-cue="retry"] .audio-studio-cue-name { grid-column: 1 / -1; align-self: start; }
 .audio-studio-cue-name h3 { margin: 0 0 3px; font-size: 14px; }
 .audio-studio-cue-name p { margin: 0; font-size: 11px; line-height: 1.45; }
 .audio-studio-cue-option { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 7px 6px 0; border-radius: 6px; background: var(--surface); border: 1px solid transparent; }
@@ -40,8 +40,10 @@
 .audio-studio-pick { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px; min-height: 34px; font-size: 11px; color: var(--muted); cursor: pointer; }
 .audio-studio-pick input { width: 14px; height: 14px; min-height: 0; margin: 0; padding: 0; accent-color: var(--palette-color); }
 .audio-studio-cue-option[data-picked="true"] .audio-studio-pick { color: var(--palette-color); }
-.audio-studio-candidate-groups { grid-column: 2 / -1; min-width: 0; --palette-color: #b9d7c6; }
-.audio-studio-context-description { font-size: 11px; line-height: 1.5; margin: 0 0 18px; }
+.audio-studio-candidate-groups { grid-column: 1 / -1; min-width: 0; --palette-color: #b9d7c6; }
+.audio-studio-context-controls { margin-bottom: 20px; }
+.audio-studio-context-description { font-size: 12px; line-height: 1.5; margin: 10px 0 6px; }
+.audio-studio-context-footnote { font-size: 11px; line-height: 1.5; margin: 0; }
 .audio-studio-candidate-group + .audio-studio-candidate-group { margin-top: 24px; }
 .audio-studio-candidate-group > h4 { color: var(--palette-color); font-size: 13px; margin: 0 0 10px; }
 .audio-studio-candidates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }

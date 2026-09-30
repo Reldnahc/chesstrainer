@@ -45,16 +45,16 @@ test("cue favorites persist only in the studio and export the selected mapping",
   expect((await downloadEvent).suggestedFilename()).toBe("fieldwork-audio-picks.json");
 });
 
-test("approved browser picks and the piano retry choice survive catalog updates", async ({ page }) => {
+test("approved browser picks and the finalist retry choice survive catalog updates", async ({ page }) => {
   const approved = {
     move: "soft-objects", capture: "soft-objects", castle: "soft-objects", promotion: "soft-objects", mate: "soft-objects",
     check: "tabletop", correct: "tabletop", complete: "tabletop",
   };
-  const picks = { ...approved, retry: "retry-piano-slip" };
+  const picks = { ...approved, retry: "retry-muted-tongue" };
   await page.addInitScript(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), { key: studioStorageKey, picks });
   await page.goto("/");
   await expect(page.locator('.audio-studio-cue-option input:checked')).toHaveCount(9);
-  await expect(page.getByRole("radio", { name: "Choose Piano slip for Try again", exact: true })).toBeChecked();
+  await expect(page.getByRole("radio", { name: "Choose Muted tongue drum for Try again", exact: true })).toBeChecked();
   await expect(page.getByRole("button", { name: "Review", exact: true })).toHaveCount(0);
   for (const rating of ["brilliant", "great", "miss", "mistake", "blunder"]) {
     await expect(page.locator(`.audio-studio-cue-row[data-cue="${rating}"]`)).toHaveCount(0);
@@ -137,6 +137,9 @@ test("retry groups numbered candidates in responsive grids without changing the 
   if (info.project.name === "mobile") await page.setViewportSize({ width: 320, height: 780 });
   const retry = page.locator('.audio-studio-cue-row[data-cue="retry"]');
   const candidates = palettesForCue("retry");
+  expect(candidates.map(candidate => [candidate.id, candidate.auditionNumber])).toEqual([
+    ["retry-muted-tongue", 13], ["retry-fret-catch", 18], ["retry-wood-and-strings", 29],
+  ]);
   expect(candidates.every(candidate => candidate.auditionGroup)).toBe(true);
   const groupLabels = [...new Set(candidates.map(candidate => candidate.auditionGroup!))];
   await expect(retry.locator(".audio-studio-candidate-groups")).toHaveCount(1);
@@ -145,7 +148,7 @@ test("retry groups numbered candidates in responsive grids without changing the 
   await expect(retry.locator(".audio-studio-cue-option")).toHaveCount(candidates.length);
   expect(await retry.locator(".audio-studio-cue-option").evaluateAll(options => options.map(option => option.getAttribute("data-palette"))))
     .toEqual(candidates.map(candidate => candidate.id));
-  await expect(retry.locator(".audio-studio-candidate-number")).toHaveText(candidates.map((_, index) => String(index + 1).padStart(2, "0")));
+  await expect(retry.locator(".audio-studio-candidate-number")).toHaveText(candidates.map((candidate, index) => String(candidate.auditionNumber ?? index + 1).padStart(2, "0")));
   for (const candidate of candidates) {
     const option = retry.locator(`.audio-studio-cue-option[data-palette="${candidate.id}"]`);
     await expect(option.getByRole("heading", { name: candidate.label, exact: true, level: 5 })).toBeVisible();
@@ -196,24 +199,25 @@ test("retry groups numbered candidates in responsive grids without changing the 
 
 test("a candidate's context sequence uses its sound, saved move pick and production feedback without saving choices", async ({ page }) => {
   await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
-  const picks = { move: "tabletop", retry: "retry-piano-slip" };
+  const picks = { move: "tabletop", retry: "retry-muted-tongue" };
   await page.addInitScript(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), { key: studioStorageKey, picks });
   await page.goto("/");
   await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
-  const candidate = palettesForCue("retry").find(palette => palette.id !== "retry-piano-slip")!;
+  const candidate = palettesForCue("retry").find(palette => palette.id !== "retry-muted-tongue")!;
   await page.getByRole("combobox", { name: "Sound palette", exact: true }).selectOption("recorded-chess");
+  await page.getByRole("button", { name: "One retry", exact: true }).click();
   const started = page.locator('[data-event-type="started"]');
   await page.getByRole("button", { name: `Hear ${candidate.label} in context`, exact: true }).click();
   await expect(started).toHaveCount(1);
-  await page.clock.runFor(349);
+  await page.clock.runFor(159);
   await expect(started).toHaveCount(1);
   await page.clock.runFor(1);
   await expect(started).toHaveCount(2);
-  await page.clock.runFor(999);
+  await page.clock.runFor(1189);
   await expect(started).toHaveCount(2);
   await page.clock.runFor(1);
   await expect(started).toHaveCount(3);
-  await page.clock.runFor(349);
+  await page.clock.runFor(159);
   await expect(started).toHaveCount(3);
   await page.clock.runFor(1);
   await expect(started).toHaveCount(4);
@@ -223,7 +227,7 @@ test("a candidate's context sequence uses its sound, saved move pick and product
       { cue: "move", palette: "tabletop" }, { cue: "correct", palette: productionCuePalettes.correct },
     ]);
   await expect(page.getByRole("combobox", { name: "Sound palette", exact: true })).toHaveValue("recorded-chess");
-  await expect(page.getByRole("radio", { name: "Choose Piano slip for Try again", exact: true })).toBeChecked();
+  await expect(page.getByRole("radio", { name: "Choose Muted tongue drum for Try again", exact: true })).toBeChecked();
   await expect(page.locator('.audio-studio-cue-option input:checked')).toHaveCount(2);
   expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!), studioStorageKey)).toEqual(picks);
 });
@@ -235,21 +239,22 @@ for (const interruption of ["stop", "replace", "mute"] as const) {
     await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
     const [first, second] = palettesForCue("retry");
     const firstButton = page.getByRole("button", { name: `Hear ${first.label} in context`, exact: true });
+    await page.getByRole("button", { name: "One retry", exact: true }).click();
     const started = page.locator('[data-event-type="started"]');
     await firstButton.click();
     await expect(started).toHaveCount(1);
-    await page.clock.runFor(200);
+    await page.clock.runFor(100);
     if (interruption === "stop") await page.getByRole("button", { name: "Stop all", exact: true }).click();
     if (interruption === "replace") await page.getByRole("button", { name: `Hear ${second.label} in context`, exact: true }).click();
     if (interruption === "mute") await page.getByRole("button", { name: "Mute audio", exact: true }).click();
     await expect(page.locator(`[data-event-type="cancelled"][data-cue="retry"][data-palette="${first.id}"][data-reason="${interruption === "mute" ? "muted" : "stopped"}"]`)).toHaveCount(1);
     if (interruption === "replace") {
       await expect(started).toHaveCount(2);
-      await page.clock.runFor(350);
+      await page.clock.runFor(160);
       await expect(started).toHaveCount(3);
-      await page.clock.runFor(1000);
+      await page.clock.runFor(1190);
       await expect(started).toHaveCount(4);
-      await page.clock.runFor(350);
+      await page.clock.runFor(160);
       await expect(started).toHaveCount(5);
       expect(await started.evaluateAll(events => events.map(event => ({ cue: event.getAttribute("data-cue"), palette: event.getAttribute("data-palette") })).reverse()))
         .toEqual([
@@ -272,6 +277,63 @@ for (const interruption of ["stop", "replace", "mute"] as const) {
   });
 }
 
+
+for (const comparison of [
+  { label: "Repeated attempts", palette: "retry-muted-tongue", name: "Muted tongue drum", steps: [
+    ["move", 0], ["retry", 160], ["move", 1900], ["retry", 2060], ["move", 3800],
+    ["retry", 3960], ["move", 5900], ["correct", 6060], ["complete", 7600],
+  ] },
+  { label: "Full sound mix", palette: "retry-wood-and-strings", name: "Wood & damped strings", steps: [
+    ["move", 0], ["capture", 1000], ["check", 2000], ["move", 3500], ["retry", 3660],
+    ["move", 5200], ["correct", 5360], ["complete", 7500],
+  ] },
+] as const) {
+  test(`${comparison.label} compares the finalist against saved sounds without selecting it`, async ({ page }) => {
+    await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
+    const picks = { move: "tabletop", capture: "recorded-chess", retry: "retry-fret-catch" };
+    await page.addInitScript(({ key, picks }) => localStorage.setItem(key, JSON.stringify(picks)), { key: studioStorageKey, picks });
+    await page.goto("/");
+    await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
+    await page.getByRole("combobox", { name: "Sound palette", exact: true }).selectOption("recorded-chess");
+    await page.getByRole("button", { name: comparison.label, exact: true }).click();
+    await page.getByRole("button", { name: `Hear ${comparison.name} in context`, exact: true }).click();
+    const started = page.locator('[data-event-type="started"]');
+    let elapsed = 0;
+    for (const [index, [cue, at]] of comparison.steps.entries()) {
+      if (at > elapsed) {
+        await page.clock.runFor(at - elapsed - 1);
+        await expect(started).toHaveCount(index);
+        await page.clock.runFor(1);
+      }
+      await expect(started).toHaveCount(index + 1);
+      await expect(started.first()).toHaveAttribute("data-cue", cue);
+      const palette = cue === "retry" ? comparison.palette
+        : cue === "move" ? picks.move : cue === "capture" ? picks.capture : productionCuePalettes[cue];
+      await expect(started.first()).toHaveAttribute("data-palette", palette!);
+      elapsed = at;
+    }
+    await expect(page.getByRole("radio", { name: "Choose Fret catch for Try again", exact: true })).toBeChecked();
+    expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!), studioStorageKey)).toEqual(picks);
+  });
+}
+
+test("changing the comparison mode cancels the entire old context and waits for Play", async ({ page }) => {
+  await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
+  await page.goto("/");
+  await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
+  await expect(page.getByRole("button", { name: "Repeated attempts", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Hear Muted tongue drum in context", exact: true }).click();
+  const started = page.locator('[data-event-type="started"]');
+  await expect(started).toHaveCount(1);
+  await page.clock.runFor(159);
+  await page.getByRole("button", { name: "Full sound mix", exact: true }).click();
+  await expect(page.locator('[data-event-type="cancelled"][data-cue="retry"][data-reason="stopped"]')).toHaveCount(3);
+  await page.clock.runFor(10000);
+  await expect(started).toHaveCount(1);
+  await expect(page.locator('[data-event-type="started"][data-cue="complete"]')).toHaveCount(0);
+  expect(await page.evaluate(key => localStorage.getItem(key), studioStorageKey)).toBeNull();
+});
+
 test("rejected retry picks are dropped while approved picks and new retry choices persist", async ({ page }) => {
   const approved = {
     move: "soft-objects", capture: "soft-objects", castle: "soft-objects", promotion: "soft-objects", mate: "soft-objects",
@@ -282,6 +344,13 @@ test("rejected retry picks are dropped while approved picks and new retry choice
     ...fullPaletteCatalog.map(palette => palette.id),
     "retry-soft-error",
     "retry-relay-buzzer", "retry-real-buzzer", "retry-muted-brass", "retry-whistle-fall",
+    "retry-wood-stop", "retry-muted-block", "retry-gentle-knocks", "retry-wood-check",
+    "retry-soft-resistance", "retry-lock-stop", "retry-latch-catch", "retry-case-click",
+    "retry-pedal-release", "retry-latch-back", "retry-cup-tap", "retry-ceramic-pair",
+    "retry-metal-stop", "retry-glass-contact", "retry-bass-stop", "retry-cello-question",
+    "retry-unsettled-chord", "retry-cello-step", "retry-piano-slip", "retry-soft-vibes",
+    "retry-low-marimba", "retry-high-marimba", "retry-prepared-keys", "retry-wood-and-vibes",
+    "retry-ceramic-and-bass", "retry-board-and-cello", "retry-glass-and-box",
     "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
     "retry-downturn", "retry-oops",
     "retry-soft-warm", "retry-soft-short", "retry-soft-gentle",

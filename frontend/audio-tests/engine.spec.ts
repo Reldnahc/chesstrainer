@@ -64,6 +64,7 @@ function fixture() {
   let created = 0;
   let timerId = 0;
   const timers = new Map<number, () => void>();
+  const timerDelays: number[] = [];
   const loads: string[] = [];
   let loader: AudioDriver["loadAsset"] = async () => new ArrayBuffer(8);
   const driver: AudioDriver = {
@@ -71,12 +72,12 @@ function fixture() {
     loadAsset: (url, signal) => { loads.push(url); return loader(url, signal); },
     visible: () => visible,
     subscribeVisibility: callback => { listener = callback; return () => { unsubscribed = true; listener = undefined; }; },
-    setTimer: callback => { timers.set(++timerId, callback); return timerId as unknown as ReturnType<typeof setTimeout>; },
+    setTimer: (callback, delay) => { timerDelays.push(delay); timers.set(++timerId, callback); return timerId as unknown as ReturnType<typeof setTimeout>; },
     clearTimer: timer => { timers.delete(timer as unknown as number); },
   };
   const engine = new AudioEngine({driver, onEvent: event => events.push(event)});
   engine.setReady(true);
-  return {engine, context, events, loads, timers,
+  return {engine, context, events, loads, timers, timerDelays,
     load: (value: AudioDriver["loadAsset"]) => { loader = value; },
     hide: () => { visible = false; listener?.(); },
     show: () => { visible = true; listener?.(); },
@@ -138,7 +139,7 @@ test("unavailable cue and candidate pairs never fetch or schedule playback", asy
   await f.engine.unlock();
   for (const [cue, palette] of [
     ["retry", "recorded-chess"], ["retry", "tabletop"], ["retry", "soft-objects"],
-    ["move", "retry-piano-slip"],
+    ["move", "retry-muted-tongue"],
   ] as const) {
     for (const delayMs of [0, 160]) {
       const eventId = `${cue}:${palette}:${delayMs}`;
@@ -157,16 +158,33 @@ test("unavailable cue and candidate pairs never fetch or schedule playback", asy
 test("an explicit retry candidate plays when its scheduled audition is due", async () => {
   const f = fixture();
   await f.engine.unlock();
-  f.engine.play({cue: "retry", palette: "retry-piano-slip", scope: "audition", eventId: "retry-candidate", delayMs: 160});
+  f.engine.play({cue: "retry", palette: "retry-muted-tongue", scope: "audition", eventId: "retry-candidate", delayMs: 160});
   expect(f.loads).toEqual([]);
   expect(f.timers.size).toBe(1);
   f.tick();
   await flush();
   expect(f.loads).toHaveLength(1);
-  expect(f.loads[0]).toContain("retry-piano-slip/retry.wav");
+  expect(f.loads[0]).toContain("retry-muted-tongue/retry.wav");
   expect(f.started()).toEqual(["retry-candidate"]);
-  expect(f.events.at(-1)).toMatchObject({type: "started", cue: "retry", palette: "retry-piano-slip"});
+  expect(f.events.at(-1)).toMatchObject({type: "started", cue: "retry", palette: "retry-muted-tongue"});
   expect(f.timers.size).toBe(0);
+  f.engine.dispose();
+});
+
+test("long audition delays keep their spacing within a bounded cancellable window", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  for (const delayMs of [5900, 6060, 7600, 30000]) {
+    f.engine.play({...move(`later:${delayMs}`, "long-context"), delayMs});
+  }
+  expect(f.timerDelays).toEqual([5900, 6060, 7600, 15000]);
+  expect(f.loads).toEqual([]);
+  f.engine.cancel("long-context");
+  expect(f.timers.size).toBe(0);
+  f.tick();
+  await flush();
+  expect(f.started()).toEqual([]);
+  expect(f.loads).toEqual([]);
   f.engine.dispose();
 });
 
@@ -175,6 +193,13 @@ test("rejected retry candidates from stale callers never fetch or schedule playb
   await f.engine.unlock();
   for (const palette of [
     "retry-relay-buzzer", "retry-real-buzzer", "retry-muted-brass", "retry-whistle-fall", "retry-soft-error",
+    "retry-wood-stop", "retry-muted-block", "retry-gentle-knocks", "retry-wood-check",
+    "retry-soft-resistance", "retry-lock-stop", "retry-latch-catch", "retry-case-click",
+    "retry-pedal-release", "retry-latch-back", "retry-cup-tap", "retry-ceramic-pair",
+    "retry-metal-stop", "retry-glass-contact", "retry-bass-stop", "retry-cello-question",
+    "retry-unsettled-chord", "retry-cello-step", "retry-piano-slip", "retry-soft-vibes",
+    "retry-low-marimba", "retry-high-marimba", "retry-prepared-keys", "retry-wood-and-vibes",
+    "retry-ceramic-and-bass", "retry-board-and-cello", "retry-glass-and-box",
     "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
     "retry-downturn", "retry-oops",
     "retry-soft-warm", "retry-soft-short", "retry-soft-gentle",

@@ -8,22 +8,17 @@ also carries the applicable AGPL obligations, including the network source offer
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
 The audio candidates under `frontend/src/audio/assets` include CC0 recordings
-by el_boss, simone_ds, taure, zachrau, VizAion, nebulasnails, mhtaylor67, ndhfilms,
-ThunderQuads, CatXx1212, SamsterBirdies, johnnydekk, jonwalter43, hollandm,
-jetpackjbd, sgossner and Escarielle (Freesound), and Pierre SIBANARCO and Joseph
-SARDIN (BigSoundBank). Additional excerpts by Geoff-Bremner-Audio, beerbelly38,
-sgossner, juskiddink, digifishmusic and InspectorJ use
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); NoiseCollector's
-acoustic guitar uses [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+by el_boss, simone_ds, taure, zachrau, hollandm and Escarielle (Freesound), and
+Pierre SIBANARCO and Joseph SARDIN (BigSoundBank). The damped guitar excerpt by
+digifishmusic uses [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 See [audio credits](frontend/src/audio/assets/README.md) for each original title,
 creator, source page and license; individual recipes/hashes are in `sources.json`.
-The studio exposes these credits beside every candidate, including all blend inputs.
-Fieldwork's edits excerpt, convert to mono, remove DC offset, adjust gain and
-fade boundaries; paired/blended cues use documented offsets. Cello step's second
-recorded note is lowered two semitones. Other new retry excerpts retain original
-pitch/speed. The assets and edits retain their corresponding CC terms; the
-application's license does not replace them. Complete CC0 text is included.
-No Chess.com sound assets are used.
+The studio exposes these credits beside every candidate, including both blend
+inputs. Fieldwork's edits excerpt, convert to mono, remove DC offset, adjust gain
+and fade boundaries; paired/blended cues use documented offsets. The three retry
+finalists retain original pitch/speed. Assets and edits retain their respective
+CC terms; the application's license does not replace them. Complete CC0 text is
+included. No Chess.com sound assets are used.
 
 The optional human-move adapter and developer benchmarks use CSSLab's AGPL-3.0 inference primitives at
 [1e13597c42d4858b7cfd7cfdae01e297263364b2](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2).

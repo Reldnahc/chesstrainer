@@ -172,7 +172,8 @@ export class AudioEngine {
           if (this.current(ticket)) this.start(ticket, buffer);
         }).catch(() => this.fail(ticket));
       };
-      const delay = Number.isFinite(request.delayMs) ? Math.max(0, Math.min(5000, request.delayMs!)) : 0;
+      // Allow short audition sequences while keeping malformed delays bounded.
+      const delay = Number.isFinite(request.delayMs) ? Math.max(0, Math.min(15000, request.delayMs!)) : 0;
       if (delay) ticket.timer = this.driver.setTimer(begin, delay);
       else begin();
     } catch { /* Unsupported browser audio must never interrupt interaction. */ }

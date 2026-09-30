@@ -8,11 +8,27 @@ export type AuditionScenario = {
   skipAfterMs?: number;
 };
 
-export const candidateContextSteps: AuditionScenario["steps"] = [
-  { cue: "move", delayMs: 0 },
-  { cue: "retry", delayMs: 350 },
-  { cue: "move", delayMs: 1350 },
-  { cue: "correct", delayMs: 1700 },
+export type CandidateContextId = "single" | "repeated" | "full-mix";
+type CandidateContext = AuditionScenario & { id: CandidateContextId; durationSeconds: number };
+
+export const candidateContexts: readonly CandidateContext[] = [
+  { id: "single", label: "One retry", durationSeconds: 3,
+    description: "Move → try again → another move → correct. Compare the feedback with your usual move and success sounds.",
+    steps: [{ cue: "move", delayMs: 0 }, { cue: "retry", delayMs: 160 },
+      { cue: "move", delayMs: 1350 }, { cue: "correct", delayMs: 1510 }] },
+  { id: "repeated", label: "Repeated attempts", durationSeconds: 10,
+    description: "Three attempts with try-again feedback, then a correct move and completion. Listen for whether repetition becomes tiring.",
+    steps: [{ cue: "move", delayMs: 0 }, { cue: "retry", delayMs: 160 },
+      { cue: "move", delayMs: 1900 }, { cue: "retry", delayMs: 2060 },
+      { cue: "move", delayMs: 3800 }, { cue: "retry", delayMs: 3960 },
+      { cue: "move", delayMs: 5900 }, { cue: "correct", delayMs: 6060 },
+      { cue: "complete", delayMs: 7600 }] },
+  { id: "full-mix", label: "Full sound mix", durationSeconds: 10,
+    description: "Move → capture → check → an attempt and retry → a correct move → completion. Compare texture and volume across the set.",
+    steps: [{ cue: "move", delayMs: 0 }, { cue: "capture", delayMs: 1000 },
+      { cue: "check", delayMs: 2000 }, { cue: "move", delayMs: 3500 },
+      { cue: "retry", delayMs: 3660 }, { cue: "move", delayMs: 5200 },
+      { cue: "correct", delayMs: 5360 }, { cue: "complete", delayMs: 7500 }] },
 ];
 
 export const auditionScenarios: readonly AuditionScenario[] = [

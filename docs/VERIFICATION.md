@@ -4,6 +4,36 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Retry finalists and longer context — September 30, 2026
+
+Shortlisted original candidates 13 (Muted tongue drum), 18 (Fret catch) and 29
+(Wood & damped strings). All retained WAVs remain unchanged from `6fb6b7c`;
+27 total assets use 15 source recordings. Other retry assets/credits are removed
+from the current catalogue. Eight production choices and unapproved retry silence
+remain intact. Context options compare one retry, repeated attempts and a fuller
+sound mix, using the lesson player's 160ms feedback delay and saved/default cues.
+
+- Focused desktop/mobile audio suite via the existing local wrapper:
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`
+  from `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`:
+  **78 passed**, no skips. New checks cover original finalist numbers, all context
+  cue boundaries/palettes, preserved picks and cancellation when switching modes.
+- The initial longer-context tests exposed the engine's five-second delay clamp:
+  later cues collapsed to the same instant. Increased the bounded delay ceiling
+  to 15 seconds; regression coverage verifies exact 5.9/6.06/7.6-second scheduling,
+  the upper clamp and cancellation without asset loads. Full focused rerun passed.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed after the correction,
+  including API/type checks, **11** style tests and all entrypoint boundaries.
+  Existing production chunk-size warning remains non-blocking.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **27 assets**,
+  **1,999,734 bytes**, hashes/levels/provenance valid. No clips were reauthored.
+- Independent code review found no remaining actionable issue. Manual live
+  studio showed 13/18/29, eight saved picks and all nine expected starts in the
+  repeated-attempt comparison, ending with Correct and Complete. No subjective
+  listening-quality claim. Working/staged whitespace checks passed.
+- No unrelated backend/coach suites, deployment, push or remote CI run.
+
 ## Broad recorded retry auditions — September 30, 2026
 
 Replaced the rejected buzzer/brass/whistle/electronic choices with 30 numbered
