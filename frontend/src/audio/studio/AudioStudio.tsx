@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { AudioLines, Check, Copy, Download, Play, Square, Volume2, VolumeX } from "lucide-react";
+import { AudioLines, Check, Play, Square, Volume2, VolumeX } from "lucide-react";
 import Button, { IconButton } from "../../Button";
 import ChoiceGroup from "../../ChoiceGroup";
 import SourceLine from "../../SourceLine";
 import "../../disclosure.css";
 import recordedSources from "../assets/sources.json";
-import { cueCatalog, fullPaletteCatalog, isPaletteForCue, paletteCatalog, palettesForCue, productionCuePalettes, type CueDefinition, type PaletteDefinition } from "../catalog";
+import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { SoundCategory, SoundCue, SoundPalette } from "../model";
-import { auditionScenarios, candidateContexts, type AuditionScenario, type CandidateContextId } from "./scenarios";
-import { exportStudioSelections, readStudioSelections, studioStorageKey, type StudioSelections } from "./selections";
+import { auditionScenarios, retryContexts, type AuditionScenario, type RetryContextId } from "./scenarios";
 import "./studio.css";
 
 type CueFilter = "all" | SoundCategory;
@@ -17,7 +16,7 @@ const cueFilters: readonly { value: CueFilter; label: string }[] = [
   { value: "all", label: "All cues" }, { value: "board", label: "Board" },
   { value: "practice", label: "Practice" },
 ];
-const candidateContextOptions = candidateContexts.map(({ id, label }) => ({ value: id, label }));
+const retryContextOptions = retryContexts.map(({ id, label }) => ({ value: id, label }));
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";
 const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => item.id === palette)?.label ?? "";
 const assetSources = new Map(recordedSources.assets.map(source => [`${source.palette}:${source.cue}`, source]));
@@ -42,42 +41,6 @@ function CueSource({ cue, palette }: { cue: SoundCue; palette: SoundPalette }) {
   </details>;
 }
 
-function CueOption({ cue, palette, picked, named = false, number, onPlay, onContext, onChoose }: {
-  cue: CueDefinition;
-  palette: PaletteDefinition;
-  picked: boolean;
-  named?: boolean;
-  number?: number;
-  onPlay: (cue: SoundCue, palette: SoundPalette) => void;
-  onContext?: (palette: SoundPalette) => void;
-  onChoose: (cue: SoundCue, palette: SoundPalette) => void;
-}) {
-  const descriptionId = named ? `candidate-description-${cue.id}-${palette.id}` : undefined;
-  return <div className="audio-studio-cue-option" data-picked={picked} data-palette={palette.id}>
-    {number !== undefined && <span className="audio-studio-candidate-number" aria-hidden="true">{String(number).padStart(2, "0")}</span>}
-    {named && <h5 className="audio-studio-candidate-name">{palette.label}</h5>}
-    {named && <p id={descriptionId} className="audio-studio-candidate-description">{palette.description}</p>}
-    <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} aria-describedby={descriptionId} onClick={() => onPlay(cue.id, palette.id)}>
-      <Play size={13} aria-hidden="true" /><span>Play</span>
-    </Button>
-    {onContext && <Button size="compact" aria-label={`Hear ${palette.label} in context`} aria-describedby={[descriptionId, "retry-context-description"].filter(Boolean).join(" ")} onClick={() => onContext(palette.id)}>In context</Button>}
-    <label className="audio-studio-pick">
-      <input type="radio" name={`pick-${cue.id}`} value={palette.id} checked={picked}
-        onChange={() => onChoose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} aria-describedby={descriptionId} />
-      <span>{picked ? "Picked" : "Pick"}</span>
-    </label>
-    <CueSource cue={cue.id} palette={palette.id} />
-  </div>;
-}
-
-const retryGroups = [...palettesForCue("retry").reduce((groups, palette, index) => {
-  const group = palette.auditionGroup ?? "Try again candidates";
-  const candidates = groups.get(group) ?? [];
-  candidates.push({ palette, number: palette.auditionNumber ?? index + 1 });
-  groups.set(group, candidates);
-  return groups;
-}, new Map<string, { palette: PaletteDefinition; number: number }[]>())];
-
 function eventLabel(event: AudioEvent) {
   if (event.type === "started") return "Played";
   if (event.type === "cancelled") return "Cancelled";
@@ -87,26 +50,21 @@ function eventLabel(event: AudioEvent) {
 }
 
 export default function AudioStudio() {
-  const [selections, setSelections] = useState<StudioSelections>(readStudioSelections);
   const [filter, setFilter] = useState<CueFilter>("all");
   const [volume, setVolume] = useState(35);
   const [muted, setMuted] = useState(false);
   const [events, setEvents] = useState<(AudioEvent & { traceId: number })[]>([]);
   const [status, setStatus] = useState("Ready when you are. Press Play to start listening.");
-  const [saveStatus, setSaveStatus] = useState("");
   const [error, setError] = useState("");
-  const [scenarioPalette, setScenarioPalette] = useState<SoundPalette | "picks">("picks");
   const [selectedScenario, setSelectedScenario] = useState(auditionScenarios[0].id);
-  const [candidateContextId, setCandidateContextId] = useState<CandidateContextId>("repeated");
+  const [retryContextId, setRetryContextId] = useState<RetryContextId>("repeated");
   const engineRef = useRef<AudioEngine | null>(null);
   const takeRef = useRef(0);
   const traceRef = useRef(0);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const visibleCues = cueCatalog.filter(cue => filter === "all" || cue.category === filter);
-  const chosenCount = Object.keys(selections).length;
-  const selectionJson = exportStudioSelections(selections);
   const scenario = auditionScenarios.find(item => item.id === selectedScenario)!;
-  const candidateContext = candidateContexts.find(item => item.id === candidateContextId)!;
+  const retryContext = retryContexts.find(item => item.id === retryContextId)!;
 
   useEffect(() => {
     let mounted = true;
@@ -115,7 +73,7 @@ export default function AudioStudio() {
       setEvents(previous => [...previous.slice(-79), { ...event, traceId: ++traceRef.current }]);
       if (event.type === "started") setStatus(`${cueLabel(event.cue)} · ${paletteLabel(event.palette)}`);
       if (event.type === "error") setError("This sound could not play. Try it again or check that audio is available in your browser.");
-      if (event.type === "suppressed" && event.reason === "muted") setStatus("Muted. Unmute to hear your next audition.");
+      if (event.type === "suppressed" && event.reason === "muted") setStatus("Muted. Unmute to hear your next preview.");
       if (event.type === "suppressed" && event.reason === "gesture-blocked") {
         setError("Audio is unavailable or blocked by the browser. Press Play again to retry.");
       }
@@ -186,83 +144,21 @@ export default function AudioStudio() {
     audition.engine.play({ cue, palette, scope: audition.scope, eventId: `${audition.scope}:${cue}` });
   }
 
-  async function playCandidateContext(candidate: SoundPalette) {
-    const audition = await begin();
-    if (!audition) return;
-    const { engine, scope } = audition;
-    for (const [index, step] of candidateContext.steps.entries()) {
-      const palette = step.cue === "retry" ? candidate : selections[step.cue] ?? productionCuePalettes[step.cue];
-      if (isPaletteForCue(step.cue, palette)) {
-        engine.play({ ...step, palette, scope, eventId: `${scope}:${index}` });
-      }
-    }
-  }
-
   async function playScenario(item: AuditionScenario) {
     const audition = await begin();
     if (!audition) return;
     const { engine, take, scope } = audition;
-    const paletteFor = (cue: SoundCue) => {
-      const palette = scenarioPalette === "picks" ? selections[cue] ?? productionCuePalettes[cue] : scenarioPalette;
-      return isPaletteForCue(cue, palette) ? palette : null;
-    };
-    if (item.steps.every(step => paletteFor(step.cue) === null)) {
-      setStatus("No sound is selected for this scenario.");
-      return;
-    }
     for (const [index, step] of item.steps.entries()) {
-      const palette = paletteFor(step.cue);
-      if (palette !== null) engine.play({ ...step, palette, scope, eventId: `${scope}:${index}` });
+      engine.play({ ...step, scope, eventId: `${scope}:${index}` });
     }
     if (item.skipAfterMs !== undefined && !muted && volume > 0) {
       timersRef.current.push(setTimeout(() => {
         if (take !== takeRef.current) return;
         engine.cancel(scope);
-        const palette = paletteFor("move");
-        if (palette !== null) engine.play({ cue: "move", palette, scope: `${scope}:next`, eventId: `${scope}:next:move` });
+        engine.play({ cue: "move", scope: `${scope}:next`, eventId: `${scope}:next:move` });
         setStatus("Jumped ahead. Feedback from the previous position was cancelled.");
       }, item.skipAfterMs));
     }
-  }
-
-  function choose(cue: SoundCue, palette: SoundPalette) {
-    const next = { ...selections, [cue]: palette };
-    setSelections(next);
-    try {
-      localStorage.setItem(studioStorageKey, JSON.stringify(next));
-      setSaveStatus(`${cueLabel(cue)} pick saved in this browser.`);
-    } catch {
-      setSaveStatus("Browser storage is unavailable. Export your picks before leaving.");
-    }
-  }
-
-  function clearSelections() {
-    setSelections({});
-    try {
-      localStorage.removeItem(studioStorageKey);
-      setSaveStatus("Cleared your studio picks.");
-    } catch {
-      setSaveStatus("Browser storage is unavailable. Your previous picks may return after reloading.");
-    }
-  }
-
-  async function copySelections() {
-    try {
-      await navigator.clipboard.writeText(selectionJson);
-      setSaveStatus("Copied your cue mapping.");
-    } catch {
-      setSaveStatus("Clipboard is unavailable. Select the mapping below or download the JSON file.");
-    }
-  }
-
-  function downloadSelections() {
-    const url = URL.createObjectURL(new Blob([selectionJson], { type: "application/json" }));
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = "fieldwork-audio-picks.json";
-    anchor.click();
-    URL.revokeObjectURL(url);
-    setSaveStatus("Downloaded your cue mapping.");
   }
 
   const history = events.filter(event => event.type !== "requested" && event.type !== "ended").slice(-18).reverse();
@@ -272,10 +168,10 @@ export default function AudioStudio() {
       <div className="audio-studio-brand"><AudioLines size={22} aria-hidden="true" /><span>FIELDWORK / AUDIO STUDIO</span></div>
       <span className="audio-studio-badge">Development only</span>
       <h1>A little sound. A clearer game.</h1>
-      <p>Compare sounds, choose a favorite for each cue, then hear your picks in context.</p>
+      <p>Preview the nine approved game sounds, inspect their sources, and check playback in context.</p>
     </header>
 
-    <section className="audio-studio-transport" aria-label="Audition controls">
+    <section className="audio-studio-transport" aria-label="Playback controls">
       <div className="audio-studio-volume">
         <IconButton aria-label={muted ? "Unmute audio" : "Mute audio"} aria-pressed={muted} onClick={() => setMuted(value => !value)}>
           {muted ? <VolumeX size={19} aria-hidden="true" /> : <Volume2 size={19} aria-hidden="true" />}
@@ -291,66 +187,43 @@ export default function AudioStudio() {
     <div className="audio-studio-workspace">
       <section className="audio-studio-library" aria-labelledby="cue-library-heading">
         <div className="audio-studio-section-heading">
-          <div><span className="audio-studio-step">01 / COMPARE</span><h2 id="cue-library-heading">Find the right feel</h2></div>
-          <span className="audio-studio-count">{chosenCount} / {cueCatalog.length} picked</span>
+          <div><span className="audio-studio-step">01 / APPROVED SOUNDS</span><h2 id="cue-library-heading">The game sound set</h2></div>
+          <span className="audio-studio-count">{cueCatalog.length} cues</span>
         </div>
         <ChoiceGroup label="Cue category" value={filter} options={cueFilters} onChange={setFilter} />
-        <div className="audio-studio-palette-headings">
-          <span className="audio-studio-cue-heading">Cue</span>
-          {fullPaletteCatalog.map((palette, index) => <div key={palette.id} className="audio-studio-palette" data-palette={palette.id}>
-            <span className="audio-studio-palette-number">0{index + 1}</span>
-            <h3>{palette.label}</h3><p>{palette.description}</p>
-          </div>)}
-        </div>
         <div className="audio-studio-cues">
-          {visibleCues.map(cue => <fieldset key={cue.id} className="audio-studio-cue-row" data-cue={cue.id}>
-            <legend className="sr-only">{cue.label} palette</legend>
-            <div className="audio-studio-cue-name"><h3>{cue.label}</h3><p>{cue.description}</p></div>
-            {cue.id === "retry" ? <div className="audio-studio-candidate-groups">
-              <div className="audio-studio-context-controls">
-                <ChoiceGroup label="Comparison context" value={candidateContextId} options={candidateContextOptions}
-                  onChange={value => { stop(); setCandidateContextId(value); }} />
-                <p id="retry-context-description" className="audio-studio-context-description"><strong>About {candidateContext.durationSeconds} seconds.</strong> {candidateContext.description}</p>
-                <p className="audio-studio-context-footnote">In context uses your saved sounds, or approved defaults for unpicked cues. Listening does not change your picks.</p>
+          {visibleCues.map(cue => {
+            const palette = paletteCatalog.find(item => item.id === productionCuePalettes[cue.id]);
+            if (!palette) return null;
+            return <article key={cue.id} className="audio-studio-cue-row" data-cue={cue.id} data-palette={palette.id} aria-labelledby={`cue-${cue.id}`}>
+              <div className="audio-studio-cue-name"><h3 id={`cue-${cue.id}`}>{cue.label}</h3><p>{cue.description}</p></div>
+              <div className="audio-studio-cue-preview">
+                <span className="audio-studio-palette-name">{palette.label}</span>
+                <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} onClick={() => void playCue(cue.id, palette.id)}>
+                  <Play size={13} aria-hidden="true" />Play
+                </Button>
               </div>
-              {retryGroups.map(([group, candidates]) => <section key={group} className="audio-studio-candidate-group" data-audition-group={group}>
-                <h4>{group}</h4>
-                <div className="audio-studio-candidates">
-                  {candidates.map(({ palette, number }) => <CueOption key={palette.id} cue={cue} palette={palette}
-                    picked={selections[cue.id] === palette.id} named number={number} onPlay={playCue} onContext={playCandidateContext} onChoose={choose} />)}
-                </div>
-              </section>)}
-            </div> : palettesForCue(cue.id).map(palette => <CueOption key={palette.id} cue={cue} palette={palette}
-              picked={selections[cue.id] === palette.id} onPlay={playCue} onChoose={choose} />)}
-          </fieldset>)}
+              <CueSource cue={cue.id} palette={palette.id} />
+              {cue.id === "retry" && <div className="audio-studio-context-controls">
+                <ChoiceGroup label="Retry context" value={retryContextId} options={retryContextOptions}
+                  onChange={value => { stop(); setRetryContextId(value); }} />
+                <p id="retry-context-description" className="audio-studio-context-description"><strong>About {retryContext.durationSeconds} seconds.</strong> {retryContext.description}</p>
+                <Button size="compact" aria-label="Hear Try again in context" aria-describedby="retry-context-description" onClick={() => void playScenario(retryContext)}>In context</Button>
+              </div>}
+            </article>;
+          })}
         </div>
       </section>
 
       <aside className="audio-studio-sidebar">
         <section className="audio-studio-panel" aria-labelledby="scenario-heading">
           <span className="audio-studio-step">02 / IN CONTEXT</span><h2 id="scenario-heading">Hear the flow</h2>
-          <p>A good cue should feel right in a real sequence.</p>
-          <label>Sound palette<select value={scenarioPalette} onChange={event => { stop(); setScenarioPalette(event.target.value as typeof scenarioPalette); }}>
-            <option value="picks">My picks</option>{fullPaletteCatalog.map(palette => <option key={palette.id} value={palette.id}>{palette.label}</option>)}
-          </select></label>
+          <p>Uses the same sound mapping and player as the application.</p>
           <label>Scenario<select value={selectedScenario} onChange={event => { stop(); setSelectedScenario(event.target.value); }}>
             {auditionScenarios.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
           </select></label>
           <p className="audio-studio-scenario-description">{scenario.description}</p>
           <Button variant="primary" onClick={() => void playScenario(scenario)}><Play size={15} aria-hidden="true" />Play scenario</Button>
-          <p className="audio-studio-footnote">{scenarioPalette === "picks" ? "Unpicked cues use approved production sounds. Cues without an approved sound stay silent." : "This audition leaves your individual picks unchanged."}</p>
-        </section>
-
-        <section className="audio-studio-panel" aria-labelledby="picks-heading">
-          <span className="audio-studio-step">03 / KEEP YOUR PICKS</span><h2 id="picks-heading">Your sound direction</h2>
-          <p>Saved only in this browser’s studio. Export the mapping when you’re ready to apply it to the product.</p>
-          <div className="audio-studio-export-actions">
-            <Button size="compact" onClick={() => void copySelections()}><Copy size={14} aria-hidden="true" />Copy JSON</Button>
-            <Button size="compact" onClick={downloadSelections}><Download size={14} aria-hidden="true" />Download</Button>
-            <Button size="compact" onClick={clearSelections} disabled={chosenCount === 0}>Clear picks</Button>
-          </div>
-          <p className="audio-studio-save-status" role="status">{saveStatus || `${chosenCount} cue ${chosenCount === 1 ? "pick" : "picks"} saved.`}</p>
-          <details className="disclosure audio-studio-details"><summary>View cue mapping</summary><pre tabIndex={0} aria-label="Cue mapping JSON">{selectionJson}</pre></details>
         </section>
 
         <section className="audio-studio-panel audio-studio-history" aria-label="Playback history">
@@ -363,9 +236,9 @@ export default function AudioStudio() {
             </li>)}</ol> : <p>No playback yet.</p>}
           </details>
         </section>
-        <p className="audio-studio-speech-note">Speech is reserved for a later pass. This studio auditions sound effects only.</p>
+        <p className="audio-studio-speech-note">Speech is reserved for a later pass. This studio previews sound effects only.</p>
       </aside>
     </div>
-    <footer className="audio-studio-footer">Audio studio · Local audition choices do not change account preferences.</footer>
+    <footer className="audio-studio-footer">Audio studio · Preview controls do not change account preferences.</footer>
   </main>;
 }

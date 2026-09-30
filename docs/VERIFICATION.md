@@ -4,6 +4,40 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Final sound inventory cleanup — September 30, 2026
+
+Removed 18 unselected WAVs, their unused recipes/source credits, and the studio's
+retired audition selection/persistence/export code. The studio now previews the
+same nine defaults as production. All nine WAVs, recipes and the production
+mapping are unchanged. Bundled audio fell from 1,999,734 to **765,450 bytes**
+(61.7% smaller). Six CC0 source recordings remain. Locally, 50 rejected cache/
+research files and 14 superseded helper files were removed from ignored `.tools`;
+the six required source MP3s and authoring dependencies were preserved.
+
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **74 passed**, desktop/mobile, no skips. Covers all nine real assets, exact
+  manifest/default/source coverage, retained context timings, cancellation,
+  mute/hidden behavior, retired caller rejection, untouched legacy browser
+  storage and narrow-phone controls. The local wrapper only reuses the running
+  studio and delegates to the repository audio config.
+- `node node_modules/@playwright/test/cli.js test audio-study.spec.ts --reporter=line`
+  in the same environment: **16 passed**, desktop/mobile, no skips. Real puzzle,
+  lesson, opening recall and SRS paths retain their audio and silence policies.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including API/type
+  checks, **11** style tests and entrypoint boundaries. Both output directories
+  contain exactly the nine approved WAV hashes. Existing large-chunk warning
+  remains non-blocking.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **9 assets**,
+  **765,450 bytes**, hashes/levels/provenance valid. Cached offline `--prepare`
+  with the existing pinned NumPy/SoundFile authoring environment reproduced every
+  file without changing hashes or downloading anything. Direct comparison against
+  pre-cleanup Git blobs confirmed all nine files are byte-identical.
+- Inspected the live studio and its retained context playback. Independent staged
+  review found no actionable issue; staged whitespace check passed. No full
+  backend/coach suite, Docker deployment, push or remote CI run for this cleanup.
+
 ## Approved Try again sound — September 30, 2026
 
 Promoted audition 13, Muted tongue drum, to the production `retry` default.

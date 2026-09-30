@@ -142,8 +142,8 @@ test("unavailable cue and candidate pairs never fetch or schedule playback", asy
   const f = fixture();
   await f.engine.unlock();
   for (const [cue, palette] of [
-    ["retry", "recorded-chess"], ["retry", "tabletop"], ["retry", "soft-objects"],
-    ["move", "retry-muted-tongue"],
+    ["retry", "tabletop"], ["retry", "soft-objects"],
+    ["move", "retry-muted-tongue"], ["move", "tabletop"], ["check", "soft-objects"],
   ] as const) {
     for (const delayMs of [0, 160]) {
       const eventId = `${cue}:${palette}:${delayMs}`;
@@ -192,10 +192,11 @@ test("long audition delays keep their spacing within a bounded cancellable windo
   f.engine.dispose();
 });
 
-test("rejected retry candidates from stale callers never fetch or schedule playback", async () => {
+test("retired palettes from stale callers never fetch or schedule playback", async () => {
   const f = fixture();
   await f.engine.unlock();
   for (const palette of [
+    "recorded-chess", "retry-fret-catch", "retry-wood-and-strings",
     "retry-relay-buzzer", "retry-real-buzzer", "retry-muted-brass", "retry-whistle-fall", "retry-soft-error",
     "retry-wood-stop", "retry-muted-block", "retry-gentle-knocks", "retry-wood-check",
     "retry-soft-resistance", "retry-lock-stop", "retry-latch-catch", "retry-case-click",
@@ -407,17 +408,17 @@ test("hide, mute, loading, disable and disposal all invalidate asynchronous work
   }
 });
 
-test("decoded assets are reused while distinct palette assets remain independent", async () => {
+test("decoded assets are reused while distinct cue assets remain independent", async () => {
   const f = fixture();
   await f.engine.unlock();
-  for (const [eventId, palette] of [["a", "recorded-chess"], ["b", "recorded-chess"], ["c", "soft-objects"]] as const) {
-    f.engine.play({...move(eventId), palette});
+  for (const [eventId, cue] of [["a", "move"], ["b", "move"], ["c", "check"]] as const) {
+    f.engine.play({...move(eventId), cue});
     await flush();
   }
   expect(f.loads).toHaveLength(2);
   expect(f.context.decodes).toBe(2);
-  expect(f.loads[0]).toContain("recorded-chess/move.wav");
-  expect(f.loads[1]).toContain("soft-objects/move.wav");
+  expect(f.loads[0]).toContain("soft-objects/move.wav");
+  expect(f.loads[1]).toContain("tabletop/check.wav");
   f.engine.dispose();
 });
 

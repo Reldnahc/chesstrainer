@@ -4,8 +4,8 @@ Fieldwork uses one browser audio service for board moves and practice feedback.
 Audio is presentation only: it never grades a move,
 advances a session, changes the engine budget or infers a tactic from the board.
 The bundled selection is the owner's mixed recording set, listed below. The
-separate audition studio remains available for comparing sounds. The original
-procedurally synthesized audition sets were rejected and have been removed.
+separate audio studio previews those same sounds in isolation and in context.
+Rejected auditions and their selection/export UI have been removed.
 
 ## Controls and defaults
 
@@ -34,12 +34,12 @@ does not replay missed events. All feedback remains understandable without sound
 | --- | --- |
 | Move, capture, castle, promotion, checkmate | Soft objects |
 | Check, correct answer, completion | Tabletop |
-| Try again | Muted tongue drum (audition 13) |
+| Try again | Muted tongue drum |
 
 All nine cues now have owner-approved sounds. `productionCuePalettes` is the
 single per-cue default mapping. A null selection remains supported and suppresses
-playback before a download or timer is created. The studio can
-explicitly audition a different candidate without changing production choices.
+playback before a download or timer is created. The studio uses these same
+defaults without reading or changing account preferences.
 Ratings never have sounds: their cue types, emitters, assets, settings and saved
 preference have been removed. The forward database migration drops only the
 retired `audio_review` column and preserves remaining account preferences.
@@ -78,8 +78,8 @@ before an attempt or reveal permits feedback.
 - `frontend/src/audio/model.ts` owns semantic cue, preference and prepared-speech
   types. `cueForMove` interprets canonical server SAN, not FEN or local chess rules.
 - `catalog.ts` owns cue categories, priorities, approved production choices,
-  palette metadata, per-cue candidate availability and asset URLs. Engine,
-  studio and stored selections all validate cue/candidate pairs against it.
+  palette metadata, per-cue asset availability and asset URLs. Engine and studio
+  validate cue/palette pairs against it; each cue has one approved asset.
 - `engine.ts` owns a lazily created Web Audio context, decoded asset cache, master
   gain, separate effects/speech buses, bounded playback, short cancellation fades,
   duplicate suppression, visibility and disposal. Suppressed requests are dropped.
@@ -91,34 +91,27 @@ before an attempt or reveal permits feedback.
   Display-only playback handlers emit move cues. Explicit replays get fresh event
   identities; deduplication does not globally suppress repeated chess positions.
 
-The approved cue alternatives retain **11 CC0 recordings**: real chess/wooden
-pieces, wood block, music box, bronze bell, triangle, glass and a soft gong.
-They are trimmed, level matched and faded; castling combines two recorded hits.
-Retry auditions retain the owner's three finalists: **13 Muted tongue drum**
-(the approved production choice), **18 Fret catch**, and **29 Wood & damped strings**.
-Their IDs, original
-numbers and WAV bytes remain unchanged from the broad comparison. Other retry
-candidates are removed; stale selections are discarded without touching the
-eight approved cue choices. Fifteen source recordings remain: the original
-eleven plus steel tongue drum, damped guitar fret, soft woodblock and prepared
-piano. The guitar uses CC BY 4.0; other inputs use CC0. Every input to a blend is
-credited in the studio. Edits are baked into the WAVs; these finalists retain
-source pitch/speed and add no runtime DSP or oscillator tones.
+The nine approved WAVs use **six CC0 source recordings**: chess pieces, bronze
+bell, music box, triangle, glass and steel tongue drum. They are trimmed, level
+matched and faded; castling combines two recorded hits. These are the exact
+owner-approved files, with no new DSP or oscillator tones. Unselected recordings
+and their unused recipes/credits have been removed from the current tree; earlier
+auditions remain in Git history.
+
 The Freesound inputs are public HQ MP3 previews rather than original WAV downloads.
 The other inputs are the publisher's downloadable MP3s. Resaving them as WAV does
 not restore information removed by MP3 encoding.
 
-`frontend/src/audio/assets/sources.json` records every source, author, license,
-input/output hash and exact edit recipe. Its license map and the asset README
-retain attribution and the applicable license links, alongside `CC0-1.0.txt`.
-`scripts/prepare_audio.py --check` verifies assets offline; explicit authoring can
-reproduce the edits from hash-checked source files. The 27 candidate WAVs comprise
-eight cues in three palettes and three retry-only choices, totaling approximately
-**2.00 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
-as needed; normal installation/build/playback does not contact a sound provider.
-Additional palettes need not change event producers.
+`frontend/src/audio/assets/sources.json` records each retained source, author,
+license, input/output hash and exact edit recipe. Its license map and asset README
+retain attribution alongside `CC0-1.0.txt`. `scripts/prepare_audio.py --check`
+verifies assets offline; explicit authoring can reproduce the edits from
+hash-checked source files. The nine WAVs total **765,450 bytes** (about 0.77 MB).
+Assets are bundled locally, fetched and decoded only as needed; normal
+installation/build/playback does not contact a sound provider. Additional
+palettes need not change event producers.
 
-## Audition studio
+## Audio studio
 
 From the repository root:
 
@@ -127,43 +120,25 @@ npm --prefix frontend run dev:audio
 ```
 
 Open **http://127.0.0.1:5176**. This is a separate Vite process with no account/API
-connection and no production navigation route. It uses the actual audio engine.
+connection and no production navigation route. It uses the actual audio engine
+and the same nine approved defaults as the app.
 
-- Compare Recorded chess, Tabletop and Soft objects for the eight approved cues.
-  Try again shows the three finalists together with their original numbers.
-  Select **One retry**, **Repeated attempts** (default) or **Full sound mix**,
-  then press a finalist's **In context** button. The longer comparisons repeat
-  retries or include capture, check, correct and completion sounds over about
-  ten seconds. Retry/correct follow moves by 160ms, matching lesson playback.
-  Other sounds use saved choices or approved defaults; the general scenario
-  palette does not affect these comparisons. Listening never changes picks.
-  Switching context cancels the prior playback and waits for another press.
-  The engine permits delayed cues up to 15 seconds so longer auditions retain
-  their spacing; pending cues remain cancellable and do not preload or play early.
-  The eight approved sounds and their production defaults are unchanged.
-- Open a candidate's Source disclosure for its source, author, edits and actual license.
-  Approved production choices are listed above; other variants remain audition
-  candidates. Exact edit recipes are recorded in the asset manifest.
-- Pick a different palette for each cue; picks persist only in studio storage.
-  Clear picks resets that audition selection without changing account settings.
-- Play short scenarios using one palette or the current mixed selection.
-  Unpicked cues use their approved production choice, including Muted tongue
-  drum for Try again. Retry is not available in the three general palettes;
-  engine requests for unavailable pairs never load or schedule.
-- Adjust volume, mute, stop or inspect the playback history.
-- Copy/download the selected mapping for review and a later deliberate product
-  change. Studio selections do not silently alter production account preferences.
+- Play each sound alone; open its Source disclosure for the recording, author,
+  edits and license. Exact recipes remain in the asset manifest.
+- For Try again, choose **One retry**, **Repeated attempts** (default) or
+  **Full sound mix**, then press **In context**. The longer previews repeat
+  retries or include capture, check, correct and completion over about ten seconds.
+  Retry/correct follow moves by 160ms, matching lesson playback. Switching context
+  cancels playback and waits for another press.
+- Play short board/practice scenarios with the approved set. Adjust volume,
+  mute, stop or inspect playback history. Pending cues remain cancellable and do
+  not preload or play early; the engine bounds delayed cues at 15 seconds.
 
-Selection storage remains version 2, preserving the owner's eight choices.
-Retired retry/palette pairs are discarded independently; a new retry choice
-persists without resetting other picks.
-Export is version 3 and includes the explicit per-cue production fallback map
-with all nine approved sounds. Previous synthetic-set picks cannot silently approve
-replacement sounds; old palette IDs and removed rating cues are discarded.
-
-The studio shares application buttons and choice controls but owns its layout.
-Its style boundary rejects application/board styles. CI has a dedicated audio
-suite; audio-only changes do not require the entire coach artwork matrix.
+There is no audition picker, selection storage or export UI. Obsolete studio
+browser data is neither read nor rewritten. Playback never changes account
+preferences. The studio shares application buttons and choice controls but owns
+its layout. Its style boundary rejects application/board styles. CI has a
+dedicated audio suite; audio-only changes do not require the coach artwork matrix.
 
 ## Coach speech foundation
 
@@ -185,7 +160,7 @@ Engine tests cover cue precedence, mute/categories, activation failure, duplicat
 delayed and stale decoding, cancellation, hidden tabs, bounded voices, prepared
 speech and disposal. Browser tests observe actual Web Audio source starts and
 cover the production preference/session/navigation paths without production test
-globals. Studio tests exercise real assets, persisted selections and cancellation.
+globals. Studio tests exercise all approved assets, source coverage, context timing and cancellation.
 Run the affected application/account suites alongside the dedicated audio suite
 when changing integration. See [Testing](TESTING.md) and the dated
 [verification record](VERIFICATION.md) for commands and actual results.

@@ -64,7 +64,7 @@ def check(manifest: dict) -> None:
     if actual != expected:
         raise ValueError(f"Uncatalogued or missing WAVs: {actual ^ expected}")
     print(
-        f"Verified {len(expected)} audio candidates; {total:,} bytes; hashes, levels and provenance intact."
+        f"Verified {len(expected)} audio assets; {total:,} bytes; hashes, levels and provenance intact."
     )
 
 

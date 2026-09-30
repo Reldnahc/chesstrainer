@@ -7,18 +7,16 @@ Existing Fieldwork source keeps its original license. The combined application
 also carries the applicable AGPL obligations, including the network source offer.
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
-The audio candidates under `frontend/src/audio/assets` include CC0 recordings
-by el_boss, simone_ds, taure, zachrau, hollandm and Escarielle (Freesound), and
-Pierre SIBANARCO and Joseph SARDIN (BigSoundBank). The damped guitar excerpt by
-digifishmusic uses [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-See [audio credits](frontend/src/audio/assets/README.md) for each original title,
-creator, source page and license; individual recipes/hashes are in `sources.json`.
-The studio exposes these credits beside every candidate, including both blend
-inputs. Fieldwork's edits excerpt, convert to mono, remove DC offset, adjust gain
-and fade boundaries; paired/blended cues use documented offsets. The three retry
-finalists retain original pitch/speed. Assets and edits retain their respective
-CC terms; the application's license does not replace them. Complete CC0 text is
-included. No Chess.com sound assets are used.
+The approved audio under `frontend/src/audio/assets` uses CC0 recordings by
+simone_ds and hollandm (Freesound), and Pierre SIBANARCO and Joseph SARDIN
+(BigSoundBank). See [audio credits](frontend/src/audio/assets/README.md) for each
+original title, creator, source page and license; recipes/hashes are in
+`sources.json`. The studio exposes these credits beside each sound. Fieldwork's
+edits excerpt, convert to mono, remove DC offset, adjust gain and fade boundaries;
+castling pairs two recorded hits at documented offsets. The Try again excerpt
+retains original pitch/speed. Assets and edits retain their CC0 terms; the
+application's license does not replace them. Complete CC0 text is included.
+No Chess.com sound assets are used.
 
 The optional human-move adapter and developer benchmarks use CSSLab's AGPL-3.0 inference primitives at
 [1e13597c42d4858b7cfd7cfdae01e297263364b2](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2).

@@ -8,10 +8,10 @@ export type AuditionScenario = {
   skipAfterMs?: number;
 };
 
-export type CandidateContextId = "single" | "repeated" | "full-mix";
-type CandidateContext = AuditionScenario & { id: CandidateContextId; durationSeconds: number };
+export type RetryContextId = "single" | "repeated" | "full-mix";
+type RetryContext = AuditionScenario & { id: RetryContextId; durationSeconds: number };
 
-export const candidateContexts: readonly CandidateContext[] = [
+export const retryContexts: readonly RetryContext[] = [
   { id: "single", label: "One retry", durationSeconds: 3,
     description: "Move → try again → another move → correct. Compare the feedback with your usual move and success sounds.",
     steps: [{ cue: "move", delayMs: 0 }, { cue: "retry", delayMs: 160 },

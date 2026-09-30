@@ -29,25 +29,13 @@ export const productionCuePalettes: Readonly<Record<SoundCue, SoundPalette | nul
 };
 export type PaletteDefinition = {
   id: SoundPalette; label: string; description: string; cues: readonly SoundCue[];
-  auditionGroup?: string;
-  auditionNumber?: number;
 };
-const approvedCues = soundCues.filter(cue => cue !== "retry");
+const approvedCues = (palette: SoundPalette) => soundCues.filter(cue => productionCuePalettes[cue] === palette);
 export const paletteCatalog: readonly PaletteDefinition[] = [
-  {id: "recorded-chess", label: "Recorded chess", description: "Actual chess-piece recordings, with bell feedback.", cues: approvedCues},
-  {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents.", cues: approvedCues},
-  {id: "soft-objects", label: "Soft objects", description: "Lighter object recordings and gentle resonant accents.", cues: approvedCues},
-  {id: "retry-muted-tongue", label: "Muted tongue drum", description: "A low, rounded note with a short tail. Compare its resonance with the brighter Correct sound.", cues: ["retry"], auditionGroup: "Finalists", auditionNumber: 13},
-  {id: "retry-fret-catch", label: "Fret catch", description: "A very short, dry string scrape. Compare its tactile texture with the piece-placement sound.", cues: ["retry"], auditionGroup: "Finalists", auditionNumber: 18},
-  {id: "retry-wood-and-strings", label: "Wood & damped strings", description: "A wood tap followed by damped strings. Compare its two-part shape with the single move and Correct cues.", cues: ["retry"], auditionGroup: "Finalists", auditionNumber: 29},
+  {id: "tabletop", label: "Tabletop", description: "Small acoustic accents for check and success.", cues: approvedCues("tabletop")},
+  {id: "soft-objects", label: "Soft objects", description: "Lighter piece recordings and gentle resonant accents.", cues: approvedCues("soft-objects")},
+  {id: "retry-muted-tongue", label: "Muted tongue drum", description: "A low, rounded note with a short tail.", cues: approvedCues("retry-muted-tongue")},
 ];
-
-/** The original palettes span the approved cues; retry candidates are cue-specific. */
-export const fullPaletteCatalog = paletteCatalog.filter(palette => palette.cues.includes("move"));
-
-export function palettesForCue(cue: SoundCue): readonly PaletteDefinition[] {
-  return paletteCatalog.filter(palette => palette.cues.includes(cue));
-}
 
 export function isPaletteForCue(cue: SoundCue, palette: unknown): palette is SoundPalette {
   return paletteCatalog.some(candidate => candidate.id === palette && candidate.cues.includes(cue));
