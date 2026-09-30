@@ -29,18 +29,43 @@ export const productionCuePalettes: Readonly<Record<SoundCue, SoundPalette | nul
 };
 export type PaletteDefinition = {
   id: SoundPalette; label: string; description: string; cues: readonly SoundCue[];
+  auditionGroup?: string;
 };
 const approvedCues = soundCues.filter(cue => cue !== "retry");
 export const paletteCatalog: readonly PaletteDefinition[] = [
   {id: "recorded-chess", label: "Recorded chess", description: "Actual chess-piece recordings, with bell feedback.", cues: approvedCues},
   {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents.", cues: approvedCues},
   {id: "soft-objects", label: "Soft objects", description: "Lighter object recordings and gentle resonant accents.", cues: approvedCues},
-  {id: "retry-relay-buzzer", label: "Mechanical buzzer", description: "A brief burst from a real relay buzzer.", cues: ["retry"]},
-  {id: "retry-real-buzzer", label: "Door buzz", description: "A rougher buzz from a recorded door mechanism.", cues: ["retry"]},
-  {id: "retry-piano-slip", label: "Piano slip", description: "A misplayed piano note with its natural resonance.", cues: ["retry"]},
-  {id: "retry-muted-brass", label: "Muted brass", description: "A short, rounded wah from a recorded trombone.", cues: ["retry"]},
-  {id: "retry-whistle-fall", label: "Whistle fall", description: "A breathy slide whistle dropping in pitch.", cues: ["retry"]},
-  {id: "retry-soft-error", label: "Soft error", description: "Previous electronic cue, kept for comparison.", cues: ["retry"]},
+  {id: "retry-wood-stop", label: "Wood stop", description: "A close wood knock with a short, dry finish.", cues: ["retry"], auditionGroup: "Wood & texture"},
+  {id: "retry-muted-block", label: "Muted block", description: "A soft woodblock strike, with the ring kept short.", cues: ["retry"], auditionGroup: "Wood & texture"},
+  {id: "retry-gentle-knocks", label: "Two knocks", description: "Two real knocks with the second quieter.", cues: ["retry"], auditionGroup: "Wood & texture"},
+  {id: "retry-wood-check", label: "Wood check", description: "A small cluster of recorded wooden-door contacts.", cues: ["retry"], auditionGroup: "Wood & texture"},
+  {id: "retry-soft-resistance", label: "Soft resistance", description: "A brief wood-and-leather creak, cut before the long tail.", cues: ["retry"], auditionGroup: "Wood & texture"},
+  {id: "retry-lock-stop", label: "Lock stop", description: "A compact lock click with a firm ending.", cues: ["retry"], auditionGroup: "Quiet mechanisms"},
+  {id: "retry-latch-catch", label: "Latch catch", description: "One short gate-latch contact.", cues: ["retry"], auditionGroup: "Quiet mechanisms"},
+  {id: "retry-case-click", label: "Case click", description: "A rounded suitcase latch opening.", cues: ["retry"], auditionGroup: "Quiet mechanisms"},
+  {id: "retry-pedal-release", label: "Pedal release", description: "A piano mechanism and damped strings, without a played note.", cues: ["retry"], auditionGroup: "Quiet mechanisms"},
+  {id: "retry-latch-back", label: "Latch back", description: "Two latch contacts, the second tucked close behind.", cues: ["retry"], auditionGroup: "Quiet mechanisms"},
+  {id: "retry-cup-tap", label: "Cup tap", description: "A small ceramic contact with its ring shortened.", cues: ["retry"], auditionGroup: "Muted metal & glass"},
+  {id: "retry-ceramic-pair", label: "Ceramic pair", description: "Two dry cup taps with a quieter reply.", cues: ["retry"], auditionGroup: "Muted metal & glass"},
+  {id: "retry-muted-tongue", label: "Muted tongue drum", description: "A rubber-mallet note, damped to a short low accent.", cues: ["retry"], auditionGroup: "Muted metal & glass"},
+  {id: "retry-metal-stop", label: "Metal stop", description: "A struck metal bar with most of the long ring removed.", cues: ["retry"], auditionGroup: "Muted metal & glass"},
+  {id: "retry-glass-contact", label: "Glass contact", description: "A quick glass-and-ceramic clack.", cues: ["retry"], auditionGroup: "Muted metal & glass"},
+  {id: "retry-bass-stop", label: "Bass stop", description: "One palm-muted bass pluck, ending quickly.", cues: ["retry"], auditionGroup: "Strings & plucks"},
+  {id: "retry-cello-question", label: "Cello question", description: "A soft, tight cello pluck with a short natural tail.", cues: ["retry"], auditionGroup: "Strings & plucks"},
+  {id: "retry-fret-catch", label: "Fret catch", description: "Damped nylon strings and finger contact.", cues: ["retry"], auditionGroup: "Strings & plucks"},
+  {id: "retry-unsettled-chord", label: "Unsettled chord", description: "A brief diminished acoustic-guitar chord.", cues: ["retry"], auditionGroup: "Strings & plucks"},
+  {id: "retry-cello-step", label: "Cello step", description: "Two soft plucks, with the reply dropping a whole tone.", cues: ["retry"], auditionGroup: "Strings & plucks"},
+  {id: "retry-piano-slip", label: "Piano slip", description: "The previous piano recording, unchanged for comparison.", cues: ["retry"], auditionGroup: "Keys & mallets"},
+  {id: "retry-soft-vibes", label: "Soft vibes", description: "A low, soft-mallet vibraphone note with a clipped tail.", cues: ["retry"], auditionGroup: "Keys & mallets"},
+  {id: "retry-low-marimba", label: "Low marimba", description: "A warm wooden-bar note with a restrained finish.", cues: ["retry"], auditionGroup: "Keys & mallets"},
+  {id: "retry-high-marimba", label: "High marimba", description: "A smaller, brighter wooden-bar accent.", cues: ["retry"], auditionGroup: "Keys & mallets"},
+  {id: "retry-prepared-keys", label: "Prepared keys", description: "Two different cloth-prepared piano contacts.", cues: ["retry"], auditionGroup: "Keys & mallets"},
+  {id: "retry-wood-and-vibes", label: "Wood & low note", description: "A dry woodblock attack backed by soft vibraphone.", cues: ["retry"], auditionGroup: "Blended cues"},
+  {id: "retry-ceramic-and-bass", label: "Ceramic & bass", description: "A small cup tap settling into a muted low string.", cues: ["retry"], auditionGroup: "Blended cues"},
+  {id: "retry-board-and-cello", label: "Board & cello", description: "The selected move texture with a quiet cello after-note.", cues: ["retry"], auditionGroup: "Blended cues"},
+  {id: "retry-wood-and-strings", label: "Wood & damped strings", description: "A muted block followed by a cloth-prepared piano contact.", cues: ["retry"], auditionGroup: "Blended cues"},
+  {id: "retry-glass-and-box", label: "Glass & music box", description: "A brief glass contact under the familiar music-box texture.", cues: ["retry"], auditionGroup: "Blended cues"},
 ];
 
 /** The original palettes span the approved cues; retry candidates are cue-specific. */

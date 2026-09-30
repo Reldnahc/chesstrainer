@@ -138,7 +138,7 @@ test("unavailable cue and candidate pairs never fetch or schedule playback", asy
   await f.engine.unlock();
   for (const [cue, palette] of [
     ["retry", "recorded-chess"], ["retry", "tabletop"], ["retry", "soft-objects"],
-    ["move", "retry-soft-error"],
+    ["move", "retry-piano-slip"],
   ] as const) {
     for (const delayMs of [0, 160]) {
       const eventId = `${cue}:${palette}:${delayMs}`;
@@ -157,15 +157,15 @@ test("unavailable cue and candidate pairs never fetch or schedule playback", asy
 test("an explicit retry candidate plays when its scheduled audition is due", async () => {
   const f = fixture();
   await f.engine.unlock();
-  f.engine.play({cue: "retry", palette: "retry-soft-error", scope: "audition", eventId: "retry-candidate", delayMs: 160});
+  f.engine.play({cue: "retry", palette: "retry-piano-slip", scope: "audition", eventId: "retry-candidate", delayMs: 160});
   expect(f.loads).toEqual([]);
   expect(f.timers.size).toBe(1);
   f.tick();
   await flush();
   expect(f.loads).toHaveLength(1);
-  expect(f.loads[0]).toContain("retry-soft-error/retry.wav");
+  expect(f.loads[0]).toContain("retry-piano-slip/retry.wav");
   expect(f.started()).toEqual(["retry-candidate"]);
-  expect(f.events.at(-1)).toMatchObject({type: "started", cue: "retry", palette: "retry-soft-error"});
+  expect(f.events.at(-1)).toMatchObject({type: "started", cue: "retry", palette: "retry-piano-slip"});
   expect(f.timers.size).toBe(0);
   f.engine.dispose();
 });
@@ -174,6 +174,7 @@ test("rejected retry candidates from stale callers never fetch or schedule playb
   const f = fixture();
   await f.engine.unlock();
   for (const palette of [
+    "retry-relay-buzzer", "retry-real-buzzer", "retry-muted-brass", "retry-whistle-fall", "retry-soft-error",
     "retry-pop", "retry-paper", "retry-zip", "retry-guitar", "retry-kalimba", "retry-conga",
     "retry-downturn", "retry-oops",
     "retry-soft-warm", "retry-soft-short", "retry-soft-gentle",

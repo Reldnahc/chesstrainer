@@ -8,6 +8,13 @@ export type AuditionScenario = {
   skipAfterMs?: number;
 };
 
+export const candidateContextSteps: AuditionScenario["steps"] = [
+  { cue: "move", delayMs: 0 },
+  { cue: "retry", delayMs: 350 },
+  { cue: "move", delayMs: 1350 },
+  { cue: "correct", delayMs: 1700 },
+];
+
 export const auditionScenarios: readonly AuditionScenario[] = [
   { id: "capture-check", label: "Capture, then check", description: "Two moves: a capture, then a checking move.",
     steps: [{ cue: "capture", delayMs: 0 }, { cue: "check", delayMs: 900 }] },

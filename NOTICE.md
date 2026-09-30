@@ -7,18 +7,22 @@ Existing Fieldwork source keeps its original license. The combined application
 also carries the applicable AGPL obligations, including the network source offer.
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
-The audio candidates under `frontend/src/audio/assets` include CC0-1.0 recordings
-by el_boss, simone_ds, taure and zachrau (Freesound), Pierre SIBANARCO and Joseph
-SARDIN (BigSoundBank). Recorded retry auditions also use CC0 recordings by scruss,
-scarfield, VizAion, crashoverride6 and jcookvoice (Freesound).
-The retained Soft error comparison reference adapts
-[Error.wav by LorenzoTheGreat](https://freesound.org/people/LorenzoTheGreat/sounds/417794/)
-under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
-Fieldwork's edits trim silence, convert to mono, adjust gain and fade boundaries;
-the recorded retry excerpts retain their original pitch and playback speed.
-The assets and edits retain their respective CC terms; the application's license
-does not replace them. The directory includes the complete CC0 text, license
-links and per-file sources, hashes and recipes in `sources.json` and its README.
+The audio candidates under `frontend/src/audio/assets` include CC0 recordings
+by el_boss, simone_ds, taure, zachrau, VizAion, nebulasnails, mhtaylor67, ndhfilms,
+ThunderQuads, CatXx1212, SamsterBirdies, johnnydekk, jonwalter43, hollandm,
+jetpackjbd, sgossner and Escarielle (Freesound), and Pierre SIBANARCO and Joseph
+SARDIN (BigSoundBank). Additional excerpts by Geoff-Bremner-Audio, beerbelly38,
+sgossner, juskiddink, digifishmusic and InspectorJ use
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); NoiseCollector's
+acoustic guitar uses [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+See [audio credits](frontend/src/audio/assets/README.md) for each original title,
+creator, source page and license; individual recipes/hashes are in `sources.json`.
+The studio exposes these credits beside every candidate, including all blend inputs.
+Fieldwork's edits excerpt, convert to mono, remove DC offset, adjust gain and
+fade boundaries; paired/blended cues use documented offsets. Cello step's second
+recorded note is lowered two semitones. Other new retry excerpts retain original
+pitch/speed. The assets and edits retain their corresponding CC terms; the
+application's license does not replace them. Complete CC0 text is included.
 No Chess.com sound assets are used.
 
 The optional human-move adapter and developer benchmarks use CSSLab's AGPL-3.0 inference primitives at

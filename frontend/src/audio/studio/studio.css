@@ -40,7 +40,12 @@
 .audio-studio-pick { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px; min-height: 34px; font-size: 11px; color: var(--muted); cursor: pointer; }
 .audio-studio-pick input { width: 14px; height: 14px; min-height: 0; margin: 0; padding: 0; accent-color: var(--palette-color); }
 .audio-studio-cue-option[data-picked="true"] .audio-studio-pick { color: var(--palette-color); }
-.audio-studio-candidates { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; --palette-color: #b9d7c6; }
+.audio-studio-candidate-groups { grid-column: 2 / -1; min-width: 0; --palette-color: #b9d7c6; }
+.audio-studio-context-description { font-size: 11px; line-height: 1.5; margin: 0 0 18px; }
+.audio-studio-candidate-group + .audio-studio-candidate-group { margin-top: 24px; }
+.audio-studio-candidate-group > h4 { color: var(--palette-color); font-size: 13px; margin: 0 0 10px; }
+.audio-studio-candidates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.audio-studio-candidate-number { color: var(--muted); font: 10px var(--mono); margin-top: 4px; }
 .audio-studio-candidate-name { font-size: 12px; text-align: center; margin: 4px 0 8px; }
 .audio-studio-candidate-description { font-size: 11px; line-height: 1.4; text-align: center; margin: 0 0 10px; }
 .audio-studio-source { max-width: 100%; }
@@ -99,7 +104,8 @@
   .audio-studio-palette h3 { font-size: 12px; }
   .audio-studio-palette p { display: none; }
   .audio-studio-cue-name { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; }
-  .audio-studio-candidates { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .audio-studio-candidate-groups { grid-column: 1 / -1; }
+  .audio-studio-candidates { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .audio-studio-cue-name h3 { flex-shrink: 0; font-size: 13px; }
   .audio-studio-cue-name p { font-size: 10px; }
   .audio-studio-cue-row { padding-block: 12px; }

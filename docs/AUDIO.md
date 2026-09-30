@@ -9,7 +9,7 @@ procedurally synthesized audition sets were rejected and have been removed.
 
 ## Controls and defaults
 
-**Settings → Coach & sound → Sound** contains the master switch, volume,
+**Settings â†’ Coach & sound â†’ Sound** contains the master switch, volume,
 board/practice switches and an explicit test button. Defaults are sound
 enabled, volume 35%, and board and practice enabled.
 Account preferences use the existing owned `user_preferences` row, including the
@@ -93,12 +93,16 @@ before an attempt or reveal permits feedback.
 The approved cue alternatives retain **11 CC0 recordings**: real chess/wooden
 pieces, wood block, music box, bronze bell, triangle, glass and a soft gong.
 They are trimmed, level matched and faded; castling combines two recorded hits.
-Retry auditions now compare five CC0 recordings: a real relay buzzer, a door
-buzzer, a misplayed piano note, muted trombone and a falling slide whistle. These
-are trimmed and level matched at their original pitch/speed. The rejected
-electronic Soft error (LorenzoTheGreat, CC BY 3.0) remains unchanged only as a
-comparison reference; its pitch/pattern variants are removed. All edits are
-baked into bundled WAVs. Fieldwork generates no new oscillator tones.
+Retry auditions compare 30 candidates across six families: wood/textures,
+mechanisms, muted metal/glass, strings/plucks, keys/mallets and five blends.
+Twenty-one new recording origins broaden the selection beyond piano; Piano slip
+remains unchanged as a reference. Rejected buzzers, brass, whistle and electronic
+Soft error are removed. Sources include CC0, CC BY 3.0 and CC BY 4.0 recordings;
+the studio lists each input's credit/license, including every layer of a blend.
+Edits use short excerpts, level matching, fades and occasional paired/layered
+contacts. Cello step lowers its second recorded pluck by two semitones; other
+new sources keep original pitch/speed. All edits are baked into bundled WAVs.
+Fieldwork generates no new oscillator tones.
 The Freesound inputs are public HQ MP3 previews rather than original WAV downloads.
 The other inputs are the publisher's downloadable MP3s. Resaving them as WAV does
 not restore information removed by MP3 encoding.
@@ -107,9 +111,9 @@ not restore information removed by MP3 encoding.
 input/output hash and exact edit recipe. Its license map and the asset README
 retain attribution and the applicable license links, alongside `CC0-1.0.txt`.
 `scripts/prepare_audio.py --check` verifies assets offline; explicit authoring can
-reproduce the edits from hash-checked source files. The 30 candidate WAVs comprise
-eight cues in three palettes and six retry-only choices, totaling approximately
-**2.24 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
+reproduce the edits from hash-checked source files. The 54 candidate WAVs comprise
+eight cues in three palettes and 30 retry-only choices, totaling approximately
+**3.16 MB**; some cues share a source recording. Assets are bundled locally, fetched and decoded only
 as needed; normal installation/build/playback does not contact a sound provider.
 Additional palettes need not change event producers.
 
@@ -125,8 +129,11 @@ Open **http://127.0.0.1:5176**. This is a separate Vite process with no account/
 connection and no production navigation route. It uses the actual audio engine.
 
 - Compare Recorded chess, Tabletop and Soft objects for the eight approved cues.
-  Try again compares five new recorded sources plus the old Soft error reference,
-  with short descriptions in a three-column desktop/two-column phone grid.
+  Try again compares 30 numbered options in six families, with descriptions in
+  three-column desktop/two-column phone grids. Each **In context** button plays
+  move → that candidate → move → correct using saved picks or approved defaults
+  for the other cues. It ignores the general scenario palette, does not change
+  any picks, and uses the same cancellable engine scope as other auditions.
   The other clips and their production defaults are unchanged.
 - Open a candidate's Source disclosure for its source, author, edits and actual license.
   Approved production choices are listed above; other variants remain audition

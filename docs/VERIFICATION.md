@@ -4,6 +4,39 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Broad recorded retry auditions — September 30, 2026
+
+Replaced the rejected buzzer/brass/whistle/electronic choices with 30 numbered
+Try again candidates across six material families, retaining Piano slip exactly.
+Twenty-one new recorded sources support singles, paired contacts and five blends.
+Context previews use the existing engine and saved/approved surrounding sounds
+without writing selections. All 24 non-retry WAVs and Piano slip match `ac0bb15`;
+the eight production choices and silent unapproved retry remain unchanged.
+
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **70 passed**, desktop/mobile, no skips. The local wrapper reuses the owner's
+  running studio. Covers all 54 assets, every source credit, narrow-phone layout,
+  persisted picks, retired choices, context timing/palette selection and
+  stop/replacement/mute cancellation, alongside engine visibility/disposal tests.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed, including generated
+  API checks, application/test TypeScript, **11** style tests and entrypoint
+  boundaries. Existing production chunk-size warning remains non-blocking.
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: **54 assets**,
+  **3,156,038 bytes**, hashes/levels/provenance valid. Cached `--prepare` using
+  NumPy 2.2.6 / SoundFile 0.13.1 reproduced every WAV without hash updates.
+- Independent review confirmed unchanged retained binaries, distinct retry hashes,
+  onset delays at most 45ms, retry durations 0.226–0.856s, clean boundaries,
+  complete blend credits and preserved cancellation. A stale removed-candidate
+  engine-test reference was corrected before the passing run.
+- Manual live studio check: six numbered families rendered, eight owner picks
+  preserved, Board & cello context produced Move/Retry/Move/Correct with approved
+  surrounding sounds. Actual playback starts were observed; subjective listening
+  quality is not claimed as verified. Final sound selection remains the owner's.
+- `git diff --check` and staged whitespace check passed. No unrelated backend or
+  coach matrix, deployment, push or remote CI was run for this audition change.
+
 ## Recorded retry source comparison — September 30, 2026
 
 The owner rejected the electronic texture of the pitch/pattern set. Replaced

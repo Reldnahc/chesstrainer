@@ -8,7 +8,7 @@ import recordedSources from "../assets/sources.json";
 import { cueCatalog, fullPaletteCatalog, isPaletteForCue, paletteCatalog, palettesForCue, productionCuePalettes, type CueDefinition, type PaletteDefinition } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { SoundCategory, SoundCue, SoundPalette } from "../model";
-import { auditionScenarios, type AuditionScenario } from "./scenarios";
+import { auditionScenarios, candidateContextSteps, type AuditionScenario } from "./scenarios";
 import { exportStudioSelections, readStudioSelections, studioStorageKey, type StudioSelections } from "./selections";
 import "./studio.css";
 
@@ -20,34 +20,46 @@ const cueFilters: readonly { value: CueFilter; label: string }[] = [
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";
 const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => item.id === palette)?.label ?? "";
 const assetSources = new Map(recordedSources.assets.map(source => [`${source.palette}:${source.cue}`, source]));
+const recordingSources = new Map(recordedSources.sources.map(source => [source.id, source]));
 const sourceLicenses: Readonly<Record<string, { label: string; url: string } | undefined>> = recordedSources.licenses;
 
 function CueSource({ cue, palette }: { cue: SoundCue; palette: SoundPalette }) {
   const source = assetSources.get(`${palette}:${cue}`);
   if (!source) return null;
-  const license = sourceLicenses[source.license];
+  const credits = [...new Set(source.takes.map(take => take.source))].flatMap(id => {
+    const recording = recordingSources.get(id);
+    return recording ? [recording] : [];
+  });
   return <details className="disclosure audio-studio-source">
     <summary aria-label={`Source for ${cueLabel(cue)} · ${paletteLabel(palette)}`}>Source</summary>
-    <SourceLine text={`${source.title} — ${source.author}. ${source.modifications}`} url={source.sourceUrl}
-      license={license?.label ?? source.license} licenseUrl={license?.url} />
+    {credits.map(credit => {
+      const license = sourceLicenses[credit.license];
+      return <SourceLine key={credit.id} text={`${credit.title} — ${credit.author}`} url={credit.sourceUrl}
+        license={license?.label ?? credit.license} licenseUrl={license?.url} />;
+    })}
+    <SourceLine className="audio-studio-source-modifications" text={source.modifications} />
   </details>;
 }
 
-function CueOption({ cue, palette, picked, named = false, onPlay, onChoose }: {
+function CueOption({ cue, palette, picked, named = false, number, onPlay, onContext, onChoose }: {
   cue: CueDefinition;
   palette: PaletteDefinition;
   picked: boolean;
   named?: boolean;
+  number?: number;
   onPlay: (cue: SoundCue, palette: SoundPalette) => void;
+  onContext?: (palette: SoundPalette) => void;
   onChoose: (cue: SoundCue, palette: SoundPalette) => void;
 }) {
   const descriptionId = named ? `candidate-description-${cue.id}-${palette.id}` : undefined;
   return <div className="audio-studio-cue-option" data-picked={picked} data-palette={palette.id}>
-    {named && <h4 className="audio-studio-candidate-name">{palette.label}</h4>}
+    {number !== undefined && <span className="audio-studio-candidate-number" aria-hidden="true">{String(number).padStart(2, "0")}</span>}
+    {named && <h5 className="audio-studio-candidate-name">{palette.label}</h5>}
     {named && <p id={descriptionId} className="audio-studio-candidate-description">{palette.description}</p>}
     <Button size="compact" variant="secondary" aria-label={`Play ${cue.label} · ${palette.label}`} aria-describedby={descriptionId} onClick={() => onPlay(cue.id, palette.id)}>
       <Play size={13} aria-hidden="true" /><span>Play</span>
     </Button>
+    {onContext && <Button size="compact" aria-label={`Hear ${palette.label} in context`} aria-describedby={descriptionId} onClick={() => onContext(palette.id)}>In context</Button>}
     <label className="audio-studio-pick">
       <input type="radio" name={`pick-${cue.id}`} value={palette.id} checked={picked}
         onChange={() => onChoose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} aria-describedby={descriptionId} />
@@ -56,6 +68,14 @@ function CueOption({ cue, palette, picked, named = false, onPlay, onChoose }: {
     <CueSource cue={cue.id} palette={palette.id} />
   </div>;
 }
+
+const retryGroups = [...palettesForCue("retry").reduce((groups, palette, index) => {
+  const group = palette.auditionGroup ?? "Try again candidates";
+  const candidates = groups.get(group) ?? [];
+  candidates.push({ palette, number: index + 1 });
+  groups.set(group, candidates);
+  return groups;
+}, new Map<string, { palette: PaletteDefinition; number: number }[]>())];
 
 function eventLabel(event: AudioEvent) {
   if (event.type === "started") return "Played";
@@ -161,6 +181,18 @@ export default function AudioStudio() {
     const audition = await begin();
     if (!audition) return;
     audition.engine.play({ cue, palette, scope: audition.scope, eventId: `${audition.scope}:${cue}` });
+  }
+
+  async function playCandidateContext(candidate: SoundPalette) {
+    const audition = await begin();
+    if (!audition) return;
+    const { engine, scope } = audition;
+    for (const [index, step] of candidateContextSteps.entries()) {
+      const palette = step.cue === "retry" ? candidate : selections[step.cue] ?? productionCuePalettes[step.cue];
+      if (isPaletteForCue(step.cue, palette)) {
+        engine.play({ ...step, palette, scope, eventId: `${scope}:${index}` });
+      }
+    }
   }
 
   async function playScenario(item: AuditionScenario) {
@@ -271,9 +303,15 @@ export default function AudioStudio() {
           {visibleCues.map(cue => <fieldset key={cue.id} className="audio-studio-cue-row" data-cue={cue.id}>
             <legend className="sr-only">{cue.label} palette</legend>
             <div className="audio-studio-cue-name"><h3>{cue.label}</h3><p>{cue.description}</p></div>
-            {cue.id === "retry" ? <div className="audio-studio-candidates">
-              {palettesForCue(cue.id).map(palette => <CueOption key={palette.id} cue={cue} palette={palette}
-                picked={selections[cue.id] === palette.id} named onPlay={playCue} onChoose={choose} />)}
+            {cue.id === "retry" ? <div className="audio-studio-candidate-groups">
+              <p className="audio-studio-context-description">Use In context to hear a move, this cue, another move, then your correct sound.</p>
+              {retryGroups.map(([group, candidates]) => <section key={group} className="audio-studio-candidate-group" data-audition-group={group}>
+                <h4>{group}</h4>
+                <div className="audio-studio-candidates">
+                  {candidates.map(({ palette, number }) => <CueOption key={palette.id} cue={cue} palette={palette}
+                    picked={selections[cue.id] === palette.id} named number={number} onPlay={playCue} onContext={playCandidateContext} onChoose={choose} />)}
+                </div>
+              </section>)}
             </div> : palettesForCue(cue.id).map(palette => <CueOption key={palette.id} cue={cue} palette={palette}
               picked={selections[cue.id] === palette.id} onPlay={playCue} onChoose={choose} />)}
           </fieldset>)}
@@ -311,7 +349,7 @@ export default function AudioStudio() {
           <details className="disclosure audio-studio-details">
             <summary>Playback history <span>{history.filter(event => event.type === "started").length} played</span></summary>
             <p>Live events from the shared audio player.</p>
-            {history.length ? <ol>{history.map(event => <li key={event.traceId} data-event-type={event.type} data-cue={event.cue} data-reason={event.reason}>
+            {history.length ? <ol>{history.map(event => <li key={event.traceId} data-event-type={event.type} data-cue={event.cue} data-palette={event.palette} data-reason={event.reason}>
               <span>{event.type === "started" && <Check size={12} aria-hidden="true" />}{eventLabel(event)}</span>
               <strong>{cueLabel(event.cue)}</strong><small>{paletteLabel(event.palette)}{event.reason && ` · ${event.reason.replaceAll("-", " ")}`}</small>
             </li>)}</ol> : <p>No playback yet.</p>}

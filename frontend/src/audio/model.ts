@@ -7,7 +7,16 @@ export const soundCues = [
 export type SoundCue = typeof soundCues[number];
 export const soundPalettes = [
   "recorded-chess", "tabletop", "soft-objects",
-  "retry-relay-buzzer", "retry-real-buzzer", "retry-piano-slip", "retry-muted-brass", "retry-whistle-fall", "retry-soft-error",
+  "retry-wood-stop", "retry-muted-block", "retry-gentle-knocks",
+  "retry-wood-check", "retry-soft-resistance", "retry-lock-stop",
+  "retry-latch-catch", "retry-case-click", "retry-pedal-release",
+  "retry-latch-back", "retry-cup-tap", "retry-ceramic-pair",
+  "retry-muted-tongue", "retry-metal-stop", "retry-glass-contact",
+  "retry-bass-stop", "retry-cello-question", "retry-fret-catch",
+  "retry-unsettled-chord", "retry-cello-step", "retry-piano-slip",
+  "retry-soft-vibes", "retry-low-marimba", "retry-high-marimba",
+  "retry-prepared-keys", "retry-wood-and-vibes", "retry-ceramic-and-bass",
+  "retry-board-and-cello", "retry-wood-and-strings", "retry-glass-and-box",
 ] as const;
 export type SoundPalette = typeof soundPalettes[number];
 export type SoundCategory = "board" | "practice";
