@@ -84,4 +84,5 @@ Freeze the report before annotation and compare afterwards with `python scripts/
 
 The separate [Lichess benchmark](LICHESS_BENCHMARK.md) evaluates positive-theme agreement of the shared line-pattern detector on an offline external dataset. It supplies legal solver continuations and explicitly weaker visible-outcome support, not fabricated engine scores or native defensive probes. Missing Lichess tags never become negative labels. [Initial per-theme results](LICHESS_BENCHMARK_RESULTS.md) expose uneven recognition and distinguish initial-episode attribution from recognition later in a solution. After v4 reuse, agreement partly measures compatibility with a related upstream label generator, not independent validation of those rules. This complements the human precision workflow above; it does not replace it or measure full-classifier recall.
 
-UI examples from isolated fixtures: [phone pattern playback](screenshots/classification-pattern-mobile.png) and [desktop pattern playback](screenshots/classification-pattern-desktop.png).
+Browser coverage uses isolated fixture positions for desktop and phone pattern
+playback; generated captures stay in ignored test artifacts.

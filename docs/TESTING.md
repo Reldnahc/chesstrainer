@@ -105,7 +105,7 @@ tests, or physical-device testing. Native scores and nominated positions can var
 across Stockfish binaries and available compute; identical model inputs remain
 deterministic within their recorded runtime identity.
 
-Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); dated deployment and milestone results remain in [IMPLEMENTATION_HISTORY.md](IMPLEMENTATION_HISTORY.md).
+Run the complete suite for interface refactors. Normal tests use isolated databases, injected provider responses and local native Stockfish. They make no live Chess.com or model requests. Current results belong in [VERIFICATION.md](VERIFICATION.md); earlier deployment, milestone and verification records remain in Git history.
 
 ## Study frameworks
 
@@ -236,6 +236,11 @@ npx playwright test --config playwright.intelligence.config.ts
 ```
 
 Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Tests run serially against the production build and a test server on 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
+
+Generated captures belong in ignored test output and must use isolated fixtures,
+not private games. Only deliberately selected, current images referenced by a
+documentation page should enter Git. Superseded documentation captures remain in
+Git history rather than being shown as current product guidance.
 
 The separate coach suite starts `npm run dev:coach` on 127.0.0.1:5174 and runs the
 expression/animation tests in `frontend/studio-tests`. It needs no backend, login,
@@ -422,7 +427,7 @@ Record host/tool versions, skipped tests and warnings with results. Current Test
 
 test_lichess_reuse.py checks predicate AST parity against original upstream fingerprints, unchanged supporting files, legal replay, both colors, missing setup context, witness coordinates and concurrent observer isolation. test_lichess_integration.py checks newly recognized pin exploitation and separates a visible motif from an unsupported mistake diagnosis. Existing wrong-label regressions remain unchanged.
 
-test_lichess_comparison.py verifies frozen sample/provenance preservation, metrics, failure context, malformed rows and unexpected-error handling. test_source_archive.py checks private-file exclusion, reproducible source archives, path validation and rebuilding an exported snapshot without Git. Browser tests verify the Settings source link returns a ZIP through the production static mount.
+test_lichess_comparison.py verifies frozen sample/provenance preservation, metrics, failure context, malformed rows and unexpected-error handling. test_source_archive.py checks private-file exclusion (including checkpoints, database sidecars, native binaries, caches and generated browser reports), reproducible source archives, path validation and rebuilding an exported snapshot without Git. Browser tests verify the Settings source link returns a ZIP through the production static mount.
 
 Raw upstream parity across the frozen sample is a compatibility test, not an accuracy estimate. Source packaging does not add a runtime network dependency.
 ## Shared-hosting checks

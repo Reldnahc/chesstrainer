@@ -15,8 +15,8 @@ The dogs include two goldens, a corgi and a border collie. Existing users keep S
 until they choose another coach; the choice follows their account across devices.
 
 Game review now connects supported tactics, immediate positional changes, human
-difficulty, clocks, earlier moments and relevant saved weaknesses into a factual
-game story. Every selectable coach has its own [writing voice](docs/COACH_PERSONALITIES.md).
+difficulty, clocks, earlier moments and relevant saved weaknesses into factual
+move-by-move coaching. Every selectable coach has its own [writing voice](docs/COACH_PERSONALITIES.md).
 Changing characters rephrases the same evidence without rerunning analysis.
 The separate [developer intelligence lab](docs/INTELLIGENCE_LAB.md) can trace a
 sentence back to that evidence and compare the cast; it is not a production page.
@@ -69,12 +69,6 @@ Navigation is **Study, Games, Weaknesses, Settings**. **Study → Due** contains
 Pages and individual games have their own URLs, with browser Back/Forward,
 bookmarks and new-tab links. Refreshing a game review preserves the selected
 move; stepping through moves does not add browser-history entries.
-
-![Desktop review interface](docs/screenshots/review-desktop.png)
-
-[Mobile review](docs/screenshots/review-mobile.png) / [Mobile settings](docs/screenshots/settings-mobile.png) / [Desktop username import](docs/screenshots/import-desktop.png) / [Mobile username import](docs/screenshots/import-mobile.png)
-
-Screenshots use isolated test positions and provider fixtures, not private game data.
 
 ## Prerequisites
 
@@ -200,11 +194,11 @@ Username imports contact the selected site's public API from the backend, sendin
 
 ## Documentation
 
-- [Product](docs/PRODUCT.md), [feature status](docs/FEATURE_STATUS.md) and [development plan](docs/DEVELOPMENT_PLAN.md)
+- [Product](docs/PRODUCT.md), [feature status and remaining work](docs/FEATURE_STATUS.md) and [Study](docs/STUDY.md)
 - [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/ANALYSIS_PIPELINE.md) and [data model](docs/DATA_MODEL.md)
 - [Local classification](docs/LOCAL_CLASSIFICATION.md), [assistant assessment](docs/CLASSIFICATION_ASSESSMENT.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
 - [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [game provider imports](docs/GAME_PROVIDERS.md)
-- [Testing procedure](docs/TESTING.md), [latest verification](docs/VERIFICATION.md), [decisions](docs/DECISIONS.md) and [implementation history](docs/IMPLEMENTATION_HISTORY.md)
+- [Testing procedure](docs/TESTING.md), [latest verification](docs/VERIFICATION.md) and [decisions](docs/DECISIONS.md); earlier implementation and verification records remain in Git history.
 
 ## Forking and licensing
 

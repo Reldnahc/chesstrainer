@@ -145,9 +145,13 @@ Keep create_app as the composition root for database sessions, shared mutation l
 
 Keep navigation, connection and shared errors in App. Move the existing Review, Import, Settings and evidence display into cohesive frontend modules, with shared PageTitle and exercise-link cleanup helpers. Preserve hook/state lifetimes, board identity, DOM structure and interaction timers; do not introduce a router library or new state framework.
 
-Separate the current roadmap from the earlier deployment/validation journal. IMPLEMENTATION_HISTORY preserves that journal as historical context; VERIFICATION records current checks and TESTING provides repeatable commands. Current guides must distinguish active review/weakness workflows, retained low-level APIs and archived/tombstoned lesson/repertoire behavior. Historical statements are not current setup instructions.
+Separate current product guidance from earlier deployment/validation journals.
+Git history preserves the completed journals; VERIFICATION records current checks
+and TESTING provides repeatable commands. Current guides must distinguish active
+review/weakness workflows, retained low-level APIs and archived/tombstoned
+lesson/repertoire behavior. Historical statements are not current setup instructions.
 
-Formatting the extracted frontend modules improves readability without adding a formatter dependency. Health/settings/import response types replace the moved untyped state; remaining legacy payload types are deferred. The frozen HTTP contract and per-app isolation tests protect the ownership change. Current weakness-priority documentation keeps the filename CURRICULUM_ENGINE.md for existing links, with the complete older course design explicitly archived.
+Formatting the extracted frontend modules improves readability without adding a formatter dependency. Health/settings/import response types replace the moved untyped state; remaining legacy payload types are deferred. The frozen HTTP contract and per-app isolation tests protect the ownership change. Current weakness-priority documentation keeps the filename CURRICULUM_ENGINE.md for existing links; the older course design remains in Git history.
 
 ## 2026-09-13: external positive-theme benchmark boundary
 
@@ -170,3 +174,11 @@ Keep motif recognition separate from engine-supported mistake attribution. Prese
 The original Fieldwork source remains GPL-3.0-or-later. Preserve the upstream AGPL license and provide the combined corresponding source through a build-generated local download in Settings. Source archives only include eligible public source from Git or an exported manifest; private data and secrets are excluded. Rebuild after changes and preserve this source offer in forks.
 
 After reuse, high agreement with Lichess-related labels is partly generator compatibility, not independent accuracy. Preserve the old baseline and report raw recognition separately from Fieldwork-admitted witnesses. Full-classifier precision still needs separate real-game review.
+
+## 2026-09-27: retain the existing licensing
+
+The owner closed the proposed PolyForm Perimeter transition and chose to retain
+the existing licensing. There is no planned license or dependency migration.
+LICENSE, package metadata, [source notices](../NOTICE.md), upstream provenance and
+the corresponding-source offer remain authoritative. The closed compatibility
+assessment is available in Git history; cleanup does not change any license grant.

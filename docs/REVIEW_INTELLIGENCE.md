@@ -12,9 +12,9 @@ fixed-probe inspection and limits of human naturalness/difficulty bands. The
 `review_intelligence` package derives semantic facts only; raw chess and human
 provider authorities remain unchanged.
 
-The durable implementation specification is
-[REVIEW_INTELLIGENCE_PLAN.md](REVIEW_INTELLIGENCE_PLAN.md). This document records
-implemented architecture and measured decisions, not promises of completed features.
+This document records implemented architecture and measured decisions. The
+completed implementation plan and milestone journal remain in Git history;
+current behavior and authority boundaries are documented below.
 
 The completed chain is documented by [refinement](REVIEW_REFINEMENT.md),
 [move events/clocks](REVIEW_EVENTS.md), [positional facts](POSITIONAL_EVIDENCE.md),
@@ -23,6 +23,13 @@ The completed chain is documented by [refinement](REVIEW_REFINEMENT.md),
 [personalities](COACH_PERSONALITIES.md). The [offline lab](INTELLIGENCE_LAB.md)
 inspects the exact evidence and rendering choices. Final measured validation is
 recorded in [VERIFICATION.md](VERIFICATION.md).
+
+Review stays move-by-move. The owner retired Game Story / Critical Moments:
+there is no ranked takeaway summary, key-moment navigation, opening/result story
+prose or completion-driven coach reaction. Narrative objects were response-time
+projections, never stored records, so their removal required no data migration.
+Structured game context, diagnostic turning points and owned history remain
+available for evidence-backed move coaching and bounded refinement.
 
 ## Authority and storage
 
@@ -49,11 +56,11 @@ remain free of answer-revealing human, tactical or history hints.
 
 ## Baseline audit (2026-09-27)
 
-The checkout matched specification commit `ea4ea5f`. The production registry is
-derived from `frontend/src/coach/studies/catalog.ts`, currently 16 selectable
-identities. The studio is a separate development-only Vite process. The current
-schema is `ab35a86cd472`, with 34 application tables, one SQLite file and explicit
-account ownership. No second evidence database or per-account resident engine
+The checkout matched specification commit `ea4ea5f`. At that checkpoint, the
+production registry derived from `frontend/src/coach/studies/catalog.ts` contained
+16 selectable identities. The studio was already a separate development-only
+Vite process. The schema was `ab35a86cd472`, with 34 application tables, one SQLite
+file and explicit account ownership. No second evidence database or per-account resident engine
 service is needed.
 
 API response contracts live in `trainer/contracts`; generated frontend types and

@@ -28,7 +28,7 @@ def assert_selection(plan, *, backend=False, build=False, docker=False, suites=(
 
 @pytest.mark.parametrize(
     "path",
-    ["README.md", "AGENTS.md", "docs/TESTING.md", "docs/screenshots/settings-mobile.png"],
+    ["README.md", "AGENTS.md", "docs/TESTING.md", "docs/example-diagram.png"],
 )
 def test_documentation_skips_heavy_checks(path):
     assert_selection(ci_plan.select_checks([path]))

@@ -32,6 +32,21 @@ Current direction: game review, local mistake classification and structured Stud
 | Data and backups | SQLite WAL, migrations, consistent backup/restore and preserved historical audits | CLI backup only; no cloud sync |
 | Quality | Rules/engine/API/browser tests, frozen HTTP contracts, independent app instances, migration preservation, blinded stratified export and frozen annotation comparison; first assistant assessment with preserved adjudications; offline Lichess positive-theme benchmark and per-theme failure corpus | External puzzle agreement tests the line detector only; initial recognition is uneven. Independent human precision, full-classifier recall and long-term improvement remain unmeasured |
 
+## Remaining validation and packaging work
+
+Independent human-reviewed precision and full-classifier recall on unseen games
+remain unmeasured; the existing assistant assessment and puzzle benchmark are not
+substitutes. Longitudinal training-transfer measurement is separate from retention
+or recurrence statistics. Representative large-import/resource measurements,
+manual Linux/macOS installation and physical-phone LAN checks require their own
+validation; browser emulation alone does not establish those results.
+
+Source-checkout and Docker installation are supported. Standalone wheel/static
+asset packaging and a dedicated engine-upgrade/reanalysis workflow remain future
+work. Deferred puzzle acquisition/generation and additional authored material are
+recorded in [Study](STUDY.md#deferred-content-requirements). These are remaining
+limits, not newly scheduled implementation work.
+
 ## No remote teaching model
 
 Import, analysis, classification, weakness aggregation, answers, explanations, playback and FSRS all run locally. PGN training needs no network; explicit Chess.com imports contact its public API. Optional Maia inference uses an explicitly pre-cached local checkpoint. No remote teaching model, API key, paid request pool or outbound pedagogy payload is used.
@@ -42,7 +57,7 @@ Historical classification IDs/responses remain in provider-neutral audit storage
 
 New-game limits exclude duplicates. Reimported games do not rerun analysis. Local classification caches labeled and unclassified outcomes by rules, parameters, taxonomy and evidence. Worker-count changes do not invalidate caches. Cancel/retry preserves work. Reclassification creates no reviews, changes no SRS and never reactivates retired cards.
 
-See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact scope/limits, [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) for current priorities, [VERIFICATION.md](VERIFICATION.md) for completed checks, and [CLASSIFICATION_RESEARCH.md](CLASSIFICATION_RESEARCH.md) for the research behind this change.
+See [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for exact scope and limits and [VERIFICATION.md](VERIFICATION.md) for completed checks.
 
 The deeper-evidence job prioritizes concrete pending defensive questions, then unknown outcomes and saves supplemental analysis links separately. Completed probe keys and persisted task lists support cancellation/restart without repeating completed searches or expanding the job budget. Existing grading evidence and schedules remain unchanged.
 

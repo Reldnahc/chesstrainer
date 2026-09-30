@@ -3,9 +3,9 @@
 Fieldwork is private chess practice built from the player's own games. Import games, identify practical mistakes with native Stockfish, review useful positions and retain them with FSRS. Defaults serve a beginner progressing toward 1500 rapid. Multiple sound answers are accepted; small engine preferences usually do not create exercises.
 
 Open review can explain supported tactical consequences, immediate positional
-changes, human difficulty and relationships to earlier game moments. The game
-story selects key moves and a conclusion; saved classified history can add a
-supported recurring issue. These references have explicit evidence, not simulated
+changes, human difficulty and relationships to earlier game moments. Saved
+classified history can add a supported recurring issue to individual move
+feedback. These references have explicit evidence, not simulated
 memory. Optional Maia describes human-like choices without changing grades or
 claiming calibrated percentages for Chess.com ratings. A selected coach changes
 the language and expression, not the chess truth. Cold SRS still reveals none of
@@ -60,4 +60,4 @@ There is no LLM runtime, SDK, model service or model API-key requirement. The or
 
 Data lives in one SQLite database on the host. PGN analysis and training work offline once dependencies and Stockfish are installed. Shared hosting supports self-service accounts with private games and training history, persistent device sessions, and remembered Chess.com usernames. Recent-game sync contacts the public Chess.com API without starting analysis. Docker packages the app and native Stockfish for Unraid behind an existing reverse proxy and optional Cloudflare Access. LAN clients can also use the original single-user mode. There is no cloud database or telemetry. See [Accounts](ACCOUNTS.md) and [Unraid](UNRAID.md).
 
-See [FEATURE_STATUS.md](FEATURE_STATUS.md) for implemented features and limits, [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for detector scope, and [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) for remaining work.
+See [FEATURE_STATUS.md](FEATURE_STATUS.md) for implemented features, limits and remaining work, and [LOCAL_CLASSIFICATION.md](LOCAL_CLASSIFICATION.md) for detector scope.

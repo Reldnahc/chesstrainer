@@ -1,6 +1,10 @@
 # Weakness priorities and archived curriculum
 
-The active product organizes recurring weaknesses and focused practice. Lessons, course generation and curriculum navigation are removed. The filename is retained for existing documentation links; the earlier course design is preserved in [archive/COURSE_DESIGN.md](archive/COURSE_DESIGN.md).
+The active Weaknesses page organizes recurring weaknesses and focused practice.
+The legacy generated courses, lesson progression and curriculum navigation are
+retired. The separate authored [Study lessons](STUDY.md#guided-lessons) remain
+active and do not use these historical tables or settings. The filename is
+retained for existing documentation links; earlier designs remain in Git history.
 
 ## Evidence and classification
 
@@ -18,7 +22,7 @@ The live Weaknesses route calls priorities() in weaknesses.py. It uses these exp
 2. Mate transitions have severity 3. Ordinary loss scales by 150 cp, capped at 3. Recency halves over 90 days using decision analysis time, not the historical game's date.
 3. Listed foundational skills receive a 1.4 multiplier for target ratings up to 1600. This is a pedagogical preference, not an Elo-to-centipawn conversion.
 4. Up to 30 recent ordinary SRS recalls add failure and slow-response fractions: multiply by 1 + failure fraction + 0.2 times slow fraction.
-5. For compatibility, up to 30 completed **historical lesson attempts** still contribute a bounded multiplier of 1 + 0.25 times their failure fraction. New lesson attempts cannot be created by the app.
+5. For compatibility, up to 30 completed **historical lesson attempts** still contribute a bounded multiplier of 1 + 0.25 times their failure fraction. New attempts in that legacy domain cannot be created by the app; authored Study lessons do not contribute to this multiplier.
 6. Five or more recent SRS recalls with no failures reduce priority by 20%. The label is improving retention, not proven chess mastery.
 
 New local evidence uses weight 1. Recurring groups sort before provisional groups; default recurrence requires two independent games. The priority is rounded to one decimal and used for ordering, not presented as a scientific mastery score. Supporting evidence and decision IDs remain available for audit.
@@ -35,8 +39,14 @@ First-failure/reveal history, raw first-response time and completion time are pe
 
 ## Archived compatibility
 
-Course grouping, Diagnose/Teach/Drill/Check/Retain stages, revisions and lesson progress remain in domain helpers and historical tables. They are not active workflows. Imports and classification do not build courses or withhold new cards. Course/lesson product routes return HTTP 410, and old lesson review sessions cannot accept moves or reveals.
+Historical course grouping, Diagnose/Teach/Drill/Check/Retain revisions and lesson
+progress remain in database records for compatibility. Their generation and
+progression are not active workflows. Imports and classification do not build
+courses or withhold new cards. Legacy course/lesson product routes return HTTP
+410, and old lesson review sessions cannot accept moves or reveals.
 
 Migration d17b63e02a48 released nonretired lesson-held cards by changing eligibility only. Schedules, attempts, reviews, retirement and lesson records were preserved. Teaching-generation routes and retries return 410; historical teaching audit reads/rejections remain available. Backups include the archived records.
 
-A future curriculum redesign requires separate product work. Current priorities and focused practice do not imply that lesson generation has been re-enabled.
+A future generated-curriculum redesign requires separate product work. Current
+priorities, focused practice and authored Study lessons do not re-enable legacy
+lesson generation.

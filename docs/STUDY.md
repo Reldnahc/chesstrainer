@@ -49,8 +49,8 @@ version and attribution. Every move must belong to python-chess's legal move set
 null moves are not valid content. A solution starts and ends with a learner
 decision. Game-derived definitions additionally require two learner decisions.
 This validates replay, not the pedagogical quality or uniqueness of a future
-provider's puzzle. Future acquisition/generation must apply the stricter creation
-gates in the [approved specification](../FIELDWORK_STUDY_EXPANSION.md).
+provider's puzzle. Future acquisition/generation must apply the stricter
+[deferred-content requirements](#deferred-content-requirements) below.
 
 Starting a puzzle stores an immutable private snapshot. A move command includes a
 request ID and expected session revision. A successful learner move and its known
@@ -206,3 +206,69 @@ reload/return, full-game context, hints/reveal and independent rehearsal.
 
 The production registry must never import test fixture providers or enable
 development content through an environment switch.
+
+## Deferred content requirements
+
+The lesson/opening/puzzle framework sprint is complete. Production puzzle packs,
+game-derived generation and additional courses are separate future work. The
+following requirements preserve the owner's decisions from the completed plan;
+they do not authorize implementing that work during maintenance.
+
+### Generic puzzle packs
+
+Use an explicitly installed local, versioned and hash-pinned Lichess-compatible
+pack. Acquisition may offer a small starter pack or an install action, but normal
+startup must not silently download a large dataset and solving must work offline.
+The product provider boundary stays independent of the developer benchmark
+harness. Validate initial positions and every solution move, including special
+moves, and preserve source attribution. Provider solutions are the answer
+authority; future accepted alternatives require explicit continuation support.
+
+Later selection can prefer unseen puzzles within a requested difficulty band,
+avoid recent repeats and offer theme filters and a separate Retry failed mode.
+This is deliberate practice, without FSRS due dates or an implied mastery score.
+
+### Puzzles from saved games
+
+Prioritize missed concrete tactical opportunities from the learner's perspective.
+Do not turn every evaluation swing or single-move recall into a puzzle. All of
+these creation gates must pass:
+
+1. The learner is to move and has more than one legal move.
+2. Saved evidence supports a missed mate, meaningful material gain, tactical
+   mechanism or concrete defensive resource.
+3. The solution includes at least two learner decisions, with legal opponent
+   replies between them; python-chess validates the entire history.
+4. Every scored learner decision has a clear intended move. Represent supported
+   alternatives with valid continuations or reject the ambiguous candidate.
+5. Verify defenses and the settled tactical endpoint against the exact solution.
+   A saved principal variation or shortened review playback alone does not prove
+   uniqueness, forced replies or the claimed payoff.
+6. Pin source game/ply, engine and tactical evidence references, generator version
+   and definition identity so the result is reproducible and explainable.
+
+Abstain when any gate lacks support. Stockfish and saved evidence own generated
+solutions; neither the coach nor the UI invents a continuation. The model must
+allow future solution graphs with multiple accepted solver moves.
+
+Generation should be explicit, bounded, persisted, cancellable, resumable and
+cacheable, rather than rerunning when the player opens a page. Updated engine or
+generator evidence creates or supersedes a definition version; it never rewrites
+completed puzzle history or active snapshots.
+
+A future queue should prefer unseen recent missed opportunities, deduplicate legal
+positions, avoid consecutive puzzles from one game when alternatives exist, and
+offer explicit retries of failures. Source matchup/date, original move, exact
+game/ply link, themes, payoff and full solution unlock only after completion or
+reveal. Cold play must not expose future solution length or other tactical hints.
+Puzzle practice never updates FSRS, ordinary recall history or weakness evidence,
+and does not prove that training transferred into later games.
+
+### Other deferred study work
+
+Additional opening courses, arbitrary opening PGN/Lichess Study imports, repertoire
+tree editing, favorite-position lines, external source synchronization, graphical
+course authoring and broader practice modes require separate product work. Existing
+catalogue browsing and the Italian pilot are not authorization to generate a large
+course collection. Preserve the shared board/coach and the distinct source,
+scheduling and historical-snapshot authorities when extending these features.
