@@ -106,7 +106,7 @@ test('import actions and deep links select their form without reloading settings
   await expect(page.getByRole('heading', {name: 'Import PGN', exact: true})).toBeVisible();
   await page.getByRole('button', {name: 'Close import form', exact: true}).click();
   await expect(page).toHaveURL('/settings');
-  await expect(page.locator('.import-form')).toHaveCount(0);
+  await expect(page.locator('.import-form-body')).toHaveCount(0);
 });
 
 test('Back restores the saved scroll instead of repeating activity and import-form jumps', async ({page}) => {
@@ -125,6 +125,7 @@ test('Back restores the saved scroll instead of repeating activity and import-fo
 
   await connection(page, 'Chess.com').getByRole('button', {name: 'Import older games', exact: true}).click();
   await expect(page).toHaveURL('/settings?import=chesscom');
+  await page.locator('.import-form').evaluate(element => Promise.all(element.getAnimations().map(animation => animation.finished)));
   await expect(page.getByLabel('Chess.com username', {exact: true})).toBeInViewport();
   await page.evaluate(() => scrollTo(0, 0));
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
@@ -219,6 +220,7 @@ test('saved usernames reach older imports without overwriting a manual or blank 
   await save('fourth-saved');
   await expect(imported).toHaveValue('');
   await page.getByRole('button', {name: 'Close import form', exact: true}).click();
+  await expect(page.locator('.import-form-body')).toHaveCount(0);
   await card.getByRole('button', {name: 'Import older games', exact: true}).click();
   await expect(imported).toHaveValue('fourth-saved');
 });

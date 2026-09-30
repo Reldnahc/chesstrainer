@@ -4,6 +4,27 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Import layout expansion and collapse — September 29, 2026
+
+Replaced the content-only fade with a shared 450ms grid-height transition.
+Closing retains inert content until the layout finishes collapsing; reopening
+reverses the transition without remounting the draft. Still remains immediate.
+Scroll-to-form uses the expanded bounds and preserves history/user scrolling.
+
+- `npm.cmd --prefix frontend run build`: passed API agreement, TypeScript,
+  seven style-boundary checks and Vite; existing large-chunk advisory remains.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/import-presentation.spec.ts tests/settings.spec.ts --reporter=line`:
+  **28 passed** across desktop and mobile. Paused native transitions verify
+  zero/midpoint/full heights and matching activity-section movement, plus
+  collapse/reversal, drafts, focus, motion preferences and scroll restoration.
+- Earlier focused runs exposed clipped scrolling and a separate smooth scroll
+  outliving expansion. Both were corrected before the final passing run.
+- Manually exercised desktop and 390px phone opening/closing in the isolated
+  app. Independent review fixes preserve full focus outlines and avoid stealing
+  input focus on motion-preference changes. `git diff --check` passed.
+
+No full backend, coach, lab or Docker suites; no push or deployment.
+
 ## Import form spacing and entrance — September 29, 2026
 
 Provider and PGN forms share the enclosing ImportSettings title/Close row and

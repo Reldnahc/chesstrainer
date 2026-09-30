@@ -17,6 +17,7 @@ import EmptyState from "./EmptyState";
 import ChoiceGroup from "./ChoiceGroup";
 import { ImportAnalysisOption, ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
+import { useInterfaceMotion } from "./MotionProvider";
 
 type PgnMode = "file" | "text";
 const isActive = (job: Job) => ["queued", "running"].includes(job.status);
@@ -76,6 +77,39 @@ export default function ImportSettings({
   onImportSourceChange: (source: string | null) => void;
   restoringScroll?: boolean;
 }) {
+  const motion = useInterfaceMotion();
+  const [closingSource, setClosingSource] = useState<string | null>(null);
+  const closing = !!source && source === closingSource;
+  const formRef = useRef<HTMLDivElement>(null);
+  const expansionScrollY = useRef<number | null>(null);
+  const sourceTrigger = useRef<HTMLElement | null>(null);
+  function openSource(next: string) {
+    sourceTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setClosingSource(null);
+    selectSource(next);
+  }
+  function finishClose() {
+    setClosingSource(null);
+    selectSource(null);
+  }
+  function closeForm() {
+    if (motion === "still") finishClose();
+    else {
+      // Navigating now would scroll the exit out of view before it can finish.
+      const target = sourceTrigger.current?.isConnected ? sourceTrigger.current : document.getElementById("main-content");
+      target?.focus({ preventScroll: true });
+      setClosingSource(source);
+    }
+  }
+  useEffect(() => {
+    if (closingSource && source !== closingSource) setClosingSource(null);
+    // An immediate reversal at zero height has no transitionend to wait for.
+    else if (closing && (motion === "still" || !formRef.current?.getAnimations().some(animation =>
+      animation instanceof CSSTransition && animation.transitionProperty === "grid-template-rows"))) {
+      setClosingSource(null);
+      selectSource(null);
+    }
+  }, [source, closingSource, closing, motion, selectSource]);
   const [providers, setProviders] = useState<Schema["GameProvider"][]>([]);
   const [loadingProviders, setLoadingProviders] = useState(true);
   const [rememberedNames, setRememberedNames] = useState<Record<string, string>>({});
@@ -92,12 +126,16 @@ export default function ImportSettings({
     return () => { active = false; };
   }, [fail]);
   const selectedProvider = providers.find(provider => provider.id === source);
-  const formRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (restoringScroll || !source || (source !== "pgn" && !selectedProvider)) return;
+    if (closing || restoringScroll || !source || (source !== "pgn" && !selectedProvider)) return;
     formRef.current?.focus({ preventScroll: true });
-    formRef.current?.scrollIntoView({ block: "nearest" });
-  }, [source, selectedProvider, restoringScroll]);
+    expansionScrollY.current = window.scrollY;
+    if (!formRef.current?.getAnimations().length) {
+      formRef.current?.scrollIntoView({ block: "nearest", behavior: "instant" });
+      expansionScrollY.current = null;
+    }
+    return () => { expansionScrollY.current = null; };
+  }, [source, selectedProvider, restoringScroll, closing]);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
   const [pgnMode, setPgnMode] = useState<PgnMode>("file");
@@ -164,49 +202,64 @@ export default function ImportSettings({
 
   return <div className="settings-import">
     <SettingsSection id="settings-imports" title="Import games">
-      <GameSync onChanged={reload} onStatusChange={connectionChanged} onImportOlderGames={selectSource} />
+      <GameSync onChanged={reload} onStatusChange={connectionChanged} onImportOlderGames={openSource} />
       <div className="pgn-import-launcher">
         <div><h3>Have a PGN file?</h3><p className="small">Import a game or a collection from any chess site.</p></div>
-        <Button variant="secondary" onClick={() => selectSource("pgn")}><FileUp size={17} />Import PGN</Button>
+        <Button variant="secondary" onClick={() => openSource("pgn")}><FileUp size={17} />Import PGN</Button>
       </div>
-      {source && <div className="import-form" ref={formRef} tabIndex={-1} aria-labelledby="import-form-title">
-        <div className="import-form-heading">
-          <h3 id="import-form-title">{source === "pgn" ? "Import PGN" : selectedProvider ? `Import from ${selectedProvider.name}` : "Import games"}</h3>
-          <IconButton variant="quiet" aria-label="Close import form" title="Close import form" onClick={() => selectSource(null)}><X size={18} aria-hidden="true" /></IconButton>
+      <div className="import-form" ref={formRef} tabIndex={source ? -1 : undefined}
+        aria-labelledby={source ? "import-form-title" : undefined} aria-hidden={!source || undefined}
+        data-open={!!source && !closing || undefined} data-closing={closing || undefined} inert={!source || closing}
+        onTransitionEnd={event => {
+          if (event.target !== event.currentTarget || event.propertyName !== "grid-template-rows") return;
+          if (closing) finishClose();
+          else if (!restoringScroll && expansionScrollY.current === window.scrollY && document.activeElement === event.currentTarget) {
+            // Use the expanded bounds, and never override a reader who scrolled meanwhile.
+            event.currentTarget.scrollIntoView({ block: "nearest", behavior: "instant" });
+            expansionScrollY.current = null;
+          }
+        }}>
+        <div className="import-form-clip">
+          {source && <div className="import-form-body">
+            <div className="import-form-heading">
+              <h3 id="import-form-title">{source === "pgn" ? "Import PGN" : selectedProvider ? `Import from ${selectedProvider.name}` : "Import games"}</h3>
+              <IconButton variant="quiet" aria-label="Close import form" title="Close import form" onClick={closeForm}><X size={18} aria-hidden="true" /></IconButton>
+            </div>
+            {health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}
+            {source !== "pgn" ? (
+              selectedProvider
+                ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
+                : <p role="status">{loadingProviders ? "Loading game providers…" : "That game provider is unavailable. Choose an import action above."}</p>
+            ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
+              <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
+              <div className="import-options">
+                <label>
+                  Your username(s)
+                  <input value={names} onChange={event => setNames(event.target.value)} placeholder="Match the White or Black PGN headers" required={side === "auto"} />
+                  <small>Separate multiple usernames with commas. Matching ignores case.</small>
+                </label>
+                <label>
+                  Learner side
+                  <select value={side} onChange={event => setSide(event.target.value as typeof side)}>
+                    <option value="auto">Match my username in each game</option>
+                    <option value="white">I played White in every game</option>
+                    <option value="black">I played Black in every game</option>
+                  </select>
+                </label>
+              </div>
+              <div className="import-form-actions">
+                <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
+                <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Importing…"
+                  disabled={pgnMode === "file" ? !file : !text.trim()} />
+              </div>
+              {result && <Notice announcement="status">
+                <p>{result.imported} imported · {result.duplicates} duplicate(s).</p>
+                {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
+              </Notice>}
+            </form>}
+          </div>}
         </div>
-        {health?.engine_status === "unavailable" && <Notice announcement="passive">{health.engine_error}</Notice>}
-        {source !== "pgn" ? (
-          selectedProvider
-            ? <ProviderImportForm key={source} provider={selectedProvider} rememberedUsername={rememberedNames[source]} onQueued={reload} fail={fail} />
-            : <p role="status">{loadingProviders ? "Loading game providers…" : "That game provider is unavailable. Choose an import action above."}</p>
-        ) : <form className="form-panel" aria-labelledby="import-form-title" onSubmit={submit}>
-          <PgnInput file={file} setFile={setFile} text={text} setText={setText} mode={pgnMode} setMode={setPgnMode} />
-          <div className="import-options">
-            <label>
-              Your username(s)
-              <input value={names} onChange={event => setNames(event.target.value)} placeholder="Match the White or Black PGN headers" required={side === "auto"} />
-              <small>Separate multiple usernames with commas. Matching ignores case.</small>
-            </label>
-            <label>
-              Learner side
-              <select value={side} onChange={event => setSide(event.target.value as typeof side)}>
-                <option value="auto">Match my username in each game</option>
-                <option value="white">I played White in every game</option>
-                <option value="black">I played Black in every game</option>
-              </select>
-            </label>
-          </div>
-          <div className="import-form-actions">
-            <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
-            <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Importing…"
-              disabled={pgnMode === "file" ? !file : !text.trim()} />
-          </div>
-          {result && <Notice announcement="status">
-            <p>{result.imported} imported · {result.duplicates} duplicate(s).</p>
-            {result.errors.map((error, index) => <p key={index}>Game {error.game}: {error.error}</p>)}
-          </Notice>}
-        </form>}
-      </div>}
+      </div>
     </SettingsSection>
     <SettingsSection id="settings-activity" title="Import & analysis activity" className="import-activity">
       {activity.length === 0 && <EmptyState presentation="compact" title="No activity yet" icon={<Layers />}>Imports and analysis progress will appear here.</EmptyState>}

@@ -2,7 +2,7 @@ import {expect, test, type Locator, type Page} from '@playwright/test';
 import type {Job, Schema} from '../src/api';
 
 type Motion = Schema['MotionPreferences']['motion'];
-type MotionTrace = {starts: number; ends: number; opacities: number[]; elapsed: number};
+type LayoutTrace = {starts: number; ends: number; transitions: Animation[]};
 
 async function fixtures(page: Page) {
   const state: {motion: Motion; jobs: Job[]} = {motion: 'still', jobs: []};
@@ -24,30 +24,70 @@ async function fixtures(page: Page) {
   return state;
 }
 
-async function watchEntrance(page: Page) {
+async function watchLayout(page: Page) {
   await page.addInitScript(() => {
-    const trace = {starts: 0, ends: 0, opacities: [] as number[], elapsed: 0};
-    Object.assign(window, {importPresentationMotion: trace});
-    document.addEventListener('animationstart', event => {
-      if (event.animationName !== 'import-form-enter' || !(event.target instanceof HTMLElement) ||
-        !event.target.matches('.import-form > .form-panel')) return;
+    const trace: LayoutTrace = {starts: 0, ends: 0, transitions: []};
+    Object.assign(window, {importLayoutMotion: trace});
+    document.addEventListener('transitionrun', event => {
+      if (event.propertyName !== 'grid-template-rows' || !(event.target instanceof HTMLElement) ||
+        !event.target.matches('.import-form')) return;
       trace.starts++;
-      const animation = event.target.getAnimations().find(value =>
-        value instanceof CSSAnimation && value.animationName === event.animationName);
-      const effect = animation?.effect;
-      trace.opacities = effect instanceof KeyframeEffect ? effect.getKeyframes().map(frame => Number(frame.opacity)) : [];
-    });
-    document.addEventListener('animationend', event => {
-      if (event.animationName !== 'import-form-enter' || !(event.target instanceof HTMLElement) ||
-        !event.target.matches('.import-form > .form-panel')) return;
-      trace.ends++;
-      trace.elapsed = event.elapsedTime;
-    });
+      const transition = event.target.getAnimations().find(value =>
+        value instanceof CSSTransition && value.transitionProperty === event.propertyName)!;
+      trace.transitions.push(transition);
+      transition.pause();
+    }, true);
+    document.addEventListener('transitionend', event => {
+      if (event.propertyName === 'grid-template-rows' && event.target instanceof HTMLElement &&
+        event.target.matches('.import-form')) trace.ends++;
+    }, true);
   });
 }
 
-const motionTrace = (page: Page) => page.evaluate(() =>
-  (window as unknown as {importPresentationMotion: MotionTrace}).importPresentationMotion);
+const layoutTrace = (page: Page) => page.evaluate(() => {
+  const trace = (window as unknown as {importLayoutMotion: LayoutTrace}).importLayoutMotion;
+  return {starts: trace.starts, ends: trace.ends, states: trace.transitions.map(value => value.playState)};
+});
+
+async function pausedLayout(page: Page, starts: number) {
+  await expect.poll(async () => (await layoutTrace(page)).starts).toBe(starts);
+  await page.evaluate(async () => {
+    await (window as unknown as {importLayoutMotion: LayoutTrace}).importLayoutMotion.transitions.at(-1)!.ready;
+  });
+  expect((await layoutTrace(page)).states.at(-1)).toBe('paused');
+}
+
+async function seekLayout(page: Page, progress: number) {
+  await page.evaluate(fraction => {
+    const transition = (window as unknown as {importLayoutMotion: LayoutTrace}).importLayoutMotion.transitions.at(-1)!;
+    transition.currentTime = Number(transition.effect!.getTiming().duration) * fraction;
+  }, progress);
+}
+
+async function finishLayout(page: Page) {
+  const ends = await page.evaluate(() => {
+    const trace = (window as unknown as {importLayoutMotion: LayoutTrace}).importLayoutMotion;
+    trace.transitions.at(-1)!.finish();
+    return trace.ends;
+  });
+  await expect.poll(async () => (await layoutTrace(page)).ends).toBe(ends + 1);
+}
+
+const layout = (page: Page) => page.evaluate(() => ({
+  height: document.querySelector('.import-form')!.getBoundingClientRect().height,
+  activity: document.querySelector('#settings-activity')!.getBoundingClientRect().top + scrollY,
+}));
+
+async function expectClosed(page: Page) {
+  const wrapper = page.locator('.import-form');
+  await expect(wrapper).toHaveCount(1);
+  await expect(wrapper.locator('.import-form-body')).toHaveCount(0);
+  await expect(wrapper).toHaveAttribute('aria-hidden', 'true');
+  await expect(wrapper).toHaveAttribute('inert', '');
+  await expect(wrapper).not.toHaveAttribute('tabindex');
+  await expect(wrapper).not.toHaveAttribute('data-open');
+  expect((await layout(page)).height).toBeCloseTo(0, 0);
+}
 
 async function openImport(page: Page, source: 'chesscom' | 'pgn') {
   if (source === 'pgn') await page.getByRole('button', {name: 'Import PGN', exact: true}).click();
@@ -134,41 +174,72 @@ test('provider and PGN forms align with their launchers and keep logical field r
   }
 });
 
-test('actual import entrance motion follows device and account preferences for both sources', async ({page}) => {
+test('import motion expands and collapses the actual layout according to device and account preferences', async ({page}) => {
   const state = await fixtures(page);
-  await watchEntrance(page);
+  await watchLayout(page);
   for (const [device, preference, animated] of [
     ['reduce', 'system', false], ['reduce', 'natural', true],
     ['no-preference', 'still', false], ['no-preference', 'system', true],
   ] as const) {
     state.motion = preference;
     await page.emulateMedia({reducedMotion: device});
-    await page.goto('/settings');
-    await expect(page.locator('html')).toHaveAttribute('data-interface-motion', animated ? 'natural' : 'still');
-    for (const [index, source] of (['chesscom', 'pgn'] as const).entries()) {
+    for (const source of ['chesscom', 'pgn'] as const) {
+      await page.goto('/settings');
+      await expect(page.locator('html')).toHaveAttribute('data-interface-motion', animated ? 'natural' : 'still');
+      await expect(page.getByLabel('Remembered Lichess username')).toBeEnabled();
+      await page.evaluate(() => document.fonts.ready);
+      const closed = await layout(page);
+      expect(closed.height).toBeCloseTo(0, 0);
       const form = await openImport(page, source);
+      const original = await form.elementHandle();
+      const wrapper = page.locator('.import-form');
       if (animated) {
-        await expect.poll(async () => (await motionTrace(page)).ends).toBe(index + 1);
-        const trace = await motionTrace(page);
-        expect(trace.starts).toBe(index + 1);
-        expect(trace.elapsed).toBeGreaterThan(0);
-        expect(trace.opacities.some(value => value < 1)).toBe(true);
-        expect(trace.opacities.at(-1)).toBe(1);
+        await pausedLayout(page, 1);
+        await seekLayout(page, 0);
+        const start = await layout(page);
+        await seekLayout(page, 0.5);
+        const middle = await layout(page);
+        await finishLayout(page);
+        const full = await layout(page);
+        expect(start.height).toBeCloseTo(0, 0);
+        expect(middle.height).toBeGreaterThan(start.height + 1);
+        expect(middle.height).toBeLessThan(full.height - 1);
+        expect(middle.activity).toBeGreaterThan(start.activity);
+        expect(middle.activity).toBeLessThan(full.activity);
+        expect(middle.activity - start.activity).toBeCloseTo(middle.height - start.height, 0);
+        expect(full.activity - closed.activity).toBeCloseTo(full.height, 0);
+        await page.getByRole('button', {name: 'Close import form', exact: true}).click();
+        await pausedLayout(page, 2);
+        await seekLayout(page, 0.5);
+        const collapsing = await layout(page);
+        expect(collapsing.height).toBeGreaterThan(1);
+        expect(collapsing.height).toBeLessThan(full.height - 1);
+        expect(full.activity - collapsing.activity).toBeCloseTo(full.height - collapsing.height, 0);
+        await expect(wrapper).toHaveAttribute('inert', '');
+        await expect(wrapper).toHaveAttribute('data-closing', 'true');
+        await expect(page).toHaveURL(`/settings?import=${source}`);
+        expect(await original!.evaluate(element => element.isConnected)).toBe(true);
+        expect(await wrapper.evaluate(element => element.contains(document.activeElement))).toBe(false);
+        await finishLayout(page);
       } else {
-        await expect(form).toHaveCSS('animation-name', 'none');
-        expect(await form.evaluate(element => element.getAnimations().length)).toBe(0);
-        expect(await motionTrace(page)).toMatchObject({starts: 0, ends: 0});
+        await expect(wrapper).toHaveCSS('transition-duration', '0s');
+        expect((await layout(page)).height).toBeGreaterThan(0);
+        expect((await layoutTrace(page)).starts).toBe(0);
+        await page.getByRole('button', {name: 'Close import form', exact: true}).click();
+        expect(await wrapper.locator('.import-form-body').count()).toBe(0);
       }
-      await expect(form).toHaveCSS('opacity', '1');
-      await expect(form).toHaveCSS('transform', 'none');
+      await expectClosed(page);
+      await expect(page).toHaveURL('/settings');
+      expect(await original!.evaluate(element => element.isConnected)).toBe(false);
+      expect((await layout(page)).activity).toBeCloseTo(closed.activity, 0);
     }
   }
 });
 
-test('editing and activity refresh preserve form identity and drafts without replaying its entrance', async ({page}) => {
+test('editing, polling and switching an open source preserve the shell without replaying expansion', async ({page}) => {
   const state = await fixtures(page);
   state.motion = 'natural';
-  await watchEntrance(page);
+  await watchLayout(page);
   const job = (games: number): Job => ({
     id: 'import-presentation-history', status: 'completed', kind: 'training', user_id: 'presentation-fixture',
     created_at: '2026-09-29T10:00:00Z', activity: null, cancel_requested: false,
@@ -180,8 +251,10 @@ test('editing and activity refresh preserve form identity and drafts without rep
     state.jobs = [job(1)];
     await page.goto('/settings');
     await expect(page.locator('html')).toHaveAttribute('data-interface-motion', 'natural');
+    const wrapper = await page.locator('.import-form').elementHandle();
     const form = await openImport(page, source);
-    await expect.poll(async () => (await motionTrace(page)).ends).toBe(1);
+    await pausedLayout(page, 1);
+    await finishLayout(page);
     const original = await form.elementHandle();
     if (source === 'pgn') await form.getByRole('button', {name: 'Paste PGN text', exact: true}).click();
     const draft = source === 'pgn' ? form.getByRole('textbox', {name: 'PGN', exact: true})
@@ -194,16 +267,87 @@ test('editing and activity refresh preserve form identity and drafts without rep
     await draft.focus();
     state.jobs = [job(2)];
     await expect(page.locator('.job-history summary')).toContainText('2 / 2 games · 4 decisions');
-    expect(await original!.evaluate(element => element === document.querySelector('.import-form > form'))).toBe(true);
+    expect(await original!.evaluate(element => element === document.querySelector('.import-form form'))).toBe(true);
     await expect(draft).toHaveValue(value);
     await expect(draft).toBeFocused();
     await expect(analyze).toBeChecked();
-    expect(await motionTrace(page)).toMatchObject({starts: 1, ends: 1});
-    await page.getByRole('button', {name: 'Close import form', exact: true}).click();
-    await expect(page.locator('.import-form')).toHaveCount(0);
+    expect(await layoutTrace(page)).toMatchObject({starts: 1, ends: 1});
+    const other = source === 'pgn' ? 'chesscom' : 'pgn';
+    await openImport(page, other);
+    // Flush the new source's style and transition events without a timed sleep.
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    expect(await wrapper!.evaluate(element => element === document.querySelector('.import-form'))).toBe(true);
     expect(await original!.evaluate(element => element.isConnected)).toBe(false);
+    expect(await layoutTrace(page)).toMatchObject({starts: 1, ends: 1});
+    await page.getByRole('button', {name: 'Close import form', exact: true}).click();
+    await pausedLayout(page, 2);
+    await finishLayout(page);
+    await expectClosed(page);
+    await openImport(page, other);
+    await pausedLayout(page, 3);
+    await finishLayout(page);
+    expect(await wrapper!.evaluate(element => element === document.querySelector('.import-form'))).toBe(true);
+  }
+});
+
+test('reversing a collapse preserves the draft and focus, while source and motion changes cancel cleanly', async ({page}) => {
+  const state = await fixtures(page);
+  state.motion = 'system';
+  await watchLayout(page);
+  for (const source of ['chesscom', 'pgn'] as const) {
+    await page.emulateMedia({reducedMotion: 'no-preference'});
+    await page.goto('/settings');
+    await expect(page.locator('html')).toHaveAttribute('data-interface-motion', 'natural');
+    const form = await openImport(page, source);
+    await pausedLayout(page, 1);
+    await finishLayout(page);
+    const original = await form.elementHandle();
+    if (source === 'pgn') await form.getByRole('button', {name: 'Paste PGN text', exact: true}).click();
+    const draft = source === 'pgn' ? form.getByRole('textbox', {name: 'PGN', exact: true})
+      : form.getByLabel('Chess.com username', {exact: true});
+    await expect(draft).toBeEnabled();
+    const value = source === 'pgn' ? '[White "Retained"]\n\n1. e4 e5 *' : 'Retained_Draft';
+    await draft.fill(value);
+    await form.getByRole('checkbox', {name: 'Also analyze these games for training', exact: true}).check();
+    await page.getByRole('button', {name: 'Close import form', exact: true}).click();
+    await pausedLayout(page, 2);
+    await seekLayout(page, 0.5);
     await openImport(page, source);
-    await expect.poll(async () => (await motionTrace(page)).ends).toBe(2);
-    expect((await motionTrace(page)).starts).toBe(2);
+    await pausedLayout(page, 3);
+    await seekLayout(page, 0.5);
+    const wrapper = page.locator('.import-form');
+    await expect(wrapper).not.toHaveAttribute('inert');
+    await expect(wrapper).not.toHaveAttribute('data-closing');
+    await expect(wrapper).toBeFocused();
+    await expect(draft).toHaveValue(value);
+    await expect(form.getByRole('checkbox', {name: 'Also analyze these games for training', exact: true})).toBeChecked();
+    expect(await original!.evaluate(element => element === document.querySelector('.import-form form'))).toBe(true);
+    expect((await layoutTrace(page)).states[1]).toBe('idle');
+
+    // Close before re-expansion finishes, then select a different source.
+    await page.getByRole('button', {name: 'Close import form', exact: true}).click();
+    await pausedLayout(page, 4);
+    await seekLayout(page, 0.5);
+    expect((await layoutTrace(page)).states[2]).toBe('idle');
+    const other = source === 'pgn' ? 'chesscom' : 'pgn';
+    await openImport(page, other);
+    await pausedLayout(page, 5);
+    await finishLayout(page);
+    await expect(wrapper).not.toHaveAttribute('data-closing');
+    await expect(wrapper).toBeFocused();
+    expect((await layoutTrace(page)).states[3]).toBe('idle');
+    expect(await original!.evaluate(element => element.isConnected)).toBe(false);
+    await expect(page).toHaveURL(`/settings?import=${other}`);
+
+    await page.getByRole('button', {name: 'Close import form', exact: true}).click();
+    await pausedLayout(page, 6);
+    await seekLayout(page, 0.5);
+    const completed = (await layoutTrace(page)).ends;
+    await page.emulateMedia({reducedMotion: 'reduce'});
+    await expect(page.locator('html')).toHaveAttribute('data-interface-motion', 'still');
+    await expectClosed(page);
+    await expect(page).toHaveURL('/settings');
+    expect((await layoutTrace(page)).ends).toBe(completed);
+    expect((await layoutTrace(page)).states.at(-1)).toBe('idle');
   }
 });
