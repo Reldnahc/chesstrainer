@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { AudioLines, Check, Copy, Download, Play, Square, Volume2, VolumeX } from "lucide-react";
 import Button, { IconButton } from "../../Button";
 import ChoiceGroup from "../../ChoiceGroup";
+import SourceLine from "../../SourceLine";
+import "../../disclosure.css";
+import recordedSources from "../assets/sources.json";
 import { cueCatalog, paletteCatalog } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { SoundCategory, SoundCue, SoundPalette } from "../model";
@@ -16,6 +19,17 @@ const cueFilters: readonly { value: CueFilter; label: string }[] = [
 ];
 const cueLabel = (cue?: SoundCue) => cueCatalog.find(item => item.id === cue)?.label ?? "Playback";
 const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => item.id === palette)?.label ?? "";
+const assetSources = new Map(recordedSources.assets.map(source => [`${source.palette}:${source.cue}`, source]));
+
+function CueSource({ cue, palette }: { cue: SoundCue; palette: SoundPalette }) {
+  const source = assetSources.get(`${palette}:${cue}`);
+  if (!source) return null;
+  return <details className="disclosure audio-studio-source">
+    <summary aria-label={`Source for ${cueLabel(cue)} · ${paletteLabel(palette)}`}>Source</summary>
+    <SourceLine text={`${source.title} — ${source.author}`} url={source.sourceUrl}
+      license="CC0" licenseUrl="https://creativecommons.org/publicdomain/zero/1.0/" />
+  </details>;
+}
 
 function eventLabel(event: AudioEvent) {
   if (event.type === "started") return "Played";
@@ -127,7 +141,7 @@ export default function AudioStudio() {
     const audition = await begin();
     if (!audition) return;
     const { engine, take, scope } = audition;
-    const paletteFor = (cue: SoundCue) => scenarioPalette === "picks" ? selections[cue] ?? "warm-wood" : scenarioPalette;
+    const paletteFor = (cue: SoundCue) => scenarioPalette === "picks" ? selections[cue] ?? "recorded-chess" : scenarioPalette;
     for (const [index, step] of item.steps.entries()) {
       engine.play({ ...step, palette: paletteFor(step.cue), scope, eventId: `${scope}:${index}` });
     }
@@ -149,6 +163,16 @@ export default function AudioStudio() {
       setSaveStatus(`${cueLabel(cue)} pick saved in this browser.`);
     } catch {
       setSaveStatus("Browser storage is unavailable. Export your picks before leaving.");
+    }
+  }
+
+  function clearSelections() {
+    setSelections({});
+    try {
+      localStorage.removeItem(studioStorageKey);
+      setSaveStatus("Cleared your studio picks.");
+    } catch {
+      setSaveStatus("Browser storage is unavailable. Your previous picks may return after reloading.");
     }
   }
 
@@ -221,6 +245,7 @@ export default function AudioStudio() {
                   onChange={() => choose(cue.id, palette.id)} aria-label={`Choose ${palette.label} for ${cue.label}`} />
                 <span>{selections[cue.id] === palette.id ? "Picked" : "Pick"}</span>
               </label>
+              <CueSource cue={cue.id} palette={palette.id} />
             </div>)}
           </fieldset>)}
         </div>
@@ -238,7 +263,7 @@ export default function AudioStudio() {
           </select></label>
           <p className="audio-studio-scenario-description">{scenario.description}</p>
           <Button variant="primary" onClick={() => void playScenario(scenario)}><Play size={15} aria-hidden="true" />Play scenario</Button>
-          <p className="audio-studio-footnote">{scenarioPalette === "picks" ? "Unpicked cues use Warm wood." : "This audition leaves your individual picks unchanged."}</p>
+          <p className="audio-studio-footnote">{scenarioPalette === "picks" ? "Unpicked cues use Recorded chess." : "This audition leaves your individual picks unchanged."}</p>
         </section>
 
         <section className="audio-studio-panel" aria-labelledby="picks-heading">
@@ -247,13 +272,14 @@ export default function AudioStudio() {
           <div className="audio-studio-export-actions">
             <Button size="compact" onClick={() => void copySelections()}><Copy size={14} aria-hidden="true" />Copy JSON</Button>
             <Button size="compact" onClick={downloadSelections}><Download size={14} aria-hidden="true" />Download</Button>
+            <Button size="compact" onClick={clearSelections} disabled={chosenCount === 0}>Clear picks</Button>
           </div>
           <p className="audio-studio-save-status" role="status">{saveStatus || `${chosenCount} cue ${chosenCount === 1 ? "pick" : "picks"} saved.`}</p>
-          <details className="audio-studio-details"><summary>View cue mapping</summary><pre tabIndex={0} aria-label="Cue mapping JSON">{selectionJson}</pre></details>
+          <details className="disclosure audio-studio-details"><summary>View cue mapping</summary><pre tabIndex={0} aria-label="Cue mapping JSON">{selectionJson}</pre></details>
         </section>
 
         <section className="audio-studio-panel audio-studio-history" aria-label="Playback history">
-          <details className="audio-studio-details">
+          <details className="disclosure audio-studio-details">
             <summary>Playback history <span>{history.filter(event => event.type === "started").length} played</span></summary>
             <p>Live events from the shared audio player.</p>
             {history.length ? <ol>{history.map(event => <li key={event.traceId} data-event-type={event.type} data-cue={event.cue} data-reason={event.reason}>

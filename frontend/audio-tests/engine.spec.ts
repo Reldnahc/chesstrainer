@@ -284,14 +284,14 @@ test("hide, mute, loading, disable and disposal all invalidate asynchronous work
 test("decoded assets are reused while distinct palette assets remain independent", async () => {
   const f = fixture();
   await f.engine.unlock();
-  for (const [eventId, palette] of [["a", "warm-wood"], ["b", "warm-wood"], ["c", "soft-digital"]] as const) {
+  for (const [eventId, palette] of [["a", "recorded-chess"], ["b", "recorded-chess"], ["c", "soft-objects"]] as const) {
     f.engine.play({...move(eventId), palette});
     await flush();
   }
   expect(f.loads).toHaveLength(2);
   expect(f.context.decodes).toBe(2);
-  expect(f.loads[0]).toContain("warm-wood/move.wav");
-  expect(f.loads[1]).toContain("soft-digital/move.wav");
+  expect(f.loads[0]).toContain("recorded-chess/move.wav");
+  expect(f.loads[1]).toContain("soft-objects/move.wav");
   f.engine.dispose();
 });
 

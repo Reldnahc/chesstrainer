@@ -3,8 +3,9 @@
 Fieldwork uses one browser audio service for board moves, practice feedback and
 optional review accents. Audio is presentation only: it never grades a move,
 advances a session, changes the engine budget or infers a tactic from the board.
-The first bundled selection is provisional **Warm wood**. The separate audition
-studio exists so the owner can compare and choose the final sounds.
+The bundled selection is provisional **Recorded chess**. The separate audition
+studio exists so the owner can compare and choose the final sounds. The original
+procedurally synthesized audition sets were rejected and have been removed.
 
 ## Controls and defaults
 
@@ -73,12 +74,22 @@ before an attempt or reveal permits feedback.
   Display-only playback handlers emit move cues. Explicit replays get fresh event
   identities; deduplication does not globally suppress repeated chess positions.
 
-The current assets are original deterministic synthesis, not third-party game
-recordings. The generator, provenance, levels and verification command are in
-`scripts/generate_audio.py` and the asset README. The 42 short mono WAVs cover
-14 cues in three palettes and total approximately 662 KB. Assets are bundled
-locally, fetched and decoded only as needed; no external service or Docker option
-is involved. Additional palettes need not change event producers.
+The current candidates are excerpts of **11 CC0 recordings**: real chess/wooden
+pieces, wood block, music box, bronze bell, triangle, glass and a soft gong.
+They are trimmed, level matched and faded; castling combines two recorded hits.
+No tones are generated, no pitch is synthesized, and no AI generation is claimed.
+The Freesound inputs are public HQ MP3 previews rather than original WAV downloads.
+The other inputs are the publisher's downloadable MP3s. Resaving them as WAV does
+not restore information removed by MP3 encoding.
+
+`frontend/src/audio/assets/sources.json` records every source, author, license,
+input/output hash and exact edit recipe. The asset README and `CC0-1.0.txt` retain
+the notices. `scripts/prepare_audio.py --check` verifies assets offline; explicit
+authoring can reproduce the edits from hash-checked source files. The 42 candidate
+WAVs cover 14 cues in three palettes and total approximately **3.05 MB**; some cues
+share a source recording. Assets are bundled locally, fetched and decoded only
+as needed; normal installation/build/playback does not contact a sound provider.
+Additional palettes need not change event producers.
 
 ## Audition studio
 
@@ -91,12 +102,19 @@ npm --prefix frontend run dev:audio
 Open **http://127.0.0.1:5176**. This is a separate Vite process with no account/API
 connection and no production navigation route. It uses the actual audio engine.
 
-- Compare Warm wood, Clean minimal and Soft digital for each cue.
+- Compare Recorded chess, Tabletop and Soft objects for each cue.
+- Open a candidate's Source disclosure for its recording, author and CC0 license.
+  These are audition candidates, not approved final sound design; exact edit
+  recipes are recorded in the asset manifest.
 - Pick a different palette for each cue; picks persist only in studio storage.
+  Clear picks resets that audition selection without changing account settings.
 - Play short scenarios using one palette or the current mixed selection.
 - Adjust volume, mute, stop or inspect the playback history.
 - Copy/download the selected mapping for review and a later deliberate product
   change. Studio selections do not silently alter production account preferences.
+
+Selection storage/export is version 2. Previous synthetic-set picks cannot
+silently approve replacement sounds; old palette IDs are discarded.
 
 The studio shares application buttons and choice controls but owns its layout.
 Its style boundary rejects application/board styles. CI has a dedicated audio

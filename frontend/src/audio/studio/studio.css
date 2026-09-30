@@ -24,9 +24,9 @@
 .audio-studio-palette-headings { margin-top: 24px; align-items: end; }
 .audio-studio-cue-heading { font: 10px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 1px; padding-bottom: 14px; }
 .audio-studio-palette { min-width: 0; padding: 16px 10px 13px; border-top: 2px solid var(--palette-color); }
-.audio-studio [data-palette="warm-wood"] { --palette-color: #dcad83; }
-.audio-studio [data-palette="clean-minimal"] { --palette-color: #b9d7c6; }
-.audio-studio [data-palette="soft-digital"] { --palette-color: #b8b0ee; }
+.audio-studio [data-palette="recorded-chess"] { --palette-color: #dcad83; }
+.audio-studio [data-palette="tabletop"] { --palette-color: #b9d7c6; }
+.audio-studio [data-palette="soft-objects"] { --palette-color: #b8b0ee; }
 .audio-studio-palette-number { display: block; color: var(--palette-color); font: 10px var(--mono); margin-bottom: 8px; }
 .audio-studio-palette h3 { margin-bottom: 5px; font-size: 14px; }
 .audio-studio-palette p { margin: 0; font-size: 11px; line-height: 1.5; min-height: 50px; }
@@ -39,6 +39,7 @@
 .audio-studio-pick { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px; min-height: 34px; font-size: 11px; color: var(--muted); cursor: pointer; }
 .audio-studio-pick input { width: 14px; height: 14px; min-height: 0; margin: 0; padding: 0; accent-color: var(--palette-color); }
 .audio-studio-cue-option[data-picked="true"] .audio-studio-pick { color: var(--palette-color); }
+.audio-studio-source { max-width: 100%; }
 .audio-studio-sidebar { display: grid; gap: 18px; }
 .audio-studio-panel { padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .audio-studio-panel > p { font-size: 12px; margin: 12px 0 16px; }
@@ -48,8 +49,6 @@
 .audio-studio-panel .audio-studio-footnote { font-size: 11px; margin: 12px 0 0; }
 .audio-studio-export-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .audio-studio-panel .audio-studio-save-status { font-size: 11px; min-height: 36px; margin: 12px 0 6px; }
-.audio-studio-details > summary { display: list-item; min-height: 44px; align-content: center; font-size: 12px; }
-.audio-studio-details[open] > summary { margin-bottom: 8px; }
 .audio-studio-details pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 10px; line-height: 1.6; padding: 12px; border-radius: 5px; background: #141517; margin: 0; }
 .audio-studio-history { padding-block: 5px; }
 .audio-studio-history summary > span { float: right; font: 10px var(--mono); color: var(--muted); }

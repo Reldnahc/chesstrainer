@@ -147,7 +147,7 @@ export class AudioEngine {
   play(request: SoundRequest): void {
     // Audio is enhancement-only: a malformed/unsupported cue must not break a chess command.
     try {
-      const palette = request.palette ?? "warm-wood";
+      const palette = request.palette ?? "recorded-chess";
       const event: AudioEvent = {type: "requested", bus: "effects", scope: request.scope,
         eventId: request.eventId, cue: request.cue, palette};
       if (!soundCues.includes(request.cue) || !soundPalettes.includes(palette)) {

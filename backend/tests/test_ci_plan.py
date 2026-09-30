@@ -196,6 +196,27 @@ def test_shared_audio_retains_application_consumers_without_coach_artwork(path):
     )
 
 
+@pytest.mark.parametrize(
+    "path",
+    [
+        "frontend/src/SourceLine.tsx",
+        "frontend/src/source-line.css",
+        "frontend/src/disclosure.css",
+    ],
+)
+def test_shared_source_disclosures_keep_audio_checks_with_application_styles(path):
+    assert (ci_plan.ROOT / path).is_file()
+    assert_selection(
+        ci_plan.select_checks([path]), build=True, docker=True, suites=AUDIO_CONSUMER_SUITES
+    )
+    assert_selection(
+        ci_plan.select_checks([*ci_plan.APPLICATION_CSS, path]),
+        build=True,
+        docker=True,
+        suites=AUDIO_CONSUMER_SUITES,
+    )
+
+
 @pytest.mark.parametrize("path", ["frontend/src/AccountGate.tsx", "frontend/src/Settings.tsx"])
 def test_account_and_settings_keep_existing_checks_and_shared_audio_adds_its_suite(path):
     assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=PYTHON_SUITES)

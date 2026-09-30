@@ -16,13 +16,13 @@ export const cueCatalog: readonly CueDefinition[] = [
   {id: "brilliant", label: "Brilliant", description: "A light, distinctive sparkle.", category: "review", priority: 85},
   {id: "great", label: "Great", description: "A restrained positive accent.", category: "review", priority: 65},
   {id: "miss", label: "Miss", description: "An unresolved opening to reconsider.", category: "review", priority: 60},
-  {id: "mistake", label: "Mistake", description: "A subdued downward accent.", category: "review", priority: 70},
+  {id: "mistake", label: "Mistake", description: "A brief cue to reconsider the move.", category: "review", priority: 70},
   {id: "blunder", label: "Blunder", description: "A deeper, soft caution.", category: "review", priority: 80},
 ];
 export const paletteCatalog: readonly {id: SoundPalette; label: string; description: string}[] = [
-  {id: "warm-wood", label: "Warm wood", description: "Tactile wooden taps and mellow resonances."},
-  {id: "clean-minimal", label: "Clean minimal", description: "Small, clear tones with restrained tails."},
-  {id: "soft-digital", label: "Soft digital", description: "Rounded electronic tones with a little air."},
+  {id: "recorded-chess", label: "Recorded chess", description: "Actual chess-piece recordings, with bell feedback."},
+  {id: "tabletop", label: "Tabletop", description: "Wooden board pieces and small acoustic accents."},
+  {id: "soft-objects", label: "Soft objects", description: "Lighter object recordings and gentle resonant accents."},
 ];
 
 // Vite resolves these local files to hashed asset URLs in every entrypoint.

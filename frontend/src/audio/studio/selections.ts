@@ -1,6 +1,6 @@
 import { soundCues, soundPalettes, type SoundCue, type SoundPalette } from "../model";
 
-export const studioStorageKey = "fieldwork.audio-studio.picks.v1";
+export const studioStorageKey = "fieldwork.audio-studio.picks.v2";
 export type StudioSelections = Partial<Record<SoundCue, SoundPalette>>;
 
 /** Audition choices belong only to this developer tool, never account settings. */
@@ -19,9 +19,9 @@ export function readStudioSelections(): StudioSelections {
 
 export function exportStudioSelections(selections: StudioSelections) {
   return JSON.stringify({
-    schemaVersion: 1,
+    schemaVersion: 2,
     purpose: "fieldwork-audio-audition",
-    fallbackPalette: "warm-wood",
+    fallbackPalette: "recorded-chess",
     cuePalettes: Object.fromEntries(soundCues.flatMap(cue => selections[cue] ? [[cue, selections[cue]]] : [])),
   }, null, 2);
 }

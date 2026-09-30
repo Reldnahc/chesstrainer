@@ -63,12 +63,16 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/ReviewWorkspace.tsx",
     "frontend/src/SectionNavigation.tsx",
     "frontend/src/Settings.tsx",
-    "frontend/src/SourceLine.tsx",
     "frontend/src/StatList.tsx",
     "frontend/src/TurnIndicator.tsx",
     "frontend/src/Weaknesses.tsx",
     "frontend/src/main.tsx",
     "frontend/src/navigation.ts",
+}
+APPLICATION_AND_AUDIO_FRONTEND_FILES = {
+    "frontend/src/SourceLine.tsx",
+    "frontend/src/source-line.css",
+    "frontend/src/disclosure.css",
 }
 APPLICATION_FRONTEND_PREFIXES = (
     "frontend/src/study/",
@@ -175,7 +179,10 @@ def select_checks(paths, full=False):
                 build = True
                 suites.add("audio-studio")
                 reason("Audio studio changes require its browser suite and the build.")
-            elif path.startswith("frontend/src/audio/"):
+            elif (
+                path.startswith("frontend/src/audio/")
+                or path in APPLICATION_AND_AUDIO_FRONTEND_FILES
+            ):
                 build = docker = True
                 suites.update(PYTHON_SUITES | {"audio-studio"})
                 reason("Shared audio changes require application, intelligence and audio checks.")

@@ -7,6 +7,13 @@ Existing Fieldwork source keeps its original license. The combined application
 also carries the applicable AGPL obligations, including the network source offer.
 Other dependencies retain their own licenses; Stockfish is installed separately.
 
+The recorded audio candidates under `frontend/src/audio/assets` derive from
+CC0-1.0 recordings by el_boss, simone_ds, taure and zachrau (Freesound), and
+Pierre SIBANARCO and Joseph SARDIN (BigSoundBank). Those assets retain CC0;
+Fieldwork's source-code license does not replace their public-domain dedication.
+The directory includes the complete CC0 text and per-file sources, hashes and
+editing notes in `sources.json` and its README. No Chess.com sound assets are used.
+
 The optional human-move adapter and developer benchmarks use CSSLab's AGPL-3.0 inference primitives at
 [1e13597c42d4858b7cfd7cfdae01e297263364b2](https://github.com/CSSLab/maia3/tree/1e13597c42d4858b7cfd7cfdae01e297263364b2).
 Unmodified model, tokenizer and move-vocabulary source and the complete license

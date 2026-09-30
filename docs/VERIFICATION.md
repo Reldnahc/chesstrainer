@@ -4,6 +4,56 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Recorded audio audition replacements — September 30, 2026
+
+The rejected synthetic palettes and their generator are removed. Three recorded
+palettes now fill all 42 audition slots using edits of 11 CC0 sources. This is an
+owner audition round, not an approved final sound selection. The production
+fallback uses Recorded chess. Source disclosures reuse the application SourceLine
+and native disclosure styles without importing application shells. Picks/export
+are version 2 so old choices cannot approve replacement assets.
+
+- `.venv/Scripts/python.exe scripts/prepare_audio.py --check`: all **42** outputs
+  verified offline against hashes, format, duration, peak, silent-tail and source
+  metadata checks; **3,051,748 bytes** total. An independent review repeated this
+  check and validated all 11 cached input hashes against the manifest.
+- `.venv/Scripts/python.exe -c "import sys,runpy; sys.path.insert(0,'.tools/audio-authoring'); sys.argv=['scripts/prepare_audio.py','--prepare']; runpy.run_path('scripts/prepare_audio.py',run_name='__main__')"`:
+  reproduced all **42** outputs byte-for-byte from pinned cached recordings with
+  NumPy 2.2.6 and SoundFile 0.13.1. No hash updates were accepted. The temporary
+  authoring dependencies/cache are ignored and are not app dependencies.
+- `.venv/Scripts/ruff.exe check scripts/prepare_audio.py scripts/ci_plan.py backend/tests/test_ci_plan.py`
+  and the same paths with `ruff format --check`: passed after formatting the new
+  CI condition.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py -q`:
+  **302 passed**, including the narrow application/audio classification for shared
+  source disclosures. From `frontend`, `node --test scripts/style-boundaries.test.mjs`:
+  **11 passed**.
+- From `frontend`, `npx playwright test --config node_modules/.cache/recorded-audio-check.config.mjs`:
+  **36 passed / 6 failed** because the already-running studio retained an old
+  Vite asset glob after the directory replacement. Invalidated that cached module;
+  rerunning the same command with `--last-failed` passed **all 6** affected cases.
+  The ignored wrapper preserves the normal desktop/mobile configuration and
+  reuses the live audition server. Coverage includes actual playback of all 42
+  WAVs, every source disclosure, stale-pick rejection and 320px controls.
+- With the same browser configuration, `--grep 'clearing studio picks'`:
+  **2 passed**, desktop/mobile; resetting choices persists across reload, leaves
+  unrelated/legacy storage intact, permits new choices and makes no API requests.
+  `npm run test:types` passed after that small studio addition.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/audio-preferences.spec.ts tests/game-audio-browser.spec.ts --reporter=line`:
+  **18 passed**, desktop/mobile, including real new-default audio playback,
+  persistence, silence preferences, delayed preview cancellation and quiet graph
+  dragging.
+- `npm.cmd --prefix frontend run build` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed. The app build checks
+  API agreement, app/browser/contract types, **11** style tests and standalone
+  dependency boundaries. Existing large-chunk advisory remains.
+
+Manual studio interaction confirmed recorded move playback, its expanded
+author/license/source disclosure and clearing the test selection. Automated browser tests play every candidate;
+subjective listening approval remains with the owner. No AI-generated audio,
+account migration, dependency lock changes, Docker build, unrelated full coach
+matrix or remote CI/deployment is claimed for this focused pass.
+
 ## Shared audio and audition studio — September 30, 2026
 
 Board, practice and optional learner-side review cues now use one cancellable
