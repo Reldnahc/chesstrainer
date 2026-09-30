@@ -190,7 +190,7 @@ export default function App() {
             {tab === "Weaknesses" && (
               <WeaknessScreen
                 onEvidence={setEvidenceId}
-                fail={fail}
+                category={route.weaknessCategory}
               />
             )}
             {tab === "Settings" && (

@@ -503,6 +503,7 @@ test('local classification settings and evidence work without model connectivity
   expect(config.classification_provider).toBe('local_rules');
   expect(config.openai_model).toBeUndefined();
   await page.getByRole('link', {name:'Weaknesses', exact:true}).click();
+  await page.getByRole('navigation', {name: 'Weakness categories'}).getByRole('link', {name: 'Material & mate', exact: true}).click();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name:'Allowed mate', exact:true})});
   await weakness.getByText(/Browse supporting positions/).click();
   await weakness.getByRole('button', {name:'Example 1', exact:true}).click();
@@ -661,7 +662,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(page.getByRole('region', {name: 'Tactical patterns', exact: true})).toBeVisible();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
   const before = (await (await page.request.get('/api/stats')).json()).reviews;
-  await weakness.getByRole('link', {name: /Practice .* positions/}).click();
+  await weakness.getByRole('link', {name: /Practice .* positions?/}).click();
   await expect(page).toHaveURL(/\/study\/due\?focus=/);
   const focusedUrl = page.url();
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();

@@ -14,6 +14,7 @@ export const studyPaths = {
 export type StudyMode = "home" | keyof typeof studyPaths;
 export type Tab = keyof typeof pagePaths;
 export type SettingsTab = "imports" | "coach" | "account" | "advanced";
+export type WeaknessCategory = "patterns" | "outcomes";
 const navigationEvent = "fieldwork:navigate";
 const scrollKey = "fieldworkScroll";
 const entryKey = "fieldworkEntry";
@@ -80,6 +81,7 @@ function readRoute() {
     tab,
     settingsTab: (["coach", "account", "advanced"].includes(settingsSection ?? "") ? settingsSection : "imports") as SettingsTab,
     importSource: url.searchParams.get("import"),
+    weaknessCategory: (url.searchParams.get("category") === "outcomes" ? "outcomes" : "patterns") as WeaknessCategory,
     gameId,
     studyMode,
     puzzleSessionId,

@@ -1,25 +1,23 @@
-.weakness {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: flex-start;
-}
-.weakness:last-child {
-  border: 0;
-}
-.weakness h3 {
-  font-size: 18px;
-  margin: 10px 0;
-}
-.weakness p {
-  margin: 0;
-}
+.weakness-content { margin-top: 24px; }
+.weakness-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.weakness-section-heading h2 { margin: 0; font-size: 20px; }
+.weakness-section-heading > span { flex-shrink: 0; }
+.weakness-category-note { margin: -8px 0 20px; }
 .weakness-list {
-  padding-top: 0;
-  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
+.weakness { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.weakness-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 16px; }
+.weakness-heading h3 { margin: 0; font-size: 20px; overflow-wrap: anywhere; }
+.weakness-cue { margin: 0; color: #d4d8de; max-width: 64ch; }
+.weakness .stat-list { margin-top: 0; }
+.weakness-practice { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: auto; }
+.weakness-practice p { margin: 0; }
+.weakness-practice strong { color: #d4d8de; font-weight: 500; font-variant-numeric: tabular-nums; }
+.weakness-evidence { border-top: 1px solid var(--line); padding-top: 8px; }
+.weakness-practice-note { margin: 20px 0 0; font-size: 12px; }
 .evidence-dialog {
   width: 100%;
   max-width: 1080px;
@@ -83,22 +81,18 @@ body:has(dialog[open]) {
 .evidence-grid > * {
   min-width: 0;
 }
-.weakness-section {
-  margin-top: 28px;
-}
-.weakness > div {
-  min-width: 0;
-}
-.weakness > .action-control {
-  flex-shrink: 0;
-}
 .evidence-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 10px;
   margin-top: 8px;
   max-height: 220px;
   overflow-y: auto;
+  padding: 6px;
+  margin-inline: -6px;
+}
+@media (max-width: 1000px) {
+  .weakness-list { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
   .evidence-grid {
@@ -106,16 +100,10 @@ body:has(dialog[open]) {
     gap: 16px;
     margin-top: 12px;
   }
-  .weakness {
-    gap: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .weakness-list {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  .weakness-content { margin-top: 20px; }
+  .weakness-list { gap: 16px; }
+  .weakness-section-heading { gap: 12px; margin-bottom: 16px; }
+  .weakness-practice { align-items: stretch; }
   .evidence-dialog {
     width: 100%;
     max-width: none;
@@ -129,32 +117,11 @@ body:has(dialog[open]) {
   .evidence-dialog h2 {
     font-size: 18px;
   }
-  .workspace-page .weakness-list {
-    padding-block: 0;
-  }
-  .workspace-page .weakness {
-    padding: 16px 0;
-    gap: 10px;
-  }
-  .workspace-page .weakness .eyebrow {
-    margin-bottom: 5px;
-  }
-  .workspace-page .weakness h3 {
-    margin: 0 0 6px;
-    font-size: 17px;
-  }
-  .workspace-page .weakness .action-control {
-    width: 100%;
-    justify-content: space-between;
-  }
   .evidence-dialog > .row-between {
     top: -12px;
   }
   .evidence-dialog > .row-between .eyebrow {
     display: none;
-  }
-  .weakness > .action-control {
-    width: 100%;
   }
   .evidence-grid > .board-shell {
     width: min(100%, 400px);

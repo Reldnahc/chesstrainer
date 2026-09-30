@@ -1,5 +1,12 @@
 # Testing
 
+`weaknesses.spec.ts` covers the shared category navigation, Back/Forward/reload,
+one evidence fetch across category switches, card statistics, targeted practice
+links, evidence-dialog focus return, category/global empty states, retry and
+cancelled requests at desktop and 320px widths. Run the focused classification
+evidence and focused-practice cases in `training.spec.ts` alongside it to verify
+the real data path and unchanged recall scheduling.
+
 Settings regressions in `settings.spec.ts` exercise section/deep-link navigation,
 Back/Forward/reload and scroll restoration, exclusive PGN file/text payloads,
 analysis opt-in, remembered usernames versus edited drafts, late connection polls,

@@ -4,6 +4,30 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Weaknesses page normalization — September 29, 2026
+
+Weaknesses reuses SectionNavigation for bookmarkable Tactical patterns and
+Material & mate categories, plus StatList and shared feedback/actions. Roomier
+cards separate advice, evidence counts, recent practice and supporting examples;
+two desktop columns become one on smaller screens. Backend priorities, evidence
+and focused-practice scheduling are unchanged.
+
+- `npm.cmd --prefix frontend run build`: passed API agreement, TypeScript,
+  seven style-boundary checks and Vite; existing large-chunk advisory remains.
+- `.venv/Scripts/python.exe .tools/run_ui_checks.py app tests/weaknesses.spec.ts tests/empty-states.spec.ts tests/navigation.spec.ts --reporter=line`:
+  **23 passed, 1 intentional skip** (mobile modifier-click). Covers category
+  history/reload, one fetch across switches, 320px controls, statistics, evidence
+  focus return, category/global emptiness, retry and cancelled requests.
+- The same wrapper with `tests/weaknesses.spec.ts tests/training.spec.ts --grep 'skill evidence|local classification settings|focused practice highlights|compact workspace' --reporter=line`:
+  **8 passed**, including the actual classified-game evidence and focused-practice
+  paths with unchanged scheduled-review totals, and the final recent-practice copy.
+- Manually inspected desktop and 390px layouts using isolated classified-game
+  fixtures, switched categories, opened evidence and restored focus on dismissal.
+  Independent review corrected the recent-practice wording; no remaining issues.
+  `git diff --check` passed. Component inventory and testing guidance updated.
+
+Only focused checks ran; no full backend, coach, lab or Docker suites, push or deployment.
+
 ## Import layout expansion and collapse — September 29, 2026
 
 Replaced the content-only fade with a shared 450ms grid-height transition.
