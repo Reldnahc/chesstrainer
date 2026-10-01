@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "positional-unsupported-alternative",
+      "label": "Positional unsupported alternative",
+      "text": "Another move would have left a piece unguarded. That doesn't necessarily mean it could be won."
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Another move would have opened a new square for the king to move to. Compare the boards to see what would clear the way."
+    },
+    {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "The alternative was to castle. It would have moved both the king and the rook."
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "Another move would have captured a bishop and broken up the opposing bishop pair."
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "Another move would have left doubled pawns: pawns of the same color sharing a file."
+    },
+    {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "This move allows a forced checkmate. Let's look at how the attack breaks through the defense."
+    },
+    {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "There was a forced checkmate available, but this move lets it go. Look back for the finish."
+    },
+    {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "The other side can capture right away. Look at the reply to see what can be taken."
+    },
+    {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "The strongest reply gives check, so answering that threat has to come first."
+    },
+    {
+      "id": "stronger-alternative",
+      "label": "Stronger alternative",
+      "text": "There's a move the engine prefers here. Try it on the board and compare the replies."
+    },
+    {
+      "id": "evaluation-loss",
+      "label": "Evaluation loss",
+      "text": "The engine finds this move weaker than the best option. Look at the reply to see what changed."
+    },
+    {
+      "id": "best-supported-choice",
+      "label": "Best supported choice",
+      "text": "A strong choice. It holds up against the engine's replies."
+    },
+    {
+      "id": "good-choice",
+      "label": "Good choice",
+      "text": "A sound move, even though the engine prefers another. It keeps much of what the position had to offer."
+    },
+    {
+      "id": "chance-missed",
+      "label": "Chance missed",
+      "text": "The opponent's last move offered an opportunity, but this lets it pass. Look back for a better way to respond."
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "This move is accepted for this exercise. There isn't a clear tactical explanation in the moves shown."
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "This move isn't accepted for this exercise. The moves shown don't give a clear tactical reason."
+    },
+    {
+      "id": "explanation-frame-original",
+      "label": "Explanation frame original",
+      "text": "Here is the position we're starting from, before the moves we're examining."
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "Here is the next move to examine."
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "This move gives check. The threat to the king must be answered."
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "This gets the king out of check."
+    }
+  ]
+}

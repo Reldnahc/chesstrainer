@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "This move captures a piece."
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "label": "Explanation frame capture move check",
+      "text": "This captures a piece and gives check as well."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "This captures a piece and delivers checkmate. The king has no way to escape."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "This captures a piece and gets the king out of check."
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "label": "Explanation finding fork collected",
+      "text": "Watch the fork at work: the same piece attacks several targets, then takes one. The example also shows a net material gain."
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "Watch the pinned piece here. It cannot leave the line without exposing its king, and it gets captured as these moves play out."
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "Watch the front piece move aside. That opens the way for a capture of the piece behind it, along the same line."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "label": "Explanation finding king skewer collected",
+      "text": "In this example, the king steps out of check and off the line. The same attacker then takes the piece behind it."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "Follow the captures: first the only defender, then the piece it was guarding. Notice what the first capture makes possible."
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "Watch the defender move away from its job. The piece it leaves behind is then captured."
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "Moving the blocker opens an attack from another piece. Watch that piece make the capture along the newly opened line."
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Watch for the double check: both pieces give check at the same time."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "Watch the threats work together: the moved piece attacks one target, and another attacks along the newly opened line. That second attack wins material in this example."
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "Watch the pawn promote. This example also shows a net material gain for that side."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "Look at the undefended piece being captured. The example shows a net material gain for the capturing side."
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side can play the reply marked on the board. Try it and see what happens next."
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "These moves show how play could go against strong replies. Don't assume each reply is forced."
+    },
+    {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "Here are the moves from the opening line you're studying."
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "Any of the moves from your selected opening lines will count here."
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "You found the full solution after a retry. We'll keep both the earlier miss and the successful finish in your record."
+    }
+  ]
+}
