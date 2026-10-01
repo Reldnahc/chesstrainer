@@ -4,6 +4,73 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Nonhuman speaking rigs and voice auditions — October 1, 2026
+
+All twenty nonhuman coaches now implement the shared nine speech shapes, with
+species-owned placement, proportions, palette and mouth details. Walter retains
+his dedicated rig. The remaining human rigs are unchanged. Coach Studio's Mouth
+shapes view holds every shape with representative sounds at ordinary or enlarged
+size and embeds the same recorded audition player used by Audio Studio.
+
+Sixteen approved coaches have three independently prompted custom voice auditions
+each: **48 unchanged recordings**, approximately 8–12 seconds (9.9s average).
+The batch used **6,372 provider credits**, observed as usage 3,530 to 9,902.
+Ziggy, Percy, Pip and Button have completed mouths and preserved casting briefs,
+but their twelve paid auditions remain deferred: automatic approval review
+considered those four outside the explicitly authorized animal/fantasy scope.
+No saved production voices or account selections were changed.
+
+- `node --test scripts/design_coach_voices.test.mjs scripts/record_coach_speech.test.mjs`:
+  **53 passed**, including bounded paid requests, durable attempt handling,
+  script/seed agreement, response validation, cached resume, no overwrites and
+  the active/deferred distinction. No provider calls in tests.
+- `node scripts/design_coach_voices.mjs --check` and
+  `.venv/Scripts/python.exe -B -S scripts/prepare_cast_voice_auditions.py --check`:
+  **all 48 verified**. Native automatic alignment produced 1,364 word segments,
+  4,365 phones and 3,537 mouth cues. Compact tracks are 156 KB; full provenance
+  archives are 1.26 MB. No hand timing or provider audio edits.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_cast_voice_auditions.py -q`:
+  **58 passed**. Scoped Ruff lint/format checks passed. The strict cached check
+  needs only the Python standard library; native authoring packages stay ignored.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py -q`:
+  **336 passed**. Cast-only changes select the frontend/audio/coach consumers
+  and offline authoring checks; they do not trigger unrelated backend or Docker
+  work. The production import guard rejects direct and lazy development assets.
+- `npm --prefix frontend run build`: passed generated API agreement, all
+  TypeScript checks, **24 style/boundary tests**, four real dependency guards and
+  production build. `npm --prefix frontend run build:audio-studio` and standalone
+  `node node_modules/vite/bin/vite.js build --config vite.coach.config.ts --outDir ../node_modules/.cache/cast-coach-build`
+  (from `frontend`) passed. Existing large-chunk advisories remain.
+- Focused shared audition/Walter browser tests: **52 passed**, desktop/mobile.
+  Actual native audio decoding, selected-clip cue timing, visible mouth layers,
+  direction changes, Still and device reduction, common player cancellation,
+  development-only requests and 320px layout all passed.
+- Full audio regression run from `frontend`, with
+  `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`:
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --output node_modules/.cache/cast-final-audio --reporter=line`:
+  **386 passed, no skips** in 5.1 minutes. This includes all twenty speaking rigs,
+  static preview lifecycle, real recordings, production Walter speech selectors,
+  Still/reduced-motion/hidden behavior, authored-face restoration and existing
+  sound effects. The ignored config reuses the already-running local studio.
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `npx playwright test --config node_modules/.cache/speech-coach-check.config.mjs speech-inspector.spec.ts`:
+  **20 passed**, desktop/mobile. Held shapes have no running animation; authored
+  fallback, sizing, reload and view switching passed. Shared volume/mute persist
+  across coach changes. Switching coaches or leaving the inspector cancels
+  pending bytes, pending native decode and active playback; cancelled clips do
+  not start late, and a fresh explicit audition still works.
+- Independent visual review covered all twenty rigs at **92.8px and 52.5px**,
+  including authored fallback, O/oo readability, clipped teeth/tongue/fangs and
+  preserved expression/idle wrappers. Live browser inspection exercised Fergus,
+  Rivet, static shapes and real audition playback. Desktop/mobile screenshots
+  were inspected. Listening quality remains an owner casting choice, not a claim
+  made by provenance or timing tests.
+
+The new auditions and inspector are development-only. LAN entrypoints are
+`npm --prefix frontend run dev:audio:lan` (5176) and
+`npm --prefix frontend run dev:coach:lan` (5174). This second phase did not rerun
+the full backend/account suites, publish its local commits or update Unraid.
+
 ## Walter's completed recorded voice — October 1, 2026
 
 Walter has 181 non-lesson recordings with generated, source-verified mouth tracks.
@@ -13,6 +80,10 @@ facts. Automatic, On request and Off are account preferences; initial/restored
 positions stay quiet and cold recall cannot reveal answers. Explicit replay can
 interrupt another voice without interrupting board sounds. Lessons and the other
 coaches remain text only at this checkpoint.
+
+Published as `6b1c31711a2a7eb17da5a7b1ad495b9c7765e577`. Main
+[CI run 36830904338](https://github.com/Reldnahc/chesstrainer/actions/runs/36830904338)
+passed, including container publication, before the paid cast auditions began.
 
 - `.venv/Scripts/python.exe -m pytest -q --durations=20 --basetemp data/verification/voice-bank-backend-20261001 -o cache_dir=data/verification/voice-bank-pytest-cache-20261001`:
   **1669 passed, 3 skipped**. Stockfish coverage ran. The three native Maia tests

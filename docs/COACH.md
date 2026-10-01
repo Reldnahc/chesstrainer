@@ -141,8 +141,9 @@ single raised finger: its silhouette reads as an insulting gesture at review siz
 `CoachCharacter`, `CoachAvatar` and `ReviewCoach` accept an optional
 `SpeechPlayback` from the shared audio engine. Speech supplements the semantic
 expression; it does not choose a grade, change dialogue, restart entrances or
-replace the independent eye/body idle scheduler. Walter is the first supported
-rig. A coach/family explicitly opts in through `speech` capability metadata;
+replace the independent eye/body idle scheduler. Walter and the twenty nonhuman
+rigs support speaking articulation. A coach/family explicitly opts in through
+`speech` capability metadata;
 unimplemented rigs keep their authored face, and a handle for a different coach
 cannot animate the selected portrait.
 
@@ -159,10 +160,16 @@ teeth/tongue and a small beard/jaw movement. Quiet audio closes the lips; ending
 or cancelling playback restores the exact authored expression. The mouth is
 separate from Brilliant's entrance mouth scale so the two cannot compound.
 `HumanFeatures` offers a mouth slot, preserving the existing shared fallback for
-other humans. New species can implement their own rig against the same variables.
+other humans. `SpeechMouthLayer` switches between intact authored artwork and a
+speaking mouth. `OrganicSpeechMouth` supplies an upper-lip-anchored aperture with
+species-owned dimensions, palette and optional teeth, tongue, fangs or interior.
+Its rounded shapes compensate for mouth aspect ratio, so a wide frog mouth can
+still form an O. Rivet has a separate segmented mechanical display driven by the
+same controls. Neither helper owns a clock or changes a coach's reaction timing.
 
-The default path is audio-reactive articulation, **not phoneme-aligned lip sync**: energy and
-a rough brightness hint provide timing and shape variation, not recognized words
+Without an aligned track, the fallback is audio-reactive articulation, **not
+phoneme-aligned lip sync**: energy and a rough brightness hint provide timing
+and shape variation, not recognized words
 or vowels. It needs no generated timing asset or independent looping talk animation.
 
 `CoachCharacter` also accepts an optional `SpeechMouthTrack`: timed semantic mouth
@@ -175,10 +182,20 @@ The [audio studio](AUDIO.md#automatic-lip-sync-comparison-development-only) uses
 two existing Walter recordings at normal portrait sizes. Voice audition retains
 the energy-driven mouth; Compare lip sync isolates the original Rhubarb generator
 against revised script/phoneme alignment using identical artwork and playback.
-Both sets of cues are automatic and development-only. The preview is for judging
-quality, not a claim of perfect phonetic alignment. Playback
-uses no voice API or recognition model. Production automatic speech and lesson
-narration remain deferred.
+Both comparison sets are automatic and development-only. Walter's completed
+production bank uses the revised generator. The preview is for judging quality,
+not a claim of perfect phonetic alignment. Playback uses no voice API or
+recognition model. Lesson narration remains deferred.
+
+The coach studio's **Mouth shapes** view holds each of the nine shared sound
+shapes, with phoneme examples, at board size or enlarged. `previewSpeechShape`
+applies the exact rig controls without audio or an animation loop. This explicit
+static inspection also works with Still; actual playback continues to honor the
+normal motion/visibility policy. Clearing the preview restores the authored
+expression. Unimplemented human rigs remain unsupported. The same view embeds
+the selected creature's local voice auditions so timing can be inspected with
+real recordings. These auditions do not select a production voice or change an
+account preference.
 
 ### Expressions and idle behavior
 

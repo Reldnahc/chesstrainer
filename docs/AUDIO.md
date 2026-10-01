@@ -300,6 +300,41 @@ The native tool, recognition resources and temporary WAVs stay outside Git and
 Docker. The two original comparison archives remain development-only; the production
 bank uses its separate generated compact cue projection.
 
+### Animal and fantasy voice auditions
+
+The separate audio studio's **Cast voice auditions** selector compares three
+independently described custom voices for each of sixteen approved animal,
+fantasy and robot coaches (48 recordings). The other four briefs—Ziggy, Percy,
+Pip and Button—remain under `deferredCoaches` pending explicit approval for paid
+generation. All twenty nonhuman speaking rigs can be inspected independently.
+The coach studio's **Mouth shapes** view embeds the same audition panel for its
+selected character. These tools share `useStudioPlayer`, `StudioTransport`,
+`CastVoiceAudition` and the existing audio engine. Selecting another character
+or direction cancels playback; all sound and mouth timing use the same source
+clock. Neither surface changes account preferences or selects a production voice.
+
+`audio/speech/cast-auditions/design-plan.json` records the short script and distinct
+casting prompts. `scripts/design_coach_voices.mjs` is an offline authoring tool:
+dry-run by default, explicit paid generation, bounded sequential requests, a
+durable attempt before each request, no automatic retries and no saved-voice API.
+It retains one preview per independent prompt, with request, generated voice ID,
+seed and audio fingerprint. Re-running verifies and reuses existing audio;
+incomplete paid attempts require inspection rather than another charge.
+
+Candidate media and generated alignment are development-only. The production
+application still has Walter's completed voice bank; the other human voices are
+deliberately untouched. No installation or listening session contacts ElevenLabs.
+The selected generated voice ID can later be saved when the owner chooses a
+direction; auditioning does not consume a saved-voice slot per option.
+
+The completed 48-request audition batch used **6,372 ElevenLabs credits**, measured
+by the provider usage count changing from 3,530 to 9,902. Walter's completion batch
+used **1,948 credits** separately. Replaying either collection is local and free.
+Audition files are unchanged provider output, about 8–12 seconds (9.9-second
+average), with no padding or manual timing edits. Use
+`npm --prefix frontend run dev:audio:lan` for the audio studio on port 5176, or
+`npm --prefix frontend run dev:coach:lan` for the mouth inspector on port 5174.
+
 ### Coverage
 
 Engine tests cover cue precedence, mute/categories, activation failure, duplicates,

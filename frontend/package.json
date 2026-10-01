@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "dev:coach": "vite --config vite.coach.config.ts",
+    "dev:coach:lan": "vite --config vite.coach.config.ts --host 0.0.0.0",
     "dev:intelligence": "vite --config vite.intelligence.config.ts",
     "dev:audio": "vite --config vite.audio.config.ts",
     "dev:audio:lan": "vite --config vite.audio.config.ts --host 0.0.0.0",
