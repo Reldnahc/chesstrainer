@@ -2,6 +2,7 @@ import { useId, type CSSProperties } from "react";
 import { ArtworkSvg, BodyRig, HeadRig } from "../../ArtworkRig";
 import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachArtworkProps } from "../../model";
+import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
 import { animalPoses, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
 import "../../studies/motion.css";
@@ -239,29 +240,40 @@ export default function DragonCoach({ expression }: CoachArtworkProps) {
             strokeLinecap="round"
             fill="none"
           />
-          <g
-            className="study-muzzle"
-            stroke="#365748"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            fill="none"
-          >
-            {pose.mouth === "smile" && <path d="M34 68q16 11 32-1" />}
-            {pose.mouth === "ponder" && <path d="M39 71q10 3 21-2" />}
-            {pose.mouth === "concern" && <path d="M37 74q13-7 26 0" />}
-            {pose.mouth === "oh" && (
-              <ellipse cx="50" cy="70" rx="7" ry="7" fill="#3c5149" />
-            )}
-            {pose.mouth === "grin" && (
-              <path
-                d="M34 66q16 7 32 0-3 14-16 14T34 66Z"
-                fill="#3c5149"
-              />
-            )}
-          </g>
-          {(pose.mouth === "grin" || pose.mouth === "smile") && (
-            <path d="m36 69 4 6 2-4m16 0 2 4 4-6" fill="#f0e2b8" />
-          )}
+          {/* Authored fangs sit outside the muzzle transform; hide them with the old mouth. */}
+          <SpeechMouthLayer authored={
+            <>
+              <g
+                className="study-muzzle"
+                stroke="#365748"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                fill="none"
+              >
+                {pose.mouth === "smile" && <path d="M34 68q16 11 32-1" />}
+                {pose.mouth === "ponder" && <path d="M39 71q10 3 21-2" />}
+                {pose.mouth === "concern" && <path d="M37 74q13-7 26 0" />}
+                {pose.mouth === "oh" && (
+                  <ellipse cx="50" cy="70" rx="7" ry="7" fill="#3c5149" />
+                )}
+                {pose.mouth === "grin" && (
+                  <path
+                    d="M34 66q16 7 32 0-3 14-16 14T34 66Z"
+                    fill="#3c5149"
+                  />
+                )}
+              </g>
+              {(pose.mouth === "grin" || pose.mouth === "smile") && (
+                <path d="m36 69 4 6 2-4m16 0 2 4 4-6" fill="#f0e2b8" />
+              )}
+            </>
+          }>
+            <g className="study-muzzle">
+              <OrganicSpeechMouth x={50} y={68} width={28} height={10}
+                palette={{ cavity: "#3c5149", outline: "#365748", teeth: "#f0e2b8", tongue: "#b88678", lip: "#88aa7d" }}
+                teeth={false} fangs />
+            </g>
+          </SpeechMouthLayer>
           <path
             d="m29 48-3 4m45-4 3 4"
             stroke="#79ab87"

@@ -1,4 +1,5 @@
 import type { CoachArtworkProps } from "../../model";
+import { OrganicSpeechMouth } from "../../SpeechMouthLayer";
 import { animalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
@@ -46,7 +47,13 @@ export default function SlimeCoach({ expression }: CoachArtworkProps) {
         />
         <ellipse cx="27" cy="91" rx="5" ry="3" fill="#b7edc4" opacity=".5" />
         <g transform={`translate(0 ${subdued ? 27 : startled ? 14 : 20})`}>
-          <FantasyFace pose={pose} ink="#244c42" iris="#426857" kind="bright" />
+          <FantasyFace pose={pose} ink="#244c42" iris="#426857" kind="bright"
+            speakingMouth={
+              <OrganicSpeechMouth x={50} y={61} width={18} height={7.5}
+                palette={{ cavity: "#244c42", outline: "#356953", tongue: "#a4ddae", lip: "#76cba6" }}
+                teeth={false} mood={pose.mouth === "concern" ? "concern" : "neutral"} />
+            }
+          />
           <g fill="#e5bfa0" opacity=".65">
             <ellipse cx="26" cy="54" rx="4" ry="2.4" />
             <ellipse cx="74" cy="54" rx="4" ry="2.4" />

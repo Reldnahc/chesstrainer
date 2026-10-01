@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from "react";
 import { useEyeClosure } from "../../CoachFaceContext";
+import { SpeechMouthLayer } from "../../SpeechMouthLayer";
 import type { AnimalPose } from "../../studies/animalPoses";
 
 // A muzzle-free face keeps the same expression vocabulary as the existing rigs,
@@ -12,6 +13,7 @@ export default function FantasyFace({
   kind = "soft",
   muzzle,
   mouth,
+  speakingMouth,
 }: {
   pose: AnimalPose;
   ink: string;
@@ -20,10 +22,28 @@ export default function FantasyFace({
   kind?: "soft" | "watchful" | "bright";
   muzzle?: ReactNode;
   mouth?: ReactNode;
+  speakingMouth?: ReactNode;
 }) {
   const clip = useId();
   const closedEyes = useEyeClosure(pose.closed);
   const eyeWidth = kind === "watchful" ? 4.7 : kind === "bright" ? 6 : 5.3;
+  const authoredMouth = mouth ?? (
+    <>
+      {pose.mouth === "smile" && <path d="M43 60q7 7 14 0" />}
+      {pose.mouth === "ponder" && <path d="M45 62q5 1 10-2" />}
+      {pose.mouth === "concern" && <path d="M43 65q7-6 14 0" />}
+      {pose.mouth === "oh" && (
+        <ellipse cx="50" cy="63" rx="4.3" ry="6" fill={mouthColor} />
+      )}
+      {pose.mouth === "grin" && (
+        <>
+          <path d="M40 58q10 5 20 0-1 13-10 13T40 58Z" fill={mouthColor} />
+          <path d="M43 60q7 2 14 0l-1 3H44Z" fill="#fff5dc" stroke="none" />
+          <path d="M45 68q5-4 10 0-5 4-10 0" fill="#df9a91" stroke="none" />
+        </>
+      )}
+    </>
+  );
   return (
     <>
       <g
@@ -104,23 +124,9 @@ export default function FantasyFace({
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {mouth ?? (
-          <>
-            {pose.mouth === "smile" && <path d="M43 60q7 7 14 0" />}
-            {pose.mouth === "ponder" && <path d="M45 62q5 1 10-2" />}
-            {pose.mouth === "concern" && <path d="M43 65q7-6 14 0" />}
-            {pose.mouth === "oh" && (
-              <ellipse cx="50" cy="63" rx="4.3" ry="6" fill={mouthColor} />
-            )}
-            {pose.mouth === "grin" && (
-              <>
-                <path d="M40 58q10 5 20 0-1 13-10 13T40 58Z" fill={mouthColor} />
-                <path d="M43 60q7 2 14 0l-1 3H44Z" fill="#fff5dc" stroke="none" />
-                <path d="M45 68q5-4 10 0-5 4-10 0" fill="#df9a91" stroke="none" />
-              </>
-            )}
-          </>
-        )}
+        {speakingMouth ? (
+          <SpeechMouthLayer authored={authoredMouth}>{speakingMouth}</SpeechMouthLayer>
+        ) : authoredMouth}
       </g>
     </>
   );

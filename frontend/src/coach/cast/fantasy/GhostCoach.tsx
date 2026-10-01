@@ -1,5 +1,6 @@
 import { useId } from "react";
 import type { CoachArtworkProps } from "../../model";
+import { OrganicSpeechMouth } from "../../SpeechMouthLayer";
 import { animalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
@@ -72,6 +73,11 @@ export default function GhostCoach({ expression }: CoachArtworkProps) {
             iris="#8d9aae"
             mouthColor="#52647b"
             kind="watchful"
+            speakingMouth={
+              <OrganicSpeechMouth x={50} y={60} width={14} height={11}
+                palette={{ cavity: "#405267", outline: "#52647b" }}
+                teeth={false} tongue={false} />
+            }
           />
         </g>
         <path

@@ -1,4 +1,5 @@
 import type { CoachArtworkProps } from "../../model";
+import { OrganicSpeechMouth } from "../../SpeechMouthLayer";
 import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
@@ -135,6 +136,11 @@ export default function UnicornCoach({ expression }: CoachArtworkProps) {
           iris="#83a9a8"
           mouthColor="#9b808e"
           kind="bright"
+          speakingMouth={
+            <OrganicSpeechMouth x={50} y={69} width={14} height={3.8}
+              palette={{ cavity: "#806575", outline: "#9b808e" }}
+              teeth={false} tongue={false} />
+          }
           mouth={
             <g color="#9b808e">
               <UnicornMouth mouth={pose.mouth} />

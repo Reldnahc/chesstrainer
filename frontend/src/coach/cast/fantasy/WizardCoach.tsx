@@ -2,6 +2,7 @@ import { useId, type CSSProperties } from "react";
 import { ArtworkSvg, BodyRig, HeadRig } from "../../ArtworkRig";
 import { useEyeClosure } from "../../CoachFaceContext";
 import type { CoachArtworkProps } from "../../model";
+import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
 import { animalPoses, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
 import "../../studies/motion.css";
@@ -225,15 +226,22 @@ export default function WizardCoach({ expression }: CoachArtworkProps) {
             strokeLinecap="round"
             fill="none"
           >
-            {pose.mouth === "oh" && (
-              <ellipse cx="50" cy="78" rx="4" ry="5.2" fill="#694c48" />
-            )}
-            {pose.mouth === "grin" && (
-              <path d="M41 75q9 4 18 0-2 10-9 10t-9-10Z" fill="#694c48" />
-            )}
-            {pose.mouth === "smile" && <path d="M43 77q7 6 14 0" />}
-            {pose.mouth === "concern" && <path d="M44 80q6-4 12 0" />}
-            {pose.mouth === "ponder" && <path d="M45 78q4 1 9-1" />}
+            <SpeechMouthLayer authored={
+              <>
+                {pose.mouth === "oh" && (
+                  <ellipse cx="50" cy="78" rx="4" ry="5.2" fill="#694c48" />
+                )}
+                {pose.mouth === "grin" && (
+                  <path d="M41 75q9 4 18 0-2 10-9 10t-9-10Z" fill="#694c48" />
+                )}
+                {pose.mouth === "smile" && <path d="M43 77q7 6 14 0" />}
+                {pose.mouth === "concern" && <path d="M44 80q6-4 12 0" />}
+                {pose.mouth === "ponder" && <path d="M45 78q4 1 9-1" />}
+              </>
+            }>
+              <OrganicSpeechMouth x={50} y={77} width={14} height={8}
+                palette={{ cavity: "#694c48", outline: "#8f6758", teeth: "#fff5dc", tongue: "#bd786e", lip: "#dfb394" }} />
+            </SpeechMouthLayer>
           </g>
           <path
             d="M50 70q-11-6-16 5 10 3 16-3 6 6 16 3-5-11-16-5Z"

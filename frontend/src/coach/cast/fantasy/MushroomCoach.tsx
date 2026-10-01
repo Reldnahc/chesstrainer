@@ -1,4 +1,5 @@
 import type { CoachArtworkProps } from "../../model";
+import { OrganicSpeechMouth } from "../../SpeechMouthLayer";
 import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import FantasyFace from "./FantasyFace";
 import FantasyShell, { FantasyHead } from "./FantasyShell";
@@ -131,7 +132,13 @@ export default function MushroomCoach({ expression }: CoachArtworkProps) {
           <ellipse cx="47" cy="37" rx="3.5" ry="2.5" fill="#dbbb92" />
         </g>
         <g transform="translate(10 38) scale(.8)">
-          <FantasyFace pose={pose} ink="#665340" iris="#9c915b" />
+          <FantasyFace pose={pose} ink="#665340" iris="#9c915b"
+            speakingMouth={
+              <OrganicSpeechMouth x={50} y={61} width={14} height={8.5}
+                palette={{ cavity: "#665340", outline: "#816348", tongue: "#d59c7a", lip: "#e0cf9f" }}
+                teeth={false} mood={pose.mouth === "concern" ? "concern" : "neutral"} />
+            }
+          />
         </g>
         <Fronds pose={pose} />
         {expression === "book" && (
