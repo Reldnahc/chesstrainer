@@ -14,6 +14,12 @@ approved piece-move sound. Volume, mute and Stop all
 use the shared audio engine. Changing the example/voice or hiding the tab cancels
 playback. The visible character is the real registered Walter, not a substitute.
 
+To audition from a phone on the same network, start the studio with
+`npm --prefix frontend run dev:audio:lan` instead, then open
+`http://<PC-LAN-IP>:5176/` on the phone. Allow the development server through the
+PC's firewall on the private network if needed. The normal `dev:audio` command
+remains accessible only on the PC itself.
+
 ## Recording set
 
 | Candidate | ElevenLabs voice | Provider voice ID |

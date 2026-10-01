@@ -8,6 +8,7 @@
     "dev:coach": "vite --config vite.coach.config.ts",
     "dev:intelligence": "vite --config vite.intelligence.config.ts",
     "dev:audio": "vite --config vite.audio.config.ts",
+    "dev:audio:lan": "vite --config vite.audio.config.ts --host 0.0.0.0",
     "test:audio": "playwright test --config playwright.audio.config.ts",
     "build:audio-studio": "vite build --config vite.audio.config.ts",
     "build": "tsc -b && npm run test:types && npm run test:styles && vite build",
