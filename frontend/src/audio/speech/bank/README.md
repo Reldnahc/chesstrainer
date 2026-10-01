@@ -1,73 +1,64 @@
-# Walter's non-lesson voice bank
+# Walter recorded voice bank
 
-The owner approved completing Walter on October 1, 2026 after choosing **Older
-teacher** and approving the revised automatic mouth generator. This bank uses
-that saved voice, `Q5CWGTzNfIve6iWvrlM7`, with the same Eleven v4 delivery settings
-as the eight approved contrasting examples.
+`manifest.json` identifies the approved non-lesson speech, exact text, voice,
+recording settings and asset paths. Eight existing recordings are referenced in
+place; the rest live under `recordings/walter`. Recording sidecars retain the
+provider request and source-audio fingerprints. Production never calls a speech
+provider or an aligner.
 
-`manifest.json` describes **181 complete spoken summaries**, totaling **16,936
-input characters**. Eight unchanged recordings are referenced from the original
-contrast directory; they are not copied or regenerated. The other **173 scripts
-contain 16,106 input characters**. Character counts describe input, not measured
-provider billing. Every recording is a whole passage; no word fragments are
-stitched together.
+`alignment/<id>.json` contains each original recording/script fingerprint,
+automatic phone timing, pinned decoder/model configuration and mouth mapping.
+These full authoring archives are not imported by the runtime. `tracks.json` is
+the generated compact runtime projection: an object keyed by recording ID with
+`durationSeconds` and semantic `{start,end,shape}` cues. Do not edit either output
+by hand.
 
-The bank covers 92 game-review meanings, 68 additional SRS/explanation meanings,
-10 opening recall/preview meanings, eight puzzle states and three finite game
-statuses. Shared recordings retain their aliases in the
-[full inventory](../walter-full-dialogue-inventory.json). All lesson narration
-remains deferred. Four transient or defensive states are deliberately unrecorded:
-game thinking, practice checking, explanation loading and no-renderable-claim.
+## Prepare or verify offline
 
-## Authoring and verification
+From the repository root:
 
-Nine executable plans in `plans/` retain the recorder's maximum of 20 requests
-per plan. From the repository root, inspect a batch without network, credentials
-or spending:
-
-```sh
-node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/bank/plans/walter-01.json --output frontend/src/audio/speech/bank/recordings
+```powershell
+.venv/Scripts/python.exe scripts/prepare_coach_voice_bank.py --generate
+.venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check
 ```
 
-Only an explicitly authorized authoring run adds `--generate`. Generation is
-sequential, never automatically retried, and valid existing recordings are
-reused. Each output has an exact request and hash sidecar. Builds and playback
-never contact ElevenLabs. The manifest's media, sidecar and alignment paths are
-relative to this directory. New media uses `recordings/walter/`; all generated
-mouth tracks use `alignment/<recording-id>.json`.
+Generation uses the optional authoring dependencies documented in the
+[alignment preview README](../alignment/README.md). It resumes verified archives
+without repeating native alignment. Missing recordings and active recording locks
+are reported as incomplete; completed archives remain available for the next run.
+`tracks.json` is published atomically only after every manifest entry is present
+and valid. Mismatched scripts, voice/settings, hashes, incomplete recording pairs
+and stale archives fail instead of being silently accepted or overwritten.
 
-The selected voice's paid-period generation and redistribution terms are
-documented in the [speech permissions notice](../README.md#permissions-and-attribution).
-Voice media is separate from the repository's code license and CC0 sound effects.
-Keep request provenance with the media. No provider key belongs in the manifest,
-application, container or Git.
+The default check is strict, read-only and standard-library-only. It verifies all
+recordings, source requests, archives and the exact compact projection. A missing
+clip or a changed runtime cue fails validation. No native binary, decoder or
+network request is needed to check committed files.
 
-## Meaning and playback boundaries
+## Alignment policy
 
-The [game inventory](../walter-dialogue-inventory.json) and full inventory preserve
-the supporting branches and evidence requirements for each script. The bank's
-presence does not independently authorize speech:
+Generation uses PocketSphinx 5.1.1's public word/phone alignment APIs and the exact
+recorded text. Lattice best-path search is disabled for newly generated tracks:
+PocketSphinx's phone-state aligner warns that this search can produce impossible
+word spans. Both this pinned configuration and the original preview configuration
+remain verifiable; an already verified archive is not automatically rewritten.
 
-- Select the first **successfully rendered** primary claim, preserving its exact
-  identity. A missing primary recording must not silently promote another claim.
-- Secondary claims, human insights and explanation findings need an explicitly
-  selected visible surface. Never narrate unopened popovers or disclosures.
-- Preserve played, allowed, missed and hypothetical positional scope. Match
-  tactical witnesses and required slots; never infer a tactic from a grade,
-  portrait expression or English prose.
-- Checkmate speech requires actual board termination, not a recorded result or
-  facial reaction. An allowed forced mate and a completed checkmate are different
-  claims. Model likelihood remains an estimate, separate from engine evaluation.
-- Cold SRS may give neutral instructions, never answer hints. Attempt/reveal
-  authorization gates all tactical, summary and continuation speech. Reveals
-  cannot sound like unassisted success, and restored feedback is not a new reward.
-- Current session, position, attempt, coach and selected claim must still match
-  after an asynchronous load. Navigation, retry, mute, hiding and unmounting must
-  cancel obsolete speech. Background refinement must not replay narration.
-- Opening acceptance is repertoire membership; puzzle acceptance is the authored
-  answer. Neither asserts an objective Best move. Raw errors, arbitrary manual
-  prose and imported commentary remain written.
+The bundled CMU dictionary does not include every regular English inflection.
+A bounded, shared morphology fallback covers possessives, regular plurals/third
+person verbs, `un-`, `-able` and `-al` only when the base word exists in the pinned
+dictionary. Each use records the base pronunciation, rule and derived phones in
+the archive. Unsupported words still fail with their spellings. These are general
+authoring rules, not a dictionary of per-recording fixes or manual mouth timing.
+They are deliberately narrower than a general text-to-phoneme model; future
+unusual words need an explicit authoring solution rather than invented guesses.
 
-Detailed moves, squares, scores, player names and historical counts stay visible
-in the written explanation. Audio summarizes the supported idea without replacing
-the facts or creating a second reasoning system.
+Phone timing and simplified mouth shapes remain estimates. Source provenance and
+complete word coverage establish reproducibility, not perfect pronunciation or
+perceptual lip sync. The shared artwork/playback system handles expression and
+interpolation separately from the generated evidence.
+
+Focused validation:
+
+```powershell
+.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py backend/tests/test_coach_voice_bank.py -q
+```

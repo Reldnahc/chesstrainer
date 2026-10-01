@@ -15,10 +15,16 @@ import warnings
 import wave
 from pathlib import Path
 
+if __package__:
+    from . import speech_pronunciation
+else:
+    import speech_pronunciation
+
 VERSION = "5.1.1"
 FRAME_RATE = 100
 SAMPLE_RATE = 16000
 CONFIG_SHA256 = "73d0c5e4fa903522234e8c85b78c6d46f013110f759c4f40ed6639d1e8fdbc8e"
+STATE_SAFE_CONFIG_SHA256 = "4cc690802d0d8774029df0c0d0e0a370dab93bb8a4bbe9f7a711e8a9c2d027c5"
 MODEL_HASHES = {
     "en-us/cmudict-en-us.dict": "20b5c293e1f311fb375fe067e500ec5636f4fc7af5594967263696def9b23bfe",
     "en-us/en-us/feat.params": "c982c5f75e2a30c34d2c9ef1f6b129a5a00e67e3e927565076b58664cc2404c9",
@@ -117,13 +123,16 @@ def tool_provenance(config: dict) -> dict:
         "documentation": "https://pocketsphinx.readthedocs.io/en/latest/pocketsphinx.html#pocketsphinx.Decoder.set_alignment",
         "modelFilesSha256": MODEL_HASHES,
         "configuration": config,
-        "configurationSha256": CONFIG_SHA256,
+        "configurationSha256": object_digest(config),
     }
 
 
 def validate_tool(tool: dict) -> None:
     config = tool.get("configuration")
-    if not isinstance(config, dict) or object_digest(config) != CONFIG_SHA256:
+    if not isinstance(config, dict) or object_digest(config) not in (
+        CONFIG_SHA256,
+        STATE_SAFE_CONFIG_SHA256,
+    ):
         raise ValueError("Forced alignment decoder configuration changed")
     if tool != tool_provenance(config):
         raise ValueError("Forced alignment tool or model fingerprint changed")
@@ -218,6 +227,19 @@ def validate_evidence(provenance: dict, text: str, duration: float, cues: list[d
     if provenance["mapping"] != mapping_provenance():
         raise ValueError("Forced alignment mouth mapping changed")
     alignment = provenance["alignment"]
+    if "pronunciationExtensions" in provenance:
+        speech_pronunciation.validate(provenance["pronunciationExtensions"], normalize_text(text))
+        extensions = {
+            entry["word"]: entry["phones"]
+            for entry in provenance["pronunciationExtensions"]["derivations"]
+        }
+        for word in alignment["words"]:
+            name = re.sub(r"\([1-9][0-9]*\)$", "", word["word"])
+            if (
+                name in extensions
+                and [phone["phone"] for phone in word["phones"]] != extensions[name]
+            ):
+                raise ValueError("Aligned phones differ from the automatic pronunciation")
     if provenance["alignmentSha256"] != object_digest(alignment):
         raise ValueError("Forced word/phone alignment fingerprint changed")
     if mouth_cues(alignment, text, duration) != cues:
@@ -254,7 +276,12 @@ def run_worker(wav_path: Path, text_path: Path, deps: Path) -> dict:
         digest((models / path).read_bytes()) != expected for path, expected in MODEL_HASHES.items()
     ):
         raise ValueError("PocketSphinx model/dictionary differs from the pinned release")
-    decoder = Decoder(lm=None, samprate=SAMPLE_RATE, frate=FRAME_RATE, loglevel="ERROR", seed=0)
+    # Lattice best-path backtracking can produce word spans that the phone-state
+    # pass cannot satisfy. PocketSphinx explicitly recommends disabling it for
+    # state alignment; preserve the original profile only to verify old previews.
+    decoder = Decoder(
+        lm=None, samprate=SAMPLE_RATE, frate=FRAME_RATE, loglevel="ERROR", seed=0, bestpath=False
+    )
     config = json.loads(decoder.config.dumps())
     for key, value in config.items():
         if isinstance(value, str):
@@ -266,6 +293,13 @@ def run_worker(wav_path: Path, text_path: Path, deps: Path) -> dict:
     validate_tool(tool)
     normalized = normalize_text(text_path.read_text("utf-8"))
     missing = sorted({word for word in normalized.split() if not decoder.lookup_word(word)})
+    derivations = []
+    for word in missing:
+        derived = speech_pronunciation.pronunciation(word, decoder.lookup_word)
+        if derived is not None:
+            decoder.add_word(word, " ".join(derived["phones"]))
+            derivations.append(derived)
+    missing = [word for word in missing if not decoder.lookup_word(word)]
     if missing:
         raise ValueError(f"No dictionary pronunciation for transcript words: {', '.join(missing)}")
     with wave.open(str(wav_path), "rb") as stream:
@@ -300,7 +334,7 @@ def run_worker(wav_path: Path, text_path: Path, deps: Path) -> dict:
         }
         for word in native
     ]
-    return {
+    result = {
         "tool": tool,
         "alignment": {"frameRate": FRAME_RATE, "normalizedTranscript": normalized, "words": words},
         "resampling": {
@@ -315,6 +349,9 @@ def run_worker(wav_path: Path, text_path: Path, deps: Path) -> dict:
             "pcmSha256": digest(pcm),
         },
     }
+    if derivations:
+        result["pronunciationExtensions"] = speech_pronunciation.evidence(derivations)
+    return result
 
 
 def main() -> None:

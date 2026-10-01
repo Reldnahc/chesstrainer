@@ -19,6 +19,14 @@ start/duration frames, including silence and dictionary pronunciation variants.
 Only punctuation/case is normalized; unknown dictionary words, digits, SAN,
 unsupported spelling, missing words, unknown phones and malformed spans fail.
 
+The larger [production bank](../bank/README.md) exposed two authoring limits after
+this preview was saved. New generation disables lattice best-path search so the
+word spans remain compatible with the phone-state pass, and uses bounded regular
+English morphology for missing dictionary inflections. Each such pronunciation
+records its dictionary base and generic rule. Both original and current pinned
+decoder profiles remain verifiable; these original preview tracks are retained
+unchanged. Arbitrary unknown words still fail rather than being dropped.
+
 `scripts/speech_forced_alignment.py` maps all 39 standard CMU ARPAbet phones plus
 silence into the existing A–H/X mouth vocabulary. Bilabial P/B/M sounds close the
 lips; F/V use the lip-bite shape, L the tongue shape, and vowels use open, rounded

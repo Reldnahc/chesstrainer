@@ -13,6 +13,7 @@ import math
 import subprocess
 import sys
 import wave
+from dataclasses import dataclass
 from pathlib import Path
 
 if __package__:
@@ -108,14 +109,31 @@ def source_inputs(script: dict, recording: Path, provenance: dict) -> bytes:
     return original
 
 
+@dataclass(frozen=True)
+class SpeechSource:
+    script: dict
+    recording: Path
+    recorded: dict
+    plan_path: str
+    runtime_script_id: str
+    voice_id: str
+
+
 def check_track(
-    track: dict, script: dict, recording_path: Path, recording_provenance: dict, plan_path: str
+    track: dict,
+    script: dict,
+    recording_path: Path,
+    recording_provenance: dict,
+    plan_path: str,
+    *,
+    runtime_script_id: str | None = None,
+    voice_id: str = "walter",
 ) -> None:
     original = source_inputs(script, recording_path, recording_provenance)
     if (
         track.get("schemaVersion") != 1
-        or track.get("scriptId") != f"contrast-{script['id']}"
-        or track.get("voiceId") != "walter"
+        or track.get("scriptId") != (runtime_script_id or f"contrast-{script['id']}")
+        or track.get("voiceId") != voice_id
     ):
         raise ValueError("Unexpected alignment identity")
     provenance = track["provenance"]
@@ -265,6 +283,33 @@ def generate(script: dict, tool: Path, work: Path, audio_deps: Path) -> dict:
 def generate_forced(script: dict, work: Path, audio_deps: Path, phoneme_deps: Path) -> dict:
     recording = RECORDINGS / f"{script['id']}.mp3"
     recorded = json.loads(recording.with_suffix(".provenance.json").read_text("utf-8"))
+    source = SpeechSource(
+        script,
+        recording,
+        recorded,
+        PLAN.relative_to(ROOT).as_posix(),
+        f"contrast-{script['id']}",
+        "walter",
+    )
+    return generate_forced_source(source, work, audio_deps, phoneme_deps)
+
+
+def check_source_track(track: dict, source: SpeechSource) -> None:
+    check_track(
+        track,
+        source.script,
+        source.recording,
+        source.recorded,
+        source.plan_path,
+        runtime_script_id=source.runtime_script_id,
+        voice_id=source.voice_id,
+    )
+
+
+def generate_forced_source(
+    source: SpeechSource, work: Path, audio_deps: Path, phoneme_deps: Path
+) -> dict:
+    script, recording, recorded = source.script, source.recording, source.recorded
     original = source_inputs(script, recording, recorded)
     working = work / script["id"]
     working.mkdir(parents=True, exist_ok=True)
@@ -298,8 +343,8 @@ def generate_forced(script: dict, work: Path, audio_deps: Path, phoneme_deps: Pa
     cues = forced.mouth_cues(native["alignment"], text, duration)
     track = {
         "schemaVersion": 1,
-        "scriptId": f"contrast-{script['id']}",
-        "voiceId": "walter",
+        "scriptId": source.runtime_script_id,
+        "voiceId": source.voice_id,
         "metadata": {"duration": duration},
         "mouthCues": cues,
         "provenance": {
@@ -311,7 +356,7 @@ def generate_forced(script: dict, work: Path, audio_deps: Path, phoneme_deps: Pa
                 "bytes": len(original),
             },
             "script": {
-                "planPath": PLAN.relative_to(ROOT).as_posix(),
+                "planPath": source.plan_path,
                 "text": text,
                 "sha256": digest(text.encode("utf-8")),
             },
@@ -324,7 +369,9 @@ def generate_forced(script: dict, work: Path, audio_deps: Path, phoneme_deps: Pa
             "cueSha256": cue_digest(cues),
         },
     }
-    check_track(track, script, recording, recorded, PLAN.relative_to(ROOT).as_posix())
+    if "pronunciationExtensions" in native:
+        track["provenance"]["pronunciationExtensions"] = native["pronunciationExtensions"]
+    check_source_track(track, source)
     return track
 
 

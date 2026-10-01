@@ -213,6 +213,28 @@ def test_changed_aligner_models_or_configuration_fail(saved_forced, field):
         alignment.check_track(*saved_forced)
 
 
+@pytest.mark.parametrize("bestpath", [True, False])
+def test_original_and_state_safe_decoder_profiles_are_explicitly_supported(saved_forced, bestpath):
+    config = deepcopy(saved_forced[0]["provenance"]["tool"]["configuration"])
+    config["bestpath"] = bestpath
+    tool = forced.tool_provenance(config)
+
+    forced.validate_tool(tool)
+
+    assert tool["configurationSha256"] == (
+        forced.CONFIG_SHA256 if bestpath else forced.STATE_SAFE_CONFIG_SHA256
+    )
+
+
+def test_state_safe_profile_does_not_permit_unrelated_decoder_changes(saved_forced):
+    config = deepcopy(saved_forced[0]["provenance"]["tool"]["configuration"])
+    config["bestpath"] = False
+    config["samprate"] = 8000
+
+    with pytest.raises(ValueError, match="decoder configuration changed"):
+        forced.validate_tool(forced.tool_provenance(config))
+
+
 def test_valid_but_hand_changed_cues_cannot_pass_by_updating_only_cue_hash(saved_forced):
     track, *_ = saved_forced
     track["mouthCues"][0]["value"] = "A"
