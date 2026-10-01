@@ -1,7 +1,7 @@
 import {useId, useState} from "react";
 import {Info, X} from "lucide-react";
-import {humanInsightExplanation, humanInsightLabels, humanSourceNotes} from "../dialogue/humanClaims";
-import {makeIntent, type DialogueIntent} from "../dialogue/model";
+import {humanInsightExplanation, humanInsightIntent, humanInsightLabels, humanSourceNotes} from "../dialogue/humanClaims";
+import type {DialogueIntent} from "../dialogue/model";
 import {useDialogue} from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
 import {IconButton} from "../Button";
@@ -18,9 +18,7 @@ export default function HumanInsight({intent, report, speechContext, speechScope
 }) {
   const id = useId();
   const [visible, setVisible] = useState(false);
-  const items = intent.claims.filter(item => humanInsightLabels[item.code]).sort((a, b) => b.priority - a.priority);
-  const spokenIntent = makeIntent(`${intent.id}:human`, intent.purpose, intent.mode,
-    intent.expression, items.slice(0, 1), intent.decisions, intent.subject);
+  const spokenIntent = humanInsightIntent(intent), items = spokenIntent.claims;
   const utterance = useDialogue(spokenIntent);
   const recordingId = visible ? selectWalterGameRecording({...speechContext, intent: spokenIntent,
     utterance, surface: "human-insight"}) : null;

@@ -58,7 +58,7 @@ export const storyteller: CoachPersonality = {
     uncertain_reason: ["I'd look at {best}, though I can't yet explain its advantage clearly."],
     human_rare: ["An unusual choice, and it holds up against the strongest reply we checked."],
     human_natural_best: ["The natural-looking move is also the engine's best here."],
-    human_natural_strong: ["The natural-looking choice holds up well, close to the best move."],
+    human_natural_strong: ["A natural-looking choice, and a strong one."],
     clock_fast: ["There is clock context too: {side} used {elapsed} seconds with {seconds} seconds still available."],
     clock_long: ["{side} spent {elapsed} seconds on this choice."],
     punishment: ["The chance came at {earlier}; here, {side} makes use of it."],

@@ -86,14 +86,17 @@ the same human claims without a second inference or presentation rules engine.
 Variant selection uses stable factual identity, including game/path/evidence,
 never render time or analysis retry epoch. An utterance carries its intent ID,
 selected template/variant, source IDs and selection decisions. It also provides
-expression, intensity, priority, interruptibility, optional speech text and future
-auto-speak suitability; there is no audio or TTS integration.
+expression, intensity, priority, interruptibility, optional speech text and
+auto-speak suitability. The recorded-speech layer selects supported clips from
+the emitted claims; it does not synthesize this text at runtime. See
+[AUDIO.md](AUDIO.md) for playback, feedback gates and the separate voice-bank
+authoring process.
 
 Claim priority ranks bubble content only. Since intent version 3, delivery
 intensity and urgency derive from semantic reactions, with a supported forced-mate
 override even when the move is recognized as Book. Routine opening recognition
 remains quiet and interruptible; unavailable/thinking/cold feedback is unsuitable
-for future automatic speech. This metadata does not change grades, portraits or
+for automatic narration of analysis. This metadata does not change grades, portraits or
 the existing reduced-motion behavior.
 
 Regression coverage lives in `dialogue-logic.spec.ts`, game/coach/practice browser
@@ -172,6 +175,8 @@ not proof of a forced gain or a material lead. Walter's character template may
 add an observation but cannot discard these required factual slots. Opponent
 facts use the same scope without personal praise. Other characters keep their
 existing wording until their separate writing passes.
+Capture effects use their own witnessed ply: a root capture already happened
+even when the motif's reference frame describes the board before that capture.
 
 Full intent identity includes this metadata. A separate legacy wording key keeps
 unchanged characters' deterministic text variants stable; it never replaces the
@@ -179,3 +184,5 @@ intent ID or source binding. `renderedClaims` continues to expose the original
 claims, preserving prerecorded speech selection. Walter's rewritten character
 templates remove engine-report framing; authorized practice/explanation detail
 is still passed through verbatim rather than edited by guessing at its meaning.
+Derived human-insight intents retain both the actual parent identity and its
+separate wording seed, so this opt-in does not reshuffle other voices' Maia text.

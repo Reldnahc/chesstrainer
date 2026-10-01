@@ -1,8 +1,9 @@
 import {test, expect} from "@playwright/test";
-import {makeIntent} from "../src/dialogue/model";
+import {claim, makeIntent} from "../src/dialogue/model";
 import {tacticalClaim} from "../src/dialogue/eventClaims";
 import type {Schema} from "../src/api";
 import {renderCoaches} from "./render-coaches";
+import {humanInsightIntent} from "../src/dialogue/humanClaims";
 
 test("Walter alone adopts witness-scoped dialogue while every other registered coach keeps the same wording", async ({page}) => {
   await page.goto("/");
@@ -27,6 +28,15 @@ test("Walter alone adopts witness-scoped dialogue while every other registered c
         expect(output.text).not.toMatch(/engine|continuation|verified/i);
         expect(output.text).toContain(role === "played" ? "are attacked together" : "would be attacked together");
       }
+    }
+    const human = claim("human_natural_error", {}, 69, [{source: "human", id: "maia", field: "policy"}]);
+    const oldHuman = humanInsightIntent(makeIntent("cast", "best", "game", "best", [original, human]));
+    const newHuman = humanInsightIntent(makeIntent("cast", "best", "game", "best", [item, human]));
+    const previous = await renderCoaches(page, oldHuman), current = await renderCoaches(page, newHuman);
+    for (const output of current) {
+      expect(output.intentId).toBe(newHuman.id);
+      expect(output.renderedClaims).toEqual([human]);
+      if (output.coachId !== "classic") expect(output.text).toBe(previous.find(other => other.coachId === output.coachId)!.text);
     }
   }
 });

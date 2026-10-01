@@ -1,5 +1,5 @@
 import type {Report} from "../gameReview/types";
-import {claim, type Claim, type EvidenceRef} from "./model";
+import {claim, makeIntent, type Claim, type DialogueIntent, type EvidenceRef} from "./model";
 
 export const humanInsightLabels: Readonly<Record<string, string>> = {
   human_natural_error: "Natural mistake",
@@ -10,6 +10,16 @@ export const humanInsightLabels: Readonly<Record<string, string>> = {
   difficult_defense: "Hard defense missed",
   human_defense_found: "Hard defense found",
 };
+
+export function humanInsightIntent(parent: DialogueIntent): DialogueIntent {
+  const items = parent.claims.filter(item => humanInsightLabels[item.code]).sort((a, b) => b.priority - a.priority).slice(0, 1);
+  const build = (key: string) => makeIntent(`${key}:human`, parent.purpose, parent.mode,
+    parent.expression, items, parent.decisions, parent.subject);
+  const intent = build(parent.id), legacy = parent.wordingKey ? build(parent.wordingKey) : null;
+  // Bind the derived fact to the real parent while preserving unchanged voices'
+  // variants when the parent's added metadata concerns a different claim.
+  return legacy ? {...intent, wordingKey: legacy.wordingKey ?? legacy.id} : intent;
+}
 
 /** Explain the supported label, independently of a coach's abbreviated reaction. */
 export function humanInsightExplanation(code: string, report: Report): string {

@@ -9,6 +9,7 @@ import {gameIntent} from "../src/dialogue/gameIntent";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
 import type {Game, Position, Report} from "../src/gameReview/types";
 import {semanticFixtures} from "./semantic-fixtures";
+import {humanInsightIntent} from "../src/dialogue/humanClaims";
 
 const walter = {id: "classic", personality: storyteller};
 const ref = {source: "stockfish" as const, id: "search", field: "actual_line/findings/0"};
@@ -27,6 +28,15 @@ const fixtures = semanticFixtures<{scenario: string; black: boolean; report: Rep
 for (const {scenario, black, report} of fixtures) test(`legal ${scenario}, ${black ? "Black" : "White"}: production evidence reaches Walter with honest scope`, () => {
   const intent = gameIntent({game: {frames: [], orientation: black ? "black" : "white"} as unknown as Game, report,
     frame: {turn: black ? "white" : "black"} as Position, ply: 1, key: `legal:${scenario}:${black}`, expression: "best"});
+  if (scenario === "root_capture") {
+    const captured = intent.claims.find(item => item.slots.motif === "undefended capture")!;
+    expect(captured.tactic?.timing).toBe("possible");
+    const output = renderDialogue({...intent, claims: [captured]}, walter);
+    expect(output.text).toContain(`${report.actual.san} captures a queen`);
+    expect(output.text).not.toMatch(/follow-up|possibility|would capture/);
+    expect(output.renderedClaims?.[0].sourceIds).toEqual(captured.sourceIds);
+    return;
+  }
   const fork = intent.claims.find(item => item.slots.motif === "fork")!;
   expect(fork).toBeTruthy();
   expect(fork.tactic?.effect.kind).toBe("fork");
@@ -109,6 +119,16 @@ test("capture descriptions preserve actual, alternative, reply and uncertain tim
   expect(render(capture("missed", 1)).text).toContain("Ng5+ would capture a queen");
   expect(render(capture("allowed", 2)).text).toContain("Ng5+ would capture a queen");
   expect(render(capture("played", 3)).text).toContain("One possible follow-up is Ng5+, capturing a queen");
+  for (const role of ["played", "missed", "allowed"]) {
+    const ply = role === "allowed" ? 2 : 1;
+    const item = build(event(role, {motif: "hanging_piece", frame_ply: ply - 1,
+      witness: [{ply, san: "Ng5+", capture: "queen"}]}));
+    expect(item.tactic?.timing).toBe("possible");
+    const output = render(item);
+    expect(output.text).toContain(role === "played" ? "Ng5+ captures a queen" : "Ng5+ would capture a queen");
+    expect(output.text).not.toContain("One possible follow-up is Ng5+");
+    if (role === "played") expect(output.text).not.toContain("possibility to watch for after Ng5+");
+  }
 });
 
 test("Walter's opponent facts get accurate timing without personal praise", () => {
@@ -144,6 +164,20 @@ test("new witness scope changes intent identity while preserving unchanged coach
   const saved = JSON.stringify(newIntent);
   renderDialogue(newIntent, walter);
   expect(JSON.stringify(newIntent)).toBe(saved);
+});
+
+test("derived human insight preserves its own factual identity and the parent legacy wording seed", () => {
+  const item = build(event()), human = claim("human_natural_error", {}, 69, [{source: "human", id: "maia", field: "policy"}]);
+  const {tactic: _tactic, ...original} = item;
+  const before = humanInsightIntent(makeIntent("parent", "mistake", "game", "mistake", [original, human]));
+  const after = humanInsightIntent(makeIntent("parent", "mistake", "game", "mistake", [item, human]));
+  expect(after.id).not.toBe(before.id);
+  expect(after.wordingKey).toBe(before.id);
+  expect(after.claims).toEqual([human]);
+  expect(renderDialogue(after, {id: "neutral"}).text).toBe(renderDialogue(before, {id: "neutral"}).text);
+  const changed = humanInsightIntent(makeIntent("parent", "mistake", "game", "mistake", [item, {...human, evidence: [{source: "human", id: "maia-revised", field: "policy"}]}]));
+  expect(changed.id).not.toBe(after.id);
+  expect(changed.wordingKey).not.toBe(after.wordingKey);
 });
 
 test("the generic strong-move fallback does not claim literal Best for Brilliant or Great", () => {

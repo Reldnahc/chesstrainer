@@ -13,11 +13,12 @@ from trainer.game_review import line_evidence, public_report
 # recognizes the attack without pretending that the later queen capture happened.
 FORK_FEN = "8/7k/8/8/4q3/5N2/8/K7 w - - 0 1"
 FORK_LINE = ["f3g5", "h7g8", "g5e4"]
-SCENARIOS = ("played_fork", "missed_fork", "allowed_fork", "collected_fork")
+SCENARIOS = ("played_fork", "missed_fork", "allowed_fork", "collected_fork", "root_capture")
 
 
 def tactical_scope_report(scenario, black=False):
     """Keep the reviewed mover white by default; mirror every move for black."""
+    setup = []
     if scenario == "played_fork":
         fen, actual, best, before, after = FORK_FEN, FORK_LINE, FORK_LINE, 0, 0
     elif scenario == "missed_fork":
@@ -31,6 +32,11 @@ def tactical_scope_report(scenario, black=False):
     elif scenario == "collected_fork":
         fen, actual, best = COLLECTED_FEN, COLLECTED_LINE, COLLECTED_LINE
         before, after = 300, 300
+    elif scenario == "root_capture":
+        # Loose-piece recognition uses the pre-capture reference board. Retain
+        # actual setup history, and do not invent a settled endpoint on this PV.
+        fen, setup = "5k2/8/8/8/8/8/q7/R5K1 b - - 0 1", ["f8g8"]
+        actual, best, before, after = ["a1a2"], ["a1a2"], 900, 900
     else:
         raise ValueError(f"Unknown tactical scope fixture: {scenario}")
 
@@ -48,7 +54,9 @@ def tactical_scope_report(scenario, black=False):
                 for move in map(chess.Move.from_uci, line)
             ]
 
-        actual, best = mirror(actual), mirror(best)
+        actual, best, setup = mirror(actual), mirror(best), mirror(setup)
+    for move in setup:
+        board.push_uci(move)
 
     report = move_report(board, actual[0], best=best[0], before=before, after=after, pv=actual)
     report["best"]["pv"] = best
