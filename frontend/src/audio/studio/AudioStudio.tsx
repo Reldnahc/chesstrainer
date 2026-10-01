@@ -14,6 +14,8 @@ import StudioTransport from "./StudioTransport";
 import CastVoiceAudition from "./CastVoiceAudition";
 import WalterWordingReview from "./WalterWordingReview";
 import {walterWordingCatalog} from "./walterWording";
+import RecordedCoachComparison from "./RecordedCoachComparison";
+import {recordedCoachCatalog} from "./recordedCoachCatalog";
 import "./studio.css";
 
 type CueFilter = "all" | SoundCategory;
@@ -75,6 +77,8 @@ export default function AudioStudio() {
     </header>
 
     <StudioTransport player={player} />
+
+    <RecordedCoachComparison player={player} catalog={recordedCoachCatalog} />
 
     <WalterWordingReview player={player} catalog={walterWordingCatalog} />
 

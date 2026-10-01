@@ -77,7 +77,7 @@ export default function WalterWordingReview({player, catalog}: {player: StudioPl
       <p>The same Walter voice, with clearer explanations. Compare the original and revised recordings.</p>
     </header>
     <div className="voice-audition-layout">
-      <div className="voice-audition-controls walter-wording-controls">
+      <div className="voice-audition-controls voice-audition-fields">
         <ChoiceGroup label="Example collection" value={collection}
           options={[{value: "featured", label: "A few examples"}, {value: "all", label: "All revised clips"}]}
           onChange={next => {if (next !== collection) {player.stop(); setCollection(next);}}} />
@@ -90,8 +90,8 @@ export default function WalterWordingReview({player, catalog}: {player: StudioPl
           options={[{value: "original", label: "Original"}, {value: "revised", label: "Revised"}]}
           onChange={next => {if (next !== version) {player.stop(); setVersion(next);}}} />
         <MotionSelect id={`${id}-motion`} label="Walter motion" value={motion} onChange={setMotion} />
-        <p className="walter-wording-reason">{example.reason}</p>
-        <details className="disclosure walter-wording-texts">
+        <p className="voice-audition-note">{example.reason}</p>
+        <details className="disclosure voice-audition-texts">
           <summary>Compare the text</summary>
           <dl><dt>Original</dt><dd>{example.previousText}</dd><dt>Revised</dt><dd>{example.text}</dd></dl>
         </details>
