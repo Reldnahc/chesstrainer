@@ -7,7 +7,7 @@
       "primary": "cause-abandoned-defender",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but the move takes away a piece's only effective defender. That is where the protection breaks: the other side can now capture the piece left behind.",
-      "rivetText": "The human model finds this choice natural, but it removes a piece's only effective defender. The opponent can now capture that exposed piece."
+      "rivetText": "Cause: the only effective defender moves away. Result: the opponent can capture the piece it guarded. The human model finds this choice natural."
     },
     {
       "id": "combo-cause-abandoned-defender-hard-defense-missed",
@@ -15,7 +15,7 @@
       "primary": "cause-abandoned-defender",
       "secondary": "human-hard-defense-missed",
       "walterText": "This move removes a piece's only effective defender, letting the other side capture the piece left behind. The only playable alternative we found was difficult to spot; let's return to that resource.",
-      "rivetText": "The move removes a piece's only effective defender, permitting a capture of the piece left behind. The only playable alternative found was difficult to find."
+      "rivetText": "The only effective defender moves away, leaving the guarded piece available for capture. The only playable defense found was missed. Human-model evidence suggests a difficult resource."
     },
     {
       "id": "combo-cause-opponent-threat-recognition-natural-error",
@@ -23,7 +23,7 @@
       "primary": "cause-opponent-threat-recognition",
       "secondary": "human-natural-error",
       "walterText": "The move looks natural, but the warning was already in the opponent's previous move. This leaves that threat unanswered, so the other side can capture the threatened piece.",
-      "rivetText": "Natural to the human model, this move leaves the preceding move's threat unanswered. The opponent can capture the threatened piece now."
+      "rivetText": "Warning: the opponent's previous move enabled the threat. This move leaves it unanswered, allowing the threatened piece to be captured. Natural to the human model; costly on the board."
     },
     {
       "id": "combo-cause-opponent-threat-recognition-hard-defense-missed",
@@ -31,7 +31,7 @@
       "primary": "cause-opponent-threat-recognition",
       "secondary": "human-hard-defense-missed",
       "walterText": "The opponent's last move supplied the warning, and this leaves the threat unanswered. A piece can now be captured. The only playable defense we found was difficult to discover.",
-      "rivetText": "The preceding move's threat remains unanswered; the opponent can capture the target. The only playable resource found was difficult to spot."
+      "rivetText": "Threat unanswered. The opponent can capture the piece left under threat. The only playable defense found was missed. Human-model evidence suggests it was difficult to find."
     },
     {
       "id": "combo-cause-avoiding-bad-trades-natural-error",
@@ -39,7 +39,7 @@
       "primary": "cause-avoiding-bad-trades",
       "secondary": "human-natural-error",
       "walterText": "The capture looks natural, but the other side can recapture a more valuable piece. Follow the whole exchange before judging the first capture; that reply changes the trade.",
-      "rivetText": "The human model finds the capture natural, but the opponent can recapture a more valuable piece. The exchange must include that reply."
+      "rivetText": "Exchange: the opponent can recapture a more valuable piece. The human model finds the initial capture natural. Count both sides."
     },
     {
       "id": "combo-cause-avoiding-bad-trades-hard-defense-missed",
@@ -47,7 +47,7 @@
       "primary": "cause-avoiding-bad-trades",
       "secondary": "human-hard-defense-missed",
       "walterText": "This capture invites a recapture of a more valuable piece. The only playable move we found was a different, difficult resource. Compare that alternative with the full exchange.",
-      "rivetText": "The opponent can recapture a more valuable piece after this capture. The only playable alternative found was difficult to discover. Compare the complete exchange."
+      "rivetText": "The first capture invites a recapture of a more valuable piece. The only playable defense found was missed. Human-model evidence suggests a difficult find. Both halves of the exchange count."
     },
     {
       "id": "combo-tactic-fork-played-natural-best",
@@ -55,7 +55,7 @@
       "primary": "tactic-fork-played",
       "secondary": "human-natural-best",
       "walterText": "The natural-looking choice is also the engine's best here. Look for the fork idea: the same piece can attack several targets at once.",
-      "rivetText": "This is both natural to the human model and the engine's best. The fork idea combines several targets under the same attacker."
+      "rivetText": "Fork resource found. One piece can attack several targets. The human model considers the choice natural; the engine ranks it best. One attacker, several problems for the other side."
     },
     {
       "id": "combo-tactic-fork-played-natural-strong",
@@ -63,7 +63,7 @@
       "primary": "tactic-fork-played",
       "secondary": "human-natural-strong",
       "walterText": "A natural-looking move with a fork to examine, attacking several targets with the same piece. It is strong, though the engine prefers another choice.",
-      "rivetText": "The move looks natural and is strong, though the engine prefers another. Its fork idea uses the same piece to attack several targets."
+      "rivetText": "Resource: a fork, with several targets for the same piece. Natural to the human model and strong according to the engine. A different move still gets the engine's first choice."
     },
     {
       "id": "combo-tactic-fork-allowed-hard-defense-missed",
@@ -71,7 +71,7 @@
       "primary": "tactic-fork-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The defense that could have held was hard to find. This move instead gives the other side a chance to set up a fork. Let's look back for the only playable choice we found.",
-      "rivetText": "The only playable move found was difficult to spot. This choice permits a fork opportunity: one opposing piece could attack several targets."
+      "rivetText": "Issue: the opponent can work toward a fork, attacking several targets with one piece. The search found only one playable defense. It was missed; human-model evidence suggests a difficult find."
     },
     {
       "id": "combo-tactic-fork-missed-natural-error",
@@ -79,7 +79,7 @@
       "primary": "tactic-fork-missed",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking choice, but another move offered a fork. Look for how one piece could have attacked several targets; that is the opportunity this move lets pass.",
-      "rivetText": "The human model favors this choice, but it misses a fork opportunity. The stronger option could let one piece attack several targets."
+      "rivetText": "Missed resource: a fork. Another move offered several targets for one attacker. The human model finds the played choice natural, but it passes up that opportunity."
     },
     {
       "id": "combo-tactic-fork-missed-hard-defense-missed",
@@ -87,7 +87,7 @@
       "primary": "tactic-fork-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The only playable move we found was difficult to spot, and a fork was part of its idea. Let's return to that choice and look for how one piece could attack several targets.",
-      "rivetText": "The missed resource was hard to find and the only playable move found. Its tactical idea was a fork: one piece could attack several targets."
+      "rivetText": "Missed resource: a fork. One piece could attack several targets. That alternative was the only playable move found by the search; the human model indicates a difficult defense to find."
     },
     {
       "id": "combo-tactic-pin-played-natural-best",
@@ -95,7 +95,7 @@
       "primary": "tactic-pin-played",
       "secondary": "human-natural-best",
       "walterText": "This natural-looking move is the engine's best. The idea is a pin to the king: a pinned piece cannot leave that line and expose its king.",
-      "rivetText": "Natural to the human model and best in the engine comparison, this move has a pinning idea. A piece pinned to its king cannot leave that line."
+      "rivetText": "Resource: a pin to the king. Leaving that line would expose the king, so the pinned piece cannot do it. Natural to the human model. Best in the engine comparison."
     },
     {
       "id": "combo-tactic-pin-played-natural-strong",
@@ -103,7 +103,7 @@
       "primary": "tactic-pin-played",
       "secondary": "human-natural-strong",
       "walterText": "The choice looks natural and is strong, although the engine prefers another. Follow the pinning idea: a piece cannot leave the line if doing so exposes its king.",
-      "rivetText": "This natural-looking choice is strong, but the engine prefers another. Examine the pin to the king, which restricts a pinned piece's movement."
+      "rivetText": "Pin resource found. A piece pinned to its king has a legal restriction: it cannot expose the king. The model finds the choice natural; the engine finds it strong, while preferring another move."
     },
     {
       "id": "combo-tactic-pin-allowed-natural-error",
@@ -111,7 +111,7 @@
       "primary": "tactic-pin-allowed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but it gives the other side a chance to use a pin to the king. Look at the pinned piece's restriction: it cannot move off the line and expose its king.",
-      "rivetText": "Natural to the human model, this choice permits a pinning opportunity. A piece pinned to its king cannot leave the line and expose the king."
+      "rivetText": "Issue: a pin to the king is available to the opponent. A pinned piece cannot leave that line and expose its king. The human model finds this choice natural, despite the tactical problem."
     },
     {
       "id": "combo-tactic-pin-allowed-hard-defense-missed",
@@ -119,7 +119,7 @@
       "primary": "tactic-pin-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "A difficult resource could have kept the position playable. This choice instead offers the opponent a pin to the king. The only workable move we found is worth another look.",
-      "rivetText": "This offers the opponent a pin to the king. The only playable alternative found was difficult to discover; inspect that missed resource."
+      "rivetText": "Issue: the opponent has a chance to use a pin to the king. The only playable defense found by the search was missed. Human-model evidence suggests it was difficult to find."
     },
     {
       "id": "combo-tactic-pin-missed-natural-error",
@@ -127,7 +127,7 @@
       "primary": "tactic-pin-missed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but a stronger move could have used a pin to the king. A pinned piece cannot step off that line and expose its king; keep that restriction in view.",
-      "rivetText": "The played move is natural to the human model, but misses a pinning opportunity. The stronger option could exploit a piece's inability to expose its king."
+      "rivetText": "Missed resource: a pin to the king. Another move could exploit the pinned piece's inability to expose its king. The played choice is natural to the human model, but loses that opportunity."
     },
     {
       "id": "combo-tactic-pin-missed-hard-defense-missed",
@@ -135,7 +135,7 @@
       "primary": "tactic-pin-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The way through was difficult to find. The only playable move we found offered a pinning idea: using the restriction on a piece that cannot leave its king exposed.",
-      "rivetText": "The only playable resource found was hard to find. The missed idea uses a pin to the king, restricting the pinned piece's legal movement."
+      "rivetText": "Missed defense: a resource using a pin to the king. The pinned piece could not legally expose its king. Only that alternative stayed playable in the search; model evidence suggests a hard find."
     },
     {
       "id": "combo-tactic-skewer-played-hard-find",
@@ -143,7 +143,7 @@
       "primary": "tactic-skewer-played",
       "secondary": "human-hard-find",
       "walterText": "You found a difficult move here. The skewer is the idea to examine: moving the front piece can expose another piece behind it along the same line.",
-      "rivetText": "This was a hard find. Examine the skewer idea, where moving the front piece can expose the piece behind it along the same line."
+      "rivetText": "Resource: a skewer. Moving the front piece can expose the piece behind it along the same line. The engine ranks this move best; model evidence and searched alternatives indicate a difficult find."
     },
     {
       "id": "combo-tactic-skewer-played-unusual-strong",
@@ -151,7 +151,7 @@
       "primary": "tactic-skewer-played",
       "secondary": "human-unusual-strong",
       "walterText": "An unusual choice in the human model, and a strong one. Look for the skewer idea, where the front piece can move aside and expose the piece behind it.",
-      "rivetText": "Unusual to the human model, this move is still strong. The skewer idea concerns the rear piece exposed when the front piece leaves the line."
+      "rivetText": "Skewer resource found. The front piece can move aside and expose a target behind it. Unusual to the human model, strong according to the engine."
     },
     {
       "id": "combo-tactic-skewer-played-natural-best",
@@ -159,7 +159,7 @@
       "primary": "tactic-skewer-played",
       "secondary": "human-natural-best",
       "walterText": "The natural-looking move is the engine's best, with a skewer as the idea to follow. Look behind the front piece for what could be exposed when it moves.",
-      "rivetText": "The engine's best also looks natural to the human model. Examine the skewer idea: a front piece can move away and expose a target behind it."
+      "rivetText": "Resource: a skewer. The threat reaches the rear piece when the front piece leaves the line. The human model finds the choice natural; the engine ranks it best."
     },
     {
       "id": "combo-tactic-skewer-played-natural-strong",
@@ -167,7 +167,7 @@
       "primary": "tactic-skewer-played",
       "secondary": "human-natural-strong",
       "walterText": "There is a skewer idea to explore in this natural-looking choice. It is a strong move, though the engine prefers another; watch what could be exposed behind the front piece.",
-      "rivetText": "This is a natural-looking, strong choice, though the engine prefers another. Its skewer idea can expose a rear target when the front piece moves."
+      "rivetText": "Skewer resource found: a front piece can move away and expose a rear target. The model finds this natural; the engine calls it strong, but puts another move first."
     },
     {
       "id": "combo-tactic-skewer-allowed-hard-defense-missed",
@@ -183,7 +183,7 @@
       "primary": "tactic-skewer-missed",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking move, but the stronger choice offered a skewer. Look along the line: moving the front piece would expose the one behind it. That chance has slipped away.",
-      "rivetText": "The human model finds this choice natural. It misses a skewer opportunity: the stronger move offered a line attack exposing the rear piece when the front piece moves."
+      "rivetText": "Missed resource: a skewer. Moving the front piece could expose the target behind it. The human model finds the played choice natural; the stronger alternative offered that line attack."
     },
     {
       "id": "combo-tactic-skewer-missed-hard-defense-missed",
@@ -191,7 +191,7 @@
       "primary": "tactic-skewer-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "A skewer was part of the resource this move missed. It was hard to find, and the only playable choice we found. Look for the line where the front piece shields another.",
-      "rivetText": "The missed resource was the only playable move found and difficult to find. Its idea was a skewer, exposing a rear piece when the front piece moves."
+      "rivetText": "Missed defense: a skewer resource. Moving the front piece could expose the one behind it. This was the only playable alternative found in the search; human-model evidence indicates a difficult find."
     },
     {
       "id": "combo-tactic-removing-defender-played-hard-find",
@@ -199,7 +199,7 @@
       "primary": "tactic-removing-defender-played",
       "secondary": "human-hard-find",
       "walterText": "This was a difficult move to find. The idea is to capture a defender, so follow the connection between that piece and what could lose its protection.",
-      "rivetText": "A hard move found. The idea is to capture a defender; inspect what would lose protection when that defender is removed."
+      "rivetText": "Resource: capture the defender. Its removal can leave what it guards without that protection. The engine ranks this move best; the human model and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-tactic-removing-defender-played-unusual-strong",
@@ -207,7 +207,7 @@
       "primary": "tactic-removing-defender-played",
       "secondary": "human-unusual-strong",
       "walterText": "The human model finds this unusual, but it is a strong choice. Capturing a defender is the idea here; look at what that defender is responsible for protecting.",
-      "rivetText": "The model finds this unusual and the engine finds it strong. Examine the defender-capture idea and the protection that would disappear."
+      "rivetText": "Target: a defender. Capturing it can remove the protection it supplies. The human model finds this choice unusual; the engine finds it strong."
     },
     {
       "id": "combo-tactic-removing-defender-played-natural-best",
@@ -215,7 +215,7 @@
       "primary": "tactic-removing-defender-played",
       "secondary": "human-natural-best",
       "walterText": "A natural-looking choice that is also the engine's best. The idea is to capture a defender; notice what could be left unguarded when it is taken.",
-      "rivetText": "This is natural to the human model and best in the engine comparison. The tactical idea removes a defender by capturing it."
+      "rivetText": "Resource: removing a defender by capture. What it protects could then lose that support. The human model considers this choice natural, and the engine ranks it best."
     },
     {
       "id": "combo-tactic-removing-defender-played-natural-strong",
@@ -223,7 +223,7 @@
       "primary": "tactic-removing-defender-played",
       "secondary": "human-natural-strong",
       "walterText": "Capturing a defender is the idea to follow in this natural-looking move. The choice is strong, though the engine prefers another, so keep the comparison in view.",
-      "rivetText": "This natural-looking move is strong, but the engine prefers another. Its idea is to capture a defender and remove the protection it supplies."
+      "rivetText": "A defender is the tactical target. Capture it, and the protection it supplies can disappear. Natural to the human model; strong according to the engine, which still prefers another move."
     },
     {
       "id": "combo-tactic-removing-defender-allowed-natural-error",
@@ -231,7 +231,7 @@
       "primary": "tactic-removing-defender-allowed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but the other side has a chance to capture a defender. Follow what that defender protects; its removal could leave something important unguarded.",
-      "rivetText": "Natural to the human model, this move offers the opponent a chance to capture a defender. Inspect what could lose protection after that capture."
+      "rivetText": "Issue: the opponent has a chance to capture a defender. Its removal could take away needed protection. The human model finds this choice natural; that lost protection is the tactical cost."
     },
     {
       "id": "combo-tactic-removing-defender-allowed-hard-defense-missed",
@@ -239,7 +239,7 @@
       "primary": "tactic-removing-defender-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "This gives the other side a chance to capture a defender. The move that could have held was difficult to find, but it was the only playable option we found. Compare it before moving on.",
-      "rivetText": "The opponent has an opportunity to remove a defender by capture. The only playable alternative found was difficult to discover. Inspect that missed resource."
+      "rivetText": "Issue: the opponent can target a defender for capture. What it guards could lose protection. Only one alternative stayed playable in the search. It was missed; model evidence suggests a difficult find."
     },
     {
       "id": "combo-tactic-removing-defender-missed-natural-error",
@@ -247,7 +247,7 @@
       "primary": "tactic-removing-defender-missed",
       "secondary": "human-natural-error",
       "walterText": "The natural-looking choice misses a chance to capture a defender. Another move could have removed that protection. Look at what the defender was keeping secure.",
-      "rivetText": "The human model favors the played choice, but the stronger option offered a defender capture. Removing that piece could take protection away from its target."
+      "rivetText": "Missed resource: capturing a defender. Another move could remove the protection that piece supplies. The human model favors the played choice, but the useful target was the defender."
     },
     {
       "id": "combo-tactic-removing-defender-missed-hard-defense-missed",
@@ -255,7 +255,7 @@
       "primary": "tactic-removing-defender-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The difficult resource here involved a chance to capture a defender. It was the only playable move we found. Start with what that defender protects when revisiting the idea.",
-      "rivetText": "The only playable move found was difficult to spot. The missed tactical idea was to capture a defender and remove the protection it supplied."
+      "rivetText": "Missed defense: a resource that captures a defender and removes its support. It was the only playable move found by the search. Human-model evidence suggests this was a difficult resource to find."
     },
     {
       "id": "combo-tactic-back-rank-played-hard-find",
@@ -263,7 +263,7 @@
       "primary": "tactic-back-rank-played",
       "secondary": "human-hard-find",
       "walterText": "A hard move to find, with a back-rank mating idea worth following. In that pattern, the king's own pieces form the barrier to its escape.",
-      "rivetText": "This difficult move has a back-rank mating idea to examine. The pattern uses the king's own pieces as a barrier to escape."
+      "rivetText": "Resource: a route to back-rank mate. The pattern traps the king behind its own pieces. The engine ranks this move best; the human model and searched alternatives indicate a difficult find."
     },
     {
       "id": "combo-tactic-back-rank-played-unusual-strong",
@@ -271,7 +271,7 @@
       "primary": "tactic-back-rank-played",
       "secondary": "human-unusual-strong",
       "walterText": "This is unusual in the human model, but the engine supports it. Watch for the back-rank mating idea, with a king boxed in by its own pieces.",
-      "rivetText": "Unusual to the human model and strong in the search, this move has a back-rank mating idea. The pattern traps the king behind its own pieces."
+      "rivetText": "Back-rank mating route found. In this pattern, the king's own pieces form the barrier to escape. The human model finds the move unusual; the engine finds it strong."
     },
     {
       "id": "combo-tactic-back-rank-played-natural-best",
@@ -279,7 +279,7 @@
       "primary": "tactic-back-rank-played",
       "secondary": "human-natural-best",
       "walterText": "This natural-looking choice is also the engine's best. Follow the back-rank mating idea: the pattern uses the king's own pieces to block its escape.",
-      "rivetText": "This looks natural to the human model and is the engine's best. Examine the back-rank mating idea, with the king boxed in by its own pieces."
+      "rivetText": "Resource: back-rank mate. The pattern uses the king's own pieces to block escape. The human model sees a natural choice, and the engine ranks it best."
     },
     {
       "id": "combo-tactic-back-rank-played-natural-strong",
@@ -287,7 +287,7 @@
       "primary": "tactic-back-rank-played",
       "secondary": "human-natural-strong",
       "walterText": "The move looks natural and is strong, though the engine prefers another. The back-rank mating idea is worth examining: the king's own pieces can block its escape.",
-      "rivetText": "This natural-looking choice is strong, but not the engine's best. Examine the back-rank mating pattern, where the king's own pieces block its escape."
+      "rivetText": "Back-rank mating route found. The pattern uses the king's own pieces to block escape. Natural to the human model and strong according to the engine; another move remains its first choice."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-hard-find",
@@ -295,7 +295,7 @@
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-hard-find",
       "walterText": "This was a hard move to find. The idea is to bring a pawn to the last rank and promote it; take your time tracing that route.",
-      "rivetText": "This move was difficult to find. The promotion idea gives it a clear objective: bringing a pawn to the last rank to become a new piece."
+      "rivetText": "Objective: promotion. A pawn has a route toward the last rank and a new piece. The engine ranks this move best; model evidence and searched alternatives suggest it was hard to find."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-unusual-strong",
@@ -303,7 +303,7 @@
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-unusual-strong",
       "walterText": "An unusual choice in the human model, but a strong one. There is a promotion idea to follow, carrying a pawn toward the last rank and a new piece.",
-      "rivetText": "The human model finds this unusual; the engine finds it strong. Examine the promotion idea and the pawn's possible route to the last rank."
+      "rivetText": "Promotion route found. The pawn's destination is the last rank, where it can become a new piece. Unusual to the human model. Strong according to the engine."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-natural-best",
@@ -311,7 +311,7 @@
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-natural-best",
       "walterText": "The natural-looking choice is also the engine's best. Follow the promotion idea and the pawn's possible route to the last rank, where it becomes a new piece.",
-      "rivetText": "This is natural to the human model and best in the engine comparison. The idea works toward promotion, reaching the last rank with a pawn."
+      "rivetText": "Objective: bring a pawn to the last rank and promote. This move offers a route toward it. The human model calls the choice natural; the engine ranks it best."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-natural-strong",
@@ -319,7 +319,7 @@
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-natural-strong",
       "walterText": "This natural-looking choice has a promotion idea to explore. It is strong, though the engine prefers another move; follow the pawn's possible route to the last rank.",
-      "rivetText": "The promotion idea accompanies a natural-looking, strong move. The engine still prefers another choice. Inspect the pawn's route to the last rank."
+      "rivetText": "Promotion is the tactical objective: a pawn reaching the last rank. The human model finds this choice natural, and the engine finds it strong. Its preferred move is still a different one."
     },
     {
       "id": "combo-tactic-promotion-awareness-allowed-natural-error",
@@ -327,7 +327,7 @@
       "primary": "tactic-promotion-awareness-allowed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but it gives the other side a chance to promote a pawn. Follow that pawn toward its last rank; the promotion is the possibility to keep in view.",
-      "rivetText": "The human model finds this natural, but an opposing pawn has a promotion opportunity. Inspect the route that could bring it to the last rank."
+      "rivetText": "Issue: an opposing pawn has a promotion opportunity. Reaching the last rank would turn it into a new piece. The human model finds this choice natural; the promotion threat remains."
     },
     {
       "id": "combo-tactic-promotion-awareness-allowed-hard-defense-missed",
@@ -335,7 +335,7 @@
       "primary": "tactic-promotion-awareness-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "This offers the other side a path to promotion. The only playable move we found was difficult to discover. Let's compare that resource with the pawn's route to the last rank.",
-      "rivetText": "The opponent has a promotion opportunity after this choice. A difficult alternative was the only playable move found. Inspect it before following the pawn forward."
+      "rivetText": "Issue: a promotion route is available to the opponent. The pawn could reach the last rank. Only one searched alternative kept the position playable; model evidence suggests that missed defense was difficult to find."
     },
     {
       "id": "combo-tactic-promotion-awareness-missed-natural-error",
@@ -343,7 +343,7 @@
       "primary": "tactic-promotion-awareness-missed",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking choice, but another move offered a path to promotion. Look for how the pawn could have reached its last rank; this move misses that chance.",
-      "rivetText": "This is natural to the human model, but misses a promotion opportunity. The stronger choice offered a route for a pawn to reach its last rank."
+      "rivetText": "Missed resource: promotion. Another move offered a pawn a route to the last rank. The human model finds the played choice natural, but that choice passes up the opportunity."
     },
     {
       "id": "combo-tactic-promotion-awareness-missed-hard-defense-missed",
@@ -351,7 +351,7 @@
       "primary": "tactic-promotion-awareness-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "A path to promotion was part of the resource this move missed. It was difficult to find and the only playable choice we found. Follow the pawn when returning to that idea.",
-      "rivetText": "The only playable move found was hard to discover. Its missed idea offered a promotion route, bringing a pawn toward the last rank."
+      "rivetText": "Missed defense: a resource built around promotion. A pawn could work toward the last rank. The search found no other playable move; human-model evidence suggests a difficult find."
     },
     {
       "id": "combo-tactic-discovered-attack-played-hard-find",
@@ -359,7 +359,7 @@
       "primary": "tactic-discovered-attack-played",
       "secondary": "human-hard-find",
       "walterText": "You found a difficult move, with a discovered attack as the idea to examine. Moving a blocker can uncover an attack from another piece behind it.",
-      "rivetText": "This was a hard find. The discovered-attack idea works by moving a blocker and exposing an attack from a different piece."
+      "rivetText": "Resource: a discovered attack. Moving one piece aside can reveal an attack from another. The engine ranks this move best; the human model and searched alternatives suggest it was difficult to find."
     },
     {
       "id": "combo-tactic-discovered-attack-played-unusual-strong",
@@ -367,7 +367,7 @@
       "primary": "tactic-discovered-attack-played",
       "secondary": "human-unusual-strong",
       "walterText": "The human model finds this unusual, and the engine finds it strong. Look for the discovered-attack idea: moving a blocker can open an attack from another piece.",
-      "rivetText": "Unusual to the human model, yet strong in the search, this move has a discovered-attack idea. Moving a blocker can uncover another piece's attack."
+      "rivetText": "Discovered-attack resource found. One piece can move aside and uncover the attacker behind it. Unusual to the human model, strong according to the engine."
     },
     {
       "id": "combo-tactic-discovered-attack-played-natural-best",
@@ -375,7 +375,7 @@
       "primary": "tactic-discovered-attack-played",
       "secondary": "human-natural-best",
       "walterText": "This natural-looking move is the engine's best. The discovered-attack idea is worth following: moving a blocker can bring another piece's attack into view.",
-      "rivetText": "The natural-looking move is also the engine's best. Its discovered-attack idea moves a blocker out of another piece's line of attack."
+      "rivetText": "Resource: a discovered attack. Moving the blocker can open another piece's line of attack. Natural to the human model. Best in the engine comparison. The blocker can do useful work by leaving."
     },
     {
       "id": "combo-tactic-discovered-attack-played-natural-strong",
@@ -383,7 +383,7 @@
       "primary": "tactic-discovered-attack-played",
       "secondary": "human-natural-strong",
       "walterText": "A natural-looking, strong choice, although the engine prefers another. The idea is a discovered attack, moving a blocker aside so another piece can attack through the opening.",
-      "rivetText": "This natural-looking choice is strong, but the engine prefers another. Examine its discovered-attack idea: a blocker moves aside to uncover a different attacker."
+      "rivetText": "Discovered-attack resource found: one piece can move aside to reveal another attacker. The model finds this choice natural; the engine finds it strong, with a different move ranked first."
     },
     {
       "id": "combo-tactic-discovered-attack-allowed-natural-error",
@@ -391,7 +391,7 @@
       "primary": "tactic-discovered-attack-allowed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but it opens the door to a discovered attack. The other side could move one piece aside to reveal a threat from another. Look behind the moving piece.",
-      "rivetText": "Natural to the human model, this move offers a discovered attack. The opponent could move one piece aside and uncover a threat from another."
+      "rivetText": "Issue: the opponent has a discovered attack available. Moving one piece aside could uncover a threat from another. The human model finds the choice natural, despite that hidden threat."
     },
     {
       "id": "combo-tactic-discovered-attack-allowed-hard-defense-missed",
@@ -399,7 +399,7 @@
       "primary": "tactic-discovered-attack-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "This allows a discovered-attack opportunity for the other side. One piece could move aside to reveal another's threat. The only playable defense we found was hard to spot.",
-      "rivetText": "The opponent has a discovered-attack opportunity. The only playable alternative found was difficult to discover. Inspect the threat behind the piece that could move aside."
+      "rivetText": "Issue: a discovered-attack opportunity for the opponent. One piece could move aside and reveal another threat. The sole playable defense found by the search was missed; model evidence suggests a difficult find."
     },
     {
       "id": "combo-tactic-discovered-attack-missed-natural-error",
@@ -407,7 +407,7 @@
       "primary": "tactic-discovered-attack-missed",
       "secondary": "human-natural-error",
       "walterText": "The choice looks natural, but a discovered attack was available through another move. Look for the piece that could step aside and uncover a threat from behind it.",
-      "rivetText": "The human model favors the played choice, but it misses a discovered attack. A stronger move could uncover one piece's threat by moving another aside."
+      "rivetText": "Missed resource: a discovered attack. Another move could shift a blocker and reveal a different attacker. The human model favors the played choice; it still leaves this resource unused."
     },
     {
       "id": "combo-tactic-discovered-attack-missed-hard-defense-missed",
@@ -415,7 +415,7 @@
       "primary": "tactic-discovered-attack-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The difficult resource was a chance to uncover an attack by moving a piece aside. It was the only playable move we found. Let's look behind that piece to recover the idea.",
-      "rivetText": "The missed resource was hard to find and the only playable move found. A discovered attack was its idea: moving one piece could reveal another's threat."
+      "rivetText": "Missed defense: a discovered-attack resource. One piece could move aside to uncover another's threat. Only that alternative stayed playable in the search. Human-model evidence indicates a difficult find."
     },
     {
       "id": "combo-tactic-double-attack-played-hard-find",
@@ -423,7 +423,7 @@
       "primary": "tactic-double-attack-played",
       "secondary": "human-hard-find",
       "walterText": "This was a difficult move to find. The idea is to combine attacks, so look at how the pieces could make different threats at the same time.",
-      "rivetText": "This move was hard to find. Its double-attack idea combines threats at the same time; inspect how the attacking pieces could work together."
+      "rivetText": "Resource: a double attack. Two threats can arrive together and demand attention at once. The engine ranks this move best; the human model and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-tactic-double-attack-played-unusual-strong",
@@ -431,7 +431,7 @@
       "primary": "tactic-double-attack-played",
       "secondary": "human-unusual-strong",
       "walterText": "An unusual choice in the human model, and it holds up in the search. There is a double-attack idea here: follow how the attacks could work together.",
-      "rivetText": "The human model finds this unusual, but the engine rates it strong. The double-attack idea combines threats that would need attention at the same time."
+      "rivetText": "Double-attack resource found. The position offers a way to create two threats at once. Unusual to the human model. Strong according to the engine."
     },
     {
       "id": "combo-tactic-double-attack-played-natural-best",
@@ -439,7 +439,7 @@
       "primary": "tactic-double-attack-played",
       "secondary": "human-natural-best",
       "walterText": "The natural-looking choice is the engine's best. The double-attack idea is to bring threats together, so follow how the attacking pieces could work in concert.",
-      "rivetText": "This is natural to the human model and best in the engine comparison. The double-attack idea brings distinct threats into play at the same time."
+      "rivetText": "Resource: a double attack, bringing two threats into play together. The human model finds this choice natural; the engine ranks it best."
     },
     {
       "id": "combo-tactic-double-attack-played-natural-strong",
@@ -447,7 +447,7 @@
       "primary": "tactic-double-attack-played",
       "secondary": "human-natural-strong",
       "walterText": "This looks natural and is a strong choice, though the engine prefers another. The double-attack idea is worth examining, so look at how the attacks could work together.",
-      "rivetText": "This natural-looking move is strong, but not the engine's best. Examine its double-attack idea and how the pieces could create simultaneous threats."
+      "rivetText": "Double-attack resource found. Two attacks could demand attention at the same time. The human model finds this natural, and the engine finds it strong. A different move remains the engine's first choice."
     },
     {
       "id": "combo-tactic-double-attack-allowed-natural-error",
@@ -455,7 +455,7 @@
       "primary": "tactic-double-attack-allowed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but it gives the other side a chance to make two attacks at once. Look at both threats together rather than following only the first one.",
-      "rivetText": "The played choice is natural to the human model, but permits a double-attack opportunity. The opponent could create two attacks at once."
+      "rivetText": "Issue: the opponent can work toward two attacks at once. That is the double-attack opportunity this move permits. The human model finds the choice natural; both potential threats still need an answer."
     },
     {
       "id": "combo-tactic-double-attack-allowed-hard-defense-missed",
@@ -463,7 +463,7 @@
       "primary": "tactic-double-attack-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The only playable resource we found was difficult to spot. This choice instead gives the opponent a chance to make two attacks at once. Keep both threats in view.",
-      "rivetText": "This move offers the opponent a double attack. The only playable alternative found was difficult to find. Inspect both potential threats."
+      "rivetText": "Issue: a double-attack opportunity for the opponent. Two threats could arrive together. The only playable defense found by the search was missed; human-model evidence indicates a difficult resource to find."
     },
     {
       "id": "combo-tactic-double-attack-missed-natural-error",
@@ -471,7 +471,7 @@
       "primary": "tactic-double-attack-missed",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking choice, but another move offered a way to make two attacks at once. This lets that opportunity pass. Look for how the two threats could work together.",
-      "rivetText": "The human model finds this natural, but the stronger choice offered two attacks at once. The played move misses that double-attack opportunity."
+      "rivetText": "Missed resource: two attacks at once. Another move offered that double threat. The human model considers the played choice natural, but it passes up the combined pressure."
     },
     {
       "id": "combo-tactic-double-attack-missed-hard-defense-missed",
@@ -479,7 +479,7 @@
       "primary": "tactic-double-attack-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The resource was hard to find, and the only playable move we found. Its idea offered two attacks at once. Let's look at those threats together when revisiting the missed choice.",
-      "rivetText": "The only playable move found was difficult to discover. Its missed double-attack idea offered a way to create two attacks at once."
+      "rivetText": "Missed defense: a double-attack resource. Two threats could be created at once. It was the only playable alternative found by the search; human-model evidence suggests it was hard to find."
     },
     {
       "id": "combo-tactic-deflection-played-hard-find",
@@ -487,7 +487,7 @@
       "primary": "tactic-deflection-played",
       "secondary": "human-hard-find",
       "walterText": "You found a difficult move here. The deflection idea is to draw a defender away from its job, then use the opening it could leave behind.",
-      "rivetText": "This move was hard to find. The deflection idea draws a defender away from its task, leaving that task open to attack."
+      "rivetText": "Resource: deflection. A defender can be drawn away from its task, leaving a gap. The engine ranks this move best; model evidence and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-tactic-deflection-played-unusual-strong",
@@ -495,7 +495,7 @@
       "primary": "tactic-deflection-played",
       "secondary": "human-unusual-strong",
       "walterText": "The choice is unusual in the human model, but strong in the search. Follow the deflection idea: a defender could be drawn away from something it needs to protect.",
-      "rivetText": "Unusual to the human model, this choice remains strong. Its deflection idea draws a defender away from the task it was performing."
+      "rivetText": "Deflection resource found. A defender can be drawn away from the job it was doing. The human model finds the choice unusual; the engine finds it strong. The abandoned task is the target."
     },
     {
       "id": "combo-tactic-deflection-played-natural-best",
@@ -503,7 +503,7 @@
       "primary": "tactic-deflection-played",
       "secondary": "human-natural-best",
       "walterText": "This natural-looking choice is also the engine's best. The deflection idea is to draw a defender away, so look at what could be left behind when it moves.",
-      "rivetText": "Natural to the human model and best in the engine comparison, this move has a deflection idea. A defender could be drawn away from its task."
+      "rivetText": "Resource: deflection. Draw a defender away, and its original task can go unattended. Natural to the human model; best in the engine comparison. The defender cannot do its old job from everywhere."
     },
     {
       "id": "combo-tactic-deflection-played-natural-strong",
@@ -511,7 +511,7 @@
       "primary": "tactic-deflection-played",
       "secondary": "human-natural-strong",
       "walterText": "There is a deflection idea in this natural-looking move: drawing a defender away from its job. It is a strong choice, though the engine prefers another.",
-      "rivetText": "This natural-looking move is strong, but the engine prefers another. Examine the deflection idea and the task a defender could be drawn away from."
+      "rivetText": "Deflection resource found. A defender could be pulled away from what it protects. The human model finds this choice natural, and the engine finds it strong while preferring a different move."
     },
     {
       "id": "combo-tactic-deflection-allowed-natural-error",
@@ -519,7 +519,7 @@
       "primary": "tactic-deflection-allowed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but it gives the other side a chance to draw a defender away. That is the deflection to watch: the defender could leave an important job behind.",
-      "rivetText": "Natural to the human model, this choice offers a deflection opportunity. The opponent could draw a defender away from something it protects."
+      "rivetText": "Issue: the opponent has a deflection opportunity. A defender could be drawn away from what it protects. The human model finds this choice natural; the unattended task is the tactical cost."
     },
     {
       "id": "combo-tactic-deflection-allowed-hard-defense-missed",
@@ -527,7 +527,7 @@
       "primary": "tactic-deflection-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "This gives the other side a chance to draw a defender away from its job. The only playable move we found was hard to spot. Compare that resource with the deflection threat.",
-      "rivetText": "The opponent has a deflection opportunity after this move. The only playable alternative found was difficult to discover; review that resource before following the threat."
+      "rivetText": "Issue: the opponent can work toward drawing a defender away from its task. The only playable defense found by the search was missed. Human-model evidence suggests that resource was difficult to find."
     },
     {
       "id": "combo-tactic-deflection-missed-natural-error",
@@ -535,7 +535,7 @@
       "primary": "tactic-deflection-missed",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking choice, but there was a chance to draw a defender away. Another move could have used that deflection. Look at what the defender would leave behind.",
-      "rivetText": "The human model favors this choice, but it misses a deflection opportunity. A stronger move could draw a defender away from its protective task."
+      "rivetText": "Missed resource: deflection. Another move could draw a defender away from its protective task. The human model favors the played choice, but the chance to exploit that task was lost."
     },
     {
       "id": "combo-tactic-deflection-missed-hard-defense-missed",
@@ -543,7 +543,7 @@
       "primary": "tactic-deflection-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The only playable resource we found was difficult to see. It offered a deflection: drawing a defender away from its job. Return to that possibility when comparing the moves.",
-      "rivetText": "The missed resource was hard to find and the only playable move found. Its deflection idea could draw a defender away from what it protects."
+      "rivetText": "Missed defense: a deflection resource. A defender could be drawn away from what it guards. Only that alternative stayed playable in the search; human-model evidence suggests it was difficult to find."
     },
     {
       "id": "combo-tactic-undefended-capture-played-hard-find",
@@ -551,7 +551,7 @@
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-hard-find",
       "walterText": "This was a difficult move to find, with an undefended capture as the idea to examine. Look for the loose piece and how it could be taken.",
-      "rivetText": "A hard move found. Its idea is to capture an undefended piece; inspect the loose target and how a capture could become available."
+      "rivetText": "Resource: capturing an undefended piece. A loose target could be taken without a defender to protect it. The engine ranks this move best; model evidence and searched alternatives indicate a difficult find."
     },
     {
       "id": "combo-tactic-undefended-capture-played-unusual-strong",
@@ -559,7 +559,7 @@
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-unusual-strong",
       "walterText": "The human model finds this choice unusual, but the engine supports it. The idea to examine is an undefended capture: look for the loose piece that could be taken.",
-      "rivetText": "This is unusual to the human model and strong in the search. Its undefended-capture idea concerns a loose piece that could be taken."
+      "rivetText": "Undefended-capture resource found. The target could be taken without a piece guarding it. Unusual to the human model, strong according to the engine."
     },
     {
       "id": "combo-tactic-undefended-capture-played-natural-best",
@@ -567,7 +567,7 @@
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-natural-best",
       "walterText": "The natural-looking move is also the engine's best. The idea is an undefended capture, so look for the loose piece that could be taken without protection.",
-      "rivetText": "This natural-looking choice is the engine's best. The idea is an undefended capture: identify the loose piece that could be taken."
+      "rivetText": "Resource: an undefended capture. A loose piece could be taken. The human model finds the choice natural, and the engine ranks it best."
     },
     {
       "id": "combo-tactic-undefended-capture-played-natural-strong",
@@ -575,7 +575,7 @@
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-natural-strong",
       "walterText": "This natural-looking choice has an undefended capture as its idea. It is strong, though the engine prefers another move; compare the chance to take that loose piece.",
-      "rivetText": "The choice looks natural and is strong, though the engine prefers another. Examine the undefended-capture idea and the loose target it could use."
+      "rivetText": "Undefended-capture resource found. The tactical target is a piece without protection. Natural to the human model and strong according to the engine; the engine still prefers another move."
     },
     {
       "id": "combo-tactic-undefended-capture-missed-natural-error",
@@ -583,7 +583,7 @@
       "primary": "tactic-undefended-capture-missed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but another move offered a chance to take an undefended piece. The loose piece is worth a second look; this choice misses that capture opportunity.",
-      "rivetText": "The human model finds the played choice natural, but it misses an undefended capture. The stronger option offered a chance to take a loose piece."
+      "rivetText": "Missed resource: an undefended capture. A stronger choice offered a way to take the loose piece. The human model finds the played move natural; the opportunity remains unused."
     },
     {
       "id": "combo-tactic-undefended-capture-missed-hard-defense-missed",
@@ -591,7 +591,7 @@
       "primary": "tactic-undefended-capture-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The difficult resource offered a chance to take an undefended piece. It was the only playable move we found. Let's look for that loose piece when returning to the missed choice.",
-      "rivetText": "The only playable move found was difficult to spot. It offered an undefended capture that the played choice misses. Inspect the loose piece."
+      "rivetText": "Missed defense: an undefended-capture resource. The loose piece could be taken. That alternative was the only playable move found by the search; human-model evidence suggests it was difficult to find."
     },
     {
       "id": "combo-tactic-hanging-piece-allowed-natural-error",
@@ -599,7 +599,7 @@
       "primary": "tactic-hanging-piece-allowed",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking move, but it gives the other side a chance to take an undefended piece. Look for what could be left without protection as you follow the replies.",
-      "rivetText": "The played choice is natural to the human model, but offers the opponent an undefended capture. Inspect what could be left without protection."
+      "rivetText": "Issue: the opponent has an undefended-capture opportunity. A piece could be taken without protection. The human model finds this choice natural; a loose target can still be expensive."
     },
     {
       "id": "combo-tactic-hanging-piece-allowed-hard-defense-missed",
@@ -607,7 +607,7 @@
       "primary": "tactic-hanging-piece-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "This offers the other side a chance to capture an undefended piece. The only playable defense we found was difficult to see. Compare that resource before following the capture idea.",
-      "rivetText": "This permits an undefended-capture opportunity for the opponent. The only playable alternative found was hard to discover. Review that missed resource."
+      "rivetText": "Issue: a loose piece could be captured by the opponent. The search found only one alternative that kept the position playable. It was missed; human-model evidence suggests a difficult defensive find."
     },
     {
       "id": "combo-positional-development-actual-hard-find",
@@ -623,7 +623,7 @@
       "primary": "positional-development-actual",
       "secondary": "human-unusual-strong",
       "walterText": "This brings a minor piece out from its starting square. The choice is unusual in the human-move model, yet the engine finds it strong. Notice the development as you look over the position.",
-      "rivetText": "The engine rates this developing move as strong, although it is unusual in the human-move model. Visible change: a minor piece has left its starting square."
+      "rivetText": "Development recorded. A minor piece leaves its starting square. Human-model signal: unusual. Engine assessment: strong."
     },
     {
       "id": "combo-positional-development-actual-natural-best",
@@ -655,7 +655,7 @@
       "primary": "positional-rook-open-actual",
       "secondary": "human-unusual-strong",
       "walterText": "The human-move model sees an unusual choice here, while the engine finds it strong. On the board, notice the rook on a file with no pawns of either color. That is an open file.",
-      "rivetText": "Unusual to the human-move model, strong in the engine comparison. The resulting position also has a rook on an open file: no pawns of either color occupy it."
+      "rivetText": "Rook on an open file. No pawns of either color occupy it. The human model finds the choice unusual; the engine finds it strong."
     },
     {
       "id": "combo-positional-rook-open-actual-natural-best",
@@ -679,7 +679,7 @@
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-hard-find",
       "walterText": "The rook's file has enemy pawns but none of its own: a semi-open file. The human-move model and the alternatives we checked suggest this move was hard to find. Give the position another look.",
-      "rivetText": "A rook occupies a semi-open file: enemy pawns remain, friendly pawns do not. On move difficulty, human-move evidence and the examined alternatives suggest that this move was difficult to find."
+      "rivetText": "Rook on a semi-open file. Enemy pawns present; friendly pawns absent. Human-model evidence and the examined alternatives suggest a difficult find."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-unusual-strong",
@@ -695,7 +695,7 @@
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-natural-best",
       "walterText": "The human-move model finds this choice natural, and it matches the engine's best. There is a detail to notice on the board: a rook's file holds enemy pawns but none of its own, making it semi-open.",
-      "rivetText": "Natural in the human-move model and best in the engine comparison. The rook now occupies a semi-open file, where enemy pawns remain but friendly pawns are absent."
+      "rivetText": "Semi-open file occupied. Enemy pawns remain on the rook's file; friendly pawns do not. The move is natural to the human model and best in the engine search."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-natural-strong",
@@ -719,7 +719,7 @@
       "primary": "positional-passed-actual",
       "secondary": "human-unusual-strong",
       "walterText": "This move leaves a passed pawn with no enemy pawn ahead on its file or neighboring files. The choice is unusual to the human-move model, and the engine finds it strong. Follow what changed around the pawn.",
-      "rivetText": "Unusual in the human-move model, strong by the engine's assessment. The move leaves a passed pawn: no enemy pawn ahead on its file or neighboring files."
+      "rivetText": "Passed pawn present. No enemy pawn lies ahead on its file or the neighboring files. The human model finds the choice unusual. The engine finds it strong."
     },
     {
       "id": "combo-positional-passed-actual-natural-best",
@@ -727,7 +727,7 @@
       "primary": "positional-passed-actual",
       "secondary": "human-natural-best",
       "walterText": "The human-move model sees this as natural, and it is the engine's best move. Look at the passed pawn it leaves: no enemy pawn stands ahead on its file or either neighboring file.",
-      "rivetText": "This move matches the engine's best choice and is natural to the human-move model. The resulting passed pawn has no enemy pawn ahead on its file or neighboring files."
+      "rivetText": "The position contains a passed pawn: no enemy pawn ahead on its file or either neighboring file. Move assessment: natural to the human model, best in the engine search."
     },
     {
       "id": "combo-positional-passed-actual-natural-strong",
@@ -743,7 +743,7 @@
       "primary": "positional-passer-advance-actual",
       "secondary": "human-hard-find",
       "walterText": "The pawn was already passed; the change to study is its advance. The human-move model and examined alternatives suggest this was a hard move to find, so give the choice a little time.",
-      "rivetText": "The pawn was already passed, and this move carries it forward. The human-move model and examined alternatives suggest it was a hard move to find. Compare the pawn's old and new squares."
+      "rivetText": "The pawn was already passed. This move advances it. Human-model evidence and the examined alternatives suggest a difficult find."
     },
     {
       "id": "combo-positional-passer-advance-actual-unusual-strong",
@@ -751,7 +751,7 @@
       "primary": "positional-passer-advance-actual",
       "secondary": "human-unusual-strong",
       "walterText": "The pawn was passed before it moved; this is an advance of an existing passer. The human-move model rates the choice unusual, while the engine finds it strong. Follow what that advance changes.",
-      "rivetText": "The move advances a pawn that was already passed. The human-move model marks the choice unusual, while the engine judges it strong. Compare the pawn's position before and after."
+      "rivetText": "Passed pawn advanced. It was already passed before this move. The human model marks the choice unusual; the engine judges it strong."
     },
     {
       "id": "combo-positional-passer-advance-actual-natural-best",
@@ -759,7 +759,7 @@
       "primary": "positional-passer-advance-actual",
       "secondary": "human-natural-best",
       "walterText": "This advance of an already passed pawn is both the engine's best move and a natural choice in the human-move model. Follow the pawn from its old square to its new one; that is the change we can see.",
-      "rivetText": "The engine's best move advances a pawn that was already passed. The human-move model also rates this choice natural. The pawn's new square is the change to inspect."
+      "rivetText": "Passed pawn advanced. Its passed status was already established. The choice is natural to the human model and ranks first in the engine search."
     },
     {
       "id": "combo-positional-passer-advance-actual-natural-strong",
@@ -767,7 +767,7 @@
       "primary": "positional-passer-advance-actual",
       "secondary": "human-natural-strong",
       "walterText": "The human-move model sees the advance of this already passed pawn as natural. It is a strong move, although the engine prefers another. Keep the advance in view when you compare the choices.",
-      "rivetText": "The human-move model sees this passed-pawn advance as natural. The engine finds the move strong but prefers another. The pawn was already passed before it advanced."
+      "rivetText": "The pawn was passed before the move. Now it advances. The human model considers the choice natural; the engine finds it strong but prefers another move."
     },
     {
       "id": "combo-positional-isolated-actual-hard-find",
@@ -783,7 +783,7 @@
       "primary": "positional-isolated-actual",
       "secondary": "human-unusual-strong",
       "walterText": "An isolated pawn has no friendly pawns on neighboring files; that is the structure left here. The human-move model sees an unusual choice, and the engine finds the move strong. Look over the pawns together.",
-      "rivetText": "The human-move model sees an unusual choice; the engine finds it strong. It leaves an isolated pawn, with no friendly pawn on either neighboring file."
+      "rivetText": "Isolated pawn present. Neither neighboring file contains a friendly pawn. The move is unusual to the human model and strong according to the engine."
     },
     {
       "id": "combo-positional-isolated-actual-natural-best",
@@ -791,7 +791,7 @@
       "primary": "positional-isolated-actual",
       "secondary": "human-natural-best",
       "walterText": "The engine's best move leaves an isolated pawn here, without a friendly pawn on either neighboring file. The human-move model also sees the choice as natural. Take a closer look at that structure.",
-      "rivetText": "This is the engine's best move and a natural choice in the human-move model. It leaves an isolated pawn: neither neighboring file contains a friendly pawn."
+      "rivetText": "An isolated pawn is present: no friendly pawn on either neighboring file. The human model considers the move natural. The engine selects it as best."
     },
     {
       "id": "combo-positional-isolated-actual-natural-strong",
@@ -807,7 +807,7 @@
       "primary": "positional-support-actual",
       "secondary": "human-hard-find",
       "walterText": "A piece that had no defender now gains support. The human-move model and examined alternatives suggest the move was hard to find. Look for the defender and trace its connection to the piece.",
-      "rivetText": "A previously undefended piece now has a defender. The human-move model and examined alternatives suggest the move was hard to find. Compare the support before and after the move."
+      "rivetText": "Support added. Previously undefended; now guarded. Human-model evidence and the examined alternatives suggest the move was difficult to find."
     },
     {
       "id": "combo-positional-support-actual-unusual-strong",
@@ -815,7 +815,7 @@
       "primary": "positional-support-actual",
       "secondary": "human-unusual-strong",
       "walterText": "The engine finds this move strong even though the human-move model considers it unusual. Look at the piece that now has a defender: it had no support before. Follow the new connection on the board.",
-      "rivetText": "A piece gains a defender after a move the human-move model rates unusual. The engine judges the move strong. The piece lacked support before the move; it has support now."
+      "rivetText": "Support added. A previously undefended piece gains a defender. The human model finds the choice unusual; the engine rates it strong."
     },
     {
       "id": "combo-positional-support-actual-natural-best",
@@ -823,7 +823,7 @@
       "primary": "positional-support-actual",
       "secondary": "human-natural-best",
       "walterText": "A piece gains support as you play the engine's best move. The human-move model sees the choice as natural too. Trace the new defender's connection to the piece; it had no defender before.",
-      "rivetText": "This is the engine's best move and a natural choice in the human-move model. A piece that lacked a defender now gains support. Identify the defender in the resulting position."
+      "rivetText": "Support added to a piece that lacked a defender. The human model sees a natural choice. The engine confirms this as its best move."
     },
     {
       "id": "combo-positional-support-actual-natural-strong",
@@ -831,7 +831,7 @@
       "primary": "positional-support-actual",
       "secondary": "human-natural-strong",
       "walterText": "The human-move model sees this as a natural choice. It is strong, though the engine prefers another move. A piece has gained support here; take a look at the defender that is now in place.",
-      "rivetText": "A piece gains a defender after a choice the human-move model rates natural. The engine finds the move strong but prefers another. It was undefended before the move and has support now."
+      "rivetText": "Before the move: no defender. After it: support added. The choice is natural to the human model and strong to the engine, though another move ranks best."
     },
     {
       "id": "combo-positional-unsupported-actual-hard-find",
@@ -839,7 +839,7 @@
       "primary": "positional-unsupported-actual",
       "secondary": "human-hard-find",
       "walterText": "A piece is left undefended, though that alone does not mean it can be won. The human-move model and examined alternatives suggest this move was hard to find. Study both the choice and the change in support.",
-      "rivetText": "The move leaves a piece undefended; that alone does not prove it can be won. The human-move model and examined alternatives suggest the move was hard to find. Inspect the piece's support on the board."
+      "rivetText": "Support removed. Missing support alone does not prove a winning capture. Human-model evidence and the examined alternatives suggest a difficult find."
     },
     {
       "id": "combo-positional-unsupported-actual-unusual-strong",
@@ -847,7 +847,7 @@
       "primary": "positional-unsupported-actual",
       "secondary": "human-unusual-strong",
       "walterText": "This unusual choice in the human-move model still earns a strong engine assessment. It leaves a piece undefended, so look carefully at what changed; having no defender alone does not prove that piece is lost.",
-      "rivetText": "The engine rates the move strong, while the human-move model considers it unusual. A piece loses its support after the move. That support change does not establish that the piece can be won."
+      "rivetText": "A piece loses its defender. That proves a support change, not a winning capture. The human model finds this move unusual; the engine rates it strong."
     },
     {
       "id": "combo-positional-unsupported-actual-natural-best",
@@ -855,7 +855,7 @@
       "primary": "positional-unsupported-actual",
       "secondary": "human-natural-best",
       "walterText": "Even the engine's best move can leave a piece undefended, as it does here. The human-move model sees the choice as natural. Look at the piece's situation; a missing defender alone does not prove a loss.",
-      "rivetText": "This is both the engine's best move and a natural choice in the human-move model. It leaves a piece without a defender, though that alone does not establish that the piece can be won."
+      "rivetText": "A piece is left without a defender. That alone does not prove a winning capture. The move is natural to the human model and first in the engine ranking."
     },
     {
       "id": "combo-positional-unsupported-actual-natural-strong",
@@ -863,7 +863,7 @@
       "primary": "positional-unsupported-actual",
       "secondary": "human-natural-strong",
       "walterText": "A piece is left without support after this natural choice in the human-move model. The engine finds the move strong but prefers another. An undefended piece is a fact to examine, not proof of a loss.",
-      "rivetText": "The human-move model rates this natural; the engine rates it strong and prefers another move. A piece is left undefended. The support loss does not by itself establish a material loss."
+      "rivetText": "Undefended piece recorded. Missing support alone does not prove material loss. The human model considers the move natural; the engine finds it strong but prefers another move."
     },
     {
       "id": "combo-positional-king-flight-actual-hard-find",
@@ -871,7 +871,7 @@
       "primary": "positional-king-flight-actual",
       "secondary": "human-hard-find",
       "walterText": "The king has a legal flight square it did not have before. The human-move model and the alternatives we examined suggest the played move was hard to find; compare the boards to see what changed.",
-      "rivetText": "New legal flight square available to the king. Human-move evidence and the checked alternatives suggest that the played move was difficult to find. Compare the two positions."
+      "rivetText": "A new legal flight square is available to the king. Human-model evidence and the checked alternatives suggest a difficult find."
     },
     {
       "id": "combo-positional-king-flight-actual-unusual-strong",
@@ -879,7 +879,7 @@
       "primary": "positional-king-flight-actual",
       "secondary": "human-unusual-strong",
       "walterText": "This choice is unusual in the human-move model, but the engine still finds it strong. One change to notice is a new legal square for the king to move to. Look at what opened that square.",
-      "rivetText": "The move is unusual in the human-move model and strong in the engine comparison. The board also shows a change: the king has gained a legal flight square."
+      "rivetText": "King mobility changed: a new legal flight square is available. The human model finds the move unusual; the engine finds it strong."
     },
     {
       "id": "combo-positional-king-flight-actual-natural-best",
@@ -887,7 +887,7 @@
       "primary": "positional-king-flight-actual",
       "secondary": "human-natural-best",
       "walterText": "There is a new legal flight square for the king. The move itself is both natural-looking in the human-move model and the engine's best choice. Take a moment to trace the change around the king.",
-      "rivetText": "This move matches the engine's best and is natural in the human-move model. The resulting board gives the king a legal flight square that was unavailable before."
+      "rivetText": "The king gains a legal flight square that was previously unavailable. The move is natural to the human model and best in the engine comparison."
     },
     {
       "id": "combo-positional-king-flight-actual-natural-strong",
@@ -919,7 +919,7 @@
       "primary": "positional-castling-actual",
       "secondary": "human-natural-best",
       "walterText": "The king castles: a natural-looking choice in the human-move model, and also the engine's best. Notice both changes on the board: the king's move and the rook's new place.",
-      "rivetText": "The king castles: a natural choice in the human-move model and the engine's best move here. The king and rook have each changed position."
+      "rivetText": "The king castles. The rook moves with it. The human model considers the choice natural; the engine ranks this move best."
     },
     {
       "id": "combo-positional-castling-actual-natural-strong",
@@ -935,7 +935,7 @@
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-hard-find",
       "walterText": "This capture breaks up the opposing bishop pair. The human-move model and the alternatives we checked suggest the move was hard to find. Notice what the side losing the bishop no longer has.",
-      "rivetText": "This capture breaks the opposing bishop pair. The human-move model and examined alternatives suggest it was difficult to find. Compare the position before and after the capture."
+      "rivetText": "Opposing bishop pair broken by this capture. Human-model evidence and the examined alternatives suggest a difficult find."
     },
     {
       "id": "combo-positional-bishop-pair-actual-unusual-strong",
@@ -943,7 +943,7 @@
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-unusual-strong",
       "walterText": "An unusual choice in the human-move model, but a strong one in the engine comparison. This capture also breaks up the opposing bishop pair; that side no longer has a bishop for each square color.",
-      "rivetText": "The opposing bishop pair is broken by this capture. The move is unusual in the human-move model, yet the engine rates it strong. Unusual does not describe its strength."
+      "rivetText": "Opposing bishop pair broken. The capture is unusual to the human model and strong according to the engine."
     },
     {
       "id": "combo-positional-bishop-pair-actual-natural-best",
@@ -967,7 +967,7 @@
       "primary": "positional-doubled-actual",
       "secondary": "human-hard-find",
       "walterText": "Doubled pawns of the same color share a file in the resulting position. The human-move model and examined alternatives suggest the move was hard to find. Look back at the choice, then follow the pawns on that file.",
-      "rivetText": "Pawns of the same color share a file after the move. The human-move model and examined alternatives suggest this choice was hard to find. The resulting structure includes doubled pawns."
+      "rivetText": "Doubled pawns recorded: pawns of the same color share a file. Human-model evidence and the examined alternatives suggest the move was difficult to find."
     },
     {
       "id": "combo-positional-doubled-actual-unusual-strong",
@@ -975,7 +975,7 @@
       "primary": "positional-doubled-actual",
       "secondary": "human-unusual-strong",
       "walterText": "The move is unusual to the human-move model and strong in the engine's assessment. It leaves doubled pawns: pawns of the same color sharing a file. Take a look at how they are arranged.",
-      "rivetText": "An unusual choice in the human-move model is strong by the engine's assessment. Doubled pawns remain in the resulting position, with pawns of the same color sharing a file."
+      "rivetText": "The resulting position contains doubled pawns of the same color on one file. The move is unusual to the human model and strong in the engine assessment."
     },
     {
       "id": "combo-positional-doubled-actual-natural-best",
@@ -991,7 +991,7 @@
       "primary": "positional-doubled-actual",
       "secondary": "human-natural-strong",
       "walterText": "The human-move model sees this as natural, and the engine finds it strong while preferring another move. It leaves doubled pawns in the position. Follow the pawns of the same color along their shared file.",
-      "rivetText": "The move is natural to the human-move model and strong by the engine's assessment, with another move preferred. Doubled pawns remain: pawns of the same color occupy the same file."
+      "rivetText": "Doubled pawns present. Same color, same file. The human model considers the move natural; the engine finds it strong but ranks another move best."
     },
     {
       "id": "combo-allowed-mate-hard-defense-missed",
@@ -999,7 +999,7 @@
       "primary": "allowed-mate",
       "secondary": "human-hard-defense-missed",
       "walterText": "This lets the other side force checkmate. We found one playable defense, but the human-move model and the alternatives suggest it was hard to find. Go back to that choice before following the finish.",
-      "rivetText": "Forced mate is now available to the other side. The only playable defense found was missed; the human-move model and searched alternatives suggest that resource was difficult to find."
+      "rivetText": "Issue: forced mate for the opponent. A defense existed, but only one searched move stayed playable. It was missed. Human-model evidence suggests a difficult resource."
     },
     {
       "id": "combo-missed-mate-hard-defense-missed",
@@ -1007,7 +1007,7 @@
       "primary": "missed-mate",
       "secondary": "human-hard-defense-missed",
       "walterText": "The forced mate was also the only playable choice we found. This move lets that finish go, and the human-move model with the alternatives suggests the missed resource was hard to find.",
-      "rivetText": "Forced mate was available with the only playable move found. That resource was missed. Human-move evidence and the examined alternatives suggest difficulty finding it."
+      "rivetText": "Available finish: forced mate. This move loses it. The only playable move found would have kept that finish; human-model evidence suggests a difficult find."
     },
     {
       "id": "combo-sound-sacrifice-hard-find",
@@ -1015,7 +1015,7 @@
       "primary": "sound-sacrifice",
       "secondary": "human-hard-find",
       "walterText": "This sacrifice holds up even when accepted in the line we checked. The human-move model and the alternatives suggest it was a hard move to find; take your time with the reply to the offer.",
-      "rivetText": "Accepting the sacrifice does not refute it in the examined line. The human-move model and checked alternatives also suggest difficulty finding the played move."
+      "rivetText": "Sacrifice checked. Acceptance does not refute it in the examined line. The human model and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-sound-sacrifice-unusual-strong",
@@ -1031,7 +1031,7 @@
       "primary": "sound-sacrifice",
       "secondary": "human-natural-best",
       "walterText": "This sacrifice is a natural choice in the human-move model and the engine's best move. In the line we checked, taking the offered material does not refute it. Look through the reply to the capture.",
-      "rivetText": "The engine's best move is also natural to the human-move model. It is a sacrifice whose acceptance does not refute the idea in the checked line."
+      "rivetText": "Sacrifice checked. Acceptance does not refute it in the examined line. The human model finds the choice natural; the engine ranks it best."
     },
     {
       "id": "combo-sound-sacrifice-natural-strong",
@@ -1047,7 +1047,7 @@
       "primary": "only-playable-move",
       "secondary": "human-natural-best",
       "walterText": "The natural choice in the human-move model was also the engine's best: the only move we found that kept the position playable. The other choices we checked were losing. A useful resource to remember.",
-      "rivetText": "Natural to the human-move model and best in the engine comparison. This was the only playable move found; the other examined choices were losing."
+      "rivetText": "Playable searched choices: this move only. The other examined moves were losing. It ranks best with the engine and looks natural to the human model."
     },
     {
       "id": "combo-only-advantage-resource-natural-best",
@@ -1055,7 +1055,7 @@
       "primary": "only-advantage-resource",
       "secondary": "human-natural-best",
       "walterText": "This natural choice in the human-move model was also the engine's best. Of the moves we checked, it alone kept the advantage. Keep the idea in mind when you return to this position.",
-      "rivetText": "The human-move model considers this natural, and it matches the engine's best. Among the moves examined, only this one retained the advantage."
+      "rivetText": "Advantage preserved by this move alone among the choices examined. It is the engine's best and natural to the human model."
     },
     {
       "id": "combo-immediate-capture-hard-defense-missed",
@@ -1063,7 +1063,7 @@
       "primary": "immediate-capture",
       "secondary": "human-hard-defense-missed",
       "walterText": "The other side can capture right away. We found one playable defense instead, and the human-move model with the alternatives suggests it was hard to find. Look back before following that capture.",
-      "rivetText": "An immediate capture is available to the other side. The only playable defense found was missed; human-move evidence and the searched alternatives suggest difficulty finding it."
+      "rivetText": "Immediate reply: the opponent can capture. The only playable defense found was missed. Human-model evidence suggests a difficult resource."
     },
     {
       "id": "combo-evaluation-loss-hard-defense-missed",
@@ -1071,7 +1071,7 @@
       "primary": "evaluation-loss",
       "secondary": "human-hard-defense-missed",
       "walterText": "This gives up evaluation compared with the best move. We found one choice that kept the position playable, but the human-move model and the alternatives suggest that missed resource was hard to find.",
-      "rivetText": "The move loses evaluation against the best option, the only playable choice found. That resource was missed, with human-move evidence and checked alternatives suggesting difficulty finding it."
+      "rivetText": "Evaluation drops against the best option. That alternative was the only playable move found, and it was missed. Human-model evidence suggests it was difficult to find."
     },
     {
       "id": "combo-clock-low-hard-find",
@@ -1079,7 +1079,7 @@
       "primary": "clock-low",
       "secondary": "human-hard-find",
       "walterText": "There was little time left before this move. You found the engine's best choice, and the human model and searched alternatives suggest it was a hard one to find.",
-      "rivetText": "Clock record: little time remained before the move. The engine's best move was played. The human-move model and searched alternatives indicate that this was difficult to find."
+      "rivetText": "Clock: little time remained. Result: the engine's best move. The human model and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-clock-low-unusual-strong",
@@ -1087,7 +1087,7 @@
       "primary": "clock-low",
       "secondary": "human-unusual-strong",
       "walterText": "The clock shows little time remaining before your move. It is an unusual choice in the human-move model, but the engine finds it strong. Let's look at the idea that makes it work.",
-      "rivetText": "Little time remained before this move, according to the clock. The human model rates the choice as unusual; the engine rates it as strong."
+      "rivetText": "Clock: little time remained before the move. Human-model assessment: unusual. Engine assessment: strong."
     },
     {
       "id": "combo-clock-low-natural-best",
@@ -1095,7 +1095,7 @@
       "primary": "clock-low",
       "secondary": "human-natural-best",
       "walterText": "There was little time left before the move. Your choice looks natural to the human model and matches the engine's best move. A sound idea to keep in mind.",
-      "rivetText": "Clock: little time remaining before the move. Human-model assessment: natural. Engine assessment: the best move. Both refer to the move played."
+      "rivetText": "Clock: little time remained. Human-model assessment: natural. Engine assessment: best."
     },
     {
       "id": "combo-clock-low-natural-strong",
@@ -1103,7 +1103,7 @@
       "primary": "clock-low",
       "secondary": "human-natural-strong",
       "walterText": "Little time remained before this move, according to the clock. Your choice is natural in the human model and strong in the engine's view, though the engine's best move is a different one.",
-      "rivetText": "The clock records little time remaining before the move. The human model prefers this choice, and the engine considers it strong. The engine's top choice is another move."
+      "rivetText": "Little time remained. The human model finds this move natural; the engine finds it strong, with another move preferred."
     },
     {
       "id": "combo-clock-fast-hard-find",
@@ -1111,7 +1111,7 @@
       "primary": "clock-fast",
       "secondary": "human-hard-find",
       "walterText": "You played the engine's best move quickly, with time still available. The human model and the alternatives we searched suggest it was a hard choice to find. Let's keep the idea.",
-      "rivetText": "A quick move, with time still available, matches the engine's best choice. The human-move model and searched alternatives classify this as a difficult find."
+      "rivetText": "Quick decision, with time still available. It matches the engine's best move. The human model and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-clock-fast-unusual-strong",
@@ -1143,7 +1143,7 @@
       "primary": "clock-long",
       "secondary": "human-hard-find",
       "walterText": "A substantial amount of recorded time went into this move. You found the engine's best choice, and the human model and searched alternatives suggest it was a hard one to find.",
-      "rivetText": "The clock records substantial time spent on the move. It matches the engine's best choice. The human model and searched alternatives indicate a difficult find."
+      "rivetText": "Clock record: substantial time spent. The engine's best move was found. The human model and searched alternatives suggest a difficult resource."
     },
     {
       "id": "combo-clock-long-unusual-strong",
@@ -1151,7 +1151,7 @@
       "primary": "clock-long",
       "secondary": "human-unusual-strong",
       "walterText": "The recorded clock shows substantial time spent on this move. The human model regards your choice as unusual, while the engine finds it strong. Let's see what gives the move its strength.",
-      "rivetText": "Substantial time elapsed on the clock for this move. The human model gives the choice an unusual rating; the engine's search supports it as a strong move."
+      "rivetText": "Clock: substantial time spent. The human model considers the move unusual; the engine finds it strong. Unusual is not a defect."
     },
     {
       "id": "combo-clock-long-natural-best",
@@ -1159,7 +1159,7 @@
       "primary": "clock-long",
       "secondary": "human-natural-best",
       "walterText": "You spent a substantial amount of recorded time on this move. Your choice is natural in the human model, and it is the engine's best move as well. That gives us a sound example to revisit.",
-      "rivetText": "The recorded time spent on this move was substantial. The engine's best move was played, and the human-move model also treats that same choice as natural."
+      "rivetText": "Substantial time was spent on this move. Result: the engine's best choice, also natural to the human model."
     },
     {
       "id": "combo-clock-long-natural-strong",
@@ -1167,7 +1167,7 @@
       "primary": "clock-long",
       "secondary": "human-natural-strong",
       "walterText": "A substantial amount of clock time went into this move. It is a natural choice in the human model and a strong one for the engine, but the engine prefers a different move. Let's compare them.",
-      "rivetText": "The clock shows substantial time used for the move. The played choice is natural in the human model and strong in the engine's search. A different move remains the engine's best choice."
+      "rivetText": "Clock: substantial time spent. The move is natural to the human model and strong in the search. The engine still prefers another choice."
     },
     {
       "id": "combo-recognized-opening-hard-find",
@@ -1175,7 +1175,7 @@
       "primary": "recognized-opening",
       "secondary": "human-hard-find",
       "walterText": "This belongs to a recognized opening line and is the engine's best move. It needn't be easy to spot: the human model and searched alternatives suggest a difficult find.",
-      "rivetText": "Recognized opening, engine-best move, demanding choice. The human model and searched alternatives indicate a hard find; knowing the line and finding the move are different tasks."
+      "rivetText": "Opening sequence matched. Engine result: best move. Human-model and search evidence suggest a difficult find. Known does not mean obvious."
     },
     {
       "id": "combo-recognized-opening-unusual-strong",
@@ -1183,7 +1183,7 @@
       "primary": "recognized-opening",
       "secondary": "human-unusual-strong",
       "walterText": "This is known opening territory, though the human model doesn't expect this choice. The engine still finds it strong. A move can be familiar to theory without looking natural.",
-      "rivetText": "Opening match confirmed. The human model finds this choice unusual; the engine finds it strong. Recognition, likelihood and quality are distinct readings."
+      "rivetText": "Opening match confirmed. Unusual to the human model. Strong according to the engine. No contradiction."
     },
     {
       "id": "combo-recognized-opening-natural-best",
@@ -1191,7 +1191,7 @@
       "primary": "recognized-opening",
       "secondary": "human-natural-best",
       "walterText": "This follows a recognized opening line. The human model sees a natural choice and the engine selects it as best. The book label isn't deciding the evaluation.",
-      "rivetText": "The move matches the opening record. Human-model reading: natural. Engine result: best. These describe recognition, likelihood and engine preference."
+      "rivetText": "Opening sequence matched. Human-model reading: natural. Engine result: best."
     },
     {
       "id": "combo-recognized-opening-natural-strong",
@@ -1199,7 +1199,7 @@
       "primary": "recognized-opening",
       "secondary": "human-natural-strong",
       "walterText": "A recognized opening move, and a natural choice to the human model. It's strong, though the engine prefers another move. Being in the book doesn't settle which move is best.",
-      "rivetText": "Opening match and a natural human-model choice. The engine rates it strong, but prefers another move. Book recognition does not override that comparison."
+      "rivetText": "Opening sequence matched. Natural to the human model; strong according to the engine, which prefers another move."
     },
     {
       "id": "combo-recognized-opening-hard-defense-found",
@@ -1215,7 +1215,7 @@
       "primary": "opening-departure",
       "secondary": "human-hard-find",
       "walterText": "Here the game first leaves the line recognized by our opening book. You found the engine's best move, and the human model and searched alternatives suggest it was a hard one to find.",
-      "rivetText": "This is the first move beyond our opening book's recognized line. It is the engine's best move. The human model and searched alternatives indicate that finding it was difficult."
+      "rivetText": "Opening-book boundary reached. This is the first move beyond the recognized line, and the engine's best. Human-model evidence and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-opening-departure-unusual-strong",
@@ -1223,7 +1223,7 @@
       "primary": "opening-departure",
       "secondary": "human-unusual-strong",
       "walterText": "This is the game's first step beyond the line in our opening book. The human model finds your choice unusual, but the engine finds it strong. There is a useful idea to explore here.",
-      "rivetText": "The game first leaves the line recognized by our opening book at this move. The human model classifies the choice as unusual, while the engine judges it strong."
+      "rivetText": "Opening-book boundary reached. This first move beyond the recognized line is unusual to the human model, but strong in the engine search. Departure is not a fault."
     },
     {
       "id": "combo-opening-departure-natural-best",
@@ -1239,7 +1239,7 @@
       "primary": "opening-departure",
       "secondary": "human-natural-strong",
       "walterText": "Here the game first steps beyond our opening book's recognized line. The human model finds your move natural, and the engine finds it strong, though it prefers a different move. Let's compare the ideas.",
-      "rivetText": "This move first takes the game beyond our opening book's line. The human model prefers this choice; the engine rates it strong but selects a different move as best."
+      "rivetText": "First move beyond the recognized opening line. Natural to the human model; strong in the engine search. The engine prefers another move."
     },
     {
       "id": "combo-recovery-hard-find",
@@ -1247,7 +1247,7 @@
       "primary": "recovery",
       "secondary": "human-hard-find",
       "walterText": "After the earlier setback, the engine's best move restores a playable position. The human model and searched alternatives suggest it was a difficult find. There's a way forward again.",
-      "rivetText": "Playable position restored with the engine's best move. The human model and examined alternatives indicate a hard find. This marks a recovery from the earlier setback."
+      "rivetText": "Recovery confirmed. The earlier setback is followed by a playable position again. This is the engine's best move; the human model and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-recovery-unusual-strong",
@@ -1255,7 +1255,7 @@
       "primary": "recovery",
       "secondary": "human-unusual-strong",
       "walterText": "This restores a playable position after the earlier setback. It's unusual to the human model, but strong in the engine's assessment. The recovery is worth looking at closely.",
-      "rivetText": "Recovery confirmed: the position is playable again. The choice was unusual to the human model and strong to the engine. Likelihood did not limit its value."
+      "rivetText": "Recovery confirmed: the position is playable again. Unusual to the human model, strong to the engine."
     },
     {
       "id": "combo-recovery-natural-best",
@@ -1279,7 +1279,7 @@
       "primary": "recovery-assisted",
       "secondary": "human-hard-find",
       "walterText": "This move, the engine's best, restores a playable position after the setback, helped by the opponent's errors. The human model and searched alternatives suggest the recovery move was difficult to find.",
-      "rivetText": "Recovery recorded, with help from the opponent's errors. The engine's best move restores a playable position and is a difficult find according to the human model and examined alternatives."
+      "rivetText": "Recovery confirmed, with help from the opponent's errors. This move restores a playable position and ranks best in the search. Human-model evidence suggests a difficult find."
     },
     {
       "id": "combo-recovery-assisted-unusual-strong",
@@ -1295,7 +1295,7 @@
       "primary": "recovery-assisted",
       "secondary": "human-natural-best",
       "walterText": "The opponent's errors helped make this recovery possible. Your move restores a playable position, looks natural to the human model, and matches the engine's best.",
-      "rivetText": "Recovery includes help from the opponent's errors. The played move restores a playable position, ranks best in the engine search, and is natural to the human model."
+      "rivetText": "Playable position restored, with help from the opponent's errors. This move is natural to the human model and ranks best in the search."
     },
     {
       "id": "combo-recovery-assisted-natural-strong",
@@ -1303,7 +1303,7 @@
       "primary": "recovery-assisted",
       "secondary": "human-natural-strong",
       "walterText": "This restores a playable position, with some help from the opponent's errors. It's natural to the human model and strong to the engine, even though the engine prefers another move.",
-      "rivetText": "Recovery achieved with help from the opponent's errors. The human model favors this move; the engine finds it strong, but prefers another way to continue."
+      "rivetText": "Playable position restored with help from the opponent's errors. The human model finds this move natural. The engine finds it strong, with another choice preferred."
     },
     {
       "id": "combo-chance-taken-hard-find",
@@ -1319,7 +1319,7 @@
       "primary": "chance-taken",
       "secondary": "human-unusual-strong",
       "walterText": "This makes use of the opponent's last error with a move the human model finds unusual. The engine supports its strength. An unexpected response can still be the right sort of idea.",
-      "rivetText": "The previous error is capitalized on. The human model rates this response as unusual, while the engine finds it strong. The opportunity was used."
+      "rivetText": "Opportunity supplied by the opponent; opportunity used. The human model finds this response unusual. The engine finds it strong."
     },
     {
       "id": "combo-chance-taken-natural-best",
@@ -1327,7 +1327,7 @@
       "primary": "chance-taken",
       "secondary": "human-natural-best",
       "walterText": "This takes the chance offered by the opponent's last move. The human model finds the response natural, and the engine ranks it best. You made the opportunity count.",
-      "rivetText": "Opportunity used after the opponent's previous move. This response is natural to the human model and best according to the engine. The reply meets both checks."
+      "rivetText": "Opportunity used after the opponent's previous move. Human-model assessment: natural. Engine assessment: best."
     },
     {
       "id": "combo-chance-taken-natural-strong",
@@ -1335,7 +1335,7 @@
       "primary": "chance-taken",
       "secondary": "human-natural-strong",
       "walterText": "This makes use of the chance from the opponent's last move. It's natural to the human model and strong to the engine, though the engine prefers another response.",
-      "rivetText": "The opportunity from the opponent's previous move is used. The human model favors this response; the engine finds it strong but prefers another move. Capitalizing and finding best are distinct."
+      "rivetText": "The opponent supplied a chance, and this move uses it. Natural to the human model, strong to the engine, though another move is preferred."
     },
     {
       "id": "combo-chance-missed-natural-error",
@@ -1343,7 +1343,7 @@
       "primary": "chance-missed",
       "secondary": "human-natural-error",
       "walterText": "The opponent's last move offered a chance, but this lets it pass. The human model sees a natural response; the engine finds a better one. Compare what that reply would have changed.",
-      "rivetText": "The chance from the previous move goes unused. The human model rates this response as natural, but the engine finds it wanting. Inspect the stronger reply."
+      "rivetText": "Opportunity missed: the chance supplied by the opponent's previous move goes unused. The human model finds this choice natural. The engine finds a stronger reply."
     },
     {
       "id": "combo-chance-missed-hard-defense-missed",
@@ -1351,7 +1351,7 @@
       "primary": "chance-missed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The chance from the opponent's last move goes unused. The engine's only searched playable defense was a different move, and the human model suggests that resource was difficult to find.",
-      "rivetText": "The previous opportunity is missed. A different move was the sole playable defense found in the search. Human-model evidence suggests that unplayed resource was difficult to find."
+      "rivetText": "Opportunity missed. The only playable defense found was a different move. Human-model evidence suggests a difficult resource."
     },
     {
       "id": "combo-support-restored-hard-find",
@@ -1359,7 +1359,7 @@
       "primary": "support-restored",
       "secondary": "human-hard-find",
       "walterText": "A piece left unguarded earlier has support again. You found the engine's best move, a difficult find according to the human model and searched alternatives. Compare how its protection has changed.",
-      "rivetText": "Support restored to the previously unguarded piece with the engine's best move. The human model and examined alternatives indicate a difficult find. Compare the piece's protection before and after."
+      "rivetText": "Protection restored. The piece left unguarded earlier has support again. This is the engine's best move; human-model evidence and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-support-restored-unusual-strong",
@@ -1367,7 +1367,7 @@
       "primary": "support-restored",
       "secondary": "human-unusual-strong",
       "walterText": "The piece left unguarded earlier has support again. This move is unusual to the human model, but strong according to the engine. Compare its protection before and after.",
-      "rivetText": "Protection restored to a previously unguarded piece. The human model finds the move unusual; the engine finds it strong. The restored support is a board fact in its own right."
+      "rivetText": "Protection restored to the piece left unguarded earlier. Human-model assessment: unusual. Engine assessment: strong."
     },
     {
       "id": "combo-support-restored-natural-best",
@@ -1375,7 +1375,7 @@
       "primary": "support-restored",
       "secondary": "human-natural-best",
       "walterText": "The piece left unguarded earlier has support again. This is a natural choice to the human model and the engine's best move. Notice how the piece's protection has changed.",
-      "rivetText": "The previously unguarded piece has support again. This move is natural to the human model and ranks best in the engine search. The restored support can be seen on the board."
+      "rivetText": "Protection restored. The previously unguarded piece has support again. The human model finds this choice natural; the engine ranks it best."
     },
     {
       "id": "combo-support-restored-natural-strong",
@@ -1399,7 +1399,7 @@
       "primary": "advantage-converted",
       "secondary": "human-unusual-strong",
       "walterText": "The reviewed moves kept the advantage through to the win. This move was unusual to the human model, yet strong in the engine's assessment. Follow how it fits into that stretch.",
-      "rivetText": "The reviewed stretch preserved the advantage to the recorded win. This move is unusual to the human model and strong to the engine. The sequence supplies the conversion context."
+      "rivetText": "Conversion recorded: the reviewed moves preserve the advantage through the recorded win. This move within that stretch is unusual to the human model and strong in the engine search."
     },
     {
       "id": "combo-advantage-converted-natural-best",
@@ -1423,7 +1423,7 @@
       "primary": "book-opening-entry-1",
       "secondary": "human-hard-find",
       "walterText": "We're in familiar opening territory here, with the engine's best move played. It was still a demanding find, judging by the human model and the searched alternatives.",
-      "rivetText": "Book move identified, and it matches the engine's best. The human model and examined alternatives mark it as a difficult find. A recorded line need not be obvious."
+      "rivetText": "Book move identified. Engine choice: best. The human model and searched alternatives suggest a difficult find."
     },
     {
       "id": "combo-book-opening-entry-1-unusual-strong",
@@ -1431,7 +1431,7 @@
       "primary": "book-opening-entry-1",
       "secondary": "human-unusual-strong",
       "walterText": "We're on known opening ground. This book move is unusual to the human model, yet strong according to the engine. Those two assessments can sit quite comfortably together.",
-      "rivetText": "This is a book move. Its human-model likelihood is low; its engine assessment is strong. A recognized line can still contain an unexpected choice."
+      "rivetText": "Book move identified. The human model finds it unusual; the engine finds it strong. An unexpected choice that holds up."
     },
     {
       "id": "combo-book-opening-entry-1-natural-best",
@@ -1447,7 +1447,7 @@
       "primary": "book-opening-entry-1",
       "secondary": "human-natural-strong",
       "walterText": "We're in familiar opening territory. The human model likes this choice, and the engine finds it strong, although its search prefers another move.",
-      "rivetText": "This recognized opening move is natural to the human model. The engine rates it strong, but selects a different best move. The book label is not a quality verdict."
+      "rivetText": "Book move identified. The human model favors it. The engine rates it strong, though another move ranks first."
     },
     {
       "id": "combo-book-opening-entry-1-hard-defense-found",
@@ -1455,7 +1455,7 @@
       "primary": "book-opening-entry-1",
       "secondary": "human-hard-defense-found",
       "walterText": "We're in known opening territory, but this book move matters for the defense. It alone kept things playable among the searched moves; the human model suggests it was hard to find.",
-      "rivetText": "Book move identified, and a difficult defense found. It was the only playable move among those searched. Human-model evidence supports the difficulty assessment."
+      "rivetText": "Book move identified. Defense found: the only playable choice among the moves searched. Human-model evidence suggests it was difficult to spot."
     },
     {
       "id": "combo-book-opening-entry-2-hard-find",
@@ -1463,7 +1463,7 @@
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-find",
       "walterText": "This is the engine's best move, and it belongs to a known opening line. Finding it was nevertheless demanding, according to the human model and the alternatives the engine examined.",
-      "rivetText": "The move matches a known opening and the engine's best choice. Model evidence and searched alternatives indicate a difficult find, despite its place in the opening record."
+      "rivetText": "Known opening matched. The engine selects this move as best. Human-model and search evidence suggest a demanding find."
     },
     {
       "id": "combo-book-opening-entry-2-unusual-strong",
@@ -1471,7 +1471,7 @@
       "primary": "book-opening-entry-2",
       "secondary": "human-unusual-strong",
       "walterText": "This move belongs to a known opening, though it isn't a choice the human model expects. The engine finds it strong. Theory and natural-looking play needn't coincide.",
-      "rivetText": "Known opening matched. The human model treats this choice as unusual, while the engine supports its strength. Move likelihood is distinct from move strength."
+      "rivetText": "Known opening matched. Unusual to the human model; strong according to the engine. The move holds up."
     },
     {
       "id": "combo-book-opening-entry-2-natural-best",
@@ -1479,7 +1479,7 @@
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-best",
       "walterText": "This move belongs to a known opening line. It also looks natural to the human model and is the engine's best. Here, familiarity has solid support from the search.",
-      "rivetText": "This move matches a known opening, a natural human-model choice, and the engine's top result. Its opening status is distinct from those assessments."
+      "rivetText": "Known opening matched. This choice is natural to the human model and first in the engine ranking."
     },
     {
       "id": "combo-book-opening-entry-2-natural-strong",
@@ -1487,7 +1487,7 @@
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-strong",
       "walterText": "This move belongs to a known opening line and looks natural to the human model. The engine finds it strong, but prefers a different move. It's worth keeping that distinction.",
-      "rivetText": "Known opening matched. The human model favors this choice; the engine finds it strong while preferring another move. The opening record does not decide that preference."
+      "rivetText": "Known opening matched. Human-model reading: natural. Engine reading: strong. First place belongs to another move."
     },
     {
       "id": "combo-book-opening-entry-2-hard-defense-found",
@@ -1495,7 +1495,7 @@
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-defense-found",
       "walterText": "This move belongs to a known opening line and keeps the position playable. The other searched moves didn't manage that, and the human model suggests a difficult defensive find.",
-      "rivetText": "A known opening move preserves a playable position. It was the sole playable resource in the search; the human-model evidence points to a hard defense to find."
+      "rivetText": "Known opening matched. Only this defense stayed playable among the moves searched. The human model suggests a difficult find. Position held."
     },
     {
       "id": "combo-book-opening-entry-3-hard-find",
@@ -1503,7 +1503,7 @@
       "primary": "book-opening-entry-3",
       "secondary": "human-hard-find",
       "walterText": "This is book, and the engine's best move. That doesn't make finding it routine; the human model and searched alternatives suggest a difficult choice within the recognized line.",
-      "rivetText": "The opening record contains the engine-best move played here. The human model and searched alternatives indicate a difficult find. A stored line is not a measure of ease."
+      "rivetText": "Recorded opening line. Best move in the engine comparison. The human model and examined alternatives suggest a difficult find."
     },
     {
       "id": "combo-book-opening-entry-3-unusual-strong",
@@ -1511,7 +1511,7 @@
       "primary": "book-opening-entry-3",
       "secondary": "human-unusual-strong",
       "walterText": "This is book, even if the human model considers it an unusual choice. The engine still finds it strong. Known opening ideas don't always look like the natural move.",
-      "rivetText": "The move is recorded opening theory. Unusual to the human model, strong to the engine. Those descriptions measure different things."
+      "rivetText": "Recorded opening theory. The human model finds the move unusual. The engine finds it strong."
     },
     {
       "id": "combo-book-opening-entry-3-natural-best",
@@ -1519,7 +1519,7 @@
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-best",
       "walterText": "This is book, and the search gives us another reason to like it: it's the engine's best move. The human model also sees it as a natural choice here.",
-      "rivetText": "Recorded opening theory, with a matching engine result: best move. The human model calls the choice natural. Recognition is not doing the grading."
+      "rivetText": "Recorded opening theory. Natural according to the human model, best according to the engine."
     },
     {
       "id": "combo-book-opening-entry-3-natural-strong",
@@ -1527,7 +1527,7 @@
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-strong",
       "walterText": "This is book, and a natural choice to the human model. The engine judges it strong while preferring another move. Recognizing the line and choosing the very best move are different tasks.",
-      "rivetText": "Recorded opening theory. The choice is natural to the human model and strong to the engine, but not the engine's first choice. Keep those results distinct."
+      "rivetText": "Recorded opening theory. Human-model signal: natural. Engine assessment: strong, with a different move preferred."
     },
     {
       "id": "combo-book-opening-entry-3-hard-defense-found",
@@ -1543,7 +1543,7 @@
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-find",
       "walterText": "We're still in known opening territory, with the engine's best move. It was a demanding step according to the human model and searched alternatives, even within the book sequence.",
-      "rivetText": "The book sequence continues with the engine's best move. It is a difficult find according to the human model and searched alternatives, not because of the opening label."
+      "rivetText": "Book sequence maintained with the engine's best move. The human model and searched alternatives suggest a hard find."
     },
     {
       "id": "combo-book-opening-follow-1-unusual-strong",
@@ -1551,7 +1551,7 @@
       "primary": "book-opening-follow-1",
       "secondary": "human-unusual-strong",
       "walterText": "We're still following known opening ideas. This one is unusual to the human model, though the engine finds it strong. A familiar line can hold an unexpected choice.",
-      "rivetText": "The book sequence continues. This choice is unusual to the human model and strong according to the engine. Recognition remains a distinct result."
+      "rivetText": "The book sequence continues. Unusual choice in the human model. Strong choice in the engine comparison."
     },
     {
       "id": "combo-book-opening-follow-1-natural-best",
@@ -1559,7 +1559,7 @@
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-best",
       "walterText": "We're still in known opening territory. This step is natural to the human model and the engine's best move, so its strength has support beyond the book.",
-      "rivetText": "Book sequence maintained. The human model favors this move, and it tops the engine ranking. The known continuation has independent support from the search."
+      "rivetText": "Book sequence maintained. The human model finds this move natural; the engine ranks it first."
     },
     {
       "id": "combo-book-opening-follow-1-natural-strong",
@@ -1567,7 +1567,7 @@
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-strong",
       "walterText": "We're still in known opening territory. This looks natural to the human model and is strong, although the engine prefers another move. The book leaves room for that distinction.",
-      "rivetText": "The book sequence continues with a natural human-model choice. Engine result: strong, with another move preferred. Recognition does not imply first place."
+      "rivetText": "The book sequence continues. Natural to the human model and strong in the engine comparison. Another move takes first place."
     },
     {
       "id": "combo-book-opening-follow-1-hard-defense-found",
@@ -1583,7 +1583,7 @@
       "primary": "book-opening-follow-2",
       "secondary": "human-hard-find",
       "walterText": "Another book move here, and the engine's best. The human model and searched alternatives suggest it was hard to find. Knowing a move is theory doesn't tell us how easy it was to see.",
-      "rivetText": "Another book move matches the engine's best choice. The human model and examined alternatives support its difficulty. The opening match does not remove the challenge."
+      "rivetText": "Another book move. Engine result: best. The human model and examined alternatives suggest a difficult find."
     },
     {
       "id": "combo-book-opening-follow-2-unusual-strong",
@@ -1591,7 +1591,7 @@
       "primary": "book-opening-follow-2",
       "secondary": "human-unusual-strong",
       "walterText": "Another book move, though this choice is less expected by the human model. The engine finds it strong. A useful reminder that natural-looking and sound aren't the same test.",
-      "rivetText": "Another recognized book move. Its human-model reading is unusual; the engine reading is strong. Neither result cancels the other."
+      "rivetText": "Another recognized book move. The human model finds it unusual. The engine approves its strength."
     },
     {
       "id": "combo-book-opening-follow-2-natural-best",
@@ -1599,7 +1599,7 @@
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-best",
       "walterText": "Another book move, and this one also comes first in the engine's search. The human model sees it as natural. That's a reassuring meeting of the two assessments.",
-      "rivetText": "Another book move matches the engine's best choice. The human model favors it as well. Here, the natural choice is also the best."
+      "rivetText": "Another book move matches the engine's best choice. The human model favors it as well. Agreement recorded."
     },
     {
       "id": "combo-book-opening-follow-2-natural-strong",
@@ -1623,7 +1623,7 @@
       "primary": "book-opening-follow-3",
       "secondary": "human-hard-find",
       "walterText": "This reply is book as well, and the engine's best move. The human model and searched alternatives suggest it was hard to find. The opening record doesn't make the decision automatic.",
-      "rivetText": "This reply is book too, and it is the engine's best choice. Model evidence and examined alternatives indicate a difficult find. A known sequence can still be demanding."
+      "rivetText": "This reply is book too. Engine choice: best. The human model and examined alternatives suggest it was difficult to find."
     },
     {
       "id": "combo-book-opening-follow-3-unusual-strong",
@@ -1639,7 +1639,7 @@
       "primary": "book-opening-follow-3",
       "secondary": "human-natural-best",
       "walterText": "This reply is book as well, natural to the human model, and the engine's best move. Here, the recognized continuation also stands up to the search.",
-      "rivetText": "This reply is book too, and it matches the engine's best move. The human model rates it as natural. The continuation passes both distinct checks."
+      "rivetText": "This reply is book too. Engine ranking: first. Human-model reading: natural. Both checks passed."
     },
     {
       "id": "combo-book-opening-follow-3-natural-strong",
@@ -1647,7 +1647,7 @@
       "primary": "book-opening-follow-3",
       "secondary": "human-natural-strong",
       "walterText": "This reply is book as well. The human model sees a natural choice, and the engine calls it strong, though it prefers a different reply. It's useful to compare the two.",
-      "rivetText": "The reply is also book. It is natural to the human model and strong to the engine, which nevertheless prefers another move. Strong is not the same ranking as best."
+      "rivetText": "This reply is also book. Natural to the human model. Strong to the engine, with another move ranked first."
     },
     {
       "id": "combo-book-opening-follow-3-hard-defense-found",
@@ -1663,7 +1663,7 @@
       "primary": "book-opening-follow-4",
       "secondary": "human-hard-find",
       "walterText": "The known opening line continues with the engine's best move. The human model and searched alternatives suggest a difficult find. Even in theory, there's something here worth understanding.",
-      "rivetText": "Opening recognition continues with an engine-best move. The human model and searched alternatives support its difficulty. Recorded theory can still be demanding."
+      "rivetText": "Opening record still matched. The engine chooses this move as best. Human-model and search evidence suggest a demanding find."
     },
     {
       "id": "combo-book-opening-follow-4-unusual-strong",
@@ -1671,7 +1671,7 @@
       "primary": "book-opening-follow-4",
       "secondary": "human-unusual-strong",
       "walterText": "The known opening line continues. This choice is unusual to the human model, but the engine finds it strong. The book and the model are describing different kinds of familiarity.",
-      "rivetText": "Opening recognition continues with a model-unusual choice. The engine still finds it strong. A catalogue match does not require high human-model likelihood."
+      "rivetText": "Opening record still matched. Human-model signal: unusual. Engine assessment: strong."
     },
     {
       "id": "combo-book-opening-follow-4-natural-best",
@@ -1679,7 +1679,7 @@
       "primary": "book-opening-follow-4",
       "secondary": "human-natural-best",
       "walterText": "The known opening line continues with the engine's best move. The human model also sees it as natural. That evaluation comes from the search, rather than the book label.",
-      "rivetText": "Opening recognition continues. This move is first in the engine's ranking and natural to the human model. The move earns the ranking independently of its book status."
+      "rivetText": "Opening record still matched. This move is natural to the human model and first in the engine ranking."
     },
     {
       "id": "combo-book-opening-follow-4-natural-strong",
@@ -1687,7 +1687,7 @@
       "primary": "book-opening-follow-4",
       "secondary": "human-natural-strong",
       "walterText": "The known opening line continues. This is natural to the human model and strong according to the engine, but the search prefers another move. Theory isn't a ranking by itself.",
-      "rivetText": "Opening recognition continues with a natural, strong choice. Natural comes from the human model; strong comes from the engine, which prefers another move."
+      "rivetText": "Opening recognition continues. The human model favors this choice. Engine verdict: strong. Another move remains preferred."
     },
     {
       "id": "combo-book-opening-follow-4-hard-defense-found",
@@ -1703,7 +1703,7 @@
       "primary": "book-opening-follow-5",
       "secondary": "human-hard-find",
       "walterText": "We're on familiar opening ground here too, and this is the engine's best move. The human model and examined alternatives suggest a hard find, even within the known line.",
-      "rivetText": "This engine-best move stays within a known opening. The human model and searched alternatives also support a difficult-find assessment. Recognition alone does not make it easy."
+      "rivetText": "Still within a known opening. The played move is the engine's best. Human-model and search evidence suggest a difficult find."
     },
     {
       "id": "combo-book-opening-follow-5-unusual-strong",
@@ -1711,7 +1711,7 @@
       "primary": "book-opening-follow-5",
       "secondary": "human-unusual-strong",
       "walterText": "We're on familiar opening ground here too. The human model finds this move unusual, while the engine finds it strong. A known line doesn't have to look natural at every turn.",
-      "rivetText": "The move stays within a known opening, but is unusual to the human model. Engine assessment remains strong. Opening familiarity and move likelihood are distinct."
+      "rivetText": "Still within a known opening. Unusual choice according to the human model. Strong choice according to the engine."
     },
     {
       "id": "combo-book-opening-follow-5-natural-best",
@@ -1719,7 +1719,7 @@
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-best",
       "walterText": "We're on familiar opening ground here too, and the move is also the engine's best. The human model finds the choice natural. That's good reason to study the idea behind it.",
-      "rivetText": "This move stays within a known opening and leads the engine's ranking. The human model finds it natural. The evaluation comes from the engine, not the opening match."
+      "rivetText": "Still within a known opening. The human model finds this choice natural; the engine ranks it best. Both point to the played move."
     },
     {
       "id": "combo-book-opening-follow-5-natural-strong",
@@ -1727,7 +1727,7 @@
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-strong",
       "walterText": "We're on familiar opening ground here too. The human model favors this choice, and the engine finds it strong while preferring another move. Book and best needn't be the same.",
-      "rivetText": "This move stays within a known opening. The human model favors it; the engine rates it strong, with a different move ranked best. The opening match remains valid."
+      "rivetText": "Still within a known opening. The human model finds this move natural; the engine rates it strong, with another option ranked best."
     },
     {
       "id": "combo-book-opening-follow-5-hard-defense-found",
@@ -1743,7 +1743,7 @@
       "primary": "book-opening-follow-6",
       "secondary": "human-hard-find",
       "walterText": "This keeps the book sequence going with the engine's best move. The human model and searched alternatives suggest it was difficult to find. A familiar line can still ask a demanding question.",
-      "rivetText": "Another opening move is recognized, and it matches the engine's best. The human model and examined alternatives indicate a difficult find. Recognition and difficulty are distinct results."
+      "rivetText": "Another opening move recognized. It matches the engine's best choice. The human model and examined alternatives suggest a demanding find."
     },
     {
       "id": "combo-book-opening-follow-6-unusual-strong",
@@ -1751,7 +1751,7 @@
       "primary": "book-opening-follow-6",
       "secondary": "human-unusual-strong",
       "walterText": "This keeps the book sequence going with a choice the human model finds unusual. The engine still finds it strong. Opening theory has room for less natural-looking moves.",
-      "rivetText": "Another opening move is recognized, despite low likelihood in the human model. The engine rates the move strong. Low likelihood is not a poor evaluation."
+      "rivetText": "Another opening move recognized. The human model finds this one unusual. Engine result: strong. An unexpected but sound choice."
     },
     {
       "id": "combo-book-opening-follow-6-natural-best",
@@ -1767,7 +1767,7 @@
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-strong",
       "walterText": "This keeps the book sequence going. It's a natural choice to the human model and a strong move to the engine, although the engine's best is elsewhere. Keep that distinction in mind.",
-      "rivetText": "Another opening move is recognized. Human-model reading: natural. Engine reading: strong, with a different best move. Book status does not settle the ranking."
+      "rivetText": "Another opening move recognized. The human model finds it natural. The engine rates it strong and places a different move first."
     },
     {
       "id": "combo-book-opening-follow-6-hard-defense-found",
@@ -1783,7 +1783,7 @@
       "primary": "book-opening-follow-7",
       "secondary": "human-hard-find",
       "walterText": "This step is still part of a known opening and is the engine's best. The human model and searched alternatives suggest a difficult find; being written in theory doesn't make every step easy.",
-      "rivetText": "This move also matches the opening record and the engine's best choice. Model evidence and searched alternatives indicate a hard find. Recognition does not measure how obvious it is."
+      "rivetText": "The move also matches the opening record. Engine result: best. The human model and searched alternatives suggest a hard find."
     },
     {
       "id": "combo-book-opening-follow-7-unusual-strong",
@@ -1791,7 +1791,7 @@
       "primary": "book-opening-follow-7",
       "secondary": "human-unusual-strong",
       "walterText": "This step is still part of a known opening, though unusual to the human model. The engine finds it strong. It helps to distinguish a move's familiarity from its value.",
-      "rivetText": "The move also matches the opening record. The human model finds it unusual; the engine finds it strong. A recognized idea can have low predicted likelihood."
+      "rivetText": "The move also matches the opening record. Unusual to the human model; strong according to the engine."
     },
     {
       "id": "combo-book-opening-follow-7-natural-best",
@@ -1799,7 +1799,7 @@
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-best",
       "walterText": "This step is still part of a known opening and is the engine's best move here. The human model considers it natural as well. The opening match is distinct from that evaluation.",
-      "rivetText": "The move also matches the opening record and tops the engine ranking. Human-model reading: natural. This is a recognized move with independent evaluation support."
+      "rivetText": "The move also matches the opening record. Human-model reading: natural. Engine ranking: first."
     },
     {
       "id": "combo-book-opening-follow-7-natural-strong",
@@ -1823,7 +1823,7 @@
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-find",
       "walterText": "Another book move, and the engine's best. Recognition and difficulty are different questions: the human model and searched alternatives suggest a demanding find here.",
-      "rivetText": "Another book move matches the engine's best. Recognition is one result; difficulty is another. The human model and examined alternatives support a difficult-find assessment."
+      "rivetText": "Another book move matches the engine's best. Human-model evidence and the examined alternatives suggest a difficult find. Correct move, demanding choice."
     },
     {
       "id": "combo-book-opening-follow-8-unusual-strong",
@@ -1831,7 +1831,7 @@
       "primary": "book-opening-follow-8",
       "secondary": "human-unusual-strong",
       "walterText": "Another book move. The human model finds it unusual, and the engine finds it strong. Knowing the line, predicting a human choice, and judging the move are three different things.",
-      "rivetText": "Another book move. Opening recognition, human likelihood and move quality are distinct readings: known line, unusual choice, strong engine assessment."
+      "rivetText": "Another book move. The human model finds it unusual; the engine finds it strong."
     },
     {
       "id": "combo-book-opening-follow-8-natural-best",
@@ -1839,7 +1839,7 @@
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
       "walterText": "Another book move, and independently the engine's best. The human model sees it as natural too. The search supplies that evaluation, rather than the opening label.",
-      "rivetText": "Another book move. Recognition does not determine quality, but this move also ranks best in the engine search and natural in the human model."
+      "rivetText": "Another book move. Natural in the human model and best in the engine search. The played move satisfies both checks."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
@@ -1847,7 +1847,7 @@
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
       "walterText": "Another book move. The human model sees it as natural, and the engine finds it strong while preferring something else. Knowing the line and finding the best move remain different questions.",
-      "rivetText": "Another book move. Recognition is distinct from quality: the human model favors this choice, but the engine calls it strong and ranks a different move best."
+      "rivetText": "Another book move. The human model favors it; the engine calls it strong. A different move remains the engine's first choice."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",
@@ -1855,7 +1855,7 @@
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-defense-found",
       "walterText": "Another book move, with a difficult defense behind the label. It was the only playable move among those searched, and the human-model evidence suggests it was hard to find.",
-      "rivetText": "Another book move. Its defensive value is distinct from recognition: only this searched move stayed playable. Human-model evidence suggests a difficult resource found."
+      "rivetText": "Another book move, and a defense located. Only this move stayed playable among those searched. Human-model evidence suggests it was a difficult resource."
     }
   ]
 }

@@ -4,6 +4,68 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Rivet spoken personality restoration — October 1, 2026
+
+Reviewed all 257 newer spoken additions against Rivet's existing character bible.
+Rewrote **197** complete passages: 75 tactical, 47 opening, 29 positional and 46
+causal/context passages. Retained 60 additions and all 181 original recordings.
+The [editorial revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+records each previous/revised text and its reason. Review restored concrete chess
+events first, compact issue/cause/result structure and restrained understatement;
+removed repeated methodology lectures and redundant closing commentary.
+
+Independent semantic review covered all 257 proposed changes/retentions before
+recording. It checked actor identity, possible versus completed tactics, searched
+defense limits, forced mate versus completed checkmate, naturalness attribution,
+Best versus strong-but-not-preferred, and opponent-assisted recovery. Draft
+overstatements about newly created attacks, completed recaptures and extra
+discovered-attack threats were corrected before generation. No recording IDs,
+evidence pairings, grading, dialogue selection or playback policy changed.
+
+The existing bounded recorder made **197 successful requests**, no retakes or
+retries, using **29,270 input characters / 3,540 provider credits**. Every saved
+request ID matched voice-filtered provider history and its model; optional
+provider voice/text fields were absent. The account counter moved from 25,326
+to 28,866, matching the sum of request history deltas. Its immediate 3,492-credit
+reading lagged by 48. The locked voice, model, format and delivery settings are
+unchanged. Superseded takes remain in Git history rather than shipping alongside
+their replacements.
+
+- `.venv/Scripts/python.exe scripts/prepare_coach_voice_bank.py --generate
+  --manifest frontend/src/audio/speech/banks/rivet/manifest.json
+  --work-dir .tools/voice-rivet-editorial-alignment`: **197 generated, 241 reused,
+  438 ready, none missing**. No manually edited timing.
+- `.venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check`:
+  **876 ready/reused, none missing**, strict and offline.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py
+  backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py
+  backend/tests/test_coach_voice_bank.py backend/tests/test_walter_language_revision.py
+  backend/tests/test_coach_pilot_scripts.py -q`: **329 passed**, no skips.
+  `node --test scripts/record_coach_speech.test.mjs`: **14 passed**, no skips.
+- From `frontend`, `npx playwright test --config
+  node_modules/.cache/recorded-audio-check.config.mjs game-speech-combinations.spec.ts
+  voice-registry.spec.ts recorded-coach-comparison.spec.ts coach-speech.spec.ts
+  maia-meaning-coverage.spec.ts --reporter=line`: **194 passed**, desktop/mobile,
+  no skips. The filename filter also includes the real `PositionCoach` speech
+  cases. The ignored configuration only enables reuse of the running studio.
+- Native Audio Studio QA decoded all **197** new recordings, verifying exact
+  text/asset identity, valid mouth cues, duration agreement and audible samples.
+  Twelve real previews covered ten diverse desktop meanings plus 390px/320px
+  screens, with one native audio start each and multiple aligned mouth states;
+  two complete clips ended naturally. No page errors, external requests,
+  mutations, extra audio fragments or horizontal overflow. Screenshots inspected.
+  This verifies technical playback; subjective acoustic listening was unavailable.
+- Independent scope checks verified **2,039 unchanged files**: all 438 Walter
+  and 241 retained Rivet audio/provenance/alignment files plus Walter's manifest
+  and compact tracks. Only the intended 197 Rivet compact tracks changed. Walter
+  prose and every primary/secondary meaning pairing are unchanged. Both production
+  asset globs and the built bundle contain exactly **876** current MP3s, with no
+  obsolete takes or omissions.
+- `npm --prefix frontend run build` and `npm --prefix frontend run
+  build:audio-studio`: **passed**, including OpenAPI drift, TypeScript projects,
+  24 style-boundary tests and both bundles. Existing Vite large-chunk warnings
+  and the studio's mixed JSON import-attribute warning remain nonblocking.
+
 ## Spoken pronunciation correction and Rivet wording audit — October 1, 2026
 
 Replaced ambiguous “separate”/“separately” wording in four Walter and eighteen

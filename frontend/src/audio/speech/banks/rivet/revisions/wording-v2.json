@@ -1,0 +1,1192 @@
+{
+  "schemaVersion": 1,
+  "coachId": "robot",
+  "voiceId": "rivet",
+  "baseCommit": "a65a40ddd73eee901288dc99f35285cad200bab2",
+  "reviewedAdditions": 257,
+  "retainedAdditions": 60,
+  "recordings": [
+    {
+      "id": "combined-tactic-fork-allowed-with-human-natural-error",
+      "previousText": "This is natural to the human model, but it offers the opponent a fork. That could let the same piece attack several targets.",
+      "text": "Issue: a fork is available to the opponent. One piece could attack several targets. The human model finds this choice natural; the tactical cost is still there.",
+      "reason": "Put the allowed fork and its mechanism first; retain the model's natural-choice assessment without excusing the error."
+    },
+    {
+      "id": "combined-tactic-skewer-allowed-with-human-natural-error",
+      "previousText": "This is natural to the human model, but it offers the opponent a skewer. Moving the front piece could expose another piece behind it.",
+      "text": "Issue: the opponent has a skewer opportunity. Moving the front piece could expose the piece behind it. Natural to the human model. Costly on the board.",
+      "reason": "Lead with the opponent's opportunity, followed by its mechanism and a compact natural-error distinction."
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-unusual-strong",
+      "previousText": "The pattern to examine is a fork: the same piece can attack several targets. The human model finds this choice unusual, yet the engine supports it.",
+      "text": "Fork resource found. The same piece can attack several targets. The human model finds the choice unusual; the engine finds it strong.",
+      "reason": "Replace an instruction to examine with a compact pattern-first explanation and the two evidence-bound assessments."
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-hard-find",
+      "previousText": "This move was hard to find. Examine the fork idea: the same piece can attack several targets.",
+      "text": "Resource: a fork. One piece can threaten several targets at once. The engine ranks this move best; the human model and searched alternatives suggest it was difficult to find.",
+      "reason": "Lead with the mechanism; make the best-move and supported difficulty assessments explicit without declaring the fork already played."
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-unusual-strong",
+      "previousText": "The human model finds this unusual, but the engine supports it. Examine the pinning idea: a piece pinned to its king cannot leave that line.",
+      "text": "Pin resource found. A piece pinned to its king cannot leave the line and expose it. The human model calls the choice unusual; the engine supports its strength.",
+      "reason": "Put the absolute-pin mechanism before model assessment and remove generic examine-the-idea wording."
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-hard-find",
+      "previousText": "This move was hard to find. Examine the pinning idea: a piece pinned to its king cannot leave that line and expose it.",
+      "text": "Mechanism: a pin to the king. The pinned piece cannot leave that line and expose its king. This is the engine's best move; model evidence and searched alternatives indicate a difficult find.",
+      "reason": "Replace difficulty-first padding with the legal restriction, retaining bounded evidence for difficulty and best rank."
+    },
+    {
+      "id": "combo-tactic-fork-played-natural-best",
+      "previousText": "This is both natural to the human model and the engine's best. The fork idea combines several targets under the same attacker.",
+      "text": "Fork resource found. One piece can attack several targets. The human model considers the choice natural; the engine ranks it best. One attacker, several problems for the other side.",
+      "reason": "Restore the fork-first voice and a concrete understated finish while retaining both independent assessments."
+    },
+    {
+      "id": "combo-tactic-fork-played-natural-strong",
+      "previousText": "The move looks natural and is strong, though the engine prefers another. Its fork idea uses the same piece to attack several targets.",
+      "text": "Resource: a fork, with several targets for the same piece. Natural to the human model and strong according to the engine. A different move still gets the engine's first choice.",
+      "reason": "State the pattern before the assessments and preserve strong-versus-best without inventing a score gap."
+    },
+    {
+      "id": "combo-tactic-fork-allowed-hard-defense-missed",
+      "previousText": "The only playable move found was difficult to spot. This choice permits a fork opportunity: one opposing piece could attack several targets.",
+      "text": "Issue: the opponent can work toward a fork, attacking several targets with one piece. The search found only one playable defense. It was missed; human-model evidence suggests a difficult find.",
+      "reason": "Explain the opponent's future resource first and keep the sole defense bounded to the search."
+    },
+    {
+      "id": "combo-tactic-fork-missed-natural-error",
+      "previousText": "The human model favors this choice, but it misses a fork opportunity. The stronger option could let one piece attack several targets.",
+      "text": "Missed resource: a fork. Another move offered several targets for one attacker. The human model finds the played choice natural, but it passes up that opportunity.",
+      "reason": "Center the missed chess resource and retain the model's assessment of the played move, not the alternative."
+    },
+    {
+      "id": "combo-tactic-fork-missed-hard-defense-missed",
+      "previousText": "The missed resource was hard to find and the only playable move found. Its tactical idea was a fork: one piece could attack several targets.",
+      "text": "Missed resource: a fork. One piece could attack several targets. That alternative was the only playable move found by the search; the human model indicates a difficult defense to find.",
+      "reason": "Keep the hypothetical fork attached to the missed searched defense rather than the played move."
+    },
+    {
+      "id": "combo-tactic-pin-played-natural-best",
+      "previousText": "Natural to the human model and best in the engine comparison, this move has a pinning idea. A piece pinned to its king cannot leave that line.",
+      "text": "Resource: a pin to the king. Leaving that line would expose the king, so the pinned piece cannot do it. Natural to the human model. Best in the engine comparison.",
+      "reason": "Use compact mechanism-first clauses and retain the legal rather than merely inconvenient restriction."
+    },
+    {
+      "id": "combo-tactic-pin-played-natural-strong",
+      "previousText": "This natural-looking choice is strong, but the engine prefers another. Examine the pin to the king, which restricts a pinned piece's movement.",
+      "text": "Pin resource found. A piece pinned to its king has a legal restriction: it cannot expose the king. The model finds the choice natural; the engine finds it strong, while preferring another move.",
+      "reason": "Replace inspect wording with the supported pin mechanism and keep the engine's different first choice explicit."
+    },
+    {
+      "id": "combo-tactic-pin-allowed-natural-error",
+      "previousText": "Natural to the human model, this choice permits a pinning opportunity. A piece pinned to its king cannot leave the line and expose the king.",
+      "text": "Issue: a pin to the king is available to the opponent. A pinned piece cannot leave that line and expose its king. The human model finds this choice natural, despite the tactical problem.",
+      "reason": "Identify the opponent as the beneficiary before explaining the legal restriction and natural-error signal."
+    },
+    {
+      "id": "combo-tactic-pin-allowed-hard-defense-missed",
+      "previousText": "This offers the opponent a pin to the king. The only playable alternative found was difficult to discover; inspect that missed resource.",
+      "text": "Issue: the opponent has a chance to use a pin to the king. The only playable defense found by the search was missed. Human-model evidence suggests it was difficult to find.",
+      "reason": "Keep the clear opponent-first opening but remove the generic inspection command and specify the evidence boundary."
+    },
+    {
+      "id": "combo-tactic-pin-missed-natural-error",
+      "previousText": "The played move is natural to the human model, but misses a pinning opportunity. The stronger option could exploit a piece's inability to expose its king.",
+      "text": "Missed resource: a pin to the king. Another move could exploit the pinned piece's inability to expose its king. The played choice is natural to the human model, but loses that opportunity.",
+      "reason": "Keep the hypothetical mechanism attributed to the unplayed alternative and put it before model information."
+    },
+    {
+      "id": "combo-tactic-pin-missed-hard-defense-missed",
+      "previousText": "The only playable resource found was hard to find. The missed idea uses a pin to the king, restricting the pinned piece's legal movement.",
+      "text": "Missed defense: a resource using a pin to the king. The pinned piece could not legally expose its king. Only that alternative stayed playable in the search; model evidence suggests a hard find.",
+      "reason": "Replace the vague missed idea with a precise legal mechanism and the bounded searched-defense result."
+    },
+    {
+      "id": "combo-tactic-skewer-played-hard-find",
+      "previousText": "This was a hard find. Examine the skewer idea, where moving the front piece can expose the piece behind it along the same line.",
+      "text": "Resource: a skewer. Moving the front piece can expose the piece behind it along the same line. The engine ranks this move best; model evidence and searched alternatives indicate a difficult find.",
+      "reason": "Introduce the line geometry first and retain both engine-best and supported difficulty."
+    },
+    {
+      "id": "combo-tactic-skewer-played-unusual-strong",
+      "previousText": "Unusual to the human model, this move is still strong. The skewer idea concerns the rear piece exposed when the front piece leaves the line.",
+      "text": "Skewer resource found. The front piece can move aside and expose a target behind it. Unusual to the human model, strong according to the engine.",
+      "reason": "Remove model-first framing and vague idea wording while keeping future exposure conditional."
+    },
+    {
+      "id": "combo-tactic-skewer-played-natural-best",
+      "previousText": "The engine's best also looks natural to the human model. Examine the skewer idea: a front piece can move away and expose a target behind it.",
+      "text": "Resource: a skewer. The threat reaches the rear piece when the front piece leaves the line. The human model finds the choice natural; the engine ranks it best.",
+      "reason": "Replace an inspection instruction with the mechanism, without asserting that either piece has moved yet."
+    },
+    {
+      "id": "combo-tactic-skewer-played-natural-strong",
+      "previousText": "This is a natural-looking, strong choice, though the engine prefers another. Its skewer idea can expose a rear target when the front piece moves.",
+      "text": "Skewer resource found: a front piece can move away and expose a rear target. The model finds this natural; the engine calls it strong, but puts another move first.",
+      "reason": "Lead with conditional line geometry and preserve the strong-but-different-best distinction."
+    },
+    {
+      "id": "combo-tactic-skewer-missed-natural-error",
+      "previousText": "The human model finds this choice natural. It misses a skewer opportunity: the stronger move offered a line attack exposing the rear piece when the front piece moves.",
+      "text": "Missed resource: a skewer. Moving the front piece could expose the target behind it. The human model finds the played choice natural; the stronger alternative offered that line attack.",
+      "reason": "Make the missed geometry the main subject and preserve attribution of naturalness to the played choice."
+    },
+    {
+      "id": "combo-tactic-skewer-missed-hard-defense-missed",
+      "previousText": "The missed resource was the only playable move found and difficult to find. Its idea was a skewer, exposing a rear piece when the front piece moves.",
+      "text": "Missed defense: a skewer resource. Moving the front piece could expose the one behind it. This was the only playable alternative found in the search; human-model evidence indicates a difficult find.",
+      "reason": "Lead with the actual missed resource and keep both the skewer and search result hypothetical."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-hard-find",
+      "previousText": "A hard move found. The idea is to capture a defender; inspect what would lose protection when that defender is removed.",
+      "text": "Resource: capture the defender. Its removal can leave what it guards without that protection. The engine ranks this move best; the human model and searched alternatives suggest a difficult find.",
+      "reason": "Explain removal and consequence directly instead of asking the listener to inspect a generic idea."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-unusual-strong",
+      "previousText": "The model finds this unusual and the engine finds it strong. Examine the defender-capture idea and the protection that would disappear.",
+      "text": "Target: a defender. Capturing it can remove the protection it supplies. The human model finds this choice unusual; the engine finds it strong.",
+      "reason": "Use a concrete target-and-function explanation before the two assessments, without claiming a capture has occurred."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-natural-best",
+      "previousText": "This is natural to the human model and best in the engine comparison. The tactical idea removes a defender by capturing it.",
+      "text": "Resource: removing a defender by capture. What it protects could then lose that support. The human model considers this choice natural, and the engine ranks it best.",
+      "reason": "Restore mechanism-first delivery and conditional loss of support rather than implying the defender is already gone."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-natural-strong",
+      "previousText": "This natural-looking move is strong, but the engine prefers another. Its idea is to capture a defender and remove the protection it supplies.",
+      "text": "A defender is the tactical target. Capture it, and the protection it supplies can disappear. Natural to the human model; strong according to the engine, which still prefers another move.",
+      "reason": "Turn generic idea language into the defender's concrete role, while preserving the engine's different preference."
+    },
+    {
+      "id": "combo-tactic-removing-defender-allowed-natural-error",
+      "previousText": "Natural to the human model, this move offers the opponent a chance to capture a defender. Inspect what could lose protection after that capture.",
+      "text": "Issue: the opponent has a chance to capture a defender. Its removal could take away needed protection. The human model finds this choice natural; that lost protection is the tactical cost.",
+      "reason": "Focus on the opponent's capture opportunity and its cost rather than an inspection prompt."
+    },
+    {
+      "id": "combo-tactic-removing-defender-allowed-hard-defense-missed",
+      "previousText": "The opponent has an opportunity to remove a defender by capture. The only playable alternative found was difficult to discover. Inspect that missed resource.",
+      "text": "Issue: the opponent can target a defender for capture. What it guards could lose protection. Only one alternative stayed playable in the search. It was missed; model evidence suggests a difficult find.",
+      "reason": "Add the supported mechanism and keep the single playable resource bounded to examined alternatives."
+    },
+    {
+      "id": "combo-tactic-removing-defender-missed-natural-error",
+      "previousText": "The human model favors the played choice, but the stronger option offered a defender capture. Removing that piece could take protection away from its target.",
+      "text": "Missed resource: capturing a defender. Another move could remove the protection that piece supplies. The human model favors the played choice, but the useful target was the defender.",
+      "reason": "Put the missed resource first and preserve the model's preference without implying its move was objectively sound."
+    },
+    {
+      "id": "combo-tactic-removing-defender-missed-hard-defense-missed",
+      "previousText": "The only playable move found was difficult to spot. The missed tactical idea was to capture a defender and remove the protection it supplied.",
+      "text": "Missed defense: a resource that captures a defender and removes its support. It was the only playable move found by the search. Human-model evidence suggests this was a difficult resource to find.",
+      "reason": "Name the tactical mechanism before the bounded sole-defense and difficulty assessments."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-hard-find",
+      "previousText": "This difficult move has a back-rank mating idea to examine. The pattern uses the king's own pieces as a barrier to escape.",
+      "text": "Resource: a route to back-rank mate. The pattern traps the king behind its own pieces. The engine ranks this move best; the human model and searched alternatives indicate a difficult find.",
+      "reason": "State the mating pattern and mechanism without claiming immediate mate or asking to examine an idea."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-unusual-strong",
+      "previousText": "Unusual to the human model and strong in the search, this move has a back-rank mating idea. The pattern traps the king behind its own pieces.",
+      "text": "Back-rank mating route found. In this pattern, the king's own pieces form the barrier to escape. The human model finds the move unusual; the engine finds it strong.",
+      "reason": "Lead with the motif and its supported mechanism instead of model-first framing."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-natural-best",
+      "previousText": "This looks natural to the human model and is the engine's best. Examine the back-rank mating idea, with the king boxed in by its own pieces.",
+      "text": "Resource: back-rank mate. The pattern uses the king's own pieces to block escape. The human model sees a natural choice, and the engine ranks it best.",
+      "reason": "Put the mating resource first and preserve that it is a route, not a claim of current checkmate."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-natural-strong",
+      "previousText": "This natural-looking choice is strong, but not the engine's best. Examine the back-rank mating pattern, where the king's own pieces block its escape.",
+      "text": "Back-rank mating route found. The pattern uses the king's own pieces to block escape. Natural to the human model and strong according to the engine; another move remains its first choice.",
+      "reason": "Replace examine-the-pattern padding with the supported mechanism and precise best-versus-strong distinction."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-played-hard-find",
+      "previousText": "This move was difficult to find. The promotion idea gives it a clear objective: bringing a pawn to the last rank to become a new piece.",
+      "text": "Objective: promotion. A pawn has a route toward the last rank and a new piece. The engine ranks this move best; model evidence and searched alternatives suggest it was hard to find.",
+      "reason": "Lead with the concrete objective without claiming promotion has already occurred, then retain supported difficulty."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-played-unusual-strong",
+      "previousText": "The human model finds this unusual; the engine finds it strong. Examine the promotion idea and the pawn's possible route to the last rank.",
+      "text": "Promotion route found. The pawn's destination is the last rank, where it can become a new piece. Unusual to the human model. Strong according to the engine.",
+      "reason": "Use Rivet's compact objective-and-result rhythm instead of an instruction to inspect."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-played-natural-best",
+      "previousText": "This is natural to the human model and best in the engine comparison. The idea works toward promotion, reaching the last rank with a pawn.",
+      "text": "Objective: bring a pawn to the last rank and promote. This move offers a route toward it. The human model calls the choice natural; the engine ranks it best.",
+      "reason": "Explain the resource before the assessments and keep promotion as an available route rather than an accomplished fact."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-played-natural-strong",
+      "previousText": "The promotion idea accompanies a natural-looking, strong move. The engine still prefers another choice. Inspect the pawn's route to the last rank.",
+      "text": "Promotion is the tactical objective: a pawn reaching the last rank. The human model finds this choice natural, and the engine finds it strong. Its preferred move is still a different one.",
+      "reason": "Keep the existing pattern-first orientation but remove inspection padding and identify the naturalness source."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-allowed-natural-error",
+      "previousText": "The human model finds this natural, but an opposing pawn has a promotion opportunity. Inspect the route that could bring it to the last rank.",
+      "text": "Issue: an opposing pawn has a promotion opportunity. Reaching the last rank would turn it into a new piece. The human model finds this choice natural; the promotion threat remains.",
+      "reason": "Put the opponent's opportunity and conditional consequence before the natural-error assessment."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-allowed-hard-defense-missed",
+      "previousText": "The opponent has a promotion opportunity after this choice. A difficult alternative was the only playable move found. Inspect it before following the pawn forward.",
+      "text": "Issue: a promotion route is available to the opponent. The pawn could reach the last rank. Only one searched alternative kept the position playable; model evidence suggests that missed defense was difficult to find.",
+      "reason": "Remove the generic review instruction while retaining the opponent's resource and bounded sole-defense evidence."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-missed-natural-error",
+      "previousText": "This is natural to the human model, but misses a promotion opportunity. The stronger choice offered a route for a pawn to reach its last rank.",
+      "text": "Missed resource: promotion. Another move offered a pawn a route to the last rank. The human model finds the played choice natural, but that choice passes up the opportunity.",
+      "reason": "Put the unplayed promotion route first and keep naturalness attached to the actual choice."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-missed-hard-defense-missed",
+      "previousText": "The only playable move found was hard to discover. Its missed idea offered a promotion route, bringing a pawn toward the last rank.",
+      "text": "Missed defense: a resource built around promotion. A pawn could work toward the last rank. The search found no other playable move; human-model evidence suggests a difficult find.",
+      "reason": "Make the promotion resource concrete, preserve its future scope, and bound the unique defense to search results."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-played-hard-find",
+      "previousText": "This was a hard find. The discovered-attack idea works by moving a blocker and exposing an attack from a different piece.",
+      "text": "Resource: a discovered attack. Moving one piece aside can reveal an attack from another. The engine ranks this move best; the human model and searched alternatives suggest it was difficult to find.",
+      "reason": "Explain the two-piece mechanism before difficulty and keep the discovery conditional."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-played-unusual-strong",
+      "previousText": "Unusual to the human model, yet strong in the search, this move has a discovered-attack idea. Moving a blocker can uncover another piece's attack.",
+      "text": "Discovered-attack resource found. One piece can move aside and uncover the attacker behind it. Unusual to the human model, strong according to the engine.",
+      "reason": "Replace generic idea language with the supported hidden-attacker mechanism and compact assessments."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-played-natural-best",
+      "previousText": "The natural-looking move is also the engine's best. Its discovered-attack idea moves a blocker out of another piece's line of attack.",
+      "text": "Resource: a discovered attack. Moving the blocker can open another piece's line of attack. Natural to the human model. Best in the engine comparison. The blocker can do useful work by leaving.",
+      "reason": "Lead with conditional geometry and use personality grounded in the mechanism rather than methodology."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-played-natural-strong",
+      "previousText": "This natural-looking choice is strong, but the engine prefers another. Examine its discovered-attack idea: a blocker moves aside to uncover a different attacker.",
+      "text": "Discovered-attack resource found: one piece can move aside to reveal another attacker. The model finds this choice natural; the engine finds it strong, with a different move ranked first.",
+      "reason": "Replace an inspection prompt with the actual mechanism and preserve the distinct preferred engine move."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-allowed-natural-error",
+      "previousText": "Natural to the human model, this move offers a discovered attack. The opponent could move one piece aside and uncover a threat from another.",
+      "text": "Issue: the opponent has a discovered attack available. Moving one piece aside could uncover a threat from another. The human model finds the choice natural, despite that hidden threat.",
+      "reason": "Put the opponent's opportunity first and keep it hypothetical rather than claiming an immediate discovered attack."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-allowed-hard-defense-missed",
+      "previousText": "The opponent has a discovered-attack opportunity. The only playable alternative found was difficult to discover. Inspect the threat behind the piece that could move aside.",
+      "text": "Issue: a discovered-attack opportunity for the opponent. One piece could move aside and reveal another threat. The sole playable defense found by the search was missed; model evidence suggests a difficult find.",
+      "reason": "Keep the strong original pattern-first lead, replace inspection wording with geometry, and bound the defensive evidence."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-missed-natural-error",
+      "previousText": "The human model favors the played choice, but it misses a discovered attack. A stronger move could uncover one piece's threat by moving another aside.",
+      "text": "Missed resource: a discovered attack. Another move could shift a blocker and reveal a different attacker. The human model favors the played choice; it still leaves this resource unused.",
+      "reason": "Center the unplayed resource and retain the model's assessment of the actual move."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-missed-hard-defense-missed",
+      "previousText": "The missed resource was hard to find and the only playable move found. A discovered attack was its idea: moving one piece could reveal another's threat.",
+      "text": "Missed defense: a discovered-attack resource. One piece could move aside to uncover another's threat. Only that alternative stayed playable in the search. Human-model evidence indicates a difficult find.",
+      "reason": "Make the mechanism the subject rather than difficulty boilerplate, preserving the hypothetical and search boundaries."
+    },
+    {
+      "id": "combo-tactic-double-attack-played-hard-find",
+      "previousText": "This move was hard to find. Its double-attack idea combines threats at the same time; inspect how the attacking pieces could work together.",
+      "text": "Resource: a double attack. Two threats can arrive together and demand attention at once. The engine ranks this move best; the human model and searched alternatives suggest a difficult find.",
+      "reason": "Explain simultaneous threats without assuming which pieces execute them; retain best rank and supported difficulty."
+    },
+    {
+      "id": "combo-tactic-double-attack-played-unusual-strong",
+      "previousText": "The human model finds this unusual, but the engine rates it strong. The double-attack idea combines threats that would need attention at the same time.",
+      "text": "Double-attack resource found. The position offers a way to create two threats at once. Unusual to the human model. Strong according to the engine.",
+      "reason": "Replace a generic model-first introduction with the tactical resource and compact evidence-bound assessments."
+    },
+    {
+      "id": "combo-tactic-double-attack-played-natural-best",
+      "previousText": "This is natural to the human model and best in the engine comparison. The double-attack idea brings distinct threats into play at the same time.",
+      "text": "Resource: a double attack, bringing two threats into play together. The human model finds this choice natural; the engine ranks it best.",
+      "reason": "Put the pattern first and preserve its prospective scope with no pronunciation ambiguity."
+    },
+    {
+      "id": "combo-tactic-double-attack-played-natural-strong",
+      "previousText": "This natural-looking move is strong, but not the engine's best. Examine its double-attack idea and how the pieces could create simultaneous threats.",
+      "text": "Double-attack resource found. Two attacks could demand attention at the same time. The human model finds this natural, and the engine finds it strong. A different move remains the engine's first choice.",
+      "reason": "Replace inspect wording with simultaneous-threat geometry and preserve strong versus a different best move."
+    },
+    {
+      "id": "combo-tactic-double-attack-allowed-natural-error",
+      "previousText": "The played choice is natural to the human model, but permits a double-attack opportunity. The opponent could create two attacks at once.",
+      "text": "Issue: the opponent can work toward two attacks at once. That is the double-attack opportunity this move permits. The human model finds the choice natural; both potential threats still need an answer.",
+      "reason": "Center the opponent's resource and keep both attacks potential rather than already on the board."
+    },
+    {
+      "id": "combo-tactic-double-attack-allowed-hard-defense-missed",
+      "previousText": "This move offers the opponent a double attack. The only playable alternative found was difficult to find. Inspect both potential threats.",
+      "text": "Issue: a double-attack opportunity for the opponent. Two threats could arrive together. The only playable defense found by the search was missed; human-model evidence indicates a difficult resource to find.",
+      "reason": "Preserve the pattern-first opening while replacing inspection padding with a concrete mechanism and evidence bounds."
+    },
+    {
+      "id": "combo-tactic-double-attack-missed-natural-error",
+      "previousText": "The human model finds this natural, but the stronger choice offered two attacks at once. The played move misses that double-attack opportunity.",
+      "text": "Missed resource: two attacks at once. Another move offered that double threat. The human model considers the played choice natural, but it passes up the combined pressure.",
+      "reason": "Lead with the unplayed combined threat and attribute naturalness to the played choice."
+    },
+    {
+      "id": "combo-tactic-double-attack-missed-hard-defense-missed",
+      "previousText": "The only playable move found was difficult to discover. Its missed double-attack idea offered a way to create two attacks at once.",
+      "text": "Missed defense: a double-attack resource. Two threats could be created at once. It was the only playable alternative found by the search; human-model evidence suggests it was hard to find.",
+      "reason": "Name the hypothetical resource first while preserving the bounded unique defense and difficulty."
+    },
+    {
+      "id": "combo-tactic-deflection-played-hard-find",
+      "previousText": "This move was hard to find. The deflection idea draws a defender away from its task, leaving that task open to attack.",
+      "text": "Resource: deflection. A defender can be drawn away from its task, leaving a gap. The engine ranks this move best; model evidence and searched alternatives suggest a difficult find.",
+      "reason": "Replace difficulty-first wording with the defender's task and prospective gap, retaining evidence for difficulty."
+    },
+    {
+      "id": "combo-tactic-deflection-played-unusual-strong",
+      "previousText": "Unusual to the human model, this choice remains strong. Its deflection idea draws a defender away from the task it was performing.",
+      "text": "Deflection resource found. A defender can be drawn away from the job it was doing. The human model finds the choice unusual; the engine finds it strong. The abandoned task is the target.",
+      "reason": "Make the defender's responsibility the focus, with a concrete understated observation instead of generic idea wording."
+    },
+    {
+      "id": "combo-tactic-deflection-played-natural-best",
+      "previousText": "Natural to the human model and best in the engine comparison, this move has a deflection idea. A defender could be drawn away from its task.",
+      "text": "Resource: deflection. Draw a defender away, and its original task can go unattended. Natural to the human model; best in the engine comparison. The defender cannot do its old job from everywhere.",
+      "reason": "Lead with the supported mechanism and use a restrained literal observation rather than model-first boilerplate."
+    },
+    {
+      "id": "combo-tactic-deflection-played-natural-strong",
+      "previousText": "This natural-looking move is strong, but the engine prefers another. Examine the deflection idea and the task a defender could be drawn away from.",
+      "text": "Deflection resource found. A defender could be pulled away from what it protects. The human model finds this choice natural, and the engine finds it strong while preferring a different move.",
+      "reason": "State the tactical resource before the independent assessments and preserve prospective scope."
+    },
+    {
+      "id": "combo-tactic-deflection-allowed-natural-error",
+      "previousText": "Natural to the human model, this choice offers a deflection opportunity. The opponent could draw a defender away from something it protects.",
+      "text": "Issue: the opponent has a deflection opportunity. A defender could be drawn away from what it protects. The human model finds this choice natural; the unattended task is the tactical cost.",
+      "reason": "Replace naturalness-first framing with the opponent's opportunity and its supported mechanism."
+    },
+    {
+      "id": "combo-tactic-deflection-allowed-hard-defense-missed",
+      "previousText": "The opponent has a deflection opportunity after this move. The only playable alternative found was difficult to discover; review that resource before following the threat.",
+      "text": "Issue: the opponent can work toward drawing a defender away from its task. The only playable defense found by the search was missed. Human-model evidence suggests that resource was difficult to find.",
+      "reason": "Explain the deflection rather than giving a generic review instruction; keep the missed defense bounded to search."
+    },
+    {
+      "id": "combo-tactic-deflection-missed-natural-error",
+      "previousText": "The human model favors this choice, but it misses a deflection opportunity. A stronger move could draw a defender away from its protective task.",
+      "text": "Missed resource: deflection. Another move could draw a defender away from its protective task. The human model favors the played choice, but the chance to exploit that task was lost.",
+      "reason": "Put the unplayed tactic first and retain natural-error meaning without claiming the deflection happened."
+    },
+    {
+      "id": "combo-tactic-deflection-missed-hard-defense-missed",
+      "previousText": "The missed resource was hard to find and the only playable move found. Its deflection idea could draw a defender away from what it protects.",
+      "text": "Missed defense: a deflection resource. A defender could be drawn away from what it guards. Only that alternative stayed playable in the search; human-model evidence suggests it was difficult to find.",
+      "reason": "Replace generic idea phrasing with the protective task and preserve both hypothetical and search scope."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-played-hard-find",
+      "previousText": "A hard move found. Its idea is to capture an undefended piece; inspect the loose target and how a capture could become available.",
+      "text": "Resource: capturing an undefended piece. A loose target could be taken without a defender to protect it. The engine ranks this move best; model evidence and searched alternatives indicate a difficult find.",
+      "reason": "State the resource and mechanism without claiming the current board already contains an immediate free capture."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-played-unusual-strong",
+      "previousText": "This is unusual to the human model and strong in the search. Its undefended-capture idea concerns a loose piece that could be taken.",
+      "text": "Undefended-capture resource found. The target could be taken without a piece guarding it. Unusual to the human model, strong according to the engine.",
+      "reason": "Lead with the supported resource and use compact diagnostic wording rather than a generic idea description."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-played-natural-best",
+      "previousText": "This natural-looking choice is the engine's best. The idea is an undefended capture: identify the loose piece that could be taken.",
+      "text": "Resource: an undefended capture. A loose piece could be taken. The human model finds the choice natural, and the engine ranks it best.",
+      "reason": "Replace identify-the-idea prompting with the concrete loose-target resource, keeping capture conditional."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-played-natural-strong",
+      "previousText": "The choice looks natural and is strong, though the engine prefers another. Examine the undefended-capture idea and the loose target it could use.",
+      "text": "Undefended-capture resource found. The tactical target is a piece without protection. Natural to the human model and strong according to the engine; the engine still prefers another move.",
+      "reason": "Center the resource and retain the different preferred engine move without inventing a larger evaluation gap."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-missed-natural-error",
+      "previousText": "The human model finds the played choice natural, but it misses an undefended capture. The stronger option offered a chance to take a loose piece.",
+      "text": "Missed resource: an undefended capture. A stronger choice offered a way to take the loose piece. The human model finds the played move natural; the opportunity remains unused.",
+      "reason": "Lead with the unplayed capture and retain the naturalness assessment of the actual choice."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-missed-hard-defense-missed",
+      "previousText": "The only playable move found was difficult to spot. It offered an undefended capture that the played choice misses. Inspect the loose piece.",
+      "text": "Missed defense: an undefended-capture resource. The loose piece could be taken. That alternative was the only playable move found by the search; human-model evidence suggests it was difficult to find.",
+      "reason": "Replace the inspection command with the supported opportunity and keep the defense bounded to searched choices."
+    },
+    {
+      "id": "combo-tactic-hanging-piece-allowed-natural-error",
+      "previousText": "The played choice is natural to the human model, but offers the opponent an undefended capture. Inspect what could be left without protection.",
+      "text": "Issue: the opponent has an undefended-capture opportunity. A piece could be taken without protection. The human model finds this choice natural; a loose target can still be expensive.",
+      "reason": "Put the opponent's resource before the model assessment and explain the tactical cost without asserting current capture."
+    },
+    {
+      "id": "combo-tactic-hanging-piece-allowed-hard-defense-missed",
+      "previousText": "This permits an undefended-capture opportunity for the opponent. The only playable alternative found was hard to discover. Review that missed resource.",
+      "text": "Issue: a loose piece could be captured by the opponent. The search found only one alternative that kept the position playable. It was missed; human-model evidence suggests a difficult defensive find.",
+      "reason": "Replace generic review instructions with the opponent's conditional capture and bounded missed-defense evidence."
+    },
+    {
+      "id": "book-opening-follow-8",
+      "previousText": "This is another book move. Recognition is distinct from move quality.",
+      "text": "Opening record still matched.",
+      "reason": "Remove the grading lecture from a brief sequential book acknowledgement."
+    },
+    {
+      "id": "combo-recognized-opening-hard-find",
+      "previousText": "Recognized opening, engine-best move, demanding choice. The human model and searched alternatives indicate a hard find; knowing the line and finding the move are different tasks.",
+      "text": "Opening sequence matched. Engine result: best move. Human-model and search evidence suggest a difficult find. Known does not mean obvious.",
+      "reason": "Use ordered findings and one restrained observation instead of a methodological explanation."
+    },
+    {
+      "id": "combo-recognized-opening-unusual-strong",
+      "previousText": "Opening match confirmed. The human model finds this choice unusual; the engine finds it strong. Recognition, likelihood and quality are distinct readings.",
+      "text": "Opening match confirmed. Unusual to the human model. Strong according to the engine. No contradiction.",
+      "reason": "Restore the established compact Rivet contrast and dry understatement."
+    },
+    {
+      "id": "combo-recognized-opening-natural-best",
+      "previousText": "The move matches the opening record. Human-model reading: natural. Engine result: best. These describe recognition, likelihood and engine preference.",
+      "text": "Opening sequence matched. Human-model reading: natural. Engine result: best.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-recognized-opening-natural-strong",
+      "previousText": "Opening match and a natural human-model choice. The engine rates it strong, but prefers another move. Book recognition does not override that comparison.",
+      "text": "Opening sequence matched. Natural to the human model; strong according to the engine, which prefers another move.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-1-hard-find",
+      "previousText": "Book move identified, and it matches the engine's best. The human model and examined alternatives mark it as a difficult find. A recorded line need not be obvious.",
+      "text": "Book move identified. Engine choice: best. The human model and searched alternatives suggest a difficult find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-1-unusual-strong",
+      "previousText": "This is a book move. Its human-model likelihood is low; its engine assessment is strong. A recognized line can still contain an unexpected choice.",
+      "text": "Book move identified. The human model finds it unusual; the engine finds it strong. An unexpected choice that holds up.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-1-natural-strong",
+      "previousText": "This recognized opening move is natural to the human model. The engine rates it strong, but selects a different best move. The book label is not a quality verdict.",
+      "text": "Book move identified. The human model favors it. The engine rates it strong, though another move ranks first.",
+      "reason": "Remove the unsupported need to explain what a book label means on every acknowledgement."
+    },
+    {
+      "id": "combo-book-opening-entry-1-hard-defense-found",
+      "previousText": "Book move identified, and a difficult defense found. It was the only playable move among those searched. Human-model evidence supports the difficulty assessment.",
+      "text": "Book move identified. Defense found: the only playable choice among the moves searched. Human-model evidence suggests it was difficult to spot.",
+      "reason": "Make the defensive task and its bounded result the center of the line."
+    },
+    {
+      "id": "combo-book-opening-entry-2-hard-find",
+      "previousText": "The move matches a known opening and the engine's best choice. Model evidence and searched alternatives indicate a difficult find, despite its place in the opening record.",
+      "text": "Known opening matched. The engine selects this move as best. Human-model and search evidence suggest a demanding find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-2-unusual-strong",
+      "previousText": "Known opening matched. The human model treats this choice as unusual, while the engine supports its strength. Move likelihood is distinct from move strength.",
+      "text": "Known opening matched. Unusual to the human model; strong according to the engine. The move holds up.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-2-natural-best",
+      "previousText": "This move matches a known opening, a natural human-model choice, and the engine's top result. Its opening status is distinct from those assessments.",
+      "text": "Known opening matched. This choice is natural to the human model and first in the engine ranking.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-2-natural-strong",
+      "previousText": "Known opening matched. The human model favors this choice; the engine finds it strong while preferring another move. The opening record does not decide that preference.",
+      "text": "Known opening matched. Human-model reading: natural. Engine reading: strong. First place belongs to another move.",
+      "reason": "Restore terse labels and a clear preference distinction."
+    },
+    {
+      "id": "combo-book-opening-entry-2-hard-defense-found",
+      "previousText": "A known opening move preserves a playable position. It was the sole playable resource in the search; the human-model evidence points to a hard defense to find.",
+      "text": "Known opening matched. Only this defense stayed playable among the moves searched. The human model suggests a difficult find. Position held.",
+      "reason": "Put the precise defensive result first and close with task completion."
+    },
+    {
+      "id": "combo-book-opening-entry-3-hard-find",
+      "previousText": "The opening record contains the engine-best move played here. The human model and searched alternatives indicate a difficult find. A stored line is not a measure of ease.",
+      "text": "Recorded opening line. Best move in the engine comparison. The human model and examined alternatives suggest a difficult find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-3-unusual-strong",
+      "previousText": "The move is recorded opening theory. Unusual to the human model, strong to the engine. Those descriptions measure different things.",
+      "text": "Recorded opening theory. The human model finds the move unusual. The engine finds it strong.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; omit methodological repetition and filler conclusions."
+    },
+    {
+      "id": "combo-book-opening-entry-3-natural-best",
+      "previousText": "Recorded opening theory, with a matching engine result: best move. The human model calls the choice natural. Recognition is not doing the grading.",
+      "text": "Recorded opening theory. Natural according to the human model, best according to the engine.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-entry-3-natural-strong",
+      "previousText": "Recorded opening theory. The choice is natural to the human model and strong to the engine, but not the engine's first choice. Keep those results distinct.",
+      "text": "Recorded opening theory. Human-model signal: natural. Engine assessment: strong, with a different move preferred.",
+      "reason": "Remove the instruction to distinguish results and state those results directly."
+    },
+    {
+      "id": "combo-book-opening-follow-1-hard-find",
+      "previousText": "The book sequence continues with the engine's best move. It is a difficult find according to the human model and searched alternatives, not because of the opening label.",
+      "text": "Book sequence maintained with the engine's best move. The human model and searched alternatives suggest a hard find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-1-unusual-strong",
+      "previousText": "The book sequence continues. This choice is unusual to the human model and strong according to the engine. Recognition remains a distinct result.",
+      "text": "The book sequence continues. Unusual choice in the human model. Strong choice in the engine comparison.",
+      "reason": "Drop the repeated methodological closer; ordered clauses already distinguish the facts."
+    },
+    {
+      "id": "combo-book-opening-follow-1-natural-best",
+      "previousText": "Book sequence maintained. The human model favors this move, and it tops the engine ranking. The known continuation has independent support from the search.",
+      "text": "Book sequence maintained. The human model finds this move natural; the engine ranks it first.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-1-natural-strong",
+      "previousText": "The book sequence continues with a natural human-model choice. Engine result: strong, with another move preferred. Recognition does not imply first place.",
+      "text": "The book sequence continues. Natural to the human model and strong in the engine comparison. Another move takes first place.",
+      "reason": "Give the actual preference result instead of a lecture about recognition."
+    },
+    {
+      "id": "combo-book-opening-follow-2-hard-find",
+      "previousText": "Another book move matches the engine's best choice. The human model and examined alternatives support its difficulty. The opening match does not remove the challenge.",
+      "text": "Another book move. Engine result: best. The human model and examined alternatives suggest a difficult find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-2-unusual-strong",
+      "previousText": "Another recognized book move. Its human-model reading is unusual; the engine reading is strong. Neither result cancels the other.",
+      "text": "Another recognized book move. The human model finds it unusual. The engine approves its strength.",
+      "reason": "State the contrast without yet another disclaimer about its interpretation."
+    },
+    {
+      "id": "combo-book-opening-follow-2-natural-best",
+      "previousText": "Another book move matches the engine's best choice. The human model favors it as well. Here, the natural choice is also the best.",
+      "text": "Another book move matches the engine's best choice. The human model favors it as well. Agreement recorded.",
+      "reason": "Preserve the existing clear facts, replacing a redundant best-versus-natural restatement with dry closure."
+    },
+    {
+      "id": "combo-book-opening-follow-3-hard-find",
+      "previousText": "This reply is book too, and it is the engine's best choice. Model evidence and examined alternatives indicate a difficult find. A known sequence can still be demanding.",
+      "text": "This reply is book too. Engine choice: best. The human model and examined alternatives suggest it was difficult to find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-3-natural-best",
+      "previousText": "This reply is book too, and it matches the engine's best move. The human model rates it as natural. The continuation passes both distinct checks.",
+      "text": "This reply is book too. Engine ranking: first. Human-model reading: natural. Both checks passed.",
+      "reason": "Replace the wordy duplicate comparison with compact ordered checks."
+    },
+    {
+      "id": "combo-book-opening-follow-3-natural-strong",
+      "previousText": "The reply is also book. It is natural to the human model and strong to the engine, which nevertheless prefers another move. Strong is not the same ranking as best.",
+      "text": "This reply is also book. Natural to the human model. Strong to the engine, with another move ranked first.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-4-hard-find",
+      "previousText": "Opening recognition continues with an engine-best move. The human model and searched alternatives support its difficulty. Recorded theory can still be demanding.",
+      "text": "Opening record still matched. The engine chooses this move as best. Human-model and search evidence suggest a demanding find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-4-unusual-strong",
+      "previousText": "Opening recognition continues with a model-unusual choice. The engine still finds it strong. A catalogue match does not require high human-model likelihood.",
+      "text": "Opening record still matched. Human-model signal: unusual. Engine assessment: strong.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; omit methodological repetition and filler conclusions."
+    },
+    {
+      "id": "combo-book-opening-follow-4-natural-best",
+      "previousText": "Opening recognition continues. This move is first in the engine's ranking and natural to the human model. The move earns the ranking independently of its book status.",
+      "text": "Opening record still matched. This move is natural to the human model and first in the engine ranking.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-4-natural-strong",
+      "previousText": "Opening recognition continues with a natural, strong choice. Natural comes from the human model; strong comes from the engine, which prefers another move.",
+      "text": "Opening recognition continues. The human model favors this choice. Engine verdict: strong. Another move remains preferred.",
+      "reason": "Remove meta-explanation about which label came from which source by stating the sources directly."
+    },
+    {
+      "id": "combo-book-opening-follow-5-hard-find",
+      "previousText": "This engine-best move stays within a known opening. The human model and searched alternatives also support a difficult-find assessment. Recognition alone does not make it easy.",
+      "text": "Still within a known opening. The played move is the engine's best. Human-model and search evidence suggest a difficult find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-5-unusual-strong",
+      "previousText": "The move stays within a known opening, but is unusual to the human model. Engine assessment remains strong. Opening familiarity and move likelihood are distinct.",
+      "text": "Still within a known opening. Unusual choice according to the human model. Strong choice according to the engine.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-5-natural-best",
+      "previousText": "This move stays within a known opening and leads the engine's ranking. The human model finds it natural. The evaluation comes from the engine, not the opening match.",
+      "text": "Still within a known opening. The human model finds this choice natural; the engine ranks it best. Both point to the played move.",
+      "reason": "Replace methodology with a concrete agreement on the actual choice."
+    },
+    {
+      "id": "combo-book-opening-follow-5-natural-strong",
+      "previousText": "This move stays within a known opening. The human model favors it; the engine rates it strong, with a different move ranked best. The opening match remains valid.",
+      "text": "Still within a known opening. The human model finds this move natural; the engine rates it strong, with another option ranked best.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-6-hard-find",
+      "previousText": "Another opening move is recognized, and it matches the engine's best. The human model and examined alternatives indicate a difficult find. Recognition and difficulty are distinct results.",
+      "text": "Another opening move recognized. It matches the engine's best choice. The human model and examined alternatives suggest a demanding find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-6-unusual-strong",
+      "previousText": "Another opening move is recognized, despite low likelihood in the human model. The engine rates the move strong. Low likelihood is not a poor evaluation.",
+      "text": "Another opening move recognized. The human model finds this one unusual. Engine result: strong. An unexpected but sound choice.",
+      "reason": "Retain the natural contrast without instructing the listener about evaluation semantics."
+    },
+    {
+      "id": "combo-book-opening-follow-6-natural-strong",
+      "previousText": "Another opening move is recognized. Human-model reading: natural. Engine reading: strong, with a different best move. Book status does not settle the ranking.",
+      "text": "Another opening move recognized. The human model finds it natural. The engine rates it strong and places a different move first.",
+      "reason": "Remove the redundant book-status caveat."
+    },
+    {
+      "id": "combo-book-opening-follow-7-hard-find",
+      "previousText": "This move also matches the opening record and the engine's best choice. Model evidence and searched alternatives indicate a hard find. Recognition does not measure how obvious it is.",
+      "text": "The move also matches the opening record. Engine result: best. The human model and searched alternatives suggest a hard find.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-7-unusual-strong",
+      "previousText": "The move also matches the opening record. The human model finds it unusual; the engine finds it strong. A recognized idea can have low predicted likelihood.",
+      "text": "The move also matches the opening record. Unusual to the human model; strong according to the engine.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-7-natural-best",
+      "previousText": "The move also matches the opening record and tops the engine ranking. Human-model reading: natural. This is a recognized move with independent evaluation support.",
+      "text": "The move also matches the opening record. Human-model reading: natural. Engine ranking: first.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; omit methodological repetition and filler conclusions."
+    },
+    {
+      "id": "combo-book-opening-follow-8-hard-find",
+      "previousText": "Another book move matches the engine's best. Recognition is one result; difficulty is another. The human model and examined alternatives support a difficult-find assessment.",
+      "text": "Another book move matches the engine's best. Human-model evidence and the examined alternatives suggest a difficult find. Correct move, demanding choice.",
+      "reason": "Keep the supported difficulty contrast while removing the recognition-versus-difficulty lecture."
+    },
+    {
+      "id": "combo-book-opening-follow-8-unusual-strong",
+      "previousText": "Another book move. Opening recognition, human likelihood and move quality are distinct readings: known line, unusual choice, strong engine assessment.",
+      "text": "Another book move. The human model finds it unusual; the engine finds it strong.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-book-opening-follow-8-natural-best",
+      "previousText": "Another book move. Recognition does not determine quality, but this move also ranks best in the engine search and natural in the human model.",
+      "text": "Another book move. Natural in the human model and best in the engine search. The played move satisfies both checks.",
+      "reason": "Remove the needless recognition-does-not-grade disclaimer."
+    },
+    {
+      "id": "combo-book-opening-follow-8-natural-strong",
+      "previousText": "Another book move. Recognition is distinct from quality: the human model favors this choice, but the engine calls it strong and ranks a different move best.",
+      "text": "Another book move. The human model favors it; the engine calls it strong. A different move remains the engine's first choice.",
+      "reason": "Retain the preference distinction without explaining the grading system."
+    },
+    {
+      "id": "combo-book-opening-follow-8-hard-defense-found",
+      "previousText": "Another book move. Its defensive value is distinct from recognition: only this searched move stayed playable. Human-model evidence suggests a difficult resource found.",
+      "text": "Another book move, and a defense located. Only this move stayed playable among those searched. Human-model evidence suggests it was a difficult resource.",
+      "reason": "Retain the exact opening, human-model and engine findings in compact Rivet clauses; remove repetitive methodology or duplicate commentary."
+    },
+    {
+      "id": "combo-positional-development-actual-unusual-strong",
+      "previousText": "The engine rates this developing move as strong, although it is unusual in the human-move model. Visible change: a minor piece has left its starting square.",
+      "text": "Development recorded. A minor piece leaves its starting square. Human-model signal: unusual. Engine assessment: strong.",
+      "reason": "Lead with development; replace model-first repetition with compact, bounded assessments."
+    },
+    {
+      "id": "combo-positional-rook-open-actual-unusual-strong",
+      "previousText": "Unusual to the human-move model, strong in the engine comparison. The resulting position also has a rook on an open file: no pawns of either color occupy it.",
+      "text": "Rook on an open file. No pawns of either color occupy it. The human model finds the choice unusual; the engine finds it strong.",
+      "reason": "Put the open-file condition first without claiming it explains the evaluation."
+    },
+    {
+      "id": "combo-positional-rook-semi-open-actual-hard-find",
+      "previousText": "A rook occupies a semi-open file: enemy pawns remain, friendly pawns do not. On move difficulty, human-move evidence and the examined alternatives suggest that this move was difficult to find.",
+      "text": "Rook on a semi-open file. Enemy pawns present; friendly pawns absent. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "reason": "Replace the methodological transition with a compact file-condition check; retain estimated difficulty."
+    },
+    {
+      "id": "combo-positional-rook-semi-open-actual-natural-best",
+      "previousText": "Natural in the human-move model and best in the engine comparison. The rook now occupies a semi-open file, where enemy pawns remain but friendly pawns are absent.",
+      "text": "Semi-open file occupied. Enemy pawns remain on the rook's file; friendly pawns do not. The move is natural to the human model and best in the engine search.",
+      "reason": "Lead with the file condition and preserve natural plus literal best."
+    },
+    {
+      "id": "combo-positional-passed-actual-unusual-strong",
+      "previousText": "Unusual in the human-move model, strong by the engine's assessment. The move leaves a passed pawn: no enemy pawn ahead on its file or neighboring files.",
+      "text": "Passed pawn present. No enemy pawn lies ahead on its file or the neighboring files. The human model finds the choice unusual. The engine finds it strong.",
+      "reason": "Lead with the supported pawn condition; avoid inventing a causal reason for the strong evaluation."
+    },
+    {
+      "id": "combo-positional-passed-actual-natural-best",
+      "previousText": "This move matches the engine's best choice and is natural to the human-move model. The resulting passed pawn has no enemy pawn ahead on its file or neighboring files.",
+      "text": "The position contains a passed pawn: no enemy pawn ahead on its file or either neighboring file. Move assessment: natural to the human model, best in the engine search.",
+      "reason": "Put the board fact first without claiming the move created the passed pawn."
+    },
+    {
+      "id": "combo-positional-passer-advance-actual-hard-find",
+      "previousText": "The pawn was already passed, and this move carries it forward. The human-move model and examined alternatives suggest it was a hard move to find. Compare the pawn's old and new squares.",
+      "text": "The pawn was already passed. This move advances it. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "reason": "Use a clean before-and-after distinction; remove a generic instruction to compare squares."
+    },
+    {
+      "id": "combo-positional-passer-advance-actual-unusual-strong",
+      "previousText": "The move advances a pawn that was already passed. The human-move model marks the choice unusual, while the engine judges it strong. Compare the pawn's position before and after.",
+      "text": "Passed pawn advanced. It was already passed before this move. The human model marks the choice unusual; the engine judges it strong.",
+      "reason": "State the completed change without a repetitive inspection prompt."
+    },
+    {
+      "id": "combo-positional-passer-advance-actual-natural-best",
+      "previousText": "The engine's best move advances a pawn that was already passed. The human-move model also rates this choice natural. The pawn's new square is the change to inspect.",
+      "text": "Passed pawn advanced. Its passed status was already established. The choice is natural to the human model and ranks first in the engine search.",
+      "reason": "Lead with the advance and distinguish it from creating a passer; retain literal best."
+    },
+    {
+      "id": "combo-positional-passer-advance-actual-natural-strong",
+      "previousText": "The human-move model sees this passed-pawn advance as natural. The engine finds the move strong but prefers another. The pawn was already passed before it advanced.",
+      "text": "The pawn was passed before the move. Now it advances. The human model considers the choice natural; the engine finds it strong but prefers another move.",
+      "reason": "Move the before-and-after board fact ahead of the assessments; keep the preferred alternative."
+    },
+    {
+      "id": "combo-positional-isolated-actual-unusual-strong",
+      "previousText": "The human-move model sees an unusual choice; the engine finds it strong. It leaves an isolated pawn, with no friendly pawn on either neighboring file.",
+      "text": "Isolated pawn present. Neither neighboring file contains a friendly pawn. The move is unusual to the human model and strong according to the engine.",
+      "reason": "Lead with the actual pawn structure without attributing the evaluation to isolation."
+    },
+    {
+      "id": "combo-positional-isolated-actual-natural-best",
+      "previousText": "This is the engine's best move and a natural choice in the human-move model. It leaves an isolated pawn: neither neighboring file contains a friendly pawn.",
+      "text": "An isolated pawn is present: no friendly pawn on either neighboring file. The human model considers the move natural. The engine selects it as best.",
+      "reason": "Put the supported pawn structure before the natural and best assessments."
+    },
+    {
+      "id": "combo-positional-support-actual-hard-find",
+      "previousText": "A previously undefended piece now has a defender. The human-move model and examined alternatives suggest the move was hard to find. Compare the support before and after the move.",
+      "text": "Support added. Previously undefended; now guarded. Human-model evidence and the examined alternatives suggest the move was difficult to find.",
+      "reason": "Replace the repeated comparison instruction with Rivet's compact support-state distinction."
+    },
+    {
+      "id": "combo-positional-support-actual-unusual-strong",
+      "previousText": "A piece gains a defender after a move the human-move model rates unusual. The engine judges the move strong. The piece lacked support before the move; it has support now.",
+      "text": "Support added. A previously undefended piece gains a defender. The human model finds the choice unusual; the engine rates it strong.",
+      "reason": "Describe the support change once, then give the two bounded assessments."
+    },
+    {
+      "id": "combo-positional-support-actual-natural-best",
+      "previousText": "This is the engine's best move and a natural choice in the human-move model. A piece that lacked a defender now gains support. Identify the defender in the resulting position.",
+      "text": "Support added to a piece that lacked a defender. The human model sees a natural choice. The engine confirms this as its best move.",
+      "reason": "Lead with the support change and remove the generic identify-the-defender prompt."
+    },
+    {
+      "id": "combo-positional-support-actual-natural-strong",
+      "previousText": "A piece gains a defender after a choice the human-move model rates natural. The engine finds the move strong but prefers another. It was undefended before the move and has support now.",
+      "text": "Before the move: no defender. After it: support added. The choice is natural to the human model and strong to the engine, though another move ranks best.",
+      "reason": "Use a concise before-and-after check rather than stating the same support fact twice."
+    },
+    {
+      "id": "combo-positional-unsupported-actual-hard-find",
+      "previousText": "The move leaves a piece undefended; that alone does not prove it can be won. The human-move model and examined alternatives suggest the move was hard to find. Inspect the piece's support on the board.",
+      "text": "Support removed. Missing support alone does not prove a winning capture. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "reason": "Lead with the lost support, preserve the no-proven-material-loss boundary, and remove the inspection prompt."
+    },
+    {
+      "id": "combo-positional-unsupported-actual-unusual-strong",
+      "previousText": "The engine rates the move strong, while the human-move model considers it unusual. A piece loses its support after the move. That support change does not establish that the piece can be won.",
+      "text": "A piece loses its defender. That proves a support change, not a winning capture. The human model finds this move unusual; the engine rates it strong.",
+      "reason": "Make the support-versus-capture distinction first and retain both model assessments."
+    },
+    {
+      "id": "combo-positional-unsupported-actual-natural-best",
+      "previousText": "This is both the engine's best move and a natural choice in the human-move model. It leaves a piece without a defender, though that alone does not establish that the piece can be won.",
+      "text": "A piece is left without a defender. That alone does not prove a winning capture. The move is natural to the human model and first in the engine ranking.",
+      "reason": "Lead with the actual support condition and its evidential limit; preserve exact best."
+    },
+    {
+      "id": "combo-positional-unsupported-actual-natural-strong",
+      "previousText": "The human-move model rates this natural; the engine rates it strong and prefers another move. A piece is left undefended. The support loss does not by itself establish a material loss.",
+      "text": "Undefended piece recorded. Missing support alone does not prove material loss. The human model considers the move natural; the engine finds it strong but prefers another move.",
+      "reason": "Restore condition-first delivery without converting an undefended piece into a proven loss."
+    },
+    {
+      "id": "combo-positional-king-flight-actual-hard-find",
+      "previousText": "New legal flight square available to the king. Human-move evidence and the checked alternatives suggest that the played move was difficult to find. Compare the two positions.",
+      "text": "A new legal flight square is available to the king. Human-model evidence and the checked alternatives suggest a difficult find.",
+      "reason": "Keep the new legal square and estimated difficulty; remove the redundant comparison instruction."
+    },
+    {
+      "id": "combo-positional-king-flight-actual-unusual-strong",
+      "previousText": "The move is unusual in the human-move model and strong in the engine comparison. The board also shows a change: the king has gained a legal flight square.",
+      "text": "King mobility changed: a new legal flight square is available. The human model finds the move unusual; the engine finds it strong.",
+      "reason": "Put the concrete legal change first without claiming it caused the evaluation."
+    },
+    {
+      "id": "combo-positional-king-flight-actual-natural-best",
+      "previousText": "This move matches the engine's best and is natural in the human-move model. The resulting board gives the king a legal flight square that was unavailable before.",
+      "text": "The king gains a legal flight square that was previously unavailable. The move is natural to the human model and best in the engine comparison.",
+      "reason": "Put the before-and-after legality fact before the natural-best assessments."
+    },
+    {
+      "id": "combo-positional-castling-actual-natural-best",
+      "previousText": "The king castles: a natural choice in the human-move model and the engine's best move here. The king and rook have each changed position.",
+      "text": "The king castles. The rook moves with it. The human model considers the choice natural; the engine ranks this move best.",
+      "reason": "Use a compact board-change report followed by both assessments; castles is supported by the pinned pronunciation dictionary."
+    },
+    {
+      "id": "combo-positional-bishop-pair-actual-hard-find",
+      "previousText": "This capture breaks the opposing bishop pair. The human-move model and examined alternatives suggest it was difficult to find. Compare the position before and after the capture.",
+      "text": "Opposing bishop pair broken by this capture. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "reason": "Remove the generic before-and-after prompt and retain the qualified difficulty estimate."
+    },
+    {
+      "id": "combo-positional-bishop-pair-actual-unusual-strong",
+      "previousText": "The opposing bishop pair is broken by this capture. The move is unusual in the human-move model, yet the engine rates it strong. Unusual does not describe its strength.",
+      "text": "Opposing bishop pair broken. The capture is unusual to the human model and strong according to the engine.",
+      "reason": "Keep the chess event and assessments; remove the unneeded explanation of what unusual means."
+    },
+    {
+      "id": "combo-positional-doubled-actual-hard-find",
+      "previousText": "Pawns of the same color share a file after the move. The human-move model and examined alternatives suggest this choice was hard to find. The resulting structure includes doubled pawns.",
+      "text": "Doubled pawns recorded: pawns of the same color share a file. Human-model evidence and the examined alternatives suggest the move was difficult to find.",
+      "reason": "State the doubled-pawn condition once instead of repeating it after the difficulty signal."
+    },
+    {
+      "id": "combo-positional-doubled-actual-unusual-strong",
+      "previousText": "An unusual choice in the human-move model is strong by the engine's assessment. Doubled pawns remain in the resulting position, with pawns of the same color sharing a file.",
+      "text": "The resulting position contains doubled pawns of the same color on one file. The move is unusual to the human model and strong in the engine assessment.",
+      "reason": "Lead with the existing board condition; do not invent a pawn-structure cause for the evaluation."
+    },
+    {
+      "id": "combo-positional-doubled-actual-natural-strong",
+      "previousText": "The move is natural to the human-move model and strong by the engine's assessment, with another move preferred. Doubled pawns remain: pawns of the same color occupy the same file.",
+      "text": "Doubled pawns present. Same color, same file. The human model considers the move natural; the engine finds it strong but ranks another move best.",
+      "reason": "Use a compact structure check before the assessments; preserve the preferred alternative."
+    },
+    {
+      "id": "combo-cause-abandoned-defender-natural-error",
+      "previousText": "The human model finds this choice natural, but it removes a piece's only effective defender. The opponent can now capture that exposed piece.",
+      "text": "Cause: the only effective defender moves away. Result: the opponent can capture the piece it guarded. The human model finds this choice natural.",
+      "reason": "Restore cause/result structure and put the actual loss mechanism before human naturalness."
+    },
+    {
+      "id": "combo-cause-abandoned-defender-hard-defense-missed",
+      "previousText": "The move removes a piece's only effective defender, permitting a capture of the piece left behind. The only playable alternative found was difficult to find.",
+      "text": "The only effective defender moves away, leaving the guarded piece available for capture. The only playable defense found was missed. Human-model evidence suggests a difficult resource.",
+      "reason": "Identify the failed protection first, then preserve the search-bounded missed defense and estimated difficulty."
+    },
+    {
+      "id": "combo-cause-opponent-threat-recognition-natural-error",
+      "previousText": "Natural to the human model, this move leaves the preceding move's threat unanswered. The opponent can capture the threatened piece now.",
+      "text": "Warning: the opponent's previous move enabled the threat. This move leaves it unanswered, allowing the threatened piece to be captured. Natural to the human model; costly on the board.",
+      "reason": "Restore the prior warning and causal result before naturalness; enabled threat includes an existing attack made effective by a released pin."
+    },
+    {
+      "id": "combo-cause-opponent-threat-recognition-hard-defense-missed",
+      "previousText": "The preceding move's threat remains unanswered; the opponent can capture the target. The only playable resource found was difficult to spot.",
+      "text": "Threat unanswered. The opponent can capture the piece left under threat. The only playable defense found was missed. Human-model evidence suggests it was difficult to find.",
+      "reason": "Keep the enabled threat and missed defense distinct without implying the preceding move necessarily created a new geometric attack."
+    },
+    {
+      "id": "combo-cause-avoiding-bad-trades-natural-error",
+      "previousText": "The human model finds the capture natural, but the opponent can recapture a more valuable piece. The exchange must include that reply.",
+      "text": "Exchange: the opponent can recapture a more valuable piece. The human model finds the initial capture natural. Count both sides.",
+      "reason": "Restore the exchange mechanism and literal correction; retain naturalness and the opponent's potential recapture."
+    },
+    {
+      "id": "combo-cause-avoiding-bad-trades-hard-defense-missed",
+      "previousText": "The opponent can recapture a more valuable piece after this capture. The only playable alternative found was difficult to discover. Compare the complete exchange.",
+      "text": "The first capture invites a recapture of a more valuable piece. The only playable defense found was missed. Human-model evidence suggests a difficult find. Both halves of the exchange count.",
+      "reason": "Lead with the recapture mechanism and end with earned literal understatement; retain bounded defense difficulty."
+    },
+    {
+      "id": "combo-allowed-mate-hard-defense-missed",
+      "previousText": "Forced mate is now available to the other side. The only playable defense found was missed; the human-move model and searched alternatives suggest that resource was difficult to find.",
+      "text": "Issue: forced mate for the opponent. A defense existed, but only one searched move stayed playable. It was missed. Human-model evidence suggests a difficult resource.",
+      "reason": "Replace methodological preamble with issue, available resource and missed result; do not imply mate is already on the board."
+    },
+    {
+      "id": "combo-missed-mate-hard-defense-missed",
+      "previousText": "Forced mate was available with the only playable move found. That resource was missed. Human-move evidence and the examined alternatives suggest difficulty finding it.",
+      "text": "Available finish: forced mate. This move loses it. The only playable move found would have kept that finish; human-model evidence suggests a difficult find.",
+      "reason": "Restore available-versus-played contrast and preserve the sole searched resource without implying a completed checkmate."
+    },
+    {
+      "id": "combo-sound-sacrifice-hard-find",
+      "previousText": "Accepting the sacrifice does not refute it in the examined line. The human-move model and checked alternatives also suggest difficulty finding the played move.",
+      "text": "Sacrifice checked. Acceptance does not refute it in the examined line. The human model and searched alternatives suggest a difficult find.",
+      "reason": "Restore concise checked-sacrifice language and qualify difficulty as an estimate."
+    },
+    {
+      "id": "combo-sound-sacrifice-natural-best",
+      "previousText": "The engine's best move is also natural to the human-move model. It is a sacrifice whose acceptance does not refute the idea in the checked line.",
+      "text": "Sacrifice checked. Acceptance does not refute it in the examined line. The human model finds the choice natural; the engine ranks it best.",
+      "reason": "Lead with the supported chess mechanism before the human/engine agreement."
+    },
+    {
+      "id": "combo-only-playable-move-natural-best",
+      "previousText": "Natural to the human-move model and best in the engine comparison. This was the only playable move found; the other examined choices were losing.",
+      "text": "Playable searched choices: this move only. The other examined moves were losing. It ranks best with the engine and looks natural to the human model.",
+      "reason": "Place the search-bounded only-move condition first; retain best and natural evidence."
+    },
+    {
+      "id": "combo-only-advantage-resource-natural-best",
+      "previousText": "The human-move model considers this natural, and it matches the engine's best. Among the moves examined, only this one retained the advantage.",
+      "text": "Advantage preserved by this move alone among the choices examined. It is the engine's best and natural to the human model.",
+      "reason": "Lead with the distinguishing resource and bound uniqueness to examined moves."
+    },
+    {
+      "id": "combo-immediate-capture-hard-defense-missed",
+      "previousText": "An immediate capture is available to the other side. The only playable defense found was missed; human-move evidence and the searched alternatives suggest difficulty finding it.",
+      "text": "Immediate reply: the opponent can capture. The only playable defense found was missed. Human-model evidence suggests a difficult resource.",
+      "reason": "Replace generic narrative with reply, missed defense and estimated difficulty."
+    },
+    {
+      "id": "combo-evaluation-loss-hard-defense-missed",
+      "previousText": "The move loses evaluation against the best option, the only playable choice found. That resource was missed, with human-move evidence and checked alternatives suggesting difficulty finding it.",
+      "text": "Evaluation drops against the best option. That alternative was the only playable move found, and it was missed. Human-model evidence suggests it was difficult to find.",
+      "reason": "Simplify the evaluation comparison while preserving the unplayed search-bounded resource."
+    },
+    {
+      "id": "combo-clock-low-hard-find",
+      "previousText": "Clock record: little time remained before the move. The engine's best move was played. The human-move model and searched alternatives indicate that this was difficult to find.",
+      "text": "Clock: little time remained. Result: the engine's best move. The human model and searched alternatives suggest a difficult find.",
+      "reason": "Use compact clock/result clauses without claiming the clock caused the decision."
+    },
+    {
+      "id": "combo-clock-low-unusual-strong",
+      "previousText": "Little time remained before this move, according to the clock. The human model rates the choice as unusual; the engine rates it as strong.",
+      "text": "Clock: little time remained before the move. Human-model assessment: unusual. Engine assessment: strong.",
+      "reason": "Restore orderly contrasting readings after the clock fact; no causal clock claim."
+    },
+    {
+      "id": "combo-clock-low-natural-best",
+      "previousText": "Clock: little time remaining before the move. Human-model assessment: natural. Engine assessment: the best move. Both refer to the move played.",
+      "text": "Clock: little time remained. Human-model assessment: natural. Engine assessment: best.",
+      "reason": "Remove clumsy 'both refer to' methodological wording, retaining the three facts."
+    },
+    {
+      "id": "combo-clock-low-natural-strong",
+      "previousText": "The clock records little time remaining before the move. The human model prefers this choice, and the engine considers it strong. The engine's top choice is another move.",
+      "text": "Little time remained. The human model finds this move natural; the engine finds it strong, with another move preferred.",
+      "reason": "Condense repeated engine statements without implying a lower evaluation score than the preferred move."
+    },
+    {
+      "id": "combo-clock-fast-hard-find",
+      "previousText": "A quick move, with time still available, matches the engine's best choice. The human-move model and searched alternatives classify this as a difficult find.",
+      "text": "Quick decision, with time still available. It matches the engine's best move. The human model and searched alternatives suggest a difficult find.",
+      "reason": "Begin with the clock observation and mark difficulty as an estimate rather than classification certainty."
+    },
+    {
+      "id": "combo-clock-long-hard-find",
+      "previousText": "The clock records substantial time spent on the move. It matches the engine's best choice. The human model and searched alternatives indicate a difficult find.",
+      "text": "Clock record: substantial time spent. The engine's best move was found. The human model and searched alternatives suggest a difficult resource.",
+      "reason": "Use compact clock/result clauses without claiming time spent caused success."
+    },
+    {
+      "id": "combo-clock-long-unusual-strong",
+      "previousText": "Substantial time elapsed on the clock for this move. The human model gives the choice an unusual rating; the engine's search supports it as a strong move.",
+      "text": "Clock: substantial time spent. The human model considers the move unusual; the engine finds it strong. Unusual is not a defect.",
+      "reason": "Replace generic classification wording with compact contrast and warranted literal understatement."
+    },
+    {
+      "id": "combo-clock-long-natural-best",
+      "previousText": "The recorded time spent on this move was substantial. The engine's best move was played, and the human-move model also treats that same choice as natural.",
+      "text": "Substantial time was spent on this move. Result: the engine's best choice, also natural to the human model.",
+      "reason": "Remove redundant same-choice explanation while retaining elapsed-time and selection facts."
+    },
+    {
+      "id": "combo-clock-long-natural-strong",
+      "previousText": "The clock shows substantial time used for the move. The played choice is natural in the human model and strong in the engine's search. A different move remains the engine's best choice.",
+      "text": "Clock: substantial time spent. The move is natural to the human model and strong in the search. The engine still prefers another choice.",
+      "reason": "Compact the three supported observations; retain strong-versus-preferred distinction without an invented score gap."
+    },
+    {
+      "id": "combo-opening-departure-hard-find",
+      "previousText": "This is the first move beyond our opening book's recognized line. It is the engine's best move. The human model and searched alternatives indicate that finding it was difficult.",
+      "text": "Opening-book boundary reached. This is the first move beyond the recognized line, and the engine's best. Human-model evidence and searched alternatives suggest a difficult find.",
+      "reason": "Restore the existing opening boundary voice and qualify difficulty; no implication that book departure is bad."
+    },
+    {
+      "id": "combo-opening-departure-unusual-strong",
+      "previousText": "The game first leaves the line recognized by our opening book at this move. The human model classifies the choice as unusual, while the engine judges it strong.",
+      "text": "Opening-book boundary reached. This first move beyond the recognized line is unusual to the human model, but strong in the engine search. Departure is not a fault.",
+      "reason": "Use Rivet's boundary label and grounded understatement rather than methodological commentary."
+    },
+    {
+      "id": "combo-opening-departure-natural-strong",
+      "previousText": "This move first takes the game beyond our opening book's line. The human model prefers this choice; the engine rates it strong but selects a different move as best.",
+      "text": "First move beyond the recognized opening line. Natural to the human model; strong in the engine search. The engine prefers another move.",
+      "reason": "Lead with actual book departure and preserve natural, strong and another preference; recognition is not the basis of quality."
+    },
+    {
+      "id": "combo-recovery-hard-find",
+      "previousText": "Playable position restored with the engine's best move. The human model and examined alternatives indicate a hard find. This marks a recovery from the earlier setback.",
+      "text": "Recovery confirmed. The earlier setback is followed by a playable position again. This is the engine's best move; the human model and searched alternatives suggest a difficult find.",
+      "reason": "Remove the repeated recovery conclusion and frame difficulty as estimated."
+    },
+    {
+      "id": "combo-recovery-unusual-strong",
+      "previousText": "Recovery confirmed: the position is playable again. The choice was unusual to the human model and strong to the engine. Likelihood did not limit its value.",
+      "text": "Recovery confirmed: the position is playable again. Unusual to the human model, strong to the engine.",
+      "reason": "Replace analysis-method commentary with task-specific understated confirmation, without claiming human frequency."
+    },
+    {
+      "id": "combo-recovery-assisted-hard-find",
+      "previousText": "Recovery recorded, with help from the opponent's errors. The engine's best move restores a playable position and is a difficult find according to the human model and examined alternatives.",
+      "text": "Recovery confirmed, with help from the opponent's errors. This move restores a playable position and ranks best in the search. Human-model evidence suggests a difficult find.",
+      "reason": "Retain opponent contribution and best resource while compacting estimated difficulty."
+    },
+    {
+      "id": "combo-recovery-assisted-natural-best",
+      "previousText": "Recovery includes help from the opponent's errors. The played move restores a playable position, ranks best in the engine search, and is natural to the human model.",
+      "text": "Playable position restored, with help from the opponent's errors. This move is natural to the human model and ranks best in the search.",
+      "reason": "Lead with actual recovery and retain the contribution of opponent errors."
+    },
+    {
+      "id": "combo-recovery-assisted-natural-strong",
+      "previousText": "Recovery achieved with help from the opponent's errors. The human model favors this move; the engine finds it strong, but prefers another way to continue.",
+      "text": "Playable position restored with help from the opponent's errors. The human model finds this move natural. The engine finds it strong, with another choice preferred.",
+      "reason": "Make the recovered result explicit while preserving natural-strong and the opponent's contribution."
+    },
+    {
+      "id": "combo-chance-taken-unusual-strong",
+      "previousText": "The previous error is capitalized on. The human model rates this response as unusual, while the engine finds it strong. The opportunity was used.",
+      "text": "Opportunity supplied by the opponent; opportunity used. The human model finds this response unusual. The engine finds it strong.",
+      "reason": "Restore compact paired cause/result language and replace redundant generic summary with specific confirmation."
+    },
+    {
+      "id": "combo-chance-taken-natural-best",
+      "previousText": "Opportunity used after the opponent's previous move. This response is natural to the human model and best according to the engine. The reply meets both checks.",
+      "text": "Opportunity used after the opponent's previous move. Human-model assessment: natural. Engine assessment: best.",
+      "reason": "Retain event-first wording but replace methodological 'both checks' commentary with task confirmation."
+    },
+    {
+      "id": "combo-chance-taken-natural-strong",
+      "previousText": "The opportunity from the opponent's previous move is used. The human model favors this response; the engine finds it strong but prefers another move. Capitalizing and finding best are distinct.",
+      "text": "The opponent supplied a chance, and this move uses it. Natural to the human model, strong to the engine, though another move is preferred.",
+      "reason": "Keep the opportunity event and natural-strong distinction, removing the redundant abstract conclusion."
+    },
+    {
+      "id": "combo-chance-missed-natural-error",
+      "previousText": "The chance from the previous move goes unused. The human model rates this response as natural, but the engine finds it wanting. Inspect the stronger reply.",
+      "text": "Opportunity missed: the chance supplied by the opponent's previous move goes unused. The human model finds this choice natural. The engine finds a stronger reply.",
+      "reason": "Put the missed chess opportunity before naturalness and replace vague 'wanting' plus generic instruction."
+    },
+    {
+      "id": "combo-chance-missed-hard-defense-missed",
+      "previousText": "The previous opportunity is missed. A different move was the sole playable defense found in the search. Human-model evidence suggests that unplayed resource was difficult to find.",
+      "text": "Opportunity missed. The only playable defense found was a different move. Human-model evidence suggests a difficult resource.",
+      "reason": "Organize missed opportunity and unplayed searched defense without manufacturing a causal explanation."
+    },
+    {
+      "id": "combo-support-restored-hard-find",
+      "previousText": "Support restored to the previously unguarded piece with the engine's best move. The human model and examined alternatives indicate a difficult find. Compare the piece's protection before and after.",
+      "text": "Protection restored. The piece left unguarded earlier has support again. This is the engine's best move; human-model evidence and searched alternatives suggest a difficult find.",
+      "reason": "Restore the original protection vocabulary and remove unnecessary board-comparison instruction."
+    },
+    {
+      "id": "combo-support-restored-unusual-strong",
+      "previousText": "Protection restored to a previously unguarded piece. The human model finds the move unusual; the engine finds it strong. The restored support is a board fact in its own right.",
+      "text": "Protection restored to the piece left unguarded earlier. Human-model assessment: unusual. Engine assessment: strong.",
+      "reason": "Remove meta commentary about board facts and restore concrete confirmation of the task."
+    },
+    {
+      "id": "combo-support-restored-natural-best",
+      "previousText": "The previously unguarded piece has support again. This move is natural to the human model and ranks best in the engine search. The restored support can be seen on the board.",
+      "text": "Protection restored. The previously unguarded piece has support again. The human model finds this choice natural; the engine ranks it best.",
+      "reason": "Remove redundant 'can be seen on the board' explanation and keep concrete event plus evidence."
+    },
+    {
+      "id": "combo-advantage-converted-unusual-strong",
+      "previousText": "The reviewed stretch preserved the advantage to the recorded win. This move is unusual to the human model and strong to the engine. The sequence supplies the conversion context.",
+      "text": "Conversion recorded: the reviewed moves preserve the advantage through the recorded win. This move within that stretch is unusual to the human model and strong in the engine search.",
+      "reason": "Replace methodological context commentary with bounded conversion confirmation; do not attribute the whole win to this move."
+    },
+    {
+      "id": "combined-allowed-mate-with-human-natural-error",
+      "previousText": "This permits forced checkmate, despite looking natural to the human model. Inspect the attack through the defense.",
+      "text": "Issue: forced mate for the opponent. The human model finds this move natural.",
+      "reason": "Use issue-first literal contrast and preserve future forced mate rather than a completed checkmate."
+    },
+    {
+      "id": "combined-missed-mate-with-human-natural-error",
+      "previousText": "This abandons an available forced checkmate, despite looking natural to the human model. Review the missed finish.",
+      "text": "Available finish: forced checkmate. This move lets it go. Human-model reading: natural.",
+      "reason": "Restore available-versus-played consequence and remove generic review instruction."
+    },
+    {
+      "id": "combined-immediate-capture-with-human-natural-error",
+      "previousText": "The human model finds this natural, but the opponent has an immediate capture. Inspect the reply.",
+      "text": "Immediate reply: the opponent can capture. The human model finds this choice natural.",
+      "reason": "Lead with the actual opponent opportunity rather than the human-model preamble."
+    },
+    {
+      "id": "combined-evaluation-loss-with-human-natural-error",
+      "previousText": "The human model finds this natural; the engine finds it weaker than the best option. Compare the replies to distinguish appearance from strength.",
+      "text": "Engine comparison: this move scores below the best option. Human-model signal: natural choice. A plausible move can still be weaker.",
+      "reason": "Restore concise evidence contrast without pretending to know why the evaluation fell."
+    },
+    {
+      "id": "combined-only-playable-move-with-human-hard-find",
+      "previousText": "This was hard to find and the only playable move among those searched. The other examined moves were losing.",
+      "text": "Only this move stayed playable among those searched. The other examined choices were losing. Human-model evidence suggests a difficult find.",
+      "reason": "Lead with the bounded resource and express difficulty as estimated human evidence."
+    },
+    {
+      "id": "combined-only-advantage-resource-with-human-hard-find",
+      "previousText": "This was hard to find and the only searched move that retained the advantage. The other examined choices were losing.",
+      "text": "Advantage retained by this searched move only. The other examined choices were losing. Human-model evidence suggests a difficult find.",
+      "reason": "Put the resource before difficulty and preserve both search scope and losing examined alternatives."
+    }
+  ]
+}

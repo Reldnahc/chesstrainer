@@ -57,6 +57,18 @@ regenerated mouth timing. Meanings, selection rules and the remaining 854
 recordings are unchanged. Superseded takes remain in Git history rather than
 shipping duplicate assets; current provenance records the exact replacement text.
 
+Rivet's [wording revision](banks/rivet/revisions/wording-v2.json) reviews all 257
+newer additions and replaces 197 complete recordings. The remaining 241 Rivet
+recordings and Walter's entire bank stay unchanged. The revision restores concise
+chess-event-first wording, removes repeated analysis-method commentary, and keeps
+the same supported objective/human meanings. Every changed passage records its
+previous text, revised text and editorial reason. The existing **Recorded coach
+comparison** panel auditions the current versions with their automatic mouth
+timing; no new selection or comparison tool is required.
+This revision used **29,270 input characters / 3,540 provider credits**. All 197
+saved request IDs matched the provider's history, with no retakes or duplicate
+requests. The locked voice, model and delivery settings remain unchanged.
+
 To audition from a phone on the same network, start the studio with
 `npm --prefix frontend run dev:audio:lan` instead, then open
 `http://<PC-LAN-IP>:5176/` on the phone. Allow the development server through the

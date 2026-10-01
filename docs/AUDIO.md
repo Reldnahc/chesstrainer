@@ -186,6 +186,18 @@ retains the initial eleven opening and fourteen combined scripts;
 `banks/maia-combinations.json` authors the additional 232 combinations for both
 voices. Existing recordings are reused, not regenerated to expand the catalogue.
 
+Rivet's [spoken editorial revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+reviews those 257 additions and replaces 197 passages, retaining 60 additions
+and all 181 original recordings. His spoken writing follows the same character
+bible as his text: lead with the concrete chess event, use compact cause/result
+clauses when they clarify it, then state the relevant human-model assessment.
+Keep occasional earned understatement, not a diagnostic catchphrase on every
+line. Remove repeated methodology explanations and redundant closing summaries,
+especially across consecutive Book moves. Tactical opportunities remain possible
+replies, not events already played; difficult defenses stay estimates bounded
+to the searched choices. These editorial choices do not alter recording IDs,
+evidence, selection, or Walter's scripts.
+
 The coverage inventory follows the actual claim producers and rendering rules,
 not an unrestricted product of every move grade and model result. It includes
 natural mistakes, unusual strong choices, hard finds, difficult defenses missed
