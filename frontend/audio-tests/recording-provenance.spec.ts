@@ -8,6 +8,7 @@ import design from "../src/audio/speech/design-preview.json" with { type: "json"
 import refinements from "../src/audio/speech/refinement-previews.json" with { type: "json" };
 import shortPlan from "../src/audio/speech/walter-short-plan.json" with { type: "json" };
 import mentors from "../src/audio/speech/mentor-previews.json" with { type: "json" };
+import combined from "../src/audio/speech/older-teacher-preview.json" with { type: "json" };
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const options = { cwd: root, encoding: "utf8" as const, timeout: 20000,
@@ -49,9 +50,11 @@ test("custom Walter previews retain one original design request and unchanged au
 });
 
 for (const batch of [
-  { name: "warm/playful", manifest: refinements, directory: "refinements-v1", takeIds: ["warm", "playful"], text: shortPlan.scripts[0].text },
+  { name: "warm/playful", manifest: refinements, directory: "refinements-v1", takeIds: ["warm", "playful"], previewCount: 3, text: shortPlan.scripts[0].text },
   { name: "teacher/elder", manifest: mentors, directory: "mentor-v1", takeIds: ["teacher", "elder"],
+    previewCount: 3,
     text: "Well found. Of the moves we checked, only this one kept the position playable. The others were losing. That's the value of a careful defense." },
+  { name: "older teacher", manifest: combined, directory: "older-teacher-v1", takeIds: ["older-teacher"], previewCount: 1, text: mentors.text },
 ]) test(`Walter ${batch.name} refinements preserve the selected voice and short script`, () => {
   const manifest = batch.manifest;
   expect(manifest.provider).toBe("elevenlabs");
@@ -66,7 +69,7 @@ for (const batch of [
     expect(take.endpoint).toBe(`/v1/text-to-voice/${manifest.sourceVoiceId}/remix`);
     expect(take.request.text).toBe(manifest.text);
     expect(take.request.auto_generate_text).toBe(false);
-    expect(take.previews).toHaveLength(3);
+    expect(take.previews).toHaveLength(batch.previewCount);
     for (const preview of take.previews) {
       const audio = readFileSync(new URL(`../src/audio/speech/recordings/${batch.directory}/${preview.id}.mp3`, import.meta.url));
       expect(audio.length).toBe(preview.bytes);

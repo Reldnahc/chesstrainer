@@ -200,17 +200,19 @@ approved saving it in ElevenLabs as **Fieldwork Walter - Custom 1**. Future
 refinement auditions use the 140-character script in `walter-short-plan.json`
 (about a quarter of the original), targeting roughly 10 seconds. The original
 preview is retained for comparison. Two prompt-based remixes of that saved voice
-now provide three warmer and three more playful previews of the short script,
-each about 8–9 seconds, in the default Walter refinements collection. The exact
+produced three warmer and three more playful previews of the short script,
+each about 8–9 seconds, for the Walter refinements collection. The exact
 requests, selected source voice, generated IDs and asset hashes are retained in
 `refinement-previews.json`; the provider does not report a model ID for remixes.
 The 140-character v4 TTS plan remains available but unrecorded. A subsequent
-Teacher & elder collection is now the default, with six previews from two more
-remixes of Custom 1. Its 141-character script ends in a complete takeaway and
-prompts request unhurried, fully articulated endings. The exact requests and
-asset provenance are in `mentor-previews.json`. Earlier auditions remain for
-comparison. No remix has been saved over the baseline. This authoring choice
-does not enable production narration or finalize the voice.
+Teacher & elder collection is now the default. Its 141-character script ends in
+a complete takeaway and prompts request unhurried, fully articulated endings.
+The owner requested one example per prompt, so it now compares Older teacher
+(the combined direction), Teacher and Elder, one take each. Other custom
+collections follow the same representative-sample policy. Exact requests and
+asset provenance remain in `mentor-previews.json` and `older-teacher-preview.json`.
+Earlier alternatives remain archived; no remix has been saved over the baseline.
+This authoring choice does not enable production narration or finalize the voice.
 
 The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
 the selected model, settings, exact scripts, media terms and reproducible authoring

@@ -5,6 +5,7 @@ import designPreview from "./design-preview.json" with { type: "json" };
 import refinements from "./refinement-previews.json" with { type: "json" };
 import shortPlan from "./walter-short-plan.json" with { type: "json" };
 import mentors from "./mentor-previews.json" with { type: "json" };
+import olderTeacher from "./older-teacher-preview.json" with { type: "json" };
 
 // Development audition data only. These examples are not evidence from a game.
 export type WalterVoice = { id: string; name: string; description: string; sourceName: string; modelId: string | null };
@@ -18,22 +19,32 @@ export type WalterScript = {
 };
 export type WalterClip = { voiceId: string; scriptId: string; url: string; durationSeconds?: number };
 
+// Keep one representative per direction; earlier recordings remain in their manifests.
+const olderTeacherPreviews = olderTeacher.takes.map(take => ({ ...take.previews[0], name: take.name, description: take.description }));
+const mentorPreviews = mentors.takes.map(take => ({ ...take.previews[0], name: take.name, description: take.description }));
+const refinementPreviews = refinements.takes.map(take => ({ ...take.previews[0], name: take.name, description: take.description }));
+const customPreviews = designPreview.previews.filter(preview => preview.id === "custom-1");
+
 const originalVoices: readonly WalterVoice[] = [
   { id: "a", name: "A · Bill", description: "A mature American voice. ElevenLabs describes Bill as wise, mature and balanced.", sourceName: "Bill", modelId: recordingPlan.modelId },
   { id: "b", name: "B · George", description: "A British storyteller. ElevenLabs describes George as warm and captivating.", sourceName: "George", modelId: recordingPlan.modelId },
   { id: "c", name: "C · Brian", description: "A deeper American voice. ElevenLabs describes Brian as resonant and comforting.", sourceName: "Brian", modelId: recordingPlan.modelId },
 ];
 export const walterVoices: readonly WalterVoice[] = [
-  ...mentors.takes.flatMap(take => take.previews.map(preview => ({
-    id: preview.id, name: preview.name, description: take.description,
+  ...olderTeacherPreviews.map(preview => ({
+    id: preview.id, name: preview.name, description: preview.description,
+    sourceName: `Voice Remix · Custom 1 · ${preview.name}`, modelId: olderTeacher.modelId,
+  })),
+  ...mentorPreviews.map(preview => ({
+    id: preview.id, name: preview.name, description: preview.description,
     sourceName: `Voice Remix · Custom 1 · ${preview.name}`, modelId: mentors.modelId,
-  }))),
-  ...refinements.takes.flatMap(take => take.previews.map(preview => ({
-    id: preview.id, name: preview.name, description: take.description,
+  })),
+  ...refinementPreviews.map(preview => ({
+    id: preview.id, name: preview.name, description: preview.description,
     sourceName: `Voice Remix · Custom 1 · ${preview.name}`, modelId: refinements.modelId,
-  }))),
-  ...designPreview.previews.map(preview => ({
-    id: preview.id, name: preview.name,
+  })),
+  ...customPreviews.map(preview => ({
+    id: preview.id, name: "Custom 1",
     description: "Design brief: a warm, mature American mentor with gentle humor, thoughtful pauses and an understated delivery.",
     sourceName: `Voice Design · ${preview.name}`, modelId: designPreview.request.model_id,
   })),
@@ -57,27 +68,31 @@ export const walterScripts: readonly WalterScript[] = [
 ];
 
 export const walterCollections: readonly WalterCollection[] = [
-  { id: "teacher-elder", label: "Teacher & elder", description: "Two directions for Custom 1 · six short previews with a concluding line.",
-    voiceIds: mentors.takes.flatMap(take => take.previews.map(preview => preview.id)), scriptIds: ["mentor-defense"] },
-  { id: "walter-refinements", label: "Walter refinements", description: "Two refinements of Custom 1 · six short previews.",
-    voiceIds: refinements.takes.flatMap(take => take.previews.map(preview => preview.id)), scriptIds: shortPlan.scripts.map(script => script.id) },
-  { id: "custom-walter", label: "Custom Walter", description: "One design request · three previews of the same script.",
-    voiceIds: designPreview.previews.map(preview => preview.id), scriptIds: ["voice-design-preview"] },
+  { id: "teacher-elder", label: "Teacher & elder", description: "The combined older teacher, alongside the separate directions. One example each.",
+    voiceIds: [...olderTeacherPreviews, ...mentorPreviews].map(preview => preview.id), scriptIds: ["mentor-defense"] },
+  { id: "walter-refinements", label: "Walter refinements", description: "Warmer and playful directions for Custom 1. One example each.",
+    voiceIds: refinementPreviews.map(preview => preview.id), scriptIds: shortPlan.scripts.map(script => script.id) },
+  { id: "custom-walter", label: "Custom Walter", description: "The preferred original Custom 1 voice.",
+    voiceIds: customPreviews.map(preview => preview.id), scriptIds: ["voice-design-preview"] },
   { id: "original-voices", label: "Original voices", description: "The original Bill, George and Brian recordings, with four individual examples.",
     voiceIds: originalVoices.map(voice => voice.id), scriptIds: originalScripts.map(script => script.id) },
 ];
 
 // All recordings belong only to the development audio entrypoint.
 export const walterClips: readonly WalterClip[] = [
-  ...mentors.takes.flatMap(take => take.previews.map(preview => ({
+  ...olderTeacherPreviews.map(preview => ({
+    voiceId: preview.id, scriptId: "mentor-defense", durationSeconds: preview.durationSeconds,
+    url: new URL(`./recordings/older-teacher-v1/${preview.id}.mp3`, import.meta.url).href,
+  })),
+  ...mentorPreviews.map(preview => ({
     voiceId: preview.id, scriptId: "mentor-defense", durationSeconds: preview.durationSeconds,
     url: new URL(`./recordings/mentor-v1/${preview.id}.mp3`, import.meta.url).href,
-  }))),
-  ...refinements.takes.flatMap(take => take.previews.map(preview => ({
+  })),
+  ...refinementPreviews.map(preview => ({
     voiceId: preview.id, scriptId: shortPlan.scripts[0].id, durationSeconds: preview.durationSeconds,
     url: new URL(`./recordings/refinements-v1/${preview.id}.mp3`, import.meta.url).href,
-  }))),
-  ...designPreview.previews.map(preview => ({
+  })),
+  ...customPreviews.map(preview => ({
     voiceId: preview.id, scriptId: "voice-design-preview", durationSeconds: preview.durationSeconds,
     url: new URL(`./recordings/custom-v1/${preview.id}.mp3`, import.meta.url).href,
   })),

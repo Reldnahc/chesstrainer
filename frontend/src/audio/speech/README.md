@@ -6,10 +6,10 @@ selected for production. The application does not
 automatically speak, call a speech provider, or require an API key.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
-http://127.0.0.1:5176/. The default Teacher & elder collection contains six short
-remixes of the preferred Custom 1 voice. Walter refinements retains the earlier
-warmer/playful takes. Custom Walter retains the three original
-Voice Design previews. Original voices retains Bill, George and
+http://127.0.0.1:5176/. The default Teacher & elder collection compares **Older
+teacher**, **Teacher** and **Elder**, with one sample per prompt. Walter refinements
+similarly shows one Warmer and one Playful sample. Custom Walter keeps the
+owner-preferred Custom 1 preview. Original voices retains Bill, George and
 Brian with four individual teaching examples. Play a clip alone or following the
 approved piece-move sound. Volume, mute and Stop all
 use the shared audio engine. Changing the example/voice or hiding the tab cancels
@@ -138,6 +138,29 @@ The owner explicitly chose to keep these examples unpadded. The studio plays
 the unchanged provider MP3s, with no trimming, fades, re-encoding or playback
 timing changes. The ending experiment is in the conclusive wording and requested
 delivery. The owner should judge that performance by listening.
+
+### Combined older teacher and one sample per prompt
+
+The owner found the three variations of each refinement too similar to warrant
+separate audition choices. The studio now exposes the first returned preview
+for each prompt, and only the preferred Custom 1 from the initial design.
+Earlier alternative files and their original provenance remain archived in
+source; hiding a choice does not rewrite its generation history. Stock voices
+remain separate because Bill, George and Brian are different voices.
+
+[older-teacher-preview.json](older-teacher-preview.json) records one combined
+prompt: Elder's older, reflective warmth with Teacher's patient, clear explanatory
+delivery. It remixes the saved Custom 1 voice using the same 141-character
+concluding script. This is one combined performance direction, not audio splicing
+or a literal mixture of two recordings. The unchanged **9.09-second** sample is
+shown as **Older teacher** alongside Teacher and Elder for comparison.
+
+The provider returned three candidates in that request; only the first is retained
+in this new checked-in set, with the returned count recorded. No extra request
+was made for each candidate. Future auditions should likewise show one sample
+per prompt unless the owner specifically asks to compare takes. No padding or
+permanent voice replacement was performed. The settled provider usage increased
+by **141 credits** for this request.
 
 The original design used `POST /v1/text-to-voice/design?output_format=mp3_44100_128`
 with its manifest's `request` object and the process-only API key. Generation was

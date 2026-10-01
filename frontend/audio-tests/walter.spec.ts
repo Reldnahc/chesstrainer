@@ -76,17 +76,19 @@ test("Walter starts neutral and silent with complete local recordings for every 
   await expect(panel(page)).toBeVisible();
   await expect(panel(page).locator('[data-coach="classic"]')).toHaveAttribute("data-requested", "neutral");
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");
-  expect(walterVoices.map(voice => voice.id)).toEqual(expect.arrayContaining(["custom-1", "custom-2", "custom-3", "a", "b", "c"]));
+  expect(walterVoices.map(voice => voice.id)).toEqual(["older-teacher-1", "teacher-1", "elder-1", "warm-1", "playful-1", "custom-1", "a", "b", "c"]);
   expect(walterScripts.map(script => script.id)).toEqual(expect.arrayContaining(["voice-design-preview", "only-defense", "abandoned-defender", "allowed-mate", "fork"]));
   expect(walterClips.map(clip => `${clip.voiceId}:${clip.scriptId}`).sort())
     .toEqual(walterCollections.flatMap(collection => collection.voiceIds.flatMap(voiceId => collection.scriptIds.map(scriptId => `${voiceId}:${scriptId}`))).sort());
   expect(walterCollections[0].label).toBe("Teacher & elder");
-  expect(walterCollections[0].voiceIds).toEqual(["teacher-1", "teacher-2", "teacher-3", "elder-1", "elder-2", "elder-3"]);
+  expect(walterCollections[0].voiceIds).toEqual(["older-teacher-1", "teacher-1", "elder-1"]);
+  await expect(voiceChoices(page).getByRole("button")).toHaveText(["Older teacher", "Teacher", "Elder"]);
   expect(walterCollections[0].scriptIds).toEqual(["mentor-defense"]);
   expect(walterScripts[0].spokenText).toHaveLength(141);
   expect(walterScripts[0].spokenText).toMatch(/That's the value of a careful defense\.$/);
   expect(walterCollections.find(collection => collection.id === "walter-refinements")?.voiceIds)
-    .toEqual(["warm-1", "warm-2", "warm-3", "playful-1", "playful-2", "playful-3"]);
+    .toEqual(["warm-1", "playful-1"]);
+  expect(walterCollections.find(collection => collection.id === "custom-walter")?.voiceIds).toEqual(["custom-1"]);
   await expect(collectionChoices(page).getByRole("button", { name: walterCollections[0].label, exact: true })).toHaveAttribute("aria-pressed", "true");
   expect(requests.filter(url => recordingPattern.test(url) || url.endsWith(".wav"))).toEqual([]);
   expect(await nativeStarts(page)).toEqual([]);
@@ -323,8 +325,8 @@ test("collection changes cancel speech and select only valid voice and script pa
   await collectionChoices(page).getByRole("button", { name: "Custom Walter", exact: true }).click();
   await expect(speechEvents(page, "cancelled")).toHaveCount(2);
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");
-  await expect(voiceChoices(page).getByRole("button", { name: "Preview 1", exact: true })).toHaveAttribute("aria-pressed", "true");
-  await expect(voiceChoices(page).getByRole("button")).toHaveText(["Preview 1", "Preview 2", "Preview 3"]);
+  await expect(voiceChoices(page).getByRole("button", { name: "Custom 1", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(voiceChoices(page).getByRole("button")).toHaveText(["Custom 1"]);
   await expect(scriptSelect(page)).toHaveCount(0);
   await expect(panel(page).getByLabel("Coach explanation", { exact: true })).toHaveText(walterScripts.find(script => script.id === "voice-design-preview")!.writtenText);
   expect(await nativeStarts(page)).toHaveLength(2);

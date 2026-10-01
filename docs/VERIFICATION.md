@@ -4,6 +4,31 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Combined older teacher Walter audition — September 30, 2026
+
+One authorized remix of saved Custom 1 combines the elder and teacher directions
+using the same 141-character script. The retained first preview lasts **9.09
+seconds**, is **145,494 bytes**, and used **141 credits** after the usage meter
+settled. The provider returned three candidates; the new manifest accurately
+records that count while retaining one. The studio now shows one representative
+per custom prompt, defaults to Older teacher, and preserves earlier assets and
+provenance. No padding, audio editing or permanent voice replacement occurred.
+
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs walter.spec.ts recording-provenance.spec.ts --reporter=line`:
+  **46 passed**, desktop/mobile, no skips. All 18 exposed clips play; selection,
+  cancellation, context ordering, responsive controls, source/script/hash
+  correspondence and truthful provider metadata remain covered. The ignored
+  wrapper only reuses the running studio.
+- `npm.cmd --prefix frontend run test:types` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed. The studio build
+  retains all 28 MP3s, including archived alternatives; the existing large-chunk
+  warning remains non-blocking.
+- Inspected the actual LAN studio and desktop/mobile screenshots. Independent
+  read-only data/provenance review found no actionable issues. No full repository
+  suite, production build, deployment, push or remote CI run for this focused
+  audition update. Voice quality remains the owner's listening decision.
+
 ## Teacher and elder Walter auditions — September 30, 2026
 
 Two authorized remixes of saved Custom 1 returned six previews with a shared
