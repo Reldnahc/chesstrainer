@@ -9,6 +9,7 @@ const direction = (page: Page) => panel(page).getByRole("combobox", {name: "Cand
 const coach = (page: Page) => panel(page).getByRole("combobox", {name: "Cast coach", exact: true});
 const choose = (page: Page) => decision(page).getByRole("button", {name: "Choose this voice", exact: true});
 const note = (page: Page) => decision(page).getByRole("textbox", {name: "Note (optional)", exact: true});
+const keepLooking = (page: Page) => decision(page).getByRole("button", {name: "Keep looking", exact: true});
 
 test("listening does not vote; an explicit choice saves exact identity, notes and progress without restarting audio", async ({page}, info) => {
   const store = await mockCastingApi(page);
@@ -74,6 +75,130 @@ test("keep-looking, notes, revision and reset remain isolated per coach and rest
     expect(store.choices[second.coachId].status).toBe("selected");
     expect(store.writes.at(-1)?.body.expectedRevision).toMatch(/^revision:/);
   } finally { await other.close(); }
+});
+
+test("a legacy keep-looking choice preserves its note and requires an explicit decision on the current auditions", async ({page}) => {
+  const store = castingStore();
+  const savedNote = "Less gravel and a lighter teaching pace next time.";
+  store.choices[first.coachId] = {coachId: first.coachId, status: "keep-looking", note: savedNote,
+    revision: "legacy-rejection", updatedAt: "2026-10-01T11:00:00Z", stale: false};
+  await mockCastingApi(page, store);
+  await page.goto("/");
+  await expect(decision(page)).toContainText("New auditions — ready for your review");
+  await expect(note(page)).toHaveValue(savedNote);
+  await expect(keepLooking(page)).toBeEnabled();
+  await expect(panel(page)).toContainText("0 chosen · 0 keep looking · 20 to decide");
+  expect(store.writes).toEqual([]);
+  await keepLooking(page).click();
+  await expect(decision(page)).toContainText("Keep looking — none of these fit");
+  await expect(keepLooking(page)).toBeDisabled();
+  expect(store.writes).toEqual([{method: "PUT", coachId: first.coachId, body: {
+    status: "keep-looking", note: savedNote, expectedRevision: "legacy-rejection",
+    expectedCandidateSetFingerprint: store.candidateSetFingerprints[first.coachId],
+  }}]);
+  expect(store.choices[first.coachId].candidateSetFingerprint).toBe(store.candidateSetFingerprints[first.coachId]);
+  await page.reload();
+  await expect(decision(page)).toContainText("Keep looking — none of these fit");
+  await expect(keepLooking(page)).toBeDisabled();
+  await expect(note(page)).toHaveValue(savedNote);
+  await expect(panel(page)).toContainText("0 chosen · 1 keep looking · 19 to decide");
+  expect(store.writes).toHaveLength(1);
+});
+
+test("a replacement audition set makes its earlier keep-looking decision stale without losing the note", async ({page}) => {
+  const store = castingStore();
+  const reviewedSet = store.candidateSetFingerprints[first.coachId];
+  store.choices[first.coachId] = {coachId: first.coachId, status: "keep-looking", note: "The first round was too stern.",
+    revision: "first-round", updatedAt: "2026-10-01T11:00:00Z", stale: false, candidateSetFingerprint: reviewedSet};
+  await mockCastingApi(page, store);
+  await page.goto("/");
+  await expect(decision(page)).toContainText("Keep looking — none of these fit");
+  await expect(keepLooking(page)).toBeDisabled();
+  store.candidateSetFingerprints[first.coachId] = "e".repeat(64);
+  expect(store.candidateSetFingerprints[first.coachId]).not.toBe(reviewedSet);
+  await page.reload();
+  await expect(decision(page)).toContainText("New auditions — ready for your review");
+  await expect(note(page)).toHaveValue("The first round was too stern.");
+  await expect(keepLooking(page)).toBeEnabled();
+  await expect(panel(page)).toContainText("0 chosen · 0 keep looking · 20 to decide");
+  expect(store.choices[first.coachId].candidateSetFingerprint).toBe(reviewedSet);
+  expect(store.writes).toEqual([]);
+});
+
+test("a changed second candidate blocks rejecting the whole set while its unchanged current voice remains selectable", async ({page}) => {
+  const store = castingStore();
+  const changed = store.candidates[first.coachId][first.directions[1].id];
+  const originalHash = changed.audioSha256;
+  changed.audioSha256 = "d".repeat(64);
+  expect(changed.audioSha256).not.toBe(originalHash);
+  await mockCastingApi(page, store);
+  await page.goto("/");
+  await expect(direction(page)).toHaveValue(first.directions[0].id);
+  await expect(choose(page)).toBeEnabled();
+  await expect(keepLooking(page)).toBeDisabled();
+  await expect(panel(page)).toContainText("Some auditions have changed. Reload the page before deciding about this set.");
+  expect(store.writes).toEqual([]);
+  await choose(page).click();
+  await expect(decision(page)).toContainText(`Chosen: ${first.directions[0].label}`);
+  await expect(keepLooking(page)).toBeDisabled();
+  expect(store.writes).toHaveLength(1);
+  expect(store.writes[0].body.status).toBe("selected");
+  expect(store.writes[0].body.expectedRecordingFingerprint).toBe(store.candidates[first.coachId][first.directions[0].id].fingerprint);
+  expect(store.writes[0].body.expectedCandidateSetFingerprint).toBeUndefined();
+});
+
+test("an incomplete round cannot be rejected when its set fingerprint is missing", async ({page}) => {
+  const store = castingStore();
+  store.choices[first.coachId] = {coachId: first.coachId, status: "keep-looking", note: "Feedback from before the new round.",
+    revision: "unbound-rejection", updatedAt: "2026-10-01T11:00:00Z", stale: false};
+  delete store.candidateSetFingerprints[first.coachId];
+  await mockCastingApi(page, store);
+  await page.goto("/");
+  await expect(decision(page)).toContainText("New auditions — ready for your review");
+  await expect(note(page)).toHaveValue("Feedback from before the new round.");
+  await expect(choose(page)).toBeEnabled();
+  await expect(keepLooking(page)).toBeDisabled();
+  await expect(panel(page)).toContainText("This audition round is still being prepared. Keep looking will be available when every candidate is ready.");
+  expect(store.writes).toEqual([]);
+});
+
+test("a stale browser cannot reject a newer audition set and keeps its draft note after the conflict", async ({page}) => {
+  const store = castingStore();
+  const reviewedSet = store.candidateSetFingerprints[first.coachId];
+  const saved = {coachId: first.coachId, status: "keep-looking" as const, note: "Earlier feedback.",
+    revision: "reviewed-round", updatedAt: "2026-10-01T11:00:00Z", stale: false, candidateSetFingerprint: reviewedSet};
+  store.choices[first.coachId] = {...saved};
+  await mockCastingApi(page, store);
+  await page.goto("/");
+  await expect(keepLooking(page)).toBeDisabled();
+  const draft = "Keep this clarification until I can review the new set.";
+  await note(page).fill(draft);
+  store.candidateSetFingerprints[first.coachId] = "f".repeat(64);
+  expect(store.candidateSetFingerprints[first.coachId]).not.toBe(reviewedSet);
+  const rejected = page.waitForResponse(response => new URL(response.url()).pathname === `/__fieldwork/casting/${first.coachId}` &&
+    response.request().method() === "PUT");
+  await keepLooking(page).click();
+  const response = await rejected;
+  expect(response.status()).toBe(409);
+  expect((await response.json()).error.code).toBe("candidate_set_changed");
+  await expect(decision(page).getByRole("alert")).toContainText("These auditions changed. Reload and listen again before deciding.");
+  await expect(note(page)).toHaveValue(draft);
+  expect(store.choices[first.coachId]).toEqual(saved);
+  expect(store.writes).toHaveLength(1);
+  expect(store.writes[0].body.expectedRevision).toBe(saved.revision);
+  expect(store.writes[0].body.expectedCandidateSetFingerprint).toBe(reviewedSet);
+  await decision(page).getByRole("button", {name: "Reload saved choices", exact: true}).click();
+  await expect(decision(page)).toContainText("New auditions — ready for your review");
+  await expect(note(page)).toHaveValue(draft);
+  await expect(keepLooking(page)).toBeEnabled();
+  expect(store.writes).toHaveLength(1);
+  await keepLooking(page).click();
+  await expect(keepLooking(page)).toBeDisabled();
+  expect(store.writes).toHaveLength(2);
+  expect(store.writes[1].body.expectedRevision).toBe(saved.revision);
+  expect(store.writes[1].body.expectedCandidateSetFingerprint).toBe(store.candidateSetFingerprints[first.coachId]);
+  expect(store.choices[first.coachId].note).toBe(draft);
+  expect(store.choices[first.coachId].candidateSetFingerprint).toBe(store.candidateSetFingerprints[first.coachId]);
 });
 
 test("a changed recording or conflicting device choice cannot be approved silently", async ({page}) => {

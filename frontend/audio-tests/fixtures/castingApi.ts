@@ -13,7 +13,8 @@ export function castingStore(initial: Record<string, CastingChoice> = {}) {
       audioSha256: source.sha256, generatedVoiceId: recording.generatedVoiceId,
     };
   }
-  return {choices: {...initial}, candidates, locks: {} as Record<string, CastingLock>, revision: 0,
+  const candidateSetFingerprints = Object.fromEntries(Object.keys(candidates).map(id => [id, `candidate-set:${id}:current`]));
+  return {choices: {...initial}, candidates, candidateSetFingerprints, locks: {} as Record<string, CastingLock>, revision: 0,
     writes: [] as {method: string; coachId: string; body: Record<string, unknown>}[]};
 }
 export type CastingStore = ReturnType<typeof castingStore>;
@@ -25,13 +26,21 @@ export async function mockCastingApi(page: Page, store = castingStore()) {
     const method = request.method();
     const coachId = decodeURIComponent(new URL(request.url()).pathname.split("/")[3] ?? "");
     if (method === "GET") {
-      await route.fulfill({json: {schemaVersion: 1, choices: store.choices, candidates: store.candidates, locks: store.locks}});
+      const choices = Object.fromEntries(Object.entries(store.choices).map(([id, choice]) => [id, choice.status === "keep-looking" ?
+        {...choice, stale: !choice.candidateSetFingerprint || choice.candidateSetFingerprint !== store.candidateSetFingerprints[id]} : choice]));
+      await route.fulfill({json: {schemaVersion: 1, choices, candidates: store.candidates, locks: store.locks,
+        candidateSetFingerprints: store.candidateSetFingerprints}});
       return;
     }
     const body = request.postDataJSON();
     store.writes.push({method, coachId, body});
     if (store.locks[coachId]) {
       await route.fulfill({status: 409, json: {error: {code: "choice_locked", message: "This voice is locked. Reload saved choices to inspect it."}}});
+      return;
+    }
+    if (method === "PUT" && body.status === "keep-looking" && (!store.candidateSetFingerprints[coachId] ||
+        body.expectedCandidateSetFingerprint !== store.candidateSetFingerprints[coachId])) {
+      await route.fulfill({status: 409, json: {error: {code: "candidate_set_changed", message: "These auditions changed. Reload and listen again before deciding."}}});
       return;
     }
     const candidate = store.candidates[coachId]?.[body.directionId];
@@ -47,7 +56,8 @@ export async function mockCastingApi(page: Page, store = castingStore()) {
     }
     const choice: CastingChoice = {coachId, status: body.status, note: body.note ?? "", stale: false,
       updatedAt: "2026-10-01T12:00:00Z", revision: `revision:${++store.revision}`,
-      ...(body.status === "selected" ? {directionId: body.directionId, recording: candidate} : {})};
+      ...(body.status === "selected" ? {directionId: body.directionId, recording: candidate} :
+        {candidateSetFingerprint: store.candidateSetFingerprints[coachId]})};
     store.choices[coachId] = choice;
     await route.fulfill({json: {schemaVersion: 1, choice}});
   });

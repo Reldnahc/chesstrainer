@@ -15,6 +15,7 @@ export type CastingChoice = {
   staleReason?: string;
   directionId?: string;
   recording?: CastingRecording;
+  candidateSetFingerprint?: string;
 };
 export type CastingDecision = {status: "selected"; directionId: string; note?: string} |
   {status: "keep-looking"; note?: string};
@@ -35,6 +36,7 @@ export function useCastingChoices() {
   const [choices, setChoices] = useState<Record<string, CastingChoice>>({});
   const [locks, setLocks] = useState<Record<string, CastingLock>>({});
   const [candidates, setCandidates] = useState<Record<string, Record<string, CastingRecording>>>({});
+  const [candidateSetFingerprints, setCandidateSetFingerprints] = useState<Record<string, string>>({});
   const [ready, setReady] = useState(false);
   const [loadError, setLoadError] = useState("");
   const [saveError, setSaveError] = useState<{coachId: string; message: string}>();
@@ -58,12 +60,14 @@ export function useCastingChoices() {
       const body = await responseBody(response);
       if (!body.choices || typeof body.choices !== "object" || Array.isArray(body.choices) ||
           !body.candidates || typeof body.candidates !== "object" || Array.isArray(body.candidates) ||
-          !body.locks || typeof body.locks !== "object" || Array.isArray(body.locks))
+          !body.locks || typeof body.locks !== "object" || Array.isArray(body.locks) ||
+          !body.candidateSetFingerprints || typeof body.candidateSetFingerprints !== "object" || Array.isArray(body.candidateSetFingerprints))
         throw new Error("The studio returned an invalid choice list. Reload and try again.");
       if (!mounted.current || current !== generation.current) return;
       setChoices(body.choices);
       setLocks(body.locks);
       setCandidates(body.candidates);
+      setCandidateSetFingerprints(body.candidateSetFingerprints);
       setReady(true);
     } catch (error) {
       if (!mounted.current || current !== generation.current || controller.signal.aborted) return;
@@ -91,12 +95,17 @@ export function useCastingChoices() {
       const expectedRevision = choices[coachId]?.revision ?? null;
       const expectedRecordingFingerprint = decision?.status === "selected"
         ? candidates[coachId]?.[decision.directionId]?.fingerprint : undefined;
+      const expectedCandidateSetFingerprint = decision?.status === "keep-looking" ? candidateSetFingerprints[coachId] : undefined;
       if (decision?.status === "selected" && !expectedRecordingFingerprint)
         throw new Error("This recording is no longer available. Refresh choices before trying again.");
+      if (decision?.status === "keep-looking" && !expectedCandidateSetFingerprint)
+        throw new Error("These auditions are no longer available. Refresh choices before trying again.");
       const response = await fetch(`${endpoint}/${encodeURIComponent(coachId)}`, {
         method: decision ? "PUT" : "DELETE",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({...decision, expectedRevision, ...(expectedRecordingFingerprint ? {expectedRecordingFingerprint} : {})}),
+        body: JSON.stringify({...decision, expectedRevision,
+          ...(expectedRecordingFingerprint ? {expectedRecordingFingerprint} : {}),
+          ...(expectedCandidateSetFingerprint ? {expectedCandidateSetFingerprint} : {})}),
       });
       const body = await responseBody(response);
       if (decision ? body.choice?.coachId !== coachId : body.coachId !== coachId || body.choice !== null)
@@ -119,6 +128,6 @@ export function useCastingChoices() {
     }
   }
 
-  return {choices, locks, candidates, ready, loadError, saveError, savingCoach, reload, write};
+  return {choices, locks, candidates, candidateSetFingerprints, ready, loadError, saveError, savingCoach, reload, write};
 }
 export type CastingChoices = ReturnType<typeof useCastingChoices>;

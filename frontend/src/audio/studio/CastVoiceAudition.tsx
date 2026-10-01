@@ -14,11 +14,16 @@ import { castAuditionCoaches, castAuditionUtterance, castMouthTrack, castRecordi
 import type { StudioPlayer } from "./useStudioPlayer";
 import CastingChoice from "./CastingChoice";
 import CastingProgress from "./CastingProgress";
-import {useCastingChoices} from "./useCastingChoices";
+import {useCastingChoices, type CastingRecording} from "./useCastingChoices";
 import "../../coach-presentation.css";
 import "../../disclosure.css";
 import "./voice-audition.css";
 import "./cast-audition.css";
+
+function matchesRecording(recording: ReturnType<typeof castRecording>, registered: CastingRecording | undefined) {
+  return !!recording && registered?.id === recording.id && registered.generatedVoiceId === recording.generatedVoiceId &&
+    registered.audioSha256 === recording.audioSha256;
+}
 
 /** Same audition panel in Audio Studio and the selected Coach Studio inspector. */
 export default function CastVoiceAudition({player, coachId, expression = "explaining", motion: externalMotion}: {
@@ -73,8 +78,11 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
   const track = alignment?.id === recordingId ? alignment?.track : undefined;
   const ready = !!recording && !!track;
   const registered = choices.candidates[coach.id]?.[direction.id];
-  const sameRecording = !!recording && registered?.id === recording.id && registered?.generatedVoiceId === recording.generatedVoiceId &&
-    registered.audioSha256 === recording.audioSha256;
+  const sameRecording = matchesRecording(recording, registered);
+  const registeredSet = choices.candidates[coach.id] ?? {};
+  const sameCandidateSet = !!choices.candidateSetFingerprints[coach.id] &&
+    Object.keys(registeredSet).length === candidate.directions.length &&
+    candidate.directions.every(item => matchesRecording(castRecording(coach.id, item.id), registeredSet[item.id]));
   const current = player.speechPlayback.coachId === coach.id && player.speechPlayback.voiceId === direction.id;
   const playing = current && player.speechPlayback.state === "playing";
   const speech = playing && player.speaking?.eventId === player.speechPlayback.eventId ? player.speaking ?? undefined : undefined;
@@ -130,8 +138,12 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
         {choices.ready && recording && !sameRecording && <p className="cast-audition-note" role="status">
           This preview differs from the studio’s current recording. Reload the page before choosing it.
         </p>}
+        {choices.ready && !choices.locks[coach.id] && sameRecording && !sameCandidateSet && <p className="cast-audition-note" role="status">
+          {choices.candidateSetFingerprints[coach.id] ? "Some auditions have changed. Reload the page before deciding about this set." :
+            "This audition round is still being prepared. Keep looking will be available when every candidate is ready."}
+        </p>}
         <CastingChoice key={coach.id} coachId={coach.id} coachName={coach.name} direction={direction}
-          directions={candidate.directions} available={ready && sameRecording} choices={choices} />
+          directions={candidate.directions} available={ready && sameRecording} setAvailable={sameCandidateSet} choices={choices} />
       </div>
     </div>
   </section>;

@@ -6,14 +6,14 @@ import type { CastingChoice as SavedChoice, CastingChoices } from "./useCastingC
 
 export function castingChoiceLabel(choice: SavedChoice | undefined, directions: readonly {id: string; label: string}[]) {
   if (!choice) return "Not decided yet";
-  if (choice.stale) return "Recording changed — review this choice";
+  if (choice.stale) return choice.status === "keep-looking" ? "New auditions — ready for your review" : "Recording changed — review this choice";
   if (choice.status === "keep-looking") return "Keep looking — none of these fit";
   return `Chosen: ${directions.find(item => item.id === choice.directionId)?.label ?? "Unavailable direction"}`;
 }
 
-export default function CastingChoice({coachId, coachName, direction, directions, available, choices}: {
+export default function CastingChoice({coachId, coachName, direction, directions, available, setAvailable, choices}: {
   coachId: string; coachName: string; direction: {id: string; label: string};
-  directions: readonly {id: string; label: string}[]; available: boolean; choices: CastingChoices;
+  directions: readonly {id: string; label: string}[]; available: boolean; setAvailable: boolean; choices: CastingChoices;
 }) {
   const id = useId();
   const choice = choices.choices[coachId];
@@ -59,7 +59,7 @@ export default function CastingChoice({coachId, coachName, direction, directions
       <Button variant="primary" disabled={disabled || !available || selected && !dirty} onClick={() => void save("selected")}>
         {selected && <Check size={15} aria-hidden="true" />}{selected ? dirty ? "Save note" : "Voice chosen" : "Choose this voice"}
       </Button>
-      <Button disabled={disabled || choice?.status === "keep-looking" && !choice.stale && !dirty} onClick={() => void save("keep-looking")}>
+      <Button disabled={disabled || !setAvailable || choice?.status === "keep-looking" && !choice.stale && !dirty} onClick={() => void save("keep-looking")}>
         Keep looking
       </Button>
     </div>

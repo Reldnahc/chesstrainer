@@ -24,7 +24,8 @@ function lockedStore(pending: readonly string[] = pendingIds) {
       voiceName: `${item.name} approved voice`, lockedAt: "2026-10-01T12:00:00Z", stale: false}];
   }));
   for (const coachId of pending) store.choices[coachId] = {coachId, status: "keep-looking",
-    note: "Try a different direction.", revision: `pending:${coachId}`, updatedAt: "2026-10-01T12:00:00Z", stale: false};
+    note: "Try a different direction.", revision: `pending:${coachId}`, updatedAt: "2026-10-01T12:00:00Z", stale: false,
+    candidateSetFingerprint: store.candidateSetFingerprints[coachId]};
   return Object.assign(store, {locks});
 }
 
@@ -82,6 +83,8 @@ test("a locked direction overrides an old choice and remains inspectable without
   store.choices[first.coachId] = {coachId: first.coachId, status: "selected", directionId: older.id,
     note: "An earlier choice must not override the lock.", revision: "old", updatedAt: "2026-10-01T11:00:00Z",
     stale: false, recording: store.candidates[first.coachId][older.id]};
+  delete store.candidates[first.coachId][older.id];
+  delete store.candidateSetFingerprints[first.coachId];
   await mockCastingApi(page, store);
   await page.goto("/");
   await expect(panel(page)).toContainText("18 locked · 2 need a voice");
@@ -92,6 +95,7 @@ test("a locked direction overrides an old choice and remains inspectable without
   await expect(direction(page)).toHaveValue(locked.directionId);
   await expect(decision(page)).toContainText(`Locked: ${locked.label}`);
   await expect(decision(page)).toContainText("Its dialogue bank has not been recorded yet.");
+  await expect(panel(page)).not.toContainText("Keep looking will be available");
   await expect(decision(page).locator("button, textarea, input")).toHaveCount(0);
   await panel(page).screenshot({path: info.outputPath("casting-locks-readonly.png")});
   await direction(page).selectOption(first.directions[0].id);
