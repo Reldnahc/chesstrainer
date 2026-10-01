@@ -107,6 +107,8 @@ jobs:
           python scripts/export_api_contract.py --check
           alembic upgrade head
           alembic check
+      - name: Verify the complete recorded voice bank offline
+        run: python -B -S scripts/prepare_coach_voice_bank.py --check
       - run: python -m pytest -q --durations=20
         env:
           STOCKFISH_PATH: /usr/games/stockfish

@@ -161,7 +161,7 @@ select everything. Missing/unresolvable history also selects everything.
 |---|---|
 | Regular documentation edits/additions | Selection and final CI gate only |
 | Documentation deletions/renames or symlinks | Full checks, since documentation is packaged and source symlinks are rejected |
-| Backend or migrations | Backend, build/types, application/accounts/intelligence browsers; runtime changes also test Docker |
+| Backend or migrations | Backend, build/types, application/accounts/intelligence/audio browsers; runtime changes also test Docker |
 | Audited application-only TypeScript and public assets | Build/types, application/accounts/intelligence browsers, Docker |
 | Audited application-only CSS (page layouts, settings, review workspace) | Build/types, application/accounts browsers, Docker |
 | Board CSS | Build/types, application/accounts/intelligence browsers, Docker |
@@ -169,14 +169,16 @@ select everything. Missing/unresolvable history also selects everything.
 | Coach studio source/tests | Build/types and coach studio |
 | Intelligence lab source/tests | Build/types and intelligence lab |
 | Audio studio source/tests and its dedicated Vite/Playwright configs | Build/types and audio studio |
+| Shared standalone browser runtime and Vite path helpers | Build/types and coach/intelligence/audio browsers |
 | Shared audio engine, catalog, preferences and bundled sound assets | Build/types, application/accounts/intelligence/audio browsers, Docker |
+| Bundled speech source, recordings, provenance and alignment archives | Backend including complete-bank verification, build/types, application/accounts/intelligence/audio browsers, Docker |
 | Account browser test/config | Build/types and accounts |
-| Other application browser tests/fixtures | Build/types and application/accounts/intelligence browsers |
+| Other application browser tests/fixtures | Build/types and application/accounts/intelligence/audio browsers |
 | Type-only regression tests | Build/types |
 
-Licenses/notices are build inputs, not documentation-only shortcuts. The Python
-intelligence fixtures import backend test modules, so backend/test-fixture edits
-must retain lab coverage. Keep the selector and its regression tests aligned
+Licenses/notices are build inputs, not documentation-only shortcuts. Intelligence
+and audio selection fixtures import backend test modules, so backend/test-fixture
+edits must retain both suites. Keep the selector and its regression tests aligned
 when adding shared dependencies or another suite. The app-only source allowlist
 is conservative: new unclassified frontend modules still run all browser suites.
 The development entrypoints import only their own shell and the shared styles
@@ -199,8 +201,8 @@ server and, when needed, its own database; do not run these commands concurrentl
 shared checkout.
 No test assertions or native-engine search budgets are reduced. The frontend
 build/type checks run once, and the browser jobs download that run's `dist`
-artifact. Coach and audio studios install neither Python dependencies nor Stockfish;
-intelligence retains Python for semantic fixtures but does not install Stockfish.
+artifact. The coach studio installs neither Python dependencies nor Stockfish;
+intelligence and audio retain Python for semantic fixtures but do not install Stockfish.
 Application/account tests and backend integration tests retain real Stockfish.
 
 The full-cast expression/repertoire checks are separate cases per coach, using
@@ -321,6 +323,14 @@ time bounds, source/model/config fingerprints and rederivation of mouth cues fro
 stored word/phone evidence. `scripts/align_coach_speech.py --check` validates both
 generators' committed tracks using only the standard library. Native
 generation is an optional developer step, not a CI or installation requirement.
+
+The backend CI job also runs `python -B -S scripts/prepare_coach_voice_bank.py --check`
+to verify every recording in the complete production bank, its provenance and
+alignment archive, and the generated runtime tracks. This strict offline check
+needs no provider key or native aligner; missing, stale or mismatched artifacts
+fail. Focused authoring tests run with `python -m pytest
+backend/tests/test_coach_voice_bank.py -q`. Speech asset edits select these backend
+checks even when no Python source changes.
 
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.

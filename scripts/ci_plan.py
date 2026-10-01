@@ -17,8 +17,10 @@ SUITES = {
     "audio-studio": "playwright.audio.config.ts",
 }
 API_SUITES = {"local", "accounts"}
-# Intelligence regressions execute Python fixtures without starting an API server.
-PYTHON_SUITES = API_SUITES | {"intelligence-lab"}
+APPLICATION_SUITES = API_SUITES | {"intelligence-lab"}
+# Intelligence and audio selection regressions execute Python semantic fixtures
+# without starting an API server. Keep this separate from application consumers.
+PYTHON_SUITES = APPLICATION_SUITES | {"audio-studio"}
 # The frontend build enforces these same exclusions against Vite's resolved
 # standalone dependencies, including nested CSS imports.
 STYLE_BOUNDARIES = json.loads(
@@ -73,6 +75,11 @@ APPLICATION_AND_AUDIO_FRONTEND_FILES = {
     "frontend/src/SourceLine.tsx",
     "frontend/src/source-line.css",
     "frontend/src/disclosure.css",
+    "frontend/src/gameReview/HumanInsight.tsx",
+}
+SHARED_STANDALONE_BROWSER_FILES = {
+    "frontend/studio-tests/fixtures/runtime.ts",
+    "frontend/studio-tests/helpers/viteFsPath.ts",
 }
 APPLICATION_FRONTEND_PREFIXES = (
     "frontend/src/study/",
@@ -171,7 +178,7 @@ def select_checks(paths, full=False):
                 reason("Application-only styles require application and account browser checks.")
             elif path in APPLICATION_AND_INTELLIGENCE_CSS:
                 build = docker = True
-                suites.update(PYTHON_SUITES)
+                suites.update(APPLICATION_SUITES)
                 reason("Board styles require application and intelligence browser checks.")
             elif path.startswith(
                 ("frontend/audio-studio/", "frontend/audio-tests/", "frontend/src/audio/studio/")
@@ -179,12 +186,16 @@ def select_checks(paths, full=False):
                 build = True
                 suites.add("audio-studio")
                 reason("Audio studio changes require its browser suite and the build.")
+            elif path.startswith("frontend/src/audio/speech/"):
+                backend = build = docker = True
+                suites.update(APPLICATION_SUITES | {"audio-studio"})
+                reason("Bundled speech requires provenance, alignment and audio consumer checks.")
             elif (
                 path.startswith("frontend/src/audio/")
                 or path in APPLICATION_AND_AUDIO_FRONTEND_FILES
             ):
                 build = docker = True
-                suites.update(PYTHON_SUITES | {"audio-studio"})
+                suites.update(APPLICATION_SUITES | {"audio-studio"})
                 reason("Shared audio changes require application, intelligence and audio checks.")
             elif (
                 path in APPLICATION_FRONTEND_FILES
@@ -198,12 +209,16 @@ def select_checks(paths, full=False):
                 # The standalone entrypoints disable publicDir. CSS exclusions
                 # are separately declared and enforced by the frontend build.
                 build = docker = True
-                suites.update(PYTHON_SUITES)
+                suites.update(APPLICATION_SUITES)
                 reason("Application frontend changes require application and intelligence checks.")
             elif path.startswith("frontend/src/"):
                 build = docker = True
                 suites.update(SUITES)
                 reason("Shared or unclassified frontend source requires all browser suites.")
+            elif path in SHARED_STANDALONE_BROWSER_FILES:
+                build = True
+                suites.update({"coach-studio", "intelligence-lab", "audio-studio"})
+                reason("Shared standalone browser fixtures require all their consumers.")
             elif path.startswith(("frontend/coach-studio/", "frontend/studio-tests/")) or (
                 path == "frontend/playwright.coach.config.ts"
             ):
