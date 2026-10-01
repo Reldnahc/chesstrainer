@@ -4,6 +4,46 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Automatic Walter lip-sync comparison — October 1, 2026
+
+The development audio studio now compares energy-driven articulation against
+unchanged Rhubarb-generated mouth cues for two existing recordings. Both portraits
+share one native audio source and its absolute clock. No new recordings, provider
+requests or production automatic narration were introduced.
+
+- `.venv/Scripts/python.exe scripts/align_coach_speech.py --generate`: native pinned
+  Rhubarb 1.14.0 produced 47 cues / 8.24s for Sound sacrifice and 46 / 6.72s for
+  Allowed checkmate. A repeat generation produced identical cue hashes. Original
+  MP3s and script text are unchanged; no cue boundaries were manually edited.
+- `.venv/Scripts/python.exe -S scripts/align_coach_speech.py --check`: passed,
+  using only the standard library, with no native tool/model invocation.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py -q`:
+  **98 passed**. Ruff check and format check on the script and this test passed.
+- `npm --prefix frontend run build`: passed API/type agreement, application and
+  browser-test TypeScript, 11 style-guard tests, all three development style
+  boundaries and production build. Existing Vite large-chunk advisory remains.
+- `npm --prefix frontend run build:audio-studio`: passed.
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **194 passed**, desktop/mobile audio suite. The ignored wrapper reuses the
+  already-running LAN studio and normal audio test/output directories.
+- Separate `lip-sync.spec.ts` under that configuration, with output isolated under
+  `node_modules/.cache/lip-sync-results`: **18 passed**, desktop/mobile. Added
+  after full-suite discovery; covers both native recordings, single-source
+  playback, semantic cue parsing, artwork visibility, natural end, interruption,
+  motion and phone geometry. A subsequent rendered aperture-order regression
+  (`--grep 'rendered vowel and tongue'`) passed **2/2** after review corrected
+  rounded and tongue shapes. All twenty new checks passed; they are not part of
+  the 194 count above.
+- Manual LAN preview: both examples inspected at desktop and 390px phone sizes.
+  The two portraits remain side by side without overflow; Stop and motion retain
+  the shared policy. Playback has no runtime recognizer/API dependency. Bundle
+  inspection confirmed no cue provenance or audition imports in production JS.
+
+This establishes a reproducible comparison, not perfect recognition or approval
+for the full library. No full backend/account/coach matrix was run for this
+development preview. Native recognition dependencies remain optional and ignored.
+
 ## Walter speaking articulation — October 1, 2026
 
 The shared audio engine now publishes optional source-clock speech activity;

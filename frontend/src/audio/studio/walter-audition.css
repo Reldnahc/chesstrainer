@@ -3,6 +3,7 @@
 .walter-audition-heading { margin-bottom: 22px; }
 .walter-audition-heading h2 { margin: 7px 0 8px; font-size: 26px; }
 .walter-audition-heading > p { margin: 0; max-width: 720px; font-size: 13px; }
+.walter-audition-mode { margin-bottom: 22px; }
 .walter-audition-collections { margin-bottom: 22px; }
 .walter-audition-collections > p { margin: 10px 0 0; font-size: 12px; }
 .walter-audition-layout { display: grid; grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr); gap: 30px; }
@@ -16,6 +17,15 @@
 .walter-audition-transcript > span { color: var(--muted); font: 10px var(--mono); text-transform: uppercase; letter-spacing: .8px; }
 .walter-audition-transcript p { margin: 8px 0 0; font-size: 14px; line-height: 1.65; color: var(--text); }
 .walter-audition-unavailable { font-size: 12px; }
+.walter-mouth-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.walter-mouth-pair figure { display: grid; justify-items: center; align-content: start; margin: 0; padding: 18px 8px; background: var(--surface-raised, #24292c); border: 1px solid var(--line); border-radius: 8px; }
+.walter-mouth-pair .coach-avatar { width: 128px; height: 160px; }
+.walter-mouth-pair figcaption { margin-top: 14px; text-align: center; font-size: 13px; }
+.walter-mouth-pair figcaption span { display: block; margin-top: 5px; font-size: 11px; color: var(--muted); }
+.walter-comparison-transcript { min-height: 65px; margin: 18px 0; color: var(--text); font-size: 14px; line-height: 1.6; }
+.walter-comparison-actions { display: flex; gap: 8px; }
+.walter-comparison-actions > button { flex: 1; min-width: 0; }
+.walter-comparison-note { margin: 12px 0 0; font-size: 11px; line-height: 1.6; }
 @media (max-width: 850px) {
   .walter-audition-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .walter-audition-description { min-height: 0; }
@@ -23,4 +33,6 @@
 @media (max-width: 560px) {
   .walter-audition { padding: 16px; }
   .walter-audition-heading h2 { font-size: 23px; }
+  .walter-mouth-pair { gap: 8px; }
+  .walter-mouth-pair .coach-avatar { width: min(100%, 104px); height: 130px; }
 }

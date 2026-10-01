@@ -2,6 +2,7 @@ import { useId } from "react";
 import { HumanMouth } from "../human/HumanFeatures";
 import type { Pose } from "../human/poses";
 import type { CoachExpression } from "../model";
+import WalterAlignedMouth from "./WalterAlignedMouth";
 
 // Playback owns the smoothed speech values on the avatar. This component keeps
 // Walter's geometry in SVG, with no React render or new animation per syllable.
@@ -41,5 +42,6 @@ export default function WalterSpeechMouth({ pose, expression }: {
           stroke="#75473e" strokeWidth=".65" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
       </g>
     </g>
+    <WalterAlignedMouth expression={expression} />
   </>;
 }

@@ -154,12 +154,22 @@ separate from Brilliant's entrance mouth scale so the two cannot compound.
 `HumanFeatures` offers a mouth slot, preserving the existing shared fallback for
 other humans. New species can implement their own rig against the same variables.
 
-This is audio-reactive articulation, **not phoneme-aligned lip sync**: energy and
+The default path is audio-reactive articulation, **not phoneme-aligned lip sync**: energy and
 a rough brightness hint provide timing and shape variation, not recognized words
-or vowels. There is no voice API call, transcription, generated timing asset or
-independent looping talk animation. The [audio studio](AUDIO.md) previews it with
-Walter's existing recordings at the real review portrait size. Production automatic
-speech and lesson narration remain deferred.
+or vowels. It needs no generated timing asset or independent looping talk animation.
+
+`CoachCharacter` also accepts an optional `SpeechMouthTrack`: timed semantic mouth
+shapes sampled against the same audio clock. Nine shapes resolve to eight normalized
+rig controls, with short easing and faster lip closures. Tool-specific shape IDs
+stay in the authoring adapter; future rigs can draw their own geometry. Missing
+tracks retain the energy-driven path. Motion, identity and cleanup rules are shared.
+
+The [audio studio](AUDIO.md#automatic-lip-sync-comparison-development-only) compares
+both methods using two existing Walter recordings at normal portrait sizes. Its
+Rhubarb-generated cue files are development-only and uncorrected; the preview is
+for judging automatic quality, not a claim of exact phonetic alignment. Playback
+uses no voice API or recognition model. Production automatic speech and lesson
+narration remain deferred.
 
 ### Expressions and idle behavior
 

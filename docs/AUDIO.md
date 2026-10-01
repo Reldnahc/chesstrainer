@@ -368,6 +368,25 @@ Coach motion selector uses the shared device/Animated/Still policy without
 changing account preferences. Existing prerecorded examples are unchanged;
 automatic application speech remains disabled and lessons remain out of scope.
 
+### Automatic lip-sync comparison (development only)
+
+Choose **Compare lip sync** in the Walter audition. **Sound sacrifice** and
+**Allowed checkmate** each drive two shared Walter portraits from one audio
+source: the current energy-driven mouth and an automatically timed mouth-shape
+track. Both use the same expression and clock; independent idle gestures are
+paused to make the comparison easier. Play voice, In context, Stop and the motion
+selector keep their existing behavior. No new recordings or paid generation
+were needed.
+
+The cue tracks were generated locally with pinned Rhubarb Lip Sync 1.14.0, using
+the original recordings and exact scripts. All cue boundaries are unedited.
+This preview does not adopt the method for the full voice library. The
+[alignment README](../frontend/src/audio/speech/alignment/README.md) documents
+reproduction, source/tool hashes, conversion details and read-only verification.
+The native tool, recognition resources and temporary WAVs stay outside Git and
+Docker. Only small cue/provenance JSON files enter the development studio; they
+are excluded from the production application bundle.
+
 ### Coverage
 
 Engine tests cover cue precedence, mute/categories, activation failure, duplicates,

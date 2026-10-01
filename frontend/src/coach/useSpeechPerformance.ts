@@ -1,12 +1,14 @@
 import { useLayoutEffect, type RefObject } from "react";
 import type { SpeechPlayback } from "../audio/model";
+import { speechMouthAt, speechMouthPoses, type SpeechMouthPose, type SpeechMouthTrack } from "./speechMouth";
 
 const bounded = (value: number) => Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 0;
+const mouthParts = Object.keys(speechMouthPoses.rest) as (keyof SpeechMouthPose)[];
 
 /** Only the speaking portrait samples the audio clock; SVG descendants use CSS variables. */
 export function useSpeechPerformance(
   ref: RefObject<HTMLDivElement | null>, playback: SpeechPlayback | undefined,
-  enabled: boolean, identity: string,
+  enabled: boolean, identity: string, track?: SpeechMouthTrack,
 ) {
   useLayoutEffect(() => {
     const node = ref.current;
@@ -15,13 +17,15 @@ export function useSpeechPerformance(
     let previousTime: number | undefined;
     let openness = 0;
     let roundness = .5;
+    let pose = { ...speechMouthPoses.rest };
     const reset = () => {
       node.dataset.speaking = "false";
-      node.style.removeProperty("--speech-open");
-      node.style.removeProperty("--speech-round");
-      node.style.removeProperty("--speech-jaw");
+      delete node.dataset.articulation;
+      delete node.dataset.mouthShape;
+      for (const part of mouthParts) node.style.removeProperty(`--speech-${part}`);
       openness = 0;
       roundness = .5;
+      pose = { ...speechMouthPoses.rest };
       previousTime = undefined;
     };
     reset();
@@ -32,14 +36,28 @@ export function useSpeechPerformance(
       else {
         const dt = previousTime === undefined ? 16 : Math.min(64, Math.max(0, time - previousTime));
         previousTime = time;
-        const target = bounded(activity.energy);
-        openness += (target - openness) * (1 - Math.exp(-dt / (target > openness ? 25 : 45)));
-        roundness += (1 - bounded(activity.brightness) - roundness) * (1 - Math.exp(-dt / 65));
-        const open = openness < .025 ? 0 : openness;
         if (node.dataset.speaking !== "true") node.dataset.speaking = "true";
-        node.style.setProperty("--speech-open", open.toFixed(3));
-        node.style.setProperty("--speech-round", roundness.toFixed(3));
-        node.style.setProperty("--speech-jaw", open.toFixed(3));
+        if (track) {
+          const shape = speechMouthAt(track, activity.elapsedSeconds);
+          const target = speechMouthPoses[shape];
+          if (node.dataset.articulation !== "aligned") node.dataset.articulation = "aligned";
+          if (node.dataset.mouthShape !== shape) node.dataset.mouthShape = shape;
+          // Quick closures make P/B/M readable; short easing avoids hard swaps.
+          for (const part of mouthParts) {
+            const duration = part === 'open' && target.open === 0 ? 18 : 30;
+            pose[part] += (target[part] - pose[part]) * (1 - Math.exp(-dt / duration));
+            const value = part === 'open' && pose[part] < .025 ? 0 : bounded(pose[part]);
+            node.style.setProperty(`--speech-${part}`, value.toFixed(3));
+          }
+        } else {
+          const target = bounded(activity.energy);
+          openness += (target - openness) * (1 - Math.exp(-dt / (target > openness ? 25 : 45)));
+          roundness += (1 - bounded(activity.brightness) - roundness) * (1 - Math.exp(-dt / 65));
+          const open = openness < .025 ? 0 : openness;
+          node.style.setProperty("--speech-open", open.toFixed(3));
+          node.style.setProperty("--speech-round", roundness.toFixed(3));
+          node.style.setProperty("--speech-jaw", open.toFixed(3));
+        }
       }
       // A suspended audio context can resume at the same sample. The owner clears
       // terminal handles; visibility/Still/unmount cancel this loop independently.
@@ -47,5 +65,5 @@ export function useSpeechPerformance(
     };
     frame = requestAnimationFrame(tick);
     return () => { cancelAnimationFrame(frame); reset(); };
-  }, [ref, playback, enabled, identity]);
+  }, [ref, playback, enabled, identity, track]);
 }

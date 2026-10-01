@@ -310,6 +310,15 @@ unsupported rigs, source replacement and unmount cleanup on desktop and mobile.
 Inspect the audio studio at normal portrait sizes as well: automated envelope
 and lifecycle checks do not establish that the speaking face looks convincing.
 
+`lip-sync.spec.ts` compares both real Walter recordings on desktop/mobile. It
+checks cue boundaries and gaps, malformed imports, exact voice/script matching,
+one shared native audio source, correct mouth artwork, natural ending, interruption,
+mode/example changes, motion policy and side-by-side phone layout. Offline
+authoring coverage runs with `.venv/Scripts/python.exe -m pytest
+backend/tests/test_speech_alignment.py -q`; `scripts/align_coach_speech.py --check`
+validates committed cue provenance using only the standard library. Native
+generation is an optional developer step, not a CI or installation requirement.
+
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It resolves their production Vite dependency graphs without starting servers or
