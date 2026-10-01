@@ -52,6 +52,26 @@ export function styleBoundaryPlugin(surface, root = frontendRoot, manifest = loa
   };
 }
 
+export function productionDevelopmentBoundaryPlugin(root = frontendRoot) {
+  const directories = [
+    "src/audio/studio",
+    "src/coach/studio",
+    "src/audio/speech/cast-auditions",
+  ].map((path) => normalized(resolve(root, path)) + "/");
+  const loader = normalized(resolve(root, "src/audio/speech/castAuditions.ts"));
+  return {
+    name: "fieldwork-production-development-boundary",
+    generateBundle() {
+      const dependencies = [...this.getModuleIds(), ...this.getWatchFiles()];
+      const violations = [...new Set(dependencies.map(normalized).filter((id) =>
+        id === loader || directories.some((directory) => id.startsWith(directory))))];
+      if (violations.length) {
+        this.error(`Application imports development-only voice assets or studio modules: ${violations.sort().join(", ")}. Keep auditions in standalone development entry points.`);
+      }
+    },
+  };
+}
+
 export async function checkStyleBoundaries() {
   for (const [surface, config] of Object.entries(standaloneConfigs)) {
     await build({
@@ -68,6 +88,19 @@ export async function checkStyleBoundaries() {
     });
     console.log(`${surface}: application style boundary verified.`);
   }
+  await build({
+    configFile: resolve(frontendRoot, "vite.config.ts"),
+    logLevel: "error",
+    plugins: [productionDevelopmentBoundaryPlugin()],
+    build: {
+      write: false,
+      emptyOutDir: false,
+      minify: false,
+      cssMinify: false,
+      reportCompressedSize: false,
+    },
+  });
+  console.log("application: development-only voice assets and studio modules excluded.");
 }
 
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {

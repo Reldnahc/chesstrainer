@@ -11,6 +11,7 @@ ALL_SUITES = ["local", "accounts", "coach-studio", "intelligence-lab", "audio-st
 APPLICATION_SUITES = ["local", "accounts", "intelligence-lab"]
 PYTHON_SUITES = ["local", "accounts", "intelligence-lab", "audio-studio"]
 AUDIO_CONSUMER_SUITES = ["local", "accounts", "intelligence-lab", "audio-studio"]
+VOICE_STUDIO_SUITES = ["coach-studio", "audio-studio"]
 
 
 @pytest.fixture(autouse=True)
@@ -173,6 +174,8 @@ def test_shared_frontend_runtime_runs_every_browser_suite_and_container(path):
     [
         "frontend/src/FutureSharedComponent.tsx",
         "frontend/src/futureSharedHelper.ts",
+        "frontend/src/Notice.tsx",
+        "frontend/src/notice.css",
         "frontend/src/new-feature/feature.ts",
         "frontend/src/study/runtime.json",
         "frontend/src/study/StudyScreen.tsx.css",
@@ -185,17 +188,78 @@ def test_unclassified_frontend_source_falls_back_to_every_browser_suite(path):
 @pytest.mark.parametrize(
     "path",
     [
-        "frontend/src/audio/engine.ts",
-        "frontend/src/audio/model.ts",
-        "frontend/src/audio/catalog.ts",
         "frontend/src/audio/AudioProvider.tsx",
-        "frontend/src/audio/assets/move.wav",
-        "frontend/src/audio/assets/NOTICE.md",
+        "frontend/src/audio/AudioMuteButton.tsx",
+        "frontend/src/audio/AudioSettings.tsx",
     ],
 )
 def test_shared_audio_retains_application_consumers_without_coach_artwork(path):
     assert_selection(
         ci_plan.select_checks([path]), build=True, docker=True, suites=AUDIO_CONSUMER_SUITES
+    )
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        *sorted(ci_plan.ALL_AUDIO_CONSUMER_FILES),
+        "frontend/src/audio/assets/move.wav",
+        "frontend/src/audio/assets/NOTICE.md",
+    ],
+)
+def test_shared_player_dependencies_keep_both_studios_and_application_consumers(path):
+    assert_selection(ci_plan.select_checks([path]), build=True, docker=True, suites=ALL_SUITES)
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        *sorted(ci_plan.CAST_AUTHORING_FILES),
+        *sorted(ci_plan.SHARED_VOICE_STUDIO_FILES),
+        "frontend/src/audio/speech/cast-auditions/design-plan.json",
+        "frontend/src/audio/speech/cast-auditions/manifest.json",
+        "frontend/src/audio/speech/cast-auditions/tracks.json",
+        "frontend/src/audio/speech/cast-auditions/recordings/cat-kitten/soft.mp3",
+        "frontend/src/audio/speech/cast-auditions/recordings/cat-kitten/soft.provenance.json",
+        "frontend/src/audio/speech/cast-auditions/alignment/cat-kitten-soft.json",
+    ],
+)
+def test_cast_authoring_and_shared_studio_playback_only_select_their_consumers(path):
+    plan = ci_plan.select_checks(["docs/AUDIO.md", path])
+    assert_selection(plan, build=True, suites=VOICE_STUDIO_SUITES)
+    assert all(entry["api"] is False for entry in plan["matrix"]["include"])
+    assert all(
+        entry["python"] is (entry["suite"] == "audio-studio") for entry in plan["matrix"]["include"]
+    )
+    assert_selection(
+        ci_plan.select_checks([path, "frontend/src/settings.css"]),
+        build=True,
+        docker=True,
+        suites=["local", "accounts", "coach-studio", "audio-studio"],
+    )
+
+
+def test_cast_only_selection_cannot_hide_changed_production_or_shared_dependencies():
+    audition = "frontend/src/audio/speech/cast-auditions/manifest.json"
+    assert_selection(
+        ci_plan.select_checks([audition, "frontend/src/audio/speech/bank/manifest.json"]),
+        backend=True,
+        build=True,
+        docker=True,
+        suites=ALL_SUITES,
+    )
+    assert_selection(
+        ci_plan.select_checks([audition, "scripts/record_coach_speech.mjs"]),
+        backend=True,
+        build=True,
+        docker=True,
+        suites=ALL_SUITES,
+    )
+    assert_selection(
+        ci_plan.select_checks([audition, "frontend/src/board.css"]),
+        build=True,
+        docker=True,
+        suites=ALL_SUITES,
     )
 
 
@@ -231,9 +295,6 @@ def test_speech_sources_and_artifacts_require_offline_backend_verification(path)
 @pytest.mark.parametrize(
     "path",
     [
-        "frontend/src/SourceLine.tsx",
-        "frontend/src/source-line.css",
-        "frontend/src/disclosure.css",
         "frontend/src/gameReview/HumanInsight.tsx",
     ],
 )
@@ -289,6 +350,9 @@ def test_audio_only_paths_cannot_hide_changed_shared_dependencies(path):
     ("path", "suite"),
     [
         ("frontend/coach-studio/main.tsx", "coach-studio"),
+        ("frontend/src/coach/studio/CoachStudio.tsx", "coach-studio"),
+        ("frontend/src/coach/studio/SpeechInspector.tsx", "coach-studio"),
+        ("frontend/src/coach/studio/speech-inspector.css", "coach-studio"),
         ("frontend/studio-tests/coach-studio.spec.ts", "coach-studio"),
         ("frontend/playwright.coach.config.ts", "coach-studio"),
         ("frontend/intelligence-lab/corpus.ts", "intelligence-lab"),
@@ -376,7 +440,7 @@ def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
         ("frontend/src/useSavedPreferences.ts", ALL_SUITES),
         ("frontend/studio-tests/fixtures/runtime.ts", ALL_SUITES),
         ("frontend/studio-tests/helpers/viteFsPath.ts", ALL_SUITES),
-        ("frontend/src/audio/engine.ts", AUDIO_CONSUMER_SUITES),
+        ("frontend/src/audio/engine.ts", ALL_SUITES),
         ("frontend/audio-tests/studio.spec.ts", AUDIO_CONSUMER_SUITES),
         ("frontend/tests/semantic-fixtures.ts", PYTHON_SUITES),
     ],

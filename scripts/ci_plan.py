@@ -21,6 +21,34 @@ APPLICATION_SUITES = API_SUITES | {"intelligence-lab"}
 # Intelligence and audio selection regressions execute Python semantic fixtures
 # without starting an API server. Keep this separate from application consumers.
 PYTHON_SUITES = APPLICATION_SUITES | {"audio-studio"}
+VOICE_STUDIO_SUITES = {"coach-studio", "audio-studio"}
+# These authoring tools and development assets have no application consumers.
+# Audio CI runs their offline checks in addition to both studios' browsers.
+CAST_AUTHORING_FILES = {
+    "scripts/design_coach_voices.mjs",
+    "scripts/design_coach_voices.test.mjs",
+    "scripts/prepare_cast_voice_auditions.py",
+    "backend/tests/test_cast_voice_auditions.py",
+}
+SHARED_VOICE_STUDIO_FILES = {
+    "frontend/src/audio/studio/useStudioPlayer.ts",
+    "frontend/src/audio/studio/StudioTransport.tsx",
+    "frontend/src/audio/studio/studio-transport.css",
+    "frontend/src/audio/studio/voice-audition.css",
+    "frontend/src/audio/studio/CastVoiceAudition.tsx",
+    "frontend/src/audio/studio/CastVoiceAuditionPanel.tsx",
+    "frontend/src/audio/studio/cast-audition.css",
+    "frontend/src/audio/speech/castAuditions.ts",
+}
+ALL_AUDIO_CONSUMER_FILES = {
+    "frontend/src/audio/engine.ts",
+    "frontend/src/audio/model.ts",
+    "frontend/src/audio/catalog.ts",
+    "frontend/src/audio/speech/activity.ts",
+    "frontend/src/SourceLine.tsx",
+    "frontend/src/source-line.css",
+    "frontend/src/disclosure.css",
+}
 # The frontend build enforces these same exclusions against Vite's resolved
 # standalone dependencies, including nested CSS imports.
 STYLE_BOUNDARIES = json.loads(
@@ -51,7 +79,6 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/MoveBadge.tsx",
     "frontend/src/MovePlaybackControls.tsx",
     "frontend/src/MoveStatus.tsx",
-    "frontend/src/Notice.tsx",
     "frontend/src/Onboarding.tsx",
     "frontend/src/PageTitle.tsx",
     "frontend/src/Pagination.tsx",
@@ -72,9 +99,6 @@ APPLICATION_FRONTEND_FILES = {
     "frontend/src/navigation.ts",
 }
 APPLICATION_AND_AUDIO_FRONTEND_FILES = {
-    "frontend/src/SourceLine.tsx",
-    "frontend/src/source-line.css",
-    "frontend/src/disclosure.css",
     "frontend/src/gameReview/HumanInsight.tsx",
 }
 SHARED_STANDALONE_BROWSER_FILES = {
@@ -160,6 +184,16 @@ def select_checks(paths, full=False):
                 backend = build = docker = True
                 suites.update(SUITES)
                 reason("Unrecognized paths require full correctness.")
+            elif (
+                path in CAST_AUTHORING_FILES
+                or path in SHARED_VOICE_STUDIO_FILES
+                or path.startswith("frontend/src/audio/speech/cast-auditions/")
+            ):
+                build = True
+                suites.update(VOICE_STUDIO_SUITES)
+                reason(
+                    "Cast audition authoring and shared studio playback require both voice studios."
+                )
             elif path in SHARED_FILES or path.startswith(SHARED_PREFIXES):
                 backend = build = docker = True
                 suites.update(SUITES)
@@ -180,6 +214,10 @@ def select_checks(paths, full=False):
                 build = docker = True
                 suites.update(APPLICATION_SUITES)
                 reason("Board styles require application and intelligence browser checks.")
+            elif path in ALL_AUDIO_CONSUMER_FILES or path.startswith("frontend/src/audio/assets/"):
+                build = docker = True
+                suites.update(SUITES)
+                reason("Shared playback and source presentation require every audio consumer.")
             elif path.startswith(
                 ("frontend/audio-studio/", "frontend/audio-tests/", "frontend/src/audio/studio/")
             ) or path in {"frontend/playwright.audio.config.ts", "frontend/vite.audio.config.ts"}:
@@ -211,6 +249,12 @@ def select_checks(paths, full=False):
                 build = docker = True
                 suites.update(APPLICATION_SUITES)
                 reason("Application frontend changes require application and intelligence checks.")
+            elif path.startswith("frontend/src/coach/studio/"):
+                build = True
+                suites.add("coach-studio")
+                reason(
+                    "Coach studio implementation changes require its browser suite and the build."
+                )
             elif path.startswith("frontend/src/"):
                 build = docker = True
                 suites.update(SUITES)

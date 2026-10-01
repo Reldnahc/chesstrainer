@@ -170,7 +170,10 @@ select everything. Missing/unresolvable history also selects everything.
 | Intelligence lab source/tests | Build/types and intelligence lab |
 | Audio studio source/tests and its dedicated Vite/Playwright configs | Build/types and audio studio |
 | Shared standalone browser runtime and Vite path helpers | Build/types and coach/intelligence/audio browsers |
-| Shared audio engine, catalog, preferences and bundled sound assets | Build/types, application/accounts/intelligence/audio browsers, Docker |
+| Shared audio engine, catalog, activity sampling, bundled sounds and source controls | Build/types, all browser suites, Docker |
+| Application audio preferences and controls | Build/types, application/accounts/intelligence/audio browsers, Docker |
+| Shared studio player, transport and cast audition UI/assets | Build/types and coach/audio browsers, including offline cast-authoring checks |
+| Cast Voice Design/alignment tools and their tests | Build/types and coach/audio browsers, including offline cast-authoring checks |
 | Bundled speech source, recordings, provenance and alignment archives | Backend including complete-bank verification, build/types, application/accounts/intelligence/audio browsers, Docker |
 | Account browser test/config | Build/types and accounts |
 | Other application browser tests/fixtures | Build/types and application/accounts/intelligence/audio browsers |
@@ -186,13 +189,14 @@ they use. `frontend/scripts/style-boundaries.json` declares application-only CSS
 and board CSS. The selector and the build's Vite dependency guard use that same
 manifest: an accidental direct or nested CSS import into an excluded developer
 surface fails the build. New, unclassified CSS remains conservative. Shared
-foundation, coach presentation and motion policy retain all browser suites;
+foundation, coach presentation, notices and motion policy retain all browser suites;
 ordinary page CSS and the application import aggregate no longer select the
 coach studio or audio studio. The audio studio also excludes board CSS. Its
 dedicated `audio-tests` directory keeps audio tests out of application test
 discovery; changes to cross-surface shared controls or unclassified providers
 still retain every browser suite. Audio-only changes do not select the coach
-artwork matrix.
+artwork matrix. The shared cast player and audition assets select both studios;
+the production audio engine also retains application and intelligence consumers.
 
 The application and coach studio suites each run in four isolated jobs
 (desktop/mobile, two file shards each). Accounts, intelligence and audio each have
@@ -332,9 +336,23 @@ fail. Focused authoring tests run with `python -m pytest
 backend/tests/test_coach_voice_bank.py -q`. Speech asset edits select these backend
 checks even when no Python source changes.
 
+The audio desktop CI job runs the cast Voice Design safeguards once with
+`node --test scripts/design_coach_voices.test.mjs`, then the focused
+`backend/tests/test_cast_voice_auditions.py` tests and
+`python -B -S scripts/prepare_cast_voice_auditions.py --check`. The check verifies
+the complete approved audition set against its exact requests, recording
+hashes, alignment archives and compact tracks. The provider key is cleared, and
+no paid generation or native alignment runs in CI. Cast-only edits select both
+studios and the frontend build, including the production asset boundary.
+
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
-It resolves their production Vite dependency graphs without starting servers or
+It also rejects direct or lazy application imports of either studio, the cast
+audition loader, or its development-only media/manifests/tracks, and verifies the
+real application graph. Production Walter recordings remain permitted. These
+checks inspect runtime dependencies; the corresponding-source download can still
+contain committed authoring files. The checks resolve Vite dependency graphs
+without starting servers or
 writing build artifacts. This runs in the normal frontend build; it adds a short
 dependency check rather than running character animation browser tests.
 

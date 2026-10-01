@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import test from "node:test";
 import { build } from "vite";
-import { loadStyleBoundaries, styleBoundaryPlugin } from "./style-boundaries.mjs";
+import { loadStyleBoundaries, productionDevelopmentBoundaryPlugin, styleBoundaryPlugin } from "./style-boundaries.mjs";
 
 const manifest = loadStyleBoundaries();
 const appStyle = manifest.applicationOnly[0];
@@ -67,3 +67,56 @@ for (const nested of [false, true]) {
     }
   });
 }
+
+async function applicationFixture(t, imported, dynamic = false) {
+  const root = await mkdtemp(join(tmpdir(), "fieldwork-production-boundary-"));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const contents = imported.endsWith(".json") ? '{"recordings":[]}'
+    : imported.endsWith(".mp3") ? "mock audio" : "export default 'voice';";
+  for (const [path, content] of Object.entries({
+    "index.html": '<script type="module" src="/main.js"></script>',
+    "main.js": dynamic ? `import('./${imported}').then(value => {globalThis.voice = value.default;});`
+      : `import voice from './${imported}'; globalThis.voice = voice;`,
+    [imported]: contents,
+  })) {
+    await mkdir(dirname(join(root, path)), { recursive: true });
+    await writeFile(join(root, path), content);
+  }
+  return {
+    root,
+    check: () => build({
+      root,
+      configFile: false,
+      logLevel: "silent",
+      plugins: [productionDevelopmentBoundaryPlugin(root)],
+      build: { write: false, emptyOutDir: false },
+    }),
+  };
+}
+
+for (const imported of [
+  "src/audio/speech/castAuditions.ts",
+  "src/audio/speech/cast-auditions/manifest.json",
+  "src/audio/speech/cast-auditions/tracks.json",
+  "src/audio/speech/cast-auditions/recordings/cat-1.mp3",
+  "src/audio/studio/shared-player.js",
+  "src/coach/studio/inspector.js",
+]) for (const dynamic of [false, true]) {
+  test(`application rejects ${dynamic ? "dynamic" : "static"} development import ${imported}`, async (t) => {
+    const source = await applicationFixture(t, imported, dynamic);
+    await assert.rejects(source.check(), /Application imports development-only voice assets or studio modules/);
+    assert.equal(existsSync(join(source.root, "dist")), false);
+  });
+}
+
+test("application retains production speech and similarly named non-studio modules", async (t) => {
+  for (const imported of [
+    "src/audio/speech/bank/tracks.json",
+    "src/audio/speech/bank/recordings/walter/line.mp3",
+    "src/audio/studio-settings.js",
+  ]) {
+    const source = await applicationFixture(t, imported);
+    await source.check();
+    assert.equal(existsSync(join(source.root, "dist")), false);
+  }
+});
