@@ -19,7 +19,7 @@ The shared [audio system](docs/AUDIO.md) adds board sounds and practice feedback
 Move ratings have no sounds. Adjust it in **Settings → Sound** or quickly
 mute the current device from a board. The separate development sound studio
 (`npm --prefix frontend run dev:audio`, port 5176) previews the nine approved
-sounds individually and in context. Walter and Rivet each include 206 prerecorded
+sounds individually and in context. Walter and Rivet each include 438 prerecorded
 teaching summaries with automatic lip sync, available automatically or on request.
 They ship with the app and need no API key or paid service. Other coaches and
 lessons remain text only. The [voice studio](frontend/src/audio/speech/README.md)

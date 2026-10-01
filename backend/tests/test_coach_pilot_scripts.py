@@ -16,7 +16,10 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         for row in read("bank/revisions/walter-language-v1-manifest.json")["recordings"]
     }
     base_rivet = {row["id"]: row for row in read("banks/rivet/scripts.json")["records"]}
-    additions = read("banks/pilot-additions.json")["recordings"]
+    additions = [
+        *read("banks/pilot-additions.json")["recordings"],
+        *read("banks/maia-combinations.json")["recordings"],
+    ]
     extras = {row["id"]: row for row in additions}
     assert len(extras) == len(additions)
     assert original.keys() == base_rivet.keys()
@@ -43,7 +46,28 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
             pair = row["primary"], row["secondary"]
             assert pair not in pairs
             pairs.add(pair)
-            assert pair[0] in original and pair[1] in original
+            assert pair[0] in catalogue and "primary" not in catalogue[pair[0]]
+            assert pair[1] in original
             assert pair[1].startswith("human-")
             assert catalogue[row["id"]]["primary"] == pair[0]
             assert catalogue[row["id"]]["secondary"] == pair[1]
+
+
+def test_maia_passages_are_complete_distinct_scripts_for_both_characters():
+    rows = read("banks/maia-combinations.json")["recordings"]
+    for text_field in ("walterText", "rivetText"):
+        texts = [row[text_field] for row in rows]
+        assert len(texts) == len(set(texts))
+        for row, text in zip(rows, texts, strict=True):
+            assert 1 <= len(text) <= 1000
+            assert text.strip() == text and text.endswith((".", "?", "!"))
+            # A named opening continuation is real opening context. The vague
+            # tactical filler rejected by the owner is not that usage.
+            if not row["primary"].startswith("book-opening-"):
+                assert "continuation" not in text.lower()
+            assert "in this continuation" not in text.lower()
+            assert "in the continuation" not in text.lower()
+            assert not any(marker in text for marker in ("{", "}", "TODO", "TBD"))
+    for row in rows:
+        assert row["group"] == "game_review"
+        assert row["walterText"] != row["rivetText"]

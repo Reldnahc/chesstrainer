@@ -182,8 +182,8 @@ The [isolated audio test fixture](AUDIO.md#automatic-lip-sync-comparison-develop
 retains two existing Walter recordings at normal portrait sizes. Voice audition retains
 the energy-driven mouth; Compare lip sync isolates the original Rhubarb generator
 against revised script/phoneme alignment using identical artwork and playback.
-Both comparison sets are automatic and development-only. Walter's completed
-production bank uses the revised generator. The preview is for judging quality,
+Both comparison sets are automatic and development-only. Walter's and Rivet's
+production banks use the revised generator. The preview is for judging quality,
 not a claim of perfect phonetic alignment. Playback uses no voice API or
 recognition model. Lesson narration remains deferred.
 

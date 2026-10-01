@@ -143,7 +143,7 @@ dedicated audio suite; audio-only changes do not require the coach artwork matri
 
 ## Recorded coach voices
 
-Walter (`classic`) and Rivet (`robot`) each have a **206-recording non-lesson bank**,
+Walter (`classic`) and Rivet (`robot`) each have a **438-recording non-lesson bank**,
 using their owner-selected Older teacher and Retro speech terminal voices.
 The earlier Walter wording revision replaced 81 passages and retained 100 recordings. It removed repetitive
 “continuation” language while preserving actual, possible, missed and
@@ -179,10 +179,22 @@ retains trigger definitions, aliases and the original script audit. The active
 manifest is the current script source; the
 [wording revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
 records the exact old/new text and the reason for each change.
-The shared `meanings.json` catalogue now adds eleven Book variants and fourteen
+The shared `meanings.json` catalogue adds eleven Book variants and 246
 objective/human-evidence combinations to the original 181 meanings. Each coach
-authors a complete recording for each combination. Only combinations shown to
-survive the production evidence/claim/rendering path were recorded for this pilot.
+has a complete recording for each combination. `banks/pilot-additions.json`
+retains the initial eleven opening and fourteen combined scripts;
+`banks/maia-combinations.json` authors the additional 232 combinations for both
+voices. Existing recordings are reused, not regenerated to expand the catalogue.
+
+The coverage inventory follows the actual claim producers and rendering rules,
+not an unrestricted product of every move grade and model result. It includes
+natural mistakes, unusual strong choices, hard finds, difficult defenses missed
+or found, natural best moves, and natural strong alternatives. Found defenses can
+take precedence over ordinary tactical praise; terminal outcomes suppress human
+feedback. Allowed/missed back-rank mate uses the higher-priority mate explanation,
+and hidden history or positional alternatives cannot displace a stronger visible
+explanation merely because a recording exists. No grading or model thresholds
+change to make a combination eligible.
 
 Recordings ship as local assets in the container. Installing, building and
 playing Fieldwork needs no ElevenLabs account, API key, model download or runtime
@@ -203,11 +215,20 @@ native aligner or model is required by playback. See the
 
 ### Meaning and selection
 
-Game dialogue owns recording selection, preserving the first successfully rendered
-claim's exact identity. The selector validates its supporting facts, actor and
-scope. When both visible claims match a catalogued objective/human pair, the
-selector prefers its one complete recording. A bank missing that combination
-can retain its primary recording; it never joins two files together. An unavailable primary never silently promotes a lower-priority claim.
+Game dialogue owns recording selection, preserving rendered claims' exact
+identities. The selector validates their supporting facts, actor and scope. The
+first rendered non-human explanation can pair with the exact human insight shown
+by the current Maia badge, even when the bubble's sentence limit omits that
+insight or presents it before the objective explanation. `PositionCoach` prepares
+that human presentation once and supplies the same object to the badge and the
+selector. A different parent, coach, policy, trace or position cannot authorize a
+combination. Unrendered objective claims are never searched for a convenient pair.
+
+A matching pair selects one complete recording. A bank missing that combination
+retains the originally selected primary recording; it never joins files together.
+An unavailable primary never silently promotes a lower-priority claim. The badge
+does not have to be opened to authorize its visible insight, but opening it alone
+does not trigger speech. Show Why and practice retain their own selection rules.
 Played, allowed, missed, mover-caused and hypothetical positional explanations
 remain distinct. A completed checkmate requires the board's actual termination;
 a forced-mate search is not an already finished game. Human-model claims remain

@@ -38,10 +38,11 @@ function context(name: string, coach = coaches[0], game = structuredClone(games[
   return {game, frame, report, ply: 1, intent, utterance: renderDialogue(intent, coach)};
 }
 
-test("each recorded combination has a reachable production fixture", () => {
+test("the original recorded combinations retain their reachable production fixtures", () => {
   const recorded = catalogue.meanings.filter(item => "primary" in item && "secondary" in item)
     .map(item => `${item.primary}:${item.secondary}`).sort();
-  expect(recorded).toEqual(combinations.map(([, primary, secondary]) => `${primary}:${secondary}`).sort());
+  expect(recorded).toEqual(expect.arrayContaining(combinations.map(([, primary, secondary]) => `${primary}:${secondary}`)));
+  expect(new Set(recorded).size).toBe(recorded.length);
 });
 
 for (const coach of coaches) {
@@ -60,7 +61,7 @@ for (const coach of coaches) {
   });
 
   for (const name of Object.keys(games).filter(name => name.startsWith("cause-")))
-    test(`${coach.id}: ${name} never promotes hidden human evidence into speech`, () => {
+    test(`${coach.id}: ${name} requires an explicitly prepared visible insight when human prose is absent`, () => {
       const current = context(name, coach);
       expect(current.intent.claims.some(item => humanInsightLabels[item.code])).toBe(true);
       expect(current.utterance.renderedClaims!.some(item => humanInsightLabels[item.code])).toBe(false);
@@ -68,13 +69,22 @@ for (const coach of coaches) {
       expect(selected.primaryId).toMatch(/^cause-/);
       expect(selected.recordingId).toBe(selected.primaryId);
       expect(selected.secondaryId?.startsWith("human-") ?? false).toBe(false);
+      const intent = humanInsightIntent(current.intent);
+      const utterance = renderDialogue(intent, coach);
+      const combined = catalogue.meanings.find(item => "primary" in item && item.primary === selected.primaryId
+        && item.secondary === "human-natural-error");
+      expect(combined).toBeDefined();
+      expect(selectGameSpeech(current, {intent, utterance}).recordingId).toBe(combined!.id);
     });
 
-  test(`${coach.id}: a visible pair without an authored combination retains the primary recording`, () => {
+  test(`${coach.id}: a visible hard-defense assessment selects its authored whole recording`, () => {
     const current = context("unsupported-defensive-pair", coach);
     expect(current.utterance.renderedClaims!.map(item => item.code)).toEqual(["loss", "difficult_defense"]);
+    const combined = catalogue.meanings.find(item => "primary" in item && item.primary === "evaluation-loss"
+      && item.secondary === "human-hard-defense-missed");
+    expect(combined).toBeDefined();
     expect(selectGameSpeech(current)).toEqual({primaryId: "evaluation-loss",
-      secondaryId: "human-hard-defense-missed", recordingId: "evaluation-loss"});
+      secondaryId: "human-hard-defense-missed", recordingId: combined!.id});
   });
 
   test(`${coach.id}: a human-only explanation does not invent the absent Best fallback`, () => {

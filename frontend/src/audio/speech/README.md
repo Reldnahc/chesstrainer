@@ -1,6 +1,6 @@
 # Recorded coach speech and authoring history
 
-Walter (`classic`) and Rivet (`robot`) each have a **206-recording non-lesson voice
+Walter (`classic`) and Rivet (`robot`) each have a **438-recording non-lesson voice
 bank**, using their owner-selected **Older teacher** and **Retro speech terminal**
 voices. They share a catalogue of meanings, with separately authored character
 scripts and complete recordings. Every clip has automatically generated mouth
@@ -25,10 +25,11 @@ wording comparison, not a voice picker. The earlier voice auditions and full-ban
 selector remain in isolated browser-test fixtures, outside normal studio use.
 
 **Recorded coach comparison** lets you switch between Walter and Rivet for the
-same meaning, including eleven opening variants and fourteen combined objective
+same meaning, including eleven opening variants and 246 combined objective
 and human-play explanations. These are whole recordings, never runtime sentence
-splicing. Combined speech requires both claims to survive the real dialogue
-renderer and current evidence checks. Later Maia data may update the bubble, but
+splicing. The objective explanation must actually render in the bubble; the
+human fact must render there or in the exact insight represented by its visible
+badge. Both pass current evidence checks. Later Maia data may update the bubble, but
 does not start a second automatic response for the same navigation action.
 An explicit Listen request from Maia's explanation consumes any pending automatic
 response for that action, including audio that is still loading.
@@ -343,7 +344,7 @@ inventory remains in Git history at `054cd80`, outside this bank.
 
 The [full inventory](walter-full-dialogue-inventory.json) contains 185 audited
 meanings, with four deliberately silent transient/defensive states excluded from
-the **original 181-recording bank** (now extended to 206 shared meanings):
+the **original 181-recording bank** (now extended to 438 shared meanings):
 
 | Coverage | Recordings |
 | --- | ---: |

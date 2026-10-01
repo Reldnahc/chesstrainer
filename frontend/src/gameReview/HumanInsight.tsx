@@ -1,8 +1,6 @@
 import {useId, useState} from "react";
 import {Info, X} from "lucide-react";
-import {humanInsightExplanation, humanInsightIntent, humanInsightLabels, humanSourceNotes} from "../dialogue/humanClaims";
-import type {DialogueIntent} from "../dialogue/model";
-import {useDialogue} from "../dialogue/useDialogue";
+import {humanInsightExplanation, humanInsightLabels, humanSourceNotes, type HumanInsightPresentation} from "../dialogue/humanClaims";
 import DialogueText from "../dialogue/DialogueText";
 import {IconButton} from "../Button";
 import type {Report} from "./types";
@@ -10,8 +8,8 @@ import {selectGameRecording, type GameSpeechContext} from "../audio/speech/gameS
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import CoachSpeechButton from "../audio/speech/CoachSpeechButton";
 
-export default function HumanInsight({intent, report, speechContext, speechScopeKey, onManualSpeech}: {
-  intent: DialogueIntent;
+export default function HumanInsight({presentation, report, speechContext, speechScopeKey, onManualSpeech}: {
+  presentation: HumanInsightPresentation;
   report: Report;
   speechContext: Omit<GameSpeechContext, "intent" | "utterance" | "surface" | "claimIndex">;
   speechScopeKey: string;
@@ -19,9 +17,8 @@ export default function HumanInsight({intent, report, speechContext, speechScope
 }) {
   const id = useId();
   const [visible, setVisible] = useState(false);
-  const spokenIntent = humanInsightIntent(intent), items = spokenIntent.claims;
-  const utterance = useDialogue(spokenIntent);
-  const recordingId = visible ? selectGameRecording({...speechContext, intent: spokenIntent,
+  const {intent, utterance} = presentation, items = intent.claims;
+  const recordingId = visible ? selectGameRecording({...speechContext, intent,
     utterance, surface: "human-insight"}) : null;
   // Opening the insight never starts narration. A visible, explicit press owns
   // it; closing or replacing the popover invalidates any pending recording.

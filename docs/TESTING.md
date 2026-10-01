@@ -337,6 +337,22 @@ fail. Focused authoring tests run with `python -m pytest
 backend/tests/test_coach_voice_bank.py -q`. Speech asset edits select these backend
 checks even when no Python source changes.
 
+Combined narration has both a finite coverage contract and producer-level tests.
+`audio-tests/maia-meaning-coverage.spec.ts` enumerates the approved objective/human
+pairs and exclusions. `game-speech-policy.spec.ts` projects legal positions,
+synthetic search/policy evidence and real game-context relationships through the
+production fact, dialogue and selection functions. These verify semantic
+reachability and attribution, not engine playing strength or model calibration.
+The companion `game-speech-opening-policy.spec.ts`,
+`game-speech-positional-policy.spec.ts` and `game-speech-tactical-policy.spec.ts`
+exercise the remaining exact combinations without filtering or reordering the
+produced claims. Together they cover every registered objective/human pair for
+both recorded coaches, including all eleven opening-sequence variants.
+`prepared-insight-selection.spec.ts` checks that a short bubble can share its
+current visible Maia insight without accepting another parent, coach or policy.
+`position-coach-speech.spec.ts` and `coach-speech.spec.ts` observe actual playback,
+including delayed Maia results, manual insight listening and cancellation.
+
 The audio desktop CI job runs the cast Voice Design and saved-choice safeguards
 once with `node --test scripts/design_coach_voices.test.mjs
 frontend/scripts/casting-server.test.mjs`, then the focused

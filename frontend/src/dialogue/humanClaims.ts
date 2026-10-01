@@ -1,5 +1,8 @@
 import type {Report} from "../gameReview/types";
-import {claim, makeIntent, type Claim, type DialogueIntent, type EvidenceRef} from "./model";
+import {claim, makeIntent, type Claim, type CoachUtterance, type DialogueIntent, type EvidenceRef} from "./model";
+
+/** One prepared insight supplies the visible badge, its explanation and speech. */
+export type HumanInsightPresentation = {intent: DialogueIntent; utterance: CoachUtterance};
 
 export const humanInsightLabels: Readonly<Record<string, string>> = {
   human_natural_error: "Natural mistake",

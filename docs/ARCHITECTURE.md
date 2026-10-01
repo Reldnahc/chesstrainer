@@ -411,8 +411,11 @@ structured facts, never conversational memory. See [game context](GAME_CONTEXT.m
 
 The client builds a `DialogueIntent` before selecting a personality. `CoachUtterance`
 retains exact rendered claims, claim/template provenance and delivery metadata.
-Walter's local voice selector consumes those facts; it never contacts a speech
-provider at runtime. The existing coach catalogue owns both artwork and
+The shared local voice selector consumes those facts and, for combined narration,
+the same prepared human insight displayed by the current review. Semantic meaning
+IDs resolve through registered character banks; Walter and Rivet currently provide
+complete recordings. Neither selection nor playback contacts a speech provider.
+The existing coach catalogue owns both artwork and
 writing definitions. Character changes
 perform no native work. Cold practice gates precede all dialogue selection.
 See [dialogue](COACH_DIALOGUE.md) and [character writing](COACH_PERSONALITIES.md).

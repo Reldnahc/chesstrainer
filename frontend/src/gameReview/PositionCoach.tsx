@@ -9,6 +9,7 @@ import type { Game, Position, Report } from "./types";
 import { gameReaction } from "../coach/reactions";
 import { gameIntent } from "../dialogue/gameIntent";
 import { useDialogue } from "../dialogue/useDialogue";
+import {humanInsightIntent} from "../dialogue/humanClaims";
 import DialogueText from "../dialogue/DialogueText";
 import HumanInsight from "./HumanInsight";
 import {selectGameSpeech} from "../audio/speech/gameSelection";
@@ -75,12 +76,14 @@ export default function PositionCoach({
   const intent = gameIntent(input);
   const displayedIntent = explaining ? gameIntent({...input, explaining}) : intent;
   const utterance = useDialogue(displayedIntent);
+  const insightIntent = humanInsightIntent(intent);
+  const insight = {intent: insightIntent, utterance: useDialogue(insightIntent)};
   // A background game review and the presence of a mover are not loading
   // states for this position. Only its own unresolved navigation blocks voice.
   const speechContext = {game, report, frame, ply, variation, pending: speechPending,
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   const selection = {...speechContext, intent: displayedIntent, utterance};
-  const speech = selectGameSpeech(selection);
+  const speech = selectGameSpeech(selection, explaining ? undefined : insight);
   const {primaryId, secondaryId: secondaryRecording} = speech;
   const recordingId = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance,
@@ -146,7 +149,7 @@ export default function PositionCoach({
           )}
         </>
       }
-      insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report}
+      insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} presentation={insight} report={report}
         speechContext={speechContext} speechScopeKey={`game:${positionKey}:human`}
         onManualSpeech={() => voice.consumeAutomatic(speechEventId)} />}
     >

@@ -5,6 +5,7 @@ No rendered claims or practical assessments are manufactured here.
 """
 
 import json
+from copy import deepcopy
 
 import chess
 from review_cause_fixtures import CAUSES, cause_report
@@ -81,17 +82,23 @@ def witnessed(board, played, **kwargs):
     return raw
 
 
-def fixtures():
+def fixtures(raw_cases=None):
+    def project(raw, name, policy="natural_error"):
+        game = projected_game(raw, name, policy)
+        if raw_cases is not None:
+            raw_cases[name] = (deepcopy(raw), game)
+        return game
+
     result = {"evaluation-natural": human_game("natural_error")}
     for skill in CAUSES:
         for black in (False, True):
             name = f"cause-{skill}-{'black' if black else 'white'}"
-            result[name] = projected_game(cause_report(skill, black), name)
+            result[name] = project(cause_report(skill, black), name)
 
     board = chess.Board()
     for move in ("f2f3", "e7e5"):
         board.push_uci(move)
-    result["allowed-mate-natural"] = projected_game(
+    result["allowed-mate-natural"] = project(
         witnessed(
             board,
             "g2g4",
@@ -101,7 +108,7 @@ def fixtures():
         ),
         "allowed-mate-natural",
     )
-    result["missed-mate-natural"] = projected_game(
+    result["missed-mate-natural"] = project(
         witnessed(
             chess.Board("7k/8/5KQ1/8/8/8/8/8 w - - 0 1"),
             "g6g5",
@@ -115,7 +122,7 @@ def fixtures():
 
     for policy in ("hard_find", "unusual_strong"):
         name = f"fork-{policy}"
-        result[name] = projected_game(
+        result[name] = project(
             witnessed(
                 chess.Board("8/7k/8/8/4q3/5N2/8/K7 w - - 0 1"),
                 "f3g5",
@@ -130,7 +137,7 @@ def fixtures():
         )
         for motif, fen, line, alternative in PATTERN_CASES[:1]:
             name = f"{motif}-{policy}"
-            result[name] = projected_game(
+            result[name] = project(
                 witnessed(
                     chess.Board(fen),
                     line[0],
@@ -145,7 +152,7 @@ def fixtures():
             )
         for value, resource in ((0, "defense"), (300, "advantage")):
             name = f"resource-{resource}-{policy}"
-            result[name] = projected_game(
+            result[name] = project(
                 witnessed(
                     chess.Board("6k1/8/8/8/8/8/8/R5K1 w - - 0 1"),
                     "a1a2",
@@ -157,7 +164,7 @@ def fixtures():
                 policy,
             )
 
-    result["allowed-fork-natural"] = projected_game(
+    result["allowed-fork-natural"] = project(
         witnessed(
             chess.Board("8/p6k/8/8/4q3/5N2/8/K7 b - - 0 1"),
             "a7a6",
@@ -168,7 +175,7 @@ def fixtures():
         ),
         "allowed-fork-natural",
     )
-    result["allowed-skewer-natural"] = projected_game(
+    result["allowed-skewer-natural"] = project(
         witnessed(
             chess.Board("8/p6q/6k1/1B6/8/8/8/6K1 b - - 0 1"),
             "a7a6",
@@ -191,11 +198,11 @@ def fixtures():
         after=-500,
     )
     assert not raw["actual_line"]["findings"]
-    result["capture-natural"] = projected_game(raw, "capture-natural")
+    result["capture-natural"] = project(raw, "capture-natural")
 
     # Preserve a complete good report as a negative: human claims suppress the
     # generic Best fallback, so the nonexistent pair must never authorize audio.
-    result["human-without-objective"] = projected_game(
+    result["human-without-objective"] = project(
         move_report(chess.Board("7k/p7/8/8/8/P5K1/8/8 w - - 0 1"), "g3h3"),
         "human-without-objective",
         "unusual_strong",

@@ -4,6 +4,109 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Walter and Rivet combined review speech — October 1, 2026
+
+Both banks now contain 438 complete recordings. The initial pilot recorded 206
+Rivet clips and 27 Walter additions/replacements; the expansion recorded another
+232 per coach. All 697 new requests matched provider history by their saved,
+hash-verified provenance request IDs. History omits optional voice/text fields;
+the matches use voice-filtered history, exact request IDs and matching model IDs.
+
+| Recording tranche | Rivet credits | Walter credits | Total |
+| --- | ---: | ---: | ---: |
+| Initial pilot, 233 requests / 20,379 input characters | 2,143 | 318 | 2,461 |
+| Expanded combinations, 464 requests / 76,406 input characters | 4,342 | 4,905 | 9,247 |
+| This pilot and expansion | 6,485 | 5,223 | 11,708 |
+
+These are reconciled provider usage deltas, not token estimates. The account
+counter moved from 13,202 to 24,910, exactly matching the total. The initial
+pilot's immediate counter reading lagged by 222 credits; its first 2,239 reading
+was provisional. A read-only usage request failed after 40 successfully saved
+expansion clips, safely stopping the worker. The resumed run verified and reused
+those 40, then recorded the remaining 424; no duplicate paid requests or audio
+retakes were needed. Ignored authoring receipts retain both attempts.
+
+The shared recording catalogue covers 246 supported objective/human-evidence
+combinations, alongside 181 base meanings and eleven opening-sequence variants.
+The first objective claim actually rendered in the bubble can pair with the
+same prepared human insight used by its visible badge. This does not promote a
+hidden objective claim or alter stored evidence, grades or dialogue priority.
+One move navigation permits one automatic recording; later Maia enrichment can
+update written feedback without starting another recording.
+
+All 246 pairs have legal-position production-path proof for Walter and Rivet,
+including seven human assessments, causal mistakes, tactical roles, positional
+facts, supported game relationships and every opening-sequence slot. Synthetic
+Stockfish/policy inputs test semantics, not native engine quality or calibration.
+Impossible combinations stay excluded: terminal feedback, generic Best/Good
+fallbacks suppressed by evidence, hidden historical/alternative claims and
+back-rank errors whose mate explanation takes precedence.
+
+- From `frontend`, `npx playwright test --config
+  node_modules/.cache/recorded-audio-check.config.mjs
+  game-speech-selection.spec.ts game-speech-combinations.spec.ts
+  game-speech-policy.spec.ts game-speech-opening-policy.spec.ts
+  game-speech-positional-policy.spec.ts game-speech-tactical-policy.spec.ts
+  prepared-insight-selection.spec.ts maia-meaning-coverage.spec.ts --reporter=line`:
+  **712 passed**, desktop/mobile, no skips. The ignored config extends the normal
+  audio configuration solely to reuse the owner's running Audio Studio.
+- `npx playwright test --config node_modules/.cache/dialogue-check.config.mjs
+  --grep-invert 'saved coach selection'`: **77 passed**, no skips. This ignored
+  server-free desktop configuration selects `opening-dialogue`, `walter-dialogue`,
+  `dialogue-logic` and `personality`; the saved-account browser test is outside
+  this focused dialogue run. Existing other-coach rendering and cold-SRS gates
+  remain covered.
+- Ruff lint/format checks passed for the seven changed/new speech fixture and
+  script-test files. Independent reviews of the production selector, prepared
+  insight integration, scripts and legal producer fixtures found no remaining
+  correctness issue. A test's blanket word ban was narrowed to permit legitimate
+  named-opening continuation descriptions while rejecting vague tactical filler.
+- `scripts/prepare_coach_voice_bank.py --generate` with each explicit manifest
+  and `--work-dir .tools/voice-bank-alignment-v2`: **232 generated, 206 reused,
+  438 ready, none missing per coach**. No manual mouth edits. Subsequent
+  `.venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check`:
+  **876 ready/reused, none missing**, strict and offline.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py
+  backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py
+  backend/tests/test_coach_voice_bank.py backend/tests/test_walter_language_revision.py
+  backend/tests/test_coach_pilot_scripts.py -q`: **328 passed**, no skips.
+  `node --test scripts/record_coach_speech.test.mjs`: **14 passed**.
+- From `frontend`, `npx playwright test --config
+  node_modules/.cache/recorded-audio-check.config.mjs coach-speech.spec.ts
+  voice-registry.spec.ts recorded-coach-comparison.spec.ts walter-bank-studio.spec.ts
+  walter-wording.spec.ts --reporter=line`: **108 passed**, desktop/mobile, no skips.
+  The filename filter also includes `position-coach-speech.spec.ts`; its eight
+  real-component cases verify exact prepared insight identity/text, coach-specific
+  URLs, silent popover inspection, single automatic playback and explicit replay.
+- `npx playwright test --config ../.tools/settings-focused.config.ts
+  audio-preferences.spec.ts --grep 'sound choices save independently'`:
+  **2 passed**, desktop/mobile. The ignored config uses the normal app fixture
+  with an isolated database and port 8865 because the owner's 8765 was occupied.
+  Windows server teardown lingered after assertions passed; stopping only the
+  verified temporary Uvicorn process released a successful runner exit.
+- `npm --prefix frontend run build`: **passed**, including OpenAPI drift, all
+  TypeScript projects, 24 style-boundary tests and production bundling.
+  `npm --prefix frontend run build:audio-studio`: **passed**. Vite emits its
+  nonblocking large-chunk warnings and the studio's mixed JSON import-attribute
+  warning. A SHA-256 comparison confirms exactly **876 active MP3s** in production
+  assets, with no superseded voice/audition MP3s; approved board effects use WAV.
+- The running LAN studio decoded all **876 MP3s / 117,111,859 bytes** and checked
+  every text/track identity, duration and cue. Its ignored
+  `.tools/expanded-recorded-coach-check.mjs` exercised **68 previews** (eleven
+  opening variants and representative new combinations in both voices), including
+  two complete natural endings. Every preview had the correct voice/URL, a single
+  native source start and multiple visible mouth shapes. Six desktop/390px/320px
+  screenshots were inspected; canonical bubble scrolling and the expanded wording
+  comparison remained usable, with no horizontal overflow or rig clipping.
+  `.tools/expanded-qa-mobile-scroll.mjs` also checked keyboard scrolling. No page
+  errors, external requests or account/casting mutations occurred. Separately,
+  manual in-app-browser checks selected and played a new causal/Maia recording in
+  both Walter and Rivet. Acoustic quality was not assessed: no listening tool was
+  available. The owner can audition every complete clip in the local studio.
+
+This is focused speech/dialogue verification. Native Stockfish/Maia search quality,
+Docker deployment and the unrelated full coach-artwork matrix were not rerun.
+
 ## Walter wording pilot — October 1, 2026
 
 Walter's selected Older teacher voice and 181 supported non-lesson meanings are

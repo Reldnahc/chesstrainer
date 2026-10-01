@@ -136,7 +136,7 @@ export default function AudioStudio() {
             </li>)}</ol> : <p>No playback yet.</p>}
           </details>
         </section>
-        <p className="audio-studio-speech-note">Walter is complete and available in the application. Choose voices for the rest of the cast here.</p>
+        <p className="audio-studio-speech-note">Completed voice banks are available in the application. Choose voices for the rest of the cast here.</p>
       </aside>
     </div>
     <footer className="audio-studio-footer">Casting choices save to this computer. Playback controls do not change account preferences.</footer>

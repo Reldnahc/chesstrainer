@@ -3,7 +3,8 @@
 `manifest.json` identifies the approved non-lesson speech, exact text, voice,
 recording settings and asset paths. Five original contrast recordings are referenced
 in place; the others live under `recordings/walter`, `recordings/walter-language-v2`
-and `recordings/walter-pilot-v1`. The shared registry also points to Rivet's sibling
+and the versioned `recordings/walter-pilot-v1` and `recordings/walter-maia-v2`
+collections. The shared registry also points to Rivet's sibling
 bank under `../banks/rivet`; the same validator and runtime handle both.
 Recording sidecars retain the
 provider request and source-audio fingerprints. Production never calls a speech
@@ -42,6 +43,15 @@ capture does not alone prove net material gain. The bank also adds eleven openin
 variants and fourteen whole objective/human-evidence combinations, for 206 active
 meanings shared with Rivet. `../banks/pilot-additions.json` holds both characters'
 authored scripts for those additions.
+
+`../banks/maia-combinations.json` extends that pilot with 232 more complete
+passages per character. The active banks each have 438 meanings: the original
+181, eleven opening variants, and 246 objective/human-evidence combinations.
+The latter include the pilot's fourteen recordings, which are reused unchanged.
+Each combined passage is one provider recording, never playback-time splicing.
+Its shared primary/secondary IDs bind the spoken explanation to current rendered
+chess evidence and the independently displayed human insight. Full source
+provenance and automatically generated mouth timing follow the same workflow.
 
 ## Prepare or verify offline
 

@@ -1,7 +1,7 @@
 import type {Schema} from "../../api";
 import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
-import {humanClaims, humanInsightLabels} from "../../dialogue/humanClaims";
+import {humanClaims, humanInsightIntent, humanInsightLabels, type HumanInsightPresentation} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
 import type {Claim, CoachUtterance, DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
@@ -228,13 +228,28 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
 }
 
-/** A combined meaning is one authored recording of two visible, validated claims.
- * Late evidence can change this preference, but never grants a second automatic turn. */
-export function selectGameSpeech(context: GameSpeechContext) {
+/** One whole recording can cover the bubble's explanation and the visible Maia
+ * insight. Their display order and the bubble's sentence limit are not evidence
+ * boundaries. Late evidence never grants a second automatic narration turn. */
+export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsightPresentation) {
   const primaryId = selectGameRecording({...context, claimIndex: 0});
   const secondaryId = context.surface === "human-insight" ? null : selectGameRecording({...context, claimIndex: 1});
-  const recordingId = primaryId && secondaryId
-    ? combinations.get(`${primaryId}:${secondaryId}`) ?? primaryId : primaryId;
+  let recordingId = primaryId;
+  if (primaryId && context.surface !== "human-insight" && ["game", "variation"].includes(context.intent.mode)) {
+    const claims = context.utterance.renderedClaims ?? [];
+    const objectiveIndex = claims.findIndex(item => !humanInsightLabels[item.code]);
+    const objectiveId = objectiveIndex < 0 ? null : selectGameRecording({...context, claimIndex: objectiveIndex});
+    const humanIndex = claims.findIndex(item => !!humanInsightLabels[item.code]);
+    let humanId = humanIndex < 0 ? null : selectGameRecording({...context, claimIndex: humanIndex});
+    if (insight) {
+      // Only the exact child presentation rendered alongside this parent may
+      // supply a fact omitted by the bubble. Stale or other-coach insights fail.
+      humanId = insight.utterance.coachId === context.utterance.coachId
+        && same(insight.intent, humanInsightIntent(context.intent))
+        ? selectGameRecording({...context, ...insight, surface: "human-insight", claimIndex: 0}) : null;
+    }
+    if (objectiveId && humanId) recordingId = combinations.get(`${objectiveId}:${humanId}`) ?? primaryId;
+  }
   return {recordingId, primaryId, secondaryId};
 }
 

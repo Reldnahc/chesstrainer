@@ -8,6 +8,7 @@ import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
 import {robotOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
 const score = {kind: "cp" as const, value: 20, mate_given: false};
@@ -187,6 +188,8 @@ for (const coach of openingCoaches) {
         seen.add(recording);
         const authored = coach.authored[recording as keyof typeof coach.authored][0];
         const output = renderDialogue(intent, coach);
+        expect(selectGameRecording({game, ply, frame: game.frames[ply], report: game.frames[ply].report,
+          intent, utterance: output})).toBe(recording);
         expect(output.text).toBe(authored.replace("{opening}", "Named line"));
         expect(output.trace.variants).toEqual([{code: "book_sound", index: 0, sourceIds: [],
           source: coach.personality.version, form: "sentence", cues: [], order: undefined}]);

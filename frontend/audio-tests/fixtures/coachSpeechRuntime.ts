@@ -8,6 +8,8 @@ import CoachSpeechButton from "../../src/audio/speech/CoachSpeechButton";
 import {coachMouthTrack, coachRecordings} from "../../src/audio/speech/voiceBank";
 import HumanInsight from "../../src/gameReview/HumanInsight";
 import {gameIntent} from "../../src/dialogue/gameIntent";
+import {humanInsightIntent} from "../../src/dialogue/humanClaims";
+import {useDialogue} from "../../src/dialogue/useDialogue";
 import {claim, makeIntent} from "../../src/dialogue/model";
 import {renderNeutral} from "../../src/dialogue/neutral";
 import type {AudioPreferences} from "../../src/audio/model";
@@ -68,6 +70,8 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
     const frame = game?.frames[1];
     const intent = game && gameIntent({game, report: frame!.report, frame, ply: 1,
       key: "human-fixture", expression: "good"});
+    const insightIntent = humanInsightIntent(intent ?? makeIntent("no-insight", "neutral", "game", "neutral", []));
+    const insight = {intent: insightIntent, utterance: useDialogue(insightIntent)};
     return React.createElement(React.Fragment, null,
       React.createElement("button", {onClick: () => {}}, "Unlock audio"),
       React.createElement("output", {"data-testid": "speech-state"}, JSON.stringify({
@@ -85,7 +89,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
         current.manualRecordingIds.map(id => React.createElement(CoachSpeechButton,
           {key: id, voice, recordingId: id, label: `Listen to ${id}`}))),
       React.createElement("p", {"data-testid": "written-feedback"}, utterance.text),
-      game && intent && frame?.report && React.createElement(HumanInsight, {intent, report: frame.report,
+      game && intent && frame?.report && React.createElement(HumanInsight, {presentation: insight, report: frame.report,
         speechScopeKey: "human-insight:1", speechContext: {game, report: frame.report, frame, ply: 1},
         onManualSpeech: () => voice.consumeAutomatic(current.automaticEventId)}));
   }
