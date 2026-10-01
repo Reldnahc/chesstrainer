@@ -421,8 +421,8 @@ bank uses its separate generated compact cue projection.
 
 The separate audio studio's **Cast voice auditions** selector compares three
 independently described custom voices for each of twenty approved nonhuman
-coaches (60 active recordings). Eighteen approved designs are now locked, so the
-studio defaults to the two remaining coaches under **Needs a voice**. **Locked
+coaches (60 active recordings). Nineteen approved designs are now locked, so the
+studio defaults to Biscuit, the one remaining coach, under **Needs a voice**. **Locked
 voices** permits read-only inspection. All twenty speaking rigs can be inspected independently.
 The coach studio's **Mouth shapes** view embeds the same audition panel for its
 selected character. These tools share `useStudioPlayer`, `StudioTransport`,
@@ -444,7 +444,7 @@ the same recording identities as the service before rejecting the set, and a set
 changed during a save produces a conflict rather than approving unseen content.
 
 An explicit owner approval can promote a selected direction into the tracked
-`cast-auditions/locked-voices.json`. Its eighteen entries bind exact approved
+`cast-auditions/locked-voices.json`. Its nineteen entries bind exact approved
 preview bytes and source identity to saved ElevenLabs voices. These immutable
 approvals survive a fresh clone without local draft files; the service rejects
 changing or clearing them. Corrupt/missing lock data fails closed and mismatched

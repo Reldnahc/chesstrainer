@@ -2,9 +2,10 @@
 
 This is a development-only casting collection. `design-plan.json` has twenty
 approved coaches with three independently written voice directions each: **60
-active auditions**. Eighteen exact owner selections are saved in ElevenLabs and
-recorded in `locked-voices.json`; Biscuit and Pip have three new second-round
-directions each. A locked voice is an approved design, not a completed dialogue
+active auditions**. Nineteen exact owner selections are saved in ElevenLabs and
+recorded in `locked-voices.json`, including Pip's second-round Warm Dublin
+companion. Biscuit is the only coach still without a voice; the owner rejected
+both of its rounds. A locked voice is an approved design, not a completed dialogue
 bank. The audition generator itself never saves provider voices.
 
 `manifest.json` contains the available retained previews. Partial coverage is
@@ -25,7 +26,7 @@ The owner requested younger Biscuit voices and less goofy Pip voices. New IDs
 replace only those six active directions. `archive/round-1-puppy-slime.json` retains
 the rejected first-round briefs; their MP3s, provenance and full alignments remain
 unchanged for audit history, outside the active manifest/runtime tracks. All other
-54 active recordings remain byte-identical, including all eighteen approvals.
+54 active recordings remain byte-identical, including all eighteen first approvals.
 Keep new rounds distinct; never overwrite accepted media or reuse a direction ID
 for a different voice. Any future unlock is an explicit owner decision.
 

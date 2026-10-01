@@ -4,6 +4,32 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Pip voice lock — October 1, 2026
+
+The owner chose Pip's second-round **Warm Dublin companion** in the Audio Studio
+(local `data/voice-casting/slime.json`, not tracked). The design was not yet in
+the ElevenLabs account used for casting: a read-only lookup of generated voice
+`YIgSbziyIzdHrzzcIvb8` returned `voice_not_found`, and none of the account's
+saved voices matched. With the owner's approval it was saved once from that
+preview as **Fieldwork Pip - Warm Dublin companion**, using the same method as the
+other eighteen. Reading it back returned saved ID `YIgSbziyIzdHrzzcIvb8`, equal to
+the generated ID. Character usage stayed at 28,866; saved-voice slots went from
+19 to 20 of 30.
+
+`locked-voices.json` gained one `slime` entry and no other change. Its audio hash
+and fingerprint were recomputed from the tracked MP3, plan and manifest with the
+casting service's own formula. That formula reproduces the existing Alfie lock exactly.
+Biscuit remains unlocked after the owner rejected the second round.
+
+- `node scripts/design_coach_voices.mjs --check`: **60 active recordings verified**.
+- `node --test scripts/design_coach_voices.test.mjs
+  frontend/scripts/casting-server.test.mjs`: **60 passed**.
+- On the owner's Windows checkout, with the same lock values (only `lockedAt`
+  differed): `test_cast_voice_auditions.py` **58 passed** (pytest pointed at a
+  scratch temp folder after Windows denied its default one) and focused
+  `casting-locks.spec.ts` **14 desktop/mobile checks passed**. Those browser tests
+  use mocked lock stores, so they do not read the tracked lock file.
+
 ## Coach creation documentation audit — October 1, 2026
 
 Checked the coach, dialogue, personality and audio references against the current
