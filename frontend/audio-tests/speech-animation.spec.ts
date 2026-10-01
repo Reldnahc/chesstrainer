@@ -1,3 +1,4 @@
+import { openAudioFixturePage, openWalterStudio } from "./fixtures/openAudioFixture";
 import { expect, test, type Page } from "@playwright/test";
 import path from "node:path";
 import type { CoachDefinition } from "../src/coach/model";
@@ -11,7 +12,7 @@ const sample = (page: Page) => page.getByRole('combobox', { name: 'Speech exampl
 const openness = (page: Page) => portrait(page).evaluate(node => Number((node as HTMLElement).style.getPropertyValue('--speech-open')));
 
 test('speech artwork is an explicit capability with a safe static fallback', async ({ page }) => {
-  await page.goto('/');
+  await openAudioFixturePage(page);
   const capabilities = await page.evaluate(async root => {
     const { getCoach, selectableCoaches } = await import(`${root}/src/coach/registry.ts`);
     const { supportsSpeech } = await import(`${root}/src/coach/model.ts`);
@@ -36,7 +37,7 @@ test('speech artwork is an explicit capability with a safe static fallback', asy
 });
 
 test('the real recording articulates, closes in pauses and restores the authored face at its end', async ({ page }, info) => {
-  await page.goto('/');
+  await openWalterStudio(page);
   await motion(page).selectOption('natural');
   await play(page).scrollIntoViewIfNeeded();
   await portrait(page).evaluate(node => {
@@ -75,7 +76,7 @@ test('the real recording articulates, closes in pauses and restores the authored
 
 test('device reduced motion and Still stop the mouth; explicit Animated resumes without replaying audio', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
+  await openWalterStudio(page);
   await play(page).click();
   await expect(panel(page)).toHaveAttribute('data-playback', 'playing');
   await expect(portrait(page)).toHaveAttribute('data-motion', 'still');
@@ -95,7 +96,7 @@ test('device reduced motion and Still stop the mouth; explicit Animated resumes 
 
 for (const action of ['stop', 'mute', 'zero volume', 'hidden', 'change example'] as const) {
   test(`${action} cancels the speaking mouth with its audio`, async ({ page }) => {
-    await page.goto('/');
+    await openWalterStudio(page);
     await motion(page).selectOption('natural');
     await play(page).click();
     await expect(portrait(page)).toHaveAttribute('data-speaking', 'true');
@@ -119,11 +120,11 @@ for (const action of ['stop', 'mute', 'zero volume', 'hidden', 'change example']
 }
 
 test('offscreen portraits pause while speech continues and resume without a new recording', async ({ page }) => {
-  await page.goto('/');
+  await openWalterStudio(page, {offscreenTarget: true});
   await motion(page).selectOption('natural');
   await play(page).click();
   await expect(portrait(page)).toHaveAttribute('data-speaking', 'true');
-  await page.locator('.audio-studio-footer').scrollIntoViewIfNeeded();
+  await page.getByTestId('walter-offscreen-target').scrollIntoViewIfNeeded();
   await expect(portrait(page)).toHaveAttribute('data-speaking', 'false');
   await expect(panel(page)).toHaveAttribute('data-playback', 'playing');
   await portrait(page).scrollIntoViewIfNeeded();
@@ -133,7 +134,7 @@ test('offscreen portraits pause while speech continues and resume without a new 
 });
 
 test('brilliant articulation uses its own mouth without restarting reaction or idle animation each syllable', async ({ page }) => {
-  await page.goto('/');
+  await openWalterStudio(page);
   await motion(page).selectOption('natural');
   await sample(page).selectOption('contrast-sound-sacrifice');
   await play(page).click();

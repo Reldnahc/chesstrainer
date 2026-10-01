@@ -1,3 +1,4 @@
+import { openWalterStudio } from "./fixtures/openAudioFixture";
 import { expect, test, type Page } from "@playwright/test";
 import { walterBankCollection, walterBankScripts } from "../src/audio/speech/walterBankAudition";
 import manifest from "../src/audio/speech/bank/manifest.json" with { type: "json" };
@@ -8,7 +9,7 @@ const example = (page: Page) => panel(page).getByRole("combobox", { name: "Speec
 const starts = (page: Page) => page.locator('[data-bus="speech"][data-event-type="started"]');
 
 async function openBank(page: Page) {
-  await page.goto("/");
+  await openWalterStudio(page);
   await panel(page).getByRole("button", { name: walterBankCollection.label, exact: true }).click();
 }
 

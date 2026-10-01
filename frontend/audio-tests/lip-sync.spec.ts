@@ -1,3 +1,4 @@
+import { openWalterStudio } from "./fixtures/openAudioFixture";
 import { expect, test, type Locator, type Page } from '@playwright/test';
 import path from 'node:path';
 import { speechMouthAt, type SpeechMouthTrack } from '../src/coach/speechMouth';
@@ -100,7 +101,7 @@ const nativeStarts = (page: Page) => page.evaluate(() => (window as unknown as L
 
 async function openComparison(page: Page, animated = true) {
   await captureNativeStarts(page);
-  await page.goto('/');
+  await openWalterStudio(page);
   await page.getByRole('button', { name: 'Compare lip sync', exact: true }).click();
   if (animated) await motion(page).selectOption('natural');
   await expect(portraits(page)).toHaveCount(2);

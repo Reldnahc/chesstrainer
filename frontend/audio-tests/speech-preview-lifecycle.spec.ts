@@ -1,3 +1,4 @@
+import { openAudioFixturePage } from "./fixtures/openAudioFixture";
 import {expect, test, type Locator, type Page} from '@playwright/test';
 import path from 'node:path';
 import type {SpeechPlayback} from '../src/audio/model';
@@ -18,8 +19,7 @@ type HarnessWindow = Window & {speechPreviewHarness: Harness};
 async function mountPreview(page: Page, options: Partial<Options> = {}) {
   await page.clock.install();
   await page.clock.pauseAt(new Date());
-  await page.goto('/');
-  await page.getByRole('combobox', {name: 'Coach motion', exact: true}).selectOption('still');
+  await openAudioFixturePage(page);
   await page.evaluate(async ({root, options}) => {
     const {React, createRoot} = await import(`${root}/studio-tests/fixtures/runtime.ts`);
     const {CoachCharacter} = await import(`${root}/src/coach/CoachAvatar.tsx`);

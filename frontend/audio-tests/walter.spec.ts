@@ -1,3 +1,4 @@
+import { openWalterStudio, mountWalterStudio } from "./fixtures/openAudioFixture";
 import { expect, test, type Page } from "@playwright/test";
 import { walterClips, walterCollections, walterScripts, walterVoices } from "../src/audio/speech/walterPilot";
 
@@ -72,7 +73,7 @@ test("Walter starts neutral and silent with complete local recordings for every 
   page.on("request", request => requests.push(request.url()));
   page.on("pageerror", error => errors.push(error.message));
   await captureNativeStarts(page);
-  await page.goto("/");
+  await openWalterStudio(page);
   await expect(panel(page)).toBeVisible();
   await expect(panel(page).locator('[data-coach="classic"]')).toHaveAttribute("data-requested", "neutral");
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");
@@ -145,7 +146,7 @@ test("voice controls leave all browser preferences unchanged", async ({ page }) 
   await page.addInitScript(values => {
     for (const [key, value] of Object.entries(values)) localStorage.setItem(key, value);
   }, stored);
-  await page.goto("/");
+  await openWalterStudio(page);
   await scriptSelect(page).selectOption("contrast-sound-sacrifice");
   await collectionChoices(page).getByRole("button", { name: "Original voices", exact: true }).click();
   await scriptSelect(page).selectOption("fork");
@@ -155,6 +156,7 @@ test("voice controls leave all browser preferences unchanged", async ({ page }) 
   await page.getByRole("slider", { name: "Volume", exact: true }).press("Home");
   expect(await page.evaluate(() => ({ ...localStorage }))).toEqual(stored);
   await page.reload();
+  await mountWalterStudio(page);
   await expect(voiceChoices(page).getByRole("button", { name: walterVoices[0].name, exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(scriptSelect(page)).toHaveValue("contrast-only-playable-move");
   await expect(panel(page).getByLabel("Coach explanation", { exact: true })).toHaveText(walterScripts[0].writtenText);
@@ -167,7 +169,7 @@ test("In context plays the approved move before speech and waits 350 millisecond
   page.on("request", request => { if (recordingPattern.test(request.url())) recordings.push(request.url()); });
   await captureNativeStarts(page);
   await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
-  await page.goto("/");
+  await openWalterStudio(page);
   await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
   await panel(page).getByRole("button", { name: "In context", exact: true }).click();
   await expect(page.locator('[data-event-type="started"][data-cue="move"]')).toHaveCount(1);
@@ -197,7 +199,7 @@ for (const outcome of ["played", "cancelled", "failed"] as const) {
     await captureNativeStarts(page);
     await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
     try {
-      await page.goto("/");
+      await openWalterStudio(page);
       await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
       await playVoice(page).click();
       await expect(speechEvents(page, "started")).toHaveCount(1);
@@ -237,7 +239,7 @@ for (const outcome of ["played", "cancelled", "failed"] as const) {
 test("a suppressed context move never queues Walter's speech", async ({ page }) => {
   await captureNativeStarts(page);
   await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
-  await page.goto("/");
+  await openWalterStudio(page);
   await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
   await page.getByRole("button", { name: "Mute audio", exact: true }).click();
   await panel(page).getByRole("button", { name: "In context", exact: true }).click();
@@ -262,7 +264,7 @@ for (const interruption of ["voice", "collection", "script", "stop", "mute", "hi
     }, { times: 1 });
     await captureNativeStarts(page);
     try {
-      await page.goto("/");
+      await openWalterStudio(page);
       if (interruption === "voice") await collectionChoices(page).getByRole("button", { name: "Teacher & elder", exact: true }).click();
       if (interruption === "script") await collectionChoices(page).getByRole("button", { name: "Original voices", exact: true }).click();
       // Match the application tests: wait for the native decoder, not just HTTP
@@ -302,7 +304,7 @@ for (const interruption of ["voice", "collection", "script", "stop", "mute", "hi
 
 test("changing voices cancels active speech and does not auto-play the next candidate", async ({ page }) => {
   await captureNativeStarts(page);
-  await page.goto("/");
+  await openWalterStudio(page);
   await collectionChoices(page).getByRole("button", { name: "Teacher & elder", exact: true }).click();
   await playVoice(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
@@ -317,7 +319,7 @@ test("changing voices cancels active speech and does not auto-play the next cand
 
 test("collection changes cancel speech and select only valid voice and script pairs", async ({ page }) => {
   await captureNativeStarts(page);
-  await page.goto("/");
+  await openWalterStudio(page);
   await scriptSelect(page).selectOption("contrast-sound-sacrifice");
   await playVoice(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
@@ -342,7 +344,7 @@ test("collection changes cancel speech and select only valid voice and script pa
 });
 
 test("Walter's selectors and preview fit a 320-pixel phone without changing shared controls", async ({ page }, info) => {
-  await page.goto("/");
+  await openWalterStudio(page);
   if (info.project.name === "mobile") await page.setViewportSize({ width: 320, height: 780 });
   await expect(panel(page)).toBeVisible();
   await expect(panel(page).getByRole("img", { name: "Walter, voice preview", exact: true })).toBeVisible();

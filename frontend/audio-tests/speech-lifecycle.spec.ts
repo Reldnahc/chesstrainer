@@ -1,3 +1,4 @@
+import { openAudioFixturePage } from "./fixtures/openAudioFixture";
 import {expect, test, type Page} from "@playwright/test";
 import path from "node:path";
 import type {SpeechActivity, SpeechPlayback} from "../src/audio/model";
@@ -20,8 +21,7 @@ async function mountSpeech(page: Page, options: Partial<Options> = {}, feedCoach
   await page.clock.install();
   await page.clock.pauseAt(new Date());
   await page.emulateMedia({reducedMotion: "no-preference"});
-  await page.goto("/");
-  await page.getByRole("combobox", {name: "Coach motion", exact: true}).selectOption("still");
+  await openAudioFixturePage(page);
   await page.evaluate(async ({root, options, feedCoach}) => {
     // Exercise the real shared portrait with controllable handles. This harness
     // exists only in the browser test; production exposes no testing entrypoint.
