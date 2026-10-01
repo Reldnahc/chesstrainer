@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "status": "planning-only-not-generated",
-  "phaseGate": "Do not make paid generation calls until Walter is committed and pushed to main and main CI passes.",
+  "status": "approved-auditions-recorded; four casting briefs await owner approval",
+  "phaseGate": "Walter published at 6b1c317; main CI run36830904338 passed before these auditions were generated.",
   "provider": "elevenlabs",
   "method": "voice-design",
   "modelId": "eleven_ttv_v3",
   "outputFormat": "mp3_44100_128",
   "previewPolicy": "Three independent descriptive prompts per coach, one representative returned preview retained per prompt. Do not turn one request into several near-identical audition options. No saved production voices are selected by this plan.",
-  "scope": "All twenty current nonhuman coaches, including Orin. Walter and the nine other human coaches are excluded.",
+  "scope": "Sixteen approved animal, fantasy and robot coaches. Four other nonhuman casting briefs are deferred pending explicit approval. Walter and the nine other humans are excluded.",
   "counts": {
-    "coaches": 20,
-    "directions": 60,
-    "distinctScriptCharacters": 2655,
-    "plannedSpokenInputCharacters": 7965,
+    "coaches": 16,
+    "directions": 48,
+    "distinctScriptCharacters": 2124,
+    "plannedSpokenInputCharacters": 6372,
     "billingNote": "Character counts are planned spoken input, not a provider usage or credit quote."
   },
   "commonBrief": "Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character.",
@@ -363,29 +363,6 @@
       ]
     },
     {
-      "coachId": "alien",
-      "name": "Ziggy",
-      "group": "scifi",
-      "text": "Interesting. The move looks convincing, but it breaks a useful connection. The defender leaves, and the other side can take the piece.",
-      "directions": [
-        {
-          "id": "glass-antenna",
-          "label": "Glass antenna",
-          "prompt": "Create an original cartoon chess-coach voice. Character: Curious intelligent alien outsider; fascinated by the difference between a convincing idea and its actual outcome. Fluent language, not robot monotony. Voice direction: High androgynous register with Finnish-influenced English vowels and clear glassy resonance. Deliberate curious shifts in stress, light precise consonants and a quietly unusual vocal shape. Fluent, fully intelligible English. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
-        },
-        {
-          "id": "resonant-visitor",
-          "label": "Resonant visitor",
-          "prompt": "Create an original cartoon chess-coach voice. Character: Curious intelligent alien outsider; fascinated by the difference between a convincing idea and its actual outcome. Fluent language, not robot monotony. Voice direction: Deep gender-neutral voice with precise neutral English and unusually rounded vowel resonance. Slowly connected analytical observations, subtle harmonic richness and patient fascination. No electronic monotone or sound-effect layer. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
-        },
-        {
-          "id": "mercurial-researcher",
-          "label": "Mercurial researcher",
-          "prompt": "Create an original cartoon chess-coach voice. Character: Curious intelligent alien outsider; fascinated by the difference between a convincing idea and its actual outcome. Fluent language, not robot monotony. Voice direction: Medium-bright male tenor speaking English with a French accent. Elastic nasal edge, quick fascinated phrasing and unexpected but intelligible emphasis. Lively intellectual curiosity, distinct from robotic or mystical delivery. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
-        }
-      ]
-    },
-    {
       "coachId": "robot",
       "name": "Rivet",
       "group": "scifi",
@@ -405,6 +382,31 @@
           "id": "crystal-assistant",
           "label": "Crystal assistant",
           "prompt": "Create an original cartoon chess-coach voice. Character: Literal robot chess coach. Must sound unmistakably mechanical, not merely a human speaking flatly. Issue, cause, result; no beep-boop jokes. Voice direction: Bright gender-neutral medium register with clean lightly polytonal synthetic vocal resonance. Exact rhythmic articulation and small musical pitch steps, clearly an artificial assistant. Smooth intelligible vowels; no beeps, echo or background effects. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    }
+  ],
+  "deferredCoaches": [
+    {
+      "coachId": "alien",
+      "name": "Ziggy",
+      "group": "scifi",
+      "text": "Interesting. The move looks convincing, but it breaks a useful connection. The defender leaves, and the other side can take the piece.",
+      "directions": [
+        {
+          "id": "glass-antenna",
+          "label": "Glass antenna",
+          "prompt": "Create an original cartoon chess-coach voice. Character: Curious intelligent alien outsider; fascinated by the difference between a convincing idea and its actual outcome. Fluent language, not robot monotony. Voice direction: High androgynous register with Finnish-influenced English vowels and clear glassy resonance. Deliberate curious shifts in stress, light precise consonants and a quietly unusual vocal shape. Fluent, fully intelligible English. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "resonant-visitor",
+          "label": "Resonant visitor",
+          "prompt": "Create an original cartoon chess-coach voice. Character: Curious intelligent alien outsider; fascinated by the difference between a convincing idea and its actual outcome. Fluent language, not robot monotony. Voice direction: Deep gender-neutral voice with precise neutral English and unusually rounded vowel resonance. Slowly connected analytical observations, subtle harmonic richness and patient fascination. No electronic monotone or sound-effect layer. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "mercurial-researcher",
+          "label": "Mercurial researcher",
+          "prompt": "Create an original cartoon chess-coach voice. Character: Curious intelligent alien outsider; fascinated by the difference between a convincing idea and its actual outcome. Fluent language, not robot monotony. Voice direction: Medium-bright male tenor speaking English with a French accent. Elastic nasal edge, quick fascinated phrasing and unexpected but intelligible emphasis. Lively intellectual curiosity, distinct from robotic or mystical delivery. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
         }
       ]
     },
@@ -477,5 +479,6 @@
         }
       ]
     }
-  ]
+  ],
+  "deferredReason": "Automatic approval review required explicit owner approval before paid generation for alien, living-pawn, slime and mushroom. The question is pending. These briefs are not part of the active generation plan."
 }

@@ -70,3 +70,23 @@ plus an exact matching manifest. It verifies source bytes and request identity;
 it does not claim perceptual voice quality or prove provider pronunciation.
 Usage totals belong to the separately captured provider usage record, not an
 estimate derived from script characters.
+
+## Automatic mouth timing
+
+`python -B -S scripts/prepare_cast_voice_auditions.py --check` verifies the complete
+approved set with the standard library alone. `--generate` reuses the existing
+offline PocketSphinx pipeline; optional coach/direction filters allow preparation
+while a batch is in progress. `alignment/<coach>/<direction>.json` preserves the
+automatic word and phoneme evidence; `tracks.json` is the compact runtime
+projection. Request, sidecar and MP3 fingerprints bind each track to its clip.
+See the [alignment tooling](../alignment/README.md) for native dependencies.
+
+All 48 recorded directions have verified automatic tracks. The unchanged clips
+range from about 8 to 12 seconds. No hand timing, trimming or padding was applied.
+The batch used 6,372 provider credits, observed as account usage 3,530 → 9,902;
+Walter's separate completion batch used 1,948 credits.
+
+These generated previews follow the existing [speech asset permissions and
+attribution notice](../README.md#permissions-and-attribution). Keep that notice
+and each provenance sidecar with redistributed audition files. They are separate
+media assets, not CC0 effects or relicensed source code. No voice model is included.
