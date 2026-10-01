@@ -55,8 +55,12 @@ test('account signup, engine-free sync, second-device login and private library'
   const sound = page.getByRole('region', {name: 'Sound', exact: true});
   await sound.getByRole('checkbox', {name: /^Board moves/}).uncheck();
   await expect(sound.locator('.preference-status')).toHaveAttribute('data-state', 'saved');
+  const voiceSave = page.waitForResponse(response => response.url().endsWith('/api/preferences/audio') && response.request().method() === 'PUT');
+  await sound.getByLabel('Coach voice', {exact: true}).selectOption('manual');
+  expect((await voiceSave).ok()).toBe(true);
+  await expect(sound.locator('.preference-status')).toHaveAttribute('data-state', 'saved');
   await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
-  const ownerAudio = {enabled: true, volume: .35, board: false, practice: true, voice: 'automatic'};
+  const ownerAudio = {enabled: true, volume: .35, board: false, practice: true, voice: 'manual'};
   expect(await (await page.request.get('/api/preferences/audio')).json()).toEqual(ownerAudio);
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   const jobs = await (await page.request.get('/api/jobs')).json();
@@ -108,6 +112,9 @@ test('account signup, engine-free sync, second-device login and private library'
     const deviceSound = device.getByRole('region', {name: 'Sound', exact: true});
     await expect(deviceSound.getByRole('checkbox', {name: /^Board moves/})).not.toBeChecked();
     await expect(deviceSound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
+    await expect(deviceSound.getByLabel('Coach voice', {exact: true})).toHaveValue('manual');
+    await device.reload();
+    await expect(deviceSound.getByLabel('Coach voice', {exact: true})).toHaveValue('manual');
     await expect(deviceSound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
     await expect(deviceSound.getByRole('button', {name: 'Test sound', exact: true})).toBeDisabled();
     await expect(device.getByRole('region', {name: 'Account', exact: true})).toHaveCount(0);
@@ -143,6 +150,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await settingsSection(device, 'Sound');
     await expect(deviceSound.getByRole('checkbox', {name: /^Board moves/})).toBeChecked();
     await expect(deviceSound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
+    await expect(deviceSound.getByLabel('Coach voice', {exact: true})).toHaveValue('automatic');
     await expect(deviceSound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
     await expect(deviceSound.getByRole('button', {name: 'Unmute this device', exact: true})).toHaveCount(0);
     // Replacing the signed-in account also replaces its muted audio provider.
