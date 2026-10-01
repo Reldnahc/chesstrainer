@@ -190,6 +190,10 @@ def select_checks(paths, full=False):
                 backend = build = docker = True
                 suites.update(SUITES)
                 reason("Unrecognized paths require full correctness.")
+            elif path == "frontend/src/audio/speech/cast-auditions/locked-voices.json":
+                backend = build = True
+                suites.update(VOICE_STUDIO_SUITES)
+                reason("Locked cast voices require production bank verification and both studios.")
             elif (
                 path in CAST_AUTHORING_FILES
                 or path in SHARED_VOICE_STUDIO_FILES

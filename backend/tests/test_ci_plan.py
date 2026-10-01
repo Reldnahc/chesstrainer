@@ -263,6 +263,26 @@ def test_cast_only_selection_cannot_hide_changed_production_or_shared_dependenci
     )
 
 
+def test_locked_cast_voices_also_verify_registered_production_banks():
+    locked = "frontend/src/audio/speech/cast-auditions/locked-voices.json"
+    assert_selection(
+        ci_plan.select_checks([locked]), backend=True, build=True, suites=VOICE_STUDIO_SUITES
+    )
+    assert_selection(
+        ci_plan.select_checks([locked, "frontend/src/audio/speech/cast-auditions/manifest.json"]),
+        backend=True,
+        build=True,
+        suites=VOICE_STUDIO_SUITES,
+    )
+    assert_selection(
+        ci_plan.select_checks([locked, "frontend/src/audio/speech/banks/rivet/manifest.json"]),
+        backend=True,
+        build=True,
+        docker=True,
+        suites=ALL_SUITES,
+    )
+
+
 @pytest.mark.parametrize(
     "path",
     [
@@ -298,6 +318,9 @@ def test_unclassified_frontend_scripts_keep_full_correctness():
     "path",
     [
         "frontend/src/audio/speech/bank/manifest.json",
+        "frontend/src/audio/speech/banks/registry.json",
+        "frontend/src/audio/speech/banks/rivet/manifest.json",
+        "frontend/src/audio/speech/meanings.json",
         "frontend/src/audio/speech/bank/tracks.json",
         "frontend/src/audio/speech/bank/recordings/walter/sound-sacrifice.mp3",
         "frontend/src/audio/speech/bank/recordings/walter/sound-sacrifice.json",
