@@ -8,10 +8,12 @@ const repository = fileURLToPath(new URL('../../', import.meta.url));
 const defaultCatalog = resolve(repository, 'frontend/src/audio/speech/cast-auditions');
 const defaultStorage = resolve(repository, 'data/voice-casting');
 // This is a write boundary, not a second selectable-coach registry. The active
-// design plan further restricts this set; humans and Walter cannot be modified.
-const nonhumans = new Set(['dog-gentle', 'dog-corgi', 'dog-collie', 'dog-puppy',
+// design plan further restricts this set; Walter's separately approved voice cannot be modified.
+const castable = new Set(['dog-gentle', 'dog-corgi', 'dog-collie', 'dog-puppy',
   'cat-tuxedo', 'cat-black', 'cat-kitten', 'gorilla', 'raccoon', 'frog', 'capybara',
-  'unicorn', 'wizard', 'dragon', 'ghost', 'alien', 'robot', 'slime', 'mushroom', 'living-pawn']);
+  'unicorn', 'wizard', 'dragon', 'ghost', 'alien', 'robot', 'slime', 'mushroom', 'living-pawn',
+  'man-host', 'man-expert', 'man-partner', 'woman-captain', 'woman-analyst', 'woman-spark',
+  'woman-blonde', 'human-boy', 'human-girl']);
 const idPattern = /^[a-z][a-z0-9-]{0,63}$/;
 const hash = value => createHash('sha256').update(value).digest('hex');
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -32,10 +34,10 @@ async function readLockedVoices(root) {
   try { manifest = await jsonFile(resolve(root, 'locked-voices.json')); }
   catch { throw error(); }
   if (!record(manifest) || manifest.schemaVersion !== 1 || manifest.provider !== 'elevenlabs' ||
-      !Array.isArray(manifest.voices) || manifest.voices.length > nonhumans.size) throw error();
+      !Array.isArray(manifest.voices) || manifest.voices.length > castable.size) throw error();
   const locks = {};
   for (const item of manifest.voices) {
-    if (!record(item) || !nonhumans.has(item.coachId) || Object.hasOwn(locks, item.coachId) ||
+    if (!record(item) || !castable.has(item.coachId) || Object.hasOwn(locks, item.coachId) ||
         typeof item.directionId !== 'string' || !idPattern.test(item.directionId) ||
         !shortText(item.label, 160) || !shortText(item.voiceName, 200) || !providerId(item.savedVoiceId) ||
         typeof item.lockedAt !== 'string' || !Number.isFinite(Date.parse(item.lockedAt)) ||
@@ -63,7 +65,7 @@ async function catalogAt(root) {
   }
   const coaches = new Map();
   for (const item of plan.coaches) {
-    if (!record(item) || !nonhumans.has(item.coachId) || coaches.has(item.coachId) ||
+    if (!record(item) || !castable.has(item.coachId) || coaches.has(item.coachId) ||
         typeof item.text !== 'string' || !Array.isArray(item.directions)) {
       throw fail(500, 'catalog_error', 'The casting plan contains an invalid or duplicate coach.');
     }
@@ -253,7 +255,7 @@ export function createCastingMiddleware({ catalogRoot = defaultCatalog, storageR
     };
     void (async () => {
       const coachId = path.slice(endpoint.length + 1);
-      if (path !== endpoint && (!idPattern.test(coachId) || !nonhumans.has(coachId))) throw fail(404, 'unknown_coach', 'This coach is not available for voice casting.');
+      if (path !== endpoint && (!idPattern.test(coachId) || !castable.has(coachId))) throw fail(404, 'unknown_coach', 'This coach is not available for voice casting.');
       if (!['GET', 'PUT', 'DELETE'].includes(request.method)) throw fail(405, 'method_not_allowed', 'Use GET, PUT or DELETE for casting choices.');
       if (request.method === 'GET') {
         if (path !== endpoint) throw fail(404, 'not_found', 'Casting choices are available at the collection endpoint.');
@@ -263,7 +265,7 @@ export function createCastingMiddleware({ catalogRoot = defaultCatalog, storageR
         const choices = {};
         for (const file of files.filter(name => name.endsWith('.json'))) {
           const id = file.slice(0, -5);
-          if (!nonhumans.has(id)) throw fail(500, 'storage_error', 'The casting folder contains an unrecognized saved choice.');
+          if (!castable.has(id)) throw fail(500, 'storage_error', 'The casting folder contains an unrecognized saved choice.');
           // A tracked final voice supersedes its old local draft without changing
           // that file. Even a corrupt obsolete draft cannot hide the final voice.
           if (Object.hasOwn(catalog.locks, id)) continue;

@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "status": "All twenty owner-approved designs locked.",
+  "status": "Twenty nonhuman designs locked; nine newer humans in their first audition round.",
   "phaseGate": "Walter published at 6b1c317; main CI run36830904338 passed before these auditions were generated.",
   "provider": "elevenlabs",
   "method": "voice-design",
   "modelId": "eleven_ttv_v3",
   "outputFormat": "mp3_44100_128",
   "previewPolicy": "Three independent descriptive prompts per coach, one representative returned preview retained per prompt. Do not turn one request into several near-identical audition options. No saved production voices are selected by this plan.",
-  "scope": "All twenty nonhuman coaches explicitly approved by the owner. Walter and the nine other humans are excluded.",
+  "scope": "All twenty nonhuman coaches and the nine newer humans, each voiced from their chess home region (see docs/COACH.md). Walter keeps his separately approved voice and is excluded.",
   "counts": {
-    "coaches": 20,
-    "directions": 60,
-    "distinctScriptCharacters": 2647,
-    "plannedSpokenInputCharacters": 7941,
+    "coaches": 29,
+    "directions": 87,
+    "distinctScriptCharacters": 3902,
+    "plannedSpokenInputCharacters": 11706,
     "billingNote": "Character counts are planned spoken input, not a provider usage or credit quote."
   },
   "commonBrief": "Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character.",
@@ -476,7 +476,230 @@
           "prompt": "Create an original cartoon chess-coach voice. Character: Earnest living chess pawn, deeply invested in every piece doing its job. Sincere and almost heroic, without military commands. Voice direction: Gravel-edged male baritone with a light Brooklyn accent and grounded warm resonance. Practical speech with unexpectedly heartfelt enthusiasm and honest pride. Earnest, never cynical or militaristic. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
         }
       ]
+    },
+    {
+      "coachId": "man-host",
+      "name": "Femi",
+      "group": "humans",
+      "text": "Ah, there's the catch. That move looks natural, but it pulls away the only defender. Now the other side just takes the piece. Check that first.",
+      "directions": [
+        {
+          "id": "lagos-club-host",
+          "label": "Lagos club host",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Sociable post-game analyst from Lagos, reviewing the game across the club table. Voice direction: Warm, rich male baritone with a Nigerian English accent from Lagos. An easy smile in the voice, lively conversational rhythm and friendly, candid table-side emphasis. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "bright-lagos-tenor",
+          "label": "Bright Lagos tenor",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Sociable post-game analyst from Lagos, reviewing the game across the club table. Voice direction: Lighter male tenor with a crisp Nigerian English accent. Quick, animated delivery, upbeat reactions and clear, punchy consonants; sociable rather than loud. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "seasoned-club-analyst",
+          "label": "Seasoned club analyst",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Sociable post-game analyst from Lagos, reviewing the game across the club table. Voice direction: Deep, slightly gravelly mature male bass with a gentle Yoruba-inflected Nigerian English accent. Unhurried, amused and warmly authoritative, like an old club regular. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "man-expert",
+      "name": "Jun",
+      "group": "humans",
+      "text": "Loose piece. The defender moved, so nothing protects it. The opponent captures next move. Before moving a defender, confirm what it guards.",
+      "directions": [
+        {
+          "id": "precise-singapore-coach",
+          "label": "Precise Singapore coach",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Calm, disciplined technician from Singapore; exact consequences and no extra words. Voice direction: Measured male baritone with a clear Singaporean English accent. Crisp clipped consonants, even calm pacing and quiet certainty; economical, never robotic. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "soft-spoken-technician",
+          "label": "Soft-spoken technician",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Calm, disciplined technician from Singapore; exact consequences and no extra words. Voice direction: Soft mature male tenor with a light Singaporean English accent. Quiet precision, small deliberate pauses between facts and a faint approving warmth. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "senior-master",
+          "label": "Senior master",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Calm, disciplined technician from Singapore; exact consequences and no extra words. Voice direction: Older, slightly husky male voice with a Singaporean English accent. Deliberate, economical phrasing and dry, unshakeable confidence; calm and exact. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "man-partner",
+      "name": "Arjun",
+      "group": "humans",
+      "text": "What if we check the defender first? Once it moves, that piece is unprotected and can be taken. Compare that with keeping it where it was.",
+      "directions": [
+        {
+          "id": "chennai-club-mentor",
+          "label": "Chennai club mentor",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Curious collaborator from Chennai who explores alternatives with the player. Voice direction: Warm male baritone with a Tamil-inflected Indian English accent. Open, curious questions that leave a small thinking pause, then a friendly, clear idea. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "bright-academy-coach",
+          "label": "Bright academy coach",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Curious collaborator from Chennai who explores alternatives with the player. Voice direction: Lighter male tenor with a modern Indian English accent. Quick, curious pivots, an encouraging upward lift and crisp, friendly explanation. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "seasoned-analyst",
+          "label": "Seasoned analyst",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Curious collaborator from Chennai who explores alternatives with the player. Voice direction: Mellow mature male voice with a soft South Indian English accent. Slower, thoughtful phrasing, wryly amused by alternatives and generous in tone. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "woman-captain",
+      "name": "Tamar",
+      "group": "humans",
+      "text": "This move loses a piece. The defender left its post, and the other side takes it for free. Your habit from today: count defenders before you move.",
+      "directions": [
+        {
+          "id": "tbilisi-mentor",
+          "label": "Tbilisi mentor",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Confident mentor from Tbilisi who gives a clear verdict and expects improvement. Voice direction: Confident female alto speaking English with a Georgian accent and lightly rolled consonants. Firm, warm verdicts and steady motivating drive. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "bright-captain",
+          "label": "Bright captain",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Confident mentor from Tbilisi who gives a clear verdict and expects improvement. Voice direction: Clear female mezzo with a light Georgian accent. Brisk, energetic delivery, upbeat encouragement and decisive endings; demanding but kind. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "grandmaster-calm",
+          "label": "Grandmaster calm",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Confident mentor from Tbilisi who gives a clear verdict and expects improvement. Voice direction: Low, smoky mature female contralto with a strong Georgian accent. Measured, unshakeable authority with underlying warmth; never stern. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "woman-analyst",
+      "name": "Marisol",
+      "group": "humans",
+      "text": "One thing changed. The defender moved, and the piece it guarded is now alone. The other side can take it. Look at that square again.",
+      "directions": [
+        {
+          "id": "havana-observer",
+          "label": "Havana observer",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Restrained observer from Havana who notices exactly what changed. Voice direction: Soft female mezzo speaking English with a Cuban Spanish accent. Quiet, clear observations with gentle pauses and a calm, settled conclusion. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "cool-analyst",
+          "label": "Cool analyst",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Restrained observer from Havana who notices exactly what changed. Voice direction: Low, calm female alto with a light Cuban accent. Precise, restrained phrasing, almost deadpan, with a small warmth at the end. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "warm-professor",
+          "label": "Warm professor",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Restrained observer from Havana who notices exactly what changed. Voice direction: Mature, warm female voice with a Cuban Spanish accent. Unhurried and thoughtful, with softly descending conclusions; attentive rather than sleepy. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "woman-spark",
+      "name": "Réka",
+      "group": "humans",
+      "text": "Oh, look at this! The defender steps away, and suddenly that piece is hanging. The other side grabs it immediately. Spot it before they do!",
+      "directions": [
+        {
+          "id": "budapest-attacker",
+          "label": "Budapest attacker",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Tactical enthusiast from Budapest who genuinely gets excited by ideas. Voice direction: Bright, energetic female mezzo speaking English with a Hungarian accent. Quick excited emphasis and real delight in the tactic, still clear and controlled. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "sparky-commentator",
+          "label": "Sparky commentator",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Tactical enthusiast from Budapest who genuinely gets excited by ideas. Voice direction: Higher, quick female voice with a light Hungarian accent. Fast lively pacing, a laugh in the voice and crisp words; excited, never shrill. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "sharp-competitor",
+          "label": "Sharp competitor",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Tactical enthusiast from Budapest who genuinely gets excited by ideas. Voice direction: Lower female alto with a strong Hungarian accent. Intense, focused excitement, punchy consonants and a confident competitive edge. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "woman-blonde",
+      "name": "Ingrid",
+      "group": "humans",
+      "text": "No harm in checking this one calmly. The defender moved, so that piece is loose, and the other side can take it. Next time, glance back first.",
+      "directions": [
+        {
+          "id": "oslo-easygoing",
+          "label": "Oslo easygoing",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Relaxed, reassuring strong player from Oslo who keeps the chess honest. Voice direction: Relaxed female mezzo speaking English with a Norwegian accent and a gentle Scandinavian melody. Calm, reassuring and candid. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "breezy-club-player",
+          "label": "Breezy club player",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Relaxed, reassuring strong player from Oslo who keeps the chess honest. Voice direction: Light, bright female voice with a soft Norwegian accent. Casual and friendly, with a smile in the voice and clear, unforced honesty. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "calm-fjord-alto",
+          "label": "Calm low alto",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Relaxed, reassuring strong player from Oslo who keeps the chess honest. Voice direction: Low, calm female alto with a gentle Norwegian accent. Unhurried, steady warmth and plain, candid words; easygoing, never sleepy. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "human-boy",
+      "name": "Mateo",
+      "group": "humans",
+      "text": "Wait, wait, look at this! Who's guarding that piece now? Nobody! The defender moved away, so the other side can just take it. So sneaky!",
+      "directions": [
+        {
+          "id": "bright-buenos-aires",
+          "label": "Bright Buenos Aires",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Mateo from Buenos Aires, full of excited tactical discoveries. Voice direction: The voice of Mateo himself: high, light and bright with small, thin resonance and an Argentine Spanish accent. Bursts of excitement, then a simple clear explanation. Never squeaky. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "breathless-discoverer",
+          "label": "Breathless discoverer",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Mateo from Buenos Aires, full of excited tactical discoveries. Voice direction: The voice of Mateo himself: high and slightly breathy, words tumbling quickly with excitement, pitch jumping up on each discovery; light Argentine accent. Not squeaky. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "bouncy-rioplatense",
+          "label": "Bouncy Rioplatense",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Mateo from Buenos Aires, full of excited tactical discoveries. Voice direction: The voice of Mateo himself: high, bright and bouncy, with a playful Rioplatense Argentine accent and a quick, sing-song rhythm. Excited calls on each find, then a clear simple explanation. Not squeaky. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
+    },
+    {
+      "coachId": "human-girl",
+      "name": "Tala",
+      "group": "humans",
+      "text": "Here's the clue: the defender moved. So what was it guarding? That piece! Now it's all alone, and the other side can take it. Puzzle solved.",
+      "directions": [
+        {
+          "id": "bright-manila-solver",
+          "label": "Bright Manila solver",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Tala from Manila, a playful puzzle solver who finds the hidden clue. Voice direction: The voice of Tala herself: high, clear and bright with small, light resonance and a Filipino English accent. A playful curious lift on each clue and a crisp, proud ending. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "quick-sharp-detective",
+          "label": "Quick sharp detective",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Tala from Manila, a playful puzzle solver who finds the hidden clue. Voice direction: The voice of Tala herself: high, quick and sharp-witted, light Filipino accent, short curious questions and confident little conclusions. Not squeaky. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        },
+        {
+          "id": "melodic-manila",
+          "label": "Melodic Manila",
+          "prompt": "Create an original chess-coach voice for an illustrated character. Character: Tala from Manila, a playful puzzle solver who finds the hidden clue. Voice direction: The voice of Tala herself: high, bright and melodic, with a warm Filipino English accent and a lilting rhythm. Thoughtful pauses on the clue, then a quietly proud, confident ending. Not squeaky. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
+        }
+      ]
     }
   ],
-  "approvalNote": "Owner approved eighteen exact selected designs on October 1, 2026 and requested new attempts only for Biscuit (younger) and Pip (less goofy). First-round rejected directions remain archived with their unchanged original media and provenance. The first literal childlike Biscuit request was rejected by the provider (HTTP 403); the active replacement briefs explicitly request youthful adults rather than children. Pip's Warm Dublin companion was then approved and locked. The owner rejected Biscuit's second round as ordinary young adults rather than a young-sounding character; those directions are archived in archive/round-2-puppy.json and replaced by three third-round adult-performed character briefs. The owner judged third-round Soft and wide-eyed almost right; round three is archived in archive/round-3-puppy.json and replaced by three close variations on it. Before choosing from round four (archived in archive/round-4-puppy.json as the reference), the owner asked to hear briefs that describe the talking puppy character's own voice rather than an adult speaker. The owner chose and locked Biscuit's fifth-round Talking puppy, soft."
+  "approvalNote": "Owner approved eighteen exact selected designs on October 1, 2026 and requested new attempts only for Biscuit (younger) and Pip (less goofy). First-round rejected directions remain archived with their unchanged original media and provenance. The first literal childlike Biscuit request was rejected by the provider (HTTP 403); the active replacement briefs explicitly request youthful adults rather than children. Pip's Warm Dublin companion was then approved and locked. The owner rejected Biscuit's second round as ordinary young adults rather than a young-sounding character; those directions are archived in archive/round-2-puppy.json and replaced by three third-round adult-performed character briefs. The owner judged third-round Soft and wide-eyed almost right; round three is archived in archive/round-3-puppy.json and replaced by three close variations on it. Before choosing from round four (archived in archive/round-4-puppy.json as the reference), the owner asked to hear briefs that describe the talking puppy character's own voice rather than an adult speaker. The owner chose and locked Biscuit's fifth-round Talking puppy, soft.",
+  "rejectedDirections": [
+    {
+      "coachId": "human-boy",
+      "directionId": "small-and-earnest",
+      "label": "Small and earnest",
+      "prompt": "Create an original chess-coach voice for an illustrated character. Character: Mateo from Buenos Aires, full of excited tactical discoveries. Voice direction: The voice of Mateo himself: soft, high and small, earnest and sincere, with a gentle Argentine accent, careful clear words and growing excitement. Not squeaky. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character.",
+      "outcome": "Provider rejected the request with HTTP 403 on 2026-10-01; not retried, no audio retained. Replaced by bouncy-rioplatense."
+    },
+    {
+      "coachId": "human-girl",
+      "directionId": "soft-and-sure",
+      "label": "Soft and sure",
+      "prompt": "Create an original chess-coach voice for an illustrated character. Character: Tala from Manila, a playful puzzle solver who finds the hidden clue. Voice direction: The voice of Tala herself: soft, high and small with a gentle Filipino accent. Careful, thoughtful pacing that grows quietly proud at the discovery. Not squeaky. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character.",
+      "outcome": "Provider rejected the request with HTTP 403 on 2026-10-01; not retried, no audio retained. Replaced by melodic-manila."
+    }
+  ]
 }

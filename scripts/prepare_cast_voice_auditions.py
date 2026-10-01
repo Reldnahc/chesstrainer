@@ -59,8 +59,8 @@ def load_plan(path: Path) -> dict:
     ):
         raise ValueError("Unsupported voice-design plan")
     coaches = plan.get("coaches")
-    if not isinstance(coaches, list) or not 1 <= len(coaches) <= 20:
-        raise ValueError("Voice-design plan needs one to twenty coaches")
+    if not isinstance(coaches, list) or not 1 <= len(coaches) <= 30:
+        raise ValueError("Voice-design plan needs one to thirty coaches")
     ids = set()
     direction_count = characters = distinct_characters = 0
     for coach in coaches:
@@ -92,7 +92,7 @@ def load_plan(path: Path) -> dict:
             prompts.add(direction["prompt"].strip())
             direction_count += 1
             characters += len(coach["text"])
-    if direction_count > 60 or characters > 12000:
+    if direction_count > 90 or characters > 18000:
         raise ValueError("Voice-design plan exceeds its bounded audition scope")
     counts = plan.get("counts")
     if counts is not None and (

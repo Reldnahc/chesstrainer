@@ -1,11 +1,20 @@
-# Nonhuman coach voice-design auditions
+# Coach voice-design auditions
 
-This is a development-only casting collection. `design-plan.json` has twenty
-approved coaches with three independently written voice directions each: **60
-active auditions**. All twenty exact owner selections are saved in ElevenLabs and
+This is a development-only casting collection. `design-plan.json` has twenty-nine
+coaches with three independently written voice directions each: **87 active
+auditions**. All twenty nonhuman owner selections are saved in ElevenLabs and
 recorded in `locked-voices.json`, including Pip's second-round Warm Dublin
-companion and Biscuit's fifth-round **Talking puppy, soft**. No coach is pending. A locked voice is an approved design, not a completed dialogue
-bank. The audition generator itself never saves provider voices.
+companion and Biscuit's fifth-round **Talking puppy, soft**. A locked voice is an
+approved design, not a completed dialogue bank. The audition generator itself
+never saves provider voices.
+
+The nine newer humans (Femi, Jun, Arjun, Tamar, Marisol, Réka, Ingrid, Mateo and
+Tala) are in their first round and need a voice. Each direction is voiced from
+the coach's chess home region in [COACH.md](../../../../../docs/COACH.md#human-home-regions).
+Mateo's and Tala's briefs describe the sound of the character's own voice (high,
+light, small, bright) and never name an age: the provider rejects briefs about
+minors, and the owner found age words produce odd results. Walter keeps his
+separately approved voice and is not part of this plan.
 
 `manifest.json` contains the available retained previews. Partial coverage is
 expected while recording; the final strict check requires every active direction.
@@ -57,7 +66,7 @@ After the owner has authorized the request and the plan's phase gate is met,
 node scripts/design_coach_voices.mjs --generate --coach robot --direction retro-terminal
 ```
 
-Coach and direction filters are repeatable. Omitting them selects all 60 active
+Coach and direction filters are repeatable. Omitting them selects all 87 active
 directions; existing verified previews are reused without a request.
 Requests are sequential, bounded to the plan, timed out and never automatically
 retried. The tool calls only ElevenLabs' [Voice Design endpoint](https://elevenlabs.io/docs/api-reference/text-to-voice/design),
@@ -110,7 +119,7 @@ automatic word and phoneme evidence; `tracks.json` is the compact runtime
 projection. Request, sidecar and MP3 fingerprints bind each track to its clip.
 See the [alignment tooling](../alignment/README.md) for native dependencies.
 
-All 60 recorded directions have verified automatic tracks. The unchanged clips
+All 87 recorded directions have verified automatic tracks. The unchanged clips
 range from about 8 to 12 seconds. No hand timing, trimming or padding was applied.
 The initial batch used 6,372 provider credits, observed as account usage 3,530 → 9,902.
 The final four coaches used another 1,593 credits (9,902 → 11,495), for **7,965
@@ -123,7 +132,11 @@ usage is **8,765 credits**, with 66 retained recordings (60 active, six archived
 Biscuit's third, fourth and fifth rounds each made three successful requests with
 no rejections, using **390 credits** apiece (28,866 → 29,256 → 29,646 → 30,036), for
 **9,935 casting credits** in total and 75 retained recordings (60 active, 15 archived).
-Walter's separate completion batch used 1,948 credits. The provider count can lag
+The nine humans' first round made 29 requests, 27 retained and two rejected, using
+**3,821 credits** (30,036 → 33,857). Mateo's "Small and earnest" and Tala's "Soft
+and sure" returned HTTP 403; both described a soft, high, small voice. Neither was
+retried; `design-plan.json` keeps their briefs under `rejectedDirections`, and
+"Bouncy Rioplatense" and "Melodic Manila" replace them. Walter's separate completion batch used 1,948 credits. The provider count can lag
 generation; these totals use its settled count.
 
 These generated previews follow the existing [speech asset permissions and

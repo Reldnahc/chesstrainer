@@ -24,8 +24,8 @@ test("every approved coach has three complete aligned directions, with any defer
   };
   const tracks = JSON.parse(readFileSync(resolve(root, "tracks.json"), "utf8")) as Record<string, SpeechMouthTrack>;
   const deferred = plan.deferredCoaches ?? [];
-  expect([...plan.coaches, ...deferred]).toHaveLength(20);
-  expect(new Set([...plan.coaches, ...deferred].map(item => item.coachId)).size).toBe(20);
+  expect([...plan.coaches, ...deferred]).toHaveLength(29);
+  expect(new Set([...plan.coaches, ...deferred].map(item => item.coachId)).size).toBe(29);
   expect(manifest.recordings).toHaveLength(plan.coaches.length * 3);
   expect(new Set(manifest.recordings.map(item => item.id)).size).toBe(plan.coaches.length * 3);
   expect(Object.keys(tracks).sort()).toEqual(manifest.recordings.map(item => item.id).sort());
@@ -34,7 +34,7 @@ test("every approved coach has three complete aligned directions, with any defer
     expect(existsSync(resolve(root, "recordings", candidate.coachId))).toBe(false);
   }
   for (const candidate of plan.coaches) {
-    expect(candidate.group).not.toBe("humans");
+    expect(candidate.coachId).not.toBe("classic");
     expect(candidate.directions).toHaveLength(3);
     expect(new Set(candidate.directions.map(item => item.prompt)).size).toBe(3);
     for (const direction of candidate.directions) {

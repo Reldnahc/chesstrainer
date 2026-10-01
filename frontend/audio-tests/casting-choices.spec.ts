@@ -16,7 +16,7 @@ test("listening does not vote; an explicit choice saves exact identity, notes an
   await page.goto("/");
   if (info.project.name === "mobile") await page.setViewportSize({width: 320, height: 780});
   await expect(choose(page)).toBeEnabled();
-  await expect(panel(page)).toContainText("0 chosen · 0 keep looking · 20 to decide");
+  await expect(panel(page)).toContainText(`0 chosen · 0 keep looking · ${plan.coaches.length} to decide`);
   await direction(page).selectOption(first.directions[1].id);
   const mediaRequest = page.waitForRequest(request => new URL(request.url()).pathname.endsWith(".mp3"));
   await panel(page).getByRole("button", {name: "Play candidate", exact: true}).click();
@@ -34,7 +34,7 @@ test("listening does not vote; an explicit choice saves exact identity, notes an
   }});
   await expect(page.locator('[data-bus="speech"][data-event-type="started"]')).toHaveCount(1);
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
-  await expect(panel(page)).toContainText("1 chosen · 0 keep looking · 19 to decide");
+  await expect(panel(page)).toContainText(`1 chosen · 0 keep looking · ${plan.coaches.length - 1} to decide`);
   await direction(page).selectOption(first.directions[2].id);
   await expect(decision(page)).toContainText(`Chosen: ${first.directions[1].label}`);
   expect(store.writes).toHaveLength(1);
@@ -57,7 +57,7 @@ test("keep-looking, notes, revision and reset remain isolated per coach and rest
   await coach(page).selectOption(second.coachId);
   await expect(note(page)).toHaveValue("");
   await choose(page).click();
-  await expect(panel(page)).toContainText("1 chosen · 1 keep looking · 18 to decide");
+  await expect(panel(page)).toContainText(`1 chosen · 1 keep looking · ${plan.coaches.length - 2} to decide`);
   const other = await browser.newContext();
   try {
     const device = await other.newPage();
@@ -68,7 +68,7 @@ test("keep-looking, notes, revision and reset remain isolated per coach and rest
     await direction(device).selectOption(first.directions[2].id);
     await choose(device).click();
     await expect(decision(device)).toContainText(`Chosen: ${first.directions[2].label}`);
-    await expect(panel(device)).toContainText("2 chosen · 0 keep looking · 18 to decide");
+    await expect(panel(device)).toContainText(`2 chosen · 0 keep looking · ${plan.coaches.length - 2} to decide`);
     await decision(device).getByRole("button", {name: "Clear choice", exact: true}).click();
     await expect(decision(device)).toContainText("Not decided yet");
     expect(store.choices[first.coachId]).toBeUndefined();
@@ -87,7 +87,7 @@ test("a legacy keep-looking choice preserves its note and requires an explicit d
   await expect(decision(page)).toContainText("New auditions — ready for your review");
   await expect(note(page)).toHaveValue(savedNote);
   await expect(keepLooking(page)).toBeEnabled();
-  await expect(panel(page)).toContainText("0 chosen · 0 keep looking · 20 to decide");
+  await expect(panel(page)).toContainText(`0 chosen · 0 keep looking · ${plan.coaches.length} to decide`);
   expect(store.writes).toEqual([]);
   await keepLooking(page).click();
   await expect(decision(page)).toContainText("Keep looking — none of these fit");
@@ -101,7 +101,7 @@ test("a legacy keep-looking choice preserves its note and requires an explicit d
   await expect(decision(page)).toContainText("Keep looking — none of these fit");
   await expect(keepLooking(page)).toBeDisabled();
   await expect(note(page)).toHaveValue(savedNote);
-  await expect(panel(page)).toContainText("0 chosen · 1 keep looking · 19 to decide");
+  await expect(panel(page)).toContainText(`0 chosen · 1 keep looking · ${plan.coaches.length - 1} to decide`);
   expect(store.writes).toHaveLength(1);
 });
 
@@ -120,7 +120,7 @@ test("a replacement audition set makes its earlier keep-looking decision stale w
   await expect(decision(page)).toContainText("New auditions — ready for your review");
   await expect(note(page)).toHaveValue("The first round was too stern.");
   await expect(keepLooking(page)).toBeEnabled();
-  await expect(panel(page)).toContainText("0 chosen · 0 keep looking · 20 to decide");
+  await expect(panel(page)).toContainText(`0 chosen · 0 keep looking · ${plan.coaches.length} to decide`);
   expect(store.choices[first.coachId].candidateSetFingerprint).toBe(reviewedSet);
   expect(store.writes).toEqual([]);
 });
@@ -259,7 +259,7 @@ test("a pending save reports its own coach after navigation and never overwrites
     await expect(choose(page)).toBeEnabled();
     await expect(decision(page)).toContainText("Not decided yet");
     await expect(note(page)).toHaveValue("");
-    await expect(panel(page)).toContainText("1 chosen · 0 keep looking · 19 to decide");
+    await expect(panel(page)).toContainText(`1 chosen · 0 keep looking · ${plan.coaches.length - 1} to decide`);
     expect(store.choices[first.coachId].note).toBe("First coach only");
     expect(store.choices[second.coachId]).toBeUndefined();
   } finally { release(); await page.unrouteAll({behavior: "wait"}); }
@@ -273,7 +273,7 @@ test("stale saved choices require an explicit fresh approval and do not count as
   await mockCastingApi(page, store);
   await page.goto("/");
   await expect(decision(page)).toContainText("Recording changed — review this choice");
-  await expect(panel(page)).toContainText("0 chosen · 0 keep looking · 20 to decide");
+  await expect(panel(page)).toContainText(`0 chosen · 0 keep looking · ${plan.coaches.length} to decide`);
   await expect(choose(page)).toBeEnabled();
   expect(store.writes).toEqual([]);
   await choose(page).click();

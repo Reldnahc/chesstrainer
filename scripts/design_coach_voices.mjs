@@ -26,7 +26,7 @@ function slug(value) {
 
 export function validatePlan(plan) {
   if (!object(plan) || plan.schemaVersion !== 1 || plan.provider !== 'elevenlabs' || plan.method !== 'voice-design' || plan.modelId !== 'eleven_ttv_v3' || plan.outputFormat !== 'mp3_44100_128') fail('Unsupported voice-design plan.');
-  if (!Array.isArray(plan.coaches) || !plan.coaches.length || plan.coaches.length > 20) fail('A design plan needs at most twenty coaches.');
+  if (!Array.isArray(plan.coaches) || !plan.coaches.length || plan.coaches.length > 30) fail('A design plan needs at most thirty coaches.');
   const coachIds = new Set();
   let directions = 0, characters = 0, distinctCharacters = 0;
   for (const coach of plan.coaches) {
@@ -47,7 +47,7 @@ export function validatePlan(plan) {
       directions++; characters += coach.text.length;
     }
   }
-  if (directions > 60 || characters > 12000) fail('Voice-design plan exceeds sixty requests or twelve thousand input characters.');
+  if (directions > 90 || characters > 18000) fail('Voice-design plan exceeds ninety requests or eighteen thousand input characters.');
   if (plan.counts && (plan.counts.coaches !== coachIds.size || plan.counts.directions !== directions || plan.counts.distinctScriptCharacters !== distinctCharacters || plan.counts.plannedSpokenInputCharacters !== characters)) fail('Design-plan counts do not match its contents.');
   return plan;
 }

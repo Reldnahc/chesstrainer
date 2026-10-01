@@ -52,7 +52,7 @@ async function waitForDecode(page: Page) {
   expect(error).toBeUndefined();
 }
 
-test("eighteen locks leave puppy and slime as the silent pending-first audition list", async ({page}, info) => {
+test("locking every other coach leaves puppy and slime as the silent pending-first audition list", async ({page}, info) => {
   const store = await mockCastingApi(page, lockedStore());
   const recordings: string[] = [];
   page.on("request", request => {
@@ -61,7 +61,7 @@ test("eighteen locks leave puppy and slime as the silent pending-first audition 
   });
   await page.goto("/");
   if (info.project.name === "mobile") await page.setViewportSize({width: 320, height: 780});
-  await expect(panel(page)).toContainText("18 locked · 2 need a voice");
+  await expect(panel(page)).toContainText(`${plan.coaches.length - 2} locked · 2 need a voice`);
   await expect(collection(page, "Needs a voice")).toHaveAttribute("aria-pressed", "true");
   expect(await coach(page).locator("option").evaluateAll(options => options.map(option => (option as HTMLOptionElement).value).sort()))
     .toEqual([...pendingIds].sort());
@@ -87,9 +87,9 @@ test("a locked direction overrides an old choice and remains inspectable without
   delete store.candidateSetFingerprints[first.coachId];
   await mockCastingApi(page, store);
   await page.goto("/");
-  await expect(panel(page)).toContainText("18 locked · 2 need a voice");
+  await expect(panel(page)).toContainText(`${plan.coaches.length - 2} locked · 2 need a voice`);
   await collection(page, "Locked voices").click();
-  await expect(coach(page).locator("option")).toHaveCount(18);
+  await expect(coach(page).locator("option")).toHaveCount(plan.coaches.length - 2);
   await coach(page).selectOption(first.coachId);
   const locked = store.locks[first.coachId];
   await expect(direction(page)).toHaveValue(locked.directionId);
@@ -106,7 +106,7 @@ test("a locked direction overrides an old choice and remains inspectable without
   await expect(speechEvents(page, "started")).toHaveCount(1);
   expect(store.writes).toEqual([]);
   await page.reload();
-  await expect(panel(page)).toContainText("18 locked · 2 need a voice");
+  await expect(panel(page)).toContainText(`${plan.coaches.length - 2} locked · 2 need a voice`);
   await collection(page, "Locked voices").click();
   await coach(page).selectOption(first.coachId);
   await expect(direction(page)).toHaveValue(locked.directionId);
@@ -118,13 +118,13 @@ test("a locked direction overrides an old choice and remains inspectable without
 test("an empty pending collection retains navigation to inspect all locked voices", async ({page}) => {
   const store = await mockCastingApi(page, lockedStore([]));
   await page.goto("/");
-  await expect(panel(page)).toContainText("20 locked · 0 need a voice");
+  await expect(panel(page)).toContainText(`${plan.coaches.length} locked · 0 need a voice`);
   await expect(panel(page)).toContainText("Every coach has a locked voice. You can inspect them under Locked voices.");
   await expect(collection(page, "Needs a voice")).toHaveAttribute("aria-pressed", "true");
   await expect(coach(page)).toHaveCount(0);
   await expect(play(page)).toHaveCount(0);
   await collection(page, "Locked voices").click();
-  await expect(coach(page).locator("option")).toHaveCount(20);
+  await expect(coach(page).locator("option")).toHaveCount(plan.coaches.length);
   await expect(portrait(page)).toHaveAttribute("data-coach", first.coachId);
   await expect(play(page)).toBeEnabled();
   await collection(page, "Needs a voice").click();
@@ -140,7 +140,7 @@ test("a stale locked recording is surfaced for inspection while its saved voice 
     staleReason: "The audition bytes changed after this voice was locked."};
   await mockCastingApi(page, store);
   await page.goto("/");
-  await expect(panel(page)).toContainText("18 locked · 2 need a voice · 1 need review");
+  await expect(panel(page)).toContainText(`${plan.coaches.length - 2} locked · 2 need a voice · 1 need review`);
   await expect(panel(page)).toContainText("A locked audition has changed or is unavailable. The saved voice remains locked.");
   await expect(coach(page)).toHaveValue("dog-puppy");
   await panel(page).getByRole("button", {name: "Inspect locked recording", exact: true}).click();
@@ -189,7 +189,7 @@ for (const state of ["playing", "loading"] as const) {
     }, {times: 1});
     try {
       await page.goto("/");
-      await expect(panel(page)).toContainText("18 locked · 2 need a voice");
+      await expect(panel(page)).toContainText(`${plan.coaches.length - 2} locked · 2 need a voice`);
       await collection(page, "Locked voices").click();
       await coach(page).selectOption(first.coachId);
       await expect(play(page)).toBeEnabled();

@@ -34,13 +34,14 @@ async function fixture(t, value = plan()) {
   return { root, file, output, attempts, args, out, errors, options: { stdout: value => out.push(value), stderr: value => errors.push(value) } };
 }
 
-test('checked-in approved plan has twenty distinct coaches and sixty deterministically seeded directions', async () => {
+test('checked-in approved plan has twenty-nine distinct coaches and eighty-seven deterministically seeded directions', async () => {
   const source = fileURLToPath(new URL('../frontend/src/audio/speech/cast-auditions/design-plan.json', import.meta.url));
   const value = validatePlan(await readJson(source));
   const requests = value.coaches.flatMap(coach => coach.directions.map(direction => requestFor(value, coach, direction)));
-  assert.equal(value.coaches.length, 20); assert.equal(requests.length, 60);
-  assert.equal(new Set(value.coaches.map(coach => coach.coachId)).size, 20);
-  assert.equal(new Set(requests.map(request => request.body.voice_description)).size, 60);
+  assert.equal(value.coaches.length, 29); assert.equal(requests.length, 87);
+  assert.equal(new Set(value.coaches.map(coach => coach.coachId)).size, 29);
+  assert.ok(!value.coaches.some(coach => coach.coachId === 'classic'));
+  assert.equal(new Set(requests.map(request => request.body.voice_description)).size, 87);
   assert.deepEqual(value.deferredCoaches ?? [], []);
   for (const id of ['alien', 'living-pawn', 'mushroom', 'slime']) {
     assert.equal(value.coaches.find(coach => coach.coachId === id)?.directions.length, 3);
