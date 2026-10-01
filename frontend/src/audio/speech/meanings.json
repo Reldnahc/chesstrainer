@@ -1,0 +1,735 @@
+{
+  "schemaVersion": 1,
+  "meanings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review"
+    },
+    {
+      "id": "human-natural-error",
+      "group": "game_review"
+    },
+    {
+      "id": "human-unusual-strong",
+      "group": "game_review"
+    },
+    {
+      "id": "human-hard-defense-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "human-hard-find",
+      "group": "game_review"
+    },
+    {
+      "id": "human-hard-defense-found",
+      "group": "game_review"
+    },
+    {
+      "id": "human-natural-best",
+      "group": "game_review"
+    },
+    {
+      "id": "human-natural-strong",
+      "group": "game_review"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review"
+    },
+    {
+      "id": "draw",
+      "group": "game_review"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational"
+    }
+  ],
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ]
+}
