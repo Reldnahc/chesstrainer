@@ -19,3 +19,5 @@ export function useCoachPreferences() {
     throw new Error("CoachProvider must be inside the current account boundary.");
   return context;
 }
+
+export function useOptionalCoachPreferences() { return useContext(CoachContext); }

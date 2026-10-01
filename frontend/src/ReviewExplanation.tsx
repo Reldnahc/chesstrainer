@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { api, read, type ExplanationFrame, type MoveExplanation } from "./api";
 import { useAudioScope } from "./audio/AudioProvider";
@@ -10,6 +10,10 @@ import { explanationIntent } from "./dialogue/practiceIntent";
 import { claim, makeIntent } from "./dialogue/model";
 import { useDialogue } from "./dialogue/useDialogue";
 import DialogueText from "./dialogue/DialogueText";
+import { useCoachSpeech } from "./audio/speech/useCoachSpeech";
+import CoachSpeechButton from "./audio/speech/CoachSpeechButton";
+import { explanationCueRecording, explanationFindingRecording, explanationFrameRecording, explanationNoteRecording,
+  explanationSummaryRecording } from "./audio/speech/practiceSelection";
 
 export default function ReviewExplanation({
   sessionId,
@@ -32,13 +36,19 @@ export default function ReviewExplanation({
   const [data, setData] = useState<MoveExplanation | null>(null);
   const [index, setIndex] = useState(1);
   const [selectedFinding, setSelectedFinding] = useState<number | null>(null);
+  const [notesOpen, setNotesOpen] = useState(false);
+  const speechVisit = useId();
+  const [speechEvent, setSpeechEvent] = useState<string | null>(null);
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  const requestKey = `${sessionId}:${attemptId ?? "solution"}:${solution}`;
   const [error, setError] = useState("");
   const audio = useAudioScope(`explanation:${sessionId}:${attemptId || "solution"}:${solution}`);
   const navigationId = useRef(0);
-  function seek(next: number) {
+  function seek(next: number, speak = true) {
     if (!data || next === index || !data.frames[next]) return;
     audio.cancel();
     const eventId = `seek:${++navigationId.current}`;
+    setSpeechEvent(speak ? `${speechVisit}:${eventId}` : null);
     if (next === index + 1) audio.move(data.frames[next].san, eventId);
     else audio.play("move", eventId);
     setIndex(next);
@@ -70,6 +80,8 @@ export default function ReviewExplanation({
       .then((result) => {
         if (current) {
           setData(result);
+          setLoadedKey(requestKey);
+          setSpeechEvent(`${speechVisit}:open:${requestKey}`);
           setIndex(Math.min(initialPly, result.frames.length - 1));
         }
       })
@@ -90,6 +102,17 @@ export default function ReviewExplanation({
   }, [ready]);
   const finding =
     selectedFinding === null ? null : data?.findings?.[selectedFinding];
+  const findingRecording = data ? explanationFindingRecording(data, finding, index) : null;
+  const cueRecording = data ? explanationCueRecording(data, finding, index) : null;
+  const summaryRecording = data ? explanationSummaryRecording(data) : null;
+  const noteRecordings = data && notesOpen ? data.notes.map((_, i) => explanationNoteRecording(data, i)) : [];
+  const voice = useCoachSpeech({
+    scopeKey: `explanation:${requestKey}:${data?.analysis_id ?? "curated"}:${index}:${frame?.fen ?? "loading"}:${selectedFinding ?? "frame"}:${notesOpen}`,
+    recordingId: explanationFrameRecording(frame, index), utterance,
+    automaticEventId: speechEvent,
+    manualRecordingIds: [findingRecording, cueRecording, summaryRecording, ...noteRecordings].filter((id): id is string => !!id),
+    ready: loadedKey === requestKey && !!data && !!frame && !error,
+  });
   useEffect(() => {
     if (frame)
       onFrame({
@@ -113,6 +136,7 @@ export default function ReviewExplanation({
   return (
     <section className="review-explanation" aria-label="Move explanation">
       <ReviewCoach
+        voice={voice}
         reaction={{
           key: `${sessionId}:${attemptId ?? "solution"}:${index}`,
           state: error ? "uncertain" : !data ? "thinking" : "explaining",
@@ -138,6 +162,7 @@ export default function ReviewExplanation({
             <span className="explanation-move-caption">{index === 0 ? "Start" : frame.san}</span>
           </div>
           <div className="explanation-actions">
+            {summaryRecording && <CoachSpeechButton voice={voice} recordingId={summaryRecording} label="Listen to summary" />}
             {!!data.findings?.length && (
               <div className="button-row pattern-tools">
                 {data.findings.map((item, i) => (
@@ -148,8 +173,9 @@ export default function ReviewExplanation({
                       selectedFinding === i && index === item.frame_ply
                     }
                     onClick={() => {
+                      setSpeechEvent(null);
                       setSelectedFinding(i);
-                      seek(item.frame_ply);
+                      seek(item.frame_ply, false);
                     }}
                   >
                     Show{" "}
@@ -166,7 +192,9 @@ export default function ReviewExplanation({
               {finding && (
                 <>
                   <p>{finding.explanation}</p>
+                  {findingRecording && <CoachSpeechButton voice={voice} recordingId={findingRecording} label="Listen to finding" />}
                   <p className="practice-cue">Next time: {finding.cue}</p>
+                  {cueRecording && <CoachSpeechButton voice={voice} recordingId={cueRecording} label="Listen to practice cue" />}
                   {index === finding.frame_ply && (
                     <p className="pattern-legend">
                       <span className="attacker">Attacker</span>
@@ -178,10 +206,13 @@ export default function ReviewExplanation({
               )}
             </div>
           )}
-          <details className="disclosure">
+          <details className="disclosure" onToggle={event => { setNotesOpen(event.currentTarget.open); setSpeechEvent(null); }}>
             <summary>About this explanation</summary>
             {data.notes.map((note, i) => (
-              <p key={i}>{note}</p>
+              <div key={i}>
+                <p>{note}</p>
+                {noteRecordings[i] && <CoachSpeechButton voice={voice} recordingId={noteRecordings[i]!} label={`Listen to explanation note ${i + 1}`} />}
+              </div>
             ))}
             {data.engine_version && (
               <p>{data.engine_version} / saved engine evidence</p>

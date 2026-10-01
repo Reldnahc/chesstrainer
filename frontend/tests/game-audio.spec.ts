@@ -72,6 +72,7 @@ function Fixture() {
     <output data-testid="branches">{exploration.branches.length}</output>
     <output data-testid="outcome">{outcome}</output>
     <output data-testid="error">{error}</output>
+    <output data-testid="speech-navigation">{JSON.stringify(exploration.speechNavigation)}</output>
     {exploration.branches.map(branch => <button key={branch.id}
       onClick={() => exploration.selectBranch(branch, branch.moves.length)}>Select variation {branch.id}</button>)}
     {game && <EvaluationGraph frames={game.frames} selected={exploration.cursor.ply}
@@ -161,17 +162,23 @@ async function twoMoveVariation(page: Page) {
 
 test("hydration, flipping, report refresh and no-op navigation remain silent", async ({page}) => {
   expect(await sounds(page)).toEqual([]);
+  await expect(page.getByTestId("speech-navigation")).toHaveText("null");
   await page.getByRole("button", {name: "Flip board", exact: true}).click();
   await expect(page.getByTestId("orientation")).toHaveText("black");
   await page.getByRole("button", {name: "Start", exact: true}).click();
   await page.getByRole("button", {name: "Previous", exact: true}).click();
   await page.getByRole("combobox", {name: "Learner quality"}).selectOption("Blunder");
   expect(await sounds(page)).toEqual([]);
+  await expect(page.getByTestId("speech-navigation")).toHaveText("null");
   await page.getByRole("button", {name: "Next", exact: true}).click();
   await expect(page.getByTestId("current")).toHaveText("1:");
+  const narration = JSON.parse((await page.getByTestId("speech-navigation").textContent())!);
+  expect(narration).toMatchObject({key: "1:", awaitAnalysis: false});
+  expect(narration.eventId).toBeTruthy();
   await clearSounds(page);
   await page.getByRole("combobox", {name: "Learner quality"}).selectOption("Great");
   expect(await sounds(page)).toEqual([]);
+  await expect(page.getByTestId("speech-navigation")).toHaveText(JSON.stringify(narration));
 });
 
 test("explicit navigation uses server SAN forwards and neutral placement backwards or on jumps", async ({page}) => {
@@ -237,11 +244,14 @@ test("graph scrub previews stay silent, release has one neutral cue, and interru
   await move(third);
   await expect(page.getByTestId("current")).toHaveText("3:");
   expect(await sounds(page)).toEqual([]);
+  await expect(page.getByTestId("speech-navigation")).toHaveText("null");
   await move(fifth);
   await expect(page.getByTestId("current")).toHaveText("5:");
   expect(await sounds(page)).toEqual([]);
   await up();
   expect(await sounds(page)).toMatchObject([{kind: "play", cue: "move"}]);
+  expect(JSON.parse((await page.getByTestId("speech-navigation").textContent())!))
+    .toMatchObject({key: "5:", awaitAnalysis: false});
   await clearSounds(page);
   const restartedFirst = await point(1), restartedThird = await point(3);
   await down(restartedFirst);
@@ -253,6 +263,7 @@ test("graph scrub previews stay silent, release has one neutral cue, and interru
     await up();
   }
   expect(await sounds(page)).toEqual([]);
+  await expect(page.getByTestId("speech-navigation")).toHaveText("null");
   await plot.locator('[data-ply="3"]').focus();
   await page.keyboard.press("ArrowRight");
   await expect(page.getByTestId("current")).toHaveText("4:");
@@ -287,6 +298,8 @@ test("accepted variations sound the board move and completed or delayed analysis
   await page.getByRole("button", {name: "Play e4", exact: true}).click();
   await expect(page.getByTestId("outcome")).toHaveText("analyzed");
   expect(await sounds(page)).toMatchObject([{kind: "move", san: "e4"}]);
+  expect(JSON.parse((await page.getByTestId("speech-navigation").textContent())!))
+    .toMatchObject({key: "0:e2e4", awaitAnalysis: true});
   await clearSounds(page);
   await page.getByRole("button", {name: "Play d5", exact: true}).click();
   await expect(page.getByTestId("current")).toHaveText("0:e2e4,d7d5");
@@ -308,6 +321,7 @@ test("accepted variations sound the board move and completed or delayed analysis
     await clearSounds(page);
     await page.getByRole("button", {name: "Return to game", exact: true}).click();
     expect(await sounds(page)).toEqual([]);
+    await expect(page.getByTestId("speech-navigation")).toHaveText("null");
     await page.getByRole("button", {name: "Select variation 1", exact: true}).click();
     await expect(page.getByTestId("current")).toHaveText("0:e2e4");
     await expect(page.getByTestId("frame")).toHaveText("e4");
@@ -357,6 +371,7 @@ test("failed variation navigation never announces a position that was not displa
   await expect(page.getByTestId("error")).toHaveText("Variation position unavailable");
   await expect(page.getByTestId("frame")).toHaveText("loading");
   expect(await sounds(page)).toEqual([]);
+  await expect(page.getByTestId("speech-navigation")).toHaveText("null");
 });
 
 test("leaving pending variation navigation discards its eventual cue", async ({page}) => {

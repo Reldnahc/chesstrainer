@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
+import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import Board from "../Board";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
@@ -89,6 +90,11 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     finally { if (!signal?.aborted) { locked.current = false; setBusy(false); } }
   }
   const back = courseLine ? lessonCoursePath(courseLine.courseId, courseLine.revision) : openingCataloguePath();
+  const voice = useCoachSpeech({
+    scopeKey: `opening-preview:${line?.line.source_key}:${line?.line.source_version}:${color}:${ply}:${!!selectedStudy?.active}`,
+    recordingId: line ? selectedStudy?.active ? "opening-preview-active" : "opening-preview-inactive" : null,
+    ready: !!line && !busy && !error,
+  });
   if (!line) return <section className="panel"><h1>Opening preview</h1>{error ? <UnavailableState>{error}</UnavailableState> : <LoadingState>Loading the selected line…</LoadingState>}<ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back to openings</ActionLink></section>;
   const frame = ply ? line.frames[ply - 1] : null;
   const positions = color === "white" ? line.white_positions : line.black_positions;
@@ -102,7 +108,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
       next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => seek(ply + 1) }} /></div>}
     board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
   >
-    <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>}
+    <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>} voice={voice}
       reaction={{ state: "explaining", key: `${line.line.source_key}:${color}:${!!selectedStudy?.active}` }}
       actions={<><Button size="compact" variant="primary" disabled={busy || !positions || !!selectedStudy?.active} onClick={enroll}>{selectedStudy?.active ? "Added to study" : selectedStudy ? "Resume recalls" : "Add to study"}<ArrowRight size={16} /></Button>{selectedStudy && <Button size="compact" variant="secondary" disabled={busy} onClick={practice}><Play size={16} />Practice line</Button>}</>}
     ><p>{selectedStudy?.active ? "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone." : "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies."}</p></ReviewCoach>

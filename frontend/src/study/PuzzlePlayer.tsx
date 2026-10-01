@@ -16,10 +16,19 @@ import type { CoachExpression } from "../coach/model";
 import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
 import { createPuzzleStarter } from "./puzzleApi";
 import { usePuzzleSession } from "./usePuzzleSession";
+import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
+import { puzzleRecording } from "../audio/speech/practiceSelection";
 
 export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   const state = usePuzzleSession(sessionId);
   const { session, frame, loading, busy, playing, retrying, error } = state;
+  const recordingId = puzzleRecording({session, error: !!error, playing, retrying});
+  const voice = useCoachSpeech({
+    scopeKey: `puzzle:${sessionId}:${session?.revision}:${state.fen ?? "position"}:${frame?.before_fen ?? ""}:${frame?.uci ?? ""}:${recordingId}`,
+    recordingId, ready: !!session && !loading && !busy,
+    automaticEventId: !error && !playing && recordingId !== "puzzle-cold" && session?.status !== "revealed"
+      ? state.feedbackEventId : null,
+  });
   const [nextError, setNextError] = useState("");
   const [openingNext, setOpeningNext] = useState(false);
   const [startNextPuzzle] = useState(createPuzzleStarter);
@@ -32,6 +41,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     if (nextRequest.current && !nextRequest.current.signal.aborted) return;
     const controller = new AbortController();
     nextRequest.current = controller;
+    voice.stop();
     setOpeningNext(true);
     setNextError("");
     try {
@@ -77,7 +87,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     boardControls={<div><ActionLink variant="secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</ActionLink></div>}
     board={<Board fen={displayedFen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={state.disabled} onMove={state.answer} feedback={incorrect ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
   >
-    <ReviewCoach title={<h2>{title}</h2>}
+    <ReviewCoach title={<h2>{title}</h2>} voice={voice}
       badge={complete ? <MoveBadge label={session.status === "revealed" ? "Revealed" : "Accepted"} /> : undefined}
       reaction={{ state: expression, key: `${session.id}:${session.revision}:${expression}` }}
       actions={<>{error ? <Button size="compact" variant="primary" onClick={state.reload}>Reload session</Button>

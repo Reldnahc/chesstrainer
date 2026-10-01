@@ -4,6 +4,12 @@ import { rememberGamePly } from "../navigation";
 import { useAudioScope } from "../audio/AudioProvider";
 import type { Branch, Cursor, Game, Position } from "./types";
 
+export type SpeechNavigation = {
+  key: string;
+  eventId: string;
+  awaitAnalysis: boolean;
+};
+
 /** Owns variation history and navigation without mutating the original game. */
 export function useGameExploration(
   id: string,
@@ -25,6 +31,7 @@ export function useGameExploration(
     value: Position;
   } | null>(null);
   const [explanationKey, setExplanationKey] = useState<string | null>(null);
+  const [speechNavigation, setSpeechNavigation] = useState<SpeechNavigation | null>(null);
   const nextId = useRef(1);
   const mounted = useRef(false);
   const activeKey = useRef("");
@@ -89,6 +96,7 @@ export function useGameExploration(
       .catch((e) => {
         if (!active || !mounted.current || activeKey.current !== key) return;
         if (pendingNavigation.current?.eventId === requestAction) pendingNavigation.current = null;
+        setSpeechNavigation(value => value?.eventId === `${id}:${requestAction}` ? null : value);
         fail(e.message);
       });
     return () => {
@@ -99,6 +107,7 @@ export function useGameExploration(
 
   function beginAction() {
     pendingNavigation.current = null;
+    setSpeechNavigation(null);
     audio.cancel();
     return ++actionVersion.current;
   }
@@ -113,6 +122,9 @@ export function useGameExploration(
         const target = game.frames[next];
         if (!branch && next === cursor.ply + 1) audio.move(target.san, `${eventId}:board`);
         else audio.play("move", `${eventId}:board`);
+        // A mainline visit speaks only the explanation available on arrival.
+        // A later background review update is not a new navigation event.
+        setSpeechNavigation({key: nextKey, eventId: `${id}:${eventId}`, awaitAnalysis: false});
       }
       activeKey.current = nextKey;
     }
@@ -138,6 +150,7 @@ export function useGameExploration(
     const nextKey = `${selected.root}:${selected.moves.slice(0, next).join(",")}`;
     if (activeKey.current !== nextKey) {
       const eventId = beginAction();
+      setSpeechNavigation({key: nextKey, eventId: `${id}:${eventId}`, awaitAnalysis: true});
       const forward = branch?.id === selected.id && next === cursor.step + 1
         || !branch && selected.root === cursor.ply && next === 1;
       // The last complete position can display immediately. Other variation
@@ -229,6 +242,7 @@ export function useGameExploration(
       setBranchPosition({ key: nextKey, value: next });
       setExplanationKey(null);
       audio.move(next.san, `${eventId}:board`);
+      setSpeechNavigation({key: nextKey, eventId: `${id}:${eventId}`, awaitAnalysis: true});
       return {
         root,
         moves,
@@ -254,6 +268,7 @@ export function useGameExploration(
     orientation,
     moving,
     explanationKey,
+    speechNavigation: speechNavigation?.key === key ? speechNavigation : null,
     current,
     maximum,
     navigate,
@@ -270,8 +285,11 @@ export function useGameExploration(
     finishScrubbing: (ply: number) => {
       const origin = scrubOrigin.current;
       scrubOrigin.current = null;
-      if (origin !== null && origin !== `${ply}:` && activeKey.current === `${ply}:`)
-        audio.play("move", `${beginAction()}:board`);
+      if (origin !== null && origin !== `${ply}:` && activeKey.current === `${ply}:`) {
+        const eventId = beginAction();
+        audio.play("move", `${eventId}:board`);
+        setSpeechNavigation({key: activeKey.current, eventId: `${id}:${eventId}`, awaitAnalysis: false});
+      }
     },
     toggleExplanation: () =>
       setExplanationKey((value) => (value === key ? null : key)),

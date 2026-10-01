@@ -116,7 +116,7 @@ export function CoachCharacter({
   );
 }
 
-export default function CoachAvatar({ reaction, speech }: { reaction: CoachReaction; speech?: SpeechPlayback }) {
+export default function CoachAvatar({ reaction, speech, speechTrack }: { reaction: CoachReaction; speech?: SpeechPlayback; speechTrack?: SpeechMouthTrack }) {
   const { preferences, ready } = useCoachPreferences();
   return (
     <CoachCharacter
@@ -124,6 +124,7 @@ export default function CoachAvatar({ reaction, speech }: { reaction: CoachReact
       reaction={reaction}
       motion={ready ? preferences.motion : "still"}
       speech={speech}
+      speechTrack={speechTrack}
     />
   );
 }

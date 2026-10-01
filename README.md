@@ -10,20 +10,20 @@ are implemented, with production puzzle collections intentionally left for a
 later content pass.
 
 The shared [animated coach](docs/COACH.md) reacts to your moves and practice, with
-account-saved character and motion preferences. Choose from four men, four women,
-four cats and four dogs in **Settings → Your coach**, each with all 20 expressions.
-The dogs include two goldens, a corgi and a border collie. Existing users keep Storyteller
+account-saved character and motion preferences. Choose from 30 human, animal and
+fantasy characters in **Settings → Coach & animations**, each with all 20 expressions.
+Existing users keep Walter
 until they choose another coach; the choice follows their account across devices.
 
 The shared [audio system](docs/AUDIO.md) adds board sounds and practice feedback.
 Move ratings have no sounds. Adjust it in **Settings → Sound** or quickly
 mute the current device from a board. The separate development sound studio
 (`npm --prefix frontend run dev:audio`, port 5176) previews the nine approved
-sounds individually and in context. It also includes a
-[Walter voice audition](frontend/src/audio/speech/README.md): original custom-voice
-previews, short refinements of the preferred voice, and three stock voices reading
-the teaching examples. Production
-coach speech remains deferred.
+sounds individually and in context. Walter includes 181 prerecorded teaching
+summaries with automatic lip sync, available automatically or on request. They
+ship with the app and need no API key or paid service. Other coaches and lessons
+remain text only. The [voice studio](frontend/src/audio/speech/README.md) previews
+the complete bank and keeps earlier voice experiments available for comparison.
 
 Game review now connects supported tactics, immediate positional changes, human
 difficulty, clocks, earlier moments and relevant saved weaknesses into factual

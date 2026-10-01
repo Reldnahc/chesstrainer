@@ -50,6 +50,7 @@ export default function GameWorkspace({
     orientation,
     moving,
     navigate,
+    speechNavigation,
   } = exploration;
   const saved = !branch ? game?.frames[cursor.ply]?.report : null;
   const firstReport = game?.frames[1]?.report;
@@ -213,6 +214,8 @@ export default function GameWorkspace({
           cues={cues}
           errorAtPosition={analysis.error}
           reviewStarting={reviewStarting}
+          speechPending={moving || !frame || (!!speechNavigation?.awaitAnalysis && !saved && !currentAnalysis && !frame.termination && !analysis.error)}
+          speechEventId={speechNavigation?.eventId}
           onExplain={() =>
             analysis.error ? analysis.retry() : exploration.toggleExplanation()
           }

@@ -1212,6 +1212,10 @@ export interface components {
             arrows: components["schemas"]["BoardArrow"][];
             /** Caption */
             caption: string;
+            /** Caption Kind */
+            caption_kind?: "legal_reply" | null;
+            /** Caption Reply Uci */
+            caption_reply_uci?: string | null;
             /** Fen */
             fen: string;
             /** Roles */

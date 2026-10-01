@@ -44,6 +44,9 @@ export type CoachUtterance = {
   interruptible: boolean;
   autoSpeakSuitable: boolean;
   delivery?: {pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright"};
+  // Exactly the facts that survived rendering, in visible order. Consumers must
+  // not guess which same-code input claim was retained from the prose or trace.
+  renderedClaims?: Claim[];
   trace: {
     renderer: string;
     variants: {code: string; index: number; sourceIds: string[]; source?: string; form?: "sentence" | "composed"; cues?: string[]; order?: "fact-first" | "consequence-first"}[];

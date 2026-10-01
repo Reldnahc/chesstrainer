@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import MoveStatus from "../MoveStatus";
 import MoveBadge from "../MoveBadge";
@@ -16,6 +17,8 @@ import RecallReceipt from "./RecallReceipt";
 import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { pagePaths, studyPaths } from "../navigation";
+import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
+import { practiceRecording } from "../audio/speech/practiceSelection";
 
 type ReviewPanelProps = {
   session: ReviewSession;
@@ -39,6 +42,7 @@ function GameRecallPanel({
   onEvidence,
 }: ReviewPanelProps) {
   const { position, feedback, busy, done, next, show } = session;
+  const [dismissedSpeechEvent, setDismissedSpeechEvent] = useState<string | null>(null);
   const {
     practicePanel,
     explaining,
@@ -57,6 +61,17 @@ function GameRecallPanel({
   const utterance = useDialogue(position ? practiceIntent({position, feedback, frame: previewFrame,
     hadFailure: session.hadFailure, expression: reaction.state, error: !!session.gradingError})
     : makeIntent("practice-empty", "neutral", "practice", "neutral", [claim("cold")]));
+  const recordingId = practiceRecording({position, feedback, frame: previewFrame, error: !!session.gradingError});
+  const voice = useCoachSpeech({
+    scopeKey: `practice:${position?.session_id}:${feedback?.attempt_id ?? "cold"}:${preview ?? "position"}:${previewFrame?.fen ?? ""}:${recordingId}`,
+    recordingId,
+    ready: !!position && !busy && !session.loading && !explaining,
+    // Counter-reply previews settle before speaking one primary description.
+    automaticEventId: !session.gradingError && feedback && feedback.grade !== "revealed"
+      && session.feedbackEventId !== dismissedSpeechEvent
+      && (feedback.completed || preview === "reply" || !feedback.counter_reply)
+      ? session.feedbackEventId : null,
+  });
   const receipt = feedback?.completed && feedback.retired
     ? { message: "Progress saved. Retired from future reviews." }
     : feedback?.completed && feedback.next_due
@@ -118,6 +133,7 @@ function GameRecallPanel({
       ) : (
         <>
           <ReviewCoach
+            voice={voice}
             reaction={reaction}
             title={
               <h2>
@@ -149,7 +165,11 @@ function GameRecallPanel({
                     Next position <ArrowRight size={17} />
                   </Button>
                 ) : preview ? (
-                  <Button size="compact" variant="primary" onClick={retry}>
+                  <Button size="compact" variant="primary" onClick={() => {
+                    setDismissedSpeechEvent(session.feedbackEventId);
+                    voice.stop();
+                    retry();
+                  }}>
                     Try again
                   </Button>
                 ) : (
@@ -167,7 +187,11 @@ function GameRecallPanel({
                   ref={explanationOpener}
                   variant="secondary"
                   disabled={busy || !(feedback || position.last_attempt_id)}
-                  onClick={openExplanation}
+                  onClick={() => {
+                    setDismissedSpeechEvent(session.feedbackEventId);
+                    voice.stop();
+                    openExplanation();
+                  }}
                 >
                   {feedback?.completed ? "Show why" : "Show me why"}
                 </Button>

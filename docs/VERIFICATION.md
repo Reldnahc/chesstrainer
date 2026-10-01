@@ -4,6 +4,57 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Walter's completed recorded voice — October 1, 2026
+
+Walter has 181 non-lesson recordings with generated, source-verified mouth tracks.
+The 173 new clips used 1,948 provider credits, reconciled against every request ID.
+Selectors consume supported rendered claims or authorized structured practice
+facts. Automatic, On request and Off are account preferences; initial/restored
+positions stay quiet and cold recall cannot reveal answers. Explicit replay can
+interrupt another voice without interrupting board sounds. Lessons and the other
+coaches remain text only at this checkpoint.
+
+- `.venv/Scripts/python.exe -m pytest -q --durations=20 --basetemp data/verification/voice-bank-backend-20261001 -o cache_dir=data/verification/voice-bank-pytest-cache-20261001`:
+  **1669 passed, 3 skipped**. Stockfish coverage ran. The three native Maia tests
+  require optional pinned checkpoints/Torch; they were not claimed as passed.
+  The subsequent reply-caption/API addition passed its **13 focused tests**.
+- `python -B -S scripts/prepare_coach_voice_bank.py --check`: **181 verified**,
+  no missing tracks; native generation was repeated for three representative
+  clips with identical complete evidence. Alignment/pronunciation/bank tests:
+  **304 passed**. Recorder Node tests: **14 passed**.
+- Ruff checks/formatting, generated API agreement, fresh Alembic upgrade/check
+  through `93a425f18cb6`, SQLite integrity and foreign-key checks: passed.
+- `npm --prefix frontend run build`: passed API/types, **11 style guards**, all
+  development style boundaries and production build. Audio-studio build passed.
+  Existing Vite chunk-size advisory remains. Mouth tracks load separately;
+  authoring models and alignment archives are not runtime downloads.
+- From `frontend`, `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --output node_modules/.cache/walter-final-audio --reporter=line`:
+  **326 passed**, desktop/mobile, including actual MP3 decoding, voice lifecycle,
+  all bank assets, selection guards, global portrait observation with scoped
+  controls, interruption, still/hidden behavior and rounded O/oo mouth geometry.
+  The ignored config reuses the existing audio studio; no product flags change.
+- Production game voice/navigation: **26 passed**, then the eight voice cases
+  passed again after the final readiness correction. Production practice voice:
+  **10 passed** (SRS counterreply/accepted feedback, cold/reload silence,
+  explanation controls, opening recall, puzzle reveal/retry and late responses).
+  Pure practice selectors: **10 passed**. Dedicated account suite: **8 passed**,
+  including voice choice across devices/reload and other-account isolation.
+  These runs used normal configs with separately managed fixture servers to
+  avoid Windows Playwright-owned server teardown hanging after test completion.
+- Existing main CI failures were reproduced and corrected: a real 320px toolbar
+  overlap, stale Sound navigation/SRS mute assertions, and an import click during
+  form expansion. Focused checks: **18 passed, 2 intentional viewport skips**;
+  patched import interaction: **24 repeated passes**. The fresh focused wrapper
+  itself timed out during Windows server cleanup; its verified disposable server
+  was stopped. The repeated run exited successfully. CI selector tests:
+  **346 passed**, including backend validation for speech assets and Python
+  dependencies for audio fixtures.
+- Live audio studio inspection verified complete-bank selection and playback.
+  Mouth shapes were inspected at normal and small portrait sizes. Independent
+  reviews found no unresolved scoped code issues. Timing/provenance checks do
+  not establish perceptual accuracy of every phoneme in every recording.
+
 ## Paired coach hand orientation — October 1, 2026
 
 Confirmed duplicated same-side hand outlines in the human, sci-fi, wizard and

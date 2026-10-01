@@ -137,6 +137,17 @@ cancel pending audio, while initial loads and background analysis remain silent.
 The standalone audio studio exercises the same engine without an account/API
 connection and is absent from production navigation.
 
+Recorded coaching uses the same engine's separate speech lane. Pure selectors
+map supported rendered game claims or authorized practice facts to finite local
+recording IDs; they never parse prose or generate chess reasoning. Fresh action
+identity owns automatic playback, while explicit replay can read supported
+visible feedback. `useCoachSpeech` cancels stale requests and supplies the shared
+portrait with the engine clock and a lazily loaded mouth track. A read-only
+playback observer lets an open insight popover animate that same portrait without
+sharing cancellation ownership. `audio_voice` persists Off, On request or
+Automatic alongside existing preferences. Unsupported coaches, missing legacy
+facts and lessons remain silent; written feedback remains authoritative.
+
 Home, Study (including Openings/Puzzles), Games, Weaknesses and Settings use `PageTitle`:
 a required eyebrow above the title on desktop, hidden on phones, with optional
 page actions and no subtitle. Compact board-workspace headings remain separate.
@@ -399,9 +410,10 @@ structured facts, never conversational memory. See [game context](GAME_CONTEXT.m
 [history](CROSS_GAME_CONTEXT.md).
 
 The client builds a `DialogueIntent` before selecting a personality. `CoachUtterance`
-retains claim/template provenance and future-neutral delivery metadata, without a
-speech provider or runtime. The existing coach catalogue owns both artwork and
-writing definitions; account preferences need no new field. Character changes
+retains exact rendered claims, claim/template provenance and delivery metadata.
+Walter's local voice selector consumes those facts; it never contacts a speech
+provider at runtime. The existing coach catalogue owns both artwork and
+writing definitions. Character changes
 perform no native work. Cold practice gates precede all dialogue selection.
 See [dialogue](COACH_DIALOGUE.md) and [character writing](COACH_PERSONALITIES.md).
 

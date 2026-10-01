@@ -335,6 +335,11 @@ billing units or guaranteed durations. Retakes, other voices and auditions belon
 to their own usage records. All active entries now have media and generated mouth
 tracks; there is no remaining unrecorded subset hidden in this count.
 
+The October 1 completion batch used **1,948 ElevenLabs credits** for the 173 new
+clips. This is the sum of usage deltas on all 173 matching provider request IDs,
+not an estimate from character counts. Earlier auditions and the eight reused
+recordings are excluded. No retakes were needed in this batch.
+
 The 197 non-lesson source rows deduplicate to 185 meanings through 12 cross-surface
 reuses. Eleven game clips are reused by SRS explanations, and one practice error
 clip also serves opening recall. The four excluded entries are game thinking,

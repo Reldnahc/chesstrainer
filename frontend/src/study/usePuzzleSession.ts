@@ -14,6 +14,7 @@ export function usePuzzleSession(id: string) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [retryReady, setRetryReady] = useState(false);
+  const [feedbackEventId, setFeedbackEventId] = useState<string | null>(null);
   const generation = useRef(0);
   const controller = useRef<AbortController | null>(null);
   const locked = useRef(false);
@@ -29,6 +30,7 @@ export function usePuzzleSession(id: string) {
     controller.current = pending;
     locked.current = true;
     setLoading(true);
+    setFeedbackEventId(null);
     setError("");
     reset();
     try {
@@ -58,6 +60,7 @@ export function usePuzzleSession(id: string) {
     if (!session || locked.current || playing || error || session.status !== "active") return;
     locked.current = true;
     setBusy(true);
+    setFeedbackEventId(null);
     setError("");
     reset();
     const version = generation.current;
@@ -74,6 +77,7 @@ export function usePuzzleSession(id: string) {
           }));
       if (version !== generation.current) return;
       setSession(result);
+      setFeedbackEventId(`response:${request.request_id}`);
       setRetryReady(false);
       playback.play(result.playback);
       const eventId = `revision:${result.revision}`;
@@ -99,16 +103,17 @@ export function usePuzzleSession(id: string) {
   }
   const retrying = session?.feedback?.grade === "incorrect" && !retryReady;
   return {
-    session, loading, busy, error, playing, frame: playback.frame, fen: playback.fen || session?.fen, retrying, motion: playback.motion,
+    session, loading, busy, error, playing, feedbackEventId, frame: playback.frame, fen: playback.fen || session?.fen, retrying, motion: playback.motion,
     disabled: !session || loading || busy || playing || retrying || !!error || session.status !== "active",
     answer: (from: string, to: string, promotion?: Promotion) => act(from + to + (promotion || "")),
     reveal: () => act(),
-    retry: () => { audio.cancel(); setRetryReady(true); started.current = performance.now(); },
+    retry: () => { audio.cancel(); setFeedbackEventId(null); setRetryReady(true); started.current = performance.now(); },
     reload: load,
-    inspect: (selected: Frame) => { if (!busy) playback.inspect(selected); },
-    inspectStart: () => { if (!busy) playback.inspectStart(session?.completion?.solution[0]); },
+    inspect: (selected: Frame) => { if (!busy) { setFeedbackEventId(null); playback.inspect(selected); } },
+    inspectStart: () => { if (!busy) { setFeedbackEventId(null); playback.inspectStart(session?.completion?.solution[0]); } },
     replay: () => {
       if (!session?.completion || busy || playing) return;
+      setFeedbackEventId(null);
       playback.play(session.completion.solution, true);
     },
   };

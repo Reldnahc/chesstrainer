@@ -21,6 +21,7 @@ export function renderNeutral(intent: DialogueIntent): CoachUtterance {
 export function renderDialogue(intent: PersonalityInput, character: DialogueCharacter): CoachUtterance {
   const personality = character.personality ?? neutralPersonality;
   const variants: CoachUtterance["trace"]["variants"] = [];
+  const renderedClaims: NonNullable<CoachUtterance["renderedClaims"]> = [];
   const sentences: string[] = [];
   const strategy = responseStrategy(intent, personality);
   for (const item of [...intent.claims].sort((a, b) => b.priority - a.priority)) {
@@ -58,6 +59,8 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
     // Keep whole factual sentences. A secondary fact never pushes the bubble into an essay.
     if (sentences.length && (sentences.join(" ").length + text.length > personality.maxCharacters || sentences.length >= personality.maxClaims)) continue;
     sentences.push(text);
+    renderedClaims.push({...item, slots: {...item.slots}, evidence: item.evidence.map(ref => ({...ref})),
+      sourceIds: [...item.sourceIds], ...(item.position ? {position: {...item.position}} : {})});
     variants.push({code: item.code, index, sourceIds: item.sourceIds, source,
       form: typeof wording === "string" ? "sentence" : "composed", cues: composition.cues, order: composition.order});
   }
@@ -67,6 +70,7 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
     intensity: intent.intensity, priority: intent.priority, interruptible: intent.interruptible,
     autoSpeakSuitable: intent.autoSpeakSuitable,
     delivery: personality.delivery,
+    renderedClaims,
     trace: {renderer: personality.version, variants, composition: {strategy, claimCount: variants.length,
       questionCount: (text.match(/\?/g) ?? []).length, sentenceCount: sentenceCount(text),
       characterClaims: variants.filter(v => v.source === personality.version && personality !== neutralPersonality).length,

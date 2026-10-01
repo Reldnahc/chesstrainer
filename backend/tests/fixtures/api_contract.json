@@ -168,6 +168,29 @@
             "title": "Caption",
             "type": "string"
           },
+          "caption_kind": {
+            "anyOf": [
+              {
+                "const": "legal_reply",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption Kind"
+          },
+          "caption_reply_uci": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Caption Reply Uci"
+          },
           "fen": {
             "title": "Fen",
             "type": "string"

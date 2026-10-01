@@ -5,10 +5,18 @@ import MoveStatus from "../MoveStatus";
 import RecallReceipt from "./RecallReceipt";
 import type { CoachExpression } from "../coach/model";
 import type { ReviewSession } from "./useReviewSession";
+import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
+import { openingRecallRecording } from "../audio/speech/practiceSelection";
 
 /** Curated recall has repertoire authority, never an objective move grade. */
 export default function OpeningRecallPanel({ session }: { session: ReviewSession }) {
   const { position, feedback, busy, gradingError, hadFailure, next, show } = session;
+  const recordingId = openingRecallRecording({position, feedback, failed: !!position?.failed || hadFailure, error: !!gradingError});
+  const voice = useCoachSpeech({
+    scopeKey: `opening-recall:${position?.session_id}:${feedback?.attempt_id ?? session.feedbackEventId ?? "cold"}:${recordingId}`,
+    recordingId, ready: !!position?.opening && !busy && !session.loading,
+    automaticEventId: !gradingError && feedback?.grade !== "revealed" ? session.feedbackEventId : null,
+  });
   if (!position?.opening) return null;
   const opening = feedback?.opening ?? position.opening;
   const completed = !!feedback?.completed;
@@ -38,7 +46,7 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
       : opening.names.length > 1 ? "Any continuation from these selected lines is accepted."
       : "Recall a move from your selected study material.");
   return <div className="practice-panel opening-recall-panel">
-    <ReviewCoach title={<h2>{title}</h2>}
+    <ReviewCoach title={<h2>{title}</h2>} voice={voice}
       reaction={{ state: expression, key: `${position.session_id}:${feedback?.attempt_id ?? "cold"}:${expression}` }}
       portraitCaption={<span>{opening.color === "white" ? "White" : "Black"} repertoire</span>}
       actions={completed

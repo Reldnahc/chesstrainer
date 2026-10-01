@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, type ReactNode } from "react";
 import CoachAvatar from "./coach/CoachAvatar";
 import type { CoachReaction } from "./coach/model";
 import type { SpeechPlayback } from "./audio/model";
+import type { CoachSpeechPresentation } from "./audio/speech/useCoachSpeech";
 
 // Both review modes use these fixed slots. Long explanations scroll inside the
 // bubble, so new feedback never moves the actions or the surrounding board.
@@ -18,6 +19,7 @@ export default function ReviewCoach({
   character,
   messageResetKey,
   speech,
+  voice,
 }: {
   title: ReactNode;
   badge?: ReactNode;
@@ -31,6 +33,7 @@ export default function ReviewCoach({
   character?: ReactNode;
   messageResetKey?: string;
   speech?: SpeechPlayback;
+  voice?: CoachSpeechPresentation;
 }) {
   const message = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -41,7 +44,7 @@ export default function ReviewCoach({
   return (
     <section className="review-coach" aria-label="Chess coach">
       <div className="coach-portrait">
-        {character ?? <CoachAvatar reaction={reaction} speech={speech} />}
+        {character ?? <CoachAvatar reaction={reaction} speech={voice?.speech ?? speech} speechTrack={voice?.speechTrack} />}
         {portraitCaption && (
           <div className="coach-portrait-caption">{portraitCaption}</div>
         )}
@@ -52,7 +55,7 @@ export default function ReviewCoach({
             {badge}
             {title}
           </div>
-          {evaluation}
+          {(evaluation || voice?.available) && <div className="coach-label-actions">{voice?.control}{evaluation}</div>}
         </div>
         <div className="coach-body">
           <div

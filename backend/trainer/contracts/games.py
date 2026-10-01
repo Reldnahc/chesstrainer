@@ -63,6 +63,8 @@ class BoardCues(Contract):
     arrows: list[BoardArrow]
     roles: dict[str, list[str]]
     caption: str
+    caption_kind: Literal["legal_reply"] | None = None
+    caption_reply_uci: str | None = None
 
 
 class BookOpening(Contract):

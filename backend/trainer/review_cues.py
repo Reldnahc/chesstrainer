@@ -88,4 +88,14 @@ def review_cues(line, *, mistake=False):
                         continue
                 arrow(source, target, "threat")
         caption = (caption + " " if show_reply else "") + finding["explanation"]
-    return {"fen": current.fen(), "arrows": arrows, "roles": roles, "caption": caption}
+    # Only this complete caption has a reusable generic recording. A caption
+    # that also explains a finding must retain that finding's specific meaning.
+    reply_only = show_reply and finding is None
+    return {
+        "fen": current.fen(),
+        "arrows": arrows,
+        "roles": roles,
+        "caption": caption,
+        "caption_kind": "legal_reply" if reply_only else None,
+        "caption_reply_uci": reply.uci() if reply_only else None,
+    }

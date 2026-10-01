@@ -1,4 +1,5 @@
 import chess
+from trainer.contracts.games import BoardCues
 from trainer.explanations import replay_line
 from trainer.review_cues import review_cues
 
@@ -22,6 +23,8 @@ def test_mate_reply_is_an_arrow_on_the_unchanged_position():
         {"startSquare": "h4", "endSquare": "e1", "kind": "threat"},
     ]
     assert cues["roles"]["reply"] == ["h4"]
+    assert cues["caption_kind"] == "legal_reply"
+    assert cues["caption_reply_uci"] == "d8h4"
     assert "Qh4#" in cues["caption"]
     assert chess.Board(cues["fen"]).piece_at(chess.D8) == chess.Piece(chess.QUEEN, chess.BLACK)
 
@@ -46,6 +49,8 @@ def test_fork_highlights_current_attacker_and_both_targets_without_playback():
     }
     assert "reply" not in cues["roles"]
     assert cues["caption"] == "Nc7+ forks the king and queen."
+    assert cues["caption_kind"] is None
+    assert cues["caption_reply_uci"] is None
 
 
 def test_late_witness_never_appears_as_an_immediate_threat():
@@ -62,6 +67,8 @@ def test_late_witness_never_appears_as_an_immediate_threat():
     )
     cues = review_cues(evidence)
     assert cues["roles"] == {"reply": ["e5"]}
+    assert cues["caption_kind"] == "legal_reply"
+    assert cues["caption_reply_uci"] == "e7e5"
     assert "Later evidence" not in cues["caption"]
     assert len(cues["arrows"]) == 1
 
@@ -102,6 +109,8 @@ def test_pin_keeps_defender_and_king_highlights_without_inventing_attacks():
     )
     cues = review_cues(evidence, mistake=True)
     assert cues["roles"]["pinned_defender"] == ["e2"]
+    assert cues["caption_kind"] is None
+    assert cues["caption_reply_uci"] is None
     assert cues["roles"]["king"] == ["e1"]
     assert not any(a["startSquare"] == "d4" and a["endSquare"] == "e1" for a in cues["arrows"])
     assert {"startSquare": "f2", "endSquare": "e1", "kind": "threat"} in cues["arrows"]
@@ -123,3 +132,26 @@ def test_immediate_future_fork_is_shown_as_reply_then_threats():
     assert cues["arrows"][0] == {"startSquare": "d4", "endSquare": "c2", "kind": "reply"}
     assert {"startSquare": "c2", "endSquare": "e1", "kind": "threat"} in cues["arrows"]
     assert cues["fen"] == evidence["frames"][1]["fen"]
+
+
+def test_recorded_reply_projection_survives_contract_and_old_cues_remain_untyped():
+    cues = review_cues(line(chess.STARTING_FEN, ["e2e4", "e7e5"]))
+    public = BoardCues.model_validate(cues).model_dump()
+    assert public["caption_kind"] == "legal_reply"
+    assert public["caption_reply_uci"] == "e7e5"
+    legacy = {key: value for key, value in cues.items() if not key.startswith("caption_")}
+    old = BoardCues.model_validate(legacy)
+    assert old.caption == cues["caption"]
+    assert old.caption_kind is None
+    assert old.caption_reply_uci is None
+
+
+def test_absent_or_illegal_reply_never_authorizes_generic_reply_recording():
+    no_reply = review_cues(line(chess.STARTING_FEN, ["e2e4"]))
+    assert no_reply["caption_kind"] is None
+    assert no_reply["caption_reply_uci"] is None
+    evidence = line(chess.STARTING_FEN, ["e2e4", "e7e5"])
+    evidence["frames"][2]["uci"] = "e7e4"
+    illegal = review_cues(evidence, mistake=True)
+    assert illegal["caption_kind"] is None
+    assert illegal["caption_reply_uci"] is None

@@ -11,6 +11,9 @@ import { gameIntent } from "../dialogue/gameIntent";
 import { useDialogue } from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
 import HumanInsight from "./HumanInsight";
+import {selectWalterGameRecording} from "../audio/speech/gameSelection";
+import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
+import CoachSpeechButton from "../audio/speech/CoachSpeechButton";
 
 export default function PositionCoach({
   game,
@@ -29,6 +32,8 @@ export default function PositionCoach({
   dialogueKey,
   ply,
   variation,
+  speechPending = false,
+  speechEventId,
 }: {
   game: Game;
   report?: Report | null;
@@ -46,6 +51,8 @@ export default function PositionCoach({
   dialogueKey: string;
   ply: number;
   variation: boolean;
+  speechPending?: boolean;
+  speechEventId?: string;
 }) {
   const reaction = gameReaction({
     key: positionKey,
@@ -65,10 +72,23 @@ export default function PositionCoach({
     pending: !!actor || reviewStarting || ["queued", "running"].includes(game.job?.status ?? ""),
   };
   const intent = gameIntent(input);
-  const utterance = useDialogue(explaining ? gameIntent({...input, explaining}) : intent);
+  const displayedIntent = explaining ? gameIntent({...input, explaining}) : intent;
+  const utterance = useDialogue(displayedIntent);
+  // A background game review and the presence of a mover are not loading
+  // states for this position. Only its own unresolved navigation blocks voice.
+  const speechContext = {game, report, frame, ply, variation, pending: speechPending,
+    error: !!errorAtPosition || (!report && game.job?.status === "failed")};
+  const selection = {...speechContext, intent: displayedIntent, utterance};
+  const recordingId = selectWalterGameRecording(selection);
+  const secondaryRecording = selectWalterGameRecording({...selection, claimIndex: 1});
+  const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance,
+    automaticEventId: speechEventId, ready: !speechPending,
+    manualRecordingIds: secondaryRecording ? [secondaryRecording] : []});
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}
+      voice={{...voice, control: <>{voice.control}{secondaryRecording &&
+        <CoachSpeechButton voice={voice} recordingId={secondaryRecording} label="Listen to additional explanation" />}</>}}
       title={
         report ? (
           <MoveBadge label={report.label}>
@@ -124,7 +144,8 @@ export default function PositionCoach({
           )}
         </>
       }
-      insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report} />}
+      insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report}
+        speechContext={speechContext} speechScopeKey={`game:${positionKey}:human`} />}
     >
       <DialogueText utterance={utterance} />
       {errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}
