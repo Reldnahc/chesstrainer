@@ -52,6 +52,13 @@ Celeste uses small equine mouth shapes below the nostrils, including a closed sm
 for delighted states, instead of the shared fantasy face's teeth and tongue.
 All three retain the existing expression, blink and idle channels.
 
+Paired hands use opposite local handedness. Rig `left`/`right` names refer to
+screen sides, not the character's anatomical left/right. Reflect the hand and its
+finger details inside its wrist placement, leaving sleeve paths, pose angles and
+reaction/idle wrappers intact. Human, sci-fi and wizard drawings have different
+authored thumb directions; do not apply one global side rule to every rig.
+Symmetric cat/dog paws and hooves need no handedness correction.
+
 Each selectable character also has a curated writing voice and character bible.
 The shared dialogue layer selects supported facts before the chosen personality
 phrases them; switching coaches never changes grades, evidence or engine work.

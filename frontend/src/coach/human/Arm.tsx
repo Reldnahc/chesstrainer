@@ -35,6 +35,8 @@ export default function Arm({
           <path d="M-4 5h8v3h-8Z" fill={cuff} />
           <g
             className="coach-hand"
+            // Sides are screen-relative; the authored thumb points inward on the left.
+            transform={left ? undefined : "scale(-1 1)"}
             fill={skin}
             stroke={shade}
             strokeWidth=".65"

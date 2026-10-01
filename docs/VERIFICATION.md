@@ -4,6 +4,31 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Paired coach hand orientation — October 1, 2026
+
+Confirmed duplicated same-side hand outlines in the human, sci-fi, wizard and
+animal rigs. Corrected local hand reflections, including finger/claw details;
+arm paths, pose coordinates, animation wrappers and timing are unchanged.
+Symmetric pet paws and hooves remain unchanged.
+
+- `npm --prefix frontend run build`: passed API agreement, application/browser
+  TypeScript, 11 style guards, three style boundaries and production build.
+  Existing Vite chunk-size advisory remains.
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`:
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/speech-coach-check.config.mjs idle-rig.spec.ts --output node_modules/.cache/hand-rig-results --reporter=line`:
+  **4 passed**, desktop/mobile. Mounted rig capabilities remain intact.
+- Same runner/config with `handedness.spec.ts --output node_modules/.cache/handedness-results --reporter=line`:
+  **2 passed**, desktop/mobile. Checks 19 registered coaches × 20 expressions,
+  opposite local orientation, reflected details and preserved wrist attachments
+  in Still, reaction and idle CSS poses. Browser-test TypeScript also passed.
+  The ignored config only reuses the existing development studio on port 5174.
+- Live studio inspection covered the human raised hands, women's book poses,
+  Walter's settled thinking pose, Orin's cheek pose, Fergus and Ziggy's raised
+  hands. Independent code review found no remaining asymmetric hand primitive
+  missing its opposite-side reflection. `git diff --check` passed.
+
+Focused artwork verification only; no backend/account or full idle-matrix run.
+
 ## Generator-first Walter lip-sync refinement — October 1, 2026
 
 The owner redirected polish toward automatic generation. Both comparison portraits

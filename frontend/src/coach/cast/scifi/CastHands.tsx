@@ -37,7 +37,8 @@ export function CastHands({
           <g key={String(right)} className={`study-paw study-paw-${right ? "right" : "left"}`}>
             <path d={`M${shoulder} 87 Q${right ? 84 : 16} 99 ${x} ${y}`} stroke={sleeve} strokeWidth="10" fill="none" />
             {joint && <circle cx={shoulder} cy="87" r="5" fill={joint} />}
-            <g transform={`translate(${x} ${y}) rotate(${right ? 18 : -18})`}>
+            {/* The thumb is authored for screen-right; reflect locally, not at the shoulder. */}
+            <g transform={`translate(${x} ${y}) rotate(${right ? 18 : -18}) scale(${right ? 1 : -1} 1)`}>
               {relaxed ? (
                 <>
                   <path d="M-5 0q-1-5 4-5h3q4 1 4 5v3q-6 4-11 0Z" fill={skin} />

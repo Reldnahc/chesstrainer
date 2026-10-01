@@ -47,14 +47,16 @@ function DragonArms({ pose }: { pose: AnimalPose }) {
             strokeLinecap="round"
           />
           <g transform={`translate(${x} ${y}) rotate(${angle})`}>
-            <path d="M-6 7q-2-6-1-11 1-5 7-5t7 5q1 5-1 11Z" fill="#418e7c" />
-            <path d="m-5-4 1-4 2 4m2-1 1-4 2 4m1 1 1-3 1 4" fill="#e4d09b" />
-            <path
-              d="M-3 4h6"
-              stroke="#6eab8a"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
+            <g transform={index ? "scale(-1 1)" : undefined}>
+              <path d="M-6 7q-2-6-1-11 1-5 7-5t7 5q1 5-1 11Z" fill="#418e7c" />
+              <path d="m-5-4 1-4 2 4m2-1 1-4 2 4m1 1 1-3 1 4" fill="#e4d09b" />
+              <path
+                d="M-3 4h6"
+                stroke="#6eab8a"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </g>
           </g>
         </g>
       ))}

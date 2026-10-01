@@ -47,7 +47,8 @@ function ScholarHands({ pose }: { pose: AnimalPose }) {
               fill="none"
               strokeLinecap="round"
             />
-            <g transform={`translate(${x} ${y}) rotate(${angle})`}>
+            {/* The thumb is authored for screen-right; keep placement outside the reflection. */}
+            <g transform={`translate(${x} ${y}) rotate(${angle}) scale(${index ? 1 : -1} 1)`}>
               <path d="M-6 7h12v6H-6Z" fill="#c3a566" />
               <path
                 d="M-5 7q-4-4-3-8 1-3 4-1v-4q0-4 4-4 6 0 7 6L6 7Z"

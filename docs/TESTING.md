@@ -343,7 +343,10 @@ the live registry: every expression needs at least eight compatible choices in
 three groups, and every coach has two authored signatures. Seeded coordinator
 traces verify cooldowns, fairness, independent blinking and channel ownership.
 `idle-articulation.spec.ts` and `idle-rig.spec.ts` inspect actual SVG targets,
-CSS tracks, delays and authored durations. `idle-cadence.spec.ts` checks repeated
+CSS tracks, delays and authored durations. `handedness.spec.ts` checks opposite
+hand/finger orientation and wrist-to-sleeve attachment across the registered
+human, animal, sci-fi, wizard and dragon rigs in Still, reaction and idle poses.
+`idle-cadence.spec.ts` checks repeated
 500–1000ms empty gaps, expression changes, reaction isolation, motion preferences
 and hidden/offscreen pausing with controlled time. `resting-faces.spec.ts` checks
 eye reopening without loss of emotion, stale transitions or artwork remounts.
