@@ -101,7 +101,16 @@ async function catalogAt(root) {
       text: item.text, prompt: direction.prompt, provider: manifest.provider, modelId: manifest.modelId }));
     candidates[item.coachId][item.directionId] = { id: item.id, fingerprint, audioSha256, generatedVoiceId: item.generatedVoiceId };
   }
-  return { coaches, candidates, locks };
+  const candidateSetFingerprints = Object.fromEntries(Object.entries(candidates)
+    .filter(([coachId, available]) => coaches.get(coachId).directions.size > 0 &&
+      Object.keys(available).length === coaches.get(coachId).directions.size)
+    .map(([coachId, available]) => [coachId,
+    hash(JSON.stringify({ version: 1, coachId,
+      candidates: Object.values(available).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
+        .map(item => [item.id, item.fingerprint]),
+    })),
+  ]));
+  return { coaches, candidates, candidateSetFingerprints, locks };
 }
 
 function validChoice(value, coachId) {
@@ -110,7 +119,8 @@ function validChoice(value, coachId) {
     typeof value.updatedAt === 'string' && Number.isFinite(Date.parse(value.updatedAt)) &&
     typeof value.revision === 'string' && value.revision.length > 0;
   if (!base) return false;
-  if (value.status === 'keep-looking') return value.directionId === undefined && value.recording === undefined;
+  if (value.status === 'keep-looking') return value.directionId === undefined && value.recording === undefined &&
+    (value.candidateSetFingerprint === undefined || sha256(value.candidateSetFingerprint));
   return value.status === 'selected' && typeof value.directionId === 'string' && idPattern.test(value.directionId) &&
     validRecording(value.recording, coachId, value.directionId);
 }
@@ -128,6 +138,8 @@ async function readChoice(root, coachId) {
 function decorate(choice, catalog) {
   const current = choice.status === 'selected' ? candidateFor(catalog, choice.coachId, choice.directionId) : null;
   const staleReason = !catalog.coaches.has(choice.coachId) ? 'This coach is no longer in the active casting plan.' :
+    choice.status === 'keep-looking' && (!choice.candidateSetFingerprint || choice.candidateSetFingerprint !== catalog.candidateSetFingerprints[choice.coachId]) ?
+      'This earlier decision does not cover the current auditions. Review these voices again.' :
     choice.status === 'selected' && !current ? 'This recording is no longer available in the active casting plan.' :
     current && current.fingerprint !== choice.recording.fingerprint ? 'This audition changed after the choice was saved. Listen again before confirming it.' : undefined;
   return { ...choice, stale: Boolean(staleReason), ...(staleReason ? { staleReason } : {}) };
@@ -259,7 +271,8 @@ export function createCastingMiddleware({ catalogRoot = defaultCatalog, storageR
           if (choice) choices[id] = decorate(choice, catalog);
         }
         const locks = Object.fromEntries(Object.entries(catalog.locks).map(([id, lock]) => [id, decorateLock(lock, catalog)]));
-        return send(200, { schemaVersion: 1, choices, candidates: catalog.candidates, locks });
+        return send(200, { schemaVersion: 1, choices, candidates: catalog.candidates,
+          candidateSetFingerprints: catalog.candidateSetFingerprints, locks });
       }
       if (!coachId) throw fail(404, 'unknown_coach', 'Choose a coach before changing a casting choice.');
       sameOrigin(request);
@@ -288,8 +301,13 @@ export function createCastingMiddleware({ catalogRoot = defaultCatalog, storageR
             if (typeof body.expectedRecordingFingerprint !== 'string' || !/^[a-f0-9]{64}$/.test(body.expectedRecordingFingerprint) ||
                 body.expectedRecordingFingerprint !== current.fingerprint) throw fail(409, 'recording_changed', 'This audition changed. Reload and listen again before selecting it.');
             Object.assign(choice, { directionId: body.directionId, recording: current });
-          } else if (body.directionId !== undefined || body.expectedRecordingFingerprint !== undefined) {
-            throw fail(400, 'invalid_choice', 'Keep looking does not select a recording.');
+          } else {
+            if (body.directionId !== undefined || body.expectedRecordingFingerprint !== undefined)
+              throw fail(400, 'invalid_choice', 'Keep looking does not select a recording.');
+            if (!sha256(body.expectedCandidateSetFingerprint) ||
+                body.expectedCandidateSetFingerprint !== catalog.candidateSetFingerprints[coachId])
+              throw fail(409, 'candidate_set_changed', 'These auditions changed or are incomplete. Reload and review the full set before choosing Keep looking.');
+            choice.candidateSetFingerprint = catalog.candidateSetFingerprints[coachId];
           }
           await writeChoice(storageRoot, coachId, choice);
           result = { schemaVersion: 1, choice: decorate(choice, catalog) };

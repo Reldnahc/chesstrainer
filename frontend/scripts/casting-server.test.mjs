@@ -16,6 +16,10 @@ const putBody = (candidate, expectedRevision = null, note = '') => ({
   status: 'selected', directionId: candidate.id.split(':')[1], note,
   expectedRevision, expectedRecordingFingerprint: candidate.fingerprint,
 });
+const keepLookingBody = (fixture, coachId = 'dog-gentle', expectedRevision = null, note = '') => ({
+  status: 'keep-looking', expectedRevision, note,
+  expectedCandidateSetFingerprint: fixture.candidateSetFingerprints[coachId],
+});
 
 async function fixture(t, coachIds = ['dog-gentle', 'cat-black']) {
   const root = await mkdtemp(join(tmpdir(), 'fieldwork-casting-test-'));
@@ -65,7 +69,8 @@ async function fixture(t, coachIds = ['dog-gentle', 'cat-black']) {
   };
   const first = await call();
   assert.equal(first.status, 200);
-  return { root, catalogRoot, storageRoot, plan, manifest, locks, writeCatalog, writeLocks, serve, url, call, candidates: first.value.candidates };
+  return { root, catalogRoot, storageRoot, plan, manifest, locks, writeCatalog, writeLocks, serve, url, call,
+    candidates: first.value.candidates, candidateSetFingerprints: first.value.candidateSetFingerprints };
 }
 
 test('empty reads identify actual recording bytes without creating storage; plugin is serve-only', async t => {
@@ -88,6 +93,99 @@ const lockedVoice = (fixture, coachId = 'dog-gentle') => ({
   recording: fixture.candidates[coachId].warm,
   savedVoiceId: `${coachId}-saved-voice`, voiceName: `Fieldwork ${coachId}`,
   lockedAt: '2026-10-01T12:00:00.000Z',
+});
+
+test('keep-looking rejection applies only to the audition set that was reviewed', async t => {
+  const f = await fixture(t);
+  const initial = (await f.call()).value.candidateSetFingerprints?.['dog-gentle'];
+  assert.match(initial ?? '', /^[a-f0-9]{64}$/);
+  const first = await f.call('PUT', 'dog-gentle', {
+    status: 'keep-looking', note: 'Less gravel, please.', expectedRevision: null, expectedCandidateSetFingerprint: initial,
+  });
+  assert.equal(first.status, 200);
+  assert.equal(first.value.choice.candidateSetFingerprint, initial);
+  assert.equal(first.value.choice.stale, false);
+  const savedText = await readFile(join(f.storageRoot, 'dog-gentle.json'), 'utf8');
+  await writeFile(join(f.catalogRoot, f.manifest.recordings[0].audioPath), 'new audition round');
+  const next = await f.call();
+  const nextHash = next.value.candidateSetFingerprints['dog-gentle'];
+  assert.notEqual(nextHash, initial);
+  assert.equal(next.value.choices['dog-gentle'].stale, true);
+  assert.equal(next.value.choices['dog-gentle'].note, 'Less gravel, please.');
+  assert.equal(await readFile(join(f.storageRoot, 'dog-gentle.json'), 'utf8'), savedText);
+  const staleSave = await f.call('PUT', 'dog-gentle', {
+    status: 'keep-looking', note: 'Less gravel, please.', expectedRevision: first.value.choice.revision,
+    expectedCandidateSetFingerprint: initial,
+  });
+  assert.equal(staleSave.status, 409);
+  assert.equal(staleSave.value.error.code, 'candidate_set_changed');
+  const freshSave = await f.call('PUT', 'dog-gentle', {
+    status: 'keep-looking', note: 'Less gravel, please.', expectedRevision: first.value.choice.revision,
+    expectedCandidateSetFingerprint: nextHash,
+  });
+  assert.equal(freshSave.status, 200);
+  assert.equal(freshSave.value.choice.stale, false);
+  assert.equal(freshSave.value.choice.note, first.value.choice.note);
+  assert.equal(freshSave.value.choice.candidateSetFingerprint, nextHash);
+});
+
+test('legacy keep-looking notes remain intact but do not reject a new audition set', async t => {
+  const f = await fixture(t);
+  await mkdir(f.storageRoot);
+  const legacy = { schemaVersion: 1, coachId: 'dog-gentle', status: 'keep-looking', note: 'Try a lighter voice.',
+    updatedAt: '2026-10-01T12:00:00.000Z', revision: 'legacy-draft' };
+  const path = join(f.storageRoot, 'dog-gentle.json');
+  const source = JSON.stringify(legacy);
+  await writeFile(path, source);
+  const read = await f.call();
+  assert.equal(read.status, 200);
+  assert.equal(read.value.choices['dog-gentle'].stale, true);
+  assert.equal(read.value.choices['dog-gentle'].note, legacy.note);
+  assert.equal(read.value.choices['dog-gentle'].revision, legacy.revision);
+  assert.equal(await readFile(path, 'utf8'), source);
+  await rm(join(f.catalogRoot, f.manifest.recordings[0].audioPath));
+  const incomplete = await f.call();
+  assert.equal(incomplete.value.candidateSetFingerprints['dog-gentle'], undefined);
+  assert.equal(incomplete.value.choices['dog-gentle'].stale, true);
+  assert.equal(await readFile(path, 'utf8'), source);
+});
+
+test('keep-looking rejects missing or mismatched candidate-set identity without creating a choice', async t => {
+  const f = await fixture(t);
+  for (const fingerprint of [undefined, null, [], '', 'not-a-hash', 'f'.repeat(64)]) {
+    const result = await f.call('PUT', 'dog-gentle', {
+      status: 'keep-looking', expectedRevision: null, expectedCandidateSetFingerprint: fingerprint,
+    });
+    assert.equal(result.status, 409);
+    assert.equal(result.value.error.code, 'candidate_set_changed');
+  }
+  assert.deepEqual((await f.call()).value.choices, {});
+});
+
+test('candidate-set identity requires complete auditions and ignores ordering or other coaches', async t => {
+  const f = await fixture(t);
+  const original = f.candidateSetFingerprints['dog-gentle'];
+  f.plan.coaches[0].directions.push({ id: 'clear', prompt: 'Clear and bright.' });
+  const additional = { ...f.manifest.recordings[0], id: 'dog-gentle:clear', directionId: 'clear',
+    audioPath: 'recordings/dog-gentle/clear.mp3', generatedVoiceId: 'clear-voice' };
+  f.manifest.recordings.push(additional);
+  await f.writeCatalog();
+  assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], undefined);
+  const incompleteSave = await f.call('PUT', 'dog-gentle', keepLookingBody(f));
+  assert.equal(incompleteSave.status, 409);
+  assert.equal(incompleteSave.value.error.code, 'candidate_set_changed');
+  assert.deepEqual((await f.call()).value.choices, {});
+  await writeFile(join(f.catalogRoot, additional.audioPath), 'new clear audition');
+  const complete = (await f.call()).value.candidateSetFingerprints['dog-gentle'];
+  assert.notEqual(complete, original);
+  f.plan.coaches[0].directions.reverse();
+  f.manifest.recordings.reverse();
+  await f.writeCatalog();
+  assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], complete);
+  await writeFile(join(f.catalogRoot, 'recordings/cat-black/warm.mp3'), 'other coach changed');
+  assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], complete);
+  await rm(join(f.catalogRoot, additional.audioPath));
+  assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], undefined);
 });
 
 test('tracked final voices survive fresh hosts and cannot be changed from either studio', async t => {
@@ -216,7 +314,7 @@ test('choices persist across independent studio servers; update/reset require th
   assert.equal((await f.call('GET', '', undefined, { base: second })).value.choices['dog-gentle'].revision, choice.revision);
   assert.equal((await f.call('PUT', 'dog-gentle', { status: 'keep-looking', expectedRevision: null })).status, 409);
   assert.equal((await f.call('DELETE', 'dog-gentle', { expectedRevision: null })).status, 409);
-  const updated = await f.call('PUT', 'dog-gentle', { status: 'keep-looking', note: 'Try softer.', expectedRevision: choice.revision }, { base: second });
+  const updated = await f.call('PUT', 'dog-gentle', keepLookingBody(f, 'dog-gentle', choice.revision, 'Try softer.'), { base: second });
   assert.equal(updated.status, 200);
   assert.equal(updated.value.choice.recording, undefined);
   assert.notEqual(updated.value.choice.revision, choice.revision);
@@ -237,8 +335,8 @@ test('simultaneous different-coach writes survive and same-coach writers cannot 
   assert.deepEqual(Object.keys((await f.call()).value.choices).sort(), ['cat-black', 'dog-gentle']);
   const revision = results[0].value.choice.revision;
   const competing = await Promise.all([
-    f.call('PUT', 'dog-gentle', { status: 'keep-looking', note: 'phone', expectedRevision: revision }),
-    f.call('PUT', 'dog-gentle', { status: 'keep-looking', note: 'desktop', expectedRevision: revision }, { base: second }),
+    f.call('PUT', 'dog-gentle', keepLookingBody(f, 'dog-gentle', revision, 'phone')),
+    f.call('PUT', 'dog-gentle', keepLookingBody(f, 'dog-gentle', revision, 'desktop'), { base: second }),
   ]);
   assert.deepEqual(competing.map(result => result.status).sort(), [200, 409]);
   const winner = competing.find(result => result.status === 200).value.choice;
@@ -405,7 +503,7 @@ test('live or stale lock files are never evicted; explicit recovery preserves re
   const second = await f.serve();
   await mkdir(f.storageRoot);
   const path = join(f.storageRoot, 'dog-gentle.lock');
-  const body = { status: 'keep-looking', expectedRevision: null };
+  const body = keepLookingBody(f);
   await writeFile(path, JSON.stringify({ pid: process.pid }));
   assert.equal((await f.call('PUT', 'dog-gentle', body)).value.error.code, 'choice_busy');
   const child = spawn(process.execPath, ['-e', ''], { stdio: 'ignore' });
