@@ -6,6 +6,7 @@ import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
 import { CastHands } from "./CastHands";
 import { castPoses, mouthPaths, poseStyle } from "./poses";
+import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
 import "../../studies/motion.css";
 import "./scifi.css";
 
@@ -68,8 +69,14 @@ export default function AlienCoach({ expression }: CoachArtworkProps) {
             </g>
           </g>
           <path d="M47 59h1m4 0h1" stroke="#598b78" strokeWidth="1.8" strokeLinecap="round" />
-          <path d={mouthPaths[pose.mouth]} fill={pose.mouth === "grin" || pose.mouth === "round" ? "#344c4c" : "none"} stroke="#344c4c" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-          {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#e0eacd" />}
+          <SpeechMouthLayer authored={<>
+            <path d={mouthPaths[pose.mouth]} fill={pose.mouth === "grin" || pose.mouth === "round" ? "#344c4c" : "none"} stroke="#344c4c" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+            {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#e0eacd" />}
+          </>}>
+            <OrganicSpeechMouth x={50} y={65} width={19} height={9}
+              mood={pose.mouth === "concern" || pose.mouth === "wince" ? "concern" : pose.mouth === "grin" || pose.mouth === "smile" ? "smile" : "neutral"}
+              palette={{cavity: "#344c4c", outline: "#344c4c", teeth: "#e0eacd", tongue: "#8bbba6", lip: "#72a28b"}} />
+          </SpeechMouthLayer>
           {expression === "brilliant" && <path d="m17 68 3 3m60 0 3-3" stroke="#a8d7bd" strokeWidth="2" strokeLinecap="round" />}
         </HeadRig>
         {pose.hands === "book" && <Book color="#7a6c96" />}

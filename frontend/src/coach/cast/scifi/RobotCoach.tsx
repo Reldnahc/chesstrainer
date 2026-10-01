@@ -5,6 +5,8 @@ import type { CoachArtworkProps, CoachExpression } from "../../model";
 import Accents from "../../studies/Accents";
 import { CastHands } from "./CastHands";
 import { castPoses, poseStyle, type CastPose } from "./poses";
+import { SpeechMouthLayer } from "../../SpeechMouthLayer";
+import RobotSpeechMouth from "./RobotSpeechMouth";
 import "../../studies/motion.css";
 import "./scifi.css";
 
@@ -47,7 +49,7 @@ function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachE
           </g>
         </g>
       ))}
-      <g stroke={color} fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <SpeechMouthLayer authored={<g stroke={color} fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         {pose.mouth === "round" ? (
           <rect x="45" y="63" width="10" height="9" rx="2" />
         ) : pose.mouth === "grin" ? (
@@ -61,7 +63,9 @@ function RobotDisplay({ pose, expression }: { pose: CastPose; expression: CoachE
         ) : (
           <path d="m41 65 3 4h12l3-4" />
         )}
-      </g>
+      </g>}>
+        <RobotSpeechMouth color={color} />
+      </SpeechMouthLayer>
     </>
   );
 }

@@ -5,6 +5,7 @@ import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
 import { CastHands } from "./CastHands";
 import { castPoses, mouthPaths, poseStyle } from "./poses";
+import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
 import "../../studies/motion.css";
 import "./scifi.css";
 
@@ -64,8 +65,14 @@ export default function LivingPawnCoach({ expression }: CoachArtworkProps) {
               )}
             </g>
             <g transform="translate(0 -17)">
-              <path d={mouthPaths[pose.mouth]} fill={pose.mouth === "grin" || pose.mouth === "round" ? "#665348" : "none"} stroke="#665348" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#fff8df" />}
+              <SpeechMouthLayer authored={<>
+                <path d={mouthPaths[pose.mouth]} fill={pose.mouth === "grin" || pose.mouth === "round" ? "#665348" : "none"} stroke="#665348" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                {pose.mouth === "grin" && <path d="M43 66q7 2 14 0l-2 3H45Z" fill="#fff8df" />}
+              </>}>
+                <OrganicSpeechMouth x={50} y={64} width={18} height={8}
+                  mood={pose.mouth === "concern" || pose.mouth === "wince" ? "concern" : pose.mouth === "grin" || pose.mouth === "smile" ? "smile" : "neutral"}
+                  palette={{cavity: "#665348", outline: "#665348", teeth: "#fff8df", tongue: "#c1a080", lip: "#baab8d"}} />
+              </SpeechMouthLayer>
             </g>
             {(expression === "encouraging" || expression === "good") && <path d="M33 43h3m28 0h3" stroke="#c79780" strokeWidth="2" strokeLinecap="round" />}
           </HeadRig>

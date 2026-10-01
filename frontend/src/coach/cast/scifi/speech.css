@@ -1,0 +1,25 @@
+.robot-speech-mouth {
+  --robot-open: clamp(0, var(--speech-open, 0), 1);
+  --robot-round: clamp(0, var(--speech-round, 0), 1);
+  --robot-width: calc((.45 + clamp(0, var(--speech-width, .58), 1) * .65) * (1 - var(--robot-round) * .26));
+  --robot-height: clamp(.08, calc(var(--robot-open) * .8 + var(--speech-jaw, 0) * .2 + var(--robot-round) * .38), 1);
+}
+
+.robot-speech-aperture {
+  transform-box: view-box;
+  transform-origin: 50px 66px;
+  transform: scale(var(--robot-width), var(--robot-height));
+}
+
+.robot-speech-closed {
+  opacity: clamp(0, calc(1 - var(--robot-open) * 10), 1);
+  transform-box: view-box;
+  transform-origin: 50px 66px;
+  transform: scaleX(var(--robot-width));
+}
+
+.robot-speech-opening { opacity: clamp(0, calc(var(--robot-open) * 10), 1); }
+.robot-speech-pressure { opacity: var(--speech-press, 0); }
+.robot-speech-toprow { opacity: var(--speech-teeth, 0); }
+.robot-speech-center { opacity: var(--speech-tongue, 0); }
+.robot-speech-clamp { opacity: var(--speech-bite, 0); }
