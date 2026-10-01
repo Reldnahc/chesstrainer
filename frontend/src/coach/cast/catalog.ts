@@ -31,12 +31,12 @@ type CastEntry = {
 
 const cast: readonly CastEntry[] = [
   {
-    id: "human-boy", name: "Milo", group: "humans", Artwork: YoungBoyCoach, speech: true,
+    id: "human-boy", name: "Mateo", group: "humans", Artwork: YoungBoyCoach, speech: true,
     description: "An excitable tactics kid who explains the discovery in plain language.",
     character: "Quick looks · eager lean · delighted double takes",
   },
   {
-    id: "human-girl", name: "Cleo", group: "humans", Artwork: YoungGirlCoach, speech: true,
+    id: "human-girl", name: "Tala", group: "humans", Artwork: YoungGirlCoach, speech: true,
     description: "A playful puzzle solver who finds the small clue that changes everything.",
     character: "Curious tilt · bright eyes · precise little nods",
   },

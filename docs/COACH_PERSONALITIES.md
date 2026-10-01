@@ -18,20 +18,20 @@ The current cast's distinctions are deliberate:
 | Coach | Writing direction |
 | --- | --- |
 | Walter | Connects the present consequence to how the position arrived here. |
-| Desmond | Welcomes comparison at a shared analysis board. |
-| Kenji | Economical, exact statements about what is retained or surrendered. |
+| Femi | Welcomes comparison at a shared analysis board. |
+| Jun | Economical, exact statements about what is retained or surrendered. |
 | Arjun | Tests alternatives as small, evidence-backed experiments. |
-| Mara | Clear standards, concrete tasks and steady motivation. |
-| Iris | Separates observation, searched conclusions and uncertainty. |
-| Zoe | Quick delight in concrete tactical connections. |
-| Poppy | Easygoing, candid and approachable without softening errors. |
+| Tamar | Clear standards, concrete tasks and steady motivation. |
+| Marisol | Separates observation, searched conclusions and uncertainty. |
+| Réka | Quick delight in concrete tactical connections. |
+| Ingrid | Easygoing, candid and approachable without softening errors. |
 | Felix | Crisp, controlled confidence and occasional dry wit. |
 | Juniper | Watchful, sparse observations with room for the fact to land. |
 | Alfie | Patient, sequential explanations; understanding ahead of spectacle. |
 | Waffles | Spirited confidence grounded in what the move actually accomplishes. |
 | Scout (border collie) | Focus on patterns, linked evidence and the next useful study task. |
-| Milo (young boy) | Excitable discoveries and short, plain explanations; no prodigy caricature. |
-| Cleo (young girl) | Isolates a clue, asks a useful question and lets the supported discovery land. |
+| Mateo (young boy) | Excitable discoveries and short, plain explanations; no prodigy caricature. |
+| Tala (young girl) | Isolates a clue, asks a useful question and lets the supported discovery land. |
 | Biscuit (puppy) | Warm emotional response followed by one accessible practical lesson. |
 | Pickle (kitten) | Curious investigation of suspicious details, without species jokes. |
 | Ziggy (alien) | Separates human appeal from the concrete outcome of the reply. |

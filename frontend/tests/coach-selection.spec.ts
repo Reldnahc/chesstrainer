@@ -13,8 +13,8 @@ const castGroups = [
 ] as const;
 const castIds = castGroups.flatMap(group => [...group.ids]);
 const retainedNames = [
-  "Walter", "Desmond", "Kenji", "Arjun",
-  "Mara", "Iris", "Zoe", "Poppy",
+  "Walter", "Femi", "Jun", "Arjun",
+  "Tamar", "Marisol", "Réka", "Ingrid",
   "Alfie", "Waffles", "Scout",
   "Felix", "Juniper",
 ];

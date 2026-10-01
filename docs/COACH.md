@@ -17,9 +17,9 @@ The men's collection has four complete characters, each with all 20 states:
 
 - **Walter:** open, warm facial acting, clear anticipation and recovery,
   expressive shoulders and hands. Strong contrast between delight and concern.
-- **Desmond:** a Black man with close curls, a neat beard and a terracotta
+- **Femi:** a Black man with close curls, a neat beard and a terracotta
   overshirt. Open, welcoming gestures and an expressive double take.
-- **Kenji:** an older East Asian man with silver temples, a clean-shaven
+- **Jun:** an older Chinese Singaporean man with silver temples, a clean-shaven
   face and a slate cardigan. Measured head movements and attentive eyes.
 - **Arjun:** a South Asian man with dark waves, a shaped beard and a
   forest-green waistcoat. Curious looks and generous encouragement.
@@ -35,7 +35,7 @@ practice and saved explanations, including after reload or on another device.
 
 | Group | Selectable coaches |
 |---|---|
-| Humans | Walter, Desmond, Kenji, Arjun, Mara, Iris, Zoe, Poppy, Milo, Cleo |
+| Humans | Walter, Femi, Jun, Arjun, Tamar, Marisol, Réka, Ingrid, Mateo, Tala |
 | Dogs | Alfie, Waffles, Scout, Biscuit |
 | Cats | Felix, Juniper, Pickle |
 | Other animals | Monty, Bandit, Fergus, Winston |
@@ -48,6 +48,24 @@ the studio. Every coach has a personal name, replacing generic labels and
 character titles while preserving the existing archetype. Saved preferences and
 bookmarks continue to use the same stable IDs, so renaming a coach never resets a
 selection or changes its voice.
+
+### Human home regions
+
+The human cast is ethnically diverse, and each newer human comes from a region
+with a strong chess culture. Their names, and the spoken accents chosen during
+voice casting, follow that home. Walter keeps his approved voice.
+
+| Coach | ID | Home |
+|---|---|---|
+| Femi | `man-host` | Lagos, Nigeria |
+| Jun | `man-expert` | Singapore |
+| Arjun | `man-partner` | Chennai, India |
+| Tamar | `woman-captain` | Tbilisi, Georgia |
+| Marisol | `woman-analyst` | Havana, Cuba |
+| Réka | `woman-spark` | Budapest, Hungary |
+| Ingrid | `woman-blonde` | Oslo, Norway |
+| Mateo | `human-boy` | Buenos Aires, Argentina |
+| Tala | `human-girl` | Manila, Philippines |
 
 Pickle has a kitten-specific silhouette: a large round head, low-set round eyes,
 tiny muzzle, short seated body and soft paws. Cheek/chin hand positions fit that
@@ -168,8 +186,8 @@ separate from Brilliant's entrance mouth scale so the two cannot compound.
 shared `human/HumanSpeechMouth`, which places `OrganicSpeechMouth` on Walter's
 exact face coordinates (a 14-unit mouth whose upper lip rests on y=58.5 and
 whose jaw reaches y=66.5) so every human opens, rounds and closes in step with
-him, while each coach keeps its own lip, cavity and tongue tones. Desmond's and
-Arjun's chin beards and Kenji's chin crease sit in a `human-speech-jaw` group
+him, while each coach keeps its own lip, cavity and tongue tones. Femi's and
+Arjun's chin beards and Jun's chin crease sit in a `human-speech-jaw` group
 that follows `--speech-jaw`, as Walter's beard does; moustaches stay on the upper
 lip. `SpeechMouthLayer` switches between intact authored artwork and a
 speaking mouth. `OrganicSpeechMouth` supplies an upper-lip-anchored aperture with

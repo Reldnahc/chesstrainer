@@ -56,20 +56,20 @@ personal names replace both generic labels and the former character titles.
 | Coach | Group | Archetype | E | D | H | J | Typical response shape |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Walter | Existing · Human | Warm veteran who sees a game as a sequence of turning points | 3 | 3 | 1 | 2 | Context → consequence → connection |
-| Desmond | Existing · Human | Sociable post-game analyst sitting across the table | 4 | 3 | 3 | 3 | Reaction → conversational explanation → suggestion |
-| Kenji | Existing · Human | Calm, disciplined technician | 2 | 5 | 0 | 4 | Fact → exact consequence → best resource |
+| Femi | Existing · Human | Sociable post-game analyst sitting across the table | 4 | 3 | 3 | 3 | Reaction → conversational explanation → suggestion |
+| Jun | Existing · Human | Calm, disciplined technician | 2 | 5 | 0 | 4 | Fact → exact consequence → best resource |
 | Arjun | Existing · Human | Curious collaborator exploring alternatives with you | 3 | 2 | 2 | 2 | Question → idea → comparison |
-| Mara | Existing · Human | Confident mentor who expects improvement | 4 | 5 | 2 | 3 | Verdict → reason → actionable takeaway |
-| Iris | Existing · Human | Restrained observer who notices exactly what changed | 1 | 4 | 0 | 4 | Observation → consequence |
-| Zoe | Existing · Human | Tactical enthusiast who genuinely gets excited by ideas | 5 | 4 | 3 | 2 | Reaction → tactical point → consequence |
-| Poppy | Existing · Human | Relaxed, reassuring strong player | 3 | 3 | 2 | 2 | Reassurance → fact → next idea |
+| Tamar | Existing · Human | Confident mentor who expects improvement | 4 | 5 | 2 | 3 | Verdict → reason → actionable takeaway |
+| Marisol | Existing · Human | Restrained observer who notices exactly what changed | 1 | 4 | 0 | 4 | Observation → consequence |
+| Réka | Existing · Human | Tactical enthusiast who genuinely gets excited by ideas | 5 | 4 | 3 | 2 | Reaction → tactical point → consequence |
+| Ingrid | Existing · Human | Relaxed, reassuring strong player | 3 | 3 | 2 | 2 | Reassurance → fact → next idea |
 | Felix | Existing · Cat | Sharp, dry, slightly aloof tactical killer | 2 | 5 | 3 | 3 | Consequence first → terse explanation |
 | Juniper | Existing · Black Cat | Quiet, watchful observer with a soft side | 1 | 4 | 1 | 2 | Observation → pause → conclusion |
 | Alfie | Existing · Golden Retriever | Patient teacher who explains without rushing | 2 | 3 | 1 | 3 | Principle → concrete example → takeaway |
 | Waffles | Existing · Corgi | Tiny commander with absurd confidence | 5 | 5 | 4 | 2 | Command/reaction → consequence → order |
 | Scout | Existing · Dog | Intense pattern-recognition coach who wants the task done | 4 | 5 | 1 | 4 | Pattern → task → next action |
-| Milo | New · Human | Excitable tactics kid | 5 | 3 | 3 | 1 | Reaction → question/observation → explanation |
-| Cleo | New · Human | Sharp, playful puzzle solver | 4 | 4 | 3 | 1 | Clue → discovery → consequence |
+| Mateo | New · Human | Excitable tactics kid | 5 | 3 | 3 | 1 | Reaction → question/observation → explanation |
+| Tala | New · Human | Sharp, playful puzzle solver | 4 | 4 | 3 | 1 | Clue → discovery → consequence |
 | Biscuit | New · Dog | Eager beginner-friendly teammate | 5 | 3 | 3 | 1 | Emotional reaction → explanation → simple lesson |
 | Pickle | New · Cat | Tiny chaos detective | 4 | 2 | 4 | 1 | Curiosity → discovery → playful conclusion |
 | Ziggy | New · Sci‑Fi | Intelligent outsider studying human chess intuition | 2 | 3 | 3 | 2 | Observation → outsider perspective → explanation |
@@ -106,7 +106,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “Bd3 is where the position turns. The bishop was the rook’s only defender, so Black can take the rook immediately.”*
 
-### 2. Desmond
+### 2. Femi
 
 **Archetype: **Sociable post-game analyst sitting across the table   |   Energy 4 · Directness 3 · Humor 3 · Jargon 3
 
@@ -122,7 +122,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “Ah, there’s the catch. Bd3 looks natural, but that bishop was the rook’s only defender. Black can just take it.”*
 
-### 3. Kenji
+### 3. Jun
 
 **Archetype: **Calm, disciplined technician   |   Energy 2 · Directness 5 · Humor 0 · Jargon 4
 
@@ -154,7 +154,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “Bd3 develops nicely, but what happens to the rook afterward? That bishop was its only defender, so Black can take it.”*
 
-### 5. Mara
+### 5. Tamar
 
 **Archetype: **Confident mentor who expects improvement   |   Energy 4 · Directness 5 · Humor 2 · Jargon 3
 
@@ -170,7 +170,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “This is the detail to catch. Bd3 abandons the rook, and Black gets it immediately.”*
 
-### 6. Iris
+### 6. Marisol
 
 **Archetype: **Restrained observer who notices exactly what changed   |   Energy 1 · Directness 4 · Humor 0 · Jargon 4
 
@@ -186,7 +186,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “After Bd3, the rook has no defender. Black can capture it on the next move.”*
 
-### 7. Zoe
+### 7. Réka
 
 **Archetype: **Tactical enthusiast who genuinely gets excited by ideas   |   Energy 5 · Directness 4 · Humor 3 · Jargon 2
 
@@ -202,7 +202,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “Oof, there it is—Bd3 pulls away the rook’s only defender, and Black gets to snap it off.”*
 
-### 8. Poppy
+### 8. Ingrid
 
 **Archetype: **Relaxed, reassuring strong player   |   Energy 3 · Directness 3 · Humor 2 · Jargon 2
 
@@ -298,7 +298,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “Pattern: loose piece. Bd3 removes the rook’s only defender. Black captures next.”*
 
-### 14. Milo (Young Boy)
+### 14. Mateo (Young Boy)
 
 **Archetype: **Excitable tactics kid   |   Energy 5 · Directness 3 · Humor 3 · Jargon 1
 
@@ -314,7 +314,7 @@ personal names replace both generic labels and the former character titles.
 
 *Example: “Wait—Bd3 moves the rook’s only defender! Black can just take it now.”*
 
-### 15. Cleo (Young Girl)
+### 15. Tala (Young Girl)
 
 **Archetype: **Sharp, playful puzzle solver   |   Energy 4 · Directness 4 · Humor 3 · Jargon 1
 
@@ -576,13 +576,13 @@ The current template-only personality layer should evolve toward a small composi
 
 | Strategy | Shape | Natural fits |
 | --- | --- | --- |
-| Reaction-first | reaction → fact → consequence | Zoe, Biscuit, Pip |
-| Consequence-first | consequence → terse explanation | Felix, Kenji |
-| Observation-first | observation → consequence | Iris, Juniper, Wisp |
-| Question-first | question → discovery → explanation | Arjun, Cleo, Pickle |
+| Reaction-first | reaction → fact → consequence | Réka, Biscuit, Pip |
+| Consequence-first | consequence → terse explanation | Felix, Jun |
+| Observation-first | observation → consequence | Marisol, Juniper, Wisp |
+| Question-first | question → discovery → explanation | Arjun, Tala, Pickle |
 | Pattern-first | pattern → task → action | Scout, Rivet, Orin |
-| Mentor-first | verdict → reason → takeaway | Mara, Ember |
-| Calm-reset | acknowledgment → fact → next step | Poppy, Winston |
+| Mentor-first | verdict → reason → takeaway | Tamar, Ember |
+| Calm-reset | acknowledgment → fact → next step | Ingrid, Winston |
 | Minimal | one essential fact | Fergus |
 
 ## 6. Personality schema direction
@@ -599,7 +599,7 @@ A stronger personality configuration should encode communication behavior in dat
 
 - Should any current retained coach be retired before artwork is expanded?
 
-- Are the Milo / Cleo voices age-appropriate without feeling childish?
+- Are the Mateo / Tala voices age-appropriate without feeling childish?
 
 - Are the animal coaches characters first and species jokes second?
 

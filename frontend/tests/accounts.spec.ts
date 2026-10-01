@@ -45,7 +45,7 @@ test('account signup, engine-free sync, second-device login and private library'
   await expect(page.getByRole('region', {name: 'Account', exact: true})).toHaveCount(0);
   await expect(page.getByRole('button', {name: 'Sign out', exact: true})).toHaveCount(0);
   await settingsSection(page, 'Coach & animations');
-  await page.getByRole('radio', {name: 'Poppy', exact: true}).click();
+  await page.getByRole('radio', {name: 'Ingrid', exact: true}).click();
   await expect(page.locator('.coach-preference-status')).toContainText('Saved');
   await page.getByLabel('Coach motion', {exact: true}).selectOption('still');
   await expect(page.locator('.coach-motion-preference-status')).toContainText('Saved');
@@ -106,7 +106,7 @@ test('account signup, engine-free sync, second-device login and private library'
     await expect(device.getByLabel('Coach motion', {exact: true})).toHaveValue('still');
     await expect(device.getByLabel('Piece & interface motion', {exact: true})).toHaveValue('natural');
     await expect(device.getByRole('radio')).toHaveCount(30);
-    await expect(device.getByRole('radio', {name: 'Poppy', exact: true})).toBeChecked();
+    await expect(device.getByRole('radio', {name: 'Ingrid', exact: true})).toBeChecked();
     await expect(device.getByLabel('Coach motion', {exact: true})).toBeEnabled();
     await settingsSection(device, 'Sound');
     const deviceSound = device.getByRole('region', {name: 'Sound', exact: true});

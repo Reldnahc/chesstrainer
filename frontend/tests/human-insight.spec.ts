@@ -144,7 +144,7 @@ test("visible Maia insight survives coach selection and reload without new analy
     await page.keyboard.press("Escape");
     await page.getByRole("link", {name: "Settings", exact: true}).click();
     await page.getByRole("navigation", {name: "Settings sections"}).getByRole("link", {name: "Coach & animations", exact: true}).click();
-    const choice = page.getByRole("radio", {name: "Iris", exact: true});
+    const choice = page.getByRole("radio", {name: "Marisol", exact: true});
     await choice.click();
     await expect(choice).toBeChecked();
     await expect(page.getByLabel("Coach motion", {exact: true})).toBeEnabled();

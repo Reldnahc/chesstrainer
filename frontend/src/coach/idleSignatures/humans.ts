@@ -98,7 +98,7 @@ export const humanSignatures = {
     ]),
   ],
   "human-boy": [
-    signature("signature-a", "Almost sitting still", "Milo rocks toward the board, checks the movement, and lets his unruly hair finish the thought.", positive, [
+    signature("signature-a", "Almost sitting still", "Mateo rocks toward the board, checks the movement, and lets his unruly hair finish the thought.", positive, [
       track("body", "human-milo-rock", 1360), track("head", "human-milo-check", 1120, 160),
       track("hair", "human-milo-hair", 1160, 220),
     ]),
@@ -108,7 +108,7 @@ export const humanSignatures = {
     ]),
   ],
   "human-girl": [
-    signature("signature-a", "Follow the clue", "Cleo looks across and down, holding an investigative tilt before carefully reversing it.", attentive, [
+    signature("signature-a", "Follow the clue", "Tala looks across and down, holding an investigative tilt before carefully reversing it.", attentive, [
       track("gaze", "human-cleo-trace", 1520), track("head", "human-cleo-tilt", 1380, 140),
       track("brows", "human-cleo-question", 1120, 180),
     ]),

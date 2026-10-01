@@ -104,7 +104,7 @@ export const manStudy: CoachCollection = {
       coachId: "man-host",
       speech: true,
       personality: host,
-      name: "Desmond",
+      name: "Femi",
       description:
         "Friendly, candid analysis as if you were sitting across the club table.",
       character: "Open palms · warm grins · an expressive double take",
@@ -114,7 +114,7 @@ export const manStudy: CoachCollection = {
       coachId: "man-expert",
       speech: true,
       personality: expert,
-      name: "Kenji",
+      name: "Jun",
       description:
         "Exact consequences, measured approval and no extra words.",
       character: "Measured tilts · attentive eyes · quiet delight",
@@ -165,7 +165,7 @@ export const womanStudy: CoachCollection = {
       id: "captain",
       coachId: "woman-captain",
       personality: captain,
-      name: "Mara",
+      name: "Tamar",
       description:
         "A confident mentor: a clear verdict, a concrete reason and a habit to build.",
       character: "Open hands · generous smiles · confident nods",
@@ -174,7 +174,7 @@ export const womanStudy: CoachCollection = {
       id: "analyst",
       coachId: "woman-analyst",
       personality: analyst,
-      name: "Iris",
+      name: "Marisol",
       description:
         "A restrained observer who identifies exactly what changed.",
       character: "Small tilts · considered pauses · a reassuring smile",
@@ -183,7 +183,7 @@ export const womanStudy: CoachCollection = {
       id: "spark",
       coachId: "woman-spark",
       personality: spark,
-      name: "Zoe",
+      name: "Réka",
       description:
         "Quick, lively explanations and real excitement for clever tactics.",
       character: "Anticipation · lively poses · hair follow-through",
@@ -192,7 +192,7 @@ export const womanStudy: CoachCollection = {
       id: "blonde",
       coachId: "woman-blonde",
       personality: blonde,
-      name: "Poppy",
+      name: "Ingrid",
       description:
         "Relaxed encouragement that keeps the chess honest and the next step clear.",
       character: "Warm smiles · open gestures · a gently settling braid",
