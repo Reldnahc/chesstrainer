@@ -134,7 +134,7 @@ and the same nine approved defaults as the app.
   mute, stop or inspect playback history. Pending cues remain cancellable and do
   not preload or play early; the engine bounds delayed cues at 15 seconds.
 
-There is no audition picker, selection storage or export UI. Obsolete studio
+There is no game-sound selection storage or export UI. Obsolete sound-palette
 browser data is neither read nor rewritten. Playback never changes account
 preferences. The studio shares application buttons and choice controls but owns
 its layout. Its style boundary rejects application/board styles. CI has a
@@ -157,10 +157,11 @@ A future speech adapter owns obtaining a clip and checking whether an utterance
 is still current before submitting it. The calling policy decides whether speech
 is manual or permitted by `autoSpeakSuitable`. Visible/spoken text remains owned
 by dialogue; audio never rewrites chess claims or generates character prose.
-There is no TTS provider, voice catalogue, speech setting, automatic narration or
-network speech request in this release.
+There is no production TTS provider, speech setting, automatic narration or
+runtime synthesis request. The separate local authoring tool and developer-only
+audition described below are not production speech selection.
 
-### Approved prerecorded-coach pilot (not implemented yet)
+### Prerecorded-coach pilot (development audition)
 
 The owner approved trying one coach with complete, reusable spoken explanations.
 The precise position-specific explanation stays written in the bubble. Spoken
@@ -173,7 +174,24 @@ Installing, building and using Fieldwork must not require a voice-service accoun
 API key, model download or runtime synthesis. Production cost belongs to creating
 the recordings, not to the people playing them. First select the coach and voice,
 then audition a small set before expanding coverage or adding production controls.
-No voice, generation budget or recording has been approved by this brief.
+The owner selected Walter (`classic`) and authorized a small paid ElevenLabs
+audition. No final voice or production automatic-speech policy has been selected.
+
+The existing audio studio now compares Bill, George and Brian reading the same
+four full teaching examples: a difficult defense, abandoning a defender, allowing
+forced mate, and finding a fork. Twelve local MP3s total 1,789,388 bytes. They use
+the real registered Walter and shared coach presentation. Explicit Play/In context
+actions use the same speech bus, mute, volume and cancellation as prepared speech.
+The examples are labelled as authored demonstrations, not real analyzed games.
+Written and spoken text are identical for this voice comparison; the supported
+summary policy below remains the rule for eventual production integration.
+
+The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
+the selected model, settings, exact scripts, media terms and reproducible authoring
+workflow. `scripts/record_coach_speech.mjs` is a development CLI with dry run as
+the default, an explicit paid-generation flag, hash-verified reuse and no automatic
+paid retries. It reads only the process environment's `ELEVENLABS_API_KEY` and
+is not invoked by app builds or playback. No credentials enter frontend code.
 
 The following is a factual audition brief; adapt its delivery and wording to the
 selected character before recording. Each row should be a complete take with

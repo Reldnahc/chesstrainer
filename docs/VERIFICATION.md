@@ -4,6 +4,46 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Prerecorded Walter voice pilot — September 30, 2026
+
+Added cancellable recorded-speech loading to the shared audio engine and a
+development-only Walter audition with three voices and four identical teaching
+examples per voice. The 12 local MP3s total **1,789,388 bytes**. A dry-run-first
+authoring CLI records exact request provenance and reuses hash-verified outputs;
+normal playback, tests and builds never generate speech or require credentials.
+Production dialogue and automatic narration remain unchanged.
+
+- `node --test scripts/record_coach_speech.test.mjs`: **14 passed**, no skips;
+  fake-fetch coverage for explicit generation, bounded sequential requests,
+  cancellation, redaction, safe publication and verified reuse. No paid requests.
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **122 passed**, desktop/mobile, no skips. The ignored wrapper delegates to the
+  normal audio config and only reuses the existing studio. Covers native decoding
+  and playback of all 12 recordings, finite durations/nonzero signal, source and
+  script correspondence, no provider requests, untouched account preferences,
+  cold-load cancellation, voice changes, mute, hidden tabs and zero volume.
+  Context speech waits for the move's actual start before its 350ms pause,
+  including cold move/cached speech, failed and cancelled move cases.
+- `npm.cmd --prefix frontend run build`: passed, including API/type checks,
+  **11** style tests and entrypoint boundaries. Production assets contain no
+  audition MP3s. `npm.cmd --prefix frontend run build:audio-studio`: passed;
+  its output contains exactly 12 MP3s. Existing large-chunk warnings remain.
+- Built-studio smoke test, served by Vite preview on port 5178:
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/walter-built-check.config.mjs --grep "Walter starts neutral" --reporter=line`:
+  **2 passed**, desktop/mobile. The temporary wrapper uses the normal audio test
+  projects with a preview base URL and no dev server. All 12 compiled asset URLs
+  decode and start locally; no API/provider requests or browser errors.
+- Offline authoring dry run against the checked-in plan and output directory:
+  **12 verified recordings reused, 0 new requests, 0 characters**.
+- Exercised the real studio and inspected desktop/mobile audition screenshots.
+  Independent engine/authoring/integration reviews completed; the discovered
+  cold-move ordering issue was corrected and regression-tested. Whitespace checks
+  passed. Auditory quality and the final voice choice remain the owner's listening
+  decision; decoding and visual checks cannot establish natural delivery.
+- No full backend, coach-artwork or account suite, Docker deployment, push or
+  remote CI run for this development audition. No production speech integration.
+
 ## Separate Sound settings tab — September 30, 2026
 
 Moved the existing AudioSettings component to `?section=sound`, using the shared

@@ -287,6 +287,14 @@ The standalone audio studio runs `npm run dev:audio` on port 5176 and its
 server, account, database or Stockfish. Audio changes are checked on desktop and
 mobile, and the full correctness plan always includes this suite.
 
+The Walter audition tests play every bundled voice/example through native browser
+decoding, verify silence on entry, preview isolation, cancellation of late loads,
+and move-before-speech ordering even when the move asset loads slowly. Its
+provenance tests run the offline Node authoring regressions and verify all stored
+requests and audio hashes against the recording plan, with the provider key removed
+from the subprocess environment. No paid generation is part of verification.
+Run the authoring tests alone with `node --test scripts/record_coach_speech.test.mjs`.
+
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It resolves their production Vite dependency graphs without starting servers or

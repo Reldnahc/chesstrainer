@@ -1,0 +1,23 @@
+/* Development audition composition. Coach presentation and controls stay shared. */
+.walter-audition { margin: 0 0 36px; padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.walter-audition-heading { margin-bottom: 22px; }
+.walter-audition-heading h2 { margin: 7px 0 8px; font-size: 26px; }
+.walter-audition-heading > p { margin: 0; max-width: 720px; font-size: 13px; }
+.walter-audition-layout { display: grid; grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr); gap: 30px; }
+.walter-audition-controls { min-width: 0; }
+.walter-audition-description { min-height: 48px; margin: 12px 0 18px; font-size: 13px; line-height: 1.55; }
+.walter-audition-hint { margin: 14px 0 0; font-size: 11px; line-height: 1.6; }
+.walter-audition-source { margin-top: 12px; }
+.walter-audition-preview { min-width: 0; container-type: inline-size; }
+.walter-audition-transcript { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); }
+.walter-audition-transcript > span { color: var(--muted); font: 10px var(--mono); text-transform: uppercase; letter-spacing: .8px; }
+.walter-audition-transcript p { margin: 8px 0 0; font-size: 14px; line-height: 1.65; color: var(--text); }
+.walter-audition-unavailable { font-size: 12px; }
+@media (max-width: 850px) {
+  .walter-audition-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .walter-audition-description { min-height: 0; }
+}
+@media (max-width: 560px) {
+  .walter-audition { padding: 16px; }
+  .walter-audition-heading h2 { font-size: 23px; }
+}

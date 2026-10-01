@@ -7,8 +7,10 @@ import "../../disclosure.css";
 import recordedSources from "../assets/sources.json";
 import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
-import type { SoundCategory, SoundCue, SoundPalette } from "../model";
+import type { RecordedSpeechClip, SoundCategory, SoundCue, SoundPalette } from "../model";
+import { walterVoices, walterScripts, walterClips, walterAuditionUtterance, type WalterClip } from "../speech/walterPilot";
 import { auditionScenarios, retryContexts, type AuditionScenario, type RetryContextId } from "./scenarios";
+import WalterAudition, { type WalterPlayback, type WalterPlayOptions } from "./WalterAudition";
 import "./studio.css";
 
 type CueFilter = "all" | SoundCategory;
@@ -58,6 +60,9 @@ export default function AudioStudio() {
   const [error, setError] = useState("");
   const [selectedScenario, setSelectedScenario] = useState(auditionScenarios[0].id);
   const [retryContextId, setRetryContextId] = useState<RetryContextId>("repeated");
+  const [speechPlayback, setSpeechPlayback] = useState<WalterPlayback>({ state: "idle" });
+  const speechRef = useRef<WalterPlayback>({ state: "idle" });
+  const contextSpeechRef = useRef<{ moveEventId: string; clip: RecordedSpeechClip } | null>(null);
   const engineRef = useRef<AudioEngine | null>(null);
   const takeRef = useRef(0);
   const traceRef = useRef(0);
@@ -71,10 +76,30 @@ export default function AudioStudio() {
     const engine = new AudioEngine({ onEvent(event) {
       if (!mounted) return;
       setEvents(previous => [...previous.slice(-79), { ...event, traceId: ++traceRef.current }]);
-      if (event.type === "started") setStatus(`${cueLabel(event.cue)} · ${paletteLabel(event.palette)}`);
-      if (event.type === "error") setError("This sound could not play. Try it again or check that audio is available in your browser.");
+      if (event.type === "started") setStatus(event.bus === "speech" ? "Walter · Voice preview" : `${cueLabel(event.cue)} · ${paletteLabel(event.palette)}`);
+      const pending = contextSpeechRef.current;
+      if (pending?.moveEventId === event.eventId) {
+        if (event.type === "started") {
+          // Measure the pause from audible movement, not an unpredictable download.
+          contextSpeechRef.current = null;
+          engine.playRecordedSpeech(pending.clip);
+        } else if (["cancelled", "suppressed", "error"].includes(event.type)) {
+          contextSpeechRef.current = null;
+          speechRef.current = { state: "idle" };
+          setSpeechPlayback({ state: "idle" });
+        }
+      }
+      if (event.bus === "speech" && event.eventId === speechRef.current.eventId) {
+        if (event.type === "started") setSpeechPlayback({ ...speechRef.current, state: "playing" });
+        if (["ended", "cancelled", "suppressed", "error"].includes(event.type)) setSpeechPlayback({ state: "idle" });
+      }
+      if (event.type === "error") {
+        setStatus("Playback unavailable. Ready to retry.");
+        setError("This sound could not play. Try it again or check that audio is available in your browser.");
+      }
       if (event.type === "suppressed" && event.reason === "muted") setStatus("Muted. Unmute to hear your next preview.");
       if (event.type === "suppressed" && event.reason === "gesture-blocked") {
+        setStatus("Playback unavailable. Ready to retry.");
         setError("Audio is unavailable or blocked by the browser. Press Play again to retry.");
       }
     } });
@@ -86,10 +111,14 @@ export default function AudioStudio() {
       takeRef.current++;
       timersRef.current.forEach(clearTimeout);
       timersRef.current = [];
+      contextSpeechRef.current = null;
+      speechRef.current = { state: "idle" };
+      setSpeechPlayback({ state: "idle" });
     };
     document.addEventListener("visibilitychange", pauseScenario);
     return () => {
       mounted = false;
+      contextSpeechRef.current = null;
       takeRef.current++;
       timersRef.current.forEach(clearTimeout);
       document.removeEventListener("visibilitychange", pauseScenario);
@@ -117,9 +146,12 @@ export default function AudioStudio() {
 
   function stop() {
     takeRef.current++;
+    contextSpeechRef.current = null;
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
     engineRef.current?.stopAll();
+    speechRef.current = { state: "idle" };
+    setSpeechPlayback({ state: "idle" });
     setStatus("Stopped. Ready for another listen.");
   }
 
@@ -161,6 +193,21 @@ export default function AudioStudio() {
     }
   }
 
+  async function playVoice(clip: WalterClip, { voice, script, inContext }: WalterPlayOptions) {
+    const audition = await begin();
+    if (!audition) return;
+    const { engine, scope } = audition;
+    const eventId = `${scope}:speech:${voice.id}:${script.id}`;
+    speechRef.current = { state: "loading", voiceId: voice.id, scriptId: script.id, eventId };
+    setSpeechPlayback(speechRef.current);
+    setStatus(`Loading Walter · ${voice.name}…`);
+    const recording = { url: clip.url, utterance: walterAuditionUtterance(voice, script), scope, eventId, delayMs: inContext ? 350 : 0 };
+    if (inContext) {
+      contextSpeechRef.current = { moveEventId: `${scope}:move`, clip: recording };
+      engine.play({ cue: "move", scope, eventId: `${scope}:move` });
+    } else engine.playRecordedSpeech(recording);
+  }
+
   const history = events.filter(event => event.type !== "requested" && event.type !== "ended").slice(-18).reverse();
 
   return <main className="audio-studio">
@@ -183,6 +230,9 @@ export default function AudioStudio() {
       <Button onClick={stop} size="compact"><Square size={13} aria-hidden="true" />Stop all</Button>
     </section>
     {error && <p className="error-text" role="alert">{error}</p>}
+
+    <WalterAudition voices={walterVoices} scripts={walterScripts} clips={walterClips}
+      playback={speechPlayback} onPlay={(clip, options) => void playVoice(clip, options)} onStop={stop} />
 
     <div className="audio-studio-workspace">
       <section className="audio-studio-library" aria-labelledby="cue-library-heading">
@@ -230,13 +280,13 @@ export default function AudioStudio() {
           <details className="disclosure audio-studio-details">
             <summary>Playback history <span>{history.filter(event => event.type === "started").length} played</span></summary>
             <p>Live events from the shared audio player.</p>
-            {history.length ? <ol>{history.map(event => <li key={event.traceId} data-event-type={event.type} data-cue={event.cue} data-palette={event.palette} data-reason={event.reason}>
+            {history.length ? <ol>{history.map(event => <li key={event.traceId} data-event-type={event.type} data-bus={event.bus} data-cue={event.cue} data-palette={event.palette} data-reason={event.reason}>
               <span>{event.type === "started" && <Check size={12} aria-hidden="true" />}{eventLabel(event)}</span>
-              <strong>{cueLabel(event.cue)}</strong><small>{paletteLabel(event.palette)}{event.reason && ` · ${event.reason.replaceAll("-", " ")}`}</small>
+              <strong>{event.bus === "speech" ? "Walter" : cueLabel(event.cue)}</strong><small>{event.bus === "speech" ? "Voice preview" : paletteLabel(event.palette)}{event.reason && ` · ${event.reason.replaceAll("-", " ")}`}</small>
             </li>)}</ol> : <p>No playback yet.</p>}
           </details>
         </section>
-        <p className="audio-studio-speech-note">Speech is reserved for a later pass. This studio previews sound effects only.</p>
+        <p className="audio-studio-speech-note">Walter’s recordings are a development audition. No speech is enabled in the application.</p>
       </aside>
     </div>
     <footer className="audio-studio-footer">Audio studio · Preview controls do not change account preferences.</footer>

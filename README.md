@@ -19,7 +19,9 @@ The shared [audio system](docs/AUDIO.md) adds board sounds and practice feedback
 Move ratings have no sounds. Adjust it in **Settings → Sound** or quickly
 mute the current device from a board. The separate development sound studio
 (`npm --prefix frontend run dev:audio`, port 5176) previews the nine approved
-sounds individually and in context. Coach speech is deferred.
+sounds individually and in context. It also includes a
+[Walter voice audition](frontend/src/audio/speech/README.md): three recorded
+voices reading the same four explanations. Production coach speech remains deferred.
 
 Game review now connects supported tactics, immediate positional changes, human
 difficulty, clocks, earlier moments and relevant saved weaknesses into factual

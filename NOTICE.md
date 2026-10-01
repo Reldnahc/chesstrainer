@@ -61,3 +61,9 @@ stage new public source files before building. Never track private information.
 Exported snapshots include SOURCE_SNAPSHOT.json with file hashes and can rebuild
 the source download without Git. Forks and redistributed combined versions must
 preserve notices and provide their corresponding source, including modifications.
+
+The development Walter voice audition in frontend/src/audio/speech uses prerecorded
+ElevenLabs paid-plan output, distinct from the CC0 game sound effects and the code
+license. Its README records provider terms and redistribution scope; adjacent
+provenance files record voice/model identity, scripts, generation dates and hashes.
+Playback uses local files and requires no ElevenLabs account, key or subscription.
