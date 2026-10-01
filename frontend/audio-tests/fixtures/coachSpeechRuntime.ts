@@ -4,8 +4,8 @@ import {AudioProvider, useAudioPreferences, useCurrentSpeechPlayback} from "../.
 import {CoachProvider, useCoachPreferences} from "../../src/coach/CoachProvider";
 import CoachAvatar from "../../src/coach/CoachAvatar";
 import {useCoachSpeech} from "../../src/audio/speech/useCoachSpeech";
-import {walterMouthTrack, walterRecording} from "../../src/audio/speech/voiceBank";
-import manifest from "../../src/audio/speech/bank/manifest.json";
+import CoachSpeechButton from "../../src/audio/speech/CoachSpeechButton";
+import {coachMouthTrack, coachRecordings} from "../../src/audio/speech/voiceBank";
 import HumanInsight from "../../src/gameReview/HumanInsight";
 import {gameIntent} from "../../src/dialogue/gameIntent";
 import {claim, makeIntent} from "../../src/dialogue/model";
@@ -30,10 +30,11 @@ export type SpeechHarness = {
   coach: (patch: Partial<CoachPreferences>) => Promise<boolean>;
   play: (id?: string) => Promise<void>;
   stop: () => void;
+  consumeAutomatic: (eventId: string | null) => void;
   hidden: (value: boolean) => void;
   unmount: () => void;
-  bank: () => {id: string; text: string; url: string}[];
-  track: typeof walterMouthTrack;
+  bank: (coachId?: string) => readonly {id: string; text: string; url: string}[];
+  track: (id: string, coachId?: string) => ReturnType<typeof coachMouthTrack>;
 };
 
 /** Use the actual providers, selection hook, portrait and insight in one Vite graph. */
@@ -52,6 +53,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
   let saveCoach: SpeechHarness["coach"] = async () => false;
   let play: SpeechHarness["play"] = async () => {};
   let stop = () => {};
+  let consumeAutomatic: SpeechHarness["consumeAutomatic"] = () => {};
   function Experience({selection: current}: {selection: Selection}) {
     const audio = useAudioPreferences(), coach = useCoachPreferences();
     const utterance = {...renderNeutral(makeIntent(current.utteranceId, "good", "game", "good", [claim("good")])),
@@ -62,6 +64,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
     saveCoach = patch => coach.save({...coach.preferences, ...patch});
     play = voice.play;
     stop = voice.stop;
+    consumeAutomatic = voice.consumeAutomatic;
     const frame = game?.frames[1];
     const intent = game && gameIntent({game, report: frame!.report, frame, ply: 1,
       key: "human-fixture", expression: "good"});
@@ -70,17 +73,21 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
       React.createElement("output", {"data-testid": "speech-state"}, JSON.stringify({
         ready: audio.ready && coach.ready, mode: audio.preferences.voice, coach: coach.preferences.coach_id,
         available: voice.available, playing: voice.playing, active: voice.activeRecordingId ?? null,
-        observed: observed?.recordingId ?? null, portrait: voice.speech?.recordingId ?? null,
+        observed: observed?.recordingId ?? null, observedCoach: observed?.coachId ?? null,
+        portrait: voice.speech?.recordingId ?? null,
         track: voice.speechTrack ? {duration: voice.speechTrack.durationSeconds, cues: voice.speechTrack.cues.length} : null,
         selection: current,
       })),
       React.createElement("div", {style: {width: "110px", height: "145px"}},
         React.createElement(CoachAvatar, {reaction: {state: "neutral", key: current.scopeKey},
           speech: voice.speech, speechTrack: voice.speechTrack})),
-      React.createElement("section", {"aria-label": "Main coach controls"}, voice.control),
+      React.createElement("section", {"aria-label": "Main coach controls"}, voice.control,
+        current.manualRecordingIds.map(id => React.createElement(CoachSpeechButton,
+          {key: id, voice, recordingId: id, label: `Listen to ${id}`}))),
       React.createElement("p", {"data-testid": "written-feedback"}, utterance.text),
       game && intent && frame?.report && React.createElement(HumanInsight, {intent, report: frame.report,
-        speechScopeKey: "human-insight:1", speechContext: {game, report: frame.report, frame, ply: 1}}));
+        speechScopeKey: "human-insight:1", speechContext: {game, report: frame.report, frame, ply: 1},
+        onManualSpeech: () => voice.consumeAutomatic(current.automaticEventId)}));
   }
   const render = () => mounted.render(React.createElement(CoachProvider, null,
     React.createElement(AudioProvider, null, React.createElement(Experience, {selection}))));
@@ -88,6 +95,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
   return {
     update: patch => {selection = {...selection, ...patch}; render();},
     audio: patch => saveAudio(patch), coach: patch => saveCoach(patch), play: id => play(id), stop: () => stop(),
+    consumeAutomatic: eventId => consumeAutomatic(eventId),
     hidden: value => {
       if (value) {
         Object.defineProperty(document, "hidden", {configurable: true, value: true});
@@ -98,7 +106,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
       document.dispatchEvent(new Event("visibilitychange"));
     },
     unmount: () => {mounted.unmount(); container.remove(); if (app) app.style.removeProperty("display");},
-    bank: () => manifest.recordings.map(record => walterRecording(record.id)!).filter(Boolean),
-    track: walterMouthTrack,
+    bank: (coachId = "classic") => coachRecordings(coachId),
+    track: (id, coachId = "classic") => coachMouthTrack(coachId, id),
   };
 }

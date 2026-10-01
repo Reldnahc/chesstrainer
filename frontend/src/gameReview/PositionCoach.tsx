@@ -11,8 +11,9 @@ import { gameIntent } from "../dialogue/gameIntent";
 import { useDialogue } from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
 import HumanInsight from "./HumanInsight";
-import {selectWalterGameRecording} from "../audio/speech/gameSelection";
+import {selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
+import {coachRecording} from "../audio/speech/voiceBank";
 import CoachSpeechButton from "../audio/speech/CoachSpeechButton";
 
 export default function PositionCoach({
@@ -79,11 +80,12 @@ export default function PositionCoach({
   const speechContext = {game, report, frame, ply, variation, pending: speechPending,
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   const selection = {...speechContext, intent: displayedIntent, utterance};
-  const recordingId = selectWalterGameRecording(selection);
-  const secondaryRecording = selectWalterGameRecording({...selection, claimIndex: 1});
+  const speech = selectGameSpeech(selection);
+  const {primaryId, secondaryId: secondaryRecording} = speech;
+  const recordingId = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance,
     automaticEventId: speechEventId, ready: !speechPending,
-    manualRecordingIds: secondaryRecording ? [secondaryRecording] : []});
+    manualRecordingIds: [primaryId, secondaryRecording].filter((id): id is string => !!id)});
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}
@@ -145,7 +147,8 @@ export default function PositionCoach({
         </>
       }
       insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} intent={intent} report={report}
-        speechContext={speechContext} speechScopeKey={`game:${positionKey}:human`} />}
+        speechContext={speechContext} speechScopeKey={`game:${positionKey}:human`}
+        onManualSpeech={() => voice.consumeAutomatic(speechEventId)} />}
     >
       <DialogueText utterance={utterance} />
       {errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}

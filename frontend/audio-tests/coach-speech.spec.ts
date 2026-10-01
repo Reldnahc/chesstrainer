@@ -6,10 +6,11 @@ import type {SpeechHarness, Selection} from "./fixtures/coachSpeechRuntime";
 import type {FakeSpeechAudio} from "./fixtures/fakeSpeechAudio";
 import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
 import {semanticFixtures} from "../tests/semantic-fixtures";
+import walterManifest from "../src/audio/speech/bank/manifest.json" with {type: "json"};
 
 type SpeechWindow = Window & {coachSpeechHarness: SpeechHarness; fakeSpeechAudio: FakeSpeechAudio};
 type State = {ready: boolean; mode: string; coach: string; available: boolean; playing: boolean;
-  active: string | null; observed: string | null; portrait: string | null;
+  active: string | null; observed: string | null; observedCoach: string | null; portrait: string | null;
   track: {duration: number; cues: number} | null; selection: Selection};
 const FIRST = "tactic-fork-played", SECOND = "tactic-pin-played";
 
@@ -77,14 +78,14 @@ async function speaking(page: Page, id = FIRST, count = 1) {
   await expect.poll(() => state(page).then(value => value.observed)).toBe(id);
 }
 
-test("the complete bank resolves local URLs and aligned mouth tracks for all 181 recordings", async ({page}) => {
+test("Walter's complete manifest resolves local URLs and aligned mouth tracks", async ({page}) => {
   await mount(page);
   const bank = await page.evaluate(async () => {
     const harness = (window as unknown as SpeechWindow).coachSpeechHarness;
     return Promise.all(harness.bank().map(async record => ({...record, track: await harness.track(record.id)})));
   });
-  expect(bank).toHaveLength(181);
-  expect(new Set(bank.map(record => record.id)).size).toBe(181);
+  expect(bank.map(record => record.id)).toEqual(walterManifest.recordings.map(record => record.id));
+  expect(new Set(bank.map(record => record.id)).size).toBe(walterManifest.recordings.length);
   for (const record of bank) {
     expect(new URL(record.url, page.url()).origin).toBe(new URL(page.url()).origin);
     expect(record.url).toMatch(/\.mp3(?:\?|$)/);
@@ -239,7 +240,7 @@ test("manual, Off and automatic policies keep settings changes silent and stop d
   await speaking(page, FIRST, 2);
 });
 
-test("only the selected Walter and a Walter utterance can play a bank recording", async ({page}) => {
+test("unvoiced coaches and mismatched utterances never borrow another coach's bank", async ({page}) => {
   await mount(page);
   await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.coach({coach_id: "cat-black"}));
   await expect.poll(() => state(page).then(value => value.coach)).toBe("cat-black");
@@ -328,7 +329,7 @@ test("a delayed mouth-track import is discarded when a newer selection replaces 
 test("secondary-only recordings have no empty primary control and reject unrelated IDs", async ({page}) => {
   await mount(page, {selection: {recordingId: null, manualRecordingIds: [SECOND]}});
   expect((await state(page)).available).toBe(true);
-  await expect(controls(page).getByRole("button")).toHaveCount(0);
+  await expect(controls(page).getByRole("button", {name: "Listen to coach", exact: true})).toHaveCount(0);
   await page.evaluate(id => (window as unknown as SpeechWindow).coachSpeechHarness.play(id), FIRST);
   await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.play("not-in-bank"));
   expect(await starts(page)).toBe(0);
@@ -365,4 +366,176 @@ test("real human-insight playback articulates the shared portrait without steali
   await speak(page);
   await speaking(page, FIRST, 2);
   expect((await state(page)).playing).toBe(true);
+});
+
+test("an explicit human insight consumes the main response's pending automatic narration", async ({page}) => {
+  const games = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
+  const game = Object.values(games).find(value => value.frames[1].report?.practical?.interpretations?.includes("natural_best"))!;
+  await mount(page, {game});
+  await page.locator(".human-insight-trigger").click();
+  await update(page, {automaticEventId: "navigate:human-choice"});
+  await tick(page, 100);
+  await page.getByRole("dialog").getByRole("button", {name: "Listen to human-move insight", exact: true}).click();
+  await expect.poll(() => starts(page)).toBe(1);
+  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^human-/);
+  await tick(page, 500);
+  expect(await starts(page)).toBe(1);
+  expect((await state(page)).observed).toMatch(/^human-/);
+});
+
+test("late human enrichment keeps a still-supported recording without replaying or cutting it off", async ({page}) => {
+  await mount(page);
+  await page.getByRole("button", {name: "Unlock audio", exact: true}).click();
+  await update(page, {automaticEventId: "navigate:enrichment"});
+  await tick(page, 250);
+  await speaking(page);
+  await update(page, {utteranceId: "position:with-new-human-facts"});
+  await tick(page, 500);
+  await speaking(page);
+  expect((await state(page)).playing).toBe(true);
+  // The new preferred response may be a composite; the original objective
+  // recording remains supported by the refreshed visible claims.
+  await update(page, {recordingId: SECOND, manualRecordingIds: [FIRST]});
+  await tick(page, 500);
+  await speaking(page);
+  await update(page, {manualRecordingIds: []});
+  await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
+  await tick(page, 500);
+  expect(await starts(page)).toBe(1);
+});
+
+test("a stale insight callback cannot consume the next move's narration", async ({page}) => {
+  await mount(page);
+  await page.getByRole("button", {name: "Unlock audio", exact: true}).click();
+  await update(page, {automaticEventId: "navigate:next", scopeKey: "game:one:next"});
+  await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.consumeAutomatic("navigate:previous"));
+  await tick(page, 250);
+  await speaking(page);
+});
+
+test("manual human insight invalidates an automatic response still loading its mouth track", async ({page}) => {
+  let captured!: () => void, release!: () => void;
+  const requested = new Promise<void>(resolve => {captured = resolve;});
+  const gate = new Promise<void>(resolve => {release = resolve;});
+  await page.route(/\/speech\/bank\/tracks\.json(?:\?.*)?$/, async route => {
+    captured(); await gate; await route.fallback();
+  });
+  const games = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
+  const game = Object.values(games).find(value => value.frames[1].report?.practical?.interpretations?.includes("natural_best"))!;
+  const fixture = await mount(page, {game});
+  await page.locator(".human-insight-trigger").click();
+  await update(page, {automaticEventId: "navigate:loading"});
+  await tick(page, 250);
+  await requested;
+  await page.getByRole("dialog").getByRole("button", {name: "Listen to human-move insight", exact: true}).click();
+  release();
+  await expect.poll(() => starts(page)).toBe(1);
+  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^human-/);
+  await tick(page, 500);
+  expect(await starts(page)).toBe(1);
+  expect(fixture.assets).toHaveLength(1);
+  expect(fixture.assets[0]).toContain("human-");
+});
+
+test("manual human insight cancels automatic decoding and leaves the next action eligible", async ({page}) => {
+  const games = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
+  const game = Object.values(games).find(value => value.frames[1].report?.practical?.interpretations?.includes("natural_best"))!;
+  await mount(page, {game});
+  await page.locator(".human-insight-trigger").click();
+  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.deferDecode());
+  await update(page, {automaticEventId: "navigate:decoding"});
+  await tick(page, 250);
+  await expect.poll(() => page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.decodes())).toBe(1);
+  await page.getByRole("dialog").getByRole("button", {name: "Listen to human-move insight", exact: true}).click();
+  await expect.poll(() => page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.decodes())).toBe(2);
+  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.releaseDecode());
+  await expect.poll(() => starts(page)).toBe(1);
+  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^human-/);
+  await tick(page, 500);
+  expect(await starts(page)).toBe(1);
+  await page.getByRole("dialog").getByRole("button", {name: "Close insight", exact: true}).click();
+  await update(page, {automaticEventId: "navigate:next", scopeKey: "game:one:next"});
+  await tick(page, 250);
+  await speaking(page, FIRST, 2);
+});
+
+test("opening an insight alone stays silent and does not consume the main response", async ({page}) => {
+  const games = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
+  const game = Object.values(games).find(value => value.frames[1].report?.practical?.interpretations?.includes("natural_best"))!;
+  await mount(page, {game});
+  await update(page, {automaticEventId: "navigate:inspect"});
+  await tick(page, 100);
+  await page.locator(".human-insight-trigger").click();
+  await tick(page, 150);
+  await speaking(page);
+});
+
+test("switching to On request invalidates an automatic response already decoding", async ({page}) => {
+  await mount(page);
+  await page.getByRole("button", {name: "Unlock audio", exact: true}).click();
+  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.deferDecode());
+  await update(page, {automaticEventId: "navigate:decoding-settings"});
+  await tick(page, 250);
+  await expect.poll(() => page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.decodes())).toBe(1);
+  await voiceMode(page, "manual");
+  await page.evaluate(() => (window as unknown as SpeechWindow).fakeSpeechAudio.releaseDecode());
+  await tick(page, 500);
+  expect(await starts(page)).toBe(0);
+  await speak(page);
+  await speaking(page);
+});
+
+test("a missing secondary recording has no unusable Listen button beside a supported primary", async ({page}) => {
+  await mount(page, {selection: {manualRecordingIds: [SECOND, "not-in-bank"]}});
+  await expect(controls(page).getByRole("button", {name: "Listen to coach", exact: true})).toBeVisible();
+  await expect(controls(page).getByRole("button", {name: `Listen to ${SECOND}`, exact: true})).toBeVisible();
+  await expect(controls(page).getByRole("button", {name: "Listen to not-in-bank", exact: true})).toHaveCount(0);
+  await controls(page).getByRole("button", {name: `Listen to ${SECOND}`, exact: true}).click();
+  await speaking(page, SECOND);
+});
+
+test("switching between Walter and Rivet stops the old voice and uses the selected coach's own recording", async ({page}) => {
+  const fixture = await mount(page);
+  await speak(page);
+  await speaking(page);
+  expect((await state(page)).observedCoach).toBe("classic");
+  const rivet = await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.bank("robot"));
+  expect(rivet.length).toBeGreaterThan(0);
+  const recording = rivet.find(record => record.id === FIRST) ?? rivet[0];
+  await page.evaluate(() => (window as unknown as SpeechWindow).coachSpeechHarness.coach({coach_id: "robot"}));
+  await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
+  await expect(controls(page).getByRole("button", {name: "Listen to coach", exact: true})).toHaveCount(0);
+  await update(page, {utteranceCoach: "robot", recordingId: recording.id});
+  await tick(page, 500);
+  expect(await starts(page)).toBe(1);
+  await speak(page);
+  await speaking(page, recording.id, 2);
+  expect((await state(page)).observedCoach).toBe("robot");
+  expect((await state(page)).portrait).toBe(recording.id);
+  expect(fixture.assets.at(-1)).toBe(new URL(recording.url, page.url()).href);
+  await update(page, {recordingId: "not-in-bank"});
+  await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
+  await expect(controls(page).getByRole("button", {name: "Listen to coach", exact: true})).toHaveCount(0);
+  await page.evaluate(id => (window as unknown as SpeechWindow).coachSpeechHarness.play(id), FIRST);
+  expect(await starts(page)).toBe(2);
+});
+
+test("a failed explicit insight does not revive the automatic response it replaced", async ({page}) => {
+  const games = semanticFixtures<Record<string, Game>>("review_human_fixtures.py");
+  const game = Object.values(games).find(value => value.frames[1].report?.practical?.interpretations?.includes("natural_best"))!;
+  const fixture = await mount(page, {game, failFirstAsset: true});
+  await page.locator(".human-insight-trigger").click();
+  await update(page, {automaticEventId: "navigate:failed-manual"});
+  await tick(page, 100);
+  const failure = page.waitForResponse(response => response.url().includes("human-") && response.status() === 404);
+  const listen = page.getByRole("dialog").getByRole("button", {name: "Listen to human-move insight", exact: true});
+  await listen.click();
+  await (await failure).finished();
+  await tick(page, 500);
+  expect(await starts(page)).toBe(0);
+  expect(fixture.assets).toHaveLength(1);
+  await listen.click();
+  await expect.poll(() => starts(page)).toBe(1);
+  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^human-/);
+  expect(fixture.assets).toHaveLength(2);
 });

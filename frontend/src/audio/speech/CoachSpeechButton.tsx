@@ -5,7 +5,7 @@ import type { CoachSpeechPresentation } from './useCoachSpeech';
 export default function CoachSpeechButton({ voice, recordingId, label = 'Listen to coach' }: {
   voice: CoachSpeechPresentation; recordingId?: string; label?: string;
 }) {
-  if (!voice.available) return null;
+  if (!voice.canPlay(recordingId)) return null;
   const active = voice.playing && (!recordingId || voice.activeRecordingId === recordingId);
   return <IconButton size="compact" variant="quiet" className="coach-voice-button"
     aria-label={active ? 'Stop coach voice' : label}

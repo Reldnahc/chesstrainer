@@ -4,7 +4,12 @@ import PreferenceStatus from "../PreferenceStatus";
 import SettingsSection from "../SettingsSection";
 import { useAudioPreferences, useAudioScope } from "./AudioProvider";
 import type { AudioPreferences } from "./model";
+import { selectableCoaches } from "../coach/registry";
+import { hasCoachVoice } from "./speech/voiceBank";
 import "./settings.css";
+
+const recordedCoaches = new Intl.ListFormat("en", {type: "conjunction"})
+  .format(selectableCoaches.filter(coach => hasCoachVoice(coach.id)).map(coach => coach.name));
 
 export default function AudioSettings() {
   const {preferences, ready, saving, error, save, retry, muted, setMuted} = useAudioPreferences();
@@ -61,7 +66,7 @@ export default function AudioSettings() {
           <option value="manual">On request</option>
           <option value="off">Off</option>
         </select>
-        <p className="small muted" id="coach-voice-help">Walter has a recorded voice. Automatic reads supported coaching; On request plays it when you choose Listen. Other coaches remain text-only.</p>
+        <p className="small muted" id="coach-voice-help">Recorded voices: {recordedCoaches || "none installed"}. Automatic reads supported coaching; On request plays it when you choose Listen. Other coaches remain text-only.</p>
       </div>
       <div className="button-row audio-setting-preview">
         <Button variant="secondary" disabled={disabled || !preferences.enabled || volume === 0 || muted || (!preferences.board && !preferences.practice)}

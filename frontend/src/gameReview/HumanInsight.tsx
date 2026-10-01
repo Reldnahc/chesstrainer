@@ -6,26 +6,27 @@ import {useDialogue} from "../dialogue/useDialogue";
 import DialogueText from "../dialogue/DialogueText";
 import {IconButton} from "../Button";
 import type {Report} from "./types";
-import {selectWalterGameRecording, type WalterGameSpeechContext} from "../audio/speech/gameSelection";
+import {selectGameRecording, type GameSpeechContext} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import CoachSpeechButton from "../audio/speech/CoachSpeechButton";
 
-export default function HumanInsight({intent, report, speechContext, speechScopeKey}: {
+export default function HumanInsight({intent, report, speechContext, speechScopeKey, onManualSpeech}: {
   intent: DialogueIntent;
   report: Report;
-  speechContext: Omit<WalterGameSpeechContext, "intent" | "utterance" | "surface" | "claimIndex">;
+  speechContext: Omit<GameSpeechContext, "intent" | "utterance" | "surface" | "claimIndex">;
   speechScopeKey: string;
+  onManualSpeech?: () => void;
 }) {
   const id = useId();
   const [visible, setVisible] = useState(false);
   const spokenIntent = humanInsightIntent(intent), items = spokenIntent.claims;
   const utterance = useDialogue(spokenIntent);
-  const recordingId = visible ? selectWalterGameRecording({...speechContext, intent: spokenIntent,
+  const recordingId = visible ? selectGameRecording({...speechContext, intent: spokenIntent,
     utterance, surface: "human-insight"}) : null;
   // Opening the insight never starts narration. A visible, explicit press owns
   // it; closing or replacing the popover invalidates any pending recording.
   const voice = useCoachSpeech({scopeKey: speechScopeKey, recordingId, utterance,
-    ready: visible && !speechContext.pending && !speechContext.error});
+    ready: visible && !speechContext.pending && !speechContext.error, onManualRequest: onManualSpeech});
   if (!items.length) return null;
   const label = humanInsightLabels[items[0].code], {name, note, url} = humanSourceNotes(report);
   return <>

@@ -1,6 +1,8 @@
 import {test as base, expect, type Page} from '@playwright/test';
 import type {AudioPreferences} from '../src/audio/model';
 import {audioCues, captureAudio, clearAudio} from './helpers/audio';
+import voiceRegistry from '../src/audio/speech/banks/registry.json' with {type: 'json'};
+import {selectableCoaches} from '../src/coach/registry';
 
 const preferencePath = '/api/preferences/audio';
 const defaults: AudioPreferences = {enabled: true, volume: .35, board: true, practice: true, voice: 'automatic'};
@@ -36,6 +38,10 @@ test('sound choices save independently, survive reload and keep a usable narrow 
   await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
   await expect(sound.getByRole('checkbox')).toHaveCount(3);
   await expect(sound.getByRole('combobox', {name: 'Coach voice', exact: true})).toHaveValue('automatic');
+  const voicedIds = new Set(voiceRegistry.banks.map(bank => bank.coachId));
+  const names = new Intl.ListFormat('en', {type: 'conjunction'})
+    .format(selectableCoaches.filter(coach => voicedIds.has(coach.id)).map(coach => coach.name));
+  await expect(sound.locator('#coach-voice-help')).toContainText(`Recorded voices: ${names}.`);
   await savedChange(page, () => sound.getByRole('combobox', {name: 'Coach voice', exact: true}).selectOption('manual'));
   await savedChange(page, () => sound.getByRole('checkbox', {name: /^Board moves/}).uncheck());
   await savedChange(page, () => volume.press('End'));
