@@ -3,6 +3,7 @@ import { ArtworkSvg, BodyRig, HeadRig } from "../ArtworkRig";
 import type { CoachArtworkProps } from "../model";
 import ClassicCoach from "../classic/ClassicCoach";
 import HumanFeatures from "../human/HumanFeatures";
+import HumanSpeechMouth from "../human/HumanSpeechMouth";
 import Arm from "../human/Arm";
 import { poses, handPoses } from "../human/poses";
 import ManHair, { type ManLook } from "./ManHair";
@@ -21,6 +22,7 @@ const palettes = {
     shirt: "#e4d5b5",
     nose: "#754732",
     mouth: "#512f29",
+    speech: { cavity: "#3b211d", lip: "#a86f58", tongue: "#b86f68" },
   },
   expert: {
     skin: "#d9ae89",
@@ -32,6 +34,7 @@ const palettes = {
     shirt: "#c9d6cc",
     nose: "#b28263",
     mouth: "#75473e",
+    speech: { cavity: "#653c36", lip: "#c08a76", tongue: "#ce9182" },
   },
   partner: {
     skin: "#bf895e",
@@ -43,6 +46,7 @@ const palettes = {
     shirt: "#e8ca95",
     nose: "#96603f",
     mouth: "#694039",
+    speech: { cavity: "#55322d", lip: "#b57c63", tongue: "#c4847b" },
   },
 };
 
@@ -140,22 +144,30 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
           <ManHair look={look} />
           {look === "host" && (
             <g fill={color.hair}>
-              <path d="M17 49 23 54l2 9q15 10 30 0l2-9 6-5v4q-2 20-23 21-21-1-23-21Z" />
+              <g className="human-speech-jaw">
+                <path d="M17 49 23 54l2 9q15 10 30 0l2-9 6-5v4q-2 20-23 21-21-1-23-21Z" />
+              </g>
               <path d="M29 54q6-4 11 0 5-4 11 0l-1 3q-6-1-10-2-4 1-10 2Z" />
             </g>
           )}
           {look === "expert" && (
-            <path
-              d="m23 48 4 1m26 0 4-1M28 65q12 8 24 0"
+            <g
               fill="none"
               stroke={color.shade}
               strokeWidth=".9"
               strokeLinecap="round"
-            />
+            >
+              <path d="m23 48 4 1m26 0 4-1" />
+              <g className="human-speech-jaw">
+                <path d="M28 65q12 8 24 0" />
+              </g>
+            </g>
           )}
           {look === "partner" && (
             <g fill={color.hair}>
-              <path d="M18 48 23 51l3 12 6 4q8 4 16 0l6-4 3-12 5-3v3Q60 72 40 76 20 72 18 51Z" />
+              <g className="human-speech-jaw">
+                <path d="M18 48 23 51l3 12 6 4q8 4 16 0l6-4 3-12 5-3v3Q60 72 40 76 20 72 18 51Z" />
+              </g>
               <path d="M29 55q3-5 11-2 8-3 11 2l-2 3q-6-3-9-3-3 0-9 3Z" />
             </g>
           )}
@@ -166,6 +178,8 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
             noseColor={color.nose}
             mouthColor={color.mouth}
             glasses={false}
+            mouth={<HumanSpeechMouth pose={pose} expression={expression}
+              mouthColor={color.mouth} palette={color.speech} />}
           />
         </HeadRig>
         <Arm

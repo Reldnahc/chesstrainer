@@ -3,6 +3,7 @@ import { ArtworkSvg, BodyRig, HeadRig } from "../ArtworkRig";
 import { useEyeClosure } from "../CoachFaceContext";
 import type { CoachArtworkProps } from "../model";
 import HumanFeatures from "../human/HumanFeatures";
+import HumanSpeechMouth from "../human/HumanSpeechMouth";
 import Arm from "../human/Arm";
 import { poses, handPoses, type Pose } from "../human/poses";
 import WomanHair, { type WomanLook } from "./WomanHair";
@@ -18,6 +19,7 @@ const palettes = {
     sleeve: "#326c69",
     cuff: "#bad1bd",
     hair: "#654033",
+    speech: { cavity: "#653c36", lip: "#c58874", tongue: "#ce9182" },
   },
   analyst: {
     skin: "#aa7052",
@@ -26,6 +28,7 @@ const palettes = {
     sleeve: "#b29f80",
     cuff: "#ece0bd",
     hair: "#30272b",
+    speech: { cavity: "#593430", lip: "#a06856", tongue: "#bf7f76" },
   },
   spark: {
     skin: "#eac09c",
@@ -34,6 +37,7 @@ const palettes = {
     sleeve: "#834e5c",
     cuff: "#d6ac98",
     hair: "#322b3a",
+    speech: { cavity: "#653c36", lip: "#d2917f", tongue: "#d3958a" },
   },
   blonde: {
     skin: "#eac5a5",
@@ -42,8 +46,12 @@ const palettes = {
     sleeve: "#608396",
     cuff: "#c4d9da",
     hair: "#a7864c",
+    speech: { cavity: "#653c36", lip: "#d09682", tongue: "#d3958a" },
   },
 };
+
+// HumanFeatures' shared lip color, named so the authored and speaking mouths agree.
+const womanMouthColor = "#75473e";
 
 export default function WomanCoach({ expression, family }: CoachArtworkProps) {
   const look: WomanLook =
@@ -135,6 +143,8 @@ export default function WomanCoach({ expression, family }: CoachArtworkProps) {
             expression={expression}
             browColor={color.hair}
             glasses={look === "analyst"}
+            mouth={<HumanSpeechMouth pose={pose} expression={expression}
+              mouthColor={womanMouthColor} palette={color.speech} />}
           />
           {!closedEyes && (
             <path

@@ -60,14 +60,40 @@ test("mouth inspection preserves selected coach and expression across views and 
   await expect(page.locator(".studio-concepts .coach-avatar").first()).toHaveAttribute("data-expression", "brilliant");
 });
 
-test("unsupported coaches retain original artwork instead of pretending to speak", async ({ page }) => {
-  await page.goto("/?coach=man-host&expression=neutral&view=speech");
-  await expect(page.getByRole("status").filter({ hasText: "does not have a speaking rig" })).toBeVisible();
-  const avatars = page.getByLabel("Held mouth shapes").locator(".coach-avatar");
-  await expect(avatars).toHaveCount(9);
-  for (const avatar of await avatars.all()) {
-    await expect(avatar).toHaveAttribute("data-speaking", "false");
-    await expect(avatar).not.toHaveAttribute("data-mouth-shape");
+test("the other human coaches hold every shape through the shared human mouth", async ({ page }, info) => {
+  for (const [coachId, family] of [["man-host", "host"], ["woman-analyst", "analyst"], ["human-girl", "human-girl"]] as const) {
+    await page.goto(`/?coach=${coachId}&expression=explaining&view=speech`);
+    await expect(page.getByRole("status").filter({ hasText: "does not have a speaking rig" })).toHaveCount(0);
+    const grid = page.getByLabel("Held mouth shapes");
+    const avatars = grid.locator(".coach-avatar");
+    await expect(avatars).toHaveCount(9);
+    for (const [shape, pose] of Object.entries(speechMouthPoses)) {
+      const avatar = grid.locator(`[data-shape="${shape}"] .coach-avatar`);
+      await expect(avatar).toHaveAttribute("data-coach", coachId);
+      await expect(avatar).toHaveAttribute("data-family", family);
+      await expect(avatar).toHaveAttribute("data-speaking", "true");
+      await expect(avatar).toHaveAttribute("data-mouth-shape", shape);
+      const mouth = await avatar.evaluate((element) => {
+        const live = element.querySelector<SVGGElement>(".human-speech-mouth > .speech-mouth-live")!;
+        const authored = element.querySelector<SVGGElement>(".human-speech-mouth > .speech-mouth-authored")!;
+        const opening = live.querySelector<SVGGElement>(".organic-speech-opening")!;
+        return {
+          liveDisplay: getComputedStyle(live).display,
+          authoredDisplay: getComputedStyle(authored).display,
+          opening: Number(getComputedStyle(opening).opacity),
+          open: Number((element as HTMLElement).style.getPropertyValue("--speech-open")),
+        };
+      });
+      expect(mouth.liveDisplay, `${coachId} ${shape}`).not.toBe("none");
+      expect(mouth.authoredDisplay).toBe("none");
+      expect(mouth.opening).toBe(pose.open > 0 ? 1 : 0);
+      expect(mouth.open).toBe(pose.open);
+    }
+    const authored = page.locator(".speech-authored-reference .coach-avatar");
+    await expect(authored).toHaveAttribute("data-speaking", "false");
+    await expect(authored.locator(".human-speech-mouth > .speech-mouth-authored .coach-mouth")).toBeVisible();
+    await expect(authored.locator(".human-speech-mouth > .speech-mouth-live")).not.toBeVisible();
+    await grid.screenshot({ path: `studio-test-results/mouth-shapes-${coachId}-${info.project.name}.png` });
   }
 });
 

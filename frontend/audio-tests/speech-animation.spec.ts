@@ -27,11 +27,13 @@ test('speech artwork is an explicit capability with a safe static fallback', asy
     };
   }, viteFsPath(path.resolve('.')));
   expect(capabilities).toEqual({
-    enabled: ['classic', 'dog-gentle', 'dog-corgi', 'dog-collie', 'dog-puppy',
+    enabled: ['classic', 'man-host', 'man-expert', 'man-partner', 'woman-captain', 'woman-analyst',
+      'woman-spark', 'woman-blonde', 'human-boy', 'human-girl', 'dog-gentle', 'dog-corgi', 'dog-collie', 'dog-puppy',
       'cat-tuxedo', 'cat-black', 'cat-kitten', 'gorilla', 'raccoon', 'frog', 'capybara',
       'unicorn', 'wizard', 'dragon', 'ghost', 'alien', 'robot', 'slime', 'mushroom', 'living-pawn'].sort(),
-    disabled: ['man-host', 'man-expert', 'man-partner', 'woman-captain', 'woman-analyst',
-      'woman-spark', 'woman-blonde', 'human-boy', 'human-girl'].sort(),
+    // Every selectable coach now has a speaking rig; the opt-in/fallback rules
+    // below still protect a future character that has not implemented one.
+    disabled: [],
     fallback: false, optIn: true, familyOverride: false,
   });
 });
