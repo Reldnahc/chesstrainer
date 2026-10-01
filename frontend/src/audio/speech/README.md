@@ -1,8 +1,9 @@
 # Walter voice audition
 
 This is a development-only comparison of prerecorded voices for Walter
-(`classic`), including an original Voice Design experiment. No voice has been
-selected for production. The application does not
+(`classic`), including an original Voice Design experiment. The owner selected
+**Older teacher** as Walter's voice direction. That remix is still a preview,
+not yet a saved refined voice or a production recording pack. The application does not
 automatically speak, call a speech provider, or require an API key.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
@@ -22,6 +23,9 @@ PC's firewall on the private network if needed. The normal `dev:audio` command
 remains accessible only on the PC itself.
 
 ## Recording set
+
+The source-audited [Walter dialogue inventory](#walter-dialogue-inventory)
+below plans the next pack. Its draft scripts are not generation authorization.
 
 | Candidate | ElevenLabs voice | Provider voice ID |
 | --- | --- | --- |
@@ -232,3 +236,157 @@ builds, tests and studio playback never run the authoring command.
 Verify the CLI offline with `node --test scripts/record_coach_speech.test.mjs`.
 Auditory quality remains an owner listening decision: decoding, tests and
 measurements cannot choose Walter's personality or establish natural delivery.
+
+## Walter dialogue inventory
+
+This planning audit replaces the earlier unsupported 80–120 estimate. It is
+based on the repository at `839da3e`, including the actual selectable Walter
+(`classic`, `storyteller-4`), rather than the separate Professor character.
+The owner selected **Older teacher**. No further audio or saved-voice request
+was made for this audit.
+
+[walter-dialogue-inventory.json](walter-dialogue-inventory.json) contains every
+draft spoken sentence, stable recording ID, claim code, source reference,
+eligibility condition and primary/secondary status. It is deliberately a
+planning inventory, **not** an executable ElevenLabs recording plan.
+
+### Exact scope and counts
+
+The design uses one whole recording per supported teaching meaning. It retains
+the existing agreement that exact moves, squares, opening names, evaluations
+and historical counts stay in writing. It does not read every bubble verbatim,
+stitch individual words, invent reasons from ratings or multiply recordings for
+White/Black when a complete side-neutral sentence is sufficient.
+
+| Family | Can lead the main bubble | Secondary only | Complete bank |
+| --- | ---: | ---: | ---: |
+| Tactical mechanisms and mover-caused errors | 31 | 2 | 33 |
+| Positional explanations | 12 | 12 | 24 |
+| Objective consequences, resources and game endings | 12 | 2 | 14 |
+| Human-model insights | 4 | 3 | 7 |
+| Opening and clock context | 5 | 0 | 5 |
+| Relationships within/between games | 7 | 2 | 9 |
+| **Total recordings** | **71** | **21** | **92** |
+
+The **71** primary scripts contain **1,227 words / 7,182 characters**. The full
+**92** contain **1,619 words / 9,522 characters**. These totals count spoken
+strings only, not labels, metadata or alternative takes. They are not a provider
+price quote or a duration measurement. One performance per script is planned;
+additional wordings for repetition control are optional, not coverage necessities.
+
+These are counts of this explicit summary catalogue, not a universal minimum
+across every conceivable writing approach. Primary eligibility is established
+by source analysis and checked with focused synthetic rendering probes; it is
+not a measured percentage of real games or an end-to-end speech test.
+
+### Tactical coverage: 31 primary recordings
+
+| Verified mechanism | Played | Allowed | Missed |
+| --- | --- | --- | --- |
+| Fork | Required | Required | Required |
+| Pin | Required | Required | Required |
+| Skewer | Required | Required | Required |
+| Removing a defender by capture | Required | Required | Required |
+| Back-rank mate | Required | Deferred | Deferred |
+| Promotion | Required | Required | Required |
+| Discovered attack | Required | Required | Required |
+| Double attack | Required | Required | Required |
+| Deflection | Required | Required | Required |
+| Undefended capture | Required | Not emitted under this name | Required |
+| Hanging piece | Not emitted under this name | Required | Not emitted under this name |
+
+That is **28** primary tactical recordings, plus **three** distinct mover-caused
+explanations: abandoned defender, unanswered preceding threat and unfavorable
+capture/recapture. The mover causes are never narrated as opponent-executed
+tactics. All tactical scripts refer to a continuation; the witness can be later
+than the currently displayed board. They do not promise a material win merely
+because a motif was recognized.
+
+Allowed/missed back-rank mate recordings are deferred because the forced-mate
+claim outranks them for coherent engine scores and continuations. This particular
+exclusion relies on that score/line consistency; an inconsistent synthetic report
+can bypass it. Broader taxonomy labels do not justify more scripts: trapped-piece
+and relative-pin defense probes exist in classification, but the present game
+review line producer does not call those probes.
+
+### Positional coverage: 12 primary recordings
+
+Development; open rook file; semi-open rook file; passed pawn; advancing an
+already-passed pawn; isolated pawn; added piece support; lost support; new king
+flight square; castling; bishop-pair loss; doubled pawns.
+
+There are 11 claim codes, but open and semi-open files need different explanations.
+Every meaning has a separate hypothetical script, making **24** in the complete
+bank. All **12 hypothetical versions are deferred**: gameIntent includes them
+only for poor moves, whose evaluation loss, mate or stronger consequence necessarily
+leads the bubble. They can still appear as its second written claim.
+
+These recordings make no ownership or strategic-value claim. The written bubble
+identifies the affected side/piece and the selector must validate them against
+the source event. “Undefended” does not mean lost; a passer advance proves the
+pawn was passed before the move; a doubled-pawn event can remove one doubled file
+while leaving another. The scripts preserve those distinctions.
+
+### Remaining primary coverage: 28 recordings
+
+- **Nine objective explanations:** forced mate allowed, forced mate missed,
+  sound sacrifice, only playable move found, only advantage-preserving move
+  found, immediate capture in reply, evaluation loss, the supported Best
+  fallback, and Good. Grade names alone do not trigger recordings.
+- **Three endings:** finishing checkmate, being checkmated and automatic draw.
+  Checkmate requires the actual board outcome, not merely a recorded result or
+  a winning/losing portrait. Finishing and losing retain different teaching
+  responses rather than duplicate delivery takes.
+- **Four human insights:** unusual but strong, hard find, natural best move,
+  natural strong move. Scripts describe model evidence; no calibrated success
+  percentages or claims to know what the learner was thinking.
+- **Two opening observations:** recognized book move and first departure from
+  the recognized book. `book` and `book_sound` share one recognition recording;
+  recognition never becomes a blanket claim that the move is objectively good.
+- **Three clock observations:** little recorded time remaining, quick move with
+  time available, and a long recorded think. No claim that time caused an error.
+- **Seven game relationships:** recovery, recovery helped by opponent errors,
+  opportunity used, opportunity missed, support restored, gradual deterioration
+  and advantage converted. They require the saved learner's supported mainline
+  context; variations cannot inherit them.
+
+The seven other deferred files cover a checking reply, stronger alternative,
+natural mistake, difficult defense missed, difficult defense found, repeated
+issue in this game and recurrence in saved history. Each has a stronger primary
+claim whenever its production conditions hold. The three deferred human lines
+could be primary in the existing human-insight popover, but opening/narrating
+that surface needs an explicit policy; rendering a hidden popover must not speak.
+
+### What these totals do not cover
+
+The complete template partition reconciles without omissions:
+
+- **64** named template codes exist; **55** can be emitted in game/variation mode.
+- **52** structured game codes map to the inventory. `thinking`, `unavailable`
+  and unrestricted `compatibility` account for the other three game-mode codes.
+- The remaining **nine** are five practice-only codes, two freeform explanation
+  codes and two template-only codes with no current production emitter
+  (`uncertain_reason` and `variation`). A branch uses ordinary game claims.
+
+SRS feedback, Show why, opening recall, lessons, full-game lesson exploration,
+puzzle instructions and opening-preview guidance have all been inspected. They
+are explicitly separate surfaces, not hidden additions to the count. Several
+bypass the semantic renderer or contain arbitrary authored/server text. Full
+lesson narration would require its own course-version inventory; exact narration
+of arbitrary PGN commentary cannot be covered by a fixed finite library. Cold
+practice must retain its existing answer-hiding boundary.
+
+### Proposed next step
+
+Review the **71-script primary pack** before generation. It covers every identified
+primary-capable meaning under the existing pilot scope, without paying for 21
+clips that policy cannot select. The extra 21 are already drafted if the owner
+chooses to narrate subordinate claims or explicit human-insight playback later.
+No broader narration policy is approved by this inventory.
+
+Before a paid batch, save the selected Older teacher refinement, check that its
+production TTS delivery matches the preview, and audition contrasting lines.
+The existing recorder caps plans at 20 requests, so a 71-file pack needs at least
+four bounded batches. Do not relax that safety limit or issue the requests from
+this document. Scripts, delivery, repetition policy and production integration
+still require their own quality review.

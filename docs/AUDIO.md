@@ -175,7 +175,9 @@ API key, model download or runtime synthesis. Production cost belongs to creatin
 the recordings, not to the people playing them. First select the coach and voice,
 then audition a small set before expanding coverage or adding production controls.
 The owner selected Walter (`classic`) and authorized a small paid ElevenLabs
-audition. No final voice or production automatic-speech policy has been selected.
+audition, then chose the **Older teacher** remix as Walter's voice direction.
+The refined preview has not yet been saved as a permanent voice, and production
+automatic speech is not enabled.
 
 The existing audio studio now compares Bill, George and Brian reading the same
 four full teaching examples: a difficult defense, abandoning a defender, allowing
@@ -212,7 +214,42 @@ The owner requested one example per prompt, so it now compares Older teacher
 collections follow the same representative-sample policy. Exact requests and
 asset provenance remain in `mentor-previews.json` and `older-teacher-preview.json`.
 Earlier alternatives remain archived; no remix has been saved over the baseline.
-This authoring choice does not enable production narration or finalize the voice.
+This authoring choice does not enable production narration. The later owner
+selection of Older teacher is recorded in the dialogue inventory below.
+
+### Walter dialogue inventory (planning, not implementation)
+
+The audit at `839da3e` traced all **64** dialogue template codes, production intent
+builders, current game-review motif producers and the actual Walter renderer
+(`classic` → `storyteller-4`). **55** codes can be emitted in game/variation mode;
+excluding transient/legacy text leaves **52** structured game claim codes.
+
+The [complete draft inventory](../frontend/src/audio/speech/walter-dialogue-inventory.json)
+has **71 primary-capable recordings** and **21 additional secondary-only recordings**:
+**92** distinct summary scripts in total, with one performance per script. This
+is an exact count of the documented summary design, not a claim that every
+possible dynamic bubble has a finite verbatim recording or that this many files
+guarantee pleasant repetition. Alternate wording/takes are separate editorial
+choices and are not silently added to the count. The
+[human-readable breakdown](../frontend/src/audio/speech/README.md#walter-dialogue-inventory)
+lists each family and explains the exclusions.
+
+The proposed selection policy would speak only the first successfully rendered
+primary claim, not both bubble claims or an unopened human-insight popover. All
+12 hypothetical positional recordings, two mate-shadowed back-rank recordings,
+and seven other subordinate meanings are therefore deferred. The proposed next
+production scope is the 71-recording main-bubble pack; broad app-wide narration
+has not been approved. Lessons, SRS, puzzle instructions and Show why are audited
+separately in the inventory and are not disguised as covered by these totals.
+
+No speech selector has been implemented. It must retain the selected claim's
+identity/scope, validate supporting facts, and inspect actual current-position
+readiness. `autoSpeakSuitable` is insufficient by itself; `PositionCoach`'s
+current `pending` input includes `!!actor`, so using it directly would silence
+ordinary reviewed moves. Human popovers need an explicit surface policy, and
+mate clips must use the board's checkmate/result facts, not portrait expression.
+The inventory records these implementation prerequisites without changing the
+existing dialogue, analysis or audio behavior.
 
 The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
 the selected model, settings, exact scripts, media terms and reproducible authoring

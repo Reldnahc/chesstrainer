@@ -1,0 +1,1975 @@
+{
+  "schemaVersion": 1,
+  "kind": "walter-dialogue-planning-inventory",
+  "status": "draft-not-approved-for-generation",
+  "auditedCommit": "839da3e",
+  "coach": {
+    "id": "classic",
+    "personality": "storyteller",
+    "selectedPreview": "older-teacher-1",
+    "generatedPreviewId": "Q5CWGTzNfIve6iWvrlM7",
+    "savedRefinedVoiceId": null
+  },
+  "definition": "One complete side-neutral recording per listed supported teaching meaning. Exact SAN, squares, scores, names and historical counts remain written. This is a finite summary plan, not verbatim coverage of every possible bubble or a claim that 71 is the only possible product design.",
+  "counts": {
+    "templateCodes": 64,
+    "gameVariationEmittedCodes": 55,
+    "coveredClaimCodes": 52,
+    "excludedTemplateCodes": 12,
+    "primary": {
+      "recordings": 71,
+      "characters": 7182,
+      "words": 1227
+    },
+    "secondary": {
+      "recordings": 21,
+      "characters": 2340,
+      "words": 392
+    },
+    "all": {
+      "recordings": 92,
+      "characters": 9522,
+      "words": 1619
+    },
+    "extraPerformanceTakes": 0
+  },
+  "selectionPolicy": {
+    "unit": "First successfully rendered claim in the current main bubble; not merely first input claim or highest raw priority.",
+    "sameVoice": "Use the selected Older teacher identity after saving that refinement and checking short production TTS samples; no voice save or generation performed in this audit.",
+    "scope": "Game review and variations only under current speech-pilot policy. Full-app narration is a separate scope, described in surfaces.",
+    "sourceProof": "Static source reachability with focused renderer checks, not a population coverage percentage or end-to-end speech validation.",
+    "variantPolicy": "One recording per written script. Alternate wording and delivery takes are optional editorial work, not implied by template permutations.",
+    "secondary": "21 scripts cover supported subordinate meanings; do not record or auto-play them under the primary-only policy without an explicit scope decision."
+  },
+  "gates": {
+    "common": [
+      "Use current visible Walter main-bubble utterance, matching coach/intent/position/evidence generation; known mover except explicit automatic board outcome.",
+      "Retain exact selected claim identity or a validated projection in the renderer. Trace code alone is ambiguous for repeated same-code claims; sourceIds may legitimately be empty for book, human, reply and terminal claims.",
+      "Validate original required slots and evidence even when details remain only in writing. Resolve positional/tactical event by exact source identity; do not infer scope or actors from prose, grades or expressions.",
+      "Require no current-position error or unresolved position request. Do not use PositionCoach input.pending directly: it includes !!actor and is true for ordinary reviewed moves. Background refinement alone should not mute a ready baseline.",
+      "autoSpeakSuitable is necessary policy metadata, not permission by itself. It can be true for unsupported freeform/legacy paths and hidden human popover utterances.",
+      "Reject stale results and cancel speech on navigation, coach changes, hide/unmount or mute. No backlog, hidden-popover speech, or replay caused by background updates.",
+      "Never fall through to a lower supported claim solely because the primary has no clip. Unknown/malformed/unmapped input stays silent."
+    ],
+    "positional": [
+      "All required claim slots must remain valid despite being omitted from the recording.",
+      "facts.side must be exactly white or black. If claim has side slot, it must agree. Validate event.actor against actual mover. No side inference from learner orientation.",
+      "position.line must agree with facts.line (actual -> actual; best -> alternative) and the selected actual/best move identity. Never infer actual scope from missing position metadata."
+    ],
+    "humanModel": "Only learner moves; human available/evidence_id nonempty; practical exists and matching human_evidence_id; human.mover matches mover; played and engine_best UCI match report; difficulty neither unknown nor forced. All model wording remains estimates rather than population truth; same script covers limited confidence.",
+    "recordedGameRelationships": "Actual game only, no branch; matching current node ply and intelligence.input_digest; learner move and node.actor=orientation; relationship last ply=current and actor=orientation. History supported only, related current ply. Backend needs valid searches/contiguous compatible nodes for sequence relationships; repeated scope observed reviewed plies.",
+    "terminal": "Terminal checkmate clips require the current board termination/result, independently of animation expression. A recorded PGN result alone does not establish checkmate."
+  },
+  "surfaces": [
+    {
+      "surface": "Game Review main bubble",
+      "path": "frontend/src/gameReview/PositionCoach.tsx",
+      "coverage": "71 primary-capable scripts; 21 further meanings only if a future policy includes secondary displayed claims."
+    },
+    {
+      "surface": "Explored game variations",
+      "path": "frontend/src/dialogue/gameIntent.ts",
+      "coverage": "Reuse applicable recordings; no original-game relationship/history or clock fabrication. No separate variation sentence required."
+    },
+    {
+      "surface": "Human-model popover",
+      "path": "frontend/src/gameReview/HumanInsight.tsx",
+      "coverage": "Seven existing human meanings: four reuse primary scripts, three are in the secondary set. An explicit narration action could use these; hidden render must not speak."
+    },
+    {
+      "surface": "Show why / saved explanation",
+      "path": "frontend/src/ReviewExplanation.tsx",
+      "coverage": "Dynamic board cues and annotated continuations require a separate structured spoken projection. No additional arbitrary-detail clips counted."
+    },
+    {
+      "surface": "SRS game recall",
+      "path": "frontend/src/dialogue/practiceIntent.ts",
+      "coverage": "Cold, retry/error, accepted/recovered and dynamic explanation feedback. Explicitly excluded from current speech policy; no answer hints before existing authorization gate."
+    },
+    {
+      "surface": "Opening recall",
+      "path": "frontend/src/srsReview/OpeningRecallPanel.tsx",
+      "coverage": "Curated-answer messages bypass game dialogue. Do not infer objective Best or reuse game truth from expression. Separate practice work."
+    },
+    {
+      "surface": "Lessons and illustrative games",
+      "path": "frontend/src/study/LessonPlayer.tsx",
+      "coverage": "Authored lesson text, feedback and historical-game annotations bypass semantic renderer. Course narration is a separate finite-content recording inventory per course revision, not included in game pack."
+    },
+    {
+      "surface": "Puzzles",
+      "path": "frontend/src/study/PuzzlePlayer.tsx",
+      "coverage": "Explicit puzzle-state messages bypass game dialogue; no installed production collections currently. Generic practice cues are separate from this evidence-summary pack."
+    },
+    {
+      "surface": "Opening line preview",
+      "path": "frontend/src/study/OpeningLinePreview.tsx",
+      "coverage": "Study setup/instruction copy, not analyzed move coaching; no game recordings."
+    },
+    {
+      "surface": "Developer studios/lab",
+      "path": "frontend/src/audio/studio/WalterAudition.tsx",
+      "coverage": "Audition/testing only, never an independent production narration trigger."
+    }
+  ],
+  "exclusions": [
+    {
+      "code": "thinking",
+      "disposition": "silent_transient",
+      "reason": "Pending/loading state; no chess teaching point. Never speak from stale retained report."
+    },
+    {
+      "code": "unavailable",
+      "disposition": "silent_transient",
+      "reason": "Engine/error state; visible status remains available."
+    },
+    {
+      "code": "compatibility",
+      "disposition": "silent_unstructured",
+      "reason": "No-report instructions or legacy freeform saved prose cannot select a supported finite summary."
+    },
+    {
+      "code": "explanation",
+      "disposition": "separate_unstructured_surface",
+      "reason": "Show why and authorized practice explanation use dynamic captions/annotations, not game semantic claim selection."
+    },
+    {
+      "code": "explanation_summary",
+      "disposition": "separate_unstructured_surface",
+      "reason": "Saved practice explanation summary is arbitrary verified prose."
+    },
+    {
+      "code": "cold",
+      "disposition": "separate_practice_scope",
+      "reason": "Practice adapter only; no automatic speech under current policy. Accepted/recovered detail is dynamic; cold must not leak answers."
+    },
+    {
+      "code": "practice_error",
+      "disposition": "separate_practice_scope",
+      "reason": "Practice adapter only; no automatic speech under current policy. Accepted/recovered detail is dynamic; cold must not leak answers."
+    },
+    {
+      "code": "retry",
+      "disposition": "separate_practice_scope",
+      "reason": "Practice adapter only; no automatic speech under current policy. Accepted/recovered detail is dynamic; cold must not leak answers."
+    },
+    {
+      "code": "recovered",
+      "disposition": "separate_practice_scope",
+      "reason": "Practice adapter only; no automatic speech under current policy. Accepted/recovered detail is dynamic; cold must not leak answers."
+    },
+    {
+      "code": "accepted",
+      "disposition": "separate_practice_scope",
+      "reason": "Practice adapter only; no automatic speech under current policy. Accepted/recovered detail is dynamic; cold must not leak answers."
+    },
+    {
+      "code": "uncertain_reason",
+      "disposition": "no_production_emitter",
+      "reason": "A template exists, but no current production intent builder emits this code. A variation uses the ordinary game claim codes."
+    },
+    {
+      "code": "variation",
+      "disposition": "no_production_emitter",
+      "reason": "A template exists, but no current production intent builder emits this code. A variation uses the ordinary game claim codes."
+    }
+  ],
+  "sourceGroups": {
+    "tactical": [
+      "backend/trainer/game_review.py:118-150",
+      "backend/trainer/review_intelligence/event_facts.py:92-188",
+      "backend/trainer/lichess_patterns.py:13-41",
+      "backend/trainer/tactical_patterns.py:12-45,82-120",
+      "backend/trainer/verified_patterns.py:16-100",
+      "backend/trainer/verified_motifs.py",
+      "backend/trainer/combination_patterns.py",
+      "backend/trainer/move_causes.py:9-126",
+      "backend/trainer/defensive_probes.py:42",
+      "backend/trainer/classification_stages.py:156-225",
+      "frontend/src/dialogue/eventClaims.ts:42-88",
+      "frontend/src/dialogue/gameIntent.ts:57-61",
+      "frontend/src/dialogue/neutral.ts:25",
+      "backend/tests/test_review_events.py:23-61,127-160",
+      "frontend/intelligence-tests/causal-dialogue.spec.ts:8-34",
+      "backend/tests/test_lichess_integration.py",
+      "backend/tests/test_patterns_v2.py",
+      "backend/tests/test_defensive_probes.py",
+      "docs/AUDIO.md"
+    ],
+    "positional": [
+      "docs/AUDIO.md:165",
+      "docs/AUDIO.md:248",
+      "frontend/src/dialogue/eventClaims.ts:12",
+      "frontend/src/dialogue/positionalTemplates.ts:5",
+      "frontend/src/dialogue/templates.ts:42",
+      "frontend/src/dialogue/gameIntent.ts:67",
+      "frontend/src/dialogue/neutral.ts:25",
+      "backend/trainer/review_intelligence/positional.py:47",
+      "backend/tests/test_review_positions.py:38",
+      "frontend/tests/dialogue-logic.spec.ts:30",
+      "frontend/tests/positional-claims.ts:5"
+    ]
+  },
+  "reachabilityNotes": [
+    "There are 11 general motif IDs across role restrictions: nine all-role motifs, hanging_piece allowed-only, missed_tactical_capture played/missed-only. Add three mover causes.",
+    "No separate recording is required for absolute pin subtypes, discovered check vs discovered capture, ordinary promotion vs underpromotion, or double check vs other two-piece attack when script stays at verified umbrella meaning.",
+    "Game review's pin emitters are absolute-pin rules. Relative-pin findings and trapped_piece are emitted by separate classification defensive probes, not game_review.line_evidence. They are outside current game speech.",
+    "Back_rank allowed/missed are emitted claim combinations, but coherent engine mate scores also produce priority100 allowed_mate/missed_mate. Thus those two tactic recordings are not selected under primary-only policy. Keep as explicit deferred rows, not required launch files. No frontend static guard prohibits synthetic inconsistent reports from displaying these; this is a production consistency deduction.",
+    "Generic played/missed capture motif names must use human-readable undefended capture, never literally missed tactical capture for played.",
+    "Recognition may identify a tactical shape without positive settled material delta; do not promise material gain, forced collection, or that all defenses fail.",
+    "The tactical claim's current detail field can be fork targets, settled material gain, first witnessed capture, or empty. These do not require additional scripts when the complete record says only the verified motif. More outcome-specific recordings are optional refinements.",
+    "gameIntent.ts:70 admits best-line positional claims only on poor reports; actual priority66 and alternative priority61 are assigned in eventClaims.ts:17.",
+    "Fresh generated poor reports come from cp loss>=50, allows_mate, mate_lost, or opportunity_missed (game_review.py:54-80). opportunity_missed itself requires objective poor (game_review.py:166-211).",
+    "For cp losses, gameIntent.ts:117-120 adds loss priority82 unless another claim already has priority>=78. Either way a positional claim cannot be primary.",
+    "For allows_mate/mate_lost, event_facts.py:24-39 emits a mate event, converted to priority100 in gameIntent.ts:55. The analysis IDs needed to emit it are the same IDs required for positional events (events.py:128-139).",
+    "Therefore every alternative positional script is deferred for current primary-only speech. It is a real displayed semantic branch and may appear as secondary text; it needs a recording only if selection policy changes. Actual positional meanings can be primary on nonpoor reports absent higher-ranked claims.",
+    "Source audit only; no new runtime scenario sweep or provider generation was performed.",
+    "Count 35 is unique complete scripts: book/book_sound share one; recovery help empty/nonempty requires two; mate win/loss intentionally keep different pedagogical responses, not merely duplicate delivery takes.",
+    "Seven secondary-only files are optional under present main-bubble-primary policy, not required today. HumanInsight separately renders a human claim as primary in its existing popover; would need explicit new playback trigger. The recognized-opening file also covers secondary-only book at no extra file cost.",
+    "Do not multiply clock by low/critical or model estimates by confidence/difficulty: common scripts retain exactly the current presented teaching point while quantities and qualifying provenance remain visible. Avoid using provider brand because human provider can differ.",
+    "Repeated/history share relationship-specific scripts across motifs. Current bubble retains exact motif/count; spoken purpose is recurrence, not re-teaching a tactic.",
+    "Critical-resource purpose is decisive_resource for best cp>150, so safer script says advantage, not proven/decisive win. Search scope remains explicit.",
+    "Backend events check, finish, evaluation_change and human_contrast are not directly mapped to extra claim codes by gameIntent. Outcome uses frame automatic_outcome; loss uses score comparison; human uses guarded practical facts.",
+    "No rating-only scripts, no assumption about frequency, no cross-product of labels/personas/sides, no paid/provider calls.",
+    "The two back-rank secondary exclusions rely on coherent searched mate scores and principal variations. The frontend alone can render synthetic inconsistent reports; such reports are not extra production recording needs.",
+    "There is no empirical frequency analysis or claim that the bank covers a measured percentage of games. Counts represent reviewed semantic paths, not all combinations of dynamic fields.",
+    "Dropping side ownership from positional summaries is deliberate, not permission to swap actors. The validated written explanation supplies identity; audio does not say you or assert a strategic benefit."
+  ],
+  "scripts": [
+    {
+      "id": "tactic-fork-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The idea is a fork in this continuation. One piece attacks several targets at once.",
+      "role": "played",
+      "motif": "fork",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=fork; actual non-poor line; tactic actor is mover.",
+      "notes": "one piece attacks several targets at once.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows a fork in the continuation. One opposing piece attacks several targets at once.",
+      "role": "allowed",
+      "motif": "fork",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=fork; actual poor-move line; tactic actor is opponent.",
+      "notes": "one piece attacks several targets at once.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-fork-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation had a fork. This move misses the chance for one piece to attack several targets at once.",
+      "role": "missed",
+      "motif": "fork",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=fork; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "one piece attacks several targets at once.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-pin-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation uses a pin. Moving the pinned piece off the line would expose its king.",
+      "role": "played",
+      "motif": "pin",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=pin; actual non-poor line; tactic actor is mover.",
+      "notes": "Moving the pinned piece off the line would expose its king.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows a pin in the continuation. Moving the pinned piece off the line would expose its king.",
+      "role": "allowed",
+      "motif": "pin",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=pin; actual poor-move line; tactic actor is opponent.",
+      "notes": "Moving the pinned piece off the line would expose its king.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-pin-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation used a pin. Moving the pinned piece off the line would expose its king.",
+      "role": "missed",
+      "motif": "pin",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=pin; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "Moving the pinned piece off the line would expose its king.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-skewer-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation uses a skewer. Moving the front piece exposes a piece behind it.",
+      "role": "played",
+      "motif": "skewer",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=skewer; actual non-poor line; tactic actor is mover.",
+      "notes": "Moving the front piece exposes a piece behind it.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows a skewer in the continuation. Moving the front piece exposes a piece behind it.",
+      "role": "allowed",
+      "motif": "skewer",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=skewer; actual poor-move line; tactic actor is opponent.",
+      "notes": "Moving the front piece exposes a piece behind it.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation had a skewer. Moving the front piece would expose a piece behind it.",
+      "role": "missed",
+      "motif": "skewer",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=skewer; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "Moving the front piece exposes a piece behind it.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation removes a defender by capture. Notice what loses protection when that defender disappears.",
+      "role": "played",
+      "motif": "removing_defender",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=removing_defender; actual non-poor line; tactic actor is mover.",
+      "notes": "A defender is captured, removing protection from its assigned piece or square.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows the other side to capture a defender in the continuation. Notice what loses protection when that defender disappears.",
+      "role": "allowed",
+      "motif": "removing_defender",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=removing_defender; actual poor-move line; tactic actor is opponent.",
+      "notes": "A defender is captured, removing protection from its assigned piece or square.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation captured a defender. That was the chance to remove protection from what it was guarding.",
+      "role": "missed",
+      "motif": "removing_defender",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=removing_defender; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "A defender is captured, removing protection from its assigned piece or square.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation ends in checkmate on the back rank. The king's own pieces take away escape squares.",
+      "role": "played",
+      "motif": "back_rank",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=back_rank; actual non-poor line; tactic actor is mover.",
+      "notes": "Checkmate on the back rank with own pieces blocking escape squares.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "secondary",
+      "text": "This move allows a back-rank checkmate in the continuation. The king's own pieces take away escape squares.",
+      "role": "allowed",
+      "motif": "back_rank",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=back_rank; actual poor-move line; tactic actor is opponent.",
+      "notes": "Checkmate on the back rank with own pieces blocking escape squares.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "secondary",
+      "text": "The stronger continuation ended in a back-rank checkmate. This move lets that finish go.",
+      "role": "missed",
+      "motif": "back_rank",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=back_rank; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "Checkmate on the back rank with own pieces blocking escape squares.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation includes a pawn promotion. Follow the pawn all the way to its last rank.",
+      "role": "played",
+      "motif": "promotion_awareness",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=promotion_awareness; actual non-poor line; tactic actor is mover.",
+      "notes": "A pawn promotes, with queen and underpromotion sharing a factual umbrella.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows the opposing pawn to promote in the continuation. Follow that pawn all the way to its last rank.",
+      "role": "allowed",
+      "motif": "promotion_awareness",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=promotion_awareness; actual poor-move line; tactic actor is opponent.",
+      "notes": "A pawn promotes, with queen and underpromotion sharing a factual umbrella.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation included a pawn promotion. This move misses that opportunity.",
+      "role": "missed",
+      "motif": "promotion_awareness",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=promotion_awareness; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "A pawn promotes, with queen and underpromotion sharing a factual umbrella.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation uses a discovered attack. Moving one piece opens an attacking line for another.",
+      "role": "played",
+      "motif": "discovered_attack",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=discovered_attack; actual non-poor line; tactic actor is mover.",
+      "notes": "Moving a blocker uncovers an attack or check from another piece.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows a discovered attack in the continuation. Moving one opposing piece opens an attacking line for another.",
+      "role": "allowed",
+      "motif": "discovered_attack",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=discovered_attack; actual poor-move line; tactic actor is opponent.",
+      "notes": "Moving a blocker uncovers an attack or check from another piece.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation used a discovered attack. Moving one piece would open an attacking line for another.",
+      "role": "missed",
+      "motif": "discovered_attack",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=discovered_attack; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "Moving a blocker uncovers an attack or check from another piece.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation creates two attacks at once. Watch how the two attacking pieces work together.",
+      "role": "played",
+      "motif": "double_attack",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=double_attack; actual non-poor line; tactic actor is mover.",
+      "notes": "Both double check and two-piece attack are admitted; never assume distinct targets.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows two attacks at once in the continuation. Watch how the two attacking pieces work together.",
+      "role": "allowed",
+      "motif": "double_attack",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=double_attack; actual poor-move line; tactic actor is opponent.",
+      "notes": "Both double check and two-piece attack are admitted; never assume distinct targets.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation created two attacks at once. This move misses that chance to combine the threats.",
+      "role": "missed",
+      "motif": "double_attack",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=double_attack; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "Both double check and two-piece attack are admitted; never assume distinct targets.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-deflection-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation uses a deflection. A defender is drawn away, opening a tactical opportunity.",
+      "role": "played",
+      "motif": "deflection",
+      "conditions": "Primary displayed tactic_played claim with matching event id, nonempty evidence, event.facts.motif=deflection; actual non-poor line; tactic actor is mover.",
+      "notes": "Defender displacement creates a tactical opportunity. Promotion witnesses do not establish that the defender previously controlled the same square it no longer controls; do not promise that stronger mechanism.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92",
+        "backend/trainer/_vendor/lichess_puzzler/cook.py:425"
+      ]
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows a deflection in the continuation. An opposing move draws a defender away, opening a tactical opportunity.",
+      "role": "allowed",
+      "motif": "deflection",
+      "conditions": "Primary displayed tactic_allowed claim with matching event id, nonempty evidence, event.facts.motif=deflection; actual poor-move line; tactic actor is opponent.",
+      "notes": "Defender displacement creates a tactical opportunity. Promotion witnesses do not establish that the defender previously controlled the same square it no longer controls; do not promise that stronger mechanism.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92",
+        "backend/trainer/_vendor/lichess_puzzler/cook.py:425"
+      ]
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation used a deflection. Drawing a defender away would open a tactical opportunity.",
+      "role": "missed",
+      "motif": "deflection",
+      "conditions": "Primary displayed tactic_missed claim with matching event id, nonempty evidence, event.facts.motif=deflection; distinct best line after a poor move; tactic actor is mover.",
+      "notes": "Defender displacement creates a tactical opportunity. Promotion witnesses do not establish that the defender previously controlled the same square it no longer controls; do not promise that stronger mechanism.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92",
+        "backend/trainer/_vendor/lichess_puzzler/cook.py:425"
+      ]
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_played"
+      ],
+      "status": "primary",
+      "text": "The continuation captures an undefended piece. Keep an eye on loose pieces; they can offer a straightforward opportunity.",
+      "role": "played",
+      "motif": "missed_tactical_capture",
+      "conditions": "Primary tactic_played claim; actual non-poor line; mover captures an undefended non-pawn piece in the witnessed continuation.",
+      "notes": "The name missed_tactical_capture is a taxonomy label, not a statement this capture was missed when role=played.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_missed"
+      ],
+      "status": "primary",
+      "text": "The stronger continuation captured an undefended piece. This move misses that chance, so give loose enemy pieces a careful look.",
+      "role": "missed",
+      "motif": "missed_tactical_capture",
+      "conditions": "Primary tactic_missed claim; distinct best line after a poor move; mover could capture an undefended non-pawn piece.",
+      "notes": "Missed undefended capture in the better candidate.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "family": "tactics",
+      "claimCodes": [
+        "tactic_allowed"
+      ],
+      "status": "primary",
+      "text": "This move allows the other side to capture an undefended piece in the continuation. Loose pieces deserve a careful look.",
+      "role": "allowed",
+      "motif": "hanging_piece",
+      "conditions": "Primary tactic_allowed claim; actual poor-move line; opponent captures the mover's undefended non-pawn piece.",
+      "notes": "Opportunity for opponent, not a current-board positional unsupported claim.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "family": "mover_causes",
+      "claimCodes": [
+        "cause_abandoned_defender"
+      ],
+      "status": "primary",
+      "text": "This move takes away a piece's only effective defender. The other side can capture that piece in the continuation.",
+      "role": "caused",
+      "motif": "abandoned_defender",
+      "conditions": "Primary cause_abandoned_defender claim; actual poor line, role caused, mover actor, opportunity_actor opponent, plies [1,2], frame_ply 0. The only unpinned defender moves, unchanged non-pawn target has no effective defender afterward, opponent reply captures it.",
+      "notes": "Mover-caused loss of sole effective defender, not tactical removing_defender by capture.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "family": "mover_causes",
+      "claimCodes": [
+        "cause_opponent_threat_recognition"
+      ],
+      "status": "primary",
+      "text": "The opponent's previous move enabled this attack. This move leaves the threat unanswered, and the piece can be captured in the continuation.",
+      "role": "caused",
+      "motif": "opponent_threat_recognition",
+      "conditions": "Primary cause_opponent_threat_recognition claim; actual poor line, role caused, mover actor, opportunity_actor opponent, plies [1,2], frame_ply 0, verified context_fen/context_move. Previous opponent move newly attacked target or released the capturing piece from a relative pin; current move leaves unchanged non-pawn target, reply captures it.",
+      "notes": "Unanswered preceding-move threat; includes practical attack enabled by release from relative pin.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "family": "mover_causes",
+      "claimCodes": [
+        "cause_avoiding_bad_trades"
+      ],
+      "status": "primary",
+      "text": "This capture invites a recapture of a more valuable piece. Count both sides of the exchange before judging the first capture.",
+      "role": "caused",
+      "motif": "avoiding_bad_trades",
+      "conditions": "Primary cause_avoiding_bad_trades claim; actual poor line, role caused, mover actor, opportunity_actor opponent, plies [1,2], frame_ply 0. Nonpromotion capture followed by recapture on same square; moved piece more valuable than initial victim; settled actual line loses material.",
+      "notes": "Immediate unfavorable capture/recapture, without asserting every later exchange consequence.",
+      "sourceGroup": "tactical",
+      "sources": [
+        "frontend/src/dialogue/eventClaims.ts:42",
+        "backend/trainer/review_intelligence/event_facts.py:92"
+      ]
+    },
+    {
+      "id": "positional-development-actual",
+      "family": "positional",
+      "claimCodes": [
+        "development"
+      ],
+      "status": "primary",
+      "text": "This develops a minor piece from its original square. Notice its new place in the position.",
+      "position": "actual",
+      "feature": "first_development",
+      "requiredSlots": [
+        "lead",
+        "piece"
+      ],
+      "conditions": "facts.piece is bishop or knight; PGN original-minor-history evidence is present; facts.side equals event.actor.",
+      "notes": [
+        "No development event without original PGN history.",
+        "Returning to an original square and moving away again is not first development.",
+        "Does not establish improved activity or best play."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:68",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-development-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "development"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would develop a minor piece from its original square. Notice where it would go.",
+      "position": "alternative",
+      "feature": "first_development",
+      "requiredSlots": [
+        "lead",
+        "piece"
+      ],
+      "conditions": "facts.piece is bishop or knight; PGN original-minor-history evidence is present; facts.side equals event.actor.",
+      "notes": [
+        "No development event without original PGN history.",
+        "Returning to an original square and moving away again is not first development.",
+        "Does not establish improved activity or best play."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:68",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "family": "positional",
+      "claimCodes": [
+        "rook_file"
+      ],
+      "status": "primary",
+      "text": "This leaves a rook on an open file. There are no pawns of either color on that file.",
+      "position": "actual",
+      "feature": "rook_file",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "kind",
+        "file"
+      ],
+      "conditions": "facts.after === open; slots.kind === open; facts.side and slots.side agree; file is a through h.",
+      "notes": [
+        "Do not call it a rook move: moving a pawn can change a stationary rook's file status.",
+        "Do not infer activity, control, infiltration or advantage.",
+        "A change to closed has no rendered rook_file claim."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:142",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "rook_file"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would leave a rook on an open file. That file would contain no pawns of either color.",
+      "position": "alternative",
+      "feature": "rook_file",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "kind",
+        "file"
+      ],
+      "conditions": "facts.after === open; slots.kind === open; facts.side and slots.side agree; file is a through h.",
+      "notes": [
+        "Do not call it a rook move: moving a pawn can change a stationary rook's file status.",
+        "Do not infer activity, control, infiltration or advantage.",
+        "A change to closed has no rendered rook_file claim."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:142",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "family": "positional",
+      "claimCodes": [
+        "rook_file"
+      ],
+      "status": "primary",
+      "text": "This leaves a rook on a semi-open file. There are no friendly pawns on that file, but at least one enemy pawn remains.",
+      "position": "actual",
+      "feature": "rook_file",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "kind",
+        "file"
+      ],
+      "conditions": "facts.after === semi_open; slots.kind === semi open; facts.side and slots.side agree; file is a through h.",
+      "notes": [
+        "Open and semi-open cannot share a script that says no pawns on the file.",
+        "Do not infer activity, control, infiltration or advantage.",
+        "Do not call it a rook move."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:142",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "rook_file"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would leave a rook on a semi-open file, with no friendly pawns on that file but at least one enemy pawn.",
+      "position": "alternative",
+      "feature": "rook_file",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "kind",
+        "file"
+      ],
+      "conditions": "facts.after === semi_open; slots.kind === semi open; facts.side and slots.side agree; file is a through h.",
+      "notes": [
+        "Open and semi-open cannot share a script that says no pawns on the file.",
+        "Do not infer activity, control, infiltration or advantage.",
+        "Do not call it a rook move."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:142",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-passed-actual",
+      "family": "positional",
+      "claimCodes": [
+        "passed"
+      ],
+      "status": "primary",
+      "text": "This leaves a passed pawn: no enemy pawn is ahead on its file or either neighboring file.",
+      "position": "actual",
+      "feature": "passed_pawns",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "squares"
+      ],
+      "conditions": "facts.added is a nonempty square array; facts.side and slots.side agree.",
+      "notes": [
+        "Pure removal of passers is not rendered.",
+        "Advancing an existing passer is a different code.",
+        "No claim that the passer is protected, unstoppable or winning."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:110",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-passed-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "passed"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would leave a passed pawn, with no enemy pawn ahead on its file or either neighboring file.",
+      "position": "alternative",
+      "feature": "passed_pawns",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "squares"
+      ],
+      "conditions": "facts.added is a nonempty square array; facts.side and slots.side agree.",
+      "notes": [
+        "Pure removal of passers is not rendered.",
+        "Advancing an existing passer is a different code.",
+        "No claim that the passer is protected, unstoppable or winning."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:110",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "family": "positional",
+      "claimCodes": [
+        "passer_advance"
+      ],
+      "status": "primary",
+      "text": "This advances a pawn that was already passed. Keep its new square in view as you compare continuations.",
+      "position": "actual",
+      "feature": "passed_pawn_advance",
+      "requiredSlots": [
+        "lead",
+        "square"
+      ],
+      "conditions": "facts.side equals event.actor; facts.after matches slots.square; pawn was passed before the transition; no promotion.",
+      "notes": [
+        "The detector checks passed status before the move only; a capture can move onto a file where it is no longer passed.",
+        "No claim that the pawn remains passed, will promote, or improves the position.",
+        "Promotions are excluded by the producer."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:132",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "passer_advance"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would advance a pawn that was already passed. Keep its new square in view as you compare continuations.",
+      "position": "alternative",
+      "feature": "passed_pawn_advance",
+      "requiredSlots": [
+        "lead",
+        "square"
+      ],
+      "conditions": "facts.side equals event.actor; facts.after matches slots.square; pawn was passed before the transition; no promotion.",
+      "notes": [
+        "The detector checks passed status before the move only; a capture can move onto a file where it is no longer passed.",
+        "No claim that the pawn remains passed, will promote, or improves the position.",
+        "Promotions are excluded by the producer."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:132",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-isolated-actual",
+      "family": "positional",
+      "claimCodes": [
+        "isolated"
+      ],
+      "status": "primary",
+      "text": "This leaves an isolated pawn, with no friendly pawn on either neighboring file.",
+      "position": "actual",
+      "feature": "isolated_pawns",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "squares"
+      ],
+      "conditions": "facts.added is a nonempty square array; facts.side and slots.side agree.",
+      "notes": [
+        "Pure removal of isolated pawns is not rendered.",
+        "Do not promise the pawn is weak, undefended or lost."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:110",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "isolated"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would leave an isolated pawn, with no friendly pawn on either neighboring file.",
+      "position": "alternative",
+      "feature": "isolated_pawns",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "squares"
+      ],
+      "conditions": "facts.added is a nonempty square array; facts.side and slots.side agree.",
+      "notes": [
+        "Pure removal of isolated pawns is not rendered.",
+        "Do not promise the pawn is weak, undefended or lost."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:110",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-support-actual",
+      "family": "positional",
+      "claimCodes": [
+        "support"
+      ],
+      "status": "primary",
+      "text": "This gives a piece support. A defender is now in place.",
+      "position": "actual",
+      "feature": "piece_support",
+      "requiredSlots": [
+        "lead",
+        "piece",
+        "square"
+      ],
+      "conditions": "facts.before has no effective defenders; facts.after has at least one; facts.piece and target match claim piece and square. Read affected side from facts.side because slots omit it.",
+      "notes": [
+        "Pawn and king targets are not emitted.",
+        "Counts changing without zero/nonzero transition are not emitted.",
+        "No claim the piece is safe or a recapture wins."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:161",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-support-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "support"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would give a piece support. A defender would then be in place.",
+      "position": "alternative",
+      "feature": "piece_support",
+      "requiredSlots": [
+        "lead",
+        "piece",
+        "square"
+      ],
+      "conditions": "facts.before has no effective defenders; facts.after has at least one; facts.piece and target match claim piece and square. Read affected side from facts.side because slots omit it.",
+      "notes": [
+        "Pawn and king targets are not emitted.",
+        "Counts changing without zero/nonzero transition are not emitted.",
+        "No claim the piece is safe or a recapture wins."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:161",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "family": "positional",
+      "claimCodes": [
+        "unsupported"
+      ],
+      "status": "primary",
+      "text": "This leaves a piece undefended. That alone does not mean the piece can be won.",
+      "position": "actual",
+      "feature": "piece_support",
+      "requiredSlots": [
+        "lead",
+        "piece",
+        "square"
+      ],
+      "conditions": "facts.before has effective defenders; facts.after is empty; facts.piece and target match claim piece and square. Read affected side from facts.side because slots omit it.",
+      "notes": [
+        "Never substitute causal abandoned-defender recording: that requires a supported capture consequence.",
+        "Do not infer a hanging piece, material loss or danger from attacked boolean alone."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:161",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "unsupported"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would leave a piece undefended. That alone would not mean the piece could be won.",
+      "position": "alternative",
+      "feature": "piece_support",
+      "requiredSlots": [
+        "lead",
+        "piece",
+        "square"
+      ],
+      "conditions": "facts.before has effective defenders; facts.after is empty; facts.piece and target match claim piece and square. Read affected side from facts.side because slots omit it.",
+      "notes": [
+        "Never substitute causal abandoned-defender recording: that requires a supported capture consequence.",
+        "Do not infer a hanging piece, material loss or danger from attacked boolean alone."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:161",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "family": "positional",
+      "claimCodes": [
+        "flights"
+      ],
+      "status": "primary",
+      "text": "This opens a legal flight square the king did not have before. Compare the positions to see what opened the way.",
+      "position": "actual",
+      "feature": "king_flights",
+      "requiredSlots": [
+        "lead",
+        "squares"
+      ],
+      "conditions": "facts.opened is a nonempty square array; facts.side equals event.actor.",
+      "notes": [
+        "Only legal destinations count, not empty adjacent squares.",
+        "No guarantee the king is safe or a future check is answered.",
+        "Producer limits to qualifying pawn moves, king on home rank on b/c/g/h, and no check before/after."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:82",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "flights"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would open a legal flight square for the king. Compare the positions to see what would open the way.",
+      "position": "alternative",
+      "feature": "king_flights",
+      "requiredSlots": [
+        "lead",
+        "squares"
+      ],
+      "conditions": "facts.opened is a nonempty square array; facts.side equals event.actor.",
+      "notes": [
+        "Only legal destinations count, not empty adjacent squares.",
+        "No guarantee the king is safe or a future check is answered.",
+        "Producer limits to qualifying pawn moves, king on home rank on b/c/g/h, and no check before/after."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:82",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-castling-actual",
+      "family": "positional",
+      "claimCodes": [
+        "castle"
+      ],
+      "status": "primary",
+      "text": "This castles the king and relocates the rook. Follow both pieces when comparing the positions.",
+      "position": "actual",
+      "feature": "castling",
+      "requiredSlots": [
+        "lead",
+        "square"
+      ],
+      "conditions": "facts.side equals event.actor; facts.after matches slots.square; castling event is evidenced.",
+      "notes": [
+        "No guarantee of king safety or rook activity.",
+        "Castling is not counted again as rook-file or piece-support relocation by the producer."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:77",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-castling-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "castle"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would castle the king and relocate the rook. Follow where both pieces would go.",
+      "position": "alternative",
+      "feature": "castling",
+      "requiredSlots": [
+        "lead",
+        "square"
+      ],
+      "conditions": "facts.side equals event.actor; facts.after matches slots.square; castling event is evidenced.",
+      "notes": [
+        "No guarantee of king safety or rook activity.",
+        "Castling is not counted again as rook-file or piece-support relocation by the producer."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:77",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "family": "positional",
+      "claimCodes": [
+        "bishops"
+      ],
+      "status": "primary",
+      "text": "This capture breaks up a bishop pair. The side losing the bishop no longer has one bishop on each square color.",
+      "position": "actual",
+      "feature": "bishop_pair",
+      "requiredSlots": [
+        "lead",
+        "side"
+      ],
+      "conditions": "facts.before === 2 and facts.after === 1; the original two bishops occupy opposite square colors; facts.side and slots.side agree; affected side is opposite event.actor.",
+      "notes": [
+        "Two bishops on the same square color do not qualify.",
+        "No claim that having or losing the pair determines advantage.",
+        "A legal immediate move cannot capture its own bishop, so affected side is the other side."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:177",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "bishops"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would capture one bishop from an opposite-colored pair, breaking up that bishop pair.",
+      "position": "alternative",
+      "feature": "bishop_pair",
+      "requiredSlots": [
+        "lead",
+        "side"
+      ],
+      "conditions": "facts.before === 2 and facts.after === 1; the original two bishops occupy opposite square colors; facts.side and slots.side agree; affected side is opposite event.actor.",
+      "notes": [
+        "Two bishops on the same square color do not qualify.",
+        "No claim that having or losing the pair determines advantage.",
+        "A legal immediate move cannot capture its own bishop, so affected side is the other side."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:177",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-doubled-actual",
+      "family": "positional",
+      "claimCodes": [
+        "doubled"
+      ],
+      "status": "primary",
+      "text": "This leaves doubled pawns in the resulting position. At least two pawns of the same color share a file.",
+      "position": "actual",
+      "feature": "doubled_files",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "files"
+      ],
+      "conditions": "facts.before and facts.after differ; facts.after is a nonempty file array; facts.side and slots.side agree.",
+      "notes": [
+        "Do not say creates doubled pawns: the event can reduce doubled files while leaving another doubled file.",
+        "Removal of the last doubled file produces no rendered claim.",
+        "No automatic weakness or evaluation claim."
+      ],
+      "reachability": "Can be primary on nonpoor reports if no higher-ranked displayed claim; poor reports shadow this claim. Source-audited, not exercised here.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:123",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "family": "positional",
+      "claimCodes": [
+        "doubled"
+      ],
+      "status": "secondary",
+      "text": "The unplayed alternative would leave doubled pawns in the resulting position, with at least two pawns of the same color sharing a file.",
+      "position": "alternative",
+      "feature": "doubled_files",
+      "requiredSlots": [
+        "lead",
+        "side",
+        "files"
+      ],
+      "conditions": "facts.before and facts.after differ; facts.after is a nonempty file array; facts.side and slots.side agree.",
+      "notes": [
+        "Do not say creates doubled pawns: the event can reduce doubled files while leaving another doubled file.",
+        "Removal of the last doubled file produces no rendered claim.",
+        "No automatic weakness or evaluation claim."
+      ],
+      "reachability": "Always shadowed in fresh backend-generated reports under current primary-only speech policy; retain as semantic branch coverage only.",
+      "sources": [
+        "backend/trainer/review_intelligence/positional.py:123",
+        "frontend/src/dialogue/eventClaims.ts:12",
+        "frontend/src/dialogue/positionalTemplates.ts:5"
+      ]
+    },
+    {
+      "id": "allowed-mate",
+      "family": "other",
+      "claimCodes": [
+        "allowed_mate"
+      ],
+      "status": "primary",
+      "text": "This move allows a forced checkmate. Follow the continuation to see why the defense can no longer hold.",
+      "conditions": "mate transition=allowed; claim evidence from best/actual searches",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:57",
+        "backend/trainer/review_intelligence/event_facts.py:30"
+      ]
+    },
+    {
+      "id": "missed-mate",
+      "family": "other",
+      "claimCodes": [
+        "missed_mate"
+      ],
+      "status": "primary",
+      "text": "There was a forced checkmate in the stronger continuation. This move lets that finish go.",
+      "conditions": "mate transition=missed",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:57",
+        "backend/trainer/review_intelligence/event_facts.py:30"
+      ]
+    },
+    {
+      "id": "sound-sacrifice",
+      "family": "other",
+      "claimCodes": [
+        "sacrifice"
+      ],
+      "status": "primary",
+      "text": "The sacrifice holds up in the search even when it is accepted. Taking the offered material does not refute the idea in this line.",
+      "conditions": "sound sacrifice event; acceptance analysis ID; <50cp loss and no mate transition",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:63",
+        "backend/trainer/review_intelligence/event_facts.py:72"
+      ]
+    },
+    {
+      "id": "only-playable-move",
+      "family": "other",
+      "claimCodes": [
+        "only_move"
+      ],
+      "status": "primary",
+      "text": "This was the only move we found that kept the position playable. The other moves we checked were losing.",
+      "conditions": "critical_resource purpose=defense; near best; >1 legal; searched runner-up loses",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:64",
+        "backend/trainer/review_intelligence/event_facts.py:58"
+      ]
+    },
+    {
+      "id": "only-advantage-resource",
+      "family": "other",
+      "claimCodes": [
+        "decisive_resource"
+      ],
+      "status": "primary",
+      "text": "This was the only move we found that kept the advantage. The other moves we checked were losing.",
+      "conditions": "critical_resource purpose != defense; best cp>150 or positive mate; searched runner-up loses",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:64",
+        "backend/trainer/review_intelligence/event_facts.py:66"
+      ]
+    },
+    {
+      "id": "immediate-capture",
+      "family": "other",
+      "claimCodes": [
+        "reply_capture"
+      ],
+      "status": "primary",
+      "text": "The other side has an immediate capture in reply. Follow the continuation to see which piece can be taken.",
+      "conditions": "poor engine label; immediate_reply.capture; no higher rendered claim",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:108"
+      ]
+    },
+    {
+      "id": "reply-check",
+      "family": "other",
+      "claimCodes": [
+        "reply_check"
+      ],
+      "status": "secondary",
+      "text": "The strongest reply gives check. The continuation begins by making the king answer that threat.",
+      "conditions": "poor engine label; immediate reply gives check without capture; allowed_mate with reply suppresses; poor move adds loss82 or already has >=78",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:109"
+      ]
+    },
+    {
+      "id": "stronger-alternative",
+      "family": "other",
+      "claimCodes": [
+        "alternative"
+      ],
+      "status": "secondary",
+      "text": "The engine prefers another move here. Compare its continuation with the move that was played.",
+      "conditions": "every poor engine label, priority42; valid poor always yields higher mate/capture/tactic/context or cp loss",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:118"
+      ]
+    },
+    {
+      "id": "evaluation-loss",
+      "family": "other",
+      "claimCodes": [
+        "loss"
+      ],
+      "status": "primary",
+      "text": "This move gives up some of the position's value compared with the engine's best continuation. Follow the reply to see how the position changes.",
+      "conditions": "poor label; no existing claim priority>=78; best/actual both cp and best>actual",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:113"
+      ]
+    },
+    {
+      "id": "best-supported-choice",
+      "family": "other",
+      "claimCodes": [
+        "best"
+      ],
+      "status": "primary",
+      "text": "This preserves nearly all that the engine's best move offered. A sound choice can matter without changing the whole game.",
+      "conditions": "not poor; no other claims; label != Good",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:119"
+      ]
+    },
+    {
+      "id": "good-choice",
+      "family": "other",
+      "claimCodes": [
+        "good"
+      ],
+      "status": "primary",
+      "text": "This keeps most of the position's value, close to the stronger continuations. It is a sound way to carry the game forward.",
+      "conditions": "not poor; no other claims; label=Good",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:119"
+      ]
+    },
+    {
+      "id": "human-natural-error",
+      "family": "other",
+      "claimCodes": [
+        "human_natural_error"
+      ],
+      "status": "secondary",
+      "text": "The human-move model sees this as a natural choice, but the engine finds a stronger move. That contrast is worth studying.",
+      "conditions": "human guard H; natural_error interpretation; always poor so main loss82 or higher dominates; eligible as human popover primary",
+      "sources": [
+        "frontend/src/dialogue/humanClaims.ts:46"
+      ]
+    },
+    {
+      "id": "human-unusual-strong",
+      "family": "other",
+      "claimCodes": [
+        "human_rare"
+      ],
+      "status": "primary",
+      "text": "The human-move model treats this as an unusual choice, and the engine still finds it strong.",
+      "conditions": "H; unusual_strong_move after higher conditional human branches; strong within20cp; not found difficult/challenging branch",
+      "sources": [
+        "frontend/src/dialogue/humanClaims.ts:53"
+      ]
+    },
+    {
+      "id": "human-hard-defense-missed",
+      "family": "other",
+      "claimCodes": [
+        "difficult_defense"
+      ],
+      "status": "secondary",
+      "text": "The engine found one move that kept the position playable, and the model evidence suggests it was difficult to find.",
+      "conditions": "H; difficult + only_good_move_at_depth + poor; always main loss82 or higher dominates; human popover can select",
+      "sources": [
+        "frontend/src/dialogue/humanClaims.ts:47"
+      ]
+    },
+    {
+      "id": "human-hard-find",
+      "family": "other",
+      "claimCodes": [
+        "human_challenging"
+      ],
+      "status": "primary",
+      "text": "The human-move model and the alternatives suggest this was a hard move to find. Keep this idea in mind for similar positions.",
+      "conditions": "H; actual=best and difficulty difficult or challenging; difficult case can be shadowed by resource/sacrifice/tactic; challenging can be primary",
+      "sources": [
+        "frontend/src/dialogue/humanClaims.ts:51",
+        "frontend/src/dialogue/humanClaims.ts:55"
+      ]
+    },
+    {
+      "id": "human-hard-defense-found",
+      "family": "other",
+      "claimCodes": [
+        "human_defense_found"
+      ],
+      "status": "secondary",
+      "text": "This move kept the position playable. The human-move model and the searched alternatives suggest it was a hard resource to find.",
+      "conditions": "H; actual=best; hard_to_find_defense; strong+narrow guarantees critical_resource93 main priority; human popover can select",
+      "sources": [
+        "frontend/src/dialogue/humanClaims.ts:49"
+      ]
+    },
+    {
+      "id": "human-natural-best",
+      "family": "other",
+      "claimCodes": [
+        "human_natural_best"
+      ],
+      "status": "primary",
+      "text": "The human-move model sees this as a natural choice, and it is also the engine's best move.",
+      "conditions": "H; natural_best interpretation; actual=best; prior human branches do not match",
+      "sources": [
+        "frontend/src/dialogue/humanClaims.ts:57"
+      ]
+    },
+    {
+      "id": "human-natural-strong",
+      "family": "other",
+      "claimCodes": [
+        "human_natural_strong"
+      ],
+      "status": "primary",
+      "text": "The human-move model sees this as a natural choice. It is strong, although the engine prefers another move.",
+      "conditions": "H; natural_best interpretation; actual != best; prior human branches do not match",
+      "sources": [
+        "frontend/src/dialogue/humanClaims.ts:57"
+      ]
+    },
+    {
+      "id": "clock-low",
+      "family": "other",
+      "claimCodes": [
+        "clock_low"
+      ],
+      "status": "primary",
+      "text": "The recorded clock shows there was little time left before this move.",
+      "conditions": "clock event; before_band low or critical; priority54/75; numbers stay written; no causal attribution",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:75",
+        "backend/trainer/review_intelligence/clocks.py:49"
+      ]
+    },
+    {
+      "id": "clock-fast",
+      "family": "other",
+      "claimCodes": [
+        "clock_fast"
+      ],
+      "status": "primary",
+      "text": "The recorded clock shows a quick move with time still available.",
+      "conditions": "clock event; not low/critical; tempo fast_with_time = elapsed<=2 and before>=60",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:76",
+        "backend/trainer/review_intelligence/clocks.py:92"
+      ]
+    },
+    {
+      "id": "clock-long",
+      "family": "other",
+      "claimCodes": [
+        "clock_long"
+      ],
+      "status": "primary",
+      "text": "A substantial amount of recorded time went into this move.",
+      "conditions": "clock event; not low/critical; tempo long_think = elapsed>=30 and before unknown or elapsed>=15%before",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:77",
+        "backend/trainer/review_intelligence/clocks.py:94"
+      ]
+    },
+    {
+      "id": "recognized-opening",
+      "family": "other",
+      "claimCodes": [
+        "book",
+        "book_sound"
+      ],
+      "status": "primary",
+      "text": "This is familiar opening territory: the move belongs to a recognized line.",
+      "conditions": "report.opening; book_sound96 can be primary; book49 poor is secondary; both assert same recognition",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:81"
+      ]
+    },
+    {
+      "id": "opening-departure",
+      "family": "other",
+      "claimCodes": [
+        "departure"
+      ],
+      "status": "primary",
+      "text": "Here the game first steps beyond the line recognized by our opening book.",
+      "conditions": "opening_departure event and no report.opening; first unmatched mainline continuation only",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:79",
+        "backend/trainer/review_intelligence/context.py:41"
+      ]
+    },
+    {
+      "id": "recovery",
+      "family": "other",
+      "claimCodes": [
+        "recovery"
+      ],
+      "status": "primary",
+      "text": "After the earlier setback, this move restores a playable position. There is a way forward again.",
+      "conditions": "context guard C; recovery relation; slots.help empty; outcome playable_position or winning_chances may both use",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:92",
+        "backend/trainer/review_intelligence/game_links.py:67"
+      ]
+    },
+    {
+      "id": "recovery-assisted",
+      "family": "other",
+      "claimCodes": [
+        "recovery"
+      ],
+      "status": "primary",
+      "text": "This restores a playable position after the earlier setback. Errors by the other side helped make that recovery possible.",
+      "conditions": "C; recovery relation; slots.help nonempty from opponent_errors",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:93",
+        "backend/trainer/review_intelligence/game_links.py:74"
+      ]
+    },
+    {
+      "id": "chance-taken",
+      "family": "other",
+      "claimCodes": [
+        "punishment"
+      ],
+      "status": "primary",
+      "text": "This makes use of the chance the opponent offered on the previous move.",
+      "conditions": "C; punishment outcome=capitalized; opportunity=advantage/equality remains generic chance as in claim",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:97",
+        "backend/trainer/review_intelligence/game_links.py:50"
+      ]
+    },
+    {
+      "id": "chance-missed",
+      "family": "other",
+      "claimCodes": [
+        "missed_punishment"
+      ],
+      "status": "primary",
+      "text": "The opponent's previous move offered a chance, but this move lets it pass. Compare the stronger continuation.",
+      "conditions": "C; punishment outcome=missed; priority81 prevents generic loss82 insertion; can be primary",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:97",
+        "backend/trainer/review_intelligence/game_links.py:50"
+      ]
+    },
+    {
+      "id": "repeated-issue",
+      "family": "other",
+      "claimCodes": [
+        "repeated"
+      ],
+      "status": "secondary",
+      "text": "This same issue has appeared before in the reviewed moves of this game. Compare the examples and look for the common warning sign.",
+      "conditions": "C; repeated_motif role allowed/caused/missed; current tactic91-95 necessarily dominates74",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:98",
+        "backend/trainer/review_intelligence/game_links.py:119"
+      ]
+    },
+    {
+      "id": "support-restored",
+      "family": "other",
+      "claimCodes": [
+        "support_restored"
+      ],
+      "status": "primary",
+      "text": "A piece left unguarded earlier has support again. Compare the two positions to see how its protection changed.",
+      "conditions": "C; support_restored relationship tracking same surviving piece; actual support transition; no capture survival claim",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:99",
+        "backend/trainer/review_intelligence/game_context.py:138"
+      ]
+    },
+    {
+      "id": "gradual-erosion",
+      "family": "other",
+      "claimCodes": [
+        "erosion"
+      ],
+      "status": "primary",
+      "text": "This is one of several small concessions that have worsened the position together. Look at the sequence, as well as this move.",
+      "conditions": "C; erosion relation; >=3 concessions each30<=loss<150 over last9 nodes; net decline>=150; can lead when current drop<50",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:100",
+        "backend/trainer/review_intelligence/game_links.py:81"
+      ]
+    },
+    {
+      "id": "advantage-converted",
+      "family": "other",
+      "claimCodes": [
+        "conversion"
+      ],
+      "status": "primary",
+      "text": "The reviewed moves kept the advantage through to the recorded win. Follow that stretch to see how the advantage was preserved.",
+      "conditions": "C; advantage_run outcome=converted; >=6 contiguous reviewed plies; complete review reaches final recorded win; on-board terminal preempts if present",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:101",
+        "backend/trainer/review_intelligence/game_links.py:105"
+      ]
+    },
+    {
+      "id": "saved-history-recurrence",
+      "family": "other",
+      "claimCodes": [
+        "history"
+      ],
+      "status": "secondary",
+      "text": "This issue also appears in other saved games. It is worth revisiting those examples alongside this one.",
+      "conditions": "C; weakness supported in other saved games; current ply related; current tactic91-95 or mate100 necessarily dominates67",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:103",
+        "backend/trainer/review_intelligence/history.py:36"
+      ]
+    },
+    {
+      "id": "mate-finished",
+      "family": "other",
+      "claimCodes": [
+        "mate_win"
+      ],
+      "status": "primary",
+      "text": "Checkmate. The king has no legal escape, and the attack has reached its finish.",
+      "conditions": "current automatic board outcome, non-draw, known learner outcome; no current-position error, unresolved position request or explanation mode; require frame.termination=checkmate and frame.result consistent with saved learner orientation, independently of portrait expression",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:26",
+        "backend/trainer/game_review.py:38"
+      ]
+    },
+    {
+      "id": "mate-defense-ended",
+      "family": "other",
+      "claimCodes": [
+        "mate_loss"
+      ],
+      "status": "primary",
+      "text": "Checkmate. The king has no legal escape. Let's look back for a chance to stop the attack.",
+      "conditions": "current automatic board outcome, non-draw, known learner outcome; no current-position error, unresolved position request or explanation mode; require frame.termination=checkmate and frame.result consistent with saved learner orientation, independently of portrait expression",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:26",
+        "backend/trainer/game_review.py:38"
+      ]
+    },
+    {
+      "id": "draw",
+      "family": "other",
+      "claimCodes": [
+        "draw"
+      ],
+      "status": "primary",
+      "text": "The position ends in a draw. There may still be useful decisions to revisit.",
+      "conditions": "current automatic board outcome result draw; reason not narrated",
+      "sources": [
+        "frontend/src/dialogue/gameIntent.ts:26",
+        "backend/trainer/game_review.py:38"
+      ]
+    }
+  ]
+}

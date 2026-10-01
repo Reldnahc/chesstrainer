@@ -4,6 +4,35 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Walter dialogue scope audit — September 30, 2026
+
+Planning-only audit at `839da3e`; no production behavior or recording changed.
+Traced all 64 template keys through production adapters/rendering, tactical and
+positional producers, human facts and game relationships. The draft inventory
+maps 52 structured game claim codes to 92 whole summary scripts: 71 primary-capable
+and 21 secondary-only. All 12 excluded template codes and non-game coach surfaces
+have explicit dispositions. Older teacher is recorded as the owner's voice choice;
+it has not yet been saved as a refined permanent voice.
+
+- `node .tools/build-walter-dialogue-inventory.mjs`: produced the draft inventory
+  from the source-audit working notes; reconciled unique IDs, counts and all 64
+  template keys. Primary text totals 1,227 words / 7,182 characters; all text totals
+  1,619 words / 9,522 characters. This is not a provider charge/duration estimate.
+- `node .tools/verify-walter-inventory.cjs`: passed inventory coverage/format/count
+  checks and **26 synthetic production-function probes** using `gameIntent`,
+  `renderDialogue` and Walter's real personality. Twelve actual positional cases
+  can lead, twelve alternatives remain below an objective-loss claim while
+  preserving conditional rendering, and two back-rank cases remain below mate
+  claims. The ignored probe is bundled from `.tools/verify-walter-inventory-entry.ts`
+  with the installed esbuild. It does not establish chess legality or end-to-end
+  reachability for every inventory row; those classifications are source-audited.
+- Independent source reviews covered tactical, positional and other claim
+  producers, plus the renderer/entry-point partition and all 92 draft strings.
+  Review corrected overly broad deflection wording for promotion witnesses and
+  scoped family-specific evidence guards explicitly. Whitespace checks pass.
+  No provider calls, saved-voice changes, generated audio, application changes,
+  browser/full suites, deployment or push were performed for this planning task.
+
 ## Combined older teacher Walter audition — September 30, 2026
 
 One authorized remix of saved Custom 1 combines the elder and teacher directions
