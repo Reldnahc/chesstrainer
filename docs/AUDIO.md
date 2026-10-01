@@ -154,6 +154,81 @@ by dialogue; audio never rewrites chess claims or generates character prose.
 There is no TTS provider, voice catalogue, speech setting, automatic narration or
 network speech request in this release.
 
+### Approved prerecorded-coach pilot (not implemented yet)
+
+The owner approved trying one coach with complete, reusable spoken explanations.
+The precise position-specific explanation stays written in the bubble. Spoken
+summaries preserve the supported teaching point without narrating unique move
+numbers, squares, scores or historical references. These are whole recorded
+sentences, not isolated rating announcements or stitched word fragments.
+
+Approved recordings will ship as local application assets in the container.
+Installing, building and using Fieldwork must not require a voice-service account,
+API key, model download or runtime synthesis. Production cost belongs to creating
+the recordings, not to the people playing them. First select the coach and voice,
+then audition a small set before expanding coverage or adding production controls.
+No voice, generation budget or recording has been approved by this brief.
+
+The following is a factual audition brief; adapt its delivery and wording to the
+selected character before recording. Each row should be a complete take with
+room for natural pauses. Test a second take for the strongest positive and
+negative moments, rather than generating a full cast immediately.
+
+| Situation | Starting script | Required claim |
+| --- | --- | --- |
+| Fork found | The point is a fork in the continuation. One piece attacks two or more targets at once. | `tactic_played`, `motif=fork` |
+| Fork allowed | This lets the other side set up a fork in the continuation. One piece can attack two or more targets at once. | `tactic_allowed`, `motif=fork` |
+| Fork missed | There was a fork in the stronger continuation. This move misses that chance to attack two or more targets at once. | `tactic_missed`, `motif=fork` |
+| Pin found | The continuation uses a pin. Moving the pinned piece off that line can expose the king or a more valuable piece behind it. | `tactic_played`, `motif=pin` |
+| Defender abandoned | That piece had a defender, but this move takes it away. The other side can now capture the piece it was protecting. | `cause_abandoned_defender` |
+| Threat unanswered | The previous move threatened a piece. This move leaves that threat unanswered, so the other side can take it. | `cause_opponent_threat_recognition` |
+| Unfavorable exchange | The first capture isn't the whole exchange. The other side can recapture, so count what both sides give up. | `cause_avoiding_bad_trades` |
+| Forced mate allowed | This move allows a forced checkmate. Follow the continuation to see why even the best defense cannot stop it. | `allowed_mate` |
+| Forced mate missed | There was a forced checkmate in the stronger continuation. This move lets that finish go. | `missed_mate` |
+| Only playable defense | This was the only move we found that kept the position playable. The other moves we checked were losing. | `only_move` |
+| Sound sacrifice | The sacrifice holds up even if it is accepted. Taking the offered material doesn't refute the idea in this line. | `sacrifice` |
+| Undefended piece | This move leaves a piece undefended. That alone doesn't mean it can be won. | `unsupported`, actual positional claim only |
+
+Speech selection belongs to dialogue, using the same structured claims as the
+bubble. Do not insert fixed recordings as slotless replacements for existing
+personality templates: their factual-slot validation must remain intact.
+
+- Match the displayed primary claim through the utterance's variant trace and
+  source IDs, with matching intent identity and nonempty evidence. If it has no
+  recording, remain silent rather than speaking a less important claim.
+- Validate required slots through the existing claim contract. Do not infer a
+  tactic or consequence from a grade, facial expression or freeform text.
+- Tactical `played`, `allowed` and `missed` codes retain their distinct scope.
+  Tactics can occur later in a continuation. Only positional claims currently
+  carry `position`; its absence never establishes an actual-board consequence.
+- The neutral scripts above address neither player personally. Any later
+  character wording using "you" requires the matching learner perspective;
+  opponent praise or blame must not be directed at the learner.
+- Keep the pilot to known-subject game/variation feedback. Cold and revealed
+  practice, restored practice feedback, pending/error states and freeform
+  Show-why explanations are outside this first pilot. A retained report does not
+  authorize speech when the current position has an error.
+- Reuse the existing speech bus, mute, volume, visibility and cancellation.
+  Recheck position, coach and utterance after loading a recording. Navigation,
+  switching coaches, hiding the tab and unmounting cancel obsolete playback.
+
+Audition in the existing development audio studio with the actual character and
+sound mix before release. Acceptance requires clear wording, believable and
+consistent character delivery, comfortable levels, no clipped starts/ends,
+predictable interruption and desktop/mobile playback without provider requests.
+Do not claim compilation or successful decoding establishes voice quality.
+
+For ElevenLabs production, its published [TTS FAQ](https://elevenlabs.io/text-to-speech)
+permits paid-plan output in games/apps without extra royalties, and its
+[subscription policy](https://help.elevenlabs.io/hc/en-us/articles/15993008593297-What-happens-to-my-content-after-my-subscription-ends)
+retains commercial rights for audio generated during a paid subscription after
+cancellation. Use an authorized voice and generally available service; verify
+the applicable terms at generation time. Free-tier/demo clips are not substitutes
+for production assets. Record provider, voice/model identity, script, generation
+date, applicable terms, edits and file hashes alongside retained clips. Keep
+audio permissions distinct from the repository's code license; these provider
+statements do not themselves establish unrestricted relicensing of voice assets.
+
 ## Verification
 
 Engine tests cover cue precedence, mute/categories, activation failure, duplicates,
