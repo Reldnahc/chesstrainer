@@ -4,6 +4,18 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Lesson speech deferral — September 30, 2026
+
+Owner deferred all lesson narration for maintainability. Removed 334 lesson
+scripts, four lesson aliases and the course-specific reveal alternatives/coverage
+from the active voice plan; the preceding audit remains historical evidence.
+Recomputed and independently checked **185** unique scripts / 17,096 characters /
+2,913 words, or **181** / 16,936 / 2,888 with four transient/defensive entries silent.
+The eight recorded audition texts still match active IDs, leaving **173** practical
+recordings unrecorded. All 12 remaining aliases resolve and all text hashes match.
+JSON/count consistency and `git diff --check` passed. Documentation-only scope
+change: no audio generation, application behavior changes or full suites run.
+
 ## Whole-app Walter dialogue inventory — September 30, 2026
 
 Planning audit at `855fbc5`, extending the prior game-only inventory. The durable
