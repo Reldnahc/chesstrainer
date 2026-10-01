@@ -4,6 +4,33 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Teacher and elder Walter auditions — September 30, 2026
+
+Two authorized remixes of saved Custom 1 returned six previews with a shared
+141-character, self-contained teaching script. The raw files total **900,132
+bytes**, last **8.99–9.72 seconds**, and used **282 credits**. Teacher & elder is
+the default audition collection; prior recordings remain available. The owner
+explicitly declined padding: files are unchanged, without fades, re-encoding,
+trimming or playback timing changes.
+
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs walter.spec.ts recording-provenance.spec.ts --reporter=line`:
+  **44 passed**, desktop/mobile, no skips. All 27 clips decode and start locally;
+  source/script/hash correspondence, truthful model attribution, cancellation,
+  context ordering and responsive controls remain covered.
+- `npm.cmd --prefix frontend run test:types` and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed. The studio build
+  contains 27 MP3s; its existing large-chunk warning remains non-blocking.
+- Read-only tail inspection found approximately 8–115 ms below -40 dBFS at the
+  end of the original six refinements, and 1–59 ms in the new clips. The focused
+  `.tools/walter-runtime-endings.cjs` browser probe confirmed all original six
+  completed their full decoded durations with zero stop calls or cancellations.
+  This does not establish whether individual syllables sound complete.
+- Inspected the actual LAN studio and desktop/mobile screenshots; independent
+  data/provenance review and whitespace checks passed. No full repository suite,
+  production build, deployment, push or remote CI run for this audition-only
+  addition. Final delivery quality remains the owner's listening decision.
+
 ## Short Walter refinements — September 30, 2026
 
 Two authorized remix requests use the saved Custom 1 voice and the same

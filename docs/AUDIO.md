@@ -204,9 +204,13 @@ now provide three warmer and three more playful previews of the short script,
 each about 8–9 seconds, in the default Walter refinements collection. The exact
 requests, selected source voice, generated IDs and asset hashes are retained in
 `refinement-previews.json`; the provider does not report a model ID for remixes.
-The 140-character v4 TTS plan remains available but unrecorded. No remix has been
-saved over the baseline. This authoring choice does not enable production
-narration or finalize the voice.
+The 140-character v4 TTS plan remains available but unrecorded. A subsequent
+Teacher & elder collection is now the default, with six previews from two more
+remixes of Custom 1. Its 141-character script ends in a complete takeaway and
+prompts request unhurried, fully articulated endings. The exact requests and
+asset provenance are in `mentor-previews.json`. Earlier auditions remain for
+comparison. No remix has been saved over the baseline. This authoring choice
+does not enable production narration or finalize the voice.
 
 The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
 the selected model, settings, exact scripts, media terms and reproducible authoring

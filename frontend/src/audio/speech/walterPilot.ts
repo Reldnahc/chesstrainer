@@ -4,6 +4,7 @@ import recordingPlan from "./recording-plan.json" with { type: "json" };
 import designPreview from "./design-preview.json" with { type: "json" };
 import refinements from "./refinement-previews.json" with { type: "json" };
 import shortPlan from "./walter-short-plan.json" with { type: "json" };
+import mentors from "./mentor-previews.json" with { type: "json" };
 
 // Development audition data only. These examples are not evidence from a game.
 export type WalterVoice = { id: string; name: string; description: string; sourceName: string; modelId: string | null };
@@ -23,6 +24,10 @@ const originalVoices: readonly WalterVoice[] = [
   { id: "c", name: "C · Brian", description: "A deeper American voice. ElevenLabs describes Brian as resonant and comforting.", sourceName: "Brian", modelId: recordingPlan.modelId },
 ];
 export const walterVoices: readonly WalterVoice[] = [
+  ...mentors.takes.flatMap(take => take.previews.map(preview => ({
+    id: preview.id, name: preview.name, description: take.description,
+    sourceName: `Voice Remix · Custom 1 · ${preview.name}`, modelId: mentors.modelId,
+  }))),
   ...refinements.takes.flatMap(take => take.previews.map(preview => ({
     id: preview.id, name: preview.name, description: take.description,
     sourceName: `Voice Remix · Custom 1 · ${preview.name}`, modelId: refinements.modelId,
@@ -42,6 +47,8 @@ const originalScripts: readonly WalterScript[] = recordingPlan.scripts.map(({ te
   ...script, writtenText: text, spokenText: text, reaction: reactions[script.id] ?? "explaining",
 }));
 export const walterScripts: readonly WalterScript[] = [
+  { id: "mentor-defense", label: "A careful defense", writtenText: mentors.text,
+    spokenText: mentors.text, reaction: "great" },
   ...shortPlan.scripts.map(script => ({ id: script.id, label: script.label,
     writtenText: script.text, spokenText: script.text, reaction: "great" as const })),
   { id: "voice-design-preview", label: "Voice design preview", writtenText: designPreview.request.text,
@@ -50,6 +57,8 @@ export const walterScripts: readonly WalterScript[] = [
 ];
 
 export const walterCollections: readonly WalterCollection[] = [
+  { id: "teacher-elder", label: "Teacher & elder", description: "Two directions for Custom 1 · six short previews with a concluding line.",
+    voiceIds: mentors.takes.flatMap(take => take.previews.map(preview => preview.id)), scriptIds: ["mentor-defense"] },
   { id: "walter-refinements", label: "Walter refinements", description: "Two refinements of Custom 1 · six short previews.",
     voiceIds: refinements.takes.flatMap(take => take.previews.map(preview => preview.id)), scriptIds: shortPlan.scripts.map(script => script.id) },
   { id: "custom-walter", label: "Custom Walter", description: "One design request · three previews of the same script.",
@@ -60,6 +69,10 @@ export const walterCollections: readonly WalterCollection[] = [
 
 // All recordings belong only to the development audio entrypoint.
 export const walterClips: readonly WalterClip[] = [
+  ...mentors.takes.flatMap(take => take.previews.map(preview => ({
+    voiceId: preview.id, scriptId: "mentor-defense", durationSeconds: preview.durationSeconds,
+    url: new URL(`./recordings/mentor-v1/${preview.id}.mp3`, import.meta.url).href,
+  }))),
   ...refinements.takes.flatMap(take => take.previews.map(preview => ({
     voiceId: preview.id, scriptId: shortPlan.scripts[0].id, durationSeconds: preview.durationSeconds,
     url: new URL(`./recordings/refinements-v1/${preview.id}.mp3`, import.meta.url).href,

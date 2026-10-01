@@ -6,8 +6,9 @@ selected for production. The application does not
 automatically speak, call a speech provider, or require an API key.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
-http://127.0.0.1:5176/. The default Walter refinements collection contains six short
-remixes of the preferred Custom 1 voice. Custom Walter retains the three original
+http://127.0.0.1:5176/. The default Teacher & elder collection contains six short
+remixes of the preferred Custom 1 voice. Walter refinements retains the earlier
+warmer/playful takes. Custom Walter retains the three original
 Voice Design previews. Original voices retains Bill, George and
 Brian with four individual teaching examples. Play a clip alone or following the
 approved piece-move sound. Volume, mute and Stop all
@@ -110,6 +111,33 @@ Recording times, exact prompts, settings, IDs, durations and hashes are retained
 The same shared player loads these files locally; replay costs no credits.
 
 API reference: [Remix a voice](https://elevenlabs.io/docs/api-reference/text-to-voice/remix).
+
+### Teacher and elder directions
+
+The owner requested a more educational or older delivery. Both directions in
+[mentor-previews.json](mentor-previews.json) start from the saved Custom 1 voice;
+the earlier warm/playful previews have not been replaced. **Teacher** asks for
+patient explanatory phrasing, clear articulation and thoughtful emphasis.
+**Elder** asks for a subtly older, reflective voice with gentle authority, while
+avoiding frailty or an exaggerated rasp. Each direction returns three alternatives.
+These labels describe the requested performances, not measured qualities.
+
+The shared **141-character** script ends with a complete takeaway: “That's the
+value of a careful defense.” The earlier sample instead finished by promising
+an explanation it did not go on to give. Both new prompts ask for a settled
+cadence, a fully pronounced final word and a comfortable pause. Two requests
+used **282 credits** in total. No new permanent voice was saved.
+
+Inspection of the previous six untouched MP3s found very short quiet endings
+in four recordings (about 8–15 ms below -40 dBFS). A runtime check confirmed all
+six played their complete decoded duration with no source stop calls or speech
+cancellations. The new provider recordings also left only about 1–59 ms below
+-40 dBFS at the end despite the prompts.
+
+The owner explicitly chose to keep these examples unpadded. The studio plays
+the unchanged provider MP3s, with no trimming, fades, re-encoding or playback
+timing changes. The ending experiment is in the conclusive wording and requested
+delivery. The owner should judge that performance by listening.
 
 The original design used `POST /v1/text-to-voice/design?output_format=mp3_44100_128`
 with its manifest's `request` object and the process-only API key. Generation was

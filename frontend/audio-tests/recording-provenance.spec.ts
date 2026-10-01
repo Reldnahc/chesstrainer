@@ -7,6 +7,7 @@ import plan from "../src/audio/speech/recording-plan.json" with { type: "json" }
 import design from "../src/audio/speech/design-preview.json" with { type: "json" };
 import refinements from "../src/audio/speech/refinement-previews.json" with { type: "json" };
 import shortPlan from "../src/audio/speech/walter-short-plan.json" with { type: "json" };
+import mentors from "../src/audio/speech/mentor-previews.json" with { type: "json" };
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const options = { cwd: root, encoding: "utf8" as const, timeout: 20000,
@@ -47,22 +48,27 @@ test("custom Walter previews retain one original design request and unchanged au
   }
 });
 
-test("Walter refinements preserve the selected voice and use the same short audition", () => {
-  expect(refinements.provider).toBe("elevenlabs");
-  expect(refinements.sourcePreviewId).toBe("custom-1");
-  expect(refinements.sourceVoiceId).toBe(design.previews[0].generatedVoiceId);
-  expect(refinements.sourceVoiceId).toBe(shortPlan.voices[0].providerVoiceId);
-  expect(refinements.text).toBe(shortPlan.scripts[0].text);
-  expect(refinements.text.length).toBe(140);
-  expect(refinements.modelId).toBeNull(); // The remix response does not identify its model.
-  expect(refinements.takes.map(take => take.id)).toEqual(["warm", "playful"]);
-  for (const take of refinements.takes) {
-    expect(take.endpoint).toBe(`/v1/text-to-voice/${refinements.sourceVoiceId}/remix`);
-    expect(take.request.text).toBe(refinements.text);
+for (const batch of [
+  { name: "warm/playful", manifest: refinements, directory: "refinements-v1", takeIds: ["warm", "playful"], text: shortPlan.scripts[0].text },
+  { name: "teacher/elder", manifest: mentors, directory: "mentor-v1", takeIds: ["teacher", "elder"],
+    text: "Well found. Of the moves we checked, only this one kept the position playable. The others were losing. That's the value of a careful defense." },
+]) test(`Walter ${batch.name} refinements preserve the selected voice and short script`, () => {
+  const manifest = batch.manifest;
+  expect(manifest.provider).toBe("elevenlabs");
+  expect(manifest.sourcePreviewId).toBe("custom-1");
+  expect(manifest.sourceVoiceId).toBe(design.previews[0].generatedVoiceId);
+  expect(manifest.sourceVoiceId).toBe(shortPlan.voices[0].providerVoiceId);
+  expect(manifest.text).toBe(batch.text);
+  expect(manifest.text.length).toBeLessThanOrEqual(150);
+  expect(manifest.modelId).toBeNull(); // The remix response does not identify its model.
+  expect(manifest.takes.map(take => take.id)).toEqual(batch.takeIds);
+  for (const take of manifest.takes) {
+    expect(take.endpoint).toBe(`/v1/text-to-voice/${manifest.sourceVoiceId}/remix`);
+    expect(take.request.text).toBe(manifest.text);
     expect(take.request.auto_generate_text).toBe(false);
     expect(take.previews).toHaveLength(3);
     for (const preview of take.previews) {
-      const audio = readFileSync(new URL(`../src/audio/speech/recordings/refinements-v1/${preview.id}.mp3`, import.meta.url));
+      const audio = readFileSync(new URL(`../src/audio/speech/recordings/${batch.directory}/${preview.id}.mp3`, import.meta.url));
       expect(audio.length).toBe(preview.bytes);
       expect(createHash("sha256").update(audio).digest("hex")).toBe(preview.sha256);
       expect(preview.durationSeconds).toBeGreaterThan(0);

@@ -80,10 +80,13 @@ test("Walter starts neutral and silent with complete local recordings for every 
   expect(walterScripts.map(script => script.id)).toEqual(expect.arrayContaining(["voice-design-preview", "only-defense", "abandoned-defender", "allowed-mate", "fork"]));
   expect(walterClips.map(clip => `${clip.voiceId}:${clip.scriptId}`).sort())
     .toEqual(walterCollections.flatMap(collection => collection.voiceIds.flatMap(voiceId => collection.scriptIds.map(scriptId => `${voiceId}:${scriptId}`))).sort());
-  expect(walterCollections[0].label).toBe("Walter refinements");
-  expect(walterCollections[0].voiceIds).toEqual(["warm-1", "warm-2", "warm-3", "playful-1", "playful-2", "playful-3"]);
-  expect(walterCollections[0].scriptIds).toEqual(["short-defense"]);
-  expect(walterScripts[0].spokenText).toHaveLength(140);
+  expect(walterCollections[0].label).toBe("Teacher & elder");
+  expect(walterCollections[0].voiceIds).toEqual(["teacher-1", "teacher-2", "teacher-3", "elder-1", "elder-2", "elder-3"]);
+  expect(walterCollections[0].scriptIds).toEqual(["mentor-defense"]);
+  expect(walterScripts[0].spokenText).toHaveLength(141);
+  expect(walterScripts[0].spokenText).toMatch(/That's the value of a careful defense\.$/);
+  expect(walterCollections.find(collection => collection.id === "walter-refinements")?.voiceIds)
+    .toEqual(["warm-1", "warm-2", "warm-3", "playful-1", "playful-2", "playful-3"]);
   await expect(collectionChoices(page).getByRole("button", { name: walterCollections[0].label, exact: true })).toHaveAttribute("aria-pressed", "true");
   expect(requests.filter(url => recordingPattern.test(url) || url.endsWith(".wav"))).toEqual([]);
   expect(await nativeStarts(page)).toEqual([]);
