@@ -293,8 +293,9 @@ and move-before-speech ordering even when the move asset loads slowly. Its
 provenance tests run the offline Node authoring regressions and verify all stored
 requests and audio hashes against the recording plan, with the provider key removed
 from the subprocess environment. No paid generation is part of verification.
-Custom Voice Design previews are checked against their separate exact request and
-hash manifest. Collection switches cancel active/pending speech and expose only
+Custom Voice Design previews and their short Voice Remix refinements are checked
+against separate exact request/hash manifests, including the selected source
+voice and shared short script. Collection switches cancel active/pending speech and expose only
 their available examples; the original recordings remain independently playable.
 Run the authoring tests alone with `node --test scripts/record_coach_speech.test.mjs`.
 

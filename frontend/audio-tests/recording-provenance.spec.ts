@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 import { expect, test } from "@playwright/test";
 import plan from "../src/audio/speech/recording-plan.json" with { type: "json" };
 import design from "../src/audio/speech/design-preview.json" with { type: "json" };
+import refinements from "../src/audio/speech/refinement-previews.json" with { type: "json" };
+import shortPlan from "../src/audio/speech/walter-short-plan.json" with { type: "json" };
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const options = { cwd: root, encoding: "utf8" as const, timeout: 20000,
@@ -42,5 +44,29 @@ test("custom Walter previews retain one original design request and unchanged au
     expect(createHash("sha256").update(audio).digest("hex")).toBe(preview.sha256);
     expect(preview.durationSeconds).toBeGreaterThan(0);
     expect(preview.mediaType).toBe("audio/mpeg");
+  }
+});
+
+test("Walter refinements preserve the selected voice and use the same short audition", () => {
+  expect(refinements.provider).toBe("elevenlabs");
+  expect(refinements.sourcePreviewId).toBe("custom-1");
+  expect(refinements.sourceVoiceId).toBe(design.previews[0].generatedVoiceId);
+  expect(refinements.sourceVoiceId).toBe(shortPlan.voices[0].providerVoiceId);
+  expect(refinements.text).toBe(shortPlan.scripts[0].text);
+  expect(refinements.text.length).toBe(140);
+  expect(refinements.modelId).toBeNull(); // The remix response does not identify its model.
+  expect(refinements.takes.map(take => take.id)).toEqual(["warm", "playful"]);
+  for (const take of refinements.takes) {
+    expect(take.endpoint).toBe(`/v1/text-to-voice/${refinements.sourceVoiceId}/remix`);
+    expect(take.request.text).toBe(refinements.text);
+    expect(take.request.auto_generate_text).toBe(false);
+    expect(take.previews).toHaveLength(3);
+    for (const preview of take.previews) {
+      const audio = readFileSync(new URL(`../src/audio/speech/recordings/refinements-v1/${preview.id}.mp3`, import.meta.url));
+      expect(audio.length).toBe(preview.bytes);
+      expect(createHash("sha256").update(audio).digest("hex")).toBe(preview.sha256);
+      expect(preview.durationSeconds).toBeGreaterThan(0);
+      expect(preview.mediaType).toBe("audio/mpeg");
+    }
   }
 });

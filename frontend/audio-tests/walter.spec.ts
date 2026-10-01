@@ -66,7 +66,7 @@ async function waitForNativeDecode(page: Page) {
   expect(error).toBeUndefined();
 }
 
-test("Walter starts neutral and silent with complete local recordings for both collections", async ({ page }) => {
+test("Walter starts neutral and silent with complete local recordings for every collection", async ({ page }) => {
   const requests: string[] = [];
   const errors: string[] = [];
   page.on("request", request => requests.push(request.url()));
@@ -76,12 +76,15 @@ test("Walter starts neutral and silent with complete local recordings for both c
   await expect(panel(page)).toBeVisible();
   await expect(panel(page).locator('[data-coach="classic"]')).toHaveAttribute("data-requested", "neutral");
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");
-  expect(walterVoices.map(voice => voice.id)).toEqual(["custom-1", "custom-2", "custom-3", "a", "b", "c"]);
-  expect(walterScripts.map(script => script.id)).toEqual(["voice-design-preview", "only-defense", "abandoned-defender", "allowed-mate", "fork"]);
+  expect(walterVoices.map(voice => voice.id)).toEqual(expect.arrayContaining(["custom-1", "custom-2", "custom-3", "a", "b", "c"]));
+  expect(walterScripts.map(script => script.id)).toEqual(expect.arrayContaining(["voice-design-preview", "only-defense", "abandoned-defender", "allowed-mate", "fork"]));
   expect(walterClips.map(clip => `${clip.voiceId}:${clip.scriptId}`).sort())
     .toEqual(walterCollections.flatMap(collection => collection.voiceIds.flatMap(voiceId => collection.scriptIds.map(scriptId => `${voiceId}:${scriptId}`))).sort());
-  await expect(collectionChoices(page).getByRole("button", { name: "Custom Walter", exact: true })).toHaveAttribute("aria-pressed", "true");
-  await expect(panel(page)).toContainText("One design request · three previews");
+  expect(walterCollections[0].label).toBe("Walter refinements");
+  expect(walterCollections[0].voiceIds).toEqual(["warm-1", "warm-2", "warm-3", "playful-1", "playful-2", "playful-3"]);
+  expect(walterCollections[0].scriptIds).toEqual(["short-defense"]);
+  expect(walterScripts[0].spokenText).toHaveLength(140);
+  await expect(collectionChoices(page).getByRole("button", { name: walterCollections[0].label, exact: true })).toHaveAttribute("aria-pressed", "true");
   expect(requests.filter(url => recordingPattern.test(url) || url.endsWith(".wav"))).toEqual([]);
   expect(await nativeStarts(page)).toEqual([]);
 
@@ -92,7 +95,7 @@ test("Walter starts neutral and silent with complete local recordings for both c
     for (const voiceId of collection.voiceIds) {
       const voice = walterVoices.find(item => item.id === voiceId)!;
       await voiceChoices(page).getByRole("button", { name: voice.name, exact: true }).click();
-      await expect(panel(page).locator(".walter-audition-source")).toContainText(`${voice.sourceName} · Model ${voice.modelId}`);
+      await expect(panel(page).locator(".walter-audition-source")).toContainText(`${voice.sourceName} · Model ${voice.modelId ?? "provider-selected (Voice Remix)"}`);
       for (const scriptId of collection.scriptIds) {
         const script = walterScripts.find(item => item.id === scriptId)!;
         if (collection.scriptIds.length > 1) await scriptSelect(page).selectOption(script.id);
@@ -114,7 +117,7 @@ test("Walter starts neutral and silent with complete local recordings for both c
       }
     }
   }
-  expect(new Set(requests.filter(url => recordingPattern.test(url))).size).toBe(15);
+  expect(new Set(requests.filter(url => recordingPattern.test(url))).size).toBe(walterClips.length);
   expect((await nativeStarts(page)).every(duration => Number.isFinite(duration) && duration > 0)).toBe(true);
   expect(await page.evaluate(() => (window as unknown as { __walterSourcePeaks: number[] }).__walterSourcePeaks.every(peak => Number.isFinite(peak) && peak > 0))).toBe(true);
   const origin = new URL(page.url()).origin;
@@ -301,7 +304,7 @@ test("changing voices cancels active speech and does not auto-play the next cand
 test("collection changes cancel speech and select only valid voice and script pairs", async ({ page }) => {
   await captureNativeStarts(page);
   await page.goto("/");
-  await voiceChoices(page).getByRole("button", { name: "Preview 2", exact: true }).click();
+  await voiceChoices(page).getByRole("button", { name: walterVoices[1].name, exact: true }).click();
   await playVoice(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
   await collectionChoices(page).getByRole("button", { name: "Original voices", exact: true }).click();
@@ -320,7 +323,7 @@ test("collection changes cancel speech and select only valid voice and script pa
   await expect(voiceChoices(page).getByRole("button", { name: "Preview 1", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(voiceChoices(page).getByRole("button")).toHaveText(["Preview 1", "Preview 2", "Preview 3"]);
   await expect(scriptSelect(page)).toHaveCount(0);
-  await expect(panel(page).getByLabel("Coach explanation", { exact: true })).toHaveText(walterScripts[0].writtenText);
+  await expect(panel(page).getByLabel("Coach explanation", { exact: true })).toHaveText(walterScripts.find(script => script.id === "voice-design-preview")!.writtenText);
   expect(await nativeStarts(page)).toHaveLength(2);
 });
 
@@ -331,9 +334,10 @@ test("Walter's selectors and preview fit a 320-pixel phone without changing shar
   await expect(panel(page).getByRole("img", { name: "Walter, voice preview", exact: true })).toBeVisible();
   await expect(playVoice(page)).toBeEnabled();
   await panel(page).locator(".walter-audition-source summary").click();
-  await expect(panel(page).locator(".walter-audition-source")).toContainText("Model eleven_ttv_v3");
+  await expect(panel(page).locator(".walter-audition-source")).toContainText(`Model ${walterVoices[0].modelId ?? "provider-selected (Voice Remix)"}`);
   await expect(panel(page).getByRole("link", { name: "Voice provider", exact: true })).toHaveAttribute("href", "https://elevenlabs.io/text-to-speech");
   await panel(page).locator(".walter-audition-source summary").click();
+  await collectionChoices(page).getByRole("button", { name: "Custom Walter", exact: true }).click();
   const message = panel(page).getByLabel("Coach explanation", { exact: true });
   const scrolled = await message.evaluate(element => {
     element.scrollTop = element.scrollHeight;
@@ -343,6 +347,7 @@ test("Walter's selectors and preview fit a 320-pixel phone without changing shar
   expect(scrolled.top + scrolled.height).toBeGreaterThanOrEqual(scrolled.content - 1);
   await expect(message).toContainText("Follow the line and watch for the moment those attacks come together.");
   await message.evaluate(element => { element.scrollTop = 0; });
+  await collectionChoices(page).getByRole("button", { name: walterCollections[0].label, exact: true }).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   if (info.project.name === "mobile") {
     const heights = await panel(page).locator("button, select").evaluateAll(controls => controls.map(control => control.getBoundingClientRect().height));

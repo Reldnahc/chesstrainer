@@ -21,7 +21,8 @@ mute the current device from a board. The separate development sound studio
 (`npm --prefix frontend run dev:audio`, port 5176) previews the nine approved
 sounds individually and in context. It also includes a
 [Walter voice audition](frontend/src/audio/speech/README.md): original custom-voice
-previews and three stock voices reading the same teaching examples. Production
+previews, short refinements of the preferred voice, and three stock voices reading
+the teaching examples. Production
 coach speech remains deferred.
 
 Game review now connects supported tactics, immediate positional changes, human

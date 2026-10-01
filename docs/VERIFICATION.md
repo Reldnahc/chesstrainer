@@ -4,6 +4,32 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Short Walter refinements — September 30, 2026
+
+Two authorized remix requests use the saved Custom 1 voice and the same
+140-character script. Each returned three previews (8.36–8.68 seconds); the six
+unchanged files total **817,794 bytes**. Measured usage increased **280 credits**.
+The source voice, original previews and production narration policy are unchanged.
+The existing studio/player now defaults to Walter refinements, retaining both
+earlier collections. Model attribution is explicitly provider-selected because
+the remix response does not identify its model.
+
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs walter.spec.ts recording-provenance.spec.ts --reporter=line`:
+  **42 passed**, desktop/mobile, no skips. The ignored wrapper only reuses the
+  existing studio. All 21 clips decode/start with finite durations and nonzero
+  signal. Source/hash/script checks, cancellation, valid collection choices,
+  local-only playback and responsive transcript coverage pass.
+- `npm.cmd --prefix frontend run test:types`,
+  `npm.cmd --prefix frontend run build`, and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed. API/types and **11**
+  style tests pass. Production assets have no audition MP3s; the studio contains
+  21. Existing chunk-size warnings remain non-blocking.
+- Exercised Warmer 1 in the actual studio, inspected desktop/mobile screenshots,
+  and completed independent source/provenance review without actionable findings.
+  Whitespace checks pass. Voice quality and the chosen refinement remain the
+  owner's listening decision. No full repository suite, deployment or push.
+
 ## Original Walter Voice Design audition — September 30, 2026
 
 One authorized text-only design request returned three original voice previews.

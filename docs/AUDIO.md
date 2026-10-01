@@ -188,7 +188,7 @@ summary policy below remains the rule for eventual production integration.
 
 The owner then requested one original Walter Voice Design experiment. Its single
 text-only prompt generated three approximately 40-second alternatives, now in the
-default Custom Walter collection. They share one continuous preview of the four
+Custom Walter collection. They share one continuous preview of the four
 teaching examples; the Original voices collection preserves all previous clips.
 Both collections reuse the same player, coach presentation and cancellation
 behavior. Model/source credits belong to each voice rather than assuming all
@@ -199,8 +199,14 @@ The owner subsequently chose Custom 1 as Walter's refinement baseline and
 approved saving it in ElevenLabs as **Fieldwork Walter - Custom 1**. Future
 refinement auditions use the 140-character script in `walter-short-plan.json`
 (about a quarter of the original), targeting roughly 10 seconds. The original
-preview is retained for comparison; the short plan has not yet generated audio.
-This authoring choice does not enable production narration or finalize the voice.
+preview is retained for comparison. Two prompt-based remixes of that saved voice
+now provide three warmer and three more playful previews of the short script,
+each about 8–9 seconds, in the default Walter refinements collection. The exact
+requests, selected source voice, generated IDs and asset hashes are retained in
+`refinement-previews.json`; the provider does not report a model ID for remixes.
+The 140-character v4 TTS plan remains available but unrecorded. No remix has been
+saved over the baseline. This authoring choice does not enable production
+narration or finalize the voice.
 
 The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
 the selected model, settings, exact scripts, media terms and reproducible authoring

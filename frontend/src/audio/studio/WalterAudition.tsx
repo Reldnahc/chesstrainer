@@ -77,7 +77,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
         <p className="walter-audition-hint">In context plays a piece move, then Walter. Volume, mute and Stop all above apply to both.</p>
         <details className="disclosure walter-audition-source">
           <summary>Recording details</summary>
-          <SourceLine text={`ElevenLabs · ${voice.sourceName} · Model ${voice.modelId}`}
+          <SourceLine text={`ElevenLabs · ${voice.sourceName} · Model ${voice.modelId ?? "provider-selected (Voice Remix)"}`}
             url="https://elevenlabs.io/text-to-speech" linkLabel="Voice provider" />
           <SourceLine text="Prerecorded clips play locally. Playback does not contact the voice provider." />
         </details>

@@ -6,8 +6,9 @@ selected for production. The application does not
 automatically speak, call a speech provider, or require an API key.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
-http://127.0.0.1:5176/. The default Custom Walter collection contains three previews
-returned by one Voice Design request. Original voices retains Bill, George and
+http://127.0.0.1:5176/. The default Walter refinements collection contains six short
+remixes of the preferred Custom 1 voice. Custom Walter retains the three original
+Voice Design previews. Original voices retains Bill, George and
 Brian with four individual teaching examples. Play a clip alone or following the
 approved piece-move sound. Volume, mute and Stop all
 use the shared audio engine. Changing the example/voice or hiding the tab cancels
@@ -66,10 +67,11 @@ than 40. Actual duration and provider charges depend on the generation. The
 script preserves one complete teaching idea and tests warm praise followed by
 calm explanation. Avoid returning to the four-example script for routine tweaks.
 
-This plan is prepared, not recorded. Its v4 delivery has not yet been auditioned;
-the saved voice identity comes from the preferred v3 design preview. Keep the
-baseline unchanged when comparing refinements, and use a new output directory
-for each take. The existing dry-run-first recorder supports this plan:
+This TTS plan's v4 delivery has not yet been auditioned; its short script is used
+by the remix previews below. The saved voice identity comes from the preferred
+v3 design preview. Keep the baseline unchanged when comparing refinements, and
+use a new output directory for each take. The existing dry-run-first recorder
+supports this plan:
 
 ```sh
 node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-short-plan.json --output frontend/src/audio/speech/recordings/walter-short-v1
@@ -78,8 +80,33 @@ node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-sho
 Without `--generate`, this validates the plan and reports one prospective request,
 140 characters, without using credentials, spending credits or writing audio.
 
-Authoring uses `POST /v1/text-to-voice/design?output_format=mp3_44100_128` with the
-manifest's `request` object and the process-only API key. The generation was
+### Custom 1 refinements
+
+[refinement-previews.json](refinement-previews.json) preserves two requests to
+`POST /v1/text-to-voice/ap9rSM4hVTU6JjQ17FrC/remix`, using the saved Custom 1 voice.
+Both use the same 140-character script. **Warmer** asks for a more personable,
+reassuring delivery; **Playful** adds restrained wit and varied emphasis. Both
+ask to preserve the original age, accent, pitch and natural grain. Prompt strength
+is 0.22, with guidance 2, to keep the changes small. These are design directions,
+not independent listening assessments.
+
+Each request returned three previews, lasting **8.36–8.68 seconds**. The six
+unchanged MP3s total **817,794 bytes**. The settled usage counter increased by
+**280 credits** for both requests together. There were no retries or additional
+TTS requests. No remix has been saved as another permanent voice or replaced the
+selected baseline. Generated preview IDs remain in the manifest for a later
+owner selection.
+
+The remix endpoint does not accept an explicit model ID or report one in its
+response. Its manifest therefore records `modelId: null`, and the studio credits
+the model as provider-selected rather than asserting that these are v4 TTS clips.
+Recording times, exact prompts, settings, IDs, durations and hashes are retained.
+The same shared player loads these files locally; replay costs no credits.
+
+API reference: [Remix a voice](https://elevenlabs.io/docs/api-reference/text-to-voice/remix).
+
+The original design used `POST /v1/text-to-voice/design?output_format=mp3_44100_128`
+with its manifest's `request` object and the process-only API key. Generation was
 explicitly requested; builds and playback never call this endpoint. API rejection
 confirmed that Bill cannot be directly remixed with this account. The design's
 v3 model also rejects the `quality` parameter, despite that parameter appearing
@@ -91,7 +118,8 @@ Sources: [Voice Design guide](https://elevenlabs.io/docs/eleven-creative/voices/
 ## Permissions and attribution
 
 Generated using ElevenLabs on the owner's active paid Creator subscription, with
-Eleven v4 for the premade voices and Voice Design v3 for the original previews.
+Eleven v4 for the premade voices, Voice Design v3 for the original previews and
+Voice Remix for the refinements.
 This is generated audio, not recordings of an
 actor hired by Fieldwork or a voice cloned by this project. Provider descriptions
 are credited as descriptions, not presented as an independent listening review.

@@ -2,9 +2,11 @@ import type { CoachExpression } from "../../coach/model";
 import type { CoachUtterance } from "../../dialogue/model";
 import recordingPlan from "./recording-plan.json" with { type: "json" };
 import designPreview from "./design-preview.json" with { type: "json" };
+import refinements from "./refinement-previews.json" with { type: "json" };
+import shortPlan from "./walter-short-plan.json" with { type: "json" };
 
 // Development audition data only. These examples are not evidence from a game.
-export type WalterVoice = { id: string; name: string; description: string; sourceName: string; modelId: string };
+export type WalterVoice = { id: string; name: string; description: string; sourceName: string; modelId: string | null };
 export type WalterCollection = { id: string; label: string; description: string; voiceIds: readonly string[]; scriptIds: readonly string[] };
 export type WalterScript = {
   id: string;
@@ -21,6 +23,10 @@ const originalVoices: readonly WalterVoice[] = [
   { id: "c", name: "C · Brian", description: "A deeper American voice. ElevenLabs describes Brian as resonant and comforting.", sourceName: "Brian", modelId: recordingPlan.modelId },
 ];
 export const walterVoices: readonly WalterVoice[] = [
+  ...refinements.takes.flatMap(take => take.previews.map(preview => ({
+    id: preview.id, name: preview.name, description: take.description,
+    sourceName: `Voice Remix · Custom 1 · ${preview.name}`, modelId: refinements.modelId,
+  }))),
   ...designPreview.previews.map(preview => ({
     id: preview.id, name: preview.name,
     description: "Design brief: a warm, mature American mentor with gentle humor, thoughtful pauses and an understated delivery.",
@@ -36,12 +42,16 @@ const originalScripts: readonly WalterScript[] = recordingPlan.scripts.map(({ te
   ...script, writtenText: text, spokenText: text, reaction: reactions[script.id] ?? "explaining",
 }));
 export const walterScripts: readonly WalterScript[] = [
+  ...shortPlan.scripts.map(script => ({ id: script.id, label: script.label,
+    writtenText: script.text, spokenText: script.text, reaction: "great" as const })),
   { id: "voice-design-preview", label: "Voice design preview", writtenText: designPreview.request.text,
     spokenText: designPreview.request.text, reaction: "explaining" },
   ...originalScripts,
 ];
 
 export const walterCollections: readonly WalterCollection[] = [
+  { id: "walter-refinements", label: "Walter refinements", description: "Two refinements of Custom 1 · six short previews.",
+    voiceIds: refinements.takes.flatMap(take => take.previews.map(preview => preview.id)), scriptIds: shortPlan.scripts.map(script => script.id) },
   { id: "custom-walter", label: "Custom Walter", description: "One design request · three previews of the same script.",
     voiceIds: designPreview.previews.map(preview => preview.id), scriptIds: ["voice-design-preview"] },
   { id: "original-voices", label: "Original voices", description: "The original Bill, George and Brian recordings, with four individual examples.",
@@ -50,6 +60,10 @@ export const walterCollections: readonly WalterCollection[] = [
 
 // All recordings belong only to the development audio entrypoint.
 export const walterClips: readonly WalterClip[] = [
+  ...refinements.takes.flatMap(take => take.previews.map(preview => ({
+    voiceId: preview.id, scriptId: shortPlan.scripts[0].id, durationSeconds: preview.durationSeconds,
+    url: new URL(`./recordings/refinements-v1/${preview.id}.mp3`, import.meta.url).href,
+  }))),
   ...designPreview.previews.map(preview => ({
     voiceId: preview.id, scriptId: "voice-design-preview", durationSeconds: preview.durationSeconds,
     url: new URL(`./recordings/custom-v1/${preview.id}.mp3`, import.meta.url).href,
