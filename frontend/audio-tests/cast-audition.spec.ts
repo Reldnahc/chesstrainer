@@ -201,3 +201,22 @@ test("cast motion follows device reduction and explicit Still while sound remain
   await expect(speechEvents(page, "started")).toHaveCount(1);
   await page.getByRole("button", {name: "Stop all", exact: true}).click();
 });
+
+test("a recording without an aligned track still plays through the energy-driven mouth", async ({page}) => {
+  const tracks = JSON.parse(readFileSync(resolve(root, "tracks.json"), "utf8")) as Record<string, SpeechMouthTrack>;
+  const candidate = plan.coaches.find(item => item.coachId === "robot")!;
+  const missing = `${candidate.coachId}:${candidate.directions[0].id}`;
+  const remaining = Object.fromEntries(Object.entries(tracks).filter(([id]) => id !== missing));
+  await page.route(url => url.pathname.endsWith("/cast-auditions/tracks.json"), route => route.fulfill({
+    contentType: "text/javascript", body: `export default ${JSON.stringify(remaining)};`}));
+  await page.goto("/");
+  await coach(page).selectOption(candidate.coachId);
+  await direction(page).selectOption(candidate.directions[0].id);
+  await expect(panel(page)).toContainText("Mouth timing is unavailable; the mouth follows the audio instead");
+  await expect(play(page)).toBeEnabled();
+  await play(page).click();
+  await expect(panel(page)).toHaveAttribute("data-playback", "playing");
+  await expect(speechEvents(page, "started")).toHaveCount(1);
+  await direction(page).selectOption(candidate.directions[1].id);
+  await expect(panel(page)).toContainText("Automatically aligned mouth timing");
+});

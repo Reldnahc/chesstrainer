@@ -429,6 +429,9 @@ selected character. These tools share `useStudioPlayer`, `StudioTransport`,
 `CastVoiceAudition` and the existing audio engine. Selecting another character
 or direction cancels playback; all sound and mouth timing use the same source
 clock. Neither surface changes account preferences or installs a production voice.
+A recording whose automatic alignment failed still plays: once the track lookup
+finishes without a track, the portrait keeps the shared energy-driven mouth and the
+panel says that mouth timing is unavailable. Nothing is hand-timed.
 
 **Choose this voice** saves the currently auditioned direction as that coach's
 casting decision. **Keep looking** records that none of the present options fits;

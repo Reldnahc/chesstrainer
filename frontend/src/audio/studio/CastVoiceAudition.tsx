@@ -76,7 +76,8 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
 
   const {coach} = candidate;
   const track = alignment?.id === recordingId ? alignment?.track : undefined;
-  const ready = !!recording && !!track;
+  // A missing aligned track keeps the shared energy-driven mouth rather than blocking playback.
+  const ready = !!recording && alignment?.id === recordingId;
   const registered = choices.candidates[coach.id]?.[direction.id];
   const sameRecording = matchesRecording(recording, registered);
   const registeredSet = choices.candidates[coach.id] ?? {};
@@ -88,7 +89,7 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
   const speech = playing && player.speaking?.eventId === player.speechPlayback.eventId ? player.speaking ?? undefined : undefined;
   const reaction = {state: playing ? expression : "neutral" as const, key: playing ? player.speechPlayback.eventId! : `cast-ready:${coach.id}`};
   function play(inContext: boolean) {
-    if (!recording || !track) return;
+    if (!recording || !ready) return;
     // A late saved-choice load must not switch a preview the listener just started.
     if (!coachId) setSelectedCoachId(coach.id);
     setDirectionId(direction!.id);
@@ -132,9 +133,9 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
           </>}>
           <p>{candidate.text}</p>
         </ReviewCoach>
-        {!ready && <p role="status" className="cast-audition-note">{!recording ? "Awaiting this candidate’s recording." :
-          alignment?.id === recordingId ? "Mouth timing is unavailable for this recording." : "Loading mouth timing…"}</p>}
-        {ready && <p className="cast-audition-note">{recording.durationSeconds.toFixed(1)} seconds · Automatically aligned mouth timing</p>}
+        {!ready && <p role="status" className="cast-audition-note">{!recording ? "Awaiting this candidate’s recording." : "Loading mouth timing…"}</p>}
+        {ready && <p className="cast-audition-note">{recording.durationSeconds.toFixed(1)} seconds · {track ?
+          "Automatically aligned mouth timing" : "Mouth timing is unavailable; the mouth follows the audio instead"}</p>}
         {choices.ready && recording && !sameRecording && <p className="cast-audition-note" role="status">
           This preview differs from the studio’s current recording. Reload the page before choosing it.
         </p>}
