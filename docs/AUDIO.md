@@ -194,7 +194,13 @@ Both collections reuse the same player, coach presentation and cancellation
 behavior. Model/source credits belong to each voice rather than assuming all
 clips use the original TTS model. The custom previews use `eleven_ttv_v3`, total
 1,965,378 bytes and have exact request/hash provenance in `design-preview.json`.
-No permanent custom voice or production speech setting has been selected.
+
+The owner subsequently chose Custom 1 as Walter's refinement baseline and
+approved saving it in ElevenLabs as **Fieldwork Walter - Custom 1**. Future
+refinement auditions use the 140-character script in `walter-short-plan.json`
+(about a quarter of the original), targeting roughly 10 seconds. The original
+preview is retained for comparison; the short plan has not yet generated audio.
+This authoring choice does not enable production narration or finalize the voice.
 
 The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
 the selected model, settings, exact scripts, media terms and reproducible authoring
