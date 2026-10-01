@@ -423,7 +423,8 @@ The separate audio studio's **Cast voice auditions** selector compares three
 independently described custom voices for each of twenty approved nonhuman
 coaches (60 active recordings). Nineteen approved designs are now locked, so the
 studio defaults to Biscuit, the one remaining coach, under **Needs a voice**. **Locked
-voices** permits read-only inspection. All twenty speaking rigs can be inspected independently.
+voices** permits read-only inspection. All thirty speaking rigs can be inspected independently;
+the nine humans without auditions hold the static shapes only.
 The coach studio's **Mouth shapes** view embeds the same audition panel for its
 selected character. These tools share `useStudioPlayer`, `StudioTransport`,
 `CastVoiceAudition` and the existing audio engine. Selecting another character

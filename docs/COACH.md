@@ -147,11 +147,10 @@ single raised finger: its silhouette reads as an insulting gesture at review siz
 `CoachCharacter`, `CoachAvatar` and `ReviewCoach` accept an optional
 `SpeechPlayback` from the shared audio engine. Speech supplements the semantic
 expression; it does not choose a grade, change dialogue, restart entrances or
-replace the independent eye/body idle scheduler. Walter and the twenty nonhuman
-rigs support speaking articulation. A coach/family explicitly opts in through
-`speech` capability metadata;
-unimplemented rigs keep their authored face, and a handle for a different coach
-cannot animate the selected portrait.
+replace the independent eye/body idle scheduler. All thirty selectable rigs
+support speaking articulation. A coach/family explicitly opts in through
+`speech` capability metadata; a rig without a speaking mouth keeps its authored
+face, and a handle for a different coach cannot animate the selected portrait.
 
 `useSpeechPerformance.ts` samples the recording's actual audio clock and updates
 bounded CSS variables on the portrait, without per-frame React renders. It runs
@@ -165,8 +164,14 @@ Walter's `WalterSpeechMouth` uses closed lips, rounded/wider openings, clipped
 teeth/tongue and a small beard/jaw movement. Quiet audio closes the lips; ending
 or cancelling playback restores the exact authored expression. The mouth is
 separate from Brilliant's entrance mouth scale so the two cannot compound.
-`HumanFeatures` offers a mouth slot, preserving the existing shared fallback for
-other humans. `SpeechMouthLayer` switches between intact authored artwork and a
+`HumanFeatures` offers a mouth slot. The other nine humans fill it with the
+shared `human/HumanSpeechMouth`, which places `OrganicSpeechMouth` on Walter's
+exact face coordinates (a 14-unit mouth whose upper lip rests on y=58.5 and
+whose jaw reaches y=66.5) so every human opens, rounds and closes in step with
+him, while each coach keeps its own lip, cavity and tongue tones. Desmond's and
+Arjun's chin beards and Kenji's chin crease sit in a `human-speech-jaw` group
+that follows `--speech-jaw`, as Walter's beard does; moustaches stay on the upper
+lip. `SpeechMouthLayer` switches between intact authored artwork and a
 speaking mouth. `OrganicSpeechMouth` supplies an upper-lip-anchored aperture with
 species-owned dimensions, palette and optional teeth, tongue, fangs or interior.
 Its rounded shapes compensate for mouth aspect ratio, so a wide frog mouth can
@@ -206,7 +211,7 @@ shapes, with phoneme examples, at board size or enlarged. `previewSpeechShape`
 applies the exact rig controls without audio or an animation loop. This explicit
 static inspection also works with Still; actual playback continues to honor the
 normal motion/visibility policy. Clearing the preview restores the authored
-expression. Unimplemented human rigs remain unsupported. The same view embeds
+expression. A rig without a speaking mouth would remain unsupported. The same view embeds
 the selected creature's local voice auditions so timing can be inspected with
 real recordings. Their shared casting controls save an explicit final direction
 or Keep looking decision on the studio host. These authoring choices do not
@@ -396,7 +401,9 @@ If the coach will speak, implement all nine shapes in `speechMouth.ts` through
 the existing articulation layer before opting in to `speech`. Walter's
 `classic/WalterAlignedMouth.tsx`, the shared `SpeechMouthLayer.tsx` and Rivet's
 `cast/scifi/RobotSpeechMouth.tsx` demonstrate different geometry using the same
-normalized controls. Do not copy Walter's human mouth onto an incompatible
+normalized controls. Another face built on `HumanFeatures` should take
+`human/HumanSpeechMouth` through the mouth slot with its own palette, as the
+men, women and children do. Do not copy Walter's human mouth onto an incompatible
 silhouette or add a second audio clock. Keep the original expressive mouth intact
 for silence, cancellation, Still and unsupported speech. Check both rounded O
 shapes as well as closures, teeth and tongue in **Coach Studio → Mouth shapes**.

@@ -6,8 +6,9 @@ up to the current Walter/Rivet standard. It connects the implementation referenc
 it does not introduce another registry, renderer or recording pipeline.
 
 The references were checked against the implementation after Rivet's October 1,
-2026 wording revision. At that point the app had 30 selectable characters, 21
-speaking rigs and two production voice banks. Those are different completion
+2026 wording revision, and again after the remaining nine humans received
+speaking mouths later that day. At that point the app had 30 selectable
+characters, 30 speaking rigs and two production voice banks. Those are different completion
 states: a working mouth or an approved audition is not a finished voice bank.
 Discover current coverage from the registries rather than treating these counts
 as limits or assuming every character already meets the same spoken-writing bar.
@@ -215,7 +216,8 @@ Rivet, while keeping superseded media out of production asset globs.
 Follow [Speaking articulation](COACH.md#speaking-articulation). Reuse
 `SpeechMouthLayer` and `OrganicSpeechMouth` for suitable faces; Walter's mouth and
 Rivet's segmented display show how distinct geometry consumes the same controls.
-Use the optional human mouth slot when extending another human. Implement all
+Use the optional human mouth slot with the shared `human/HumanSpeechMouth` when
+extending another human, as the men, women and children do. Implement all
 nine semantic shapes, including a legible rounded O, and opt the rig into speech
 only when it is supported. Do not copy another coach's lips onto an incompatible
 face or use a separate timer to approximate the recording.
