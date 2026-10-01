@@ -16,7 +16,7 @@ async function mountCast(page: Page) {
     container.style.cssText = "position:fixed;inset:0;z-index:9999;background:#15191c;overflow:auto;display:flex;gap:28px;align-items:flex-start;padding:28px;flex-wrap:wrap";
     document.body.append(container);
     createRoot(container).render(React.createElement(React.Fragment, null,
-      ...[["alien", Alien], ["robot", Robot], ["living-pawn", Pawn]].flatMap(([id, Artwork]) => [144, 72].map(size =>
+      ...[["alien", Alien], ["robot", Robot], ["living-pawn", Pawn]].flatMap(([id, Artwork]) => [92.8, 52.5].map(size =>
         React.createElement("div", {key: `${id}-${size}`, className: "coach-avatar", "data-preview": `${id}-${size}`,
           "data-speaking": "false", "data-motion": "natural", "data-articulation": "aligned",
           style: {width: `${size}px`, height: `${size * 1.25}px`, flex: "0 0 auto"}},
@@ -57,7 +57,7 @@ test("scifi speech layers preserve authored faces when silent or Still", async (
 
 test("Rivet's display articulates closed, open and rounded sounds while retaining its lenses and scanline", async ({page}, info) => {
   await mountCast(page);
-  const robot = page.locator('[data-preview="robot-144"]');
+  const robot = page.locator('[data-preview="robot-92.8"]');
   const opening = robot.locator(".robot-speech-opening");
   await pose(page, "closed");
   await expect(opening).toHaveCSS("opacity", "0");
@@ -84,7 +84,7 @@ test("Ziggy and Percy's live mouths remain inside their faces at both applicatio
   for (const shape of Object.keys(speechMouthPoses) as SpeechMouthShape[]) {
     await pose(page, shape);
     for (const [id, maximum] of [["alien", 82], ["living-pawn", 58]] as const) {
-      for (const size of [144, 72]) {
+      for (const size of [92.8, 52.5]) {
         const avatar = page.locator(`[data-preview="${id}-${size}"]`);
         const svg = await avatar.locator("svg").boundingBox();
         const mouth = await avatar.locator(".speech-mouth-live").boundingBox();
