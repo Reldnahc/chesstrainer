@@ -178,8 +178,8 @@ rig controls, with short easing and faster lip closures. Tool-specific shape IDs
 stay in the authoring adapter; future rigs can draw their own geometry. Missing
 tracks retain the energy-driven path. Motion, identity and cleanup rules are shared.
 
-The [audio studio](AUDIO.md#automatic-lip-sync-comparison-development-only) uses
-two existing Walter recordings at normal portrait sizes. Voice audition retains
+The [isolated audio test fixture](AUDIO.md#automatic-lip-sync-comparison-development-only)
+retains two existing Walter recordings at normal portrait sizes. Voice audition retains
 the energy-driven mouth; Compare lip sync isolates the original Rhubarb generator
 against revised script/phoneme alignment using identical artwork and playback.
 Both comparison sets are automatic and development-only. Walter's completed
@@ -194,8 +194,10 @@ static inspection also works with Still; actual playback continues to honor the
 normal motion/visibility policy. Clearing the preview restores the authored
 expression. Unimplemented human rigs remain unsupported. The same view embeds
 the selected creature's local voice auditions so timing can be inspected with
-real recordings. These auditions do not select a production voice or change an
-account preference.
+real recordings. Their shared casting controls save an explicit final direction
+or Keep looking decision on the studio host. These authoring choices do not
+install a production voice or change an account preference. Walter is locked and
+his audition controls are absent from the normal Audio Studio.
 
 ### Expressions and idle behavior
 

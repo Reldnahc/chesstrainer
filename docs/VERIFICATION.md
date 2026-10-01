@@ -4,6 +4,79 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Complete cast auditions and saved casting choices — October 1, 2026
+
+The owner approved the previously deferred four characters. Ziggy, Percy, Pip
+and Button now have three custom audition directions each, bringing the active
+set to **60 recordings across 20 nonhuman coaches**. The twelve added recordings
+used **1,593 settled provider credits** (9,902 to 11,495), for **7,965 credits**
+across the full cast. No production voice or saved provider slot was created.
+
+Walter is locked: his section is removed from normal Audio Studio, while an
+isolated browser fixture preserves the real recording/player/mouth regression
+coverage. Casting now saves an explicit selected direction or Keep looking,
+with optional notes and reset, through the shared development-only host service.
+Choices are bound to recording identity and saved separately from account data.
+
+- `node scripts/design_coach_voices.mjs --check` and
+  `.venv/Scripts/python.exe -B -S scripts/prepare_cast_voice_auditions.py --check`:
+  **all 60 recordings and automatic tracks verified**. The final twelve were
+  generated once and aligned using the existing offline pipeline; original audio
+  and automatically generated timings are unchanged.
+- `node --test scripts/design_coach_voices.test.mjs`: **39 passed**, including
+  the newly authorized complete twenty-coach plan and all sixty distinct prompts.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_cast_voice_auditions.py
+  -q`: **58 passed**, covering alignment/provenance validation and offline reuse.
+- Combined authoring command, `node --test scripts/design_coach_voices.test.mjs
+  frontend/scripts/casting-server.test.mjs`: **51 passed**, including twelve
+  isolated HTTP/filesystem cases and a genuinely separate server-process race.
+  Reviews found and fixed inherited direction lookup, unsafe automatic lock
+  recovery, release-before-success ordering, and stale decoded audio cache identity.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py`: **347
+  passed**; scoped Ruff/format checks passed. Studio choice work now selects
+  studio/build checks without unrelated backend or Docker work; the authoring
+  Node tests run once in audio desktop CI.
+- `npm --prefix frontend run build`, `npm --prefix frontend run
+  build:audio-studio`, and `node node_modules/vite/bin/vite.js build --config
+  vite.coach.config.ts --outDir ../node_modules/.cache/casting-coach-build`
+  (from `frontend`): **passed**. Production build includes API consistency,
+  TypeScript, 24 style guards and four dependency guards. The existing large
+  bundle advisory remains; normal Audio Studio excludes Walter's retired previews.
+- Focused cast/choice browser tests: **26 passed**, desktop/mobile. Coverage
+  includes explicit decisions, notes/reset, separate clients, load/write errors,
+  stale recordings, conflicting revisions, per-coach drafts and late responses.
+  The actual playback request carries the recording SHA to invalidate old decoded
+  audio. Application, browser-test and contract TypeScript checks passed.
+- Coach Studio `speech-inspector.spec.ts`: **20 passed**, desktop/mobile,
+  using the existing development server. Shape inspection, expression preservation,
+  motion policy, transport settings and cancellation during load/decode/playback
+  remain intact.
+- Complete audio browser suite: **400 passed in 5.1 minutes**, no failures or
+  skips. Both browser runs used `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`
+  from `frontend`, with ignored configs extending the normal configs only to
+  reuse the owner's already-running studio servers:
+  `node node_modules/@playwright/test/cli.js test --config
+  node_modules/.cache/recorded-audio-check.config.mjs --output
+  node_modules/.cache/casting-final-audio --reporter=line` and
+  `node node_modules/@playwright/test/cli.js test --config
+  node_modules/.cache/speech-coach-check.config.mjs speech-inspector.spec.ts
+  --output node_modules/.cache/casting-final-inspector --reporter=line`.
+- Moved Walter audition/playback tests: **106 desktop/mobile cases passed**,
+  plus application/contract/browser TypeScript. Tests mount the isolated fixture
+  instead of depending on the retired normal studio section; assertions remain.
+- Live browser check created an explicitly temporary Ziggy Keep looking note
+  in the LAN Audio Studio, reloaded it, and read the same decision through the
+  separately running Coach Studio. A temporary selected recording remained
+  selected while browsing another candidate. Both test choices were cleared
+  through the UI; all twenty coaches were left undecided. Walter's audition
+  section is absent and the full cast remains available.
+
+Independent correction review passed. No full backend/account suite or full
+coach artwork matrix was rerun for this development-only casting pass. No remote
+push or deployment was performed; Walter's earlier production publication remains
+separate. All paid generation was confined to the twelve explicitly approved
+previews; testing and choice persistence made no provider calls.
+
 ## Nonhuman speaking rigs and voice auditions — October 1, 2026
 
 All twenty nonhuman coaches now implement the shared nine speech shapes, with

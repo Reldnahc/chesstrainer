@@ -119,8 +119,9 @@ From the repository root:
 npm --prefix frontend run dev:audio
 ```
 
-Open **http://127.0.0.1:5176**. This is a separate Vite process with no account/API
-connection and no production navigation route. It uses the actual audio engine
+Open **http://127.0.0.1:5176**. This is a separate Vite process with no application
+account/API connection and no production navigation route. A development-only
+endpoint saves casting decisions on the studio host. It uses the actual audio engine
 and the same nine approved defaults as the app.
 
 - Play each sound alone; open its Source disclosure for the recording, author,
@@ -228,14 +229,13 @@ the shared portrait. Mouth motion cannot start while the recording is loading;
 stopping or replacing audio invalidates its handle. Multiple visible explanation
 surfaces can share the portrait while retaining their own speech scope and controls.
 
-### Audition and permissions
+### Locked voice and permissions
 
-In the separate audio studio, **Complete voice bank** exposes all 181 recordings
-in one grouped **Speech example** selector. It uses the production recording
-lookup, generated mouth tracks, real Walter portrait and existing Play/In context
-controls. Earlier voice comparisons and the two-generator comparison remain
-available. These are demonstrations, not analyzed chess positions; playback is
-local and never changes account preferences.
+Walter's voice is locked by the owner. His audition section, earlier voice
+comparisons and complete-bank selector are no longer part of Audio Studio.
+The production bank remains unchanged. An isolated browser-test fixture retains
+the shared audition components, real recordings and two-generator comparison
+for regression coverage without putting those controls back in normal studio use.
 
 The voice recordings are separate media assets, not CC0 effects or automatically
 licensed under the repository's source-code license. Their
@@ -277,7 +277,8 @@ application narration. Lessons remain out of scope.
 
 ### Automatic lip-sync comparison (development only)
 
-Choose **Compare lip sync** in the Walter audition. **Sound sacrifice** and
+The isolated Walter browser-test fixture retains **Compare lip sync**.
+**Sound sacrifice** and
 **Allowed checkmate** each drive two shared Walter portraits from one audio
 source: the first Rhubarb generator and the revised script-aligned generator.
 Both use identical mouth artwork, expression and playback smoothing, so this
@@ -303,15 +304,35 @@ bank uses its separate generated compact cue projection.
 ### Animal and fantasy voice auditions
 
 The separate audio studio's **Cast voice auditions** selector compares three
-independently described custom voices for each of sixteen approved animal,
-fantasy and robot coaches (48 recordings). The other four briefs—Ziggy, Percy,
-Pip and Button—remain under `deferredCoaches` pending explicit approval for paid
-generation. All twenty nonhuman speaking rigs can be inspected independently.
+independently described custom voices for each of twenty approved nonhuman
+coaches (60 recordings). All twenty speaking rigs can be inspected independently.
 The coach studio's **Mouth shapes** view embeds the same audition panel for its
 selected character. These tools share `useStudioPlayer`, `StudioTransport`,
 `CastVoiceAudition` and the existing audio engine. Selecting another character
 or direction cancels playback; all sound and mouth timing use the same source
-clock. Neither surface changes account preferences or selects a production voice.
+clock. Neither surface changes account preferences or installs a production voice.
+
+**Choose this voice** saves the currently auditioned direction as that coach's
+casting decision. **Keep looking** records that none of the present options fits;
+an optional note explains what to change. Listening or changing the candidate
+does not vote. The saved direction remains visible while comparing another one,
+and **Clear choice** returns the coach to undecided. The compact overview counts
+chosen, keep-looking and undecided coaches.
+
+Both studios use the same development-only persistence service and fixed
+`data/voice-casting` directory. Choices survive reloads and studio restarts and
+are available from other LAN devices; browser local storage is not the source of
+truth. Per-coach records bind the decision to the recording's fingerprint, so a
+replaced candidate is flagged for review rather than silently approved. Failed
+loads or writes are visible. Choice files are ignored authoring data, not account
+preferences or production assets. A casting decision makes no ElevenLabs request,
+saves no provider voice slot and does not generate a bank.
+
+The running Vite studios provide this service; a static studio build alone does
+not save choices. Concurrent edits use per-coach revisions and exclusive locks.
+If a crashed save leaves a lock, the error identifies it: stop both studios,
+remove only that coach's named `.lock` file, then restart. Keep the `.json`
+decision files. Locks are never automatically evicted during another save.
 
 `audio/speech/cast-auditions/design-plan.json` records the short script and distinct
 casting prompts. `scripts/design_coach_voices.mjs` is an offline authoring tool:
@@ -327,11 +348,11 @@ deliberately untouched. No installation or listening session contacts ElevenLabs
 The selected generated voice ID can later be saved when the owner chooses a
 direction; auditioning does not consume a saved-voice slot per option.
 
-The completed 48-request audition batch used **6,372 ElevenLabs credits**, measured
-by the provider usage count changing from 3,530 to 9,902. Walter's completion batch
-used **1,948 credits** separately. Replaying either collection is local and free.
-Audition files are unchanged provider output, about 8–12 seconds (9.9-second
-average), with no padding or manual timing edits. Use
+The first 48 auditions used **6,372 ElevenLabs credits** (usage 3,530 to 9,902).
+The final twelve used **1,593 credits** (9,902 to 11,495): **7,965 total** for all
+sixty. Walter's completion batch used **1,948 credits** separately. Replaying
+either collection is local and free. Audition files are unchanged provider output,
+about 8–12 seconds, with no padding or manual timing edits. Use
 `npm --prefix frontend run dev:audio:lan` for the audio studio on port 5176, or
 `npm --prefix frontend run dev:coach:lan` for the mouth inspector on port 5174.
 
