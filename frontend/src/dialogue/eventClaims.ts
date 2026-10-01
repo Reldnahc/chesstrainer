@@ -56,8 +56,32 @@ export function tacticalClaim(event: Event, move: string, best: string, opponent
     const capture = witness.find(frame => frame.capture && frame.san);
     if (capture) detail = `The line includes ${capture.san}, capturing a ${capture.capture}.`;
   }
-  return claim(`tactic_${role}`, {move, best, opponent, motif: words(f.motif), detail},
+  const result = claim(`tactic_${role}`, {move, best, opponent, motif: words(f.motif), detail},
     role === "allowed" ? 94 : role === "missed" ? 91 : 83, event.evidence, [event.id]);
+  if (event.actor !== "white" && event.actor !== "black") return result;
+  const witness = Array.isArray(f.witness) ? f.witness.map(object) : [];
+  const expectedPly = role === "allowed" ? 2 : 1;
+  const first = witness[0];
+  // A reference board alone says nothing about when a tactic is available. A
+  // multi-ply witness can include both an immediate fork and its later collection.
+  const immediate = event.confidence === "line_witness" && Array.isArray(f.plies) &&
+    f.plies.length === 1 && f.plies[0] === expectedPly && f.frame_ply === expectedPly &&
+    witness.length === 1 && first.ply === expectedPly && typeof first.san === "string" &&
+    !!first.san && (role === "allowed" || first.san === (role === "missed" ? best : move));
+  const forkTargets = [...new Set(targets.filter(p => /^[a-h][1-8]$/.test(p.square) &&
+    ["white", "black"].includes(String(p.color)) &&
+    ["pawn", "knight", "bishop", "rook", "queen", "king"].includes(String(p.piece)))
+    .map(p => `${p.piece} on ${p.square}`))].slice(0, 3);
+  const capture = witness.find(frame => Number.isInteger(frame.ply) && Number(frame.ply) > 0 &&
+    typeof frame.san === "string" && frame.san &&
+    ["pawn", "knight", "bishop", "rook", "queen"].includes(String(frame.capture)));
+  return {...result, tactic: {timing: immediate ? "immediate" : "possible", actor: event.actor,
+    ...(immediate ? {action: String(first.san)} : {}),
+    effect: f.motif === "fork" && forkTargets.length >= 2 ? {kind: "fork", targets: forkTargets}
+      : typeof f.settled_material_delta === "number" && Number.isFinite(f.settled_material_delta) && f.settled_material_delta > 0
+        ? {kind: "material"}
+        : capture ? {kind: "capture", san: String(capture.san), piece: String(capture.capture), ply: Number(capture.ply)}
+          : {kind: "none"}}};
 }
 
 function causalClaim(event: Event, move: string): Claim | null {

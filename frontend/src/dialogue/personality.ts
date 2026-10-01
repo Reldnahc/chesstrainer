@@ -40,6 +40,8 @@ export type CoachPersonality = {
   bible: CharacterBible;
   maxCharacters: number;
   maxClaims: 1 | 2;
+  /** Opt in to scope derived from exact tactical witnesses; original claims stay intact. */
+  tacticalWording?: "witness";
   behavior?: CommunicationBehavior;
   delivery: {pace: "measured" | "steady" | "lively"; energy: "quiet" | "warm" | "bright"};
   /** Curated restatements of validated claims. No scoring or evidence selection. */

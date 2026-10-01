@@ -4,6 +4,7 @@ import {neutralTemplates} from "../src/dialogue/templates";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {factualParts, validWording, wordingParts} from "../src/dialogue/composition";
 import {writingExamples, exampleIntent} from "./examples";
+import {tacticalTemplate} from "../src/dialogue/tacticalTemplates";
 
 const normalize = (text: string) => text.toLowerCase().replace(/[^a-z0-9{}]+/g, " ").trim();
 export const commonClaims = ["allowed_mate", "tactic_played", "tactic_allowed", "tactic_missed",
@@ -30,7 +31,8 @@ export function auditCorpus() {
     for (const [field, text] of Object.entries(definition.bible)) if (text.length < 20) errors.push(`${coach.name}: incomplete ${field}`);
     for (const code of commonClaims) if (!definition.templates[code]?.length) errors.push(`${coach.name}: no character handling for ${code}`);
     for (const [code, options] of Object.entries(definition.templates)) {
-      const reference = neutralTemplates[code];
+      const reference = code === "tactic_witness" && definition.tacticalWording === "witness"
+        ? tacticalTemplate : neutralTemplates[code];
       if (!reference) {errors.push(`${coach.name}: unknown claim ${code}`); continue;}
       const seen = new Set<string>();
       for (const wording of options ?? []) {

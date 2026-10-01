@@ -155,3 +155,27 @@ The full selectable cast now has curated claim wording and character bibles.
 See [COACH_PERSONALITIES.md](COACH_PERSONALITIES.md) for the writing standards,
 blind comparison and automatic corpus checks. Rare supported facts can still use
 the complete neutral fallback; character wording never replaces chess evidence.
+
+Walter's on-screen tactical wording opts into `tacticalWording: "witness"`.
+`eventClaims` attaches derived timing/effect metadata while retaining the original
+claim codes, slots and source references. Only a sole matching line witness at
+root ply 1 or the opponent's immediate reply at ply 2 supports direct timing;
+the reference frame alone does not. Multi-ply or incomplete timing remains a
+possible idea, without pretending the motif necessarily begins later. Current
+facts do not imply that the move created a previously absent pin or fork.
+
+`tacticalTemplates` owns mandatory scope and effect wording. Actual root effects
+can be factual; opponent replies and unplayed alternatives remain prospective.
+Targets on a possible future board are not described as already attacked. A
+positive finite-line material delta is a possible gain dependent on follow-up,
+not proof of a forced gain or a material lead. Walter's character template may
+add an observation but cannot discard these required factual slots. Opponent
+facts use the same scope without personal praise. Other characters keep their
+existing wording until their separate writing passes.
+
+Full intent identity includes this metadata. A separate legacy wording key keeps
+unchanged characters' deterministic text variants stable; it never replaces the
+intent ID or source binding. `renderedClaims` continues to expose the original
+claims, preserving prerecorded speech selection. Walter's rewritten character
+templates remove engine-report framing; authorized practice/explanation detail
+is still passed through verbatim rather than edited by guessing at its meaning.

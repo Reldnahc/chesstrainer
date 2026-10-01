@@ -9,6 +9,13 @@ export const dialoguePurposes = [
 ] as const;
 export type DialoguePurpose = typeof dialoguePurposes[number];
 export type EvidenceRef = Schema["EvidenceReference"];
+export type TacticalPresentation = {
+  timing: "immediate" | "possible";
+  actor: "white" | "black";
+  action?: string;
+  effect: {kind: "fork"; targets: string[]} | {kind: "material"} |
+    {kind: "capture"; san: string; piece: string; ply: number} | {kind: "none"};
+};
 export type Claim = {
   code: string;
   slots: Record<string, string | number>;
@@ -16,10 +23,13 @@ export type Claim = {
   priority: number;
   sourceIds: string[];
   position?: {line: "actual" | "alternative"; move: string};
+  tactic?: TacticalPresentation;
 };
 export type DialogueIntent = {
   version: "dialogue-intent-5";
   id: string;
+  /** Preserve existing cast variants when optional derived presentation is added. */
+  wordingKey?: string;
   purpose: DialoguePurpose;
   mode: "game" | "variation" | "practice" | "explanation";
   expression: CoachExpression;
@@ -98,7 +108,9 @@ export function makeIntent(key: string, purpose: DialoguePurpose, mode: Dialogue
     priority = 100;
   }
   const facts = {purpose, mode, expression, subject, claims, decisions};
+  const wordingFacts = {...facts, claims: claims.map(({tactic: _tactic, ...item}) => item)};
   return {version: "dialogue-intent-5", id: `di5:${stableKey([key, facts])}`, ...facts,
+    ...(claims.some(item => item.tactic) ? {wordingKey: `di5:${stableKey([key, wordingFacts])}`} : {}),
     intensity, priority, interruptible: priority < 95,
     autoSpeakSuitable: mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose)};
 }

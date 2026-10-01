@@ -4,6 +4,7 @@ import {neutralPersonality, type DialogueCharacter, type PersonalityInput} from 
 import {alternativeTemplate} from "./positionalTemplates";
 import {composeWording, responseStrategy, sentenceCount, validWording} from "./composition";
 import type {ClaimWording} from "./personality";
+import {tacticalPresentation, tacticalTemplate} from "./tacticalTemplates";
 
 function expand(template: string, slots: Record<string, string | number>) {
   // Motif vocabulary is controlled, but its first sound changes the article.
@@ -24,43 +25,48 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
   const renderedClaims: NonNullable<CoachUtterance["renderedClaims"]> = [];
   const sentences: string[] = [];
   const strategy = responseStrategy(intent, personality);
+  const wordingKey = personality.tacticalWording === "witness" ? intent.id : intent.wordingKey ?? intent.id;
   for (const item of [...intent.claims].sort((a, b) => b.priority - a.priority)) {
+    const presentation = personality.tacticalWording === "witness" ? tacticalPresentation(item) : null;
+    const slots = presentation?.slots ?? item.slots;
     const alternative = item.position?.line === "alternative";
-    const fallback = alternative ? alternativeTemplate(item) : neutralTemplates[item.code];
-    const fallbackSource = alternative ? "positional-conditional-1" : "neutral-1";
+    const fallback = presentation ? tacticalTemplate : alternative ? alternativeTemplate(item) : neutralTemplates[item.code];
+    const fallbackSource = presentation ? "tactical-witness-1" : alternative ? "positional-conditional-1" : "neutral-1";
     // Personal praise/correction belongs to the learner. Opponent facts retain
     // objective wording even if a personality template addresses the player.
-    const custom = alternative || intent.subject !== "learner" ? undefined : personality.templates[item.code];
+    const custom = alternative || intent.subject !== "learner" ? undefined : personality.templates[presentation?.code ?? item.code];
     let options: readonly ClaimWording[] | undefined = custom?.length ? custom : fallback;
     if (!options?.length) continue;
-    const key = stableKey([intent.id, item.code, character.id, personality.version]);
-    let index = Number.parseInt(custom?.length ? key : stableKey([intent.id, item.code]), 16) % options.length;
+    const key = stableKey([wordingKey, item.code, character.id, personality.version]);
+    let index = Number.parseInt(custom?.length ? key : stableKey([wordingKey, item.code]), 16) % options.length;
     let wording = options[index];
     // The introduction establishes that this tactic belongs to an unplayed
     // candidate. Its concrete effects must not precede that scope.
     let composition = composeWording(wording, strategy, personality, key, item.code === "tactic_missed");
-    let text = custom?.length && (!fallback || !validWording(wording, fallback)) ? "" : expand(composition.template, item.slots);
+    let text = custom?.length && (!fallback || !validWording(wording, fallback)) ? "" : expand(composition.template, slots);
     let source = custom?.length ? personality.version : fallbackSource;
     if (!text && custom?.length && fallback?.length) {
       options = fallback;
-      index = Number.parseInt(stableKey([intent.id, item.code]), 16) % options.length;
+      index = Number.parseInt(stableKey([wordingKey, item.code]), 16) % options.length;
       wording = options[index];
       composition = composeWording(wording, "minimal", personality, key);
-      text = expand(composition.template, item.slots);
+      text = expand(composition.template, slots);
       source = fallbackSource;
     }
     if (!text || sentences.includes(text)) continue;
     const separator = sentences.length ? 1 : 0;
     if (composition.cues.length && sentences.join(" ").length + separator + text.length > personality.maxCharacters) {
       // Trim optional staging, never a square, reply, qualification or consequence.
-      text = expand(composition.factual, item.slots);
+      text = expand(composition.factual, slots);
       composition.cues = [];
     }
     // Keep whole factual sentences. A secondary fact never pushes the bubble into an essay.
     if (sentences.length && (sentences.join(" ").length + text.length > personality.maxCharacters || sentences.length >= personality.maxClaims)) continue;
     sentences.push(text);
     renderedClaims.push({...item, slots: {...item.slots}, evidence: item.evidence.map(ref => ({...ref})),
-      sourceIds: [...item.sourceIds], ...(item.position ? {position: {...item.position}} : {})});
+      sourceIds: [...item.sourceIds], ...(item.position ? {position: {...item.position}} : {}),
+      ...(item.tactic ? {tactic: {...item.tactic, effect: item.tactic.effect.kind === "fork"
+        ? {...item.tactic.effect, targets: [...item.tactic.effect.targets]} : {...item.tactic.effect}}} : {})});
     variants.push({code: item.code, index, sourceIds: item.sourceIds, source,
       form: typeof wording === "string" ? "sentence" : "composed", cues: composition.cues, order: composition.order});
   }
