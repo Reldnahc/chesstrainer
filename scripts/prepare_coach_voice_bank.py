@@ -2,7 +2,8 @@
 
 Generation resumes verified archives and reports not-yet-recorded clips. The
 compact runtime bank is published only when every manifest entry is verified.
-Default --check is strict and needs only the Python standard library.
+Default --check verifies every registered bank using only the standard library.
+An explicit --manifest retains single-bank authoring and verification.
 """
 
 import argparse
@@ -31,7 +32,9 @@ def slug(value: object) -> bool:
 
 def paths(item: dict, manifest_path: Path) -> tuple[Path, Path, Path]:
     bank = manifest_path.parent.resolve()
-    speech = bank.parent
+    speech = alignment.SPEECH.resolve()
+    if not bank.is_relative_to(speech):
+        raise ValueError("Voice bank manifest must remain inside the speech asset directory")
     values = []
     for key in ("audioPath", "sidecarPath", "alignmentPath"):
         raw = item.get(key)
@@ -50,6 +53,9 @@ def paths(item: dict, manifest_path: Path) -> tuple[Path, Path, Path]:
 
 
 def load_manifest(path: Path) -> dict:
+    path = path.resolve()
+    if not path.is_relative_to(alignment.SPEECH.resolve()):
+        raise ValueError("Voice bank manifest must remain inside the speech asset directory")
     manifest = json.loads(path.read_text("utf-8"))
     if (
         not isinstance(manifest, dict)
@@ -94,6 +100,99 @@ def load_manifest(path: Path) -> dict:
                 raise ValueError("Voice bank entries cannot share asset paths")
             targets.add(target)
     return manifest
+
+
+def registered_manifests(registry_path: Path | None = None) -> list[Path]:
+    """Bind production banks to shared meanings and the owner's selected voices."""
+    speech = alignment.SPEECH.resolve()
+    registry = json.loads((registry_path or speech / "banks/registry.json").read_text("utf-8"))
+    catalog = json.loads((speech / "meanings.json").read_text("utf-8"))
+    if (
+        not isinstance(registry, dict)
+        or registry.get("schemaVersion") != 1
+        or not isinstance(registry.get("banks"), list)
+        or not registry["banks"]
+    ):
+        raise ValueError("Invalid production voice bank registry")
+    if (
+        not isinstance(catalog, dict)
+        or catalog.get("schemaVersion") != 1
+        or not isinstance(catalog.get("meanings"), list)
+        or not catalog["meanings"]
+        or not isinstance(catalog.get("silentIds"), list)
+        or any(not slug(key) for key in catalog["silentIds"])
+        or len(catalog["silentIds"]) != len(set(catalog["silentIds"]))
+    ):
+        raise ValueError("Invalid shared speech meanings")
+    meanings = {}
+    silent = set(catalog["silentIds"])
+    for meaning in catalog["meanings"]:
+        if (
+            not isinstance(meaning, dict)
+            or not slug(meaning.get("id"))
+            or meaning["id"] in meanings
+            or meaning["id"] in silent
+            or not isinstance(meaning.get("group"), str)
+            or not meaning["group"]
+            or "lesson" in meaning["group"].lower()
+        ):
+            raise ValueError("Invalid or duplicate shared speech meaning")
+        meanings[meaning["id"]] = meaning["group"]
+    manifests = []
+    coaches = set()
+    voices = set()
+    for entry in registry["banks"]:
+        if (
+            not isinstance(entry, dict)
+            or not slug(entry.get("coachId"))
+            or not slug(entry.get("voiceId"))
+            or entry["coachId"] in coaches
+            or entry["voiceId"] in voices
+        ):
+            raise ValueError("Duplicate or invalid registered voice bank identity")
+        raw = entry.get("manifestPath")
+        if not isinstance(raw, str) or not raw or Path(raw).is_absolute():
+            raise ValueError("Invalid registered voice bank manifest path")
+        path = (speech / raw).resolve()
+        if not path.is_relative_to(speech) or path in manifests or path.name != "manifest.json":
+            raise ValueError("Registered manifests must be unique and inside speech assets")
+        manifest = load_manifest(path)
+        if any(manifest[key] != entry[key] for key in ("coachId", "voiceId")):
+            raise ValueError("Registered voice bank identity differs from its manifest")
+        if set(manifest["silentIds"]) != silent:
+            raise ValueError("Voice bank silent IDs differ from shared speech policy")
+        for item in manifest["recordings"]:
+            if meanings.get(item["id"]) != item["group"]:
+                raise ValueError("Voice bank recording ID or group is not a shared meaning")
+        if entry["coachId"] == "classic":
+            selected = json.loads((speech / "walter-selected-voice.json").read_text("utf-8"))
+            if (
+                not isinstance(selected, dict)
+                or selected.get("schemaVersion") != 1
+                or selected.get("provider") != manifest["provider"]
+                or selected.get("voiceId") != manifest["providerVoiceId"]
+            ):
+                raise ValueError("Walter bank differs from the selected provider voice")
+        else:
+            locked = json.loads((speech / "cast-auditions/locked-voices.json").read_text("utf-8"))
+            if (
+                not isinstance(locked, dict)
+                or locked.get("schemaVersion") != 1
+                or locked.get("provider") != manifest["provider"]
+                or not isinstance(locked.get("voices"), list)
+            ):
+                raise ValueError("Invalid locked coach voices")
+            matches = [
+                voice
+                for voice in locked["voices"]
+                if isinstance(voice, dict) and voice.get("coachId") == entry["coachId"]
+            ]
+            if len(matches) != 1 or matches[0].get("savedVoiceId") != manifest["providerVoiceId"]:
+                raise ValueError("Voice bank differs from the locked provider voice")
+        manifests.append(path)
+        coaches.add(entry["coachId"])
+        voices.add(entry["voiceId"])
+    return manifests
 
 
 def recording_source(manifest: dict, item: dict, manifest_path: Path) -> alignment.SpeechSource:
@@ -161,6 +260,9 @@ def prepare_bank(
     working = (work_dir or alignment.ROOT / ".tools/voice-bank-alignment").resolve()
     if generate and not working.is_relative_to((alignment.ROOT / ".tools").resolve()):
         raise ValueError("Temporary authoring files must stay in ignored .tools")
+    working = (working / manifest["coachId"] / manifest["voiceId"]).resolve()
+    if generate and not working.is_relative_to((alignment.ROOT / ".tools").resolve()):
+        raise ValueError("Temporary authoring files must stay in ignored .tools")
     runtime = {}
     result = {"ready": 0, "generated": 0, "reused": 0, "missing": []}
     for item in manifest["recordings"]:
@@ -214,23 +316,40 @@ def prepare_bank(
     return result
 
 
-def main() -> None:
+def check_registered_banks(registry_path: Path | None = None) -> dict:
+    results = {}
+    for path in registered_manifests(registry_path):
+        manifest = load_manifest(path)
+        results[manifest["coachId"]] = prepare_bank(path)
+    return {
+        "ready": sum(result["ready"] for result in results.values()),
+        "generated": 0,
+        "reused": sum(result["reused"] for result in results.values()),
+        "missing": [],
+        "banks": results,
+    }
+
+
+def main(argv=None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     action = parser.add_mutually_exclusive_group()
     action.add_argument("--generate", action="store_true")
     action.add_argument("--check", action="store_true")
-    parser.add_argument("--manifest", type=Path, default=MANIFEST)
+    parser.add_argument("--manifest", type=Path)
     parser.add_argument("--work-dir", type=Path)
     parser.add_argument("--audio-deps", type=Path)
     parser.add_argument("--phoneme-deps", type=Path)
-    args = parser.parse_args()
-    result = prepare_bank(
-        args.manifest,
-        generate=args.generate,
-        work_dir=args.work_dir,
-        audio_deps=args.audio_deps,
-        phoneme_deps=args.phoneme_deps,
-    )
+    args = parser.parse_args(argv)
+    if args.manifest is None and not args.generate:
+        result = check_registered_banks()
+    else:
+        result = prepare_bank(
+            args.manifest or MANIFEST,
+            generate=args.generate,
+            work_dir=args.work_dir,
+            audio_deps=args.audio_deps,
+            phoneme_deps=args.phoneme_deps,
+        )
     print(json.dumps(result, sort_keys=True))
     if result["missing"]:
         print("Partial authoring progress only; runtime tracks were not published.")

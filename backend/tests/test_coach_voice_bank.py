@@ -1,6 +1,7 @@
 """Whole voice banks publish only complete, source-verified automatic mouth tracks."""
 
 import json
+import os
 from copy import deepcopy
 from pathlib import Path
 
@@ -47,6 +48,7 @@ def saved_bank(tmp_path, monkeypatch):
         track["provenance"]["script"]["planPath"] = manifest_path.relative_to(tmp_path).as_posix()
         write_json(manifest_path.parent / item["alignmentPath"], track)
     monkeypatch.setattr(alignment, "ROOT", tmp_path)
+    monkeypatch.setattr(alignment, "SPEECH", tmp_path / SPEECH_PATH)
     return manifest_path
 
 
@@ -60,6 +62,218 @@ def no_native_work(*_args, **_kwargs):
 
 def item_path(manifest_path, field, index=0):
     return manifest_path.parent / read_json(manifest_path)["recordings"][index][field]
+
+
+@pytest.fixture
+def registered_banks(saved_bank):
+    """Keep real alignment evidence while simulating a second saved coach voice."""
+    speech = alignment.SPEECH
+    walter = read_json(saved_bank)
+    rivet_path = speech / "banks/rivet/manifest.json"
+    rivet = deepcopy(walter)
+    rivet.update(coachId="robot", voiceId="rivet", providerVoiceId="saved-rivet-voice")
+    for item in rivet["recordings"]:
+        original = next(record for record in walter["recordings"] if record["id"] == item["id"])
+        for field in ("audioPath", "sidecarPath"):
+            source = (saved_bank.parent / original[field]).resolve()
+            target = speech / "recordings/rivet" / source.name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if field == "audioPath":
+                target.write_bytes(source.read_bytes())
+            else:
+                sidecar = read_json(source)
+                sidecar["request"]["voice"].update(id="rivet", providerVoiceId="saved-rivet-voice")
+                sidecar["requestHash"] = request_digest(sidecar["request"])
+                write_json(target, sidecar)
+            item[field] = Path(os.path.relpath(target, rivet_path.parent)).as_posix()
+        archive = read_json(saved_bank.parent / original["alignmentPath"])
+        archive["voiceId"] = "rivet"
+        archive["provenance"]["script"]["planPath"] = rivet_path.relative_to(
+            alignment.ROOT
+        ).as_posix()
+        archive["provenance"]["recording"]["path"] = (
+            (rivet_path.parent / item["audioPath"]).resolve().relative_to(alignment.ROOT).as_posix()
+        )
+        write_json(rivet_path.parent / item["alignmentPath"], archive)
+    write_json(rivet_path, rivet)
+    write_json(
+        speech / "meanings.json",
+        {
+            "schemaVersion": 1,
+            "meanings": [
+                *({"id": item["id"], "group": item["group"]} for item in walter["recordings"]),
+                {"id": "optional-book-line", "group": "game_review"},
+            ],
+            "silentIds": walter["silentIds"],
+        },
+    )
+    write_json(
+        speech / "walter-selected-voice.json",
+        {"schemaVersion": 1, "provider": walter["provider"], "voiceId": walter["providerVoiceId"]},
+    )
+    write_json(
+        speech / "cast-auditions/locked-voices.json",
+        {
+            "schemaVersion": 1,
+            "provider": rivet["provider"],
+            "voices": [{"coachId": "robot", "savedVoiceId": rivet["providerVoiceId"]}],
+        },
+    )
+    registry = speech / "banks/registry.json"
+    write_json(
+        registry,
+        {
+            "schemaVersion": 1,
+            "banks": [
+                {
+                    "coachId": manifest["coachId"],
+                    "voiceId": manifest["voiceId"],
+                    "manifestPath": path.relative_to(speech).as_posix(),
+                }
+                for path, manifest in ((saved_bank, walter), (rivet_path, rivet))
+            ],
+        },
+    )
+    prepare(saved_bank, generate=True)
+    prepare(rivet_path, generate=True)
+    return saved_bank, rivet_path, registry
+
+
+def test_nested_banks_reuse_global_speech_assets_without_crossing_archive_boundaries(
+    registered_banks, monkeypatch
+):
+    walter, rivet, _ = registered_banks
+    monkeypatch.setattr(alignment, "decode", no_native_work)
+    monkeypatch.setattr(alignment.subprocess, "run", no_native_work)
+    audio, _, archive = bank.paths(read_json(rivet)["recordings"][0], rivet)
+    assert audio.is_relative_to(alignment.SPEECH / "recordings/rivet")
+    assert archive.parent == rivet.parent / "alignment"
+    assert prepare(walter)["reused"] == prepare(rivet)["reused"] == 2
+
+
+def test_manifest_cannot_redefine_the_speech_asset_root(saved_bank):
+    outside = alignment.ROOT / "arbitrary/manifest.json"
+    write_json(outside, read_json(saved_bank))
+    with pytest.raises(ValueError, match="speech asset directory"):
+        bank.load_manifest(outside)
+
+
+@pytest.mark.parametrize("field", ["audioPath", "sidecarPath", "alignmentPath"])
+def test_nested_bank_rejects_global_escape_and_other_bank_archives(registered_banks, field):
+    walter, rivet, _ = registered_banks
+    item = read_json(rivet)["recordings"][0]
+    item[field] = "../../../outside.mp3"
+    with pytest.raises(ValueError, match="speech asset directory"):
+        bank.paths(item, rivet)
+    item = read_json(rivet)["recordings"][0]
+    item["alignmentPath"] = "../../bank/alignment/" + item["id"] + ".json"
+    with pytest.raises(ValueError, match="alignment path"):
+        bank.paths(item, rivet)
+
+
+def test_shared_work_root_keeps_coach_generation_separate(registered_banks, monkeypatch):
+    walter, rivet, _ = registered_banks
+    archives = {}
+    for path in (walter, rivet):
+        manifest = read_json(path)
+        for item in manifest["recordings"]:
+            archive = path.parent / item["alignmentPath"]
+            archives[(manifest["voiceId"], item["id"])] = read_json(archive)
+            archive.unlink()
+    working = {}
+
+    def generate(source, work, *_args):
+        working[source.voice_id] = work
+        return archives[(source.voice_id, source.runtime_script_id)]
+
+    monkeypatch.setattr(alignment, "generate_forced_source", generate)
+    work_root = alignment.ROOT / ".tools/shared-work"
+    prepare(walter, generate=True, work_dir=work_root)
+    prepare(rivet, generate=True, work_dir=work_root)
+    assert working == {
+        "walter": work_root / "classic/walter",
+        "rivet": work_root / "robot/rivet",
+    }
+
+
+def test_registered_check_verifies_both_banks_and_allows_optional_meanings(
+    registered_banks, monkeypatch, capsys
+):
+    monkeypatch.setattr(alignment, "decode", no_native_work)
+    monkeypatch.setattr(alignment.subprocess, "run", no_native_work)
+    bank.main(["--check"])
+    result = json.loads(capsys.readouterr().out)
+    assert result["ready"] == result["reused"] == 4
+    assert result["generated"] == 0
+    assert result["missing"] == []
+    assert set(result["banks"]) == {"classic", "robot"}
+    item_path(registered_banks[1], "audioPath").unlink()
+    with pytest.raises(ValueError, match="Missing recording"):
+        bank.check_registered_banks()
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        "unknown-id",
+        "wrong-group",
+        "silent-policy",
+        "wrong-coach",
+        "wrong-voice",
+        "duplicate-coach",
+        "duplicate-voice",
+        "escape",
+        "missing-voice-lock",
+        "duplicate-voice-lock",
+        "wrong-saved-voice",
+        "wrong-lock-provider",
+        "wrong-walter-voice",
+    ],
+)
+def test_registered_banks_reject_catalog_registry_and_voice_lock_drift(registered_banks, mutation):
+    walter, rivet, registry_path = registered_banks
+    registry = read_json(registry_path)
+    if mutation in {"unknown-id", "wrong-group", "silent-policy"}:
+        catalog_path = alignment.SPEECH / "meanings.json"
+        catalog = read_json(catalog_path)
+        if mutation == "unknown-id":
+            catalog["meanings"][0]["id"] = "unrelated-meaning"
+        elif mutation == "wrong-group":
+            catalog["meanings"][0]["group"] = "another_group"
+        else:
+            catalog["silentIds"] = []
+        write_json(catalog_path, catalog)
+    elif mutation in {"wrong-coach", "wrong-voice", "duplicate-coach", "duplicate-voice", "escape"}:
+        if mutation == "wrong-coach":
+            registry["banks"][1]["coachId"] = "different-coach"
+        elif mutation == "wrong-voice":
+            registry["banks"][1]["voiceId"] = "different-voice"
+        elif mutation == "duplicate-coach":
+            registry["banks"][1]["coachId"] = "classic"
+        elif mutation == "duplicate-voice":
+            registry["banks"][1]["voiceId"] = "walter"
+        else:
+            registry["banks"][1]["manifestPath"] = "../outside/manifest.json"
+        write_json(registry_path, registry)
+    elif mutation == "wrong-walter-voice":
+        path = alignment.SPEECH / "walter-selected-voice.json"
+        selected = read_json(path)
+        selected["voiceId"] = "unapproved-walter"
+        write_json(path, selected)
+    else:
+        path = alignment.SPEECH / "cast-auditions/locked-voices.json"
+        locked = read_json(path)
+        if mutation == "missing-voice-lock":
+            locked["voices"] = []
+        elif mutation == "duplicate-voice-lock":
+            locked["voices"].append(deepcopy(locked["voices"][0]))
+        elif mutation == "wrong-saved-voice":
+            locked["voices"][0]["savedVoiceId"] = "unapproved-rivet"
+        else:
+            locked["provider"] = "different-provider"
+        write_json(path, locked)
+    with pytest.raises(ValueError):
+        bank.check_registered_banks()
 
 
 def test_real_recording_provenance_can_be_reused_without_changing_its_script(saved_bank):
