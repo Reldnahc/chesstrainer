@@ -172,6 +172,9 @@ async function publish(job, audio, metadata) {
     await Promise.allSettled(temporary.map(([name]) => unlink(name)));
   }
 }
+// Shared authoring I/O keeps other offline recording tools on the same bounded,
+// no-symlink, no-overwrite publication path. This does not expose paid requests.
+export const authoringFiles = { directory, readRegular, statOrMissing, publish };
 async function requestAudio(job, key, fetchImpl, timeoutMs, signal) {
   const controller = new AbortController();
   const cancel = () => controller.abort();
