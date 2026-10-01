@@ -488,7 +488,9 @@ The final twelve used **1,593 credits** (9,902 to 11,495): **7,965 total** for a
 sixty. A subsequent Biscuit/Pip replacement round increased usage by **800
 credits** (11,495 to 12,295), totaling **8,765 casting credits**. It produced six
 new previews; one rejected request is included in that session's usage interval.
-The six rejected first-round directions retain their original source assets and
+Biscuit's third and fourth rounds each used **390 credits** (28,866 to 29,256 to
+29,646), bringing casting to **9,545 credits**. Every rejected round (Biscuit and
+Pip's first, Biscuit's second and third) retains its original source assets and
 archived briefs, outside the active manifest. Walter's completion batch used
 **1,948 credits** separately. Replaying either collection is local and free. Audition files are unchanged provider output,
 about 8–12 seconds, with no padding or manual timing edits. Use

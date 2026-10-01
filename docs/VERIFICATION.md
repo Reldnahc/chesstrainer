@@ -4,6 +4,37 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Biscuit third and fourth audition rounds — October 1, 2026
+
+The owner rejected Biscuit's second round ("reads as ordinary young adults, not a
+young-sounding character"); it is archived in `archive/round-2-puppy.json`. Round
+three (Animated sidekick, Breathless rookie, Soft and wide-eyed) made three paid
+requests with no rejections or retries: **390 credits** (28,866 → 29,256). Animated
+sidekick failed automatic PocketSphinx alignment ("does not match the grammar") and
+was not hand-timed. The studio had disabled playback without a track; it now keeps
+the documented energy-driven mouth instead (separate commit, with a focused spec).
+
+The owner judged Soft and wide-eyed almost right, so round three is archived in
+`archive/round-3-puppy.json` and round four contains three close variations: Soft
+and lighter (8.21 s), Soft and cosy (10.19 s) and Soft and sparkly (8.75 s). The
+brief's "a little more sparkle" was written as "a touch more sparkle" to avoid a
+banned word. Three requests, no rejections or retries: **390 credits** (29,256 →
+29,646, settled). All three aligned automatically with no hand timing.
+
+- `node scripts/design_coach_voices.mjs --check`: **60 active recordings verified**.
+- `.venv/Scripts/python.exe -B scripts/prepare_cast_voice_auditions.py --check`:
+  **60 ready, none missing**.
+- `node --test scripts/design_coach_voices.test.mjs frontend/scripts/casting-server.test.mjs`:
+  **60 passed**.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_cast_voice_auditions.py -q`:
+  **58 passed** (temporary `--basetemp`; the host pytest temp folder was unreadable).
+- Focused Audio Studio `cast-audition.spec.ts`, `casting-choices.spec.ts` and
+  `casting-locks.spec.ts`: **52 desktop/mobile checks passed**, including the new
+  no-track playback fallback, reusing the running audio server.
+- `tsc -b` and `npm run test:types`: passed.
+- The running studio on port 5176 had cached the previous plan; touching the
+  catalog files made it serve the new round without a restart.
+
 ## Pip voice lock — October 1, 2026
 
 The owner chose Pip's second-round **Warm Dublin companion** in the Audio Studio
