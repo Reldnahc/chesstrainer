@@ -17,6 +17,8 @@ export type WalterScript = {
   writtenText: string;
   spokenText: string;
   reaction: CoachExpression;
+  recordingId?: string;
+  category?: string;
 };
 export type WalterClip = { voiceId: string; scriptId: string; url: string; durationSeconds?: number };
 

@@ -1,14 +1,22 @@
-# Walter voice audition
+# Walter recorded speech and authoring history
 
-This is a development-only comparison of prerecorded voices for Walter
-(`classic`), including an original Voice Design experiment. The owner selected
-**Older teacher** as Walter's voice. That refinement is now saved, with eight
-contrasting TTS examples available for listening. The application does not
-automatically speak, call a speech provider, or require an API key.
+Walter (`classic`) now has a complete **181-recording non-lesson voice bank** in
+his owner-selected **Older teacher** voice. The bank contains eight unchanged
+approved examples and 173 newly recorded passages. Every clip has automatically
+generated mouth timing. See the [bank manifest](bank/manifest.json),
+[offline verification instructions](bank/README.md) and
+[production playback policy](../../../../docs/AUDIO.md#walters-recorded-coach-voice).
+
+Settings offers Automatic, On request and Off under Sound. Only Walter currently
+has a production bank; other coaches remain text-only. Playback uses bundled local
+recordings without provider access, API keys or runtime synthesis. Exact chess
+moves, squares and scores stay in writing while the voice explains the supported
+idea. All lessons remain excluded.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
-http://127.0.0.1:5176/. The default **Walter examples** collection has eight short
-examples in the selected voice. Teacher & elder compares **Older teacher**,
+http://127.0.0.1:5176/. **Complete voice bank** has all 181 recordings in a grouped selector, with
+the same generated mouth timing as the application. The default **Walter examples**
+collection retains eight short contrasting examples. Teacher & elder compares **Older teacher**,
 **Teacher** and **Elder**, with one sample per prompt. Walter refinements
 similarly shows one Warmer and one Playful sample. Custom Walter keeps the
 owner-preferred Custom 1 preview. Original voices retains Bill, George and
@@ -23,7 +31,7 @@ To audition from a phone on the same network, start the studio with
 PC's firewall on the private network if needed. The normal `dev:audio` command
 remains accessible only on the PC itself.
 
-## Recording set
+## Audition history
 
 ### Selected Walter: contrasting examples
 
@@ -39,9 +47,9 @@ The eight one-take examples total **830 input characters / 853,821 audio bytes**
 They use Eleven v4, stability 0.5, similarity 0.75 and speed 0.95. No audio tags,
 padding, splicing or post-processing were added. Each unchanged MP3 has exact
 request and hash provenance in `recordings/walter-contrasts-v1/walter`.
-These eight are a subset of the 92 planned game scripts, not eight additional
-meanings or authorization to generate the rest. They test production TTS delivery
-of the selected remix; audible character quality remains an owner listening decision.
+These eight are now reused unchanged by the complete bank. They are a subset
+of its 92 game-review meanings, not eight additional recordings. The owner
+approved their delivery and subsequently authorized completing Walter.
 
 Offline verification:
 
@@ -49,13 +57,13 @@ Offline verification:
 node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
 ```
 
-The [whole-app recording inventory](#whole-app-dialogue-inventory) expands the
-earlier game-only count. It is planning, not a bulk recording request.
+The [whole-app recording inventory](#whole-app-dialogue-inventory) records the
+completed non-lesson scope and the deliberately silent exclusions.
 
 ### Earlier stock-voice comparison
 
-The source-audited [Walter dialogue inventory](#walter-dialogue-inventory)
-below plans the next pack. Its draft scripts are not generation authorization.
+The historical comparison below led to the selected Older teacher voice.
+These stock voices are retained for audition comparison, not used in the bank.
 
 | Candidate | ElevenLabs voice | Provider voice ID |
 | --- | --- | --- |
@@ -269,26 +277,14 @@ measurements cannot choose Walter's personality or establish natural delivery.
 
 ## Walter dialogue inventory
 
-This planning audit replaces the earlier unsupported 80–120 estimate. It is
-based on the repository at `839da3e`, including the actual selectable Walter
-(`classic`, `storyteller-4`), rather than the separate Professor character.
-The owner selected **Older teacher**. No further audio or saved-voice request
-was made for this audit.
+The original source audit traced all 64 dialogue template codes, current intent
+builders, tactic producers and Walter's actual renderer (`classic` →
+`storyteller-4`). Of 55 game/variation-emittable codes, 52 structured codes are
+covered after excluding transient and legacy prose. The
+[game inventory](walter-dialogue-inventory.json) retains each script, source,
+eligibility condition and primary/secondary designation.
 
-[walter-dialogue-inventory.json](walter-dialogue-inventory.json) contains every
-draft spoken sentence, stable recording ID, claim code, source reference,
-eligibility condition and primary/secondary status. It is deliberately a
-planning inventory, **not** an executable ElevenLabs recording plan.
-
-### Exact scope and counts
-
-The design uses one whole recording per supported teaching meaning. It retains
-the existing agreement that exact moves, squares, opening names, evaluations
-and historical counts stay in writing. It does not read every bubble verbatim,
-stitch individual words, invent reasons from ratings or multiply recordings for
-White/Black when a complete side-neutral sentence is sufficient.
-
-| Family | Can lead the main bubble | Secondary only | Complete bank |
+| Game family | Primary-capable | Secondary only | Bank recordings |
 | --- | ---: | ---: | ---: |
 | Tactical mechanisms and mover-caused errors | 31 | 2 | 33 |
 | Positional explanations | 12 | 12 | 24 |
@@ -296,211 +292,74 @@ White/Black when a complete side-neutral sentence is sufficient.
 | Human-model insights | 4 | 3 | 7 |
 | Opening and clock context | 5 | 0 | 5 |
 | Relationships within/between games | 7 | 2 | 9 |
-| **Total recordings** | **71** | **21** | **92** |
+| **Total** | **71** | **21** | **92** |
 
-The **71** primary scripts contain **1,227 words / 7,182 characters**. The full
-**92** contain **1,619 words / 9,522 characters**. These totals count spoken
-strings only, not labels, metadata or alternative takes. They are not a provider
-price quote or a duration measurement. One performance per script is planned;
-additional wordings for repetition control are optional, not coverage necessities.
+The initial 71-primary pilot was a staging proposal, not the completed product
+scope. The owner later approved the full non-lesson bank. All 92 game meanings
+are recorded, but a secondary recording does not become an automatic replacement
+for a missing primary. Game selection follows the first successfully rendered
+claim and preserves its source identity, required slots, actor and line scope.
+Explicit secondary listening is limited to the currently visible supported claim.
 
-These are counts of this explicit summary catalogue, not a universal minimum
-across every conceivable writing approach. Primary eligibility is established
-by source analysis and checked with focused synthetic rendering probes; it is
-not a measured percentage of real games or an end-to-end speech test.
-
-### Tactical coverage: 31 primary recordings
-
-| Verified mechanism | Played | Allowed | Missed |
-| --- | --- | --- | --- |
-| Fork | Required | Required | Required |
-| Pin | Required | Required | Required |
-| Skewer | Required | Required | Required |
-| Removing a defender by capture | Required | Required | Required |
-| Back-rank mate | Required | Deferred | Deferred |
-| Promotion | Required | Required | Required |
-| Discovered attack | Required | Required | Required |
-| Double attack | Required | Required | Required |
-| Deflection | Required | Required | Required |
-| Undefended capture | Required | Not emitted under this name | Required |
-| Hanging piece | Not emitted under this name | Required | Not emitted under this name |
-
-That is **28** primary tactical recordings, plus **three** distinct mover-caused
-explanations: abandoned defender, unanswered preceding threat and unfavorable
-capture/recapture. The mover causes are never narrated as opponent-executed
-tactics. All tactical scripts refer to a continuation; the witness can be later
-than the currently displayed board. They do not promise a material win merely
-because a motif was recognized.
-
-Allowed/missed back-rank mate recordings are deferred because the forced-mate
-claim outranks them for coherent engine scores and continuations. This particular
-exclusion relies on that score/line consistency; an inconsistent synthetic report
-can bypass it. Broader taxonomy labels do not justify more scripts: trapped-piece
-and relative-pin defense probes exist in classification, but the present game
-review line producer does not call those probes.
-
-### Positional coverage: 12 primary recordings
-
-Development; open rook file; semi-open rook file; passed pawn; advancing an
-already-passed pawn; isolated pawn; added piece support; lost support; new king
-flight square; castling; bishop-pair loss; doubled pawns.
-
-There are 11 claim codes, but open and semi-open files need different explanations.
-Every meaning has a separate hypothetical script, making **24** in the complete
-bank. All **12 hypothetical versions are deferred**: gameIntent includes them
-only for poor moves, whose evaluation loss, mate or stronger consequence necessarily
-leads the bubble. They can still appear as its second written claim.
-
-These recordings make no ownership or strategic-value claim. The written bubble
-identifies the affected side/piece and the selector must validate them against
-the source event. “Undefended” does not mean lost; a passer advance proves the
-pawn was passed before the move; a doubled-pawn event can remove one doubled file
-while leaving another. The scripts preserve those distinctions.
-
-### Remaining primary coverage: 28 recordings
-
-- **Nine objective explanations:** forced mate allowed, forced mate missed,
-  sound sacrifice, only playable move found, only advantage-preserving move
-  found, immediate capture in reply, evaluation loss, the supported Best
-  fallback, and Good. Grade names alone do not trigger recordings.
-- **Three endings:** finishing checkmate, being checkmated and automatic draw.
-  Checkmate requires the actual board outcome, not merely a recorded result or
-  a winning/losing portrait. Finishing and losing retain different teaching
-  responses rather than duplicate delivery takes.
-- **Four human insights:** unusual but strong, hard find, natural best move,
-  natural strong move. Scripts describe model evidence; no calibrated success
-  percentages or claims to know what the learner was thinking.
-- **Two opening observations:** recognized book move and first departure from
-  the recognized book. `book` and `book_sound` share one recognition recording;
-  recognition never becomes a blanket claim that the move is objectively good.
-- **Three clock observations:** little recorded time remaining, quick move with
-  time available, and a long recorded think. No claim that time caused an error.
-- **Seven game relationships:** recovery, recovery helped by opponent errors,
-  opportunity used, opportunity missed, support restored, gradual deterioration
-  and advantage converted. They require the saved learner's supported mainline
-  context; variations cannot inherit them.
-
-The seven other deferred files cover a checking reply, stronger alternative,
-natural mistake, difficult defense missed, difficult defense found, repeated
-issue in this game and recurrence in saved history. Each has a stronger primary
-claim whenever its production conditions hold. The three deferred human lines
-could be primary in the existing human-insight popover, but opening/narrating
-that surface needs an explicit policy; rendering a hidden popover must not speak.
-
-### What these totals do not cover
-
-The complete template partition reconciles without omissions:
-
-- **64** named template codes exist; **55** can be emitted in game/variation mode.
-- **52** structured game codes map to the inventory. `thinking`, `unavailable`
-  and unrestricted `compatibility` account for the other three game-mode codes.
-- The remaining **nine** are five practice-only codes, two freeform explanation
-  codes and two template-only codes with no current production emitter
-  (`uncertain_reason` and `variation`). A branch uses ordinary game claims.
-
-SRS feedback, Show why, opening recall, lessons, full-game lesson exploration,
-puzzle instructions and opening-preview guidance have all been inspected. They
-are explicitly separate surfaces, not hidden additions to the count. Several
-bypass the semantic renderer or contain arbitrary authored/server text. Full
-lesson narration would require its own course-version inventory; exact narration
-of arbitrary PGN commentary cannot be covered by a fixed finite library. Cold
-practice must retain its existing answer-hiding boundary.
-
-### Proposed next step
-
-Review the **71-script primary pack** before generation. It covers every identified
-primary-capable meaning under the existing pilot scope, without paying for 21
-clips that policy cannot select. The extra 21 are already drafted if the owner
-chooses to narrate subordinate claims or explicit human-insight playback later.
-No broader narration policy is approved by this inventory.
-
-The selected Older teacher refinement has now been saved and eight contrasting
-lines generated above. Before a larger paid batch, the owner should evaluate
-whether that production TTS delivery matches the chosen preview.
-The existing recorder caps plans at 20 requests, so a 71-file pack needs at least
-four bounded batches. Do not relax that safety limit or issue the requests from
-this document. Scripts, delivery, repetition policy and production integration
-still require their own quality review.
+The catalogue uses complete reusable teaching passages. It never reads dynamic
+moves, squares, scores, names or historical counts aloud, stitches word fragments,
+or infers chess explanations from grades or facial expressions. Actual and
+hypothetical positional effects remain separate recordings; mover-caused mistakes
+remain distinct from an opponent executing a tactic. A forced-mate continuation
+is not the same as an actual board checkmate. Model evidence stays an estimate.
 
 ## Whole-app dialogue inventory
 
-**Owner decision: defer all lesson narration.** A growing course catalogue must
-not require recording and maintaining a new voice library for every lesson edit.
-This includes authored passages, hints, annotated games, reveals and fixed lesson
-guidance. Written lessons continue unchanged. The earlier 334-recording lesson
-inventory remains in Git history at `054cd80`, outside the active plan.
+**All lesson narration remains deferred.** Authored passages, hints, annotated
+games, reveals and fixed lesson guidance stay written. A growing course catalogue
+must not require maintaining a voice library for every edit. The earlier lesson
+inventory remains in Git history at `054cd80`, outside this bank.
 
-[walter-full-dialogue-inventory.json](walter-full-dialogue-inventory.json) now
-contains **185 distinct proposed recordings for Walter**. It retains the exact
-draft scripts, source/trigger references, shared-recording mappings and exclusions.
-Unrecorded rows are not approved for generation just because they are listed.
+The [full inventory](walter-full-dialogue-inventory.json) contains 185 audited
+meanings, with four deliberately silent transient/defensive states excluded from
+the **181-recording production bank**:
 
-| Coverage | Distinct recordings |
+| Coverage | Recordings |
 | --- | ---: |
-| Game review, variations and human insights; full primary + secondary bank | 92 |
-| SRS feedback, Show why, selected tactical findings, teaching cues and explanation notes | 68 |
-| Opening recall and opening preview | 10 |
-| Puzzle-player guidance | 8 |
-| Operational states and defensive fallback | 7 |
-| **Total, excluding lessons** | **185** |
+| Game review, variations and human insights | 92 |
+| Additional SRS feedback, explanations, findings, cues and notes | 68 |
+| Opening recall and preview | 10 |
+| Puzzle guidance | 8 |
+| Finite review statuses | 3 |
+| **Completed bank, excluding lessons** | **181** |
 
-Recommend leaving four operational entries silent: game analysis in progress,
-checking a practice move, loading an explanation, and the defensive no-renderable-
-claim fallback. That leaves **181 recordings** in the practical pack. **Eight are
-already recorded as auditions, leaving 173**. Keeping all four optional statuses
-would instead leave 177 unrecorded. No new audio was generated by this scope change.
+The scripts total **16,936 input characters / 2,888 words**. Eight earlier
+recordings contain 830 characters; completing the bank required **173 new
+recordings / 16,106 input characters**. These are script counts, not provider
+billing units or guaranteed durations. Retakes, other voices and auditions belong
+to their own usage records. All active entries now have media and generated mouth
+tracks; there is no remaining unrecorded subset hidden in this count.
 
-The full non-lesson draft is **17,096 characters / 2,913 words**; omitting those
-four entries gives **16,936 characters / 2,888 words**. These are exact counts of
-the listed text, not a provider price quote. Retakes and wording edits can change
-actual input. Other coaches, alternate phrasings and translations are not
-multiplied into the total.
+The 197 non-lesson source rows deduplicate to 185 meanings through 12 cross-surface
+reuses. Eleven game clips are reused by SRS explanations, and one practice error
+clip also serves opening recall. The four excluded entries are game thinking,
+practice checking, explanation loading and the no-renderable-claim fallback.
+Nine bounded plans in `bank/plans/` retain the recorder's 20-request maximum.
+Existing examples are referenced from their original paths, without duplicate
+binaries or another paid generation.
 
-### Meaning and counting method
-
-This is an explicit finite recording design, not a count of every possible
-sentence in the application. Complete, reusable sentences explain supported
-ideas; exact moves, squares, scores, historical counts and player names remain
-written. No chopped-word assembly is proposed. Optional personality introductions
-do not multiply every factual recording.
-
-The source audit at `855fbc5` traced the production intent builders, renderer and
-feedback producers. After excluding lessons, **197 source rows − 12 cross-surface
-reuses = 185 scripts**. Eleven game recordings are reused by SRS explanations;
-one SRS error recording is also used by opening recall. The eight new Walter
-examples are already part of the game bank, not eight extra meanings.
-
-SRS/explanations contain **79 meanings**, yielding **68 additions** after those
-11 game reuses. These include 20 whole move-frame combinations (capture,
-promotion, check, mate, escape from check, legal castling combinations and the
-original position), 25 tactical witness meanings, 13 supported teaching cues,
-practice feedback and explanation notes. The 19 non-start combinations were
-checked against legal chess positions. A collected fork, a pin preventing
-recapture and a pin restricting escape retain distinct explanations.
+The bank's completeness describes the supported finite summary design. It does
+not claim to narrate arbitrary manual-exercise prose, legacy text, imported game
+commentary, raw errors or every visible paragraph. It does not narrate buttons,
+headings, badges, scheduling receipts, settings or provenance help.
 
 ### Playback boundaries
 
-The full count includes optional explicit playback of secondary claims, selected
-findings/cues and explanation notes. It does not replace the original main-bubble
-policy with automatic reading of everything. The human popover's seven claim
-meanings are in the game bank; its help/provenance paragraphs remain interface
-copy. The puzzle framework has eight fixed dialogue states; no installed authored
-puzzle collection is being claimed as narrated.
+Production selection consumes structured facts at their existing authority
+boundary. Cold SRS may speak neutral task instructions, never themes, evaluations,
+best moves or future continuation facts. Authorized attempt/reveal feedback may
+select supported explanations; a reveal is never praised as an unassisted success.
+Restoring saved feedback does not create a new narration event. Opening acceptance
+means selected repertoire membership; puzzle acceptance means the authored answer.
 
-All lessons are deferred. Arbitrary manual-exercise prose, legacy coach text,
-raw runtime errors and imported commentary remain written unless separate authored
-audio exists. A generic acknowledgment does not cover an arbitrary teaching
-explanation. Buttons, headings, badges, toasts, scheduling receipts and settings
-or provenance help are not coach dialogue.
-
-Some current practice summaries and frames need explicit structured speech facts
-before a selector can use this plan. Do not parse English or infer reasons from
-a grade or portrait. Preserve cold-SRS gates, actual versus alternative scope,
-attempt identity and cancellation of stale requests. Revealing an answer must
-never sound like unassisted success; restored feedback must not trigger a new
-reward. Changing coaches changes presentation without rewriting chess evidence.
-
-Only the eight contrasting examples have been generated. Review scripts and
-performances before further generation; preserve the existing 20-request batch
-limit. The remaining 173 recommended recordings require at least nine bounded
-batches. Lesson additions and edits must not automatically expand this voice pack.
+Current position, session, attempt, selected finding, coach and utterance identity
+must remain valid after asynchronous loading. Navigation, retries, hiding, mute,
+coach changes and unmounting cancel stale work. Human popovers and explanation
+notes have explicit listening controls rather than background narration. The
+complete [Audio documentation](../../../../docs/AUDIO.md) describes production
+controls and lifecycle; source-specific conditions remain in the two inventories.

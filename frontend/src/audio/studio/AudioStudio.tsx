@@ -9,6 +9,8 @@ import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { RecordedSpeechClip, SoundCategory, SoundCue, SoundPalette, SpeechPlayback } from "../model";
 import { walterCollections, walterVoices, walterScripts, walterClips, walterAuditionUtterance, type WalterClip } from "../speech/walterPilot";
+import { walterBankCollection, walterBankScripts } from "../speech/walterBankAudition";
+import { walterRecording } from "../speech/voiceBank";
 import { auditionScenarios, retryContexts, type AuditionScenario, type RetryContextId } from "./scenarios";
 import WalterAudition, { type WalterPlayback, type WalterPlayOptions } from "./WalterAudition";
 import "./studio.css";
@@ -24,6 +26,12 @@ const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => ite
 const assetSources = new Map(recordedSources.assets.map(source => [`${source.palette}:${source.cue}`, source]));
 const recordingSources = new Map(recordedSources.sources.map(source => [source.id, source]));
 const sourceLicenses: Readonly<Record<string, { label: string; url: string } | undefined>> = recordedSources.licenses;
+const voiceCollections = [walterCollections[0], walterBankCollection, ...walterCollections.slice(1)];
+const voiceScripts = [...walterScripts, ...walterBankScripts];
+const voiceClips = [...walterClips, ...walterBankScripts.flatMap(script => {
+  const recording = walterRecording(script.recordingId);
+  return recording ? [{ voiceId: "walter", scriptId: script.id, url: recording.url }] : [];
+})];
 
 function CueSource({ cue, palette }: { cue: SoundCue; palette: SoundPalette }) {
   const source = assetSources.get(`${palette}:${cue}`);
@@ -234,7 +242,7 @@ export default function AudioStudio() {
     </section>
     {error && <p className="error-text" role="alert">{error}</p>}
 
-    <WalterAudition collections={walterCollections} voices={walterVoices} scripts={walterScripts} clips={walterClips}
+    <WalterAudition collections={voiceCollections} voices={walterVoices} scripts={voiceScripts} clips={voiceClips}
       playback={speechPlayback} speaking={speaking} onPlay={(clip, options) => void playVoice(clip, options)} onStop={stop} />
 
     <div className="audio-studio-workspace">
@@ -289,7 +297,7 @@ export default function AudioStudio() {
             </li>)}</ol> : <p>No playback yet.</p>}
           </details>
         </section>
-        <p className="audio-studio-speech-note">Walter’s recordings are a development audition. No speech is enabled in the application.</p>
+        <p className="audio-studio-speech-note">Walter’s complete voice bank is available in the application. Earlier voice experiments remain here for comparison.</p>
       </aside>
     </div>
     <footer className="audio-studio-footer">Audio studio · Preview controls do not change account preferences.</footer>

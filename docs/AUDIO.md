@@ -11,7 +11,7 @@ Rejected auditions and their selection/export UI have been removed.
 
 **Settings → Sound** contains the master switch, volume,
 board/practice switches and an explicit test button. Defaults are sound
-enabled, volume 35%, and board and practice enabled.
+enabled, volume 35%, and board and practice enabled. Coach voice defaults to Automatic.
 Account preferences use the existing owned `user_preferences` row, including the
 reserved local user. A failed initial preference load keeps audio silent until
 retried. Audio changes do not overwrite coach or motion choices.
@@ -140,207 +140,114 @@ preferences. The studio shares application buttons and choice controls but owns
 its layout. Its style boundary rejects application/board styles. CI has a
 dedicated audio suite; audio-only changes do not require the coach artwork matrix.
 
-## Coach speech foundation
+## Walter's recorded coach voice
 
-`PreparedSpeechClip` accepts an already prepared `AudioBuffer` plus the existing
-`CoachUtterance`, scope and event identity. The engine has a cancellable speech
-bus, respects priority/interruptibility when replacing speech, and lowers effects
-while speech plays. This is an extension point, not a production voice feature.
+Walter (`classic`) has a complete **181-recording non-lesson bank**, using the
+owner-selected **Older teacher** voice. The bank includes eight unchanged
+approved examples and 173 new whole recordings. The scripts contain **16,936
+input characters**, of which **16,106** were newly recorded for completion.
+These are input counts, not provider billing units; actual usage belongs to the
+recording run's usage record. No words or sentence fragments are stitched together.
 
-`playRecordedSpeech` accepts a recording URL and the same utterance/scope contract.
-It registers cancellable work before loading, reuses the shared decoded-asset
-cache, and optionally delays playback. Mute, hidden tabs, cancellation and disposal
-also invalidate pending recordings, so a late download cannot revive stale speech.
-Recording playback never contacts a synthesis provider or requires credentials.
+**Settings → Sound → Coach voice** offers **Automatic** (the default), **On
+request**, and **Off**. Automatic narration follows fresh supported interactions;
+On request uses the coach's **Listen** control. Other selected coaches remain
+text-only until their own approved bank is available. Voice shares the existing
+master sound switch, volume, device mute, account persistence and browser
+activation policy. It is independent of coach/interface motion preferences;
+Still keeps the portrait still without muting audio.
 
-A future speech adapter owns obtaining a clip and checking whether an utterance
-is still current before submitting it. The calling policy decides whether speech
-is manual or permitted by `autoSpeakSuitable`. Visible/spoken text remains owned
-by dialogue; audio never rewrites chess claims or generates character prose.
-There is no production TTS provider, speech setting, automatic narration or
-runtime synthesis request. The separate local authoring tool and developer-only
-audition described below are not production speech selection.
+Audio summarizes the supported idea while exact moves, squares, scores, names and
+historical counts stay written. It is not a verbatim reading of every paragraph.
+Unsupported or freeform text remains written. All lessons remain excluded: course
+additions, hints, game annotations and edits do not require maintaining voice assets.
 
-### Prerecorded-coach pilot (development audition)
+### Bank and authoring
 
-The owner approved trying one coach with complete, reusable spoken explanations.
-The precise position-specific explanation stays written in the bubble. Spoken
-summaries preserve the supported teaching point without narrating unique move
-numbers, squares, scores or historical references. These are whole recorded
-sentences, not isolated rating announcements or stitched word fragments.
+The [bank manifest](../frontend/src/audio/speech/bank/manifest.json) identifies
+all recordings and their local paths. It covers 92 game-review meanings, 68
+additional practice/explanation meanings, 10 opening-recall/preview meanings,
+eight puzzle states and three finite review statuses. Four audited transient or
+defensive states deliberately remain silent: thinking, checking, loading an
+explanation and no-renderable-claim. Shared meanings reuse recordings; the
+[full inventory](../frontend/src/audio/speech/walter-full-dialogue-inventory.json)
+retains trigger definitions and aliases.
 
-Approved recordings will ship as local application assets in the container.
-Installing, building and using Fieldwork must not require a voice-service account,
-API key, model download or runtime synthesis. Production cost belongs to creating
-the recordings, not to the people playing them. First select the coach and voice,
-then audition a small set before expanding coverage or adding production controls.
-The owner selected Walter (`classic`) and authorized a small paid ElevenLabs
-audition, then chose the **Older teacher** remix as Walter's voice direction.
-The chosen refinement is saved as **Fieldwork Walter - Older teacher**. Eight
-short contrasting examples in that voice now lead the studio; production
-automatic speech is not enabled.
+Recordings ship as local assets in the container. Installing, building and
+playing Fieldwork needs no ElevenLabs account, API key, model download or runtime
+synthesis. The development-only `scripts/record_coach_speech.mjs` uses explicit
+paid generation, sequential plans of at most 20 requests, hash-verified reuse and
+no automatic paid retries. Its only credential source is the process environment.
+Each recording retains the exact voice/model/settings, text, request and file hash.
+The [speech authoring history](../frontend/src/audio/speech/README.md) preserves
+the owner-approved voice experiments and their usage provenance.
 
-The existing audio studio now compares Bill, George and Brian reading the same
-four full teaching examples: a difficult defense, abandoning a defender, allowing
-forced mate, and finding a fork. Twelve local MP3s total 1,789,388 bytes. They use
-the real registered Walter and shared coach presentation. Explicit Play/In context
-actions use the same speech bus, mute, volume and cancellation as prepared speech.
-The examples are labelled as authored demonstrations, not real analyzed games.
-Written and spoken text are identical for this voice comparison; the supported
-summary policy below remains the rule for eventual production integration.
+`scripts/prepare_coach_voice_bank.py` automatically aligns the known text and
+recording using PocketSphinx's public word/phoneme API and the shared mouth rules.
+Detailed source/phoneme archives remain authoring evidence; `bank/tracks.json` is
+its compact runtime projection, loaded separately from the initial application.
+Every clip has generated timing. No individual clip was aligned by hand, and no
+native aligner or model is required by playback. See the
+[bank verification workflow](../frontend/src/audio/speech/bank/README.md).
 
-The owner then requested one original Walter Voice Design experiment. Its single
-text-only prompt generated three approximately 40-second alternatives, now in the
-Custom Walter collection. They share one continuous preview of the four
-teaching examples; the Original voices collection preserves all previous clips.
-Both collections reuse the same player, coach presentation and cancellation
-behavior. Model/source credits belong to each voice rather than assuming all
-clips use the original TTS model. The custom previews use `eleven_ttv_v3`, total
-1,965,378 bytes and have exact request/hash provenance in `design-preview.json`.
+### Meaning and selection
 
-The owner subsequently chose Custom 1 as Walter's refinement baseline and
-approved saving it in ElevenLabs as **Fieldwork Walter - Custom 1**. Future
-refinement auditions use the 140-character script in `walter-short-plan.json`
-(about a quarter of the original), targeting roughly 10 seconds. The original
-preview is retained for comparison. Two prompt-based remixes of that saved voice
-produced three warmer and three more playful previews of the short script,
-each about 8–9 seconds, for the Walter refinements collection. The exact
-requests, selected source voice, generated IDs and asset hashes are retained in
-`refinement-previews.json`; the provider does not report a model ID for remixes.
-The 140-character v4 TTS plan remains available but unrecorded. A subsequent
-Teacher & elder collection uses a 141-character script ending in
-a complete takeaway and prompts request unhurried, fully articulated endings.
-The owner requested one example per prompt, so it now compares Older teacher
-(the combined direction), Teacher and Elder, one take each. Other custom
-collections follow the same representative-sample policy. Exact requests and
-asset provenance remain in `mentor-previews.json` and `older-teacher-preview.json`.
-Earlier alternatives remain archived; no remix has been saved over the baseline.
-This authoring choice does not enable production narration. The later owner
-selection of Older teacher is recorded in the dialogue inventory below.
+Game dialogue owns recording selection, preserving the first successfully rendered
+claim's exact identity. The selector validates its supporting facts, actor and
+scope. An unavailable primary never silently promotes a lower-priority claim.
+Played, allowed, missed, mover-caused and hypothetical positional explanations
+remain distinct. A completed checkmate requires the board's actual termination;
+a forced-mate search is not an already finished game. Human-model claims remain
+estimates, separate from objective engine evaluation.
 
-The default **Walter examples** collection contains eight one-take examples from
-the audited game scripts, totaling 830 input characters and 853,821 MP3 bytes.
-They cover positive, negative, recovery, positional and human-model explanations.
-The exact saved identity, v4 request settings and hashes are retained in
-`walter-selected-voice.json`, `walter-contrasts-plan.json` and recording sidecars.
-This is an audition of the selected voice's TTS delivery, not automatic game
-narration or an authorization to record the complete inventory.
+The bank includes secondary meanings, but unopened human-insight popovers,
+explanation findings and note disclosures do not automatically speak. Their
+explicit listening actions use the currently visible supported selection. Practice
+producers provide structured summary, move-frame and finding facts; selectors do
+not parse English or infer tactics from ratings or facial expressions.
 
-### Walter dialogue inventory (planning, not implementation)
+Cold practice may give neutral task instructions, never answer, evaluation or
+motif hints. Authorized attempt/reveal gates control subsequent feedback and
+saved continuations. Reveals never sound like unassisted success; restored GET
+feedback does not trigger a fresh reward. Opening acceptance means selected
+repertoire membership, and puzzle acceptance means the authored answer. Neither
+is recast as an objective Best move.
 
-The audit at `839da3e` traced all **64** dialogue template codes, production intent
-builders, current game-review motif producers and the actual Walter renderer
-(`classic` → `storyteller-4`). **55** codes can be emitted in game/variation mode;
-excluding transient/legacy text leaves **52** structured game claim codes.
+### Playback and cancellation
 
-The [complete draft inventory](../frontend/src/audio/speech/walter-dialogue-inventory.json)
-has **71 primary-capable recordings** and **21 additional secondary-only recordings**:
-**92** distinct summary scripts in total, with one performance per script. This
-is an exact count of the documented summary design, not a claim that every
-possible dynamic bubble has a finite verbatim recording or that this many files
-guarantee pleasant repetition. Alternate wording/takes are separate editorial
-choices and are not silently added to the count. The
-[human-readable breakdown](../frontend/src/audio/speech/README.md#walter-dialogue-inventory)
-lists each family and explains the exclusions.
+`PreparedSpeechClip` and `playRecordedSpeech` use the existing cancellable speech
+bus, with priority/interruptibility and quieter effects while narration plays.
+The shared `useCoachSpeech` adapter submits only the current supported recording.
+Selection and lifecycle checks happen again after asynchronous mouth/audio loads.
+Navigation, retry, changing coach, mute, hidden tabs and unmounting invalidate
+obsolete work. No playback backlog accumulates. Initial hydration, restored
+feedback, coach changes and background refinement are not fresh narration events.
 
-The proposed selection policy would speak only the first successfully rendered
-primary claim, not both bubble claims or an unopened human-insight popover. All
-12 hypothetical positional recordings, two mate-shadowed back-rank recordings,
-and seven other subordinate meanings are therefore deferred. The proposed next
-production scope is the 71-recording main-bubble pack; broad app-wide narration
-has not been approved. Lessons, SRS, puzzle instructions and Show why are audited
-separately in the inventory and are not disguised as covered by these totals.
+The audio engine's read-only playback handle supplies the actual source clock to
+the shared portrait. Mouth motion cannot start while the recording is loading;
+stopping or replacing audio invalidates its handle. Multiple visible explanation
+surfaces can share the portrait while retaining their own speech scope and controls.
 
-No speech selector has been implemented. It must retain the selected claim's
-identity/scope, validate supporting facts, and inspect actual current-position
-readiness. `autoSpeakSuitable` is insufficient by itself; `PositionCoach`'s
-current `pending` input includes `!!actor`, so using it directly would silence
-ordinary reviewed moves. Human popovers need an explicit surface policy, and
-mate clips must use the board's checkmate/result facts, not portrait expression.
-The inventory records these implementation prerequisites without changing the
-existing dialogue, analysis or audio behavior.
+### Audition and permissions
 
-The owner deferred **all lesson narration** to keep course additions and edits
-independent of the voice library. The [current inventory](../frontend/src/audio/speech/README.md#whole-app-dialogue-inventory)
-therefore counts **185** distinct proposed Walter recordings across game review,
-SRS/explanations, opening recall/preview, puzzle guidance and finite operational
-states. It includes the original 92 and the eight recorded examples, with shared
-lines counted once. Four transient/defensive entries are recommended silent,
-leaving **181 recordings**, of which **173 remain unrecorded**. This is the listed
-finite summary design, not verbatim coverage of unbounded user text or automatic
-narration of every visible paragraph. The earlier lesson inventory is retained
-in Git history at `054cd80`; it must not expand the active recording plan. The
-[machine-readable plan](../frontend/src/audio/speech/walter-full-dialogue-inventory.json)
-retains scripts, source identities, reuse mappings, exact counts and text-only
-boundaries. Written lesson content is unchanged. No further recordings or
-production integration are implied.
+In the separate audio studio, **Complete voice bank** exposes all 181 recordings
+in one grouped **Speech example** selector. It uses the production recording
+lookup, generated mouth tracks, real Walter portrait and existing Play/In context
+controls. Earlier voice comparisons and the two-generator comparison remain
+available. These are demonstrations, not analyzed chess positions; playback is
+local and never changes account preferences.
 
-The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
-the selected model, settings, exact scripts, media terms and reproducible authoring
-workflow. `scripts/record_coach_speech.mjs` is a development CLI with dry run as
-the default, an explicit paid-generation flag, hash-verified reuse and no automatic
-paid retries. It reads only the process environment's `ELEVENLABS_API_KEY` and
-is not invoked by app builds or playback. No credentials enter frontend code.
-
-The following is a factual audition brief; adapt its delivery and wording to the
-selected character before recording. Each row should be a complete take with
-room for natural pauses. Test a second take for the strongest positive and
-negative moments, rather than generating a full cast immediately.
-
-| Situation | Starting script | Required claim |
-| --- | --- | --- |
-| Fork found | The point is a fork in the continuation. One piece attacks two or more targets at once. | `tactic_played`, `motif=fork` |
-| Fork allowed | This lets the other side set up a fork in the continuation. One piece can attack two or more targets at once. | `tactic_allowed`, `motif=fork` |
-| Fork missed | There was a fork in the stronger continuation. This move misses that chance to attack two or more targets at once. | `tactic_missed`, `motif=fork` |
-| Pin found | The continuation uses a pin. Moving the pinned piece off that line can expose the king or a more valuable piece behind it. | `tactic_played`, `motif=pin` |
-| Defender abandoned | That piece had a defender, but this move takes it away. The other side can now capture the piece it was protecting. | `cause_abandoned_defender` |
-| Threat unanswered | The previous move threatened a piece. This move leaves that threat unanswered, so the other side can take it. | `cause_opponent_threat_recognition` |
-| Unfavorable exchange | The first capture isn't the whole exchange. The other side can recapture, so count what both sides give up. | `cause_avoiding_bad_trades` |
-| Forced mate allowed | This move allows a forced checkmate. Follow the continuation to see why even the best defense cannot stop it. | `allowed_mate` |
-| Forced mate missed | There was a forced checkmate in the stronger continuation. This move lets that finish go. | `missed_mate` |
-| Only playable defense | This was the only move we found that kept the position playable. The other moves we checked were losing. | `only_move` |
-| Sound sacrifice | The sacrifice holds up even if it is accepted. Taking the offered material doesn't refute the idea in this line. | `sacrifice` |
-| Undefended piece | This move leaves a piece undefended. That alone doesn't mean it can be won. | `unsupported`, actual positional claim only |
-
-Speech selection belongs to dialogue, using the same structured claims as the
-bubble. Do not insert fixed recordings as slotless replacements for existing
-personality templates: their factual-slot validation must remain intact.
-
-- Match the displayed primary claim through the utterance's variant trace and
-  source IDs, with matching intent identity and nonempty evidence. If it has no
-  recording, remain silent rather than speaking a less important claim.
-- Validate required slots through the existing claim contract. Do not infer a
-  tactic or consequence from a grade, facial expression or freeform text.
-- Tactical `played`, `allowed` and `missed` codes retain their distinct scope.
-  Tactics can occur later in a continuation. Only positional claims currently
-  carry `position`; its absence never establishes an actual-board consequence.
-- The neutral scripts above address neither player personally. Any later
-  character wording using "you" requires the matching learner perspective;
-  opponent praise or blame must not be directed at the learner.
-- Keep the pilot to known-subject game/variation feedback. Cold and revealed
-  practice, restored practice feedback, pending/error states and freeform
-  Show-why explanations are outside this first pilot. A retained report does not
-  authorize speech when the current position has an error.
-- Reuse the existing speech bus, mute, volume, visibility and cancellation.
-  Recheck position, coach and utterance after loading a recording. Navigation,
-  switching coaches, hiding the tab and unmounting cancel obsolete playback.
-
-Audition in the existing development audio studio with the actual character and
-sound mix before release. Acceptance requires clear wording, believable and
-consistent character delivery, comfortable levels, no clipped starts/ends,
-predictable interruption and desktop/mobile playback without provider requests.
-Do not claim compilation or successful decoding establishes voice quality.
-
-For ElevenLabs production, its published [TTS FAQ](https://elevenlabs.io/text-to-speech)
-permits paid-plan output in games/apps without extra royalties, and its
+The voice recordings are separate media assets, not CC0 effects or automatically
+licensed under the repository's source-code license. Their
+[permissions notice](../frontend/src/audio/speech/README.md#permissions-and-attribution)
+and per-recording provenance travel with them. Published ElevenLabs
+[TTS terms guidance](https://elevenlabs.io/text-to-speech) permits paid-plan output
+in games/apps, while its
 [subscription policy](https://help.elevenlabs.io/hc/en-us/articles/15993008593297-What-happens-to-my-content-after-my-subscription-ends)
-retains commercial rights for audio generated during a paid subscription after
-cancellation. Use an authorized voice and generally available service; verify
-the applicable terms at generation time. Free-tier/demo clips are not substitutes
-for production assets. Record provider, voice/model identity, script, generation
-date, applicable terms, edits and file hashes alongside retained clips. Keep
-audio permissions distinct from the repository's code license; these provider
-statements do not themselves establish unrestricted relicensing of voice assets.
+retains commercial rights for paid-period output after cancellation. Applicable
+terms must be checked for each new generation, especially when changing voice
+source or subscription. These permissions do not grant model rights, a person's
+identity, or unrestricted relicensing of the voice assets.
 
 ## Verification
 
@@ -365,8 +272,8 @@ The Walter audition passes the matching live handle to the real shared portrait.
 Loading, the context move sound and its delay cannot start his mouth. Stop, mute,
 zero volume, example changes and hiding the page cancel both together. The local
 Coach motion selector uses the shared device/Animated/Still policy without
-changing account preferences. Existing prerecorded examples are unchanged;
-automatic application speech remains disabled and lessons remain out of scope.
+changing account preferences. Existing prerecorded examples are unchanged; the complete bank also powers
+application narration. Lessons remain out of scope.
 
 ### Automatic lip-sync comparison (development only)
 
@@ -386,12 +293,12 @@ phone evidence as well as mouth cues. No clip-specific timing fixes or artwork
 adjustments are used. The ordinary **Voice audition** still previews the simpler
 energy-driven mouth.
 
-This preview does not adopt the method for the full voice library. The
+The improved method now generates the complete production bank. The
 [alignment README](../frontend/src/audio/speech/alignment/README.md) documents
 reproduction, source/tool hashes, conversion details and read-only verification.
 The native tool, recognition resources and temporary WAVs stay outside Git and
-Docker. Only small cue/provenance JSON files enter the development studio; they
-are excluded from the production application bundle.
+Docker. The two original comparison archives remain development-only; the production
+bank uses its separate generated compact cue projection.
 
 ### Coverage
 

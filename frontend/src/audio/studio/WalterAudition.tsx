@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
 import Button from "../../Button";
 import ChoiceGroup from "../../ChoiceGroup";
@@ -9,6 +9,8 @@ import SourceLine from "../../SourceLine";
 import { CoachCharacter } from "../../coach/CoachAvatar";
 import { getCoach } from "../../coach/registry";
 import type { SpeechPlayback } from "../model";
+import type { SpeechMouthTrack } from "../../coach/speechMouth";
+import { walterMouthTrack } from "../speech/voiceBank";
 import { walterAlignment, walterOriginalAlignment } from "../speech/alignment/previewTracks";
 import WalterMouthComparison from "./WalterMouthComparison";
 import type { WalterClip, WalterCollection, WalterScript, WalterVoice } from "../speech/walterPilot";
@@ -42,6 +44,18 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
   const voice = voices.find(item => item.id === voiceId);
   const script = scripts.find(item => item.id === scriptId);
   const collection = collections.find(item => item.id === collectionId);
+  const recordingId = script?.recordingId;
+  const [bankAlignment, setBankAlignment] = useState<{ id: string; track?: SpeechMouthTrack }>();
+  useEffect(() => {
+    if (!recordingId) return;
+    let current = true;
+    void walterMouthTrack(recordingId).then(track => {
+      if (current) setBankAlignment({ id: recordingId, track });
+    }, () => {
+      if (current) setBankAlignment({ id: recordingId });
+    });
+    return () => { current = false; };
+  }, [recordingId]);
   if (!voice || !script || !collection) return null;
   const collectionVoices = collection.voiceIds.flatMap(id => {
     const candidate = voices.find(item => item.id === id);
@@ -58,15 +72,19 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
   const speech = playing && speaking && speaking.eventId === playback.eventId ? speaking : undefined;
   const alignment = walterAlignment(voice.id, script.id);
   const originalAlignment = walterOriginalAlignment(voice.id, script.id);
+  const speechTrack = bankAlignment?.id === recordingId ? bankAlignment?.track : undefined;
+  const ready = !!clip && (!recordingId || !!speechTrack);
+  const categories = [...new Set(collectionScripts.map(item => item.category).filter((item): item is string => !!item))];
+  const option = (item: WalterScript) => <option key={item.id} value={item.id}>{item.label}</option>;
   const actions = <>
-    <Button variant="primary" disabled={!clip} onClick={() => clip && onPlay(clip, { voice, script, inContext: false })}><Play size={15} aria-hidden="true" />Play voice</Button>
-    <Button disabled={!clip} onClick={() => clip && onPlay(clip, { voice, script, inContext: true })}>In context</Button>
+    <Button variant="primary" disabled={!ready} onClick={() => ready && clip && onPlay(clip, { voice, script, inContext: false })}><Play size={15} aria-hidden="true" />Play voice</Button>
+    <Button disabled={!ready} onClick={() => ready && clip && onPlay(clip, { voice, script, inContext: true })}>In context</Button>
   </>;
 
   return <section className="walter-audition" aria-labelledby="walter-audition-heading" data-playback={current ? playback.state : "idle"}>
     <header className="walter-audition-heading">
       <div><span className="audio-studio-step">VOICE AUDITION</span><h2 id="walter-audition-heading">Find Walter’s voice</h2></div>
-      <p>Watch Walter speak the teaching examples and compare earlier voice directions. These are fictional audition scripts, not analysis of a real game or automatic speech in the app.</p>
+      <p>Listen to Walter’s complete voice bank, watch his mouth follow the recording, or compare earlier voice directions. These are standalone examples, not analysis of a real game.</p>
     </header>
     <div className="walter-audition-mode">
       <ChoiceGroup label="Voice preview mode" value={preview} options={[{value:'voice', label:'Voice audition'}, {value:'mouths', label:'Compare lip sync'}]}
@@ -98,9 +116,11 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
       <div className="walter-audition-controls">
         {preview === 'voice' && <ChoiceGroup label="Voice candidate" value={voice.id} options={collectionVoices.map(item => ({ value: item.id, label: item.name }))}
           onChange={id => { if (id !== voiceId) { onStop(); setVoiceId(id); } }} />}
-        <p className="walter-audition-description">{preview === 'mouths' ? 'Compare the first generator with revised script-aligned timing. Both use the same Older teacher recording and unchanged mouth artwork.' : voice.description}</p>
+        <p className="walter-audition-description">{preview === 'mouths' ? 'Compare the first generator with revised script-aligned timing. Both use the same Older teacher recording and unchanged mouth artwork.' : recordingId ? 'Walter’s selected Older teacher voice. Each complete summary uses the same automatic mouth timing as the application.' : voice.description}</p>
         {collectionScripts.length > 1 && <label>Speech example<select value={script.id} onChange={event => { onStop(); setScriptId(event.target.value); }}>
-          {collectionScripts.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+          {categories.length ? categories.map(category => <optgroup key={category} label={category}>
+            {collectionScripts.filter(item => item.category === category).map(option)}
+          </optgroup>) : collectionScripts.map(option)}
         </select></label>}
         <MotionSelect id="walter-preview-motion" label="Coach motion" value={motion} onChange={setMotion} />
         <p className="walter-audition-hint">In context plays a piece move, then Walter. His mouth follows the recording and rests during pauses. Still keeps the portrait static while audio plays.</p>
@@ -109,6 +129,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
           <SourceLine text={`ElevenLabs · ${voice.sourceName} · Model ${voice.modelId ?? "provider-selected (Voice Remix)"}`}
             url="https://elevenlabs.io/text-to-speech" linkLabel="Voice provider" />
           <SourceLine text="Prerecorded clips play locally. Playback does not contact the voice provider." />
+          {recordingId && <SourceLine text="Mouth timing is generated automatically from the exact script and recording. No hand-edited clip timing." />}
           {preview === 'mouths' && <>
             <SourceLine text="First generator: Rhubarb Lip Sync 1.14.0."
               url="https://github.com/DanielSWolf/rhubarb-lip-sync" linkLabel="Original generator" />
@@ -123,6 +144,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
         <ReviewCoach title={<strong>{script.label}</strong>} portraitCaption={walter.name} messageResetKey={script.id}
           character={<CoachCharacter coach={walter} reaction={reaction} motion={motion}
             speech={speech}
+            speechTrack={speechTrack}
             label={`${walter.name}, voice preview`} />}
           actions={actions}>
           <p>{script.writtenText}</p>
@@ -132,6 +154,9 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
           <p>{script.spokenText}</p>
         </div>}
         {!clip && <p className="walter-audition-unavailable" role="status">Awaiting recordings. Voice playback will be available once the audition clips are ready.</p>}
+        {!!clip && recordingId && !speechTrack && <p className="walter-audition-unavailable" role="status">
+          {bankAlignment?.id === recordingId ? 'Mouth timing is unavailable for this recording.' : 'Loading mouth timing…'}
+        </p>}
       </div>
     </div>
   </section>;
