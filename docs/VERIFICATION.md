@@ -4,6 +4,51 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Spoken pronunciation correction and Rivet wording audit — October 1, 2026
+
+Replaced ambiguous “separate”/“separately” wording in four Walter and eighteen
+Rivet clips. The existing recorder generated only those 22 complete replacements
+(3,425 input characters), using the locked voices and unchanged model/settings.
+The provider counter rose from 24,910 to 25,326: **416 credits**. The immediate
+reading was 57 credits lower; the later reading includes delayed accounting.
+This counter delta is not a request-by-request history reconciliation.
+
+- The new `test_active_scripts_avoid_ambiguous_separate_pronunciation` first
+  failed on the current bank, then passed after the revisions. Canonical scripts
+  and manifests match; all registered active banks are checked.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_coach_pilot_scripts.py
+  backend/tests/test_coach_voice_bank.py backend/tests/test_walter_language_revision.py
+  -q`: **64 passed**. Ruff lint and format checks passed for the changed test.
+- `scripts/prepare_coach_voice_bank.py --generate` with each explicit manifest
+  and `--work-dir .tools/voice-pronunciation-alignment-v1`: **4 generated / 434
+  reused** for Walter; **18 generated / 420 reused** for Rivet. No manual timing.
+  `.venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check`:
+  **876 ready, none missing**, offline.
+- From `frontend`, `npx playwright test --config
+  node_modules/.cache/recorded-audio-check.config.mjs voice-registry.spec.ts
+  recorded-coach-comparison.spec.ts --reporter=line`: **24 passed**, desktop and
+  mobile, no skips. The ignored configuration reuses the running Audio Studio.
+- Native browser QA decoded all **22** replacements and completed one revised
+  clip per coach in the real studio, with multiple aligned mouth shapes and no
+  page errors. This verifies playback, not subjective acoustic quality.
+- `npm --prefix frontend run build`: **passed**, including OpenAPI drift,
+  TypeScript, 24 style-boundary tests and production bundling. Existing Vite
+  large-chunk warnings remain nonblocking.
+- Independent scope review confirmed unchanged IDs, groups, voice identity and
+  settings; all **2,562** audio/provenance/alignment files for the remaining 854
+  recordings are byte-identical to the parent commit. Only the intended 22 compact
+  mouth tracks changed. Production imports contain exactly 876 active MP3s;
+  obsolete takes are retained in Git history, outside the current bundle.
+
+The accompanying read-only personality audit found writing drift in Rivet's
+expanded combinations: 62 of 70 tactical passages lead with model/difficulty
+commentary before the chess pattern; 35 of 55 opening combinations end with extra
+methodological commentary or restatement. These are editorial review priorities,
+not a claim that every such passage is wrong. Restore concrete chess events first,
+compact cause/result organization and restrained factual contrasts while keeping
+all supported evidence and scope qualifiers. No broader personality rewrite or
+additional recordings were made for that audit.
+
 ## Walter and Rivet combined review speech — October 1, 2026
 
 Both banks now contain 438 complete recordings. The initial pilot recorded 206

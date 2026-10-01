@@ -1,6 +1,7 @@
 """Both pilot voices render the same meanings with their own whole scripts."""
 
 import json
+import re
 from pathlib import Path
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
@@ -8,6 +9,19 @@ SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
 
 def read(path):
     return json.loads((SPEECH / path).read_text(encoding="utf-8"))
+
+
+def test_active_scripts_avoid_ambiguous_separate_pronunciation():
+    # The locked voices do not reliably distinguish the verb from the adjective.
+    # Historical takes retain their original text; only active speech is checked.
+    affected = [
+        f"{manifest['voiceId']}/{row['id']}"
+        for bank in read("banks/registry.json")["banks"]
+        for manifest in (read(bank["manifestPath"]),)
+        for row in manifest["recordings"]
+        if re.search(r"\bseparate(?:ly)?\b", row["text"], flags=re.IGNORECASE)
+    ]
+    assert not affected, affected
 
 
 def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meanings():

@@ -202,6 +202,12 @@ synthesis. The development-only `scripts/record_coach_speech.mjs` uses explicit
 paid generation, sequential plans of at most 20 requests, hash-verified reuse and
 no automatic paid retries. Its only credential source is the process environment.
 Each recording retains the exact voice/model/settings, text, request and file hash.
+Avoid “separate” and “separately” in new spoken scripts: the selected voices do
+not reliably deliver the intended pronunciation. Choose natural wording such as
+“distinct,” “different,” or “distinguish,” preserving the supported meaning. A
+registered-bank regression check enforces this authoring rule. Text corrections
+require a new complete recording and regenerated mouth timing; changing a
+transcript without replacing its audio is not valid.
 The [speech authoring history](../frontend/src/audio/speech/README.md) preserves
 the owner-approved voice experiments and their usage provenance.
 

@@ -50,6 +50,13 @@ the shared opening/combined meanings and tightens two Walter statements about
 engine comparisons and a demonstrated capture; see
 [that revision](bank/revisions/walter-pilot-v1.json). Other cast banks remain deferred.
 
+The subsequent pronunciation correction replaces “separate”/“separately” in four
+Walter and eighteen Rivet recordings with unambiguous wording. The 22 complete
+replacement clips use the same voices, model and settings, with automatically
+regenerated mouth timing. Meanings, selection rules and the remaining 854
+recordings are unchanged. Superseded takes remain in Git history rather than
+shipping duplicate assets; current provenance records the exact replacement text.
+
 To audition from a phone on the same network, start the studio with
 `npm --prefix frontend run dev:audio:lan` instead, then open
 `http://<PC-LAN-IP>:5176/` on the phone. Allow the development server through the
