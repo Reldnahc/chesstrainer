@@ -2,13 +2,32 @@
 
 This is a development-only casting collection. `design-plan.json` has twenty
 approved coaches with three independently written voice directions each: **60
-active auditions**. The owner explicitly approved the final four—alien, living
-pawn, slime and mushroom—after the initial sixteen-coach batch.
-No voice is selected for production or saved in an ElevenLabs account by these tools.
+active auditions**. Eighteen exact owner selections are saved in ElevenLabs and
+recorded in `locked-voices.json`; Biscuit and Pip have three new second-round
+directions each. A locked voice is an approved design, not a completed dialogue
+bank. The audition generator itself never saves provider voices.
 
 `manifest.json` contains the available retained previews. Partial coverage is
 expected while recording; the final strict check requires every active direction.
 The studio must not import this collection into normal application playback.
+
+## Approved voices and new rounds
+
+`locked-voices.json` binds each approved coach/direction to its saved provider
+voice ID and the exact preview fingerprint, audio hash and generated voice ID.
+Both studios read these immutable approvals independently of ignored local draft
+choices. Their service rejects changing or clearing a locked coach. A changed or
+missing approved recording remains visibly stale and locked; it is never silently
+substituted. The studio opens on **Needs a voice**; **Locked voices** lets the owner
+inspect accepted designs without reopening them for voting.
+
+The owner requested younger Biscuit voices and less goofy Pip voices. New IDs
+replace only those six active directions. `archive/round-1-puppy-slime.json` retains
+the rejected first-round briefs; their MP3s, provenance and full alignments remain
+unchanged for audit history, outside the active manifest/runtime tracks. All other
+54 active recordings remain byte-identical, including all eighteen approvals.
+Keep new rounds distinct; never overwrite accepted media or reuse a direction ID
+for a different voice. Any future unlock is an explicit owner decision.
 
 ## Bounded authoring
 
@@ -83,8 +102,14 @@ All 60 recorded directions have verified automatic tracks. The unchanged clips
 range from about 8 to 12 seconds. No hand timing, trimming or padding was applied.
 The initial batch used 6,372 provider credits, observed as account usage 3,530 → 9,902.
 The final four coaches used another 1,593 credits (9,902 → 11,495), for **7,965
-credits across all 60 auditions**. Walter's separate completion batch used 1,948
-credits. The provider count can lag generation; these totals use its settled count.
+credits across the first 60 auditions**. The second-round session increased usage
+by **800 credits** (11,495 → 12,295), covering six new retained previews and one
+rejected request; the provider does not supply a split in this usage snapshot.
+The first literal childlike Biscuit request returned HTTP 403 and was not retried.
+The active briefs explicitly request young adults instead. Total casting-session
+usage is **8,765 credits**, with 66 retained recordings (60 active, six archived).
+Walter's separate completion batch used 1,948 credits. The provider count can lag
+generation; these totals use its settled count.
 
 These generated previews follow the existing [speech asset permissions and
 attribution notice](../README.md#permissions-and-attribution). Keep that notice
