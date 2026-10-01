@@ -144,11 +144,13 @@ dedicated audio suite; audio-only changes do not require the coach artwork matri
 ## Walter's recorded coach voice
 
 Walter (`classic`) has a complete **181-recording non-lesson bank**, using the
-owner-selected **Older teacher** voice. The bank includes eight unchanged
-approved examples and 173 new whole recordings. The scripts contain **16,936
-input characters**, of which **16,106** were newly recorded for completion.
-These are input counts, not provider billing units; actual usage belongs to the
-recording run's usage record. No words or sentence fragments are stitched together.
+owner-selected **Older teacher** voice. The October 1 wording revision replaces
+81 passages and retains 100 recordings unchanged. It removes repetitive
+“continuation” language while preserving actual, possible, missed and
+opponent-opportunity meanings. The revised passages used **7,524 input characters**
+and **907 provider credits**; character counts are not billing units. Voice,
+delivery settings and the bank's supported meanings are unchanged. No words or
+sentence fragments are stitched together.
 
 **Settings → Sound → Coach voice** offers **Automatic** (the default), **On
 request**, and **Off**. Automatic narration follows fresh supported interactions;
@@ -172,7 +174,10 @@ eight puzzle states and three finite review statuses. Four audited transient or
 defensive states deliberately remain silent: thinking, checking, loading an
 explanation and no-renderable-claim. Shared meanings reuse recordings; the
 [full inventory](../frontend/src/audio/speech/walter-full-dialogue-inventory.json)
-retains trigger definitions and aliases.
+retains trigger definitions, aliases and the original script audit. The active
+manifest is the current script source; the
+[wording revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
+records the exact old/new text and the reason for each change.
 
 Recordings ship as local assets in the container. Installing, building and
 playing Fieldwork needs no ElevenLabs account, API key, model download or runtime
@@ -231,11 +236,16 @@ surfaces can share the portrait while retaining their own speech scope and contr
 
 ### Locked voice and permissions
 
-Walter's voice is locked by the owner. His audition section, earlier voice
-comparisons and complete-bank selector are no longer part of Audio Studio.
-The production bank remains unchanged. An isolated browser-test fixture retains
-the shared audition components, real recordings and two-generator comparison
-for regression coverage without putting those controls back in normal studio use.
+Walter's voice is locked by the owner. Audio Studio's **Walter wording** section
+compares original and revised passages in that same voice, using the real portrait
+and automatic mouth timing. Choose eight representative examples or all 81 revised
+clips, then Original/Revised and Play or In context. This does not reopen voice
+casting or change account preferences. Earlier voice auditions and the old
+complete-bank selector remain isolated test fixtures.
+
+The original recordings, scripts and mouth tracks remain a development-only
+comparison archive. Production ships only the current 181 recordings. The rest
+of the cast's dialogue and casting choices are unchanged by this Walter pilot.
 
 The voice recordings are separate media assets, not CC0 effects or automatically
 licensed under the repository's source-code license. Their

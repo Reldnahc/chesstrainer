@@ -85,7 +85,7 @@ test("changing bank examples cancels a loading recording and keeps the next trac
     await play(page).click();
     await expect(starts(page)).toHaveCount(1);
     await expect(panel(page)).toHaveAttribute("data-playback", "playing");
-    await expect(panel(page).getByLabel("Coach explanation", { exact: true })).toHaveText("Here is your studied continuation.");
+    await expect(panel(page).getByLabel("Coach explanation", { exact: true })).toHaveText("Here are the moves from the opening line you're studying.");
     await expect(panel(page).locator('[data-coach="classic"]')).toHaveAttribute("data-articulation", "aligned");
     await page.getByRole("button", { name: "Stop all", exact: true }).click();
     await expect(panel(page)).toHaveAttribute("data-playback", "idle");

@@ -42,7 +42,7 @@ def saved_bank(tmp_path, monkeypatch):
             target = manifest_path.parent / item[field]
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(original.read_bytes())
-        track = read_json(REPO_ROOT / SPEECH_PATH / "alignment" / f"{item['id']}-forced.json")
+        track = read_json(REPO_ROOT / SPEECH_PATH / "bank" / item["alignmentPath"])
         track["scriptId"] = item["id"]
         track["provenance"]["script"]["planPath"] = manifest_path.relative_to(tmp_path).as_posix()
         write_json(manifest_path.parent / item["alignmentPath"], track)

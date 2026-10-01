@@ -3,7 +3,12 @@ import type { SpeechMouthTrack } from '../../coach/speechMouth';
 
 const assets = import.meta.glob<string>([
   './bank/recordings/**/*.mp3',
-  './recordings/walter-contrasts-v1/walter/*.mp3',
+  // Only active contrasts ship. Superseded clips belong to the studio comparison.
+  './recordings/walter-contrasts-v1/walter/sound-sacrifice.mp3',
+  './recordings/walter-contrasts-v1/walter/recovery.mp3',
+  './recordings/walter-contrasts-v1/walter/positional-unsupported-actual.mp3',
+  './recordings/walter-contrasts-v1/walter/only-playable-move.mp3',
+  './recordings/walter-contrasts-v1/walter/human-unusual-strong.mp3',
 ], { query: '?url', import: 'default', eager: true });
 
 export type VoiceRecording = { id: string; text: string; url: string };

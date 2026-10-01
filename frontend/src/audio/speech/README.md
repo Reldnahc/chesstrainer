@@ -1,8 +1,8 @@
 # Walter recorded speech and authoring history
 
 Walter (`classic`) now has a complete **181-recording non-lesson voice bank** in
-his owner-selected **Older teacher** voice. The bank contains eight unchanged
-approved examples and 173 newly recorded passages. Every clip has automatically
+his owner-selected **Older teacher** voice. The latest wording pass replaces 81
+passages and retains 100 original recordings. Every clip has automatically
 generated mouth timing. See the [bank manifest](bank/manifest.json),
 [offline verification instructions](bank/README.md) and
 [production playback policy](../../../../docs/AUDIO.md#walters-recorded-coach-voice).
@@ -14,16 +14,23 @@ moves, squares and scores stay in writing while the voice explains the supported
 idea. All lessons remain excluded.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
-http://127.0.0.1:5176/. **Complete voice bank** has all 181 recordings in a grouped selector, with
-the same generated mouth timing as the application. The default **Walter examples**
-collection retains eight short contrasting examples. Teacher & elder compares **Older teacher**,
-**Teacher** and **Elder**, with one sample per prompt. Walter refinements
-similarly shows one Warmer and one Playful sample. Custom Walter keeps the
-owner-preferred Custom 1 preview. Original voices retains Bill, George and
-Brian with four individual teaching examples. Play a clip alone or following the
-approved piece-move sound. Volume, mute and Stop all
-use the shared audio engine. Changing the example/voice or hiding the tab cancels
-playback. The visible character is the real registered Walter, not a substitute.
+http://127.0.0.1:5176/. **Walter wording** compares eight representative examples
+or all 81 revised passages using Original/Revised controls. Text, local recording
+and generated mouth timing switch together. Play a clip alone or following the
+approved piece-move sound. Volume, mute and Stop all use the shared audio engine.
+Changing the example/version or hiding the tab cancels playback. The visible
+character is the real registered Walter. His voice remains locked; this is a
+wording comparison, not a voice picker. The earlier voice auditions and full-bank
+selector remain in isolated browser-test fixtures, outside normal studio use.
+
+The [revision record](bank/revisions/walter-language-v2.json) preserves all old/new
+scripts and reasons. It removes repeated “continuation” wording, replaces internal
+policy language and clarifies hypothetical alternatives. Spoken passages remain
+reusable idea-level explanations; exact position details remain written. Original
+media and tracks are retained for comparison outside production imports.
+The 81 replacement recordings used **7,524 input characters / 907 credits**
+(settled provider counter 12,295 to 13,202). Same voice and settings, no retakes,
+splicing, padding or manual mouth timing; other cast banks remain deferred.
 
 To audition from a phone on the same network, start the studio with
 `npm --prefix frontend run dev:audio:lan` instead, then open
@@ -47,7 +54,9 @@ The eight one-take examples total **830 input characters / 853,821 audio bytes**
 They use Eleven v4, stability 0.5, similarity 0.75 and speed 0.95. No audio tags,
 padding, splicing or post-processing were added. Each unchanged MP3 has exact
 request and hash provenance in `recordings/walter-contrasts-v1/walter`.
-These eight are now reused unchanged by the complete bank. They are a subset
+These eight were reused unchanged by the first complete bank. The wording revision
+subsequently replaced abandoned defender, allowed mate and missed fork; the five
+others remain active. The eight meanings are a subset
 of its 92 game-review meanings, not eight additional recordings. The owner
 approved their delivery and subsequently authorized completing Walter.
 
@@ -328,7 +337,7 @@ the **181-recording production bank**:
 | Finite review statuses | 3 |
 | **Completed bank, excluding lessons** | **181** |
 
-The scripts total **16,936 input characters / 2,888 words**. Eight earlier
+The original scripts totaled **16,936 input characters / 2,888 words**. Eight earlier
 recordings contain 830 characters; completing the bank required **173 new
 recordings / 16,106 input characters**. These are script counts, not provider
 billing units or guaranteed durations. Retakes, other voices and auditions belong

@@ -3,48 +3,36 @@
   "scriptId": "explanation-frame-capture-move-ordinary",
   "voiceId": "walter",
   "metadata": {
-    "duration": 3.36
+    "duration": 2.08
   },
   "mouthCues": [
-    {"start":0.0,"end":0.28,"value":"B"},
-    {"start":0.28,"end":0.36,"value":"A"},
-    {"start":0.36,"end":0.53,"value":"F"},
-    {"start":0.53,"end":0.62,"value":"G"},
-    {"start":0.62,"end":0.71,"value":"B"},
-    {"start":0.71,"end":0.83,"value":"C"},
-    {"start":0.83,"end":0.86,"value":"A"},
-    {"start":0.86,"end":0.95,"value":"B"},
-    {"start":0.95,"end":1.01,"value":"E"},
-    {"start":1.01,"end":1.1,"value":"B"},
-    {"start":1.1,"end":1.15,"value":"C"},
-    {"start":1.15,"end":1.3,"value":"A"},
-    {"start":1.3,"end":1.79,"value":"B"},
-    {"start":1.79,"end":1.82,"value":"C"},
-    {"start":1.82,"end":1.99,"value":"B"},
-    {"start":1.99,"end":2.05,"value":"E"},
-    {"start":2.05,"end":2.12,"value":"F"},
-    {"start":2.12,"end":2.28,"value":"B"},
-    {"start":2.28,"end":2.31,"value":"C"},
-    {"start":2.31,"end":2.6,"value":"B"},
-    {"start":2.6,"end":2.71,"value":"F"},
-    {"start":2.71,"end":2.76,"value":"C"},
-    {"start":2.76,"end":2.94,"value":"B"},
-    {"start":2.94,"end":3.02,"value":"C"},
-    {"start":3.02,"end":3.21,"value":"B"},
-    {"start":3.21,"end":3.36,"value":"X"}
+    {"start":0.0,"end":0.35,"value":"B"},
+    {"start":0.35,"end":0.44,"value":"A"},
+    {"start":0.44,"end":0.63,"value":"F"},
+    {"start":0.63,"end":0.73,"value":"G"},
+    {"start":0.73,"end":0.82,"value":"B"},
+    {"start":0.82,"end":0.95,"value":"C"},
+    {"start":0.95,"end":1.0,"value":"A"},
+    {"start":1.0,"end":1.08,"value":"B"},
+    {"start":1.08,"end":1.15,"value":"E"},
+    {"start":1.15,"end":1.23,"value":"B"},
+    {"start":1.23,"end":1.29,"value":"C"},
+    {"start":1.29,"end":1.44,"value":"A"},
+    {"start":1.44,"end":1.88,"value":"B"},
+    {"start":1.88,"end":2.08,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "explanation-frame-capture-move-ordinary",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/bank/recordings/walter/explanation-frame-capture-move-ordinary.mp3",
-      "sha256": "db74384f2994a85c413255b2a47cbb27c78b16852090cf0a1127845a24c362dc",
-      "bytes": 54796
+      "path": "frontend/src/audio/speech/bank/recordings/walter-language-v2/walter/explanation-frame-capture-move-ordinary.mp3",
+      "sha256": "34a89f305989c0bbcb1178e01361495ac4ed3c553d38661e560c1bd28fa30e6b",
+      "bytes": 34316
     },
     "script": {
       "planPath": "frontend/src/audio/speech/bank/manifest.json",
-      "text": "This move captures a piece in the shown continuation.",
-      "sha256": "2fd8c53919da9b45067bc67f96398d430ece5934633c77ed0711c6fa3ba195d5"
+      "text": "This move captures a piece.",
+      "sha256": "70ec70c58f35996302c0582dab91b6a1322c424c0fd59c0d440f2c914fa0364f"
     },
     "tool": {
       "name": "PocketSphinx",
@@ -169,12 +157,12 @@
       "channels": 1,
       "sampleRate": 44100,
       "sampleWidthBytes": 2,
-      "frames": 148176,
-      "durationSeconds": 3.36,
+      "frames": 91728,
+      "durationSeconds": 2.08,
       "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "2b7daf76096a10aea0aa7011a3f1e2f1006f60c7e5aa20d152c265d2ffbd22bb"
+      "wavSha256": "fa43035797866387766654026e9549c40b1307f33bc61543cc2010d59a24cd35"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
@@ -182,268 +170,145 @@
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
-      "frames": 53760,
-      "durationSeconds": 3.36,
+      "frames": 33280,
+      "durationSeconds": 2.08,
       "trimmed": false,
-      "pcmSha256": "53186d1890f42350cca7b3aae534a13e81736dc2f38ac4cdacbf4584058a0a65"
+      "pcmSha256": "51ebdb207957132d944eb3860ff387a571b018c6b61aede56e42dc06bcc8379f"
     },
     "alignment": {
       "frameRate": 100,
-      "normalizedTranscript": "this move captures a piece in the shown continuation",
+      "normalizedTranscript": "this move captures a piece",
       "words": [
         {
           "word": "this",
           "startFrame": 0,
-          "durationFrames": 28,
+          "durationFrames": 35,
           "phones": [
             {
               "phone": "DH",
               "startFrame": 0,
-              "durationFrames": 10
+              "durationFrames": 15
             },
             {
               "phone": "IH",
-              "startFrame": 10,
-              "durationFrames": 7
+              "startFrame": 15,
+              "durationFrames": 8
             },
             {
               "phone": "S",
-              "startFrame": 17,
-              "durationFrames": 11
+              "startFrame": 23,
+              "durationFrames": 12
             }
           ]
         },
         {
           "word": "move",
-          "startFrame": 28,
-          "durationFrames": 34,
+          "startFrame": 35,
+          "durationFrames": 38,
           "phones": [
             {
               "phone": "M",
-              "startFrame": 28,
-              "durationFrames": 8
+              "startFrame": 35,
+              "durationFrames": 9
             },
             {
               "phone": "UW",
-              "startFrame": 36,
-              "durationFrames": 17
+              "startFrame": 44,
+              "durationFrames": 19
             },
             {
               "phone": "V",
-              "startFrame": 53,
-              "durationFrames": 9
+              "startFrame": 63,
+              "durationFrames": 10
             }
           ]
         },
         {
           "word": "captures",
-          "startFrame": 62,
-          "durationFrames": 48,
+          "startFrame": 73,
+          "durationFrames": 50,
           "phones": [
             {
               "phone": "K",
-              "startFrame": 62,
+              "startFrame": 73,
               "durationFrames": 9
             },
             {
               "phone": "AE",
-              "startFrame": 71,
-              "durationFrames": 12
+              "startFrame": 82,
+              "durationFrames": 13
             },
             {
               "phone": "P",
-              "startFrame": 83,
-              "durationFrames": 3
+              "startFrame": 95,
+              "durationFrames": 5
             },
             {
               "phone": "CH",
-              "startFrame": 86,
-              "durationFrames": 9
+              "startFrame": 100,
+              "durationFrames": 8
             },
             {
               "phone": "ER",
-              "startFrame": 95,
-              "durationFrames": 6
+              "startFrame": 108,
+              "durationFrames": 7
             },
             {
               "phone": "Z",
-              "startFrame": 101,
-              "durationFrames": 9
+              "startFrame": 115,
+              "durationFrames": 8
             }
           ]
         },
         {
           "word": "a",
-          "startFrame": 110,
-          "durationFrames": 5,
+          "startFrame": 123,
+          "durationFrames": 6,
           "phones": [
             {
               "phone": "AH",
-              "startFrame": 110,
-              "durationFrames": 5
+              "startFrame": 123,
+              "durationFrames": 6
             }
           ]
         },
         {
           "word": "piece",
-          "startFrame": 115,
-          "durationFrames": 47,
+          "startFrame": 129,
+          "durationFrames": 59,
           "phones": [
             {
               "phone": "P",
-              "startFrame": 115,
+              "startFrame": 129,
               "durationFrames": 15
             },
             {
               "phone": "IY",
-              "startFrame": 130,
-              "durationFrames": 19
+              "startFrame": 144,
+              "durationFrames": 20
             },
             {
               "phone": "S",
-              "startFrame": 149,
-              "durationFrames": 13
-            }
-          ]
-        },
-        {
-          "word": "in",
-          "startFrame": 162,
-          "durationFrames": 13,
-          "phones": [
-            {
-              "phone": "IH",
-              "startFrame": 162,
-              "durationFrames": 6
-            },
-            {
-              "phone": "N",
-              "startFrame": 168,
-              "durationFrames": 7
-            }
-          ]
-        },
-        {
-          "word": "the",
-          "startFrame": 175,
-          "durationFrames": 7,
-          "phones": [
-            {
-              "phone": "DH",
-              "startFrame": 175,
-              "durationFrames": 4
-            },
-            {
-              "phone": "AH",
-              "startFrame": 179,
-              "durationFrames": 3
-            }
-          ]
-        },
-        {
-          "word": "shown",
-          "startFrame": 182,
-          "durationFrames": 37,
-          "phones": [
-            {
-              "phone": "SH",
-              "startFrame": 182,
-              "durationFrames": 17
-            },
-            {
-              "phone": "OW",
-              "startFrame": 199,
-              "durationFrames": 13
-            },
-            {
-              "phone": "N",
-              "startFrame": 212,
-              "durationFrames": 7
-            }
-          ]
-        },
-        {
-          "word": "continuation",
-          "startFrame": 219,
-          "durationFrames": 102,
-          "phones": [
-            {
-              "phone": "K",
-              "startFrame": 219,
-              "durationFrames": 9
-            },
-            {
-              "phone": "AH",
-              "startFrame": 228,
-              "durationFrames": 3
-            },
-            {
-              "phone": "N",
-              "startFrame": 231,
-              "durationFrames": 5
-            },
-            {
-              "phone": "T",
-              "startFrame": 236,
-              "durationFrames": 8
-            },
-            {
-              "phone": "IH",
-              "startFrame": 244,
-              "durationFrames": 5
-            },
-            {
-              "phone": "N",
-              "startFrame": 249,
-              "durationFrames": 5
-            },
-            {
-              "phone": "Y",
-              "startFrame": 254,
-              "durationFrames": 6
-            },
-            {
-              "phone": "UW",
-              "startFrame": 260,
-              "durationFrames": 11
-            },
-            {
-              "phone": "EY",
-              "startFrame": 271,
-              "durationFrames": 11
-            },
-            {
-              "phone": "SH",
-              "startFrame": 282,
-              "durationFrames": 12
-            },
-            {
-              "phone": "AH",
-              "startFrame": 294,
-              "durationFrames": 8
-            },
-            {
-              "phone": "N",
-              "startFrame": 302,
-              "durationFrames": 19
+              "startFrame": 164,
+              "durationFrames": 24
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 321,
-          "durationFrames": 14,
+          "startFrame": 188,
+          "durationFrames": 19,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 321,
-              "durationFrames": 14
+              "startFrame": 188,
+              "durationFrames": 19
             }
           ]
         }
       ]
     },
-    "alignmentSha256": "747ef8d720006cd456361d5d129b2be23f3df8c86a922b1f15cfb8d06ae043db",
+    "alignmentSha256": "881553b3e2ac3db3734d6e0f5076e2f82662c41836814e339e15d75540419ce3",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -511,6 +376,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "003c8c14dd7f94a0cd7134e3756abf9736a706ce2cac33773b2d18de68fb7346"
+    "cueSha256": "64b05483c8243ef9cc363b3ddffa36d9b81f162f73b40ed32d18c0bcd25d5a8d"
   }
 }

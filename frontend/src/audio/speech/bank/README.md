@@ -1,8 +1,9 @@
 # Walter recorded voice bank
 
 `manifest.json` identifies the approved non-lesson speech, exact text, voice,
-recording settings and asset paths. Eight existing recordings are referenced in
-place; the rest live under `recordings/walter`. Recording sidecars retain the
+recording settings and asset paths. Five original contrast recordings are referenced
+in place; the others live under `recordings/walter` and `recordings/walter-language-v2`.
+Recording sidecars retain the
 provider request and source-audio fingerprints. Production never calls a speech
 provider or an aligner.
 
@@ -12,6 +13,26 @@ These full authoring archives are not imported by the runtime. `tracks.json` is
 the generated compact runtime projection: an object keyed by recording ID with
 `durationSeconds` and semantic `{start,end,shape}` cues. Do not edit either output
 by hand.
+
+## Walter wording revision
+
+`revisions/walter-language-v2.json` records the 81 reviewed script changes,
+including every original “continuation” passage. The other 100 recordings are
+unchanged. The selected voice, recording settings, supported meanings and
+non-lesson scope remain the same. Five bounded `plans/walter-language-v2-*.json`
+files preserve the successful recording requests: 7,524 input characters and
+907 settled provider credits, with no retakes. All 81 replacements received
+automatic mouth timing through the existing generator.
+
+The Audio Studio's **Walter wording** panel compares original/revised text,
+audio and mouth timing. Its archived v1 manifest and compact tracks live in
+`revisions/`; full original alignments are under `revisions/walter-language-v1-alignment`.
+Superseded bank MP3s and provenance moved to `../recordings/walter-language-v1`;
+the three superseded original contrasts retain their historical locations.
+These archives preserve source hashes and exact generation history. They are
+excluded from the production media imports. Earlier recording plans and script
+inventories describe the original audit, not the active revision; do not overwrite
+them to match a newly recorded script.
 
 ## Prepare or verify offline
 
@@ -60,5 +81,5 @@ interpolation separately from the generated evidence.
 Focused validation:
 
 ```powershell
-.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py backend/tests/test_coach_voice_bank.py -q
+.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py backend/tests/test_coach_voice_bank.py backend/tests/test_walter_language_revision.py -q
 ```
