@@ -21,24 +21,38 @@ test("shared move playback preserves counter geometry and fits the complete game
   await page.evaluate(() => document.fonts.ready);
   const nextSize = (await gameControls.getByRole("button", { name: "Next move", exact: true }).boundingBox())!;
 
-  await page.setViewportSize({ width: 320, height: 700 });
   const toolbar = page.getByRole("group", { name: "Game navigation", exact: true });
-  await toolbar.scrollIntoViewIfNeeded();
-  const bounds = await toolbar.evaluate(element => {
-    const row = element.getBoundingClientRect();
-    const controls = Array.from(element.querySelectorAll("a, button, .move-playback-counter"), control => {
-      const rect = control.getBoundingClientRect();
-      return { left: rect.left, right: rect.right, centerY: rect.y + rect.height / 2 };
+  const completeToolbar = page.locator(".review-board-toolbar");
+  for (const width of [320, 350, 360, 375, 390, 760]) {
+    await page.setViewportSize({ width, height: 700 });
+    await completeToolbar.scrollIntoViewIfNeeded();
+    const bounds = await completeToolbar.evaluate(element => {
+      const row = element.getBoundingClientRect();
+      const controls = Array.from(element.querySelectorAll("a, button, .move-playback-counter"), control => {
+        const rect = control.getBoundingClientRect();
+        return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom,
+          height: rect.height, isAction: control.matches("a, button") };
+      });
+      return { left: row.left, right: row.right, top: row.top, bottom: row.bottom, controls };
     });
-    return { left: row.left, right: row.right, centerY: row.y + row.height / 2, controls };
-  });
-  for (const [index, control] of bounds.controls.entries()) {
-    expect(control.left).toBeGreaterThanOrEqual(bounds.left - 1);
-    expect(control.right).toBeLessThanOrEqual(bounds.right + 1);
-    expect(Math.abs(control.centerY - bounds.centerY)).toBeLessThan(1);
-    if (index) expect(control.left).toBeGreaterThanOrEqual(bounds.controls[index - 1].right - 1);
+    for (const [index, control] of bounds.controls.entries()) {
+      expect(control.left).toBeGreaterThanOrEqual(bounds.left - 1);
+      expect(control.right).toBeLessThanOrEqual(bounds.right + 1);
+      expect(control.top).toBeGreaterThanOrEqual(bounds.top);
+      expect(control.bottom).toBeLessThanOrEqual(bounds.bottom);
+      if (control.isAction) expect(control.height).toBe(44);
+      for (const previous of bounds.controls.slice(0, index)) {
+        expect(control.left >= previous.right - 1 || control.right <= previous.left + 1
+          || control.top >= previous.bottom - 1 || control.bottom <= previous.top + 1).toBe(true);
+      }
+    }
+    const mute = completeToolbar.getByRole("button", { name: "Mute sound on this device", exact: true });
+    const muteBox = (await mute.boundingBox())!;
+    const navigationBox = (await toolbar.boundingBox())!;
+    if (width <= 350) expect(muteBox.y).toBeGreaterThanOrEqual(navigationBox.y + navigationBox.height);
+    else expect(muteBox.y).toBe(navigationBox.y);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await toolbar.getByRole("button", { name: "Start of game", exact: true }).click();
   await expect(gameControls.locator(".move-playback-counter")).toHaveText("0 / 4");
   await expect(toolbar.getByRole("button", { name: "Previous move", exact: true })).toBeDisabled();

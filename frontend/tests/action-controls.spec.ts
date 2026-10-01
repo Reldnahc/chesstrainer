@@ -53,6 +53,11 @@ test("shared command buttons remain commands and import forms still submit", asy
   const open = page.getByRole("button", { name: "Import PGN", exact: true });
   await expect(open).toHaveAttribute("type", "button");
   await open.click();
+  // This test exercises command/submit semantics. Import animation coverage
+  // lives separately; wait for the expanding clip before targeting its footer.
+  await expect.poll(() => page.locator(".import-form").evaluate(element =>
+    element.getAnimations({ subtree: true }).filter(animation => animation.playState === "running").length,
+  )).toBe(0);
   const close = page.getByRole("button", { name: "Close import form", exact: true });
   await expect(close).toHaveAttribute("type", "button");
   await page.getByRole("button", { name: "Paste PGN text", exact: true }).click();
@@ -62,7 +67,12 @@ test("shared command buttons remain commands and import forms still submit", asy
   await page.getByLabel("PGN", { exact: true }).fill('[White "Fixture"]\n[Black "Opponent"]\n\n1. e4 e5 *');
   await page.getByLabel("Your username(s)").fill("Fixture");
   await expect(submit).toBeEnabled();
-  await submit.click();
+  const [response] = await Promise.all([
+    page.waitForResponse(response => new URL(response.url()).pathname === "/api/imports"
+      && response.request().method() === "POST"),
+    submit.click(),
+  ]);
+  expect(response.status()).toBe(422);
   await expect(page.getByRole("alert")).toContainText("Import action fixture reached");
   expect(imports).toHaveLength(1);
   expect(imports[0].method).toBe("POST");

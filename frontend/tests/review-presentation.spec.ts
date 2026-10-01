@@ -54,7 +54,7 @@ test('pages use full laptop width and 80 percent on larger screens without shrin
   }
 });
 
-test('review modes share board and coach sizing without empty mobile controls', async ({page}, testInfo) => {
+test('review modes share board and coach sizing with only useful mobile controls', async ({page}, testInfo) => {
   const exercise = await (await page.request.post(`/__test/review-explanation-fixture/equal-layout-${testInfo.project.name}`)).json();
   const {id} = await (await page.request.post(`/__test/game-review-fixture/equal-layout-${testInfo.project.name}`)).json();
   expect((await page.request.post(`/api/games/${id}/review`, {data: {}})).ok()).toBe(true);
@@ -150,7 +150,17 @@ test('review modes share board and coach sizing without empty mobile controls', 
     const practiceRow = (await page.locator('.review-board-row').boundingBox())!;
     expect(practiceBoard.x + practiceBoard.width / 2).toBeCloseTo(practiceRow.x + practiceRow.width / 2, 1);
     if (size.width <= 760) {
-      await expect(page.locator('.review-board-toolbar')).toBeHidden();
+      const toolbar = page.locator('.review-board-toolbar');
+      await expect(toolbar.locator('.review-board-controls')).toHaveCount(0);
+      await expect(toolbar.getByRole('button')).toHaveCount(1);
+      const mute = toolbar.getByRole('button', {name: 'Mute sound on this device', exact: true});
+      await expect(mute).toBeVisible();
+      const muteBox = (await mute.boundingBox())!;
+      const toolbarBox = (await toolbar.boundingBox())!;
+      expect(muteBox.height).toBe(44);
+      expect(muteBox.width).toBe(44);
+      expect(muteBox.x + muteBox.width).toBeCloseTo(toolbarBox.x + toolbarBox.width, 1);
+      expect(toolbarBox.height).toBe(54);
       const coach = await geometry(page.locator('.coach-speech'));
       const actions = await geometry(page.locator('.coach-actions'));
       const board = await geometry(page.locator('.board-shell'));

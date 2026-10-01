@@ -452,6 +452,18 @@
   .game-player {
     min-height: 27px;
   }
+  /* Keep sound reachable without squeezing playback into the All games link.
+     Only very narrow boards need the mute action on a second row. */
+  .review-board-toolbar:has(.game-board-controls) {
+    flex-wrap: wrap;
+    gap: 4px 6px;
+  }
+  .review-board-toolbar > .review-board-controls:has(.game-board-controls) {
+    flex-basis: 280px;
+  }
+  .review-board-toolbar:has(.game-board-controls) > .audio-quick-mute {
+    margin-left: auto;
+  }
   .game-board-controls {
     display: flex;
     flex-wrap: nowrap;

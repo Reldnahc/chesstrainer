@@ -46,10 +46,13 @@ test("Settings and Openings share section navigation appearance and preserve URL
 
 test("section navigation keeps phone targets and disappears inside a lesson course", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
-  for (const route of ["/settings?section=advanced", "/study/openings"]) {
+  for (const { route, links } of [
+    { route: "/settings?section=advanced", links: ["Games & imports", "Coach & animations", "Sound", "Advanced"] },
+    { route: "/study/openings", links: ["Lessons", "Catalogue", "My studies"] },
+  ]) {
     await page.goto(route);
     const navigation = page.locator(".section-navigation");
-    await expect(navigation.getByRole("link")).toHaveCount(3);
+    await expect(navigation.getByRole("link")).toHaveText(links);
     for (const link of await navigation.getByRole("link").all()) {
       await expect(link).toBeInViewport();
       expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
