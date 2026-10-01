@@ -1,7 +1,7 @@
 import { cueCatalog, isPaletteForCue, productionCuePalettes, soundAssetUrl } from "./catalog";
 import {
   defaultAudioPreferences, soundCues, soundPalettes,
-  type AudioPreferences, type PreparedSpeechClip, type SoundCategory,
+  type AudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCategory,
   type SoundCue, type SoundPalette, type SoundRequest,
 } from "./model";
 
@@ -168,7 +168,7 @@ export class AudioEngine {
       const begin = () => {
         ticket.timer = undefined;
         if (!this.current(ticket) || !this.activate(ticket)) return;
-        void this.decode(request.cue, palette).then(buffer => {
+        void this.decode(soundAssetUrl(request.cue, palette)).then(buffer => {
           if (this.current(ticket)) this.start(ticket, buffer);
         }).catch(() => this.fail(ticket));
       };
@@ -186,6 +186,25 @@ export class AudioEngine {
         eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
       if (ticket && this.current(ticket) && this.activate(ticket)) this.start(ticket, clip.buffer);
     } catch { /* Provider audio must not affect the visual utterance or app state. */ }
+  }
+
+  /** Decode a bundled recording on the same context and cancellable speech bus as prepared clips. */
+  playRecordedSpeech(clip: RecordedSpeechClip): void {
+    try {
+      const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
+        eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
+      if (!ticket) return;
+      const begin = () => {
+        ticket.timer = undefined;
+        if (!this.current(ticket) || !this.activate(ticket)) return;
+        void this.decode(clip.url).then(buffer => {
+          if (this.current(ticket)) this.start(ticket, buffer);
+        }).catch(() => this.fail(ticket));
+      };
+      const delay = Number.isFinite(clip.delayMs) ? Math.max(0, Math.min(15000, clip.delayMs!)) : 0;
+      if (delay) ticket.timer = this.driver.setTimer(begin, delay);
+      else begin();
+    } catch { /* Optional recordings must not affect the visual utterance or app state. */ }
   }
 
   cancel(scope: string): void {
@@ -265,17 +284,16 @@ export class AudioEngine {
     return true;
   }
 
-  private decode(cue: SoundCue, palette: SoundPalette): Promise<AudioBuffer> {
-    const key = `${palette}/${cue}`;
-    const cached = this.assets.get(key);
+  private async decode(url: string): Promise<AudioBuffer> {
+    const cached = this.assets.get(url);
     if (cached) return cached;
     const context = this.context!;
-    const pending = this.driver.loadAsset(soundAssetUrl(cue, palette), this.assetAbort.signal)
+    const pending = this.driver.loadAsset(url, this.assetAbort.signal)
       .then(bytes => context.decodeAudioData(bytes)).catch(error => {
-        if (this.assets.get(key) === pending) this.assets.delete(key);
+        if (this.assets.get(url) === pending) this.assets.delete(url);
         throw error;
       });
-    this.assets.set(key, pending);
+    this.assets.set(url, pending);
     return pending;
   }
 

@@ -147,6 +147,12 @@ dedicated audio suite; audio-only changes do not require the coach artwork matri
 bus, respects priority/interruptibility when replacing speech, and lowers effects
 while speech plays. This is an extension point, not a production voice feature.
 
+`playRecordedSpeech` accepts a recording URL and the same utterance/scope contract.
+It registers cancellable work before loading, reuses the shared decoded-asset
+cache, and optionally delays playback. Mute, hidden tabs, cancellation and disposal
+also invalidate pending recordings, so a late download cannot revive stale speech.
+Recording playback never contacts a synthesis provider or requires credentials.
+
 A future speech adapter owns obtaining a clip and checking whether an utterance
 is still current before submitting it. The calling policy decides whether speech
 is manual or permitted by `autoSpeakSuitable`. Visible/spoken text remains owned

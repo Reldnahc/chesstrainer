@@ -1,6 +1,6 @@
 import {test, expect} from "@playwright/test";
 import {AudioEngine, type AudioDriver, type AudioEvent} from "../src/audio/engine";
-import {cueForMove, defaultAudioPreferences, type PreparedSpeechClip, type SoundCue, type SoundPalette} from "../src/audio/model";
+import {cueForMove, defaultAudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCue, type SoundPalette} from "../src/audio/model";
 
 class Gain {
   value = 1;
@@ -91,6 +91,9 @@ const move = (eventId: string, scope = "board") => ({cue: "move" as const, event
 function speech(id: string, priority = 50, interruptible = true): PreparedSpeechClip {
   return {scope: "coach", buffer: {} as AudioBuffer,
     utterance: {id, priority, interruptible, text: "Visible coaching text", speechText: "Prepared spoken text"} as PreparedSpeechClip["utterance"]};
+}
+function recording(id: string, options: Partial<RecordedSpeechClip> = {}): RecordedSpeechClip {
+  return {scope: "coach", url: "/audio/walter/welcome.wav", utterance: speech(id).utterance, ...options};
 }
 
 test("authoritative SAN selects one semantic cue in explicit precedence", () => {
@@ -470,5 +473,193 @@ test("natural completion removes speech ducking and a throwing observer cannot b
   const engine = new AudioEngine({onEvent: () => { throw new Error("Diagnostic failure"); }});
   expect(() => engine.play(move("safe"))).not.toThrow();
   engine.dispose();
+  f.engine.dispose();
+});
+
+test("recordings remain gesture-lazy and share utterance deduplication with prepared speech", async () => {
+  const f = fixture();
+  const buffer = {} as AudioBuffer;
+  f.context.decode = async () => buffer;
+  f.engine.playRecordedSpeech(recording("blocked"));
+  expect(f.created()).toBe(0);
+  expect(f.loads).toEqual([]);
+  await f.engine.unlock();
+  f.engine.playRecordedSpeech(recording("blocked"));
+  f.engine.playRecordedSpeech(recording("accepted"));
+  await flush();
+  f.engine.playPreparedSpeech(speech("accepted"));
+  expect(f.started()).toEqual(["accepted"]);
+  expect(f.context.sources[0].buffer).toBe(buffer);
+  expect(f.context.gains[1].gain.value).toBe(.3);
+  expect(f.created()).toBe(1);
+  expect(f.loads).toEqual(["/audio/walter/welcome.wav"]);
+  expect(f.events.filter(event => event.reason === "duplicate")).toHaveLength(2);
+  expect(JSON.stringify(f.events)).not.toContain("Visible coaching text");
+  f.context.sources[0].finish();
+  expect(f.context.gains[1].gain.value).toBe(1);
+  f.engine.dispose();
+});
+
+test("delayed recordings claim speech only when due and cancel before downloading", async () => {
+  const f = fixture();
+  const fetched = deferred<ArrayBuffer>();
+  f.load(() => fetched.promise);
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech(speech("current"));
+  f.engine.playRecordedSpeech(recording("next", {delayMs: 250}));
+  expect(f.loads).toEqual([]);
+  expect(f.context.sources[0].stops).toEqual([]);
+  f.tick();
+  expect(f.loads).toHaveLength(1);
+  expect(f.context.sources[0].stops).toHaveLength(1);
+  expect(f.context.gains[1].gain.value).toBe(1); // Loading speech does not duck effects.
+  fetched.resolve(new ArrayBuffer(8));
+  await flush();
+  expect(f.started()).toEqual(["current", "next"]);
+  expect(f.context.gains[1].gain.value).toBe(.3);
+  f.engine.playRecordedSpeech(recording("cancel-later", {scope: "later", delayMs: 30000}));
+  expect(f.timerDelays).toEqual([250, 15000]);
+  f.engine.cancel("later");
+  f.tick();
+  await flush();
+  expect(f.loads).toHaveLength(1);
+  expect(f.started()).toEqual(["current", "next"]);
+  f.engine.dispose();
+});
+
+test("cancelled recordings cannot start after a pending fetch or decode and restored gates", async () => {
+  for (const phase of ["fetch", "decode"] as const) {
+    for (const mode of ["scope", "hidden", "muted", "loading", "disabled", "zero-volume", "dispose"] as const) {
+      const f = fixture();
+      const fetched = deferred<ArrayBuffer>();
+      const decoded = deferred<AudioBuffer>();
+      let signal: AbortSignal | undefined;
+      f.load((_url, pendingSignal) => {
+        signal = pendingSignal;
+        return phase === "fetch" ? fetched.promise : Promise.resolve(new ArrayBuffer(8));
+      });
+      if (phase === "decode") f.context.decode = () => decoded.promise;
+      await f.engine.unlock();
+      f.engine.playRecordedSpeech(recording(`${phase}:${mode}`));
+      await flush();
+      expect(f.loads).toHaveLength(1);
+      if (mode === "scope") f.engine.cancel("coach");
+      if (mode === "hidden") { f.hide(); f.show(); await f.engine.unlock(); }
+      if (mode === "muted") { f.engine.setMuted(true); f.engine.setMuted(false); }
+      if (mode === "loading") { f.engine.setReady(false); f.engine.setReady(true); }
+      if (mode === "disabled") f.engine.setPreferences({...defaultAudioPreferences, enabled: false});
+      if (mode === "zero-volume") f.engine.setPreferences({...defaultAudioPreferences, volume: 0});
+      if (mode === "disabled" || mode === "zero-volume") f.engine.setPreferences(defaultAudioPreferences);
+      if (mode === "dispose") { f.engine.dispose(); expect(signal?.aborted).toBe(true); }
+      fetched.resolve(new ArrayBuffer(8));
+      decoded.resolve({} as AudioBuffer);
+      await flush();
+      expect(f.started(), `${phase}:${mode}`).toEqual([]);
+      expect(f.events.some(event => event.type === "cancelled"), `${phase}:${mode}`).toBe(true);
+      expect(f.events.some(event => event.type === "error"), `${phase}:${mode}`).toBe(false);
+      f.engine.dispose();
+    }
+  }
+});
+
+test("recording URL loads are shared while pending and cached across scopes and effect playback", async () => {
+  const f = fixture();
+  const fetched = deferred<ArrayBuffer>();
+  f.load(() => fetched.promise);
+  await f.engine.unlock();
+  f.engine.playRecordedSpeech(recording("old", {scope: "old"}));
+  f.engine.playRecordedSpeech(recording("replacement", {scope: "current"}));
+  f.engine.cancel("old");
+  expect(f.loads).toHaveLength(1);
+  fetched.resolve(new ArrayBuffer(8));
+  await flush();
+  expect(f.started()).toEqual(["replacement"]);
+  expect(f.context.decodes).toBe(1);
+  f.engine.playRecordedSpeech(recording("replay"));
+  await flush();
+  expect(f.loads).toHaveLength(1);
+  expect(f.context.decodes).toBe(1);
+  f.engine.play(move("effect"));
+  await flush();
+  const effectUrl = f.loads[1];
+  expect(f.context.decodes).toBe(2);
+  f.engine.playRecordedSpeech(recording("same-url", {url: effectUrl}));
+  await flush();
+  expect(f.loads).toHaveLength(2);
+  expect(f.context.decodes).toBe(2);
+  expect(f.created()).toBe(1);
+  expect(f.started()).toEqual(["replacement", "replay", "effect", "same-url"]);
+  f.engine.dispose();
+});
+
+test("recording failures release speech priority and allow a new event to retry the same URL", async () => {
+  for (const failure of ["load", "sync-load", "decode"] as const) {
+    const f = fixture();
+    await f.engine.unlock();
+    if (failure === "load") f.load(async () => { throw new Error("Missing recording"); });
+    if (failure === "sync-load") f.load(() => { throw new Error("Unsupported loader"); });
+    if (failure === "decode") f.context.decode = async () => { throw new Error("Bad recording"); };
+    const clip = recording("failed", {utterance: speech("failed", 100, false).utterance, delayMs: 1});
+    f.engine.playRecordedSpeech(clip);
+    expect(() => f.tick()).not.toThrow();
+    await flush();
+    expect(f.events.find(event => event.type === "error")?.eventId).toBe("failed");
+    f.engine.playPreparedSpeech(speech("lower-after-failure", 10));
+    expect(f.started()).toEqual(["lower-after-failure"]);
+    f.context.sources[0].finish();
+    f.load(async () => new ArrayBuffer(8));
+    f.context.decode = async () => ({} as AudioBuffer);
+    f.engine.playRecordedSpeech({...clip, delayMs: 0});
+    expect(f.loads).toHaveLength(1); // Failed action identities are still consumed.
+    f.engine.playRecordedSpeech({...clip, eventId: "retry", delayMs: 0});
+    await flush();
+    expect(f.loads).toHaveLength(2);
+    expect(f.started()).toEqual(["lower-after-failure", "retry"]);
+    f.engine.dispose();
+  }
+});
+
+test("prepared and loading recorded speech share priority and interruption rules", async () => {
+  const f = fixture();
+  const fetched = deferred<ArrayBuffer>();
+  f.load(() => fetched.promise);
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech(speech("protected", 50, false));
+  f.engine.playRecordedSpeech(recording("cannot-interrupt", {utterance: speech("cannot-interrupt", 100).utterance}));
+  expect(f.loads).toEqual([]);
+  f.engine.cancel("coach");
+  f.engine.playRecordedSpeech(recording("loading", {utterance: speech("loading", 70).utterance}));
+  f.engine.playRecordedSpeech(recording("lower-recording", {url: "/audio/walter/other.wav"}));
+  f.engine.playPreparedSpeech(speech("lower-prepared", 60));
+  expect(f.loads).toHaveLength(1);
+  expect(f.context.gains[1].gain.value).toBe(1);
+  f.engine.playPreparedSpeech(speech("urgent", 90, false));
+  fetched.resolve(new ArrayBuffer(8));
+  await flush();
+  expect(f.started()).toEqual(["protected", "urgent"]);
+  for (const eventId of ["cannot-interrupt", "lower-recording", "lower-prepared"]) {
+    expect(f.events.find(event => event.eventId === eventId && event.type === "suppressed")?.reason).toBe("priority");
+  }
+  expect(f.events.find(event => event.eventId === "loading" && event.type === "cancelled")?.reason).toBe("replaced");
+  f.engine.dispose();
+});
+
+test("board and practice category toggles leave pending and playing recordings available", async () => {
+  const f = fixture();
+  const fetched = deferred<ArrayBuffer>();
+  f.load(() => fetched.promise);
+  await f.engine.unlock();
+  f.engine.playRecordedSpeech(recording("speech"));
+  f.engine.setPreferences({...defaultAudioPreferences, board: false, practice: false});
+  fetched.resolve(new ArrayBuffer(8));
+  await flush();
+  expect(f.started()).toEqual(["speech"]);
+  f.engine.setPreferences(defaultAudioPreferences);
+  f.engine.setPreferences({...defaultAudioPreferences, board: false, practice: false});
+  expect(f.context.sources[0].stops).toEqual([]);
+  expect(f.context.gains[1].gain.value).toBe(.3);
+  f.engine.play(move("disabled-board"));
+  f.engine.play({cue: "correct", scope: "practice", eventId: "disabled-practice"});
+  expect(f.loads).toHaveLength(1);
   f.engine.dispose();
 });

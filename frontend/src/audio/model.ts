@@ -46,3 +46,9 @@ export type PreparedSpeechClip = {
   scope: string;
   eventId?: string;
 };
+
+/** A bundled recording of an existing utterance; playback never generates speech. */
+export type RecordedSpeechClip = Omit<PreparedSpeechClip, "buffer"> & {
+  url: string;
+  delayMs?: number;
+};
