@@ -5,6 +5,12 @@ explanations. Chess semantics belong to the reaction layer; artwork and acting
 belong to the coach definition. The existing grey-haired, bespectacled coach keeps
 his silhouette, beard and sage jacket.
 
+For the ordered creation workflow, start with
+[Creating a coach](COACH_CREATION_GUIDE.md). This reference owns the visual rig,
+motion lifecycle, catalogue and account integration. The
+[cast bible](COACH_CAST_BIBLE.md) supplies character direction; it does not replace
+the implementation and acceptance requirements below.
+
 ## Visual directions
 
 The men's collection has four complete characters, each with all 20 states:
@@ -19,7 +25,7 @@ The men's collection has four complete characters, each with all 20 states:
   forest-green waistcoat. Curious looks and generous encouragement.
 
 The [cast bible](COACH_CAST_BIBLE.md) defines the thirty selectable personalities.
-**Settings → Your coach** displays all thirty coaches in a compact, unbroken
+**Settings → Coach & animations → Your coach** displays all thirty coaches in a compact, unbroken
 six-column/five-row desktop grid, in the stable order below. There are no category
 headings, gaps, tabs or filters. Small portraits and names keep selection compact;
 descriptions remain available on hover and to assistive technology. Only the
@@ -187,6 +193,14 @@ production banks use the revised generator. The preview is for judging quality,
 not a claim of perfect phonetic alignment. Playback uses no voice API or
 recognition model. Lesson narration remains deferred.
 
+Speaking artwork and recorded speech are separate capabilities. A rig's `speech`
+flag enables mouth articulation; it does not make recordings available. The
+production voice registry currently supplies Walter (`classic`) and Rivet
+(`robot`), with 438 approved recordings each. The other speaking rigs can preview
+their auditions in development but remain text-only in normal reviews until a
+complete bank is registered. See [recorded coach voices](AUDIO.md#recorded-coach-voices)
+for bank registration, writing, provenance, generation and alignment checks.
+
 The coach studio's **Mouth shapes** view holds each of the nine shared sound
 shapes, with phoneme examples, at board size or enlarged. `previewSpeechShape`
 applies the exact rig controls without audio or an animation loop. This explicit
@@ -282,8 +296,10 @@ already seen entrance is not replayed. Unmounting removes observers/listeners an
 clears timers. Deliberately replaying an entrance restarts the SVG rig, not its
 layout; restarting the seeded idle sequence does not remount it.
 
-**Settings → Animations** groups **Coach motion** and **Piece & interface motion**,
-each with its own save/error feedback. **Your coach** contains character selection.
+**Settings → Coach & animations → Animations** groups **Coach motion** and
+**Piece & interface motion**, each with its own save/error feedback. **Your coach**
+on the same tab contains character selection. **Sound** is a separate Settings tab;
+voice playback and visual motion are independent preferences.
 The default **Use device setting** follows system reduced motion. Choosing
 **Animated** or **Still** overrides the browser preference; Still disables both
 entrances and idle motion. The same resolved setting controls timers and CSS.
@@ -299,11 +315,13 @@ clears the manual preview.
 Static facial poses, ratings, evaluation and explanatory text remain. Reactions
 are decorative: the existing accessible coaching text carries the analysis. The
 animation changes transforms/opacity inside a reserved box and does not move the
-board, bubble or controls. No flashes, audio or infinite animation loops are used.
+board, bubble or controls. There are no flashing effects or indefinitely looping
+entrance animations. Portraits consume an optional audio playback handle; the
+shared audio engine owns playback and cancellation, not the animation scheduler.
 Eye masks belong to each SVG instance so idle glances stay within the eye shape
 even when many differently posed characters appear together in the studio.
 
-**Settings → Animations → Piece & interface motion** controls piece movement,
+**Settings → Coach & animations → Animations → Piece & interface motion** controls piece movement,
 rating entrances, evaluation-bar transitions and other interface animations.
 It has the same device-default/Animated/Still choices, saved independently from
 coach motion in the account's existing preference row. Both default to the
@@ -315,15 +333,20 @@ resolved state as the board library; there is no second browser-only override.
 
 ## Adding a coach
 
+Paths in this section are relative to `frontend/src/coach/` unless otherwise
+qualified. Use the [creation guide](COACH_CREATION_GUIDE.md) to sequence this work;
+these are the contracts each new character must satisfy.
+
 `model.ts` defines the character contract. `studies/catalog.ts` and `cast/catalog.ts` supply the
 collections, stable character IDs, names, descriptions, supported states, fallback
 maps, families, capabilities, timing/idle configuration and artwork components.
 `registry.ts` derives individual selectable definitions from that single source.
 Each has one default family, explicit presentation group and a typed account ID;
 collection IDs remain useful for authoring and studio URLs. They are never saved
-in place of a character ID. The
-default SVG rig, motion tracks and keyframes live in `classic/`; shared
-lifecycle and preference code contain no references to its facial geometry.
+in place of a character ID.
+Walter's SVG rig and entrance keyframes live in `classic/`. Shared idle tracks
+live in `idle-motion.css`, `idle-shared.css` and `idleSignatures/`; lifecycle and
+preference code contain no references to Walter's facial geometry.
 Reusable human expressions, facial layers and open-palm hand artwork live in
 `human/`. Individual human coaches provide their own silhouette, palette and acting.
 The men and women use shared human primitives; cat and dog artwork share animal expressions, eyes,
@@ -336,16 +359,57 @@ Walter so it cannot also animate the shared human rig of another man.
 New artwork is organized under `cast/humansPets`, `cast/animals`, `cast/fantasy`
 and `cast/scifi`, with small local rig/face helpers. These source folders do not
 determine the Settings groups or persisted IDs.
-Add an allowed coach ID to the backend preference contract, regenerate the API
-types, and add the matching family and `coachId` to the catalogue. Browser tests
+Add an allowed coach ID to `backend/trainer/contracts/preferences.py`, export
+the contract with `python scripts/export_api_contract.py` from the repository
+root, regenerate types with `npm --prefix frontend run api:generate`, and add the matching
+family and `coachId` to the catalogue. Do not edit generated types manually. Browser tests
 compare all selectable IDs with the API allowlist and exercise each in a real
 review. Settings renders available definitions automatically. Supply an
 explicit supported default state and an accessible static pose for every provided
 expression; omitted states follow the fallback chain, with cycle protection.
 Artwork may omit reactions or idle capabilities independently. Preserve the
-reserved aspect ratio and honor the `data-motion`/phase/microgesture contract on
-the containing character. Keep namespaced CSS with the artwork. No new router,
+reserved aspect ratio and honor the `data-motion`, `data-phase`, `data-face` and
+idle channel CSS variables supplied by `CoachCharacter`. `data-idles` describes
+the active gestures; `data-micro` is only the first active gesture, not the full
+coordinator state. Keep namespaced CSS with the artwork. No new router,
 settings storage or chess-analysis code is needed for another character.
+
+### Motion integration and acceptance
+
+Add the character's acting profile to `motionVocabulary.ts` and its actual SVG
+channels to `idleRig.ts`. Every declared resource must have a rendered wrapper in
+the eligible expression. Use separate reaction, idle and authored-pose wrappers,
+as in `ArtworkRig.tsx`; do not animate the same transform from two systems. The
+shared scheduler in `usePerformance.ts` and `idleCoordinator.ts` remains unchanged
+for an ordinary new character. Cadence belongs to `idleModel.ts`, not its profile.
+
+Add two characterful, expression-gated signatures to the appropriate
+`idleSignatures/` collection, with labels, acting notes and namespaced CSS. The
+current cast's quality gate is at least eight compatible choices across at least
+three gesture groups for every expression, plus both signatures for every coach.
+Shared gestures can supply breadth; signatures, amplitude and appropriate detail
+motion supply identity. Exclude held-book/hand-to-face conflicts and cheerful
+gestures from worried states. Do not satisfy coverage by listing tracks that the
+rig cannot perform.
+
+If the coach will speak, implement all nine shapes in `speechMouth.ts` through
+the existing articulation layer before opting in to `speech`. Walter's
+`classic/WalterAlignedMouth.tsx`, the shared `SpeechMouthLayer.tsx` and Rivet's
+`cast/scifi/RobotSpeechMouth.tsx` demonstrate different geometry using the same
+normalized controls. Do not copy Walter's human mouth onto an incompatible
+silhouette or add a second audio clock. Keep the original expressive mouth intact
+for silence, cancellation, Still and unsupported speech. Check both rounded O
+shapes as well as closures, teeth and tongue in **Coach Studio → Mouth shapes**.
+
+Walter and Rivet are reference implementations for completeness, not templates
+for another coach's personality or anatomy. Review a candidate beside them at
+actual portrait sizes. Distinct brilliant/blunder acting, readable quiet faces,
+settled open eyes, connected and correctly handed limbs, several natural idle
+cycles and convincing automatic speech transitions all matter. Test reaction
+changes and interruption as well as an uninterrupted clip. A static expression
+sheet, a short audition or passing type checks alone is not a finished coach.
+The [personality requirements](COACH_PERSONALITIES.md) and
+[audio acceptance workflow](AUDIO.md) complete this visual quality gate.
 
 ## Validation
 
@@ -361,6 +425,24 @@ failed saves preserve the last accepted choice. Both recovery paths are exercise
 through the actual Settings screen. Connecting with the optional LAN token retries
 preference loading automatically; a manual page reload is not required.
 Final validation results are recorded in [VERIFICATION.md](VERIFICATION.md).
+
+Use the runnable commands and environment setup in
+[TESTING.md](TESTING.md#coach-cast-and-behavior). For a new selectable character,
+the relevant checks include backend `test_coach_preferences.py`, the frontend
+production build, application `coach-logic.spec.ts`, `coach-selection.spec.ts`
+and `coach.spec.ts`, and `npx playwright test --config playwright.coach.config.ts`
+from `frontend`. Account coverage verifies saved selection on another device;
+the intelligence and audio suites apply when adding dialogue or a speaking rig.
+Update registry-derived expectations instead of silently skipping the new ID.
+The studio config owns port 5174 and will not reuse an already running server;
+do not terminate an owner's preview just to free that port without coordinating.
+
+Manually inspect the real game-review and SRS components on desktop and mobile,
+plus Settings selection. Confirm cold SRS stays neutral before allowed feedback;
+scrubbing does not replay stale entrances; offscreen/hidden/Still pauses work;
+Animated overrides device reduced motion; speech restores the authored face on
+ending/cancellation; and no gesture shifts the board, bubble or action controls.
+The studio is an authoring aid, not a substitute for these application checks.
 
 ## Account preferences
 

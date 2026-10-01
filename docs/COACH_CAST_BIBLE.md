@@ -1,6 +1,15 @@
 # Fieldwork Coach Cast Bible
 
-*Personality architecture · 30-coach working draft*
+*Personality architecture · owner-authored cast direction*
+
+**Implementation status (October 1, 2026):** the cast expansion and retirements
+described below have been implemented. “Proposed,” “Existing” and “New” preserve
+the original design context; they are not outstanding work or a second registry.
+The live coach catalogue owns selectable identities. This bible defines teaching
+temperament and language, not the complete technical creation process. Start with
+[Create a Fieldwork coach](COACH_CREATION_GUIDE.md) for that process, and use
+[character writing](COACH_PERSONALITIES.md) and [audio](AUDIO.md#recorded-coach-voices)
+for the current Walter/Rivet written and spoken quality standard.
 
 Every coach has a personalized display name while keeping the existing archetype
 below. Stable coach IDs, writing profiles and saved account selections are unchanged;

@@ -1,10 +1,15 @@
 # Character writing
 
+Use [Creating a coach](COACH_CREATION_GUIDE.md) for the end-to-end workflow and
+[Evidence-led coach dialogue](COACH_DIALOGUE.md) for the semantic contract.
+This document is the writing quality gate for both a new character and later
+additions to an existing character's dialogue.
+
 The coach catalogue remains the identity source of truth. Each selectable family
 registers its definition from `frontend/src/dialogue/characters/`. A definition
 contains the internal character bible (temperament, teaching, rhythm, celebration,
 correction and boundaries), communication behavior, authored factual forms, a
-compactness budget and future-neutral delivery metadata. The laboratory displays
+compactness budget and provider-neutral delivery metadata. The laboratory displays
 the bible and behavior beside every voice. The owner-supplied cast direction is
 preserved in [COACH_CAST_BIBLE.md](COACH_CAST_BIBLE.md).
 
@@ -87,6 +92,12 @@ does not prove move quality, development goals, familiarity or strategic intent.
 Written opening names remain available without requiring a recording for every
 name, and revisiting a position does not choose a fresh phrase.
 
+These scoped tactical and opening-sequence forms are the starting point for a
+new coach's writing pass. Use `tacticalWording: "witness"` and
+`openingWording: "sequence"` with complete authored templates; do not copy the
+older cast's repetitive continuation phrases as the quality target. This does
+not authorize converting existing characters without their own writing review.
+
 Required named slots must occur in the mandatory fragments. A question or reaction
 cannot be the only place a move, target or reply appears. Positional alternatives
 still render with explicit hypothetical scope. Opponent achievements still use
@@ -123,6 +134,97 @@ causal actor attribution, hypothetical alternatives, human-evidence uncertainty,
 learner identity and cold SRS feedback. These checks are not proof of good writing:
 inspect blind samples and actual bubble sizes as part of every writing pass.
 
+## Walter and Rivet quality gate
+
+Walter and Rivet demonstrate two distinct deliveries of the same supported
+meaning. Their writing is a reference standard, not a generic base script to
+decorate with another coach's catchphrase. Walter connects the chess event to
+its consequence in a warm, measured explanation. Rivet leads with a concrete
+pattern or issue, follows cause/result succinctly, and earns occasional dry
+understatement. Labels are useful when they clarify the thought; a repetitive
+diagnostic prefix is not a personality.
+
+Review a writing change in this order:
+
+1. **Fix the meaning before styling it.** Identify the original claim/recording
+   ID, actor, actual versus alternative branch, immediate versus possible effect,
+   required slots and evidence limits. A pin can already exist; a witnessed
+   follow-up is not guaranteed; only-move evidence is bounded to moves searched.
+   Strong and Best are not synonyms. Cold SRS feedback cannot disclose an answer.
+2. **Lead with useful chess.** Explain the resource, cost or supported consequence
+   before discussing why analysis found it interesting. Reject vague repeated
+   framing such as "in this continuation," routine engine-report narration,
+   circular praise and a second sentence that merely restates the first.
+   Do not remove a necessary qualification just to shorten the line.
+3. **Preserve the character in the mandatory sentence.** Optional reactions may
+   be removed for space, so they cannot carry all the personality or any unique
+   fact. Compare the same meaning across characters with names/portraits hidden.
+   It should differ in thought order, teaching approach and rhythm, not only
+   synonyms. Do not require every short factual sentence to be unique.
+4. **Review sequences, not only isolated highlights.** Read several Book moves,
+   corrections, strong moves and recoveries consecutively. Opening recognition
+   never proves quality or opening knowledge. Use the shared verified-prefix
+   variation contract, not random phrases or assumptions based on move number.
+   Include generic entry fallback and a recognized opening move that is an error.
+5. **Read the combined objective/human passage as one response.** Preserve the
+   distinction between naturalness, an unusual strong choice and corroborated
+   difficulty. Natural does not mean good; rare does not mean difficult;
+   model estimates are not observed population success rates. The human point
+   must add something useful without repeating the tactical explanation or
+   turning each line into a methodology disclaimer.
+6. **Inspect the actual output.** Check learner and opponent turns, branches,
+   positional alternatives, missing evidence and narrow bubbles. Compare trace
+   sources and `renderedClaims` as well as the sentence. Unexpected neutral
+   fallback on frequent claims is a writing/integration problem, not a reason
+   to bypass validation. Neutral fallback is appropriate when custom wording
+   cannot safely retain a rare fact.
+
+Written templates may name the actual moves and targets. Recorded summaries
+deliberately teach the reusable idea while the board/text provide the specifics.
+Do not force their transcripts to match, and do not independently invent chess
+reasoning for speech. The active bank manifest is the shipped spoken script;
+changing a personality template does not rerecord it. Both paths must preserve
+the same scope and character. Lessons do not receive recorded narration.
+
+The latest [Rivet editorial ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+records 197 replacements among 257 reviewed additions, with 60 additions retained.
+It explains each correction instead of making more clips the measure of quality.
+Compare it with [Walter's spoken revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
+and the active manifests in [Audio](AUDIO.md#bank-and-authoring). Avoid "separate"
+and "separately" in active speech: the locked voices do not pronounce them
+reliably. Recording, pronunciation, timing and listening review belong to the
+[audio authoring process](AUDIO.md); a clean corpus test alone does not establish
+that a recorded line sounds good.
+
+## Focused verification
+
+Run commands from `frontend` unless specified otherwise. These are writing and
+speech-contract checks, not a replacement for the broader validation appropriate
+to changed artwork, playback or account code. Close a running development server
+on a test port before using its normal Playwright config; do not silently test a
+different existing application.
+
+```sh
+npx playwright test dialogue-logic.spec.ts personality.spec.ts walter-dialogue.spec.ts scoped-dialogue.spec.ts opening-dialogue.spec.ts
+npx playwright test --config playwright.intelligence.config.ts corpus.spec.ts causal-dialogue.spec.ts human-dialogue.spec.ts positional-dialogue.spec.ts walter-dialogue.spec.ts
+npm run test:audio -- game-speech-combinations.spec.ts maia-meaning-coverage.spec.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts
+```
+
+The first two commands cover production rendering and the writing laboratory;
+the third protects whole-recording combinations and the shared bank interface.
+For script changes, from repository root:
+
+```sh
+.venv/Scripts/python.exe -m pytest backend/tests/test_coach_pilot_scripts.py backend/tests/test_walter_language_revision.py backend/tests/test_coach_voice_bank.py -q
+.venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check
+```
+
+Use `.venv/bin/python` on POSIX. The strict bank check is offline and does not
+record audio. Read/listen to the actual edited scripts and production comparison
+at desktop and mobile sizes after automated checks. Report any listening or
+browser inspection that the environment cannot perform, rather than counting
+compilation or file validation as subjective quality approval.
+
 `dialogue-intent-3` uses a stable avalanche-mixed hash. Raw low-bit modulo selection
 made two-choice templates with similar factual keys vary in lockstep; mixing fixes
 that correlation while preserving repeatability across navigation and reloads.
@@ -131,4 +233,6 @@ and roster counts from the registry, not from a historical cast size.
 
 Version 3 separates claim-selection priority from semantic delivery intensity and
 urgency. A book fact can lead the bubble without receiving mate-level delivery.
-Characters cannot alter that metadata; no speech or new animation loop consumes it.
+Characters cannot alter that metadata. Recorded speech consumes priority,
+interruptibility and automatic-play eligibility without changing chess facts or
+starting a second animation scheduler.

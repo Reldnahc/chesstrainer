@@ -169,7 +169,7 @@ additions, hints, game annotations and edits do not require maintaining voice as
 
 The [Walter manifest](../frontend/src/audio/speech/bank/manifest.json) and
 [Rivet manifest](../frontend/src/audio/speech/banks/rivet/manifest.json) identify
-all recordings and their local paths. Each covers 117 game-review meanings, 68
+all recordings and their local paths. Each covers 349 game-review meanings, 68
 additional practice/explanation meanings, 10 opening-recall/preview meanings,
 eight puzzle states and three finite review statuses. Four audited transient or
 defensive states deliberately remain silent: thinking, checking, loading an
@@ -226,10 +226,54 @@ the owner-approved voice experiments and their usage provenance.
 `scripts/prepare_coach_voice_bank.py` automatically aligns the known text and
 recording using PocketSphinx's public word/phoneme API and the shared mouth rules.
 Detailed source/phoneme archives remain authoring evidence; `bank/tracks.json` is
-its compact runtime projection, loaded separately from the initial application.
+Walter's compact runtime projection, and `banks/rivet/tracks.json` is Rivet's.
+Each is loaded separately from the initial application.
 Every clip has generated timing. No individual clip was aligned by hand, and no
 native aligner or model is required by playback. See the
 [bank verification workflow](../frontend/src/audio/speech/bank/README.md).
+
+### Spoken quality standard
+
+Walter and Rivet are the current end-to-end reference banks, not scripts to copy
+and relabel for another character. Use their **active manifests** and the
+**Recorded coach comparison** studio collection; earlier plans and archived
+auditions preserve history rather than the latest wording. The
+[coach creation guide](COACH_CREATION_GUIDE.md) puts voice authoring in the wider
+artwork, animation and dialogue workflow.
+
+- Preserve the character's teaching voice across ordinary feedback, adverse
+  outcomes, repeated Book moves and combined Maia passages. Walter explains
+  patiently; Rivet leads with patterns and consequences in compact clauses.
+  Merely adding a catchphrase to neutral prose does not meet this standard.
+- Explain the supported idea without depending on a particular square, SAN move,
+  numerical score, player name or count. Specifics remain visible in the text.
+  A recording may name a piece when the shared meaning itself establishes it;
+  avoid both unsupported specificity and vague boilerplate such as "in this
+  continuation" that does not help the learner understand the idea.
+- Keep actor and branch identity intact. An allowed reply is an opportunity for
+  the opponent; an unplayed alternative is hypothetical; a searched mating route
+  is not an already completed checkmate. Human-model estimates must never become
+  engine evaluation, population percentages or promises of survival.
+- Write each eligible objective/Maia pairing as one coherent response. The bank
+  contains full recordings for supported pairings, not a second speech event or
+  stitched sentences. Review the whole passage for personality, explanation and
+  redundancy after combining its meanings.
+- Inspect an opening sequence, not just an isolated Book clip. Recognition and
+  follow-on variants should feel varied without claiming a Book move is best or
+  safe. Sequence wording requires the existing verified prefix; invented history
+  cannot be used to make the delivery more interesting.
+- Listen to beginnings, endings, pronunciation, pace and volume in context with
+  the board sounds. Check the real portrait at application sizes, including quiet
+  pauses, rounded vowels, interruption and return to its expression. Hashes and
+  complete phone coverage prove artifact consistency, not pleasing delivery or
+  perceptually correct lip sync.
+
+The current 438 recordings are a coverage snapshot, not a per-coach quota. A new
+bank should cover the current reachable non-lesson meanings intentionally; do not
+invent combinations to reach a number. Missing meanings can remain safely silent
+during development, but a partially registered bank is not a completed coach.
+The [bank workflow](../frontend/src/audio/speech/bank/README.md#adding-or-revising-a-production-bank)
+separates artifact checks, semantic coverage and human listening review.
 
 ### Meaning and selection
 

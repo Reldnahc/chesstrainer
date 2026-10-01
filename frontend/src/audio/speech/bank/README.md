@@ -1,4 +1,12 @@
-# Walter recorded voice bank
+# Recorded coach bank authoring
+
+Walter's bank lives in this directory. Rivet's bank lives under `../banks/rivet`;
+both use the same production registry, meaning catalogue, validator and runtime.
+For the full character workflow, start with the
+[coach creation guide](../../../../../docs/COACH_CREATION_GUIDE.md). This page
+covers reproducible recordings and generated mouth timing; the
+[audio quality standard](../../../../../docs/AUDIO.md#spoken-quality-standard)
+defines the editorial and listening bar.
 
 `manifest.json` identifies the approved non-lesson speech, exact text, voice,
 recording settings and asset paths. Five original contrast recordings are referenced
@@ -47,11 +55,96 @@ authored scripts for those additions.
 `../banks/maia-combinations.json` extends that pilot with 232 more complete
 passages per character. The active banks each have 438 meanings: the original
 181, eleven opening variants, and 246 objective/human-evidence combinations.
-The latter include the pilot's fourteen recordings, which are reused unchanged.
+The latter include the pilot's fourteen meanings. Expanding coverage did not
+require rerecording existing passages; subsequent editorial corrections can and
+do replace recordings while keeping their meaning IDs.
 Each combined passage is one provider recording, never playback-time splicing.
 Its shared primary/secondary IDs bind the spoken explanation to current rendered
 chess evidence and the independently displayed human insight. Full source
 provenance and automatically generated mouth timing follow the same workflow.
+
+Rivet's [wording revision](../banks/rivet/revisions/wording-v2.json) reviewed all
+257 additions, replaced 197 complete recordings and retained 60 additions plus
+all 181 original recordings. The revision restores his compact pattern-first
+voice without changing supported meanings or Walter's scripts. The active
+manifest and matching authored script files contain the current text; the
+revision ledger records old/new text and editorial reasons. Superseded Rivet
+MP3s are preserved by Git history rather than left under production asset globs.
+
+## Adding or revising a production bank
+
+All paths below are relative to `frontend/src/audio/speech`, unless stated
+otherwise. These are deliberate authoring steps; there is no command that
+automatically writes a finished personality or turns all coach prose into speech.
+
+1. **Confirm the voice and permissions.** A casting preview, a saved provider
+   voice and a complete production bank are different artifacts. A non-Walter
+   registered bank must match its owner-approved `savedVoiceId` in
+   `cast-auditions/locked-voices.json`. Walter uses `walter-selected-voice.json`.
+   Preserve the approved source identity; do not invent a lock entry for an
+   unheard voice. Follow the [casting workflow](../cast-auditions/README.md) and
+   [media notice](../README.md#permissions-and-attribution). Recheck provider
+   terms for new paid generation; do not treat historical approval as a license
+   for a different voice or subscription tier.
+2. **Audit the supported meanings before writing.** `meanings.json` owns shared
+   IDs/groups and exact objective/human pairs, not character-specific prose.
+   Trace eligibility through `gameSelection.ts`, `practiceSelection.ts`, the
+   producer and dialogue claims. Retain cold-practice gates, the four silent
+   states and the lesson exclusion. New characterization normally changes
+   scripts only, not those facts or selection rules. Adding a genuinely new
+   semantic meaning needs producer/selector regression coverage.
+3. **Write and review complete scripts.** Use the character bible plus the
+   spoken quality standard. Preserve the distinction between actual, allowed,
+   missed, mover-caused and alternative consequences. Review combined passages
+   and consecutive opening variants as units. Existing Walter/Rivet authoring
+   sources are `banks/pilot-additions.json` and `banks/maia-combinations.json`,
+   with `banks/rivet/scripts.json` for Rivet's base meanings; these are curated
+   two-character data, not a general automatic script generator. Keep a new
+   bank's authored source and consistency tests explicit rather than modifying
+   another coach's text fields. Avoid "separate"/"separately" in active speech.
+4. **Create bounded plans and record only approved work.** Use the existing
+   `scripts/record_coach_speech.mjs` schema with the selected voice and current
+   recording settings. Plans allow at most 20 voice/script pairs, 1,000
+   characters per script and 10,000 characters total. Dry-run first; `--generate`
+   explicitly spends provider credits. Never print or commit the process-only
+   API key. Use a new take directory for changed text, inspect failed/incomplete
+   attempts, and do not repeat paid requests blindly. Preserve MP3/provenance
+   pairs and record actual settled provider usage separately from character
+   counts. See [recording CLI instructions](../README.md#record-selected-examples).
+5. **Bind the exact artifacts in a manifest.** Prefer
+   `banks/<voice>/manifest.json`, with active MP3s and provenance under its
+   `recordings/` directory and `alignment/<meaning-id>.json`. Match the selected
+   coach ID, local voice ID, provider voice, model, settings, script, IDs and
+   paths exactly. Revisions get an old/new script ledger; changing a transcript
+   without new matching audio is invalid. Remove superseded files from active
+   recording directories so the production glob does not ship unused audio.
+6. **Generate and check mouth timing.** Prepare the manifest with the commands
+   below. Fresh alignment archives are generated automatically from the new
+   recording and exact text. For a replacement, preserve needed historical
+   evidence before removing its superseded archive; the tool deliberately
+   rejects a stale archive rather than overwriting it. Do not hand-edit cues or
+   transcribe different words merely to make alignment pass.
+7. **Register only the intended bank.** Add its coach/voice/manifest mapping to
+   `banks/registry.json`. `voiceBank.ts` already discovers
+   `banks/*/manifest.json`, `banks/*/tracks.json` and
+   `banks/*/recordings/**/*.mp3`; keep that layout instead of adding bespoke
+   loader code. Game selection and shared playback read the registry. The
+   studio's `recordedCoachCatalog.ts` automatically offers selectable coaches
+   with recordings. Another coach's voice is never a fallback.
+8. **Verify coverage, rendering and listening separately.** The strict check
+   below validates every *registered recording*, but deliberately allows a
+   partial bank. Compare the bank's IDs against the reachable shared catalogue
+   and add/update script-consistency and selection tests before calling it
+   complete. Walter and Rivet currently cover all 438 meanings; that number is
+   not a substitute for checking the catalogue. Exercise actual game/practice
+   playback, late Maia results, manual replay, cancellation and cold positions.
+   Use Recorded coach comparison in the Audio Studio for editorial/listening
+   review and inspect mouth animation at desktop/mobile application sizes.
+
+Ordinary authoring should not require edits to the audio engine, a second speech
+hook, or a coach-specific move-selection system. A new art rig still needs the
+shared mouth vocabulary and motion/lifecycle integration described in the
+[coach guide](../../../../../docs/COACH.md#speaking-articulation).
 
 ## Prepare or verify offline
 
@@ -62,6 +155,13 @@ From the repository root:
 .venv/Scripts/python.exe scripts/prepare_coach_voice_bank.py --manifest frontend/src/audio/speech/banks/rivet/manifest.json --generate
 .venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check
 ```
+
+`--generate` without `--manifest` prepares Walter only. Default `--check`
+verifies all registered banks; an explicit manifest checks just that bank and
+does not apply the registry's approved-voice/catalogue checks. Use an explicit
+manifest while a new bank is unregistered, then run the default strict check
+after registration. A successful generation with a nonempty `missing` list is
+partial progress, not a ready bank.
 
 Generation uses the optional authoring dependencies documented in the
 [alignment preview README](../alignment/README.md). It resumes verified archives
@@ -101,5 +201,21 @@ interpolation separately from the generated evidence.
 Focused validation:
 
 ```powershell
-.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py backend/tests/test_coach_voice_bank.py backend/tests/test_walter_language_revision.py -q
+.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py backend/tests/test_speech_pronunciation.py backend/tests/test_coach_voice_bank.py backend/tests/test_walter_language_revision.py backend/tests/test_coach_pilot_scripts.py -q
+node --test scripts/record_coach_speech.test.mjs
 ```
+
+From `frontend`, use the checked-in desktop/mobile audio configuration, with
+port 5176 free for its managed studio:
+
+```powershell
+npx playwright test --config playwright.audio.config.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts coach-speech.spec.ts game-speech-combinations.spec.ts maia-meaning-coverage.spec.ts
+```
+
+Add the producer-level `game-speech-*-policy.spec.ts` and
+`prepared-insight-selection.spec.ts` coverage when meanings or selection change;
+add the rig/articulation suites when mouth artwork or playback changes. Build
+the application and audio studio to verify asset boundaries. These focused
+commands are not the full browser suite; choose additional checks from
+[Testing](../../../../../docs/TESTING.md) for the actual change, and record what
+ran rather than describing all available checks as passed.

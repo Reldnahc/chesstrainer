@@ -1,5 +1,10 @@
 # Evidence-led coach dialogue
 
+For the complete creation workflow, start with
+[Creating a coach](COACH_CREATION_GUIDE.md). This document owns the factual
+presentation contract; [Character writing](COACH_PERSONALITIES.md) owns editorial
+review, and [Audio](AUDIO.md#recorded-coach-voices) owns recorded delivery.
+
 `frontend/src/dialogue` is a pure presentation boundary. The server supplies
 versioned review events, practical evidence and context relationships.
 The client selects `DialogueIntent` claims with evidence references, source IDs,
@@ -14,8 +19,10 @@ the learner's new move. A cold card ignores even a stray future preview frame.
 
 The neutral renderer favors concrete mate/tactical consequences, critical defenses
 and recoveries, then supported positional, human, clock and history observations.
-Normal bubbles contain at most two whole claims within a 290-character target;
-long legacy verified explanations retain their wording. An evaluation loss alone
+The neutral bubble targets two whole claims within 290 characters; each character
+declares its own claim/character budget (Walter 320, Rivet 270, both two claims).
+The first supported fact and long legacy verified explanations retain their
+wording rather than being truncated to meet that target. An evaluation loss alone
 never becomes a weak-square or king-safety story. Book recognition can coexist
 with an objective error; its name never displaces the error's consequence with a
 quality disclaimer. Human-model wording describes naturalness/difficulty, not a
@@ -68,7 +75,8 @@ best. Missing/unavailable, forced, mismatched move/actor or stale human generati
 abstain. No probability, difficulty threshold, grade or engine budget is computed
 or changed here.
 
-In game review, `HumanInsight` presents the same selected claims beside Show why,
+In game review, `HumanInsight` presents the same selected claims in the shared
+coach's compact insight row,
 even when a more important objective claim occupies the bubble. Its compact Maia
 line opens a native popover with selected-coach wording and source/domain notes.
 It remains available during Show why, closes on position/evidence changes, and
@@ -227,3 +235,54 @@ higher-priority correction, with recognition only if it fits as a secondary
 fact. Opening metadata is excluded from the legacy wording seed for the other
 voices and never enters cold practice dialogue. No new opening recognition,
 engine work, automatic speech event or learning inference is performed here.
+
+## Written facts and recorded summaries
+
+Written and spoken dialogue share supported semantic meanings, not a generated
+English sentence. `renderDialogue` in `neutral.ts` produces the visible text and
+its exact `renderedClaims`. The selectors in `audio/speech/gameSelection.ts` and
+`practiceSelection.ts` validate the corresponding source events or authorized
+feedback before choosing a recording ID. They do not extract meaning from prose
+or match a phrase to a clip. A missing or unsupported recording leaves the written
+feedback available; it never triggers synthesis or weaker evidence validation.
+
+Walter (`classic`, `storyteller.ts`) and Rivet (`robot`, `robot.ts`) are the current
+production references for this complete path. Both use the scoped tactical and
+opening-sequence contracts described above and have registered non-lesson voice
+banks. Other characters retain safe written fallback and their existing authored
+forms; a cast audition or saved provider voice does not mean a complete bank is
+installed. Use the live coach and voice registries rather than assuming the two
+pilot coaches are the entire cast or hard-coding their current recording count.
+
+A recorded passage teaches the supported idea without reciting arbitrary SAN,
+square names, player names, opening names or evaluation numbers. The bubble and
+board keep those precise details. This is intentional editorial compression, not
+permission to lose the responsible side, make an unplayed alternative factual,
+upgrade a possible resource to a forced result, or turn a human-model estimate
+into chess truth. Lessons remain text-only.
+
+When a supported objective explanation and the matching visible human insight
+coexist, `selectGameSpeech` can select one authored whole recording for that pair.
+The child insight must bind to the parent intent and selected coach. The lookup
+uses `meanings.json`; scripts are independently authored per voice in
+`banks/pilot-additions.json` and `banks/maia-combinations.json`. It does not append
+a generic Maia sentence to another clip. If the bank lacks that pair, it falls
+back to the supported primary recording. Late Maia evidence can update text or
+the next explicit playback choice, but does not authorize a second automatic
+spoken response for the same move.
+
+`useCoachSpeech` consumes navigation/attempt event identity separately from
+utterance identity. Hydration, refinement, coach selection and completion of an
+opening prefix are not new automatic narration events. Speech also consumes
+semantic priority, interruptibility and automatic-play eligibility; character
+writing may not change these to make a line play. See [Audio](AUDIO.md) for
+cancellation, readiness, visibility, mute and manual-replay behavior.
+
+Changing a `.ts` personality template changes written rendering only. Changing
+a voice-bank transcript requires a replacement whole audio file, provenance and
+regenerated mouth timing before its active manifest is updated. The writing and
+recording passes must be reviewed together, but they are distinct artifacts.
+The [Walter spoken revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
+and [Rivet spoken revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+record approved examples and the reasoning behind them; they are not additional
+runtime dialogue generators.

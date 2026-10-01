@@ -4,6 +4,42 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Coach creation documentation audit — October 1, 2026
+
+Checked the coach, dialogue, personality and audio references against the current
+implementation following `b918235`. Corrected stale Settings paths, the obsolete
+no-audio/delivery-metadata descriptions, incomplete API-generation instructions,
+old game-review speech counts and claims that earlier Rivet recordings remained
+unchanged. Clarified the difference between approved auditions, speaking rigs,
+registered partial banks and complete semantic coverage. Preserved the owner's
+cast bible with a note distinguishing historical proposals from implemented work.
+
+Added [Create a Fieldwork coach](COACH_CREATION_GUIDE.md), linked from README and
+AGENTS. It sequences character design, shared rig/idle integration, factual and
+distinctive writing, full spoken meanings, casting, recording, automatic mouth
+timing and application verification. Walter/Rivet supply the quality references;
+new characters retain their own personality. An independent source-based review
+found the missing backend contract-export instruction; it was corrected before
+the final review passed.
+
+Validation actually run:
+
+- `.venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check`:
+  **876 recordings verified**, 438 each for Walter and Rivet. This checks current
+  source/provenance/alignment artifacts without generating or changing audio.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_ci_plan.py -k documentation -q`:
+  **21 passed, 330 deselected**.
+- Local documentation check: **137 relative links/heading anchors** and
+  **25 named browser/backend test paths** across the nine authoring/entry documents
+  resolve. Recording/API/studio command options were compared with their actual
+  implementations and checked-in test configurations.
+- `git diff --check`: clean.
+
+Documentation only: no production behavior, scripts, recordings, alignment tracks
+or provider settings changed. No paid requests, new listening assessment, browser
+suite, full application verification, push or deployment was performed. The
+previous implementation verification below remains the relevant product evidence.
+
 ## Rivet spoken personality restoration — October 1, 2026
 
 Reviewed all 257 newer spoken additions against Rivet's existing character bible.

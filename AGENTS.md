@@ -15,3 +15,9 @@ The project owner requires commits throughout development.
 - Reuse or extend the existing component for the same job. Do not recreate selectors, controls, feedback, layouts or their responsive CSS in a page-specific implementation.
 - Preserve semantic differences (links, commands, tabs and form choices), domain ownership and standalone development-tool boundaries. Document justified differences instead of silently creating a parallel component.
 - Keep the component inventory current when shared UI changes. Proposed audit items are not implemented components or automatic authorization for a broader refactor.
+
+## Coach authoring
+
+- Before adding a coach or expanding its artwork, animation, dialogue or recorded voice, read [Create a Fieldwork coach](docs/COACH_CREATION_GUIDE.md) and the relevant implementation references linked there.
+- Use Walter and Rivet as the current finished-coach quality references, preserving each new character's own identity. The cast bible defines personality; it does not replace the integration, coverage and verification guide.
+- Reuse the shared registry, reaction/idle lifecycle, evidence-to-dialogue pipeline, voice-bank selector and mouth-timing generator. A speaking rig or approved audition is not a completed production voice bank.

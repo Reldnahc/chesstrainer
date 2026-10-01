@@ -174,6 +174,10 @@ For coach artwork and animation development, run `npm run dev:coach` inside
 no backend or account. The expression viewer is absent from the application,
 including production/Docker builds. See [Coach development](docs/COACH.md).
 
+To add or finish a character, follow [Create a Fieldwork coach](docs/COACH_CREATION_GUIDE.md).
+It connects personality, artwork, idle behavior, dialogue, recorded voices and
+lip sync, with Walter and Rivet as the current quality references.
+
 ```sh
 python -m pytest -q
 ruff check backend scripts migrations
@@ -209,6 +213,7 @@ Username imports contact the selected site's public API from the backend, sendin
 - [Architecture](docs/ARCHITECTURE.md), [analysis pipeline](docs/ANALYSIS_PIPELINE.md) and [data model](docs/DATA_MODEL.md)
 - [Local classification](docs/LOCAL_CLASSIFICATION.md), [assistant assessment](docs/CLASSIFICATION_ASSESSMENT.md), [external puzzle benchmark](docs/LICHESS_BENCHMARK.md) and [weakness priorities / archived curriculum](docs/CURRICULUM_ENGINE.md)
 - [Spaced repetition](docs/SRS.md), [configuration](docs/CONFIGURATION.md) and [game provider imports](docs/GAME_PROVIDERS.md)
+- [Coach creation guide](docs/COACH_CREATION_GUIDE.md), [cast personality bible](docs/COACH_CAST_BIBLE.md), [animation](docs/COACH.md), [character writing](docs/COACH_PERSONALITIES.md) and [audio](docs/AUDIO.md)
 - [Testing procedure](docs/TESTING.md), [latest verification](docs/VERIFICATION.md) and [decisions](docs/DECISIONS.md); earlier implementation and verification records remain in Git history.
 
 ## Forking and licensing
