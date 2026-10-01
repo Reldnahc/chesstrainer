@@ -65,7 +65,7 @@ type Ticket = {
   activated: boolean;
   timer?: Timer;
   voice?: Voice;
-  speechIdentity?: {coachId: string; utteranceId: string};
+  speechIdentity?: {coachId: string; utteranceId: string; recordingId?: string};
 };
 const definitions = new Map(cueCatalog.map(cue => [cue.id, cue]));
 const FADE_SECONDS = .012;
@@ -113,6 +113,7 @@ export class AudioEngine {
       ? Math.max(0, Math.min(1, preferences.volume)) : defaultAudioPreferences.volume};
     if (!this.preferences.enabled || this.preferences.volume === 0) this.stopAll();
     else this.stopTickets(ticket => !!ticket.category && !this.preferences[ticket.category], "category-disabled");
+    if (this.preferences.voice === "off") this.stopTickets(ticket => ticket.event.bus === "speech", "voice-disabled");
     if (this.master && this.context) {
       try { this.master.gain.setTargetAtTime(this.preferences.volume, this.context.currentTime, .01); } catch { /* Optional audio. */ }
     }
@@ -193,7 +194,7 @@ export class AudioEngine {
     try {
       const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
         eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
-      if (ticket) ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id};
+      if (ticket) ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id, recordingId: clip.recordingId};
       if (ticket && this.current(ticket) && this.activate(ticket)) this.start(ticket, clip.buffer);
     } catch { /* Provider audio must not affect the visual utterance or app state. */ }
   }
@@ -204,7 +205,7 @@ export class AudioEngine {
       const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
         eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
       if (!ticket) return;
-      ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id};
+      ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id, recordingId: clip.recordingId};
       const begin = () => {
         ticket.timer = undefined;
         if (!this.current(ticket) || !this.activate(ticket)) return;
@@ -237,13 +238,14 @@ export class AudioEngine {
     try { void this.context?.close().catch(() => {}); } catch { /* Already closed. */ }
   }
 
-  private blocked(category?: SoundCategory): string | null {
+  private blocked(category?: SoundCategory, bus?: AudioEvent["bus"]): string | null {
     if (this.disposed) return "disposed";
     if (!this.ready) return "not-ready";
     if (!this.preferences.enabled) return "disabled";
     if (this.muted || this.preferences.volume === 0) return "muted";
     if (!this.driver.visible()) return "hidden";
     if (category && !this.preferences[category]) return "category-disabled";
+    if (bus === "speech" && this.preferences.voice === "off") return "voice-disabled";
     if (!this.unlocked || this.context?.state !== "running") return "gesture-blocked";
     return null;
   }
@@ -255,7 +257,7 @@ export class AudioEngine {
     let reason = this.seen.has(key) ? "duplicate" : null;
     this.seen.add(key);
     while (this.seen.size > SEEN_LIMIT) this.seen.delete(this.seen.values().next().value!);
-    reason ??= this.blocked(category);
+    reason ??= this.blocked(category, event.bus);
     if (reason) { this.emit({...event, type: "suppressed", reason}); return null; }
 
     if (this.tickets.size >= 64) {
@@ -298,7 +300,7 @@ export class AudioEngine {
 
   private current(ticket: Ticket): boolean {
     if (!this.tickets.has(ticket.id)) return false;
-    const reason = this.blocked(ticket.category);
+    const reason = this.blocked(ticket.category, ticket.event.bus);
     if (reason) { this.stopTicket(ticket, reason); return false; }
     return true;
   }

@@ -96,6 +96,52 @@ function recording(id: string, options: Partial<RecordedSpeechClip> = {}): Recor
   return {scope: "coach", url: "/audio/walter/welcome.wav", utterance: speech(id).utterance, ...options};
 }
 
+test("voice Off suppresses prepared and recorded speech while board sounds remain enabled", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  f.engine.setPreferences({...defaultAudioPreferences, voice: "off"});
+  f.engine.playPreparedSpeech(speech("prepared-off"));
+  f.engine.playRecordedSpeech(recording("recorded-off"));
+  f.engine.play(move("board-still-on"));
+  await flush();
+  expect(f.started()).toEqual(["board-still-on"]);
+  expect(f.events.filter(event => event.type === "suppressed").map(event => [event.eventId, event.reason]))
+    .toEqual([["prepared-off", "voice-disabled"], ["recorded-off", "voice-disabled"]]);
+  expect(f.loads).toHaveLength(1);
+  expect(f.loads[0]).toContain("move.wav");
+});
+
+test("turning voice Off cancels active and queued speech without cancelling effects", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  f.engine.play(move("board-active"));
+  await flush();
+  f.engine.playPreparedSpeech(speech("speech-active"));
+  f.engine.playRecordedSpeech(recording("speech-delayed", {delayMs: 500}));
+  f.engine.setPreferences({...defaultAudioPreferences, voice: "off"});
+  expect(f.events.filter(event => event.type === "cancelled").map(event => [event.eventId, event.reason]))
+    .toEqual([["speech-active", "voice-disabled"], ["speech-delayed", "voice-disabled"]]);
+  expect(f.context.sources[0].stops).toEqual([]);
+  expect(f.context.sources[1].stops).toHaveLength(1);
+  expect(f.timers.size).toBe(0);
+});
+
+test("turning voice Off invalidates an in-flight recording even after voice is reenabled", async () => {
+  const f = fixture();
+  const pending = deferred<ArrayBuffer>();
+  f.load(() => pending.promise);
+  await f.engine.unlock();
+  f.engine.playRecordedSpeech(recording("old-recording"));
+  f.engine.setPreferences({...defaultAudioPreferences, voice: "off"});
+  f.engine.setPreferences({...defaultAudioPreferences, voice: "manual"});
+  pending.resolve(new ArrayBuffer(8));
+  await flush();
+  expect(f.started()).toEqual([]);
+  f.engine.playRecordedSpeech(recording("explicit-replay"));
+  await flush();
+  expect(f.started()).toEqual(["explicit-replay"]);
+});
+
 test("authoritative SAN selects one semantic cue in explicit precedence", () => {
   expect([undefined, null, "", "  "].map(cueForMove)).toEqual([null, null, null, null]);
   expect(["e4", "Nxd5", "O-O", "0-0-0", "e8=Q", "exf8=Q+", "O-O+", "Qxh7#"].map(cueForMove))
@@ -676,6 +722,23 @@ function voicedSpeech(id: string, buffer: AudioBuffer): PreparedSpeechClip {
   const clip = speech(id);
   return {...clip, buffer, utterance: {...clip.utterance, coachId: "classic"}};
 }
+
+test("speech playback retains caller recording identity across prepared and decoded clips", async () => {
+  const playbacks: (SpeechPlayback | null)[] = [];
+  const f = fixture({onSpeechPlayback: playback => playbacks.push(playback)});
+  const {buffer} = voicedBuffer();
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech({...voicedSpeech("prepared", buffer), recordingId: "walter:first"});
+  const prepared = playbacks.at(-1)!;
+  expect(prepared).toMatchObject({recordingId: "walter:first", utteranceId: "prepared", eventId: "prepared"});
+  f.context.decode = async () => buffer;
+  f.engine.playRecordedSpeech({...recording("decoded"), recordingId: "walter:second"});
+  await flush();
+  expect(prepared.read()).toBeNull();
+  expect(playbacks.at(-1)).toMatchObject({recordingId: "walter:second", utteranceId: "decoded", eventId: "decoded"});
+  f.engine.cancel("coach");
+  expect(playbacks.at(-1)).toBeNull();
+});
 
 test("speech activity starts on the source clock, follows real time and stays separate from effect playback", async () => {
   const playbacks: (SpeechPlayback | null)[] = [];

@@ -20,8 +20,8 @@ from trainer.preferences import (
 )
 
 PATH = "/api/preferences/audio"
-DEFAULT = {"enabled": True, "volume": 0.35, "board": True, "practice": True}
-SAVED = {"enabled": False, "volume": 0.6, "board": False, "practice": False}
+DEFAULT = {"enabled": True, "volume": 0.35, "board": True, "practice": True, "voice": "automatic"}
+SAVED = {"enabled": False, "volume": 0.6, "board": False, "practice": False, "voice": "off"}
 
 
 def test_audio_defaults_restart_and_independent_preference_updates(settings):
@@ -61,6 +61,9 @@ def test_audio_validation_volume_boundaries_and_missing_field_defaults(settings)
             {"enabled": "false"},
             {"board": 1},
             {"practice": None},
+            {"voice": "always"},
+            {"voice": True},
+            {"voice": None},
             {"review": True},
             {"user_id": "other"},
         ):
@@ -97,7 +100,7 @@ def test_audio_account_isolation_csrf_and_second_device(settings):
             headers=origin,
         ).json()
         assert client.get(PATH).json() == DEFAULT
-        bob_saved = DEFAULT | {"volume": 0.2}
+        bob_saved = DEFAULT | {"volume": 0.2, "voice": "manual"}
         assert (
             client.put(PATH, json=bob_saved, headers=origin | {"X-CSRF-Token": bob["csrf"]}).json()
             == bob_saved
@@ -209,6 +212,7 @@ def test_removing_rating_audio_preserves_saved_account_preferences(settings):
         before_users = connection.execute(text("SELECT * FROM users ORDER BY id")).mappings().all()
         before_preferences = [
             {key: value for key, value in row.items() if key != "audio_review"}
+            | {"audio_voice": "automatic"}
             for row in connection.execute(
                 text("SELECT * FROM user_preferences ORDER BY user_id")
             ).mappings()
@@ -234,5 +238,50 @@ def test_removing_rating_audio_preserves_saved_account_preferences(settings):
         command.check(config)
     for owner, expected in (("local", DEFAULT), ("alice", SAVED)):
         with account_sessions(engine, owner)() as db:
-            assert audio_preferences(db).model_dump() == expected
+            assert audio_preferences(db).model_dump() == expected | {"voice": "automatic"}
+    engine.dispose()
+
+
+@pytest.mark.parametrize("voice", ["off", "manual", "automatic"])
+def test_voice_modes_round_trip_without_changing_effect_preferences(settings, voice):
+    expected = SAVED | {"voice": voice}
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        assert client.put(PATH, json=expected).json() == expected
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        assert client.get(PATH).json() == expected
+
+
+def test_unknown_stored_voice_mode_falls_back_without_overwriting(sessions):
+    with sessions() as db:
+        db.add(UserPreferences(audio_voice="future-mode"))
+        db.commit()
+        assert audio_preferences(db).voice == "automatic"
+        assert db.scalar(select(UserPreferences)).audio_voice == "future-mode"
+
+
+def test_voice_migration_retains_existing_sound_and_coach_preferences(settings):
+    from alembic import command
+    from alembic.config import Config
+
+    engine, _ = database(settings.database_path)
+    config = Config("alembic.ini")
+    with engine.begin() as connection:
+        config.attributes["connection"] = connection
+        command.upgrade(config, "342fd86bc105")
+        connection.execute(
+            text(
+                "INSERT INTO user_preferences (user_id, coach_id, coach_motion, "
+                "interface_motion, audio_enabled, audio_volume, audio_board, audio_practice) "
+                "VALUES ('local', 'cat-black', 'still', 'natural', 0, 0.6, 0, 1)"
+            )
+        )
+        previous = dict(connection.execute(text("SELECT * FROM user_preferences")).mappings().one())
+    migrate(engine)
+    with engine.connect() as connection:
+        row = dict(connection.execute(text("SELECT * FROM user_preferences")).mappings().one())
+        assert row == previous | {"audio_voice": "automatic"}
+        assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
+        assert connection.exec_driver_sql("PRAGMA integrity_check").scalar() == "ok"
+        config.attributes["connection"] = connection
+        command.check(config)
     engine.dispose()

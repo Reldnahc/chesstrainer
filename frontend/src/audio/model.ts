@@ -15,9 +15,10 @@ export type AudioPreferences = {
   volume: number;
   board: boolean;
   practice: boolean;
+  voice: "off" | "manual" | "automatic";
 };
 export const defaultAudioPreferences: AudioPreferences = {
-  enabled: true, volume: .35, board: true, practice: true,
+  enabled: true, volume: .35, board: true, practice: true, voice: "automatic",
 };
 
 /** Only pass server-supplied SAN for an accepted/displayed move. No board inference. */
@@ -45,6 +46,7 @@ export type PreparedSpeechClip = {
   buffer: AudioBuffer;
   scope: string;
   eventId?: string;
+  recordingId?: string;
 };
 
 /** Approximate speech activity from a recording, not phonemes or recognized words. */
@@ -60,6 +62,7 @@ export type SpeechPlayback = {
   readonly eventId: string;
   readonly coachId: string;
   readonly utteranceId: string;
+  readonly recordingId?: string;
   read: () => SpeechActivity | null;
 };
 

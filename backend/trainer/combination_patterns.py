@@ -46,6 +46,7 @@ def combinations(boards, plies, analysis_id, direction):
                             "king": names([after.king(not actor)]),
                         },
                         f"{before.san(move)} pins the {chess.piece_name(victim.piece_type)} to its king. It can only move along the pin line, and it is lost in the shown continuation.",
+                        mechanism="pin_collected",
                     )
                 )
         for slider, piece in after.piece_map().items():
@@ -91,6 +92,7 @@ def combinations(boards, plies, analysis_id, direction):
                             roles,
                             f"{before.san(move)} opens the {chess.piece_name(piece.piece_type)}'s line to the {chess.piece_name(victim.piece_type)} on {chess.square_name(target)}. That target is captured by this piece in the shown continuation.",
                             frame=ply - 1,
+                            mechanism="discovered_capture",
                         )
                     )
                     other_targets = valuable_targets(after, move.to_square) - {target}
@@ -107,6 +109,7 @@ def combinations(boards, plies, analysis_id, direction):
                                     "targets": names(sorted({target, *other_targets})),
                                 },
                                 f"{before.san(move)} creates threats from two pieces: the moved piece attacks one valuable target while the opened line attacks another. The opened line wins material in the shown continuation.",
+                                mechanism="double_attack_collected",
                             )
                         )
         if ply + 2 not in plies:
@@ -147,6 +150,7 @@ def combinations(boards, plies, analysis_id, direction):
                     },
                     f"In this continuation, {before.san(move)} is answered by moving the defender from {chess.square_name(reply.from_square)}. This leaves the {chess.piece_name(victim.piece_type)} on {chess.square_name(capture.to_square)} undefended, and it is captured next.",
                     frame=ply - 1,
+                    mechanism="deflection_collected",
                 )
             )
     return found

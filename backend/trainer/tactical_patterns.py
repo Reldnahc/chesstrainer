@@ -7,6 +7,22 @@ from trainer.lichess_patterns import THEME_SKILLS, recognize
 from trainer.tactical_geometry import tactical_plies
 from trainer.verified_patterns import detect_patterns as verified_patterns
 
+RECOGNIZED_MECHANISMS = {
+    "fork": "fork_recognized",
+    "double_check": "double_check",
+    "discovered_check": "discovered_check",
+    "pin_prevents_attack": "pin_prevents_capture",
+    "pin_prevents_escape": "pin_restricts_escape",
+    "promotion": "promotion",
+    "under_promotion": "promotion",
+    "hanging_piece": "undefended_capture",
+    "skewer": "skewer_collected",
+    "discovered_attack": "discovered_capture",
+    "capturing_defender": "defender_captured",
+    "deflection": "deflection",
+    "back_rank_mate": "back_rank_mate",
+}
+
 
 def recognized_patterns(
     boards, first, end, analysis_id, direction, *, max_tactic_plies=8, previous_move=None
@@ -40,7 +56,9 @@ def recognized_patterns(
                 squares=sorted({s for squares in item.roles.values() for s in squares}),
                 roles=item.roles,
                 explanation=item.explanation,
+                mechanism=RECOGNIZED_MECHANISMS[item.rule],
                 cue=CUES[skill],
+                cue_key=skill,
                 verification="verified_line",
             )
         )

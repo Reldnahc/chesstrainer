@@ -60,6 +60,9 @@ def audio_preferences(db):
         volume=saved.audio_volume,
         board=saved.audio_board,
         practice=saved.audio_practice,
+        voice=saved.audio_voice
+        if saved.audio_voice in ("off", "manual", "automatic")
+        else "automatic",
     )
 
 

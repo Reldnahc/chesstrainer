@@ -22,6 +22,21 @@ from trainer.models import (
 from trainer.move_causes import move_causes
 from trainer.tactical_patterns import detect_patterns, recognized_patterns
 
+SummaryKind = Literal[
+    "mate_for_mover",
+    "mate_against_mover",
+    "material_gain",
+    "material_loss",
+    "engine_accepted",
+    "engine_rejected",
+    "curated_accepted",
+    "curated_rejected",
+    "frame",
+]
+NoteKind = Literal[
+    "curated_authority", "strong_replies", "material_scope", "no_simple_reason", "saved_policy"
+]
+
 
 class Frame(BaseModel):
     fen: str
@@ -32,6 +47,12 @@ class Frame(BaseModel):
     material_change: int
     capture: str | None = None
     gives_check: bool = False
+    # Only legal replay produces this version; absent legacy facts stay unknown.
+    facts_version: Literal[1] | None = None
+    promotion: str | None = None
+    castling: bool = False
+    checkmate: bool = False
+    escaped_check: bool = False
 
 
 class MoveExplanation(BaseModel):
@@ -42,7 +63,10 @@ class MoveExplanation(BaseModel):
     move_uci: str
     move_san: str
     summary: str
+    summary_kind: SummaryKind | None = None
+    summary_frame_index: int | None = None
     notes: list[str]
+    note_kinds: list[NoteKind | None] = Field(default_factory=list)
     frames: list[Frame]
     orientation: Literal["white", "black"]
     analysis_id: str | None = None
@@ -67,6 +91,7 @@ def replay_line(board, line):
             annotation="The original position.",
             highlights=[],
             material_change=0,
+            facts_version=1,
         )
     ]
     for uci in line:
@@ -106,6 +131,11 @@ def replay_line(board, line):
                 highlights=highlights,
                 capture=chess.piece_name(captured.piece_type) if captured else None,
                 gives_check=replay.is_check(),
+                facts_version=1,
+                promotion=chess.piece_name(move.promotion) if move.promotion else None,
+                castling=castling,
+                checkmate=replay.is_checkmate(),
+                escaped_check=was_check,
                 material_change=material(replay, learner)
                 - material(replay, not learner)
                 - initial_balance,
@@ -164,10 +194,13 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
             summary=f"This is a saved {source} move."
             if accepted
             else f"This move is outside the saved {source} answers.",
+            summary_kind="curated_accepted" if accepted else "curated_rejected",
             notes=[
                 "The saved answers define this exercise. A different legal move is not necessarily bad chess."
             ]
             + ([exercise.explanation] if accepted and exercise.explanation else []),
+            note_kinds=["curated_authority"]
+            + ([None] if accepted and exercise.explanation else []),
             frames=replay_line(board, [uci]),
             orientation=exercise.orientation,
         )
@@ -188,15 +221,21 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         "This is one Stockfish continuation against strong replies; it does not mean every reply is forced.",
         "Material changes refer only to the shown line, compared with the starting position. Pieces use values 1/3/3/5/9.",
     ]
+    note_kinds = ["strong_replies", "material_scope"]
+    summary_frame_index = None
     if candidate.score.kind == "mate":
         winner = learner if candidate.score.outcome() == 1 else color_name(not board.turn)
         summary = f"Stockfish finds a forced mate for {winner} after {san}."
+        summary_kind = "mate_for_mover" if candidate.score.outcome() == 1 else "mate_against_mover"
     elif accepted and balance_change > 0:
         summary = f"In this line, {learner} gains {balance_change} points of material."
+        summary_kind = "material_gain"
     elif not accepted and balance_change < 0:
         summary = f"In this line, {learner} loses {abs(balance_change)} points of material."
+        summary_kind = "material_loss"
     elif not accepted and len(frames) > 2 and (frames[2].capture or frames[2].gives_check):
         summary = frames[2].annotation
+        summary_kind, summary_frame_index = "frame", 2
     elif accepted and (
         board.is_capture(move)
         or board.gives_check(move)
@@ -205,6 +244,7 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         or move.promotion
     ):
         summary = frames[1].annotation
+        summary_kind, summary_frame_index = "frame", 1
     else:
         summary = (
             "This move meets your exercise's engine acceptance policy."
@@ -214,7 +254,10 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         notes.append(
             "The saved line does not establish a simple tactical reason. Step through it to compare the replies; no positional explanation has been inferred."
         )
+        summary_kind = "engine_accepted" if accepted else "engine_rejected"
+        note_kinds.append("no_simple_reason")
     notes.append(f"Your saved answer policy is {exercise.policy.get('mode', 'practical')}.")
+    note_kinds.append("saved_policy")
     # These witnesses come from THIS answer's exact line. A classification from
     # the source game would be wrong for a different move made during review.
     boards = replay(board, candidate)
@@ -256,7 +299,10 @@ def explain_review(db, session_id, attempt_id=None, solution=False):
         move_uci=uci,
         move_san=san,
         summary=summary,
+        summary_kind=summary_kind,
+        summary_frame_index=summary_frame_index,
         notes=notes,
+        note_kinds=note_kinds,
         frames=frames,
         orientation=exercise.orientation,
         analysis_id=analysis.id,

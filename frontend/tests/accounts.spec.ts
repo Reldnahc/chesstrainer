@@ -56,7 +56,7 @@ test('account signup, engine-free sync, second-device login and private library'
   await sound.getByRole('checkbox', {name: /^Board moves/}).uncheck();
   await expect(sound.locator('.preference-status')).toHaveAttribute('data-state', 'saved');
   await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
-  const ownerAudio = {enabled: true, volume: .35, board: false, practice: true};
+  const ownerAudio = {enabled: true, volume: .35, board: false, practice: true, voice: 'automatic'};
   expect(await (await page.request.get('/api/preferences/audio')).json()).toEqual(ownerAudio);
   await page.getByRole('link', {name: 'Games', exact: true}).click();
   const jobs = await (await page.request.get('/api/jobs')).json();
@@ -148,7 +148,7 @@ test('account signup, engine-free sync, second-device login and private library'
     // Replacing the signed-in account also replaces its muted audio provider.
     await deviceSound.getByRole('button', {name: 'Test sound', exact: true}).click();
     await expect.poll(() => audioCues(device)).toEqual(['move']);
-    expect(await (await device.request.get('/api/preferences/audio')).json()).toEqual({enabled: true, volume: .35, board: true, practice: true});
+    expect(await (await device.request.get('/api/preferences/audio')).json()).toEqual({enabled: true, volume: .35, board: true, practice: true, voice: 'automatic'});
     await device.getByRole('link', {name: 'Games', exact: true}).click();
     await expect(device.locator('.game-library-item')).toHaveCount(0);
     await expect(device.getByLabel('Remembered Chess.com username')).toHaveCount(0);

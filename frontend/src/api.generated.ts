@@ -1183,6 +1183,12 @@ export interface components {
              */
             practice: boolean;
             /**
+             * Voice
+             * @default automatic
+             * @enum {string}
+             */
+            voice: "off" | "manual" | "automatic";
+            /**
              * Volume
              * @default 0.35
              */
@@ -1714,6 +1720,8 @@ export interface components {
              * @default
              */
             cue: string;
+            /** Cue Key */
+            cue_key?: string | null;
             /**
              * Direction
              * @enum {string}
@@ -1726,6 +1734,8 @@ export interface components {
              * @default 0
              */
             frame_ply: number;
+            /** Mechanism */
+            mechanism?: ("fork_recognized" | "fork_collected" | "pin_prevents_capture" | "pin_restricts_escape" | "pin_defenders_no_recapture" | "pin_collected" | "skewer_collected" | "king_skewer_collected" | "defender_captured" | "sole_defender_captured" | "deflection" | "deflection_collected" | "discovered_capture" | "discovered_check" | "double_check" | "double_attack_collected" | "promotion" | "promotion_material_retained" | "undefended_capture" | "undefended_capture_gain" | "back_rank_mate" | "abandoned_defender" | "unfavorable_exchange" | "previous_threat" | "relative_pin_released") | null;
             /** Moves */
             moves: string[];
             /** Plies */
@@ -1754,6 +1764,23 @@ export interface components {
             annotation: string;
             /** Capture */
             capture?: string | null;
+            /**
+             * Castling
+             * @default false
+             */
+            castling: boolean;
+            /**
+             * Checkmate
+             * @default false
+             */
+            checkmate: boolean;
+            /**
+             * Escaped Check
+             * @default false
+             */
+            escaped_check: boolean;
+            /** Facts Version */
+            facts_version?: 1 | null;
             /** Fen */
             fen: string;
             /**
@@ -1765,6 +1792,8 @@ export interface components {
             highlights: string[];
             /** Material Change */
             material_change: number;
+            /** Promotion */
+            promotion?: string | null;
             /** San */
             san: string;
             /** Uci */
@@ -2555,6 +2584,8 @@ export interface components {
             move_san: string;
             /** Move Uci */
             move_uci: string;
+            /** Note Kinds */
+            note_kinds?: (("curated_authority" | "strong_replies" | "material_scope" | "no_simple_reason" | "saved_policy") | null)[];
             /** Notes */
             notes: string[];
             /**
@@ -2565,6 +2596,10 @@ export interface components {
             score?: components["schemas"]["Score"] | null;
             /** Summary */
             summary: string;
+            /** Summary Frame Index */
+            summary_frame_index?: number | null;
+            /** Summary Kind */
+            summary_kind?: ("mate_for_mover" | "mate_against_mover" | "material_gain" | "material_loss" | "engine_accepted" | "engine_rejected" | "curated_accepted" | "curated_rejected" | "frame") | null;
             /**
              * Version
              * @default 1
@@ -3147,6 +3182,9 @@ export interface components {
             explanation?: string | null;
             /** Explanation Summary */
             explanation_summary?: string | null;
+            explanation_summary_frame?: components["schemas"]["Frame"] | null;
+            /** Explanation Summary Kind */
+            explanation_summary_kind?: ("mate_for_mover" | "mate_against_mover" | "material_gain" | "material_loss" | "engine_accepted" | "engine_rejected" | "curated_accepted" | "curated_rejected" | "frame") | null;
             /** Facts */
             facts?: {
                 [key: string]: components["schemas"]["JsonValue"];
@@ -3157,6 +3195,8 @@ export interface components {
             grade: string;
             /** Message */
             message?: string | null;
+            /** Message Kind */
+            message_kind?: ("good_move" | "practice_saved" | "relearning" | "opening_rejected" | "opening_rejected_changed" | "opening_rejected_retired") | null;
             /** Next Due */
             next_due?: string | null;
             /** Non Scheduling Reason */

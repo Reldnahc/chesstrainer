@@ -50,9 +50,19 @@ class TacticalEvent:
     def san(self):
         return self.before.san(self.move)
 
-    def add(self, skill, plies, roles, text, frame=None):
+    def add(self, skill, plies, roles, text, frame=None, *, mechanism):
         self.findings.append(
-            witness(self.boards, self.analysis_id, self.direction, skill, plies, roles, text, frame)
+            witness(
+                self.boards,
+                self.analysis_id,
+                self.direction,
+                skill,
+                plies,
+                roles,
+                text,
+                frame,
+                mechanism=mechanism,
+            )
         )
 
 
@@ -88,6 +98,7 @@ def hanging_capture(event: TacticalEvent) -> None:
             {"attacker": names([event.move.from_square]), "target": names([event.move.to_square])},
             f"{event.san} captures an undefended {chess.piece_name(captured.piece_type)}. The shown continuation has a net material gain for the capturing side.",
             frame=event.first - 1,
+            mechanism="undefended_capture_gain",
         )
 
 
@@ -118,6 +129,7 @@ def collected_fork(event: TacticalEvent) -> None:
             [event.first, collection],
             {"attacker": names([event.move.to_square]), "targets": names(sorted(targets))},
             f"{event.san} attacks multiple valuable targets. The same piece captures one in the shown continuation with a net material gain.",
+            mechanism="fork_collected",
         )
 
 
@@ -128,6 +140,7 @@ def promotion(event: TacticalEvent) -> None:
             [event.first],
             {"promoted_piece": names([event.move.to_square])},
             f"{event.san} promotes a pawn; the shown continuation retains a material gain.",
+            mechanism="promotion_material_retained",
         )
 
 
@@ -142,6 +155,7 @@ def checking_attack(event: TacticalEvent) -> None:
                 "king": names([event.after.king(not event.actor)]),
             },
             f"{event.san} gives double check in this verified continuation.",
+            mechanism="double_check",
         )
     elif checkers and event.move.to_square not in checkers:
         event.add(
@@ -153,6 +167,7 @@ def checking_attack(event: TacticalEvent) -> None:
                 "king": names([event.after.king(not event.actor)]),
             },
             f"{event.san} uncovers check from another piece in this verified continuation.",
+            mechanism="discovered_check",
         )
 
 
@@ -180,6 +195,7 @@ def pinned_defender(event: TacticalEvent) -> None:
                 },
                 f"{event.san} captures the {chess.piece_name(captured.piece_type)}. Its geometric defenders are pinned to the king and cannot recapture on {chess.square_name(event.move.to_square)}. The shown line has a material gain.",
                 frame=event.first - 1,
+                mechanism="pin_defenders_no_recapture",
             )
 
 
@@ -214,6 +230,7 @@ def absolute_skewer(event: TacticalEvent) -> None:
                     "target": names([capture.to_square]),
                 },
                 f"{event.san} checks the king on the same line as the {chess.piece_name(victim.piece_type)} behind it. After the king moves, the same piece captures that target in the saved line.",
+                mechanism="king_skewer_collected",
             )
 
 
@@ -252,6 +269,7 @@ def removed_defender(event: TacticalEvent) -> None:
                     },
                     f"{event.san} removes the sole geometrical defender of the {chess.piece_name(victim.piece_type)} on {chess.square_name(follow.to_square)}. That piece is captured next in the verified continuation.",
                     frame=event.first - 1,
+                    mechanism="sole_defender_captured",
                 )
 
 
@@ -281,4 +299,5 @@ def back_rank_mate(event: TacticalEvent) -> None:
                         "escape_blockers": names(pawns),
                     },
                     f"{event.san} is checkmate on the back rank. Own pawns block some of the king's inward escape squares.",
+                    mechanism="back_rank_mate",
                 )

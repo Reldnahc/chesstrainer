@@ -3,7 +3,7 @@ import type {AudioPreferences} from '../src/audio/model';
 import {audioCues, captureAudio, clearAudio} from './helpers/audio';
 
 const preferencePath = '/api/preferences/audio';
-const defaults: AudioPreferences = {enabled: true, volume: .35, board: true, practice: true};
+const defaults: AudioPreferences = {enabled: true, volume: .35, board: true, practice: true, voice: 'automatic'};
 const test = base.extend<{restoreAudio: void}>({
   restoreAudio: [async ({page}, use) => {
     const original = await (await page.request.get(preferencePath)).json();
@@ -35,17 +35,21 @@ test('sound choices save independently, survive reload and keep a usable narrow 
   await expect(sound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
   await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
   await expect(sound.getByRole('checkbox')).toHaveCount(3);
+  await expect(sound.getByRole('combobox', {name: 'Coach voice', exact: true})).toHaveValue('automatic');
+  await savedChange(page, () => sound.getByRole('combobox', {name: 'Coach voice', exact: true}).selectOption('manual'));
   await savedChange(page, () => sound.getByRole('checkbox', {name: /^Board moves/}).uncheck());
   await savedChange(page, () => volume.press('End'));
-  const expected = {...defaults, board: false, volume: 1};
+  const expected = {...defaults, board: false, volume: 1, voice: 'manual'};
   expect(await (await page.request.get(preferencePath)).json()).toEqual(expected);
   await page.reload();
   await expect(volume).toHaveValue('100');
+  await expect(sound.getByRole('combobox', {name: 'Coach voice', exact: true})).toHaveValue('manual');
   await expect(sound.getByRole('checkbox', {name: /^Board moves/})).not.toBeChecked();
   await expect(sound.getByRole('checkbox', {name: /^Practice feedback/})).toBeChecked();
   await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
   await savedChange(page, () => sound.getByRole('checkbox', {name: 'Enable sound', exact: true}).uncheck());
   await expect(volume).toBeDisabled();
+  await expect(sound.getByRole('combobox', {name: 'Coach voice', exact: true})).toBeDisabled();
   for (const name of [/^Board moves/, /^Practice feedback/]) await expect(sound.getByRole('checkbox', {name})).toBeDisabled();
   await expect(sound.getByRole('button', {name: 'Test sound', exact: true})).toBeDisabled();
   expect(await (await page.request.get(preferencePath)).json()).toEqual({...expected, enabled: false});

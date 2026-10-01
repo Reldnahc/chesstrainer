@@ -104,6 +104,16 @@
             "title": "Practice",
             "type": "boolean"
           },
+          "voice": {
+            "default": "automatic",
+            "enum": [
+              "off",
+              "manual",
+              "automatic"
+            ],
+            "title": "Voice",
+            "type": "string"
+          },
           "volume": {
             "default": 0.35,
             "maximum": 1.0,
@@ -1569,6 +1579,17 @@
             "title": "Cue",
             "type": "string"
           },
+          "cue_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cue Key"
+          },
           "direction": {
             "enum": [
               "missed_opportunity",
@@ -1585,6 +1606,44 @@
             "default": 0,
             "title": "Frame Ply",
             "type": "integer"
+          },
+          "mechanism": {
+            "anyOf": [
+              {
+                "enum": [
+                  "fork_recognized",
+                  "fork_collected",
+                  "pin_prevents_capture",
+                  "pin_restricts_escape",
+                  "pin_defenders_no_recapture",
+                  "pin_collected",
+                  "skewer_collected",
+                  "king_skewer_collected",
+                  "defender_captured",
+                  "sole_defender_captured",
+                  "deflection",
+                  "deflection_collected",
+                  "discovered_capture",
+                  "discovered_check",
+                  "double_check",
+                  "double_attack_collected",
+                  "promotion",
+                  "promotion_material_retained",
+                  "undefended_capture",
+                  "undefended_capture_gain",
+                  "back_rank_mate",
+                  "abandoned_defender",
+                  "unfavorable_exchange",
+                  "previous_threat",
+                  "relative_pin_released"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mechanism"
           },
           "moves": {
             "items": {
@@ -1675,6 +1734,33 @@
             ],
             "title": "Capture"
           },
+          "castling": {
+            "default": false,
+            "title": "Castling",
+            "type": "boolean"
+          },
+          "checkmate": {
+            "default": false,
+            "title": "Checkmate",
+            "type": "boolean"
+          },
+          "escaped_check": {
+            "default": false,
+            "title": "Escaped Check",
+            "type": "boolean"
+          },
+          "facts_version": {
+            "anyOf": [
+              {
+                "const": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Facts Version"
+          },
           "fen": {
             "title": "Fen",
             "type": "string"
@@ -1694,6 +1780,17 @@
           "material_change": {
             "title": "Material Change",
             "type": "integer"
+          },
+          "promotion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promotion"
           },
           "san": {
             "title": "San",
@@ -4393,6 +4490,27 @@
             "title": "Move Uci",
             "type": "string"
           },
+          "note_kinds": {
+            "items": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "curated_authority",
+                    "strong_replies",
+                    "material_scope",
+                    "no_simple_reason",
+                    "saved_policy"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Note Kinds",
+            "type": "array"
+          },
           "notes": {
             "items": {
               "type": "string"
@@ -4421,6 +4539,39 @@
           "summary": {
             "title": "Summary",
             "type": "string"
+          },
+          "summary_frame_index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary Frame Index"
+          },
+          "summary_kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "mate_for_mover",
+                  "mate_against_mover",
+                  "material_gain",
+                  "material_loss",
+                  "engine_accepted",
+                  "engine_rejected",
+                  "curated_accepted",
+                  "curated_rejected",
+                  "frame"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary Kind"
           },
           "version": {
             "default": "1",
@@ -6155,6 +6306,38 @@
             ],
             "title": "Explanation Summary"
           },
+          "explanation_summary_frame": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "explanation_summary_kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "mate_for_mover",
+                  "mate_against_mover",
+                  "material_gain",
+                  "material_loss",
+                  "engine_accepted",
+                  "engine_rejected",
+                  "curated_accepted",
+                  "curated_rejected",
+                  "frame"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation Summary Kind"
+          },
           "facts": {
             "anyOf": [
               {
@@ -6194,6 +6377,25 @@
               }
             ],
             "title": "Message"
+          },
+          "message_kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "good_move",
+                  "practice_saved",
+                  "relearning",
+                  "opening_rejected",
+                  "opening_rejected_changed",
+                  "opening_rejected_retired"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message Kind"
           },
           "next_due": {
             "anyOf": [

@@ -49,7 +49,15 @@ def _with_current_opening_authority(statement):
 def explanation_brief(db, session_id, attempt_id=None, solution=False, include_reply=False):
     try:
         explanation = explain_review(db, session_id, attempt_id, solution)
-        result = {"explanation_summary": explanation.summary, "submitted_san": explanation.move_san}
+        result = {
+            "explanation_summary": explanation.summary,
+            "explanation_summary_kind": explanation.summary_kind,
+            "submitted_san": explanation.move_san,
+        }
+        if explanation.summary_frame_index is not None:
+            result["explanation_summary_frame"] = explanation.frames[
+                explanation.summary_frame_index
+            ].model_dump()
         if include_reply and explanation.authority == "stockfish" and len(explanation.frames) >= 3:
             result["attempt_frame"] = explanation.frames[1].model_dump()
             result["counter_reply"] = explanation.frames[2].model_dump()
@@ -375,6 +383,15 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
             )
             if result.get("non_scheduling_reason"):
                 result["message"] += " " + result["non_scheduling_reason"]
+            result["message_kind"] = (
+                "opening_rejected_changed"
+                if not opening_recall.current(db, session, snapshot)
+                else "opening_rejected_retired"
+                if db.get(SRSState, exercise.id).retired_at is not None
+                else None
+                if result.get("non_scheduling_reason")
+                else "opening_rejected"
+            )
         return result
     session.completed = True
     session.completed_at = now()
@@ -392,9 +409,15 @@ def submit_move(db, session_id, uci, engine, scheduler, settings):
         else "Solved. This recall stays marked for relearning."
         if session.failed
         else "Good move.",
+        "message_kind": "practice_saved"
+        if session.mode == "focus"
+        else "relearning"
+        if session.failed
+        else "good_move",
         **feedback(db, exercise, session),
     }
     if snapshot:
+        result["message_kind"] = None
         result["message"] = "This matches a move in your selected opening studies. " + (
             result.get("non_scheduling_reason")
             or ("This recall stays marked for relearning." if session.failed else "Recall saved.")

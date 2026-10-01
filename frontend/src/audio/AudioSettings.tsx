@@ -52,6 +52,17 @@ export default function AudioSettings() {
           <span>{label}<small>{description}</small></span>
         </label>)}
       </fieldset>
+      <div>
+        <label htmlFor="coach-voice">Coach voice</label>
+        <select id="coach-voice" value={draft.voice} disabled={disabled || !draft.enabled}
+          aria-describedby="coach-voice-help"
+          onChange={event => void update({voice: event.target.value as AudioPreferences["voice"]})}>
+          <option value="automatic">Automatic</option>
+          <option value="manual">On request</option>
+          <option value="off">Off</option>
+        </select>
+        <p className="small muted" id="coach-voice-help">Walter has a recorded voice. Automatic reads supported coaching; On request plays it when you choose Listen. Other coaches remain text-only.</p>
+      </div>
       <div className="button-row audio-setting-preview">
         <Button variant="secondary" disabled={disabled || !preferences.enabled || volume === 0 || muted || (!preferences.board && !preferences.practice)}
           onClick={async () => {

@@ -135,6 +135,7 @@ def witness(boards, analysis_id, direction, skill, plies, roles, text, frame=Non
         frame_ply=frame if frame is not None else plies[0],
         explanation=text,
         cue=CUES[skill],
+        cue_key=skill,
         verification="verified_line",
         **extra,
     )

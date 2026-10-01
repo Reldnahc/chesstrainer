@@ -37,6 +37,7 @@ def move_causes(boards, analysis_id, previous=None):
                     common | {"defender": names([move.from_square])},
                     f"{before.san(move)} moves the only unpinned defender of your {chess.piece_name(victim.piece_type)} on {chess.square_name(target)}. {after.san(reply)} then captures that piece in the saved continuation.",
                     frame=0,
+                    mechanism="abandoned_defender",
                 )
             )
         if previous and victim.piece_type != chess.PAWN:
@@ -92,6 +93,9 @@ def move_causes(boards, analysis_id, previous=None):
                         frame=0,
                         context_fen=earlier.fen(),
                         context_move=opponent_move.uci(),
+                        mechanism="relative_pin_released"
+                        if releases_capture
+                        else "previous_threat",
                     )
                 )
     if before.is_capture(move) and not move.promotion and reply.to_square == move.to_square:
@@ -109,6 +113,7 @@ def move_causes(boards, analysis_id, previous=None):
                     common | {"moved_piece": names([move.from_square])},
                     f"{before.san(move)} takes a {chess.piece_name(captured.piece_type)}, but {after.san(reply)} recaptures your {chess.piece_name(victim.piece_type)}. This immediate exchange gives up {VALUES[victim.piece_type] - VALUES[captured.piece_type]} material points; the saved comparison also favors the alternative.",
                     frame=0,
+                    mechanism="unfavorable_exchange",
                 )
             )
     return found

@@ -5,7 +5,7 @@ from pydantic import JsonValue
 from trainer.chess_core import Candidate
 from trainer.contracts.common import Color, Contract, LegalMove
 from trainer.contracts.opening_studies import OpeningContinuation, OpeningRecallContext
-from trainer.explanations import Frame
+from trainer.explanations import Frame, SummaryKind
 
 
 class PracticeQueueItem(Contract):
@@ -45,10 +45,23 @@ class ReviewFeedback(Contract):
     grade: str
     attempt_id: str | None = None
     explanation_summary: str | None = None
+    explanation_summary_kind: SummaryKind | None = None
+    explanation_summary_frame: Frame | None = None
     submitted_san: str | None = None
     fen: str | None = None
     practice_only: bool | None = None
     message: str | None = None
+    message_kind: (
+        Literal[
+            "good_move",
+            "practice_saved",
+            "relearning",
+            "opening_rejected",
+            "opening_rejected_changed",
+            "opening_rejected_retired",
+        ]
+        | None
+    ) = None
     attempt_frame: Frame | None = None
     counter_reply: Frame | None = None
     reveal_frame: Frame | None = None

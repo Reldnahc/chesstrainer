@@ -107,7 +107,7 @@ export default function AudioStudio() {
       }
     } });
     engine.setReady(true);
-    engine.setPreferences({ enabled: true, volume: .35, board: true, practice: true });
+    engine.setPreferences({ enabled: true, volume: .35, board: true, practice: true, voice: "manual" });
     engineRef.current = engine;
     const pauseScenario = () => {
       if (document.visibilityState !== "hidden") return;
@@ -136,7 +136,7 @@ export default function AudioStudio() {
       timersRef.current.forEach(clearTimeout);
       timersRef.current = [];
     }
-    engineRef.current?.setPreferences({ enabled: true, volume: volume / 100, board: true, practice: true });
+    engineRef.current?.setPreferences({ enabled: true, volume: volume / 100, board: true, practice: true, voice: "manual" });
   }, [volume]);
   useEffect(() => {
     if (muted) {

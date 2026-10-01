@@ -31,6 +31,34 @@ CUES = {
     "trapped_piece": "Before moving into an attack, check whether the piece has a safe way out.",
 }
 
+FindingMechanism = Literal[
+    "fork_recognized",
+    "fork_collected",
+    "pin_prevents_capture",
+    "pin_restricts_escape",
+    "pin_defenders_no_recapture",
+    "pin_collected",
+    "skewer_collected",
+    "king_skewer_collected",
+    "defender_captured",
+    "sole_defender_captured",
+    "deflection",
+    "deflection_collected",
+    "discovered_capture",
+    "discovered_check",
+    "double_check",
+    "double_attack_collected",
+    "promotion",
+    "promotion_material_retained",
+    "undefended_capture",
+    "undefended_capture_gain",
+    "back_rank_mate",
+    "abandoned_defender",
+    "unfavorable_exchange",
+    "previous_threat",
+    "relative_pin_released",
+]
+
 
 class Finding(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -43,8 +71,11 @@ class Finding(BaseModel):
     squares: list[str]
     moves: list[str]
     explanation: str
+    # Specific producer branch, not a motif inferred from wording or actor role.
+    mechanism: FindingMechanism | None = None
     verification: Literal["engine_mate", "verified_line", "engine_defense"]
     cue: str = ""
+    cue_key: str | None = None
     frame_ply: int = 0
     roles: dict[str, list[str]] = Field(default_factory=dict)
     context_fen: str | None = None
