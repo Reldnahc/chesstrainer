@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "walter-dialogue-recording-plan",
-  "status": "draft-not-approved-for-bulk-generation-or-playback",
+  "status": "approved-non-lesson-production-bank",
   "auditedCommit": "855fbc5",
   "coachId": "classic",
   "selectedVoice": "walter-selected-voice.json",
@@ -57,8 +57,8 @@
     "extraPerformanceTakes": 0
   },
   "policy": {
-    "scope": "Game review, SRS/explanations, opening recall/preview, puzzle guidance and finite operational states only; lessons are explicitly deferred. Optional selected-finding/cue/note playback is counted. No runtime selection change or new production speech has been implemented.",
-    "defaults": "Recommend leaving the three transient loading/checking states and defensive no-claim fallback silent. They remain counted for complete visible-copy accounting. Other examples are not instructions to speak every line automatically.",
+    "scope": "Owner-approved non-lesson Walter bank: game review, SRS/explanations, opening recall/preview, puzzle guidance and finite operational states. Lessons remain deferred. Selecting a recording still requires the current authorized surface and supporting facts.",
+    "defaults": "Four transient/defensive states remain silent and unrecorded. The bank contains 181 recordings; presence of a recording never authorizes hidden, cold-answer, stale or automatic playback.",
     "game": "Retain family-specific gates and exact selected claim identity from walter-dialogue-inventory.json. The 21 secondary scripts require explicit secondary-surface policy; do not silently narrate hidden popovers.",
     "practice": [
       "practiceIntent accepts only authorized API feedback; cold cards cannot use future frames, summary, grade, source-game findings or expression as answer hints.",
@@ -81,7 +81,7 @@
     "lesson": "Deferred by owner. Do not generate course narration, hints, game notes, reveal narration or fixed lesson guidance. Adding or editing courses must not require maintaining this voice pack. Existing written lessons and lesson behavior remain unchanged.",
     "wording": "Use complete reusable explanations of supported ideas. Exact moves, squares, evaluations and identities remain written. Text-character counts are exact draft input sizes, not billed credits or guaranteed take counts.",
     "narration": "One or more complete supported sentences may be presented explicitly; this is not chopped-word assembly. Repetition alternatives, emotional retakes, localization and other coaches are not multiplied into the count.",
-    "generation": "Only the eight walter-contrasts-plan.json auditions were requested/generated. The remaining 177 listed scripts (173 without transient/defensive entries) need script and delivery approval. Preserve the bounded existing recording CLI; at least nine further batches at its 20-request cap. No lesson recording requests."
+    "generation": "The owner authorized completing Walter after approving the Older teacher voice and automatic mouth generator. Reuse the eight unchanged contrast recordings; generate the remaining 173 once in nine bounded plans of at most 20 requests. No lesson recordings."
   },
   "coverage": {
     "game": {
@@ -648,7 +648,7 @@
       "id": "tactic-fork-played",
       "group": "game_review",
       "text": "The idea is a fork in this continuation. One piece attacks several targets at once.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-fork-played",
       "textSha256": "042f1e233b231f7f7c9ebb407c19a3988c54b39c3d3f28ed82f97132ae194ac2"
@@ -657,7 +657,7 @@
       "id": "tactic-fork-allowed",
       "group": "game_review",
       "text": "This move allows a fork in the continuation. One opposing piece attacks several targets at once.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-fork-allowed",
       "textSha256": "34cc9541bbf466b545e649e5db38c2898dfbe0449201a32d04b20cca8ce6e5ae"
@@ -666,7 +666,7 @@
       "id": "tactic-fork-missed",
       "group": "game_review",
       "text": "The stronger continuation had a fork. This move misses the chance for one piece to attack several targets at once.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-fork-missed",
       "textSha256": "b6d04e9d94b4584c44f48e693a89665aa24e69ca06af5cd85adf5e774d125f99"
@@ -675,7 +675,7 @@
       "id": "tactic-pin-played",
       "group": "game_review",
       "text": "The continuation uses a pin. Moving the pinned piece off the line would expose its king.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-pin-played",
       "textSha256": "72f40f8774dfa8c2c3894c3839cfe9ee3a9531a86dcd7cc3968671163a11a488"
@@ -684,7 +684,7 @@
       "id": "tactic-pin-allowed",
       "group": "game_review",
       "text": "This move allows a pin in the continuation. Moving the pinned piece off the line would expose its king.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-pin-allowed",
       "textSha256": "ba50a9307c197b87ef41a119a21a358cfd2b6bae874d0276fce87cf8cf4d99c6"
@@ -693,7 +693,7 @@
       "id": "tactic-pin-missed",
       "group": "game_review",
       "text": "The stronger continuation used a pin. Moving the pinned piece off the line would expose its king.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-pin-missed",
       "textSha256": "035b90394dddf8431fc7843545d3b7eabd697b62030fc76dfecf480d265fba61"
@@ -702,7 +702,7 @@
       "id": "tactic-skewer-played",
       "group": "game_review",
       "text": "The continuation uses a skewer. Moving the front piece exposes a piece behind it.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-skewer-played",
       "textSha256": "84d33039caee46e8e3650a51762ecce46a136e6dddbf67a5c1ba998ec6e9fb54"
@@ -711,7 +711,7 @@
       "id": "tactic-skewer-allowed",
       "group": "game_review",
       "text": "This move allows a skewer in the continuation. Moving the front piece exposes a piece behind it.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-skewer-allowed",
       "textSha256": "1dfb47ac5930a5976e990660e86c2df3d680123da545c6128136dac9e3bf4952"
@@ -720,7 +720,7 @@
       "id": "tactic-skewer-missed",
       "group": "game_review",
       "text": "The stronger continuation had a skewer. Moving the front piece would expose a piece behind it.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-skewer-missed",
       "textSha256": "f77f64d020503959bb207d1d68cd77eb0415a075006a153338dc58d18371e157"
@@ -729,7 +729,7 @@
       "id": "tactic-removing-defender-played",
       "group": "game_review",
       "text": "The continuation removes a defender by capture. Notice what loses protection when that defender disappears.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-removing-defender-played",
       "textSha256": "513e55f94e54ae0aa5255e2abba3b07fab501daf7ee9b16efbe4ba0d9726d9de"
@@ -738,7 +738,7 @@
       "id": "tactic-removing-defender-allowed",
       "group": "game_review",
       "text": "This move allows the other side to capture a defender in the continuation. Notice what loses protection when that defender disappears.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-removing-defender-allowed",
       "textSha256": "389c070948d8b8b7ebb2518d56c44270cc4648b29a1171d5c7744071c6530265"
@@ -747,7 +747,7 @@
       "id": "tactic-removing-defender-missed",
       "group": "game_review",
       "text": "The stronger continuation captured a defender. That was the chance to remove protection from what it was guarding.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-removing-defender-missed",
       "textSha256": "cf596a4279134300c4c4310805b4a1cf145eb012b3685aecbad416fc2ef65d2b"
@@ -756,7 +756,7 @@
       "id": "tactic-back-rank-played",
       "group": "game_review",
       "text": "The continuation ends in checkmate on the back rank. The king's own pieces take away escape squares.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-back-rank-played",
       "textSha256": "353d28c06d6c16f124dd3441f1e40e88d58a2b2cf6b1d493c01be4b3d8f6f87e"
@@ -765,7 +765,7 @@
       "id": "tactic-back-rank-allowed",
       "group": "game_review",
       "text": "This move allows a back-rank checkmate in the continuation. The king's own pieces take away escape squares.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-back-rank-allowed",
       "textSha256": "e2827f0a19a36e85a4f90c68b60c11df1aea2d74b9bc14d48109f82fbbb5c0c1"
@@ -774,7 +774,7 @@
       "id": "tactic-back-rank-missed",
       "group": "game_review",
       "text": "The stronger continuation ended in a back-rank checkmate. This move lets that finish go.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-back-rank-missed",
       "textSha256": "0bc9a94d261eddfe2e9ef1ac6450d3ff0f76f3861bc6ee7389ee958c7613a4d1"
@@ -783,7 +783,7 @@
       "id": "tactic-promotion-awareness-played",
       "group": "game_review",
       "text": "The continuation includes a pawn promotion. Follow the pawn all the way to its last rank.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-promotion-awareness-played",
       "textSha256": "b1671bd3d9cca6c58fe512ab6ec185bd9786955014a5d73e12eb19e776039561"
@@ -792,7 +792,7 @@
       "id": "tactic-promotion-awareness-allowed",
       "group": "game_review",
       "text": "This move allows the opposing pawn to promote in the continuation. Follow that pawn all the way to its last rank.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-promotion-awareness-allowed",
       "textSha256": "0900f284e8a3faacbf04ab109d17a984910cd2505683a0d63e10cfb4c8271d75"
@@ -801,7 +801,7 @@
       "id": "tactic-promotion-awareness-missed",
       "group": "game_review",
       "text": "The stronger continuation included a pawn promotion. This move misses that opportunity.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-promotion-awareness-missed",
       "textSha256": "8003d623395175d8ade14c7721daabd9af43f6d093954fcfe3bd5386008fd53e"
@@ -810,7 +810,7 @@
       "id": "tactic-discovered-attack-played",
       "group": "game_review",
       "text": "The continuation uses a discovered attack. Moving one piece opens an attacking line for another.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-discovered-attack-played",
       "textSha256": "9cc109d04d77e2045e32bb47a431d766879874a0d6dfc9363fba392d3a1c4553"
@@ -819,7 +819,7 @@
       "id": "tactic-discovered-attack-allowed",
       "group": "game_review",
       "text": "This move allows a discovered attack in the continuation. Moving one opposing piece opens an attacking line for another.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-discovered-attack-allowed",
       "textSha256": "b00cfd477e0793c04ff0841111a2f0ddcbf416c79fdb773ffa99b9c8ffd06826"
@@ -828,7 +828,7 @@
       "id": "tactic-discovered-attack-missed",
       "group": "game_review",
       "text": "The stronger continuation used a discovered attack. Moving one piece would open an attacking line for another.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-discovered-attack-missed",
       "textSha256": "68271dff927446e24055f09517964696edd8856c92801f6fbd81b3f547b2ff6a"
@@ -837,7 +837,7 @@
       "id": "tactic-double-attack-played",
       "group": "game_review",
       "text": "The continuation creates two attacks at once. Watch how the two attacking pieces work together.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-double-attack-played",
       "textSha256": "a268e2abfcc2871125e0e7e2802124a740e3ee31fd7fc1243fa9c5457502f164"
@@ -846,7 +846,7 @@
       "id": "tactic-double-attack-allowed",
       "group": "game_review",
       "text": "This move allows two attacks at once in the continuation. Watch how the two attacking pieces work together.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-double-attack-allowed",
       "textSha256": "9c3b3dbe5d6ba146fe7d9f20af1cb0b8c2655136492f40d334dcd3171bfa70d5"
@@ -855,7 +855,7 @@
       "id": "tactic-double-attack-missed",
       "group": "game_review",
       "text": "The stronger continuation created two attacks at once. This move misses that chance to combine the threats.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-double-attack-missed",
       "textSha256": "325d4db255c032d50236320702091e3ddfe98d4cb212f6a0488695cf269907bf"
@@ -864,7 +864,7 @@
       "id": "tactic-deflection-played",
       "group": "game_review",
       "text": "The continuation uses a deflection. A defender is drawn away, opening a tactical opportunity.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-deflection-played",
       "textSha256": "12e3b8d187d7b917350c1a67e0d6317c7c8d413399bdb1c309be759d805f173f"
@@ -873,7 +873,7 @@
       "id": "tactic-deflection-allowed",
       "group": "game_review",
       "text": "This move allows a deflection in the continuation. An opposing move draws a defender away, opening a tactical opportunity.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-deflection-allowed",
       "textSha256": "562f8732daee2ead7b2d4595e0d1a8914c0e87f9175da16392d614af478ecc2e"
@@ -882,7 +882,7 @@
       "id": "tactic-deflection-missed",
       "group": "game_review",
       "text": "The stronger continuation used a deflection. Drawing a defender away would open a tactical opportunity.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-deflection-missed",
       "textSha256": "89c05064f17f0ae1feced1e9ce3be56d8fa3cb7113aeedb99132f048e2416b04"
@@ -891,7 +891,7 @@
       "id": "tactic-undefended-capture-played",
       "group": "game_review",
       "text": "The continuation captures an undefended piece. Keep an eye on loose pieces; they can offer a straightforward opportunity.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-undefended-capture-played",
       "textSha256": "adcf2485246e0539d922655faedf618069912b8157c05d4a61928655aada399d"
@@ -900,7 +900,7 @@
       "id": "tactic-undefended-capture-missed",
       "group": "game_review",
       "text": "The stronger continuation captured an undefended piece. This move misses that chance, so give loose enemy pieces a careful look.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-undefended-capture-missed",
       "textSha256": "a8cc8bbf2011da9dbaac763555360f26024cb091548de590af8b6cd967d8d709"
@@ -909,7 +909,7 @@
       "id": "tactic-hanging-piece-allowed",
       "group": "game_review",
       "text": "This move allows the other side to capture an undefended piece in the continuation. Loose pieces deserve a careful look.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#tactic-hanging-piece-allowed",
       "textSha256": "f117767378dd17c2d87908211672b442e61695bee6ec0262990996d719cb6655"
@@ -918,7 +918,7 @@
       "id": "cause-abandoned-defender",
       "group": "game_review",
       "text": "This move takes away a piece's only effective defender. The other side can capture that piece in the continuation.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#cause-abandoned-defender",
       "textSha256": "7b1b931af7d6345f2be47f8f8e196278b2d26b3d0426a74a214168dfd3a0a9bd"
@@ -927,7 +927,7 @@
       "id": "cause-opponent-threat-recognition",
       "group": "game_review",
       "text": "The opponent's previous move enabled this attack. This move leaves the threat unanswered, and the piece can be captured in the continuation.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#cause-opponent-threat-recognition",
       "textSha256": "0bca8b55bc70811ad0d2e16084e2556f280588c8f9b8a52c8598d8225102490d"
@@ -936,7 +936,7 @@
       "id": "cause-avoiding-bad-trades",
       "group": "game_review",
       "text": "This capture invites a recapture of a more valuable piece. Count both sides of the exchange before judging the first capture.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#cause-avoiding-bad-trades",
       "textSha256": "1fcfaa37fc6588a01daa2784589f6284b2d4d84434f0c979417497ab63090868"
@@ -945,7 +945,7 @@
       "id": "positional-development-actual",
       "group": "game_review",
       "text": "This develops a minor piece from its original square. Notice its new place in the position.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-development-actual",
       "textSha256": "e21cbfd1da0eca83f8f6beb4d2aa0cd529096bfb635584c19ee9a0a11422bbc4"
@@ -954,7 +954,7 @@
       "id": "positional-development-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would develop a minor piece from its original square. Notice where it would go.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-development-alternative",
       "textSha256": "ce75827b5c8dc52304f0abe3218a785b57c4591cd0b9bc8999df939021a04f9f"
@@ -963,7 +963,7 @@
       "id": "positional-rook-open-actual",
       "group": "game_review",
       "text": "This leaves a rook on an open file. There are no pawns of either color on that file.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-rook-open-actual",
       "textSha256": "187d90219a8003fe922dfa8ca795df35965fcf04b81e1308079be1a7883cdc65"
@@ -972,7 +972,7 @@
       "id": "positional-rook-open-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would leave a rook on an open file. That file would contain no pawns of either color.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-rook-open-alternative",
       "textSha256": "a5b9c6b175dddea9126aca8c03b13f08ab3202362a82c9193a054b925810d024"
@@ -981,7 +981,7 @@
       "id": "positional-rook-semi-open-actual",
       "group": "game_review",
       "text": "This leaves a rook on a semi-open file. There are no friendly pawns on that file, but at least one enemy pawn remains.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-rook-semi-open-actual",
       "textSha256": "63bb4307bc1d6a33823e66f967e7f083a07b490ef81321c37aa7b9057798d50e"
@@ -990,7 +990,7 @@
       "id": "positional-rook-semi-open-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would leave a rook on a semi-open file, with no friendly pawns on that file but at least one enemy pawn.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-rook-semi-open-alternative",
       "textSha256": "b30ef52d95a292d3f29a396141b975d548177db68667d36e6e40ead44be708ed"
@@ -999,7 +999,7 @@
       "id": "positional-passed-actual",
       "group": "game_review",
       "text": "This leaves a passed pawn: no enemy pawn is ahead on its file or either neighboring file.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-passed-actual",
       "textSha256": "aa8d4cf94a9ca0aaf936fd400efd011d86086ede8a7a1a1f5a45616acbb730e2"
@@ -1008,7 +1008,7 @@
       "id": "positional-passed-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would leave a passed pawn, with no enemy pawn ahead on its file or either neighboring file.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-passed-alternative",
       "textSha256": "bfb7e120c7f9e004eea20943c4fff5f7cd5f605b72bc83dee197a2f7e881d478"
@@ -1017,7 +1017,7 @@
       "id": "positional-passer-advance-actual",
       "group": "game_review",
       "text": "This advances a pawn that was already passed. Keep its new square in view as you compare continuations.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-passer-advance-actual",
       "textSha256": "5a5e8a325ae23581f95ccf8783da7d8158ee2af4c13ad0fa703ed4f5899d1561"
@@ -1026,7 +1026,7 @@
       "id": "positional-passer-advance-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would advance a pawn that was already passed. Keep its new square in view as you compare continuations.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-passer-advance-alternative",
       "textSha256": "855336f42dc7125321bea0656cc31ffb5a0dd37e9cb5e26d1dc99a564d71414c"
@@ -1035,7 +1035,7 @@
       "id": "positional-isolated-actual",
       "group": "game_review",
       "text": "This leaves an isolated pawn, with no friendly pawn on either neighboring file.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-isolated-actual",
       "textSha256": "05b69a8a086fab739b188b65496a4e96fecabf2b41817f6974519232e8ca436d"
@@ -1044,7 +1044,7 @@
       "id": "positional-isolated-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would leave an isolated pawn, with no friendly pawn on either neighboring file.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-isolated-alternative",
       "textSha256": "78f345ed9d23ff000ed259f808edabf874de27c274855fcb70f99c622abf102e"
@@ -1053,7 +1053,7 @@
       "id": "positional-support-actual",
       "group": "game_review",
       "text": "This gives a piece support. A defender is now in place.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-support-actual",
       "textSha256": "772ec9b12604f640ca4b485c4a6ebe49aabc51dcd0c7dfbc91aac2b3f55c27f5"
@@ -1062,7 +1062,7 @@
       "id": "positional-support-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would give a piece support. A defender would then be in place.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-support-alternative",
       "textSha256": "6a4a4057937d67fdd53aad1d0213e7220504f09843b4767152164596ad039608"
@@ -1071,7 +1071,7 @@
       "id": "positional-unsupported-actual",
       "group": "game_review",
       "text": "This leaves a piece undefended. That alone does not mean the piece can be won.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-unsupported-actual",
       "textSha256": "2d20b1772593b36dd5240576b8fdbaea44600077017583534d423b69948222c9"
@@ -1080,7 +1080,7 @@
       "id": "positional-unsupported-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would leave a piece undefended. That alone would not mean the piece could be won.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-unsupported-alternative",
       "textSha256": "c2b0d11d3fdea57840fcde2770125eda69f30fbc105e509f0f964f175a0f2c17"
@@ -1089,7 +1089,7 @@
       "id": "positional-king-flight-actual",
       "group": "game_review",
       "text": "This opens a legal flight square the king did not have before. Compare the positions to see what opened the way.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-king-flight-actual",
       "textSha256": "ae59436f57c7b65ae406488f280fbd257e7656148e4029fd6246c4c6fd395943"
@@ -1098,7 +1098,7 @@
       "id": "positional-king-flight-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would open a legal flight square for the king. Compare the positions to see what would open the way.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-king-flight-alternative",
       "textSha256": "87db880e05b4fdb5491ec9badbff85188a73850505c95b186ea9d8712ae00ade"
@@ -1107,7 +1107,7 @@
       "id": "positional-castling-actual",
       "group": "game_review",
       "text": "This castles the king and relocates the rook. Follow both pieces when comparing the positions.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-castling-actual",
       "textSha256": "ce0b3125468c3301030b82c817250812e07224b6882905774fafd5808a16e750"
@@ -1116,7 +1116,7 @@
       "id": "positional-castling-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would castle the king and relocate the rook. Follow where both pieces would go.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-castling-alternative",
       "textSha256": "ffc517c682c0686fb2931055abb8f3e3d1c86efbccc1eb7abd1ec20943578c28"
@@ -1125,7 +1125,7 @@
       "id": "positional-bishop-pair-actual",
       "group": "game_review",
       "text": "This capture breaks up a bishop pair. The side losing the bishop no longer has one bishop on each square color.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-bishop-pair-actual",
       "textSha256": "6fcba3f564b222c1c3a877c8b1d293e80caf5541cf54ddc2bcc7b14f9e4dfa4a"
@@ -1134,7 +1134,7 @@
       "id": "positional-bishop-pair-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would capture one bishop from an opposite-colored pair, breaking up that bishop pair.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-bishop-pair-alternative",
       "textSha256": "edb5fd2cd0247616e078937a3bb92bba34c47cf4a3100434f92b3339b99d268f"
@@ -1143,7 +1143,7 @@
       "id": "positional-doubled-actual",
       "group": "game_review",
       "text": "This leaves doubled pawns in the resulting position. At least two pawns of the same color share a file.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-doubled-actual",
       "textSha256": "62790c556ca44810a40775fc8cbdf17c63ce431f19bc1d27ab71d30d89111321"
@@ -1152,7 +1152,7 @@
       "id": "positional-doubled-alternative",
       "group": "game_review",
       "text": "The unplayed alternative would leave doubled pawns in the resulting position, with at least two pawns of the same color sharing a file.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#positional-doubled-alternative",
       "textSha256": "7a0cc9c3bf61e1fccd4b46d73ef4e9e7cc8c3bbbe7ff47b4604bdc80f626d868"
@@ -1161,7 +1161,7 @@
       "id": "allowed-mate",
       "group": "game_review",
       "text": "This move allows a forced checkmate. Follow the continuation to see why the defense can no longer hold.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#allowed-mate",
       "textSha256": "e6734d1133b542ba4e3d9132619176a5906052a765945abc90faa221b987bd55"
@@ -1170,7 +1170,7 @@
       "id": "missed-mate",
       "group": "game_review",
       "text": "There was a forced checkmate in the stronger continuation. This move lets that finish go.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#missed-mate",
       "textSha256": "3308086cef04a6c91efedbe5bccd13415a9eb2c9981897d92dfd1f8257fb714b"
@@ -1179,7 +1179,7 @@
       "id": "sound-sacrifice",
       "group": "game_review",
       "text": "The sacrifice holds up in the search even when it is accepted. Taking the offered material does not refute the idea in this line.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#sound-sacrifice",
       "textSha256": "ffb8a7331aa311661b15614a195b158999f7a8dcbdae6f31fc501c1f7f12c140"
@@ -1188,7 +1188,7 @@
       "id": "only-playable-move",
       "group": "game_review",
       "text": "This was the only move we found that kept the position playable. The other moves we checked were losing.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#only-playable-move",
       "textSha256": "219def40dc3247e7d9705c15a3ed86ee3d78efba9ed44aba9d5e62f6707a0b6f"
@@ -1197,7 +1197,7 @@
       "id": "only-advantage-resource",
       "group": "game_review",
       "text": "This was the only move we found that kept the advantage. The other moves we checked were losing.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#only-advantage-resource",
       "textSha256": "3740347b49c8e384612461c8a647358ba0e27c4bcc25ffa260a38b2e909d869f"
@@ -1206,7 +1206,7 @@
       "id": "immediate-capture",
       "group": "game_review",
       "text": "The other side has an immediate capture in reply. Follow the continuation to see which piece can be taken.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#immediate-capture",
       "textSha256": "7c6381704b3a4f812278ef558ba8bdc58a2d2de45fe4ddf34b4a9c4014042ec6"
@@ -1215,7 +1215,7 @@
       "id": "reply-check",
       "group": "game_review",
       "text": "The strongest reply gives check. The continuation begins by making the king answer that threat.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#reply-check",
       "textSha256": "4ae7d36e7dcbe15f669785a78a9927153f84a8321a15b3bf3589559cb2e9e1e5"
@@ -1224,7 +1224,7 @@
       "id": "stronger-alternative",
       "group": "game_review",
       "text": "The engine prefers another move here. Compare its continuation with the move that was played.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#stronger-alternative",
       "textSha256": "77d110b64e08b4fc92b3a0db941821501ee7684d99fb84b6dea755b41464196c"
@@ -1233,7 +1233,7 @@
       "id": "evaluation-loss",
       "group": "game_review",
       "text": "This move gives up some of the position's value compared with the engine's best continuation. Follow the reply to see how the position changes.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#evaluation-loss",
       "textSha256": "6fb65a6b62f557deca2bcd5b9fd0cf29949b1b648a8b9c4fb9fbef47303ae9c1"
@@ -1242,7 +1242,7 @@
       "id": "best-supported-choice",
       "group": "game_review",
       "text": "This preserves nearly all that the engine's best move offered. A sound choice can matter without changing the whole game.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#best-supported-choice",
       "textSha256": "c74fcee176115242d51e324580e4dff1d4e3f60f104ce54a9232abd94263a38b"
@@ -1251,7 +1251,7 @@
       "id": "good-choice",
       "group": "game_review",
       "text": "This keeps most of the position's value, close to the stronger continuations. It is a sound way to carry the game forward.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#good-choice",
       "textSha256": "f5deae8d5e5b38c7ce3f78caaf28cdd05a4cdcb8c084503b167f6633fea4a5e8"
@@ -1260,7 +1260,7 @@
       "id": "human-natural-error",
       "group": "game_review",
       "text": "The human-move model sees this as a natural choice, but the engine finds a stronger move. That contrast is worth studying.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#human-natural-error",
       "textSha256": "aed7ad28b6120b9ded117fcad338551ca08867e84398c6af256bb6532191c20c"
@@ -1269,7 +1269,7 @@
       "id": "human-unusual-strong",
       "group": "game_review",
       "text": "The human-move model treats this as an unusual choice, and the engine still finds it strong.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#human-unusual-strong",
       "textSha256": "1b38711123724d5dc6be99fbbd445ec03d7c065428c3be3a49e1e7a3adebf2ff"
@@ -1278,7 +1278,7 @@
       "id": "human-hard-defense-missed",
       "group": "game_review",
       "text": "The engine found one move that kept the position playable, and the model evidence suggests it was difficult to find.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#human-hard-defense-missed",
       "textSha256": "a8cfb8572cf0fffb917b8bbc98b22e557aa29b47aac8ecbe5646558057bd633f"
@@ -1287,7 +1287,7 @@
       "id": "human-hard-find",
       "group": "game_review",
       "text": "The human-move model and the alternatives suggest this was a hard move to find. Keep this idea in mind for similar positions.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#human-hard-find",
       "textSha256": "3be0a5a568c2c4b309f7f6d22e04520b3ce7dc1e2606e770099c1c8098222601"
@@ -1296,7 +1296,7 @@
       "id": "human-hard-defense-found",
       "group": "game_review",
       "text": "This move kept the position playable. The human-move model and the searched alternatives suggest it was a hard resource to find.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#human-hard-defense-found",
       "textSha256": "5fbad0f1edc86f2fdb1b32f86c58fcb774a50ab386ed9976ad6c8f16c3f53fe0"
@@ -1305,7 +1305,7 @@
       "id": "human-natural-best",
       "group": "game_review",
       "text": "The human-move model sees this as a natural choice, and it is also the engine's best move.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#human-natural-best",
       "textSha256": "99f53d8c128926f17a99a6228a9ee46fbc48ef590ae00baae722733e36116e2b"
@@ -1314,7 +1314,7 @@
       "id": "human-natural-strong",
       "group": "game_review",
       "text": "The human-move model sees this as a natural choice. It is strong, although the engine prefers another move.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#human-natural-strong",
       "textSha256": "8e9771ad6f40ad2bb74c1fc55e1406526e358b1bfef7a2ad83b1b1166957b97e"
@@ -1323,7 +1323,7 @@
       "id": "clock-low",
       "group": "game_review",
       "text": "The recorded clock shows there was little time left before this move.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#clock-low",
       "textSha256": "f89851efd14a4463b915662d1853688ea095b7eadabdeca4e5a38011054eaed2"
@@ -1332,7 +1332,7 @@
       "id": "clock-fast",
       "group": "game_review",
       "text": "The recorded clock shows a quick move with time still available.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#clock-fast",
       "textSha256": "fbbe4b34566bc16cc7fcb4c34fa63c8c2f090444f6fa321799378657898d46c6"
@@ -1341,7 +1341,7 @@
       "id": "clock-long",
       "group": "game_review",
       "text": "A substantial amount of recorded time went into this move.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#clock-long",
       "textSha256": "89cfb5fba091125b82c67ebc8b2e4b9bc8e3d4846e421d54a5051fbd9973fd5c"
@@ -1350,7 +1350,7 @@
       "id": "recognized-opening",
       "group": "game_review",
       "text": "This is familiar opening territory: the move belongs to a recognized line.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#recognized-opening",
       "textSha256": "dc206e766443998d08e450a58a9e81806c6c877dd5fdc3f3d48e1f181301ada2"
@@ -1359,7 +1359,7 @@
       "id": "opening-departure",
       "group": "game_review",
       "text": "Here the game first steps beyond the line recognized by our opening book.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#opening-departure",
       "textSha256": "0d257e053194c39fce644d58733ac67b3d1c2db9239960ef36f61b164312b709"
@@ -1368,7 +1368,7 @@
       "id": "recovery",
       "group": "game_review",
       "text": "After the earlier setback, this move restores a playable position. There is a way forward again.",
-      "availability": "audition-recorded-owner-listening-pending",
+      "availability": "existing-recording-approved",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#recovery",
       "textSha256": "1542e579ee6382fd3e2195203d2d588c45935f4de25687baf774f50bb429e67a"
@@ -1377,7 +1377,7 @@
       "id": "recovery-assisted",
       "group": "game_review",
       "text": "This restores a playable position after the earlier setback. Errors by the other side helped make that recovery possible.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#recovery-assisted",
       "textSha256": "41ffacd0abd09ac604b282acfb2abddc6364404f4c4916d105326b007cbf190d"
@@ -1386,7 +1386,7 @@
       "id": "chance-taken",
       "group": "game_review",
       "text": "This makes use of the chance the opponent offered on the previous move.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#chance-taken",
       "textSha256": "3997e9b37d92b5bd061799b8d5a454adc747ebb442dcac2e50e60de0c184c002"
@@ -1395,7 +1395,7 @@
       "id": "chance-missed",
       "group": "game_review",
       "text": "The opponent's previous move offered a chance, but this move lets it pass. Compare the stronger continuation.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#chance-missed",
       "textSha256": "794563dd9545402127bd26deb3da0281d8b42b3156117dbc47c24dcc9d312268"
@@ -1404,7 +1404,7 @@
       "id": "repeated-issue",
       "group": "game_review",
       "text": "This same issue has appeared before in the reviewed moves of this game. Compare the examples and look for the common warning sign.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#repeated-issue",
       "textSha256": "5cdaa783951230f92c390c9f35e21358b807ab8af76608c124b4784b1f01ac60"
@@ -1413,7 +1413,7 @@
       "id": "support-restored",
       "group": "game_review",
       "text": "A piece left unguarded earlier has support again. Compare the two positions to see how its protection changed.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#support-restored",
       "textSha256": "def4804d965b2581b638f64113adc9cef3115b45af2efc173d96227bf31cd42d"
@@ -1422,7 +1422,7 @@
       "id": "gradual-erosion",
       "group": "game_review",
       "text": "This is one of several small concessions that have worsened the position together. Look at the sequence, as well as this move.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#gradual-erosion",
       "textSha256": "14213b4b4a968e9c39e167f887387e03171bd42f5d08d348815b6ce3b8fdb1a5"
@@ -1431,7 +1431,7 @@
       "id": "advantage-converted",
       "group": "game_review",
       "text": "The reviewed moves kept the advantage through to the recorded win. Follow that stretch to see how the advantage was preserved.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#advantage-converted",
       "textSha256": "a9070d4b2c04d8a9c7b7ad6bfe8d5d330c9a15504c7aa6eb71c5c5dd548f1062"
@@ -1440,7 +1440,7 @@
       "id": "saved-history-recurrence",
       "group": "game_review",
       "text": "This issue also appears in other saved games. It is worth revisiting those examples alongside this one.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "secondary",
       "sourceInventory": "walter-dialogue-inventory.json#saved-history-recurrence",
       "textSha256": "ae618f247696736749682646f76e3b695d22bf3b7b0a4b750de03630ef64ea5c"
@@ -1449,7 +1449,7 @@
       "id": "mate-finished",
       "group": "game_review",
       "text": "Checkmate. The king has no legal escape, and the attack has reached its finish.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#mate-finished",
       "textSha256": "15ba487e0600b79699225d79bf2cca01b117c14e235820e98d99586ec625844f"
@@ -1458,7 +1458,7 @@
       "id": "mate-defense-ended",
       "group": "game_review",
       "text": "Checkmate. The king has no legal escape. Let's look back for a chance to stop the attack.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#mate-defense-ended",
       "textSha256": "857ea407ea5fb216396d2e4c278a7307ce28af4d6503becb032fc319b66194e2"
@@ -1467,7 +1467,7 @@
       "id": "draw",
       "group": "game_review",
       "text": "The position ends in a draw. There may still be useful decisions to revisit.",
-      "availability": "draft-unrecorded",
+      "availability": "approved-for-recording",
       "primaryStatus": "primary",
       "sourceInventory": "walter-dialogue-inventory.json#draw",
       "textSha256": "fec9346ded9f83f8b2a600cbbf43601ec1245f046249025e95960b5e34395724"
@@ -1483,7 +1483,8 @@
       ],
       "trigger": "No authorized feedback and position.failed=false. No answer or evaluation hint.",
       "sourceBranches": [],
-      "textSha256": "449b64b5175e4758be6731562379819a40479e3c74f16b98a7116f47589de736"
+      "textSha256": "449b64b5175e4758be6731562379819a40479e3c74f16b98a7116f47589de736",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-retry",
@@ -1496,7 +1497,8 @@
       ],
       "trigger": "No feedback with position.failed=true, or authorized rejected feedback outside the automatic attempt/reply preview. This template ignores its optional detail slot.",
       "sourceBranches": [],
-      "textSha256": "c9118d11603ae94828b82ed9cd3b2cff5d67c756e08c9d8deed3faa02ccc725c"
+      "textSha256": "c9118d11603ae94828b82ed9cd3b2cff5d67c756e08c9d8deed3faa02ccc725c",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-practice-error",
@@ -1509,7 +1511,8 @@
       ],
       "trigger": "Current practice gradingError. Also suitable for the same opening-recall gradingError producer; count globally once.",
       "sourceBranches": [],
-      "textSha256": "b01af54452e179e175a44d2dc88e59b3ea14c21f1a8e4eac79c74e93f3bc159c"
+      "textSha256": "b01af54452e179e175a44d2dc88e59b3ea14c21f1a8e4eac79c74e93f3bc159c",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-mate-for-mover",
@@ -1521,7 +1524,8 @@
       ],
       "trigger": "candidate.score.kind=mate; candidate.score.outcome()=1. No inference of an actual-board finish or a newly created opportunity.",
       "sourceBranches": [],
-      "textSha256": "e7f1d1614d5e251e02f6d0c645dfafb136690831ad5adc3bf093c9e0aa8d376e"
+      "textSha256": "e7f1d1614d5e251e02f6d0c645dfafb136690831ad5adc3bf093c9e0aa8d376e",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-mate-against-mover",
@@ -1533,7 +1537,8 @@
       ],
       "trigger": "candidate.score.kind=mate; candidate.score.outcome()!=1. This can include an accepted move in an already lost position; do not substitute the game-bank move-caused allowed-mate claim.",
       "sourceBranches": [],
-      "textSha256": "cff2d4e6f56f86b64c5df5c04b33be16da4e7fff4fc017d7f9e6775ce91c1f08"
+      "textSha256": "cff2d4e6f56f86b64c5df5c04b33be16da4e7fff4fc017d7f9e6775ce91c1f08",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-material-gain",
@@ -1545,7 +1550,8 @@
       ],
       "trigger": "Non-mate, accepted=true, final frame.material_change>0. The number and material values remain written.",
       "sourceBranches": [],
-      "textSha256": "73d10aee08482d4159394f95808c778a4ab321b6a9fa7b1999d88409a8495d08"
+      "textSha256": "73d10aee08482d4159394f95808c778a4ab321b6a9fa7b1999d88409a8495d08",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-material-loss",
@@ -1557,7 +1563,8 @@
       ],
       "trigger": "Non-mate, accepted=false, final frame.material_change<0. A finite-line outcome, not proof all replies force the loss.",
       "sourceBranches": [],
-      "textSha256": "059833764652a0b1fa5554d135ace3bd376dee1619a5092801a37859d2c58c0a"
+      "textSha256": "059833764652a0b1fa5554d135ace3bd376dee1619a5092801a37859d2c58c0a",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-engine-accepted",
@@ -1569,7 +1576,8 @@
       ],
       "trigger": "Accepted stockfish fallback: no mate/material-gain or selected special-move annotation branch. Both the result and absence of a supported simple reason are retained.",
       "sourceBranches": [],
-      "textSha256": "351a2618583bb313b94fd04a71eec2a77b2fed3dc7522def965be3bcc1072756"
+      "textSha256": "351a2618583bb313b94fd04a71eec2a77b2fed3dc7522def965be3bcc1072756",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-engine-rejected",
@@ -1581,7 +1589,8 @@
       ],
       "trigger": "Rejected stockfish fallback: no mate/material-loss or immediate capture/check summary. Do not translate rejected policy into necessarily bad chess.",
       "sourceBranches": [],
-      "textSha256": "a98c81417bf21eb90b27751935146bcd8df2559847dac30e4a1df54b8db49c07"
+      "textSha256": "a98c81417bf21eb90b27751935146bcd8df2559847dac30e4a1df54b8db49c07",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-curated-accepted",
@@ -1593,7 +1602,8 @@
       ],
       "trigger": "Curated non-game exercise accepted. Source name manual exercise/repertoire stays written; opening snapshot narration is inventoried separately.",
       "sourceBranches": [],
-      "textSha256": "51ebd5207a21ce50eeb2a279488a0de0ed48b1d31086ed203366db6a619efd85"
+      "textSha256": "51ebd5207a21ce50eeb2a279488a0de0ed48b1d31086ed203366db6a619efd85",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-summary-curated-rejected",
@@ -1605,7 +1615,8 @@
       ],
       "trigger": "Curated non-game exercise rejected. Existing repertoire review start/resume is archived, but explain_review still has the saved-session branch.",
       "sourceBranches": [],
-      "textSha256": "8f742cc4c1c16159f126f8ce1ade1899a368c52df522fc47478825006bf2f8eb"
+      "textSha256": "8f742cc4c1c16159f126f8ce1ade1899a368c52df522fc47478825006bf2f8eb",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-fallback-study",
@@ -1617,7 +1628,8 @@
       ],
       "trigger": "Authorized feedback with no frame.annotation, explanation_summary or message; can occur after reveal or restored feedback whose explanation is unavailable.",
       "sourceBranches": [],
-      "textSha256": "db5069715e42c6e77ec9d406a8e565e9ba864fe2b9f1b0e8df1719507912fe69"
+      "textSha256": "db5069715e42c6e77ec9d406a8e565e9ba864fe2b9f1b0e8df1719507912fe69",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-fallback-good",
@@ -1630,7 +1642,8 @@
       ],
       "trigger": "Accepted non-focus, non-failed response with no explanation summary, message=Good move. Coaching continuation adds no chess claim.",
       "sourceBranches": [],
-      "textSha256": "691b239ff65cb221c8ada63ab4c8f36a7a0c2515c6391eb0965858a30340f3f2"
+      "textSha256": "691b239ff65cb221c8ada63ab4c8f36a7a0c2515c6391eb0965858a30340f3f2",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-fallback-focus-saved",
@@ -1643,7 +1656,8 @@
       ],
       "trigger": "Accepted focused practice with no explanation_summary; exact message fallback. This message is not read in place of an available reason.",
       "sourceBranches": [],
-      "textSha256": "4588e588163cf74295826f8f3997f795267fd36e9d2084f8608b0ae0eb7d7301"
+      "textSha256": "4588e588163cf74295826f8f3997f795267fd36e9d2084f8608b0ae0eb7d7301",
+      "availability": "approved-for-recording"
     },
     {
       "id": "srs-fallback-relearning",
@@ -1656,7 +1670,8 @@
       ],
       "trigger": "Accepted scheduled review after failed first attempt, no explanation_summary; exact message fallback. The earlier miss remains recorded.",
       "sourceBranches": [],
-      "textSha256": "8c44baea71af8bd148786af4471d9056e578e0f54070c27400120da6d79bd29d"
+      "textSha256": "8c44baea71af8bd148786af4471d9056e578e0f54070c27400120da6d79bd29d",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-original",
@@ -1668,7 +1683,8 @@
       ],
       "trigger": "Frame index=0, uci=null. Only after authorized explanation access.",
       "sourceBranches": [],
-      "textSha256": "4d6f8e7c662edb5f77c6d0bd999d1efc614608a65177f6268e2c1b5bd955efb9"
+      "textSha256": "4d6f8e7c662edb5f77c6d0bd999d1efc614608a65177f6268e2c1b5bd955efb9",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-quiet-move-ordinary",
@@ -1680,7 +1696,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=False; promotion=False; terminal annotation branch=ordinary. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "5ce51d5493a2bfce87a8a5c41a5bb5bc97e59bf1d4fa78f7c5fb0c582b191718"
+      "textSha256": "5ce51d5493a2bfce87a8a5c41a5bb5bc97e59bf1d4fa78f7c5fb0c582b191718",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-quiet-move-check",
@@ -1692,7 +1709,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=False; promotion=False; terminal annotation branch=check. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "20fe086759441e16f580498d530dd434c6325e558666d366b222aaed0706e011"
+      "textSha256": "20fe086759441e16f580498d530dd434c6325e558666d366b222aaed0706e011",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-quiet-move-escape",
@@ -1704,7 +1722,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=False; promotion=False; terminal annotation branch=escape. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "2f9369ee0bd0dfb702340113a3aba7a2191360a369983caf84ba7356752bccfc"
+      "textSha256": "2f9369ee0bd0dfb702340113a3aba7a2191360a369983caf84ba7356752bccfc",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-quiet-promotion-ordinary",
@@ -1716,7 +1735,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=False; promotion=True; terminal annotation branch=ordinary. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "0a5154a52152214312306904067ffa9cb19b7974166ea865262ed6795c822a62"
+      "textSha256": "0a5154a52152214312306904067ffa9cb19b7974166ea865262ed6795c822a62",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-quiet-promotion-check",
@@ -1728,7 +1748,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=False; promotion=True; terminal annotation branch=check. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "ce20c4e31a2bfabab8e1c7d6d1f055974e1931fcc93fb2a4933f9c42d33e170c"
+      "textSha256": "ce20c4e31a2bfabab8e1c7d6d1f055974e1931fcc93fb2a4933f9c42d33e170c",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-quiet-promotion-mate",
@@ -1740,7 +1761,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=False; promotion=True; terminal annotation branch=mate. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "1c9c0786e3b9059f1f46e4729dbfe4455cc02349781a192841a2da24b27a6431"
+      "textSha256": "1c9c0786e3b9059f1f46e4729dbfe4455cc02349781a192841a2da24b27a6431",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-quiet-promotion-escape",
@@ -1752,7 +1774,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=False; promotion=True; terminal annotation branch=escape. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "d4c727f3f50fc642120dde29ac289b33d92c7a93666ffacaddad36312e2372f3"
+      "textSha256": "d4c727f3f50fc642120dde29ac289b33d92c7a93666ffacaddad36312e2372f3",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-move-ordinary",
@@ -1764,7 +1787,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=False; terminal annotation branch=ordinary. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "2fd8c53919da9b45067bc67f96398d430ece5934633c77ed0711c6fa3ba195d5"
+      "textSha256": "2fd8c53919da9b45067bc67f96398d430ece5934633c77ed0711c6fa3ba195d5",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-move-check",
@@ -1776,7 +1800,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=False; terminal annotation branch=check. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "23108c304984b2d4b03fc7772514773281815e519630e227c33fb000d18a854b"
+      "textSha256": "23108c304984b2d4b03fc7772514773281815e519630e227c33fb000d18a854b",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-move-mate",
@@ -1788,7 +1813,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=False; terminal annotation branch=mate. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "afbcbf0a0176cbd781c122144a655158103891ffb0a726142eb56cd1092a42ad"
+      "textSha256": "afbcbf0a0176cbd781c122144a655158103891ffb0a726142eb56cd1092a42ad",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-move-escape",
@@ -1800,7 +1826,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=False; terminal annotation branch=escape. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "b73000d91bca7ac65d6bfd73d9805afc409e606dd4ce1e1f7b78dcc5e80810d9"
+      "textSha256": "b73000d91bca7ac65d6bfd73d9805afc409e606dd4ce1e1f7b78dcc5e80810d9",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-promotion-ordinary",
@@ -1812,7 +1839,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=True; terminal annotation branch=ordinary. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "fe0f53572c54480a1233fdb42f65e8c3c32e244d737071e1dd1a8e7bcdb64fc1"
+      "textSha256": "fe0f53572c54480a1233fdb42f65e8c3c32e244d737071e1dd1a8e7bcdb64fc1",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-promotion-check",
@@ -1824,7 +1852,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=True; terminal annotation branch=check. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "b331b5f59c86cf1eb746135d2c2485da0ef4e42f250a54f54b07005d9cf4d64c"
+      "textSha256": "b331b5f59c86cf1eb746135d2c2485da0ef4e42f250a54f54b07005d9cf4d64c",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-promotion-mate",
@@ -1836,7 +1865,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=True; terminal annotation branch=mate. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "b3b84d608aa9c2c1eec25ef54a3f6bbf09bee96bc9cf86a662f13d16e24ee08b"
+      "textSha256": "b3b84d608aa9c2c1eec25ef54a3f6bbf09bee96bc9cf86a662f13d16e24ee08b",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-capture-promotion-escape",
@@ -1848,7 +1878,8 @@
       ],
       "trigger": "Authorized selected non-castling frame; capture=True; promotion=True; terminal annotation branch=escape. Preserve SAN, actor, captured/promoted piece identity in written caption. Match exact saved frame; do not infer from expression.",
       "sourceBranches": [],
-      "textSha256": "ba4a9289a395e197b9bece721f000a5dc9ca119a437d9258c0627bfd1570fed0"
+      "textSha256": "ba4a9289a395e197b9bece721f000a5dc9ca119a437d9258c0627bfd1570fed0",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-castle-check",
@@ -1860,7 +1891,8 @@
       ],
       "trigger": "Authorized selected castling frame; terminal annotation branch=check. A legal castle cannot begin in check, capture or promote.",
       "sourceBranches": [],
-      "textSha256": "ca1de65ad3190f827dca82babe31e8778b65fff50c5ef87d5501223959756acd"
+      "textSha256": "ca1de65ad3190f827dca82babe31e8778b65fff50c5ef87d5501223959756acd",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-frame-castle-mate",
@@ -1872,7 +1904,8 @@
       ],
       "trigger": "Authorized selected castling frame; terminal annotation branch=mate. A legal castle cannot begin in check, capture or promote.",
       "sourceBranches": [],
-      "textSha256": "4df719b55808dc8ad0f67c8aed0608e8ddbdd01195b3888de50fb37b93007c0f"
+      "textSha256": "4df719b55808dc8ad0f67c8aed0608e8ddbdd01195b3888de50fb37b93007c0f",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-fork-collected",
@@ -1886,7 +1919,8 @@
       "sourceBranches": [
         "verified:collected_fork"
       ],
-      "textSha256": "83fddb2e02786a69b650520c4c8964d1f20e77b69cdc819afdb806e71b3e1890"
+      "textSha256": "83fddb2e02786a69b650520c4c8964d1f20e77b69cdc819afdb806e71b3e1890",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-pin-prevents-capture",
@@ -1900,7 +1934,8 @@
       "sourceBranches": [
         "lichess:pin_prevents_attack"
       ],
-      "textSha256": "15d33f3036e02398fd875736373c16dae965d57685a402e55dafda3e45262b55"
+      "textSha256": "15d33f3036e02398fd875736373c16dae965d57685a402e55dafda3e45262b55",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-pin-restricts-escape",
@@ -1914,7 +1949,8 @@
       "sourceBranches": [
         "lichess:pin_prevents_escape"
       ],
-      "textSha256": "f76ee6352b50dd4423132cf4b5ec52c0c1f61d77820549c7f36aa81d9c28b8d5"
+      "textSha256": "f76ee6352b50dd4423132cf4b5ec52c0c1f61d77820549c7f36aa81d9c28b8d5",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-pin-defenders-no-recapture",
@@ -1928,7 +1964,8 @@
       "sourceBranches": [
         "verified:pinned_defender"
       ],
-      "textSha256": "db4b00773aa9e6b00b27d7bb30097167d21f4baeb669b38fb11bb47aa853bb17"
+      "textSha256": "db4b00773aa9e6b00b27d7bb30097167d21f4baeb669b38fb11bb47aa853bb17",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-pin-collected",
@@ -1942,7 +1979,8 @@
       "sourceBranches": [
         "combination:pin"
       ],
-      "textSha256": "07345c37c73f119e852c469be36d70474ceabdf7147b6505046f9cc478b6849d"
+      "textSha256": "07345c37c73f119e852c469be36d70474ceabdf7147b6505046f9cc478b6849d",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-skewer-collected",
@@ -1956,7 +1994,8 @@
       "sourceBranches": [
         "lichess:skewer"
       ],
-      "textSha256": "28729e4e9a8a330bd81ca55b1acdd0d275362e6e864778a1edd88885038672bb"
+      "textSha256": "28729e4e9a8a330bd81ca55b1acdd0d275362e6e864778a1edd88885038672bb",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-king-skewer-collected",
@@ -1970,7 +2009,8 @@
       "sourceBranches": [
         "verified:absolute_skewer"
       ],
-      "textSha256": "d5c73bc00a5a0af9d5d972f91ac3c1eb95a3149cd36ecf0848fcba060ea51fb0"
+      "textSha256": "d5c73bc00a5a0af9d5d972f91ac3c1eb95a3149cd36ecf0848fcba060ea51fb0",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-sole-defender-captured",
@@ -1984,7 +2024,8 @@
       "sourceBranches": [
         "verified:removed_defender"
       ],
-      "textSha256": "7ec49586a2ac32fa26ee7e39a7025a70afe64ff8092575d8e5d708b599d19668"
+      "textSha256": "7ec49586a2ac32fa26ee7e39a7025a70afe64ff8092575d8e5d708b599d19668",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-deflection-collected",
@@ -1998,7 +2039,8 @@
       "sourceBranches": [
         "combination:deflection"
       ],
-      "textSha256": "4cc5964d54c082a31dfef479ed9267f51efd6e5ae5e328564fdb12d51d45dc35"
+      "textSha256": "4cc5964d54c082a31dfef479ed9267f51efd6e5ae5e328564fdb12d51d45dc35",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-discovered-capture",
@@ -2014,7 +2056,8 @@
         "lichess:discovered_attack",
         "combination:discovered_attack"
       ],
-      "textSha256": "711146e658df827a3cb4f4289f24361ca3117b4d032a8cd03741a7e9a0df852d"
+      "textSha256": "711146e658df827a3cb4f4289f24361ca3117b4d032a8cd03741a7e9a0df852d",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-discovered-check",
@@ -2030,7 +2073,8 @@
         "lichess:discovered_check",
         "verified:checking_attack:discovered"
       ],
-      "textSha256": "dbf451e0df31e9422357eae7285afb0ecde3342632b3af4eac09a8f8b796af43"
+      "textSha256": "dbf451e0df31e9422357eae7285afb0ecde3342632b3af4eac09a8f8b796af43",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-double-check",
@@ -2046,7 +2090,8 @@
         "lichess:double_check",
         "verified:checking_attack:double"
       ],
-      "textSha256": "8ce8a9c2b1205cf4fdd433bab35ad525e2c76c1ee4d86313ccfa7d3740e13bab"
+      "textSha256": "8ce8a9c2b1205cf4fdd433bab35ad525e2c76c1ee4d86313ccfa7d3740e13bab",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-double-attack-collected",
@@ -2060,7 +2105,8 @@
       "sourceBranches": [
         "combination:double_attack"
       ],
-      "textSha256": "d2cfe2285aa6dadc37dacccce0318bb036115684a857339f51b41e64075555a6"
+      "textSha256": "d2cfe2285aa6dadc37dacccce0318bb036115684a857339f51b41e64075555a6",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-promotion-material-retained",
@@ -2074,7 +2120,8 @@
       "sourceBranches": [
         "verified:promotion"
       ],
-      "textSha256": "86dd08fe848bfa019180f67b1f715f079bc20cb86c5f0dd8677dc1c0edf0504d"
+      "textSha256": "86dd08fe848bfa019180f67b1f715f079bc20cb86c5f0dd8677dc1c0edf0504d",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-undefended-capture-gain",
@@ -2088,7 +2135,8 @@
       "sourceBranches": [
         "verified:hanging_capture"
       ],
-      "textSha256": "0c2fcd59ed6754ebbae70294a7dc78e7098bd229e8d83cf32cb6f993697e6a9f"
+      "textSha256": "0c2fcd59ed6754ebbae70294a7dc78e7098bd229e8d83cf32cb6f993697e6a9f",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-finding-relative-pin-released",
@@ -2102,7 +2150,8 @@
       "sourceBranches": [
         "cause:opponent_threat_recognition:relative_pin"
       ],
-      "textSha256": "474ab6d1175f5e5b485c02831e20df1e7fa1441b708357bfbff193b1a61abe79"
+      "textSha256": "474ab6d1175f5e5b485c02831e20df1e7fa1441b708357bfbff193b1a61abe79",
+      "availability": "approved-for-recording"
     },
     {
       "id": "game-explanation-legal-reply",
@@ -2115,7 +2164,8 @@
       ],
       "trigger": "show_reply=true and no finding selected: caption is only side can play SAN. Reply verified legal on frame1 board. If a finding is present, its reason receives its own complete recording; the exact reply remains written.",
       "sourceBranches": [],
-      "textSha256": "579535c6b6c7d30394a3dba72bae4cfa8d420ab3bfea828e5db2424157b64f30"
+      "textSha256": "579535c6b6c7d30394a3dba72bae4cfa8d420ab3bfea828e5db2424157b64f30",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-hanging-piece",
@@ -2128,7 +2178,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=hanging_piece; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "06d86a429330a02f76c117f08e2b3e1e1a71f7888489cdc23c35c670ee976d59"
+      "textSha256": "06d86a429330a02f76c117f08e2b3e1e1a71f7888489cdc23c35c670ee976d59",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-missed-tactical-capture",
@@ -2141,7 +2192,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=missed_tactical_capture; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "dc9e84450b8722db9452b746849cc55d1079abcb81cd8f51b11f15084734f032"
+      "textSha256": "dc9e84450b8722db9452b746849cc55d1079abcb81cd8f51b11f15084734f032",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-fork",
@@ -2154,7 +2206,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=fork; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "98abdd9245a5e8d679777c9e1943bcce93d93bc6bc8726a77dd81633a709e20d"
+      "textSha256": "98abdd9245a5e8d679777c9e1943bcce93d93bc6bc8726a77dd81633a709e20d",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-pin",
@@ -2167,7 +2220,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=pin; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "5ee252a9b212b0e1a1b869cfe24fded30a92d7a01f6a6a8b56aa81619045a46b"
+      "textSha256": "5ee252a9b212b0e1a1b869cfe24fded30a92d7a01f6a6a8b56aa81619045a46b",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-skewer",
@@ -2180,7 +2234,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=skewer; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "2bb19f7a4b21226da30aea1eb49ca60230611e76fddac542989ffe7fa82ef85b"
+      "textSha256": "2bb19f7a4b21226da30aea1eb49ca60230611e76fddac542989ffe7fa82ef85b",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-removing-defender",
@@ -2193,7 +2248,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=removing_defender; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "b5e8c6dd2ad661cab944ca8b40fd8341ab1e56abaeebbcd1abcfc450fd647b49"
+      "textSha256": "b5e8c6dd2ad661cab944ca8b40fd8341ab1e56abaeebbcd1abcfc450fd647b49",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-discovered-attack",
@@ -2206,7 +2262,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=discovered_attack; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "5c7a6c9b688dab7e647e7143a730e5fb6c4f8597b7ce8c7d21d85aa14dcc48ec"
+      "textSha256": "5c7a6c9b688dab7e647e7143a730e5fb6c4f8597b7ce8c7d21d85aa14dcc48ec",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-double-attack",
@@ -2219,7 +2276,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=double_attack; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "a1a5e3e7a698d60bf00b680ab69d0d920a188ed478f5343049e08eb209e01fd1"
+      "textSha256": "a1a5e3e7a698d60bf00b680ab69d0d920a188ed478f5343049e08eb209e01fd1",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-back-rank",
@@ -2232,7 +2290,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=back_rank; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "17ef9aa8b5ae29a45abc559192caa3a790bd6d1d7bebff99a131feeefe8d167b"
+      "textSha256": "17ef9aa8b5ae29a45abc559192caa3a790bd6d1d7bebff99a131feeefe8d167b",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-promotion-awareness",
@@ -2245,7 +2304,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=promotion_awareness; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "d642cb922dd9739082b98ba976b62ff6590ad7c20370e51bd66bdc0e1bc35bdc"
+      "textSha256": "d642cb922dd9739082b98ba976b62ff6590ad7c20370e51bd66bdc0e1bc35bdc",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-abandoned-defender",
@@ -2258,7 +2318,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=abandoned_defender; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "d586b09e53368520a06e4efaa212f871c088d71570a6fb6941d7e075784163b4"
+      "textSha256": "d586b09e53368520a06e4efaa212f871c088d71570a6fb6941d7e075784163b4",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-avoiding-bad-trades",
@@ -2271,7 +2332,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=avoiding_bad_trades; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "6121d2be1838f8122b076d3ac5191cf90bf1e13c714f4687b799a470ff034fda"
+      "textSha256": "6121d2be1838f8122b076d3ac5191cf90bf1e13c714f4687b799a470ff034fda",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-cue-deflection",
@@ -2284,7 +2346,8 @@
       ],
       "trigger": "Explicitly displayed selected SRS finding has skill_id=deflection; cue heard only after existing attempt/reveal authorization. Game Show why does not display this cue field.",
       "sourceBranches": [],
-      "textSha256": "7c4f11f5209c4001afabde4a0d8dbd2b6958423f9e97175204f4647c6b2625d5"
+      "textSha256": "7c4f11f5209c4001afabde4a0d8dbd2b6958423f9e97175204f4647c6b2625d5",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-note-curated-authority",
@@ -2297,7 +2360,8 @@
       ],
       "trigger": "Explicitly opened About this explanation disclosure. Curated MoveExplanation notes[0].",
       "sourceBranches": [],
-      "textSha256": "f4074ac9af3ce3c6141d67f35e83c6ea9b260ad0a1eb4cf82bc4c3d407d2c375"
+      "textSha256": "f4074ac9af3ce3c6141d67f35e83c6ea9b260ad0a1eb4cf82bc4c3d407d2c375",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-note-strong-replies",
@@ -2310,7 +2374,8 @@
       ],
       "trigger": "Explicitly opened About this explanation disclosure. Stockfish explanation notes[0].",
       "sourceBranches": [],
-      "textSha256": "ede96a2a3a5d24fcac6d90a3f5498b533014a5a0c4cfde161950677d20afab2e"
+      "textSha256": "ede96a2a3a5d24fcac6d90a3f5498b533014a5a0c4cfde161950677d20afab2e",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-note-material-scope",
@@ -2323,7 +2388,8 @@
       ],
       "trigger": "Explicitly opened About this explanation disclosure. Stockfish explanation notes[1]; numeric piece values remain written.",
       "sourceBranches": [],
-      "textSha256": "74da1116f1f95ade0d90ba649ef4f15e94dbba0d1fb619919dae8e8fcc76a6d4"
+      "textSha256": "74da1116f1f95ade0d90ba649ef4f15e94dbba0d1fb619919dae8e8fcc76a6d4",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-note-no-simple-reason",
@@ -2336,7 +2402,8 @@
       ],
       "trigger": "Explicitly opened About this explanation disclosure. Stockfish fallback note appended only on acceptance-policy summary branch.",
       "sourceBranches": [],
-      "textSha256": "8286d8cff7cd7911eb888261c858a1fe6ea46da18ee45f7e3e29daa3398d6325"
+      "textSha256": "8286d8cff7cd7911eb888261c858a1fe6ea46da18ee45f7e3e29daa3398d6325",
+      "availability": "approved-for-recording"
     },
     {
       "id": "explanation-note-saved-policy",
@@ -2349,7 +2416,8 @@
       ],
       "trigger": "Explicitly opened About this explanation disclosure. Saved-policy note; exact policy name best_only/engine_tolerance/practical/custom remains written.",
       "sourceBranches": [],
-      "textSha256": "272f162417d36ec0c60163d6d04a5179c60bffa745907afa2b50a5cc2941622c"
+      "textSha256": "272f162417d36ec0c60163d6d04a5179c60bffa745907afa2b50a5cc2941622c",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-revealed",
@@ -2362,7 +2430,8 @@
       "notes": "Never use accepted/praise recording for a reveal.",
       "text": "Here is your studied continuation.",
       "group": "openings",
-      "textSha256": "1a0f937b52e4600a8ed04f827d7036956b7382918ae6f0bc326064a5d5e571fd"
+      "textSha256": "1a0f937b52e4600a8ed04f827d7036956b7382918ae6f0bc326064a5d5e571fd",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-accepted",
@@ -2375,7 +2444,8 @@
       "notes": "Authored repertoire match, not engine grade; identical text before/after earlier failures and restored completed feedback.",
       "text": "This matches your selected study material.",
       "group": "openings",
-      "textSha256": "a8fd18d7fe68b7f62b5fc4c5c0e648626824395e303ced814a96698d466da485"
+      "textSha256": "a8fd18d7fe68b7f62b5fc4c5c0e648626824395e303ced814a96698d466da485",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-retry-fallback",
@@ -2389,7 +2459,8 @@
       "notes": "Reachable resumed failed session: review_position retains failed but no incomplete feedback.",
       "text": "Play a move from the study lines you selected.",
       "group": "openings",
-      "textSha256": "127375f47c205fdcdbaecb1b68e6868c52c0e334be96522080df5fc0124df850"
+      "textSha256": "127375f47c205fdcdbaecb1b68e6868c52c0e334be96522080df5fc0124df850",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-cold-multiple",
@@ -2401,7 +2472,8 @@
       ],
       "text": "Any continuation from these selected lines is accepted.",
       "group": "openings",
-      "textSha256": "72d75299641012159e41787f01b406767e0ae76c944fdb4259aa102716eea9fc"
+      "textSha256": "72d75299641012159e41787f01b406767e0ae76c944fdb4259aa102716eea9fc",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-cold-single",
@@ -2413,7 +2485,8 @@
       ],
       "text": "Recall a move from your selected study material.",
       "group": "openings",
-      "textSha256": "c50a3828b561c0c90b919f58368d01167ee123c266367def1a14fb15fd1f50a4"
+      "textSha256": "c50a3828b561c0c90b919f58368d01167ee123c266367def1a14fb15fd1f50a4",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-rejected",
@@ -2427,7 +2500,8 @@
       "notes": "Legal move rejected only for chosen repertoire membership. Cannot imply objectively bad chess.",
       "text": "This move is outside the opening moves you selected to study. Try again.",
       "group": "openings",
-      "textSha256": "2b075e6530b78cbd72d1635b80f1f188ce83bfddba3d358861c344de5fecb18c"
+      "textSha256": "2b075e6530b78cbd72d1635b80f1f188ce83bfddba3d358861c344de5fecb18c",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-rejected-changed",
@@ -2444,7 +2518,8 @@
       ],
       "notes": "Preserve both repertoire rejection and changed-study scheduling boundary.",
       "group": "openings",
-      "textSha256": "49dd5e92bfb044df86ac8685bcc0ea5c0a7cce81df83f0fea99baa77833ea7f8"
+      "textSha256": "49dd5e92bfb044df86ac8685bcc0ea5c0a7cce81df83f0fea99baa77833ea7f8",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-recall-rejected-retired",
@@ -2459,7 +2534,8 @@
       ],
       "notes": "Retirement status is not changed-study status; do not collapse.",
       "group": "openings",
-      "textSha256": "3f6fb3b7f27a0cf8848a70d00f2722bf3a305ad5c383dd115dd0d3156f373ae4"
+      "textSha256": "3f6fb3b7f27a0cf8848a70d00f2722bf3a305ad5c383dd115dd0d3156f373ae4",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-preview-active",
@@ -2471,7 +2547,8 @@
       ],
       "text": "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone.",
       "group": "openings",
-      "textSha256": "3b770e7b7c4bc5cb9a7f7c5e0294b18e34447a19b21188e8ceee307599584ac2"
+      "textSha256": "3b770e7b7c4bc5cb9a7f7c5e0294b18e34447a19b21188e8ceee307599584ac2",
+      "availability": "approved-for-recording"
     },
     {
       "id": "opening-preview-inactive",
@@ -2483,7 +2560,8 @@
       ],
       "text": "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies.",
       "group": "openings",
-      "textSha256": "7a1f2d46009f7248c81baa071c78b1f8751d9f741751e5f96bf94d3f56408b49"
+      "textSha256": "7a1f2d46009f7248c81baa071c78b1f8751d9f741751e5f96bf94d3f56408b49",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-error",
@@ -2497,7 +2575,8 @@
       "notes": "Cannot share try-again clip: session explicitly blocks writes until reload.",
       "text": "Reload the saved session before making another move.",
       "group": "puzzles",
-      "textSha256": "f02ff5b1a3b0328307915065eea6aa0c8d10d92adc956ff50d8763e6b2ab45bb"
+      "textSha256": "f02ff5b1a3b0328307915065eea6aa0c8d10d92adc956ff50d8763e6b2ab45bb",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-playback",
@@ -2509,7 +2588,8 @@
       ],
       "text": "The board is playing the verified line.",
       "group": "puzzles",
-      "textSha256": "be7288c3608588da8492ee8566d21228ce4ee061bbb156ca317ac0c7b9e4fc8a"
+      "textSha256": "be7288c3608588da8492ee8566d21228ce4ee061bbb156ca317ac0c7b9e4fc8a",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-revealed",
@@ -2523,7 +2603,8 @@
       "notes": "Reveal is never a solved/clean/recovered event.",
       "text": "This attempt is saved as revealed. You can replay the solution below.",
       "group": "puzzles",
-      "textSha256": "0a6adab4ef67e468be160e5af580b96d4780a1ef3ac7ca1aec7dca609fe5b4ba"
+      "textSha256": "0a6adab4ef67e468be160e5af580b96d4780a1ef3ac7ca1aec7dca609fe5b4ba",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-solved-after-retry",
@@ -2537,7 +2618,8 @@
       "notes": "Keep durable earlier failure. Do not use clean-solve clip.",
       "text": "You found the whole continuation after a retry. Saved as failed, then solved.",
       "group": "puzzles",
-      "textSha256": "6d1cc228b036d47d235a3f243fb837713759fb23cfd85a5bc3dfed7ba0ed342a"
+      "textSha256": "6d1cc228b036d47d235a3f243fb837713759fb23cfd85a5bc3dfed7ba0ed342a",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-solved-clean",
@@ -2550,7 +2632,8 @@
       ],
       "text": "You found the whole continuation. Saved as a clean solve.",
       "group": "puzzles",
-      "textSha256": "85a04184d6c5d11a52945fd0f1f5237a8a53e34583a934ab2a48f36efc254995"
+      "textSha256": "85a04184d6c5d11a52945fd0f1f5237a8a53e34583a934ab2a48f36efc254995",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-rejected",
@@ -2565,7 +2648,8 @@
       "notes": "Exact expected solution move decides puzzle acceptance. Do not narrate objective error or engine grade.",
       "text": "That move does not solve this puzzle. Your earlier correct moves are saved.",
       "group": "puzzles",
-      "textSha256": "f14bd6c82bdb6aea5140039ebed4186d682e53c0f9327090d0fba9414c6bb642"
+      "textSha256": "f14bd6c82bdb6aea5140039ebed4186d682e53c0f9327090d0fba9414c6bb642",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-next-move",
@@ -2578,7 +2662,8 @@
       ],
       "text": "That move matches the puzzle. Find your next move.",
       "group": "puzzles",
-      "textSha256": "d44bdb4e365fa606a387a0d9f31bc833ae6de94b4b6775dae504a9413eb202d4"
+      "textSha256": "d44bdb4e365fa606a387a0d9f31bc833ae6de94b4b6775dae504a9413eb202d4",
+      "availability": "approved-for-recording"
     },
     {
       "id": "puzzle-cold",
@@ -2591,7 +2676,8 @@
       ],
       "text": "Take your time and calculate before moving.",
       "group": "puzzles",
-      "textSha256": "1439f3be72522d5a788b513a362cdebc366cf945bfd9bf55c65656d84353ef73"
+      "textSha256": "1439f3be72522d5a788b513a362cdebc366cf945bfd9bf55c65656d84353ef73",
+      "availability": "approved-for-recording"
     },
     {
       "id": "practice-checking",
@@ -2607,7 +2693,8 @@
       "notes": "One shared operational recording if every visible status is voiced. Recommend silent for automatic speech; lesson MoveStatus does not pass busy.",
       "text": "Checking your move...",
       "group": "operational",
-      "textSha256": "94cf940d5e4bbc8a72a1a7696695593d578365d89124a122831a9d4eb1dfea23"
+      "textSha256": "94cf940d5e4bbc8a72a1a7696695593d578365d89124a122831a9d4eb1dfea23",
+      "availability": "silent-excluded"
     },
     {
       "id": "game-thinking",
@@ -2632,7 +2719,8 @@
         "frontend/src/dialogue/composition.ts:31"
       ],
       "group": "operational",
-      "textSha256": "36f43c49c03578484ced07130f3e816a4c31390f34e71acc25a619fcc9075dd0"
+      "textSha256": "36f43c49c03578484ced07130f3e816a4c31390f34e71acc25a619fcc9075dd0",
+      "availability": "silent-excluded"
     },
     {
       "id": "game-unavailable",
@@ -2658,7 +2746,8 @@
         "frontend/src/gameReview/PositionCoach.tsx:130"
       ],
       "group": "operational",
-      "textSha256": "cde987516ad706b6ef2627a60b4bfee484bc08c8ccb20ecd98656abb9c39c8bc"
+      "textSha256": "cde987516ad706b6ef2627a60b4bfee484bc08c8ccb20ecd98656abb9c39c8bc",
+      "availability": "approved-for-recording"
     },
     {
       "id": "game-review-paused",
@@ -2682,7 +2771,8 @@
         "frontend/src/dialogue/characters/storyteller.ts:80"
       ],
       "group": "operational",
-      "textSha256": "a32dfb11a33cf640b10641876043804ed5340e972bbf216327030ab98eb5a84e"
+      "textSha256": "a32dfb11a33cf640b10641876043804ed5340e972bbf216327030ab98eb5a84e",
+      "availability": "approved-for-recording"
     },
     {
       "id": "game-browse-instructions",
@@ -2706,7 +2796,8 @@
         "frontend/src/dialogue/characters/storyteller.ts:80"
       ],
       "group": "operational",
-      "textSha256": "6bcf77d03f28237cdf2a1b0c1c710f201bfcfcedf36b2946c3bee9663804f829"
+      "textSha256": "6bcf77d03f28237cdf2a1b0c1c710f201bfcfcedf36b2946c3bee9663804f829",
+      "availability": "approved-for-recording"
     },
     {
       "id": "dialogue-no-renderable-claim",
@@ -2728,7 +2819,8 @@
         "frontend/src/gameReview/HumanInsight.tsx:15"
       ],
       "group": "operational",
-      "textSha256": "f23bd3d1e4f00e7b5c5e66ed49f3d90e81ff1544438f212919857c666c0d12ae"
+      "textSha256": "f23bd3d1e4f00e7b5c5e66ed49f3d90e81ff1544438f212919857c666c0d12ae",
+      "availability": "silent-excluded"
     },
     {
       "id": "explanation-loading-saved",
@@ -2752,7 +2844,8 @@
         "frontend/src/ReviewExplanation.tsx:127"
       ],
       "group": "operational",
-      "textSha256": "403f07c30321d08a752332ae7ac35ad934e14f79f35295bddbc70468562c5e8c"
+      "textSha256": "403f07c30321d08a752332ae7ac35ad934e14f79f35295bddbc70468562c5e8c",
+      "availability": "silent-excluded"
     }
   ],
   "scopeDecision": {
@@ -2760,6 +2853,13 @@
     "decision": "Defer all lesson narration, including authored passages, hints, game notes and fixed lesson guidance.",
     "reason": "Keep the voice library maintainable as courses are added and edited.",
     "previousCatalogueCommit": "054cd80",
-    "deferredLessonRecordings": 334
+    "deferredLessonRecordings": 334,
+    "completionAuthorization": {
+      "date": "2026-10-01",
+      "decision": "Complete the non-lesson Walter bank and integrate supported playback with the selected Older teacher voice and automatic mouth alignment. Exclude the four silent transient/defensive entries and all lessons.",
+      "activeRecordings": 181,
+      "reusedRecordings": 8,
+      "newRecordings": 173
+    }
   }
 }

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The capture works because the defenders are pinned to their king and cannot recapture there. The shown line has a material gain."
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "The piece is pinned to its king and can only move along the pin line. It is lost in the shown continuation."
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "When the front piece moves, the piece behind it is captured along the same line in this continuation."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "label": "Explanation finding king skewer collected",
+      "text": "The check makes the king move out of the line. The same attacking piece then captures the target behind it in the saved continuation."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "The capture removes the target's only defender. That target is captured next in the verified continuation."
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The reply moves the defender away, leaving its target undefended. That target is captured next in the shown continuation."
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "Moving the blocker opens another piece's attacking line. That piece captures the target along the opened line in the shown continuation."
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "The moving piece gets out of the way and uncovers check from another piece."
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Two pieces give check at the same time in this continuation. Both attacking lines give check together."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "The moved piece attacks one target while the opened line attacks another. The attack along that opened line wins material in the shown continuation."
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn promotes in this continuation, and the shown line retains a material gain."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "The continuation captures an undefended piece and retains a net material gain for the capturing side."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "The opponent's previous move broke a relative pin on the attacking piece. The next move left the target there, and it is captured in the shown line."
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side can play the reply shown on the board. Follow that move to examine the continuation."
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, check which of your pieces can be captured without a useful recapture."
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Look for loose enemy pieces before choosing a quiet move."
+    },
+    {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Check forcing moves that attack two valuable targets at once."
+    },
+    {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Before moving a pinned piece, check what it exposes: your king or a more valuable piece."
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Watch for an attack that exposes another valuable piece behind the first target."
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Before exchanging a defender, check what it currently protects."
+    }
+  ]
+}

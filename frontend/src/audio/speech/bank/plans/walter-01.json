@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "The idea is a fork in this continuation. One piece attacks several targets at once."
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "This move allows a fork in the continuation. One opposing piece attacks several targets at once."
+    },
+    {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "The continuation uses a pin. Moving the pinned piece off the line would expose its king."
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "label": "Tactic pin allowed",
+      "text": "This move allows a pin in the continuation. Moving the pinned piece off the line would expose its king."
+    },
+    {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "The stronger continuation used a pin. Moving the pinned piece off the line would expose its king."
+    },
+    {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "The continuation uses a skewer. Moving the front piece exposes a piece behind it."
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "label": "Tactic skewer allowed",
+      "text": "This move allows a skewer in the continuation. Moving the front piece exposes a piece behind it."
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "The stronger continuation had a skewer. Moving the front piece would expose a piece behind it."
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "The continuation removes a defender by capture. Notice what loses protection when that defender disappears."
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "This move allows the other side to capture a defender in the continuation. Notice what loses protection when that defender disappears."
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "The stronger continuation captured a defender. That was the chance to remove protection from what it was guarding."
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "The continuation ends in checkmate on the back rank. The king's own pieces take away escape squares."
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "This move allows a back-rank checkmate in the continuation. The king's own pieces take away escape squares."
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "The stronger continuation ended in a back-rank checkmate. This move lets that finish go."
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "The continuation includes a pawn promotion. Follow the pawn all the way to its last rank."
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "This move allows the opposing pawn to promote in the continuation. Follow that pawn all the way to its last rank."
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "The stronger continuation included a pawn promotion. This move misses that opportunity."
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "label": "Tactic discovered attack played",
+      "text": "The continuation uses a discovered attack. Moving one piece opens an attacking line for another."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "This move allows a discovered attack in the continuation. Moving one opposing piece opens an attacking line for another."
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "The stronger continuation used a discovered attack. Moving one piece would open an attacking line for another."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "This issue also appears in other saved games. It is worth revisiting those examples alongside this one."
+    },
+    {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate. The king has no legal escape, and the attack has reached its finish."
+    },
+    {
+      "id": "mate-defense-ended",
+      "label": "Mate defense ended",
+      "text": "Checkmate. The king has no legal escape. Let's look back for a chance to stop the attack."
+    },
+    {
+      "id": "draw",
+      "label": "Draw",
+      "text": "The position ends in a draw. There may still be useful decisions to revisit."
+    },
+    {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Settle into the position, then choose your move."
+    },
+    {
+      "id": "srs-retry",
+      "label": "Srs retry",
+      "text": "That attempt falls short. Take another look at the position."
+    },
+    {
+      "id": "srs-practice-error",
+      "label": "Srs practice error",
+      "text": "No result came back for that attempt. You can return to the move and try again."
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "The side that made this move has a forced checkmate in the saved engine analysis."
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "The saved engine analysis gives the other side a forced checkmate after this move."
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "In the saved line, the side that made this move gains material compared with the starting position."
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "In the saved line, the side that made this move loses material compared with the starting position."
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "This move meets the acceptance policy saved for this exercise. The shown line does not establish a simple tactical reason."
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "This move falls outside the acceptance policy saved for this exercise. The shown line does not establish a simple tactical reason."
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "This move matches a saved answer for this exercise. The saved answers define what is accepted here."
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "This move is outside the saved answers for this exercise. A different legal move is not necessarily bad chess."
+    },
+    {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Study the move, then try the next position."
+    },
+    {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Good move. Keep the reason with the move when you revisit it."
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "label": "Srs fallback focus saved",
+      "text": "Practice saved. Your review schedule is unchanged."
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved. This recall stays marked for relearning."
+    },
+    {
+      "id": "explanation-frame-original",
+      "label": "Explanation frame original",
+      "text": "This is the original position, before the shown continuation."
+    }
+  ]
+}

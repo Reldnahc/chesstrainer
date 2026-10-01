@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "This is the next move in the saved continuation."
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "This move gives check in the saved continuation."
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "This move gets the king out of check in the saved continuation."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "The pawn reaches the last rank and promotes."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "label": "Explanation frame quiet promotion check",
+      "text": "The pawn reaches the last rank and promotes. The move also gives check."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "The pawn reaches the last rank and promotes. This is checkmate; the king has no legal escape."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "The pawn reaches the last rank and promotes. It gets the king out of check."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "This move captures a piece in the shown continuation."
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "label": "Explanation frame capture move check",
+      "text": "This move captures a piece in the shown continuation. It also gives check."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "This move captures a piece in the shown continuation. This is checkmate; the king has no legal escape."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "This move captures a piece in the shown continuation. It gets the king out of check."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "The pawn captures a piece and promotes on the last rank."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "label": "Explanation frame capture promotion check",
+      "text": "The pawn captures a piece and promotes on the last rank. The move also gives check."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "The pawn captures a piece and promotes on the last rank. This is checkmate; the king has no legal escape."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "label": "Explanation frame capture promotion escape",
+      "text": "The pawn captures a piece and promotes on the last rank. It gets the king out of check."
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "This move castles the king and relocates the rook. It also gives check."
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "This move castles the king and relocates the rook. This is checkmate; the king has no legal escape."
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "label": "Explanation finding fork collected",
+      "text": "One piece attacks several valuable targets, then captures one in the shown continuation. The line retains a net material gain."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "label": "Explanation finding pin prevents capture",
+      "text": "The piece is pinned to its king and cannot capture the indicated target. Moving off the pin line would expose the king."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "The attacked piece is pinned to its king, restricting its escape. Check which moves keep the king protected."
+    }
+  ]
+}

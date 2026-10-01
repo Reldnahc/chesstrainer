@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "The unplayed alternative would advance a pawn that was already passed. Keep its new square in view as you compare continuations."
+    },
+    {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "This leaves an isolated pawn, with no friendly pawn on either neighboring file."
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "label": "Positional isolated alternative",
+      "text": "The unplayed alternative would leave an isolated pawn, with no friendly pawn on either neighboring file."
+    },
+    {
+      "id": "positional-support-actual",
+      "label": "Positional support actual",
+      "text": "This gives a piece support. A defender is now in place."
+    },
+    {
+      "id": "positional-support-alternative",
+      "label": "Positional support alternative",
+      "text": "The unplayed alternative would give a piece support. A defender would then be in place."
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "label": "Positional unsupported alternative",
+      "text": "The unplayed alternative would leave a piece undefended. That alone would not mean the piece could be won."
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "This opens a legal flight square the king did not have before. Compare the positions to see what opened the way."
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "The unplayed alternative would open a legal flight square for the king. Compare the positions to see what would open the way."
+    },
+    {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "This castles the king and relocates the rook. Follow both pieces when comparing the positions."
+    },
+    {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "The unplayed alternative would castle the king and relocate the rook. Follow where both pieces would go."
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "This capture breaks up a bishop pair. The side losing the bishop no longer has one bishop on each square color."
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "The unplayed alternative would capture one bishop from an opposite-colored pair, breaking up that bishop pair."
+    },
+    {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "This leaves doubled pawns in the resulting position. At least two pawns of the same color share a file."
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "The unplayed alternative would leave doubled pawns in the resulting position, with at least two pawns of the same color sharing a file."
+    },
+    {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "There was a forced checkmate in the stronger continuation. This move lets that finish go."
+    },
+    {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "This was the only move we found that kept the advantage. The other moves we checked were losing."
+    },
+    {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "The other side has an immediate capture in reply. Follow the continuation to see which piece can be taken."
+    },
+    {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "The strongest reply gives check. The continuation begins by making the king answer that threat."
+    },
+    {
+      "id": "stronger-alternative",
+      "label": "Stronger alternative",
+      "text": "The engine prefers another move here. Compare its continuation with the move that was played."
+    },
+    {
+      "id": "evaluation-loss",
+      "label": "Evaluation loss",
+      "text": "This move gives up some of the position's value compared with the engine's best continuation. Follow the reply to see how the position changes."
+    }
+  ]
+}

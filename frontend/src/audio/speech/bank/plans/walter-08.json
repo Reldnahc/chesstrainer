@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "Check what lines open when a blocking piece moves."
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Look for a move that creates two threats at once, including checks and opened lines."
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Check your king's escape squares before moving a back-rank defender."
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count the moves to promotion and check forcing pawn advances."
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before moving a defender, check which pieces will lose its protection."
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Count what you capture and what their recapture takes from you."
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Check whether a forcing exchange pulls a defender away from another target."
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "The saved answers define this exercise. A different legal move is not necessarily bad chess."
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "This is one engine continuation against strong replies. It does not mean every reply is forced."
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "label": "Explanation note material scope",
+      "text": "Material changes describe only the shown line, compared with its starting position. The written explanation gives the piece values used."
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "The saved line does not establish a simple tactical reason. Step through it to compare the replies; no positional explanation has been inferred."
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "label": "Explanation note saved policy",
+      "text": "This explanation uses the answer policy saved for this exercise. Its setting is shown in the written notes."
+    },
+    {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "Here is your studied continuation."
+    },
+    {
+      "id": "opening-recall-accepted",
+      "label": "Opening recall accepted",
+      "text": "This matches your selected study material."
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "label": "Opening recall retry fallback",
+      "text": "Play a move from the study lines you selected."
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "Any continuation from these selected lines is accepted."
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Recall a move from your selected study material."
+    },
+    {
+      "id": "opening-recall-rejected",
+      "label": "Opening recall rejected",
+      "text": "This move is outside the opening moves you selected to study. Try again."
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "That move is outside your selected opening lines. Try again; this saved attempt does not update the changed study's review schedule."
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "label": "Opening recall rejected retired",
+      "text": "That move is outside your selected opening lines. Try again; this retired position's review schedule stays unchanged."
+    }
+  ]
+}

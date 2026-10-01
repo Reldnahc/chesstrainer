@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "This line’s moves are accepted in mixed Due. Dedicated practice asks for this line alone."
+    },
+    {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls will ask for your selected side’s moves. Shared positions use one card across your active studies."
+    },
+    {
+      "id": "puzzle-error",
+      "label": "Puzzle error",
+      "text": "Reload the saved session before making another move."
+    },
+    {
+      "id": "puzzle-playback",
+      "label": "Puzzle playback",
+      "text": "The board is playing the verified line."
+    },
+    {
+      "id": "puzzle-revealed",
+      "label": "Puzzle revealed",
+      "text": "This attempt is saved as revealed. You can replay the solution below."
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "You found the whole continuation after a retry. Saved as failed, then solved."
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "label": "Puzzle solved clean",
+      "text": "You found the whole continuation. Saved as a clean solve."
+    },
+    {
+      "id": "puzzle-rejected",
+      "label": "Puzzle rejected",
+      "text": "That move does not solve this puzzle. Your earlier correct moves are saved."
+    },
+    {
+      "id": "puzzle-next-move",
+      "label": "Puzzle next move",
+      "text": "That move matches the puzzle. Find your next move."
+    },
+    {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "Take your time and calculate before moving."
+    },
+    {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "The engine has not given me enough to explain this position."
+    },
+    {
+      "id": "game-review-paused",
+      "label": "Game review paused",
+      "text": "Here is the available explanation: Your review is paused. Resume it below, or move a piece to explore."
+    },
+    {
+      "id": "game-browse-instructions",
+      "label": "Game browse instructions",
+      "text": "Here is the available explanation: Select a move or move a piece to explore an alternative."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "The continuation creates two attacks at once. Watch how the two attacking pieces work together."
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "This move allows two attacks at once in the continuation. Watch how the two attacking pieces work together."
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "The stronger continuation created two attacks at once. This move misses that chance to combine the threats."
+    },
+    {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "The continuation uses a deflection. A defender is drawn away, opening a tactical opportunity."
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "This move allows a deflection in the continuation. An opposing move draws a defender away, opening a tactical opportunity."
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "label": "Tactic deflection missed",
+      "text": "The stronger continuation used a deflection. Drawing a defender away would open a tactical opportunity."
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "label": "Tactic undefended capture played",
+      "text": "The continuation captures an undefended piece. Keep an eye on loose pieces; they can offer a straightforward opportunity."
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "The stronger continuation captured an undefended piece. This move misses that chance, so give loose enemy pieces a careful look."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "This move allows the other side to capture an undefended piece in the continuation. Loose pieces deserve a careful look."
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "The opponent's previous move enabled this attack. This move leaves the threat unanswered, and the piece can be captured in the continuation."
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "This capture invites a recapture of a more valuable piece. Count both sides of the exchange before judging the first capture."
+    },
+    {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "This develops a minor piece from its original square. Notice its new place in the position."
+    },
+    {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "The unplayed alternative would develop a minor piece from its original square. Notice where it would go."
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "This leaves a rook on an open file. There are no pawns of either color on that file."
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "label": "Positional rook open alternative",
+      "text": "The unplayed alternative would leave a rook on an open file. That file would contain no pawns of either color."
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "This leaves a rook on a semi-open file. There are no friendly pawns on that file, but at least one enemy pawn remains."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "The unplayed alternative would leave a rook on a semi-open file, with no friendly pawns on that file but at least one enemy pawn."
+    },
+    {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "This leaves a passed pawn: no enemy pawn is ahead on its file or either neighboring file."
+    },
+    {
+      "id": "positional-passed-alternative",
+      "label": "Positional passed alternative",
+      "text": "The unplayed alternative would leave a passed pawn, with no enemy pawn ahead on its file or either neighboring file."
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "label": "Positional passer advance actual",
+      "text": "This advances a pawn that was already passed. Keep its new square in view as you compare continuations."
+    }
+  ]
+}

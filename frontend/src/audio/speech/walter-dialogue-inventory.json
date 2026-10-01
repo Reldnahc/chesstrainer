@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "walter-dialogue-planning-inventory",
-  "status": "draft-not-approved-for-generation",
+  "status": "approved-game-portion-of-non-lesson-production-bank",
   "auditedCommit": "839da3e",
   "coach": {
     "id": "classic",
@@ -35,11 +35,11 @@
   },
   "selectionPolicy": {
     "unit": "First successfully rendered claim in the current main bubble; not merely first input claim or highest raw priority.",
-    "sameVoice": "The selected Older teacher identity is now saved. Eight short examples from this bank are recorded in walter-contrasts-plan.json; the remaining scripts are still planning only and production TTS quality awaits owner listening.",
-    "scope": "Game review and variations only under current speech-pilot policy. Full-app narration is a separate scope, described in surfaces.",
+    "sameVoice": "Older teacher is selected and saved. Reuse the eight unchanged owner-approved contrast recordings; remaining scripts are included in the approved non-lesson bank.",
+    "scope": "Game review and variation selection; the full non-lesson bank adds other explicitly gated surfaces. Lesson narration remains deferred.",
     "sourceProof": "Static source reachability with focused renderer checks, not a population coverage percentage or end-to-end speech validation.",
     "variantPolicy": "One recording per written script. Alternate wording and delivery takes are optional editorial work, not implied by template permutations.",
-    "secondary": "21 scripts cover supported subordinate meanings; do not record or auto-play them under the primary-only policy without an explicit scope decision."
+    "secondary": "The complete approved bank includes the 21 secondary meanings. They require a visible, explicitly selected secondary surface; do not automatically narrate unopened popovers or lower-priority claims."
   },
   "gates": {
     "common": [
