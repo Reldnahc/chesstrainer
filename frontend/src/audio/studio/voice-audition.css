@@ -1,0 +1,15 @@
+/* Shared audition framing; each audition owns its domain-specific controls. */
+.voice-audition { margin: 0 0 36px; padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.voice-audition-heading { margin-bottom: 22px; }
+.voice-audition-heading h2 { margin: 7px 0 8px; font-size: 26px; }
+.voice-audition-heading > p { margin: 0; max-width: 720px; font-size: 13px; }
+.voice-audition-layout { display: grid; grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr); gap: 30px; }
+.voice-audition-controls { min-width: 0; }
+.voice-audition-preview { min-width: 0; container-type: inline-size; }
+@media (max-width: 850px) {
+  .voice-audition-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}
+@media (max-width: 560px) {
+  .voice-audition { padding: 16px; }
+  .voice-audition-heading h2 { font-size: 23px; }
+}

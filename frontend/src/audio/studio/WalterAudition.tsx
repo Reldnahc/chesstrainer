@@ -14,16 +14,12 @@ import { walterMouthTrack } from "../speech/voiceBank";
 import { walterAlignment, walterOriginalAlignment } from "../speech/alignment/previewTracks";
 import WalterMouthComparison from "./WalterMouthComparison";
 import type { WalterClip, WalterCollection, WalterScript, WalterVoice } from "../speech/walterPilot";
+import type { StudioSpeechPlayback } from "./useStudioPlayer";
 import "../../coach-presentation.css";
+import "./voice-audition.css";
 import "./walter-audition.css";
 
 const walter = getCoach("classic");
-export type WalterPlayback = {
-  state: "idle" | "loading" | "playing";
-  voiceId?: string;
-  scriptId?: string;
-  eventId?: string;
-};
 export type WalterPlayOptions = { voice: WalterVoice; script: WalterScript; inContext: boolean };
 
 export default function WalterAudition({ collections, voices, scripts, clips, playback, speaking, onPlay, onStop }: {
@@ -31,7 +27,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
   voices: readonly WalterVoice[];
   scripts: readonly WalterScript[];
   clips: readonly WalterClip[];
-  playback: WalterPlayback;
+  playback: StudioSpeechPlayback;
   speaking: SpeechPlayback | null;
   onPlay: (clip: WalterClip, options: WalterPlayOptions) => void;
   onStop: () => void;
@@ -81,8 +77,8 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
     <Button disabled={!ready} onClick={() => ready && clip && onPlay(clip, { voice, script, inContext: true })}>In context</Button>
   </>;
 
-  return <section className="walter-audition" aria-labelledby="walter-audition-heading" data-playback={current ? playback.state : "idle"}>
-    <header className="walter-audition-heading">
+  return <section className="voice-audition walter-audition" aria-labelledby="walter-audition-heading" data-playback={current ? playback.state : "idle"}>
+    <header className="voice-audition-heading walter-audition-heading">
       <div><span className="audio-studio-step">VOICE AUDITION</span><h2 id="walter-audition-heading">Find Walter’s voice</h2></div>
       <p>Listen to Walter’s complete voice bank, watch his mouth follow the recording, or compare earlier voice directions. These are standalone examples, not analysis of a real game.</p>
     </header>
@@ -112,8 +108,8 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
         }} />
       <p>{collection.description}</p>
     </div>}
-    <div className="walter-audition-layout">
-      <div className="walter-audition-controls">
+    <div className="voice-audition-layout walter-audition-layout">
+      <div className="voice-audition-controls walter-audition-controls">
         {preview === 'voice' && <ChoiceGroup label="Voice candidate" value={voice.id} options={collectionVoices.map(item => ({ value: item.id, label: item.name }))}
           onChange={id => { if (id !== voiceId) { onStop(); setVoiceId(id); } }} />}
         <p className="walter-audition-description">{preview === 'mouths' ? 'Compare the first generator with revised script-aligned timing. Both use the same Older teacher recording and unchanged mouth artwork.' : recordingId ? 'Walter’s selected Older teacher voice. Each complete summary uses the same automatic mouth timing as the application.' : voice.description}</p>
@@ -138,7 +134,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
           </>}
         </details>
       </div>
-      <div className="walter-audition-preview">
+      <div className="voice-audition-preview walter-audition-preview">
         {preview === 'mouths' && alignment && originalAlignment ? <WalterMouthComparison reaction={reaction} motion={motion}
           speech={speech} track={alignment} originalTrack={originalAlignment} text={script.spokenText} actions={actions} /> :
         <ReviewCoach title={<strong>{script.label}</strong>} portraitCaption={walter.name} messageResetKey={script.id}
