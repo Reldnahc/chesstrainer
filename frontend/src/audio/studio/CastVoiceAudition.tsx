@@ -11,6 +11,9 @@ import { coachGroups } from "../../coach/registry";
 import type { SpeechMouthTrack } from "../../coach/speechMouth";
 import { castAuditionCoaches, castAuditionUtterance, castMouthTrack, castRecording } from "../speech/castAuditions";
 import type { StudioPlayer } from "./useStudioPlayer";
+import CastingChoice from "./CastingChoice";
+import CastingProgress from "./CastingProgress";
+import {useCastingChoices} from "./useCastingChoices";
 import "../../coach-presentation.css";
 import "../../disclosure.css";
 import "./voice-audition.css";
@@ -21,10 +24,12 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
   player: StudioPlayer; coachId?: string; expression?: CoachExpression; motion?: CoachMotion;
 }) {
   const id = useId();
+  const choices = useCastingChoices();
   const [selectedCoachId, setSelectedCoachId] = useState(castAuditionCoaches[0]?.coachId);
   const candidate = castAuditionCoaches.find(item => item.coachId === (coachId ?? selectedCoachId));
   const [directionId, setDirectionId] = useState<string>();
-  const direction = candidate?.directions.find(item => item.id === directionId) ?? candidate?.directions[0];
+  const savedDirection = candidate && choices.choices[candidate.coachId]?.directionId;
+  const direction = candidate?.directions.find(item => item.id === (directionId ?? savedDirection)) ?? candidate?.directions[0];
   const recording = candidate && direction && castRecording(candidate.coachId, direction.id);
   const recordingId = recording?.id;
   const [alignment, setAlignment] = useState<{id: string; track?: SpeechMouthTrack}>();
@@ -44,12 +49,17 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
   const {coach} = candidate;
   const track = alignment?.id === recordingId ? alignment?.track : undefined;
   const ready = !!recording && !!track;
+  const registered = choices.candidates[coach.id]?.[direction.id];
+  const sameRecording = !!recording && registered?.id === recording.id && registered?.generatedVoiceId === recording.generatedVoiceId &&
+    registered.audioSha256 === recording.audioSha256;
   const current = player.speechPlayback.coachId === coach.id && player.speechPlayback.voiceId === direction.id;
   const playing = current && player.speechPlayback.state === "playing";
   const speech = playing && player.speaking?.eventId === player.speechPlayback.eventId ? player.speaking ?? undefined : undefined;
   const reaction = {state: playing ? expression : "neutral" as const, key: playing ? player.speechPlayback.eventId! : `cast-ready:${coach.id}`};
   function play(inContext: boolean) {
     if (!recording || !track) return;
+    // A late saved-choice load must not switch a preview the listener just started.
+    setDirectionId(direction!.id);
     void player.playSpeech({url: recording.url, recordingId: recording.id, voiceId: direction!.id,
       voiceName: direction!.label, scriptId: recording.id, coachName: coach.name,
       utterance: castAuditionUtterance(recording, expression)}, inContext);
@@ -57,8 +67,11 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
   return <section className="voice-audition cast-audition" aria-labelledby={`${id}-heading`} data-playback={current ? player.speechPlayback.state : "idle"}>
     <header className="voice-audition-heading cast-audition-heading">
       <h2 id={`${id}-heading`}>Cast voice auditions</h2>
-      <p>Three distinct directions for each character. Compare the same short teaching example; these voices are not selected for the application.</p>
+      <p>Listen to each direction, then choose a favorite or tell us to keep looking.</p>
     </header>
+    <CastingProgress choices={choices} onCoach={!coachId ? next => {
+      player.stop(); setSelectedCoachId(next); setDirectionId(undefined);
+    } : undefined} />
     <div className="voice-audition-layout cast-audition-layout">
       <div className="voice-audition-controls cast-audition-controls">
         {!coachId && <label>Cast coach<select value={coach.id} onChange={event => {
@@ -96,6 +109,11 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
         {!ready && <p role="status" className="cast-audition-note">{!recording ? "Awaiting this candidate’s recording." :
           alignment?.id === recordingId ? "Mouth timing is unavailable for this recording." : "Loading mouth timing…"}</p>}
         {ready && <p className="cast-audition-note">{recording.durationSeconds.toFixed(1)} seconds · Automatically aligned mouth timing</p>}
+        {choices.ready && recording && !sameRecording && <p className="cast-audition-note" role="status">
+          This preview differs from the studio’s current recording. Reload the page before choosing it.
+        </p>}
+        <CastingChoice key={coach.id} coachId={coach.id} coachName={coach.name} direction={direction}
+          directions={candidate.directions} available={ready && sameRecording} choices={choices} />
       </div>
     </div>
   </section>;

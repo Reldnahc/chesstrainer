@@ -2,6 +2,9 @@ import { expect, test, type Page } from "@playwright/test";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { SpeechMouthTrack } from "../src/coach/speechMouth";
+import {mockCastingApi} from "./fixtures/castingApi";
+
+test.beforeEach(async ({page}) => { await mockCastingApi(page); });
 
 const root = resolve("src/audio/speech/cast-auditions");
 type PlannedCoach = {coachId: string; name: string; group: string; text: string; directions: {id: string; label: string; prompt: string}[]};
@@ -75,7 +78,10 @@ test("the compact cast selector starts silent, exposes every direction, and stay
     }
   }
   await expect(speechEvents(page, "started")).toHaveCount(0);
-  expect(requests.filter(url => /\.mp3$/.test(url))).toEqual([]);
+  expect(requests.filter(url => {
+    const request = new URL(url);
+    return request.pathname.endsWith(".mp3") && !request.searchParams.has("import");
+  })).toEqual([]);
   const origin = new URL(page.url()).origin;
   expect(requests.filter(url => new URL(url).origin !== origin || new URL(url).pathname.startsWith("/api/"))).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -156,14 +162,16 @@ test("switching directions follows each selected recording's actual cue timing",
   }
 });
 
-test("cast and Walter auditions share one player and changing a candidate cancels without autoplay", async ({page}) => {
+test("cast auditions and game sounds share one player and changing a candidate cancels without autoplay", async ({page}) => {
   await page.goto("/");
-  const walter = page.getByRole("region", {name: "Find Walter’s voice", exact: true});
-  await walter.getByRole("button", {name: "Play voice", exact: true}).click();
-  await expect(walter).toHaveAttribute("data-playback", "playing");
+  await expect(page.getByRole("region", {name: "Find Walter’s voice", exact: true})).toHaveCount(0);
   await expect(play(page)).toBeEnabled();
   await play(page).click();
-  await expect(walter).toHaveAttribute("data-playback", "idle");
+  await expect(panel(page)).toHaveAttribute("data-playback", "playing");
+  await page.getByRole("button", {name: "Play Move · Soft objects", exact: true}).click();
+  await expect(panel(page)).toHaveAttribute("data-playback", "idle");
+  await expect(page.locator('[data-bus="effects"][data-event-type="started"]')).toHaveCount(1);
+  await play(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
   await direction(page).selectOption(plan.coaches[0].directions[1].id);
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");

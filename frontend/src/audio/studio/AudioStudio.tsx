@@ -8,11 +8,7 @@ import recordedSources from "../assets/sources.json";
 import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
 import type { AudioEvent } from "../engine";
 import type { SoundCategory, SoundCue, SoundPalette } from "../model";
-import { walterCollections, walterVoices, walterScripts, walterClips, walterAuditionUtterance, type WalterClip } from "../speech/walterPilot";
-import { walterBankCollection, walterBankScripts } from "../speech/walterBankAudition";
-import { walterRecording } from "../speech/voiceBank";
 import { auditionScenarios, retryContexts, type RetryContextId } from "./scenarios";
-import WalterAudition, { type WalterPlayOptions } from "./WalterAudition";
 import { useStudioPlayer } from "./useStudioPlayer";
 import StudioTransport from "./StudioTransport";
 import CastVoiceAudition from "./CastVoiceAudition";
@@ -29,12 +25,6 @@ const paletteLabel = (palette?: SoundPalette) => paletteCatalog.find(item => ite
 const assetSources = new Map(recordedSources.assets.map(source => [`${source.palette}:${source.cue}`, source]));
 const recordingSources = new Map(recordedSources.sources.map(source => [source.id, source]));
 const sourceLicenses: Readonly<Record<string, { label: string; url: string } | undefined>> = recordedSources.licenses;
-const voiceCollections = [walterCollections[0], walterBankCollection, ...walterCollections.slice(1)];
-const voiceScripts = [...walterScripts, ...walterBankScripts];
-const voiceClips = [...walterClips, ...walterBankScripts.flatMap(script => {
-  const recording = walterRecording(script.recordingId);
-  return recording ? [{ voiceId: "walter", scriptId: script.id, url: recording.url }] : [];
-})];
 
 function CueSource({ cue, palette }: { cue: SoundCue; palette: SoundPalette }) {
   const source = assetSources.get(`${palette}:${cue}`);
@@ -65,16 +55,12 @@ function eventLabel(event: AudioEvent) {
 export default function AudioStudio() {
   const [filter, setFilter] = useState<CueFilter>("all");
   const player = useStudioPlayer();
-  const { events, speechPlayback, speaking, stop, playCue, playScenario } = player;
+  const { events, stop, playCue, playScenario } = player;
   const [selectedScenario, setSelectedScenario] = useState(auditionScenarios[0].id);
   const [retryContextId, setRetryContextId] = useState<RetryContextId>("repeated");
   const visibleCues = cueCatalog.filter(cue => filter === "all" || cue.category === filter);
   const scenario = auditionScenarios.find(item => item.id === selectedScenario)!;
   const retryContext = retryContexts.find(item => item.id === retryContextId)!;
-  function playVoice(clip: WalterClip, {voice, script, inContext}: WalterPlayOptions) {
-    return player.playSpeech({url: clip.url, voiceId: voice.id, voiceName: voice.name, scriptId: script.id,
-      coachName: "Walter", utterance: walterAuditionUtterance(voice, script)}, inContext);
-  }
 
   const history = events.filter(event => event.type !== "requested" && event.type !== "ended").slice(-18).reverse();
 
@@ -83,13 +69,10 @@ export default function AudioStudio() {
       <div className="audio-studio-brand"><AudioLines size={22} aria-hidden="true" /><span>FIELDWORK / AUDIO STUDIO</span></div>
       <span className="audio-studio-badge">Development only</span>
       <h1>A little sound. A clearer game.</h1>
-      <p>Preview the nine approved game sounds, inspect their sources, and check playback in context.</p>
+      <p>Choose voices for the cast, compare recordings in context, and preview the approved game sounds.</p>
     </header>
 
     <StudioTransport player={player} />
-
-    <WalterAudition collections={voiceCollections} voices={walterVoices} scripts={voiceScripts} clips={voiceClips}
-      playback={speechPlayback} speaking={speaking} onPlay={(clip, options) => void playVoice(clip, options)} onStop={stop} />
 
     <CastVoiceAudition player={player} />
 
@@ -145,9 +128,9 @@ export default function AudioStudio() {
             </li>)}</ol> : <p>No playback yet.</p>}
           </details>
         </section>
-        <p className="audio-studio-speech-note">Walter’s complete voice bank is available in the application. Earlier voice experiments remain here for comparison.</p>
+        <p className="audio-studio-speech-note">Walter is complete and available in the application. Choose voices for the rest of the cast here.</p>
       </aside>
     </div>
-    <footer className="audio-studio-footer">Audio studio · Preview controls do not change account preferences.</footer>
+    <footer className="audio-studio-footer">Casting choices save to this computer. Playback controls do not change account preferences.</footer>
   </main>;
 }
