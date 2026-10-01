@@ -69,6 +69,24 @@ voices omit the framing and retain necessary qualifications. Compact voices can
 choose one claim while patient teachers retain a second supported connection.
 Distinctness comes from this structure and the actual authored sentences together.
 
+Walter and Rivet are the first two voices using scoped tactical meanings. The
+shared projection selects role, timing and effect keys plus concrete noun/move
+slots; it supplies no full English sentences as runtime slots. Each voice authors
+the mandatory factual sentences as well as any optional teaching cues. Walter
+connects the idea to what can happen next; Rivet separates a present pattern,
+an available reply and a possible result in compact, orderly language. Their 29
+scoped forms retain the same evidence without forcing identical factual prose.
+The other 28 voices retain their current wording and deterministic variants.
+
+The same pilot uses three generic opening-recognition phrases and eight phrases
+for a verified consecutive run. Every phrase has a complete Walter and Rivet
+version, selected by the same stable semantic ID used for whole recorded clips.
+The entry phrases make no claim about being first; follow phrases require the
+reviewed-prefix contract in [COACH_DIALOGUE.md](COACH_DIALOGUE.md). Recognition
+does not prove move quality, development goals, familiarity or strategic intent.
+Written opening names remain available without requiring a recording for every
+name, and revisiting a position does not choose a fresh phrase.
+
 Required named slots must occur in the mandatory fragments. A question or reaction
 cannot be the only place a move, target or reply appears. Positional alternatives
 still render with explicit hypothetical scope. Opponent achievements still use

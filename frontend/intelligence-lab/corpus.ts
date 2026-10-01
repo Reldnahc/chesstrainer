@@ -1,10 +1,11 @@
 import {selectableCoaches} from "../src/coach/registry";
 import {dialoguePurposes, stableKey} from "../src/dialogue/model";
 import {neutralTemplates} from "../src/dialogue/templates";
-import {renderDialogue} from "../src/dialogue/neutral";
+import {openingSequenceTemplate, renderDialogue} from "../src/dialogue/neutral";
 import {factualParts, validWording, wordingParts} from "../src/dialogue/composition";
 import {writingExamples, exampleIntent} from "./examples";
-import {tacticalTemplate} from "../src/dialogue/tacticalTemplates";
+import {neutralTacticalTemplates} from "../src/dialogue/scopedTacticalWording";
+import type {TacticalPresentationKey} from "../src/dialogue/tacticalTemplates";
 
 const normalize = (text: string) => text.toLowerCase().replace(/[^a-z0-9{}]+/g, " ").trim();
 export const commonClaims = ["allowed_mate", "tactic_played", "tactic_allowed", "tactic_missed",
@@ -31,8 +32,10 @@ export function auditCorpus() {
     for (const [field, text] of Object.entries(definition.bible)) if (text.length < 20) errors.push(`${coach.name}: incomplete ${field}`);
     for (const code of commonClaims) if (!definition.templates[code]?.length) errors.push(`${coach.name}: no character handling for ${code}`);
     for (const [code, options] of Object.entries(definition.templates)) {
-      const reference = code === "tactic_witness" && definition.tacticalWording === "witness"
-        ? tacticalTemplate : neutralTemplates[code];
+      const reference = definition.tacticalWording === "witness" && Object.hasOwn(neutralTacticalTemplates, code)
+        ? neutralTacticalTemplates[code as TacticalPresentationKey]
+        : definition.openingWording === "sequence" && /^book-opening-(?:entry-[1-3]|follow-[1-8])$/.test(code)
+          ? openingSequenceTemplate : neutralTemplates[code];
       if (!reference) {errors.push(`${coach.name}: unknown claim ${code}`); continue;}
       const seen = new Set<string>();
       for (const wording of options ?? []) {

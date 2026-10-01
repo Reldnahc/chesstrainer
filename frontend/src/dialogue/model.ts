@@ -1,5 +1,6 @@
 import type { Schema } from "../api";
 import type { CoachExpression } from "../coach/model";
+import type {BookPresentation} from "./openingPresentation";
 
 export const dialoguePurposes = [
   "neutral", "thinking", "uncertain", "brilliant", "great", "best", "good", "book",
@@ -24,6 +25,7 @@ export type Claim = {
   sourceIds: string[];
   position?: {line: "actual" | "alternative"; move: string};
   tactic?: TacticalPresentation;
+  opening?: BookPresentation;
 };
 export type DialogueIntent = {
   version: "dialogue-intent-5";
@@ -108,9 +110,9 @@ export function makeIntent(key: string, purpose: DialoguePurpose, mode: Dialogue
     priority = 100;
   }
   const facts = {purpose, mode, expression, subject, claims, decisions};
-  const wordingFacts = {...facts, claims: claims.map(({tactic: _tactic, ...item}) => item)};
+  const wordingFacts = {...facts, claims: claims.map(({tactic: _tactic, opening: _opening, ...item}) => item)};
   return {version: "dialogue-intent-5", id: `di5:${stableKey([key, facts])}`, ...facts,
-    ...(claims.some(item => item.tactic) ? {wordingKey: `di5:${stableKey([key, wordingFacts])}`} : {}),
+    ...(claims.some(item => item.tactic || item.opening) ? {wordingKey: `di5:${stableKey([key, wordingFacts])}`} : {}),
     intensity, priority, interruptible: priority < 95,
     autoSpeakSuitable: mode !== "practice" && !["thinking", "neutral", "uncertain"].includes(purpose)};
 }

@@ -1,47 +1,48 @@
 import type {Claim} from "./model";
 
+export const tacticalScopes = ["played_immediate", "played_possible", "allowed_immediate", "allowed_possible",
+  "missed_immediate", "missed_possible"] as const;
+export type TacticalScope = typeof tacticalScopes[number];
+export type TacticalPresentationKey = `tactic_${TacticalScope}_${"none" | "fork" | "material" | "capture_followup"}` |
+  `tactic_${"allowed" | "missed"}_${"immediate" | "possible"}_capture_candidate` | "tactic_played_capture";
+export type ScopedTacticalSlots = {
+  motif?: string; move?: string; best?: string; opponent?: string;
+  action?: string; targets?: string; capture?: string; piece?: string; gain?: "material gain";
+};
+
 const join = (items: string[]) => items.length === 2 ? items.join(" and ") : items.join(", ");
 const motifNames: Record<string, string> = {
   "hanging piece": "loose piece", "undefended capture": "capture of a loose piece",
   "removing defender": "removal of a defender", "promotion awareness": "promotion",
   "back rank": "back-rank mate", "trapped piece": "trapped piece",
 };
+const noun = (value: unknown): string | undefined => typeof value === "string" && value.trim() ? value : undefined;
 
-/** Scope is mandatory data in the rendered fact, never an optional character cue. */
-export function tacticalPresentation(item: Claim): {code: string; slots: Claim["slots"]} | null {
+/** Select a meaning, not a sentence. Original claim slots and evidence stay intact. */
+export function tacticalPresentation(item: Claim): {code: TacticalPresentationKey; slots: ScopedTacticalSlots} | null {
   const role = item.code === "tactic_played" ? "played" : item.code === "tactic_allowed" ? "allowed"
     : item.code === "tactic_missed" ? "missed" : null;
   if (!role || !item.tactic) return null;
-  const {tactic, slots} = item;
-  const motif = motifNames[String(slots.motif)] ?? String(slots.motif);
-  const idea = `${/^[aeiou]/i.test(motif) ? "an" : "a"} ${motif}`;
-  const immediate = tactic.timing === "immediate";
+  const {tactic} = item;
+  const motif = noun(item.slots.motif);
+  const slots: ScopedTacticalSlots = {
+    motif: motif ? motifNames[motif] ?? motif : undefined,
+    move: noun(item.slots.move), best: noun(item.slots.best), opponent: noun(item.slots.opponent),
+    ...(tactic.action ? {action: noun(tactic.action)} : {}),
+  };
+  const scope: TacticalScope = `${role}_${tactic.timing}`;
   const effect = tactic.effect;
-  const actualCapture = effect.kind === "capture" && role === "played" && effect.ply === 1 && effect.san === slots.move;
-  const setup = actualCapture ? `The idea to notice with ${slots.move} is ${idea}.` : role === "played"
-    ? immediate ? `After ${slots.move}, there is ${idea}.` : `${idea[0].toUpperCase()}${idea.slice(1)} is one possibility to watch for after ${slots.move}.`
-    : role === "allowed"
-      ? immediate ? `${slots.opponent} can reply with ${tactic.action}: there is ${idea}.` : `Watch for ${idea} that ${slots.opponent} could use.`
-      : immediate ? `With ${slots.best}, there would be ${idea}.` : `${slots.best} offers a possible ${motif}, depending on the replies.`;
-  let detail = "";
-  if (effect.kind === "fork") {
-    const targets = join(effect.targets);
-    detail = immediate && role === "played" ? `The ${targets} are attacked together.`
-      : `The ${targets} would be attacked together.`;
-  } else if (effect.kind === "material") {
-    // This is the material change at one finite PV's endpoint, not proof that the
-    // motif wins against every defense or that the mover is ahead in material.
-    detail = "A material gain is possible, but it depends on how both sides follow up.";
-  } else if (effect.kind === "capture") {
-    // Captures have their own move timing. A loose-piece finding references the
-    // board before the capture, so its frame is not proof of a future capture.
-    detail = actualCapture
-      ? `${effect.san} captures a ${effect.piece}.`
-      : role === "missed" && effect.ply === 1 && effect.san === slots.best || role === "allowed" && effect.ply === 2
-        ? `${effect.san} would capture a ${effect.piece}.`
-        : effect.ply > 1 ? `One possible follow-up is ${effect.san}, capturing a ${effect.piece}.` : "";
+  if (effect.kind === "fork") return {code: `tactic_${scope}_fork`, slots: {...slots, targets: join(effect.targets)}};
+  if (effect.kind === "material") return {code: `tactic_${scope}_material`, slots: {...slots, gain: "material gain"}};
+  if (effect.kind === "capture") {
+    const captureSlots = {...slots, capture: noun(effect.san), piece: noun(effect.piece)};
+    // A capture has its own timing. A finding can reference the board before a
+    // root capture without making that already-played capture hypothetical.
+    if (role === "played" && effect.ply === 1 && effect.san === item.slots.move)
+      return {code: "tactic_played_capture", slots: captureSlots};
+    if (role === "missed" && effect.ply === 1 && effect.san === item.slots.best || role === "allowed" && effect.ply === 2)
+      return {code: `tactic_${role as "allowed" | "missed"}_${tactic.timing}_capture_candidate`, slots: captureSlots};
+    if (effect.ply > 1) return {code: `tactic_${scope}_capture_followup`, slots: captureSlots};
   }
-  return {code: "tactic_witness", slots: {setup, detail}};
+  return {code: `tactic_${scope}_none`, slots};
 }
-
-export const tacticalTemplate = ["{setup} {detail}"] as const;

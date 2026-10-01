@@ -1,7 +1,9 @@
 import type {CoachPersonality} from "../personality";
+import {robotTacticalTemplates} from "./scopedTactics";
+import {robotOpeningTemplates} from "./openingSequence";
 
 export const robot: CoachPersonality = {
-  version: "robot-1", maxCharacters: 270, maxClaims: 2,
+  version: "robot-2", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
   delivery: {pace: "steady", energy: "quiet"},
   behavior: {
     general: "pattern-first", praise: "pattern-first", correction: "pattern-first",
@@ -18,6 +20,8 @@ export const robot: CoachPersonality = {
     avoid: "No beep-boop, binary jokes, fake numeric precision, raw engine dumps, human mind-reading, or invented diagnostic causes.",
   },
   templates: {
+    ...robotTacticalTemplates,
+    ...robotOpeningTemplates,
     allowed_mate: [{fact: "Issue: forced checkmate for {opponent}.", consequence: "{reply}"}],
     missed_mate: [{fact: "Available finish: {best}, retaining forced mate.", consequence: "Result of this move: that mate is lost."}],
     tactic_played: [{fact: "Pattern in the searched continuation: {motif}. Move: {move}.", consequence: "{detail}"}],
@@ -33,7 +37,7 @@ export const robot: CoachPersonality = {
     reply_check: ["Strongest reply for {opponent}: {reply}, with check."],
     alternative: ["Preferred move: {best}. Stockfish evaluation for the mover: {evaluation}."],
     loss: ["Evaluation deficit against the best continuation: {loss} pawns."],
-    best: ["Best-line value retained within the comparison. Choice verified."],
+    best: ["Strong choice. The evaluation supports it."],
     good: ["Sound choice. Most of the position's evaluated value is retained."],
     uncertain_reason: ["Preferred move: {best}. Supported explanation: unavailable."],
     human_natural_error: [{fact: "Human-model signal: natural choice.", consequence: "Objective result: mistake. The reply is costly."}],
@@ -42,7 +46,7 @@ export const robot: CoachPersonality = {
     difficult_defense: ["Missed defense: {best}, which would have held the position. Difficulty: hard to find."],
     human_defense_found: ["Defense found: {best}. Result: position held. Difficulty: hard to find."],
     human_natural_best: ["Human-model signal: natural. Engine comparison: best move."],
-    human_natural_strong: ["Human-model signal: natural. Engine comparison: close to the best continuation."],
+    human_natural_strong: ["Human-model signal: natural. Engine assessment: strong."],
     book: ["Opening record matched: {opening}."],
     book_sound: ["Known sequence: {opening}."],
     departure: ["Opening record no longer matched from this move."],

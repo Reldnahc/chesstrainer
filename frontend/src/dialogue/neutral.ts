@@ -4,9 +4,13 @@ import {neutralPersonality, type DialogueCharacter, type PersonalityInput} from 
 import {alternativeTemplate} from "./positionalTemplates";
 import {composeWording, responseStrategy, sentenceCount, validWording} from "./composition";
 import type {ClaimWording} from "./personality";
-import {tacticalPresentation, tacticalTemplate} from "./tacticalTemplates";
+import {tacticalPresentation} from "./tacticalTemplates";
+import {neutralTacticalTemplates} from "./scopedTacticalWording";
+import {bookRecordingId} from "./openingPresentation";
 
-function expand(template: string, slots: Record<string, string | number>) {
+export const openingSequenceTemplate = ["This move is part of {opening}."] as const;
+
+function expand(template: string, slots: Record<string, string | number | undefined>) {
   // Motif vocabulary is controlled, but its first sound changes the article.
   const phrasing = typeof slots.motif === "string" && /^[aeiou]/i.test(slots.motif)
     ? template.replaceAll("a {motif}", "an {motif}") : template;
@@ -25,16 +29,24 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
   const renderedClaims: NonNullable<CoachUtterance["renderedClaims"]> = [];
   const sentences: string[] = [];
   const strategy = responseStrategy(intent, personality);
-  const wordingKey = personality.tacticalWording === "witness" ? intent.id : intent.wordingKey ?? intent.id;
+  const wordingKey = personality.tacticalWording === "witness" || personality.openingWording === "sequence"
+    ? intent.id : intent.wordingKey ?? intent.id;
   for (const item of [...intent.claims].sort((a, b) => b.priority - a.priority)) {
     const presentation = personality.tacticalWording === "witness" ? tacticalPresentation(item) : null;
+    const opening = personality.openingWording === "sequence" && item.opening && ["book", "book_sound"].includes(item.code)
+      ? bookRecordingId(item.opening) : null;
     const slots = presentation?.slots ?? item.slots;
     const alternative = item.position?.line === "alternative";
-    const fallback = presentation ? tacticalTemplate : alternative ? alternativeTemplate(item) : neutralTemplates[item.code];
-    const fallbackSource = presentation ? "tactical-witness-1" : alternative ? "positional-conditional-1" : "neutral-1";
+    const fallback = presentation ? neutralTacticalTemplates[presentation.code] : opening ? openingSequenceTemplate
+      : alternative ? alternativeTemplate(item) : neutralTemplates[item.code];
+    const fallbackSource = presentation ? "tactical-scoped-2" : opening ? "opening-sequence-1"
+      : alternative ? "positional-conditional-1" : "neutral-1";
     // Personal praise/correction belongs to the learner. Opponent facts retain
     // objective wording even if a personality template addresses the player.
-    const custom = alternative || intent.subject !== "learner" ? undefined : personality.templates[presentation?.code ?? item.code];
+    // The opted-in scoped templates are authored as actor-neutral facts. Other
+    // opponent claims retain the existing protection against learner praise.
+    const custom = alternative || intent.subject !== "learner" && !presentation && !opening ? undefined
+      : personality.templates[presentation?.code ?? opening ?? item.code];
     let options: readonly ClaimWording[] | undefined = custom?.length ? custom : fallback;
     if (!options?.length) continue;
     const key = stableKey([wordingKey, item.code, character.id, personality.version]);
@@ -42,7 +54,7 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
     let wording = options[index];
     // The introduction establishes that this tactic belongs to an unplayed
     // candidate. Its concrete effects must not precede that scope.
-    let composition = composeWording(wording, strategy, personality, key, item.code === "tactic_missed");
+    let composition = composeWording(wording, strategy, personality, key, !!presentation || item.code === "tactic_missed");
     let text = custom?.length && (!fallback || !validWording(wording, fallback)) ? "" : expand(composition.template, slots);
     let source = custom?.length ? personality.version : fallbackSource;
     if (!text && custom?.length && fallback?.length) {
@@ -65,6 +77,7 @@ export function renderDialogue(intent: PersonalityInput, character: DialogueChar
     sentences.push(text);
     renderedClaims.push({...item, slots: {...item.slots}, evidence: item.evidence.map(ref => ({...ref})),
       sourceIds: [...item.sourceIds], ...(item.position ? {position: {...item.position}} : {}),
+      ...(item.opening ? {opening: {...item.opening}} : {}),
       ...(item.tactic ? {tactic: {...item.tactic, effect: item.tactic.effect.kind === "fork"
         ? {...item.tactic.effect, targets: [...item.tactic.effect.targets]} : {...item.tactic.effect}}} : {})});
     variants.push({code: item.code, index, sourceIds: item.sourceIds, source,

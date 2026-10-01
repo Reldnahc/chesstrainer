@@ -5,7 +5,7 @@ import type {Schema} from "../src/api";
 import {renderCoaches} from "./render-coaches";
 import {humanInsightIntent} from "../src/dialogue/humanClaims";
 
-test("Walter alone adopts witness-scoped dialogue while every other registered coach keeps the same wording", async ({page}) => {
+test("Walter and Rivet adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {
   await page.goto("/");
   for (const role of ["played", "allowed", "missed"]) {
     const ply = role === "allowed" ? 2 : 1;
@@ -22,11 +22,13 @@ test("Walter alone adopts witness-scoped dialogue while every other registered c
     for (const output of after) {
       expect(output.intentId).toBe(intent.id);
       expect(output.renderedClaims).toEqual([item]);
-      if (output.coachId !== "classic") expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
+      if (!["classic", "robot"].includes(output.coachId)) expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
       else {
-        expect(output.trace.variants[0].source).toBe("storyteller-5");
+        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-2");
         expect(output.text).not.toMatch(/engine|continuation|verified/i);
-        expect(output.text).toContain(role === "played" ? "are attacked together" : "would be attacked together");
+        expect(output.text).toContain(output.coachId === "classic"
+          ? role === "played" ? "are attacked together" : "would be attacked together"
+          : role === "played" ? "Attacked together" : "Potential simultaneous targets");
       }
     }
     const human = claim("human_natural_error", {}, 69, [{source: "human", id: "maia", field: "policy"}]);
@@ -36,7 +38,33 @@ test("Walter alone adopts witness-scoped dialogue while every other registered c
     for (const output of current) {
       expect(output.intentId).toBe(newHuman.id);
       expect(output.renderedClaims).toEqual([human]);
-      if (output.coachId !== "classic") expect(output.text).toBe(previous.find(other => other.coachId === output.coachId)!.text);
+      if (!["classic", "robot"].includes(output.coachId)) expect(output.text).toBe(previous.find(other => other.coachId === output.coachId)!.text);
+    }
+  }
+});
+
+test("opening sequence metadata changes only the two pilot voices and preserves all original claim identities", async ({page}) => {
+  await page.goto("/");
+  for (const subject of ["learner", "opponent"] as const) for (const kind of ["entry", "follow"] as const) {
+    const original = claim("book_sound", {opening: "Named opening"}, 96,
+      [{source: "book", id: "catalogue", field: "recognized_opening", ply: 5}]);
+    const item = {...original, opening: {kind, variant: kind === "entry" ? 2 : 4, catalogueVersion: "catalogue",
+      scope: "mainline" as const, runStartPly: kind === "entry" ? null : 1, runOrdinal: kind === "entry" ? null : 5}};
+    const beforeIntent = makeIntent("book-cast", "book", "game", "book", [original], [], subject);
+    const intent = makeIntent("book-cast", "book", "game", "book", [item], [], subject);
+    expect(intent.wordingKey).toBe(beforeIntent.id);
+    const before = await renderCoaches(page, beforeIntent), after = await renderCoaches(page, intent);
+    expect(after).toHaveLength(30);
+    for (const output of after) {
+      expect(output.renderedClaims).toEqual([item]);
+      expect(output.intentId).toBe(intent.id);
+      if (!["classic", "robot"].includes(output.coachId))
+        expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
+      else {
+        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-2");
+        expect(output.text).toContain("Named opening");
+        expect(output.text).not.toMatch(/good|best|strong|you|your|develop|center|centre|advantage/i);
+      }
     }
   }
 });

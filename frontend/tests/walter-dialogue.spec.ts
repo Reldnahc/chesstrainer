@@ -10,6 +10,7 @@ import {practiceIntent} from "../src/dialogue/practiceIntent";
 import type {Game, Position, Report} from "../src/gameReview/types";
 import {semanticFixtures} from "./semantic-fixtures";
 import {humanInsightIntent} from "../src/dialogue/humanClaims";
+import {tacticalPresentation} from "../src/dialogue/tacticalTemplates";
 
 const walter = {id: "classic", personality: storyteller};
 const ref = {source: "stockfish" as const, id: "search", field: "actual_line/findings/0"};
@@ -52,7 +53,7 @@ for (const {scenario, black, report} of fixtures) test(`legal ${scenario}, ${bla
     expect(output.text).not.toContain("are attacked together");
     if (scenario === "missed_fork") expect(output.text).toContain(`With ${report.best.san}, there would be`);
     if (scenario === "allowed_fork") expect(output.text).toContain(`${black ? "White" : "Black"} can reply with`);
-    if (scenario === "collected_fork") expect(output.text).toContain("possibility");
+    if (scenario === "collected_fork") expect(output.text).toContain("if the replies allow it");
   }
   expect(output.text).not.toMatch(/continuation|verified|search|engine/i);
 });
@@ -65,7 +66,7 @@ test("Walter states a witnessed root fork without turning a future opportunity i
   const actual = render(current), possible = render(future);
   expect(actual.text).toContain("After Ng5+");
   expect(actual.text).toContain("king on h7 and queen on e4 are attacked together");
-  expect(possible.text).toContain("possibility");
+  expect(possible.text).toContain("if the replies allow it");
   expect(possible.text).toContain("king on h7 and queen on e4 would be attacked together");
   expect(possible.text).not.toMatch(/happens later|are attacked|wins material/);
   for (const output of [actual, possible]) expect(output.text).not.toMatch(/continuation|verified|engine|search/i);
@@ -83,7 +84,7 @@ for (const actor of ["white", "black"] as const) test(`Walter separates an unpla
   allowed.actor = actor;
   allowed.facts.pieces = {h7: {color: actor === "white" ? "black" : "white", piece: "king"}, e4: {color: actor === "white" ? "black" : "white", piece: "queen"}};
   const reply = render(build(allowed));
-  expect(reply.text).toContain(`${actor === "white" ? "White" : "Black"} can reply with Ng5+: there is a fork`);
+  expect(reply.text).toContain(`${actor === "white" ? "White" : "Black"} can reply with Ng5+, with a fork`);
   expect(reply.text).toContain("would be attacked together");
 });
 
@@ -94,7 +95,7 @@ for (const [name, changes] of Object.entries({
   "non-integer ply": {plies: [1.1], frame_ply: 1.1, witness: [{ply: 1.1, san: "Ng5+"}]},
 })) test(`Walter does not assert immediate effects from ${name}`, () => {
   const value = render(build(event("played", changes)));
-  expect(value.text).toContain("possibility");
+  expect(value.text).toContain("if the replies allow it");
   expect(value.text).toContain("would be attacked together");
 });
 
@@ -107,7 +108,7 @@ test("a pin witnessed on the current board is not claimed to have been created b
 test("finite-PV material gains remain conditional, separate from motif causation or an overall material lead", () => {
   for (const role of ["played", "allowed", "missed"]) {
     const value = render(build(event(role, {motif: "pin", settled_material_delta: 1})));
-    expect(value.text).toContain("A material gain is possible, but it depends on how both sides follow up");
+    expect(value.text).toContain("There may be a material gain, though both sides still have choices to make");
     expect(value.text).not.toMatch(/wins material|ahead in material|forced|guaranteed|pin wins/);
   }
 });
@@ -134,7 +135,7 @@ test("capture descriptions preserve actual, alternative, reply and uncertain tim
 test("Walter's opponent facts get accurate timing without personal praise", () => {
   const output = render(build(event()), "opponent");
   expect(output.text).toContain("king on h7 and queen on e4 are attacked together");
-  expect(output.trace.variants[0].source).toBe("tactical-witness-1");
+  expect(output.trace.variants[0].source).toBe(storyteller.version);
   expect(output.trace.composition?.strategy).toBe("minimal");
   expect(output.text).not.toMatch(/you|well judged|nicely|worth noticing|continuation/i);
 });
@@ -142,9 +143,12 @@ test("Walter's opponent facts get accurate timing without personal praise", () =
 test("scope cannot be hidden in optional character framing or discarded by a custom form", () => {
   const item = build(event("missed"));
   const intent = makeIntent("scope-guard", "missed", "game", "missed", [item]);
-  const unsafe = {id: "unsafe", personality: {...storyteller, templates: {tactic_witness: [{fact: "{detail}", observation: "{setup}"}]}}};
+  const code = tacticalPresentation(item)!.code;
+  const unsafe = {id: "unsafe", personality: {...storyteller, templates: {[code]: [
+    {fact: "The {targets} would be attacked together.", observation: "With {best}, there would be a {motif}."},
+  ]}}};
   const output = renderDialogue(intent, unsafe);
-  expect(output.trace.variants[0].source).toBe("tactical-witness-1");
+  expect(output.trace.variants[0].source).toBe("tactical-scoped-2");
   expect(output.text).toContain("With Ng5+, there would be a fork");
 });
 

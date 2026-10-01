@@ -137,7 +137,9 @@ Runtime slot validation checks custom forms against the neutral claim contract.
 Unknown slots, missing mandatory slots or facts hidden only in an optional cue
 fall back to neutral wording. Positional alternatives and opponent/unknown-subject
 claims retain their protected factual rendering and do not acquire learner praise
-or character questions. Priority, reaction meaning, references and claims remain
+or character questions. The two scoped-meaning pilot voices can author objective
+tactical and opening facts for either mover; opponent delivery still uses minimal
+composition. Priority, reaction meaning, references and claims remain
 unchanged. No personality code can query an engine, model or account; render
 definitions are data rather than arbitrary callbacks.
 
@@ -159,7 +161,7 @@ See [COACH_PERSONALITIES.md](COACH_PERSONALITIES.md) for the writing standards,
 blind comparison and automatic corpus checks. Rare supported facts can still use
 the complete neutral fallback; character wording never replaces chess evidence.
 
-Walter's on-screen tactical wording opts into `tacticalWording: "witness"`.
+Walter and Rivet's on-screen tactical wording opt into `tacticalWording: "witness"`.
 `eventClaims` attaches derived timing/effect metadata while retaining the original
 claim codes, slots and source references. Only a sole matching line witness at
 root ply 1 or the opponent's immediate reply at ply 2 supports direct timing;
@@ -167,13 +169,20 @@ the reference frame alone does not. Multi-ply or incomplete timing remains a
 possible idea, without pretending the motif necessarily begins later. Current
 facts do not imply that the move created a previously absent pin or fork.
 
-`tacticalTemplates` owns mandatory scope and effect wording. Actual root effects
-can be factual; opponent replies and unplayed alternatives remain prospective.
+`tacticalTemplates` selects one of 29 scoped presentation keys and typed slots
+containing moves, motif names, targets and capture nouns. It does not construct
+English setup or detail sentences. `scopedTacticalWording` supplies the neutral
+required-slot contract and assembles static authored templates. Walter and Rivet
+each author complete mandatory scope and effect sentences in
+`characters/scopedTactics`; personality is not limited to an optional preface
+around one shared factual sentence. Actual root effects can be factual; opponent
+replies and unplayed alternatives remain prospective.
 Targets on a possible future board are not described as already attacked. A
 positive finite-line material delta is a possible gain dependent on follow-up,
-not proof of a forced gain or a material lead. Walter's character template may
-add an observation but cannot discard these required factual slots. Opponent
-facts use the same scope without personal praise. Other characters keep their
+not proof of a forced gain or a material lead. Character templates cannot discard
+the required moves, replies or targets, or hide them only in optional cues.
+All scoped tactical forms put the scope before its effects. Opponent facts use
+the same scope without personal praise. The other 28 characters keep their
 existing wording until their separate writing passes.
 Capture effects use their own witnessed ply: a root capture already happened
 even when the motif's reference frame describes the board before that capture.
@@ -186,3 +195,35 @@ templates remove engine-report framing; authorized practice/explanation detail
 is still passed through verbatim rather than edited by guessing at its meaning.
 Derived human-insight intents retain both the actual parent identity and its
 separate wording seed, so this opt-in does not reshuffle other voices' Maia text.
+
+Walter and Rivet also opt into `openingWording: "sequence"`. An optional
+`Claim.opening` comes from `openingPresentation`, while the original `book` or
+`book_sound` code, opening-name slot, evidence, priority and source IDs remain
+unchanged. `bookRecordingId` exposes the same 11 semantic variant IDs to written
+and recorded dialogue: `book-opening-entry-1` through `-3`, and
+`book-opening-follow-1` through `-8`. Each pilot voice authors its own complete
+sentence for each ID. These are recognition statements, never inferred quality,
+strategic plans or claims about a player's opening knowledge.
+
+A follow variant requires an actually reviewed mainline prefix. Each report is
+bound to the frame's SAN, UCI, FEN, actor and ply, and its input digest must match
+the corresponding context node. A missing or stale earlier report, missing node,
+or changed opening catalogue invalidates the sequence ordinal. The current move
+can still receive a generic entry phrase if its own report binds; entry wording
+does not claim that this is the first recognized move. Variations, including
+branches rooted at Start, use this generic recognition scope rather than copying
+the mainline's sequence. Names and transpositions do not themselves reset a run;
+a verified non-book move does. The finite variants are seeded by saved game ID,
+catalogue version and run start, with eight follow phrases cycling by actual run
+ordinal and no adjacent repeat. When the prefix is unknown or on a branch,
+generic entry variation also uses the recognized move and resulting FEN, so
+unrelated recognized positions are not all locked to one phrase; this adds no
+sequence assertion. Search refinements, visits, coach changes and
+later review progress do not enter that seed. Completing a previously unknown
+prefix may make its sequence known; it is not a speech playback event.
+
+Book remains independent of engine quality: a recognized blunder keeps its
+higher-priority correction, with recognition only if it fits as a secondary
+fact. Opening metadata is excluded from the legacy wording seed for the other
+voices and never enters cold practice dialogue. No new opening recognition,
+engine work, automatic speech event or learning inference is performed here.

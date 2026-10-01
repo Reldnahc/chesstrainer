@@ -4,6 +4,7 @@ import {scoreText} from "../evaluation";
 import {claim, makeIntent, type Claim, type DialoguePurpose, type EvidenceRef} from "./model";
 import {positionalClaim, tacticalClaim, words} from "./eventClaims";
 import {humanClaims} from "./humanClaims";
+import {deriveBookPresentation} from "./openingPresentation";
 
 const purposes: Record<Report["label"], DialoguePurpose> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good", Book: "book",
@@ -78,8 +79,11 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     }
     if (event.kind === "opening_departure" && !report.opening) add("departure", {}, 48);
   }
-  if (report.opening) claims.push(claim(poor ? "book" : "book_sound", {opening: report.opening.name || "a recognized opening line"}, poor ? 49 : 96,
-    [{source: "book", id: report.opening.version, field: "recognized_opening", ply}]));
+  if (report.opening) {
+    const opening = deriveBookPresentation({game, report, frame, ply, variation});
+    claims.push({...claim(poor ? "book" : "book_sound", {opening: report.opening.name || "a recognized opening line"}, poor ? 49 : 96,
+      [{source: "book", id: report.opening.version, field: "recognized_opening", ply}]), ...(opening ? {opening} : {})});
+  }
   const practical = report.practical;
   if (learnerMove) claims.push(...humanClaims(report, ply, mover ?? null));
   // The graph remains two-sided. Personal relationships require the saved

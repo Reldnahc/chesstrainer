@@ -1,7 +1,9 @@
 import type {CoachPersonality} from "../personality";
+import {storytellerTacticalTemplates} from "./scopedTactics";
+import {storytellerOpeningTemplates} from "./openingSequence";
 
 export const storyteller: CoachPersonality = {
-  version: "storyteller-5", maxCharacters: 320, maxClaims: 2, tacticalWording: "witness",
+  version: "storyteller-6", maxCharacters: 320, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
   delivery: {pace: "steady", energy: "warm"},
   behavior: {general: "observation-first", praise: "observation-first", correction: "observation-first",
     questionFrequency: "none", directness: 3, emotionalAmplitude: 3, humor: 1, jargon: 2,
@@ -14,8 +16,9 @@ export const storyteller: CoachPersonality = {
     correction: "Describe the turn the game took, then offer a way to examine it.",
     avoid: "Fake profundity, a chapter metaphor every move, repetitive catchphrases, or pretending to know the player's thoughts."},
   templates: {
+    ...storytellerTacticalTemplates,
+    ...storytellerOpeningTemplates,
     allowed_mate: [{fact: "This is where the defense gives way: {opponent} can force checkmate.", consequence: "{reply}", takeaway: "Look back to the choice before the finish became forced."}],
-    tactic_witness: [{fact: "{setup}", consequence: "{detail}"}, {fact: "{setup}", consequence: "{detail}", observation: "There's an idea worth noticing here."}],
     tactic_played: [{fact: "Look at the {motif} after {move}.", consequence: "{detail}"}, {fact: "The idea to examine after {move} is the {motif}.", consequence: "{detail}"}],
     cause_abandoned_defender: [{fact: "{move} is where the protection breaks: it moves the only unpinned defender of {side}'s {piece} on {square}.", consequence: "{opponent} can reply {reply}, capturing {side}'s {piece}."}],
     cause_opponent_threat_recognition: [{fact: "The opponent's preceding move made the threat possible; {move} leaves {side}'s {piece} on {square} under that attack.", consequence: "{opponent} can reply {reply}, capturing {side}'s {piece}."}],
