@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { speechMouthPoses } from "../src/coach/speechMouth";
 
 test("held mouth shapes use the real rig, size choices and authored fallback", async ({ page }, info) => {
@@ -70,3 +70,134 @@ test("unsupported coaches retain original artwork instead of pretending to speak
     await expect(avatar).not.toHaveAttribute("data-mouth-shape");
   }
 });
+
+type AudioProbe = {
+  held: boolean; decoded: number; starts: number; stops: number;
+  errors: string[]; release: () => void;
+};
+type ProbeWindow = Window & { inspectorAudio: AudioProbe };
+
+async function observeAudio(page: Page, phase: "load" | "decode" | "playing") {
+  await page.addInitScript(heldPhase => {
+    let release!: () => void;
+    const gate = new Promise<void>(resolve => { release = resolve; });
+    const probe: AudioProbe = {held: false, decoded: 0, starts: 0, stops: 0, errors: [], release};
+    (window as unknown as ProbeWindow).inspectorAudio = probe;
+    let heldOnce = false;
+    async function hold<T>(value: T): Promise<T> {
+      heldOnce = true;
+      probe.held = true;
+      await gate;
+      return value;
+    }
+    const fetch = window.fetch;
+    window.fetch = async (...args) => {
+      const response = await fetch(...args);
+      if (heldPhase === "load" && new URL(response.url).pathname.endsWith(".mp3") && !heldOnce) {
+        const bytes = response.arrayBuffer.bind(response);
+        response.arrayBuffer = async () => hold(await bytes());
+      }
+      return response;
+    };
+    const decode = BaseAudioContext.prototype.decodeAudioData;
+    BaseAudioContext.prototype.decodeAudioData = function(bytes, success, failure) {
+      const decoded = decode.call(this, bytes, success, failure);
+      return decoded.then(async buffer => {
+        if (heldPhase === "decode" && !heldOnce) await hold(buffer);
+        probe.decoded++;
+        return buffer;
+      }, error => {
+        probe.errors.push(String(error));
+        throw error;
+      });
+    };
+    const start = AudioBufferSourceNode.prototype.start;
+    AudioBufferSourceNode.prototype.start = function(when?, offset?, duration?) {
+      if (duration === undefined) start.call(this, when ?? 0, offset ?? 0);
+      else start.call(this, when ?? 0, offset ?? 0, duration);
+      probe.starts++;
+    };
+    const stop = AudioBufferSourceNode.prototype.stop;
+    AudioBufferSourceNode.prototype.stop = function(when?) {
+      stop.call(this, when);
+      probe.stops++;
+    };
+  }, phase);
+}
+
+function audioSnapshot(page: Page) {
+  return page.evaluate(() => {
+    const {held, decoded, starts, stops, errors} = (window as unknown as ProbeWindow).inspectorAudio;
+    return {held, decoded, starts, stops, errors};
+  });
+}
+
+test("changing the inspected coach retains the shared volume and mute settings", async ({page}) => {
+  await page.goto("/?coach=robot&expression=neutral&view=speech");
+  const volume = page.getByRole("slider", {name: "Volume", exact: true});
+  await volume.press("End");
+  await expect(volume).toHaveValue("100");
+  await page.getByRole("button", {name: "Mute audio", exact: true}).click();
+  await page.getByRole("button", {name: "Preview Fergus", exact: true}).click();
+  await expect(page.getByRole("heading", {name: "Fergus · Mouth shapes"})).toBeVisible();
+  await expect(volume).toHaveValue("100");
+  await expect(page.getByRole("button", {name: "Unmute audio", exact: true})).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", {name: "Unmute audio", exact: true}).click();
+  await page.getByRole("button", {name: "Preview Rivet", exact: true}).click();
+  await expect(volume).toHaveValue("100");
+  await expect(page.getByRole("button", {name: "Mute audio", exact: true})).toHaveAttribute("aria-pressed", "false");
+});
+
+for (const destination of ["coach", "acting"] as const) {
+  for (const phase of ["load", "decode", "playing"] as const) {
+    test(`${destination} switch cancels inspector speech during ${phase} without late playback`, async ({page}) => {
+      await observeAudio(page, phase);
+      const errors: string[] = [];
+      page.on("pageerror", error => errors.push(error.message));
+      await page.goto("/?coach=robot&expression=neutral&view=speech");
+      const audition = page.getByRole("region", {name: "Cast voice auditions", exact: true});
+      const play = audition.getByRole("button", {name: "Play candidate", exact: true});
+      await expect(play).toBeEnabled();
+      try {
+        await play.click();
+        if (phase === "playing") {
+          await expect(audition).toHaveAttribute("data-playback", "playing");
+          await expect.poll(() => audioSnapshot(page)).toMatchObject({starts: 1});
+        } else {
+          await expect.poll(() => audioSnapshot(page)).toMatchObject({held: true, starts: 0});
+          await expect(audition).toHaveAttribute("data-playback", "loading");
+        }
+        if (destination === "coach") {
+          await page.getByRole("button", {name: "Preview Fergus", exact: true}).click();
+          await expect(audition).toHaveAttribute("data-playback", "idle");
+          await expect(audition.locator(".coach-avatar")).toHaveAttribute("data-coach", "frog");
+        } else {
+          await page.getByRole("group", {name: "Studio view"}).getByRole("button", {name: "Acting", exact: true}).click();
+          await expect(audition).toHaveCount(0);
+        }
+        await page.evaluate(() => (window as unknown as ProbeWindow).inspectorAudio.release());
+        // Await real native decode completion, not merely the HTTP response or
+        // a sleep that might finish before a cancelled async task resumes.
+        await expect.poll(() => audioSnapshot(page)).toMatchObject({decoded: 1, errors: []});
+        const beforeReplay = await audioSnapshot(page);
+        expect(beforeReplay.starts).toBe(phase === "playing" ? 1 : 0);
+        if (phase === "playing") expect(beforeReplay.stops).toBeGreaterThanOrEqual(1);
+        else expect(beforeReplay.stops).toBe(0);
+        if (destination === "acting") {
+          await page.getByRole("group", {name: "Studio view"}).getByRole("button", {name: "Mouth shapes", exact: true}).click();
+        }
+        await expect(audition).toHaveAttribute("data-playback", "idle");
+        // A new explicit play remains available after either cancellation path.
+        await expect(play).toBeEnabled();
+        await play.click();
+        await expect(audition).toHaveAttribute("data-playback", "playing");
+        await expect.poll(() => audioSnapshot(page)).toMatchObject({starts: beforeReplay.starts + 1, errors: []});
+        await page.getByRole("button", {name: "Stop all", exact: true}).click();
+        await expect(audition).toHaveAttribute("data-playback", "idle");
+        expect(errors).toEqual([]);
+      } finally {
+        await page.evaluate(() => (window as unknown as ProbeWindow).inspectorAudio.release());
+      }
+    });
+  }
+}
