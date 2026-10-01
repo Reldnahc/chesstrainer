@@ -266,6 +266,37 @@ def test_cast_only_selection_cannot_hide_changed_production_or_shared_dependenci
 @pytest.mark.parametrize(
     "path",
     [
+        "frontend/scripts/casting-server.mjs",
+        "frontend/scripts/casting-server.d.mts",
+        "frontend/scripts/casting-server.test.mjs",
+    ],
+)
+def test_casting_server_changes_include_one_offline_test_runner_and_both_studios(path):
+    plan = ci_plan.select_checks([path])
+    assert_selection(plan, build=True, suites=VOICE_STUDIO_SUITES)
+    offline_runners = [
+        entry
+        for entry in plan["matrix"]["include"]
+        if entry["suite"] == "audio-studio" and entry["project"] == "desktop"
+    ]
+    assert len(offline_runners) == 1
+    assert offline_runners[0]["python"] is True
+    assert offline_runners[0]["api"] is False
+
+
+def test_unclassified_frontend_scripts_keep_full_correctness():
+    assert_selection(
+        ci_plan.select_checks(["frontend/scripts/future-casting-tool.mjs"]),
+        backend=True,
+        build=True,
+        docker=True,
+        suites=ALL_SUITES,
+    )
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
         "frontend/src/audio/speech/bank/manifest.json",
         "frontend/src/audio/speech/bank/tracks.json",
         "frontend/src/audio/speech/bank/recordings/walter/sound-sacrifice.mp3",
@@ -355,6 +386,7 @@ def test_audio_only_paths_cannot_hide_changed_shared_dependencies(path):
         ("frontend/src/coach/studio/speech-inspector.css", "coach-studio"),
         ("frontend/studio-tests/coach-studio.spec.ts", "coach-studio"),
         ("frontend/playwright.coach.config.ts", "coach-studio"),
+        ("frontend/vite.coach.config.ts", "coach-studio"),
         ("frontend/intelligence-lab/corpus.ts", "intelligence-lab"),
         ("frontend/intelligence-tests/causal-dialogue.spec.ts", "intelligence-lab"),
         ("frontend/playwright.intelligence.config.ts", "intelligence-lab"),

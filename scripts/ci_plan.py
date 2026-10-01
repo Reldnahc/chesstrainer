@@ -25,12 +25,18 @@ VOICE_STUDIO_SUITES = {"coach-studio", "audio-studio"}
 # These authoring tools and development assets have no application consumers.
 # Audio CI runs their offline checks in addition to both studios' browsers.
 CAST_AUTHORING_FILES = {
+    "frontend/scripts/casting-server.mjs",
+    "frontend/scripts/casting-server.d.mts",
+    "frontend/scripts/casting-server.test.mjs",
     "scripts/design_coach_voices.mjs",
     "scripts/design_coach_voices.test.mjs",
     "scripts/prepare_cast_voice_auditions.py",
     "backend/tests/test_cast_voice_auditions.py",
 }
 SHARED_VOICE_STUDIO_FILES = {
+    "frontend/src/audio/studio/useCastingChoices.ts",
+    "frontend/src/audio/studio/CastingChoice.tsx",
+    "frontend/src/audio/studio/CastingProgress.tsx",
     "frontend/src/audio/studio/useStudioPlayer.ts",
     "frontend/src/audio/studio/StudioTransport.tsx",
     "frontend/src/audio/studio/studio-transport.css",
@@ -263,9 +269,10 @@ def select_checks(paths, full=False):
                 build = True
                 suites.update({"coach-studio", "intelligence-lab", "audio-studio"})
                 reason("Shared standalone browser fixtures require all their consumers.")
-            elif path.startswith(("frontend/coach-studio/", "frontend/studio-tests/")) or (
-                path == "frontend/playwright.coach.config.ts"
-            ):
+            elif path.startswith(("frontend/coach-studio/", "frontend/studio-tests/")) or path in {
+                "frontend/playwright.coach.config.ts",
+                "frontend/vite.coach.config.ts",
+            }:
                 build = True
                 suites.add("coach-studio")
                 reason("Coach studio changes require its browser suite and the build.")

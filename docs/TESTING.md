@@ -166,7 +166,7 @@ select everything. Missing/unresolvable history also selects everything.
 | Audited application-only CSS (page layouts, settings, review workspace) | Build/types, application/accounts browsers, Docker |
 | Board CSS | Build/types, application/accounts/intelligence browsers, Docker |
 | Coach/dialogue source, shared styles/helpers, unclassified frontend modules | Build/types, all browser suites, Docker |
-| Coach studio source/tests | Build/types and coach studio |
+| Coach studio source/tests and its dedicated Vite/Playwright configs | Build/types and coach studio |
 | Intelligence lab source/tests | Build/types and intelligence lab |
 | Audio studio source/tests and its dedicated Vite/Playwright configs | Build/types and audio studio |
 | Shared standalone browser runtime and Vite path helpers | Build/types and coach/intelligence/audio browsers |
@@ -174,6 +174,7 @@ select everything. Missing/unresolvable history also selects everything.
 | Application audio preferences and controls | Build/types, application/accounts/intelligence/audio browsers, Docker |
 | Shared studio player, transport and cast audition UI/assets | Build/types and coach/audio browsers, including offline cast-authoring checks |
 | Cast Voice Design/alignment tools and their tests | Build/types and coach/audio browsers, including offline cast-authoring checks |
+| Casting choices development server, types and tests | Build/types and coach/audio browsers, including the saved-choice Node tests once |
 | Bundled speech source, recordings, provenance and alignment archives | Backend including complete-bank verification, build/types, application/accounts/intelligence/audio browsers, Docker |
 | Account browser test/config | Build/types and accounts |
 | Other application browser tests/fixtures | Build/types and application/accounts/intelligence/audio browsers |
@@ -336,14 +337,19 @@ fail. Focused authoring tests run with `python -m pytest
 backend/tests/test_coach_voice_bank.py -q`. Speech asset edits select these backend
 checks even when no Python source changes.
 
-The audio desktop CI job runs the cast Voice Design safeguards once with
-`node --test scripts/design_coach_voices.test.mjs`, then the focused
+The audio desktop CI job runs the cast Voice Design and saved-choice safeguards
+once with `node --test scripts/design_coach_voices.test.mjs
+frontend/scripts/casting-server.test.mjs`, then the focused
 `backend/tests/test_cast_voice_auditions.py` tests and
 `python -B -S scripts/prepare_cast_voice_auditions.py --check`. The check verifies
 the complete approved audition set against its exact requests, recording
 hashes, alignment archives and compact tracks. The provider key is cleared, and
 no paid generation or native alignment runs in CI. Cast-only edits select both
 studios and the frontend build, including the production asset boundary.
+The casting server tests use temporary data and local HTTP fixtures; they do not
+read or write the owner's saved casting choices. Its Vite plugin and client
+choice controls select both studios, while either studio's own configuration
+retains only that studio's browser coverage and the build.
 
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
