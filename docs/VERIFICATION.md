@@ -4,6 +4,68 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Approved cast locks and second audition round — October 1, 2026
+
+The owner's eighteen selected nonhuman designs were saved in ElevenLabs and
+confirmed against the provider's voice catalogue. `locked-voices.json` binds each
+to the exact approved recording fingerprint and provider ID; both studios enforce
+read-only locks independently of local draft decisions. Eighteen accepted designs
+remain byte-identical. This selects future voices, not complete dialogue banks.
+
+Biscuit and Pip each have three replacement previews using the owner's feedback.
+The active plan retains 60 recordings (54 unchanged, six replaced); the first six
+rejected previews and full provenance remain archived. All six new recordings
+received automatic PocketSphinx alignment with no hand timing, padding or trimming.
+They run 7.97–11.00 seconds. Provider usage settled at 12,295, up **800 credits**
+from 11,495, across six successful previews and one HTTP 403 rejection. The rejected
+literal childlike Biscuit brief was not retried; the active briefs explicitly
+request youthful adult voices. The usage snapshot does not apportion that interval
+per request. Total cast usage is **8,765 credits**. Twenty voice slots are occupied:
+the eighteen selected designs and the two existing Walter designs.
+
+- `node scripts/design_coach_voices.mjs --check`: **60 active recordings verified**.
+- `.venv/Scripts/python.exe -B scripts/prepare_cast_voice_auditions.py --generate
+  --coach dog-puppy --coach slime`: **six generated, 54 reused, none missing**.
+  Existing native authoring packages required host read permissions; no install
+  or changed optional dependencies. Standard-library strict `--check` passed.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_cast_voice_auditions.py
+  -q`: **58 passed**.
+- `node --test scripts/design_coach_voices.test.mjs
+  frontend/scripts/casting-server.test.mjs`: **60 passed** (39 authoring,
+  21 persistence). Three new rejection-identity regressions failed before their
+  fix and then passed. Native HTTP coverage includes immutable approvals, fresh
+  clones, malformed/stale locks, obsolete local drafts, complete-set identity,
+  legacy feedback, revision conflicts and independent server processes.
+- Production frontend build, Audio Studio build and Coach Studio build: **passed**,
+  including API/type/style/dependency boundary checks. Existing bundle-size
+  advisory remains.
+- Coach Studio `speech-inspector.spec.ts`: **20 desktop/mobile checks passed**,
+  using the existing server via the ignored reuse config. New voices do not alter
+  motion policy or playback cancellation.
+- Focused Audio Studio `cast-audition.spec.ts`, `casting-choices.spec.ts` and
+  `casting-locks.spec.ts`: **50 desktop/mobile checks passed**. A final locked-state
+  copy guard was checked with both affected desktop/mobile cases (**2 passed**).
+  Coverage includes pending-first filtering, immutable/readable locks, all-locked
+  navigation, exact approved defaults, legacy/new rejection rounds, notes, playback
+  identity during late responses, incomplete media and changed recordings.
+  Application, contract and browser-test TypeScript passed. Browser runs reused
+  the existing LAN Vite servers through ignored configs extending the standard
+  audio/coach Playwright configs; owner decisions were never used as writable fixtures.
+- Live LAN browser inspection confirmed only Biscuit and Pip in the pending
+  picker and successfully played each new first preview with its own speaking rig.
+  Accepted Alfie's exact direction was read-only with no save/clear controls.
+  No real owner choices were changed by verification.
+
+Manual inspection caught legacy Keep looking feedback incorrectly rejecting the
+new round. Rejections now bind to the complete available candidate set, preserving
+notes while marking legacy/changed rounds for fresh review. Client/server guards
+reject stale or incomplete sets; changing another coach or only reordering
+candidates does not invalidate the decision.
+
+Independent code review passed after correcting the incomplete-set edge. Validation
+was scoped to the changed development authoring/studio paths; no full backend,
+account or complete audio/coach matrix rerun. No push or deployment in this pass.
+
 ## Complete cast auditions and saved casting choices — October 1, 2026
 
 The owner approved the previously deferred four characters. Ziggy, Percy, Pip

@@ -305,7 +305,9 @@ bank uses its separate generated compact cue projection.
 
 The separate audio studio's **Cast voice auditions** selector compares three
 independently described custom voices for each of twenty approved nonhuman
-coaches (60 recordings). All twenty speaking rigs can be inspected independently.
+coaches (60 active recordings). Eighteen approved designs are now locked, so the
+studio defaults to the two remaining coaches under **Needs a voice**. **Locked
+voices** permits read-only inspection. All twenty speaking rigs can be inspected independently.
 The coach studio's **Mouth shapes** view embeds the same audition panel for its
 selected character. These tools share `useStudioPlayer`, `StudioTransport`,
 `CastVoiceAudition` and the existing audio engine. Selecting another character
@@ -318,6 +320,20 @@ an optional note explains what to change. Listening or changing the candidate
 does not vote. The saved direction remains visible while comparing another one,
 and **Clear choice** returns the coach to undecided. The compact overview counts
 chosen, keep-looking and undecided coaches.
+
+A Keep looking decision belongs to the candidate set actually reviewed. When
+new recordings arrive, its notes remain but the new round awaits a fresh decision;
+legacy rejections without a set identity also need review. The browser must show
+the same recording identities as the service before rejecting the set, and a set
+changed during a save produces a conflict rather than approving unseen content.
+
+An explicit owner approval can promote a selected direction into the tracked
+`cast-auditions/locked-voices.json`. Its eighteen entries bind exact approved
+preview bytes and source identity to saved ElevenLabs voices. These immutable
+approvals survive a fresh clone without local draft files; the service rejects
+changing or clearing them. Corrupt/missing lock data fails closed and mismatched
+recordings show a stale warning. Locking selects a voice design; it does not
+record or install a full dialogue bank. Walter remains the completed production bank.
 
 Both studios use the same development-only persistence service and fixed
 `data/voice-casting` directory. Choices survive reloads and studio restarts and
@@ -350,8 +366,12 @@ direction; auditioning does not consume a saved-voice slot per option.
 
 The first 48 auditions used **6,372 ElevenLabs credits** (usage 3,530 to 9,902).
 The final twelve used **1,593 credits** (9,902 to 11,495): **7,965 total** for all
-sixty. Walter's completion batch used **1,948 credits** separately. Replaying
-either collection is local and free. Audition files are unchanged provider output,
+sixty. A subsequent Biscuit/Pip replacement round increased usage by **800
+credits** (11,495 to 12,295), totaling **8,765 casting credits**. It produced six
+new previews; one rejected request is included in that session's usage interval.
+The six rejected first-round directions retain their original source assets and
+archived briefs, outside the active manifest. Walter's completion batch used
+**1,948 credits** separately. Replaying either collection is local and free. Audition files are unchanged provider output,
 about 8–12 seconds, with no padding or manual timing edits. Use
 `npm --prefix frontend run dev:audio:lan` for the audio studio on port 5176, or
 `npm --prefix frontend run dev:coach:lan` for the mouth inspector on port 5174.
