@@ -4,7 +4,7 @@ This is a development-only casting collection. `design-plan.json` has twenty
 approved coaches with three independently written voice directions each: **60
 active auditions**. Nineteen exact owner selections are saved in ElevenLabs and
 recorded in `locked-voices.json`, including Pip's second-round Warm Dublin
-companion. Biscuit is the only coach still without a voice and is on its fourth
+companion. Biscuit is the only coach still without a voice and is on its fifth
 round of directions. A locked voice is an approved design, not a completed dialogue
 bank. The audition generator itself never saves provider voices.
 
@@ -30,9 +30,11 @@ unchanged for audit history, outside the active manifest/runtime tracks. All oth
 Biscuit's second round read as ordinary young adults and is archived in
 `archive/round-2-puppy.json`. Its third round (`archive/round-3-puppy.json`) tried
 an animated sidekick, a breathless rookie and a soft, wide-eyed voice; the owner
-judged **Soft and wide-eyed** almost right. The active fourth round contains three
-close variations on it: **Soft and lighter**, **Soft and cosy** and **Soft and
-sparkly**. Third-round Animated sidekick failed automatic alignment; it stays
+judged **Soft and wide-eyed** almost right. The fourth round's three close
+variations on it (**Soft and lighter**, **Soft and cosy** and **Soft and sparkly**)
+remain the reference in `archive/round-4-puppy.json`. Before choosing, the owner
+asked to hear briefs describing the talking puppy's own voice instead of an adult
+speaker; the active fifth round is **Talking puppy, soft**, **wiggly** and **shy**. Third-round Animated sidekick failed automatic alignment; it stays
 archived and the studio can still play such a take with the energy-driven mouth.
 Keep new rounds distinct; never overwrite accepted media or reuse a direction ID
 for a different voice. Any future unlock is an explicit owner decision.
@@ -116,9 +118,9 @@ rejected request; the provider does not supply a split in this usage snapshot.
 The first literal childlike Biscuit request returned HTTP 403 and was not retried.
 The active briefs explicitly request young adults instead. Total casting-session
 usage is **8,765 credits**, with 66 retained recordings (60 active, six archived).
-Biscuit's third and fourth rounds each made three successful requests with no
-rejections, using **390 credits** apiece (28,866 → 29,256 → 29,646), for **9,545
-casting credits** in total and 72 retained recordings (60 active, 12 archived).
+Biscuit's third, fourth and fifth rounds each made three successful requests with
+no rejections, using **390 credits** apiece (28,866 → 29,256 → 29,646 → 30,036), for
+**9,935 casting credits** in total and 75 retained recordings (60 active, 15 archived).
 Walter's separate completion batch used 1,948 credits. The provider count can lag
 generation; these totals use its settled count.
 

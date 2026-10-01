@@ -4,6 +4,24 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Biscuit fifth audition round — October 1, 2026
+
+Before choosing from round four, the owner asked to hear prompts for the talking
+puppy's own voice. Round four is archived in `archive/round-4-puppy.json` as the
+reference. Round five's briefs describe Biscuit as a talking cartoon puppy, forbid
+animal noises, avoid the banned age words and close with "An original fictional
+character voice" instead of "adult voice". Talking puppy, soft (8.68 s), wiggly
+(8.68 s) and shy (9.17 s): three requests, no rejections or retries, **390
+credits** (29,646 → 30,036). All three aligned automatically with no hand timing.
+
+- Design `--check` and alignment `--check`: **60 active recordings verified/ready**.
+- `node --test scripts/design_coach_voices.test.mjs frontend/scripts/casting-server.test.mjs`:
+  **60 passed**.
+- `test_cast_voice_auditions.py`: **58 passed** (temporary `--basetemp`).
+- Focused `cast-audition.spec.ts`, `casting-choices.spec.ts` and
+  `casting-locks.spec.ts`: **52 desktop/mobile checks passed** against the running
+  audio studio.
+
 ## Biscuit third and fourth audition rounds — October 1, 2026
 
 The owner rejected Biscuit's second round ("reads as ordinary young adults, not a
