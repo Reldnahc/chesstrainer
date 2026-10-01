@@ -4,8 +4,11 @@ import {gameIntent} from "../../dialogue/gameIntent";
 import {humanClaims, humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
 import type {Claim, CoachUtterance, DialogueIntent} from "../../dialogue/model";
+import {bookRecordingId} from "../../dialogue/openingPresentation";
+import registry from "./banks/registry.json" with {type: "json"};
+import catalogue from "./meanings.json" with {type: "json"};
 
-export type WalterGameSpeechContext = {
+export type GameSpeechContext = {
   game: Game;
   report?: Report | null;
   frame?: Position | null;
@@ -20,6 +23,11 @@ export type WalterGameSpeechContext = {
   /** Explicit replay of another visible claim; never search for a fallback. */
   claimIndex?: number;
 };
+export type WalterGameSpeechContext = GameSpeechContext;
+const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
+type Meaning = {id: string; primary?: string; secondary?: string};
+const combinations = new Map((catalogue.meanings as Meaning[]).flatMap(meaning =>
+  meaning.primary && meaning.secondary ? [[`${meaning.primary}:${meaning.secondary}`, meaning.id]] : []));
 type Event = Schema["ReviewEvent"];
 const opposite = (side: "white" | "black") => side === "white" ? "black" : "white";
 const nonempty = (value: unknown): value is string => typeof value === "string" && value.trim().length > 0;
@@ -149,9 +157,9 @@ function legalReplyRecording(item: Claim, {frame, report}: WalterGameSpeechConte
 }
 
 /** Facts select whole recordings; prose, portrait expression and grade never select audio. */
-export function selectWalterGameRecording(context: WalterGameSpeechContext): string | null {
+export function selectGameRecording(context: GameSpeechContext): string | null {
   const {game, report, frame, ply, variation = false, intent, utterance, pending, error, surface = "bubble", claimIndex = 0} = context;
-  if (pending || !frame || !nonempty(frame.fen) || utterance.coachId !== "classic"
+  if (pending || !frame || !nonempty(frame.fen) || !voicedCoaches.has(utterance.coachId)
     || utterance.intentId !== intent.id
     || !Number.isInteger(claimIndex) || claimIndex < 0 || (surface === "human-insight" && claimIndex !== 0)) return null;
   const item = utterance.renderedClaims?.[claimIndex], trace = utterance.trace.variants[claimIndex];
@@ -195,7 +203,7 @@ export function selectWalterGameRecording(context: WalterGameSpeechContext): str
   if (item.position) return event ? positionalRecording(item, event, mover, report) : null;
   if (!evidenced(item)) return null;
   if (item.code === "book" || item.code === "book_sound") return report.opening
-    && nonempty(report.opening.version) ? "recognized-opening" : null;
+    && nonempty(report.opening.version) ? item.opening ? bookRecordingId(item.opening) : "recognized-opening" : null;
   if (event) {
     if (event.actor !== mover) return null;
     if (item.code === "allowed_mate" || item.code === "missed_mate") return event.kind === "mate" && event.confidence === "searched"
@@ -218,4 +226,19 @@ export function selectWalterGameRecording(context: WalterGameSpeechContext): str
   // is absent or ambiguous. Only these direct report claims have no event ID.
   return ["reply_capture", "reply_check", "alternative", "loss", "best", "good"].includes(item.code)
     && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
+}
+
+/** A combined meaning is one authored recording of two visible, validated claims.
+ * Late evidence can change this preference, but never grants a second automatic turn. */
+export function selectGameSpeech(context: GameSpeechContext) {
+  const primaryId = selectGameRecording({...context, claimIndex: 0});
+  const secondaryId = context.surface === "human-insight" ? null : selectGameRecording({...context, claimIndex: 1});
+  const recordingId = primaryId && secondaryId
+    ? combinations.get(`${primaryId}:${secondaryId}`) ?? primaryId : primaryId;
+  return {recordingId, primaryId, secondaryId};
+}
+
+/** Historical Walter-only consumers; new code selects meaning independently of voice. */
+export function selectWalterGameRecording(context: WalterGameSpeechContext): string | null {
+  return context.utterance.coachId === "classic" ? selectGameRecording(context) : null;
 }

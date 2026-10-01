@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "recordings": [
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "walterText": "We're in familiar opening territory here. This is a book move.",
+      "rivetText": "This is a recognized book move."
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "walterText": "This move belongs to a known opening line.",
+      "rivetText": "This move matches a known opening."
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "walterText": "This is book: a move from a recognized opening line.",
+      "rivetText": "The move belongs to a recorded opening line."
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "walterText": "We're still in known opening territory.",
+      "rivetText": "The book sequence continues."
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "walterText": "Another book move here.",
+      "rivetText": "This is another book move."
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "walterText": "This reply is book as well.",
+      "rivetText": "This reply is book too."
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "walterText": "The known opening line continues.",
+      "rivetText": "Opening recognition continues."
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "walterText": "We're on familiar opening ground here too.",
+      "rivetText": "This move stays within a known opening."
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "walterText": "This move keeps the book sequence going.",
+      "rivetText": "Another opening move is recognized."
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "walterText": "This step is still part of a known opening.",
+      "rivetText": "This move also matches the opening record."
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "walterText": "Another book move. Knowing the line and judging the move are different things.",
+      "rivetText": "This is another book move. Recognition is separate from move quality."
+    },
+    {
+      "id": "combined-allowed-mate-with-human-natural-error",
+      "group": "game_review",
+      "primary": "allowed-mate",
+      "secondary": "human-natural-error",
+      "walterText": "A natural-looking choice, but this is where the defense gives way: the other side can force checkmate. Let's follow the attack and see where it breaks through.",
+      "rivetText": "This permits forced checkmate, despite looking natural to the human model. Inspect the attack through the defense."
+    },
+    {
+      "id": "combined-missed-mate-with-human-natural-error",
+      "group": "game_review",
+      "primary": "missed-mate",
+      "secondary": "human-natural-error",
+      "walterText": "This is a natural-looking move, but a forced checkmate was available and this lets it go. Let's go back and find that finish.",
+      "rivetText": "This abandons an available forced checkmate, despite looking natural to the human model. Review the missed finish."
+    },
+    {
+      "id": "combined-immediate-capture-with-human-natural-error",
+      "group": "game_review",
+      "primary": "immediate-capture",
+      "secondary": "human-natural-error",
+      "walterText": "This looks natural, but the other side can capture right away. Let's look at that reply and see what can be taken.",
+      "rivetText": "The human model finds this natural, but the opponent has an immediate capture. Inspect the reply."
+    },
+    {
+      "id": "combined-evaluation-loss-with-human-natural-error",
+      "group": "game_review",
+      "primary": "evaluation-loss",
+      "secondary": "human-natural-error",
+      "walterText": "A natural-looking choice, but the engine finds a stronger move. This is a useful place to compare the replies and see why the appealing choice falls short.",
+      "rivetText": "The human model finds this natural; the engine finds it weaker than the best option. Compare the replies to separate appearance from strength."
+    },
+    {
+      "id": "combined-tactic-fork-allowed-with-human-natural-error",
+      "group": "game_review",
+      "primary": "tactic-fork-allowed",
+      "secondary": "human-natural-error",
+      "walterText": "This looks natural, but it gives the other side a chance to set up a fork. Look for the piece that could attack several targets at once.",
+      "rivetText": "This is natural to the human model, but it offers the opponent a fork. That could let the same piece attack several targets."
+    },
+    {
+      "id": "combined-tactic-skewer-allowed-with-human-natural-error",
+      "group": "game_review",
+      "primary": "tactic-skewer-allowed",
+      "secondary": "human-natural-error",
+      "walterText": "A natural-looking move, but it opens the door to a skewer. The other side could attack along a line where moving the front piece exposes the piece behind it.",
+      "rivetText": "This is natural to the human model, but it offers the opponent a skewer. Moving the front piece could expose another piece behind it."
+    },
+    {
+      "id": "combined-only-playable-move-with-human-hard-defense-found",
+      "group": "game_review",
+      "primary": "only-playable-move",
+      "secondary": "human-hard-defense-found",
+      "walterText": "You found a difficult resource that kept the position playable. It was the only move we found that held on; the other choices we checked were losing.",
+      "rivetText": "The difficult defensive resource was found. This was the only playable move among those searched; the other examined choices were losing."
+    },
+    {
+      "id": "combined-only-playable-move-with-human-hard-find",
+      "group": "game_review",
+      "primary": "only-playable-move",
+      "secondary": "human-hard-find",
+      "walterText": "This was a hard move to find, and it was the only one we found that kept the position playable. The alternatives we checked were losing.",
+      "rivetText": "This was hard to find and the only playable move among those searched. The other examined moves were losing."
+    },
+    {
+      "id": "combined-only-advantage-resource-with-human-hard-defense-found",
+      "group": "game_review",
+      "primary": "only-advantage-resource",
+      "secondary": "human-hard-defense-found",
+      "walterText": "You found a difficult resource and kept the advantage. It was the only move we found that did so; the other choices we checked were losing.",
+      "rivetText": "This difficult resource retained the advantage. It was the only move found to do so; the other examined choices were losing."
+    },
+    {
+      "id": "combined-only-advantage-resource-with-human-hard-find",
+      "group": "game_review",
+      "primary": "only-advantage-resource",
+      "secondary": "human-hard-find",
+      "walterText": "This was a hard move to find, but it keeps the advantage where every other move we checked was losing. Keep the reason for this choice with the move.",
+      "rivetText": "This was hard to find and the only searched move that retained the advantage. The other examined choices were losing."
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-unusual-strong",
+      "group": "game_review",
+      "primary": "tactic-fork-played",
+      "secondary": "human-unusual-strong",
+      "walterText": "The human model finds this choice unusual, but the engine supports it. The idea to follow is a fork, where the same piece can attack several targets.",
+      "rivetText": "The pattern to examine is a fork: the same piece can attack several targets. The human model finds this choice unusual, yet the engine supports it."
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-hard-find",
+      "group": "game_review",
+      "primary": "tactic-fork-played",
+      "secondary": "human-hard-find",
+      "walterText": "This was a hard move to find, with a fork as the idea to follow. Look for how the same piece can attack several targets at once.",
+      "rivetText": "This move was hard to find. Examine the fork idea: the same piece can attack several targets."
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-unusual-strong",
+      "group": "game_review",
+      "primary": "tactic-pin-played",
+      "secondary": "human-unusual-strong",
+      "walterText": "Unusual in the human model, this choice holds up in the engine's search. The idea is a pin to the king: a pinned piece cannot leave that line and expose its king.",
+      "rivetText": "The human model finds this unusual, but the engine supports it. Examine the pinning idea: a piece pinned to its king cannot leave that line."
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-hard-find",
+      "group": "game_review",
+      "primary": "tactic-pin-played",
+      "secondary": "human-hard-find",
+      "walterText": "This was a hard move to find, and the pinning idea is the point to follow. A piece pinned to its king cannot leave that line and expose it.",
+      "rivetText": "This move was hard to find. Examine the pinning idea: a piece pinned to its king cannot leave that line and expose it."
+    }
+  ]
+}
