@@ -372,14 +372,20 @@ automatic application speech remains disabled and lessons remain out of scope.
 
 Choose **Compare lip sync** in the Walter audition. **Sound sacrifice** and
 **Allowed checkmate** each drive two shared Walter portraits from one audio
-source: the current energy-driven mouth and an automatically timed mouth-shape
-track. Both use the same expression and clock; independent idle gestures are
+source: the first Rhubarb generator and the revised script-aligned generator.
+Both use identical mouth artwork, expression and playback smoothing, so this
+comparison isolates generation quality. Independent idle gestures are
 paused to make the comparison easier. Play voice, In context, Stop and the motion
 selector keep their existing behavior. No new recordings or paid generation
 were needed.
 
-The cue tracks were generated locally with pinned Rhubarb Lip Sync 1.14.0, using
-the original recordings and exact scripts. All cue boundaries are unedited.
+The original Rhubarb Lip Sync 1.14.0 tracks remain unchanged. The revised generator
+uses PocketSphinx 5.1.1's public word/phoneme alignment API against the known script,
+then a shared English sound-to-mouth mapping. Generated artifacts retain word and
+phone evidence as well as mouth cues. No clip-specific timing fixes or artwork
+adjustments are used. The ordinary **Voice audition** still previews the simpler
+energy-driven mouth.
+
 This preview does not adopt the method for the full voice library. The
 [alignment README](../frontend/src/audio/speech/alignment/README.md) documents
 reproduction, source/tool hashes, conversion details and read-only verification.

@@ -8,25 +8,25 @@ import type { SpeechPlayback } from '../model';
 const walter = getCoach('classic');
 
 /** One voice, two live views. An audition comparison is not a second review bubble. */
-export default function WalterMouthComparison({ reaction, motion, speech, track, text, actions }: {
+export default function WalterMouthComparison({ reaction, motion, speech, track, originalTrack, text, actions }: {
   reaction: CoachReaction; motion: CoachMotion; speech?: SpeechPlayback;
-  track: SpeechMouthTrack; text: string; actions: ReactNode;
+  track: SpeechMouthTrack; originalTrack: SpeechMouthTrack; text: string; actions: ReactNode;
 }) {
   return <section className="walter-mouth-comparison" aria-label="Walter mouth comparison">
     <div className="walter-mouth-pair">
       <figure>
         <CoachCharacter coach={walter} reaction={reaction} motion={motion} speech={speech}
-          idle={false} label="Walter, audio-driven mouth" />
-        <figcaption><strong>Current</strong><span>Audio-driven mouth</span></figcaption>
+          speechTrack={originalTrack} idle={false} label="Walter, original generator" />
+        <figcaption><strong>First generator</strong><span>Original Rhubarb timing</span></figcaption>
       </figure>
       <figure>
         <CoachCharacter coach={walter} reaction={reaction} motion={motion} speech={speech}
           speechTrack={track} idle={false} label="Walter, automatic lip sync" />
-        <figcaption><strong>Automatic lip sync</strong><span>Sound-specific mouth shapes</span></figcaption>
+        <figcaption><strong>Revised generator</strong><span>Aligned to the script</span></figcaption>
       </figure>
     </div>
     <p className="walter-comparison-transcript">{text}</p>
     <div className="walter-comparison-actions">{actions}</div>
-    <p className="walter-comparison-note">One recording drives both. Idle gestures are paused for a fair comparison. The automatic timings have not been hand-edited.</p>
+    <p className="walter-comparison-note">Same voice, artwork and playback. Only the generated mouth cues differ. No hand-edited timing; idle gestures are paused for comparison.</p>
   </section>;
 }

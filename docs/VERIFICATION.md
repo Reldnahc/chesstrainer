@@ -4,6 +4,47 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Generator-first Walter lip-sync refinement — October 1, 2026
+
+The owner redirected polish toward automatic generation. Both comparison portraits
+now use identical existing artwork and playback; the first Rhubarb cues remain
+unchanged on the left, and public-API script/phoneme alignment drives the right.
+No per-clip timing edits, new recordings, paid calls or production narration.
+
+- Native PocketSphinx 5.1.1 generation produced **65 cues / 8.24s** and **55 cues /
+  6.72s** from the two original recordings. Word/phone intervals, shared mapping,
+  model/config fingerprints and source hashes are retained with the output.
+  Repeating native generation produced byte-identical complete JSON files.
+- Independent source audit found that the new phone evidence preserves P closures
+  in "up" and "accepted", V/W distinctions in "even when", and the long sentence
+  pause in Sound sacrifice that the first generator reopened early. Exact word
+  order is enforced by alignment; that alone does not prove phonetic accuracy.
+- `.venv/Scripts/python.exe -S scripts/align_coach_speech.py --check`: passed for
+  both generators with the standard library only, including rederivation of
+  revised mouth cues from stored phone evidence.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py -q`:
+  **211 passed**. Scoped Ruff check and format check passed for the two authoring
+  scripts and two test files. Review caught and fixed the missing English G phone;
+  a regression now covers the complete 39-phone CMU inventory plus silence.
+- `npm --prefix frontend run build`: passed API/type agreement, application and
+  browser-test TypeScript, 11 style guards, all three development style boundaries
+  and production build. `build:audio-studio` also passed. Existing Vite chunk-size
+  advisory remains; generated alignment data is absent from production JS.
+- From `frontend`, `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs lip-sync.spec.ts speech-animation.spec.ts speech-lifecycle.spec.ts walter.spec.ts --output node_modules/.cache/generator-polish-results --reporter=line`:
+  **84 passed**, desktop/mobile. Verifies one shared recording, matching visual
+  settings, distinct generated tracks, motion policy, interruption/cleanup and
+  the unchanged ordinary voice audition. The ignored config reuses the LAN studio.
+- Manual preview: both clips inspected on desktop and at 390px phone width.
+  Both portraits stay visible together; the same-art comparison is ready in
+  **Compare lip sync**. Git diff confirms the existing coach rig, speech hook,
+  original Rhubarb files and original MP3s are untouched.
+
+Recognition models remain optional offline authoring tools, outside Git and
+Docker. No full backend/account/coach matrix run for this development-only pass.
+Leading quiet and dictionary pronunciation choices remain limitations to judge
+in the preview; this is not an assertion of perfect alignment.
+
 ## Automatic Walter lip-sync comparison — October 1, 2026
 
 The development audio studio now compares energy-driven articulation against

@@ -1,7 +1,8 @@
-"""Author two automatic Rhubarb previews from existing Walter recordings, entirely offline.
+"""Author automatic mouth previews from existing Walter recordings, entirely offline.
 
---check uses the standard library only. --generate additionally needs the pinned
-Windows Rhubarb release, NumPy and SoundFile in the local authoring environment.
+--check uses the standard library only. --generate defaults to pinned PocketSphinx
+transcript alignment; --method rhubarb reproduces the unchanged first experiment.
+Generation needs optional local audio/phoneme authoring dependencies.
 No executable, decoder, temporary WAV or service dependency ships with the app.
 """
 
@@ -13,6 +14,11 @@ import subprocess
 import sys
 import wave
 from pathlib import Path
+
+if __package__:
+    from . import speech_forced_alignment as forced
+else:
+    import speech_forced_alignment as forced
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEECH = ROOT / "frontend/src/audio/speech"
@@ -133,7 +139,8 @@ def check_track(
     }:
         raise ValueError("Alignment script fingerprint is stale")
     tool = provenance["tool"]
-    if tool != tool_provenance():
+    is_forced = tool.get("name") == "PocketSphinx"
+    if not is_forced and tool != tool_provenance():
         raise ValueError("Unexpected alignment tool or options")
     conversion = provenance["conversion"]
     if (
@@ -152,6 +159,8 @@ def check_track(
     cues = validate_cues(track, duration)
     if provenance["cueSha256"] != cue_digest(cues):
         raise ValueError("Generated cue fingerprint changed")
+    if is_forced:
+        forced.validate_evidence(provenance, text, track["metadata"]["duration"], cues)
 
 
 def tool_provenance() -> dict:
@@ -253,6 +262,72 @@ def generate(script: dict, tool: Path, work: Path, audio_deps: Path) -> dict:
     return track
 
 
+def generate_forced(script: dict, work: Path, audio_deps: Path, phoneme_deps: Path) -> dict:
+    recording = RECORDINGS / f"{script['id']}.mp3"
+    recorded = json.loads(recording.with_suffix(".provenance.json").read_text("utf-8"))
+    original = source_inputs(script, recording, recorded)
+    working = work / script["id"]
+    working.mkdir(parents=True, exist_ok=True)
+    wav_path = working / "recording.wav"
+    conversion = decode(recording, wav_path, audio_deps)
+    text = script["text"]
+    forced.normalize_text(text)
+    dialog_path = working / "dialog.txt"
+    dialog_path.write_bytes(text.encode("utf-8"))
+    command = [
+        sys.executable,
+        "-B",
+        str(Path(forced.__file__).resolve()),
+        "--wav",
+        str(wav_path),
+        "--text",
+        str(dialog_path),
+        "--deps",
+        str(phoneme_deps.resolve()),
+    ]
+    try:
+        result = subprocess.run(
+            command, check=True, capture_output=True, text=True, encoding="utf-8", timeout=180
+        )
+    except subprocess.CalledProcessError as error:
+        raise ValueError(f"Automatic phone alignment failed: {error.stderr.strip()}") from error
+    native = json.loads(result.stdout)
+    # Preserve the public API's complete word/phone evidence, not debug log timing.
+    (working / "forced-native.json").write_text(json.dumps(native, indent=2), encoding="utf-8")
+    duration = math.floor(conversion["durationSeconds"] * 100 + 1e-8) / 100
+    cues = forced.mouth_cues(native["alignment"], text, duration)
+    track = {
+        "schemaVersion": 1,
+        "scriptId": f"contrast-{script['id']}",
+        "voiceId": "walter",
+        "metadata": {"duration": duration},
+        "mouthCues": cues,
+        "provenance": {
+            "sourceScriptId": script["id"],
+            "manualTimingEdits": False,
+            "recording": {
+                "path": recording.relative_to(ROOT).as_posix(),
+                "sha256": digest(original),
+                "bytes": len(original),
+            },
+            "script": {
+                "planPath": PLAN.relative_to(ROOT).as_posix(),
+                "text": text,
+                "sha256": digest(text.encode("utf-8")),
+            },
+            "tool": native["tool"],
+            "conversion": conversion,
+            "resampling": native["resampling"],
+            "alignment": native["alignment"],
+            "alignmentSha256": forced.object_digest(native["alignment"]),
+            "mapping": forced.mapping_provenance(),
+            "cueSha256": cue_digest(cues),
+        },
+    }
+    check_track(track, script, recording, recorded, PLAN.relative_to(ROOT).as_posix())
+    return track
+
+
 def write_track(path: Path, track: dict) -> None:
     # Keep each untouched native cue compact while leaving provenance readable.
     serialized = json.dumps(track, ensure_ascii=False, indent=2)
@@ -276,10 +351,17 @@ def main() -> None:
     action.add_argument(
         "--generate",
         action="store_true",
-        help="Run pinned Rhubarb offline and replace both preview tracks",
+        help="Generate both previews for the selected method entirely offline",
+    )
+    parser.add_argument(
+        "--method",
+        choices=("forced", "rhubarb"),
+        default="forced",
+        help="Generator only; --check always validates both methods",
     )
     parser.add_argument("--rhubarb", type=Path, default=DEFAULT_TOOL)
     parser.add_argument("--audio-deps", type=Path, default=ROOT / ".tools/audio-authoring")
+    parser.add_argument("--phoneme-deps", type=Path, default=ROOT / ".tools/phoneme-authoring")
     parser.add_argument("--work-dir", type=Path, default=ROOT / ".tools/speech-alignment")
     args = parser.parse_args()
     plan = json.loads(PLAN.read_text("utf-8"))
@@ -287,43 +369,55 @@ def main() -> None:
         next(script for script in plan["scripts"] if script["id"] == key) for key in SCRIPT_IDS
     ]
     if args.generate:
-        tool = args.rhubarb.resolve()
         if not args.work_dir.resolve().is_relative_to((ROOT / ".tools").resolve()):
             raise ValueError("Temporary authoring files must stay in the ignored .tools directory")
-        if digest(tool.read_bytes()) != EXECUTABLE_SHA256:
-            raise ValueError(
-                "Rhubarb executable does not match the pinned official Windows release"
-            )
-        if resource_digest(tool.parent / "res") != RESOURCES_SHA256:
-            raise ValueError("Rhubarb recognition resources differ from the pinned release")
-        version = subprocess.run(
-            [str(tool), "--version"], check=True, capture_output=True, text=True, timeout=10
-        ).stdout.strip()
-        if version != f"Rhubarb Lip Sync version {TOOL_VERSION}":
-            raise ValueError("Rhubarb version mismatch")
+        if args.method == "rhubarb":
+            tool = args.rhubarb.resolve()
+            if digest(tool.read_bytes()) != EXECUTABLE_SHA256:
+                raise ValueError(
+                    "Rhubarb executable does not match the pinned official Windows release"
+                )
+            if resource_digest(tool.parent / "res") != RESOURCES_SHA256:
+                raise ValueError("Rhubarb recognition resources differ from the pinned release")
+            version = subprocess.run(
+                [str(tool), "--version"], check=True, capture_output=True, text=True, timeout=10
+            ).stdout.strip()
+            if version != f"Rhubarb Lip Sync version {TOOL_VERSION}":
+                raise ValueError("Rhubarb version mismatch")
         # Prepare and verify both jobs before replacing either committed track.
         tracks = [
-            (script, generate(script, tool, args.work_dir.resolve(), args.audio_deps))
+            (
+                script,
+                generate_forced(script, args.work_dir.resolve(), args.audio_deps, args.phoneme_deps)
+                if args.method == "forced"
+                else generate(script, tool, args.work_dir.resolve(), args.audio_deps),
+            )
             for script in scripts
         ]
         OUTPUT.mkdir(parents=True, exist_ok=True)
         for script, track in tracks:
-            write_track(OUTPUT / f"{script['id']}.json", track)
+            suffix = "-forced" if args.method == "forced" else ""
+            write_track(OUTPUT / f"{script['id']}{suffix}.json", track)
             print(
                 f"Generated {script['id']}: {len(track['mouthCues'])} automatic cues, {track['metadata']['duration']:.2f}s"
             )
     else:
         for script in scripts:
             recording = RECORDINGS / f"{script['id']}.mp3"
-            check_track(
-                json.loads((OUTPUT / f"{script['id']}.json").read_text("utf-8")),
-                script,
-                recording,
-                json.loads(recording.with_suffix(".provenance.json").read_text("utf-8")),
-                PLAN.relative_to(ROOT).as_posix(),
-            )
+            for suffix in ("", "-forced"):
+                track = json.loads((OUTPUT / f"{script['id']}{suffix}.json").read_text("utf-8"))
+                expected_tool = "PocketSphinx" if suffix else "Rhubarb Lip Sync"
+                if track["provenance"]["tool"].get("name") != expected_tool:
+                    raise ValueError("Stored speech track has the wrong generation method")
+                check_track(
+                    track,
+                    script,
+                    recording,
+                    json.loads(recording.with_suffix(".provenance.json").read_text("utf-8")),
+                    PLAN.relative_to(ROOT).as_posix(),
+                )
         print(
-            f"Verified {len(scripts)} automatic speech tracks against exact recordings and scripts."
+            f"Verified {len(scripts)} automatic speech tracks per method (rhubarb, forced) against exact recordings and scripts."
         )
 
 

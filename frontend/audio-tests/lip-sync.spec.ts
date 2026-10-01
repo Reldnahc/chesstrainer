@@ -1,7 +1,7 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
 import path from 'node:path';
 import { speechMouthAt, type SpeechMouthTrack } from '../src/coach/speechMouth';
-import { rhubarbTrack, walterAlignment, walterAlignmentPreviews } from '../src/audio/speech/alignment/previewTracks';
+import { mouthCueTrack, walterAlignment, walterAlignmentPreviews, walterOriginalAlignment } from '../src/audio/speech/alignment/previewTracks';
 import { viteFsPath } from '../studio-tests/helpers/viteFsPath';
 
 const track: SpeechMouthTrack = { durationSeconds: 1, cues: [
@@ -30,19 +30,19 @@ test('mouth timing is independent of previous samples after a seek or skipped fr
 test('the alignment adapter translates all raw cue IDs and rejects malformed timing or unknown shapes', () => {
   const ids = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'X'];
   const input = { metadata: { duration: 9 }, mouthCues: ids.map((value, index) => ({ start: index, end: index + 1, value })) };
-  expect(rhubarbTrack(input)?.cues.map(cue => cue.shape))
+  expect(mouthCueTrack(input)?.cues.map(cue => cue.shape))
     .toEqual(['closed', 'consonant', 'open', 'wide', 'round', 'pucker', 'lip-bite', 'tongue', 'rest']);
   for (const duration of [0, -1, NaN, Infinity]) {
-    expect(rhubarbTrack({ ...input, metadata: { duration } })).toBeNull();
+    expect(mouthCueTrack({ ...input, metadata: { duration } })).toBeNull();
   }
   for (const cue of [
     { start: -1, end: 1, value: 'A' }, { start: 0, end: 0, value: 'A' },
     { start: 1, end: .5, value: 'A' }, { start: 0, end: 10, value: 'A' },
     { start: NaN, end: 1, value: 'A' }, { start: 0, end: Infinity, value: 'A' },
     { start: 0, end: 1, value: 'unknown' }, { start: 0, end: 1, value: 'constructor' },
-  ]) expect(rhubarbTrack({ ...input, mouthCues: [cue] }), JSON.stringify(cue)).toBeNull();
-  expect(rhubarbTrack({ ...input, mouthCues: [] })).toBeNull();
-  expect(rhubarbTrack({ ...input, mouthCues: [
+  ]) expect(mouthCueTrack({ ...input, mouthCues: [cue] }), JSON.stringify(cue)).toBeNull();
+  expect(mouthCueTrack({ ...input, mouthCues: [] })).toBeNull();
+  expect(mouthCueTrack({ ...input, mouthCues: [
     { start: 0, end: 2, value: 'A' }, { start: 1, end: 3, value: 'B' },
   ] })).toBeNull();
 });
@@ -52,8 +52,12 @@ test('comparison tracks are available only for their exact recording identities'
     .toEqual(['contrast-allowed-mate', 'contrast-sound-sacrifice']);
   for (const preview of walterAlignmentPreviews) {
     expect(preview.track).not.toBeNull();
+    expect(preview.originalTrack).not.toBeNull();
+    expect(preview.track!.cues).not.toEqual(preview.originalTrack!.cues);
     expect(walterAlignment(preview.voiceId, preview.scriptId)).toBe(preview.track);
+    expect(walterOriginalAlignment(preview.voiceId, preview.scriptId)).toBe(preview.originalTrack);
     expect(walterAlignment('other-voice', preview.scriptId)).toBeUndefined();
+    expect(walterOriginalAlignment('other-voice', preview.scriptId)).toBeUndefined();
   }
   expect(walterAlignment('walter', 'contrast-recovery')).toBeUndefined();
 });
@@ -62,7 +66,7 @@ const panel = (page: Page) => page.locator('.walter-audition');
 const pair = (page: Page) => page.getByRole('region', { name: 'Walter mouth comparison', exact: true });
 const portraits = (page: Page) => pair(page).locator('.coach-avatar');
 const aligned = (page: Page) => page.getByRole('img', { name: 'Walter, automatic lip sync', exact: true });
-const baseline = (page: Page) => page.getByRole('img', { name: 'Walter, audio-driven mouth', exact: true });
+const baseline = (page: Page) => page.getByRole('img', { name: 'Walter, original generator', exact: true });
 const play = (page: Page) => page.getByRole('button', { name: 'Play voice', exact: true });
 const motion = (page: Page) => page.getByRole('combobox', { name: 'Coach motion', exact: true });
 const sample = (page: Page) => page.getByRole('combobox', { name: 'Speech example', exact: true });
@@ -160,11 +164,14 @@ for (const scriptId of ['contrast-sound-sacrifice', 'contrast-allowed-mate']) {
     await aligned(page).scrollIntoViewIfNeeded();
     await expect(aligned(page)).toHaveAttribute('data-articulation', 'aligned');
     await expect(baseline(page)).toHaveAttribute('data-speaking', 'true');
-    expect(await baseline(page).getAttribute('data-articulation')).toBeNull();
+    await expect(baseline(page)).toHaveAttribute('data-articulation', 'aligned');
     await expect(aligned(page).locator('.walter-aligned-mouth')).toBeVisible();
     await expect(aligned(page).locator('.walter-speech-mouth')).toBeHidden();
-    await expect(baseline(page).locator('.walter-speech-mouth')).toBeVisible();
-    await expect(baseline(page).locator('.walter-aligned-mouth')).toBeHidden();
+    await expect(baseline(page).locator('.walter-speech-mouth')).toBeHidden();
+    await expect(baseline(page).locator('.walter-aligned-mouth')).toBeVisible();
+    for (const attribute of ['data-coach', 'data-family', 'data-expression', 'data-motion']) {
+      expect(await aligned(page).getAttribute(attribute)).toEqual(await baseline(page).getAttribute(attribute));
+    }
     const starts = await nativeStarts(page);
     expect(starts).toHaveLength(1);
     expect(Math.abs(starts[0].duration - walterAlignment('walter', scriptId)!.durationSeconds)).toBeLessThan(.06);

@@ -164,10 +164,12 @@ rig controls, with short easing and faster lip closures. Tool-specific shape IDs
 stay in the authoring adapter; future rigs can draw their own geometry. Missing
 tracks retain the energy-driven path. Motion, identity and cleanup rules are shared.
 
-The [audio studio](AUDIO.md#automatic-lip-sync-comparison-development-only) compares
-both methods using two existing Walter recordings at normal portrait sizes. Its
-Rhubarb-generated cue files are development-only and uncorrected; the preview is
-for judging automatic quality, not a claim of exact phonetic alignment. Playback
+The [audio studio](AUDIO.md#automatic-lip-sync-comparison-development-only) uses
+two existing Walter recordings at normal portrait sizes. Voice audition retains
+the energy-driven mouth; Compare lip sync isolates the original Rhubarb generator
+against revised script/phoneme alignment using identical artwork and playback.
+Both sets of cues are automatic and development-only. The preview is for judging
+quality, not a claim of perfect phonetic alignment. Playback
 uses no voice API or recognition model. Production automatic speech and lesson
 narration remain deferred.
 

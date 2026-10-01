@@ -9,7 +9,7 @@ import SourceLine from "../../SourceLine";
 import { CoachCharacter } from "../../coach/CoachAvatar";
 import { getCoach } from "../../coach/registry";
 import type { SpeechPlayback } from "../model";
-import { walterAlignment } from "../speech/alignment/previewTracks";
+import { walterAlignment, walterOriginalAlignment } from "../speech/alignment/previewTracks";
 import WalterMouthComparison from "./WalterMouthComparison";
 import type { WalterClip, WalterCollection, WalterScript, WalterVoice } from "../speech/walterPilot";
 import "../../coach-presentation.css";
@@ -57,6 +57,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
   const reaction = { state: playing ? script.reaction : "neutral" as const, key: playing ? playback.eventId ?? `${voiceId}:${scriptId}` : "walter-ready" };
   const speech = playing && speaking && speaking.eventId === playback.eventId ? speaking : undefined;
   const alignment = walterAlignment(voice.id, script.id);
+  const originalAlignment = walterOriginalAlignment(voice.id, script.id);
   const actions = <>
     <Button variant="primary" disabled={!clip} onClick={() => clip && onPlay(clip, { voice, script, inContext: false })}><Play size={15} aria-hidden="true" />Play voice</Button>
     <Button disabled={!clip} onClick={() => clip && onPlay(clip, { voice, script, inContext: true })}>In context</Button>
@@ -97,7 +98,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
       <div className="walter-audition-controls">
         {preview === 'voice' && <ChoiceGroup label="Voice candidate" value={voice.id} options={collectionVoices.map(item => ({ value: item.id, label: item.name }))}
           onChange={id => { if (id !== voiceId) { onStop(); setVoiceId(id); } }} />}
-        <p className="walter-audition-description">{preview === 'mouths' ? 'Compare two automatic animation methods with the selected Older teacher voice. No new recordings or provider calls.' : voice.description}</p>
+        <p className="walter-audition-description">{preview === 'mouths' ? 'Compare the first generator with revised script-aligned timing. Both use the same Older teacher recording and unchanged mouth artwork.' : voice.description}</p>
         {collectionScripts.length > 1 && <label>Speech example<select value={script.id} onChange={event => { onStop(); setScriptId(event.target.value); }}>
           {collectionScripts.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
         </select></label>}
@@ -108,13 +109,17 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
           <SourceLine text={`ElevenLabs · ${voice.sourceName} · Model ${voice.modelId ?? "provider-selected (Voice Remix)"}`}
             url="https://elevenlabs.io/text-to-speech" linkLabel="Voice provider" />
           <SourceLine text="Prerecorded clips play locally. Playback does not contact the voice provider." />
-          {preview === 'mouths' && <SourceLine text="Mouth cues generated offline with Rhubarb Lip Sync 1.14.0, using the recording and its exact script."
-            url="https://github.com/DanielSWolf/rhubarb-lip-sync" linkLabel="Lip sync tool" />}
+          {preview === 'mouths' && <>
+            <SourceLine text="First generator: Rhubarb Lip Sync 1.14.0."
+              url="https://github.com/DanielSWolf/rhubarb-lip-sync" linkLabel="Original generator" />
+            <SourceLine text="Revised generator: offline word/phoneme alignment with PocketSphinx 5.1.1, then shared sound-to-mouth rules."
+              url="https://pocketsphinx.readthedocs.io/en/latest/pocketsphinx.html#pocketsphinx.Decoder.set_alignment" linkLabel="Alignment method" />
+          </>}
         </details>
       </div>
       <div className="walter-audition-preview">
-        {preview === 'mouths' && alignment ? <WalterMouthComparison reaction={reaction} motion={motion}
-          speech={speech} track={alignment} text={script.spokenText} actions={actions} /> :
+        {preview === 'mouths' && alignment && originalAlignment ? <WalterMouthComparison reaction={reaction} motion={motion}
+          speech={speech} track={alignment} originalTrack={originalAlignment} text={script.spokenText} actions={actions} /> :
         <ReviewCoach title={<strong>{script.label}</strong>} portraitCaption={walter.name} messageResetKey={script.id}
           character={<CoachCharacter coach={walter} reaction={reaction} motion={motion}
             speech={speech}

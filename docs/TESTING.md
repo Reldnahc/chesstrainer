@@ -315,8 +315,11 @@ checks cue boundaries and gaps, malformed imports, exact voice/script matching,
 one shared native audio source, correct mouth artwork, natural ending, interruption,
 mode/example changes, motion policy and side-by-side phone layout. Offline
 authoring coverage runs with `.venv/Scripts/python.exe -m pytest
-backend/tests/test_speech_alignment.py -q`; `scripts/align_coach_speech.py --check`
-validates committed cue provenance using only the standard library. Native
+backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py -q`.
+The forced-alignment tests cover English phone mappings, exact transcript coverage,
+time bounds, source/model/config fingerprints and rederivation of mouth cues from
+stored word/phone evidence. `scripts/align_coach_speech.py --check` validates both
+generators' committed tracks using only the standard library. Native
 generation is an optional developer step, not a CI or installation requirement.
 
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
