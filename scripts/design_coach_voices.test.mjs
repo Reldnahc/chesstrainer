@@ -34,13 +34,25 @@ async function fixture(t, value = plan()) {
   return { root, file, output, attempts, args, out, errors, options: { stdout: value => out.push(value), stderr: value => errors.push(value) } };
 }
 
-test('checked-in twenty-coach plan has sixty distinct requests with deterministic bounded seeds', async () => {
+test('checked-in plan limits requests to sixteen approved coaches and preserves four deferred coaches', async () => {
   const source = fileURLToPath(new URL('../frontend/src/audio/speech/cast-auditions/design-plan.json', import.meta.url));
   const value = validatePlan(await readJson(source));
   const requests = value.coaches.flatMap(coach => coach.directions.map(direction => requestFor(value, coach, direction)));
-  assert.equal(value.coaches.length, 20); assert.equal(requests.length, 60);
-  assert.equal(new Set(requests.map(request => request.body.voice_description)).size, 60);
-  for (const request of requests) {
+  assert.equal(value.coaches.length, 16); assert.equal(requests.length, 48);
+  assert.equal(new Set(requests.map(request => request.body.voice_description)).size, 48);
+  assert.equal(value.deferredCoaches.length, 4);
+  assert.deepEqual(value.deferredCoaches.map(coach => coach.coachId).sort(), ['alien', 'living-pawn', 'mushroom', 'slime']);
+  assert.match(value.deferredReason, /owner approval/);
+  assert.match(value.deferredReason, /pending/);
+  const allCoaches = [...value.coaches, ...value.deferredCoaches];
+  assert.equal(new Set(allCoaches.map(coach => coach.coachId)).size, 20);
+  const fullPlan = { ...value, coaches: allCoaches }; delete fullPlan.counts;
+  validatePlan(fullPlan);
+  const allRequests = fullPlan.coaches.flatMap(coach => coach.directions.map(direction => requestFor(fullPlan, coach, direction)));
+  assert.equal(allRequests.length, 60);
+  assert.equal(new Set(allRequests.map(request => request.body.voice_description)).size, 60);
+  assert.ok(requests.every(request => !value.deferredCoaches.some(coach => coach.coachId === request.coachId)));
+  for (const request of allRequests) {
     assert.ok(Number.isInteger(request.body.seed) && request.body.seed >= 0 && request.body.seed <= 2147483647);
     assert.equal(request.body.auto_generate_text, false);
     assert.equal(request.body.guidance_scale, 3.5); assert.equal(request.body.loudness, .5);

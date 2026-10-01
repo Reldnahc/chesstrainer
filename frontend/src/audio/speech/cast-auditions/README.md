@@ -1,12 +1,14 @@
 # Nonhuman coach voice-design auditions
 
-This is a development-only casting collection. `design-plan.json` holds the
-twenty current nonhuman coaches, their short scripts, and three independently
-written voice directions each. No voice is selected for production or saved in
-an ElevenLabs account by these tools.
+This is a development-only casting collection. `design-plan.json` has sixteen
+approved coaches with three independently written voice directions each: **48
+active auditions**. The four remaining nonhuman briefs—alien, living pawn, slime
+and mushroom—are preserved separately in `deferredCoaches` while explicit owner
+approval is pending. They are excluded from generation and completion checks.
+No voice is selected for production or saved in an ElevenLabs account by these tools.
 
 `manifest.json` contains the available retained previews. Partial coverage is
-expected while recording; the final strict check requires every planned direction.
+expected while recording; the final strict check requires every active direction.
 The studio must not import this collection into normal application playback.
 
 ## Bounded authoring
@@ -25,8 +27,9 @@ After the owner has authorized the request and the plan's phase gate is met,
 node scripts/design_coach_voices.mjs --generate --coach robot --direction retro-terminal
 ```
 
-Coach and direction filters are repeatable. Omitting them selects all sixty
-planned directions; existing verified previews are reused without a request.
+Coach and direction filters are repeatable. Omitting them selects all 48 active
+directions; existing verified previews are reused without a request. Deferred
+briefs cannot be selected with these filters and require an approved plan update.
 Requests are sequential, bounded to the plan, timed out and never automatically
 retried. The tool calls only ElevenLabs' [Voice Design endpoint](https://elevenlabs.io/docs/api-reference/text-to-voice/design),
 with `eleven_ttv_v3`, the exact prompt and script, deterministic 31-bit seed,
@@ -62,7 +65,7 @@ node scripts/design_coach_voices.mjs --check
 node --test scripts/design_coach_voices.test.mjs scripts/record_coach_speech.test.mjs
 ```
 
-`--check` is read-only, needs no provider key, and requires complete plan coverage
+`--check` is read-only, needs no provider key, and requires complete active-plan coverage
 plus an exact matching manifest. It verifies source bytes and request identity;
 it does not claim perceptual voice quality or prove provider pronunciation.
 Usage totals belong to the separately captured provider usage record, not an
