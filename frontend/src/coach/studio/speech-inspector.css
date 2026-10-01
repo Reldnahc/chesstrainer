@@ -1,0 +1,77 @@
+.speech-inspector-note {
+  color: var(--studio-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+  max-width: 700px;
+}
+.speech-inspector-grid {
+  --speech-preview-height: 116px;
+  --speech-preview-width: 92.8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.speech-inspector-grid[data-size="large"] {
+  --speech-preview-height: 232px;
+  --speech-preview-width: 185.6px;
+}
+.speech-shape {
+  min-width: 0;
+  margin: 0;
+  padding: 20px 16px 16px;
+  border: 1px solid #424b40;
+  border-radius: 12px;
+  background: #1c211e;
+}
+.speech-shape-stage {
+  display: grid;
+  place-items: center;
+  min-height: calc(var(--speech-preview-height) + 20px);
+}
+.speech-shape-stage .coach-avatar {
+  width: var(--speech-preview-width);
+  height: var(--speech-preview-height);
+  margin: 0;
+}
+.speech-shape figcaption {
+  display: grid;
+  gap: 5px;
+  margin-top: 12px;
+  text-align: center;
+}
+.speech-shape strong {
+  font-size: 16px;
+  color: var(--studio-paper);
+}
+.speech-shape figcaption > span {
+  font: 12px var(--mono);
+  color: #bdcda9;
+}
+.speech-shape small {
+  color: var(--studio-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.speech-authored-reference {
+  max-width: 760px;
+  margin-top: 28px;
+}
+.speech-authored-reference .coach-message > p {
+  margin: 0;
+}
+@media (max-width: 760px) {
+  .speech-inspector-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .speech-inspector-grid[data-size="large"] {
+    grid-template-columns: 1fr;
+  }
+  .speech-shape {
+    padding-inline: 10px;
+  }
+  .speech-shape small {
+    min-height: 36px;
+  }
+}

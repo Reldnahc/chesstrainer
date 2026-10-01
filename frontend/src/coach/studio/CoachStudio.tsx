@@ -18,11 +18,14 @@ import {
 } from "../model";
 import { useReducedMotion } from "../../useReducedMotion";
 import MotionSelect from "../../MotionSelect";
+import ChoiceGroup from "../../ChoiceGroup";
+import CastVoiceAuditionPanel from "../../audio/studio/CastVoiceAuditionPanel";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
 import { CastComparison, IdleVariants } from "./PerformanceCollections";
 import IdlePlayback from "./IdlePlayback";
+import SpeechInspector from "./SpeechInspector";
 import type { CoachPerformanceSnapshot } from "../performanceDiagnostics";
 import "./studio.css";
 
@@ -61,6 +64,9 @@ function bookmarkedCoach() {
   };
 }
 export default function CoachStudio() {
+  const [view, setView] = useState<"acting" | "speech">(() =>
+    new URLSearchParams(location.search).get("view") === "speech" ? "speech" : "acting",
+  );
   const [coachId, setCoachId] = useState(
     () => bookmarkedCoach().collection.id,
   );
@@ -113,8 +119,10 @@ export default function CoachStudio() {
     url.searchParams.set("coach", selected.id);
     url.searchParams.set("expression", expression);
     url.searchParams.set("family", family);
+    if (view === "speech") url.searchParams.set("view", view);
+    else url.searchParams.delete("view");
     history.replaceState(history.state, "", url);
-  }, [expression, family, selected.id]);
+  }, [expression, family, selected.id, view]);
   useEffect(() => {
     if (!playing) return;
     let index = 0;
@@ -194,6 +202,13 @@ export default function CoachStudio() {
         </p>
       </header>
       <CoachPicker selected={selected.id} onSelect={selectCoach} />
+      <div className="studio-view-choice">
+        <ChoiceGroup label="Studio view" value={view} onChange={(value) => {
+          setPlaying(false);
+          setIdlePreview("");
+          setView(value);
+        }} options={[{ value: "acting", label: "Acting" }, { value: "speech", label: "Mouth shapes" }]} />
+      </div>
       <section
         className="studio-controls"
         aria-label="Animation preview controls"
@@ -213,6 +228,7 @@ export default function CoachStudio() {
         </label>
         <MotionSelect id="studio-motion" label="Motion intensity" layout="stacked"
           value={motion} onChange={value => { setMotion(value); setReduced(false); }} />
+        {view === "acting" && <>
         <button
           onClick={() => {
             setPlaying(false);
@@ -230,6 +246,7 @@ export default function CoachStudio() {
         >
           <Play size={15} /> {playing ? "Stop sequence" : "Play a sequence"}
         </button>
+        </>}
         <label className="studio-reduced">
           <input
             type="checkbox"
@@ -248,6 +265,10 @@ export default function CoachStudio() {
           Expressions stay visible; motion is paused.
         </p>
       )}
+      {view === "speech" ? <>
+        <SpeechInspector coach={selected} expression={expression} />
+        <CastVoiceAuditionPanel coachId={selected.id} expression={expression} motion={effectiveMotion} />
+      </> : <>
       <div className="studio-moment">
         <div>
           <span className="studio-counter">
@@ -333,6 +354,7 @@ export default function CoachStudio() {
           preferences.
         </p>
       </aside>
+      </>}
     </div>
   );
 }
