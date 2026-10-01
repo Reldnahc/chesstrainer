@@ -4,6 +4,85 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Walter wording pilot — October 1, 2026
+
+Walter's selected Older teacher voice and 181 supported non-lesson meanings are
+unchanged. The pilot revises 81 scripts (all 67 containing “continuation,” related
+alternative wording, two internal-policy phrases and a stale strong-move line),
+retaining 100 recordings. The five bounded recording plans total **7,524 input
+characters**. The provider usage counter increased from **12,295 to 13,202**:
+**907 credits**, with 81 successful requests and no retakes. Every replacement
+received automatic PocketSphinx mouth timing; no manual timing or audio edits.
+
+Original media/provenance, full alignment evidence and compact tracks remain
+available to the development-only Original/Revised comparison. A SHA-256 comparison
+of production `dist/assets/*.mp3` against the active manifest confirmed exactly
+**181 active recordings and zero superseded recordings**. The separate source
+download retains repository archives. Other cast recordings and choices are unchanged.
+
+The written dialogue adds derived tactical timing/effect data without replacing
+original claims, evidence, source IDs or stored analysis. Only Walter opts into
+the new presentation. Independent review found and fixed root captures incorrectly
+described as future moves and a nested Maia intent losing other coaches' existing
+wording seed. Legal mirrored fixtures and cross-cast checks cover both fixes.
+Already supplied SRS annotations, Show Why captions and legacy backend explanations
+remain verbatim and can still contain “continuation”; no prose-wide string
+replacement or coach-specific backend evidence was introduced.
+
+- From `frontend`, `npx playwright test --config ../.tools/walter-dialogue.config.ts
+  walter-dialogue.spec.ts`: **28 passed**. The ignored configuration uses the
+  standard desktop project with no server for these pure tests. The same command
+  with `dialogue-logic.spec.ts personality.spec.ts --grep-invert 'saved coach
+  selection'`: **15 existing pure tests passed**; the saved-account browser case
+  was outside this targeted run.
+- `npx playwright test --config playwright.intelligence.config.ts
+  walter-dialogue.spec.ts behavior.spec.ts corpus.spec.ts causal-dialogue.spec.ts
+  positional-dialogue.spec.ts`: **36 desktop/mobile cases passed**. A Windows
+  Vite child hung after all tests completed; verifying its ancestry and stopping
+  only that owned child released the runner's successful exit. No assertions
+  were skipped or weakened. After final review fixes, the same command with
+  `walter-dialogue.spec.ts human-dialogue.spec.ts`: **6 passed**, normal teardown.
+  Types and fixture Ruff/format checks also passed after those corrections.
+- `.venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check`:
+  **181 ready/reused, none missing**. Strict offline source/script/voice/settings,
+  recording hashes and compact-track checks passed.
+- `.venv/Scripts/python.exe -m pytest backend/tests/test_coach_voice_bank.py
+  backend/tests/test_walter_language_revision.py -q`: **41 passed**. The revision
+  tests protect unchanged meanings, locked voice/settings, script scope and the
+  exact archived comparison audio/alignments. The existing archive-corruption
+  fixture now uses the active recording's alignment rather than its old preview.
+- `.venv/Scripts/ruff.exe check` and `format --check` on those two test files:
+  **passed**. `git diff --check` passed.
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `npx playwright test --config node_modules/.cache/recorded-audio-check.config.mjs
+  game-speech-selection.spec.ts recording-provenance.spec.ts --project desktop`:
+  **33 passed**. This covers legal causal/positional fixtures, exact rendered
+  claim selection, actor/scope, stale reports, cold gates and request provenance.
+  After the final dialogue fixes, `game-speech-selection.spec.ts --project desktop`
+  was repeated: **26 passed**.
+- The same audio command/config with `coach-speech.spec.ts speech-lifecycle.spec.ts
+  walter-bank-studio.spec.ts walter-wording.spec.ts`: **64 passed initially**, with
+  two desktop/mobile failures caused by one stale expected opening-recall sentence.
+  Updating that exact string and rerunning `walter-bank-studio.spec.ts` gave
+  **6 passed**, covering both failed cases; all 66 affected cases are green.
+  Coverage includes stale loads, navigation/unmount cancellation, silent restoration,
+  motion settings, actual recorded URLs, distinct mouth cues, and shared transport.
+  The ignored config only extends the standard audio config to reuse the running
+  LAN studio; no arbitrary sleeps, test skips or altered application settings.
+- `npm --prefix frontend run build` and `npm --prefix frontend run build:audio-studio`:
+  **passed**, including API consistency, application/contract/browser types, 24
+  style tests and development dependency guards. Existing bundle-size advisory remains.
+  The production build passed again after the final dialogue fixes and media commit,
+  refreshing the downloadable source snapshot with the committed recordings.
+- Real LAN browser inspection loaded all **162 Original/Revised clip references**,
+  played all eight representative pairs (**16 starts**), and checked mobile
+  playback/layout. No provider calls, casting writes, errors or horizontal overflow.
+  The real Walter portrait uses each version's own generated mouth timing.
+
+Validation is focused on dialogue, recorded speech and its studio. No full backend,
+account, engine or coach-artwork matrix was rerun. Listening quality remains the
+owner's decision; successful decoding and generated timing do not establish it.
+
 ## Approved cast locks and second audition round — October 1, 2026
 
 The owner's eighteen selected nonhuman designs were saved in ElevenLabs and

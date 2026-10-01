@@ -244,7 +244,8 @@ casting or change account preferences. Earlier voice auditions and the old
 complete-bank selector remain isolated test fixtures.
 
 The original recordings, scripts and mouth tracks remain a development-only
-comparison archive. Production ships only the current 181 recordings. The rest
+comparison archive. Production playback imports only the current 181 recordings;
+the separate downloadable source snapshot still includes repository archives. The rest
 of the cast's dialogue and casting choices are unchanged by this Walter pilot.
 
 The voice recordings are separate media assets, not CC0 effects or automatically
