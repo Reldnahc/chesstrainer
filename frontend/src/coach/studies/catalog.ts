@@ -199,6 +199,7 @@ export const womanStudy: CoachCollection = {
 
 export const catStudy: CoachCollection = {
   ...common,
+  capabilities: { ...common.capabilities, speech: true },
   id: "cat",
   group: "cats",
   name: "Cats",
@@ -232,6 +233,7 @@ export const catStudy: CoachCollection = {
 
 export const dogStudy: CoachCollection = {
   ...common,
+  capabilities: { ...common.capabilities, speech: true },
   id: "dog",
   group: "dogs",
   name: "Dogs",

@@ -17,14 +17,22 @@ test('speech artwork is an explicit capability with a safe static fallback', asy
     const { supportsSpeech } = await import(`${root}/src/coach/model.ts`);
     const walter: CoachDefinition = getCoach('classic');
     return {
-      enabled: selectableCoaches.filter((coach: CoachDefinition) => supportsSpeech(coach)).map((coach: CoachDefinition) => coach.id),
+      enabled: selectableCoaches.filter((coach: CoachDefinition) => supportsSpeech(coach)).map((coach: CoachDefinition) => coach.id).sort(),
+      disabled: selectableCoaches.filter((coach: CoachDefinition) => !supportsSpeech(coach)).map((coach: CoachDefinition) => coach.id).sort(),
       fallback: supportsSpeech({ ...walter, families: [], capabilities: { ...walter.capabilities, speech: undefined } }),
       optIn: supportsSpeech({ ...walter, families: [], capabilities: { ...walter.capabilities, speech: true } }),
       familyOverride: supportsSpeech({ ...walter, families: walter.families.map(family => ({ ...family, speech: false })),
         capabilities: { ...walter.capabilities, speech: true } }),
     };
   }, viteFsPath(path.resolve('.')));
-  expect(capabilities).toEqual({ enabled: ['classic'], fallback: false, optIn: true, familyOverride: false });
+  expect(capabilities).toEqual({
+    enabled: ['classic', 'dog-gentle', 'dog-corgi', 'dog-collie', 'dog-puppy',
+      'cat-tuxedo', 'cat-black', 'cat-kitten', 'gorilla', 'raccoon', 'frog', 'capybara',
+      'unicorn', 'wizard', 'dragon', 'ghost', 'alien', 'robot', 'slime', 'mushroom', 'living-pawn'].sort(),
+    disabled: ['man-host', 'man-expert', 'man-partner', 'woman-captain', 'woman-analyst',
+      'woman-spark', 'woman-blonde', 'human-boy', 'human-girl'].sort(),
+    fallback: false, optIn: true, familyOverride: false,
+  });
 });
 
 test('the real recording articulates, closes in pauses and restores the authored face at its end', async ({ page }, info) => {

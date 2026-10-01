@@ -75,7 +75,7 @@ const update = (page: Page, patch: Partial<Options>) => page.evaluate(
   patch => (window as unknown as HarnessWindow).speechHarness.update(patch), patch);
 
 for (const scenario of [
-  {name: "unsupported coach", coach: "dog-collie", feedCoach: "dog-collie"},
+  {name: "unsupported coach", coach: "man-expert", feedCoach: "man-expert"},
   {name: "mismatched coach identity", coach: "classic", feedCoach: "dog-collie"},
 ] as const) {
   test(`${scenario.name} never reads a speech feed or alters the static mouth`, async ({page}) => {

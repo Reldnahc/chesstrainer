@@ -16,7 +16,7 @@ import {
 } from "./model";
 import { usePerformance } from "./usePerformance";
 import { useSpeechPerformance } from "./useSpeechPerformance";
-import type { SpeechMouthTrack } from "./speechMouth";
+import type { SpeechMouthShape, SpeechMouthTrack } from "./speechMouth";
 import { CoachFaceProvider } from "./CoachFaceContext";
 import type { CoachPerformanceSnapshot } from "./performanceDiagnostics";
 import "./coach.css";
@@ -42,6 +42,7 @@ export function CoachCharacter({
   onPerformance,
   speech,
   speechTrack,
+  previewSpeechShape,
 }: {
   coach: CoachDefinition;
   reaction: CoachReaction;
@@ -56,6 +57,7 @@ export function CoachCharacter({
   onPerformance?: (snapshot: CoachPerformanceSnapshot) => void;
   speech?: SpeechPlayback;
   speechTrack?: SpeechMouthTrack;
+  previewSpeechShape?: SpeechMouthShape;
 }) {
   const direction = resolveFamily(coach, family);
   const animation = resolveAnimation(coach, direction);
@@ -76,7 +78,8 @@ export function CoachCharacter({
   const Artwork = coach.Artwork;
   useSpeechPerformance(performance.ref, speech,
     performance.animated && supportsSpeech(coach, direction) && speech?.coachId === coach.id,
-    `${coach.id}:${direction}`, speechTrack);
+    `${coach.id}:${direction}`, speechTrack,
+    supportsSpeech(coach, direction) ? previewSpeechShape : undefined);
   const profile = animation.motionProfile;
   const idleStyle = {
     ...performance.idleStyle,

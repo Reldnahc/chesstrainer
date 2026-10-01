@@ -1,6 +1,6 @@
 import { useLayoutEffect, type RefObject } from "react";
 import type { SpeechPlayback } from "../audio/model";
-import { speechMouthAt, speechMouthPoses, type SpeechMouthPose, type SpeechMouthTrack } from "./speechMouth";
+import { speechMouthAt, speechMouthPoses, type SpeechMouthPose, type SpeechMouthShape, type SpeechMouthTrack } from "./speechMouth";
 
 const bounded = (value: number) => Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 0;
 const mouthParts = Object.keys(speechMouthPoses.rest) as (keyof SpeechMouthPose)[];
@@ -8,7 +8,7 @@ const mouthParts = Object.keys(speechMouthPoses.rest) as (keyof SpeechMouthPose)
 /** Only the speaking portrait samples the audio clock; SVG descendants use CSS variables. */
 export function useSpeechPerformance(
   ref: RefObject<HTMLDivElement | null>, playback: SpeechPlayback | undefined,
-  enabled: boolean, identity: string, track?: SpeechMouthTrack,
+  enabled: boolean, identity: string, track?: SpeechMouthTrack, previewShape?: SpeechMouthShape,
 ) {
   useLayoutEffect(() => {
     const node = ref.current;
@@ -22,6 +22,7 @@ export function useSpeechPerformance(
       node.dataset.speaking = "false";
       delete node.dataset.articulation;
       delete node.dataset.mouthShape;
+      delete node.dataset.speechPreview;
       for (const part of mouthParts) node.style.removeProperty(`--speech-${part}`);
       openness = 0;
       roundness = .5;
@@ -29,6 +30,17 @@ export function useSpeechPerformance(
       previousTime = undefined;
     };
     reset();
+    // Explicit studio inspection holds a pose without scheduling motion or audio.
+    if (previewShape) {
+      node.dataset.speaking = "true";
+      node.dataset.speechPreview = "true";
+      node.dataset.articulation = "aligned";
+      node.dataset.mouthShape = previewShape;
+      for (const part of mouthParts) {
+        node.style.setProperty(`--speech-${part}`, String(speechMouthPoses[previewShape][part]));
+      }
+      return reset;
+    }
     if (!enabled || !playback) return reset;
     const tick = (time: number) => {
       const activity = playback.read();
@@ -65,5 +77,5 @@ export function useSpeechPerformance(
     };
     frame = requestAnimationFrame(tick);
     return () => { cancelAnimationFrame(frame); reset(); };
-  }, [ref, playback, enabled, identity, track]);
+  }, [ref, playback, enabled, identity, track, previewShape]);
 }

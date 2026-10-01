@@ -26,6 +26,7 @@ type CastEntry = {
   description: string;
   character: string;
   Artwork: ComponentType<CoachArtworkProps>;
+  speech?: boolean;
 };
 
 const cast: readonly CastEntry[] = [
@@ -40,77 +41,77 @@ const cast: readonly CastEntry[] = [
     character: "Curious tilt · bright eyes · precise little nods",
   },
   {
-    id: "dog-puppy", name: "Biscuit", group: "dogs", Artwork: PuppyCoach,
+    id: "dog-puppy", name: "Biscuit", group: "dogs", Artwork: PuppyCoach, speech: true,
     description: "An eager teammate: warm reactions, one clear explanation and another chance.",
     character: "Soft ears · eager posture · delighted paws",
   },
   {
-    id: "cat-kitten", name: "Pickle", group: "cats", Artwork: KittenCoach,
+    id: "cat-kitten", name: "Pickle", group: "cats", Artwork: KittenCoach, speech: true,
     description: "A tiny chaos detective, curious about normal-looking moves with hidden catches.",
     character: "Uneven ears · investigative glances · mischievous tilts",
   },
   {
-    id: "gorilla", name: "Monty", group: "animals", Artwork: GorillaCoach,
+    id: "gorilla", name: "Monty", group: "animals", Artwork: GorillaCoach, speech: true,
     description: "A thoughtful heavyweight who makes the biggest concrete point simply.",
     character: "Grounded posture · deliberate gaze · quiet strength",
   },
   {
-    id: "raccoon", name: "Bandit", group: "animals", Artwork: RaccoonCoach,
+    id: "raccoon", name: "Bandit", group: "animals", Artwork: RaccoonCoach, speech: true,
     description: "A practical opportunist with a sharp eye for whatever was left available.",
     character: "Searching eyes · nimble paws · alert posture",
   },
   {
-    id: "frog", name: "Fergus", group: "animals", Artwork: FrogCoach,
+    id: "frog", name: "Fergus", group: "animals", Artwork: FrogCoach, speech: true,
     description: "One blunt fact, then silence. Astonishingly calm, even when the board is not.",
     character: "Slow lids · tiny breath · almost imperceptible dry glance",
   },
   {
-    id: "capybara", name: "Winston", group: "animals", Artwork: CapybaraCoach,
+    id: "capybara", name: "Winston", group: "animals", Artwork: CapybaraCoach, speech: true,
     description: "Unshakeable calm: acknowledge the position honestly, then take the next step.",
     character: "Soft gaze · steady breathing · an unhurried reset",
   },
   {
-    id: "unicorn", name: "Celeste", group: "fantasy", Artwork: UnicornCoach,
+    id: "unicorn", name: "Celeste", group: "fantasy", Artwork: UnicornCoach, speech: true,
     description: "A graceful optimist who appreciates elegant ideas and explains why they work.",
     character: "Lifted gaze · flowing mane · graceful delight",
   },
   {
-    id: "wizard", name: "Orin", group: "fantasy", Artwork: WizardCoach,
+    id: "wizard", name: "Orin", group: "fantasy", Artwork: WizardCoach, speech: true,
     description: "A patient scholar connecting supported patterns to a concrete lesson.",
     character: "Considered tilt · thoughtful eyes · a patient open hand",
   },
   {
-    id: "dragon", name: "Ember", group: "fantasy", Artwork: DragonCoach,
+    id: "dragon", name: "Ember", group: "fantasy", Artwork: DragonCoach, speech: true,
     description: "A proud strategist with high standards and respect for precise defense.",
     character: "Steady stare · measured lift · contained power",
   },
   {
-    id: "ghost", name: "Wisp", group: "fantasy", Artwork: GhostCoach,
+    id: "ghost", name: "Wisp", group: "fantasy", Artwork: GhostCoach, speech: true,
     description: "A quiet watcher who notices a supported danger without dramatizing it.",
     character: "Watchful eyes · soft settling · a restrained turn",
   },
   {
-    id: "alien", name: "Ziggy", group: "scifi", Artwork: AlienCoach,
+    id: "alien", name: "Ziggy", group: "scifi", Artwork: AlienCoach, speech: true,
     description: "A curious outsider studying the gap between human intuition and chess truth.",
     character: "Inquisitive gaze · asymmetric tilt · quiet fascination",
   },
   {
-    id: "robot", name: "Rivet", group: "scifi", Artwork: RobotCoach,
+    id: "robot", name: "Rivet", group: "scifi", Artwork: RobotCoach, speech: true,
     description: "Issue, cause, result. Literal, structured delivery with no invented precision.",
     character: "Lens scan · precise head increments · mechanical posture reset",
   },
   {
-    id: "slime", name: "Pip", group: "conceptual", Artwork: SlimeCoach,
+    id: "slime", name: "Pip", group: "conceptual", Artwork: SlimeCoach, speech: true,
     description: "A happy little blob who teaches one concrete idea at a time.",
     character: "Soft squash · eager lean · a small delighted lift",
   },
   {
-    id: "mushroom", name: "Button", group: "conceptual", Artwork: MushroomCoach,
+    id: "mushroom", name: "Button", group: "conceptual", Artwork: MushroomCoach, speech: true,
     description: "An odd forest thinker with a gentle eye for support and structure.",
     character: "Cap tilt · soft settling · a curious glance",
   },
   {
-    id: "living-pawn", name: "Percy", group: "conceptual", Artwork: LivingPawnCoach,
+    id: "living-pawn", name: "Percy", group: "conceptual", Artwork: LivingPawnCoach, speech: true,
     description: "An earnest chess piece, deeply invested in every piece doing its job.",
     character: "Determined lean · proud gaze · a purposeful stance reset",
   },
@@ -122,7 +123,7 @@ export const newCoachCollections: readonly CoachCollection[] = cast.map((coach) 
   expressions,
   fallbacks: {},
   defaultFamily: coach.id,
-  capabilities: { reactions: true, idle: true },
+  capabilities: { reactions: true, idle: true, speech: coach.speech ?? false },
   animation: {
     defaultReactionMs: 1400,
     reactionMs: { brilliant: 1700, blunder: 1850, winning: 1700, losing: 1500 },

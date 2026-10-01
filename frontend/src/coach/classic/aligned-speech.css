@@ -32,6 +32,12 @@
   to { d: path("M33 62.5 C33 57.1667 47 57.1667 47 62.5 C47 64.7091 43.866 66.5 40 66.5 C36.134 66.5 33 64.7091 33 62.5Z"); }
 }
 
+/* Holding a sound shape in the studio is static, even with motion set to Still. */
+.coach-avatar[data-speech-preview="true"] .walter-aligned-aperture {
+  animation: walter-aligned-round-contour 1s linear both paused !important;
+  animation-delay: calc(var(--walter-aligned-round) * -1s) !important;
+}
+
 .walter-aligned-aperture {
   transform-box: view-box;
   transform-origin: 40px 58.5px;
