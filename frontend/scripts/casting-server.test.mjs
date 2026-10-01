@@ -17,17 +17,19 @@ const putBody = (candidate, expectedRevision = null, note = '') => ({
   expectedRevision, expectedRecordingFingerprint: candidate.fingerprint,
 });
 
-async function fixture(t) {
+async function fixture(t, coachIds = ['dog-gentle', 'cat-black']) {
   const root = await mkdtemp(join(tmpdir(), 'fieldwork-casting-test-'));
   const catalogRoot = join(root, 'catalog');
   const storageRoot = join(root, 'choices');
-  const plan = { schemaVersion: 1, coaches: ['dog-gentle', 'cat-black'].map(coachId => ({
+  const plan = { schemaVersion: 1, coaches: coachIds.map(coachId => ({
     coachId, text: `${coachId} audition`, directions: [{ id: 'warm', prompt: 'Warm and grounded.' }],
   })) };
   const manifest = { schemaVersion: 1, provider: 'test-provider', modelId: 'test-model', recordings: plan.coaches.map(coach => ({
     id: `${coach.coachId}:warm`, coachId: coach.coachId, directionId: 'warm', text: coach.text,
     generatedVoiceId: `${coach.coachId}-voice-1`, audioPath: `recordings/${coach.coachId}/warm.mp3`,
   })) };
+  const locks = { schemaVersion: 1, provider: 'elevenlabs', voices: [] };
+  const writeLocks = () => writeFile(join(catalogRoot, 'locked-voices.json'), JSON.stringify(locks));
   for (const recording of manifest.recordings) {
     await mkdir(join(catalogRoot, 'recordings', recording.coachId), { recursive: true });
     await writeFile(join(catalogRoot, recording.audioPath), `audio bytes for ${recording.coachId}`);
@@ -37,6 +39,7 @@ async function fixture(t) {
     await writeFile(join(catalogRoot, 'manifest.json'), JSON.stringify(manifest));
   };
   await writeCatalog();
+  await writeLocks();
   const servers = [];
   const serve = async () => {
     const middleware = createCastingMiddleware({ catalogRoot, storageRoot });
@@ -62,13 +65,14 @@ async function fixture(t) {
   };
   const first = await call();
   assert.equal(first.status, 200);
-  return { root, catalogRoot, storageRoot, plan, manifest, writeCatalog, serve, url, call, candidates: first.value.candidates };
+  return { root, catalogRoot, storageRoot, plan, manifest, locks, writeCatalog, writeLocks, serve, url, call, candidates: first.value.candidates };
 }
 
 test('empty reads identify actual recording bytes without creating storage; plugin is serve-only', async t => {
   const f = await fixture(t);
   const read = await f.call();
   assert.deepEqual(read.value.choices, {});
+  assert.deepEqual(read.value.locks, {});
   assert.equal(read.value.schemaVersion, 1);
   const candidate = read.value.candidates['dog-gentle'].warm;
   assert.equal(candidate.audioSha256, sha256(await readFile(join(f.catalogRoot, f.manifest.recordings[0].audioPath))));
@@ -77,6 +81,128 @@ test('empty reads identify actual recording bytes without creating storage; plug
   assert.equal(read.headers.get('access-control-allow-origin'), null);
   await assert.rejects(readdir(f.storageRoot), { code: 'ENOENT' });
   assert.equal(castingChoicesPlugin().apply, 'serve');
+});
+
+const lockedVoice = (fixture, coachId = 'dog-gentle') => ({
+  coachId, directionId: 'warm', label: 'Warm mentor',
+  recording: fixture.candidates[coachId].warm,
+  savedVoiceId: `${coachId}-saved-voice`, voiceName: `Fieldwork ${coachId}`,
+  lockedAt: '2026-10-01T12:00:00.000Z',
+});
+
+test('tracked final voices survive fresh hosts and cannot be changed from either studio', async t => {
+  const f = await fixture(t);
+  const lock = lockedVoice(f);
+  f.locks.voices.push(lock);
+  await f.writeLocks();
+  const second = await f.serve();
+  for (const base of [f.url, second]) {
+    const read = await f.call('GET', '', undefined, { base });
+    assert.deepEqual(read.value.locks['dog-gentle'], { ...lock, stale: false });
+    assert.deepEqual(read.value.choices, {});
+    for (const [method, body] of [
+      ['PUT', { status: 'keep-looking', expectedRevision: null }],
+      ['PUT', putBody(f.candidates['dog-gentle'].warm)],
+      ['DELETE', { expectedRevision: 'obsolete-phone-revision' }],
+    ]) {
+      const rejected = await f.call(method, 'dog-gentle', body, { base });
+      assert.equal(rejected.status, 409);
+      assert.equal(rejected.value.error.code, 'choice_locked');
+    }
+  }
+  await assert.rejects(readdir(f.storageRoot), { code: 'ENOENT' });
+  assert.deepEqual(JSON.parse(await readFile(join(f.catalogRoot, 'locked-voices.json'), 'utf8')), f.locks);
+});
+
+test('obsolete local drafts and locks cannot hide or modify a tracked final voice', async t => {
+  const f = await fixture(t);
+  f.locks.voices.push(lockedVoice(f));
+  await f.writeLocks();
+  await mkdir(f.storageRoot);
+  const draftPath = join(f.storageRoot, 'dog-gentle.json');
+  const processLockPath = join(f.storageRoot, 'dog-gentle.lock');
+  await writeFile(draftPath, '{obsolete corrupt draft');
+  await writeFile(processLockPath, '{incomplete lock');
+  const read = await f.call();
+  assert.equal(read.status, 200);
+  assert.equal(read.value.locks['dog-gentle'].stale, false);
+  assert.equal(read.value.choices['dog-gentle'], undefined);
+  assert.equal((await f.call('DELETE', 'dog-gentle', { expectedRevision: null })).value.error.code, 'choice_locked');
+  assert.equal(await readFile(draftPath, 'utf8'), '{obsolete corrupt draft');
+  assert.equal(await readFile(processLockPath, 'utf8'), '{incomplete lock');
+});
+
+test('changed or missing final audition evidence stays visibly stale and immutable', async t => {
+  const f = await fixture(t);
+  const lock = lockedVoice(f);
+  f.locks.voices.push(lock);
+  await f.writeLocks();
+  const audioPath = join(f.catalogRoot, f.manifest.recordings[0].audioPath);
+  const originalAudio = await readFile(audioPath);
+  for (const mutate of [
+    () => writeFile(audioPath, 'different final audition'),
+    async () => { await writeFile(audioPath, originalAudio); f.manifest.recordings[0].generatedVoiceId = 'different-voice'; await f.writeCatalog(); },
+    async () => { f.manifest.recordings[0].generatedVoiceId = lock.recording.generatedVoiceId; f.plan.coaches[0].directions[0].prompt = 'changed casting instructions'; await f.writeCatalog(); },
+    () => rm(audioPath),
+    async () => { f.plan.coaches.shift(); await f.writeCatalog(); },
+  ]) {
+    await mutate();
+    const read = await f.call();
+    assert.equal(read.status, 200);
+    assert.equal(read.value.locks['dog-gentle'].stale, true);
+    assert.match(read.value.locks['dog-gentle'].staleReason, /final voice remains locked/);
+    assert.equal(read.value.locks['dog-gentle'].savedVoiceId, lock.savedVoiceId);
+    assert.deepEqual(read.value.locks['dog-gentle'].recording, lock.recording);
+    assert.equal((await f.call('PUT', 'dog-gentle', { status: 'keep-looking', expectedRevision: null })).value.error.code, 'choice_locked');
+    assert.equal((await f.call('DELETE', 'dog-gentle', { expectedRevision: null })).value.error.code, 'choice_locked');
+  }
+  await assert.rejects(readdir(f.storageRoot), { code: 'ENOENT' });
+});
+
+test('missing or invalid tracked lock manifests fail closed without modifying decisions', async t => {
+  const f = await fixture(t);
+  const path = join(f.catalogRoot, 'locked-voices.json');
+  const valid = lockedVoice(f);
+  const cases = [
+    undefined, '{',
+    { schemaVersion: 2, provider: 'elevenlabs', voices: [] },
+    { schemaVersion: 1, provider: 'other', voices: [] },
+    { schemaVersion: 1, provider: 'elevenlabs', voices: [valid, valid] },
+    ...[
+      { coachId: 'classic' }, { directionId: '../warm' }, { savedVoiceId: '' },
+      { lockedAt: 'never' }, { voiceName: 'x'.repeat(201) },
+      { recording: { ...valid.recording, fingerprint: ['a'.repeat(64)] } },
+    ].map(change => ({ schemaVersion: 1, provider: 'elevenlabs', voices: [{ ...valid, ...change }] })),
+  ];
+  for (const value of cases) {
+    if (value === undefined) await rm(path);
+    else await writeFile(path, typeof value === 'string' ? value : JSON.stringify(value));
+    for (const [method, coach, body] of [
+      ['GET', '', undefined],
+      ['PUT', 'dog-gentle', { status: 'keep-looking', expectedRevision: null }],
+      ['DELETE', 'dog-gentle', { expectedRevision: null }],
+    ]) {
+      const result = await f.call(method, coach, body);
+      assert.equal(result.status, 500);
+      assert.equal(result.value.error.code, 'locked_manifest_error');
+    }
+  }
+  await assert.rejects(readdir(f.storageRoot), { code: 'ENOENT' });
+});
+
+test('pending puppy and slime decisions remain editable beside an immutable final voice', async t => {
+  const f = await fixture(t, ['dog-gentle', 'dog-puppy', 'slime']);
+  f.locks.voices.push(lockedVoice(f));
+  await f.writeLocks();
+  for (const coachId of ['dog-puppy', 'slime']) {
+    const selected = await f.call('PUT', coachId, putBody(f.candidates[coachId].warm));
+    assert.equal(selected.status, 200);
+    const read = await f.call();
+    assert.equal(read.value.choices[coachId].status, 'selected');
+    assert.deepEqual(Object.keys(read.value.locks), ['dog-gentle']);
+    assert.equal((await f.call('DELETE', coachId, { expectedRevision: selected.value.choice.revision })).status, 200);
+  }
+  assert.deepEqual((await f.call()).value.choices, {});
 });
 
 test('choices persist across independent studio servers; update/reset require the exact revision', async t => {

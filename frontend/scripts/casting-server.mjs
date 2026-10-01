@@ -16,6 +16,34 @@ const idPattern = /^[a-z][a-z0-9-]{0,63}$/;
 const hash = value => createHash('sha256').update(value).digest('hex');
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const fail = (status, code, message) => Object.assign(new Error(message), { status, code });
+const shortText = (value, maximum) => typeof value === 'string' && value.trim().length > 0 && value.length <= maximum;
+const providerId = value => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,128}$/.test(value);
+const sha256 = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
+
+function validRecording(value, coachId, directionId) {
+  return record(value) && value.id === `${coachId}:${directionId}` &&
+    providerId(value.generatedVoiceId) && sha256(value.fingerprint) && sha256(value.audioSha256);
+}
+
+async function readLockedVoices(root) {
+  const error = () => fail(500, 'locked_manifest_error',
+    'The final voice lock file is missing or invalid. Restore locked-voices.json before changing casting choices.');
+  let manifest;
+  try { manifest = await jsonFile(resolve(root, 'locked-voices.json')); }
+  catch { throw error(); }
+  if (!record(manifest) || manifest.schemaVersion !== 1 || manifest.provider !== 'elevenlabs' ||
+      !Array.isArray(manifest.voices) || manifest.voices.length > nonhumans.size) throw error();
+  const locks = {};
+  for (const item of manifest.voices) {
+    if (!record(item) || !nonhumans.has(item.coachId) || Object.hasOwn(locks, item.coachId) ||
+        typeof item.directionId !== 'string' || !idPattern.test(item.directionId) ||
+        !shortText(item.label, 160) || !shortText(item.voiceName, 200) || !providerId(item.savedVoiceId) ||
+        typeof item.lockedAt !== 'string' || !Number.isFinite(Date.parse(item.lockedAt)) ||
+        !validRecording(item.recording, item.coachId, item.directionId)) throw error();
+    locks[item.coachId] = item;
+  }
+  return locks;
+}
 
 async function jsonFile(path) {
   try { return JSON.parse(await readFile(path, 'utf8')); }
@@ -26,6 +54,7 @@ async function jsonFile(path) {
 }
 
 async function catalogAt(root) {
+  const locks = await readLockedVoices(root);
   let plan, manifest;
   try { [plan, manifest] = await Promise.all([jsonFile(resolve(root, 'design-plan.json')), jsonFile(resolve(root, 'manifest.json'))]); }
   catch { throw fail(500, 'catalog_error', 'The current casting plan or recording manifest could not be read.'); }
@@ -72,7 +101,7 @@ async function catalogAt(root) {
       text: item.text, prompt: direction.prompt, provider: manifest.provider, modelId: manifest.modelId }));
     candidates[item.coachId][item.directionId] = { id: item.id, fingerprint, audioSha256, generatedVoiceId: item.generatedVoiceId };
   }
-  return { coaches, candidates };
+  return { coaches, candidates, locks };
 }
 
 function validChoice(value, coachId) {
@@ -83,9 +112,7 @@ function validChoice(value, coachId) {
   if (!base) return false;
   if (value.status === 'keep-looking') return value.directionId === undefined && value.recording === undefined;
   return value.status === 'selected' && typeof value.directionId === 'string' && idPattern.test(value.directionId) &&
-    record(value.recording) && value.recording.id === `${coachId}:${value.directionId}` &&
-    typeof value.recording.generatedVoiceId === 'string' &&
-    /^[a-f0-9]{64}$/.test(value.recording.fingerprint) && /^[a-f0-9]{64}$/.test(value.recording.audioSha256);
+    validRecording(value.recording, coachId, value.directionId);
 }
 
 async function readChoice(root, coachId) {
@@ -110,6 +137,19 @@ function candidateFor(catalog, coachId, directionId) {
   const candidates = catalog.candidates[coachId];
   return typeof directionId === 'string' && catalog.coaches.get(coachId)?.directions.has(directionId) &&
     candidates && Object.hasOwn(candidates, directionId) ? candidates[directionId] : null;
+}
+
+function decorateLock(lock, catalog) {
+  const current = candidateFor(catalog, lock.coachId, lock.directionId);
+  const stale = !current || ['id', 'fingerprint', 'audioSha256', 'generatedVoiceId'].some(key => current[key] !== lock.recording[key]);
+  return { ...lock, stale, ...(stale ? {
+    staleReason: 'The locked audition is missing or changed. The final voice remains locked; restore its approved recording before continuing.',
+  } : {}) };
+}
+
+function rejectLocked(locks, coachId) {
+  if (Object.hasOwn(locks, coachId)) throw fail(409, 'choice_locked',
+    'This final voice is locked. Its casting choice cannot be changed or cleared in the studio.');
 }
 
 async function acquireLock(root, coachId) {
@@ -212,19 +252,25 @@ export function createCastingMiddleware({ catalogRoot = defaultCatalog, storageR
         for (const file of files.filter(name => name.endsWith('.json'))) {
           const id = file.slice(0, -5);
           if (!nonhumans.has(id)) throw fail(500, 'storage_error', 'The casting folder contains an unrecognized saved choice.');
+          // A tracked final voice supersedes its old local draft without changing
+          // that file. Even a corrupt obsolete draft cannot hide the final voice.
+          if (Object.hasOwn(catalog.locks, id)) continue;
           const choice = await readChoice(storageRoot, id);
           if (choice) choices[id] = decorate(choice, catalog);
         }
-        return send(200, { schemaVersion: 1, choices, candidates: catalog.candidates });
+        const locks = Object.fromEntries(Object.entries(catalog.locks).map(([id, lock]) => [id, decorateLock(lock, catalog)]));
+        return send(200, { schemaVersion: 1, choices, candidates: catalog.candidates, locks });
       }
       if (!coachId) throw fail(404, 'unknown_coach', 'Choose a coach before changing a casting choice.');
       sameOrigin(request);
+      rejectLocked(await readLockedVoices(catalogRoot), coachId);
       const body = await requestBody(request);
       if (!(body.expectedRevision === null || typeof body.expectedRevision === 'string')) throw fail(400, 'revision_required', 'Reload casting choices before saving.');
       const release = await acquireLock(storageRoot, coachId);
       let result;
       try {
         const catalog = await catalogAt(catalogRoot);
+        rejectLocked(catalog.locks, coachId);
         const previous = await readChoice(storageRoot, coachId);
         if ((previous?.revision ?? null) !== body.expectedRevision) throw fail(409, 'choice_changed', 'This choice changed on another device. Reload the saved choices before continuing.');
         if (request.method === 'DELETE') {
