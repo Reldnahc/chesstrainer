@@ -260,6 +260,19 @@ mate clips must use the board's checkmate/result facts, not portrait expression.
 The inventory records these implementation prerequisites without changing the
 existing dialogue, analysis or audio behavior.
 
+The later [whole-app inventory](../frontend/src/audio/speech/README.md#whole-app-dialogue-inventory)
+at `855fbc5` counts **519** distinct proposed Walter recordings across game review,
+SRS/explanations, opening recall/preview, puzzle guidance, the three installed
+lessons and finite operational states. It includes the original 92 and the eight
+recorded examples, removes cross-surface duplicates, and uses one reveal summary
+instead of 46 current-course SAN variants. Four transient/defensive entries are
+recommended silent, leaving a broad **515-recording** pack. This is a complete
+enumeration of that finite summary design, not verbatim coverage of unbounded
+user text or automatic narration of every visible paragraph. The
+[machine-readable plan](../frontend/src/audio/speech/walter-full-dialogue-inventory.json)
+retains scripts, source identities, reuse mappings, exact counts and text-only
+boundaries. No further recordings or production integration are implied.
+
 The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
 the selected model, settings, exact scripts, media terms and reproducible authoring
 workflow. `scripts/record_coach_speech.mjs` is a development CLI with dry run as

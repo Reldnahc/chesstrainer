@@ -49,6 +49,9 @@ Offline verification:
 node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
 ```
 
+The [whole-app recording inventory](#whole-app-dialogue-inventory) expands the
+earlier game-only count. It is planning, not a bulk recording request.
+
 ### Earlier stock-voice comparison
 
 The source-audited [Walter dialogue inventory](#walter-dialogue-inventory)
@@ -418,3 +421,114 @@ The existing recorder caps plans at 20 requests, so a 71-file pack needs at leas
 four bounded batches. Do not relax that safety limit or issue the requests from
 this document. Scripts, delivery, repetition policy and production integration
 still require their own quality review.
+
+## Whole-app dialogue inventory
+
+The source audit at `855fbc5` expands the game bank to **519 distinct proposed
+recordings for Walter**, including all current bundled lessons and the supported
+dynamic-summary design. [walter-full-dialogue-inventory.json](walter-full-dialogue-inventory.json)
+contains each exact draft script, its source/trigger, shared-recording mappings,
+course revisions, exclusions and count arithmetic. None of its unrecorded rows
+is approved for generation by being listed here.
+
+| Coverage | Additional distinct recordings |
+| --- | ---: |
+| Game review, variations and human insights; full primary + secondary bank | 92 |
+| SRS feedback, Show why, selected tactical findings, teaching cues and explanation notes | 68 |
+| Opening recall and opening preview | 10 |
+| Puzzle-player guidance | 8 |
+| The three current lessons, including hints and annotated games | 334 |
+| Operational states and defensive fallback | 7 |
+| **Total** | **519** |
+
+The eight contrasting Walter examples are already included in the 92, leaving
+**511 unrecorded scripts** in this full plan. Earlier Bill/George/Brian or remix
+previews are voice experiments, not interchangeable production recordings for
+these IDs. Alternate performances, extra phrasings, other coaches and translations
+are not multiplied into the total.
+
+This is an exact count of the listed recording design, **not 519 possible
+sentences in the application**. Dynamic chess notation, squares, evaluation,
+counts and player names stay written while complete recorded sentences explain
+supported meanings. Optional personality introductions do not multiply every
+factual recording. No chopped-word assembly is proposed. Authored lesson passages
+remain specific, including their move references; their pronunciation must be
+reviewed before recording.
+
+### How the count was established
+
+The lesson audit loaded the actual registered course providers, validated their
+models, exercised player transitions and applied the lesson UI's body precedence.
+It covered **3 courses, 11 chapters, 159 steps**, and **35 annotations across 8
+course-specific game entries**. Every current authored field was reachable in at
+least one displayed state, including hints, rehearsal completion and full-game
+exploration. Independent direct field enumeration and legal SAN replay agreed.
+
+The authored corpus contains 159 step passages, 72 choice-feedback passages,
+72 hints and 35 game notes: **338 source fields → 326 distinct texts**. White
+Italian has 111 unique authored texts, Black Italian 102 and King's Gambit 115;
+two texts are shared across courses, so those course subtotals must not simply
+be added. Seven fixed lesson messages and one move-reveal summary bring the
+lesson recording plan to **334**.
+
+The current courses display 46 different “The lesson plays {SAN}.” sentences.
+Instead of recording each notation variant, the proposed complete spoken line is:
+“The lesson has revealed its move. Review the continuation before trying the line
+again.” Exact notation remains visible. Recording all 46 current-course versions
+would raise the overall catalogue to **564**, and would still not cover arbitrary
+imported lines. The manifest preserves all 46 for traceability.
+
+The SRS/explanation audit found **79 meanings**, of which **11 reuse** game-bank
+recordings, yielding 68 additions. These include 20 whole move-frame combinations
+(capture, promotion, check, mate, escape from check, legal castling combinations,
+and the original position), 25 tactical witness meanings, 13 supported “next
+time” cues, practice feedback and explanation notes. The 19 non-start combinations
+were checked against legal chess positions. Details such as a collected fork,
+a pin preventing recapture, and a pin restricting escape retain distinct teaching
+sentences rather than collapsing into generic praise.
+
+The source inventories had **580 rows** before cross-surface reconciliation:
+11 shared game/SRS scripts, four duplicated frontend lesson states and one shared
+opening/SRS error remove 16 duplicate rows. That yields 564 exact text units before
+replacing the 46 notation reveals with one summary: **564 − 46 + 1 = 519**.
+No other exact-text duplicates remain.
+
+### Scope and playback recommendations
+
+Recommend leaving **four** counted entries silent: game analysis in progress,
+checking a practice move, loading an explanation, and the defensive no-renderable-
+claim fallback. This leaves **515 recordings** in a broad practical pack. The
+fallback is a real defensive renderer output, not an established normal valid
+report state. The other operational messages are unavailable analysis, paused
+review and navigation guidance. Counting them does not require automatic speech.
+
+The full count includes optional explicit playback of secondary claims, selected
+findings/cues and explanation notes. It does not replace the original main-bubble
+policy with automatic reading of everything. The human popover's seven claim
+meanings are in the game bank; its help/provenance paragraphs remain interface
+copy. The puzzle framework has eight fixed dialogue states; no installed authored
+puzzle collection is being claimed as narrated.
+
+Arbitrary manual-exercise prose, older legacy coach explanations, runtime errors,
+private saved course revisions, future lessons and imported commentary do not
+have a finite repository-wide narration count. Keep those exact details written
+unless separately authored audio is available. A generic acknowledgment must not
+be described as covering an arbitrary teaching explanation. Buttons, headings,
+badges, toasts, scheduling receipts and settings/help copy are outside this coach
+dialogue inventory.
+
+Implementing this broader scope needs explicit structured speech facts for some
+current prose-only practice summaries and frames. The future selector must not
+parse English or infer a reason from a grade or portrait. Preserve cold-SRS gates,
+actual versus alternative scope, current lesson revision and attempt identity,
+and cancellation of stale requests. Revealing an answer must never sound like an
+unassisted success; restored feedback must not trigger a new reward. Changing
+coaches changes presentation without rewriting chess evidence.
+
+The full draft is **53,645 characters / 9,265 words**; omitting the four deferred
+entries gives **53,485 characters / 9,240 words**. These are not a provider price
+quote: notation pronunciation edits and
+requested retakes can change generation input. Use one performance per approved
+script initially, review delivery before expanding, and retain the recorder's
+20-request bound (at least 26 batches for all 519 scripts). Only the eight
+contrasting examples have been generated for this expansion.

@@ -4,6 +4,43 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Whole-app Walter dialogue inventory — September 30, 2026
+
+Planning audit at `855fbc5`, extending the prior game-only inventory. The durable
+`walter-full-dialogue-inventory.json` retains **519** distinct proposed scripts,
+source/trigger references, course revisions, reuse mappings, legal frame fixtures
+and exclusions. Full draft: **53,645 characters / 9,265 words**. Three transient
+states and one defensive fallback are recommended silent: **515** remaining
+scripts / 53,485 characters. This is finite semantic-summary coverage plus current
+authored lessons, not verbatim coverage of unrestricted runtime/user prose.
+
+- `.venv/Scripts/python.exe .tools/walter_all_lessons_inventory.py`: passed
+  production course validation/player transitions/presentation enumeration and
+  independent field/SAN checks. **3 courses / 11 chapters / 159 steps**; 338 authored
+  fields became 326 exact texts. Current lessons alone have 379 literal texts
+  including seven fixed messages and 46 SAN reveals; one proposed reveal summary
+  instead of 46 recordings yields the 334-entry lesson contribution.
+- `.venv/Scripts/python.exe .tools/build-walter-all-srs-inventory.py`: passed
+  **19 legal non-start frame combinations** using python-chess; original-position
+  frame is counted separately. **79 meanings / 11 game reuses / 68 additions**;
+  tactical source branches, summary paths, 13 reachable teaching cues and notes
+  were source-audited. No Stockfish, model, private database or provider calls.
+- `node .tools/verify-walter-inventory.cjs`: prior game-bank reconciliation and
+  **26 synthetic production-renderer probes** still pass. This is not an engine
+  quality test or proof of every planned speech-selection path.
+- `node .tools/build-walter-full-inventory.mjs`: all IDs, text uniqueness, hashes,
+  reused texts and recorder per-script bounds passed. **580 source rows − 16
+  cross-surface duplicate rows − 46 SAN variants + 1 summary = 519**. The manifest
+  retains all 46 excluded exact SAN variants and 16 aliases. The eight new voice
+  auditions are a subset, leaving 511 unrecorded; they are not counted twice.
+- Independent cross-surface review confirmed count arithmetic and corrected four
+  proposed tactical/frame wordings (pin capture, deflection causality, double check
+  that can also be mate, and discovered check after promotion). A final consolidation
+  pass distinguishes included lessons/deferred statuses from actual exclusions.
+  Audit builders are ignored local working tools; the durable manifest and source
+  identities preserve the plan. No broader recording generation, production speech
+  implementation or full application suites were performed for this planning unit.
+
 ## Selected Walter contrasting audition — September 30, 2026
 
 Saved the owner-selected Older teacher refinement as a separate permanent voice,
