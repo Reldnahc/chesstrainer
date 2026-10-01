@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, type CSSProperties } from "react";
 import type { CoachExpression } from "../model";
 import "./aligned-speech.css";
 
@@ -11,9 +11,13 @@ export default function WalterAlignedMouth({ expression }: { expression: CoachEx
   const thoughtful = ["thinking", "uncertain", "check"].includes(expression);
   const upperCurve = concerned ? 57.7 : thoughtful ? 58.5 : 59.5;
   const closedCurve = concerned ? 56.9 : thoughtful ? 58.7 : 61;
-  const aperture = `M33 58.5 Q40 ${upperCurve} 47 58.5 C47.4 63.2 44 66.5 40 66.5 C36 66.5 32.6 63.2 33 58.5Z`;
+  // Matching cubic segments let the same aperture round its corners smoothly;
+  // scaling a smile alone leaves O and oo looking like smaller smiles.
+  const upperControl = 58.5 + (upperCurve - 58.5) * 2 / 3;
+  const aperture = `M33 58.5 C37.6667 ${upperControl} 42.3333 ${upperControl} 47 58.5 C47.4 63.2 44 66.5 40 66.5 C36 66.5 32.6 63.2 33 58.5Z`;
 
-  return <g className="walter-aligned-mouth" data-speech-mouth="walter-aligned">
+  return <g className="walter-aligned-mouth" data-speech-mouth="walter-aligned"
+    style={{ '--walter-aligned-contour': `path("${aperture}")` } as CSSProperties}>
     <defs>
       <clipPath id={apertureId} clipPathUnits="userSpaceOnUse">
         <path className="walter-aligned-aperture" d={aperture} />

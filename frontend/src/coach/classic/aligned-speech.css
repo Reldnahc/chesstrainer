@@ -4,7 +4,8 @@
   display: none;
   --walter-aligned-open: clamp(0, var(--speech-open, 0), 1);
   --walter-aligned-round: clamp(0, var(--speech-round, 0), 1);
-  --walter-aligned-width: calc(.45 + clamp(0, var(--speech-width, .58), 1) * .8);
+  --walter-aligned-width-input: clamp(0, var(--speech-width, .58), 1);
+  --walter-aligned-width: calc((.45 + var(--walter-aligned-width-input) * .8) * (1 - var(--walter-aligned-round)) + (.18 + var(--walter-aligned-width-input) * .5) * var(--walter-aligned-round));
   --walter-aligned-height: clamp(0, calc(var(--walter-aligned-open) * (1 + var(--walter-aligned-round) * .7)), 1);
   --walter-aligned-teeth: clamp(0, var(--speech-teeth, 0), 1);
   --walter-aligned-bite: clamp(0, var(--speech-bite, 0), 1);
@@ -15,9 +16,20 @@
 .coach-avatar[data-coach="classic"][data-family="storyteller"][data-speaking="true"][data-articulation="aligned"] {
   .walter-speech-mouth { display: none; }
   .walter-aligned-mouth { display: inline; }
+  .walter-aligned-aperture {
+    /* A paused interpolation samples the smoothed audio control, never a loop.
+       Fill, lip outline and the teeth's clip share this exact contour. */
+    animation: walter-aligned-round-contour 1s linear both paused;
+    animation-delay: calc(var(--walter-aligned-round) * -1s);
+  }
   .walter-speech-jaw {
     transform: translateY(calc(clamp(0, var(--speech-jaw, 0), 1) * 1.25px));
   }
+}
+
+@keyframes walter-aligned-round-contour {
+  from { d: var(--walter-aligned-contour); }
+  to { d: path("M33 62.5 C33 57.1667 47 57.1667 47 62.5 C47 64.7091 43.866 66.5 40 66.5 C36.134 66.5 33 64.7091 33 62.5Z"); }
 }
 
 .walter-aligned-aperture {
