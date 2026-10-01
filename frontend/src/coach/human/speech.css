@@ -1,0 +1,6 @@
+/* Beards and chin creases follow the jaw while a human speaks, as Walter's beard
+   does. The playback clock owns --speech-jaw; nothing here loops on its own, and
+   Still keeps the authored chin unless the studio is holding a static shape. */
+.coach-avatar[data-speaking="true"]:is(:not([data-motion="still"]), [data-speech-preview="true"]) .human-speech-jaw {
+  transform: translateY(calc(clamp(0, var(--speech-jaw, 0), 1) * 1.25px));
+}

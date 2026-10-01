@@ -102,6 +102,7 @@ export const manStudy: CoachCollection = {
     {
       id: "host",
       coachId: "man-host",
+      speech: true,
       personality: host,
       name: "Desmond",
       description:
@@ -111,6 +112,7 @@ export const manStudy: CoachCollection = {
     {
       id: "expert",
       coachId: "man-expert",
+      speech: true,
       personality: expert,
       name: "Kenji",
       description:
@@ -120,6 +122,7 @@ export const manStudy: CoachCollection = {
     {
       id: "partner",
       coachId: "man-partner",
+      speech: true,
       personality: partner,
       name: "Arjun",
       description:
@@ -132,6 +135,7 @@ export const manStudy: CoachCollection = {
 
 export const womanStudy: CoachCollection = {
   ...common,
+  capabilities: { ...common.capabilities, speech: true },
   id: "woman",
   group: "humans",
   name: "Women",

@@ -8,6 +8,7 @@ const look: YouthLook = {
   sleeve: "#b88142",
   cuff: "#efd08c",
   hair: "#694133",
+  speech: { cavity: "#532e26", lip: "#c2866a", tongue: "#cf8f84" },
   clothing: (
     <>
       <path d="M12 104V86q0-16 20-17h16q20 1 20 17v18Z" fill="#c6914c" />

@@ -4,6 +4,45 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Speaking mouths for the remaining human coaches — October 1, 2026
+
+Desmond, Kenji, Arjun, Mara, Iris, Zoe, Poppy, Milo and Cleo now speak through
+one shared `human/HumanSpeechMouth`: `OrganicSpeechMouth` placed on Walter's
+exact face coordinates through the existing `HumanFeatures` mouth slot, with each
+coach's own lip, cavity and tongue tones. Bearded chins and Kenji's chin crease
+follow the shared jaw control; moustaches stay on the upper lip. The authored
+`HumanMouth` returns exactly for silence, cancellation and Still. Walter's rig
+is unchanged. Every selectable coach now has a speaking rig; none of the nine
+has recordings, auditions or a production voice bank, so they remain text-only
+in normal reviews and the Coach Studio holds their static shapes without audio.
+
+- `npx playwright test human-mouth-rig.spec.ts speech-animation.spec.ts`
+  (audio config, desktop and mobile): **28 passed**. The new rig test mounts
+  Walter beside the nine humans at 92.8px and 52.5px and checks that each human's
+  upper lip, aperture height and width for open, wide, narrow, tongue and lip-bite
+  shapes sit within a pixel of Walter's, rounded O and puckered oo keep their
+  aspect limits, teeth, tongue and lower lip share one moving clip with paused
+  interpolation only, every authored expression returns byte-identical, beard
+  groups move 1.25px per unit of jaw and rest at none, and palettes match the
+  rigs. The capability test now lists all thirty coaches as enabled and keeps
+  the opt-in/fallback rules for a rig without a mouth.
+- `npx playwright test speech-inspector.spec.ts` (coach studio config, desktop
+  and mobile): **20 passed**, including a replacement for the retired
+  "unsupported coach" case that holds all nine shapes for Desmond, Iris and Cleo.
+- `npm --prefix frontend run build`: generated API agreement, TypeScript, style
+  boundary and production build passed. Existing large-chunk advisories remain.
+- Reviewed large face-cropped sheets of all nine shapes and twelve expressions
+  for every human beside Walter, plus a real-time capture of the production
+  `CoachCharacter` driven by Walter's aligned "sound sacrifice" track for all ten
+  faces at once. The capture used the shared performance hook without audio; it
+  shows timing agreement, not these characters' own recordings.
+
+Limits: the container ran Playwright against its preinstalled Chromium through
+an ignored local config; no owner viewing, listening review, device-size review
+in the real application or push was part of this pass. The shared contour's
+corners bulge slightly more than Walter's, so open widths differ by under a
+pixel at board size.
+
 ## Biscuit voice lock: all twenty cast voices locked — October 1, 2026
 
 The owner chose Biscuit's fifth-round **Talking puppy, soft**

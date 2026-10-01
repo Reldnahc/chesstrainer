@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { ArtworkSvg, BodyRig, HeadRig } from "../../ArtworkRig";
 import type { CoachArtworkProps } from "../../model";
 import HumanFeatures from "../../human/HumanFeatures";
+import HumanSpeechMouth, { type HumanSpeechPalette } from "../../human/HumanSpeechMouth";
 import Arm from "../../human/Arm";
 import { handPoses, poses, type Pose } from "../../human/poses";
 import Accents from "../../studies/Accents";
@@ -15,10 +16,13 @@ export type YouthLook = {
   sleeve: string;
   cuff: string;
   hair: string;
+  speech: HumanSpeechPalette;
   clothing: ReactNode;
   backHair?: ReactNode;
   frontHair: ReactNode;
 };
+
+const youthMouthColor = "#65392f";
 
 // The children share the established expression vocabulary, with their own
 // proportions and gesture choices rather than scaled-down adult silhouettes.
@@ -86,7 +90,9 @@ export default function YouthCoach({
             glasses={false}
             browColor={look.hair}
             noseColor={look.shade}
-            mouthColor="#65392f"
+            mouthColor={youthMouthColor}
+            mouth={<HumanSpeechMouth pose={pose} expression={expression}
+              mouthColor={youthMouthColor} palette={look.speech} />}
           />
           {look.id === "boy" && (
             <g fill="#8c4f39" opacity=".6">
