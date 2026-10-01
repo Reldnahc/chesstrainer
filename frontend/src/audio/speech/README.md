@@ -1,14 +1,15 @@
-# Walter recorded speech and authoring history
+# Recorded coach speech and authoring history
 
-Walter (`classic`) now has a complete **181-recording non-lesson voice bank** in
-his owner-selected **Older teacher** voice. The latest wording pass replaces 81
-passages and retains 100 original recordings. Every clip has automatically
-generated mouth timing. See the [bank manifest](bank/manifest.json),
+Walter (`classic`) and Rivet (`robot`) each have a **206-recording non-lesson voice
+bank**, using their owner-selected **Older teacher** and **Retro speech terminal**
+voices. They share a catalogue of meanings, with separately authored character
+scripts and complete recordings. Every clip has automatically generated mouth
+timing. See the [Walter manifest](bank/manifest.json), [Rivet manifest](banks/rivet/manifest.json),
 [offline verification instructions](bank/README.md) and
-[production playback policy](../../../../docs/AUDIO.md#walters-recorded-coach-voice).
+[production playback policy](../../../../docs/AUDIO.md#recorded-coach-voices).
 
-Settings offers Automatic, On request and Off under Sound. Only Walter currently
-has a production bank; other coaches remain text-only. Playback uses bundled local
+Settings offers Automatic, On request and Off under Sound. The other coaches
+remain text-only. Playback uses bundled local
 recordings without provider access, API keys or runtime synthesis. Exact chess
 moves, squares and scores stay in writing while the voice explains the supported
 idea. All lessons remain excluded.
@@ -23,6 +24,19 @@ character is the real registered Walter. His voice remains locked; this is a
 wording comparison, not a voice picker. The earlier voice auditions and full-bank
 selector remain in isolated browser-test fixtures, outside normal studio use.
 
+**Recorded coach comparison** lets you switch between Walter and Rivet for the
+same meaning, including eleven opening variants and fourteen combined objective
+and human-play explanations. These are whole recordings, never runtime sentence
+splicing. Combined speech requires both claims to survive the real dialogue
+renderer and current evidence checks. Later Maia data may update the bubble, but
+does not start a second automatic response for the same navigation action.
+An explicit Listen request from Maia's explanation consumes any pending automatic
+response for that action, including audio that is still loading.
+
+Book variety follows a verified contiguous sequence. Missing earlier evidence or
+exploring a variation uses generic recognition instead of inventing a sequence;
+revisiting a position retains its variant. Recognition never asserts move quality.
+
 The [revision record](bank/revisions/walter-language-v2.json) preserves all old/new
 scripts and reasons. It removes repeated “continuation” wording, replaces internal
 policy language and clarifies hypothetical alternatives. Spoken passages remain
@@ -30,7 +44,10 @@ reusable idea-level explanations; exact position details remain written. Origina
 media and tracks are retained for comparison outside production imports.
 The 81 replacement recordings used **7,524 input characters / 907 credits**
 (settled provider counter 12,295 to 13,202). Same voice and settings, no retakes,
-splicing, padding or manual mouth timing; other cast banks remain deferred.
+splicing, padding or manual mouth timing. The subsequent Walter/Rivet pilot adds
+the shared opening/combined meanings and tightens two Walter statements about
+engine comparisons and a demonstrated capture; see
+[that revision](bank/revisions/walter-pilot-v1.json). Other cast banks remain deferred.
 
 To audition from a phone on the same network, start the studio with
 `npm --prefix frontend run dev:audio:lan` instead, then open
@@ -326,7 +343,7 @@ inventory remains in Git history at `054cd80`, outside this bank.
 
 The [full inventory](walter-full-dialogue-inventory.json) contains 185 audited
 meanings, with four deliberately silent transient/defensive states excluded from
-the **181-recording production bank**:
+the **original 181-recording bank** (now extended to 206 shared meanings):
 
 | Coverage | Recordings |
 | --- | ---: |

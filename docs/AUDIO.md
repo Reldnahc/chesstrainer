@@ -141,15 +141,15 @@ preferences. The studio shares application buttons and choice controls but owns
 its layout. Its style boundary rejects application/board styles. CI has a
 dedicated audio suite; audio-only changes do not require the coach artwork matrix.
 
-## Walter's recorded coach voice
+## Recorded coach voices
 
-Walter (`classic`) has a complete **181-recording non-lesson bank**, using the
-owner-selected **Older teacher** voice. The October 1 wording revision replaces
-81 passages and retains 100 recordings unchanged. It removes repetitive
+Walter (`classic`) and Rivet (`robot`) each have a **206-recording non-lesson bank**,
+using their owner-selected Older teacher and Retro speech terminal voices.
+The earlier Walter wording revision replaced 81 passages and retained 100 recordings. It removed repetitive
 “continuation” language while preserving actual, possible, missed and
 opponent-opportunity meanings. The revised passages used **7,524 input characters**
 and **907 provider credits**; character counts are not billing units. Voice,
-delivery settings and the bank's supported meanings are unchanged. No words or
+delivery settings and that revision's supported meanings were unchanged. No words or
 sentence fragments are stitched together.
 
 **Settings → Sound → Coach voice** offers **Automatic** (the default), **On
@@ -167,8 +167,9 @@ additions, hints, game annotations and edits do not require maintaining voice as
 
 ### Bank and authoring
 
-The [bank manifest](../frontend/src/audio/speech/bank/manifest.json) identifies
-all recordings and their local paths. It covers 92 game-review meanings, 68
+The [Walter manifest](../frontend/src/audio/speech/bank/manifest.json) and
+[Rivet manifest](../frontend/src/audio/speech/banks/rivet/manifest.json) identify
+all recordings and their local paths. Each covers 117 game-review meanings, 68
 additional practice/explanation meanings, 10 opening-recall/preview meanings,
 eight puzzle states and three finite review statuses. Four audited transient or
 defensive states deliberately remain silent: thinking, checking, loading an
@@ -178,6 +179,10 @@ retains trigger definitions, aliases and the original script audit. The active
 manifest is the current script source; the
 [wording revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
 records the exact old/new text and the reason for each change.
+The shared `meanings.json` catalogue now adds eleven Book variants and fourteen
+objective/human-evidence combinations to the original 181 meanings. Each coach
+authors a complete recording for each combination. Only combinations shown to
+survive the production evidence/claim/rendering path were recorded for this pilot.
 
 Recordings ship as local assets in the container. Installing, building and
 playing Fieldwork needs no ElevenLabs account, API key, model download or runtime
@@ -200,11 +205,20 @@ native aligner or model is required by playback. See the
 
 Game dialogue owns recording selection, preserving the first successfully rendered
 claim's exact identity. The selector validates its supporting facts, actor and
-scope. An unavailable primary never silently promotes a lower-priority claim.
+scope. When both visible claims match a catalogued objective/human pair, the
+selector prefers its one complete recording. A bank missing that combination
+can retain its primary recording; it never joins two files together. An unavailable primary never silently promotes a lower-priority claim.
 Played, allowed, missed, mover-caused and hypothetical positional explanations
 remain distinct. A completed checkmate requires the board's actual termination;
 a forced-mate search is not an already finished game. Human-model claims remain
 estimates, separate from objective engine evaluation.
+
+Book narration uses three generic recognition variants and eight follow-on
+variants. Follow-on wording requires a contiguous reviewed prefix with matching
+frames, report generations, catalogue version and game-context nodes. Unknown
+prefixes and variations use generic recognition. The variant is stable for a
+position across visits and refinement; a confirmed run cycles without adjacent
+repeats. Neither recognition nor repetition establishes objective move quality.
 
 The bank includes secondary meanings, but unopened human-insight popovers,
 explanation findings and note disclosures do not automatically speak. Their
@@ -228,6 +242,12 @@ Selection and lifecycle checks happen again after asynchronous mouth/audio loads
 Navigation, retry, changing coach, mute, hidden tabs and unmounting invalidate
 obsolete work. No playback backlog accumulates. Initial hydration, restored
 feedback, coach changes and background refinement are not fresh narration events.
+An explicit human-insight Listen/Stop consumes the main coach's pending automatic
+opportunity for that navigation action, including work awaiting mouth tracks or
+audio decoding. Simply opening the explanation does not consume it. Late Maia
+evidence can update visible text and the preferred recording without replaying
+speech or interrupting an already playing, still-supported clip. Removing its
+support cancels it. Changing Automatic to On request also revokes automatic work.
 
 The audio engine's read-only playback handle supplies the actual source clock to
 the shared portrait. Mouth motion cannot start while the recording is loading;
@@ -243,10 +263,12 @@ clips, then Original/Revised and Play or In context. This does not reopen voice
 casting or change account preferences. Earlier voice auditions and the old
 complete-bank selector remain isolated test fixtures.
 
-The original recordings, scripts and mouth tracks remain a development-only
-comparison archive. Production playback imports only the current 181 recordings;
-the separate downloadable source snapshot still includes repository archives. The rest
-of the cast's dialogue and casting choices are unchanged by this Walter pilot.
+The **Recorded coach comparison** panel compares Walter and Rivet for the same
+meaning, with Opening run, With Maia and All lines collections. It uses the same
+local recordings, portrait and mouth-track loader as production. Casting choices
+and account preferences are unaffected. The other 28 coaches retain their wording.
+Original recordings and timing archives remain authoring history; the separate
+downloadable source snapshot includes repository archives as well as active media.
 
 The voice recordings are separate media assets, not CC0 effects or automatically
 licensed under the repository's source-code license. Their
@@ -344,7 +366,7 @@ preview bytes and source identity to saved ElevenLabs voices. These immutable
 approvals survive a fresh clone without local draft files; the service rejects
 changing or clearing them. Corrupt/missing lock data fails closed and mismatched
 recordings show a stale warning. Locking selects a voice design; it does not
-record or install a full dialogue bank. Walter remains the completed production bank.
+record or install a full dialogue bank. Walter and Rivet now have production banks.
 
 Both studios use the same development-only persistence service and fixed
 `data/voice-casting` directory. Choices survive reloads and studio restarts and
@@ -370,7 +392,7 @@ seed and audio fingerprint. Re-running verifies and reuses existing audio;
 incomplete paid attempts require inspection rather than another charge.
 
 Candidate media and generated alignment are development-only. The production
-application still has Walter's completed voice bank; the other human voices are
+application has Walter's and Rivet's completed voice banks; the other human voices are
 deliberately untouched. No installation or listening session contacts ElevenLabs.
 The selected generated voice ID can later be saved when the owner chooses a
 direction; auditioning does not consume a saved-voice slot per option.

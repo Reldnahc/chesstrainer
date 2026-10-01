@@ -2,7 +2,9 @@
 
 `manifest.json` identifies the approved non-lesson speech, exact text, voice,
 recording settings and asset paths. Five original contrast recordings are referenced
-in place; the others live under `recordings/walter` and `recordings/walter-language-v2`.
+in place; the others live under `recordings/walter`, `recordings/walter-language-v2`
+and `recordings/walter-pilot-v1`. The shared registry also points to Rivet's sibling
+bank under `../banks/rivet`; the same validator and runtime handle both.
 Recording sidecars retain the
 provider request and source-audio fingerprints. Production never calls a speech
 provider or an aligner.
@@ -17,7 +19,7 @@ by hand.
 ## Walter wording revision
 
 `revisions/walter-language-v2.json` records the 81 reviewed script changes,
-including every original “continuation” passage. The other 100 recordings are
+including every original “continuation” passage. That revision left the other 100 recordings
 unchanged. The selected voice, recording settings, supported meanings and
 non-lesson scope remain the same. Five bounded `plans/walter-language-v2-*.json`
 files preserve the successful recording requests: 7,524 input characters and
@@ -34,12 +36,20 @@ excluded from the production media imports. Earlier recording plans and script
 inventories describe the original audit, not the active revision; do not overwrite
 them to match a newly recorded script.
 
+The subsequent `revisions/walter-pilot-v1.json` records two further corrections:
+engine comparison does not promise survival in a lost position, and a demonstrated
+capture does not alone prove net material gain. The bank also adds eleven opening
+variants and fourteen whole objective/human-evidence combinations, for 206 active
+meanings shared with Rivet. `../banks/pilot-additions.json` holds both characters'
+authored scripts for those additions.
+
 ## Prepare or verify offline
 
 From the repository root:
 
 ```powershell
 .venv/Scripts/python.exe scripts/prepare_coach_voice_bank.py --generate
+.venv/Scripts/python.exe scripts/prepare_coach_voice_bank.py --manifest frontend/src/audio/speech/banks/rivet/manifest.json --generate
 .venv/Scripts/python.exe -S scripts/prepare_coach_voice_bank.py --check
 ```
 
@@ -51,7 +61,7 @@ are reported as incomplete; completed archives remain available for the next run
 and valid. Mismatched scripts, voice/settings, hashes, incomplete recording pairs
 and stale archives fail instead of being silently accepted or overwritten.
 
-The default check is strict, read-only and standard-library-only. It verifies all
+The default check is strict, read-only and standard-library-only. It verifies all registered banks' approved voices, shared meaning IDs and
 recordings, source requests, archives and the exact compact projection. A missing
 clip or a changed runtime cue fails validation. No native binary, decoder or
 network request is needed to check committed files.

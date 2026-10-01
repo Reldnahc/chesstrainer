@@ -14,8 +14,8 @@ async function openBank(page: Page) {
 }
 
 test("the bank catalogue covers every approved recording exactly once without silent or lesson entries", () => {
-  expect(walterBankScripts).toHaveLength(181);
-  expect(new Set(walterBankScripts.map(script => script.id)).size).toBe(181);
+  expect(walterBankScripts).toHaveLength(manifest.recordings.length);
+  expect(new Set(walterBankScripts.map(script => script.id)).size).toBe(manifest.recordings.length);
   expect(walterBankScripts.map(script => script.recordingId)).toEqual(manifest.recordings.map(record => record.id));
   expect(walterBankCollection.scriptIds).toEqual(walterBankScripts.map(script => script.id));
   for (const script of walterBankScripts) {
@@ -32,7 +32,7 @@ test("all bank families use one compact selector and play local aligned Walter r
   page.on("pageerror", error => errors.push(error.message));
   await openBank(page);
   if (info.project.name === "mobile") await page.setViewportSize({ width: 320, height: 780 });
-  await expect(example(page).locator("option")).toHaveCount(181);
+  await expect(example(page).locator("option")).toHaveCount(manifest.recordings.length);
   await expect(example(page).locator("optgroup")).toHaveCount(5);
   await expect(panel(page).getByRole("group", { name: "Voice candidate", exact: true }).getByRole("button"))
     .toHaveText(["Walter · Older teacher"]);

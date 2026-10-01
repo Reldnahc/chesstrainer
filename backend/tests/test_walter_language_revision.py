@@ -22,13 +22,22 @@ def test_walter_revision_preserves_meanings_and_the_locked_voice():
     before = {item["id"]: item for item in original["recordings"]}
     after = {item["id"]: item for item in current["recordings"]}
     changes = {item["id"]: item for item in revision["recordings"]}
+    pilot = {
+        item["id"]: item for item in read(BANK / "revisions/walter-pilot-v1.json")["recordings"]
+    }
     assert len(changes) == len(revision["recordings"])
-    assert before.keys() == after.keys()
+    assert before.keys() <= after.keys()
     for field in ("coachId", "voiceId", "providerVoiceId", "modelId", "settings", "silentIds"):
         assert original[field] == current[field]
     assert current["scope"] == "non-lesson"
-    for key, item in after.items():
+    for key in before:
+        item = after[key]
         assert item["group"] == before[key]["group"]
+        if key in pilot:
+            previous = changes.get(key, before[key])["text"]
+            assert pilot[key]["previousText"] == previous
+            assert item["text"] == pilot[key]["text"] != previous
+            continue
         if key not in changes:
             assert item == before[key]
             continue

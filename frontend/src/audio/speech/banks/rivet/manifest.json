@@ -1,0 +1,1671 @@
+{
+  "schemaVersion": 1,
+  "coachId": "robot",
+  "voiceId": "rivet",
+  "provider": "elevenlabs",
+  "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Pattern: fork. One piece attacks several targets at once. Follow the shared attacker.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-fork-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "This offers the other side a way to set up a fork, attacking several targets with the same piece.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-fork-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Missed resource: a fork. Another move offered a way to attack several targets with one piece.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-fork-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "The mechanism is a pin to the king. Leaving the line would expose the king, so that movement is not legal.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-pin-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "The other side has a chance to use a pin to the king. The pinned piece cannot leave that line and expose its king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-pin-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "An alternative made use of a pin to the king. The pinned piece could not leave the line and expose its king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-pin-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Pattern: skewer. Moving the front piece exposes the piece behind it along the same line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-skewer-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "This offers the other side a route to a skewer. Moving the front piece could expose another piece behind it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-skewer-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A stronger move offered a skewer. The front piece would move aside, exposing the piece behind it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-skewer-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "The idea is to capture a defender. Identify what it protects, then compare the position without it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-removing-defender-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "The other side has a chance to capture a defender. What it guards could then lose that protection.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-removing-defender-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Missed resource: capturing a defender. Another move offered a way to remove protection from what it guards.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-removing-defender-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The pattern is back-rank mate. The king's own pieces block its escape. Follow how the attack reaches it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-back-rank-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "The other side has a route to back-rank mate. The king's own pieces form the barrier to escape.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-back-rank-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "A route to back-rank mate was available. This move passes up that finishing pattern.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-back-rank-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "The objective is promotion. Follow the pawn's route to the last rank, where it becomes a new piece.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-promotion-awareness-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "This offers the other side a path to promotion. Follow the pawn that could reach the last rank.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-promotion-awareness-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "Missed resource: promotion. A stronger move offered a route for a pawn to reach the last rank.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-promotion-awareness-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "One piece moves aside, uncovering an attack from another. That is the discovered-attack pattern.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-discovered-attack-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "The other side has a discovered-attack opportunity. Moving one piece aside can uncover a threat from another.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-discovered-attack-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "Another move offered a discovered attack. Moving the blocker would uncover a threat from a different piece.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-discovered-attack-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "The idea combines two attacks at once. Track how the attacks work together.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-double-attack-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "This gives the other side a chance to combine two attacks at once. Both attacks need attention.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-double-attack-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move offered two attacks at once. This move misses that combined threat.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-double-attack-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Pattern: deflection. Draw a defender away from its task, then use the gap it leaves.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-deflection-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "The other side has a chance to draw a defender away. Its original task could then go unattended.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-deflection-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Another move offered a deflection, drawing a defender away from its task. That opportunity was missed.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-deflection-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "The idea is to capture an undefended piece. Locate the loose target before evaluating the capture.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-undefended-capture-played.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "An undefended capture was available in another line. This move misses the opportunity to take that loose piece.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-undefended-capture-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "The other side has a chance to capture an undefended piece. Check which piece could be left without protection.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/tactic-hanging-piece-allowed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Cause: the only effective defender moves away. Result: the other side can capture the piece it was guarding.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/cause-abandoned-defender.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "The previous move supplied the warning. This move leaves that attack unanswered, so the threatened piece can be captured.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/cause-opponent-threat-recognition.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "The first capture is only part of the exchange. The recapture takes a more valuable piece. Count both sides.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/cause-avoiding-bad-trades.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "A minor piece leaves its starting square and enters play. Development recorded.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-development-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "The alternative would develop a minor piece from its starting square.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-development-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook now occupies an open file. There are no pawns of either color on that file.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-rook-open-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "The alternative would leave a rook on an open file, containing no pawns of either color.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-rook-open-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "The rook occupies a semi-open file. Friendly pawns are absent from it; enemy pawns remain.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-rook-semi-open-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "The alternative would leave a rook on a semi-open file. Enemy pawns would remain there, but no friendly pawns.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-rook-semi-open-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "The position now contains a passed pawn. No enemy pawn lies ahead on its file or the neighboring files.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-passed-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "The alternative would leave a passed pawn, with no enemy pawn ahead on its file or either neighboring file.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-passed-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The pawn was already passed. This move advances it. Compare its new position with the old one.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-passer-advance-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "The alternative would advance the pawn that was already passed. Compare its destination on the board.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-passer-advance-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "An isolated pawn remains in the position. Neither neighboring file contains a friendly pawn.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-isolated-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "The alternative would leave an isolated pawn, with no friendly pawn on either neighboring file.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-isolated-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Support added. A piece that lacked a defender now has one.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-support-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "The alternative would add support to a piece that was undefended before the move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-support-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "A piece is now undefended. That describes its support, not proof that it can be won.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-unsupported-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "The alternative would leave a piece undefended. That alone would not prove a winning capture.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-unsupported-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king gains a legal flight square. Compare the positions to see which change made it available.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-king-flight-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "The alternative would give the king a new legal flight square. Compare what would change around it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-king-flight-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "The king castles. King and rook both change position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-castling-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "The alternative was to castle. It would relocate the king and rook together.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-castling-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "This capture breaks the bishop pair. The side losing that bishop no longer has a bishop for each square color.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-bishop-pair-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "The alternative would capture a bishop and break the opposing bishop pair.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-bishop-pair-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns remain in the position. Pawns of the same color occupy the same file.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-doubled-actual.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "The alternative would leave doubled pawns, with pawns of the same color sharing a file.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/positional-doubled-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "This move allows forced checkmate. Trace the attack to find where the defense fails.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/allowed-mate.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "A forced checkmate was available. This move loses that finish. Return to the position and locate it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/missed-mate.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Sacrifice checked. Accepting the offered material does not refute it in the examined line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/sound-sacrifice.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "This was the only playable move found. The other choices examined were losing.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/only-playable-move.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "This was the only move found that preserved the advantage. The other choices examined were losing.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/only-advantage-resource.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "A capture is available on the immediate reply. Check what the other side can take.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/immediate-capture.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The strongest reply gives check. Responding to the threat to the king takes priority.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/reply-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine prefers another move. Compare its replies on the board.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/stronger-alternative.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "This move scores below the best option in the engine comparison. Inspect the reply for the difference.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/evaluation-loss.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "A strong choice among the moves the engine examined.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/best-supported-choice.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound choice. It retains much of the position's value, though the engine prefers another move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/good-choice.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "human-natural-error",
+      "group": "game_review",
+      "text": "The human-move model rates this choice as natural. The engine finds a stronger move. Natural and best are different questions.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/human-natural-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/human-natural-error.provenance.json",
+      "alignmentPath": "alignment/human-natural-error.json"
+    },
+    {
+      "id": "human-unusual-strong",
+      "group": "game_review",
+      "text": "Unusual to the human-move model. Strong according to the engine. No contradiction.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/human-unusual-strong.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/human-unusual-strong.provenance.json",
+      "alignmentPath": "alignment/human-unusual-strong.json"
+    },
+    {
+      "id": "human-hard-defense-missed",
+      "group": "game_review",
+      "text": "The engine found a single playable defense. Model evidence suggests it was difficult to find. That resource was missed.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/human-hard-defense-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/human-hard-defense-missed.provenance.json",
+      "alignmentPath": "alignment/human-hard-defense-missed.json"
+    },
+    {
+      "id": "human-hard-find",
+      "group": "game_review",
+      "text": "The human-move model and examined alternatives indicate a difficult move to find. Keep the pattern for future reference.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/human-hard-find.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/human-hard-find.provenance.json",
+      "alignmentPath": "alignment/human-hard-find.json"
+    },
+    {
+      "id": "human-hard-defense-found",
+      "group": "game_review",
+      "text": "Defense found. The position remains playable. The human-move model and examined alternatives suggest this resource was hard to find.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/human-hard-defense-found.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/human-hard-defense-found.provenance.json",
+      "alignmentPath": "alignment/human-hard-defense-found.json"
+    },
+    {
+      "id": "human-natural-best",
+      "group": "game_review",
+      "text": "Human-move estimate: natural. Engine comparison: best move. Both tests agree here.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/human-natural-best.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/human-natural-best.provenance.json",
+      "alignmentPath": "alignment/human-natural-best.json"
+    },
+    {
+      "id": "human-natural-strong",
+      "group": "game_review",
+      "text": "The human-move model considers this natural. The engine considers it strong, but prefers a different move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/human-natural-strong.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/human-natural-strong.provenance.json",
+      "alignmentPath": "alignment/human-natural-strong.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "The recorded clock shows little time remaining before this move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/clock-low.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "The clock records a quick decision with time still available.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/clock-fast.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "The clock records substantial time spent on this decision.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/clock-long.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "Opening sequence matched. This move belongs to a recognized line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/recognized-opening.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Opening-book boundary reached. This is the first move beyond the recognized line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-departure.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Recovery confirmed. After the earlier setback, this move restores a playable position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/recovery.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "A playable position is restored. Errors by the other side helped make this recovery possible.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/recovery-assisted.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent supplied an opportunity on the previous move. This move uses it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/chance-taken.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The previous move supplied an opportunity. This response leaves it unused. Compare the stronger reply.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/chance-missed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "This issue has appeared earlier in the reviewed game. Compare the examples for a recurring warning sign.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/repeated-issue.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Protection restored. The piece left unguarded earlier has support again.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/support-restored.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "The damage is cumulative. This move is part of several small concessions that worsened the position together.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/gradual-erosion.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The reviewed moves preserve the advantage through the recorded win. Follow that stretch to examine the conversion.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/advantage-converted.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "A matching issue appears in other saved games. Compare those examples with this one.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/saved-history-recurrence.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate confirmed. The king has no legal escape. Attack complete.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/mate-finished.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate confirmed. The king has no legal escape. Review the earlier defense for an intervention point.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/mate-defense-ended.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "Draw confirmed. The result is settled; earlier decisions remain available for review.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/draw.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Position ready. Examine the board and select a move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-cold.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "That attempt is not accepted. Recheck the position and try another move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-retry.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "No analysis result was received. Return to the move to retry the request.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-practice-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis finds forced checkmate for the side that made this move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-mate-for-mover.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "After this move, the saved engine analysis gives the other side a forced checkmate.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-mate-against-mover.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Across the saved line, the moving side gains material relative to the starting position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-material-gain.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Across the saved line, the moving side loses material relative to the starting position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-material-loss.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "Move accepted for this exercise. The displayed moves do not establish a clear tactical explanation.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-engine-accepted.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "Move not accepted for this exercise. A clear tactical reason is not established by the displayed moves.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-engine-rejected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Saved answer matched. Acceptance here is defined by the exercise's saved answers.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-curated-accepted.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "No saved answer matched. That does not prove a different legal move is bad chess.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-summary-curated-rejected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Examine the move before proceeding to the next position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-study.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Correct. Retain the reason as well as the move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-good.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Practice recorded. The review schedule is unchanged.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-focus-saved.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. Relearning status remains in place for this recall.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-relearning.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Starting position. The moves under examination begin here.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-original.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Next move displayed. Examine the changed position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-move-ordinary.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. The threat to the king requires an answer.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-move-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The king is no longer in check after this move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-move-escape.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Promotion completed. The pawn reaches the last rank and becomes a new piece.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-ordinary.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "Promotion completed, with check. The threat to the king must be answered.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Promotion and checkmate. The king has no legal escape.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-mate.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn promotes. The resulting position also removes the check against its king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-escape.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A piece is captured by this move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-ordinary.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "Capture completed, with check. Both changes belong to this move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "The capture delivers checkmate. No legal escape remains for the king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-mate.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "This capture ends the check against the moving side's king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-escape.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn captures on the last rank and promotes. Capture and promotion completed.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-ordinary.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn captures and promotes on the last rank. The move also gives check.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, checkmate. The king has no legal escape from the resulting position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-mate.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn captures and promotes. That move also ends the check against its king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-escape.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, and the rook relocates. This move also gives check.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-castle-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "The king castles, and the rook relocates. Checkmate: the opposing king has no legal escape.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-castle-mate.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Follow the fork: one piece attacks several targets, then captures one. The example also shows a net material gain.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-fork-collected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "The indicated capture is illegal because of the pin to the king. Leaving the line would expose the king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-prevents-capture.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece is pinned to its king. Its escape is restricted to moves that do not expose the king.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-restricts-escape.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "The defenders cannot recapture there: doing so would expose their king. The shown line yields a material gain.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-defenders-no-recapture.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece cannot leave the line and expose its king. Follow the moves to see it captured.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-collected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The front piece moves off the line. The piece behind it is then captured along that same line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-skewer-collected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The king leaves the line to escape check. The same attacker then captures the piece behind it in this example.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-king-skewer-collected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The only defender is captured. Later in the shown moves, the piece it guarded is captured as well.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-sole-defender-captured.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender leaves its task. The piece it was guarding is then captured. Deflection demonstrated.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-deflection-collected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "Moving the blocker opens an attack from another piece. That piece makes the capture along the new line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-discovered-capture.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "The moving piece clears the line. Another piece now gives check through the opening.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-discovered-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check. Both pieces attack the king at the same time.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-double-check.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moved piece attacks a target while another attacks along the opened line. That second piece captures its target in this example.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-double-attack-collected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Follow the promotion. This example also establishes a net material gain for the promoting side.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-promotion-material-retained.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "The undefended piece is captured in this example. A net material gain for the capturing side is also established.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-undefended-capture-gain.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "The opponent's preceding move released the attacker from a relative pin. The target stayed in place and is captured in the shown line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-relative-pin-released.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The marked reply is legal for the other side. Play it to examine the next position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/game-explanation-legal-reply.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before selecting a move, check which friendly pieces can be captured without a useful recapture.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-hanging-piece.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Inspect loose enemy pieces before selecting a quiet move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-missed-tactical-capture.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Check forcing moves that attack two valuable targets at once. Track the shared attacker.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-fork.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before moving a pinned piece, identify what lies behind it: the king or a more valuable piece.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-pin.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Look behind the first target. An attack may expose a valuable piece farther along the line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-skewer.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before exchanging a defender, identify what depends on its protection.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-removing-defender.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "Inspect the lines that open when a blocking piece moves.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-discovered-attack.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Search for a move that combines two threats. Include checks and newly opened lines.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-double-attack.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before moving a back-rank defender, inspect the king's escape squares.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-back-rank.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the moves required for promotion. Check the forcing pawn advances.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-promotion-awareness.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before moving a defender, identify every piece that will lose its protection.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-abandoned-defender.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Compare the value captured with the value lost to the recapture. Evaluate the whole exchange.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-avoiding-bad-trades.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Check whether a forcing exchange draws a defender away from another target.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-deflection.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "The saved answers set the exercise's acceptance rule. A different legal move is not automatically bad chess.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-note-curated-authority.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "These moves demonstrate play against strong replies. Strong does not mean every reply is forced.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-note-strong-replies.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes apply only to the shown line, measured from its starting position. The written notes specify the piece values.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-note-material-scope.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line establishes no simple tactical reason. Compare the replies directly; no positional cause has been inferred.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-note-no-simple-reason.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The saved answer policy governs this explanation. Its setting is recorded in the written notes.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/explanation-note-saved-policy.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "The moves from the opening line under study are now displayed.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-revealed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Match confirmed with the selected study material.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-accepted.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Select a move from the chosen study lines.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-retry-fallback.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Any move from the selected opening lines is accepted here.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-cold-multiple.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Recall a move from the selected study material.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-cold-single.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "That move is outside the selected opening lines. Choose another move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-rejected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That move is outside the selected lines. Retry is available. This saved attempt does not change the updated study's review schedule.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-rejected-changed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That move is outside the selected lines. Retry is available. This retired position's review schedule remains unchanged.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-recall-rejected-retired.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due accepts moves from this line. Dedicated practice restricts answers to this line alone.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-preview-active.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls request moves for the selected side. Active studies share a single card when they share a position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/opening-preview-inactive.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Reload the saved session before submitting another move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The board is playing back the verified line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-playback.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Attempt recorded as revealed. The solution can be replayed below.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-revealed.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solution completed after a retry. The record retains the earlier miss and the successful finish.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-solved-after-retry.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Full solution correct. No wrong moves recorded. Pattern resolved.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-solved-clean.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "That move does not solve the puzzle. Earlier correct moves remain saved.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-rejected.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Move accepted. Find the next move required by the puzzle.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-next-move.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Position ready. Calculate before submitting a move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/puzzle-cold.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine has not supplied enough information to explain this position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/game-unavailable.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Review paused. Resume it below, or move a piece to explore the position.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/game-review-paused.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Select a move to review it, or move a piece to explore an alternative.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/game-browse-instructions.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "This is a recognized book move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-entry-1.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "This move matches a known opening.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-entry-2.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "The move belongs to a recorded opening line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-entry-3.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "The book sequence continues.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-1.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "This is another book move.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-2.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "This reply is book too.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-3.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Opening recognition continues.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-4.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "This move stays within a known opening.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-5.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Another opening move is recognized.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-6.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "This move also matches the opening record.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-7.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "This is another book move. Recognition is separate from move quality.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-8.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "combined-allowed-mate-with-human-natural-error",
+      "group": "game_review",
+      "text": "This permits forced checkmate, despite looking natural to the human model. Inspect the attack through the defense.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-allowed-mate-with-human-natural-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-allowed-mate-with-human-natural-error.provenance.json",
+      "alignmentPath": "alignment/combined-allowed-mate-with-human-natural-error.json"
+    },
+    {
+      "id": "combined-missed-mate-with-human-natural-error",
+      "group": "game_review",
+      "text": "This abandons an available forced checkmate, despite looking natural to the human model. Review the missed finish.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-missed-mate-with-human-natural-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-missed-mate-with-human-natural-error.provenance.json",
+      "alignmentPath": "alignment/combined-missed-mate-with-human-natural-error.json"
+    },
+    {
+      "id": "combined-immediate-capture-with-human-natural-error",
+      "group": "game_review",
+      "text": "The human model finds this natural, but the opponent has an immediate capture. Inspect the reply.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-immediate-capture-with-human-natural-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-immediate-capture-with-human-natural-error.provenance.json",
+      "alignmentPath": "alignment/combined-immediate-capture-with-human-natural-error.json"
+    },
+    {
+      "id": "combined-evaluation-loss-with-human-natural-error",
+      "group": "game_review",
+      "text": "The human model finds this natural; the engine finds it weaker than the best option. Compare the replies to separate appearance from strength.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-evaluation-loss-with-human-natural-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-evaluation-loss-with-human-natural-error.provenance.json",
+      "alignmentPath": "alignment/combined-evaluation-loss-with-human-natural-error.json"
+    },
+    {
+      "id": "combined-tactic-fork-allowed-with-human-natural-error",
+      "group": "game_review",
+      "text": "This is natural to the human model, but it offers the opponent a fork. That could let the same piece attack several targets.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-fork-allowed-with-human-natural-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-fork-allowed-with-human-natural-error.provenance.json",
+      "alignmentPath": "alignment/combined-tactic-fork-allowed-with-human-natural-error.json"
+    },
+    {
+      "id": "combined-tactic-skewer-allowed-with-human-natural-error",
+      "group": "game_review",
+      "text": "This is natural to the human model, but it offers the opponent a skewer. Moving the front piece could expose another piece behind it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-skewer-allowed-with-human-natural-error.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-skewer-allowed-with-human-natural-error.provenance.json",
+      "alignmentPath": "alignment/combined-tactic-skewer-allowed-with-human-natural-error.json"
+    },
+    {
+      "id": "combined-only-playable-move-with-human-hard-defense-found",
+      "group": "game_review",
+      "text": "The difficult defensive resource was found. This was the only playable move among those searched; the other examined choices were losing.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-only-playable-move-with-human-hard-defense-found.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-only-playable-move-with-human-hard-defense-found.provenance.json",
+      "alignmentPath": "alignment/combined-only-playable-move-with-human-hard-defense-found.json"
+    },
+    {
+      "id": "combined-only-playable-move-with-human-hard-find",
+      "group": "game_review",
+      "text": "This was hard to find and the only playable move among those searched. The other examined moves were losing.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-only-playable-move-with-human-hard-find.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-only-playable-move-with-human-hard-find.provenance.json",
+      "alignmentPath": "alignment/combined-only-playable-move-with-human-hard-find.json"
+    },
+    {
+      "id": "combined-only-advantage-resource-with-human-hard-defense-found",
+      "group": "game_review",
+      "text": "This difficult resource retained the advantage. It was the only move found to do so; the other examined choices were losing.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-only-advantage-resource-with-human-hard-defense-found.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-only-advantage-resource-with-human-hard-defense-found.provenance.json",
+      "alignmentPath": "alignment/combined-only-advantage-resource-with-human-hard-defense-found.json"
+    },
+    {
+      "id": "combined-only-advantage-resource-with-human-hard-find",
+      "group": "game_review",
+      "text": "This was hard to find and the only searched move that retained the advantage. The other examined choices were losing.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-only-advantage-resource-with-human-hard-find.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-only-advantage-resource-with-human-hard-find.provenance.json",
+      "alignmentPath": "alignment/combined-only-advantage-resource-with-human-hard-find.json"
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-unusual-strong",
+      "group": "game_review",
+      "text": "The pattern to examine is a fork: the same piece can attack several targets. The human model finds this choice unusual, yet the engine supports it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-fork-played-with-human-unusual-strong.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-fork-played-with-human-unusual-strong.provenance.json",
+      "alignmentPath": "alignment/combined-tactic-fork-played-with-human-unusual-strong.json"
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-hard-find",
+      "group": "game_review",
+      "text": "This move was hard to find. Examine the fork idea: the same piece can attack several targets.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-fork-played-with-human-hard-find.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-fork-played-with-human-hard-find.provenance.json",
+      "alignmentPath": "alignment/combined-tactic-fork-played-with-human-hard-find.json"
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-unusual-strong",
+      "group": "game_review",
+      "text": "The human model finds this unusual, but the engine supports it. Examine the pinning idea: a piece pinned to its king cannot leave that line.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-pin-played-with-human-unusual-strong.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-pin-played-with-human-unusual-strong.provenance.json",
+      "alignmentPath": "alignment/combined-tactic-pin-played-with-human-unusual-strong.json"
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-hard-find",
+      "group": "game_review",
+      "text": "This move was hard to find. Examine the pinning idea: a piece pinned to its king cannot leave that line and expose it.",
+      "audioPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-pin-played-with-human-hard-find.mp3",
+      "sidecarPath": "recordings/rivet-pilot-v1/rivet/combined-tactic-pin-played-with-human-hard-find.provenance.json",
+      "alignmentPath": "alignment/combined-tactic-pin-played-with-human-hard-find.json"
+    }
+  ]
+}
