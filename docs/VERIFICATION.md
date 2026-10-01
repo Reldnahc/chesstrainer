@@ -4,6 +4,41 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Original Walter Voice Design audition — September 30, 2026
+
+One authorized text-only design request returned three original voice previews.
+The provider usage counter increased by **571 credits** after settling, matching
+the shared 571-character script. No reference audio, permanent voice creation or
+additional TTS request was used. Three unchanged MP3s total **1,965,378 bytes**;
+their request, model, preview IDs and hashes are retained in the source manifest.
+The Custom Walter collection is the studio default; the original 12 recordings
+remain available for comparison through the same cancellable player.
+
+- From `frontend` with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`,
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs walter.spec.ts recording-provenance.spec.ts --reporter=line`:
+  **40 passed**, desktop/mobile, no skips. The existing ignored wrapper reuses
+  the running studio. All 15 recordings decode and start with finite duration
+  and nonzero signal. Tests cover source/model labels, transcript correspondence,
+  collection changes during loading/playback, valid selection resets, transcript
+  scrolling, silence policies and original/new asset provenance.
+- `npm.cmd --prefix frontend run test:types`,
+  `npm.cmd --prefix frontend run build`, and
+  `npm.cmd --prefix frontend run build:audio-studio`: passed. The production build
+  includes API/type checks and **11** style tests. Production assets contain no
+  audition MP3s; the studio build contains exactly 15. Existing chunk-size warnings
+  remain non-blocking.
+- Built-studio smoke test, served by Vite preview on port 5178:
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/walter-built-check.config.mjs --grep "Walter starts neutral" --reporter=line`:
+  **2 passed**, desktop/mobile. All 15 compiled recording URLs decode and start;
+  no provider/API requests or browser errors. The ignored wrapper uses the normal
+  audio projects with the preview base URL and no development server.
+- Exercised custom playback in the actual studio, inspected desktop/mobile
+  screenshots, and completed independent code/provenance review without actionable
+  findings. Whitespace checks passed. Auditory quality remains the owner's
+  listening decision; these checks do not establish natural delivery.
+- No full backend, account or coach-artwork suite, production speech integration,
+  deployment, push or remote CI run for this development-only audition.
+
 ## Prerecorded Walter voice pilot — September 30, 2026
 
 Added cancellable recorded-speech loading to the shared audio engine and a

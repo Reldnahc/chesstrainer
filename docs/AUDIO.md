@@ -186,6 +186,16 @@ The examples are labelled as authored demonstrations, not real analyzed games.
 Written and spoken text are identical for this voice comparison; the supported
 summary policy below remains the rule for eventual production integration.
 
+The owner then requested one original Walter Voice Design experiment. Its single
+text-only prompt generated three approximately 40-second alternatives, now in the
+default Custom Walter collection. They share one continuous preview of the four
+teaching examples; the Original voices collection preserves all previous clips.
+Both collections reuse the same player, coach presentation and cancellation
+behavior. Model/source credits belong to each voice rather than assuming all
+clips use the original TTS model. The custom previews use `eleven_ttv_v3`, total
+1,965,378 bytes and have exact request/hash provenance in `design-preview.json`.
+No permanent custom voice or production speech setting has been selected.
+
 The [recording plan and provenance](../frontend/src/audio/speech/README.md) document
 the selected model, settings, exact scripts, media terms and reproducible authoring
 workflow. `scripts/record_coach_speech.mjs` is a development CLI with dry run as

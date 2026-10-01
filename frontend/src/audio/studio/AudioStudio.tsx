@@ -8,7 +8,7 @@ import recordedSources from "../assets/sources.json";
 import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
 import type { RecordedSpeechClip, SoundCategory, SoundCue, SoundPalette } from "../model";
-import { walterVoices, walterScripts, walterClips, walterAuditionUtterance, type WalterClip } from "../speech/walterPilot";
+import { walterCollections, walterVoices, walterScripts, walterClips, walterAuditionUtterance, type WalterClip } from "../speech/walterPilot";
 import { auditionScenarios, retryContexts, type AuditionScenario, type RetryContextId } from "./scenarios";
 import WalterAudition, { type WalterPlayback, type WalterPlayOptions } from "./WalterAudition";
 import "./studio.css";
@@ -231,7 +231,7 @@ export default function AudioStudio() {
     </section>
     {error && <p className="error-text" role="alert">{error}</p>}
 
-    <WalterAudition voices={walterVoices} scripts={walterScripts} clips={walterClips}
+    <WalterAudition collections={walterCollections} voices={walterVoices} scripts={walterScripts} clips={walterClips}
       playback={speechPlayback} onPlay={(clip, options) => void playVoice(clip, options)} onStop={stop} />
 
     <div className="audio-studio-workspace">

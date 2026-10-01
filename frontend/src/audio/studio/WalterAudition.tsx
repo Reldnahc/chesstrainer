@@ -6,8 +6,7 @@ import ReviewCoach from "../../ReviewCoach";
 import SourceLine from "../../SourceLine";
 import { CoachCharacter } from "../../coach/CoachAvatar";
 import { getCoach } from "../../coach/registry";
-import type { WalterClip, WalterScript, WalterVoice } from "../speech/walterPilot";
-import recordingPlan from "../speech/recording-plan.json" with { type: "json" };
+import type { WalterClip, WalterCollection, WalterScript, WalterVoice } from "../speech/walterPilot";
 import "../../coach-presentation.css";
 import "./walter-audition.css";
 
@@ -20,7 +19,8 @@ export type WalterPlayback = {
 };
 export type WalterPlayOptions = { voice: WalterVoice; script: WalterScript; inContext: boolean };
 
-export default function WalterAudition({ voices, scripts, clips, playback, onPlay, onStop }: {
+export default function WalterAudition({ collections, voices, scripts, clips, playback, onPlay, onStop }: {
+  collections: readonly WalterCollection[];
   voices: readonly WalterVoice[];
   scripts: readonly WalterScript[];
   clips: readonly WalterClip[];
@@ -28,13 +28,22 @@ export default function WalterAudition({ voices, scripts, clips, playback, onPla
   onPlay: (clip: WalterClip, options: WalterPlayOptions) => void;
   onStop: () => void;
 }) {
-  const [voiceId, setVoiceId] = useState(voices[0]?.id);
-  const [scriptId, setScriptId] = useState(scripts[0]?.id);
+  const [collectionId, setCollectionId] = useState(collections[0]?.id);
+  const [voiceId, setVoiceId] = useState(collections[0]?.voiceIds[0]);
+  const [scriptId, setScriptId] = useState(collections[0]?.scriptIds[0]);
   const voice = voices.find(item => item.id === voiceId);
   const script = scripts.find(item => item.id === scriptId);
-  if (!voice || !script) return null;
+  const collection = collections.find(item => item.id === collectionId);
+  if (!voice || !script || !collection) return null;
+  const collectionVoices = collection.voiceIds.flatMap(id => {
+    const candidate = voices.find(item => item.id === id);
+    return candidate ? [candidate] : [];
+  });
+  const collectionScripts = collection.scriptIds.flatMap(id => {
+    const example = scripts.find(item => item.id === id);
+    return example ? [example] : [];
+  });
   const clip = clips.find(item => item.voiceId === voiceId && item.scriptId === scriptId);
-  const source = recordingPlan.voices.find(item => item.id === voiceId);
   const current = playback.voiceId === voiceId && playback.scriptId === scriptId;
   const playing = current && playback.state === "playing";
   const reaction = { state: playing ? script.reaction : "neutral" as const, key: playing ? playback.eventId ?? `${voiceId}:${scriptId}` : "walter-ready" };
@@ -44,18 +53,31 @@ export default function WalterAudition({ voices, scripts, clips, playback, onPla
       <div><span className="audio-studio-step">VOICE AUDITION</span><h2 id="walter-audition-heading">Find Walter’s voice</h2></div>
       <p>Compare the same teaching examples in every voice. These are audition scripts, not analysis of a real game or a voice selection for the app.</p>
     </header>
+    {collections.length > 1 && <div className="walter-audition-collections">
+      <ChoiceGroup label="Voice collection" value={collection.id} options={collections.map(item => ({ value: item.id, label: item.label }))}
+        onChange={id => {
+          if (id === collectionId) return;
+          const next = collections.find(item => item.id === id);
+          if (!next) return;
+          onStop();
+          setCollectionId(id);
+          if (!next.voiceIds.includes(voice.id)) setVoiceId(next.voiceIds[0]);
+          if (!next.scriptIds.includes(script.id)) setScriptId(next.scriptIds[0]);
+        }} />
+      <p>{collection.description}</p>
+    </div>}
     <div className="walter-audition-layout">
       <div className="walter-audition-controls">
-        <ChoiceGroup label="Voice candidate" value={voice.id} options={voices.map(item => ({ value: item.id, label: item.name }))}
+        <ChoiceGroup label="Voice candidate" value={voice.id} options={collectionVoices.map(item => ({ value: item.id, label: item.name }))}
           onChange={id => { if (id !== voiceId) { onStop(); setVoiceId(id); } }} />
         <p className="walter-audition-description">{voice.description}</p>
-        <label>Speech example<select value={script.id} onChange={event => { onStop(); setScriptId(event.target.value); }}>
-          {scripts.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
-        </select></label>
+        {collectionScripts.length > 1 && <label>Speech example<select value={script.id} onChange={event => { onStop(); setScriptId(event.target.value); }}>
+          {collectionScripts.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+        </select></label>}
         <p className="walter-audition-hint">In context plays a piece move, then Walter. Volume, mute and Stop all above apply to both.</p>
         <details className="disclosure walter-audition-source">
           <summary>Recording details</summary>
-          <SourceLine text={`ElevenLabs · ${source?.name ?? voice.name} · Model ${recordingPlan.modelId}`}
+          <SourceLine text={`ElevenLabs · ${voice.sourceName} · Model ${voice.modelId}`}
             url="https://elevenlabs.io/text-to-speech" linkLabel="Voice provider" />
           <SourceLine text="Prerecorded clips play locally. Playback does not contact the voice provider." />
         </details>
