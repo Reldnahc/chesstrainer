@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "status": "approved-auditions-recorded; four casting briefs await owner approval",
+  "status": "all sixty auditions recorded and automatically aligned; awaiting owner choices",
   "phaseGate": "Walter published at 6b1c317; main CI run36830904338 passed before these auditions were generated.",
   "provider": "elevenlabs",
   "method": "voice-design",
   "modelId": "eleven_ttv_v3",
   "outputFormat": "mp3_44100_128",
   "previewPolicy": "Three independent descriptive prompts per coach, one representative returned preview retained per prompt. Do not turn one request into several near-identical audition options. No saved production voices are selected by this plan.",
-  "scope": "Sixteen approved animal, fantasy and robot coaches. Four other nonhuman casting briefs are deferred pending explicit approval. Walter and the nine other humans are excluded.",
+  "scope": "All twenty nonhuman coaches explicitly approved by the owner. Walter and the nine other humans are excluded.",
   "counts": {
-    "coaches": 16,
-    "directions": 48,
-    "distinctScriptCharacters": 2124,
-    "plannedSpokenInputCharacters": 6372,
+    "coaches": 20,
+    "directions": 60,
+    "distinctScriptCharacters": 2655,
+    "plannedSpokenInputCharacters": 7965,
     "billingNote": "Character counts are planned spoken input, not a provider usage or credit quote."
   },
   "commonBrief": "Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character.",
@@ -384,9 +384,7 @@
           "prompt": "Create an original cartoon chess-coach voice. Character: Literal robot chess coach. Must sound unmistakably mechanical, not merely a human speaking flatly. Issue, cause, result; no beep-boop jokes. Voice direction: Bright gender-neutral medium register with clean lightly polytonal synthetic vocal resonance. Exact rhythmic articulation and small musical pitch steps, clearly an artificial assistant. Smooth intelligible vowels; no beeps, echo or background effects. Fluent spoken English, with the requested accent. Normal conversational pace with clear teaching emphasis; aim for an eight-to-ten-second passage without long dramatic pauses. Clean, dry studio recording, one intelligible voice, no music, background noise or animal sounds. Finish the final word completely with a natural settled ending. An original character voice, not an imitation of a named person or existing character."
         }
       ]
-    }
-  ],
-  "deferredCoaches": [
+    },
     {
       "coachId": "alien",
       "name": "Ziggy",
@@ -480,5 +478,5 @@
       ]
     }
   ],
-  "deferredReason": "Automatic approval review required explicit owner approval before paid generation for alien, living-pawn, slime and mushroom. The question is pending. These briefs are not part of the active generation plan."
+  "approvalNote": "Owner explicitly approved Ziggy, Percy, Pip and Button on October 1, 2026 after the initial sixteen-coach batch."
 }

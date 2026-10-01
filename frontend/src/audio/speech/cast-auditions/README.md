@@ -1,10 +1,9 @@
 # Nonhuman coach voice-design auditions
 
-This is a development-only casting collection. `design-plan.json` has sixteen
-approved coaches with three independently written voice directions each: **48
-active auditions**. The four remaining nonhuman briefs—alien, living pawn, slime
-and mushroom—are preserved separately in `deferredCoaches` while explicit owner
-approval is pending. They are excluded from generation and completion checks.
+This is a development-only casting collection. `design-plan.json` has twenty
+approved coaches with three independently written voice directions each: **60
+active auditions**. The owner explicitly approved the final four—alien, living
+pawn, slime and mushroom—after the initial sixteen-coach batch.
 No voice is selected for production or saved in an ElevenLabs account by these tools.
 
 `manifest.json` contains the available retained previews. Partial coverage is
@@ -27,9 +26,8 @@ After the owner has authorized the request and the plan's phase gate is met,
 node scripts/design_coach_voices.mjs --generate --coach robot --direction retro-terminal
 ```
 
-Coach and direction filters are repeatable. Omitting them selects all 48 active
-directions; existing verified previews are reused without a request. Deferred
-briefs cannot be selected with these filters and require an approved plan update.
+Coach and direction filters are repeatable. Omitting them selects all 60 active
+directions; existing verified previews are reused without a request.
 Requests are sequential, bounded to the plan, timed out and never automatically
 retried. The tool calls only ElevenLabs' [Voice Design endpoint](https://elevenlabs.io/docs/api-reference/text-to-voice/design),
 with `eleven_ttv_v3`, the exact prompt and script, deterministic 31-bit seed,
@@ -81,10 +79,12 @@ automatic word and phoneme evidence; `tracks.json` is the compact runtime
 projection. Request, sidecar and MP3 fingerprints bind each track to its clip.
 See the [alignment tooling](../alignment/README.md) for native dependencies.
 
-All 48 recorded directions have verified automatic tracks. The unchanged clips
+All 60 recorded directions have verified automatic tracks. The unchanged clips
 range from about 8 to 12 seconds. No hand timing, trimming or padding was applied.
-The batch used 6,372 provider credits, observed as account usage 3,530 → 9,902;
-Walter's separate completion batch used 1,948 credits.
+The initial batch used 6,372 provider credits, observed as account usage 3,530 → 9,902.
+The final four coaches used another 1,593 credits (9,902 → 11,495), for **7,965
+credits across all 60 auditions**. Walter's separate completion batch used 1,948
+credits. The provider count can lag generation; these totals use its settled count.
 
 These generated previews follow the existing [speech asset permissions and
 attribution notice](../README.md#permissions-and-attribution). Keep that notice
