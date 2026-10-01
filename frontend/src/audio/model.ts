@@ -47,6 +47,8 @@ export type PreparedSpeechClip = {
   scope: string;
   eventId?: string;
   recordingId?: string;
+  /** An explicit Listen command may replace another scope's current narration. */
+  interruptCurrent?: boolean;
 };
 
 /** Approximate speech activity from a recording, not phonemes or recognized words. */

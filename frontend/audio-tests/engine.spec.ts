@@ -723,6 +723,72 @@ function voicedSpeech(id: string, buffer: AudioBuffer): PreparedSpeechClip {
   return {...clip, buffer, utterance: {...clip.utterance, coachId: "classic"}};
 }
 
+test("explicit speech replaces a noninterruptible higher-priority voice across scopes, leaving effects alone", async () => {
+  const f = fixture();
+  const {buffer} = voicedBuffer();
+  await f.engine.unlock();
+  f.engine.play(move("board"));
+  await flush();
+  f.engine.playPreparedSpeech({...voicedSpeech("primary", buffer),
+    utterance: {...voicedSpeech("primary", buffer).utterance, priority: 100, interruptible: false}});
+  f.engine.playPreparedSpeech({...voicedSpeech("automatic-secondary", buffer), scope: "insight"});
+  expect(f.started()).toEqual(["board", "primary"]);
+  expect(f.events.at(-1)).toMatchObject({eventId: "automatic-secondary", type: "suppressed", reason: "priority"});
+  f.engine.playPreparedSpeech({...voicedSpeech("manual-secondary", buffer), scope: "insight", interruptCurrent: true});
+  expect(f.started()).toEqual(["board", "primary", "manual-secondary"]);
+  expect(f.context.sources[0].stops).toEqual([]);
+  expect(f.context.sources[1].stops).toHaveLength(1);
+  f.engine.playPreparedSpeech({...voicedSpeech("automatic-again", buffer),
+    utterance: {...voicedSpeech("automatic-again", buffer).utterance, priority: 10}});
+  expect(f.events.at(-1)).toMatchObject({eventId: "automatic-again", type: "suppressed", reason: "priority"});
+});
+
+test("explicit recorded speech waits for usable audio and a cancelled or failed load never stops the current voice", async () => {
+  const f = fixture();
+  const {buffer} = voicedBuffer();
+  const pending = deferred<ArrayBuffer>();
+  f.load(() => pending.promise);
+  f.context.decode = async () => buffer;
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech({...voicedSpeech("primary", buffer),
+    utterance: {...voicedSpeech("primary", buffer).utterance, priority: 100, interruptible: false}});
+  f.engine.playRecordedSpeech({...recording("cancelled-manual"), scope: "insight", interruptCurrent: true});
+  expect(f.context.sources[0].stops).toEqual([]);
+  f.engine.cancel("insight");
+  pending.resolve(new ArrayBuffer(8));
+  await flush();
+  expect(f.started()).toEqual(["primary"]);
+  expect(f.context.sources[0].stops).toEqual([]);
+  f.load(async () => { throw new Error("recording unavailable"); });
+  f.engine.playRecordedSpeech({...recording("failed-manual", {url: "/unavailable.mp3"}), scope: "insight", interruptCurrent: true});
+  await flush();
+  expect(f.events.at(-1)).toMatchObject({eventId: "failed-manual", type: "error"});
+  expect(f.context.sources[0].stops).toEqual([]);
+  f.engine.playPreparedSpeech({...speech("invalid-prepared"), interruptCurrent: true});
+  expect(f.events.at(-1)).toMatchObject({eventId: "invalid-prepared", type: "error"});
+  expect(f.context.sources[0].stops).toEqual([]);
+  f.engine.playRecordedSpeech({...recording("ready-manual"), scope: "insight", interruptCurrent: true});
+  await flush();
+  expect(f.started()).toEqual(["primary", "ready-manual"]);
+  expect(f.context.sources[0].stops).toHaveLength(1);
+});
+
+test("a stale manual recording cannot replace newer speech even after the newer voice ends", async () => {
+  const f = fixture();
+  const {buffer} = voicedBuffer();
+  const pending = deferred<ArrayBuffer>();
+  f.load(() => pending.promise);
+  f.context.decode = async () => buffer;
+  await f.engine.unlock();
+  f.engine.playRecordedSpeech({...recording("old-manual"), interruptCurrent: true});
+  f.engine.playPreparedSpeech({...voicedSpeech("new-manual", buffer), scope: "insight", interruptCurrent: true});
+  f.context.sources[0].finish();
+  pending.resolve(new ArrayBuffer(8));
+  await flush();
+  expect(f.started()).toEqual(["new-manual"]);
+  expect(f.events.at(-1)).toMatchObject({eventId: "old-manual", type: "cancelled", reason: "replaced"});
+});
+
 test("speech playback retains caller recording identity across prepared and decoded clips", async () => {
   const playbacks: (SpeechPlayback | null)[] = [];
   const f = fixture({onSpeechPlayback: playback => playbacks.push(playback)});
