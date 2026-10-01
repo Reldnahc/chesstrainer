@@ -12,6 +12,8 @@ import { auditionScenarios, retryContexts, type RetryContextId } from "./scenari
 import { useStudioPlayer } from "./useStudioPlayer";
 import StudioTransport from "./StudioTransport";
 import CastVoiceAudition from "./CastVoiceAudition";
+import WalterWordingReview from "./WalterWordingReview";
+import {walterWordingCatalog} from "./walterWording";
 import "./studio.css";
 
 type CueFilter = "all" | SoundCategory;
@@ -73,6 +75,8 @@ export default function AudioStudio() {
     </header>
 
     <StudioTransport player={player} />
+
+    <WalterWordingReview player={player} catalog={walterWordingCatalog} />
 
     <CastVoiceAudition player={player} />
 
