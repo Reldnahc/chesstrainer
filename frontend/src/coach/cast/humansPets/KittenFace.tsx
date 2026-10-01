@@ -1,6 +1,7 @@
 import type { AnimalPalette } from "../../studies/AnimalFace";
 import type { AnimalPose } from "../../studies/animalPoses";
 import { AnimalEyes } from "../animals/AnimalParts";
+import { OrganicSpeechMouth, SpeechMouthLayer } from "../../SpeechMouthLayer";
 
 export default function KittenFace({ pose, palette }: { pose: AnimalPose; palette: AnimalPalette }) {
   return (
@@ -14,6 +15,7 @@ export default function KittenFace({ pose, palette }: { pose: AnimalPose; palett
       <g className="study-muzzle" stroke={palette.nose} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none">
         <path d="M46.5 67q3.5-2 7 0Q53 71 50 71q-3-1-3.5-4Z" fill={palette.nose} stroke="none" />
         <path d="M50 71v3" />
+        <SpeechMouthLayer className="pet-speech-mouth kitten-speech-mouth" authored={<>
         {pose.mouth === "smile" && <path d="M43 74q3 5 7 0 4 5 7 0" />}
         {pose.mouth === "ponder" && <path d="M45 76q2 2 5-2 2 3 5 1" />}
         {pose.mouth === "concern" && <path d="M44 78q3-3 6-2 3-1 6 2" />}
@@ -24,6 +26,12 @@ export default function KittenFace({ pose, palette }: { pose: AnimalPose; palett
             <path d="M46 80q4-2 8 0-4 4-8 0Z" fill="#d6979b" stroke="none" />
           </>
         )}
+        </>}>
+          <OrganicSpeechMouth x={50} y={74} width={12} height={8}
+            mood={pose.mouth === "concern" || pose.mouth === "oh" ? "concern" : pose.mouth === "ponder" ? "neutral" : "smile"}
+            palette={{cavity: "#78545b", outline: palette.nose, tongue: "#d6979b"}}
+            teeth={false} />
+        </SpeechMouthLayer>
       </g>
       <g className="study-whiskers" stroke={palette.brow} opacity=".65" strokeWidth=".8" strokeLinecap="round" fill="none">
         <path d="m33 70-13-2m13 6-11 2m45-8 13-2m-13 6 11 2" />

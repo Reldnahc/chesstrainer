@@ -4,11 +4,13 @@ import { animalPose, tailTransform, type AnimalPose } from "../../studies/animal
 import Book from "../../studies/Book";
 import { AnimalBrows, AnimalEyes, AnimalFrame, AnimalHead } from "./AnimalParts";
 import AnimalHands from "./AnimalHands";
+import {OrganicSpeechMouth, SpeechMouthLayer} from "../../SpeechMouthLayer";
 
 function RaccoonMouth({ pose }: { pose: AnimalPose }) {
   return (
     <g className="study-muzzle" stroke="#5e5650" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round">
       <path d="M50 57v5" />
+      <SpeechMouthLayer authored={<>
       {pose.mouth === "smile" && <path d="M40 64q5 6 10-2 5 8 10 1" />}
       {pose.mouth === "ponder" && <path d="M40 65q10 0 19-4" />}
       {pose.mouth === "concern" && <path d="M41 69q9-7 18 0" />}
@@ -17,6 +19,11 @@ function RaccoonMouth({ pose }: { pose: AnimalPose }) {
         <path d="M46 71q5-4 10 0l-2 4h-6Z" fill="#c58d80" stroke="none" />
       </>}
       {pose.mouth === "oh" && <ellipse cx="50" cy="67" rx="4" ry="6" fill="#493b3c" />}
+      </>}>
+        <OrganicSpeechMouth x={50} y={63} width={17} height={9} teeth={false}
+          mood={pose.mouth === "concern" ? "concern" : "smile"}
+          palette={{cavity: "#493b3c", outline: "#5e5650", tongue: "#c58d80"}} />
+      </SpeechMouthLayer>
     </g>
   );
 }

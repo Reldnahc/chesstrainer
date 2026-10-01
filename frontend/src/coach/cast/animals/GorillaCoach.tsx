@@ -3,6 +3,7 @@ import { animalPose, type AnimalPose } from "../../studies/animalPoses";
 import Book from "../../studies/Book";
 import { AnimalBrows, AnimalEyes, AnimalFrame, AnimalHead } from "./AnimalParts";
 import AnimalHands from "./AnimalHands";
+import {OrganicSpeechMouth, SpeechMouthLayer} from "../../SpeechMouthLayer";
 
 const emphasis: Partial<Record<CoachExpression, Partial<AnimalPose>>> = {
   brilliant: { tilt: -3, lift: -1, eye: 6, mouth: "grin", paws: "offer" },
@@ -19,6 +20,7 @@ const emphasis: Partial<Record<CoachExpression, Partial<AnimalPose>>> = {
 function GorillaMouth({ pose }: { pose: AnimalPose }) {
   return (
     <g className="study-muzzle" stroke="#302f30" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <SpeechMouthLayer authored={<>
       {pose.mouth === "smile" && <path d="M38 65q12 8 24 0" fill="none" />}
       {pose.mouth === "ponder" && <path d="M39 66q11 1 22-2" fill="none" />}
       {pose.mouth === "concern" && <path d="M39 69q11-7 22 0" fill="none" />}
@@ -27,6 +29,11 @@ function GorillaMouth({ pose }: { pose: AnimalPose }) {
         <path d="M38 65q12 3 24 0l-2 4H40Z" fill="#f4e6cd" stroke="none" />
       </>}
       {pose.mouth === "oh" && <ellipse cx="50" cy="69" rx="5.5" ry="7" fill="#382e30" />}
+      </>}>
+        <OrganicSpeechMouth x={50} y={65} width={24} height={8} teeth={false}
+          mood={pose.mouth === "concern" ? "concern" : "neutral"}
+          palette={{cavity: "#382e30", outline: "#302f30", teeth: "#f4e6cd", tongue: "#9a7068"}} />
+      </SpeechMouthLayer>
     </g>
   );
 }

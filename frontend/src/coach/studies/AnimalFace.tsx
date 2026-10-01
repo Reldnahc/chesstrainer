@@ -1,5 +1,6 @@
 import { useId } from "react";
 import { useEyeClosure } from "../CoachFaceContext";
+import { OrganicSpeechMouth, SpeechMouthLayer } from "../SpeechMouthLayer";
 import type { AnimalPose } from "./animalPoses";
 
 export type AnimalPalette = {
@@ -149,6 +150,7 @@ export default function AnimalFace({
         )}
         {dog && <path d="m46 53 5-.4" stroke="#a5917f" strokeWidth="1.2" />}
         <path d={`M50 ${noseY + 2}v4`} />
+        <SpeechMouthLayer className={dog ? "pet-speech-mouth dog-speech-mouth" : "pet-speech-mouth cat-speech-mouth"} authored={<>
         {pose.mouth === "smile" && (
           <path
             d={`M${dog ? 39 : 41} ${noseY + 7}q5 5 ${dog ? 11 : 9} -1 5 6 ${dog ? 11 : 9} 1`}
@@ -181,6 +183,12 @@ export default function AnimalFace({
         )}
         {pose.mouth === "concern" && <path d={`M42 ${noseY + 12}q8-5 16 0`} />}
         {pose.mouth === "ponder" && <path d={`M44 ${noseY + 9}q5 2 11-2`} />}
+        </>}>
+          <OrganicSpeechMouth x={50} y={dog ? 64 : 61} width={dog ? 22 : 15} height={dog ? 11 : 8.5}
+            mood={pose.mouth === "concern" || pose.mouth === "oh" ? "concern" : pose.mouth === "ponder" ? "neutral" : "smile"}
+            palette={{cavity: "#5b3630", outline: palette.lip ?? palette.nose, teeth: "#fff3dc", tongue: "#dc8e89"}}
+            teeth={false} fangs={dog} />
+        </SpeechMouthLayer>
       </g>
       {!dog && (
         <g
