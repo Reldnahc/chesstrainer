@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 import Button from "../../Button";
 import ChoiceGroup from "../../ChoiceGroup";
+import MotionSelect from "../../MotionSelect";
+import type { MotionPreference } from "../../motion";
 import ReviewCoach from "../../ReviewCoach";
 import SourceLine from "../../SourceLine";
 import { CoachCharacter } from "../../coach/CoachAvatar";
 import { getCoach } from "../../coach/registry";
+import type { SpeechPlayback } from "../model";
 import type { WalterClip, WalterCollection, WalterScript, WalterVoice } from "../speech/walterPilot";
 import "../../coach-presentation.css";
 import "./walter-audition.css";
@@ -19,18 +22,20 @@ export type WalterPlayback = {
 };
 export type WalterPlayOptions = { voice: WalterVoice; script: WalterScript; inContext: boolean };
 
-export default function WalterAudition({ collections, voices, scripts, clips, playback, onPlay, onStop }: {
+export default function WalterAudition({ collections, voices, scripts, clips, playback, speaking, onPlay, onStop }: {
   collections: readonly WalterCollection[];
   voices: readonly WalterVoice[];
   scripts: readonly WalterScript[];
   clips: readonly WalterClip[];
   playback: WalterPlayback;
+  speaking: SpeechPlayback | null;
   onPlay: (clip: WalterClip, options: WalterPlayOptions) => void;
   onStop: () => void;
 }) {
   const [collectionId, setCollectionId] = useState(collections[0]?.id);
   const [voiceId, setVoiceId] = useState(collections[0]?.voiceIds[0]);
   const [scriptId, setScriptId] = useState(collections[0]?.scriptIds[0]);
+  const [motion, setMotion] = useState<MotionPreference>("system");
   const voice = voices.find(item => item.id === voiceId);
   const script = scripts.find(item => item.id === scriptId);
   const collection = collections.find(item => item.id === collectionId);
@@ -51,7 +56,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
   return <section className="walter-audition" aria-labelledby="walter-audition-heading" data-playback={current ? playback.state : "idle"}>
     <header className="walter-audition-heading">
       <div><span className="audio-studio-step">VOICE AUDITION</span><h2 id="walter-audition-heading">Find Walter’s voice</h2></div>
-      <p>Listen to Walter’s teaching examples and compare earlier voice directions. These are fictional audition scripts, not analysis of a real game or automatic speech in the app.</p>
+      <p>Watch Walter speak the teaching examples and compare earlier voice directions. These are fictional audition scripts, not analysis of a real game or automatic speech in the app.</p>
     </header>
     {collections.length > 1 && <div className="walter-audition-collections">
       <ChoiceGroup label="Voice collection" value={collection.id} options={collections.map(item => ({ value: item.id, label: item.label }))}
@@ -74,7 +79,8 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
         {collectionScripts.length > 1 && <label>Speech example<select value={script.id} onChange={event => { onStop(); setScriptId(event.target.value); }}>
           {collectionScripts.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
         </select></label>}
-        <p className="walter-audition-hint">In context plays a piece move, then Walter. Volume, mute and Stop all above apply to both.</p>
+        <MotionSelect id="walter-preview-motion" label="Coach motion" value={motion} onChange={setMotion} />
+        <p className="walter-audition-hint">In context plays a piece move, then Walter. His mouth follows the recording and rests during pauses. Still keeps the portrait static while audio plays.</p>
         <details className="disclosure walter-audition-source">
           <summary>Recording details</summary>
           <SourceLine text={`ElevenLabs · ${voice.sourceName} · Model ${voice.modelId ?? "provider-selected (Voice Remix)"}`}
@@ -84,7 +90,9 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
       </div>
       <div className="walter-audition-preview">
         <ReviewCoach title={<strong>{script.label}</strong>} portraitCaption={walter.name} messageResetKey={script.id}
-          character={<CoachCharacter coach={walter} reaction={reaction} motion="system" label={`${walter.name}, voice preview`} />}
+          character={<CoachCharacter coach={walter} reaction={reaction} motion={motion}
+            speech={playing && speaking && speaking.eventId === playback.eventId ? speaking : undefined}
+            label={`${walter.name}, voice preview`} />}
           actions={<>
             <Button variant="primary" disabled={!clip} onClick={() => clip && onPlay(clip, { voice, script, inContext: false })}><Play size={15} aria-hidden="true" />Play voice</Button>
             <Button disabled={!clip} onClick={() => clip && onPlay(clip, { voice, script, inContext: true })}>In context</Button>

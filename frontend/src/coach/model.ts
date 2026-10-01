@@ -46,6 +46,7 @@ export type CoachFamily = {
   group?: CoachGroup;
   personality?: CoachPersonality;
   animation?: CoachDefinition["animation"];
+  speech?: boolean;
 };
 export type CoachArtworkProps = { expression: CoachExpression; family: string };
 export type CoachMicro =
@@ -94,7 +95,7 @@ export type CoachDefinition = {
   fallbacks: Partial<Record<CoachExpression, CoachExpression>>;
   families: readonly CoachFamily[];
   defaultFamily: string;
-  capabilities: { reactions: boolean; idle: boolean };
+  capabilities: { reactions: boolean; idle: boolean; speech?: boolean };
   animation: {
     reactionMs: Partial<Record<CoachExpression, number>>;
     defaultReactionMs: number;
@@ -262,6 +263,13 @@ export function resolveAnimation(coach: CoachDefinition, family?: string) {
     coach.families.find((variant) => variant.id === direction)?.animation ??
     coach.animation
   );
+}
+
+/** Artwork must opt in; a recording never makes an unsupported rig improvise a mouth. */
+export function supportsSpeech(coach: CoachDefinition, family?: string): boolean {
+  const direction = resolveFamily(coach, family);
+  return coach.families.find(variant => variant.id === direction)?.speech
+    ?? coach.capabilities.speech ?? false;
 }
 
 export function availableIdles(coach: CoachDefinition, family?: string) {

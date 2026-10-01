@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 import { useEyeClosure } from "../CoachFaceContext";
 import type { CoachExpression } from "../model";
 import type { Pose } from "./poses";
@@ -10,6 +10,7 @@ export default function HumanFeatures({
   noseColor = "#c79572",
   mouthColor = "#75473e",
   glasses = true,
+  mouth,
 }: {
   pose: Pose;
   expression: CoachExpression;
@@ -17,6 +18,7 @@ export default function HumanFeatures({
   noseColor?: string;
   mouthColor?: string;
   glasses?: boolean;
+  mouth?: ReactNode;
 }) {
   const eyeClip = useId();
   const closedEyes = useEyeClosure(pose.closedEyes);
@@ -97,30 +99,7 @@ export default function HumanFeatures({
         strokeWidth="1.4"
         strokeLinecap="round"
       />
-      <g className="coach-mouth">
-        <path
-          d={pose.mouth}
-          fill={mouthColor}
-          stroke={mouthColor}
-          strokeWidth=".65"
-          strokeLinejoin="round"
-        />
-        {pose.open &&
-          [
-            "brilliant",
-            "great",
-            "winning",
-            "recovered",
-            "encouraging",
-            "explaining",
-          ].includes(expression) && (
-            <path d="M34 56q6 2 12 0l-1 3H35Z" fill="#fff7e8" />
-          )}
-        {pose.open &&
-          ["brilliant", "winning", "recovered"].includes(expression) && (
-            <path d="M36 65q4-3 8 0-4 3-8 0" fill="#d58c7e" />
-          )}
-      </g>
+      {mouth ?? <HumanMouth pose={pose} expression={expression} mouthColor={mouthColor} />}
       {glasses && (
         <g
           className="coach-glasses"
@@ -142,4 +121,37 @@ export default function HumanFeatures({
       )}
     </>
   );
+}
+
+// Shared authored expression, also used as the exact resting fallback by an
+// articulated mouth. A speaking coach supplies its own geometry through the slot.
+export function HumanMouth({ pose, expression, mouthColor = "#75473e" }: {
+  pose: Pose;
+  expression: CoachExpression;
+  mouthColor?: string;
+}) {
+  return <g className="coach-mouth">
+    <path
+      d={pose.mouth}
+      fill={mouthColor}
+      stroke={mouthColor}
+      strokeWidth=".65"
+      strokeLinejoin="round"
+    />
+    {pose.open &&
+      [
+        "brilliant",
+        "great",
+        "winning",
+        "recovered",
+        "encouraging",
+        "explaining",
+      ].includes(expression) && (
+        <path d="M34 56q6 2 12 0l-1 3H35Z" fill="#fff7e8" />
+      )}
+    {pose.open &&
+      ["brilliant", "winning", "recovered"].includes(expression) && (
+        <path d="M36 65q4-3 8 0-4 3-8 0" fill="#d58c7e" />
+      )}
+  </g>;
 }

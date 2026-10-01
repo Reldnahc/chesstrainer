@@ -7,7 +7,7 @@ import "../../disclosure.css";
 import recordedSources from "../assets/sources.json";
 import { cueCatalog, paletteCatalog, productionCuePalettes } from "../catalog";
 import { AudioEngine, type AudioEvent } from "../engine";
-import type { RecordedSpeechClip, SoundCategory, SoundCue, SoundPalette } from "../model";
+import type { RecordedSpeechClip, SoundCategory, SoundCue, SoundPalette, SpeechPlayback } from "../model";
 import { walterCollections, walterVoices, walterScripts, walterClips, walterAuditionUtterance, type WalterClip } from "../speech/walterPilot";
 import { auditionScenarios, retryContexts, type AuditionScenario, type RetryContextId } from "./scenarios";
 import WalterAudition, { type WalterPlayback, type WalterPlayOptions } from "./WalterAudition";
@@ -61,6 +61,7 @@ export default function AudioStudio() {
   const [selectedScenario, setSelectedScenario] = useState(auditionScenarios[0].id);
   const [retryContextId, setRetryContextId] = useState<RetryContextId>("repeated");
   const [speechPlayback, setSpeechPlayback] = useState<WalterPlayback>({ state: "idle" });
+  const [speaking, setSpeaking] = useState<SpeechPlayback | null>(null);
   const speechRef = useRef<WalterPlayback>({ state: "idle" });
   const contextSpeechRef = useRef<{ moveEventId: string; clip: RecordedSpeechClip } | null>(null);
   const engineRef = useRef<AudioEngine | null>(null);
@@ -73,7 +74,9 @@ export default function AudioStudio() {
 
   useEffect(() => {
     let mounted = true;
-    const engine = new AudioEngine({ onEvent(event) {
+    const engine = new AudioEngine({ onSpeechPlayback(playback) {
+      if (mounted) setSpeaking(playback);
+    }, onEvent(event) {
       if (!mounted) return;
       setEvents(previous => [...previous.slice(-79), { ...event, traceId: ++traceRef.current }]);
       if (event.type === "started") setStatus(event.bus === "speech" ? "Walter · Voice preview" : `${cueLabel(event.cue)} · ${paletteLabel(event.palette)}`);
@@ -232,7 +235,7 @@ export default function AudioStudio() {
     {error && <p className="error-text" role="alert">{error}</p>}
 
     <WalterAudition collections={walterCollections} voices={walterVoices} scripts={walterScripts} clips={walterClips}
-      playback={speechPlayback} onPlay={(clip, options) => void playVoice(clip, options)} onStop={stop} />
+      playback={speechPlayback} speaking={speaking} onPlay={(clip, options) => void playVoice(clip, options)} onStop={stop} />
 
     <div className="audio-studio-workspace">
       <section className="audio-studio-library" aria-labelledby="cue-library-heading">

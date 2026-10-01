@@ -176,7 +176,7 @@ export function usePerformance({
   }, [observing, active, visible, effectiveMotion, current, phase, idleEnabled,
     frame, owner, identity, expression, face, animated, coordinator]);
   return {
-    ref, expression, face, phase: current && animated ? phase : "rest", micro: tracks[0]?.gesture.id ?? "", take,
+    ref, expression, face, animated, phase: current && animated ? phase : "rest", micro: tracks[0]?.gesture.id ?? "", take,
     motion: effectiveMotion, idles: tracks.map((track) => track.gesture.id).join(" "),
     idleStyle: idleTrackStyle(tracks), diagnostics: frame?.owner === owner ? frame.value.diagnostics : null,
   };

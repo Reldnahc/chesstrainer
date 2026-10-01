@@ -3,7 +3,9 @@ import {
   defaultAudioPreferences, soundCues, soundPalettes,
   type AudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCategory,
   type SoundCue, type SoundPalette, type SoundRequest,
+  type SpeechPlayback,
 } from "./model";
+import { createSpeechEnvelope, readSpeechEnvelope, type SpeechEnvelope } from "./speech/activity";
 
 export type AudioEvent = {
   type: "requested" | "started" | "suppressed" | "ended" | "cancelled" | "error";
@@ -25,6 +27,7 @@ export type AudioDriver = {
 };
 export type AudioEngineOptions = {
   onEvent?: (event: AudioEvent) => void;
+  onSpeechPlayback?: (playback: SpeechPlayback | null) => void;
   driver?: Partial<AudioDriver>;
 };
 
@@ -51,7 +54,8 @@ const browserDriver: AudioDriver = {
   clearTimer: timer => clearTimeout(timer),
 };
 
-type Voice = {source: AudioBufferSourceNode; gain: GainNode};
+type SpeechSession = {playback: SpeechPlayback; invalidate: () => void};
+type Voice = {source: AudioBufferSourceNode; gain: GainNode; speech?: SpeechSession};
 type Ticket = {
   id: number;
   event: AudioEvent;
@@ -61,6 +65,7 @@ type Ticket = {
   activated: boolean;
   timer?: Timer;
   voice?: Voice;
+  speechIdentity?: {coachId: string; utteranceId: string};
 };
 const definitions = new Map(cueCatalog.map(cue => [cue.id, cue]));
 const FADE_SECONDS = .012;
@@ -70,8 +75,10 @@ const SEEN_LIMIT = 512;
 export class AudioEngine {
   private readonly driver: AudioDriver;
   private readonly observer?: AudioEngineOptions["onEvent"];
+  private readonly speechObserver?: AudioEngineOptions["onSpeechPlayback"];
   private readonly unsubscribeVisibility: () => void;
   private readonly assets = new Map<string, Promise<AudioBuffer>>();
+  private readonly speechEnvelopes = new WeakMap<AudioBuffer, SpeechEnvelope>();
   private readonly assetAbort = new AbortController();
   private readonly seen = new Set<string>();
   private readonly tickets = new Map<number, Ticket>();
@@ -86,10 +93,12 @@ export class AudioEngine {
   private muted = false;
   private unlocked = false;
   private disposed = false;
+  private publishedSpeech?: SpeechSession;
 
   constructor(options: AudioEngineOptions = {}) {
     this.driver = {...browserDriver, ...options.driver};
     this.observer = options.onEvent;
+    this.speechObserver = options.onSpeechPlayback;
     this.unsubscribeVisibility = this.driver.subscribeVisibility(() => {
       if (this.driver.visible()) return;
       this.unlocked = false;
@@ -184,6 +193,7 @@ export class AudioEngine {
     try {
       const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
         eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
+      if (ticket) ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id};
       if (ticket && this.current(ticket) && this.activate(ticket)) this.start(ticket, clip.buffer);
     } catch { /* Provider audio must not affect the visual utterance or app state. */ }
   }
@@ -194,6 +204,7 @@ export class AudioEngine {
       const ticket = this.accept({type: "requested", bus: "speech", scope: clip.scope,
         eventId: clip.eventId ?? clip.utterance.id}, clip.utterance.priority, clip.utterance.interruptible);
       if (!ticket) return;
+      ticket.speechIdentity = {coachId: clip.utterance.coachId, utteranceId: clip.utterance.id};
       const begin = () => {
         ticket.timer = undefined;
         if (!this.current(ticket) || !this.activate(ticket)) return;
@@ -260,9 +271,10 @@ export class AudioEngine {
     const {event, category, priority} = incoming;
     // Future cues do not steal a voice from a cue playing now. Once due, both
     // loading and playing voices compete so a late decode cannot trail a scrub.
-    const peers = [...this.tickets.values()].filter(ticket => ticket.activated && (event.bus === "speech"
+    const sameLane = (ticket: Ticket) => event.bus === "speech"
       ? ticket.event.bus === "speech"
-      : ticket.event.bus === "effects" && (category === "board" ? ticket.category === "board" : ticket.category !== "board")));
+      : ticket.event.bus === "effects" && (category === "board" ? ticket.category === "board" : ticket.category !== "board");
+    const peers = [...this.tickets.values()].filter(ticket => ticket.activated && sameLane(ticket));
     const limit = category === "board" || event.bus === "speech" ? 1 : 2;
     if (peers.length >= limit) {
       const lowest = peers.sort((a, b) => a.priority - b.priority || a.id - b.id)[0];
@@ -272,6 +284,13 @@ export class AudioEngine {
         return false;
       }
       this.stopTicket(lowest, "replaced");
+      if (!this.current(incoming)) return false;
+      // A terminal observer can synchronously request newer speech. The older
+      // request must not reclaim its slot after that callback returns.
+      if ([...this.tickets.values()].some(ticket => ticket.activated && ticket.id > incoming.id && sameLane(ticket))) {
+        this.stopTicket(incoming, "replaced");
+        return false;
+      }
     }
     incoming.activated = true;
     return true;
@@ -308,17 +327,33 @@ export class AudioEngine {
       gain.gain.value = ticket.category === "board" ? .85 : 1;
       source.connect(gain);
       gain.connect(ticket.event.bus === "speech" ? this.speech! : this.effects!);
-      const voice = {source, gain};
+      const envelope = ticket.event.bus === "speech" ? this.speechEnvelope(buffer) : undefined;
+      const startedAt = context.currentTime;
+      let active = true;
+      const speech: SpeechSession | undefined = envelope ? {
+        playback: Object.freeze({scope: ticket.event.scope, eventId: ticket.event.eventId, ...ticket.speechIdentity!,
+          read: () => active && context.state === "running"
+            ? readSpeechEnvelope(envelope, context.currentTime - startedAt) : null}),
+        invalidate: () => { active = false; },
+      } : undefined;
+      const voice: Voice = {source, gain, speech};
       ticket.voice = voice;
       source.onended = () => {
+        const wasCurrent = this.tickets.delete(ticket.id);
         this.disconnect(voice);
-        if (!this.tickets.delete(ticket.id)) return;
+        if (!wasCurrent) return;
         this.updateDucking();
         this.emit({...ticket.event, type: "ended"});
       };
-      source.start(context.currentTime);
+      source.start(startedAt);
+      if (!this.tickets.has(ticket.id)) return;
       this.updateDucking();
       this.emit({...ticket.event, type: "started"});
+      // An event observer may cancel/dispose or start a replacement synchronously.
+      if (speech && this.tickets.has(ticket.id)) {
+        this.publishedSpeech = speech;
+        this.notifySpeech(speech.playback);
+      }
     } catch { this.fail(ticket); }
   }
 
@@ -338,6 +373,9 @@ export class AudioEngine {
     if (ticket.voice) {
       const voice = ticket.voice;
       this.retiring.add(voice);
+      // Register the tail before notifying presentation: a reentrant dispose
+      // must be able to disconnect this source along with every other voice.
+      this.endSpeech(voice);
       try {
         const now = this.context!.currentTime;
         voice.gain.gain.cancelScheduledValues(now);
@@ -357,6 +395,7 @@ export class AudioEngine {
   }
 
   private disconnect(voice: Voice): void {
+    this.endSpeech(voice);
     this.retiring.delete(voice);
     voice.source.onended = null;
     try { voice.source.disconnect(); voice.gain.disconnect(); } catch { /* Already disconnected. */ }
@@ -383,5 +422,28 @@ export class AudioEngine {
 
   private emit(event: AudioEvent): void {
     try { this.observer?.(event); } catch { /* Diagnostics cannot affect playback. */ }
+  }
+
+  private speechEnvelope(buffer: AudioBuffer): SpeechEnvelope | undefined {
+    if (!this.speechObserver) return;
+    try {
+      let envelope = this.speechEnvelopes.get(buffer);
+      if (!envelope) {
+        envelope = createSpeechEnvelope(buffer);
+        this.speechEnvelopes.set(buffer, envelope);
+      }
+      return envelope;
+    } catch { return undefined; } // Optional presentation cannot prevent audio.
+  }
+
+  private endSpeech(voice: Voice): void {
+    voice.speech?.invalidate();
+    if (!voice.speech || this.publishedSpeech !== voice.speech) return;
+    this.publishedSpeech = undefined;
+    this.notifySpeech(null);
+  }
+
+  private notifySpeech(playback: SpeechPlayback | null): void {
+    try { this.speechObserver?.(playback); } catch { /* Presentation cannot affect playback. */ }
   }
 }

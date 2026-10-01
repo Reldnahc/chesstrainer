@@ -91,6 +91,7 @@ export const manStudy: CoachCollection = {
     {
       id: "storyteller",
       coachId: "classic",
+      speech: true,
       personality: storyteller,
       name: "Walter",
       description:

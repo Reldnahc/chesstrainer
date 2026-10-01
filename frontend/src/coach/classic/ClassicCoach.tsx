@@ -3,6 +3,7 @@ import type { CoachArtworkProps } from "../model";
 import { poses, handPoses } from "../human/poses";
 import Arm from "../human/Arm";
 import HumanFeatures from "../human/HumanFeatures";
+import WalterSpeechMouth from "./WalterSpeechMouth";
 import "./classic.css";
 
 export default function ClassicCoach({ expression }: CoachArtworkProps) {
@@ -90,18 +91,21 @@ export default function ClassicCoach({ expression }: CoachArtworkProps) {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
-                <path
-                  d="M20 52Q30 60 40 57Q50 60 60 52Q55 76 40 75Q25 74 20 52Z"
-                  fill="#dad4ca"
-                />
-                <path
-                  d="M31 70q9 6 19-1"
-                  fill="none"
-                  stroke="#c5c2ba"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                />
-                <HumanFeatures pose={pose} expression={expression} />
+                <g className="walter-speech-jaw">
+                  <path
+                    d="M20 52Q30 60 40 57Q50 60 60 52Q55 76 40 75Q25 74 20 52Z"
+                    fill="#dad4ca"
+                  />
+                  <path
+                    d="M31 70q9 6 19-1"
+                    fill="none"
+                    stroke="#c5c2ba"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                  />
+                </g>
+                <HumanFeatures pose={pose} expression={expression}
+                  mouth={<WalterSpeechMouth pose={pose} expression={expression} />} />
               </g>
             </g>
           </g>

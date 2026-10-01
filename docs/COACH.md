@@ -129,6 +129,40 @@ single raised finger: its silhouette reads as an insulting gesture at review siz
 
 ## Reaction lifecycle
 
+### Speaking articulation
+
+`CoachCharacter`, `CoachAvatar` and `ReviewCoach` accept an optional
+`SpeechPlayback` from the shared audio engine. Speech supplements the semantic
+expression; it does not choose a grade, change dialogue, restart entrances or
+replace the independent eye/body idle scheduler. Walter is the first supported
+rig. A coach/family explicitly opts in through `speech` capability metadata;
+unimplemented rigs keep their authored face, and a handle for a different coach
+cannot animate the selected portrait.
+
+`useSpeechPerformance.ts` samples the recording's actual audio clock and updates
+bounded CSS variables on the portrait, without per-frame React renders. It runs
+only for a visible, animated portrait with an active handle, and cleans up on
+replacement, unmount or changed identity. Still and device-default reduced motion
+keep static expressions while audio plays. Explicit Animated overrides the device
+preference, as elsewhere. Offscreen portraits stop sampling and resume at the
+current recording time; hidden tabs cancel audio under the existing sound policy.
+
+Walter's `WalterSpeechMouth` uses closed lips, rounded/wider openings, clipped
+teeth/tongue and a small beard/jaw movement. Quiet audio closes the lips; ending
+or cancelling playback restores the exact authored expression. The mouth is
+separate from Brilliant's entrance mouth scale so the two cannot compound.
+`HumanFeatures` offers a mouth slot, preserving the existing shared fallback for
+other humans. New species can implement their own rig against the same variables.
+
+This is audio-reactive articulation, **not phoneme-aligned lip sync**: energy and
+a rough brightness hint provide timing and shape variation, not recognized words
+or vowels. There is no voice API call, transcription, generated timing asset or
+independent looping talk animation. The [audio studio](AUDIO.md) previews it with
+Walter's existing recordings at the real review portrait size. Production automatic
+speech and lesson narration remain deferred.
+
+### Expressions and idle behavior
+
 `reactions.ts` maps existing typed game reports and SRS feedback into semantic
 events. The rest of the app does not choose SVG paths or animation classes.
 Brilliant, great, best, good, book, inaccuracy, mistake, blunder and missed

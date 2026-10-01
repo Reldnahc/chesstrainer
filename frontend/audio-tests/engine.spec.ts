@@ -1,6 +1,6 @@
 import {test, expect} from "@playwright/test";
-import {AudioEngine, type AudioDriver, type AudioEvent} from "../src/audio/engine";
-import {cueForMove, defaultAudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCue, type SoundPalette} from "../src/audio/model";
+import {AudioEngine, type AudioDriver, type AudioEvent, type AudioEngineOptions} from "../src/audio/engine";
+import {cueForMove, defaultAudioPreferences, type PreparedSpeechClip, type RecordedSpeechClip, type SoundCue, type SoundPalette, type SpeechPlayback} from "../src/audio/model";
 
 class Gain {
   value = 1;
@@ -55,7 +55,7 @@ function deferred<T>() {
   const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
   return {promise, resolve, reject};
 }
-function fixture() {
+function fixture(options: Pick<AudioEngineOptions, "onEvent" | "onSpeechPlayback"> = {}) {
   const context = new FakeContext();
   const events: AudioEvent[] = [];
   let visible = true;
@@ -75,7 +75,7 @@ function fixture() {
     setTimer: (callback, delay) => { timerDelays.push(delay); timers.set(++timerId, callback); return timerId as unknown as ReturnType<typeof setTimeout>; },
     clearTimer: timer => { timers.delete(timer as unknown as number); },
   };
-  const engine = new AudioEngine({driver, onEvent: event => events.push(event)});
+  const engine = new AudioEngine({...options, driver, onEvent: event => { events.push(event); options.onEvent?.(event); }});
   engine.setReady(true);
   return {engine, context, events, loads, timers, timerDelays,
     load: (value: AudioDriver["loadAsset"]) => { loader = value; },
@@ -662,4 +662,212 @@ test("board and practice category toggles leave pending and playing recordings a
   f.engine.play({cue: "correct", scope: "practice", eventId: "disabled-practice"});
   expect(f.loads).toHaveLength(1);
   f.engine.dispose();
+});
+
+function voicedBuffer() {
+  const samples = Float32Array.from({length: 10000}, (_, index) =>
+    index < 1000 || index >= 7000 ? 0 : .4 * Math.sin(index * Math.PI * .04));
+  let reads = 0;
+  const buffer = {duration: 1, sampleRate: 10000, length: samples.length, numberOfChannels: 1,
+    getChannelData: () => { reads++; return samples; }} as unknown as AudioBuffer;
+  return {buffer, reads: () => reads};
+}
+function voicedSpeech(id: string, buffer: AudioBuffer): PreparedSpeechClip {
+  const clip = speech(id);
+  return {...clip, buffer, utterance: {...clip.utterance, coachId: "classic"}};
+}
+
+test("speech activity starts on the source clock, follows real time and stays separate from effect playback", async () => {
+  const playbacks: (SpeechPlayback | null)[] = [];
+  const f = fixture({onSpeechPlayback: playback => playbacks.push(playback)});
+  const pcm = voicedBuffer();
+  expect(playbacks).toEqual([]);
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech(voicedSpeech("spoken", pcm.buffer));
+  const playback = playbacks[0]!;
+  expect(playback).toMatchObject({scope: "coach", eventId: "spoken", utteranceId: "spoken", coachId: "classic"});
+  expect(playback.read()).toEqual({elapsedSeconds: 0, energy: 0, brightness: 0});
+  f.context.currentTime = 3.3;
+  expect(playback.read()!.elapsedSeconds).toBeCloseTo(.3);
+  expect(playback.read()!.energy).toBeGreaterThan(.8);
+  f.context.currentTime = 3.8;
+  expect(playback.read()!.energy).toBe(0);
+  f.context.state = "suspended";
+  expect(playback.read()).toBeNull();
+  f.context.state = "running";
+  f.context.currentTime = 3.4;
+  expect(playback.read()!.energy).toBeGreaterThan(.8);
+  f.engine.play(move("effect"));
+  await flush();
+  expect(playbacks).toHaveLength(1);
+  f.context.currentTime = 4;
+  expect(playback.read()).toBeNull();
+  f.context.sources[0].finish();
+  expect(playbacks).toEqual([playback, null]);
+  f.context.currentTime = 3.3;
+  expect(playback.read()).toBeNull();
+  f.engine.dispose();
+});
+
+test("speech envelopes are cached per buffer and skipped entirely without a presentation observer", async () => {
+  const pcm = voicedBuffer();
+  const plain = fixture();
+  await plain.engine.unlock();
+  plain.engine.playPreparedSpeech(voicedSpeech("without-observer", pcm.buffer));
+  expect(pcm.reads()).toBe(0);
+  plain.engine.dispose();
+  const f = fixture({onSpeechPlayback: () => {}});
+  await f.engine.unlock();
+  f.context.decode = async () => pcm.buffer;
+  f.engine.play(move("effect"));
+  await flush();
+  expect(pcm.reads()).toBe(0);
+  f.engine.playPreparedSpeech(voicedSpeech("first", pcm.buffer));
+  f.engine.playPreparedSpeech(voicedSpeech("replay", pcm.buffer));
+  expect(pcm.reads()).toBe(1);
+  f.engine.dispose();
+});
+
+test("every speech terminal gate invalidates the exact handle before notifying listeners", async () => {
+  for (const mode of ["ended", "scope", "stop", "mute", "hidden", "zero-volume", "disable", "not-ready", "dispose"] as const) {
+    let current: SpeechPlayback | null = null;
+    const callbacks: (SpeechPlayback | null)[] = [];
+    const terminalReads: ReturnType<SpeechPlayback["read"]>[] = [];
+    const f = fixture({onSpeechPlayback: playback => {
+      if (!playback && current) terminalReads.push(current.read());
+      callbacks.push(playback);
+      current = playback;
+    }});
+    await f.engine.unlock();
+    f.engine.playPreparedSpeech(voicedSpeech(mode, voicedBuffer().buffer));
+    const handle = current! as SpeechPlayback;
+    f.context.currentTime = 3.3;
+    expect(handle.read()!.energy, mode).toBeGreaterThan(0);
+    if (mode === "ended") f.context.sources[0].finish();
+    if (mode === "scope") f.engine.cancel("coach");
+    if (mode === "stop") f.engine.stopAll();
+    if (mode === "mute") f.engine.setMuted(true);
+    if (mode === "hidden") f.hide();
+    if (mode === "zero-volume") f.engine.setPreferences({...defaultAudioPreferences, volume: 0});
+    if (mode === "disable") f.engine.setPreferences({...defaultAudioPreferences, enabled: false});
+    if (mode === "not-ready") f.engine.setReady(false);
+    if (mode === "dispose") f.engine.dispose();
+    expect(callbacks, mode).toEqual([handle, null]);
+    expect(terminalReads, mode).toEqual([null]);
+    expect(handle.read(), mode).toBeNull();
+    f.engine.dispose();
+  }
+});
+
+test("delays and cancelled late recordings never publish a speech playback", async () => {
+  for (const phase of ["delay", "decode"] as const) {
+    const playbacks: (SpeechPlayback | null)[] = [];
+    const f = fixture({onSpeechPlayback: playback => playbacks.push(playback)});
+    const decoded = deferred<AudioBuffer>();
+    f.context.decode = () => decoded.promise;
+    await f.engine.unlock();
+    f.engine.playRecordedSpeech(recording(phase, {delayMs: phase === "delay" ? 350 : 0}));
+    await flush();
+    expect(playbacks).toEqual([]);
+    f.engine.cancel("coach");
+    decoded.resolve(voicedBuffer().buffer);
+    f.tick();
+    await flush();
+    expect(playbacks).toEqual([]);
+    f.engine.dispose();
+  }
+});
+
+test("replacement invalidates the old playback and its late ended callback cannot clear the new one", async () => {
+  const playbacks: (SpeechPlayback | null)[] = [];
+  const f = fixture({onSpeechPlayback: playback => playbacks.push(playback)});
+  await f.engine.unlock();
+  const pcm = voicedBuffer();
+  f.engine.playPreparedSpeech(voicedSpeech("old", pcm.buffer));
+  const old = playbacks[0]!;
+  f.engine.playPreparedSpeech(voicedSpeech("new", pcm.buffer));
+  const current = playbacks[2]!;
+  expect(playbacks).toEqual([old, null, current]);
+  f.context.sources[0].finish();
+  expect(playbacks).toHaveLength(3);
+  f.context.currentTime = 3.3;
+  expect(old.read()).toBeNull();
+  expect(current.read()!.energy).toBeGreaterThan(0);
+  f.engine.dispose();
+});
+
+test("reentrant start cancellation cannot publish an already stopped handle", async () => {
+  for (const observer of ["event", "speech"] as const) {
+    const playbacks: (SpeechPlayback | null)[] = [];
+    const f = fixture({onEvent: event => {
+      if (observer === "event" && event.type === "started") f.engine.dispose();
+    }, onSpeechPlayback: playback => {
+      playbacks.push(playback);
+      if (observer === "speech" && playback) f.engine.cancel("coach");
+    }});
+    await f.engine.unlock();
+    f.engine.playPreparedSpeech(voicedSpeech(observer, voicedBuffer().buffer));
+    if (observer === "event") expect(playbacks).toEqual([]);
+    else {
+      expect(playbacks).toHaveLength(2);
+      expect(playbacks[0]!.read()).toBeNull();
+      expect(playbacks[1]).toBeNull();
+    }
+    f.engine.dispose();
+  }
+});
+
+test("a newer play requested during cancellation owns the speech slot", async () => {
+  const playbacks: (SpeechPlayback | null)[] = [];
+  const pcm = voicedBuffer();
+  let replacing = false;
+  const f = fixture({onSpeechPlayback: playback => {
+    playbacks.push(playback);
+    if (playback === null && !replacing) {
+      replacing = true;
+      f.engine.playPreparedSpeech(voicedSpeech("newest", pcm.buffer));
+    }
+  }});
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech(voicedSpeech("old", pcm.buffer));
+  f.engine.playPreparedSpeech(voicedSpeech("superseded", pcm.buffer));
+  expect(f.started()).toEqual(["old", "newest"]);
+  expect(playbacks.map(playback => playback?.eventId ?? null)).toEqual(["old", null, "newest"]);
+  f.context.sources[0].finish();
+  expect(playbacks.at(-1)!.eventId).toBe("newest");
+  f.engine.dispose();
+});
+
+test("failed source starts and throwing speech observers preserve optional audio behavior", async () => {
+  const playbacks: (SpeechPlayback | null)[] = [];
+  const f = fixture({onSpeechPlayback: playback => { playbacks.push(playback); throw new Error("Presentation failed"); }});
+  await f.engine.unlock();
+  const create = f.context.createBufferSource.bind(f.context);
+  f.context.createBufferSource = () => {
+    const source = create();
+    source.start = () => { throw new Error("Audio unavailable"); };
+    return source;
+  };
+  f.engine.playPreparedSpeech(voicedSpeech("failed", voicedBuffer().buffer));
+  expect(playbacks).toEqual([]);
+  expect(f.started()).toEqual([]);
+  f.context.createBufferSource = create;
+  f.engine.playPreparedSpeech(voicedSpeech("success", voicedBuffer().buffer));
+  expect(f.started()).toEqual(["success"]);
+  expect(playbacks[0]!.eventId).toBe("success");
+  f.context.sources[1].finish();
+  expect(playbacks).toHaveLength(2);
+  expect(playbacks[1]).toBeNull();
+  f.engine.dispose();
+});
+
+test("reentrant disposal from the speech terminal callback disconnects the retiring source", async () => {
+  const f = fixture({onSpeechPlayback: playback => {
+    if (!playback) f.engine.dispose();
+  }});
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech(voicedSpeech("dispose-at-stop", voicedBuffer().buffer));
+  f.engine.stopAll();
+  expect(f.context.state).toBe("closed");
+  expect(f.context.sources.filter(source => source.connected)).toEqual([]);
 });

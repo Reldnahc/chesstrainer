@@ -1,11 +1,13 @@
 import { memo, type ComponentType, type CSSProperties } from "react";
 import { useCoachPreferences } from "./CoachProvider";
+import type { SpeechPlayback } from "../audio/model";
 import { getCoach } from "./registry";
 import {
   expressionInfo,
   resolveExpression,
   resolveFamily,
   resolveAnimation,
+  supportsSpeech,
   type CoachDefinition,
   type CoachArtworkProps,
   type CoachMotion,
@@ -13,6 +15,7 @@ import {
   type CoachReaction,
 } from "./model";
 import { usePerformance } from "./usePerformance";
+import { useSpeechPerformance } from "./useSpeechPerformance";
 import { CoachFaceProvider } from "./CoachFaceContext";
 import type { CoachPerformanceSnapshot } from "./performanceDiagnostics";
 import "./coach.css";
@@ -36,6 +39,7 @@ export function CoachCharacter({
   idleSeed,
   idleReset,
   onPerformance,
+  speech,
 }: {
   coach: CoachDefinition;
   reaction: CoachReaction;
@@ -48,6 +52,7 @@ export function CoachCharacter({
   idleSeed?: number;
   idleReset?: number;
   onPerformance?: (snapshot: CoachPerformanceSnapshot) => void;
+  speech?: SpeechPlayback;
 }) {
   const direction = resolveFamily(coach, family);
   const animation = resolveAnimation(coach, direction);
@@ -66,6 +71,9 @@ export function CoachCharacter({
     onPerformance,
   });
   const Artwork = coach.Artwork;
+  useSpeechPerformance(performance.ref, speech,
+    performance.animated && supportsSpeech(coach, direction) && speech?.coachId === coach.id,
+    `${coach.id}:${direction}`);
   const profile = animation.motionProfile;
   const idleStyle = {
     ...performance.idleStyle,
@@ -105,13 +113,14 @@ export function CoachCharacter({
   );
 }
 
-export default function CoachAvatar({ reaction }: { reaction: CoachReaction }) {
+export default function CoachAvatar({ reaction, speech }: { reaction: CoachReaction; speech?: SpeechPlayback }) {
   const { preferences, ready } = useCoachPreferences();
   return (
     <CoachCharacter
       coach={getCoach(preferences.coach_id)}
       reaction={reaction}
       motion={ready ? preferences.motion : "still"}
+      speech={speech}
     />
   );
 }

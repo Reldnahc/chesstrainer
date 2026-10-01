@@ -299,6 +299,17 @@ voice and shared short script. Collection switches cancel active/pending speech 
 their available examples; the original recordings remain independently playable.
 Run the authoring tests alone with `node --test scripts/record_coach_speech.test.mjs`.
 
+Speech articulation has three complementary layers in `audio-tests`:
+`speech-activity.spec.ts` verifies PCM normalization, stereo/noise handling and
+absolute clock sampling; `engine.spec.ts` verifies handle lifetime, cache reuse,
+observer reentrancy and cancellation; `speech-animation.spec.ts` and
+`speech-lifecycle.spec.ts` exercise the real portrait with native recorded audio
+and controlled component transitions. These cover quiet pauses, authored-mouth
+restoration, device/Still/Animated motion, offscreen/hidden behavior, coach identity,
+unsupported rigs, source replacement and unmount cleanup on desktop and mobile.
+Inspect the audio studio at normal portrait sizes as well: automated envelope
+and lifecycle checks do not establish that the speaking face looks convincing.
+
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
 It resolves their production Vite dependency graphs without starting servers or

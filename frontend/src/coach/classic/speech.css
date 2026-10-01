@@ -1,0 +1,40 @@
+/* Speech uses the playback owner's smoothed values. No autonomous lip loop: the
+   quiet frame is closed, and the authored expression returns when playback ends. */
+.walter-speech-mouth {
+  display: none;
+  --walter-open: clamp(0, var(--speech-open, 0), 1);
+  --walter-round: clamp(0, var(--speech-round, 0), 1);
+}
+
+.coach-avatar[data-coach="classic"][data-family="storyteller"][data-speaking="true"] {
+  .walter-authored-mouth { display: none; }
+  .walter-speech-mouth { display: inline; }
+  .walter-speech-jaw {
+    transform: translateY(calc(clamp(0, var(--speech-open, 0), 1) * 1.1px));
+  }
+}
+
+.walter-speech-aperture {
+  transform-box: view-box;
+  transform-origin: 40px 58.5px;
+  transform: scale(calc(1 - var(--walter-round) * .32), var(--walter-open));
+}
+
+.walter-speech-closed {
+  opacity: clamp(0, calc(1 - var(--walter-open) * 8), 1);
+}
+
+.walter-speech-opening {
+  opacity: clamp(0, calc(var(--walter-open) * 8), 1);
+}
+
+/* Teeth retain their size; the moving aperture clips them. The lower interior
+   follows the jaw rather than stretching into a row of oversized teeth. */
+.walter-speech-teeth {
+  opacity: clamp(0, calc(1 - var(--walter-round) * 1.25), 1);
+}
+
+.walter-speech-tongue {
+  transform: translateY(calc((var(--walter-open) - 1) * 6px));
+  opacity: clamp(0, calc((var(--walter-open) - .3) * 2), .8);
+}

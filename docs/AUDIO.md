@@ -344,6 +344,32 @@ statements do not themselves establish unrestricted relicensing of voice assets.
 
 ## Verification
 
+### Recording-driven coach mouths
+
+`AudioEngineOptions.onSpeechPlayback` is an optional presentation observer. It
+receives a read-only handle after a speech source actually starts, and `null`
+when that session ends or is cancelled. Each handle carries scope, event, coach
+and utterance identity. `read()` returns elapsed source seconds, normalized energy
+and a rough brightness hint using `AudioContext.currentTime`; it returns `null`
+when paused/expired or permanently invalidated. Cancelled handles never revive,
+and an older callback cannot clear a replacement session.
+
+Only engines with this observer summarize decoded speech PCM. The 10ms summaries
+are cached per AudioBuffer in a WeakMap; board effects never incur this work.
+Normalization uses the recording's voiced level, with a silence/noise gate and
+channel energy that cannot cancel opposing stereo phases. There is no continuously
+running audio-side animation loop. The coach owns smoothing and artwork, described
+in [Animated coach](COACH.md#speaking-articulation).
+
+The Walter audition passes the matching live handle to the real shared portrait.
+Loading, the context move sound and its delay cannot start his mouth. Stop, mute,
+zero volume, example changes and hiding the page cancel both together. The local
+Coach motion selector uses the shared device/Animated/Still policy without
+changing account preferences. Existing prerecorded examples are unchanged;
+automatic application speech remains disabled and lessons remain out of scope.
+
+### Coverage
+
 Engine tests cover cue precedence, mute/categories, activation failure, duplicates,
 delayed and stale decoding, cancellation, hidden tabs, bounded voices, prepared
 speech and disposal. Browser tests observe actual Web Audio source starts and

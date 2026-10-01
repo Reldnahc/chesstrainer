@@ -47,6 +47,22 @@ export type PreparedSpeechClip = {
   eventId?: string;
 };
 
+/** Approximate speech activity from a recording, not phonemes or recognized words. */
+export type SpeechActivity = {
+  elapsedSeconds: number;
+  energy: number;
+  brightness: number;
+};
+
+/** Read-only presentation feed for one actual playback; stopped handles never revive. */
+export type SpeechPlayback = {
+  readonly scope: string;
+  readonly eventId: string;
+  readonly coachId: string;
+  readonly utteranceId: string;
+  read: () => SpeechActivity | null;
+};
+
 /** A bundled recording of an existing utterance; playback never generates speech. */
 export type RecordedSpeechClip = Omit<PreparedSpeechClip, "buffer"> & {
   url: string;

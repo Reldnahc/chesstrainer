@@ -4,6 +4,49 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Walter speaking articulation — October 1, 2026
+
+The shared audio engine now publishes optional source-clock speech activity;
+the shared portrait samples it only when its rig, identity, visibility and motion
+policy permit animation. Walter's mouth/jaw follow existing recordings while
+preserving expressions and independent idles. Other rigs remain unchanged.
+No recordings were generated, and no production automatic speech was enabled.
+
+- `npm --prefix frontend run build`: passed API/type agreement, application and
+  browser-test TypeScript, 11 style-guard tests, all three style boundaries and
+  production build. Existing Vite large-chunk advisory remains.
+- `npm --prefix frontend run build:audio-studio`: passed; same chunk advisory.
+- `npm --prefix frontend run test:types`: passed again after lifecycle coverage.
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`:
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs --reporter=line`:
+  **184 passed**, desktop/mobile audio suite including native waveform animation,
+  silence, motion, interruption, offscreen resume, provenance and existing sounds.
+  The ignored wrapper only reuses the owner's already-running LAN studio and
+  resolves the normal audio test/output directories.
+- Separate `speech-lifecycle.spec.ts` under the same audio configuration, with
+  isolated output: **10 passed**, desktop/mobile. Controlled real-component
+  tests verify unsupported/mismatched coaches, coach changes, replacement,
+  unmount, paused samples, and Still/Animated sampling. Added after full-suite
+  discovery; the 184 count above does not include these ten checks.
+- `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/speech-coach-check.config.mjs resting-faces.spec.ts idle-cadence.spec.ts idle-rig.spec.ts idle-articulation.spec.ts --reporter=line`:
+  **86 passed**, desktop/mobile shared coach lifecycle, idle scheduling and actual
+  artwork/track compatibility. The ignored configuration reuses the existing
+  coach studio; no server or production configuration was changed.
+- `node node_modules/@playwright/test/cli.js test game-audio.spec.ts game-audio-browser.spec.ts audio-study.spec.ts audio-preferences.spec.ts coach-logic.spec.ts --reporter=line`:
+  **60 passed**, desktop/mobile production-build application audio and reaction
+  regressions. Windows left the temporary backend tree alive during teardown
+  after both browser workers exited; stopping that verified test-only tree let
+  the runner report success (exit 0). The owner's studio servers stayed running.
+- Manual LAN studio inspection: real examples played with Walter at existing
+  desktop and 390px phone portrait sizes; positive and concerned expressions,
+  mouth/jaw motion, In context, Still and Stop controls checked. Screenshot
+  artifacts also captured by native-recording browser tests. This is energy-driven
+  articulation, not phoneme recognition or forced alignment.
+
+No backend/schema changes; full backend, account and complete coach-studio suites
+were not run for this focused feature. No provider requests or paid generation
+are part of these checks.
+
 ## Lesson speech deferral — September 30, 2026
 
 Owner deferred all lesson narration for maintainability. Removed 334 lesson
