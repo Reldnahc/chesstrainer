@@ -2,13 +2,14 @@
 
 This is a development-only comparison of prerecorded voices for Walter
 (`classic`), including an original Voice Design experiment. The owner selected
-**Older teacher** as Walter's voice direction. That remix is still a preview,
-not yet a saved refined voice or a production recording pack. The application does not
+**Older teacher** as Walter's voice. That refinement is now saved, with eight
+contrasting TTS examples available for listening. The application does not
 automatically speak, call a speech provider, or require an API key.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
-http://127.0.0.1:5176/. The default Teacher & elder collection compares **Older
-teacher**, **Teacher** and **Elder**, with one sample per prompt. Walter refinements
+http://127.0.0.1:5176/. The default **Walter examples** collection has eight short
+examples in the selected voice. Teacher & elder compares **Older teacher**,
+**Teacher** and **Elder**, with one sample per prompt. Walter refinements
 similarly shows one Warmer and one Playful sample. Custom Walter keeps the
 owner-preferred Custom 1 preview. Original voices retains Bill, George and
 Brian with four individual teaching examples. Play a clip alone or following the
@@ -23,6 +24,32 @@ PC's firewall on the private network if needed. The normal `dev:audio` command
 remains accessible only on the PC itself.
 
 ## Recording set
+
+### Selected Walter: contrasting examples
+
+[walter-selected-voice.json](walter-selected-voice.json) records the saved
+**Fieldwork Walter - Older teacher** voice, `Q5CWGTzNfIve6iWvrlM7`, derived from
+the chosen `older-teacher-1` preview. Saving it preserved Custom 1 unchanged.
+[walter-contrasts-plan.json](walter-contrasts-plan.json) contains eight complete
+sentences/passages taken directly from the audited game dialogue inventory:
+only playable move, sound sacrifice, abandoned defender, forced mate allowed,
+recovery, undefended piece, missed fork and unusual strong move.
+
+The eight one-take examples total **830 input characters / 853,821 audio bytes**.
+They use Eleven v4, stability 0.5, similarity 0.75 and speed 0.95. No audio tags,
+padding, splicing or post-processing were added. Each unchanged MP3 has exact
+request and hash provenance in `recordings/walter-contrasts-v1/walter`.
+These eight are a subset of the 92 planned game scripts, not eight additional
+meanings or authorization to generate the rest. They test production TTS delivery
+of the selected remix; audible character quality remains an owner listening decision.
+
+Offline verification:
+
+```sh
+node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
+```
+
+### Earlier stock-voice comparison
 
 The source-audited [Walter dialogue inventory](#walter-dialogue-inventory)
 below plans the next pack. Its draft scripts are not generation authorization.
@@ -179,7 +206,7 @@ Sources: [Voice Design guide](https://elevenlabs.io/docs/eleven-creative/voices/
 ## Permissions and attribution
 
 Generated using ElevenLabs on the owner's active paid Creator subscription, with
-Eleven v4 for the premade voices, Voice Design v3 for the original previews and
+Eleven v4 for the premade voices and selected Walter examples, Voice Design v3 for the original previews and
 Voice Remix for the refinements.
 This is generated audio, not recordings of an
 actor hired by Fieldwork or a voice cloned by this project. Provider descriptions
@@ -384,8 +411,9 @@ clips that policy cannot select. The extra 21 are already drafted if the owner
 chooses to narrate subordinate claims or explicit human-insight playback later.
 No broader narration policy is approved by this inventory.
 
-Before a paid batch, save the selected Older teacher refinement, check that its
-production TTS delivery matches the preview, and audition contrasting lines.
+The selected Older teacher refinement has now been saved and eight contrasting
+lines generated above. Before a larger paid batch, the owner should evaluate
+whether that production TTS delivery matches the chosen preview.
 The existing recorder caps plans at 20 requests, so a 71-file pack needs at least
 four bounded batches. Do not relax that safety limit or issue the requests from
 this document. Scripts, delivery, repetition policy and production integration

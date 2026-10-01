@@ -6,6 +6,7 @@ import refinements from "./refinement-previews.json" with { type: "json" };
 import shortPlan from "./walter-short-plan.json" with { type: "json" };
 import mentors from "./mentor-previews.json" with { type: "json" };
 import olderTeacher from "./older-teacher-preview.json" with { type: "json" };
+import contrastPlan from "./walter-contrasts-plan.json" with { type: "json" };
 
 // Development audition data only. These examples are not evidence from a game.
 export type WalterVoice = { id: string; name: string; description: string; sourceName: string; modelId: string | null };
@@ -24,6 +25,11 @@ const olderTeacherPreviews = olderTeacher.takes.map(take => ({ ...take.previews[
 const mentorPreviews = mentors.takes.map(take => ({ ...take.previews[0], name: take.name, description: take.description }));
 const refinementPreviews = refinements.takes.map(take => ({ ...take.previews[0], name: take.name, description: take.description }));
 const customPreviews = designPreview.previews.filter(preview => preview.id === "custom-1");
+const contrastVoices: readonly WalterVoice[] = contrastPlan.voices.map(voice => ({
+  id: voice.id, name: voice.name,
+  description: "The selected Older teacher voice, reading eight contrasting teaching examples.",
+  sourceName: "Walter · Older teacher · Text to speech", modelId: contrastPlan.modelId,
+}));
 
 const originalVoices: readonly WalterVoice[] = [
   { id: "a", name: "A · Bill", description: "A mature American voice. ElevenLabs describes Bill as wise, mature and balanced.", sourceName: "Bill", modelId: recordingPlan.modelId },
@@ -31,6 +37,7 @@ const originalVoices: readonly WalterVoice[] = [
   { id: "c", name: "C · Brian", description: "A deeper American voice. ElevenLabs describes Brian as resonant and comforting.", sourceName: "Brian", modelId: recordingPlan.modelId },
 ];
 export const walterVoices: readonly WalterVoice[] = [
+  ...contrastVoices,
   ...olderTeacherPreviews.map(preview => ({
     id: preview.id, name: preview.name, description: preview.description,
     sourceName: `Voice Remix · Custom 1 · ${preview.name}`, modelId: olderTeacher.modelId,
@@ -57,7 +64,17 @@ const reactions: Readonly<Record<string, CoachExpression>> = {
 const originalScripts: readonly WalterScript[] = recordingPlan.scripts.map(({ text, ...script }) => ({
   ...script, writtenText: text, spokenText: text, reaction: reactions[script.id] ?? "explaining",
 }));
+const contrastReactions: Readonly<Record<string, CoachExpression>> = {
+  "only-playable-move": "great", "sound-sacrifice": "brilliant", "cause-abandoned-defender": "mistake",
+  "allowed-mate": "blunder", recovery: "recovered", "positional-unsupported-actual": "explaining",
+  "tactic-fork-missed": "missed", "human-unusual-strong": "good",
+};
+const contrastScripts: readonly WalterScript[] = contrastPlan.scripts.map(script => ({
+  id: `contrast-${script.id}`, label: script.label, writtenText: script.text, spokenText: script.text,
+  reaction: contrastReactions[script.id] ?? "explaining",
+}));
 export const walterScripts: readonly WalterScript[] = [
+  ...contrastScripts,
   { id: "mentor-defense", label: "A careful defense", writtenText: mentors.text,
     spokenText: mentors.text, reaction: "great" },
   ...shortPlan.scripts.map(script => ({ id: script.id, label: script.label,
@@ -68,6 +85,8 @@ export const walterScripts: readonly WalterScript[] = [
 ];
 
 export const walterCollections: readonly WalterCollection[] = [
+  { id: "walter-contrasts", label: "Walter examples", description: "Eight fictional teaching examples in the selected Older teacher voice. One recording each.",
+    voiceIds: contrastVoices.map(voice => voice.id), scriptIds: contrastScripts.map(script => script.id) },
   { id: "teacher-elder", label: "Teacher & elder", description: "The combined older teacher, alongside the separate directions. One example each.",
     voiceIds: [...olderTeacherPreviews, ...mentorPreviews].map(preview => preview.id), scriptIds: ["mentor-defense"] },
   { id: "walter-refinements", label: "Walter refinements", description: "Warmer and playful directions for Custom 1. One example each.",
@@ -80,6 +99,10 @@ export const walterCollections: readonly WalterCollection[] = [
 
 // All recordings belong only to the development audio entrypoint.
 export const walterClips: readonly WalterClip[] = [
+  ...contrastVoices.flatMap(voice => contrastPlan.scripts.map(script => ({
+    voiceId: voice.id, scriptId: `contrast-${script.id}`,
+    url: new URL(`./recordings/walter-contrasts-v1/${voice.id}/${script.id}.mp3`, import.meta.url).href,
+  }))),
   ...olderTeacherPreviews.map(preview => ({
     voiceId: preview.id, scriptId: "mentor-defense", durationSeconds: preview.durationSeconds,
     url: new URL(`./recordings/older-teacher-v1/${preview.id}.mp3`, import.meta.url).href,

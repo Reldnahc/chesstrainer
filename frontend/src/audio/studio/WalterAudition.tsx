@@ -51,7 +51,7 @@ export default function WalterAudition({ collections, voices, scripts, clips, pl
   return <section className="walter-audition" aria-labelledby="walter-audition-heading" data-playback={current ? playback.state : "idle"}>
     <header className="walter-audition-heading">
       <div><span className="audio-studio-step">VOICE AUDITION</span><h2 id="walter-audition-heading">Find Walter’s voice</h2></div>
-      <p>Compare the same teaching examples in every voice. These are audition scripts, not analysis of a real game or a voice selection for the app.</p>
+      <p>Listen to Walter’s teaching examples and compare earlier voice directions. These are fictional audition scripts, not analysis of a real game or automatic speech in the app.</p>
     </header>
     {collections.length > 1 && <div className="walter-audition-collections">
       <ChoiceGroup label="Voice collection" value={collection.id} options={collections.map(item => ({ value: item.id, label: item.label }))}

@@ -76,16 +76,23 @@ test("Walter starts neutral and silent with complete local recordings for every 
   await expect(panel(page)).toBeVisible();
   await expect(panel(page).locator('[data-coach="classic"]')).toHaveAttribute("data-requested", "neutral");
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");
-  expect(walterVoices.map(voice => voice.id)).toEqual(["older-teacher-1", "teacher-1", "elder-1", "warm-1", "playful-1", "custom-1", "a", "b", "c"]);
+  expect(walterVoices.map(voice => voice.id)).toEqual(["walter", "older-teacher-1", "teacher-1", "elder-1", "warm-1", "playful-1", "custom-1", "a", "b", "c"]);
   expect(walterScripts.map(script => script.id)).toEqual(expect.arrayContaining(["voice-design-preview", "only-defense", "abandoned-defender", "allowed-mate", "fork"]));
   expect(walterClips.map(clip => `${clip.voiceId}:${clip.scriptId}`).sort())
     .toEqual(walterCollections.flatMap(collection => collection.voiceIds.flatMap(voiceId => collection.scriptIds.map(scriptId => `${voiceId}:${scriptId}`))).sort());
-  expect(walterCollections[0].label).toBe("Teacher & elder");
-  expect(walterCollections[0].voiceIds).toEqual(["older-teacher-1", "teacher-1", "elder-1"]);
-  await expect(voiceChoices(page).getByRole("button")).toHaveText(["Older teacher", "Teacher", "Elder"]);
-  expect(walterCollections[0].scriptIds).toEqual(["mentor-defense"]);
-  expect(walterScripts[0].spokenText).toHaveLength(141);
-  expect(walterScripts[0].spokenText).toMatch(/That's the value of a careful defense\.$/);
+  expect(walterCollections[0].label).toBe("Walter examples");
+  expect(walterCollections[0].voiceIds).toEqual(["walter"]);
+  await expect(voiceChoices(page).getByRole("button")).toHaveText(["Walter · Older teacher"]);
+  expect(walterCollections[0].scriptIds).toEqual([
+    "contrast-only-playable-move", "contrast-sound-sacrifice", "contrast-cause-abandoned-defender", "contrast-allowed-mate",
+    "contrast-recovery", "contrast-positional-unsupported-actual", "contrast-tactic-fork-missed", "contrast-human-unusual-strong",
+  ]);
+  expect(walterScripts.slice(0, 8).map(script => script.reaction))
+    .toEqual(["great", "brilliant", "mistake", "blunder", "recovered", "explaining", "missed", "good"]);
+  await expect(scriptSelect(page).locator("option")).toHaveCount(8);
+  expect(new Set(walterScripts.map(script => script.id)).size).toBe(walterScripts.length);
+  expect(walterCollections.find(collection => collection.id === "teacher-elder")?.voiceIds)
+    .toEqual(["older-teacher-1", "teacher-1", "elder-1"]);
   expect(walterCollections.find(collection => collection.id === "walter-refinements")?.voiceIds)
     .toEqual(["warm-1", "playful-1"]);
   expect(walterCollections.find(collection => collection.id === "custom-walter")?.voiceIds).toEqual(["custom-1"]);
@@ -139,7 +146,7 @@ test("voice controls leave all browser preferences unchanged", async ({ page }) 
     for (const [key, value] of Object.entries(values)) localStorage.setItem(key, value);
   }, stored);
   await page.goto("/");
-  await voiceChoices(page).getByRole("button", { name: walterVoices[1].name, exact: true }).click();
+  await scriptSelect(page).selectOption("contrast-sound-sacrifice");
   await collectionChoices(page).getByRole("button", { name: "Original voices", exact: true }).click();
   await scriptSelect(page).selectOption("fork");
   await playVoice(page).click();
@@ -149,7 +156,7 @@ test("voice controls leave all browser preferences unchanged", async ({ page }) 
   expect(await page.evaluate(() => ({ ...localStorage }))).toEqual(stored);
   await page.reload();
   await expect(voiceChoices(page).getByRole("button", { name: walterVoices[0].name, exact: true })).toHaveAttribute("aria-pressed", "true");
-  await expect(scriptSelect(page)).toHaveCount(0);
+  await expect(scriptSelect(page)).toHaveValue("contrast-only-playable-move");
   await expect(panel(page).getByLabel("Coach explanation", { exact: true })).toHaveText(walterScripts[0].writtenText);
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");
   expect(await page.evaluate(() => ({ ...localStorage }))).toEqual(stored);
@@ -256,6 +263,7 @@ for (const interruption of ["voice", "collection", "script", "stop", "mute", "hi
     await captureNativeStarts(page);
     try {
       await page.goto("/");
+      if (interruption === "voice") await collectionChoices(page).getByRole("button", { name: "Teacher & elder", exact: true }).click();
       if (interruption === "script") await collectionChoices(page).getByRole("button", { name: "Original voices", exact: true }).click();
       // Match the application tests: wait for the native decoder, not just HTTP
       // completion, before proving that cancelled speech cannot start late.
@@ -263,7 +271,7 @@ for (const interruption of ["voice", "collection", "script", "stop", "mute", "hi
       await playVoice(page).click();
       await requestedRecording;
       await expect(panel(page)).toHaveAttribute("data-playback", "loading");
-      if (interruption === "voice") await voiceChoices(page).getByRole("button", { name: walterVoices[1].name, exact: true }).click();
+      if (interruption === "voice") await voiceChoices(page).getByRole("button", { name: "Teacher", exact: true }).click();
       if (interruption === "collection") await collectionChoices(page).getByRole("button", { name: "Original voices", exact: true }).click();
       if (interruption === "script") await scriptSelect(page).selectOption("fork");
       if (interruption === "stop") await page.getByRole("button", { name: "Stop all", exact: true }).click();
@@ -295,9 +303,10 @@ for (const interruption of ["voice", "collection", "script", "stop", "mute", "hi
 test("changing voices cancels active speech and does not auto-play the next candidate", async ({ page }) => {
   await captureNativeStarts(page);
   await page.goto("/");
+  await collectionChoices(page).getByRole("button", { name: "Teacher & elder", exact: true }).click();
   await playVoice(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
-  await voiceChoices(page).getByRole("button", { name: walterVoices[1].name, exact: true }).click();
+  await voiceChoices(page).getByRole("button", { name: "Teacher", exact: true }).click();
   await expect(speechEvents(page, "cancelled")).toHaveAttribute("data-reason", "stopped");
   await expect(panel(page)).toHaveAttribute("data-playback", "idle");
   expect(await nativeStarts(page)).toHaveLength(1);
@@ -309,7 +318,7 @@ test("changing voices cancels active speech and does not auto-play the next cand
 test("collection changes cancel speech and select only valid voice and script pairs", async ({ page }) => {
   await captureNativeStarts(page);
   await page.goto("/");
-  await voiceChoices(page).getByRole("button", { name: walterVoices[1].name, exact: true }).click();
+  await scriptSelect(page).selectOption("contrast-sound-sacrifice");
   await playVoice(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
   await collectionChoices(page).getByRole("button", { name: "Original voices", exact: true }).click();

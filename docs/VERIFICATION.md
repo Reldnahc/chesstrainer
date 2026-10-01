@@ -4,6 +4,34 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Selected Walter contrasting audition — September 30, 2026
+
+Saved the owner-selected Older teacher refinement as a separate permanent voice,
+preserving Custom 1. Generated exactly eight short v4 TTS examples from the draft
+game inventory: 830 input characters, 853,821 bytes, one take each. The studio
+defaults to these examples and retains earlier comparisons. No production speech
+integration, engine change or automatic generation was added.
+
+- Recorder dry run before generation: eight new requests / 830 characters.
+  After generation: zero requests / eight hash-verified existing recordings.
+- From `frontend`, with `PLAYWRIGHT_BROWSERS_PATH=../.tools/playwright`:
+  `node node_modules/@playwright/test/cli.js test --config node_modules/.cache/recorded-audio-check.config.mjs walter.spec.ts --reporter=line`
+  passed **34 desktop/mobile checks**, including all 26 exposed recordings,
+  native audio starts, cancellation, preference isolation and layout. A focused
+  layout rerun after a description correction passed **2/2**.
+- Same command with `recording-provenance.spec.ts`: **14/14 passed**, including
+  the new selected-voice identity, eight exact inventory texts, immutable asset
+  hashes and the offline mocked recording-author safeguards. The ignored wrapper
+  inherits `playwright.audio.config.ts` and reuses the running studio server.
+- `npm.cmd run test:types`: passed. `npm.cmd run build:audio-studio`: passed,
+  with the existing development-studio chunk-size warning. `git diff --check`:
+  passed. Full application/backend/coach suites were not run for this isolated
+  audition-data change.
+- Used the actual LAN studio in the in-app browser: selected contrasting
+  examples and exercised Play voice/In context. The studio remains available at
+  its existing LAN address. Playback checks are not a subjective voice-quality
+  verdict; the owner evaluates the eight performances by listening.
+
 ## Walter dialogue scope audit — September 30, 2026
 
 Planning-only audit at `839da3e`; no production behavior or recording changed.

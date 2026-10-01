@@ -9,6 +9,9 @@ import refinements from "../src/audio/speech/refinement-previews.json" with { ty
 import shortPlan from "../src/audio/speech/walter-short-plan.json" with { type: "json" };
 import mentors from "../src/audio/speech/mentor-previews.json" with { type: "json" };
 import combined from "../src/audio/speech/older-teacher-preview.json" with { type: "json" };
+import contrasts from "../src/audio/speech/walter-contrasts-plan.json" with { type: "json" };
+import selected from "../src/audio/speech/walter-selected-voice.json" with { type: "json" };
+import inventory from "../src/audio/speech/walter-dialogue-inventory.json" with { type: "json" };
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const options = { cwd: root, encoding: "utf8" as const, timeout: 20000,
@@ -27,6 +30,22 @@ test("every bundled Walter recording matches its exact script, voice settings an
     "--output", "frontend/src/audio/speech/recordings/pilot-v1"], options);
   const expected = plan.voices.length * plan.scripts.length;
   expect(output.trim()).toBe(`Dry run: 0 new requests, 0 characters, ${expected} verified recordings reused.`);
+});
+
+test("contrasting Walter examples use the chosen refinement and exact audited scripts", () => {
+  expect(selected.generatedVoiceId).toBe(combined.takes[0].previews[0].generatedVoiceId);
+  expect(selected.sourcePreviewId).toBe("older-teacher-1");
+  expect(contrasts.voices).toHaveLength(1);
+  expect(contrasts.voices[0].providerVoiceId).toBe(selected.voiceId);
+  expect(contrasts.scripts).toHaveLength(8);
+  for (const script of contrasts.scripts) {
+    expect(script.text).toBe(inventory.scripts.find(item => item.id === script.id)?.text);
+    expect(script.text.length).toBeLessThanOrEqual(150);
+  }
+  const output = execFileSync(process.execPath, ["scripts/record_coach_speech.mjs",
+    "--plan", "frontend/src/audio/speech/walter-contrasts-plan.json",
+    "--output", "frontend/src/audio/speech/recordings/walter-contrasts-v1"], options);
+  expect(output.trim()).toBe("Dry run: 0 new requests, 0 characters, 8 verified recordings reused.");
 });
 
 test("custom Walter previews retain one original design request and unchanged audio provenance", () => {

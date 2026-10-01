@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "voices": [
+    {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    }
+  ],
+  "scripts": [
+    {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "This was the only move we found that kept the position playable. The other moves we checked were losing."
+    },
+    {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "The sacrifice holds up in the search even when it is accepted. Taking the offered material does not refute the idea in this line."
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "label": "Abandoned defender",
+      "text": "This move takes away a piece's only effective defender. The other side can capture that piece in the continuation."
+    },
+    {
+      "id": "allowed-mate",
+      "label": "Allowed checkmate",
+      "text": "This move allows a forced checkmate. Follow the continuation to see why the defense can no longer hold."
+    },
+    {
+      "id": "recovery",
+      "label": "Recovered after a mistake",
+      "text": "After the earlier setback, this move restores a playable position. There is a way forward again."
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "label": "Undefended piece",
+      "text": "This leaves a piece undefended. That alone does not mean the piece can be won."
+    },
+    {
+      "id": "tactic-fork-missed",
+      "label": "Missed a fork",
+      "text": "The stronger continuation had a fork. This move misses the chance for one piece to attack several targets at once."
+    },
+    {
+      "id": "human-unusual-strong",
+      "label": "An unusual strong move",
+      "text": "The human-move model treats this as an unusual choice, and the engine still finds it strong."
+    }
+  ]
+}
+

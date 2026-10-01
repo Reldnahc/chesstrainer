@@ -176,7 +176,8 @@ the recordings, not to the people playing them. First select the coach and voice
 then audition a small set before expanding coverage or adding production controls.
 The owner selected Walter (`classic`) and authorized a small paid ElevenLabs
 audition, then chose the **Older teacher** remix as Walter's voice direction.
-The refined preview has not yet been saved as a permanent voice, and production
+The chosen refinement is saved as **Fieldwork Walter - Older teacher**. Eight
+short contrasting examples in that voice now lead the studio; production
 automatic speech is not enabled.
 
 The existing audio studio now compares Bill, George and Brian reading the same
@@ -207,7 +208,7 @@ each about 8–9 seconds, for the Walter refinements collection. The exact
 requests, selected source voice, generated IDs and asset hashes are retained in
 `refinement-previews.json`; the provider does not report a model ID for remixes.
 The 140-character v4 TTS plan remains available but unrecorded. A subsequent
-Teacher & elder collection is now the default. Its 141-character script ends in
+Teacher & elder collection uses a 141-character script ending in
 a complete takeaway and prompts request unhurried, fully articulated endings.
 The owner requested one example per prompt, so it now compares Older teacher
 (the combined direction), Teacher and Elder, one take each. Other custom
@@ -216,6 +217,14 @@ asset provenance remain in `mentor-previews.json` and `older-teacher-preview.jso
 Earlier alternatives remain archived; no remix has been saved over the baseline.
 This authoring choice does not enable production narration. The later owner
 selection of Older teacher is recorded in the dialogue inventory below.
+
+The default **Walter examples** collection contains eight one-take examples from
+the audited game scripts, totaling 830 input characters and 853,821 MP3 bytes.
+They cover positive, negative, recovery, positional and human-model explanations.
+The exact saved identity, v4 request settings and hashes are retained in
+`walter-selected-voice.json`, `walter-contrasts-plan.json` and recording sidecars.
+This is an audition of the selected voice's TTS delivery, not automatic game
+narration or an authorization to record the complete inventory.
 
 ### Walter dialogue inventory (planning, not implementation)
 
