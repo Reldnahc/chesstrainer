@@ -4,6 +4,21 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Biscuit voice lock: all twenty cast voices locked — October 1, 2026
+
+The owner chose Biscuit's fifth-round **Talking puppy, soft**
+(`dog-puppy:talking-puppy-soft`). It was saved once from its generated preview with
+the same create-from-preview method and labels as the other nineteen, as
+**Fieldwork Biscuit - Talking puppy, soft**, and read back as saved ID
+`USjUS9C409xYJs8EVPAv`, equal to its generated voice ID. Character usage stayed at
+30,036; saved-voice slots went from 20 to 21 of 30. The lock entry's fingerprint and
+audio hash were recomputed with the casting service's formula and matched the
+studio choice. `locked-voices.json` now holds **20 locks**; no coach is pending.
+
+- Design `--check`: **60 verified**. Node tests: **60 passed**.
+  `test_cast_voice_auditions.py`: **58 passed**. Focused `casting-choices.spec.ts` and
+  `casting-locks.spec.ts`: **38 desktop/mobile checks passed**.
+
 ## Biscuit fifth audition round — October 1, 2026
 
 Before choosing from round four, the owner asked to hear prompts for the talking

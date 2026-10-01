@@ -2,10 +2,9 @@
 
 This is a development-only casting collection. `design-plan.json` has twenty
 approved coaches with three independently written voice directions each: **60
-active auditions**. Nineteen exact owner selections are saved in ElevenLabs and
+active auditions**. All twenty exact owner selections are saved in ElevenLabs and
 recorded in `locked-voices.json`, including Pip's second-round Warm Dublin
-companion. Biscuit is the only coach still without a voice and is on its fifth
-round of directions. A locked voice is an approved design, not a completed dialogue
+companion and Biscuit's fifth-round **Talking puppy, soft**. No coach is pending. A locked voice is an approved design, not a completed dialogue
 bank. The audition generator itself never saves provider voices.
 
 `manifest.json` contains the available retained previews. Partial coverage is
@@ -34,7 +33,10 @@ judged **Soft and wide-eyed** almost right. The fourth round's three close
 variations on it (**Soft and lighter**, **Soft and cosy** and **Soft and sparkly**)
 remain the reference in `archive/round-4-puppy.json`. Before choosing, the owner
 asked to hear briefs describing the talking puppy's own voice instead of an adult
-speaker; the active fifth round is **Talking puppy, soft**, **wiggly** and **shy**. Third-round Animated sidekick failed automatic alignment; it stays
+speaker; the active fifth round is **Talking puppy, soft**, **wiggly** and **shy**.
+The owner chose **Talking puppy, soft**. It was saved from its preview as **Fieldwork
+Biscuit - Talking puppy, soft** (`USjUS9C409xYJs8EVPAv`) with no character usage and
+locked with the same fingerprint, audio hash and provider-ID binding. Third-round Animated sidekick failed automatic alignment; it stays
 archived and the studio can still play such a take with the energy-driven mouth.
 Keep new rounds distinct; never overwrite accepted media or reuse a direction ID
 for a different voice. Any future unlock is an explicit owner decision.
