@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from "react";
 import { Play } from "lucide-react";
 import Button from "../../Button";
+import ChoiceGroup from "../../ChoiceGroup";
 import MotionSelect from "../../MotionSelect";
 import ReviewCoach from "../../ReviewCoach";
 import SourceLine from "../../SourceLine";
@@ -25,10 +26,15 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
 }) {
   const id = useId();
   const choices = useCastingChoices();
-  const [selectedCoachId, setSelectedCoachId] = useState(castAuditionCoaches[0]?.coachId);
-  const candidate = castAuditionCoaches.find(item => item.coachId === (coachId ?? selectedCoachId));
+  const [selectedCoachId, setSelectedCoachId] = useState<string>();
+  const [filter, setFilter] = useState<"pending" | "locked">("pending");
+  // Explicit listening wins over a late server response; only an untouched picker
+  // adopts the first pending coach when the durable approvals arrive.
+  const effectiveFilter = selectedCoachId ? choices.locks[selectedCoachId] ? "locked" : "pending" : filter;
+  const visibleCoaches = castAuditionCoaches.filter(item => !!choices.locks[item.coachId] === (effectiveFilter === "locked"));
+  const candidate = castAuditionCoaches.find(item => item.coachId === (coachId ?? selectedCoachId ?? visibleCoaches[0]?.coachId));
   const [directionId, setDirectionId] = useState<string>();
-  const savedDirection = candidate && choices.choices[candidate.coachId]?.directionId;
+  const savedDirection = candidate && (choices.locks[candidate.coachId]?.directionId ?? choices.choices[candidate.coachId]?.directionId);
   const direction = candidate?.directions.find(item => item.id === (directionId ?? savedDirection)) ?? candidate?.directions[0];
   const recording = candidate && direction && castRecording(candidate.coachId, direction.id);
   const recordingId = recording?.id;
@@ -44,7 +50,24 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
     });
     return () => { current = false; };
   }, [recordingId]);
-  if (!candidate || !direction) return <p role="status">No voice auditions are available for this coach yet.</p>;
+  function selectCoach(next: string) {
+    player.stop(); setSelectedCoachId(next); setDirectionId(undefined);
+  }
+  const navigation = <>
+    <CastingProgress choices={choices} onCoach={!coachId ? selectCoach : undefined} />
+    {!coachId && <ChoiceGroup label="Casting collection" value={effectiveFilter}
+      options={[{value: "pending", label: "Needs a voice"}, {value: "locked", label: "Locked voices"}]}
+      onChange={next => {player.stop(); setFilter(next); setSelectedCoachId(undefined); setDirectionId(undefined);}} />}
+  </>;
+  const heading = <header className="voice-audition-heading cast-audition-heading">
+    <h2 id={`${id}-heading`}>Cast voice auditions</h2>
+    <p>Listen to each direction, then choose a favorite or tell us to keep looking.</p>
+  </header>;
+  if (!candidate || !direction) return <section className="voice-audition cast-audition" aria-labelledby={`${id}-heading`}>
+    {heading}{navigation}
+    <p role="status">{coachId ? "No voice auditions are available for this coach yet." : effectiveFilter === "pending" ?
+      "Every coach has a locked voice. You can inspect them under Locked voices." : "No voices are locked yet."}</p>
+  </section>;
 
   const {coach} = candidate;
   const track = alignment?.id === recordingId ? alignment?.track : undefined;
@@ -59,32 +82,27 @@ export default function CastVoiceAudition({player, coachId, expression = "explai
   function play(inContext: boolean) {
     if (!recording || !track) return;
     // A late saved-choice load must not switch a preview the listener just started.
+    if (!coachId) setSelectedCoachId(coach.id);
     setDirectionId(direction!.id);
     void player.playSpeech({url: recording.url, recordingId: recording.id, voiceId: direction!.id,
       voiceName: direction!.label, scriptId: recording.id, coachName: coach.name,
       utterance: castAuditionUtterance(recording, expression)}, inContext);
   }
   return <section className="voice-audition cast-audition" aria-labelledby={`${id}-heading`} data-playback={current ? player.speechPlayback.state : "idle"}>
-    <header className="voice-audition-heading cast-audition-heading">
-      <h2 id={`${id}-heading`}>Cast voice auditions</h2>
-      <p>Listen to each direction, then choose a favorite or tell us to keep looking.</p>
-    </header>
-    <CastingProgress choices={choices} onCoach={!coachId ? next => {
-      player.stop(); setSelectedCoachId(next); setDirectionId(undefined);
-    } : undefined} />
+    {heading}{navigation}
     <div className="voice-audition-layout cast-audition-layout">
       <div className="voice-audition-controls cast-audition-controls">
-        {!coachId && <label>Cast coach<select value={coach.id} onChange={event => {
-          player.stop(); setSelectedCoachId(event.target.value); setDirectionId(undefined);
-        }}>
+        {!coachId && <label>Cast coach<select value={coach.id} onChange={event => selectCoach(event.target.value)}>
           {coachGroups.map(group => {
-            const members = castAuditionCoaches.filter(item => item.coach.group === group.id);
+            const members = visibleCoaches.filter(item => item.coach.group === group.id);
             return members.length ? <optgroup key={group.id} label={group.label}>
               {members.map(item => <option key={item.coachId} value={item.coachId}>{item.coach.name}</option>)}
             </optgroup> : null;
           })}
         </select></label>}
-        <label>Candidate direction<select value={direction.id} onChange={event => {player.stop(); setDirectionId(event.target.value);}}>
+        <label>Candidate direction<select value={direction.id} onChange={event => {
+          player.stop(); if (!coachId) setSelectedCoachId(coach.id); setDirectionId(event.target.value);
+        }}>
           {candidate.directions.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
         </select></label>
         {externalMotion === undefined && <MotionSelect id={`${id}-motion`} label="Candidate motion" value={motion} onChange={setMotion} />}

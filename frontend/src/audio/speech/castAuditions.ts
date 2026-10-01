@@ -49,7 +49,7 @@ export function castAuditionUtterance(recording: CastRecording, expression: Coac
     intensity: .4, priority: 50, interruptible: true, autoSpeakSuitable: false,
     trace: {renderer: "development-cast-voice-audition", variants: [], decisions: [
       "Manually requested fictional teaching example; not a chess report.",
-      "Unselected voice direction. Preview does not change account or production voice preferences.",
+      "Preview does not change account or production voice preferences.",
     ]},
   };
 }

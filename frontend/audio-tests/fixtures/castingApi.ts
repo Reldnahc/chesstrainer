@@ -2,7 +2,7 @@ import {readFileSync} from "node:fs";
 import {resolve} from "node:path";
 import type {Page} from "@playwright/test";
 import manifest from "../../src/audio/speech/cast-auditions/manifest.json" with {type: "json"};
-import type {CastingChoice, CastingRecording} from "../../src/audio/studio/useCastingChoices";
+import type {CastingChoice, CastingLock, CastingRecording} from "../../src/audio/studio/useCastingChoices";
 
 export function castingStore(initial: Record<string, CastingChoice> = {}) {
   const candidates: Record<string, Record<string, CastingRecording>> = {};
@@ -13,7 +13,7 @@ export function castingStore(initial: Record<string, CastingChoice> = {}) {
       audioSha256: source.sha256, generatedVoiceId: recording.generatedVoiceId,
     };
   }
-  return {choices: {...initial}, candidates, revision: 0,
+  return {choices: {...initial}, candidates, locks: {} as Record<string, CastingLock>, revision: 0,
     writes: [] as {method: string; coachId: string; body: Record<string, unknown>}[]};
 }
 export type CastingStore = ReturnType<typeof castingStore>;
@@ -25,11 +25,15 @@ export async function mockCastingApi(page: Page, store = castingStore()) {
     const method = request.method();
     const coachId = decodeURIComponent(new URL(request.url()).pathname.split("/")[3] ?? "");
     if (method === "GET") {
-      await route.fulfill({json: {schemaVersion: 1, choices: store.choices, candidates: store.candidates}});
+      await route.fulfill({json: {schemaVersion: 1, choices: store.choices, candidates: store.candidates, locks: store.locks}});
       return;
     }
     const body = request.postDataJSON();
     store.writes.push({method, coachId, body});
+    if (store.locks[coachId]) {
+      await route.fulfill({status: 409, json: {error: {code: "choice_locked", message: "This voice is locked. Reload saved choices to inspect it."}}});
+      return;
+    }
     const candidate = store.candidates[coachId]?.[body.directionId];
     if (body.expectedRevision !== (store.choices[coachId]?.revision ?? null) ||
         method === "PUT" && body.status === "selected" && body.expectedRecordingFingerprint !== candidate?.fingerprint) {

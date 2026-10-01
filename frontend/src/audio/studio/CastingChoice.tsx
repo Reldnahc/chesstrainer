@@ -17,6 +17,7 @@ export default function CastingChoice({coachId, coachName, direction, directions
 }) {
   const id = useId();
   const choice = choices.choices[coachId];
+  const lock = choices.locks[coachId];
   const [note, setNote] = useState(choice?.note ?? "");
   const [dirty, setDirty] = useState(false);
   useEffect(() => {
@@ -32,6 +33,14 @@ export default function CastingChoice({coachId, coachName, direction, directions
   async function reset() {
     if (await choices.write(coachId, null)) {setNote(""); setDirty(false);}
   }
+  if (lock) return <section className="casting-choice" aria-labelledby={`${id}-heading`}>
+    <div className="casting-choice-heading"><h3 id={`${id}-heading`}>Your choice for {coachName}</h3></div>
+    <p className="casting-choice-status" role="status">Locked: {lock.label}</p>
+    <p className="cast-audition-note">This voice is saved for {coachName}. Its dialogue bank has not been recorded yet.</p>
+    {lock.stale && <Notice appearance="inline" tone="error" announcement="alert">
+      {lock.staleReason ?? "The locked recording is unavailable. Its saved voice remains locked."}
+    </Notice>}
+  </section>;
   return <section className="casting-choice" aria-labelledby={`${id}-heading`}>
     <div className="casting-choice-heading">
       <h3 id={`${id}-heading`}>Your choice for {coachName}</h3>
