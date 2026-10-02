@@ -15,7 +15,7 @@ export async function captureSpeech(page: Page) {
     const arrayBuffer = Response.prototype.arrayBuffer;
     Response.prototype.arrayBuffer = async function () {
       const bytes = await arrayBuffer.call(this);
-      if (this.url.includes(".mp3")) assets.set(fingerprint(bytes), this.url);
+      if (/\.(?:mp3|opus)(?:\?|$)/.test(this.url)) assets.set(fingerprint(bytes), this.url);
       return bytes;
     };
     const decode = BaseAudioContext.prototype.decodeAudioData;

@@ -43,7 +43,7 @@ export const alien: CoachPersonality = {
       {observation: "Two candidate moves, two very different outcomes.", fact: "The {motif} belonged to {best}, not to this move.", consequence: "{detail}"},
     ],
     cause_abandoned_defender: [{observation: "A convincing move on its own, yet it breaks a connection.", fact: "{move} draws off the only unpinned defender of {side}'s {piece} on {square}.", consequence: "{opponent} can reply {reply}, capturing it."}],
-    cause_opponent_threat_recognition: [{observation: "The important move here came from the other side.", fact: "The opponent's previous move set up an attack on {side}'s {piece} on {square}, and {move} leaves it standing there.", consequence: "{opponent} can reply {reply}, capturing it."}],
+    cause_opponent_threat_recognition: [{observation: "The important move here came from the other side.", fact: "The opponent's preceding move set up an attack on {side}'s {piece} on {square}, and {move} leaves it standing there.", consequence: "{opponent} can reply {reply}, capturing it."}],
     cause_avoiding_bad_trades: [{observation: "An exchange is only finished once the recapture is counted.", fact: "{move} gives up {side}'s {piece} in exchange for a {captured}.", consequence: "{opponent} can recapture with {reply}."}],
     sacrifice: [
       {observation: "The material looks lost, and yet it is not.", fact: "The sacrifice can be accepted and still stands."},
