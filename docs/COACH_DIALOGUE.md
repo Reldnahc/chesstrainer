@@ -283,6 +283,6 @@ a voice-bank transcript requires a replacement whole audio file, provenance and
 regenerated mouth timing before its active manifest is updated. The writing and
 recording passes must be reviewed together, but they are distinct artifacts.
 The [Walter spoken revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
-and [Rivet spoken revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+and Rivet spoken revisions ([wording](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json), [distinct voice](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json))
 record approved examples and the reasoning behind them; they are not additional
 runtime dialogue generators.

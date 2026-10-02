@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "Issue: a fork setup becomes available to the other side. Attacker count: one. Exposed targets: multiple."
+    },
+    "takeId": null
+  },
+  "requestHash": "7489715fa2ef22168bace89e0d9c602625520450585e2c53b231646db1bd877d",
+  "recordedAt": "2026-10-02T16:31:44.060Z",
+  "sha256": "42f375184e8ff241e3d5544d8f8e0a3273e9f624d2572c5b4e0c65e77b94b77a",
+  "bytes": 25031,
+  "requestId": "KYlAjNBNHD9oKAlbuU5t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d9b71544226c2169aa3645dc1709c96af4bcdbf2059cffb762adbdb66c5f7ded",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

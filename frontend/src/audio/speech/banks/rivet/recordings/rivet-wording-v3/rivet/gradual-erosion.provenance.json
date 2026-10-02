@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "The damage is cumulative. Concession count: several small ones, this move included."
+    },
+    "takeId": null
+  },
+  "requestHash": "fce5951847928e3e2adcf64039415ee588870706ef5b769add80bee3723a7a02",
+  "recordedAt": "2026-10-02T16:33:33.558Z",
+  "sha256": "70b1f7072d7f6e537b92a05e414c135a0331a7cbd0fd2c00faebc5946b91cf41",
+  "bytes": 19291,
+  "requestId": "tv3jVaJlBaL7fxYRGA5r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c00472a03805d9e9fc5af099770bc5319e6babafa302d12aa2899b08929694d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

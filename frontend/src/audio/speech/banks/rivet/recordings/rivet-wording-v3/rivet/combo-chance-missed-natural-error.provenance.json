@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-chance-missed-natural-error",
+      "label": "Combo chance missed natural error",
+      "text": "Opportunity missed: the chance supplied by the opponent's previous move goes unused. Human-model classification: natural. Engine search: a stronger reply exists."
+    },
+    "takeId": null
+  },
+  "requestHash": "293f26193884d49d2011b3408d08c1d87c03533926839ac0480dacaf0304b294",
+  "recordedAt": "2026-10-02T16:41:25.128Z",
+  "sha256": "a09065b022dd959bead547a2d15ca96aec3ba55b36a0a41c4e06cff30e70061b",
+  "bytes": 38219,
+  "requestId": "yy72Uav74djXKmkn7stY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ccd3aba4ec7053b9b64662edfb4015d9cb6aee576b21420585d7d4ba3f44502a",
+    "bytes": 201918
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

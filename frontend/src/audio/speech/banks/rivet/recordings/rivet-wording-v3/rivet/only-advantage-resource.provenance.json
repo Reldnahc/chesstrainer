@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Advantage-preserving moves found: one, this one. Every other examined choice: losing."
+    },
+    "takeId": null
+  },
+  "requestHash": "39910503d8c00f51954e52734fee60d3f881dbfc3e9c91d5c26350095a8b7f61",
+  "recordedAt": "2026-10-02T16:33:07.945Z",
+  "sha256": "ecc5bc51931f355beb983669362a5e3836f2c6ef591c8ea34f555d017452afc5",
+  "bytes": 21828,
+  "requestId": "UQ742hT52zuPWEomkkNd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ea11559c7a93b3793f9cb8a91d4cac357c481b76ebf08a643f1c2d55745fea7",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

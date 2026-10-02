@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Input requested: the move your study material lists next."
+    },
+    "takeId": null
+  },
+  "requestHash": "808731216a55e41a2186d353c66c09a9d2b65bbf128c001224d5a102b2c2c96a",
+  "recordedAt": "2026-10-02T16:34:43.225Z",
+  "sha256": "c4e6fb5f49b7d6cff1aac219f9c87f7a8d9650300d4683500c7c511a600202a2",
+  "bytes": 13536,
+  "requestId": "TGevhYRe390sbL4KjxSJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6bc5b47aafb823c4536db6b87ce075f279535017b614a0b2ac6fcd3f5a5fa61",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-positional-rook-open-actual-natural-strong",
+      "label": "Combo positional rook open actual natural strong",
+      "text": "Rook placement: a pawn-free file. Human-model output: natural. Engine output: strong; engine preference points elsewhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "afb9572e56433229bb3113e871121e2929ed33c8a37ac1859e5558f8135ef71d",
+  "recordedAt": "2026-10-02T16:38:45.302Z",
+  "sha256": "f9e35b91504ec2e920b36bae86c44638f0bdbbbe6a933efddfa6b27d8ea692d6",
+  "bytes": 29367,
+  "requestId": "DTfIKCV46ZZaHExCmn2X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75762f92c285677d9b595e6a7ea7aa0c12b4ffbd2dcadd6008595ad8863692ba",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The defender leaves its task. Guarded unit: captured next. Deflection demonstrated."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ec713ee0d4671acce16d015cdf4b98bcfab2a32b9f00a99e9357a7501c37c2e",
+  "recordedAt": "2026-10-02T16:34:16.573Z",
+  "sha256": "8c14b0cbf7574a39aa9a7295e2683a46e1ad36c37133f59a377765829583e6f6",
+  "bytes": 20426,
+  "requestId": "p9s148tPzqzRZeoZq2DD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22009142d21e9021544cc24541b0720e21bcb3f5e08513e9653562e638096ec2",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

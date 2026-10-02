@@ -1,0 +1,1773 @@
+{
+  "schemaVersion": 1,
+  "coachId": "robot",
+  "voiceId": "rivet",
+  "baseCommit": "ae095bc38ad680a656a1abeb75303f50e01e57cb",
+  "scriptCommit": "59556c33df4eb499491e1550d7eb34df68299962",
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "previousText": "Pattern: fork. One piece attacks several targets at once. Follow the shared attacker.",
+      "text": "Pattern: fork. Attacker count: one. Target count: several. Follow the shared attacker.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "previousText": "This offers the other side a way to set up a fork, attacking several targets with the same piece.",
+      "text": "Issue: a fork setup becomes available to the other side. Attacker count: one. Exposed targets: multiple.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-pin-played",
+      "previousText": "The mechanism is a pin to the king. Leaving the line would expose the king, so that movement is not legal.",
+      "text": "Mechanism detected: king pin. Leaving the line would expose the king, so that movement is not legal.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "previousText": "The other side has a chance to use a pin to the king. The pinned piece cannot leave that line and expose its king.",
+      "text": "Alert: the other side gains access to a king pin. Constraint: a pinned piece is held on that line by its king.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-pin-missed",
+      "previousText": "An alternative made use of a pin to the king. The pinned piece could not leave the line and expose its king.",
+      "text": "Missed pattern: a pin to the king, available with an alternative. Constraint it would have set: pinned piece locked to its line.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-skewer-played",
+      "previousText": "Pattern: skewer. Moving the front piece exposes the piece behind it along the same line.",
+      "text": "Pattern: skewer. Front unit displaced; rear unit left open on that line.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "previousText": "This offers the other side a route to a skewer. Moving the front piece could expose another piece behind it.",
+      "text": "Alert: skewer geometry now available to the other side. Front unit moves; rear unit becomes reachable.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "previousText": "A stronger move offered a skewer. The front piece would move aside, exposing the piece behind it.",
+      "text": "Missed pattern: skewer. A stronger move contained it. Front unit forced aside; rear unit exposed.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "previousText": "The idea is to capture a defender. Identify what it protects, then compare the position without it.",
+      "text": "Objective: capture the defender. Identify what it protects, then compare the position without it.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "previousText": "The other side has a chance to capture a defender. What it guards could then lose that protection.",
+      "text": "Alert: one defender has become a capture target for the other side. What it guards could then lose that protection.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "previousText": "The pattern is back-rank mate. The king's own pieces block its escape. Follow how the attack reaches it.",
+      "text": "The pattern is back-rank mate. Escape squares: occupied by the king's own pieces. Follow how the attack reaches it.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "previousText": "The other side has a route to back-rank mate. The king's own pieces form the barrier to escape.",
+      "text": "Alert: back-rank mate route open for the other side. Escape barrier: the king's own pieces.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "previousText": "The objective is promotion. Follow the pawn's route to the last rank, where it becomes a new piece.",
+      "text": "The objective is promotion. Track the pawn's path to the last rank. Output there: a new piece.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "previousText": "This offers the other side a path to promotion. Follow the pawn that could reach the last rank.",
+      "text": "Issue: a promotion route is now open for the other side. Follow the pawn that could reach the last rank.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "previousText": "The other side has a discovered-attack opportunity. Moving one piece aside can uncover a threat from another.",
+      "text": "Alert: discovered-attack geometry unlocked for the other side. One piece steps aside; a hidden attacker activates.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "previousText": "Another move offered a discovered attack. Moving the blocker would uncover a threat from a different piece.",
+      "text": "Missed pattern: a discovered attack, available with another move. Moving the blocker would uncover a threat from a different piece.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "previousText": "The idea combines two attacks at once. Track how the attacks work together.",
+      "text": "Mechanism: double attack, two threats active together. Track how the two threat vectors interact.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "previousText": "This gives the other side a chance to combine two attacks at once. Both attacks need attention.",
+      "text": "Issue: the other side gains a double-attack option. Both attacks need attention.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "previousText": "A stronger move offered two attacks at once. This move misses that combined threat.",
+      "text": "Missed pattern: a double attack, available with a stronger move. Combined threat count in this move: below that.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-deflection-played",
+      "previousText": "Pattern: deflection. Draw a defender away from its task, then use the gap it leaves.",
+      "text": "Pattern: deflection. Step one: draw a defender off its task. Step two: use the gap.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "previousText": "The other side has a chance to draw a defender away. Its original task could then go unattended.",
+      "text": "Alert: defender diversion possible for the other side. Its original task could then go unattended.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "previousText": "Another move offered a deflection, drawing a defender away from its task. That opportunity was missed.",
+      "text": "Missed pattern: deflection, available with another move. Defender task left undisturbed.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "previousText": "The idea is to capture an undefended piece. Locate the loose target before evaluating the capture.",
+      "text": "Objective: take a piece with zero guards. Locate the loose target before evaluating the capture.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "previousText": "The other side has a chance to capture an undefended piece. Check which piece could be left without protection.",
+      "text": "Issue: an undefended piece is now capturable by the other side. Check which piece could be left without protection.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-development-alternative",
+      "previousText": "The alternative would develop a minor piece from its starting square.",
+      "text": "Alternative output: development of one minor piece off its home square.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "previousText": "The rook now occupies an open file. There are no pawns of either color on that file.",
+      "text": "The rook now occupies an open file. Pawn count on that file: zero, for both colors.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "previousText": "The alternative would leave a rook on a semi-open file. Enemy pawns would remain there, but no friendly pawns.",
+      "text": "Alternative output: a rook on a file holding enemy pawns and none of its own. Enemy pawns would remain there, but no friendly pawns.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "positional-passed-actual",
+      "previousText": "The position now contains a passed pawn. No enemy pawn lies ahead on its file or the neighboring files.",
+      "text": "Passed pawn registered. Enemy pawns able to block or capture it: zero.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-passed-alternative",
+      "previousText": "The alternative would leave a passed pawn, with no enemy pawn ahead on its file or either neighboring file.",
+      "text": "Alternative output: a passed pawn. Enemy pawns able to block or capture it: zero.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "previousText": "The pawn was already passed. This move advances it. Compare its new position with the old one.",
+      "text": "Passed pawn, prior status confirmed. This move pushes it one square nearer the last rank. Compare its new position with the old one.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "previousText": "The alternative would advance the pawn that was already passed. Compare its destination on the board.",
+      "text": "Alternative output: one more step for the pawn that was already passed. Compare its destination on the board.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "previousText": "The alternative would leave an isolated pawn, with no friendly pawn on either neighboring file.",
+      "text": "Alternative output: an isolated pawn. Adjacent-file friendly pawns: zero.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "previousText": "The alternative would leave a piece undefended. That alone would not prove a winning capture.",
+      "text": "Alternative output: one undefended piece. That alone would not prove a winning capture.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "previousText": "The king gains a legal flight square. Compare the positions to see which change made it available.",
+      "text": "King flight squares: plus one. Compare the positions to see which change made it available.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-castling-actual",
+      "previousText": "The king castles. King and rook both change position.",
+      "text": "Castling executed. King and rook both change position.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "positional-castling-alternative",
+      "previousText": "The alternative was to castle. It would relocate the king and rook together.",
+      "text": "Unused option: castling. It would relocate the king and rook together.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "previousText": "This capture breaks the bishop pair. The side losing that bishop no longer has a bishop for each square color.",
+      "text": "Bishop pair status: broken by this capture. Square colors covered by that side's bishops: one.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "previousText": "The alternative would capture a bishop and break the opposing bishop pair.",
+      "text": "Alternative output: one bishop captured, opposing pair dissolved.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "previousText": "The alternative would leave doubled pawns, with pawns of the same color sharing a file.",
+      "text": "Alternative output: a file holding two pawns of a single color.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "allowed-mate",
+      "previousText": "This move allows forced checkmate. Trace the attack to find where the defense fails.",
+      "text": "Alert: forced checkmate sequence detected for the other side. Trace the attack to find where the defense fails.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "sound-sacrifice",
+      "previousText": "Sacrifice checked. Accepting the offered material does not refute it in the examined line.",
+      "text": "Sacrifice checked. Acceptance test in the examined line: passed.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "only-playable-move",
+      "previousText": "This was the only playable move found. The other choices examined were losing.",
+      "text": "Playable moves found: one, this one. Every other examined choice: losing.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "only-advantage-resource",
+      "previousText": "This was the only move found that preserved the advantage. The other choices examined were losing.",
+      "text": "Advantage-preserving moves found: one, this one. Every other examined choice: losing.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "reply-check",
+      "previousText": "The strongest reply gives check. Responding to the threat to the king takes priority.",
+      "text": "Top reply detected: check. Responding to the threat to the king takes priority.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "stronger-alternative",
+      "previousText": "The engine prefers another move. Compare its replies on the board.",
+      "text": "Engine preference: a different move. Compare its replies on the board.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "best-supported-choice",
+      "previousText": "A strong choice among the moves the engine examined.",
+      "text": "Rating: strong, within the set of moves the engine examined.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "human-natural-error",
+      "previousText": "The human-move model rates this choice as natural. The engine finds a stronger move. Natural and best are different questions.",
+      "text": "Human-model tag: expected move. Engine output: a stronger move exists. Natural and best are different questions.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "human-unusual-strong",
+      "previousText": "Unusual to the human-move model. Strong according to the engine. No contradiction.",
+      "text": "Human-model label: unusual. Engine label: strong. No contradiction.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "human-hard-defense-missed",
+      "previousText": "The engine found a single playable defense. Model evidence suggests it was difficult to find. That resource was missed.",
+      "text": "The engine found a single playable defense. Discovery rate, per model evidence: low. That resource was missed.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "human-hard-defense-found",
+      "previousText": "Defense found. The position remains playable. The human-move model and examined alternatives suggest this resource was hard to find.",
+      "text": "Defense found. The position remains playable. Human-model and search difficulty score for this defense: high.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "human-natural-strong",
+      "previousText": "The human-move model considers this natural. The engine considers it strong, but prefers a different move.",
+      "text": "Human-model tag: natural. Engine tag: strong; preferred move differs.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "clock-low",
+      "previousText": "The recorded clock shows little time remaining before this move.",
+      "text": "Clock reading before this move: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "clock-fast",
+      "previousText": "The clock records a quick decision with time still available.",
+      "text": "Clock log: fast decision, time remaining.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "recognized-opening",
+      "previousText": "Opening sequence matched. This move belongs to a recognized line.",
+      "text": "Opening sequence matched. Line status: recognized.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "recovery",
+      "previousText": "Recovery confirmed. After the earlier setback, this move restores a playable position.",
+      "text": "Recovery confirmed. Setback offset. Playability back online.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "recovery-assisted",
+      "previousText": "A playable position is restored. Errors by the other side helped make this recovery possible.",
+      "text": "A playable position is restored. Contributing factor: errors by the other side.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "support-restored",
+      "previousText": "Protection restored. The piece left unguarded earlier has support again.",
+      "text": "Protection restored. Defender assigned to the previously unguarded piece.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "gradual-erosion",
+      "previousText": "The damage is cumulative. This move is part of several small concessions that worsened the position together.",
+      "text": "The damage is cumulative. Concession count: several small ones, this move included.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "advantage-converted",
+      "previousText": "The reviewed moves preserve the advantage through the recorded win. Follow that stretch to examine the conversion.",
+      "text": "Conversion log: advantage maintained across the reviewed moves, ending in the recorded win. Follow that stretch to examine the conversion.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "saved-history-recurrence",
+      "previousText": "A matching issue appears in other saved games. Compare those examples with this one.",
+      "text": "Pattern match: same issue logged in other saved games. Compare those examples with this one.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "mate-finished",
+      "previousText": "Checkmate confirmed. The king has no legal escape. Attack complete.",
+      "text": "Checkmate confirmed. Legal king moves remaining: zero. Attack complete.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "mate-defense-ended",
+      "previousText": "Checkmate confirmed. The king has no legal escape. Review the earlier defense for an intervention point.",
+      "text": "Checkmate confirmed. King escape squares available: none. Review the earlier defense for an intervention point.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "previousText": "After this move, the saved engine analysis gives the other side a forced checkmate.",
+      "text": "Saved engine analysis, post-move: forced-mate flag raised for the other side.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "previousText": "Move accepted for this exercise. The displayed moves do not establish a clear tactical explanation.",
+      "text": "Exercise status: accepted. The displayed moves do not establish a clear tactical explanation.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "previousText": "Move not accepted for this exercise. A clear tactical reason is not established by the displayed moves.",
+      "text": "Exercise status: not accepted. A clear tactical reason is not established by the displayed moves.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "previousText": "Practice recorded. The review schedule is unchanged.",
+      "text": "Practice recorded. Schedule change: none.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "previousText": "Promotion completed. The pawn reaches the last rank and becomes a new piece.",
+      "text": "Promotion completed. Pawn converted to a new piece at the last rank.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "previousText": "Promotion completed, with check. The threat to the king must be answered.",
+      "text": "Promotion completed, with check. Required next action: answer the check.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "previousText": "Promotion and checkmate. The king has no legal escape.",
+      "text": "Promotion and checkmate. King moves available: zero.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "previousText": "The pawn promotes. The resulting position also removes the check against its king.",
+      "text": "Promotion executed. The resulting position also removes the check against its king.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "previousText": "The pawn captures on the last rank and promotes. Capture and promotion completed.",
+      "text": "Pawn capture executed at the last rank, followed by promotion. Both actions completed.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "previousText": "The pawn captures and promotes on the last rank. The move also gives check.",
+      "text": "Pawn capture, then promotion on the last rank. Check is included in the same move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "previousText": "The king castles, and the rook relocates. This move also gives check.",
+      "text": "Castling executed: king shifted two squares, rook transferred beside it. Check status: delivered by the same move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "previousText": "The king castles, and the rook relocates. Checkmate: the opposing king has no legal escape.",
+      "text": "Castling executed: king shifted two squares, rook transferred beside it. Checkmate: opposing king moves available, zero.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "previousText": "Follow the fork: one piece attacks several targets, then captures one. The example also shows a net material gain.",
+      "text": "Fork sequence: single attacker, multiple targets, one captured. Net material balance in the example: positive.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "previousText": "The indicated capture is illegal because of the pin to the king. Leaving the line would expose the king.",
+      "text": "The indicated capture is illegal because of the pin to the king. Line exit would leave the king in check.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "previousText": "The attacked piece is pinned to its king. Its escape is restricted to moves that do not expose the king.",
+      "text": "Attacked unit status: king-pinned. Its escape is restricted to moves that do not expose the king.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "previousText": "The defenders cannot recapture there: doing so would expose their king. The shown line yields a material gain.",
+      "text": "The defenders cannot recapture there: doing so would expose their king. Line result: material gain.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "previousText": "The pinned piece cannot leave the line and expose its king. Follow the moves to see it captured.",
+      "text": "Pinned piece status: locked to the line by its king. Follow the moves to see it captured.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "previousText": "The king leaves the line to escape check. The same attacker then captures the piece behind it in this example.",
+      "text": "The king leaves the line to escape check. Example result: the same attacker collects the unit behind it.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "previousText": "The defender leaves its task. The piece it was guarding is then captured. Deflection demonstrated.",
+      "text": "The defender leaves its task. Guarded unit: captured next. Deflection demonstrated.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "previousText": "Moving the blocker opens an attack from another piece. That piece makes the capture along the new line.",
+      "text": "The blocker moves, and the piece behind it gains an open attack line. Capture executed along that line.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "previousText": "The moved piece attacks a target while another attacks along the opened line. That second piece captures its target in this example.",
+      "text": "Attack vector one: the moved piece. Attack vector two: the line it opened. Example outcome: target collected by the second attacker.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "previousText": "Follow the promotion. This example also establishes a net material gain for the promoting side.",
+      "text": "Follow the promotion. Example balance for the promoting side: material up.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "previousText": "Before selecting a move, check which friendly pieces can be captured without a useful recapture.",
+      "text": "Pre-move scan: list friendly pieces that can be captured without a useful recapture.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-cue-fork",
+      "previousText": "Check forcing moves that attack two valuable targets at once. Track the shared attacker.",
+      "text": "Scan forcing moves for one piece with two valuable targets in range. Track the shared attacker.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "explanation-cue-pin",
+      "previousText": "Before moving a pinned piece, identify what lies behind it: the king or a more valuable piece.",
+      "text": "Pre-move scan for a pinned piece: identify what lies behind it. Possible values: king, or higher-value piece.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "previousText": "Inspect the lines that open when a blocking piece moves.",
+      "text": "Pre-move scan: for each blocking piece that moves, register the opened lines.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "previousText": "Check whether a forcing exchange draws a defender away from another target.",
+      "text": "Test each forcing exchange: does it pull a defender off a second target?",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "previousText": "The saved answers set the exercise's acceptance rule. A different legal move is not automatically bad chess.",
+      "text": "The saved answers set the exercise's acceptance rule. Moves outside that list are not flagged as bad chess by default.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "previousText": "These moves demonstrate play against strong replies. Strong does not mean every reply is forced.",
+      "text": "These moves demonstrate play against strong replies. Strong is not a synonym for forced.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "previousText": "Material changes apply only to the shown line, measured from its starting position. The written notes specify the piece values.",
+      "text": "Material scope: the shown line only, from the line's own start. The written notes specify the piece values.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "previousText": "The saved line establishes no simple tactical reason. Compare the replies directly; no positional cause has been inferred.",
+      "text": "Saved line scan: no simple tactical reason established. Compare the replies directly; positional cause: none inferred.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "previousText": "The saved answer policy governs this explanation. Its setting is recorded in the written notes.",
+      "text": "The saved answer policy governs this explanation. Setting location: the written notes.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "previousText": "Recall a move from the selected study material.",
+      "text": "Input requested: the move your study material lists next.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "opening-recall-rejected",
+      "previousText": "That move is outside the selected opening lines. Choose another move.",
+      "text": "Lookup failed: move absent from the selected opening lines. Choose another move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "previousText": "That move is outside the selected lines. Retry is available. This saved attempt does not change the updated study's review schedule.",
+      "text": "Lookup result: no match in the selected lines. Retry is available. Schedule impact for the edited study: none from this saved attempt.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "previousText": "That move is outside the selected lines. Retry is available. This retired position's review schedule remains unchanged.",
+      "text": "Lookup result: no match in the selected lines. Retry is available. Retired position: its review dates stay fixed.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "puzzle-error",
+      "previousText": "Reload the saved session before submitting another move.",
+      "text": "Saved session reload required before the next move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "puzzle-playback",
+      "previousText": "The board is playing back the verified line.",
+      "text": "Playback running: the verified line, move by move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "puzzle-rejected",
+      "previousText": "That move does not solve the puzzle. Earlier correct moves remain saved.",
+      "text": "Move rejected: not the puzzle solution. Prior correct moves: stored.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "game-unavailable",
+      "previousText": "The engine has not supplied enough information to explain this position.",
+      "text": "Engine data is insufficient for an explanation here.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "game-review-paused",
+      "previousText": "Review paused. Resume it below, or move a piece to explore the position.",
+      "text": "Review paused. Resume below, or move a piece to probe the position.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "game-browse-instructions",
+      "previousText": "Select a move to review it, or move a piece to explore an alternative.",
+      "text": "Select a move to inspect it, or move a piece to run a test line.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "book-opening-entry-1",
+      "previousText": "This is a recognized book move.",
+      "text": "Opening database match: confirmed.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "book-opening-entry-3",
+      "previousText": "The move belongs to a recorded opening line.",
+      "text": "Opening record: match.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "book-opening-follow-2",
+      "previousText": "This is another book move.",
+      "text": "Book move, sequence continuing.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-allowed-mate-with-human-natural-error",
+      "previousText": "Issue: forced mate for the opponent. The human model finds this move natural.",
+      "text": "Issue: forced mate for the opponent. Human-model classification: natural.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combined-missed-mate-with-human-natural-error",
+      "previousText": "Available finish: forced checkmate. This move lets it go. Human-model reading: natural.",
+      "text": "Available finish: forced checkmate. Status after this move: finish not taken. Human-model reading: natural.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-immediate-capture-with-human-natural-error",
+      "previousText": "Immediate reply: the opponent can capture. The human model finds this choice natural.",
+      "text": "Immediate reply: the opponent can capture. Human-model classification: natural.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-evaluation-loss-with-human-natural-error",
+      "previousText": "Engine comparison: this move scores below the best option. Human-model signal: natural choice. A plausible move can still be weaker.",
+      "text": "Engine comparison: this move scores below the best option. Human-model flag set: natural. A plausible move can still be weaker.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combined-tactic-fork-allowed-with-human-natural-error",
+      "previousText": "Issue: a fork is available to the opponent. One piece could attack several targets. The human model finds this choice natural; the tactical cost is still there.",
+      "text": "Issue: a fork is available to the opponent. One piece could attack several targets. Human-model tag: expected move. Tactical cost: unchanged.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-tactic-skewer-allowed-with-human-natural-error",
+      "previousText": "Issue: the opponent has a skewer opportunity. Moving the front piece could expose the piece behind it. Natural to the human model. Costly on the board.",
+      "text": "Issue: the opponent has a skewer opportunity. Front unit displaced, rear unit open. Natural to the human model. Costly on the board.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-only-playable-move-with-human-hard-find",
+      "previousText": "Only this move stayed playable among those searched. The other examined choices were losing. Human-model evidence suggests a difficult find.",
+      "text": "Only this move stayed playable among those searched. The other examined choices were losing. Locate probability, per human-model evidence: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-only-advantage-resource-with-human-hard-defense-found",
+      "previousText": "This difficult resource retained the advantage. It was the only move found to do so; the other examined choices were losing.",
+      "text": "This difficult resource retained the advantage. Count of moves found that did so: one. The other examined choices were losing.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-only-advantage-resource-with-human-hard-find",
+      "previousText": "Advantage retained by this searched move only. The other examined choices were losing. Human-model evidence suggests a difficult find.",
+      "text": "Advantage retained by this searched move only. The other examined choices were losing. Human-model detection estimate: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-unusual-strong",
+      "previousText": "Fork resource found. The same piece can attack several targets. The human model finds the choice unusual; the engine finds it strong.",
+      "text": "Fork resource found. Attacker count: one. Target count: several. Human-model reading: unusual. Engine rating: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-tactic-fork-played-with-human-hard-find",
+      "previousText": "Resource: a fork. One piece can threaten several targets at once. The engine ranks this move best; the human model and searched alternatives suggest it was difficult to find.",
+      "text": "Resource: a fork. Threat vectors from one piece: several. The engine ranks this move best. Human-model and search data both flag it as hard to locate.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-unusual-strong",
+      "previousText": "Pin resource found. A piece pinned to its king cannot leave the line and expose it. The human model calls the choice unusual; the engine supports its strength.",
+      "text": "Pin resource found. Pinned unit status: fixed to the line, king behind it. Input A, human model: unusual. Input B, engine: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combined-tactic-pin-played-with-human-hard-find",
+      "previousText": "Mechanism: a pin to the king. The pinned piece cannot leave that line and expose its king. This is the engine's best move; model evidence and searched alternatives indicate a difficult find.",
+      "text": "Mechanism: a pin to the king. Line exit for the pinned piece: blocked, since its king sits behind. Engine rank: best. Model evidence and searched alternatives indicate a difficult find.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-cause-abandoned-defender-natural-error",
+      "previousText": "Cause: the only effective defender moves away. Result: the opponent can capture the piece it guarded. The human model finds this choice natural.",
+      "text": "Cause: the only effective defender moves away. Result: the opponent can capture the piece it guarded. Human-model flag set: natural.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-cause-abandoned-defender-hard-defense-missed",
+      "previousText": "The only effective defender moves away, leaving the guarded piece available for capture. The only playable defense found was missed. Human-model evidence suggests a difficult resource.",
+      "text": "The only effective defender moves away, leaving the guarded piece available for capture. Single playable defense: missed. Human-model evidence suggests a difficult resource.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-cause-opponent-threat-recognition-hard-defense-missed",
+      "previousText": "Threat unanswered. The opponent can capture the piece left under threat. The only playable defense found was missed. Human-model evidence suggests it was difficult to find.",
+      "text": "Threat unanswered. The opponent can capture the piece left under threat. Single playable defense: missed. Human-model data: that defense is rarely located.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-cause-avoiding-bad-trades-natural-error",
+      "previousText": "Exchange: the opponent can recapture a more valuable piece. The human model finds the initial capture natural. Count both sides.",
+      "text": "Exchange: the opponent can recapture a more valuable piece. Human-model reading on the first capture: natural. Count both sides.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-cause-avoiding-bad-trades-hard-defense-missed",
+      "previousText": "The first capture invites a recapture of a more valuable piece. The only playable defense found was missed. Human-model evidence suggests a difficult find. Both halves of the exchange count.",
+      "text": "Exchange audit: capture one, then a recapture that collects a more valuable piece. Single playable defense: missed. Locate probability, per human-model evidence: low. Both halves of the exchange count.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-fork-played-natural-best",
+      "previousText": "Fork resource found. One piece can attack several targets. The human model considers the choice natural; the engine ranks it best. One attacker, several problems for the other side.",
+      "text": "Fork resource found. Attacker count: one. Human-model output: typical choice. Engine rank: best. One attacker, several problems for the other side.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-fork-played-natural-strong",
+      "previousText": "Resource: a fork, with several targets for the same piece. Natural to the human model and strong according to the engine. A different move still gets the engine's first choice.",
+      "text": "Resource: a fork, with several targets for the same piece. Human-model index: natural. Engine index: strong. Engine first choice: a different move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-fork-allowed-hard-defense-missed",
+      "previousText": "Issue: the opponent can work toward a fork, attacking several targets with one piece. The search found only one playable defense. It was missed; human-model evidence suggests a difficult find.",
+      "text": "Issue: the opponent can work toward a fork, attacking several targets with one piece. Playable defenses found: one. Defense status: missed. Human-model detection estimate: low.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-tactic-pin-played-natural-strong",
+      "previousText": "Pin resource found. A piece pinned to its king has a legal restriction: it cannot expose the king. The model finds the choice natural; the engine finds it strong, while preferring another move.",
+      "text": "Pin resource found. A piece pinned to its king has a legal restriction: it cannot expose the king. Human-model output: typical choice. Engine status: strong, with another move preferred.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-pin-allowed-natural-error",
+      "previousText": "Issue: a pin to the king is available to the opponent. A pinned piece cannot leave that line and expose its king. The human model finds this choice natural, despite the tactical problem.",
+      "text": "Issue: a pin to the king is available to the opponent. Constraint: the pinned piece stays locked to that line by its king. The human model finds this choice natural, despite the tactical problem.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-pin-allowed-hard-defense-missed",
+      "previousText": "Issue: the opponent has a chance to use a pin to the king. The only playable defense found by the search was missed. Human-model evidence suggests it was difficult to find.",
+      "text": "Issue: a pin to the king is available to the opponent. Search result: one playable defense, missed. Discovery rate, per the human model: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-skewer-played-hard-find",
+      "previousText": "Resource: a skewer. Moving the front piece can expose the piece behind it along the same line. The engine ranks this move best; model evidence and searched alternatives indicate a difficult find.",
+      "text": "Resource: a skewer. Front unit displaced; rear unit open on the same line. The engine ranks this move best; model evidence and searched alternatives indicate a difficult find.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-skewer-played-unusual-strong",
+      "previousText": "Skewer resource found. The front piece can move aside and expose a target behind it. Unusual to the human model, strong according to the engine.",
+      "text": "Skewer resource found. Front piece steps aside; rear target exposed. Probability per human model: low. Engine grade: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-skewer-played-natural-best",
+      "previousText": "Resource: a skewer. The threat reaches the rear piece when the front piece leaves the line. The human model finds the choice natural; the engine ranks it best.",
+      "text": "Resource: a skewer. The threat reaches the rear piece when the front piece leaves the line. Human-model classification: natural. Engine rank: best.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-skewer-played-natural-strong",
+      "previousText": "Skewer resource found: a front piece can move away and expose a rear target. The model finds this natural; the engine calls it strong, but puts another move first.",
+      "text": "Skewer resource found: a front piece can move away and expose a rear target. Human-model label: natural; the engine calls it strong, but puts another move first.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-skewer-allowed-hard-defense-missed",
+      "previousText": "This choice offers the opponent a skewer. Moving the front piece could expose the rear piece. The only playable alternative found was difficult to spot.",
+      "text": "This choice offers the opponent a skewer. Front unit forced aside, rear unit open. Only one playable alternative was found, and its detection difficulty is high.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-skewer-missed-natural-error",
+      "previousText": "Missed resource: a skewer. Moving the front piece could expose the target behind it. The human model finds the played choice natural; the stronger alternative offered that line attack.",
+      "text": "Missed resource: a skewer. Front piece forced off, rear target exposed. Human-model status on the played choice: natural. The stronger alternative offered that line attack.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-skewer-missed-hard-defense-missed",
+      "previousText": "Missed defense: a skewer resource. Moving the front piece could expose the one behind it. This was the only playable alternative found in the search; human-model evidence indicates a difficult find.",
+      "text": "Missed defense: a skewer resource. Front unit forced off the line, rear unit open. This was the only playable alternative found in the search; human-model evidence indicates a difficult find.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-hard-find",
+      "previousText": "Resource: capture the defender. Its removal can leave what it guards without that protection. The engine ranks this move best; the human model and searched alternatives suggest a difficult find.",
+      "text": "Resource: capture the defender. Its removal can leave what it guards without that protection. The engine ranks this move best. Difficulty flag: raised by the human model and the searched alternatives.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-unusual-strong",
+      "previousText": "Target: a defender. Capturing it can remove the protection it supplies. The human model finds this choice unusual; the engine finds it strong.",
+      "text": "Target: a defender. Capturing it can remove the protection it supplies. Human-model reading: unusual. Engine rating: strong.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-natural-best",
+      "previousText": "Resource: removing a defender by capture. What it protects could then lose that support. The human model considers this choice natural, and the engine ranks it best.",
+      "text": "Resource: removing a defender by capture. What it protects could then lose that support. Human-model tag: expected move. Engine rank: best.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-removing-defender-played-natural-strong",
+      "previousText": "A defender is the tactical target. Capture it, and the protection it supplies can disappear. Natural to the human model; strong according to the engine, which still prefers another move.",
+      "text": "A defender is the tactical target. Capture it, and the protection it supplies can disappear. Human-model index: natural. Engine index: strong. Engine first choice: a different move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-removing-defender-allowed-natural-error",
+      "previousText": "Issue: the opponent has a chance to capture a defender. Its removal could take away needed protection. The human model finds this choice natural; that lost protection is the tactical cost.",
+      "text": "Issue: the opponent has a chance to capture a defender. Its removal could take away needed protection. Human-model classification: natural. Tactical cost: the lost protection.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-removing-defender-allowed-hard-defense-missed",
+      "previousText": "Issue: the opponent can target a defender for capture. What it guards could lose protection. Only one alternative stayed playable in the search. It was missed; model evidence suggests a difficult find.",
+      "text": "Issue: the opponent can target a defender for capture. What it guards could lose protection. Only one alternative stayed playable in the search. Defense status: missed. Find-rate forecast: low.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-tactic-removing-defender-missed-hard-defense-missed",
+      "previousText": "Missed defense: a resource that captures a defender and removes its support. It was the only playable move found by the search. Human-model evidence suggests this was a difficult resource to find.",
+      "text": "Missed defense: a resource that captures a defender and removes its support. Search result: the sole playable move. Find-rate forecast: low.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-hard-find",
+      "previousText": "Resource: a route to back-rank mate. The pattern traps the king behind its own pieces. The engine ranks this move best; the human model and searched alternatives indicate a difficult find.",
+      "text": "Resource: back-rank mating route. Blockers in this pattern: the king's own pieces. The engine ranks this move best. Difficulty flag: raised by human-model and search data.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-unusual-strong",
+      "previousText": "Back-rank mating route found. In this pattern, the king's own pieces form the barrier to escape. The human model finds the move unusual; the engine finds it strong.",
+      "text": "Back-rank mating route found. Barrier to escape: the king's own pieces. Input A, human model: unusual. Input B, engine: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-natural-best",
+      "previousText": "Resource: back-rank mate. The pattern uses the king's own pieces to block escape. The human model sees a natural choice, and the engine ranks it best.",
+      "text": "Resource: back-rank mate. Escape squares blocked by the king's own pieces. Human-model tag: expected move. Engine rank: best.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-back-rank-played-natural-strong",
+      "previousText": "Back-rank mating route found. The pattern uses the king's own pieces to block escape. Natural to the human model and strong according to the engine; another move remains its first choice.",
+      "text": "Back-rank mating route found. Escape route status: blocked by the king's own pieces. Human-model index: natural. Engine index: strong. Engine first choice: a different move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-played-hard-find",
+      "previousText": "Objective: promotion. A pawn has a route toward the last rank and a new piece. The engine ranks this move best; model evidence and searched alternatives suggest it was hard to find.",
+      "text": "Objective: promotion. A pawn has a route toward the last rank and a new piece. The engine ranks this move best. Difficulty flag: raised by model evidence and searched alternatives.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-played-natural-best",
+      "previousText": "Objective: bring a pawn to the last rank and promote. This move offers a route toward it. The human model calls the choice natural; the engine ranks it best.",
+      "text": "Objective: pawn to the last rank, then promotion. This move offers a route toward it. Human-model flag set: natural. Engine rank: best.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-played-natural-strong",
+      "previousText": "Promotion is the tactical objective: a pawn reaching the last rank. The human model finds this choice natural, and the engine finds it strong. Its preferred move is still a different one.",
+      "text": "Promotion is the tactical objective: a pawn reaching the last rank. Human-model tag: expected move. Engine status: strong, with a different move preferred.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-allowed-natural-error",
+      "previousText": "Issue: an opposing pawn has a promotion opportunity. Reaching the last rank would turn it into a new piece. The human model finds this choice natural; the promotion threat remains.",
+      "text": "Issue: an opposing pawn has a promotion opportunity. Reaching the last rank would turn it into a new piece. Human-model tag: expected move. Promotion threat: active.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-allowed-hard-defense-missed",
+      "previousText": "Issue: a promotion route is available to the opponent. The pawn could reach the last rank. Only one searched alternative kept the position playable; model evidence suggests that missed defense was difficult to find.",
+      "text": "Issue: a promotion route is available to the opponent. Pawn destination: the last rank. Only one searched alternative kept the position playable; model evidence suggests that missed defense was difficult to find.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-promotion-awareness-missed-hard-defense-missed",
+      "previousText": "Missed defense: a resource built around promotion. A pawn could work toward the last rank. The search found no other playable move; human-model evidence suggests a difficult find.",
+      "text": "Missed defense: a resource built around promotion. A pawn could work toward the last rank. Other playable moves in the search: none. Locate probability, per human-model evidence: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-played-hard-find",
+      "previousText": "Resource: a discovered attack. Moving one piece aside can reveal an attack from another. The engine ranks this move best; the human model and searched alternatives suggest it was difficult to find.",
+      "text": "Resource: a discovered attack. Moving one piece aside can reveal an attack from another. The engine ranks this move best. Human-model and search data both flag it as hard to locate.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-played-unusual-strong",
+      "previousText": "Discovered-attack resource found. One piece can move aside and uncover the attacker behind it. Unusual to the human model, strong according to the engine.",
+      "text": "Discovered-attack resource found. Front piece steps aside; rear attacker released. Status check: human model reports unusual, engine reports strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-played-natural-strong",
+      "previousText": "Discovered-attack resource found: one piece can move aside to reveal another attacker. The model finds this choice natural; the engine finds it strong, with a different move ranked first.",
+      "text": "Discovered-attack resource found: front piece steps aside, hidden attacker released. Classifier outputs: natural from the human model, strong from the engine. Engine preference: another move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-allowed-natural-error",
+      "previousText": "Issue: the opponent has a discovered attack available. Moving one piece aside could uncover a threat from another. The human model finds the choice natural, despite that hidden threat.",
+      "text": "Issue: the opponent has a discovered attack available. Hidden attacker behind one piece, waiting for it to move. Human-model index: natural. Hidden threat: still present.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-allowed-hard-defense-missed",
+      "previousText": "Issue: a discovered-attack opportunity for the opponent. One piece could move aside and reveal another threat. The sole playable defense found by the search was missed; model evidence suggests a difficult find.",
+      "text": "Issue: a discovered-attack opportunity for the opponent. Hidden attacker: present. The sole playable defense found by the search was missed. Human-model detection estimate: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-discovered-attack-missed-hard-defense-missed",
+      "previousText": "Missed defense: a discovered-attack resource. One piece could move aside to uncover another's threat. Only that alternative stayed playable in the search. Human-model evidence indicates a difficult find.",
+      "text": "Missed defense: a discovered-attack resource. Front piece steps aside; the piece behind it gains a threat. Only that alternative stayed playable in the search. Human-model evidence indicates a difficult find.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-double-attack-played-hard-find",
+      "previousText": "Resource: a double attack. Two threats can arrive together and demand attention at once. The engine ranks this move best; the human model and searched alternatives suggest a difficult find.",
+      "text": "Resource: a double attack. Two threats can arrive together and demand attention at once. The engine ranks this move best. Human-model and search data both flag a hard find.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-double-attack-played-natural-best",
+      "previousText": "Resource: a double attack, bringing two threats into play together. The human model finds this choice natural; the engine ranks it best.",
+      "text": "Resource: a double attack, bringing two threats into play together. Human-model output: typical choice. Engine ranking: first place.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-double-attack-played-natural-strong",
+      "previousText": "Double-attack resource found. Two attacks could demand attention at the same time. The human model finds this natural, and the engine finds it strong. A different move remains the engine's first choice.",
+      "text": "Double-attack resource found. Two attacks could demand attention at the same time. Human-model index: natural. Engine status: strong. A different move remains the engine's first choice.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-double-attack-allowed-natural-error",
+      "previousText": "Issue: the opponent can work toward two attacks at once. That is the double-attack opportunity this move permits. The human model finds the choice natural; both potential threats still need an answer.",
+      "text": "Issue: the opponent can work toward two attacks at once. That is the double-attack opportunity this move permits. The human model tags the choice as expected; both potential threats still need an answer.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-double-attack-missed-hard-defense-missed",
+      "previousText": "Missed defense: a double-attack resource. Two threats could be created at once. It was the only playable alternative found by the search; human-model evidence suggests it was hard to find.",
+      "text": "Missed defense: a double-attack resource. Two threats could be created at once. It was the only playable alternative found by the search. Discovery rate, per the human model: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-deflection-played-hard-find",
+      "previousText": "Resource: deflection. A defender can be drawn away from its task, leaving a gap. The engine ranks this move best; model evidence and searched alternatives suggest a difficult find.",
+      "text": "Resource: deflection. A defender can be drawn away from its task, leaving a gap. The engine ranks this move best. Locate probability, per human-model and search evidence: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-deflection-played-unusual-strong",
+      "previousText": "Deflection resource found. A defender can be drawn away from the job it was doing. The human model finds the choice unusual; the engine finds it strong. The abandoned task is the target.",
+      "text": "Deflection resource found. A defender can be drawn away from the job it was doing. Human-model flag: unusual. Engine score: strong. The abandoned task is the target.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-tactic-deflection-played-natural-strong",
+      "previousText": "Deflection resource found. A defender could be pulled away from what it protects. The human model finds this choice natural, and the engine finds it strong while preferring a different move.",
+      "text": "Deflection resource found. A defender could be pulled away from what it protects. Human-model output: natural. Engine output: strong; engine preference points elsewhere.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-deflection-allowed-natural-error",
+      "previousText": "Issue: the opponent has a deflection opportunity. A defender could be drawn away from what it protects. The human model finds this choice natural; the unattended task is the tactical cost.",
+      "text": "Issue: the opponent has a deflection opportunity. Target: a defender's protective duty. Human-model classification: natural. Tactical cost: the unattended task.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-deflection-allowed-hard-defense-missed",
+      "previousText": "Issue: the opponent can work toward drawing a defender away from its task. The only playable defense found by the search was missed. Human-model evidence suggests that resource was difficult to find.",
+      "text": "Issue: the opponent can work toward drawing a defender away from its task. The only playable defense found by the search was missed. Human-model detection estimate for it: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-deflection-missed-natural-error",
+      "previousText": "Missed resource: deflection. Another move could draw a defender away from its protective task. The human model favors the played choice, but the chance to exploit that task was lost.",
+      "text": "Missed resource: deflection. Available with another move: pulling a defender off its duty. The human model favors the played choice, but the chance to exploit that task was lost.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-deflection-missed-hard-defense-missed",
+      "previousText": "Missed defense: a deflection resource. A defender could be drawn away from what it guards. Only that alternative stayed playable in the search; human-model evidence suggests it was difficult to find.",
+      "text": "Missed defense: a deflection resource. A defender could be drawn away from what it guards. Only that alternative stayed playable in the search. Find difficulty: high, per human-model data.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-played-unusual-strong",
+      "previousText": "Undefended-capture resource found. The target could be taken without a piece guarding it. Unusual to the human model, strong according to the engine.",
+      "text": "Undefended-capture resource found. Target guard count: zero. Probability per human model: low. Engine grade: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-played-natural-best",
+      "previousText": "Resource: an undefended capture. A loose piece could be taken. The human model finds the choice natural, and the engine ranks it best.",
+      "text": "Resource: an undefended capture. A loose piece could be taken. Human-model output: typical choice. Engine selection: this move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-played-natural-strong",
+      "previousText": "Undefended-capture resource found. The tactical target is a piece without protection. Natural to the human model and strong according to the engine; the engine still prefers another move.",
+      "text": "Undefended-capture resource found. Target guard count: zero. Classifier outputs: natural from the human model, strong from the engine. Engine preference: another move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-missed-natural-error",
+      "previousText": "Missed resource: an undefended capture. A stronger choice offered a way to take the loose piece. The human model finds the played move natural; the opportunity remains unused.",
+      "text": "Missed resource: an undefended capture. A stronger choice offered a way to take the loose piece. Human-model tag on the played move: expected. Opportunity status: unused.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-tactic-undefended-capture-missed-hard-defense-missed",
+      "previousText": "Missed defense: an undefended-capture resource. The loose piece could be taken. That alternative was the only playable move found by the search; human-model evidence suggests it was difficult to find.",
+      "text": "Missed defense: an undefended-capture resource. Loose piece: capturable. That alternative was the only playable move found by the search. Human-model data: that defense is rarely located.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-hanging-piece-allowed-natural-error",
+      "previousText": "Issue: the opponent has an undefended-capture opportunity. A piece could be taken without protection. The human model finds this choice natural; a loose target can still be expensive.",
+      "text": "Issue: the opponent has an undefended-capture opportunity. A piece could be taken without protection. Human-model flag set: natural. A loose target can still be expensive.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-tactic-hanging-piece-allowed-hard-defense-missed",
+      "previousText": "Issue: a loose piece could be captured by the opponent. The search found only one alternative that kept the position playable. It was missed; human-model evidence suggests a difficult defensive find.",
+      "text": "Issue: a loose piece could be captured by the opponent. The search found only one alternative that kept the position playable. Defense status: missed. Defensive find-rate forecast: low.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-positional-development-actual-hard-find",
+      "previousText": "A minor piece develops from its starting square. The human-move model and checked alternatives suggest this move was difficult to find.",
+      "text": "Development logged: one minor piece activated from home. Human-model and search data: hard to locate.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-development-actual-natural-best",
+      "previousText": "This develops a minor piece from its starting square. The human-move model considers the choice natural, and the engine ranks this exact move best.",
+      "text": "Development logged: one minor piece activated from home. The human-move model considers the choice natural, and the engine ranks this exact move best.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-development-actual-natural-strong",
+      "previousText": "A minor piece develops from its original square. Natural according to the human-move model; strong according to the engine, which still prefers a different move.",
+      "text": "Minor piece activated from its original square. Natural according to the human-move model; strong according to the engine, which still prefers a different move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-rook-open-actual-hard-find",
+      "previousText": "A rook stands on a file with no pawns of either color. The human-move model and examined alternatives suggest this move was difficult to find.",
+      "text": "Rook placement: pawnless file, both colors absent. Difficulty rating, per the human-move model and examined alternatives: high.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-rook-open-actual-unusual-strong",
+      "previousText": "Rook on an open file. No pawns of either color occupy it. The human model finds the choice unusual; the engine finds it strong.",
+      "text": "Rook on an open file. No pawns of either color occupy it. Status check: human model reports unusual, engine reports strong.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-positional-rook-open-actual-natural-strong",
+      "previousText": "This leaves a rook on a pawn-free file. The human-move model calls the choice natural. Engine result: strong, while preferring a different move.",
+      "text": "Rook placement: a pawn-free file. Human-model output: natural. Engine output: strong; engine preference points elsewhere.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-rook-semi-open-actual-hard-find",
+      "previousText": "Rook on a semi-open file. Enemy pawns present; friendly pawns absent. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "text": "Rook placement: half-open file. Enemy pawns present; friendly pawns absent. Difficulty index: high, from human-model and search data.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-rook-semi-open-actual-natural-best",
+      "previousText": "Semi-open file occupied. Enemy pawns remain on the rook's file; friendly pawns do not. The move is natural to the human model and best in the engine search.",
+      "text": "Half-open file occupied. Enemy pawns remain on the rook's file; friendly pawns do not. Human-model bit: natural. Engine selection: this move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-rook-semi-open-actual-natural-strong",
+      "previousText": "Semi-open file: enemy pawns remain on the rook's file, with no friendly pawns. The played move is natural to the human-move model and strong to the engine, which prefers an alternative.",
+      "text": "File reading: half-open, with enemy pawns and no friendly pawns. Human-model bit: natural. Engine index: strong. Engine first choice: a different move.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-positional-passed-actual-hard-find",
+      "previousText": "The move leaves a passed pawn, with no enemy pawn ahead on its file or neighboring files. The human-move model and examined alternatives suggest this was a hard move to find.",
+      "text": "Status: passed pawn. Enemy pawns able to stop it by pawn: zero. Find difficulty: high, per human-model and search data.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-positional-passed-actual-unusual-strong",
+      "previousText": "Passed pawn present. No enemy pawn lies ahead on its file or the neighboring files. The human model finds the choice unusual. The engine finds it strong.",
+      "text": "Passed pawn present. Blocking enemy pawns ahead: zero. Human-model reading: unusual. Engine rating: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-passed-actual-natural-best",
+      "previousText": "The position contains a passed pawn: no enemy pawn ahead on its file or either neighboring file. Move assessment: natural to the human model, best in the engine search.",
+      "text": "Passed pawn detected. Enemy pawns ahead on its file or the two beside it: zero. Move assessment: natural to the human model, best in the engine search.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-passed-actual-natural-strong",
+      "previousText": "A passed pawn is left with no enemy pawn ahead on its file or neighboring files. The human-move model rates the move natural; the engine finds it strong but prefers another move.",
+      "text": "Passed pawn left on the board. Blocking enemy pawns ahead: none. Human-model tag: natural. Engine tag: strong; preferred move differs.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-passer-advance-actual-hard-find",
+      "previousText": "The pawn was already passed. This move advances it. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "text": "Passed pawn, prior status confirmed. This move pushes it one square nearer the last rank. Difficulty index: high, from human-model and search data.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-passer-advance-actual-unusual-strong",
+      "previousText": "Passed pawn advanced. It was already passed before this move. The human model marks the choice unusual; the engine judges it strong.",
+      "text": "Passed pawn advanced. Prior status: already passed. Human-model flag: unusual. Engine score: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-passer-advance-actual-natural-strong",
+      "previousText": "The pawn was passed before the move. Now it advances. The human model considers the choice natural; the engine finds it strong but prefers another move.",
+      "text": "Passed pawn, prior status confirmed. Advance executed. Human-model forecast: expected. Engine status: strong, with another move preferred.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-isolated-actual-hard-find",
+      "previousText": "The move leaves an isolated pawn, without friendly pawns on neighboring files. The human-move model and examined alternatives suggest this was a difficult move to find.",
+      "text": "Status: isolated pawn. Friendly pawns on adjacent files: zero. Difficulty rating, per the human-move model and examined alternatives: high.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-positional-isolated-actual-unusual-strong",
+      "previousText": "Isolated pawn present. Neither neighboring file contains a friendly pawn. The move is unusual to the human model and strong according to the engine.",
+      "text": "Isolated pawn present. Neither neighboring file contains a friendly pawn. Human-model flag: unusual. Engine score: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-isolated-actual-natural-best",
+      "previousText": "An isolated pawn is present: no friendly pawn on either neighboring file. The human model considers the move natural. The engine selects it as best.",
+      "text": "Isolated pawn present. Friendly pawns on adjacent files: zero. Human-model flag set: natural. Engine order: this move on top.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-isolated-actual-natural-strong",
+      "previousText": "An isolated pawn is left without friendly pawns on neighboring files. The move is natural in the human-move model and strong by the engine's assessment, though the engine prefers another.",
+      "text": "Isolated pawn left. Adjacent-file friendly pawns: none. Classifier outputs: natural from the human model, strong from the engine. Engine preference: another move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-support-actual-hard-find",
+      "previousText": "Support added. Previously undefended; now guarded. Human-model evidence and the examined alternatives suggest the move was difficult to find.",
+      "text": "Support added. Previously undefended; now guarded. Difficulty index: high, from human-model and search data.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-support-actual-unusual-strong",
+      "previousText": "Support added. A previously undefended piece gains a defender. The human model finds the choice unusual; the engine rates it strong.",
+      "text": "Support added. A previously undefended piece gains a defender. Human-model reading: unusual. Engine rating: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-support-actual-natural-best",
+      "previousText": "Support added to a piece that lacked a defender. The human model sees a natural choice. The engine confirms this as its best move.",
+      "text": "Support added to a piece that lacked a defender. Human-model output: natural choice. The engine confirms this as its best move.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-positional-support-actual-natural-strong",
+      "previousText": "Before the move: no defender. After it: support added. The choice is natural to the human model and strong to the engine, though another move ranks best.",
+      "text": "Before the move: no defender. After it: support added. Human-model label: natural. Engine label: strong, though another move is preferred.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-unsupported-actual-hard-find",
+      "previousText": "Support removed. Missing support alone does not prove a winning capture. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "text": "Support removed. Missing support alone does not prove a winning capture. Search and human-model difficulty: elevated.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-unsupported-actual-unusual-strong",
+      "previousText": "A piece loses its defender. That proves a support change, not a winning capture. The human model finds this move unusual; the engine rates it strong.",
+      "text": "A piece loses its defender. That proves a support change, not a winning capture. Human-model flag: unusual. Engine score: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-unsupported-actual-natural-strong",
+      "previousText": "Undefended piece recorded. Missing support alone does not prove material loss. The human model considers the move natural; the engine finds it strong but prefers another move.",
+      "text": "Undefended piece recorded. Missing support alone does not prove material loss. Human-model output: natural. Engine output: strong; engine preference points elsewhere.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-king-flight-actual-hard-find",
+      "previousText": "A new legal flight square is available to the king. Human-model evidence and the checked alternatives suggest a difficult find.",
+      "text": "A new legal flight square is available to the king. Search and human-model difficulty: elevated.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-king-flight-actual-unusual-strong",
+      "previousText": "King mobility changed: a new legal flight square is available. The human model finds the move unusual; the engine finds it strong.",
+      "text": "King mobility changed: a new legal flight square is available. Input A, human model: unusual. Input B, engine: strong.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-positional-king-flight-actual-natural-strong",
+      "previousText": "A legal flight square opens for the king. The human-move model considers the move natural; the engine rates it strong but prefers another choice.",
+      "text": "King flight squares: plus one. Human-model tag: natural. Engine tag: strong; preferred move differs.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-castling-actual-hard-find",
+      "previousText": "The king castles; king and rook have both moved. The human-move model and checked alternatives suggest difficulty finding this move in this position.",
+      "text": "Castling executed; king and rook have both moved. The human-move model and checked alternatives suggest difficulty finding this move in this position.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-positional-castling-actual-natural-best",
+      "previousText": "The king castles. The rook moves with it. The human model considers the choice natural; the engine ranks this move best.",
+      "text": "Castling complete. The rook moves with it. Human-model output: typical choice. Engine ranking: first place.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-castling-actual-natural-strong",
+      "previousText": "The king castles, moving the rook as well. The human-move model rates the choice as natural. The engine rates it strong, while preferring a different move.",
+      "text": "The king castles, moving the rook as well. Human-model label: natural. Engine index: strong. Engine first choice: a different move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-bishop-pair-actual-hard-find",
+      "previousText": "Opposing bishop pair broken by this capture. Human-model evidence and the examined alternatives suggest a difficult find.",
+      "text": "Bishop pair, opposing side: dissolved by this capture. Search and human-model difficulty: elevated.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-bishop-pair-actual-unusual-strong",
+      "previousText": "Opposing bishop pair broken. The capture is unusual to the human model and strong according to the engine.",
+      "text": "Bishop pair, opposing side: dissolved. Status check: human model reports unusual, engine reports strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-bishop-pair-actual-natural-best",
+      "previousText": "The capture breaks the opposing bishop pair. It is also a natural choice in the human-move model and the exact move preferred by the engine.",
+      "text": "Opposing bishop pair: down to one bishop. Human-model forecast: expected. Engine selection: this exact move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-bishop-pair-actual-natural-strong",
+      "previousText": "This capture ends the opposing bishop pair. Natural to the human-move model and strong to the engine, but a different move ranks best.",
+      "text": "Opposing bishop count: reduced to one. Natural to the human-move model and strong to the engine, but a different move ranks best.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-doubled-actual-hard-find",
+      "previousText": "Doubled pawns recorded: pawns of the same color share a file. Human-model evidence and the examined alternatives suggest the move was difficult to find.",
+      "text": "Doubled pawns recorded: one color, one file. Find-rate forecast: low.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-doubled-actual-unusual-strong",
+      "previousText": "The resulting position contains doubled pawns of the same color on one file. The move is unusual to the human model and strong in the engine assessment.",
+      "text": "Resulting position: doubled pawns, one color, one file. Human-model reading: unusual. Engine rating: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-positional-doubled-actual-natural-best",
+      "previousText": "The engine's best move leaves doubled pawns in the position: pawns of the same color sharing a file. The human-move model also treats the move as a natural choice.",
+      "text": "Engine-best move recorded. Side effect: doubled pawns, two same-color pawns stacked on one file. Human-model index also: natural.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-positional-doubled-actual-natural-strong",
+      "previousText": "Doubled pawns present. Same color, same file. The human model considers the move natural; the engine finds it strong but ranks another move best.",
+      "text": "Doubled pawns present. Same color, same file. Classifier outputs: natural from the human model, strong from the engine. Engine preference: another move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-allowed-mate-hard-defense-missed",
+      "previousText": "Issue: forced mate for the opponent. A defense existed, but only one searched move stayed playable. It was missed. Human-model evidence suggests a difficult resource.",
+      "text": "Issue: forced mate for the opponent. A defense existed, but only one searched move stayed playable. Defense status: missed. Human-model evidence suggests a difficult resource.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-missed-mate-hard-defense-missed",
+      "previousText": "Available finish: forced mate. This move loses it. The only playable move found would have kept that finish; human-model evidence suggests a difficult find.",
+      "text": "Available finish: forced mate. Status after this move: finish lost. The only playable move found would have kept that finish. Locate probability, per human-model evidence: low.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-sound-sacrifice-hard-find",
+      "previousText": "Sacrifice checked. Acceptance does not refute it in the examined line. The human model and searched alternatives suggest a difficult find.",
+      "text": "Sacrifice checked. Acceptance does not refute it in the examined line. The human model and the searched alternatives agree: hard to locate.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-sound-sacrifice-unusual-strong",
+      "previousText": "The sacrifice survives acceptance in the examined line. The human-move model considers the choice unusual, while the engine confirms its strength.",
+      "text": "The sacrifice survives acceptance in the examined line. Probability per human model: low. Engine grade: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-sound-sacrifice-natural-best",
+      "previousText": "Sacrifice checked. Acceptance does not refute it in the examined line. The human model finds the choice natural; the engine ranks it best.",
+      "text": "Sacrifice checked. Acceptance does not refute it in the examined line. Human-model reading: natural; the engine ranks it best.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-sound-sacrifice-natural-strong",
+      "previousText": "The checked acceptance line supports the sacrifice. The human-move model calls this choice natural; the engine calls it strong, with another move preferred.",
+      "text": "The checked acceptance line supports the sacrifice. Human-model output: natural. Engine output: strong; engine preference points elsewhere.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-only-advantage-resource-natural-best",
+      "previousText": "Advantage preserved by this move alone among the choices examined. It is the engine's best and natural to the human model.",
+      "text": "Advantage preserved by this move alone among the choices examined. Engine rank: top. Human-model bit: natural.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-immediate-capture-hard-defense-missed",
+      "previousText": "Immediate reply: the opponent can capture. The only playable defense found was missed. Human-model evidence suggests a difficult resource.",
+      "text": "Immediate reply: the opponent can capture. Single playable defense: missed. Human-model evidence suggests a difficult resource.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-evaluation-loss-hard-defense-missed",
+      "previousText": "Evaluation drops against the best option. That alternative was the only playable move found, and it was missed. Human-model evidence suggests it was difficult to find.",
+      "text": "Evaluation drops against the best option. That alternative was the only playable move found, and it was missed. Discovery rate, per the human model: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-clock-low-hard-find",
+      "previousText": "Clock: little time remained. Result: the engine's best move. The human model and searched alternatives suggest a difficult find.",
+      "text": "Clock: little time remained. Result: top engine move. Low discovery probability, per the human model and searched alternatives.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-clock-low-natural-strong",
+      "previousText": "Little time remained. The human model finds this move natural; the engine finds it strong, with another move preferred.",
+      "text": "Little time remained. Human-model forecast: typical move. Engine index: strong, with another move preferred.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-clock-fast-hard-find",
+      "previousText": "Quick decision, with time still available. It matches the engine's best move. The human model and searched alternatives suggest a difficult find.",
+      "text": "Quick decision, with time still available. Engine match: top move. Difficulty flag: raised by the human model and the searched alternatives.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-clock-fast-unusual-strong",
+      "previousText": "Time was available, and the move was made quickly. The choice is unusual in the human model but strong in the engine's search.",
+      "text": "Time was available, and the move was made quickly. Human-model flag: unusual. Engine score: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-clock-fast-natural-strong",
+      "previousText": "Recorded pace: quick, with time available. The human model favors the played move. The engine judges it strong but ranks a different move first.",
+      "text": "Recorded pace: quick, with time available. The human model favors the played move. Engine bit: strong. Engine first choice: a different move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-clock-long-hard-find",
+      "previousText": "Clock record: substantial time spent. The engine's best move was found. The human model and searched alternatives suggest a difficult resource.",
+      "text": "Clock record: substantial time spent. The engine's best move was found. Detection difficulty, per human-model and search data: high.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-clock-long-unusual-strong",
+      "previousText": "Clock: substantial time spent. The human model considers the move unusual; the engine finds it strong. Unusual is not a defect.",
+      "text": "Clock: substantial time spent. Human-model flag: unusual. Engine score: strong. Unusual is not a defect.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-clock-long-natural-strong",
+      "previousText": "Clock: substantial time spent. The move is natural to the human model and strong in the search. The engine still prefers another choice.",
+      "text": "Clock: substantial time spent. Human-model flag set: natural. Engine label: strong. The engine still prefers another choice.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-recognized-opening-hard-find",
+      "previousText": "Opening sequence matched. Engine result: best move. Human-model and search evidence suggest a difficult find. Known does not mean obvious.",
+      "text": "Opening sequence matched. Engine result: best move. Difficulty index: high, from human-model and search data. Known does not mean obvious.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-recognized-opening-natural-strong",
+      "previousText": "Opening sequence matched. Natural to the human model; strong according to the engine, which prefers another move.",
+      "text": "Opening sequence matched. Human-model tag: natural. Engine tag: strong; preferred move differs.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-recognized-opening-hard-defense-found",
+      "previousText": "Known opening move, critical defense. Only this searched move kept the position playable. The human-model evidence suggests the resource was difficult to find.",
+      "text": "Known opening move, critical defense. Playable moves in the search: one, this one. Human-model data: that defense is rarely located.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-opening-departure-hard-find",
+      "previousText": "Opening-book boundary reached. This is the first move beyond the recognized line, and the engine's best. Human-model evidence and searched alternatives suggest a difficult find.",
+      "text": "Opening-book boundary reached. This is the first move beyond the recognized line, and the engine's best. Difficulty rating: high, by human-model and search data.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-opening-departure-natural-best",
+      "previousText": "First departure from the line in our opening book. The played move is natural in the human model and matches the engine's best choice.",
+      "text": "First departure from the line in our opening book. Human-model label: natural. Engine match: top choice.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-opening-departure-natural-strong",
+      "previousText": "First move beyond the recognized opening line. Natural to the human model; strong in the engine search. The engine prefers another move.",
+      "text": "First move beyond the recognized opening line. Natural to the human model; strong in the engine search. Engine preference: another move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-recovery-hard-find",
+      "previousText": "Recovery confirmed. The earlier setback is followed by a playable position again. This is the engine's best move; the human model and searched alternatives suggest a difficult find.",
+      "text": "Recovery confirmed. The earlier setback is followed by a playable position again. Engine selection: this move. Human-model and search data both flag a hard find.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-recovery-unusual-strong",
+      "previousText": "Recovery confirmed: the position is playable again. Unusual to the human model, strong to the engine.",
+      "text": "Recovery confirmed: the position is playable again. Human-model label: unusual. Engine label: strong.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-recovery-assisted-hard-find",
+      "previousText": "Recovery confirmed, with help from the opponent's errors. This move restores a playable position and ranks best in the search. Human-model evidence suggests a difficult find.",
+      "text": "Recovery confirmed, with help from the opponent's errors. This move restores a playable position and ranks best in the search. Human-model detection estimate: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-recovery-assisted-unusual-strong",
+      "previousText": "Playable position restored, with assistance from the opponent's errors. The human model considers this move unusual; the engine supports its strength.",
+      "text": "Playable position restored, with assistance from the opponent's errors. Status check: human model reports unusual, engine reports strong.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-recovery-assisted-natural-strong",
+      "previousText": "Playable position restored with help from the opponent's errors. The human model finds this move natural. The engine finds it strong, with another choice preferred.",
+      "text": "Playable position restored with help from the opponent's errors. Human-model reading: an expected move. The engine finds it strong, with another choice preferred.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-chance-taken-unusual-strong",
+      "previousText": "Opportunity supplied by the opponent; opportunity used. The human model finds this response unusual. The engine finds it strong.",
+      "text": "Opportunity supplied by the opponent; opportunity used. Human-model reading: unusual. Engine rating: strong.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-chance-missed-natural-error",
+      "previousText": "Opportunity missed: the chance supplied by the opponent's previous move goes unused. The human model finds this choice natural. The engine finds a stronger reply.",
+      "text": "Opportunity missed: the chance supplied by the opponent's previous move goes unused. Human-model classification: natural. Engine search: a stronger reply exists.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-chance-missed-hard-defense-missed",
+      "previousText": "Opportunity missed. The only playable defense found was a different move. Human-model evidence suggests a difficult resource.",
+      "text": "Opportunity missed. Single playable defense: a different move. Human-model evidence suggests a difficult resource.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-support-restored-hard-find",
+      "previousText": "Protection restored. The piece left unguarded earlier has support again. This is the engine's best move; human-model evidence and searched alternatives suggest a difficult find.",
+      "text": "Protection restored. The previously unguarded piece: defended again. Engine order: this move on top. Detection difficulty, per human-model and search data: high.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-support-restored-natural-best",
+      "previousText": "Protection restored. The previously unguarded piece has support again. The human model finds this choice natural; the engine ranks it best.",
+      "text": "Protection restored. The previously unguarded piece has support again. Human-model forecast: expected. Engine ranking: first place.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-support-restored-natural-strong",
+      "previousText": "The previously unguarded piece has support again. The move is natural to the human model and strong to the engine, which prefers a different choice.",
+      "text": "The previously unguarded piece has support again. Human-model label: natural. Engine label: strong, though another move is preferred.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-advantage-converted-hard-find",
+      "previousText": "The reviewed advantage was preserved through to the recorded win. Within that stretch, the engine's best move was found. The human model and examined alternatives indicate a difficult find.",
+      "text": "The reviewed advantage was preserved through to the recorded win. Within that stretch, the engine's best move was found. Difficulty index, human model plus examined alternatives: high.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-advantage-converted-unusual-strong",
+      "previousText": "Conversion recorded: the reviewed moves preserve the advantage through the recorded win. This move within that stretch is unusual to the human model and strong in the engine search.",
+      "text": "Conversion recorded: the advantage held through the reviewed moves to the win. This move within that stretch is unusual to the human model and strong in the engine search.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-advantage-converted-natural-strong",
+      "previousText": "The reviewed advantage was preserved through the recorded win. This move is natural to the human model and strong to the engine, which still prefers a different choice.",
+      "text": "The reviewed advantage was preserved through the recorded win. Human-model forecast: natural. Engine index: strong, with another move preferred.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-entry-1-hard-find",
+      "previousText": "Book move identified. Engine choice: best. The human model and searched alternatives suggest a difficult find.",
+      "text": "Book move identified. Engine choice: best. The human model and the searched alternatives agree: hard to locate.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-book-opening-entry-1-unusual-strong",
+      "previousText": "Book move identified. The human model finds it unusual; the engine finds it strong. An unexpected choice that holds up.",
+      "text": "Book move identified. Input A, human model: unusual. Input B, engine: strong. An unexpected choice that holds up.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-book-opening-entry-1-natural-best",
+      "previousText": "Book move identified. It is also natural to the human model and first in the engine's ranking. Three different checks, one matching move.",
+      "text": "Book move identified. Human-model bit: natural. Engine ranking: first. Three different checks, one matching move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-entry-1-hard-defense-found",
+      "previousText": "Book move identified. Defense found: the only playable choice among the moves searched. Human-model evidence suggests it was difficult to spot.",
+      "text": "Book move identified. Defense found: the only playable choice among the moves searched. Locate probability, per human-model evidence: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-entry-2-hard-find",
+      "previousText": "Known opening matched. The engine selects this move as best. Human-model and search evidence suggest a demanding find.",
+      "text": "Known opening matched. The engine selects this move as best. Find-rate forecast: low, per human-model and search data.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-entry-2-unusual-strong",
+      "previousText": "Known opening matched. Unusual to the human model; strong according to the engine. The move holds up.",
+      "text": "Known opening matched. Probability per human model: low. Engine grade: strong. The move holds up.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-entry-2-hard-defense-found",
+      "previousText": "Known opening matched. Only this defense stayed playable among the moves searched. The human model suggests a difficult find. Position held.",
+      "text": "Known opening matched. Only this defense stayed playable among the moves searched. Human-model find-rate forecast: low. Position held.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-entry-3-hard-find",
+      "previousText": "Recorded opening line. Best move in the engine comparison. The human model and examined alternatives suggest a difficult find.",
+      "text": "Recorded opening line. Best move in the engine comparison. Human-model and search data: hard to locate.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-entry-3-unusual-strong",
+      "previousText": "Recorded opening theory. The human model finds the move unusual. The engine finds it strong.",
+      "text": "Recorded opening theory. Human-model label: unusual. Engine label: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-entry-3-hard-defense-found",
+      "previousText": "The opening record includes the defense found here. It was the only searched move keeping the position playable. The human model indicates a difficult resource.",
+      "text": "The opening record includes the defense found here. Playable searched moves: this one only. The human model indicates a difficult resource.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-1-hard-find",
+      "previousText": "Book sequence maintained with the engine's best move. The human model and searched alternatives suggest a hard find.",
+      "text": "Book sequence maintained with the engine's best move. Discovery rate, per the human model and searched alternatives: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-1-natural-best",
+      "previousText": "Book sequence maintained. The human model finds this move natural; the engine ranks it first.",
+      "text": "Book sequence maintained. Human-model classification: natural; the engine ranks it first.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-1-hard-defense-found",
+      "previousText": "The book sequence continues through a critical defense. It alone remained playable among searched moves. Human-model evidence suggests this resource was hard to find.",
+      "text": "The book sequence continues through a critical defense. Playable searched moves: this one alone. Human-model evidence suggests this resource was hard to find.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-2-hard-find",
+      "previousText": "Another book move. Engine result: best. The human model and examined alternatives suggest a difficult find.",
+      "text": "Book move logged. Engine result: best. Detection difficulty, per human-model and search data: high.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-2-unusual-strong",
+      "previousText": "Another recognized book move. The human model finds it unusual. The engine approves its strength.",
+      "text": "Book move recognized, again. Human-model label: unusual. Engine label: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-2-natural-best",
+      "previousText": "Another book move matches the engine's best choice. The human model favors it as well. Agreement recorded.",
+      "text": "Book move, and engine choice number one. Human-model support: present. Agreement recorded.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-2-natural-strong",
+      "previousText": "Another book move. The human model sees a natural choice; the engine sees a strong one. A different move still holds the engine's top rank.",
+      "text": "Book entry, again. Human-model output: natural choice; the engine sees a strong one. A different move still holds the engine's top rank.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-2-hard-defense-found",
+      "previousText": "Another book move keeps the position playable. It was the sole playable choice among the searched moves, and human-model evidence indicates a difficult defense.",
+      "text": "Book move, playability maintained. It was the sole playable choice among the searched moves, and human-model evidence indicates a difficult defense.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-3-hard-find",
+      "previousText": "This reply is book too. Engine choice: best. The human model and examined alternatives suggest it was difficult to find.",
+      "text": "This reply is book too. Engine choice: best. Find difficulty: high, per human-model and search data.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-3-unusual-strong",
+      "previousText": "The reply is also recorded theory. The human model considers it unusual, while the engine rates it strong. This is an unexpected choice, not an unsound one.",
+      "text": "The reply is also recorded theory. Human-model label: unusual. Engine bit: strong. This is an unexpected choice, not an unsound one.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-4-hard-find",
+      "previousText": "Opening record still matched. The engine chooses this move as best. Human-model and search evidence suggest a demanding find.",
+      "text": "Opening record still matched. The engine chooses this move as best. Search and human-model difficulty: elevated.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-5-hard-find",
+      "previousText": "Still within a known opening. The played move is the engine's best. Human-model and search evidence suggest a difficult find.",
+      "text": "Still within a known opening. The played move is the engine's best. Difficulty index: high, from human-model and search data.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-5-natural-best",
+      "previousText": "Still within a known opening. The human model finds this choice natural; the engine ranks it best. Both point to the played move.",
+      "text": "Still within a known opening. Human-model label: natural. Engine selection: this move. Both point to the played move.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-5-natural-strong",
+      "previousText": "Still within a known opening. The human model finds this move natural; the engine rates it strong, with another option ranked best.",
+      "text": "Still within a known opening. Human-model forecast: typical move. Engine bit: strong. Engine first choice: a different move.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-5-hard-defense-found",
+      "previousText": "The move stays in the known opening and preserves a playable position. It was the only searched move that did so. Human-model evidence indicates a difficult resource.",
+      "text": "Known opening retained, playability retained. Searched moves achieving that: one. Human-model evidence indicates a difficult resource.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-6-hard-find",
+      "previousText": "Another opening move recognized. It matches the engine's best choice. The human model and examined alternatives suggest a demanding find.",
+      "text": "Another opening move recognized. It matches the engine's best choice. Discovery rate, per the human model and examined alternatives: low.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-6-unusual-strong",
+      "previousText": "Another opening move recognized. The human model finds this one unusual. Engine result: strong. An unexpected but sound choice.",
+      "text": "Another opening move recognized. Status check: human model reports unusual, engine reports strong. An unexpected but sound choice.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-6-natural-best",
+      "previousText": "Another opening move is recognized. It is natural to the human model and best in the engine's search. Both assessments support this particular choice.",
+      "text": "Another opening move is recognized. Human-model bit: natural. Engine rank: top. Both assessments support this particular choice.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-6-natural-strong",
+      "previousText": "Another opening move recognized. The human model finds it natural. The engine rates it strong and places a different move first.",
+      "text": "Another opening move recognized. Human-model output: natural. Engine output: strong; engine preference points elsewhere.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-7-hard-find",
+      "previousText": "The move also matches the opening record. Engine result: best. The human model and searched alternatives suggest a hard find.",
+      "text": "The move also matches the opening record. Engine result: best. Find difficulty: high, per human-model and search data.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-7-unusual-strong",
+      "previousText": "The move also matches the opening record. Unusual to the human model; strong according to the engine.",
+      "text": "The move also matches the opening record. Probability per human model: low. Engine grade: strong.",
+      "reason": "Turn wording that stayed close to a Walter line into a labeled robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-8-hard-find",
+      "previousText": "Another book move matches the engine's best. Human-model evidence and the examined alternatives suggest a difficult find. Correct move, demanding choice.",
+      "text": "Book move; engine ranking also first. Search and human-model difficulty: elevated. Correct move, demanding choice.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-8-unusual-strong",
+      "previousText": "Another book move. The human model finds it unusual; the engine finds it strong.",
+      "text": "Book line continues. Status check: human model reports unusual, engine reports strong.",
+      "reason": "Replace a sentence Walter's bank also speaks word for word with Rivet's own robot readout."
+    },
+    {
+      "id": "combo-book-opening-follow-8-natural-best",
+      "previousText": "Another book move. Natural in the human model and best in the engine search. The played move satisfies both checks.",
+      "text": "Opening database match: repeated. Natural in the human model and best in the engine search. The played move satisfies both checks.",
+      "reason": "Reword a readout that matched a line from Jun, Scout, Wisp or Ziggy."
+    },
+    {
+      "id": "combo-book-opening-follow-8-natural-strong",
+      "previousText": "Another book move. The human model favors it; the engine calls it strong. A different move remains the engine's first choice.",
+      "text": "Book status: unchanged. The human model favors it; engine label: strong. A different move remains the engine's first choice.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    },
+    {
+      "id": "combo-book-opening-follow-8-hard-defense-found",
+      "previousText": "Another book move, and a defense located. Only this move stayed playable among those searched. Human-model evidence suggests it was a difficult resource.",
+      "text": "Another book move, and a defense located. Only this move stayed playable among those searched. Human-model find-rate forecast: low.",
+      "reason": "Say 'the other side' on a plain alert clip that can play on either side's move, or turn a last Walter-like clause into a readout."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed",
+      "label": "Tactic skewer allowed",
+      "text": "Alert: skewer geometry now available to the other side. Front unit moves; rear unit becomes reachable."
+    },
+    "takeId": null
+  },
+  "requestHash": "de092a68a09883e1c329aa31e018cae9c827394e6ba94d6f5b9727f19eaac9e7",
+  "recordedAt": "2026-10-02T16:31:55.467Z",
+  "sha256": "9ace91a23147f73308bbf10df0a824c234d5d429769b4fa4f326b1d53d2b913e",
+  "bytes": 23917,
+  "requestId": "1H0eRbLxj18pmcIG7OoI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2153f001f17e1e7f000b01741790269331cfb8bebd095e754f0ace2f4942097",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

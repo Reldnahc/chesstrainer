@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "King flight squares: plus one. Compare the positions to see which change made it available."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc3286df607c719bb6e17ef82630432a3c3a241cec5cd55eadba32fd4b06db57",
+  "recordedAt": "2026-10-02T16:32:51.867Z",
+  "sha256": "33d73bba965eeb232599253974253fbc5450c0ce08e3d48a209911450d5d6fbc",
+  "bytes": 19548,
+  "requestId": "L0dw4lcgASu3LZOUERGI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "522419b71cdf9bd563449df8f9568095c55bca03e276c9c89e5c1cfb176c2af2",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

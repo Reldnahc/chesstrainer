@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-3-hard-find",
+      "label": "Combo book opening follow 3 hard find",
+      "text": "This reply is book too. Engine choice: best. Find difficulty: high, per human-model and search data."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd2db8afec36b8029503f250ee73683b378f1eb4ef8a84eb87639af351645068",
+  "recordedAt": "2026-10-02T16:42:26.339Z",
+  "sha256": "e19ed9f21d2e1f5fcda1058ea2ce5245e218f75f564dc8a9a299c2b2a3800c3a",
+  "bytes": 25491,
+  "requestId": "x3gcPVo5P0USjzgSmfsa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62e35d1ef7cdb538fafa306acb12a632db12359ea3546615856d2a0c0183f519",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

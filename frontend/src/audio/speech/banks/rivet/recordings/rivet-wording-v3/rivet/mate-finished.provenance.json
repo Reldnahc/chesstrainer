@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate confirmed. Legal king moves remaining: zero. Attack complete."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d8ce4b019a9480a92da2cd59dbd5ab1d15c71cbb8ed10a496d051324a2f66ff",
+  "recordedAt": "2026-10-02T16:33:40.024Z",
+  "sha256": "f637c6a8683a22c85db4cdd12c81b8a07ecbca1a19cd07c096248b552cf37645",
+  "bytes": 17520,
+  "requestId": "7eT4wfoFwoXlzcbWEOaN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb4c79a629cac81a5ae45e8840fd22fe772645cde41a2169421b7d345b029604",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

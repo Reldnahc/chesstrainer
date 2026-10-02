@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling executed: king shifted two squares, rook transferred beside it. Check status: delivered by the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4ddf1b5a58bb8e876a0ad139b31a236405a0f1a0214f6618d21b222fe6f9406",
+  "recordedAt": "2026-10-02T16:34:00.369Z",
+  "sha256": "33186808ffbe17406e1fbaccc5c88ec597f22f1ecf14c4d90a584c56bc13f830",
+  "bytes": 25841,
+  "requestId": "eiv7czEhNAUN8rzDXO9W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cf350f4ab92f219e58a0e9c2970588016b4d08fb3b3a5a3b42fd92b7c648fec",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

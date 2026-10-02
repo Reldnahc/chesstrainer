@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-played-natural-best",
+      "label": "Combo tactic removing defender played natural best",
+      "text": "Resource: removing a defender by capture. What it protects could then lose that support. Human-model tag: expected move. Engine rank: best."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5de1342c3e3f88806be2a6815460d358a9337e29ba8ce3c86bf03bcd579a9d1",
+  "recordedAt": "2026-10-02T16:36:32.648Z",
+  "sha256": "7fa8d10e657e6e559a3785f866c835b281c143d9e09d1c6bce5a50a8a4ce1557",
+  "bytes": 33393,
+  "requestId": "gL1i2Lm1eNvgfCEJkVKD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cc23bf41ad3f3dba8a888c9a457d5a2172d529532d406f3a6dd2b8eecff0692",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

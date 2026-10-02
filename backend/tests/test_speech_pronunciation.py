@@ -20,6 +20,10 @@ from scripts import speech_pronunciation as pronunciation
         ("boss's", "boss", "B AO S", "possessive", "IH Z"),
         ("church's", "church", "CH ER CH", "possessive", "IH Z"),
         ("liftable", "lift", "L IH F T", "able", "AH B AH L"),
+        ("capturable", "capture", "K AE P CH ER", "able", "AH B AH L"),
+        ("playability", "play", "P L EY", "ability", "AH B IH L AH T IY"),
+        ("pawnless", "pawn", "P AO N", "less", "L AH S"),
+        ("classifier", "classify", "K L AE S AH F AY", "agent-ier", "ER"),
         ("fictional", "fiction", "F IH K SH AH N", "adjectival-al", "AH L"),
     ],
 )

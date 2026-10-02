@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-positional-doubled-actual-natural-strong",
+      "label": "Combo positional doubled actual natural strong",
+      "text": "Doubled pawns present. Same color, same file. Classifier outputs: natural from the human model, strong from the engine. Engine preference: another move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2aa80bfed26ec034a9be1d8a68974a636baf965dcd4dac6d6e35dec65b2b0656",
+  "recordedAt": "2026-10-02T16:40:12.574Z",
+  "sha256": "a709234641bd07485e6286b4f327034a98e1677924c1fbf21a4e64129238af2a",
+  "bytes": 33335,
+  "requestId": "QxHoVaSOKXYyRxhPkVes",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7079452de6cc42367b2d5699db519c6f0d71c301d25a48fe1e5d1f317f40fcf",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

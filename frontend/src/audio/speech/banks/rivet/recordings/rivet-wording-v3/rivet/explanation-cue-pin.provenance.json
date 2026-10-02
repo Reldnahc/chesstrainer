@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Pre-move scan for a pinned piece: identify what lies behind it. Possible values: king, or higher-value piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "8174dd1ed0dd722189f6b0115bbae8b5268801493b122114348bbb4a06312286",
+  "recordedAt": "2026-10-02T16:34:28.335Z",
+  "sha256": "0ed8d0cc1ad4547523776ac7bd55e1562c9bd195a048da187bd7ac0a16d43869",
+  "bytes": 25408,
+  "requestId": "SgnG1ICzq1Pf3WOLelEN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d47761ea56b9681445cdbc1db78f8410b9a154a5e0c3f73880639a07a1ac47b",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

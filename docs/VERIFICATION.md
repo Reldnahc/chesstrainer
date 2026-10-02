@@ -4,6 +4,22 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Rivet distinct-voice re-recording — October 2, 2026
+
+Re-recorded the **294** Rivet passages changed by the reviewed rewrite of his
+Walter-like lines (script commit `59556c33`), with his locked voice, model and
+settings. **35,305 input characters / 4,270 provider credits**; all 294 saved
+request IDs matched the provider history, with no retakes or duplicate requests.
+The [revision ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json)
+records each previous/revised text and reason. Superseded takes were removed from
+the production globs. Automatic pronunciation gained bounded `-ability`, `-less`
+and `-ier` rules and silent-e `-able` bases (revision v3) for four new words.
+
+Checks: `prepare_coach_voice_bank.py --check` (1,752 ready, none missing);
+`test_coach_pilot_scripts.py`, `test_coach_voice_bank.py`,
+`test_speech_pronunciation.py` and `test_speech_alignment.py` (227 passed). Not
+yet checked: listening to every new take.
+
 ## Speaking mouths for the remaining human coaches — October 1, 2026
 
 Desmond, Kenji, Arjun, Mara, Iris, Zoe, Poppy, Milo and Cleo now speak through

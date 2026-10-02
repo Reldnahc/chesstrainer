@@ -75,6 +75,16 @@ This revision used **29,270 input characters / 3,540 provider credits**. All 197
 saved request IDs matched the provider's history, with no retakes or duplicate
 requests. The locked voice, model and delivery settings remain unchanged.
 
+Rivet's [distinct-voice revision](banks/rivet/revisions/wording-v3.json) re-records 294 complete
+passages whose wording matched Walter's (or, for ten, Jun, Scout, Wisp or Ziggy)
+as Rivet's own labeled readouts, and says "the other side" on plain alert clips
+that can play on either side's move. The ledger records each previous text,
+revised text and reason. The other 144 Rivet recordings, Walter's bank, meanings
+and selection are unchanged; superseded takes remain in Git history.
+This revision used **35,305 input characters / 4,270 provider credits**. All 294
+saved request IDs matched the provider's history, with no retakes or duplicate
+requests. The locked voice, model and delivery settings remain unchanged.
+
 To audition from a phone on the same network, start the studio with
 `npm --prefix frontend run dev:audio:lan` instead, then open
 `http://<PC-LAN-IP>:5176/` on the phone. Allow the development server through the

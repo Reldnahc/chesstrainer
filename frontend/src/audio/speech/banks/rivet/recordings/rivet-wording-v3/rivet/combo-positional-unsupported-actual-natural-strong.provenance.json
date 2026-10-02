@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-positional-unsupported-actual-natural-strong",
+      "label": "Combo positional unsupported actual natural strong",
+      "text": "Undefended piece recorded. Missing support alone does not prove material loss. Human-model output: natural. Engine output: strong; engine preference points elsewhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bbb65779f8d269ec710e304028dac80e4c6e7e113ae42c20d81a514efcad418",
+  "recordedAt": "2026-10-02T16:39:39.249Z",
+  "sha256": "d4e85fd1573d9e381f03f6dddc24895f8423f3a7a3bdc44001c02daf1d8ba4c2",
+  "bytes": 37316,
+  "requestId": "lWYMBclMuohYpVWMpESI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "618a78c6591cf5550dd54e33bc417724cde1a3079ee0de126fa14f04f0b2b48e",
+    "bytes": 198156
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

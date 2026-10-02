@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "Missed pattern: a discovered attack, available with another move. Moving the blocker would uncover a threat from a different piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4cab60b4abb93600883a3e83cdc6c958adb3cb72671006e85e7fc5af206c043",
+  "recordedAt": "2026-10-02T16:32:15.245Z",
+  "sha256": "e8f52eb285b7ee1d69408577424d1a7b7e642c29c46b2e7381b88d77703b87d3",
+  "bytes": 25319,
+  "requestId": "pilpOAx8wS7tDxNzxxTk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc046ee5bbf8f6f219798d34d300f8241cfd9cb5830bc6afc2dfd5f4ea56fcaa",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -198,6 +198,11 @@ replies, not events already played; difficult defenses stay estimates bounded
 to the searched choices. These editorial choices do not alter recording IDs,
 evidence, selection, or Walter's scripts.
 
+The later [distinct-voice revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json) replaces 294 Rivet
+recordings whose sentences matched Walter's, or a few of Jun, Scout, Wisp and
+Ziggy, with labeled robot readouts, and says "the other side" on plain alert
+clips that can play on either side's move. IDs, evidence and selection are unchanged.
+
 The coverage inventory follows the actual claim producers and rendering rules,
 not an unrestricted product of every move grade and model result. It includes
 natural mistakes, unusual strong choices, hard finds, difficult defenses missed

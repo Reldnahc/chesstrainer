@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-tactic-undefended-capture-missed-natural-error",
+      "label": "Combo tactic undefended capture missed natural error",
+      "text": "Missed resource: an undefended capture. A stronger choice offered a way to take the loose piece. Human-model tag on the played move: expected. Opportunity status: unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "e8be5c02336a321afeb5fd97984817c64380b416a80059b5cf0ac6c6f682eddd",
+  "recordedAt": "2026-10-02T16:38:21.763Z",
+  "sha256": "7948bc3957be8e5a2c2380c89f2dfbe548d0a7f83bedd7ae00e53b17ce922c9a",
+  "bytes": 38526,
+  "requestId": "Mp6Btfx0QRWkw900NW0o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9c1e81506159dde8cbcf2adb0fb46c63f731a05580ce1f3bbe6d256a550cb92",
+    "bytes": 208605
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

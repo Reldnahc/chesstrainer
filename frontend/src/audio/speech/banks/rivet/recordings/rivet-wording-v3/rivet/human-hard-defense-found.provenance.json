@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "human-hard-defense-found",
+      "label": "Human hard defense found",
+      "text": "Defense found. The position remains playable. Human-model and search difficulty score for this defense: high."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd041232a35292175dbb681fc70c5f27a103d3c97207a0f93fa4b0d6e977f7c5",
+  "recordedAt": "2026-10-02T16:33:21.492Z",
+  "sha256": "8e1f4c7c39d298b078841b1adbad283ba8eb5ffa1d228ce151e04ac103167d2d",
+  "bytes": 23255,
+  "requestId": "kLBoh31GpQmaj5EeV1e6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "907dcad00c8f6d902bb73c63221804f79d6f6000917323763b47254e07f307d8",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

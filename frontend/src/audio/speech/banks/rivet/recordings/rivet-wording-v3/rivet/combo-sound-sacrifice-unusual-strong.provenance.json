@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-sound-sacrifice-unusual-strong",
+      "label": "Combo sound sacrifice unusual strong",
+      "text": "The sacrifice survives acceptance in the examined line. Probability per human model: low. Engine grade: strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "09fa32c3bd6823cec0d7e49ed8b99ec1a9a6d00e23c474f92a80ed7c330d7ccc",
+  "recordedAt": "2026-10-02T16:40:23.283Z",
+  "sha256": "b234b14bbebdaa1532ee5c0f0ba08735368f4b14a02317e678fa72b3b7652939",
+  "bytes": 26969,
+  "requestId": "rKbs8jXaibLSP6KMcQl8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d780c548cf5aefe670b074cbbcdca663828701016b43b7ba0fd05eb7c1ca1c07",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

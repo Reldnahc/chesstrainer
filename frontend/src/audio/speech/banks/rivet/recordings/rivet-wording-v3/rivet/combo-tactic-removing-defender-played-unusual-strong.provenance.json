@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-played-unusual-strong",
+      "label": "Combo tactic removing defender played unusual strong",
+      "text": "Target: a defender. Capturing it can remove the protection it supplies. Human-model reading: unusual. Engine rating: strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "18a16c91e8529a087b9863e8b19640c0d9f44117c0868381a4d78045313456db",
+  "recordedAt": "2026-10-02T16:36:29.308Z",
+  "sha256": "ec03f6e6289e46aef87b1073c8110edde8d1dbc48b660722eb23bf077e385b10",
+  "bytes": 29846,
+  "requestId": "djK2H3LhzhxJnHsi3hKQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d33fc3673667a7652d8e3cca3fa559b93ec8660420425b8b267eeb212394ea02",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

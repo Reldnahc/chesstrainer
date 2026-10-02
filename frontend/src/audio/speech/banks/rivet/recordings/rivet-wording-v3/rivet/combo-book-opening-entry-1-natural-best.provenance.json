@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-1-natural-best",
+      "label": "Combo book opening entry 1 natural best",
+      "text": "Book move identified. Human-model bit: natural. Engine ranking: first. Three different checks, one matching move."
+    },
+    "takeId": null
+  },
+  "requestHash": "5cf20a0caab436619e41241930f8e9f08ae920f22bca273485c4a4acd0cb6f45",
+  "recordedAt": "2026-10-02T16:41:51.446Z",
+  "sha256": "c5cafa4056ec74e15880a75917982695e07503d5547ce1f69917da5671459924",
+  "bytes": 26971,
+  "requestId": "4HPBl2tpE7rfCh7fUfp1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b8a40bad7c768c60f4a69c6e699785e52ab96faddcce3e894e0f3cc644ce50f",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

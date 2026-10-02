@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Alternative output: one more step for the pawn that was already passed. Compare its destination on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "45d87019d3be5bdc78946f06e129d5e27810bc004a6f8d20ad75e94da6850559",
+  "recordedAt": "2026-10-02T16:32:46.232Z",
+  "sha256": "a7dc986acc415d2c8a3d7811c35de2e36071d5ddc4498b1343f3ea72826d135d",
+  "bytes": 22131,
+  "requestId": "W7VWUllONDHerQwnVu7h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e7355a90ec0d4f1529efd85e56fe256899fff17bdfce31a28965dacd30c1a88",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

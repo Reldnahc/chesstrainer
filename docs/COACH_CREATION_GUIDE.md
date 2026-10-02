@@ -48,7 +48,7 @@ problem and consequence with literal precision and occasional dry understatement
 | Mouths | Inspect all nine sound shapes and real recordings at normal sizes. Use automatic alignment against the actual audio clock, not hand-timed per-clip animation. |
 | Completion | Tests establish correctness and provenance; listening, reading blind comparisons and watching real reviews establish perceptual quality. Record both honestly. |
 
-The latest [Rivet revision ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+The latest [Rivet revision ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json)
 preserves concrete before/after examples and reasons. It is an editorial example,
 not runtime input. The [verification history](VERIFICATION.md) records the checks
 actually performed for Walter and Rivet and their limits.

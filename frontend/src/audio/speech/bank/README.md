@@ -70,6 +70,9 @@ voice without changing supported meanings or Walter's scripts. The active
 manifest and matching authored script files contain the current text; the
 revision ledger records old/new text and editorial reasons. Superseded Rivet
 recordings are preserved by Git history rather than left under production asset globs.
+The later [distinct-voice revision](../banks/rivet/revisions/wording-v3.json) replaced 294 more
+recordings whose wording matched Walter's or another coach's, using the same
+ledger format and workflow.
 
 ## Winston and Button banks
 

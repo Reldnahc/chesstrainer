@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "Alert: discovered-attack geometry unlocked for the other side. One piece steps aside; a hidden attacker activates."
+    },
+    "takeId": null
+  },
+  "requestHash": "a870cccb2bd54a856ad87659cec37502c3fd080ad6d3b1a65bc20d96f287347a",
+  "recordedAt": "2026-10-02T16:32:12.763Z",
+  "sha256": "068ee831f5a8544cb4317f66b96c52d0371eb2e43a4c8cd8731684229b335eb2",
+  "bytes": 25379,
+  "requestId": "A5iBiVIsv7JPzNp6oTFy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49d62fb772a8c7a28b3036b59e579e2cfe20a6180a7a73f29bdcf0546b7cfb81",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-immediate-capture-hard-defense-missed",
+      "label": "Combo immediate capture hard defense missed",
+      "text": "Immediate reply: the opponent can capture. Single playable defense: missed. Human-model evidence suggests a difficult resource."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7a2a70524dd20c606bca78ea5df644718ecdd2726880855af255bc69d4b695c",
+  "recordedAt": "2026-10-02T16:40:32.219Z",
+  "sha256": "69988f979056772d2c8813a6c43edfc8cd7c7e3375b09d8c3822d1fbf5f63ef0",
+  "bytes": 29457,
+  "requestId": "at255CoP3qK9Z6LW6nHT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "536384e6128160170bed4b15c1ff99baf1254d449c1c14c70e4d5d4f03af6b39",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

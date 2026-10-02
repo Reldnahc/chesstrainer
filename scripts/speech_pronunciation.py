@@ -7,13 +7,19 @@ derived word records the dictionary base and rule; unsupported words still fail.
 import re
 from collections.abc import Callable
 
-REVISION = "regular-english-morphology-v2"
+REVISION = "regular-english-morphology-v3"
 V1_RULES = frozenset(
     ("possessive", "plural-or-third-person", "negative-un", "able", "adjectival-al")
 )
-# Archives keep the revision they were generated with. v2 only appends rules, so a
-# word v1 could derive still derives identically; v1 evidence may use only v1 rules.
-REVISIONS = {"regular-english-morphology-v1": V1_RULES, REVISION: None}
+V2_RULES = V1_RULES | {"past-ed", "progressive-ing"}
+# Archives keep the revision they were generated with. Each revision only appends
+# rules (v3 also tries a silent-e base for -able first), so a word an older
+# revision derived still derives identically; older evidence may use only its rules.
+REVISIONS = {
+    "regular-english-morphology-v1": V1_RULES,
+    "regular-english-morphology-v2": V2_RULES,
+    REVISION: None,
+}
 SIBILANTS = frozenset(("S", "Z", "SH", "ZH", "CH", "JH"))
 VOICELESS = frozenset(("P", "T", "K", "F", "TH"))
 
@@ -26,8 +32,15 @@ def candidates(word: str) -> list[tuple[str, str]]:
         values.append(("plural-or-third-person", word[:-1]))
     if word.startswith("un") and len(word) > 4:
         values.append(("negative-un", word[2:]))
+    # Silent-e restoration is tried first: "capturable" is "capture" + able.
     if word.endswith("able") and len(word) > 5:
-        values.append(("able", word[:-4]))
+        values.extend((("able", word[:-4] + "e"), ("able", word[:-4])))
+    if word.endswith("ability") and len(word) > 9:
+        values.extend((("ability", word[:-7] + "e"), ("ability", word[:-7])))
+    if word.endswith("less") and len(word) > 6:
+        values.append(("less", word[:-4]))
+    if word.endswith("ier") and len(word) > 5:
+        values.append(("agent-ier", word[:-3] + "y"))
     if word.endswith("al") and len(word) > 4:
         values.append(("adjectival-al", word[:-2]))
     # Silent-e restoration is tried first: "coding" is "code", never "cod".
@@ -59,6 +72,12 @@ def pronunciation(word: str, lookup: Callable[[str], str | None]) -> dict | None
             result = ["AH", "N", *phones]
         elif rule == "able":
             result = [*phones, "AH", "B", "AH", "L"]
+        elif rule == "ability":
+            result = [*phones, "AH", "B", "IH", "L", "AH", "T", "IY"]
+        elif rule == "less":
+            result = [*phones, "L", "AH", "S"]
+        elif rule == "agent-ier":
+            result = [*phones, "ER"]
         elif rule == "past-ed":
             suffix = (
                 ["IH", "D"]

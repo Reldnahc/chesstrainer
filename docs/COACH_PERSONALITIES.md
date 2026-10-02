@@ -299,9 +299,11 @@ reasoning for speech. The active bank manifest is the shipped spoken script;
 changing a personality template does not rerecord it. Both paths must preserve
 the same scope and character. Lessons do not receive recorded narration.
 
-The latest [Rivet editorial ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
+The [Rivet editorial ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
 records 197 replacements among 257 reviewed additions, with 60 additions retained.
 It explains each correction instead of making more clips the measure of quality.
+The latest [Rivet ledger](../frontend/src/audio/speech/banks/rivet/revisions/wording-v3.json) replaces 294 passages whose wording
+matched Walter's or another coach's with Rivet's own readouts.
 Compare it with [Walter's spoken revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
 and the active manifests in [Audio](AUDIO.md#bank-and-authoring). Avoid "separate"
 and "separately" in active speech: the locked voices do not pronounce them

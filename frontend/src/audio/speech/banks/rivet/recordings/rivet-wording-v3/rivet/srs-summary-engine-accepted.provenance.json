@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "Exercise status: accepted. The displayed moves do not establish a clear tactical explanation."
+    },
+    "takeId": null
+  },
+  "requestHash": "80c41cea0b003b42e68bd3ccd7c852f783c40e614fb633641560e73748651a53",
+  "recordedAt": "2026-10-02T16:33:45.579Z",
+  "sha256": "ae1666c85f5d342033b8570a35507e0471bb86624fde6c240905ef9224acb6d6",
+  "bytes": 21007,
+  "requestId": "aQsjRap0QlddET69H8dX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d70d255c80ba7eabce8a17f450e9e362e7cefd2ce41436973a82c5b208a9ad73",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

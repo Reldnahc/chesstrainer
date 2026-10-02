@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "The pattern is back-rank mate. Escape squares: occupied by the king's own pieces. Follow how the attack reaches it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7dd4857b66762722569c868ac4ae2f455d253b5c494935a01760f849a9d7f3a4",
+  "recordedAt": "2026-10-02T16:32:04.265Z",
+  "sha256": "63afdeb87c4d023a5e6c3443575507f43a6613acb0c23a60fdc78e4a289be28d",
+  "bytes": 26219,
+  "requestId": "RMTv4pygNnFecFkrhlqy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6975a794cea1ca21deffcddfeda7ad5b8347bf4bae279cb0844e79cf77952031",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

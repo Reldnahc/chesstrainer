@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-recognized-opening-hard-find",
+      "label": "Combo recognized opening hard find",
+      "text": "Opening sequence matched. Engine result: best move. Difficulty index: high, from human-model and search data. Known does not mean obvious."
+    },
+    "takeId": null
+  },
+  "requestHash": "058fc0fada72b6573dfca084fe11dfc314cb75d54d97853be5c96ea83357478b",
+  "recordedAt": "2026-10-02T16:40:55.106Z",
+  "sha256": "94e9241126d9ecaec711f080981da4717f709f08ad351b105ab43edca7046996",
+  "bytes": 32213,
+  "requestId": "bHyMZn4ehy5pGbWCU45Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db113e44bdfd42259b66c87c6142abe5d308f776ed0ef45f6f87f04fc4778bfc",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

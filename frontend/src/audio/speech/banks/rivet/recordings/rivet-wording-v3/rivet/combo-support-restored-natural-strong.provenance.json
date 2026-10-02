@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "combo-support-restored-natural-strong",
+      "label": "Combo support restored natural strong",
+      "text": "The previously unguarded piece has support again. Human-model label: natural. Engine label: strong, though another move is preferred."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a3a132f895dcba7b85d7609774594888dd542445ed45e0fc84ccf11c406657a",
+  "recordedAt": "2026-10-02T16:41:35.933Z",
+  "sha256": "5d55401db9853aa11feafafb4e3817ac39bebb25978008f8555fd4fe771e109f",
+  "bytes": 29459,
+  "requestId": "RJdLrK12HRz47k36uYi3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4d3cba35c13423ed3dfde790b68d036deb913e695c4c1de131d740a357d3851",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

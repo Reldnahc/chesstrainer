@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "human-natural-error",
+      "label": "Human natural error",
+      "text": "Human-model tag: expected move. Engine output: a stronger move exists. Natural and best are different questions."
+    },
+    "takeId": null
+  },
+  "requestHash": "11286f5980d96c96321e75565949b516156c6b219b7fc3e16b8157cb82c3fc0a",
+  "recordedAt": "2026-10-02T16:33:14.959Z",
+  "sha256": "265c2f5fce7513f7730abbef2061dfb7bc1379deba1a4e910f29b116b87c2f94",
+  "bytes": 27322,
+  "requestId": "aYJcxJYO96dy5iYJJVQc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aba7183aed417a2c86440775cf85cf5456ff58a94ecad9872bf8de88a8627f46",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
