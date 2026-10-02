@@ -121,7 +121,7 @@ registered.
 | Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
 | Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `b0b8439` | No | No |
 | Orin (`wizard`) | Written, 438 | Yes, 2026-10-02, at commit `f9e8a4f` | No | No |
-| Felix (`cat-tuxedo`) | Written, 438 | Yes, 2026-10-02, at commit `9729c11` | No | No |
+| Felix (`cat-tuxedo`) | Written, 438 | Yes, 2026-10-02, at commit `5669e4e` | No | No |
 
 ## Adding or revising a production bank
 
