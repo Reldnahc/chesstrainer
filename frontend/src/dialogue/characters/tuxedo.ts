@@ -64,7 +64,7 @@ export const tuxedo: CoachPersonality = {
     unavailable: ["No reliable engine evidence here, and no invented explanation in its place."],
     variation: ["On this route, {detail}"],
     development: ["{lead}develops the {piece}; its original square is empty and one more piece is working."],
-    rook_file: ["{lead}leaves {side} with a rook on a {kind} {file}-file. Useful real estate."],
+    rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Useful real estate."],
     uncertain_reason: ["{best} rates higher. Why, exactly, is not clear enough to claim."],
     clock_fast: ["{side}: {elapsed} seconds spent, {seconds} still banked."],
     clock_long: ["{elapsed} seconds of {side}'s clock went into this move. The clock paid for it."],
