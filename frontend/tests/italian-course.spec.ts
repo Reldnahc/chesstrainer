@@ -307,7 +307,8 @@ test("full-game seeking keeps the coach and controls steady while serializing re
     const originalButtons = await buttons();
     const artwork = await avatar.locator("svg").first().elementHandle();
     expect(artwork).not.toBeNull();
-    await page.screenshot({ path: `test-results/italian-game-steady-before-${info.project.name}.png`, fullPage: true });
+    // Viewport captures: a full-page capture resizes the phone viewport and drops hover.
+    await page.screenshot({ path: `test-results/italian-game-steady-before-${info.project.name}.png` });
 
     let release!: () => void;
     const gate = new Promise<void>(resolve => { release = resolve; });
@@ -335,7 +336,7 @@ test("full-game seeking keeps the coach and controls steady while serializing re
       await expect(next).toBeDisabled();
       await expect(page.getByRole("button", { name: "Return to lesson", exact: true })).toBeDisabled();
       await page.clock.runFor(500);
-      await page.screenshot({ path: `test-results/italian-game-steady-pending-${info.project.name}.png`, fullPage: true });
+      await page.screenshot({ path: `test-results/italian-game-steady-pending-${info.project.name}.png` });
       expect.soft(await buttons()).toEqual(originalButtons);
       expect.soft(await portrait()).toEqual(originalPortrait);
       expect.soft(await artwork!.evaluate(element => element === document.querySelector(".coach-avatar svg"))).toBe(true);

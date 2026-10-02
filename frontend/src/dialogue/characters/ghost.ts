@@ -82,7 +82,7 @@ export const ghost: CoachPersonality = {
       {fact: "The attack on {side}'s {piece} on {square} came with the opponent's preceding move. After {move}, it is still there.", consequence: "{opponent} can capture with {reply}."},
     ],
     cause_avoiding_bad_trades: [
-      {fact: "{move} trades {side}'s {piece} for a {captured}.", consequence: "Then the recapture: {opponent} has {reply}."},
+      {fact: "{move} trades {side}'s {piece} for a {captured}.", consequence: "Then the recapture: {opponent} can take back with {reply}."},
     ],
     sacrifice: [
       {observation: "The material is offered.", fact: "Even accepted, the sacrifice holds."},
