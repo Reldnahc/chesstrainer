@@ -223,3 +223,17 @@ export const corgiOpeningTemplates = {
   "book-opening-follow-7": ["The drill continues in {opening}."],
   "book-opening-follow-8": ["Manual entry again: {opening}. A listing, not a ruling."],
 } as const;
+
+export const unicornOpeningTemplates = {
+  "book-opening-entry-1": ["We've stepped into a recognized opening: {opening}."],
+  "book-opening-entry-2": ["A book move, part of {opening}, and a fitting one."],
+  "book-opening-entry-3": ["This move has its own page in the story of {opening}."],
+  "book-opening-follow-1": ["The game moves on in harmony with {opening}."],
+  "book-opening-follow-2": ["And this move belongs to {opening} as well."],
+  "book-opening-follow-3": ["The reply, too, keeps step with {opening}."],
+  "book-opening-follow-4": ["The melody of {opening} flows onward."],
+  "book-opening-follow-5": ["{opening} still recognizes this move."],
+  "book-opening-follow-6": ["{opening} keeps walking alongside the game."],
+  "book-opening-follow-7": ["This step, too, is written into {opening}."],
+  "book-opening-follow-8": ["Once more a move of {opening}. A name in the book tells us where we are, not how well the move was chosen."],
+} as const;
