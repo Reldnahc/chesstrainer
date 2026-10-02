@@ -71,7 +71,7 @@ export const professor: CoachPersonality = {
     passer_advance: ["{lead}carries the passed pawn a step further, to {square}. Each step forward leaves one fewer square before promotion."],
     isolated: ["{lead}leaves {side} with pawns on {squares} that are isolated. With no friendly pawn on a neighboring file, only pieces can defend them."],
     support: ["{lead}adds a defender for the {piece} on {square}, so a capture there could now be answered with a recapture."],
-    unsupported: ["After {lead}the {piece} on {square} has no defender at all. That's a condition rather than a loss; whether it can be won depends on what reaches it."],
+    unsupported: ["After {lead}the {piece} on {square} has no defender at all. Being unguarded doesn't by itself mean it's lost; that depends on what can reach it."],
     flights: ["{lead}makes {squares} available to the king as a legal flight square. One escape square doesn't solve every threat, but it changes the count."],
     castle: ["{lead}castles, taking the king to {square} with the rook moving beside it. Castling relocates two pieces at once, so check both."],
     bishops: ["{lead}ends {side}'s bishop pair. With one bishop gone, one square color has no bishop covering it on that side."],

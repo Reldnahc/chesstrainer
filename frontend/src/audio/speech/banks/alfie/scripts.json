@@ -37,7 +37,7 @@
     {
       "id": "tactic-skewer-played",
       "group": "game_review",
-      "text": "A skewer is a line attack read from front to back. The front piece is attacked first, and if it steps aside, the piece behind it is exposed on the same line. Notice how the order of the pieces on that line does the work."
+      "text": "Think of a skewer as a line attack read from front to back. The front piece is attacked first, and if it steps aside, the piece behind it is exposed on the same line. Notice how the order of the pieces on that line does the work."
     },
     {
       "id": "tactic-skewer-allowed",
@@ -242,7 +242,7 @@
     {
       "id": "positional-unsupported-actual",
       "group": "game_review",
-      "text": "Being undefended is a condition, not a loss. Once this move is made, one piece stands with no defender. Whether it can actually be won depends on what can reach it."
+      "text": "Having no defender describes a piece's situation; it doesn't mean the piece is lost. Once this move is made, one piece stands with no defender. Whether it can actually be won depends on what can reach it."
     },
     {
       "id": "positional-unsupported-alternative",
@@ -572,7 +572,7 @@
     {
       "id": "explanation-frame-quiet-promotion-mate",
       "group": "srs_explanations",
-      "text": "The pawn promotes, and the new piece delivers checkmate, leaving the king nowhere legal to go."
+      "text": "The pawn is promoted, and the new piece delivers checkmate, leaving the king nowhere legal to go."
     },
     {
       "id": "explanation-frame-quiet-promotion-escape",
@@ -607,17 +607,17 @@
     {
       "id": "explanation-frame-capture-promotion-check",
       "group": "srs_explanations",
-      "text": "Capturing on the last rank, the pawn promotes, and the new piece gives check."
+      "text": "Capturing on the last rank, the pawn is promoted, and the new piece gives check."
     },
     {
       "id": "explanation-frame-capture-promotion-mate",
       "group": "srs_explanations",
-      "text": "Capturing on the last rank, the pawn promotes, and the result is checkmate, with no legal escape for the king."
+      "text": "Capturing on the last rank, the pawn is promoted, and the result is checkmate, with no legal escape for the king."
     },
     {
       "id": "explanation-frame-capture-promotion-escape",
       "group": "srs_explanations",
-      "text": "Capturing on the last rank, the pawn promotes, and in doing so it gets its king out of check."
+      "text": "Capturing on the last rank, the pawn is promoted, and in doing so it gets its king out of check."
     },
     {
       "id": "explanation-frame-castle-check",
@@ -1795,7 +1795,7 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-hard-find",
-      "text": "This leaves a piece undefended, which is a condition rather than a loss. It's still the engine's best move, and the human-move model and the alternatives we checked suggest it was hard to see."
+      "text": "This leaves a piece undefended, though that alone doesn't settle its fate. It's still the engine's best move, and the human-move model and the alternatives we checked suggest it was hard to see."
     },
     {
       "id": "combo-positional-unsupported-actual-unusual-strong",
@@ -2166,7 +2166,7 @@
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-natural-best",
-      "text": "After the setback earlier, this move makes the position playable once more. The human-move model expects it, and the engine has nothing better."
+      "text": "After the setback earlier, this move makes the position playable once more. It's the move the human-move model predicts, and the engine finds nothing to prefer over it."
     },
     {
       "id": "combo-recovery-natural-strong",
@@ -2201,7 +2201,7 @@
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-strong",
-      "text": "This move restores a playable position, with the other side's errors having helped along the way. The human-move model expects it; the engine calls it strong but would choose something else."
+      "text": "This move restores a playable position, with the other side's errors having helped along the way. To the human-move model it's expected, while the engine calls it strong and would still choose something else."
     },
     {
       "id": "combo-chance-taken-hard-find",
@@ -2502,7 +2502,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-natural-strong",
-      "text": "The reply also sits inside the book's line. The human-move model expects it; the engine rates it strong but would choose a different reply."
+      "text": "The reply also sits inside the book's line. The human-move model predicted it, and the engine rates it strong, though it would choose a different reply."
     },
     {
       "id": "combo-book-opening-follow-3-hard-defense-found",
@@ -2537,7 +2537,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-natural-strong",
-      "text": "The line continues from the book. A natural move by the human-move model's reading, and a strong one, though the engine lists another first."
+      "text": "Here the opening theory continues for one more move. A natural move by the human-move model's reading, and a strong one, though the engine lists another first."
     },
     {
       "id": "combo-book-opening-follow-4-hard-defense-found",
@@ -2607,7 +2607,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-strong",
-      "text": "Another step in the recognized sequence. The human-move model expects it; the engine calls it strong but would choose something else."
+      "text": "Another step in the recognized sequence. It's an expected move for the human-move model, and a strong one for the engine, which would still choose something else."
     },
     {
       "id": "combo-book-opening-follow-6-hard-defense-found",
@@ -2677,7 +2677,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
-      "text": "The line stays in the book. Natural to the human-move model, and strong by the engine's measure, with a different move as its first choice, so the book alone doesn't decide that."
+      "text": "Once again, opening theory covers this position. Natural to the human-move model, and strong by the engine's measure, with a different move as its first choice, so the book alone doesn't decide that."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",
