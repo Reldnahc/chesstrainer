@@ -341,10 +341,8 @@ footer > span:last-child {
     min-height: 52px;
     font-size: 10px;
   }
+  /* The header scrolls away with the page so phones keep their vertical space. */
   .app-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
     padding-top: env(safe-area-inset-top);
   }
   main.workspace-page {

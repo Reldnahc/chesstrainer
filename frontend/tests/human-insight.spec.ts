@@ -74,10 +74,10 @@ for (const [kind, code, phrase, label] of cases) {
     // Navigating away closes the old insight; it cannot describe the next board.
     await trigger.click();
     const previous = page.getByRole("button", {name: "Previous move", exact: true});
-    // Keep the real click outside the centered popover and sticky phone header.
+    // Keep the real click outside the centered popover and the phone header.
     await previous.evaluate(button => {
       const header = document.querySelector('.app-header')!.getBoundingClientRect();
-      window.scrollBy(0, button.getBoundingClientRect().top - header.bottom - 16);
+      window.scrollBy(0, button.getBoundingClientRect().top - Math.max(header.bottom, 0) - 16);
     });
     await previous.click();
     await expect(detail).not.toBeVisible();
