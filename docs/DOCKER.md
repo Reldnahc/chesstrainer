@@ -71,7 +71,7 @@ installations additionally require `ACCOUNTS_ENABLED=true` for accounts. See
 | `DATABASE_PATH` | `/data/trainer.sqlite3` | Persistent SQLite file; normally keep unchanged. |
 | `STOCKFISH_PATH` | `/usr/games/stockfish` | Bundled engine binary; normally keep unchanged. |
 | `SERVER_HOST` | `0.0.0.0` | Bind inside the container; Docker's published address controls host exposure. |
-| `SERVER_PORT` | `8000` | Keep this internal port for the image health check. Change the published host port instead. |
+| `SERVER_PORT` | `8000` | Internal container port; the image health check follows it. Normally change the published host port instead. |
 | `CHESSCOM_USER_AGENT` | Fieldwork identification | Optional identification for public Chess.com API calls; no Chess.com password needed. |
 | `LAN_ACCESS_TOKEN` | empty | Optional shared token for local mode; unused in account mode. |
 

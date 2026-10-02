@@ -38,5 +38,5 @@ USER 1000:1000
 EXPOSE 8000
 VOLUME ["/data"]
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/auth/me', timeout=4).close()"
+    CMD python -c "import os, urllib.request; urllib.request.urlopen('http://127.0.0.1:%s/api/auth/me' % os.environ.get('SERVER_PORT', '8000'), timeout=4).close()"
 CMD ["python", "-m", "trainer"]
