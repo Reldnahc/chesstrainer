@@ -202,7 +202,7 @@
     {
       "id": "positional-passed-actual",
       "group": "game_review",
-      "text": "A passed pawn! No enemy pawn is in front of it, on its own file or the files next door."
+      "text": "Look, a passed pawn! No enemy pawn is in front of it, on its own file or the files next door."
     },
     {
       "id": "positional-passed-alternative",
@@ -442,7 +442,7 @@
     {
       "id": "advantage-converted",
       "group": "game_review",
-      "text": "The advantage was kept all the way to the win. That's how it's done! Follow that stretch to see how it held."
+      "text": "The advantage stayed with that side all the way to the win. That's how it's done! Follow that stretch to see how it was kept."
     },
     {
       "id": "saved-history-recurrence",
@@ -642,7 +642,7 @@
     {
       "id": "explanation-finding-pin-restricts-escape",
       "group": "srs_explanations",
-      "text": "The attacked piece is pinned to its king, so it can't just run. It can only move in ways that keep its king covered."
+      "text": "The attacked piece is pinned to its king, so it can't simply run off. It can only move in ways that keep its king covered."
     },
     {
       "id": "explanation-finding-pin-defenders-no-recapture",
@@ -707,7 +707,7 @@
     {
       "id": "explanation-finding-relative-pin-released",
       "group": "srs_explanations",
-      "text": "The opponent's last move freed the attacking piece from a relative pin. The target was left where it stood, and in the line shown, it gets captured."
+      "text": "A relative pin on the attacking piece came undone with the opponent's last move. The target stayed where it was, and in the line shown, it gets captured."
     },
     {
       "id": "game-explanation-legal-reply",
@@ -842,7 +842,7 @@
     {
       "id": "opening-recall-rejected-retired",
       "group": "openings",
-      "text": "That move isn't in the opening lines you chose. Go again. This position is retired, so its review schedule stays put."
+      "text": "That move isn't in the opening lines you chose. Go again. This position's retired, so its review schedule won't change."
     },
     {
       "id": "opening-preview-active",
@@ -937,7 +937,7 @@
     {
       "id": "book-opening-follow-3",
       "group": "game_review",
-      "text": "On we go. The reply is in the book too."
+      "text": "On we go. The book has the reply as well."
     },
     {
       "id": "book-opening-follow-4",
@@ -983,7 +983,7 @@
       "group": "game_review",
       "primary": "immediate-capture",
       "secondary": "human-natural-error",
-      "text": "An everyday move for the human-move model, but the other side can take something straight off. Start with that reply."
+      "text": "An everyday move for the human-move model, but the other side can take something straight off. That reply is the place to begin."
     },
     {
       "id": "combined-evaluation-loss-with-human-natural-error",
@@ -1683,14 +1683,14 @@
       "group": "game_review",
       "primary": "positional-passed-actual",
       "secondary": "human-hard-find",
-      "text": "A passed pawn! No enemy pawn is in front of it, on its file or the files next door. The human-move model thinks the move was hard to find."
+      "text": "There's a passed pawn now! No enemy pawn is in front of it, on its file or the files next door. The human-move model thinks the move was hard to find."
     },
     {
       "id": "combo-positional-passed-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-passed-actual",
       "secondary": "human-unusual-strong",
-      "text": "This leaves a passed pawn, with no enemy pawn ahead on its file or the files beside it. It surprised the human-move model, and the engine calls it strong."
+      "text": "That leaves a passed pawn, with nothing in front of it on its file or the files beside it. It surprised the human-move model, and the engine calls it strong."
     },
     {
       "id": "combo-positional-passed-actual-natural-best",
@@ -2019,7 +2019,7 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-natural-best",
-      "text": "Nearly out of time, and you played the engine's best move. The human-move model finds it natural too. Grand!"
+      "text": "Nearly out of time, and you played the engine's best move. An everyday move for the human-move model, too. Grand!"
     },
     {
       "id": "combo-clock-low-natural-strong",
@@ -2040,7 +2040,7 @@
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-unusual-strong",
-      "text": "Quick! You played it fast, with time to spare, and it's a move the human-move model didn't expect. Strong, says the engine."
+      "text": "Quick! You played it fast, with time to spare, and it's a move the human-move model didn't expect. It's strong, too, by the engine."
     },
     {
       "id": "combo-clock-fast-natural-best",
@@ -2278,7 +2278,7 @@
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-hard-find",
-      "text": "The advantage was kept all the way to the win. Here, you found the engine's best move, and the human-move model marks it down as hard to spot."
+      "text": "The lead held right through to the win. Here, you found the engine's best move, and the human-move model says it was hard to find."
     },
     {
       "id": "combo-advantage-converted-unusual-strong",
@@ -2292,7 +2292,7 @@
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-natural-best",
-      "text": "The advantage was kept all the way to the win. Here, the human-move model finds the move natural, and it's the engine's best too."
+      "text": "The advantage stayed put right to the win. Here, the human-move model finds the move natural, and it's the engine's best too."
     },
     {
       "id": "combo-advantage-converted-natural-strong",
@@ -2453,7 +2453,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-unusual-strong",
-      "text": "And another known move, though the human-move model didn't see it coming. Strong, says the engine."
+      "text": "And another known move, though the human-move model didn't see it coming. The engine still calls it strong."
     },
     {
       "id": "combo-book-opening-follow-2-natural-best",
@@ -2593,7 +2593,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-unusual-strong",
-      "text": "The opening book keeps up with us here, even with a move the human-move model didn't expect. Strong, the engine says."
+      "text": "The opening book keeps up with us here, even with a move the human-move model didn't expect. It's strong, by the engine."
     },
     {
       "id": "combo-book-opening-follow-6-natural-best",
