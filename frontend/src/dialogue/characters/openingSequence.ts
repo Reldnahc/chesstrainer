@@ -101,7 +101,7 @@ export const alienOpeningTemplates = {
 export const dragonOpeningTemplates = {
   "book-opening-entry-1": ["The opening is known to theory: {opening}."],
   "book-opening-entry-2": ["This move stands in established theory, as {opening}."],
-  "book-opening-entry-3": ["Theory has a name for this move: {opening}. A name is not a plan."],
+  "book-opening-entry-3": ["This move carries a name in theory: {opening}. A name is not a plan."],
   "book-opening-follow-1": ["Theory still holds here: {opening}."],
   "book-opening-follow-2": ["Another established move in {opening}."],
   "book-opening-follow-3": ["The game keeps to the theory of {opening}."],

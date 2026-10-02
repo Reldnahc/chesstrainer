@@ -108,14 +108,14 @@ export const alienTacticalTemplates = authorTacticalWordings({
 export const dragonTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "{move} delivers a {motif}, and it stands on the board now.",
-    played_possible: "{move} prepares a {motif}; whether it lands is up to the replies.",
+    played_possible: "{move} prepares a {motif}; the replies decide if it ever arrives.",
     allowed_immediate: "{opponent} has {action} in reply, and with it a {motif}.",
     allowed_possible: "This gives {opponent} a possible {motif} later; the replies will settle it.",
     missed_immediate: "{best} had a {motif} ready, and this move declines it.",
     missed_possible: "{best} could have built toward a {motif}, replies permitting.",
   },
-  fork: {actual: "One piece now strikes the {targets} together.", possible: "The {targets} would be attacked from a single square."},
-  material: "A {gain} may be the outcome, but only if both sides' next choices allow it.",
-  capture: {candidate: "{capture} would claim a {piece}.", followup: "Should play go that way, {capture} claims a {piece}."},
-  playedCapture: {fact: "{move} is built on a {motif}.", consequence: "{capture} claims a {piece}."},
+  fork: {actual: "One piece now strikes the {targets} together.", possible: "From a single square, the {targets} would be attacked together."},
+  material: "A {gain} may be the reward, but only if both sides' next choices allow it.",
+  capture: {candidate: "{capture} is there, and a {piece} would fall to it.", followup: "If play runs that way, a {piece} falls to {capture}."},
+  playedCapture: {fact: "{move} is built on a {motif}.", consequence: "A {piece} falls to {capture}."},
 });
