@@ -143,6 +143,7 @@ registered.
 | Celeste (`unicorn`) | Written, 438 | Yes, 2026-10-02, at commit `eddc967` | No | No |
 | Jun (`man-expert`) | Written, 438 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
 | Fergus (`frog`) | Written, 438 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
+| Arjun (`man-partner`) | Written, 438 | Yes, 2026-10-02, at commit `91cda3c` | No | No |
 
 ## Adding or revising a production bank
 
