@@ -139,3 +139,17 @@ export const tuxedoOpeningTemplates = {
   "book-opening-follow-7": ["No departure yet from {opening}."],
   "book-opening-follow-8": ["Theory still, in {opening}; a name, not a verdict."],
 } as const;
+
+export const raccoonOpeningTemplates = {
+  "book-opening-entry-1": ["This one's a known route: {opening}."],
+  "book-opening-entry-2": ["Familiar alley, and it comes with a name: {opening}."],
+  "book-opening-entry-3": ["The book's got this move marked down, under {opening}."],
+  "book-opening-follow-1": ["Same known route: {opening}."],
+  "book-opening-follow-2": ["Covered by the book as well: {opening}."],
+  "book-opening-follow-3": ["Same route, next move: {opening}."],
+  "book-opening-follow-4": ["Nothing new yet; this is still {opening}."],
+  "book-opening-follow-5": ["The known route keeps going through {opening}."],
+  "book-opening-follow-6": ["The book still has this covered: {opening}."],
+  "book-opening-follow-7": ["One more known step down {opening}."],
+  "book-opening-follow-8": ["The book's not out of moves yet: {opening}."],
+} as const;
