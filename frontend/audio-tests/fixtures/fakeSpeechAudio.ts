@@ -39,6 +39,11 @@ export function installFakeSpeechAudio(): FakeSpeechAudio {
     async close() {this.state = "closed";}
     createGain() {return new Gain();}
     createBufferSource() {const source = new Source(); sources.push(source); return source;}
+    createBuffer(numberOfChannels: number, length: number, sampleRate: number) {
+      const channels = Array.from({length: numberOfChannels}, () => new Float32Array(length));
+      return {duration: length / sampleRate, sampleRate, length, numberOfChannels,
+        getChannelData: (channel: number) => channels[channel]} as unknown as AudioBuffer;
+    }
     async decodeAudioData() {
       decodes++;
       if (held) await new Promise<void>(resolve => pending.push(resolve));

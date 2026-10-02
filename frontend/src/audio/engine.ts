@@ -217,7 +217,7 @@ export class AudioEngine {
         // A manual replacement waits for usable audio. A failed or stale download
         // must not silence the currently playing explanation.
         if (!this.current(ticket) || (!ticket.interruptCurrent && !this.activate(ticket))) return;
-        void this.decode(clip.url).then(buffer => {
+        void (clip.sequence ? this.decodeSequence(clip.sequence.urls, clip.sequence.gapSeconds) : this.decode(clip.url)).then(buffer => {
           if (!this.current(ticket)) return;
           if (ticket.interruptCurrent) {
             if (!this.validSpeechBuffer(buffer)) { this.fail(ticket); return; }
@@ -339,6 +339,27 @@ export class AudioEngine {
       });
     this.assets.set(url, pending);
     return pending;
+  }
+
+  /** Join whole recordings into one buffer so one playback, Stop and envelope cover them all. */
+  private async decodeSequence(urls: readonly string[], gapSeconds: number): Promise<AudioBuffer> {
+    const parts = await Promise.all(urls.map(url => this.decode(url)));
+    if (!parts.length || parts.some(part => !this.validSpeechBuffer(part) || part.sampleRate !== parts[0].sampleRate))
+      throw new Error("Incompatible speech sequence");
+    if (parts.length === 1) return parts[0];
+    const rate = parts[0].sampleRate, gap = Math.round(Math.max(0, gapSeconds) * rate);
+    const channels = Math.max(...parts.map(part => part.numberOfChannels));
+    const joined = this.context!.createBuffer(channels, parts.reduce((sum, part) => sum + part.length, 0)
+      + gap * (parts.length - 1), rate);
+    for (let channel = 0; channel < channels; channel++) {
+      const output = joined.getChannelData(channel);
+      let offset = 0;
+      for (const part of parts) {
+        output.set(part.getChannelData(Math.min(channel, part.numberOfChannels - 1)), offset);
+        offset += part.length + gap;
+      }
+    }
+    return joined;
   }
 
   private start(ticket: Ticket, buffer: AudioBuffer): void {

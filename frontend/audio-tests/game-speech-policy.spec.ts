@@ -96,9 +96,15 @@ for (const coach of coaches) {
     }
   });
 
+  // Without a combined line the bubble's recorded sentences play back to back.
+  const plain = (context: GameSpeechContext) => {
+    const first = selectGameRecording(context), second = selectGameRecording({...context, claimIndex: 1});
+    return first && second ? `${first}+${second}` : first;
+  };
+
   test(`${coach.id}: stale, wrong-coach, or altered insight cannot authorize a composite`, () => {
     const {context, insight} = presentation("cause-abandoned_defender-white-preferred", coach);
-    const fallback = selectGameRecording(context);
+    const fallback = plain(context);
     const stale = presentation("cause-avoiding_bad_trades-white-preferred", coach).insight;
     const wrongCoach = {...insight, utterance: {...insight.utterance, coachId: coach.id === "classic" ? "robot" : "classic"}};
     const altered = structuredClone(insight);
@@ -110,7 +116,7 @@ for (const coach of coaches) {
 
   test(`${coach.id}: late unavailable policy removes the chip without changing the objective fallback`, () => {
     const {context, insight} = presentation("cause-abandoned_defender-white-preferred", coach);
-    const fallback = selectGameRecording(context);
+    const fallback = plain(context);
     context.report!.human!.status = "unavailable";
     expect(selectGameSpeech(context, insight).recordingId).toBe(fallback);
     const current = presentation("cause-abandoned_defender-white-preferred", coach, context.game);
@@ -124,11 +130,11 @@ for (const coach of coaches) {
     game.orientation = "black";
     const opponent = presentation("cause-abandoned_defender-white-preferred", coach, game);
     expect(opponent.insight.intent.claims).toEqual([]);
-    expect(selectGameSpeech(opponent.context, original.insight).recordingId).toBe(selectGameRecording(opponent.context));
+    expect(selectGameSpeech(opponent.context, original.insight).recordingId).toBe(plain(opponent.context));
     const parent = original.context;
     const intent = gameIntent({...parent, key: "branch", variation: true, expression: parent.intent.expression});
     const branch = {...parent, variation: true, intent, utterance: renderDialogue(intent, coach)};
-    expect(selectGameSpeech(branch, original.insight).recordingId).toBe(selectGameRecording(branch));
+    expect(selectGameSpeech(branch, original.insight).recordingId).toBe(plain(branch));
   });
 }
 

@@ -1,11 +1,12 @@
 import registry from './banks/registry.json' with { type: 'json' };
 import type { SpeechMouthTrack } from '../../coach/speechMouth';
+import { SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR } from './sequence';
 
 type BankManifest = {
   coachId: string; voiceId: string;
   recordings: {id: string; text: string; audioPath: string}[];
 };
-export type VoiceRecording = { id: string; text: string; url: string };
+export type VoiceRecording = { id: string; text: string; url: string; parts?: readonly VoiceRecording[] };
 
 const manifests = import.meta.glob<BankManifest>(['./bank/manifest.json', './banks/*/manifest.json'],
   {import: 'default', eager: true});
@@ -48,7 +49,27 @@ export function hasCoachVoice(coachId: string): boolean { return banks.has(coach
 
 /** Unknown coaches or meanings stay silent; a different character is never a fallback. */
 export function coachRecording(coachId: string, id: string | null | undefined): VoiceRecording | null {
-  return id ? banks.get(coachId)?.recordings.get(id) ?? null : null;
+  if (!id) return null;
+  const recordings = banks.get(coachId)?.recordings;
+  const ids = id.split(SEQUENCE_SEPARATOR);
+  if (ids.length === 1) return recordings?.get(id) ?? null;
+  const parts = ids.map(part => recordings?.get(part));
+  if (!parts.every((part): part is VoiceRecording => !!part)) return null;
+  return { id, text: parts.map(part => part.text).join(' '), url: parts[0].url, parts };
+}
+
+/** Each sentence keeps its own mouth timing, offset by every earlier sentence and gap. */
+function sequenceTrack(tracks: Record<string, SpeechMouthTrack>, id: string): SpeechMouthTrack | undefined {
+  const parts = id.split(SEQUENCE_SEPARATOR).map(part => Object.hasOwn(tracks, part) ? tracks[part] : undefined);
+  if (!parts.every((part): part is SpeechMouthTrack => !!part)) return;
+  let offset = 0;
+  const cues: SpeechMouthTrack['cues'][number][] = [];
+  parts.forEach((part, index) => {
+    if (index) offset += SEQUENCE_GAP_SECONDS;
+    cues.push(...part.cues.map(cue => ({ ...cue, start: cue.start + offset, end: cue.end + offset })));
+    offset += part.durationSeconds;
+  });
+  return { durationSeconds: offset, cues };
 }
 
 export function coachRecordings(coachId: string): readonly VoiceRecording[] {
@@ -59,15 +80,15 @@ export function coachRecordings(coachId: string): readonly VoiceRecording[] {
 // phoneme archives never enter the runtime or the initial application download.
 export async function coachMouthTrack(coachId: string, id: string): Promise<SpeechMouthTrack | undefined> {
   const bank = banks.get(coachId);
-  if (!bank?.recordings.has(id)) return;
+  if (!bank || !coachRecording(coachId, id)) return;
   const tracks = loadedTracks.get(coachId) ?? await bank.loadTracks();
   loadedTracks.set(coachId, tracks);
-  return Object.hasOwn(tracks, id) ? tracks[id] : undefined;
+  return sequenceTrack(tracks, id);
 }
 
 export function loadedCoachMouthTrack(coachId: string, id: string | undefined): SpeechMouthTrack | undefined {
   const tracks = loadedTracks.get(coachId);
-  return id && tracks && Object.hasOwn(tracks, id) ? tracks[id] : undefined;
+  return id && tracks ? sequenceTrack(tracks, id) : undefined;
 }
 
 // Historical Walter-only audition fixtures use these adapters. Production uses

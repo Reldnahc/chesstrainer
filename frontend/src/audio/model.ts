@@ -71,5 +71,7 @@ export type SpeechPlayback = {
 /** A bundled recording of an existing utterance; playback never generates speech. */
 export type RecordedSpeechClip = Omit<PreparedSpeechClip, "buffer"> & {
   url: string;
+  /** Recordings spoken back to back as this one playback (url is the first). */
+  sequence?: {urls: readonly string[]; gapSeconds: number};
   delayMs?: number;
 };

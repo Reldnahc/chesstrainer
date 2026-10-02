@@ -15,7 +15,6 @@ import HumanInsight from "./HumanInsight";
 import {selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import {coachRecording} from "../audio/speech/voiceBank";
-import CoachSpeechButton from "../audio/speech/CoachSpeechButton";
 
 export default function PositionCoach({
   game,
@@ -84,16 +83,17 @@ export default function PositionCoach({
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   const selection = {...speechContext, intent: displayedIntent, utterance};
   const speech = selectGameSpeech(selection, explaining ? undefined : insight);
-  const {primaryId, secondaryId: secondaryRecording} = speech;
+  const {primaryId} = speech;
+  // Late Maia must not cut off the bubble's own line that is already playing.
+  const plainId = explaining ? null : selectGameSpeech(selection).recordingId;
   const recordingId = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance,
     automaticEventId: speechEventId, ready: !speechPending,
-    manualRecordingIds: [primaryId, secondaryRecording].filter((id): id is string => !!id)});
+    manualRecordingIds: [primaryId, plainId].filter((id): id is string => !!id)});
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}
-      voice={{...voice, control: <>{voice.control}{secondaryRecording &&
-        <CoachSpeechButton voice={voice} recordingId={secondaryRecording} label="Listen to additional explanation" />}</>}}
+      voice={voice}
       title={
         report ? (
           <MoveBadge label={report.label}>

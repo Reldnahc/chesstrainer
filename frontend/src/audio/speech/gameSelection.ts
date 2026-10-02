@@ -5,6 +5,7 @@ import {humanClaims, humanInsightIntent, humanInsightLabels, type HumanInsightPr
 import {object, strings} from "../../dialogue/eventClaims";
 import type {Claim, CoachUtterance, DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
+import {sequenceRecordingId} from "./sequence";
 import registry from "./banks/registry.json" with {type: "json"};
 import catalogue from "./meanings.json" with {type: "json"};
 
@@ -228,12 +229,12 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
 }
 
-/** One whole recording can cover the bubble's explanation and the visible Maia
- * insight. Their display order and the bubble's sentence limit are not evidence
- * boundaries. Late evidence never grants a second automatic narration turn. */
+/** A move has exactly one coach clip. A combined recording covers the bubble's
+ * explanation and the visible Maia insight. Otherwise a second bubble sentence
+ * with its own recording joins the first as one back-to-back playback, never a
+ * separate clip. Display order and the sentence limit are not evidence boundaries. */
 export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsightPresentation) {
   const primaryId = selectGameRecording({...context, claimIndex: 0});
-  let secondaryId = context.surface === "human-insight" ? null : selectGameRecording({...context, claimIndex: 1});
   let recordingId = primaryId;
   if (primaryId && context.surface !== "human-insight" && ["game", "variation"].includes(context.intent.mode)) {
     const claims = context.utterance.renderedClaims ?? [];
@@ -249,14 +250,13 @@ export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsi
         ? selectGameRecording({...context, ...insight, surface: "human-insight", claimIndex: 0}) : null;
     }
     const combined = objectiveId && humanId ? combinations.get(`${objectiveId}:${humanId}`) : undefined;
-    if (combined) {
-      recordingId = combined;
-      // The Maia-aware recording already says both claims. Offering either
-      // half again as a separate clip would replay a line the move just spoke.
-      if (secondaryId === objectiveId || secondaryId === humanId) secondaryId = null;
-    }
+    // A rendered Maia sentence is voiced only through the validated human claim.
+    const second = claims[1];
+    const secondId = combined || !second ? null
+      : humanInsightLabels[second.code] ? humanId : selectGameRecording({...context, claimIndex: 1});
+    recordingId = combined ?? (secondId && secondId !== primaryId ? sequenceRecordingId([primaryId, secondId]) : primaryId);
   }
-  return {recordingId, primaryId, secondaryId};
+  return {recordingId, primaryId};
 }
 
 /** Historical Walter-only consumers; new code selects meaning independently of voice. */
