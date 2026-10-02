@@ -1,4 +1,6 @@
+import hashlib
 import logging
+import os
 import shutil
 import threading
 from pathlib import Path
@@ -19,6 +21,22 @@ log = logging.getLogger(__name__)
 # Bounded shared stripes prevent concurrent searches for an identical cache key.
 # They contain no engine state and also cover the interactive engine.
 _CACHE_LOCKS = tuple(threading.Lock() for _ in range(1024))
+_BINARY_HASHES: dict[tuple[str, int, int], str] = {}
+_BINARY_HASH_LOCK = threading.Lock()
+
+
+def binary_sha256(path):
+    """Executable identity, read once per (path, size, mtime) rather than on every start."""
+    stat = os.stat(path)
+    key = (path, stat.st_size, stat.st_mtime_ns)
+    with _BINARY_HASH_LOCK:
+        cached = _BINARY_HASHES.get(key)
+    if cached is None:
+        with open(path, "rb") as binary:
+            cached = hashlib.file_digest(binary, "sha256").hexdigest()
+        with _BINARY_HASH_LOCK:
+            _BINARY_HASHES[key] = cached
+    return cached
 
 
 class EngineUnavailable(RuntimeError):
@@ -55,10 +73,7 @@ class Stockfish:
                     "Install native Stockfish and set STOCKFISH_PATH in .env."
                 )
             try:
-                import hashlib
-
-                with open(path, "rb") as binary:
-                    self.binary_hash = hashlib.file_digest(binary, "sha256").hexdigest()
+                self.binary_hash = binary_sha256(path)
                 self.process = chess.engine.SimpleEngine.popen_uci(path, timeout=15)
                 self.process.configure(
                     {
