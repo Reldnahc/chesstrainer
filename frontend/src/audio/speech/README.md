@@ -434,8 +434,9 @@ ready line and any card returning after a failure speaks its retry line; later
 cold cards and restored attempts stay silent until Listen, so a long queue does
 not repeat the same sentence.
 Opening an untouched game review in-app at its start speaks the coach's fact-free
-greeting once and shows it in the bubble; the first navigation replaces it, and
-restored later moves stay silent.
+greeting once and shows it in the bubble; the first navigation replaces it,
+returning to the start shows and speaks it again, and restored later moves stay
+silent.
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
 Winston and Button, so each registered bank holds all 448 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every

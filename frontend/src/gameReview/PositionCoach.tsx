@@ -91,8 +91,9 @@ export default function PositionCoach({
   // Late Maia must not cut off the bubble's own line that is already playing.
   const plainId = explaining ? null : selectGameSpeech(selection).recordingId;
   const selected = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
-  // The greeting is its own recording, so the bubble's no-report prose does not gate it.
-  const openerId = selectGameOpener({opening: speechOpening && !speechPending, ply, variation, report, frame,
+  // The greeting is the start's own line, whether the review just opened or the
+  // learner returned there, so the bubble's no-report prose does not gate it.
+  const openerId = selectGameOpener({ply, variation, report, frame,
     error: !!errorAtPosition || game.job?.status === "failed"});
   const opener = openerId && coachRecording(utterance.coachId, openerId) ? openerId : null;
   const recordingId = opener ?? selected;
