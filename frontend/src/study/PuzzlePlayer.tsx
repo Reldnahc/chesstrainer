@@ -14,7 +14,7 @@ import Notice from "../Notice";
 import SourceLine from "../SourceLine";
 import type { CoachExpression } from "../coach/model";
 import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
-import { createPuzzleStarter } from "./puzzleApi";
+import { createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel } from "./puzzleApi";
 import { usePuzzleSession } from "./usePuzzleSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { puzzleRecording } from "../audio/speech/practiceSelection";
@@ -45,7 +45,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     setOpeningNext(true);
     setNextError("");
     try {
-      const result = await startNextPuzzle(session?.source, controller.signal);
+      const result = await startNextPuzzle({ ...loadPuzzleSelection(), source: session?.source }, controller.signal);
       if (controller.signal.aborted) return;
       if (result) navigate(puzzleSessionPath(result.id));
       else navigate(studyPaths.puzzles);
@@ -96,7 +96,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     ><MoveStatus busy={busy} failed={incorrect && !error} text={message} /></ReviewCoach>
     {(error || nextError) && <Notice announcement="alert" tone="error">{error || nextError}</Notice>}
     {session.completion && <section className="panel puzzle-history" aria-label="Puzzle solution">
-      <h2>{session.completion.themes.length ? session.completion.themes.map(theme => theme.replaceAll("_", " ")).join(" · ") : "The continuation"}</h2>
+      <h2>{session.completion.themes.length ? session.completion.themes.map(puzzleThemeLabel).join(" · ") : "The continuation"}</h2>
       <ContinuationMoves label="Solution moves" moves={session.completion.solution} disabled={playing}
         selectedIndex={session.completion.solution.findIndex(move => frame === move)}
         startSelected={displayedFen === session.completion.solution[0]?.before_fen}

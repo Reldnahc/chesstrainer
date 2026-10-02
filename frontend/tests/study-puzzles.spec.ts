@@ -34,7 +34,7 @@ const piece = (page: Page, square: string, symbol: string) =>
 
 test("Study home keeps modes distinct and preserves old recall bookmarks without extra history", async ({ page }) => {
   await page.route("**/api/puzzles", route => route.fulfill({ json: {
-    available: 0, sources: [], resume: [], stats: { solved: 0, clean: 0, failed_then_solved: 0, revealed: 0 },
+    available: 0, sources: [], themes: [], retry_available: 0, resume: [], stats: { solved: 0, clean: 0, failed_then_solved: 0, revealed: 0 },
   } }));
   await page.goto("/study");
   await expect(page).toHaveURL("/study");

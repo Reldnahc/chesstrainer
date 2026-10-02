@@ -10,6 +10,11 @@
 .study-resume-list { display: flex; flex-direction: column; gap: 8px; }
 .puzzle-player-heading { display: flex; gap: 12px; align-items: center; width: 100%; }
 .puzzle-player-heading h1 { flex: 1; }
+.puzzle-start .puzzle-filters { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: start; margin-block: 4px 16px; }
+.puzzle-filter { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.puzzle-filter > span { font-size: 13px; color: var(--muted); }
+.puzzle-filter select { min-width: 240px; max-width: 100%; }
+.puzzle-pack-source { margin: 14px 0 0; }
 .puzzle-history { margin-top: 0; padding: 16px; }
 .puzzle-history h2 { font-size: 15px; margin-top: 0; }
 .lesson-course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; }
@@ -78,6 +83,9 @@
   .study-options { grid-template-columns: 1fr; gap: 12px; }
   .study-option { display: flex; flex-direction: column; grid-row: auto; padding: 20px; }
   .puzzle-history { margin-top: 12px; }
+  .puzzle-start .puzzle-filters { gap: 12px; }
+  .puzzle-filter, .puzzle-filter select { width: 100%; }
+  .puzzle-start .button-row button { flex: 1; }
   .lesson-chapters li { gap: 8px; padding: 12px 8px; }
   .lesson-context { margin-top: 12px; }
   .opening-search { flex-wrap: wrap; }
