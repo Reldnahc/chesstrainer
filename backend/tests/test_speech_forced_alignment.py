@@ -263,7 +263,7 @@ def test_changed_generic_mapping_is_rejected(saved_forced):
         ("frames", 1),
         ("channels", 2),
         ("sampleRate", 8000),
-        ("sourceSampleRate", 48000),
+        ("sourceSampleRate", 44100),
         ("durationSeconds", 1),
         ("trimmed", True),
         ("pcmSha256", "bad"),
