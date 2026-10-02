@@ -4,7 +4,7 @@ import math
 from contextlib import closing
 from datetime import datetime, timezone
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from trainer.game_providers import get_provider
 from trainer.game_providers.base import GameProviderClient, check_cancel
@@ -136,14 +136,21 @@ def fetch_import(job_id, sessions, settings, client: GameProviderClient, cancell
                 request.errors = (request.errors + errors)[:50]
                 request.games_fetched += processed
                 request.archives_processed += 1
-                job.games_total = len(
-                    db.scalars(
-                        select(ImportGame.game_id).where(
-                            ImportGame.import_id == job.import_id, ImportGame.is_new.is_(True)
-                        )
-                    ).all()
+                job.games_total = db.scalar(
+                    select(func.count())
+                    .select_from(ImportGame)
+                    .where(ImportGame.import_id == job.import_id, ImportGame.is_new.is_(True))
                 )
-                db.add(ProviderCheckpoint(job_id=job_id, url=url, games_selected=processed))
+                # A grouped batch completes every record it carried; the batch key
+                # row carries the processed count so resume skips the whole group.
+                for key in batch.checkpoint_keys():
+                    db.add(
+                        ProviderCheckpoint(
+                            job_id=job_id,
+                            url=key,
+                            games_selected=processed if key == url else 0,
+                        )
+                    )
                 db.commit()
                 if (request.games_fetched if sync else request.games_imported) >= limit:
                     break
