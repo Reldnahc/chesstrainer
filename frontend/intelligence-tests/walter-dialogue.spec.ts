@@ -24,7 +24,7 @@ test("Walter and Rivet adopt scoped dialogue while the remaining cast keeps the 
       expect(output.renderedClaims).toEqual([item]);
       if (!["classic", "robot"].includes(output.coachId)) expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
       else {
-        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-2");
+        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-3");
         expect(output.text).not.toMatch(/engine|continuation|verified/i);
         expect(output.text).toContain(output.coachId === "classic"
           ? role === "played" ? "are attacked together" : "would be attacked together"
@@ -61,7 +61,7 @@ test("opening sequence metadata changes only the two pilot voices and preserves 
       if (!["classic", "robot"].includes(output.coachId))
         expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
       else {
-        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-2");
+        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-3");
         expect(output.text).toContain("Named opening");
         expect(output.text).not.toMatch(/good|best|strong|you|your|develop|center|centre|advantage/i);
       }

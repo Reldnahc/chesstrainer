@@ -3,7 +3,7 @@ import {robotTacticalTemplates} from "./scopedTactics";
 import {robotOpeningTemplates} from "./openingSequence";
 
 export const robot: CoachPersonality = {
-  version: "robot-2", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
+  version: "robot-3", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
   delivery: {pace: "steady", energy: "quiet"},
   behavior: {
     general: "pattern-first", praise: "pattern-first", correction: "pattern-first",
@@ -59,6 +59,15 @@ export const robot: CoachPersonality = {
     clock_fast: ["Clock record for {side}: {elapsed} seconds used; {seconds} seconds remained."],
     clock_long: ["Move duration for {side}: {elapsed} seconds."],
     development: ["{lead}develops the {piece} from its original square. Change recorded."],
+    support_restored: ["Support reference: {earlier}, where the {piece} was left unguarded. Current status: defended again."],
+    erosion: ["Trend since {earlier}: several small concessions. Combined result: a worse position. This move is one of them."],
+    conversion: ["Advantage reference: {earlier}. Result: {side} retained it through the win."],
+    rook_file: ["Rook status: {kind} {file}-file. {lead}leaves {side}'s rook there."],
+    passed: ["{lead}leaves {side} with passed pawns on {squares}. Verification: no enemy pawn ahead on those or neighboring files."],
+    passer_advance: ["{lead}advances the passed pawn to {square}. Distance to promotion: reduced."],
+    isolated: ["{lead}leaves {side}'s pawns on {squares} isolated. Neighboring files: no friendly pawn."],
+    flights: ["{lead}opens {squares} as a legal flight square for the king. Escape route: available."],
+    castle: ["{lead}castles the king to {square}. Rook relocated within the same move."],
     support: ["{lead}adds support to the {piece} on {square}."],
     unsupported: ["{lead}leaves the {piece} on {square} undefended. Loss is not established by that fact alone."],
     bishops: ["{lead}removes {side}'s opposite-colored bishop pair."],
@@ -76,5 +85,6 @@ export const robot: CoachPersonality = {
     unavailable: ["Engine coaching unavailable. Board exploration remains enabled."],
     practice_error: ["No analysis result received. Retry available."],
     variation: ["Alternative-line result: {detail}"],
+    compatibility: ["Status: {detail}"],
   },
 };
