@@ -43,7 +43,7 @@ export const dragon: CoachPersonality = {
       {fact: "The {motif} with {best} goes unused. {detail}", takeaway: "Look at the forcing moves first, every time."},
     ],
     cause_abandoned_defender: [
-      {reaction: "Every defender has a duty.", fact: "{side}'s {piece} on {square} had only one unpinned defender, and {move} drags it away.", consequence: "{opponent} can win it outright with {reply}."},
+      {reaction: "Every defender has a duty.", fact: "{side}'s {piece} on {square} leaned on only one unpinned defender, and {move} removes it.", consequence: "{opponent} can win it outright with {reply}."},
       {fact: "{move} abandons {side}'s {piece} on {square} by moving its only unpinned defender.", consequence: "{opponent} can take it at once: {reply}.", takeaway: "Know what a piece protects before you move it."},
     ],
     cause_opponent_threat_recognition: [
