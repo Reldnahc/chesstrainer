@@ -227,7 +227,7 @@
     {
       "id": "positional-isolated-alternative",
       "group": "game_review",
-      "text": "Another move would have left a pawn isolated, with no pawn of its color on the neighboring files."
+      "text": "With another move, a pawn would have stood isolated, no pawn of its color on the neighboring files."
     },
     {
       "id": "positional-support-actual",
@@ -567,12 +567,12 @@
     {
       "id": "explanation-frame-quiet-promotion-check",
       "group": "srs_explanations",
-      "text": "The pawn reaches the far edge, turns into a new piece, and gives check as it does."
+      "text": "The pawn reaches the far edge and is promoted, and the new piece checks the king at once."
     },
     {
       "id": "explanation-frame-quiet-promotion-mate",
       "group": "srs_explanations",
-      "text": "The pawn reaches the far edge, turns into a new piece, and that is checkmate. No legal step is left to that king."
+      "text": "The pawn reaches the far edge and is promoted, and that is checkmate. No legal step is left to that king."
     },
     {
       "id": "explanation-frame-quiet-promotion-escape",
@@ -1557,7 +1557,7 @@
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-natural-best",
-      "text": "That piece had no guard, so it's taken. The obvious choice, as the human-move model has it, turns out to be the engine's best as well."
+      "text": "Nothing guarded that piece, and it's gone now. The obvious choice, as the human-move model has it, turns out to be the engine's best as well."
     },
     {
       "id": "combo-tactic-undefended-capture-played-natural-strong",
@@ -1774,7 +1774,7 @@
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-unusual-strong",
-      "text": "That piece had no guard; now someone covers it. The human-move model rarely expects a move like this, and the engine gives it a strong mark anyway."
+      "text": "A piece stood unguarded; now someone covers it. The human-move model rarely expects a move like this, and the engine gives it a strong mark anyway."
     },
     {
       "id": "combo-positional-support-actual-natural-best",
@@ -1816,7 +1816,7 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-natural-strong",
-      "text": "A piece is left unguarded here, though unguarded doesn't mean lost. What the human-move model expects here is strong to the engine too, if just short of its top pick."
+      "text": "Nobody is guarding one of the pieces after this; worth a glance, not yet a loss. What the human-move model expects here is strong to the engine too, if just short of its top pick."
     },
     {
       "id": "combo-positional-king-flight-actual-hard-find",
