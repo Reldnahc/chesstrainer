@@ -344,3 +344,33 @@ export const analystTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "If {capture} is played, a {piece} comes off the board.", followup: "If the line continues that way, {capture} may be next, taking a {piece}."},
   playedCapture: {fact: "{move} has brought a {motif} into the position.", consequence: "After {capture}, a {piece} is gone."},
 });
+
+export const blondeTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Nice and simple: right after {move}, there's a {motif}.",
+    played_possible: "{move} quietly prepares a {motif}, provided the replies allow it.",
+    allowed_immediate: "Plainly put, {opponent} can answer {action}, with a {motif} on the end of it.",
+    allowed_possible: "Down the line, {opponent} could end up with a {motif}, depending on the replies.",
+    missed_immediate: "Tucked into {best} was a {motif}, ready to go.",
+    missed_possible: "Given the right replies, a {motif} could have come out of {best}.",
+  },
+  fork: {actual: "One piece settles on a square that reaches the {targets} together.", possible: "Settle one piece on the right square, and the {targets} would be attacked together by one piece."},
+  material: "A {gain} may be waiting at the end, though plenty can still change along the way.",
+  capture: {candidate: "{capture} is there, and it would win a {piece}.", followup: "Play it on that way, and {capture} might follow, picking off a {piece}."},
+  playedCapture: {fact: "{move} gets a {motif} underway.", consequence: "After that, {capture} gathers in a {piece}."},
+});
+
+export const puppyTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Woo-hoo, {move} plops a {motif} onto the board!",
+    played_possible: "{move} could set up a {motif} later on, as long as the replies play along.",
+    allowed_immediate: "Uh oh, {opponent} has {action} available, and that brings a {motif}.",
+    allowed_possible: "Later on, {opponent} might get to use a {motif}, if the replies go their way.",
+    missed_immediate: "Aw, {best} was carrying a {motif}, all ready.",
+    missed_possible: "With friendly replies, {best} could have grown into a {motif}.",
+  },
+  fork: {actual: "Wow, one piece is going after the {targets} all at the same time!", possible: "The {targets} would be attacked, and one eager piece would be chasing every one of them."},
+  material: "A {gain} may be the reward at the end, though both sides still get to choose their moves.",
+  capture: {candidate: "Chomp: {capture} would munch a {piece}.", followup: "Later on, chomp: {capture} could munch a {piece}."},
+  playedCapture: {fact: "{move} brings a fun {motif} with it.", consequence: "Chomp, {capture} munches a {piece}."},
+});

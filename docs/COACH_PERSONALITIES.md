@@ -167,7 +167,15 @@ Monty (gorilla) has opted in as well, with his forms in `characters/groundedQuie
 and the shared tactic and opening blocks: one big concrete problem in plain
 words, the simple reason, then the result, with earnest, sparse approval and no
 questions. Monty also stays silent until a bank is registered.
-The other 6 voices retain their current wording and deterministic variants.
+Ingrid (`woman-blonde`) has opted in too, in `characters/blonde.ts`: a relaxed,
+unhurried opener, the concrete fact said plainly, then one manageable next idea,
+with reassurance kept to the player's own moments and always beside a chess point,
+and no questions. Ingrid also stays silent until a bank is registered.
+Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
+the concrete reply in plain words, then one small habit to carry forward, with
+ownership words kept to the learner's own moments. Biscuit also stays silent
+until a bank is registered.
+The other 4 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
