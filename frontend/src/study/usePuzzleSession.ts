@@ -40,6 +40,10 @@ export function usePuzzleSession(id: string) {
       if (version !== generation.current) return;
       setSession(result);
       setRetryReady(false);
+      // Opening an untouched puzzle is a fresh narration event; a puzzle
+      // restored after moves, feedback or a retry stays silent.
+      if (result.status === "active" && !result.failed && !result.feedback && !result.history.length)
+        setFeedbackEventId(`open:${id}:${result.revision}`);
       started.current = performance.now();
     } catch (e) {
       if (version === generation.current) setError((e as Error).message);

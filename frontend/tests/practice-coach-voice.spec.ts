@@ -32,6 +32,17 @@ async function opening(page: Page, key: string) {
   return result;
 }
 
+// A fresh document cannot autoplay. Open the puzzle in-app after a real gesture,
+// as from the puzzle list or Next puzzle.
+async function openInApp(page: Page, path: string) {
+  await page.goto("/study/puzzles");
+  await page.getByRole("heading", {level: 1}).first().click();
+  await page.evaluate(href => {
+    history.pushState(null, "", href);
+    dispatchEvent(new PopStateEvent("popstate"));
+  }, path);
+}
+
 async function move(page: Page, uci: string) {
   const response = page.waitForResponse(value => value.request().method() === "POST" && value.url().endsWith("/move"));
   await page.locator(`.board-shell [data-square="${uci.slice(0, 2)}"]`).click();
@@ -50,14 +61,12 @@ async function unchanged(page: Page, count = 0) {
   expect((await speechActivity(page)).started).toHaveLength(count);
 }
 
-test("puzzle narration follows fresh responses, with cold and restored results manual only", async ({page}, info) => {
+test("puzzle narration follows a fresh open and fresh responses, with restored results manual only", async ({page}, info) => {
   const fixture = await puzzle(page, `responses-${info.project.name}`);
-  await page.goto(fixture.path);
+  await openInApp(page, fixture.path);
   await expect(page.getByRole("heading", {name: "Find the continuation.", exact: true})).toBeVisible();
-  await unchanged(page);
-  await page.getByRole("button", {name: "Listen to coach", exact: true}).click();
   await spoken(page, "puzzle-cold", 1);
-  await page.getByRole("button", {name: "Stop coach voice", exact: true}).click();
+  await unchanged(page, 1);
   await move(page, "d2d4");
   await spoken(page, "puzzle-rejected", 2);
   await unchanged(page, 2);
@@ -76,16 +85,18 @@ test("puzzle narration follows fresh responses, with cold and restored results m
 
 test("revealing a puzzle stays silent and a late response cannot narrate after leaving", async ({page}, info) => {
   const revealed = await puzzle(page, `revealed-${info.project.name}`);
-  await page.goto(revealed.path);
+  await openInApp(page, revealed.path);
+  await spoken(page, "puzzle-cold", 1);
   await page.getByRole("button", {name: "Reveal solution", exact: true}).click();
   await expect(page.getByRole("heading", {name: "Solution revealed.", exact: true})).toBeVisible();
-  await unchanged(page);
+  await unchanged(page, 1);
   await page.getByRole("button", {name: "Listen to coach", exact: true}).click();
-  await spoken(page, "puzzle-revealed", 1);
+  await spoken(page, "puzzle-revealed", 2);
 
   const delayed = await puzzle(page, `late-${info.project.name}`);
-  await page.goto(delayed.path);
+  await openInApp(page, delayed.path);
   await expect(page.getByRole("heading", {name: "Find the continuation.", exact: true})).toBeVisible();
+  await spoken(page, "puzzle-cold", 1);
   let release!: () => void;
   const gate = new Promise<void>(resolve => {release = resolve;});
   let handled: Promise<void> | undefined;
@@ -106,7 +117,7 @@ test("revealing a puzzle stays silent and a late response cannot narrate after l
     await expect(page).toHaveURL("/study/puzzles");
     release();
     await handled;
-    await unchanged(page);
+    await unchanged(page, 1);
   } finally { release(); await handled; }
 });
 

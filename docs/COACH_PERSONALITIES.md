@@ -175,12 +175,26 @@ Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
 the concrete reply in plain words, then one small habit to carry forward, with
 ownership words kept to the learner's own moments. Biscuit also stays silent
 until a bank is registered.
+Réka (`woman-spark`) has opted in too, in `characters/spark.ts`: a quick reaction to
+the pattern, the tactical punchline, then its supported consequence, with her own
+"eyes up" warning, "repertoire" for book moves, delight such as "Zing!" kept for
+the learner's own clips, and difficulty credited to the human-move model. Réka
+stays silent until a bank is registered.
+Mateo (`human-boy`) has opted in as well, in `characters/youngBoy.ts`: a short
+burst of excitement aimed at the tactic itself, sometimes a "wait" or "look at
+this", then one plain, complete chess fact, with an occasional question whose
+answer is on the board. His cheering and sympathy stay on the player's own
+moments. Mateo also stays silent until a bank is registered.
+Tamar (`woman-captain`) has opted in as well, in `characters/captain.ts`: a
+firm verdict, the concrete reason, then one habit to build, with open mentor
+pride kept to the learner's own moves, plain-clip lines that name no owner,
+and no questions. Tamar also stays silent until a bank is registered.
 Tala (young girl) has opted in as well, with her forms in `characters/groundedHumans.ts`
 and the shared tactic and opening blocks: a genuine question or one circled detail,
 the discovery, then its consequence, with competitive curiosity instead of scolding,
 no emotion that depends on which side moved, and ownership words kept to the
 learner's own moments. Tala also stays silent until a bank is registered.
-The other 3 voices retain their current wording and deterministic variants.
+Every voice in the cast now has its own scoped wording.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

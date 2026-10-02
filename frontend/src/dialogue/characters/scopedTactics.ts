@@ -104,6 +104,20 @@ export const frogTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would follow and remove a {piece}, quietly.", followup: "Possibly {capture} follows, taking a {piece}."},
   playedCapture: {fact: "{move} has a {motif} attached.", consequence: "{capture} then removes a {piece}, without ceremony."},
 });
+export const captainTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} produces a {motif} at once.",
+    played_possible: "{move} prepares a {motif}, though the replies decide whether it lands.",
+    allowed_immediate: "{opponent} answers with {action}, and the {motif} is there at once.",
+    allowed_possible: "Later, {opponent} may find a {motif}, depending on how the replies go.",
+    missed_immediate: "{best} would have produced a {motif} straight away.",
+    missed_possible: "{best} pointed toward a {motif}, with the replies still to decide it.",
+  },
+  fork: {actual: "The {targets} are under fire from one piece at the same moment.", possible: "Should it get there, the {targets} would be attacked from one square by one piece."},
+  material: "A {gain} may be the result, if both sides play the line out.",
+  capture: {candidate: "{capture} would come next and win a {piece}.", followup: "Should the line continue that way, {capture} can collect a {piece}."},
+  playedCapture: {fact: "{move} turns a {motif} loose.", consequence: "{capture} then wins the {piece}."},
+});
 
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
@@ -373,6 +387,36 @@ export const puppyTacticalTemplates = authorTacticalWordings({
   material: "A {gain} may be the reward at the end, though both sides still get to choose their moves.",
   capture: {candidate: "Chomp: {capture} would munch a {piece}.", followup: "Later on, chomp: {capture} could munch a {piece}."},
   playedCapture: {fact: "{move} brings a fun {motif} with it.", consequence: "Chomp, {capture} munches a {piece}."},
+});
+
+export const sparkTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Spicy: right away, {move} unleashes a {motif}.",
+    played_possible: "{move} loads a {motif}, replies permitting.",
+    allowed_immediate: "Eyes up: {opponent} can answer {action}, and a {motif} snaps shut.",
+    allowed_possible: "Eyes up for later: a {motif} could spring for {opponent}, replies permitting.",
+    missed_immediate: "{best} had a {motif} loaded and ready to fire.",
+    missed_possible: "{best} might have loaded a {motif}, with the replies still to say their piece.",
+  },
+  fork: {actual: "One landing, and the {targets} are all in the crosshairs.", possible: "One landing, and the {targets} would be attacked in the same breath."},
+  material: "A {gain} may be up for grabs, with both sides still holding cards.",
+  capture: {candidate: "Snap: {capture}, and that {piece} is history.", followup: "Further down the road, {capture} could gobble a {piece}."},
+  playedCapture: {fact: "{move} lights the fuse on a {motif}.", consequence: "Next, {capture} swallows the {piece}."},
+});
+
+export const youngBoyTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Ooh, look: as soon as {move} lands, there's a {motif}.",
+    played_possible: "{move} gets a {motif} ready for later, as long as the replies let it happen.",
+    allowed_immediate: "Look, {opponent} can answer {action}, and that brings a {motif} with it.",
+    allowed_possible: "Later, depending on the replies, a {motif} might open up for {opponent}.",
+    missed_immediate: "A {motif} was hiding right inside {best}.",
+    missed_possible: "Hmm, {best} had a {motif} tucked away for later, if the replies cooperated.",
+  },
+  fork: {actual: "One piece jumps in and pokes at the {targets} all at once.", possible: "Land one piece on the right spot, and the {targets} would be attacked from a single square."},
+  material: "There may be a {gain} at the end of this, but lots of moves still have to happen first.",
+  capture: {candidate: "Look, {capture} is available, and it would grab a {piece}.", followup: "If the line goes that way, {capture} could come next and snag a {piece}."},
+  playedCapture: {fact: "{move} starts a {motif} rolling.", consequence: "After that, {capture} grabs a {piece} too."},
 });
 
 export const girlTacticalTemplates = authorTacticalWordings({

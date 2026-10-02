@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "coachId": "capybara",
+  "voiceId": "winston",
+  "baseCommit": "59b209413c9e95fe6f908c04a8505448d1835c28",
+  "status": "recorded",
+  "note": "Plain clips also play on the opponent's moves, so these reactions were reworded to react to the pattern and re-recorded with the locked voice under recordings/winston-v2/.",
+  "recordings": [
+    {
+      "id": "allowed-mate",
+      "previousText": "All right, this is the hard part. After this move, the other side can force checkmate. We can trace the attack in, quietly, and find where the defense gives way.",
+      "text": "All right, this is the important part. After this move, the other side can force checkmate. Trace the attack in from its first move and find where the defense gives way.",
+      "reason": "The reaction and the shared 'we' assumed the learner made the move."
+    },
+    {
+      "id": "best-supported-choice",
+      "previousText": "That'll do very well. Among the moves the engine looked at, this one's a strong choice.",
+      "text": "Right then. Among the moves the engine looked at, this one's a strong choice.",
+      "reason": "'That'll do very well' praised the mover, which praises the opponent on an opponent move."
+    },
+    {
+      "id": "only-advantage-resource",
+      "previousText": "The advantage stays, and that's no small thing. Nothing else we checked kept it; every other move was losing.",
+      "text": "That's the move the advantage depended on. Nothing else we checked kept it; every other move was losing.",
+      "reason": "'That's no small thing' cheered the mover's result."
+    }
+  ]
+}

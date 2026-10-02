@@ -97,6 +97,19 @@ export const frogOpeningTemplates = {
   "book-opening-follow-7": ["{opening}, continuing without incident."],
   "book-opening-follow-8": ["Still {opening}. It names the line and nothing else."],
 } as const;
+export const captainOpeningTemplates = {
+  "book-opening-entry-1": ["Know the territory: {opening}."],
+  "book-opening-entry-2": ["The opening on the board is {opening}. Learn its plans."],
+  "book-opening-entry-3": ["Book move; the book's name for it is {opening}."],
+  "book-opening-follow-1": ["{opening} keeps going, and the ground is familiar."],
+  "book-opening-follow-2": ["{opening} continues. Keep its main ideas in mind."],
+  "book-opening-follow-3": ["{opening} accounts for the reply as well."],
+  "book-opening-follow-4": ["{opening} has this move in its repertoire too."],
+  "book-opening-follow-5": ["{opening} holds for one more move."],
+  "book-opening-follow-6": ["The game stays inside {opening}."],
+  "book-opening-follow-7": ["{opening}, and the script continues."],
+  "book-opening-follow-8": ["Still {opening}. The name marks the road and passes no judgment on the move."],
+} as const;
 
 export const robotOpeningTemplates = {
   "book-opening-entry-1": ["Opening match: {opening}."],
@@ -348,6 +361,34 @@ export const puppyOpeningTemplates = {
   "book-opening-follow-6": ["Yet another {opening} move, yay!"],
   "book-opening-follow-7": ["More pages of {opening} to read!"],
   "book-opening-follow-8": ["Still deep in {opening} land! Think of it as a dot on the map, not a grade for the move."],
+} as const;
+
+export const sparkOpeningTemplates = {
+  "book-opening-entry-1": ["Repertoire time, courtesy of {opening}."],
+  "book-opening-entry-2": ["Straight out of the repertoire, {opening}."],
+  "book-opening-entry-3": ["A repertoire line with a name: {opening}."],
+  "book-opening-follow-1": ["{opening}, and the repertoire rolls on."],
+  "book-opening-follow-2": ["Another rehearsed move from {opening}."],
+  "book-opening-follow-3": ["The reply is on script too, still {opening}."],
+  "book-opening-follow-4": ["{opening} keeps flowing."],
+  "book-opening-follow-5": ["No detours yet; this is {opening}."],
+  "book-opening-follow-6": ["The script covers this, in {opening}."],
+  "book-opening-follow-7": ["Cruising the main road of {opening}."],
+  "book-opening-follow-8": ["Still {opening}: a pin on the map, not a verdict on the move."],
+} as const;
+
+export const youngBoyOpeningTemplates = {
+  "book-opening-entry-1": ["And now the game is in {opening}."],
+  "book-opening-entry-2": ["This takes the game into {opening} territory."],
+  "book-opening-entry-3": ["Ooh, the opening book knows this as {opening}."],
+  "book-opening-follow-1": ["More {opening}, and it keeps going."],
+  "book-opening-follow-2": ["Yep, this move is {opening} too."],
+  "book-opening-follow-3": ["Even the reply sticks with {opening}."],
+  "book-opening-follow-4": ["{opening}, again."],
+  "book-opening-follow-5": ["Still cruising in {opening}."],
+  "book-opening-follow-6": ["{opening} isn't done yet."],
+  "book-opening-follow-7": ["Another {opening} move."],
+  "book-opening-follow-8": ["More {opening}. That's just where the game is, not a score for the move."],
 } as const;
 
 export const girlOpeningTemplates = {

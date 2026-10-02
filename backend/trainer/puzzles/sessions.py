@@ -149,7 +149,8 @@ def library(db, providers):
             PuzzleSession.updated_at,
             PuzzleSession.failed,
         )
-        .where(PuzzleSession.status == "active")
+        # A started puzzle with no committed move or reveal has nothing to resume.
+        .where(PuzzleSession.status == "active", PuzzleSession.revision > 0)
         .order_by(PuzzleSession.updated_at.desc(), PuzzleSession.id)
         .limit(20)
     )
