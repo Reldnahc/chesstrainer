@@ -115,7 +115,16 @@ def _matches(definition, query):
 def library(db, providers):
     sources, themes = {}, {}
     latest, _ = _history(db)
-    retry_available = 0
+    # Installed puzzles with any solved attempt, including after a mistake.
+    # Repeat solves of one puzzle count once; removed packs do not count.
+    solved_identities = set(
+        db.execute(
+            select(PuzzleSession.provider_id, PuzzleSession.puzzle_key)
+            .where(PuzzleSession.status == "solved")
+            .distinct()
+        ).tuples()
+    )
+    retry_available = solved_puzzles = 0
     for provider, definition in providers.catalog(db):
         info = sources.setdefault(
             provider.id,
@@ -138,6 +147,8 @@ def library(db, providers):
         for theme in definition.themes:
             if theme not in META_THEMES:
                 themes[theme] = themes.get(theme, 0) + 1
+        if (provider.id, definition.key) in solved_identities:
+            solved_puzzles += 1
         outcome = latest.get((provider.id, definition.key))
         if outcome is not None and _needs_retry(outcome):
             retry_available += 1
@@ -171,6 +182,7 @@ def library(db, providers):
             for theme, count in sorted(themes.items(), key=lambda item: (-item[1], item[0]))
         ],
         "retry_available": retry_available,
+        "solved_puzzles": solved_puzzles,
         "resume": [
             {
                 "id": row.id,

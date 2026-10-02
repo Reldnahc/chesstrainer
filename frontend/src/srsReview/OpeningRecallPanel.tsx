@@ -15,7 +15,8 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
   const voice = useCoachSpeech({
     scopeKey: `opening-recall:${position?.session_id}:${feedback?.attempt_id ?? session.feedbackEventId ?? "cold"}:${recordingId}`,
     recordingId, ready: !!position?.opening && !busy && !session.loading,
-    automaticEventId: !gradingError && feedback?.grade !== "revealed" ? session.feedbackEventId : null,
+    automaticEventId: gradingError ? null : !feedback ? session.openEventId
+      : feedback.grade !== "revealed" ? session.feedbackEventId : null,
   });
   if (!position?.opening) return null;
   const opening = feedback?.opening ?? position.opening;

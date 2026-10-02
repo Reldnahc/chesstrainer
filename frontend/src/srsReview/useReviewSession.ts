@@ -28,6 +28,7 @@ export function useReviewSession({
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [feedbackEventId, setFeedbackEventId] = useState<string | null>(null);
+  const [openEventId, setOpenEventId] = useState<string | null>(null);
   const [submittedMove, setSubmittedMove] = useState<string | null>(null);
   const [hadFailure, setHadFailure] = useState(false);
   const [gradingError, setGradingError] = useState<string | null>(null);
@@ -35,6 +36,10 @@ export function useReviewSession({
   const [last, setLast] = useState<string | null>(null);
   const practiceBatch = useRef<Schema["PracticeQueueItem"][] | null>(null);
   const practiced = useRef(new Set<string>());
+  // The cold opener speaks once per review session, so a long queue does not
+  // repeat the same ready line on every card; retried cards always speak.
+  const coldOpened = useRef(false);
+  const openFor = useRef<string | null>(null);
   const generation = useRef(0);
   const responseSequence = useRef(0);
   const audio = useAudioScope(`review:${requestedSession || requested || focusSkill || "queue"}`);
@@ -60,6 +65,8 @@ export function useReviewSession({
       setPosition(null);
       setFeedback(null);
       setFeedbackEventId(null);
+      setOpenEventId(null);
+      openFor.current = null;
       setSubmittedMove(null);
       setHadFailure(false);
       setGradingError(null);
@@ -108,6 +115,11 @@ export function useReviewSession({
             setFeedback(result.feedback ?? null);
             setHadFailure(result.failed);
           }
+          // Restored attempts and cards with saved feedback stay Listen-only.
+          if (result && !resumeSession && !result.feedback && (result.failed || !coldOpened.current)) {
+            coldOpened.current = true;
+            openFor.current = result.session_id;
+          }
           if (!focusSkill) await refreshDue(version);
         }
       } catch (e) {
@@ -119,9 +131,19 @@ export function useReviewSession({
     [focusSkill, fail, refreshDue],
   );
 
+  // Announce the opener only after the card has rendered, so the speech
+  // hook sees a fresh event rather than state it hydrated with.
+  useEffect(() => {
+    if (!loading && position && openFor.current === position.session_id) {
+      openFor.current = null;
+      setOpenEventId(`open:${position.session_id}`);
+    }
+  }, [position, loading]);
+
   useEffect(() => {
     practiceBatch.current = null;
     practiced.current.clear();
+    coldOpened.current = false;
     void load(requested, null, requestedSession);
     return () => {
       generation.current++;
@@ -214,6 +236,7 @@ export function useReviewSession({
     busy,
     feedback,
     feedbackEventId,
+    openEventId,
     audio,
     submittedMove,
     hadFailure,

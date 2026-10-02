@@ -164,9 +164,7 @@ export default function PositionCoach({
           )}
         </>
       }
-      insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} presentation={insight} report={report}
-        speechContext={speechContext} speechScopeKey={`game:${positionKey}:human`}
-        onManualSpeech={() => voice.consumeAutomatic(speechEventId)} />}
+      insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} presentation={insight} report={report} />}
     >
       <DialogueText utterance={greeting} />
       {errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}

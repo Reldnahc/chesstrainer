@@ -2992,6 +2992,8 @@ export interface components {
             resume: components["schemas"]["PuzzleResume"][];
             /** Retry Available */
             retry_available: number;
+            /** Solved Puzzles */
+            solved_puzzles: number;
             /** Sources */
             sources: components["schemas"]["PuzzleProviderInfo"][];
             stats: components["schemas"]["PuzzleStats"];
