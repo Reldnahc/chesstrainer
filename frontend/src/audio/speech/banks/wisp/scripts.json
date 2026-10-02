@@ -27,7 +27,7 @@
     {
       "id": "tactic-pin-allowed",
       "group": "game_review",
-      "text": "A danger sits on the line to the king. The other side can pin a piece there, and a pinned piece cannot leave without exposing its king."
+      "text": "Look along the line to the king. The other side can pin a piece there, and a pinned piece cannot leave without exposing its king."
     },
     {
       "id": "tactic-pin-missed",
@@ -157,7 +157,7 @@
     {
       "id": "cause-abandoned-defender",
       "group": "game_review",
-      "text": "The danger is already there. This move takes away a piece's only real defender, and the other side can capture what it left behind."
+      "text": "Notice what just left. This move takes away a piece's only real defender, and the other side can capture what it left behind."
     },
     {
       "id": "cause-opponent-threat-recognition",
@@ -357,7 +357,7 @@
     {
       "id": "human-hard-defense-missed",
       "group": "game_review",
-      "text": "One move kept the position playable, and the engine found it. The human-move model suggests it was hard to find. Here it was missed."
+      "text": "One move kept the position playable, and the engine found it. The human-move model sees it slipping past most players. Here it was missed."
     },
     {
       "id": "human-hard-find",
@@ -1060,7 +1060,7 @@
       "group": "game_review",
       "primary": "tactic-pin-played",
       "secondary": "human-hard-find",
-      "text": "A pin to the king holds a piece on its line. This is the engine's best move, and the human-move model suggests it was hard to find."
+      "text": "A pin to the king holds a piece on its line. This is the engine's best move, and few hands would ever reach for it, the human-move model judges."
     },
     {
       "id": "combo-cause-abandoned-defender-natural-error",
@@ -1228,7 +1228,7 @@
       "group": "game_review",
       "primary": "tactic-skewer-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "The one move among those examined that held the position contained a skewer. It went unplayed. The human-move model suggests it was difficult to find."
+      "text": "The one move among those examined that held the position contained a skewer. It went unplayed. In the human-move model's numbers, this one stays out of sight."
     },
     {
       "id": "combo-tactic-removing-defender-played-hard-find",
@@ -1312,14 +1312,14 @@
       "group": "game_review",
       "primary": "tactic-back-rank-played",
       "secondary": "human-natural-strong",
-      "text": "The king's own pieces block its escape, and a back-rank mating idea follows. It is a likely move, by the human-move model. The engine rates it strong, not first."
+      "text": "The king's own pieces block its escape, and a back-rank mating idea follows. It is a likely move, by the human-move model. The engine calls it strong, though not its first choice."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-hard-find",
       "group": "game_review",
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-hard-find",
-      "text": "A pawn has a road to the last rank, and promotion is the aim. This is the engine's best, and the human-move model suggests it was hard to find."
+      "text": "A pawn has a road to the last rank, and promotion is the aim. This is the engine's best, and the human-move model marks it as a move most players walk by unseen."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-unusual-strong",
@@ -1354,7 +1354,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-allowed",
       "secondary": "human-hard-defense-missed",
-      "text": "The other side now has a route to promotion. Of the moves examined, only one kept the position playable, and the human-move model suggests it was hard to find."
+      "text": "The other side now has a route to promotion. Of the moves examined, only one kept the position playable, and to the human-move model, this one hides in plain view."
     },
     {
       "id": "combo-tactic-promotion-awareness-missed-natural-error",
@@ -1424,7 +1424,7 @@
       "group": "game_review",
       "primary": "tactic-discovered-attack-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "The one move among those examined that held the position uncovered an attack, one piece stepping aside for another. It was not played. The human-move model suggests it was difficult to see."
+      "text": "The one move among those examined that held the position uncovered an attack, one piece stepping aside for another. It was not played. The human-move model sees it slipping past most players."
     },
     {
       "id": "combo-tactic-double-attack-played-hard-find",
@@ -1543,7 +1543,7 @@
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-hard-find",
-      "text": "A piece had no guard, and the idea is to take it. The engine ranks the move best, and the human-move model suggests it was not easy to see."
+      "text": "A piece had no guard, and the idea is to take it. The engine ranks the move best, and few hands would ever reach for it, the human-move model judges."
     },
     {
       "id": "combo-tactic-undefended-capture-played-unusual-strong",
@@ -1578,7 +1578,7 @@
       "group": "game_review",
       "primary": "tactic-undefended-capture-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "The only searched move that kept the position playable took an undefended piece. It was missed, and the human-move model suggests it was hard to notice."
+      "text": "The only searched move that kept the position playable took an undefended piece. It was missed, and in the human-move model's numbers, this one stays out of sight."
     },
     {
       "id": "combo-tactic-hanging-piece-allowed-natural-error",
@@ -1683,7 +1683,7 @@
       "group": "game_review",
       "primary": "positional-passed-actual",
       "secondary": "human-hard-find",
-      "text": "A passed pawn is left on the board, with no enemy pawn ahead on its file or either neighbor. The human-move model suggests it was hard to find."
+      "text": "A passed pawn is left on the board, with no enemy pawn ahead on its file or either neighbor. The human-move model marks it as a move most players walk by unseen."
     },
     {
       "id": "combo-positional-passed-actual-unusual-strong",
@@ -1851,7 +1851,7 @@
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-hard-find",
-      "text": "The king castles, and the rook crosses over. A familiar move, but in this position, the human-move model suggests it was hard to find."
+      "text": "The king castles, and the rook crosses over. A familiar move, but in this position, to the human-move model, this one hides in plain view."
     },
     {
       "id": "combo-positional-castling-actual-unusual-strong",
@@ -1935,7 +1935,7 @@
       "group": "game_review",
       "primary": "allowed-mate",
       "secondary": "human-hard-defense-missed",
-      "text": "After this, the other side can force checkmate. One defense held among the moves checked. The human-move model suggests it was hard to find, and it went unplayed."
+      "text": "After this, the other side can force checkmate. One defense held among the moves checked. The human-move model sees it slipping past most players, and it went unplayed."
     },
     {
       "id": "combo-missed-mate-hard-defense-missed",
@@ -1998,7 +1998,7 @@
       "group": "game_review",
       "primary": "evaluation-loss",
       "secondary": "human-hard-defense-missed",
-      "text": "This move is weaker than the engine's best, and that best move was the only playable one found. The human-move model suggests it was difficult to see."
+      "text": "This move is weaker than the engine's best, and that best move was the only playable one found. Few hands would ever reach for it, the human-move model judges."
     },
     {
       "id": "combo-clock-low-hard-find",
@@ -2033,7 +2033,7 @@
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-hard-find",
-      "text": "Played quickly, with time still left. It is the engine's best move, and the human-move model suggests it was hard to find."
+      "text": "Played quickly, with time still left. It is the engine's best move, and in the human-move model's numbers, this one stays out of sight."
     },
     {
       "id": "combo-clock-fast-unusual-strong",
@@ -2306,7 +2306,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-hard-find",
-      "text": "A book move, and the engine's best. Known, but not easy: the human-move model suggests it was hard to find."
+      "text": "A book move, and the engine's best. Known, but not easy: the human-move model marks it as a move most players walk by unseen."
     },
     {
       "id": "combo-book-opening-entry-1-unusual-strong",
@@ -2369,14 +2369,14 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-defense-found",
-      "text": "A known opening move, with a defense inside it. It alone kept the position playable among the moves checked; the human-move model suggests it was difficult to see."
+      "text": "A known opening move, with a defense inside it. It alone kept the position playable among the moves checked; to the human-move model, this one hides in plain view."
     },
     {
       "id": "combo-book-opening-entry-3-hard-find",
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-hard-find",
-      "text": "Book, inside a recognized opening, and the engine's best. Even here, the human-move model suggests it was not easy to find."
+      "text": "Book, inside a recognized opening, and the engine's best. Even here, the human-move model sees it slipping past most players."
     },
     {
       "id": "combo-book-opening-entry-3-unusual-strong",
@@ -2439,7 +2439,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-defense-found",
-      "text": "Still in the book, and this move holds the position. It alone kept things playable among those checked, and the human-move model suggests it was hard to find."
+      "text": "Still in the book, and this move holds the position. It alone kept things playable among those checked, and few hands would ever reach for it, the human-move model judges."
     },
     {
       "id": "combo-book-opening-follow-2-hard-find",
@@ -2614,7 +2614,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-hard-defense-found",
-      "text": "Another known move, and the one move among those examined that kept the position playable. The human-move model suggests it was difficult to see."
+      "text": "Another known move, and the one move among those examined that kept the position playable. In the human-move model's numbers, this one stays out of sight."
     },
     {
       "id": "combo-book-opening-follow-7-hard-find",
@@ -2656,7 +2656,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-find",
-      "text": "Again, a book move, and the engine's best. Being known did not make it easy; the human-move model suggests it was hard to find."
+      "text": "Again, a book move, and the engine's best. Being known did not make it easy; the human-move model marks it as a move most players walk by unseen."
     },
     {
       "id": "combo-book-opening-follow-8-unusual-strong",
@@ -2684,7 +2684,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-defense-found",
-      "text": "Again, a book move, and this move carries the defense. None of the other moves examined kept the position playable; the human-move model suggests it was hard to find."
+      "text": "Again, a book move, and this move carries the defense. None of the other moves examined kept the position playable; to the human-move model, this one hides in plain view."
     }
   ]
 }
