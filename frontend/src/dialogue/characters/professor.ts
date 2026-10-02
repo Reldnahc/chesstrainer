@@ -49,7 +49,7 @@ export const professor: CoachPersonality = {
       "By the human-move model's reading this is a natural move. It's the reply that makes it costly, which is why it's worth checking even the obvious choice.",
     ],
     human_rare: ["The human-move model gives this a low likelihood, yet it holds up against the engine's reply. A move doesn't need to look familiar to be right."],
-    difficult_defense: ["Holding the position needed {best}, and the human-move model considers that defense hard to find. Studying why it works is how it gets easier."],
+    difficult_defense: ["{best} would have kept the position together, and the human-move model counts that among the harder defenses to find. Studying why it works is how it gets easier."],
     human_challenging: [{fact: "{best} is the move here, and the human-move model rates it a demanding find.", takeaway: "Learn the reason behind it, and the move becomes easier to see next time."}],
     human_defense_found: [{observation: "Hard defenses are the ones worth remembering.", fact: "{best} held the position, and the human-move model considers it a difficult defense to find."}],
     human_natural_best: ["Here the human-move model's natural choice is also the engine's best move. Knowing why is what keeps the habit reliable."],
