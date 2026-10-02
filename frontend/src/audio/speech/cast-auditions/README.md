@@ -2,14 +2,18 @@
 
 This is a development-only casting collection. `design-plan.json` has twenty-nine
 coaches with three independently written voice directions each: **87 active
-auditions**. All twenty nonhuman owner selections are saved in ElevenLabs and
+auditions**. Twenty-eight owner selections are saved in ElevenLabs and
 recorded in `locked-voices.json`, including Pip's second-round Warm Dublin
 companion and Biscuit's fifth-round **Talking puppy, soft**. A locked voice is an
 approved design, not a completed dialogue bank. The audition generator itself
 never saves provider voices.
 
-The nine newer humans (Femi, Jun, Arjun, Tamar, Marisol, Réka, Ingrid, Mateo and
-Tala) are in their first round and need a voice. Each direction is voiced from
+Eight of the nine newer humans are locked from their first round: Femi (Seasoned
+club analyst), Jun (Senior master), Arjun (Chennai club mentor), Tamar (Tbilisi
+mentor), Marisol (Havana observer), Réka (Budapest attacker), Mateo (Bright Buenos
+Aires) and Tala (Bright Manila solver). The owner judged Ingrid's **Oslo easygoing**
+very close; round one is archived in `archive/round-1-ingrid.json` and replaced by
+three close variations on it (warm, bright and grounded). Each direction is voiced from
 the coach's chess home region in [COACH.md](../../../../../docs/COACH.md#human-home-regions).
 Mateo's and Tala's briefs describe the sound of the character's own voice (high,
 light, small, bright) and never name an age: the provider rejects briefs about
