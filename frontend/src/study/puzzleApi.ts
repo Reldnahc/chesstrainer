@@ -64,6 +64,7 @@ export function puzzleThemeLabel(theme: string) {
   const words = theme
     .replaceAll("_", " ")
     .replace(/([a-z])([A-Z0-9])/g, "$1 $2")
+    .replace(/([0-9])([A-Z])/g, "$1 $2")
     .replace(/([A-Z])([A-Z][a-z])/g, "$1 $2")
     .toLowerCase();
   return words.charAt(0).toUpperCase() + words.slice(1);
