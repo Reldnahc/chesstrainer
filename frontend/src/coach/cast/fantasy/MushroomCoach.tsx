@@ -58,11 +58,6 @@ export default function MushroomCoach({ expression }: CoachArtworkProps) {
       character="mushroom"
       temperament={0.65}
     >
-      <ellipse cx="50" cy="119" rx="31" ry="3.5" fill="#777e4f" opacity=".25" />
-      <path
-        d="M26 117q-9-11-14-5 5 3 8 9h12m43-4q9-11 13-5-6 4-8 9H68"
-        fill="#71864f"
-      />
       <FantasyHead>
         <path
           d="M31 43h38q-3 28 5 59 4 18-24 18t-24-18q8-31 5-59Z"
