@@ -67,7 +67,7 @@ export const gorilla: CoachPersonality = {
     development: ["{lead}gets the {piece} out and working, off the back row."],
     rook_file: ["{lead}parks {side}'s rook on a {kind} {file}-file. That file is its road."],
     passed: ["Big thing: after {lead}the pawns on {squares} are passed, and they belong to {side}. Any enemy pawn on their files or next door is already behind them."],
-    passer_advance: ["{lead}sends the passed pawn ahead, to {square}."],
+    passer_advance: ["{lead}gets the passed pawn moving again; it is on {square} now."],
     isolated: ["{lead}strands {side}'s pawns on {squares}, with no pawn of their own beside them."],
     support: ["{lead}covers the {piece} on {square}, so it is not loose any more."],
     unsupported: ["{lead}leaves the {piece} on {square} standing loose. A loose piece is a target, not a lost one."],
