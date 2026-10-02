@@ -289,3 +289,13 @@ def test_retry_mode_offers_revealed_and_failed_puzzles_until_solved_cleanly(sett
         with app.state.sessions() as db:
             assert library(db, app.state.puzzle_providers)["retry_available"] == 0
             assert next_puzzle(db, app.state.puzzle_providers, PuzzleQuery(mode="retry")) is None
+
+
+@pytest.mark.parametrize(
+    "template",
+    ["https://example.test/p/{", "https://example.test/p/{0}", "https://example.test/p/{slug}"],
+)
+def test_manifest_rejects_a_puzzle_url_template_that_cannot_format_an_id(tmp_path, template):
+    directory = write_pack(tmp_path / "pack", rows_csv(), puzzle_url=template)
+    with pytest.raises(packs.PackError, match="puzzle_url"):
+        packs.read_manifest(directory)

@@ -94,9 +94,17 @@ def read_manifest(directory) -> PackManifest:
     except OSError as exc:
         raise PackError(f"Puzzle pack manifest is unreadable: {exc}") from exc
     try:
-        return PackManifest.model_validate_json(text)
+        manifest = PackManifest.model_validate_json(text)
     except ValidationError as exc:
         raise PackError(f"Puzzle pack manifest is invalid: {exc.errors()[0]['msg']}") from exc
+    if manifest.puzzle_url is not None:
+        try:
+            manifest.puzzle_url.format(id="example")
+        except (KeyError, IndexError, ValueError) as exc:
+            raise PackError(
+                "Puzzle pack manifest puzzle_url must be a template that uses only {id}"
+            ) from exc
+    return manifest
 
 
 def load_pack(directory) -> tuple[PackManifest, tuple[PuzzleDefinition, ...]]:
