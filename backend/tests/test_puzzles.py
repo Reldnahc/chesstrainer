@@ -139,10 +139,13 @@ def test_multistep_retry_resume_and_no_scheduling_side_effects(settings):
         assert cold["completion"] is None and cold["history"] == cold["playback"] == []
         assert "fork" not in str(cold) and "d5b6" not in str(cold)
         assert cold["current_step"] == 0 and cold["feedback"] is None
-        assert client.get("/api/puzzles").json()["resume"][0]["id"] == cold["id"]
+        # An untouched start is not progress, even after an illegal input.
+        assert client.get("/api/puzzles").json()["resume"] == []
         # An illegal input is not a failed tactical choice and consumes no revision.
         assert move(client, cold, "c3c8").status_code == 422
+        assert client.get("/api/puzzles").json()["resume"] == []
         wrong = move(client, cold, "c3a4").json()
+        assert client.get("/api/puzzles").json()["resume"][0]["id"] == cold["id"]
         assert wrong["failed"] and wrong["feedback"]["grade"] == "incorrect"
         assert wrong["fen"] == cold["fen"] and wrong["current_step"] == 0
         accepted = move(client, wrong, LINE[0]).json()

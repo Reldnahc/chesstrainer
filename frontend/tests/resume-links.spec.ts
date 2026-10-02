@@ -18,7 +18,13 @@ test("shared resume rows keep real puzzle, lesson and course-line destinations",
   expect(puzzleResponse.ok()).toBe(true);
   const puzzle: { session_id: string } = await puzzleResponse.json();
   const puzzlePath = `/study/puzzles/sessions/${puzzle.session_id}`;
-  const puzzleBefore: Schema["PuzzleSessionView"] = await (await page.request.get(`/api/puzzle-sessions/${puzzle.session_id}`)).json();
+  const started: Schema["PuzzleSessionView"] = await (await page.request.get(`/api/puzzle-sessions/${puzzle.session_id}`)).json();
+  // Only a committed move makes a puzzle resumable.
+  const moved = await page.request.post(`/api/puzzle-sessions/${puzzle.session_id}/move`, {
+    data: { request_id: `resume-row-${info.project.name}`, revision: started.revision, uci: "e2e4", elapsed_ms: 0 },
+  });
+  expect(moved.ok()).toBe(true);
+  const puzzleBefore: Schema["PuzzleSessionView"] = await moved.json();
   await page.goto("/study/puzzles");
   const puzzleLink = page.locator(`a[href="${puzzlePath}"]`);
   await expect(puzzleLink).toHaveAccessibleName("Unfinished puzzle Your position is saved");
@@ -27,7 +33,7 @@ test("shared resume rows keep real puzzle, lesson and course-line destinations",
   await puzzleLink.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(puzzlePath);
-  await expect(page.getByRole("heading", { name: "Find the continuation.", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Keep going.", exact: true })).toBeVisible();
   const puzzleAfter: Schema["PuzzleSessionView"] = await (await page.request.get(`/api/puzzle-sessions/${puzzle.session_id}`)).json();
   expect(puzzleAfter.revision).toBe(puzzleBefore.revision);
   expect(puzzleAfter.current_step).toBe(puzzleBefore.current_step);
