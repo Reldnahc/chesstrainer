@@ -84,6 +84,20 @@ export const collieOpeningTemplates = {
   "book-opening-follow-8": ["Still tracking {opening}. That locates the game and says nothing about the move's value."],
 } as const;
 
+export const frogOpeningTemplates = {
+  "book-opening-entry-1": ["{opening}. Recognized, nothing more."],
+  "book-opening-entry-2": ["On file as {opening}."],
+  "book-opening-entry-3": ["The book calls this {opening}."],
+  "book-opening-follow-1": ["Still {opening}, one move on."],
+  "book-opening-follow-2": ["{opening} carries on, quietly."],
+  "book-opening-follow-3": ["The reply fits {opening} too."],
+  "book-opening-follow-4": ["{opening}, uneventfully."],
+  "book-opening-follow-5": ["Nothing new to report: {opening}."],
+  "book-opening-follow-6": ["Same opening, {opening}, next move."],
+  "book-opening-follow-7": ["{opening}, continuing without incident."],
+  "book-opening-follow-8": ["Still {opening}. It names the line and nothing else."],
+} as const;
+
 export const robotOpeningTemplates = {
   "book-opening-entry-1": ["Opening match: {opening}."],
   "book-opening-entry-2": ["This move is in the opening record: {opening}."],
@@ -222,6 +236,34 @@ export const corgiOpeningTemplates = {
   "book-opening-follow-6": ["{opening} keeps marching."],
   "book-opening-follow-7": ["The drill continues in {opening}."],
   "book-opening-follow-8": ["Manual entry again: {opening}. A listing, not a ruling."],
+} as const;
+
+export const unicornOpeningTemplates = {
+  "book-opening-entry-1": ["We've stepped into a recognized opening: {opening}."],
+  "book-opening-entry-2": ["A book move, part of {opening}, and a fitting one."],
+  "book-opening-entry-3": ["This move has its own page in the story of {opening}."],
+  "book-opening-follow-1": ["The game moves on in harmony with {opening}."],
+  "book-opening-follow-2": ["And this move belongs to {opening} as well."],
+  "book-opening-follow-3": ["The reply, too, keeps step with {opening}."],
+  "book-opening-follow-4": ["The melody of {opening} flows onward."],
+  "book-opening-follow-5": ["{opening} still recognizes this move."],
+  "book-opening-follow-6": ["{opening} keeps walking alongside the game."],
+  "book-opening-follow-7": ["This step, too, is written into {opening}."],
+  "book-opening-follow-8": ["Once more a move of {opening}. A name in the book tells us where we are, not how well the move was chosen."],
+} as const;
+
+export const expertOpeningTemplates = {
+  "book-opening-entry-1": ["Opening theory begins: {opening}."],
+  "book-opening-entry-2": ["Catalogued theory move, {opening}."],
+  "book-opening-entry-3": ["Theory entry on record: {opening}."],
+  "book-opening-follow-1": ["{opening}: theory continues."],
+  "book-opening-follow-2": ["Also catalogued under {opening}."],
+  "book-opening-follow-3": ["The reply is catalogued in {opening} as well."],
+  "book-opening-follow-4": ["Zero deviation so far from {opening}."],
+  "book-opening-follow-5": ["Listed in {opening}."],
+  "book-opening-follow-6": ["The {opening} line holds."],
+  "book-opening-follow-7": ["{opening}, still catalogued."],
+  "book-opening-follow-8": ["Still {opening}. Book status locates the game; it does not evaluate the move."],
 } as const;
 
 export const puppyOpeningTemplates = {
