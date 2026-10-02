@@ -163,6 +163,7 @@ registered.
 | Ingrid (`woman-blonde`) | Written, 438 | Yes, 2026-10-02, at commit `5268032` | No | No |
 | Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
 | Réka (`woman-spark`) | Written, 438 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
+| Mateo (`human-boy`) | Written, 438 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
 
 ## Adding or revising a production bank
 
