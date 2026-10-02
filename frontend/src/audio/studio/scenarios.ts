@@ -13,7 +13,7 @@ type RetryContext = AuditionScenario & { id: RetryContextId; durationSeconds: nu
 
 export const retryContexts: readonly RetryContext[] = [
   { id: "single", label: "One retry", durationSeconds: 3,
-    description: "Move → try again → another move → correct. Compare the feedback with your usual move and success sounds.",
+    description: "Move, try again, another move, then correct. Compare the feedback with your usual move and success sounds.",
     steps: [{ cue: "move", delayMs: 0 }, { cue: "retry", delayMs: 160 },
       { cue: "move", delayMs: 1350 }, { cue: "correct", delayMs: 1510 }] },
   { id: "repeated", label: "Repeated attempts", durationSeconds: 10,
@@ -24,7 +24,7 @@ export const retryContexts: readonly RetryContext[] = [
       { cue: "move", delayMs: 5900 }, { cue: "correct", delayMs: 6060 },
       { cue: "complete", delayMs: 7600 }] },
   { id: "full-mix", label: "Full sound mix", durationSeconds: 10,
-    description: "Move → capture → check → an attempt and retry → a correct move → completion. Compare texture and volume across the set.",
+    description: "Move, capture, check, an attempt and retry, a correct move, then completion. Compare texture and volume across the set.",
     steps: [{ cue: "move", delayMs: 0 }, { cue: "capture", delayMs: 1000 },
       { cue: "check", delayMs: 2000 }, { cue: "move", delayMs: 3500 },
       { cue: "retry", delayMs: 3660 }, { cue: "move", delayMs: 5200 },

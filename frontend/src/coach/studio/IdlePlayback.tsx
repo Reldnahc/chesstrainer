@@ -1,4 +1,4 @@
-import { RotateCcw } from "lucide-react";
+import { ArrowRight, RotateCcw } from "lucide-react";
 import type { CoachPerformanceSnapshot } from "../performanceDiagnostics";
 
 type Props = {
@@ -51,7 +51,9 @@ function MotionDiagnostics({ snapshot }: { snapshot: CoachPerformanceSnapshot | 
           </p>
           <p className="studio-motion-history">
             <strong>Recent</strong>{" "}
-            {diagnostics?.recent.length ? diagnostics.recent.join(" → ") : "No automatic gestures yet"}
+            {diagnostics?.recent.length ? diagnostics.recent.map((id, index) => <span key={index}>
+              {index > 0 && <ArrowRight className="studio-motion-arrow" size={12} aria-label="then" role="img" />}{id}
+            </span>) : "No automatic gestures yet"}
           </p>
           <details className="studio-motion-details">
             <summary>Scheduling details{diagnostics?.issues.length ? ` · ${diagnostics.issues.length} issues` : ""}</summary>

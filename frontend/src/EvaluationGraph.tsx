@@ -1,3 +1,4 @@
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import EvaluationScore from "./EvaluationScore";
 import { scoreSide, scoreSummary, scoreText, type Score } from "./evaluation";
@@ -78,7 +79,7 @@ export default function EvaluationGraph({ frames, initialScore, selected, onSele
   const pointName = (ply: number) => `${frames[ply].number}${frames[ply].actor === "white" ? "." : "..."} ${frames[ply].san}`;
   return <section className="game-graph" aria-label="Original-game evaluation">
     <div className="game-graph-heading">
-      <div><strong>Game evaluation</strong><span>White ↑ · Black ↓</span></div>
+      <div><strong>Game evaluation</strong><span>White<ArrowUp size={11} aria-label="up" role="img" /> · Black<ArrowDown size={11} aria-label="down" role="img" /></span></div>
       <div className="game-graph-reading"><span className="game-graph-verdict">{scoreSummary(current)}</span><EvaluationScore score={current}/></div>
     </div>
     <svg ref={plot} className="game-evaluation-plot" data-scrubbing={scrubbing} style={{height}} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" role="group"

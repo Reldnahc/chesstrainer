@@ -1,5 +1,5 @@
 import {useId} from "react";
-import {Info, X} from "lucide-react";
+import {ExternalLink, Info, X} from "lucide-react";
 import {humanInsightExplanation, humanInsightLabels, humanSourceNotes, type HumanInsightPresentation} from "../dialogue/humanClaims";
 import DialogueText from "../dialogue/DialogueText";
 import {IconButton} from "../Button";
@@ -28,7 +28,7 @@ export default function HumanInsight({presentation, report}: {
       <p className="human-insight-meaning">{humanInsightExplanation(items[0].code, report)}</p>
       <div className="human-insight-source">
         <span>{note}</span>
-        {url && <a href={url} target="_blank" rel="noopener noreferrer">About Maia ↗</a>}
+        {url && <a href={url} target="_blank" rel="noopener noreferrer">About Maia<ExternalLink size={12} aria-hidden="true" /></a>}
       </div>
     </div>
   </>;

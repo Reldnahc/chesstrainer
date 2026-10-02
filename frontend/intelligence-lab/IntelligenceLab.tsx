@@ -1,3 +1,4 @@
+import {ArrowRight} from "lucide-react";
 import {useEffect, useRef, useState} from "react";
 import Board from "../src/Board";
 import type {Game} from "../src/gameReview/types";
@@ -6,6 +7,8 @@ import {selectableCoaches, getCoach} from "../src/coach/registry";
 import {renderDialogue} from "../src/dialogue/neutral";
 import DialogueText from "../src/dialogue/DialogueText";
 import WritingLab, {CoachComparison} from "./CoachComparison";
+
+const pipeline = ["Stockfish", "human policy", "practical difficulty", "supported events", "context", "dialogue intent", "selected variant"];
 
 export default function IntelligenceLab() {
   const [game, setGame] = useState<Game | null>(null);
@@ -58,7 +61,8 @@ export default function IntelligenceLab() {
         <section aria-label="Rendered coach line"><h2>{coachId === "neutral" ? "Neutral coach" : getCoach(coachId).name}</h2><DialogueText className="lab-utterance" utterance={utterance!} announce={false} />
           <p>{inspection.intent.purpose} · {inspection.intent.expression} · priority {inspection.intent.priority}</p>
           <code>{utterance!.id}</code><p>Deterministic seed: <code>{inspection.intent.id}</code></p>
-          <p className="small">Stockfish → human policy → practical difficulty → supported events → context → dialogue intent → selected variant.</p>
+          <p className="small lab-pipeline">{pipeline.map((step, index) => <span key={step}>
+            {index > 0 && <ArrowRight size={12} aria-label="then" role="img" />}{step}</span>)}</p>
         </section></div>
       <div className="lab-chain">{Object.entries({...inspection, utterance}).map(([title, data]) => <details key={title} open={title === "intent" || title === "utterance"}>
         <summary>{title}</summary><pre>{JSON.stringify(data, null, 2) ?? "No evidence for this position."}</pre></details>)}</div>

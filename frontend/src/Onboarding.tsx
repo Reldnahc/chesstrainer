@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Schema } from "./api";
@@ -6,6 +7,9 @@ import ProviderUsernameField from "./ProviderUsernameField";
 import Notice from "./Notice";
 
 type Connection = { id: string; name: string; username: string };
+
+// Menu path separator; an icon rather than an arrow character, which phones can draw as emoji.
+const Crumb = () => <><ChevronRight className="onboarding-crumb" size={14} aria-hidden="true" /><span className="sr-only">, </span></>;
 
 export default function Onboarding({ onComplete }: { onComplete: (user: Schema["Account"]) => void }) {
   const [connections, setConnections] = useState<Connection[]>([]);
@@ -68,7 +72,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
         {selected.length ? <>
           <p>Your {selected.map(connection => connection.name).join(" and ")} usernames are saved.</p>
           <ol>
-            <li>In <strong>Settings → Games & imports</strong>, choose <strong>Import older games</strong> for your site. Your username is already filled in.</li>
+            <li>In <strong>Settings<Crumb />Games & imports</strong>, choose <strong>Import older games</strong> for your site. Your username is already filled in.</li>
             <li>Choose a time control and date range, then select <strong>Import games</strong>.</li>
             <li>Open a game from <strong>Games</strong> to start its review. Use <strong>Update games</strong> there for your latest games.</li>
           </ol>
@@ -76,7 +80,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
           <p>No connected account needed. Import a PGN—the standard file format for chess games.</p>
           <ol>
             <li>Download or export a PGN from the site or chess app where you played.</li>
-            <li>In <strong>Settings → Games & imports → Import PGN</strong>, choose a file or paste its PGN text.</li>
+            <li>In <strong>Settings<Crumb />Games & imports<Crumb />Import PGN</strong>, choose a file or paste its PGN text.</li>
             <li>Enter the player name used in the game, or select your side, then import. Open it from <strong>Games</strong> to review.</li>
           </ol>
         </>}

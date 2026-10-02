@@ -51,6 +51,11 @@ when a reusable component is added, renamed, extended or retired.
     from [TESTING.md](TESTING.md) and the dependency boundaries; do not routinely
     run the full coach artwork matrix for application-only controls. Follow the
     owner's current verification instructions and record actual results.
+11. **Draw symbols as icons.** Checks, arrows, stars and other pictographs use
+    lucide icons, never characters such as U+2713 or U+2197: phones and some
+    fonts draw those as colour emoji. `npm run test:symbols` (part of `build`)
+    rejects emoji-capable characters, variation selectors and the arrow, shape
+    and dingbat blocks in application and studio source.
 
 ## Existing reusable components
 
