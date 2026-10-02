@@ -13,6 +13,8 @@ services:
       # Blank selects local single-user mode without login.
       PUBLIC_ORIGIN: "${PUBLIC_ORIGIN:-}"
       SESSION_SECURE: "${SESSION_SECURE:-true}"
+      # Reverse proxy address whose X-Forwarded-For is trusted for sign-in rate limits.
+      FORWARDED_ALLOW_IPS: "${FORWARDED_ALLOW_IPS:-127.0.0.1}"
       DATABASE_PATH: /data/trainer.sqlite3
       STOCKFISH_PATH: /usr/games/stockfish
       ENGINE_SLOTS: "${ENGINE_SLOTS:-4}"

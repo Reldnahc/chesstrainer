@@ -126,6 +126,9 @@ raw exception details. There are no additional container variables for this.
   Docker defaults the flag to true; blank origin still selects the shared local workspace.
 - `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
+- `FORWARDED_ALLOW_IPS` (read by Uvicorn; default `127.0.0.1`) lists the proxy addresses
+  whose `X-Forwarded-For` header is trusted. Set it to your reverse proxy's address so
+  sign-in rate limits apply per browser instead of to everyone behind the proxy.
 - `ENGINE_SLOTS=4` caps native engine processes and concurrent analysis jobs across
   all accounts in shared mode. One additional coordinator handles fetch-only jobs.
   Each account runs at most one analysis job at a time. Idle accounts allocate no
