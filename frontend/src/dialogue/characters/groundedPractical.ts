@@ -37,9 +37,9 @@ export const raccoon: CoachPersonality = {
       {reaction: "There was something to take here.", fact: "{best} had a {motif}, and this move walks past it.", consequence: "{detail}"},
       {fact: "A {motif} was on offer with {best}. This move walks away empty-handed.", consequence: "{detail}"},
     ],
-    cause_abandoned_defender: [{reaction: "That defender had a job!", fact: "Once {move} is played, {side}'s {piece} on {square} has lost its only unpinned defender.", consequence: "{opponent} doesn't need anything fancy: {reply} just takes it.", takeaway: "Before a defender moves, check what it leaves lying around."}],
-    cause_opponent_threat_recognition: [{fact: "The opponent's last move went after {side}'s {piece} on {square}, and {move} leaves it there.", consequence: "{opponent} gets to collect it with {reply}.", takeaway: "Every new attack is a question that needs an answer."}],
-    cause_avoiding_bad_trades: [{reaction: "Check the receipt on that trade.", fact: "{move} trades away {side}'s {piece} just to get a {captured}.", consequence: "{opponent} can take back with {reply}, and the piece that goes is the bigger one.", takeaway: "Count what comes back before you grab."}],
+    cause_abandoned_defender: [{reaction: "That defender had a job!", fact: "Once {move} is played, {side}'s {piece} on {square} has lost its only unpinned defender.", consequence: "{opponent} can just take it with {reply}, nothing fancy needed.", takeaway: "Before a defender moves, check what it leaves lying around."}],
+    cause_opponent_threat_recognition: [{fact: "The opponent's preceding move went after {side}'s {piece} on {square}, and {move} leaves it there.", consequence: "{opponent} can scoop it up with {reply}.", takeaway: "Every new attack is a question that needs an answer."}],
+    cause_avoiding_bad_trades: [{reaction: "Check the receipt on that trade.", fact: "{move} trades away {side}'s {piece} just to get a {captured}.", consequence: "{opponent} can recapture with {reply}, and the piece that goes is the bigger one.", takeaway: "Count what comes back before you grab."}],
     sacrifice: [
       {reaction: "Giving stuff away on purpose? I'll allow it.", fact: "The sacrifice holds up in the searched line, even when it's taken."},
       "Take the offer, and the idea still works in the searched line. That's a sacrifice with a point.",
