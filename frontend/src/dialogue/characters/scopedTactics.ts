@@ -242,15 +242,15 @@ export const corgiTacticalTemplates = authorTacticalWordings({
 
 export const gorillaTacticalTemplates = authorTacticalWordings({
   scope: {
-    played_immediate: "Big idea: {move}, and a {motif} is on the board.",
+    played_immediate: "Big idea in {move}: a {motif}, live right now.",
     played_possible: "{move} could lead to a {motif} later; the replies will show if it comes.",
-    allowed_immediate: "Simple problem: {opponent} has {action}, and that brings a {motif}.",
-    allowed_possible: "Down the road, {opponent} may get a {motif}, depending on the replies.",
+    allowed_immediate: "Simple problem: {action} is ready for {opponent}, and a {motif} comes with it.",
+    allowed_possible: "Later, if the replies go a certain way, {opponent} may get a {motif} out of it.",
     missed_immediate: "The stronger choice, {best}, came with a {motif}.",
     missed_possible: "{best} might have built a {motif}, but the replies would decide that.",
   },
-  fork: {actual: "One attacker, and the {targets} are all under its hit at once.", possible: "The {targets} would be attacked by one and the same piece."},
+  fork: {actual: "One attacker, and the {targets} are all under its hit at once.", possible: "The {targets} would be attacked, every one, from a single square."},
   material: "A {gain} may be the reward here, yet both sides get more moves before anything is final.",
-  capture: {candidate: "{capture} would grab a {piece} right away.", followup: "Further down that road, {capture} could pick off a {piece}."},
-  playedCapture: {fact: "{move} comes down to one big thing: a {motif}.", consequence: "Then {capture} picks off a {piece}."},
+  capture: {candidate: "{capture} is there to win a {piece} on the spot.", followup: "Later on in that line, {capture} may win a {piece}."},
+  playedCapture: {fact: "{move} comes down to one big thing: a {motif}.", consequence: "After that, {capture} wins a {piece}."},
 });
