@@ -33,6 +33,7 @@ AUTHORED = [
     ("gorilla", "monty"),
     ("woman-blonde", "ingrid"),
     ("dog-puppy", "biscuit"),
+    ("woman-spark", "reka"),
 ]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
 # Voices whose written personality sets questionFrequency to "none".

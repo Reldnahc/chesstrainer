@@ -175,7 +175,12 @@ Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
 the concrete reply in plain words, then one small habit to carry forward, with
 ownership words kept to the learner's own moments. Biscuit also stays silent
 until a bank is registered.
-The other 4 voices retain their current wording and deterministic variants.
+Réka (`woman-spark`) has opted in too, in `characters/spark.ts`: a quick reaction to
+the pattern, the tactical punchline, then its supported consequence, with her own
+"eyes up" warning, "repertoire" for book moves, delight such as "Zing!" kept for
+the learner's own clips, and difficulty credited to the human-move model. Réka
+stays silent until a bank is registered.
+The other 3 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
