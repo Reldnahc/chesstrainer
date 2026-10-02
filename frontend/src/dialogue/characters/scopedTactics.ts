@@ -134,3 +134,18 @@ export const tuxedoTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would pocket a {piece}.", followup: "Further on, {capture} could pocket a {piece}."},
   playedCapture: {fact: "{move} comes loaded with a {motif}.", consequence: "{capture} pockets a {piece}."},
 });
+
+export const raccoonTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} grabs the chance: a {motif} is on the board right now.",
+    played_possible: "{move} sets up a {motif} for later, if the replies play along.",
+    allowed_immediate: "That hands {opponent} a chance: {action}, and a {motif} is sitting right there.",
+    allowed_possible: "{opponent} might get a {motif} out of this later; the replies decide whether it's really on offer.",
+    missed_immediate: "{best} had a {motif} on offer, and this move walks past it.",
+    missed_possible: "{best} might have turned up a {motif}, depending on the replies.",
+  },
+  fork: {actual: "One piece now has its eye on the {targets} at once.", possible: "The {targets} would be attacked, every one of them by the same piece."},
+  material: "There may be a {gain} to collect at the end, though nothing's collected until both sides have made their moves.",
+  capture: {candidate: "{capture} would snag a {piece} on the spot.", followup: "If things go that way, {capture} could collect a {piece} later."},
+  playedCapture: {fact: "{move} cashes in on a {motif}.", consequence: "With {capture}, a {piece} goes in the bag."},
+});
