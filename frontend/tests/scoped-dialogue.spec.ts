@@ -22,6 +22,7 @@ import {corgi} from "../src/dialogue/characters/corgi";
 import {unicorn} from "../src/dialogue/characters/unicorn";
 import {expert} from "../src/dialogue/characters/expert";
 import {frog} from "../src/dialogue/characters/groundedQuiet";
+import {gorilla} from "../src/dialogue/characters/groundedQuiet";
 import {partner} from "../src/dialogue/characters/partner";
 import {host} from "../src/dialogue/characters/host";
 import {analyst} from "../src/dialogue/characters/analyst";
@@ -45,6 +46,7 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
   {id: "unicorn", personality: unicorn},
   {id: "man-expert", personality: expert},
   {id: "frog", personality: frog},
+  {id: "gorilla", personality: gorilla},
   {id: "man-partner", personality: partner},
   {id: "man-host", personality: host},
   {id: "woman-analyst", personality: analyst}];

@@ -11,7 +11,7 @@ import {velvet} from "../src/dialogue/characters/velvet";
 import {expert} from "../src/dialogue/characters/expert";
 import {partner} from "../src/dialogue/characters/partner";
 import {analyst} from "../src/dialogue/characters/analyst";
-import {alienOpeningTemplates, analystOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, analystOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
@@ -197,6 +197,7 @@ const openingCoaches = [
   {id: "unicorn", personality: newCastPersonalities.unicorn, authored: unicornOpeningTemplates, voiced: false},
   {id: "man-expert", personality: expert, authored: expertOpeningTemplates, voiced: false},
   {id: "frog", personality: newCastPersonalities.frog, authored: frogOpeningTemplates, voiced: false},
+  {id: "gorilla", personality: newCastPersonalities.gorilla, authored: gorillaOpeningTemplates, voiced: false},
   {id: "man-partner", personality: partner, authored: partnerOpeningTemplates, voiced: false},
   {id: "man-host", personality: host, authored: hostOpeningTemplates, voiced: false},
   {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates, voiced: false},
