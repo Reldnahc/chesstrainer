@@ -136,10 +136,15 @@ Waffles (corgi) has opted in too, with his forms in the shared tactic and openin
 blocks: a short command or reaction, the consequence, then the next order, in light
 field-manual language with no questions and difficulty always credited to the
 human-move model. Waffles stays silent until a bank is registered.
+Celeste (unicorn) has followed in `characters/unicorn.ts`: a brief genuine
+reaction, a flowing description of what the move joins, frees or breaks, then
+one gentle lesson, with delight kept for sound sacrifices, hidden tactics and
+narrow defenses, kind but clear correction and no questions. Celeste also stays
+silent until a bank is registered.
 Fergus (frog) has opted in too, with his forms in `characters/groundedQuiet.ts`:
 one flat report of the fact with a dry, side-neutral tail at most, no questions
 and no exclamation marks. Fergus also stays silent until a bank is registered.
-The other 12 voices retain their current wording and deterministic variants.
+The other 11 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

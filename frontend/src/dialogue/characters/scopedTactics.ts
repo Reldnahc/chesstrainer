@@ -254,3 +254,18 @@ export const corgiTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would knock out a {piece}.", followup: "Down the line, {capture} could remove a {piece}."},
   playedCapture: {fact: "{move} puts a {motif} into operation.", consequence: "{capture} sends a {piece} off the field."},
 });
+
+export const unicornTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a lovely {motif} is woven into the position.",
+    played_possible: "{move} sets the stage for a {motif}, should the replies allow it to bloom.",
+    allowed_immediate: "With {action}, {opponent} has an answer that carries a {motif} along.",
+    allowed_possible: "Later, perhaps, a {motif} could bloom for {opponent}, as the replies decide.",
+    missed_immediate: "{best} carried a {motif} quietly within it.",
+    missed_possible: "With kinder replies, {best} might have blossomed into a {motif}.",
+  },
+  fork: {actual: "A single piece reaches gracefully toward the {targets} at once.", possible: "From a single piece, the {targets} would be attacked in unison."},
+  material: "A {gain} may be waiting at the far end, if the moves still to come unfold that way.",
+  capture: {candidate: "{capture} would neatly claim a {piece}.", followup: "Should the story go that way, {capture} may follow and claim a {piece}."},
+  playedCapture: {fact: "{move} brings a {motif} to life.", consequence: "{capture} claims a {piece}."},
+});
