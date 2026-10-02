@@ -11,6 +11,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   robot: {version: "robot-3", actual: "Attacked together", possible: "Potential simultaneous targets"},
   capybara: {version: "capybara-2", actual: "at the same time", possible: "would be attacked at the same time"},
   mushroom: {version: "mushroom-2", actual: "at once", possible: "would be attacked together"},
+  alien: {version: "alien-2", actual: "under attack", possible: "would be attacked simultaneously"},
 };
 
 test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {

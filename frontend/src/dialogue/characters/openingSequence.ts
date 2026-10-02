@@ -55,3 +55,17 @@ export const robotOpeningTemplates = {
   "book-opening-follow-7": ["The sequence continues through a recognized move in {opening}."],
   "book-opening-follow-8": ["Opening match maintained with this move: {opening}."],
 } as const;
+
+export const alienOpeningTemplates = {
+  "book-opening-entry-1": ["The catalogue has a name for this move: {opening}."],
+  "book-opening-entry-2": ["A documented opening move, filed under {opening}."],
+  "book-opening-entry-3": ["This move appears in the opening catalogue as {opening}."],
+  "book-opening-follow-1": ["Still in documented territory: {opening}."],
+  "book-opening-follow-2": ["The catalogue follows this move too, under {opening}."],
+  "book-opening-follow-3": ["Another catalogued step in {opening}."],
+  "book-opening-follow-4": ["The documented sequence goes on: {opening}."],
+  "book-opening-follow-5": ["The catalogue still matches, move for move, in {opening}."],
+  "book-opening-follow-6": ["Once more, a move with an entry under {opening}."],
+  "book-opening-follow-7": ["The game keeps tracing the documented line of {opening}."],
+  "book-opening-follow-8": ["Still on the catalogued line, deeper into {opening}."],
+} as const;

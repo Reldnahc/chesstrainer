@@ -59,3 +59,18 @@ export const robotTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "Capture available: {capture} would take a {piece}.", followup: "Possible follow-up: {capture}, taking a {piece}."},
   playedCapture: {fact: "Pattern associated with {move}: a {motif}.", consequence: "Capture completed: {capture} takes a {piece}."},
 });
+
+export const alienTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a {motif} stands on the board.",
+    played_possible: "After {move}, a {motif} becomes possible later, if the replies permit it.",
+    allowed_immediate: "{opponent} has an answer in {action}, and it brings a {motif}.",
+    allowed_possible: "A {motif} may open for {opponent} later, depending on the replies.",
+    missed_immediate: "{best} contained a {motif}.",
+    missed_possible: "{best} held the possibility of a {motif}, if the replies had cooperated.",
+  },
+  fork: {actual: "A single piece now has the {targets} under attack.", possible: "The {targets} would be attacked simultaneously."},
+  material: "A {gain} may be the outcome, though each side still has choices first.",
+  capture: {candidate: "{capture} would remove a {piece}.", followup: "One line of play goes on with {capture}, removing a {piece}."},
+  playedCapture: {fact: "{move} carries a {motif}.", consequence: "{capture} removes a {piece}."},
+});
