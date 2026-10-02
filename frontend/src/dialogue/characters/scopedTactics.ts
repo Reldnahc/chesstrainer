@@ -96,13 +96,13 @@ export const frogTacticalTemplates = authorTacticalWordings({
     played_possible: "{move} may lead to a {motif}, if the replies cooperate.",
     allowed_immediate: "{opponent} has {action}, and with it a {motif}, as it happens.",
     allowed_possible: "{opponent} might get a {motif} later, replies permitting, or not.",
-    missed_immediate: "{best} had a {motif} ready, immediately.",
+    missed_immediate: "A {motif} came straight away with {best}, unplayed.",
     missed_possible: "{best} might have led to a {motif}, eventually, maybe.",
   },
-  fork: {actual: "The {targets} are all under attack from one piece now.", possible: "The {targets} would be attacked by one piece, in theory."},
+  fork: {actual: "The {targets} are all under attack from one piece now.", possible: "In theory, the {targets} would be attacked at once, all by a single piece."},
   material: "A {gain} may be on the table, if both sides play along.",
   capture: {candidate: "{capture} would then quietly take a {piece}.", followup: "Possibly {capture} follows, taking a {piece}."},
-  playedCapture: {fact: "{move} comes with a {motif}.", consequence: "{capture} takes a {piece}, quietly."},
+  playedCapture: {fact: "{move} has a {motif} attached.", consequence: "{capture} then removes a {piece}, without ceremony."},
 });
 
 export const robotTacticalTemplates = authorTacticalWordings({
