@@ -202,7 +202,7 @@
     {
       "id": "positional-passed-actual",
       "group": "game_review",
-      "text": "Oh, a passed pawn! Whoever owns it, that pawn has a future. Not one enemy pawn in front of it, on its file or the two files next door."
+      "text": "Oh, a passed pawn! Whoever owns it, that pawn has a future. No enemy pawn blocks it, on its own file or the two beside it."
     },
     {
       "id": "positional-passed-alternative",
@@ -217,7 +217,7 @@
     {
       "id": "positional-passer-advance-alternative",
       "group": "game_review",
-      "text": "Another move would have pushed the passed pawn further up the board. See how far it could have gotten."
+      "text": "Another move would have pushed the passed pawn closer to promotion. See how far it could have gotten."
     },
     {
       "id": "positional-isolated-actual",
@@ -227,7 +227,7 @@
     {
       "id": "positional-isolated-alternative",
       "group": "game_review",
-      "text": "Another move would have stranded a pawn, with no pawn of its color on the files next to it."
+      "text": "Another move would have left an isolated pawn, with no pawn of its color on the files next to it."
     },
     {
       "id": "positional-support-actual",
@@ -252,7 +252,7 @@
     {
       "id": "positional-king-flight-actual",
       "group": "game_review",
-      "text": "The king gets a new legal square to step to. Every king needs somewhere to go. Find the piece that made room."
+      "text": "The king picks up a brand new escape square. Every king needs somewhere to go. Find the piece that made room."
     },
     {
       "id": "positional-king-flight-alternative",
@@ -277,7 +277,7 @@
     {
       "id": "positional-bishop-pair-alternative",
       "group": "game_review",
-      "text": "Another move would have taken a bishop and split up the other side's pair."
+      "text": "Another move would have grabbed a bishop and ended the other side's bishop pair."
     },
     {
       "id": "positional-doubled-actual",
@@ -287,7 +287,7 @@
     {
       "id": "positional-doubled-alternative",
       "group": "game_review",
-      "text": "Another move would have left doubled pawns, pawns of one color stacked on the same file."
+      "text": "Another move would have left doubled pawns, two of one color crowding onto one file."
     },
     {
       "id": "allowed-mate",
@@ -307,7 +307,7 @@
     {
       "id": "only-playable-move",
       "group": "game_review",
-      "text": "That's what I call showing up! Of all the moves we checked, only this one kept the position playable. Every other one was losing."
+      "text": "That's what I call showing up! Out of everything we checked, this was the only move that kept the position playable. Every other one was losing."
     },
     {
       "id": "only-advantage-resource",
@@ -387,7 +387,7 @@
     {
       "id": "clock-fast",
       "group": "game_review",
-      "text": "Quick off the mark! This move came fast, with time still left on the clock."
+      "text": "Quick off the mark! That one got played in a hurry, and the clock still had time on it."
     },
     {
       "id": "clock-long",
@@ -442,7 +442,7 @@
     {
       "id": "advantage-converted",
       "group": "game_review",
-      "text": "The advantage held all the way to the win. That's how you see a job through. Follow that stretch and see how it was kept."
+      "text": "The advantage held all the way to the win. That's how you see a job through. Walk back through that stretch and watch it hold."
     },
     {
       "id": "saved-history-recurrence",
@@ -537,7 +537,7 @@
     {
       "id": "srs-fallback-relearning",
       "group": "srs_explanations",
-      "text": "Solved! This recall still stays marked for relearning, though."
+      "text": "Solved! It stays marked for relearning for now, though."
     },
     {
       "id": "explanation-frame-original",
@@ -642,7 +642,7 @@
     {
       "id": "explanation-finding-pin-restricts-escape",
       "group": "srs_explanations",
-      "text": "The attacked piece is pinned to its king, so it can't just run. Any move it makes has to keep the king covered."
+      "text": "The attacked piece is pinned to its king, so running isn't simple. Any move it makes has to keep the king covered."
     },
     {
       "id": "explanation-finding-pin-defenders-no-recapture",
@@ -802,7 +802,7 @@
     {
       "id": "explanation-note-saved-policy",
       "group": "srs_explanations",
-      "text": "I'm going by the answer policy saved for this exercise. You'll find the setting in the written notes."
+      "text": "I'm going by the answer policy saved for this exercise. The written notes name the setting."
     },
     {
       "id": "opening-recall-revealed",
@@ -907,7 +907,7 @@
     {
       "id": "game-browse-instructions",
       "group": "operational",
-      "text": "Pick a move to look at, or move a piece to try something different."
+      "text": "Choose a move to look at, or try a different piece on the board."
     },
     {
       "id": "book-opening-entry-1",
@@ -1452,7 +1452,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-natural-strong",
-      "text": "It's a double attack, two threats that both want an answer. It comes easy, says the human-move model, and it's strong, though the engine would pick something else first."
+      "text": "Double attack: two threats, each one asking for an answer. It comes easy, says the human-move model, and it's strong, though the engine would pick something else first."
     },
     {
       "id": "combo-tactic-double-attack-allowed-natural-error",
@@ -1592,7 +1592,7 @@
       "group": "game_review",
       "primary": "tactic-hanging-piece-allowed",
       "secondary": "human-hard-defense-missed",
-      "text": "This leaves a piece with no defender, and the other side can take it. Only one move we checked kept the position playable, and the human-move model calls it a difficult one to find."
+      "text": "This leaves a piece unguarded, and the other side can help itself to it. Only one move we checked kept the position playable, and the human-move model calls it a difficult one to find."
     },
     {
       "id": "combo-positional-development-actual-hard-find",
@@ -1837,7 +1837,7 @@
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-natural-best",
-      "text": "The king picks up a new legal square to step to. The human-move model and the engine both sign off on this one: natural, and best."
+      "text": "The king gains a legal square it didn't have before. The human-move model and the engine both sign off on this one: natural, and best."
     },
     {
       "id": "combo-positional-king-flight-actual-natural-strong",
@@ -2313,7 +2313,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-unusual-strong",
-      "text": "This one's in the opening book. Not what the human-move model would reach for, but the engine stands up for it as strong."
+      "text": "There's a book move for you. Not what the human-move model would reach for, but the engine stands up for it as strong."
     },
     {
       "id": "combo-book-opening-entry-1-natural-best",
@@ -2593,7 +2593,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-unusual-strong",
-      "text": "The book still recognizes it, even if the human-move model calls it unusual. The engine still calls it strong, and that counts."
+      "text": "The book recognizes it, even if the human-move model calls it unusual. The engine still calls it strong, and that counts."
     },
     {
       "id": "combo-book-opening-follow-6-natural-best",

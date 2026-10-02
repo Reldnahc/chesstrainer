@@ -43,7 +43,7 @@ export const mushroomOpeningTemplates = {
 } as const;
 
 export const livingPawnOpeningTemplates = {
-  "book-opening-entry-1": ["Hey, this one's in the opening book: {opening}."],
+  "book-opening-entry-1": ["Hey, the opening book has this one: {opening}."],
   "book-opening-entry-2": ["A recognized opening move, filed under {opening}."],
   "book-opening-entry-3": ["The opening book lists this move in {opening}."],
   "book-opening-follow-1": ["Still on file. This move belongs to {opening} too."],

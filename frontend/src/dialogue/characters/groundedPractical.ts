@@ -112,7 +112,7 @@ export const livingPawn: CoachPersonality = {
     human_challenging: ["{best} was hard to find. Give that move a proper study so it's easier to spot next time."],
     human_defense_found: [{reaction: "What a stand!", fact: "{best} held the position, and it was a hard defense to find."}],
     human_natural_best: ["The natural move and the engine's best are the same one here. I love it when the obvious job is the right job."],
-    human_natural_strong: ["A natural move, and a strong one. The engine liked another move a bit more, but this one does plenty."],
+    human_natural_strong: ["Natural, and strong too. The engine liked another move a bit more, but this one does plenty."],
     clock_low: ["{side} had just {seconds} seconds before this move. That's a lot of pressure on one decision."],
     clock_fast: ["{side} took {elapsed} seconds, with {seconds} still on the clock. Quick off the mark."],
     clock_long: ["{side} spent {elapsed} seconds on this one. A serious think."],
