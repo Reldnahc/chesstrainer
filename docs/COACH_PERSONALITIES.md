@@ -83,9 +83,13 @@ an available reply and a possible result in compact, orderly language. Their 29
 scoped forms retain the same evidence without forcing identical factual prose.
 Winston and Button have since authored all 29 forms and the opening phrases in
 their own voices: Winston calmly states the fact and a manageable next look;
-Button approaches the same fact from a slightly odd, gentle angle. Their written
-opt-in precedes recorded banks, so they remain silent until a bank is registered.
-The other 26 voices retain their current wording and deterministic variants.
+Button approaches the same fact from a slightly odd, gentle angle. Pip has done
+the same: a small happy or gentle reaction, then one plain fact in short
+everyday words, with an occasional Dublin turn of phrase and no questions. As a
+one-claim voice, Pip drops a lower-priority Book recognition rather than adding
+it after a correction. Their written opt-in precedes recorded banks, so they
+remain silent until a bank is registered. The other 25 voices retain their
+current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

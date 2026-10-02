@@ -59,3 +59,18 @@ export const robotTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "Capture available: {capture} would take a {piece}.", followup: "Possible follow-up: {capture}, taking a {piece}."},
   playedCapture: {fact: "Pattern associated with {move}: a {motif}.", consequence: "Capture completed: {capture} takes a {piece}."},
 });
+
+export const slimeTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a {motif} is right there on the board.",
+    played_possible: "After {move}, a {motif} could come along, if the replies allow it.",
+    allowed_immediate: "Now {opponent} can answer with {action}, and there's a {motif} in it.",
+    allowed_possible: "{opponent} might get a {motif} later on, if the replies go that way.",
+    missed_immediate: "{best} would have had a {motif} ready.",
+    missed_possible: "{best} could have led to a {motif}, if the replies allowed it.",
+  },
+  fork: {actual: "That's the {targets} attacked in one go.", possible: "The {targets} would be attacked in one go."},
+  material: "There may be a {gain} in it, though both sides still have moves to choose.",
+  capture: {candidate: "{capture} would grab a {piece}.", followup: "One way it could go: {capture}, grabbing a {piece}."},
+  playedCapture: {fact: "The trick with {move} is a {motif}.", consequence: "{capture} grabs a {piece}."},
+});
