@@ -44,13 +44,13 @@ export const wizard: CoachPersonality = {
     ],
     cause_abandoned_defender: [
       {observation: "A defender has a duty before it has a destination.", fact: "With {move}, the only unpinned defender of {side}'s {piece} on {square} leaves its post.", consequence: "{opponent} can then take it with {reply}."},
-      {fact: "{move} strips {side}'s {piece} on {square} of the only unpinned defender it had.", consequence: "{reply} then captures it for {opponent}.", takeaway: "Before a defender moves, list what it was holding."},
+      {fact: "{move} strips {side}'s {piece} on {square} of the only unpinned defender it had.", consequence: "{opponent} can collect it at once with {reply}.", takeaway: "Before a defender moves, list what it was holding."},
     ],
     cause_opponent_threat_recognition: [
-      {observation: "Every move asks a question, and the opponent's last one asked it plainly.", fact: "The opponent's preceding move created an attack on {side}'s {piece} on {square}, and {move} leaves it unanswered.", consequence: "{opponent} is free to capture it with {reply}."},
+      {observation: "Every move asks a question, and the opponent's last one asked it plainly.", fact: "The opponent's preceding move created an attack on {side}'s {piece} on {square}, and {move} leaves it unanswered.", consequence: "{opponent} can then capture it with {reply}."},
     ],
     cause_avoiding_bad_trades: [
-      {observation: "An exchange is judged after the recapture, not before.", fact: "{move} trades {side}'s {piece} away for a {captured}.", consequence: "{opponent} has the recapture {reply}."},
+      {observation: "An exchange is judged after the recapture, not before.", fact: "{move} trades {side}'s {piece} away for a {captured}.", consequence: "{opponent} can answer with the recapture {reply}."},
     ],
     sacrifice: [
       {observation: "A sacrifice is proven by its acceptance.", fact: "Here the offer can be taken, and the idea still holds in the searched line."},
