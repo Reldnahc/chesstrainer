@@ -82,12 +82,12 @@ export const collieTacticalTemplates = authorTacticalWordings({
     allowed_immediate: "{opponent} gets {action}, and with it a {motif}.",
     allowed_possible: "{opponent} may set up a {motif} later, replies permitting.",
     missed_immediate: "{best} would have put a {motif} on the board at once.",
-    missed_possible: "{best} could have built toward a {motif}, replies permitting.",
+    missed_possible: "{best} could have set the stage for a {motif}, depending on the answers.",
   },
   fork: {actual: "The {targets} are now under attack together from one piece.", possible: "The {targets} would be attacked by one piece in a single move."},
   material: "A {gain} may be on offer, but only if both sides play it out that way.",
   capture: {candidate: "{capture} could then snap off a {piece}.", followup: "Next in line could be {capture}, taking a {piece}."},
-  playedCapture: {fact: "{move} triggers a {motif}.", consequence: "{capture} collects a {piece}."},
+  playedCapture: {fact: "{move} sets off a {motif}.", consequence: "{capture} nets a {piece}."},
 });
 
 export const robotTacticalTemplates = authorTacticalWordings({

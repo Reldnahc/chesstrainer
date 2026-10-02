@@ -81,7 +81,7 @@ export const collieOpeningTemplates = {
   "book-opening-follow-5": ["Another step of {opening} confirmed."],
   "book-opening-follow-6": ["Theory holds: still {opening}."],
   "book-opening-follow-7": ["{opening} again on this move."],
-  "book-opening-follow-8": ["Still tracking {opening}. That locates the game; it doesn't grade the move."],
+  "book-opening-follow-8": ["Still tracking {opening}. That locates the game and says nothing about the move's value."],
 } as const;
 
 export const robotOpeningTemplates = {
