@@ -22,7 +22,7 @@ export const spark: CoachPersonality = {
   templates: {
     ...sparkTacticalTemplates,
     ...sparkOpeningTemplates,
-    allowed_mate: [{ reaction: "Freeze frame.", fact: "{opponent} has a mating net ready to snap shut.", consequence: "{reply}" }],
+    allowed_mate: [{ reaction: "Freeze frame.", fact: "The net is ready to snap shut: {opponent} gets to force mate.", consequence: "{reply}" }],
     missed_mate: [{ reaction: "Mate was on a plate.", fact: "{best} forced it, and the game slides past." }],
     tactic_played: [{ reaction: "Spicy.", fact: "Watch {move} spark off a {motif} in the searched line.", consequence: "{detail}" }, { reaction: "Snap.", fact: "Down the searched line, {move} lights the fuse on a {motif}.", consequence: "{detail}" }],
     tactic_allowed: [{ reaction: "Eyes up.", fact: "Run the strongest line and {opponent} cashes in a {motif}.", consequence: "{detail}" }],
