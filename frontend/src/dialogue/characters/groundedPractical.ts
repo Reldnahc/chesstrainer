@@ -124,7 +124,7 @@ export const livingPawn: CoachPersonality = {
     missed_punishment: ["The opponent left {side} a chance at {earlier}, and this move doesn't take it. That chance was there to be used."],
     repeated: ["Same problem again: this {motif} issue has come up {count} times in the reviewed moves. That's a lesson asking to be learned."],
     support_restored: ["The {piece}, left unguarded at {earlier}, has a defender again. Back under protection, where it belongs."],
-    erosion: ["This is one more small concession since {earlier}. None of them alone did it, but together they've worn the position down."],
+    erosion: ["This is one more small concession since {earlier}. No single one sank it, but they've added up."],
     conversion: ["{side} kept the advantage from {earlier} all the way to the win. That's how you see a job through."],
     history: ["This {motif} issue shows up in {games} other saved games too. Pull those out and study them together."],
     development: [{reaction: "Another piece reports for work!", fact: "{lead}develops the {piece} from its starting square."}],
@@ -144,7 +144,7 @@ export const livingPawn: CoachPersonality = {
     cold: ["Look over the position and see what each piece is doing. Then pick your move."],
     thinking: ["Checking what your move does and how the opponent answers…"],
     unavailable: ["The engine couldn't check this position, so I can't tell you what each move does yet. The board's still yours to explore."],
-    practice_error: ["That attempt didn't come back with a result. Give the move another go."],
+    practice_error: ["Hmm, nothing came back from that attempt. Give the move another go."],
     retry: [
       {reaction: "Not quite, but don't quit on it.", fact: "That move doesn't solve the position.", takeaway: "Look again at what each piece is doing."},
       "That one doesn't solve it. Take another look; the answer's still on the board.",
