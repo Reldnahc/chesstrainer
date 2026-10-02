@@ -60,7 +60,9 @@ Settings provides a Download source code link to a snapshot served from the same
 host at /assets/fieldwork-source.zip. The frontend build prepares that snapshot
 from Git-listed public source files, including licenses and build instructions.
 It excludes environment secrets, databases, games in data, dependencies and
-untracked files. Regenerate the frontend/source archive after source changes;
+untracked files. Recorded audio under frontend/src/audio is listed by hash in
+the snapshot rather than stored again, because the application serves those
+exact files. Regenerate the frontend/source archive after source changes;
 stage new public source files before building. Never track private information.
 
 Exported snapshots include SOURCE_SNAPSHOT.json with file hashes and can rebuild
