@@ -233,7 +233,7 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
  * boundaries. Late evidence never grants a second automatic narration turn. */
 export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsightPresentation) {
   const primaryId = selectGameRecording({...context, claimIndex: 0});
-  const secondaryId = context.surface === "human-insight" ? null : selectGameRecording({...context, claimIndex: 1});
+  let secondaryId = context.surface === "human-insight" ? null : selectGameRecording({...context, claimIndex: 1});
   let recordingId = primaryId;
   if (primaryId && context.surface !== "human-insight" && ["game", "variation"].includes(context.intent.mode)) {
     const claims = context.utterance.renderedClaims ?? [];
@@ -248,7 +248,13 @@ export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsi
         && same(insight.intent, humanInsightIntent(context.intent))
         ? selectGameRecording({...context, ...insight, surface: "human-insight", claimIndex: 0}) : null;
     }
-    if (objectiveId && humanId) recordingId = combinations.get(`${objectiveId}:${humanId}`) ?? primaryId;
+    const combined = objectiveId && humanId ? combinations.get(`${objectiveId}:${humanId}`) : undefined;
+    if (combined) {
+      recordingId = combined;
+      // The Maia-aware recording already says both claims. Offering either
+      // half again as a separate clip would replay a line the move just spoke.
+      if (secondaryId === objectiveId || secondaryId === humanId) secondaryId = null;
+    }
   }
   return {recordingId, primaryId, secondaryId};
 }

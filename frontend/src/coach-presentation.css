@@ -43,12 +43,12 @@
   position: relative;
   min-width: 0;
   display: grid;
-  grid-template-rows: 30px minmax(0, 1fr);
-  gap: 8px;
+  grid-template-rows: 28px minmax(0, 1fr);
+  gap: 4px;
   height: var(--coach-height);
   border: 1px solid #47554d;
   border-radius: 10px;
-  padding: 12px 14px;
+  padding: 10px 14px;
   background: #242d28;
 }
 .review-coach--compact-label .coach-speech {
@@ -160,17 +160,16 @@
   flex-direction: column;
 }
 .coach-insight {
+  /* Tucked into the bubble's bottom padding so it costs the explanation as
+     little height as possible; the compact title row reserves the rest. */
   display: flex;
   justify-content: flex-end;
   flex-shrink: 0;
+  height: 16px;
+  margin-bottom: -8px;
 }
 .coach-insight:empty {
   display: none;
-}
-.coach-speech:has(.human-insight-trigger) {
-  grid-template-rows: 28px minmax(0, 1fr);
-  gap: 4px;
-  padding-block: 10px;
 }
 .coach-message {
   flex: 1;
@@ -234,7 +233,7 @@
   align-items: center;
   justify-content: flex-end;
   gap: 4px;
-  min-height: 20px;
+  min-height: 16px;
   width: auto;
   max-width: 100%;
   padding: 0;
@@ -246,9 +245,8 @@
   margin-left: auto;
 }
 .human-insight-trigger span {
-  white-space: normal;
+  white-space: nowrap;
   line-height: 13px;
-  text-wrap: balance;
 }
 .human-insight-trigger svg { flex-shrink: 0; }
 .human-insight-trigger:hover { text-decoration: underline; }
@@ -355,7 +353,7 @@
     grid-row: 1;
   }
   .coach-speech {
-    grid-template-rows: 36px minmax(0, 1fr);
+    grid-template-rows: 28px minmax(0, 1fr);
     padding: 10px;
   }
   .coach-label {
@@ -387,7 +385,7 @@
     grid-row: 1;
   }
   .coach-speech {
-    grid-template-rows: 36px minmax(0, 1fr);
+    grid-template-rows: 28px minmax(0, 1fr);
     padding: 10px;
   }
   .coach-label .move-badge {

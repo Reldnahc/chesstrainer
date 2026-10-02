@@ -56,7 +56,8 @@ for (const coach of coaches) {
       expect.objectContaining({source: "human", id: current.report!.human!.evidence_id}),
       expect.objectContaining({source: "stockfish"}),
     ]));
-    expect(selectGameSpeech(current)).toEqual({primaryId, secondaryId,
+    // The whole recording replaces both halves; neither is offered again on its own.
+    expect(selectGameSpeech(current)).toEqual({primaryId, secondaryId: null,
       recordingId: `combined-${primaryId}-with-${secondaryId}`});
   });
 
@@ -84,7 +85,7 @@ for (const coach of coaches) {
       && item.secondary === "human-hard-defense-missed");
     expect(combined).toBeDefined();
     expect(selectGameSpeech(current)).toEqual({primaryId: "evaluation-loss",
-      secondaryId: "human-hard-defense-missed", recordingId: combined!.id});
+      secondaryId: null, recordingId: combined!.id});
   });
 
   test(`${coach.id}: a human-only explanation does not invent the absent Best fallback`, () => {
