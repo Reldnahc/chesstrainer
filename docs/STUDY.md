@@ -125,7 +125,8 @@ FSRS changes or weakness evidence.
 Library statistics use lightweight account-scoped aggregates, plus pack
 attribution, rating range, theme counts (length and provenance tags excluded)
 and how many puzzles are ready to retry. Resume lists contain at most the twenty
-most recently updated unfinished sessions; direct links to older sessions remain
+most recently updated unfinished sessions with at least one committed move or
+reveal; an untouched start is not listed. Direct links to older sessions remain
 valid. No puzzle rating or practice count is described as mastery or evidence of
 transfer into games.
 
