@@ -174,6 +174,7 @@ registered.
 | Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | No | No |
 | Lesson prompts (`lessons` group), coaches 1–10 (Alfie to Fergus) | Written, 9 each | Yes, 2026-10-02, at commit `88b9b84` | No | No |
 | Lesson prompts (`lessons` group), coaches 11–20 (Ingrid to Pip) | Written, 9 each | Yes, 2026-10-02, at commit `899fc94` | No | No |
+| Lesson prompts (`lessons` group), coaches 21–30 (Réka to Ziggy) | Written, 9 each | Yes, 2026-10-02, at commit `b19c358` | No | No |
 
 The opener row is a cast-wide meaning added after the banks above. Each authored
 `scripts.json` now holds 439 rows, and Walter's and Rivet's lines sit in
@@ -182,7 +183,8 @@ opener is recorded.
 
 The lesson-prompt rows cover the nine generic `lessons` meanings. Each batch of
 coaches adds its own row as it lands; a coach's lesson lines stay silent until
-they are recorded.
+they are recorded. With coaches 21–30 in, all 30 coaches have their lesson lines
+written, and none are recorded yet.
 
 ## Adding or revising a production bank
 

@@ -41,6 +41,8 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
     assert original.keys() == base_rivet.keys()
     assert not original.keys() & extras.keys()
     catalogue = {row["id"]: row for row in read("meanings.json")["meanings"]}
+    # Every meaning has authored Walter and Rivet text, recorded or not.
+    assert catalogue.keys() <= original.keys() | extras.keys()
     for coach, path, text_field in [
         ("classic", "bank/manifest.json", "walterText"),
         ("robot", "banks/rivet/manifest.json", "rivetText"),
