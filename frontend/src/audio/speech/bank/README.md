@@ -133,7 +133,7 @@ registered.
 | Pickle (`cat-kitten`) | Written, 438 | Yes, 2026-10-02, at commit `6597a26` | No | No |
 | Ember (`dragon`) | Written, 438 | Yes, 2026-10-02, at commit `ee90487` | No | No |
 | Scout (`dog-collie`) | Written, 438 | Yes, 2026-10-02, at commit `3354f70` | No | No |
-| Juniper (`cat-black`) | Written, 438 | Yes, 2026-10-02, at commit `632926c` | No | No |
+| Juniper (`cat-black`) | Written, 438 | Yes, 2026-10-02, at commit `38d3920` | No | No |
 
 ## Adding or revising a production bank
 
