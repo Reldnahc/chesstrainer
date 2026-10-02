@@ -35,6 +35,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   frog: {version: "frog-2", actual: "and by the same piece", possible: "would be attacked at once, and all from"},
   "man-host": {version: "host-4", actual: "hit at once by one piece", possible: "would be attacked by it in one go"},
   "woman-spark": {version: "spark-4", actual: "all in the crosshairs", possible: "would be attacked in the same breath"},
+  "woman-captain": {version: "captain-4", actual: "under fire from one piece", possible: "would be attacked from one square"},
 };
 
 test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {

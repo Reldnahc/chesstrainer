@@ -118,12 +118,13 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/monty/scripts.json`, coach `gorilla`), Ingrid
 (`banks/ingrid/scripts.json`, coach `woman-blonde`), Biscuit
 (`banks/biscuit/scripts.json`, coach `dog-puppy`), Réka
-(`banks/reka/scripts.json`, coach `woman-spark`) and Mateo
-(`banks/mateo/scripts.json`, coach `human-boy`) each have complete authored
+(`banks/reka/scripts.json`, coach `woman-spark`), Mateo
+(`banks/mateo/scripts.json`, coach `human-boy`) and Tamar
+(`banks/tamar/scripts.json`, coach `woman-captain`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol, Monty and Ingrid,
+coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol, Monty, Ingrid and Tamar,
 whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
 scripts and a bank is recorded and registered.
@@ -164,6 +165,7 @@ registered.
 | Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
 | Réka (`woman-spark`) | Written, 438 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
 | Mateo (`human-boy`) | Written, 438 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
+| Tamar (`woman-captain`) | Written, 438 | Yes, 2026-10-02, at commit `129a272` | No | No |
 
 ## Adding or revising a production bank
 

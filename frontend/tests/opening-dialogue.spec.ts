@@ -9,11 +9,12 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
 import {velvet} from "../src/dialogue/characters/velvet";
 import {expert} from "../src/dialogue/characters/expert";
+import {captain} from "../src/dialogue/characters/captain";
 import {partner} from "../src/dialogue/characters/partner";
 import {analyst} from "../src/dialogue/characters/analyst";
 import {blonde} from "../src/dialogue/characters/blonde";
 import {youngBoy} from "../src/dialogue/characters/youngBoy";
-import {alienOpeningTemplates, analystOpeningTemplates, blondeOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, puppyOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates, sparkOpeningTemplates, youngBoyOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, analystOpeningTemplates, blondeOpeningTemplates, capybaraOpeningTemplates, captainOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, puppyOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates, sparkOpeningTemplates, youngBoyOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
@@ -208,6 +209,7 @@ const openingCoaches = [
   {id: "dog-puppy", personality: newCastPersonalities["dog-puppy"], authored: puppyOpeningTemplates, voiced: false},
   {id: "woman-spark", personality: spark, authored: sparkOpeningTemplates, voiced: false},
   {id: "human-boy", personality: youngBoy, authored: youngBoyOpeningTemplates, voiced: false},
+  {id: "woman-captain", personality: captain, authored: captainOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {

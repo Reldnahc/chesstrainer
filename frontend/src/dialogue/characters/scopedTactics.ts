@@ -104,6 +104,20 @@ export const frogTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would follow and remove a {piece}, quietly.", followup: "Possibly {capture} follows, taking a {piece}."},
   playedCapture: {fact: "{move} has a {motif} attached.", consequence: "{capture} then removes a {piece}, without ceremony."},
 });
+export const captainTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} produces a {motif} at once.",
+    played_possible: "{move} prepares a {motif}, though the replies decide whether it lands.",
+    allowed_immediate: "{opponent} answers with {action}, and the {motif} is there at once.",
+    allowed_possible: "Later, {opponent} may find a {motif}, depending on how the replies go.",
+    missed_immediate: "{best} would have produced a {motif} straight away.",
+    missed_possible: "{best} pointed toward a {motif}, with the replies still to decide it.",
+  },
+  fork: {actual: "The {targets} are under fire from one piece at the same moment.", possible: "Should it get there, the {targets} would be attacked from one square by one piece."},
+  material: "A {gain} may be the result, if both sides play the line out.",
+  capture: {candidate: "{capture} would come next and win a {piece}.", followup: "Should the line continue that way, {capture} can collect a {piece}."},
+  playedCapture: {fact: "{move} turns a {motif} loose.", consequence: "{capture} then wins the {piece}."},
+});
 
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
