@@ -109,8 +109,9 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/arjun/scripts.json`, coach `man-partner`), Femi
 (`banks/femi/scripts.json`, coach `man-host`), Marisol
 (`banks/marisol/scripts.json`, coach `woman-analyst`), Monty
-(`banks/monty/scripts.json`, coach `gorilla`) and Ingrid
-(`banks/ingrid/scripts.json`, coach `woman-blonde`) each have complete authored
+(`banks/monty/scripts.json`, coach `gorilla`), Ingrid
+(`banks/ingrid/scripts.json`, coach `woman-blonde`) and Mateo
+(`banks/mateo/scripts.json`, coach `human-boy`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
