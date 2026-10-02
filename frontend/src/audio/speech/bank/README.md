@@ -88,6 +88,12 @@ during the Eleven v4 launch discount. Their scripts needed regular `-ed`/`-ing`
 inflections ("castled", "castling", "reloading"), now covered by morphology
 revision v2; earlier archives keep revision v1.
 
+Plain clips also play on the opponent's moves, so reactions there must not
+assume the learner moved. `revisions/side-neutral-v1.json` in each bank lists the
+approved rewordings still awaiting re-recording: three Button lines and three
+Winston lines. Until they are recorded, `scripts.json` and the manifest keep the
+recorded text; recording a line moves its new text into both.
+
 ## Authored banks awaiting recording
 
 Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
