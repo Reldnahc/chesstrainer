@@ -141,7 +141,12 @@ reaction, a flowing description of what the move joins, frees or breaks, then
 one gentle lesson, with delight kept for sound sacrifices, hidden tactics and
 narrow defenses, kind but clear correction and no questions. Celeste also stays
 silent until a bank is registered.
-The other 12 voices retain their current wording and deterministic variants.
+Jun (`man-expert`) has opted in as well, in `characters/expert.ts`: the fact,
+its exact consequence and the supported resource, in clipped technical labels
+(absolute pin, theory, net material, flight square), with sparse approval for
+precision, no emotion that depends on which side moved, and no questions. Jun
+also stays silent until a bank is registered.
+The other 11 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
