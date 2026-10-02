@@ -5,7 +5,15 @@ import type {Schema} from "../src/api";
 import {renderCoaches} from "./render-coaches";
 import {humanInsightIntent} from "../src/dialogue/humanClaims";
 
-test("Walter and Rivet adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {
+// Voices that opted into scoped tactical and opening-sequence wording.
+const scoped: Record<string, {version: string; actual: string; possible: string}> = {
+  classic: {version: "storyteller-6", actual: "are attacked together", possible: "would be attacked together"},
+  robot: {version: "robot-3", actual: "Attacked together", possible: "Potential simultaneous targets"},
+  capybara: {version: "capybara-2", actual: "at the same time", possible: "would be attacked at the same time"},
+  mushroom: {version: "mushroom-2", actual: "at once", possible: "would be attacked together"},
+};
+
+test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {
   await page.goto("/");
   for (const role of ["played", "allowed", "missed"]) {
     const ply = role === "allowed" ? 2 : 1;
@@ -22,13 +30,12 @@ test("Walter and Rivet adopt scoped dialogue while the remaining cast keeps the 
     for (const output of after) {
       expect(output.intentId).toBe(intent.id);
       expect(output.renderedClaims).toEqual([item]);
-      if (!["classic", "robot"].includes(output.coachId)) expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
+      const voice = scoped[output.coachId];
+      if (!voice) expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
       else {
-        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-3");
+        expect(output.trace.variants[0].source).toBe(voice.version);
         expect(output.text).not.toMatch(/engine|continuation|verified/i);
-        expect(output.text).toContain(output.coachId === "classic"
-          ? role === "played" ? "are attacked together" : "would be attacked together"
-          : role === "played" ? "Attacked together" : "Potential simultaneous targets");
+        expect(output.text).toContain(role === "played" ? voice.actual : voice.possible);
       }
     }
     const human = claim("human_natural_error", {}, 69, [{source: "human", id: "maia", field: "policy"}]);
@@ -38,12 +45,12 @@ test("Walter and Rivet adopt scoped dialogue while the remaining cast keeps the 
     for (const output of current) {
       expect(output.intentId).toBe(newHuman.id);
       expect(output.renderedClaims).toEqual([human]);
-      if (!["classic", "robot"].includes(output.coachId)) expect(output.text).toBe(previous.find(other => other.coachId === output.coachId)!.text);
+      if (!scoped[output.coachId]) expect(output.text).toBe(previous.find(other => other.coachId === output.coachId)!.text);
     }
   }
 });
 
-test("opening sequence metadata changes only the two pilot voices and preserves all original claim identities", async ({page}) => {
+test("opening sequence metadata changes only the opted-in voices and preserves all original claim identities", async ({page}) => {
   await page.goto("/");
   for (const subject of ["learner", "opponent"] as const) for (const kind of ["entry", "follow"] as const) {
     const original = claim("book_sound", {opening: "Named opening"}, 96,
@@ -58,10 +65,10 @@ test("opening sequence metadata changes only the two pilot voices and preserves 
     for (const output of after) {
       expect(output.renderedClaims).toEqual([item]);
       expect(output.intentId).toBe(intent.id);
-      if (!["classic", "robot"].includes(output.coachId))
+      if (!scoped[output.coachId])
         expect(output.text).toBe(before.find(other => other.coachId === output.coachId)!.text);
       else {
-        expect(output.trace.variants[0].source).toBe(output.coachId === "classic" ? "storyteller-6" : "robot-3");
+        expect(output.trace.variants[0].source).toBe(scoped[output.coachId].version);
         expect(output.text).toContain("Named opening");
         expect(output.text).not.toMatch(/good|best|strong|you|your|develop|center|centre|advantage/i);
       }

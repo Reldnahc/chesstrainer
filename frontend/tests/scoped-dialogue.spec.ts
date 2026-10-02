@@ -5,10 +5,13 @@ import {neutralTacticalTemplates} from "../src/dialogue/scopedTacticalWording";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
+import {capybara} from "../src/dialogue/characters/groundedQuiet";
+import {mushroom} from "../src/dialogue/characters/mushroom";
 import {factualParts, validWording} from "../src/dialogue/composition";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
 
-const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
+const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot},
+  {id: "capybara", personality: capybara}, {id: "mushroom", personality: mushroom}];
 function item(role: "played" | "allowed" | "missed", timing: TacticalPresentation["timing"], effect: TacticalPresentation["effect"]): Claim {
   return {...claim(`tactic_${role}`, {move: "Nf3", best: "Ng5", opponent: "Black", motif: "pin", detail: "Original prose remains intact."},
     90, [{source: "stockfish", id: "search", field: "findings"}], ["event"]),
@@ -25,7 +28,7 @@ for (const scope of tacticalScopes) {
 }
 cases.push(item("played", "possible", {kind: "capture", san: "Nf3", piece: "queen", ply: 1}));
 
-test("all 29 scoped meanings have complete independently authored Walter and Rivet factual templates", () => {
+test("all 29 scoped meanings have complete independently authored factual templates for every opted-in voice", () => {
   const keys = cases.map(value => tacticalPresentation(value)!.code);
   expect(new Set(keys).size).toBe(29);
   expect([...new Set(keys)].sort()).toEqual(Object.keys(neutralTacticalTemplates).sort());
@@ -36,10 +39,9 @@ test("all 29 scoped meanings have complete independently authored Walter and Riv
       expect(options.length).toBeGreaterThan(0);
       for (const wording of options) expect(validWording(wording, reference), `${coach.id}/${code}`).toBe(true);
     }
-    const walter = factualParts(storyteller.templates[code]![0]).join(" ");
-    const rivet = factualParts(robot.templates[code]![0]).join(" ");
-    expect(walter).not.toBe(rivet);
-    expect(walter + rivet).not.toMatch(/\{setup\}|\{detail\}/);
+    const authored = coaches.map(coach => factualParts(coach.personality.templates[code]![0]).join(" "));
+    expect(new Set(authored).size).toBe(coaches.length);
+    expect(authored.join(" ")).not.toMatch(/\{setup\}|\{detail\}/);
   }
 });
 
@@ -102,7 +104,7 @@ test("a missing required noun or move never renders literal undefined or retains
   }
 });
 
-test("both pilot voices keep the cold practice gate and avoid claiming generic strong means literal Best", () => {
+test("every opted-in voice keeps the cold practice gate and avoid claiming generic strong means literal Best", () => {
   const cold = practiceIntent({position: {session_id: "cold", failed: false, theme: "POISON"} as never,
     feedback: null, frame: {annotation: "POISON fork wins queen"} as never, hadFailure: false, expression: "neutral"});
   for (const coach of coaches) {

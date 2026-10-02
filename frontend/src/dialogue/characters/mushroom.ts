@@ -1,7 +1,9 @@
 import type {CoachPersonality} from "../personality";
+import {mushroomTacticalTemplates} from "./scopedTactics";
+import {mushroomOpeningTemplates} from "./openingSequence";
 
 export const mushroom: CoachPersonality = {
-  version: "mushroom-1", maxCharacters: 270, maxClaims: 2,
+  version: "mushroom-2", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
   delivery: {pace: "measured", energy: "warm"},
   behavior: {
     general: "observation-first", praise: "observation-first", correction: "question-first",
@@ -18,6 +20,8 @@ export const mushroom: CoachPersonality = {
     avoid: "Drug jokes, constant mushroom or forest metaphors, cryptic nonsense, fake wisdom, invented support relationships, or cutesy speech.",
   },
   templates: {
+    ...mushroomTacticalTemplates,
+    ...mushroomOpeningTemplates,
     allowed_mate: [
       {question: "Where can the king go after the reply?", fact: "This allows {opponent} to force checkmate.", consequence: "{reply}"},
       {fact: "{opponent} can now force checkmate. {reply}"},
@@ -57,7 +61,7 @@ export const mushroom: CoachPersonality = {
       {fact: "This move held a playable position; the searched alternatives were losing.", observation: "You found the remaining space."},
     ],
     decisive_resource: ["Only this searched move kept the decisive advantage. A lot depended on that one choice."],
-    best: ["This keeps almost everything the engine's best continuation offered. Nicely held together.", "Very little is left behind here: the move stays close to the engine's best."],
+    best: ["A strong move, and a tidy one. Very little comes loose here.", "Strong, and quietly so. The position stays well held together."],
     good: ["Most of the position's value comes along with this move. A sound choice.", "This stays near the stronger alternatives. It holds together well."],
     loss: [
       {fact: "This costs {loss} pawns of evaluation compared with the best move.", question: "What changes between the two lines?"},
@@ -96,6 +100,8 @@ export const mushroom: CoachPersonality = {
     bishops: ["{lead}removes {side}'s pair of opposite-colored bishops."],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}. Notice how they share a file now."],
     clock_low: ["{side} had {seconds} seconds before moving. Not much room on the clock."],
+    clock_fast: ["{side} used {elapsed} seconds, with {seconds} seconds still left. A quick step."],
+    clock_long: ["{side} spent {elapsed} seconds on this move. A long look."],
     mate_win: ["Checkmate. The king has no legal escape. The attack has found its ending.", "The king has run out of legal escapes. Checkmate, and a finished attack."],
     mate_loss: ["Checkmate. Your king has no legal escape now. Let's return to an earlier position and look at the defense."],
     draw: ["A drawn position. The result is settled; there are still choices we can turn over and examine."],
@@ -106,6 +112,10 @@ export const mushroom: CoachPersonality = {
     cold: ["Spend a little time with the board. Then choose your move.", "There is no hurry from me. Look at the position and make your move."],
     thinking: ["Looking through the move and its reply, one piece of the idea at a time…"],
     unavailable: ["The engine evidence is absent here. We can look around the board, but an explanation will have to wait."],
-    variation: ["Over in this separate continuation, {detail}"],
+    variation: ["Over in this other line, {detail}"],
+    uncertain_reason: ["{best} is stronger, though I can't yet see what makes it so. A small question to leave open for now."],
+    practice_error: ["That attempt didn't come back with a result. Try the move once more."],
+    explanation_summary: ["The thread to hold on to is this: {detail}"],
+    compatibility: ["{detail}"],
   },
 };

@@ -15,6 +15,36 @@ export const storytellerTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "The idea to notice with {move} is a {motif}.", consequence: "{capture} captures a {piece}."},
 });
 
+export const capybaraTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, a {motif} is in place. We can take it one piece at a time.",
+    played_possible: "After {move}, a {motif} may come later, if the replies allow it. No need to count on it yet.",
+    allowed_immediate: "Here is the problem: {opponent} can reply with {action}, and there is a {motif}.",
+    allowed_possible: "{opponent} may get a {motif} later, depending on the replies. That is worth keeping in view.",
+    missed_immediate: "{best} would have given a {motif}. That is the comparison to make.",
+    missed_possible: "{best} offered a possible {motif}, though the replies would still have decided it.",
+  },
+  fork: {actual: "That attacks the {targets} at the same time.", possible: "The {targets} would be attacked at the same time."},
+  material: "There may be a {gain} in it, but both sides still have choices to make first.",
+  capture: {candidate: "{capture} would take a {piece}.", followup: "One way it could go on is {capture}, taking a {piece}."},
+  playedCapture: {fact: "The idea with {move} is a {motif}.", consequence: "{capture} takes a {piece}."},
+});
+
+export const mushroomTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Something new appears after {move}: a {motif}.",
+    played_possible: "After {move}, a {motif} is waiting in the position, if the replies allow it.",
+    allowed_immediate: "Something comes loose here: {opponent} can reply with {action}, and there is a {motif}.",
+    allowed_possible: "A {motif} could open up for {opponent} later, depending on the replies.",
+    missed_immediate: "{best} had a {motif} tucked inside it.",
+    missed_possible: "{best} might have held a {motif}, though the replies would still have their say.",
+  },
+  fork: {actual: "One piece is bothering the {targets} at once.", possible: "The {targets} would be attacked together, by one piece."},
+  material: "There may be a {gain} at the end of it, though both sides still have choices to make.",
+  capture: {candidate: "{capture} would pick up a {piece}.", followup: "One way it might unfold is {capture}, picking up a {piece}."},
+  playedCapture: {fact: "Inside {move} is a {motif}.", consequence: "{capture} picks up a {piece}."},
+});
+
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Position after {move}: a {motif} is present.",

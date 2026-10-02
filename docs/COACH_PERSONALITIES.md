@@ -81,7 +81,11 @@ the mandatory factual sentences as well as any optional teaching cues. Walter
 connects the idea to what can happen next; Rivet separates a present pattern,
 an available reply and a possible result in compact, orderly language. Their 29
 scoped forms retain the same evidence without forcing identical factual prose.
-The other 28 voices retain their current wording and deterministic variants.
+Winston and Button have since authored all 29 forms and the opening phrases in
+their own voices: Winston calmly states the fact and a manageable next look;
+Button approaches the same fact from a slightly odd, gentle angle. Their written
+opt-in precedes recorded banks, so they remain silent until a bank is registered.
+The other 26 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

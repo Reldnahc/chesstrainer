@@ -7,7 +7,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {robotOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {capybaraOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -166,8 +166,11 @@ test("a variation never inherits the mainline's opening run", () => {
 });
 
 const openingCoaches = [
-  {id: "classic", personality: storyteller, authored: storytellerOpeningTemplates},
-  {id: "robot", personality: newCastPersonalities.robot, authored: robotOpeningTemplates},
+  {id: "classic", personality: storyteller, authored: storytellerOpeningTemplates, voiced: true},
+  {id: "robot", personality: newCastPersonalities.robot, authored: robotOpeningTemplates, voiced: true},
+  // Written forms precede a registered bank; an unvoiced coach selects no recording.
+  {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: false},
+  {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {
@@ -189,7 +192,7 @@ for (const coach of openingCoaches) {
         const authored = coach.authored[recording as keyof typeof coach.authored][0];
         const output = renderDialogue(intent, coach);
         expect(selectGameRecording({game, ply, frame: game.frames[ply], report: game.frames[ply].report,
-          intent, utterance: output})).toBe(recording);
+          intent, utterance: output})).toBe(coach.voiced ? recording : null);
         expect(output.text).toBe(authored.replace("{opening}", "Named line"));
         expect(output.trace.variants).toEqual([{code: "book_sound", index: 0, sourceIds: [],
           source: coach.personality.version, form: "sentence", cues: [], order: undefined}]);

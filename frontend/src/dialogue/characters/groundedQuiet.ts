@@ -1,4 +1,6 @@
 import type {CoachPersonality} from "../personality";
+import {capybaraTacticalTemplates} from "./scopedTactics";
+import {capybaraOpeningTemplates} from "./openingSequence";
 
 export const gorilla: CoachPersonality = {
   version: "gorilla-1", maxCharacters: 260, maxClaims: 2,
@@ -171,7 +173,7 @@ export const frog: CoachPersonality = {
 };
 
 export const capybara: CoachPersonality = {
-  version: "capybara-1", maxCharacters: 270, maxClaims: 2,
+  version: "capybara-2", maxCharacters: 270, maxClaims: 2, tacticalWording: "witness", openingWording: "sequence",
   delivery: {pace: "measured", energy: "warm"},
   behavior: {
     general: "calm-reset", praise: "calm-reset", correction: "calm-reset",
@@ -188,6 +190,8 @@ export const capybara: CoachPersonality = {
     avoid: "Therapy language, chill memes, denying a lost position, false reassurance and calling every failure a success.",
   },
   templates: {
+    ...capybaraTacticalTemplates,
+    ...capybaraOpeningTemplates,
     allowed_mate: [{reaction: "All right, here is the problem.", fact: "{opponent} can now force checkmate.", consequence: "{reply}"}],
     missed_mate: [{fact: "{best} kept a forced mate, and this move lets it go.", takeaway: "We can go back and compare the two."}],
     tactic_played: [{reaction: "That idea holds together.", fact: "{move} has a {motif} in the searched continuation.", consequence: "{detail}"}],
@@ -203,7 +207,7 @@ export const capybara: CoachPersonality = {
     reply_check: ["{opponent}'s strongest reply is {reply}, with check. We can examine that next."],
     alternative: ["For comparison, Stockfish prefers {best}, giving the mover {evaluation}."],
     loss: [{fact: "This gives up {loss} pawns of evaluation compared with the best move.", takeaway: "We can compare the replies one at a time."}],
-    best: [{reaction: "Yes, that keeps things together.", fact: "This stays close to the engine's best continuation."}],
+    best: [{reaction: "Yes, that holds together.", fact: "A strong move. It keeps what the position was offering."}],
     good: ["A sound choice, keeping most of the position's value. We can keep this move in the comparison."],
     uncertain_reason: ["{best} is stronger, but I don't have a clear explanation yet. We can leave that question open."],
     human_natural_error: [{fact: "This is a natural choice with a costly reply.", takeaway: "The reply is the part to look at now."}],
