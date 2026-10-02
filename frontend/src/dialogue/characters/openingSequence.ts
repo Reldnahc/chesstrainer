@@ -97,3 +97,17 @@ export const alienOpeningTemplates = {
   "book-opening-follow-7": ["The game keeps tracing the documented line of {opening}."],
   "book-opening-follow-8": ["Deeper into {opening}, a move theory accounts for."],
 } as const;
+
+export const tuxedoOpeningTemplates = {
+  "book-opening-entry-1": ["This is book, filed under {opening}."],
+  "book-opening-entry-2": ["Known theory here: {opening}."],
+  "book-opening-entry-3": ["Theory has a name for this one: {opening}."],
+  "book-opening-follow-1": ["Still theory: {opening}."],
+  "book-opening-follow-2": ["Theory covers this one too, in {opening}."],
+  "book-opening-follow-3": ["The reply is theory as well, in {opening}."],
+  "book-opening-follow-4": ["By the book, still inside {opening}."],
+  "book-opening-follow-5": ["Known moves, still in {opening}."],
+  "book-opening-follow-6": ["One more book move in {opening}."],
+  "book-opening-follow-7": ["No departure yet from {opening}."],
+  "book-opening-follow-8": ["Theory still, in {opening}. Familiar is not a grade."],
+} as const;
