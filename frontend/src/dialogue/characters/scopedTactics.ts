@@ -45,6 +45,21 @@ export const mushroomTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "Inside {move} is a {motif}.", consequence: "{capture} picks up a {piece}."},
 });
 
+export const livingPawnTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} puts a piece to work, and there's a {motif} on the board.",
+    played_possible: "After {move}, a {motif} may get its chance, depending on how the replies go.",
+    allowed_immediate: "{opponent} can answer with {action}, and a {motif} goes to work.",
+    allowed_possible: "{opponent} could find a use for a {motif} later on; the replies decide whether it happens.",
+    missed_immediate: "{best} had a {motif} ready to go.",
+    missed_possible: "{best} might have set up a {motif}; whether it lands depends on the replies.",
+  },
+  fork: {actual: "One piece now hits the {targets} all at once.", possible: "The {targets} would be attacked, and by a single hardworking piece."},
+  material: "A {gain} may be in the cards, but both sides still have moves to make.",
+  capture: {candidate: "{capture} would snap up a {piece}.", followup: "If play goes that way, {capture} could follow and take a {piece} off the board."},
+  playedCapture: {fact: "{move} goes to work with a {motif}.", consequence: "{capture} takes a {piece} off the board."},
+});
+
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Position after {move}: a {motif} is present.",

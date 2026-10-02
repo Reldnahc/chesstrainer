@@ -14,6 +14,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   ghost: {version: "ghost-2", actual: "One attacker now touches", possible: "would be attacked by a single piece"},
   slime: {version: "slime-2", actual: "attacked in one go", possible: "would be attacked in one go"},
   alien: {version: "alien-2", actual: "under attack", possible: "would be attacked simultaneously"},
+  "living-pawn": {version: "living-pawn-2", actual: "all at once", possible: "would be attacked"},
 };
 
 test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {

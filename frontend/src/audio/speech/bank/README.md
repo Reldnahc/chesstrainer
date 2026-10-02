@@ -75,8 +75,9 @@ MP3s are preserved by Git history rather than left under production asset globs.
 
 Winston (`banks/winston/scripts.json`, coach `capybara`), Button
 (`banks/button/scripts.json`, coach `mushroom`), Pip
-(`banks/pip/scripts.json`, coach `slime`) and Ziggy
-(`banks/ziggy/scripts.json`, coach `alien`) each have complete authored
+(`banks/pip/scripts.json`, coach `slime`), Ziggy
+(`banks/ziggy/scripts.json`, coach `alien`) and Percy
+(`banks/percy/scripts.json`, coach `living-pawn`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
@@ -101,6 +102,7 @@ scripts pass review, and remove it once the bank is registered.
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
 | Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
 | Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
+| Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `b0b8439` | No | No |
 
 ## Adding or revising a production bank
 

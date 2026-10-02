@@ -42,6 +42,20 @@ export const mushroomOpeningTemplates = {
   "book-opening-follow-8": ["Still recognized, a little further along {opening}."],
 } as const;
 
+export const livingPawnOpeningTemplates = {
+  "book-opening-entry-1": ["Hey, the opening book has this one: {opening}."],
+  "book-opening-entry-2": ["A recognized opening move, filed under {opening}."],
+  "book-opening-entry-3": ["The opening book lists this move in {opening}."],
+  "book-opening-follow-1": ["Still on file. This move belongs to {opening} too."],
+  "book-opening-follow-2": ["Another listed move, same opening: {opening}."],
+  "book-opening-follow-3": ["The opening book is still keeping pace, in {opening}."],
+  "book-opening-follow-4": ["Roll call continues: this move is listed in {opening}."],
+  "book-opening-follow-5": ["Still by the book here, with {opening}."],
+  "book-opening-follow-6": ["The book hasn't let go yet; this move is in {opening}."],
+  "book-opening-follow-7": ["Right on schedule, this move turns up in {opening}."],
+  "book-opening-follow-8": ["Listed again, still inside {opening}."],
+} as const;
+
 export const robotOpeningTemplates = {
   "book-opening-entry-1": ["Opening match: {opening}."],
   "book-opening-entry-2": ["This move is in the opening record: {opening}."],
