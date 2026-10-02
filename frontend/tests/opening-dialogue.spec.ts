@@ -8,6 +8,7 @@ import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
 import {capybaraOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -171,6 +172,7 @@ const openingCoaches = [
   // Written forms precede a registered bank; an unvoiced coach selects no recording.
   {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: false},
   {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: false},
+  {id: "ghost", personality: newCastPersonalities.ghost, authored: ghostOpeningTemplates, voiced: false},
   {id: "slime", personality: newCastPersonalities.slime, authored: slimeOpeningTemplates, voiced: false},
 ] as const;
 
