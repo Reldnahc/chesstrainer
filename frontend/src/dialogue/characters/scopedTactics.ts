@@ -75,6 +75,21 @@ export const professorTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "{move} rests on a {motif}.", consequence: "That is how {capture} comes to capture a {piece}."},
 });
 
+export const collieTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} sets a {motif} on the board right now.",
+    played_possible: "{move} lines up a {motif} that may come, subject to the replies.",
+    allowed_immediate: "{opponent} gets {action}, and with it a {motif}.",
+    allowed_possible: "{opponent} may set up a {motif} later, replies permitting.",
+    missed_immediate: "{best} would have put a {motif} on the board at once.",
+    missed_possible: "{best} could have set the stage for a {motif}, depending on the answers.",
+  },
+  fork: {actual: "The {targets} are now under attack together from one piece.", possible: "The {targets} would be attacked by one piece in a single move."},
+  material: "A {gain} may be on offer, but only if both sides play it out that way.",
+  capture: {candidate: "{capture} could then snap off a {piece}.", followup: "Next in line could be {capture}, taking a {piece}."},
+  playedCapture: {fact: "{move} sets off a {motif}.", consequence: "{capture} nets a {piece}."},
+});
+
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Position after {move}: a {motif} is present.",
@@ -178,6 +193,36 @@ export const kittenTacticalTemplates = authorTacticalWordings({
   material: "A {gain} may be the prize at the end of the trail, but both sides still get their say.",
   capture: {candidate: "{capture} would snatch a {piece}.", followup: "Down the road, {capture} might snatch a {piece}."},
   playedCapture: {fact: "{move} springs a sneaky {motif}.", consequence: "{capture} snatches a {piece}."},
+});
+
+export const dragonTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} delivers a {motif}, and it stands on the board now.",
+    played_possible: "{move} prepares a {motif}; the replies decide if it ever arrives.",
+    allowed_immediate: "{opponent} has {action} in reply, and with it a {motif}.",
+    allowed_possible: "This gives {opponent} a possible {motif} later; the replies will settle it.",
+    missed_immediate: "{best} had a {motif} ready, and this move declines it.",
+    missed_possible: "{best} could have built toward a {motif}, replies permitting.",
+  },
+  fork: {actual: "The {targets} now sit under one piece's attack.", possible: "From a single square, the {targets} would be attacked by that one piece."},
+  material: "A {gain} may be there in the end, but the remaining choices on both sides decide that.",
+  capture: {candidate: "{capture} is there, and a {piece} would fall to it.", followup: "If play runs that way, a {piece} falls to {capture}."},
+  playedCapture: {fact: "{move} is built on a {motif}.", consequence: "A {piece} falls to {capture}."},
+});
+
+export const velvetTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "I noticed it after {move}: a {motif}, sitting there on the board.",
+    played_possible: "{move} leaves room for a {motif} later, if the replies let it happen.",
+    allowed_immediate: "{opponent} can answer {action}, and with it comes a {motif}.",
+    allowed_possible: "Further on, the replies may let {opponent} find a {motif}.",
+    missed_immediate: "Inside {best}, quietly, sat a {motif}.",
+    missed_possible: "{best} might have grown into a {motif}, had the replies allowed.",
+  },
+  fork: {actual: "A single piece has the {targets} in its reach at once.", possible: "One piece would do all the watching: the {targets} would be attacked together from it."},
+  material: "Perhaps a {gain} at the end; it may be, but both sides still have moves to choose.",
+  capture: {candidate: "A {piece} is there for {capture} to take.", followup: "Should the moves run that way, {capture} may come next and take a {piece}."},
+  playedCapture: {fact: "{move} hides a {motif}.", consequence: "A {piece} is gone after {capture}."},
 });
 
 export const puppyTacticalTemplates = authorTacticalWordings({
