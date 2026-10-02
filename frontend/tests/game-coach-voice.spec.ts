@@ -26,7 +26,8 @@ test("game voice follows deliberate navigation and stays silent on initial load,
   await page.getByRole("button", {name: "Previous move", exact: true}).click();
   await page.getByRole("button", {name: "Next move", exact: true}).click();
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
-  expect((await speechActivity(page)).started[0]).toContain("recognized-opening");
+  // The bubble shows the opening and the Maia reading, so the move speaks their one combined clip.
+  expect((await speechActivity(page)).started[0]).toContain("/combo-recognized-opening-unusual-strong-");
   await page.getByRole("button", {name: "Flip board", exact: true}).click();
   await page.waitForTimeout(400);
   expect((await speechActivity(page)).started).toHaveLength(1);
@@ -67,7 +68,7 @@ test("human insight narration needs an explicit press and closing its popover st
   expect((await speechActivity(page)).started).toEqual([]);
   await insight.getByRole("button", {name: "Listen to human-move insight", exact: true}).click();
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
-  expect((await speechActivity(page)).started[0]).toContain("human-unusual-strong");
+  expect((await speechActivity(page)).started[0]).toContain("/human-unusual-strong-");
   await page.keyboard.press("Escape");
   await expect(insight).not.toBeVisible();
   await expect.poll(async () => (await speechActivity(page)).stopped.length).toBeGreaterThan(0);
@@ -102,6 +103,6 @@ test("a variation waits for its own analysis and leaving it cancels the pending 
     await page.locator(".game-variation-row button").last().click();
     await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
     // The variation's own report carries the Maia reading, so it speaks the combined line.
-    expect((await speechActivity(page)).started[0]).toContain("combo-book-opening-entry-3-unusual-strong");
+    expect((await speechActivity(page)).started[0]).toContain("/combo-book-opening-entry-3-unusual-strong-");
   } finally { release(); }
 });
