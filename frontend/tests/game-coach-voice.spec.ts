@@ -20,6 +20,8 @@ async function voiceGame(page: Page, game: Game, ply: number, voice = "automatic
 test("game voice follows deliberate navigation and stays silent on initial load, flip and reload", async ({page}) => {
   await voiceGame(page, humanGames.unusual_strong, 1);
   await expect(page.getByRole("button", {name: "Listen to coach", exact: true})).toBeVisible();
+  // One move offers one spoken line, never a second Listen control beside it.
+  await expect(page.locator(".coach-label").getByRole("button", {name: /^Listen to /})).toHaveCount(1);
   expect((await speechActivity(page)).started).toEqual([]);
   await page.getByRole("button", {name: "Previous move", exact: true}).click();
   await page.getByRole("button", {name: "Next move", exact: true}).click();

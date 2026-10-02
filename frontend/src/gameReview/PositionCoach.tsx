@@ -15,7 +15,6 @@ import HumanInsight from "./HumanInsight";
 import {selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import {coachRecording} from "../audio/speech/voiceBank";
-import CoachSpeechButton from "../audio/speech/CoachSpeechButton";
 
 export default function PositionCoach({
   game,
@@ -84,16 +83,17 @@ export default function PositionCoach({
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   const selection = {...speechContext, intent: displayedIntent, utterance};
   const speech = selectGameSpeech(selection, explaining ? undefined : insight);
-  const {primaryId, secondaryId: secondaryRecording} = speech;
+  const {primaryId} = speech;
   const recordingId = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
+  // One move gets one spoken line. A second claim never adds its own Listen
+  // control; a supported pairing is already one whole combined recording.
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance,
     automaticEventId: speechEventId, ready: !speechPending,
-    manualRecordingIds: [primaryId, secondaryRecording].filter((id): id is string => !!id)});
+    manualRecordingIds: primaryId ? [primaryId] : []});
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}
-      voice={{...voice, control: <>{voice.control}{secondaryRecording &&
-        <CoachSpeechButton voice={voice} recordingId={secondaryRecording} label="Listen to additional explanation" />}</>}}
+      voice={voice}
       title={
         report ? (
           <MoveBadge label={report.label}>
