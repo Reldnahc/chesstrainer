@@ -75,6 +75,21 @@ export const professorTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "{move} rests on a {motif}.", consequence: "That is how {capture} comes to capture a {piece}."},
 });
 
+export const collieTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} sets a {motif} on the board right now.",
+    played_possible: "{move} lines up a {motif} that may come, subject to the replies.",
+    allowed_immediate: "{opponent} gets {action}, and with it a {motif}.",
+    allowed_possible: "{opponent} may set up a {motif} later, replies permitting.",
+    missed_immediate: "{best} would have put a {motif} on the board at once.",
+    missed_possible: "{best} could have built toward a {motif}, replies permitting.",
+  },
+  fork: {actual: "The {targets} are now under attack together from one piece.", possible: "The {targets} would be attacked by one piece in a single move."},
+  material: "A {gain} may be on offer, but only if both sides play it out that way.",
+  capture: {candidate: "{capture} could then snap off a {piece}.", followup: "Next in line could be {capture}, taking a {piece}."},
+  playedCapture: {fact: "{move} triggers a {motif}.", consequence: "{capture} collects a {piece}."},
+});
+
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Position after {move}: a {motif} is present.",

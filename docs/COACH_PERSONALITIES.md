@@ -114,8 +114,11 @@ silent until a bank is registered.
 Alfie (golden retriever) has opted in as well, with his forms in
 `characters/professor.ts`: a short principle, this position's fact, then one
 connection to keep, explaining the mechanism patiently when correcting. Alfie
-also stays silent until a bank is registered.
-The other 18 voices retain their current wording and deterministic variants.
+also stays silent until a bank is registered. Scout (border collie) has opted
+in too, with his forms in `characters/collie.ts`: a quick pattern call, the
+concrete fact, then one short task to train it, with no questions. Scout also
+stays silent until a bank is registered.
+The other 17 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
