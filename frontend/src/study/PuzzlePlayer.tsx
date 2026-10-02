@@ -26,7 +26,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   const voice = useCoachSpeech({
     scopeKey: `puzzle:${sessionId}:${session?.revision}:${state.fen ?? "position"}:${frame?.before_fen ?? ""}:${frame?.uci ?? ""}:${recordingId}`,
     recordingId, ready: !!session && !loading && !busy,
-    automaticEventId: !error && !playing && recordingId !== "puzzle-cold" && session?.status !== "revealed"
+    automaticEventId: !error && !playing && session?.status !== "revealed"
       ? state.feedbackEventId : null,
   });
   const [nextError, setNextError] = useState("");
