@@ -137,8 +137,9 @@ bubble with a smaller portrait. Actions stay outside the bubble in both review m
 On learner moves, a compact **Maia** insight sits at the bottom-right inside the
 existing fixed-height coach bubble when saved human evidence supports one. Best
 remains beneath the portrait; neither insight adds a row below the action buttons.
-The explanation wraps beside the Maia link on its last visible line instead of
-giving the link a row of its own; longer text scrolls with the link.
+The link sits in a short row tucked into the bubble's bottom padding. Every review
+bubble keeps the same compact 28px title row, so that space is reserved whether or
+not Maia appears; longer coaching text scrolls above the link.
 Natural mistakes, hard finds, unusual strong moves, natural
 best choices and difficult defenses get plain-language labels. Tap the insight for
 the selected coach's reaction to the highest-priority insight, a short explanation
