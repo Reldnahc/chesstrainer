@@ -90,9 +90,9 @@ revision v2; earlier archives keep revision v1.
 
 Plain clips also play on the opponent's moves, so reactions there must not
 assume the learner moved. `revisions/side-neutral-v1.json` in each bank lists the
-approved rewordings still awaiting re-recording: three Button lines and three
-Winston lines. Until they are recorded, `scripts.json` and the manifest keep the
-recorded text; recording a line moves its new text into both.
+reworded lines, three for Button and three for Winston, with their previous text.
+They were re-recorded with the same voices and settings under
+`recordings/<voice>-v2/`, and `scripts.json` and the manifest carry the new text.
 
 ## Authored banks awaiting recording
 
