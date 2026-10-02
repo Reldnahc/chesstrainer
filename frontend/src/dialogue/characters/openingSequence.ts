@@ -75,7 +75,7 @@ export const collieOpeningTemplates = {
   "book-opening-entry-2": ["Opening identified as {opening}."],
   "book-opening-entry-3": ["Recognized line on the board: {opening}."],
   "book-opening-follow-1": ["Next move, still {opening}."],
-  "book-opening-follow-2": ["{opening} continues, move for move."],
+  "book-opening-follow-2": ["{opening}, next move on record."],
   "book-opening-follow-3": ["Reply logged in {opening} as well."],
   "book-opening-follow-4": ["On track with {opening}."],
   "book-opening-follow-5": ["Another step of {opening} confirmed."],
