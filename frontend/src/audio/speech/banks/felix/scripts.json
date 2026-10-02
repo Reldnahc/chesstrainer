@@ -147,7 +147,7 @@
     {
       "id": "tactic-undefended-capture-missed",
       "group": "game_review",
-      "text": "An undefended piece was available to another move. This one leaves it standing. Loose pieces are for collecting."
+      "text": "An undefended piece was available to another move. This one leaves it standing. Loose pieces get billed."
     },
     {
       "id": "tactic-hanging-piece-allowed",
@@ -442,7 +442,7 @@
     {
       "id": "advantage-converted",
       "group": "game_review",
-      "text": "The advantage carried through to the recorded win. Converted, without handing any of it back."
+      "text": "The advantage stayed in hand right up to the recorded win. Converted, without handing any of it back."
     },
     {
       "id": "saved-history-recurrence",
@@ -592,7 +592,7 @@
     {
       "id": "explanation-frame-capture-move-mate",
       "group": "srs_explanations",
-      "text": "Takes a piece and mates. No legal move is left for the king."
+      "text": "Takes a piece and mates. Every legal move the king had is gone."
     },
     {
       "id": "explanation-frame-capture-move-escape",
@@ -797,7 +797,7 @@
     {
       "id": "explanation-note-no-simple-reason",
       "group": "srs_explanations",
-      "text": "The saved line offers no simple tactical reason. Play through it and weigh each reply. No positional story is assumed."
+      "text": "The saved line has no simple tactical reason to offer. Play through it and weigh each reply. No positional story is assumed."
     },
     {
       "id": "explanation-note-saved-policy",
@@ -1942,7 +1942,7 @@
       "group": "game_review",
       "primary": "missed-mate",
       "secondary": "human-hard-defense-missed",
-      "text": "The only searched move that kept the position playable was a forced mate. This move misses it. Not easy to see, per the human-move model."
+      "text": "The only searched move that kept the position playable was a forced mate. This move goes elsewhere and leaves it. Not easy to see, per the human-move model."
     },
     {
       "id": "combo-sound-sacrifice-hard-find",
@@ -2201,7 +2201,7 @@
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-strong",
-      "text": "Their errors helped, and this makes the position playable again. The human-move model finds this natural; the engine calls it strong and prefers another."
+      "text": "Their errors paid for part of this; the position is playable again. The human-move model finds this natural; the engine calls it strong and prefers another."
     },
     {
       "id": "combo-chance-taken-hard-find",
@@ -2285,7 +2285,7 @@
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-unusual-strong",
-      "text": "The advantage was carried to the win. This move was unexpected to the human-move model and strong by the engine."
+      "text": "That advantage was never handed back, right up to the win. This move was unexpected to the human-move model and strong by the engine."
     },
     {
       "id": "combo-advantage-converted-natural-best",
@@ -2299,7 +2299,7 @@
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-natural-strong",
-      "text": "The advantage survived all the way to the win. The human-move model finds this move natural; the engine calls it strong, with another first choice."
+      "text": "The advantage held, start to finish, through to the win. The human-move model finds this move natural; the engine calls it strong, with another first choice."
     },
     {
       "id": "combo-book-opening-entry-1-hard-find",
