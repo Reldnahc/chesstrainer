@@ -30,8 +30,8 @@ export const puppy: CoachPersonality = {
       {reaction: "Whoa, tricky!", fact: "Ta-da! Look what {move} found: a {motif}.", consequence: "{detail}"},
     ],
     tactic_allowed: [
-      {reaction: "Whoa.", fact: "Uh-oh territory: in the engine's line, a {motif} opens up for {opponent}.", consequence: "{detail}", takeaway: "Before moving on, sneak a peek at their strongest answer."},
-      {fact: "Watch out: down the engine's line, {opponent} gets to play with a {motif}.", consequence: "{detail}", takeaway: "Their answer comes first, every single time."},
+      {fact: "Whoa, in the engine's line, a {motif} pops up for {opponent}.", consequence: "{detail}", takeaway: "Before moving on, sneak a peek at their strongest answer."},
+      {fact: "Down the engine's line, {opponent} gets to play with a {motif}.", consequence: "{detail}", takeaway: "Their answer comes first, every single time."},
     ],
     tactic_missed: [
       {reaction: "Here's a brain-teaser!", fact: "{best} was set to spring a {motif}.", consequence: "{detail}"},
@@ -41,12 +41,12 @@ export const puppy: CoachPersonality = {
     cause_opponent_threat_recognition: [{reaction: "Ah, look closely!", fact: "Clue from the opponent's preceding move: it lined up an attack on {side}'s {piece} on {square}, and {move} lets that attack stand.", consequence: "{opponent} can pounce on it with {reply}.", takeaway: "Start by asking what their last move threatens."}],
     cause_avoiding_bad_trades: [{reaction: "Hmm, that capture looked tasty.", fact: "Yum, a {captured}! But {move} pays for that snack with {side}'s {piece}.", consequence: "{opponent} can recapture with {reply}, and that recapture is worth more.", takeaway: "Tally the whole swap, every grab from both sides."}],
     sacrifice: [
-      {reaction: "Wow, what a brave offer!", fact: "Go ahead and take it, says the searched line; the sacrifice still stands tall."},
-      {reaction: "Ooh, bold!", fact: "Grabbing the offered material still leaves this sacrifice in one piece, in the searched line."},
+      {reaction: "Whoa, look what's on offer!", fact: "Go ahead and take it, says the searched line; the sacrifice still stands tall."},
+      {reaction: "Ooh, material on the table!", fact: "Grabbing the offered material still leaves this sacrifice in one piece, in the searched line."},
     ],
     only_move: [
       {reaction: "Whoa, a lifeline!", fact: "Out of every move searched, this was the lone lifeline that kept things playable."},
-      {reaction: "Ooh, the one and only!", fact: "This little hero is the one searched move that didn't end up losing."},
+      {reaction: "Ooh, the one and only!", fact: "This is the one searched move that didn't end up losing."},
     ],
     decisive_resource: [{reaction: "Whoa, just one move does it!", fact: "Searched move after searched move let the decisive edge slip, but not this one."}],
     reply_capture: ["Ooh, {opponent} has {reply}, and that grabs {side}'s {piece}.", {reaction: "Sneak peek at their answer!", fact: "{reply} lets {opponent} gobble up {side}'s {piece}."}],
