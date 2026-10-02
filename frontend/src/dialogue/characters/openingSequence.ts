@@ -84,6 +84,20 @@ export const collieOpeningTemplates = {
   "book-opening-follow-8": ["Still tracking {opening}. That locates the game and says nothing about the move's value."],
 } as const;
 
+export const frogOpeningTemplates = {
+  "book-opening-entry-1": ["{opening}. Recognized, nothing more."],
+  "book-opening-entry-2": ["On file as {opening}."],
+  "book-opening-entry-3": ["The book calls this {opening}."],
+  "book-opening-follow-1": ["Still {opening}, one move on."],
+  "book-opening-follow-2": ["{opening} carries on, quietly."],
+  "book-opening-follow-3": ["The reply fits {opening} too."],
+  "book-opening-follow-4": ["{opening}, uneventfully."],
+  "book-opening-follow-5": ["Nothing new to report: {opening}."],
+  "book-opening-follow-6": ["Same opening, {opening}, next move."],
+  "book-opening-follow-7": ["{opening}, continuing without incident."],
+  "book-opening-follow-8": ["Still {opening}. It names the line and nothing else."],
+} as const;
+
 export const robotOpeningTemplates = {
   "book-opening-entry-1": ["Opening match: {opening}."],
   "book-opening-entry-2": ["This move is in the opening record: {opening}."],
