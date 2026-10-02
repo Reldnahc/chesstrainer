@@ -362,3 +362,17 @@ export const puppyOpeningTemplates = {
   "book-opening-follow-7": ["More pages of {opening} to read!"],
   "book-opening-follow-8": ["Still deep in {opening} land! Think of it as a dot on the map, not a grade for the move."],
 } as const;
+
+export const sparkOpeningTemplates = {
+  "book-opening-entry-1": ["Repertoire time, courtesy of {opening}."],
+  "book-opening-entry-2": ["Straight out of the repertoire, {opening}."],
+  "book-opening-entry-3": ["A repertoire line with a name: {opening}."],
+  "book-opening-follow-1": ["{opening}, and the repertoire rolls on."],
+  "book-opening-follow-2": ["Another rehearsed move from {opening}."],
+  "book-opening-follow-3": ["The reply is on script too, still {opening}."],
+  "book-opening-follow-4": ["{opening} keeps flowing."],
+  "book-opening-follow-5": ["No detours yet; this is {opening}."],
+  "book-opening-follow-6": ["The script covers this, in {opening}."],
+  "book-opening-follow-7": ["Cruising the main road of {opening}."],
+  "book-opening-follow-8": ["Still {opening}: a pin on the map, not a verdict on the move."],
+} as const;

@@ -388,3 +388,18 @@ export const puppyTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "Chomp: {capture} would munch a {piece}.", followup: "Later on, chomp: {capture} could munch a {piece}."},
   playedCapture: {fact: "{move} brings a fun {motif} with it.", consequence: "Chomp, {capture} munches a {piece}."},
 });
+
+export const sparkTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Spicy: right away, {move} unleashes a {motif}.",
+    played_possible: "{move} loads a {motif}, replies permitting.",
+    allowed_immediate: "Eyes up: {opponent} can answer {action}, and a {motif} snaps shut.",
+    allowed_possible: "Eyes up for later: a {motif} could spring for {opponent}, replies permitting.",
+    missed_immediate: "{best} had a {motif} loaded and ready to fire.",
+    missed_possible: "{best} might have loaded a {motif}, with the replies still to say their piece.",
+  },
+  fork: {actual: "One landing, and the {targets} are all in the crosshairs.", possible: "One landing, and the {targets} would be attacked in the same breath."},
+  material: "A {gain} may be up for grabs, with both sides still holding cards.",
+  capture: {candidate: "Snap: {capture}, and that {piece} is history.", followup: "Further down the road, {capture} could gobble a {piece}."},
+  playedCapture: {fact: "{move} lights the fuse on a {motif}.", consequence: "Next, {capture} swallows the {piece}."},
+});

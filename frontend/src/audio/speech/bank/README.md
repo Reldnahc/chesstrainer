@@ -88,6 +88,12 @@ during the Eleven v4 launch discount. Their scripts needed regular `-ed`/`-ing`
 inflections ("castled", "castling", "reloading"), now covered by morphology
 revision v2; earlier archives keep revision v1.
 
+Plain clips also play on the opponent's moves, so reactions there must not
+assume the learner moved. `revisions/side-neutral-v1.json` in each bank lists the
+reworded lines, three for Button and three for Winston, with their previous text.
+They were re-recorded with the same voices and settings under
+`recordings/<voice>-v2/`, and `scripts.json` and the manifest carry the new text.
+
 ## Authored banks awaiting recording
 
 Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
@@ -111,7 +117,8 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/marisol/scripts.json`, coach `woman-analyst`), Monty
 (`banks/monty/scripts.json`, coach `gorilla`), Ingrid
 (`banks/ingrid/scripts.json`, coach `woman-blonde`), Biscuit
-(`banks/biscuit/scripts.json`, coach `dog-puppy`) and Tamar
+(`banks/biscuit/scripts.json`, coach `dog-puppy`), Réka
+(`banks/reka/scripts.json`, coach `woman-spark`) and Tamar
 (`banks/tamar/scripts.json`, coach `woman-captain`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
@@ -155,6 +162,7 @@ registered.
 | Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
 | Ingrid (`woman-blonde`) | Written, 438 | Yes, 2026-10-02, at commit `5268032` | No | No |
 | Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
+| Réka (`woman-spark`) | Written, 438 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
 
 ## Adding or revising a production bank
 

@@ -13,13 +13,14 @@ import {captain} from "../src/dialogue/characters/captain";
 import {partner} from "../src/dialogue/characters/partner";
 import {analyst} from "../src/dialogue/characters/analyst";
 import {blonde} from "../src/dialogue/characters/blonde";
-import {alienOpeningTemplates, analystOpeningTemplates, blondeOpeningTemplates, capybaraOpeningTemplates, captainOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, puppyOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, analystOpeningTemplates, blondeOpeningTemplates, capybaraOpeningTemplates, captainOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, puppyOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates, sparkOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
 import {collie} from "../src/dialogue/characters/collie";
 import {corgi} from "../src/dialogue/characters/corgi";
 import {host} from "../src/dialogue/characters/host";
+import {spark} from "../src/dialogue/characters/spark";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -205,6 +206,7 @@ const openingCoaches = [
   {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates, voiced: false},
   {id: "woman-blonde", personality: blonde, authored: blondeOpeningTemplates, voiced: false},
   {id: "dog-puppy", personality: newCastPersonalities["dog-puppy"], authored: puppyOpeningTemplates, voiced: false},
+  {id: "woman-spark", personality: spark, authored: sparkOpeningTemplates, voiced: false},
   {id: "woman-captain", personality: captain, authored: captainOpeningTemplates, voiced: false},
 ] as const;
 
