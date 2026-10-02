@@ -77,7 +77,7 @@ export const corgi: CoachPersonality = {
     repeated: ["The {motif} issue has turned up {count} times in the reviewed game. Put it on the drill list."],
     support_restored: ["Support restored! At {earlier} the {piece} stood unguarded; now someone's guarding it."],
     erosion: ["Concession logged. Since {earlier}, they've added up and worn the position down."],
-    conversion: ["Advantage converted! From {earlier} to the win, {side} never let the edge go."],
+    conversion: ["Advantage converted! {side}'s edge held from {earlier} to the win: mission accomplished."],
     history: ["Drill list: the {motif} issue also appears in {games} other saved games."],
     development: [{reaction: "Unit deployed!", fact: "{lead}develops the {piece} from its original square."}],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Clear lines are worth holding."],
