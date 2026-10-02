@@ -78,7 +78,7 @@ ledger format and workflow.
 
 Winston (`banks/winston`, coach `capybara`, locked voice "Welsh companion") and
 Button (`banks/button`, coach `mushroom`, locked voice "Woody contralto") are
-registered production banks covering all 438 catalogue meanings. Each owns its
+registered production banks covering all 448 catalogue meanings. Each owns its
 full authored text in `scripts.json`, including combinations, instead of adding
 columns to the Walter/Rivet files; the manifest records exactly those scripts.
 `backend/tests/test_coach_bank_scripts.py` checks catalogue coverage, the

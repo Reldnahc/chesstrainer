@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "There it is, nice and calm at the start. There's no rush getting into it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e2b261489d2a0d25fb4d5be3353253d2c685ebd5c54f1d55881fb1dd93507d0",
+  "recordedAt": "2026-10-02T22:04:56.037Z",
+  "sha256": "dd7d17028d5e0370311e09882ca9afae453373666b8b6942ab514ef64c53542c",
+  "bytes": 15008,
+  "requestId": "c7625Ym41gKV87feFfoL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb9de2bdd8e7cb43943867b05d8c40cc1f13c5093dd8f42a63dfa7ffc95e7737",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

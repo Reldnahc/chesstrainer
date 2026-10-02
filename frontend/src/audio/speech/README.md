@@ -1,7 +1,7 @@
 # Recorded coach speech and authoring history
 
-Walter (`classic`) and Rivet (`robot`) each have a **438-recording non-lesson voice
-bank**, using their owner-selected **Older teacher** and **Retro speech terminal**
+Walter (`classic`) and Rivet (`robot`) each have a **448-recording voice bank**
+(438 non-lesson meanings, the game-review opener and nine generic lesson prompts), using their owner-selected **Older teacher** and **Retro speech terminal**
 voices. They share a catalogue of meanings, with separately authored character
 scripts and complete recordings. Every clip has automatically generated mouth
 timing. See the [Walter manifest](bank/manifest.json), [Rivet manifest](banks/rivet/manifest.json),
@@ -436,9 +436,10 @@ not repeat the same sentence.
 Opening an untouched game review in-app at its start speaks the coach's fact-free
 greeting once and shows it in the bubble; the first navigation replaces it, and
 restored later moves stay silent.
-`game-review-opened` is written for every coach but awaits recording, so the shared
-catalogue holds 439 meanings while each registered bank keeps its 438 takes. The
-bank tests list it as awaiting recording until those takes land.
+`game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
+Winston and Button, so each registered bank holds all 448 catalogue meanings.
+These 40 takes used **2,262 input characters / 273 provider credits**, with every
+request ID matched in the provider history and no retakes.
 Authorized attempt/reveal feedback may
 select supported explanations; a reveal is never praised as an unassisted success.
 Restoring saved feedback does not create a new narration event. Opening acceptance

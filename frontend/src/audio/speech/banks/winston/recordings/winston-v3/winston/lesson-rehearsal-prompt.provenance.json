@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "lesson-rehearsal-prompt",
+      "label": "Lesson rehearsal prompt",
+      "text": "Your go, then. Play what you studied, nice and easy."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe20248e60f04bf023082dc323f6d35dfe81c5ff63110c11b5d2b023263982ca",
+  "recordedAt": "2026-10-02T22:05:05.649Z",
+  "sha256": "da921c55027928727b7b6d7ac6d0a3985f3dfa4724c6fc65a24581311c800eca",
+  "bytes": 11675,
+  "requestId": "TZH06f490aZ3VrXDKwkm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4eccc01d07b1370b68561d3fb3cde7943a46157081bf78cb560abc70ef1dc21d",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

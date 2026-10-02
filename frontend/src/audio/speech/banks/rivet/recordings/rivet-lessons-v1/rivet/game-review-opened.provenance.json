@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Game loaded at the start position. Procedure: advance, inspect, repeat."
+    },
+    "takeId": null
+  },
+  "requestHash": "38987b833dbcc2b977755dffb89a8aaff1da063430e6a6cc7d060bf841238d17",
+  "recordedAt": "2026-10-02T22:04:45.471Z",
+  "sha256": "18d200530b0d1bde567161c9a12fe5575e9231870be22bb030fc4ec0cba842bd",
+  "bytes": 17418,
+  "requestId": "2U4v1coSXBvzjk7s2nap",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8f33861a562ec7a7488311de4bdfdc155d783ef4a9f6ecfe38a2429488365ea",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

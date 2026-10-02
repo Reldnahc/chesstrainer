@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Fieldwork Walter - Older teacher"
+    },
+    "script": {
+      "id": "lesson-move-revealed",
+      "label": "Lesson move revealed",
+      "text": "This is the move the lesson was pointing toward."
+    },
+    "takeId": null
+  },
+  "requestHash": "74619e35d481bc7d201adf59af4d70c437ac70af984f601ef4bb9f9701d913e5",
+  "recordedAt": "2026-10-02T22:04:41.138Z",
+  "sha256": "4b2f61ddd5a78c10837afd837f2f8f2567f5003f8ee4615b3f25acf29223da85",
+  "bytes": 10022,
+  "requestId": "AlRFRAm1pumpneNjfCGN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6ec986bba8a43b2387666ddcfa6b0bf1b7d06765acb4f4ebfa8d3148a657620",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -143,7 +143,8 @@ dedicated audio suite; audio-only changes do not require the coach artwork matri
 
 ## Recorded coach voices
 
-Walter (`classic`) and Rivet (`robot`) each have a **438-recording non-lesson bank**,
+Walter (`classic`) and Rivet (`robot`) each have a **448-recording bank**: 438
+non-lesson meanings, the game-review opener and the nine generic lesson prompts,
 using their owner-selected Older teacher and Retro speech terminal voices.
 The earlier Walter wording revision replaced 81 passages and retained 100 recordings. It removed repetitive
 “continuation” language while preserving actual, possible, missed and

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "A small branch off the trunk. Look around, and the main line will be waiting."
+    },
+    "takeId": null
+  },
+  "requestHash": "c586f4b5287a2435517d434cfe8dad0d0bab7c3c9eb6a06056279a7ceac75b18",
+  "recordedAt": "2026-10-02T22:05:10.670Z",
+  "sha256": "f0ffd3331ec6015f10f9b8b058b32177d88826672518a2537e891a2fee25b87f",
+  "bytes": 16222,
+  "requestId": "BIkAt56VxkICR0bvCbCu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "281a4a3d07c3c9d1ad6ef5fb4ca2873918af0117e0d98b4ee72a359fa2c8a126",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

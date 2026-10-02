@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "Bit of a side path here. Amble about, then mosey on home to the main line."
+    },
+    "takeId": null
+  },
+  "requestHash": "9727a5099cfdd7fc296c153aaf349bc4fd7df3ff1d2ea1af8608d98a652cbb1e",
+  "recordedAt": "2026-10-02T22:04:57.412Z",
+  "sha256": "79e228c4f277836381ba1c772172ed35b348e4b5a34e708522fc69d0a7cc73fc",
+  "bytes": 15887,
+  "requestId": "xYLfwuK4AV8rybHhpxA2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd0fb5ec91368dce5a9a43cf02fdc7816ba837ad3f7456b7d8c54c3c7e9a1eff",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

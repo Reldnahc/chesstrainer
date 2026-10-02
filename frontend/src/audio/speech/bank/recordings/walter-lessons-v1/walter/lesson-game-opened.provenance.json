@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Fieldwork Walter - Older teacher"
+    },
+    "script": {
+      "id": "lesson-game-opened",
+      "label": "Lesson game opened",
+      "text": "Here's the full game. Take your time exploring it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6467f9eb83570e4f21613a624f2e5111b59c517794bd909c679922dc7e6597be",
+  "recordedAt": "2026-10-02T22:04:39.249Z",
+  "sha256": "5f42e29692cb972102fa7d3ee3f7da61e169637d0b1da84f2d01b55bc8511929",
+  "bytes": 10553,
+  "requestId": "4KbF54gbXK8hPJHfEf1E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9dcdabb94f9d05c69b7b49992d394fcc8acf7cf7a8cd97046d1a402a4c0197a8",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
