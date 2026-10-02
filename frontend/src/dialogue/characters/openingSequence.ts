@@ -363,3 +363,17 @@ export const sparkOpeningTemplates = {
   "book-opening-follow-7": ["Cruising the main road of {opening}."],
   "book-opening-follow-8": ["Still {opening}: a pin on the map, not a verdict on the move."],
 } as const;
+
+export const youngBoyOpeningTemplates = {
+  "book-opening-entry-1": ["And now the game is in {opening}."],
+  "book-opening-entry-2": ["This takes the game into {opening} territory."],
+  "book-opening-entry-3": ["Ooh, the opening book knows this as {opening}."],
+  "book-opening-follow-1": ["More {opening}, and it keeps going."],
+  "book-opening-follow-2": ["Yep, this move is {opening} too."],
+  "book-opening-follow-3": ["Even the reply sticks with {opening}."],
+  "book-opening-follow-4": ["{opening}, again."],
+  "book-opening-follow-5": ["Still cruising in {opening}."],
+  "book-opening-follow-6": ["{opening} isn't done yet."],
+  "book-opening-follow-7": ["Another {opening} move."],
+  "book-opening-follow-8": ["More {opening}. That's just where the game is, not a score for the move."],
+} as const;

@@ -180,7 +180,12 @@ the pattern, the tactical punchline, then its supported consequence, with her ow
 "eyes up" warning, "repertoire" for book moves, delight such as "Zing!" kept for
 the learner's own clips, and difficulty credited to the human-move model. Réka
 stays silent until a bank is registered.
-The other 3 voices retain their current wording and deterministic variants.
+Mateo (`human-boy`) has opted in as well, in `characters/youngBoy.ts`: a short
+burst of excitement aimed at the tactic itself, sometimes a "wait" or "look at
+this", then one plain, complete chess fact, with an occasional question whose
+answer is on the board. His cheering and sympathy stay on the player's own
+moments. Mateo also stays silent until a bank is registered.
+The other 2 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

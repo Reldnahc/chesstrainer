@@ -20,6 +20,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   "man-partner": {version: "partner-4", actual: "now hits the", possible: "would be attacked side by side"},
   "woman-analyst": {version: "analyst-5", actual: "now stands against the", possible: "would be attacked together"},
   "woman-blonde": {version: "blonde-4", actual: "reaches the", possible: "would be attacked together by one piece"},
+  "human-boy": {version: "young-boy-2", actual: "jumps in and pokes at the", possible: "would be attacked from a single square"},
   "cat-black": {version: "velvet-4", actual: "in its reach at once", possible: "would do all the watching"},
   wizard: {version: "wizard-2", actual: "the fork in its plainest form", possible: "would be attacked at once"},
   "dog-puppy": {version: "puppy-2", actual: "all at the same time", possible: "would be attacked, and one eager piece"},
