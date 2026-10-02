@@ -165,6 +165,7 @@ registered.
 | Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
 | Réka (`woman-spark`) | Written, 438 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
 | Mateo (`human-boy`) | Written, 438 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
+| Tamar (`woman-captain`) | Written, 438 | Yes, 2026-10-02, at commit `129a272` | No | No |
 
 ## Adding or revising a production bank
 
