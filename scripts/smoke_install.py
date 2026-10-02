@@ -41,11 +41,14 @@ def study_before_restart(client, headers):
     assert any(chapter["id"] == "quiet-development" for chapter in chapters)
     puzzles = client.get("/api/puzzles", headers=headers)
     puzzles.raise_for_status()
-    assert puzzles.json()["available"] == 0 and puzzles.json()["sources"] == []
-    for source in ("generic", "games"):
-        response = client.get("/api/puzzles/next", params={"source": source}, headers=headers)
-        response.raise_for_status()
-        assert response.json() is None
+    [pack] = puzzles.json()["sources"]
+    assert pack["id"] == "lichess-starter" and puzzles.json()["available"] == pack["count"] > 0
+    assert (
+        client.get("/api/puzzles/next", params={"source": "games"}, headers=headers).json() is None
+    )
+    assert client.get("/api/puzzles/next", params={"mode": "retry"}, headers=headers).json() is None
+    offered = client.get("/api/puzzles/next", params={"max_rating": 1000}, headers=headers).json()
+    assert offered["provider_id"] == "lichess-starter"
     assert client.get("/api/review/count", headers=headers).json() == {"due": 0}
     session = client.post(
         "/api/study/lesson-sessions",
@@ -254,7 +257,7 @@ def main():
                             "coach_preferences": "passed",
                             "interface_motion_preferences": "passed",
                             "study_lesson_restart": "passed",
-                            "empty_production_puzzles": "passed",
+                            "bundled_starter_puzzles": "passed",
                             "opening_enrollment_due_without_analysis": "passed",
                         }
                     ),

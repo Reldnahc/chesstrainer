@@ -51,6 +51,11 @@ is from lichess-org/chess-openings revision c67912be581f0793dbaa776be5ccf111e01f
 released under CC0-1.0. That directory includes the complete dedication,
 upstream attribution and original file hashes.
 
+The bundled puzzle selection in backend/trainer/puzzles/starter_pack holds
+1,000 unmodified rows from the Lichess puzzle database (https://database.lichess.org),
+released under CC0-1.0. That directory includes the complete dedication, the
+pinned file hash and the exact sampling record.
+
 Settings provides a Download source code link to a snapshot served from the same
 host at /assets/fieldwork-source.zip. The frontend build prepares that snapshot
 from Git-listed public source files, including licenses and build instructions.

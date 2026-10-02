@@ -5,9 +5,9 @@ A private chess trainer built around decisions in your own games. Import Chess.c
 Start with **Study → Openings** for Italian Game courses for White and Black or a
 King’s Gambit course for White, or browse the opening catalogue and choose lines
 to remember. Lessons and line rehearsal save their own progress; only scheduled
-**Due** attempts advance FSRS. Puzzle players
-are implemented, with production puzzle collections intentionally left for a
-later content pass.
+**Due** attempts advance FSRS. **Study → Puzzles** practices a bundled, offline
+selection of 1,000 CC0 Lichess puzzles by difficulty and theme, with a retry mode
+for puzzles you revealed or failed; a larger installed pack is optional.
 
 The shared [animated coach](docs/COACH.md) reacts to your moves and practice, with
 account-saved character and motion preferences. Choose from 30 human, animal and
@@ -75,7 +75,7 @@ See [Feature status](docs/FEATURE_STATUS.md) for the comparison with the origina
 - Same-origin LAN operation, optional shared access token, or self-service accounts with private data and persistent device sessions. CLI backup/restore covers the single database.
 - Remembered Chess.com and Lichess usernames and automatic recent-game fetching without engine analysis. Start full review or training analysis explicitly from a saved game.
 
-Navigation is **Home, Study, Games, Weaknesses, Settings**. **Home** brings together scheduled recalls, recent games, saved lessons and supported practice priorities without starting analysis or a practice session. **Study → Due** contains scheduled recalls; old Review bookmarks remain usable. The initial cold game-recall board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Study also hosts the new multi-move puzzle framework, with an honest empty library until production content is installed. Puzzle practice has its own saved progress and never changes FSRS or weaknesses. The historical course/Repertoire system and manual-position entry forms remain archived; see [Product](docs/PRODUCT.md#removed-and-archived).
+Navigation is **Home, Study, Games, Weaknesses, Settings**. **Home** brings together scheduled recalls, recent games, saved lessons and supported practice priorities without starting analysis or a practice session. **Study → Due** contains scheduled recalls; old Review bookmarks remain usable. The initial cold game-recall board hides source, concepts, scores and answers; feedback and playback become available after an attempt or reveal. Games provides open analysis and coaching for the complete game. Study also hosts multi-move puzzle practice from a bundled CC0 Lichess starter pack, chosen by difficulty band and theme with a separate retry mode. Puzzle practice has its own saved progress and never changes FSRS or weaknesses. The historical course/Repertoire system and manual-position entry forms remain archived; see [Product](docs/PRODUCT.md#removed-and-archived).
 
 Pages and individual games have their own URLs, with browser Back/Forward,
 bookmarks and new-tab links. Refreshing a game review preserves the selected

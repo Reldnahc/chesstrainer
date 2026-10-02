@@ -51,7 +51,7 @@ Whole-game review and training analysis are separately requested from the game.
 | routes/imports.py | Bounded PGN upload and Chess.com import requests |
 | routes/jobs.py | Progress, cancellation and retry |
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
-| puzzles/ / routes/puzzles.py | Versioned provider definitions, private session snapshots and atomic multi-move practice; no engine or scheduler dependency |
+| puzzles/ / routes/puzzles.py | Versioned provider definitions, hash-pinned local Lichess-layout packs (bundled starter pack plus optional installed pack), preference-aware selection, private session snapshots and atomic multi-move practice; no engine, network or scheduler dependency |
 | routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |

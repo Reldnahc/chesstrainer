@@ -41,8 +41,40 @@ active lines, including zero; merely viewing a lesson does not increase them.
 `backend/trainer/puzzles` owns validated `line-v1` definitions and a small provider
 protocol. Providers return locally available definitions visible to the bound
 account. No network acquisition runs when opening or solving a puzzle. Production
-starts without a puzzle collection; generic packs and game-derived generation are
-separate future work. Tests inject their fixtures into the application explicitly.
+serves hash-pinned local packs (below); game-derived generation remains separate
+future work. Tests inject their fixtures into the application explicitly, and
+`PUZZLE_STARTER_PACK=false` keeps a deliberately empty library.
+
+### Puzzle packs
+
+`packs.py` reads the public Lichess puzzle layout: the CSV FEN precedes the
+opponent's setup move, token 1 of Moves is that setup move and the remaining
+tokens are the solver's line. Each row becomes a learner-to-move definition
+keyed by its PuzzleId, with the pack version, Lichess themes and rating, and an
+attribution link to the puzzle. `manifest.json` pins the CSV by SHA-256 and
+records how the rows were chosen. A pack with a changed file, bad row, duplicate
+or wrong count is refused whole; definitions validate once per process and
+session start uses an indexed lookup.
+
+The bundled starter pack (`starter_pack/`, CC0, 1,000 puzzles) is weighted toward
+lower ratings with solver lines of at most nine plies; its README records the
+sampling. `scripts/build_puzzle_pack.py` rebuilds or enlarges a pack from a
+downloaded dataset under a new version. `PUZZLE_PACK_PATH` adds a larger
+installed pack, verified at startup. Saved solves keep their own snapshots across
+pack revisions. Lichess themes and ratings are external labels; Fieldwork makes
+no claim about a puzzle's pedagogical value beyond legal replay.
+
+### Selection
+
+`GET /api/puzzles/next` accepts a source, rating bounds, one theme and a mode.
+New mode chooses randomly among matching puzzles the account has not started;
+once everything has been seen it skips the twenty most recently started puzzles
+before allowing repeats. Retry mode offers puzzles whose latest finished attempt
+was revealed or failed-then-solved, until a later clean solve; an unfinished
+retry is resumed, not re-offered. The puzzles page keeps the chosen difficulty
+band, theme and mode for the tab so Next puzzle continues the same practice.
+Rating bands are a convenience over the pack's own ratings, never a learner
+rating, and no selection writes FSRS, recall history or weakness evidence.
 
 A definition pins its initial FEN, learner color, complete solution, source,
 version and attribution. Every move must belong to python-chess's legal move set;
@@ -67,10 +99,12 @@ reply. Definitions can be removed or revised without changing an existing solve.
 Puzzle history does not create exercises, engine searches, ordinary Review rows,
 FSRS changes or weakness evidence.
 
-Library statistics use lightweight account-scoped aggregates. Resume lists contain
-at most the twenty most recently updated unfinished sessions; direct links to
-older sessions remain valid. No puzzle rating or practice count is described as
-mastery or evidence of transfer into games.
+Library statistics use lightweight account-scoped aggregates, plus pack
+attribution, rating range, theme counts (length and provenance tags excluded)
+and how many puzzles are ready to retry. Resume lists contain at most the twenty
+most recently updated unfinished sessions; direct links to older sessions remain
+valid. No puzzle rating or practice count is described as mastery or evidence of
+transfer into games.
 
 ## Guided lessons
 
@@ -263,6 +297,8 @@ separately from FSRS reviews.
 `backend/tests/test_puzzles.py` covers both colors and special moves, malformed
 definitions, cold data, durable replay, duplicate and stale commands, concurrent
 tabs, account reads/writes and preservation of existing learning records.
+`test_puzzle_packs.py` covers Lichess-layout conversion, refused packs, the
+bundled starter pack, installed-pack startup verification and selection modes.
 `frontend/tests/study-puzzles.spec.ts` exercises the production player through the
 test-only fixture provider on desktop and mobile. It covers retries, playback,
 reload, Still/device motion, promotion, coach changes and late-response cleanup.
@@ -277,10 +313,12 @@ development content through an environment switch.
 
 ## Deferred content requirements
 
-The lesson/opening/puzzle framework sprint is complete. Production puzzle packs,
-game-derived generation and additional courses are separate future work. The
-following requirements preserve the owner's decisions from the completed plan;
-they do not authorize implementing that work during maintenance.
+The lesson/opening/puzzle framework sprint is complete and the generic pack
+requirements below are implemented as described under [Puzzle packs](#puzzle-packs)
+and [Selection](#selection). Game-derived generation and additional courses are
+separate future work. The following requirements preserve the owner's decisions
+from the completed plan; they do not authorize implementing that work during
+maintenance.
 
 ### Generic puzzle packs
 
@@ -292,9 +330,11 @@ harness. Validate initial positions and every solution move, including special
 moves, and preserve source attribution. Provider solutions are the answer
 authority; future accepted alternatives require explicit continuation support.
 
-Later selection can prefer unseen puzzles within a requested difficulty band,
-avoid recent repeats and offer theme filters and a separate Retry failed mode.
-This is deliberate practice, without FSRS due dates or an implied mastery score.
+Selection prefers unseen puzzles within a requested difficulty band, avoids
+recent repeats and offers theme filters and a separate Retry failed mode. This
+is deliberate practice, without FSRS due dates or an implied mastery score. An
+in-app install action for a larger pack is not implemented; installation is the
+documented `PUZZLE_PACK_PATH` setting.
 
 ### Puzzles from saved games
 

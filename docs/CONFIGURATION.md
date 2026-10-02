@@ -45,6 +45,8 @@ status is returned.
 | MAX_IMPORT_BYTES | 10000000 |
 | CHESSCOM_TIMEOUT_SECONDS | 20 seconds per provider request |
 | CHESSCOM_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per response |
+| PUZZLE_STARTER_PACK | true; serves the bundled CC0 Lichess starter pack |
+| PUZZLE_PACK_PATH | unset; directory holding a Lichess-layout puzzles CSV and its hash-pinned manifest, verified at startup |
 | PROVIDER_TIMEOUT_SECONDS | 20 seconds per Lichess network read |
 | PROVIDER_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per Lichess export |
 | PROVIDER_MAX_SCAN_GAMES | 10000 records per Lichess export; narrow date range when reached |

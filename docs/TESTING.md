@@ -66,7 +66,7 @@ The account browser suite resumes lessons, puzzle attempts, selected lines and
 the chosen coach on a second device, then confirms another account cannot read
 their private sessions or studies. Its authenticated puzzle fixture alias exists
 only in `browser_app.py`. `scripts/smoke_install.py` also checks the installed
-course registry, original Italian course, empty production puzzle library,
+course registry, original Italian course, bundled starter puzzle library,
 lesson restart and explicit
 opening enrollment in fresh local/account containers without starting analysis.
 
@@ -135,6 +135,11 @@ Run the complete suite for interface refactors. Normal tests use isolated databa
 
 ## Study frameworks
 
+`test_puzzle_packs.py` covers Lichess-layout row conversion for both colors,
+hash-pinned pack loading that rejects a changed file, bad row, duplicate or wrong
+count, the bundled starter pack's validity and rating weighting, the installed
+pack setting's startup verification, and selection: unseen first, difficulty and
+theme filters, retry mode and recent-repeat avoidance.
 `test_puzzles.py` exercises the production puzzle routes with injected local
 definitions: legal multi-step replay, fail/retry/reveal, durable snapshots,
 duplicate/stale commands, account isolation and unchanged Review/FSRS/weakness

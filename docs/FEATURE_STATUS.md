@@ -25,6 +25,7 @@ Current direction: game review, local mistake classification and structured Stud
 | SRS | FSRS, automatic Again/Hard/Good, raw response times, persistent due queue, permanent retirement above configured 100 days | No personal parameter optimization; elapsed time includes idle/tab time |
 | Guided Study lessons | Six authored step types, connected branches, annotated game playback, independent rehearsal, private versioned progress and exact resume; sourced courses for White’s Italian, Black’s Italian and White’s King’s Gambit, with chapter boundaries based on distinct learning goals | No graphical content editor or generated lessons; three focused courses, not a complete opening repertoire |
 | Archived courses / lessons | Historical data preserved in backups; nonretired lesson-held positions released to Due | Legacy product routes remain removed; not reused by authored Study lessons |
+| Puzzles | Bundled hash-pinned CC0 Lichess starter pack (1,000 puzzles weighted toward lower ratings), optional installed pack, offline multi-move solving with retry/reveal, unseen-first selection by difficulty band and theme, Retry mode, private progress separate from FSRS | No puzzles generated from the learner's own games yet; Lichess themes and ratings are external labels, not a mastery or transfer measure |
 | Opening study | Bundled catalogue and designated course lines, preview and side choice, transposed/shared cards in existing Due, immutable attempt answers, safe pause/restore/content revisions, dedicated rehearsal | One-decision scheduled recall; no arbitrary repertoire PGN import or automatic enrollment |
 | Repertoire | Historical records preserved for backup/export | Removed from the app and review queue; list/import and direct practice return 410 |
 | Manual exercises | Low-level validated API retained for existing integrations and deterministic review fixtures | Creation form removed; no product navigation |
@@ -44,7 +45,7 @@ validation; browser emulation alone does not establish those results.
 
 Source-checkout and Docker installation are supported. Standalone wheel/static
 asset packaging and a dedicated engine-upgrade/reanalysis workflow remain future
-work. Deferred puzzle acquisition/generation and additional authored material are
+work. Game-derived puzzle generation and additional authored material are
 recorded in [Study](STUDY.md#deferred-content-requirements). These are remaining
 limits, not newly scheduled implementation work.
 
