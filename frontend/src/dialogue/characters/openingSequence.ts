@@ -98,7 +98,7 @@ export const frogOpeningTemplates = {
   "book-opening-follow-8": ["Still {opening}. It names the line and nothing else."],
 } as const;
 export const captainOpeningTemplates = {
-  "book-opening-entry-1": ["Know the territory: this is {opening}."],
+  "book-opening-entry-1": ["Know the territory: {opening}."],
   "book-opening-entry-2": ["The opening on the board is {opening}. Learn its plans."],
   "book-opening-entry-3": ["Book move; the book's name for it is {opening}."],
   "book-opening-follow-1": ["{opening} keeps going, and the ground is familiar."],
