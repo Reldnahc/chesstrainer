@@ -56,6 +56,20 @@ export const livingPawnOpeningTemplates = {
   "book-opening-follow-8": ["Listed again, still inside {opening}."],
 } as const;
 
+export const professorOpeningTemplates = {
+  "book-opening-entry-1": ["This move belongs to {opening}, a line the opening book recognizes."],
+  "book-opening-entry-2": ["{opening} is where the opening book files this move."],
+  "book-opening-entry-3": ["Here the game follows {opening}, so it's on familiar ground for now."],
+  "book-opening-follow-1": ["The next move stays within {opening}."],
+  "book-opening-follow-2": ["Still {opening}, one move further along."],
+  "book-opening-follow-3": ["This reply is also part of {opening}."],
+  "book-opening-follow-4": ["The line of {opening} carries on with this move."],
+  "book-opening-follow-5": ["We remain inside {opening} here."],
+  "book-opening-follow-6": ["This move, too, is part of the recognized sequence in {opening}."],
+  "book-opening-follow-7": ["{opening} lists this move as well."],
+  "book-opening-follow-8": ["Still {opening}. Knowing the line tells us where the game is, which is a different thing from judging the move."],
+} as const;
+
 export const robotOpeningTemplates = {
   "book-opening-entry-1": ["Opening match: {opening}."],
   "book-opening-entry-2": ["This move is in the opening record: {opening}."],
@@ -112,6 +126,32 @@ export const wizardOpeningTemplates = {
   "book-opening-follow-8": ["Another recorded move of {opening}. Its place in the book is a matter of record, not a verdict."],
 } as const;
 
+export const tuxedoOpeningTemplates = {
+  "book-opening-entry-1": ["This is book, filed under {opening}."],
+  "book-opening-entry-2": ["Known theory here: {opening}."],
+  "book-opening-entry-3": ["Theory has a name for this one: {opening}."],
+  "book-opening-follow-1": ["The theory runs on: {opening}."],
+  "book-opening-follow-2": ["Theory covers this one too, in {opening}."],
+  "book-opening-follow-3": ["The reply comes from theory too, in {opening}."],
+  "book-opening-follow-4": ["By the book, still inside {opening}."],
+  "book-opening-follow-5": ["Still on known moves within {opening}."],
+  "book-opening-follow-6": ["{opening} supplies another book move."],
+  "book-opening-follow-7": ["No departure yet from {opening}."],
+  "book-opening-follow-8": ["Theory still, in {opening}; a name, not a verdict."],
+} as const;
+
+export const raccoonOpeningTemplates = {
+  "book-opening-entry-1": ["This one's a known route: {opening}."],
+  "book-opening-entry-2": ["Familiar alley, and it comes with a name: {opening}."],
+  "book-opening-entry-3": ["The book's got this move marked down, under {opening}."],
+  "book-opening-follow-1": ["Same known route: {opening}."],
+  "book-opening-follow-2": ["Covered by the book as well: {opening}."],
+  "book-opening-follow-3": ["Same route, next move: {opening}."],
+  "book-opening-follow-4": ["Nothing new yet; this is still {opening}."],
+  "book-opening-follow-5": ["The known route keeps going through {opening}."],
+  "book-opening-follow-6": ["The book still has this covered: {opening}."],
+  "book-opening-follow-7": ["One more known step down {opening}."],
+  "book-opening-follow-8": ["The book's not out of moves yet: {opening}."],
 export const velvetOpeningTemplates = {
   "book-opening-entry-1": ["This move is carried in the opening books, in {opening}."],
   "book-opening-entry-2": ["A move from a known opening, this: {opening}."],

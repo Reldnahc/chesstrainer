@@ -8,8 +8,10 @@ import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
 import {velvet} from "../src/dialogue/characters/velvet";
-import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
+import {tuxedo} from "../src/dialogue/characters/tuxedo";
+import {professor} from "../src/dialogue/characters/professor";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -178,6 +180,9 @@ const openingCoaches = [
   {id: "alien", personality: newCastPersonalities.alien, authored: alienOpeningTemplates, voiced: false},
   {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
   {id: "wizard", personality: newCastPersonalities.wizard, authored: wizardOpeningTemplates, voiced: false},
+  {id: "cat-tuxedo", personality: tuxedo, authored: tuxedoOpeningTemplates, voiced: false},
+  {id: "raccoon", personality: newCastPersonalities.raccoon, authored: raccoonOpeningTemplates, voiced: false},
+  {id: "dog-gentle", personality: professor, authored: professorOpeningTemplates, voiced: false},
   {id: "cat-black", personality: velvet, authored: velvetOpeningTemplates, voiced: false},
 ] as const;
 
