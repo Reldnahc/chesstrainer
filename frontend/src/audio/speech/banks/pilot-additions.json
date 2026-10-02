@@ -5,7 +5,7 @@
       "id": "book-opening-entry-1",
       "group": "game_review",
       "walterText": "We're in familiar opening territory here. This is a book move.",
-      "rivetText": "This is a recognized book move."
+      "rivetText": "Opening database match: book move confirmed."
     },
     {
       "id": "book-opening-entry-2",
@@ -29,7 +29,7 @@
       "id": "book-opening-follow-2",
       "group": "game_review",
       "walterText": "Another book move here.",
-      "rivetText": "This is another book move."
+      "rivetText": "Book move, sequence continuing."
     },
     {
       "id": "book-opening-follow-3",
@@ -81,7 +81,7 @@
       "primary": "missed-mate",
       "secondary": "human-natural-error",
       "walterText": "This is a natural-looking move, but a forced checkmate was available and this lets it go. Let's go back and find that finish.",
-      "rivetText": "Available finish: forced checkmate. This move lets it go. Human-model reading: natural."
+      "rivetText": "Available finish: forced checkmate. Status after this move: finish not taken. Human-model reading: natural."
     },
     {
       "id": "combined-immediate-capture-with-human-natural-error",
@@ -89,7 +89,7 @@
       "primary": "immediate-capture",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but the other side can capture right away. Let's look at that reply and see what can be taken.",
-      "rivetText": "Immediate reply: the opponent can capture. The human model finds this choice natural."
+      "rivetText": "Immediate reply: the opponent can capture. Human-model classification: natural."
     },
     {
       "id": "combined-evaluation-loss-with-human-natural-error",
@@ -105,7 +105,7 @@
       "primary": "tactic-fork-allowed",
       "secondary": "human-natural-error",
       "walterText": "This looks natural, but it gives the other side a chance to set up a fork. Look for the piece that could attack several targets at once.",
-      "rivetText": "Issue: a fork is available to the opponent. One piece could attack several targets. The human model finds this choice natural; the tactical cost is still there."
+      "rivetText": "Issue: a fork is available to the opponent. One piece could attack several targets. Human-model tag: expected move. Tactical cost: unchanged."
     },
     {
       "id": "combined-tactic-skewer-allowed-with-human-natural-error",
@@ -113,7 +113,7 @@
       "primary": "tactic-skewer-allowed",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking move, but it opens the door to a skewer. The other side could attack along a line where moving the front piece exposes the piece behind it.",
-      "rivetText": "Issue: the opponent has a skewer opportunity. Moving the front piece could expose the piece behind it. Natural to the human model. Costly on the board."
+      "rivetText": "Issue: the opponent has a skewer opportunity. Front unit displaced, rear unit open. Natural to the human model. Costly on the board."
     },
     {
       "id": "combined-only-playable-move-with-human-hard-defense-found",
@@ -129,7 +129,7 @@
       "primary": "only-playable-move",
       "secondary": "human-hard-find",
       "walterText": "This was a hard move to find, and it was the only one we found that kept the position playable. The alternatives we checked were losing.",
-      "rivetText": "Only this move stayed playable among those searched. The other examined choices were losing. Human-model evidence suggests a difficult find."
+      "rivetText": "Only this move stayed playable among those searched. The other examined choices were losing. Locate probability, per human-model evidence: low."
     },
     {
       "id": "combined-only-advantage-resource-with-human-hard-defense-found",
@@ -137,7 +137,7 @@
       "primary": "only-advantage-resource",
       "secondary": "human-hard-defense-found",
       "walterText": "You found a difficult resource and kept the advantage. It was the only move we found that did so; the other choices we checked were losing.",
-      "rivetText": "This difficult resource retained the advantage. It was the only move found to do so; the other examined choices were losing."
+      "rivetText": "This difficult resource retained the advantage. Count of moves found that did so: one. The other examined choices were losing."
     },
     {
       "id": "combined-only-advantage-resource-with-human-hard-find",
@@ -145,7 +145,7 @@
       "primary": "only-advantage-resource",
       "secondary": "human-hard-find",
       "walterText": "This was a hard move to find, but it keeps the advantage where every other move we checked was losing. Keep the reason for this choice with the move.",
-      "rivetText": "Advantage retained by this searched move only. The other examined choices were losing. Human-model evidence suggests a difficult find."
+      "rivetText": "Advantage retained by this searched move only. The other examined choices were losing. Human-model detection estimate: low."
     },
     {
       "id": "combined-tactic-fork-played-with-human-unusual-strong",
@@ -153,7 +153,7 @@
       "primary": "tactic-fork-played",
       "secondary": "human-unusual-strong",
       "walterText": "The human model finds this choice unusual, but the engine supports it. The idea to follow is a fork, where the same piece can attack several targets.",
-      "rivetText": "Fork resource found. The same piece can attack several targets. Human-model reading: unusual. Engine rating: strong."
+      "rivetText": "Fork resource found. Attacker count: one. Target count: several. Human-model reading: unusual. Engine rating: strong."
     },
     {
       "id": "combined-tactic-fork-played-with-human-hard-find",
@@ -169,7 +169,7 @@
       "primary": "tactic-pin-played",
       "secondary": "human-unusual-strong",
       "walterText": "Unusual in the human model, this choice holds up in the engine's search. The idea is a pin to the king: a pinned piece cannot leave that line and expose its king.",
-      "rivetText": "Pin resource found. A piece pinned to its king cannot leave the line and expose it. Input A, human model: unusual. Input B, engine: strong."
+      "rivetText": "Pin resource found. Pinned unit status: fixed to the line, king behind it. Input A, human model: unusual. Input B, engine: strong."
     },
     {
       "id": "combined-tactic-pin-played-with-human-hard-find",
@@ -177,7 +177,7 @@
       "primary": "tactic-pin-played",
       "secondary": "human-hard-find",
       "walterText": "This was a hard move to find, and the pinning idea is the point to follow. A piece pinned to its king cannot leave that line and expose it.",
-      "rivetText": "Mechanism: a pin to the king. The pinned piece cannot leave that line and expose its king. This is the engine's best move; model evidence and searched alternatives indicate a difficult find."
+      "rivetText": "Mechanism: a pin to the king. Line exit for the pinned piece: blocked, since its king sits behind. Engine rank: best. Model evidence and searched alternatives indicate a difficult find."
     }
   ]
 }
