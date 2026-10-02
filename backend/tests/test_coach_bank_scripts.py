@@ -27,6 +27,7 @@ AUTHORED = [
     ("unicorn", "celeste"),
     ("man-expert", "jun"),
     ("frog", "fergus"),
+    ("man-partner", "arjun"),
     ("man-host", "femi"),
 ]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
