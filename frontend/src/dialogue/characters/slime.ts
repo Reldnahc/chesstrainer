@@ -44,7 +44,7 @@ export const slime: CoachPersonality = {
     cause_avoiding_bad_trades: [{reaction: "That trade doesn't add up.", fact: "{move} swaps {side}'s {piece} for a {captured}.", consequence: "Then {opponent} takes back with {reply}."}],
     sacrifice: [
       {reaction: "Go on!", fact: "This sacrifice still works if the opponent takes it."},
-      {reaction: "Brave, and right!", fact: "Even if the offer is accepted, the sacrifice still works."},
+      {reaction: "Brave, and it holds up!", fact: "Even if the offer is accepted, the sacrifice still works."},
     ],
     only_move: [{reaction: "Fair play to you!", fact: "Of the moves we checked, only this one kept the game playable. The rest lost."}],
     decisive_resource: ["Of all the moves we checked, only this one kept the big, winning advantage."],
