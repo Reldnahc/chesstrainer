@@ -296,6 +296,6 @@ export const partnerTacticalTemplates = authorTacticalWordings({
   },
   fork: {actual: "Test it: one piece now hits the {targets} together.", possible: "Run the line, and the {targets} would be attacked side by side from one piece."},
   material: "Run the experiment to the end and a {gain} may be the outcome, with choices for both sides along the way.",
-  capture: {candidate: "Try {capture}, and a {piece} comes off.", followup: "Should the replies go that route, {capture} may come next and collect a {piece}."},
+  capture: {candidate: "Try {capture}, and a {piece} leaves the board.", followup: "Should the replies go that route, {capture} may come next and collect a {piece}."},
   playedCapture: {fact: "Follow {move} through and a {motif} comes out of it.", consequence: "Then {capture} wins a {piece}."},
 });
