@@ -158,7 +158,12 @@ blocks: a club analyst's reaction across the table, a "hold that thought" at the
 the concrete reply put on the board, with occasional questions, book moves called
 "prep" or "main line", and difficulty always credited to the human-move model.
 Femi stays silent until a bank is registered.
-The other 8 voices retain their current wording and deterministic variants.
+Marisol (`woman-analyst`) has opted in as well, in `characters/analyst.ts`: a
+compact before-and-after observation of exactly what the move changed, then its
+consequence, with the human-move model's and the engine's readings kept apart,
+rare factual approval and no questions. Marisol also stays silent until a bank is
+registered.
+The other 7 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

@@ -293,3 +293,17 @@ export const hostOpeningTemplates = {
   "book-opening-follow-7": ["Still the main line of {opening}."],
   "book-opening-follow-8": ["Main line of {opening}, still; a location, not a grade."],
 } as const;
+
+export const analystOpeningTemplates = {
+  "book-opening-entry-1": ["With this move, the game is in {opening}."],
+  "book-opening-entry-2": ["No change of course; this move keeps the game in {opening}."],
+  "book-opening-entry-3": ["{opening} contains this move."],
+  "book-opening-follow-1": ["The game has not left {opening}."],
+  "book-opening-follow-2": ["This one also belongs to {opening}."],
+  "book-opening-follow-3": ["Even the reply stays within {opening}."],
+  "book-opening-follow-4": ["Nothing has changed: the game remains in {opening}."],
+  "book-opening-follow-5": ["{opening} has this move too."],
+  "book-opening-follow-6": ["So far, {opening} is unchanged."],
+  "book-opening-follow-7": ["Again, {opening}."],
+  "book-opening-follow-8": ["Still {opening}. Being there locates the game; its quality is a matter for the engine."],
+} as const;
