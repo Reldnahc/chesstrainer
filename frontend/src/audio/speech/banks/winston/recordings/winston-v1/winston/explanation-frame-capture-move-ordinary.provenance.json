@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "This move takes a piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed3ef87e0276d44338a525a19998d80590938796bd115776bf5c2209b49a46bc",
+  "recordedAt": "2026-10-02T02:29:45.477Z",
+  "sha256": "637ee7b25b90f6a35c4e94928d50bfa06ff7059b54fe2415b3dbf54f1a235421",
+  "bytes": 6228,
+  "requestId": "w6QjIczFK1jsLgMZZ7gF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98d8d740c9f342fef486ad87884c4764430cb96926357e1b01956dde487ba391",
+    "bytes": 29301
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls will ask for the moves of your selected side, and a position shared by your active studies gets a single card."
+    },
+    "takeId": null
+  },
+  "requestHash": "e442ac85531e0d1166e9978e7297e111160ba462a258899323f925afe037b7f5",
+  "recordedAt": "2026-10-02T02:31:00.107Z",
+  "sha256": "d39c3092bfebbeb6a7fa1ead76db01df25c7390799624d2dcdefb3a0f1fb1ff0",
+  "bytes": 23362,
+  "requestId": "Z6oJJ0Oh0fMMmV9Wpo0W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abb682561aa4feb3cbab4fe425189cb02808a2fff7348606f12fd1828415b238",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

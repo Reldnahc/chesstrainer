@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "The opponent's last move released the attacking piece from a relative pin. The target was then left standing where it was, and the line shown ends with it captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e4aac21c8d571206a8d4c44cc8097e3c9c3fd4ddbba95fe83a242541d279b86",
+  "recordedAt": "2026-10-02T02:30:24.060Z",
+  "sha256": "98bb8524e8030fec7d080af6b8c69e1c6593ae723a5cfbcf86968c9ba275f138",
+  "bytes": 30564,
+  "requestId": "NMPaKtjbrYjjiKKduLn6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39a95dd916f2a3d600ad70ac4150ec30c1b9a88ccfe3ac0eb2e1ad26e311d3e7",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

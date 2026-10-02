@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-double-attack-played-natural-best",
+      "label": "Combo tactic double attack played natural best",
+      "text": "Two threats come together here, a double attack that asks for two answers at once. The human-move model finds it natural, and it's the engine's best."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f62be2a085cc9e43224fa6a161040abbbbdea90c1070d16d483e16467726f1c",
+  "recordedAt": "2026-10-02T02:47:53.600Z",
+  "sha256": "d612aa385cdd28ec31b0bb3378c3a488a66f38f9d46d26d537d75177d2f3496f",
+  "bytes": 30642,
+  "requestId": "4EqkmlgnI4fDl6VKPYSq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16d54a284ba5991c318267e7a0e836438f50c8aa40771bdd071b95802715acc1",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

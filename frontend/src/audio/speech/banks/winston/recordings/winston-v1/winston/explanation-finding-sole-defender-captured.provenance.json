@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "First the only defender's captured. Later in these moves, the piece it was guarding is taken as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "9eefda65175aea740ac3ee0efca0b5f63322a4dd893551a1dc5843a0d8f41997",
+  "recordedAt": "2026-10-02T02:30:11.873Z",
+  "sha256": "cb66ebb328ec7828e3e378efad77fddcce7b6841bfc418358d6780e27c24ee76",
+  "bytes": 20232,
+  "requestId": "QVNDmtbcTIlpbz3q7fJo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd4cd647d49b129a4ae7ab2ed523f680cb03c183d6a6777a0c5de3f2f1205270",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-doubled-actual-unusual-strong",
+      "label": "Combo positional doubled actual unusual strong",
+      "text": "Doubled pawns are left on the board, pawns of the same color sharing a file. The human-move model finds the move unexpected; the engine's search calls it strong. See which side the pawns belong to."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b34ffc9a60bdee0ca40f7f87c9e96cb713ef164c42b1d6512388a146fe5ca10",
+  "recordedAt": "2026-10-02T02:36:31.722Z",
+  "sha256": "64d7eb9d366f71473e32a17131483fc87365363756d1abb7f78cdddfafd2d972",
+  "bytes": 38500,
+  "requestId": "Mu3Ia6j01VzU2Vne0hq1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97b5b13674186e39e775620b74d6e5299ed48d2b55c0ad8375a0a511aa093873",
+    "bytes": 201918
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

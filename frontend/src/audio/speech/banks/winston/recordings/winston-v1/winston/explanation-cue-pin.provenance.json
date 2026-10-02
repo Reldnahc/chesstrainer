@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Before a pinned piece moves, check what stands behind it, whether the king or something worth more."
+    },
+    "takeId": null
+  },
+  "requestHash": "40979199ad4d5753cc571c92ed6e8147f7698a04d0168ba6d4708587949cc07e",
+  "recordedAt": "2026-10-02T02:30:29.605Z",
+  "sha256": "bcd8dead032654ee7b763b1c3dcaaf10ce1525bffc6a16e0d989c903698f9a5a",
+  "bytes": 19326,
+  "requestId": "mh76skU6wd7kCJBT8BQw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5888d82e0d1c855a3cbf514cc38cce76b030e9f93974e0a2e6b99ee2ff08a90b",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-fork-played-natural-best",
+      "label": "Combo tactic fork played natural best",
+      "text": "One piece reaching for several things at once. That's a fork. The human-move model finds the move natural, and it's the engine's best as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "00109504e4e62d2912215daa76e2423bda2c723e33b50f249daf38c84ffca74e",
+  "recordedAt": "2026-10-02T02:45:56.630Z",
+  "sha256": "859d4e5ba2080e18abf49de9a35f931ea0414499c14d86a9d105c83f487a47a8",
+  "bytes": 29096,
+  "requestId": "FiBg1iYaXQdeHayLwWCa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6736b1390d1899267864f942883789a68062c998d9804dedc9032c121e4f8eca",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

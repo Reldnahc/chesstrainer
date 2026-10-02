@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "Just one narrow gap was left, and this move fit through it. Among the moves checked, nothing else kept the position playable; every other one was losing."
+    },
+    "takeId": null
+  },
+  "requestHash": "7043b4bcb2dbbf54d7c2611d946f1aea92ace5fbb1198ad2bda28887ed5cc33a",
+  "recordedAt": "2026-10-02T02:42:09.182Z",
+  "sha256": "c2fb99e3f76592722eba5e3cac3f864c6c09a09ea09a960c94799c23d05c352f",
+  "bytes": 32079,
+  "requestId": "Jnc1wZNvVJvvjqi8tDFl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4eef43057564516b1bb2875e70050bd58c42727eba486a4095825cd798522eaf",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

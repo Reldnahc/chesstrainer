@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-rook-semi-open-actual-unusual-strong",
+      "label": "Combo positional rook semi open actual unusual strong",
+      "text": "The rook's view is clear of its own pawns, if not of the enemy's. That's a semi-open file. An unusual move to the human-move model, and a strong one to the engine."
+    },
+    "takeId": null
+  },
+  "requestHash": "34247cb05d4d8461e89f4d636557b3fb0f43938b6ed146d18159d78a33870986",
+  "recordedAt": "2026-10-02T02:48:59.985Z",
+  "sha256": "a0ca0bf907890af7265d94bef2fa73b1bf38f36f31c19b0ef61cb208acb08114",
+  "bytes": 33831,
+  "requestId": "hipnymE8bC03YtfBXOQS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de52174a2b671d4ded10e6f1163cf273d601df7ef479c9e081c0c7d81580d44f",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

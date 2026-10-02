@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-back-rank-played-unusual-strong",
+      "label": "Combo tactic back rank played unusual strong",
+      "text": "The idea's a back-rank mate, with the king's own pieces blocking its escape. The human-move model had it down as unlikely, and it comes out strong in the engine's search."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb10fcfe4ff2308c19286faed5607f6a1c291e1bc0b1820219279ca3a5b7d744",
+  "recordedAt": "2026-10-02T02:33:13.553Z",
+  "sha256": "74b22c181af665b0c69dc1aefb5b78c152184603e9de066f4d6bd3cce8cd161b",
+  "bytes": 32597,
+  "requestId": "KQJl6RkEkYsOX6eHDgLq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b73e851bf258c35a6c781a84de25eeed3c57f1bfeea00b2301228172d93b003",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

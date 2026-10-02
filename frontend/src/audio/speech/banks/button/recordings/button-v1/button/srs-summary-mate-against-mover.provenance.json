@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "After this move, the other side has a forced checkmate, according to the saved engine analysis."
+    },
+    "takeId": null
+  },
+  "requestHash": "000d89d30193c4ab7836d1009d9823eff31962c14236862de908a51e205dfd5d",
+  "recordedAt": "2026-10-02T02:43:02.879Z",
+  "sha256": "6ff4860586dc98324a322d06cb66b08590652f2a4cdef177a97d4ef945865b23",
+  "bytes": 19905,
+  "requestId": "XnchodwlCPomdUCSw7Yv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3085ab00532d48a348be6e902859a0b3f737e655c182d199ce80f126552faf15",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

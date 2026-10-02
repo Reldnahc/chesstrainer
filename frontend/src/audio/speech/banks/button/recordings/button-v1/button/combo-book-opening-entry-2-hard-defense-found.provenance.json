@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-2-hard-defense-found",
+      "label": "Combo book opening entry 2 hard defense found",
+      "text": "Inside this known opening move is a real defense. No other move checked kept the position playable, and the human-move model suggests it was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc783ab605ca1559a21da0d9b4033217c041b9e25b431626c1cb6a60a8cddf99",
+  "recordedAt": "2026-10-02T02:52:28.081Z",
+  "sha256": "da5bacd20f71c405c546dc2a605142ac6908ed4639de39b35771f8417e47c706",
+  "bytes": 33298,
+  "requestId": "3V8yjL2TGlW9SFko4jym",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d04942412d5a7a33552e504f0599f4d7fc189deaebc1555e1a8f5dfbcac22f3c",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-promotion-awareness-allowed-hard-defense-missed",
+      "label": "Combo tactic promotion awareness allowed hard defense missed",
+      "text": "This gives one of the other side's pawns a way toward promotion. One move among those checked kept the position playable, and the human-move model suggests it was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "29c247a089bc606c2c62f601604833cb98bae76f0aecc5158a67ce96abeb5532",
+  "recordedAt": "2026-10-02T02:47:22.580Z",
+  "sha256": "46ae1781c1e735a21a86d2d3a2519d66afd9bd3751cd3c124a2efdedd3fc7195",
+  "bytes": 34255,
+  "requestId": "vsuyjTKHBVW75y1gm1nX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "288afb733d4cda736757858f94c907830770abe063da805dc7e1d1eee1fb23db",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Before trading off a defender, see what it's quietly keeping safe right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "f716e1deb3687cbd8e65019bb6f7c54baabc0f45b5cd3faf36a8e0242b7420a2",
+  "recordedAt": "2026-10-02T02:44:12.791Z",
+  "sha256": "f815469e2f58b1cb7c538bd907eb88baa40d6098667d8f4df5f7b5453a02f1e4",
+  "bytes": 16720,
+  "requestId": "JK9ElmAeA6VFhMRXUVdM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bfdfa9388ffd9ed0c80115ac1dad219249bb64aa3f435472c30fae32b24d660",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

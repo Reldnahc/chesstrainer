@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-missed-mate-hard-defense-missed",
+      "label": "Combo missed mate hard defense missed",
+      "text": "Another move would have left the enemy king with nothing to lean on: a forced mate, and the only move checked that kept things playable. This one lets it go, and the human-move model rates that finish as hard to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "8ef2717cf4ef6cd4176e25d6f878df124647c9acbbf01af25b2e31315f747121",
+  "recordedAt": "2026-10-02T02:50:23.664Z",
+  "sha256": "46c82a51fdb2f3fce8cbdd08fcc2df2329dc58325f9eb876be17d1caffb77fc3",
+  "bytes": 43031,
+  "requestId": "IULPGnsO9b9C0IXIZluc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb79921330727a03712055b450e4bb2c2118e87240385310c9785bab4ad2dd93",
+    "bytes": 223652
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

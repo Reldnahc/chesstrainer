@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-chance-missed-hard-defense-missed",
+      "label": "Combo chance missed hard defense missed",
+      "text": "A chance was lying there, and it stays there. The opponent's last move offered it; of the moves checked, only a different one kept the position playable, and the human-move model marks that one as hard to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "d6c70efd7930aa3db138570c3c7dd167eb600232412312074ac9e4ea5708ebdc",
+  "recordedAt": "2026-10-02T02:51:53.757Z",
+  "sha256": "8a35ef3feda41de724ddcc6786adab1abf854729108232e703cd4d00bfe76cd5",
+  "bytes": 41073,
+  "requestId": "t1AyEkrQiwUOjKT53wx0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "87413d911b37e227427cc86236ed73a863191a5419df3f44ba6f1eb0f655b39e",
+    "bytes": 216128
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

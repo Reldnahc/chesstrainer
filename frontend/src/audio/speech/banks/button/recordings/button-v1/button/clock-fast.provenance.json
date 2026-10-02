@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "clock-fast",
+      "label": "Clock fast",
+      "text": "A quick move, by the clock, with time still to spare."
+    },
+    "takeId": null
+  },
+  "requestHash": "f24e9775655cdbca53d77a7672291a0b81d0f2cfd5188122d7336b4554335ca0",
+  "recordedAt": "2026-10-02T02:42:33.112Z",
+  "sha256": "ef6f6fc00ca414bfa3ac6b9f88e73e043be82da8f5d4cc5aa50bb5ca23f1fdba",
+  "bytes": 12194,
+  "requestId": "bwIJAWKz0OVXCDWcwTkN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1885825425b07f2a8dfa259b0ed392f4621cb1d3ef3c0656a14ef53a9ac8f4d",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

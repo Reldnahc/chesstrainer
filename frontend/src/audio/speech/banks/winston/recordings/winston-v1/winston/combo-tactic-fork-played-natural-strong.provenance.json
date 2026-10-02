@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-fork-played-natural-strong",
+      "label": "Combo tactic fork played natural strong",
+      "text": "There's a fork here, with one piece reaching several targets. An ordinary choice by the human-move model, and the engine finds it strong, though its own first choice is different. Count what that piece is hitting."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a92b081bf57bd321b118b1cbf50f41e53d96704e2c2e4126a3884cef0b23ca1",
+  "recordedAt": "2026-10-02T02:32:13.283Z",
+  "sha256": "dad3ddd916b497db7886c12389ded6a70cb34f108a718ee82a83edf996542d21",
+  "bytes": 37342,
+  "requestId": "fjsM8pYKmBDLlqyEjWcY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9077c930911997c059a95bbf98890ab17a0ee0cdf39b4c372d678afb13e3f0dd",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

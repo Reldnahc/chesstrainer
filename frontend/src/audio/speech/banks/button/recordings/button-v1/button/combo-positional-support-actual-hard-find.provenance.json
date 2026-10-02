@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-support-actual-hard-find",
+      "label": "Combo positional support actual hard find",
+      "text": "A small stitch in the position. A piece that had no defender now has one, and the human-move model counts the move as a hard find."
+    },
+    "takeId": null
+  },
+  "requestHash": "3702a2df73646f7be3aa90abcb09f7eebb0b2a62cbc204e0a6685583752a791a",
+  "recordedAt": "2026-10-02T02:49:32.639Z",
+  "sha256": "d36a056b07ef2eaa055ab980b411317f37cd7e0f6055bb4e9dd934078135c89a",
+  "bytes": 27590,
+  "requestId": "npBWllTn3O7Qkxum188A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75af872285de679a2ca2b0b0b1e804d9f07d6025803ef88b06011175fc7fbcb7",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-pin-allowed-natural-error",
+      "label": "Combo tactic pin allowed natural error",
+      "text": "So there's a pin on offer for them. A piece can be pinned to its king and won't be able to step off its line. The human-move model sees nothing odd in the move. Find the line between that piece and the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "5719b1b3b070e3b6a281f06f9a744a6ebe8aac22338eca48f98b75c3713dba67",
+  "recordedAt": "2026-10-02T02:32:27.152Z",
+  "sha256": "ecef7493b7e4947df472fc005b399fbe3790d1bd160600849f45b99c4e074257",
+  "bytes": 39161,
+  "requestId": "qv0VVcFSseVOSps72c9J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d12665e7a270652781077995df86155d54cc0c9a9cb69b86c42b45eff22273a",
+    "bytes": 204426
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

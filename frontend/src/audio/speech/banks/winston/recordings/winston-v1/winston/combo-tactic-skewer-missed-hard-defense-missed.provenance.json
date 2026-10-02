@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-skewer-missed-hard-defense-missed",
+      "label": "Combo tactic skewer missed hard defense missed",
+      "text": "Ah, the only playable move we found had a skewer in it, a front piece shielding another behind it on the line. A long way from obvious, the human-move model suggests. Find the piece in front."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6f35c3ee948ede8fa21e36ee102852a93c1e67ced01d6fbde33de023d55c125",
+  "recordedAt": "2026-10-02T02:32:51.902Z",
+  "sha256": "267bbfac2b80699bf69f322dbeb43729f415b74e5a65b46b3c221f16b3d6271f",
+  "bytes": 38184,
+  "requestId": "shNYTQK0vNIja84jXGUV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "563b91eec0b7d25fce546879f8f054b4b3639b3a49b7bdbe85b7837c20f837a2",
+    "bytes": 198156
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

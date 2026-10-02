@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "The alternative was to castle, moving the king and the rook together in a single turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2887f205a0bcc8998d76b52c2e5a4417372be8e1ae37ab8e4875cee0676087b",
+  "recordedAt": "2026-10-02T02:24:33.229Z",
+  "sha256": "c7eba45dcb4ab26478ccb99fcf468137ac3cabafc9bd5fd2991debf98f449980",
+  "bytes": 17533,
+  "requestId": "Lpf0p4fRHl8XHpeUHVOP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eaaaa4d50430926a7138d5553e2232fd3d72b54fc040b3f156093eae7ab2f6df",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

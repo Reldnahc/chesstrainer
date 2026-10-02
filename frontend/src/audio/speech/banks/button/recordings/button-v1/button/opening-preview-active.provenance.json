@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Moves from this line count in mixed Due. For dedicated practice, this line is asked for on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b7beb3cf27009c9e374a17bd5155322efc7cb0fdb8f076dea028bd09692e7d1",
+  "recordedAt": "2026-10-02T02:44:40.242Z",
+  "sha256": "30e90332afdb4a876475d1d7b5c5d7c77525d0ee7e16cc9ff600682e5e88fe87",
+  "bytes": 21504,
+  "requestId": "CprN34G6oSCdIm3As2wP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2faf0f898a55849d6aaff8acbbe5767062c8baf500fcfe617e5cbb867a9792d8",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

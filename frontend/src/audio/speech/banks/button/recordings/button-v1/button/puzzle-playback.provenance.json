@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "puzzle-playback",
+      "label": "Puzzle playback",
+      "text": "The verified line is playing out on the board now."
+    },
+    "takeId": null
+  },
+  "requestHash": "791e0fd1505e69fb755c1cfb706f69b8993ad0c00a928afb0d20ba7ad07996c2",
+  "recordedAt": "2026-10-02T02:44:43.332Z",
+  "sha256": "66ab7b98304b006365a1262d4a02d0cd0abdd77193422922a6980e5c5407741a",
+  "bytes": 9892,
+  "requestId": "7nEaacqEusXauLs3rNnD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c762372937cba0264e767ec7a6e5df459edd15142ffdb996e7af74a01cc3d0fc",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

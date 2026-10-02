@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-opening-departure-natural-strong",
+      "label": "Combo opening departure natural strong",
+      "text": "The game leaves the recognized line at this move. The human-move model sees a natural choice; the engine grades it strong, though it would play another."
+    },
+    "takeId": null
+  },
+  "requestHash": "254ef4f89850b58b43b27ae736d2335705e80c2f8e6e44bd5ae79e530f5ebd39",
+  "recordedAt": "2026-10-02T02:37:45.043Z",
+  "sha256": "67b41da6e89d3b74f7b5712a5e26c193a4ee41e6a33a9fcf672161192078185f",
+  "bytes": 28575,
+  "requestId": "Wq7rFNVL2P2fjwolKiVl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eab7fe6e4a36e245c41d17c894f10bbb2facae4b3034d4091cc3f8db480c30c9",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

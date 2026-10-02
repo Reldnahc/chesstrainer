@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-double-attack-played-natural-strong",
+      "label": "Combo tactic double attack played natural strong",
+      "text": "It's a double attack, with two threats needing an answer together. The human-move model would see it coming; it's strong, as far as the engine's concerned, though its first choice is another."
+    },
+    "takeId": null
+  },
+  "requestHash": "4469ee301b2b0513d921efd924419708292a6c3011121c4f6fbfb38b37ba2d04",
+  "recordedAt": "2026-10-02T02:34:03.926Z",
+  "sha256": "d51fc22ed67be184d21146114664c685c6d5b07b0f89767f00f9b916761dcbf2",
+  "bytes": 33652,
+  "requestId": "wvhJvbPDN6G3AXP1wVT3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe26d3d7e09cc1435af5999eb931a8625a85fd3ee63f197fbaf4f1737be84db1",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

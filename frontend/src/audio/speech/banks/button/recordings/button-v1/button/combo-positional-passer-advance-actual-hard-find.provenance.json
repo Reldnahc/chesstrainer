@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-passer-advance-actual-hard-find",
+      "label": "Combo positional passer advance actual hard find",
+      "text": "The passed pawn takes another step. It was already passed before this move; now it's further along. The human-move model and the alternatives suggest that step was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d26f50f4190ed748a915d57a0e6948137cebc4f19cdec4a8bbcb82980e10bf0",
+  "recordedAt": "2026-10-02T02:49:14.924Z",
+  "sha256": "01fa2f96f265adbd9745696ae5e5688a50c198527412bfc553f590d5dd0bdc3d",
+  "bytes": 37210,
+  "requestId": "dG6kWTqzpDPSLGAuQ8Rn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "54d0795768f13429fa47e65ced326bb35f8f7d75666c3259694c46252f7da8aa",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

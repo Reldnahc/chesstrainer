@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combined-only-advantage-resource-with-human-hard-find",
+      "label": "Combined only advantage resource with human hard find",
+      "text": "Well now, only this move kept the advantage among those we checked; the rest were losing. The human-move model and the alternatives point to a hard find, so it's one to keep."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad47adee9fff16a4da2298dc3a9c7c8125878fafa382c654f875778278d8bb54",
+  "recordedAt": "2026-10-02T02:31:45.068Z",
+  "sha256": "92f24d10e9f2a9c14feedf2fe1f98d4e34bac447609461a826f56147d1e3766b",
+  "bytes": 33674,
+  "requestId": "BeGClh4gGy628nPXUFgZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aeeffedfa6f0b43a4ad214bf58069a7a191ab741dba77db9b9f9ead120b9208b",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

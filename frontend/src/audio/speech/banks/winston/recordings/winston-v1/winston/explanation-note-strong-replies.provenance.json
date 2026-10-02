@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "Here's one way things might go if the replies are strong ones. That doesn't mean each reply's forced."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d57c5eee837959e221bb6295dcfe91ec816d98531746482bc8fbb2be5c4e8f0",
+  "recordedAt": "2026-10-02T02:30:41.435Z",
+  "sha256": "e56565ddb800fdde8acc9bc40eacf543e72b2e43becc0ec3930da184a136126c",
+  "bytes": 19605,
+  "requestId": "tkvSrS7deiAur0lPcrZJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d22aee46cb93ecc6a17606c9e7adf1f086e48d4aefff87c31b8c9d8c962f6fd2",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

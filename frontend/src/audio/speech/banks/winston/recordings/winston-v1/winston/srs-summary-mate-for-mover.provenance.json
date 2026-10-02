@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "The saved engine analysis finds a forced checkmate here, and it belongs to the side that made this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e630b17a8d1932ecde7a335536b696b61259f154b0a4712999ce5e95f0cdc2a0",
+  "recordedAt": "2026-10-02T02:29:20.195Z",
+  "sha256": "d0397b82e099d2717879f4e077e5313aac36fd47fc505154c154eaf808b495d8",
+  "bytes": 19348,
+  "requestId": "rBCT5u98TUiCDuCvAlfC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56bd691c35595d8f76324cca48df4328fb886f0e7777b98cd81f82646341637a",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

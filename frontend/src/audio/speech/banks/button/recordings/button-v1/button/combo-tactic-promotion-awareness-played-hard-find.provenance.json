@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-promotion-awareness-played-hard-find",
+      "label": "Combo tactic promotion awareness played hard find",
+      "text": "Watch what this pawn could become. The idea is to bring it to the last rank and promote. The engine puts this move first, and the human-move model says it wasn't easy to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "f024802c61f6dabefc998e1dd172463018bdba27bb6801b75fa19116381ee2d9",
+  "recordedAt": "2026-10-02T02:47:12.511Z",
+  "sha256": "a7bb3edff1daffa26a8303639c8458fb40a4f7912bd77d2c97c69a0cca92c5c9",
+  "bytes": 35402,
+  "requestId": "mDwtEw8jyExgLpiSJ6QP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16096c677b7f21db6264a80d3ca09351ddc228f6235950e4db0e82ebb7b892e6",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

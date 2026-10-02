@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "The reply can be a capture: the other side can take something right away."
+    },
+    "takeId": null
+  },
+  "requestHash": "42c1d03ddba020fef44c0c0f2994f30b4ccd16883e9a28d72c0578fd61fae2a1",
+  "recordedAt": "2026-10-02T02:42:12.129Z",
+  "sha256": "96182db340baf9ee9530f0bb6b8518fea05794e23b2daf218d85b4f4a85cde4a",
+  "bytes": 15528,
+  "requestId": "ZdhhOpTcsBJUeW5vzvsf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3bdc362c1d8f68dfc71c6eacfe3d392e27cf28318f29568254231687ddcb0ed",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

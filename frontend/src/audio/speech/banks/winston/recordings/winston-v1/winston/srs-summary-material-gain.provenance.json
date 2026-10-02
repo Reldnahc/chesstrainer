@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "Over the saved line, the side that made this move comes out ahead in material, measured from where the line began."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f81aee84b53e04314ba2f8389649bf7a8c5fab1968912ddf5b18b1f4afa0471",
+  "recordedAt": "2026-10-02T02:29:23.288Z",
+  "sha256": "9f38e6e0f3cf726803f685c664d04f33edb319d18746dfb707bf37fb34e79165",
+  "bytes": 21473,
+  "requestId": "WuzJ7fSnUbwT0YcDbrae",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a42eae81ed56475c3343cbd999adf8eb9bafdb6b4258aa0c1870584eeaa47fd",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

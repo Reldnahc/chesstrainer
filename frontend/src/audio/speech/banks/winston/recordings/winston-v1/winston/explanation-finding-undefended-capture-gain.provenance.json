@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "An undefended piece is captured, and the example shows a net material gain for the side that took it."
+    },
+    "takeId": null
+  },
+  "requestHash": "073788dda4bdcd2a839d7efafeba5f2014cb5e598bd40781971d0b814493c6f0",
+  "recordedAt": "2026-10-02T02:30:20.317Z",
+  "sha256": "08ffbb44861c4b387f675061f18735ec7980f0e5ff7fd56e9567386bf808ee13",
+  "bytes": 19198,
+  "requestId": "OMJFoOvOOnjfy2uvoWTm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd46886a97c259422bb9680c00d3d5645bd07520b600424e1ac90209065e831c",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

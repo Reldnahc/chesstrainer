@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-played-natural-strong",
+      "label": "Combo tactic removing defender played natural strong",
+      "text": "One of the supports gets taken away. This natural move captures a defender, so whatever it guarded loses that protection. Strong to the engine, which has one move it prefers."
+    },
+    "takeId": null
+  },
+  "requestHash": "c0d3be432521ba01b7131c1d544b11e0cd320175f858cbdf36f3967e06e85eb9",
+  "recordedAt": "2026-10-02T02:46:50.198Z",
+  "sha256": "bb0da0fba397805c85bcc02e28cca5ec564ddffa57acf079236dce409a1e3d9c",
+  "bytes": 36883,
+  "requestId": "X0ydqo6u3uXCpOQxl5vj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05b4536d43faae6a62f69de063888aaf4a2d5ffebbaa2b9476375dac0a613384",
+    "bytes": 190633
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-rook-semi-open-actual-natural-strong",
+      "label": "Combo positional rook semi open actual natural strong",
+      "text": "The rook's on a semi-open file now: enemy pawns ahead, none of its own. The human-move model expects the move, and the engine calls it strong, with another move at the top of its list."
+    },
+    "takeId": null
+  },
+  "requestHash": "7808c4810a6c4debd7f26e06810fb3d14bbaee7a4a5b1a071b5bb2bed8c55a03",
+  "recordedAt": "2026-10-02T02:35:14.896Z",
+  "sha256": "c0f53397b87ab6fa827cd2256e36be8020a4142b5ac7d798b3cd579d356cfd77",
+  "bytes": 35521,
+  "requestId": "ngjhvuDqW6ChNYmG5Bmt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f250d40dcefd55c82706a2a8f232b76f58457fc437f4bf19d4e19ec24d3a3559",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

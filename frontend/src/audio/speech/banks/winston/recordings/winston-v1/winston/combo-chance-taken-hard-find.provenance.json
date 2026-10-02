@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-chance-taken-hard-find",
+      "label": "Combo chance taken hard find",
+      "text": "The opponent's last move left an opportunity, and this takes it with the engine's best move. That took some finding, by the human-move model's reckoning; a chance well used."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ecc141c88290fd46ef80ec20c5f1bc48a1f0660b807ec3eb6aac3c61ac837f8",
+  "recordedAt": "2026-10-02T02:38:05.412Z",
+  "sha256": "b3c295f19d2e0629b199f89abc7d2688d7a6b9a4262118a2362db9c48b57e864",
+  "bytes": 33272,
+  "requestId": "LBrANQ1Rt2hYsiPrJ85D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1f46e839e7477c47790b97fedc218eb6b47f56a685f52f4915da4ca2a3fce01",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

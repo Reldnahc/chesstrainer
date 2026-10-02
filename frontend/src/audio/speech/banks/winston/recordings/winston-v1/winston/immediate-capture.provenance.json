@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "There's a capture for the other side straight away. Look at that reply first and see what it takes."
+    },
+    "takeId": null
+  },
+  "requestHash": "043d28a27a67a3e88bd5dd54bf58460899d562c35734537fb6f2fe9ffab1d495",
+  "recordedAt": "2026-10-02T02:28:26.107Z",
+  "sha256": "0520b6ebef6f874567e2fad2ebb921fe7ee2eb6d22ca44e24a4cd0ed78717353",
+  "bytes": 17990,
+  "requestId": "g2y7I6UxpKXec3gyePdj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d731dd53f0befa7d11982b4ccb78d84d6a281ce52fe943e68a797497a6a25c2e",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-passed-actual-natural-best",
+      "label": "Combo positional passed actual natural best",
+      "text": "This leaves a passed pawn, clear of enemy pawns ahead on its own file and the neighboring ones. It's the sort of move the human-move model predicts, and the engine has it as best. Follow that pawn from here."
+    },
+    "takeId": null
+  },
+  "requestHash": "08654c0fa82bcc5d12ce2b2744a5d3650c76fe63109053fe032f093e10db0b9e",
+  "recordedAt": "2026-10-02T02:35:22.436Z",
+  "sha256": "3aa59a3552682baf13a02f41edd6fd6bf91d42589f88491285151d6d5b971879",
+  "bytes": 39227,
+  "requestId": "SRpuire5FItumcZ57nVM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de0fbcbfbc69b78203105566e7c16c9eb67e0a57ad9a36f08d5b5cc311059c21",
+    "bytes": 203172
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

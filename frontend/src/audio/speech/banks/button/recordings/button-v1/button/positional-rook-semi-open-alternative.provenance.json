@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "Another move would have set a rook on a semi-open file, clear of its own pawns, with enemy pawns still on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7172bba6cfb71c110c49275e07988c0d92949665ea370107c59613f217da20f4",
+  "recordedAt": "2026-10-02T02:41:33.186Z",
+  "sha256": "c8733ab866b2760ca59d086863ac7eb21840c52523f64aae578733fa2cc70a2b",
+  "bytes": 22142,
+  "requestId": "JsfLmY0OlUxvP77FxCD9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d50752c12cd02f99b04ab787a95ce2541b3bc9b56540aca761cc2a813af9fac",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

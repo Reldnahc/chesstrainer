@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-7-hard-find",
+      "label": "Combo book opening follow 7 hard find",
+      "text": "This one's from the book too, and it's the engine's best. The human-move model and the alternatives suggest it was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "57de7a920d840032de825e40104f8b4c4552ffed4676f01d316c5dc63d5c5475",
+  "recordedAt": "2026-10-02T02:53:26.796Z",
+  "sha256": "ec0055fdd4416c63f21b0a85d2e5050468b425014fe4fb84f408c5fca0fdfb56",
+  "bytes": 26683,
+  "requestId": "Ji9YVj0OMo3ZIioSVEHz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "900416bf8baee36d0ce5c5d86e773c346f4e0a0aa953069d513bc631fc645e87",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

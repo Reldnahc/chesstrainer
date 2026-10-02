@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "human-hard-defense-missed",
+      "label": "Human hard defense missed",
+      "text": "Only one of the moves we checked kept the position playable, and as the human-move model has it, that defense took some finding. Go back to it and play it through."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9eec7f1d9d945e5edb47deb19680bc3932c5167fd5ed30c8a3e2f1507e3c19e",
+  "recordedAt": "2026-10-02T02:28:39.732Z",
+  "sha256": "2b7306ea89df6298f0311bbb5007f70eafe3932307608543549856d03e31c3a7",
+  "bytes": 30207,
+  "requestId": "8QWeqmXxt7fq3ndYfTzx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "181e80801cd1cfe927b76f24988dda8f36dca0ab678d095b9ce2c80bc36f21b7",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

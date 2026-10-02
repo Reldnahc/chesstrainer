@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-missed",
+      "label": "Tactic deflection missed",
+      "text": "A different move could've drawn a defender off its post, and this move lets that deflection pass. Start with what the defender was covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e5c2e43fd8d178149d4d77fa8316f52baa9c2a86c40a4c727b835d8e64661d1",
+  "recordedAt": "2026-10-02T02:23:53.374Z",
+  "sha256": "9016576b8a822f649c7b385015e2e9cb0a36e486d6810b4c338c822f587f7ccb",
+  "bytes": 25644,
+  "requestId": "yfamSu9pjztUdcxjefue",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0006876bf92a707c58a1399184df873dfa061fa334ed0907a536d0f92a55a56",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

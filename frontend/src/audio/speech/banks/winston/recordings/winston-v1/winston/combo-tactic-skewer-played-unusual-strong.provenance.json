@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-skewer-played-unusual-strong",
+      "label": "Combo tactic skewer played unusual strong",
+      "text": "A skewer's the idea, with the front piece stepping aside and the one behind it left exposed. Not a move the human-move model would predict, but a strong one in the engine's search. Run down the line past the front piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf4e30124bc489d1190333a76bec5dabdb3a3691a073388619097b18f800b3b3",
+  "recordedAt": "2026-10-02T02:32:40.503Z",
+  "sha256": "81427ae380c8223bbfd23a165473c66a9ae975d96616126ea8c18f4d0dcb6823",
+  "bytes": 39998,
+  "requestId": "UchpHtRcxRmUoW71ve41",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a653f8a954cdc0c8b53778b6668b0e1c81ff29bed58f279eec026c91b6001e62",
+    "bytes": 208605
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

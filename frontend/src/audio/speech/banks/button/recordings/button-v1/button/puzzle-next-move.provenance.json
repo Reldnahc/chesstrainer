@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "puzzle-next-move",
+      "label": "Puzzle next move",
+      "text": "That move fits the puzzle. Keep going; the next one is yours."
+    },
+    "takeId": null
+  },
+  "requestHash": "bde8a0409c110319b59d8ef31ef045ad9e3baed9f0e8e3b5f35fe3880fe045b7",
+  "recordedAt": "2026-10-02T02:44:49.340Z",
+  "sha256": "e40bd31fc036997413bd4c18dd8d51d1931bf9700087d33838bc2505fff138e5",
+  "bytes": 14359,
+  "requestId": "ryyTgCjubk89X8ptHhND",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed61c0a461293297860cffa6efc8b3725d937c8cead41cc14719b4ab226d3a66",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

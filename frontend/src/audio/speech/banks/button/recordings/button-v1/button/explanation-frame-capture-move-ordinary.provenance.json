@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "A capture. One piece is taken here."
+    },
+    "takeId": null
+  },
+  "requestHash": "179e9a85d43f0dad59be6f769c10e4a71ed9cf711baa07f61a4d07b36af6eeb5",
+  "recordedAt": "2026-10-02T02:43:25.902Z",
+  "sha256": "7ace972aa2e4ab51c17f180d9aff60ae55ace0461a4c71ff096c506f369deac3",
+  "bytes": 10304,
+  "requestId": "y2gizTAvKuSYgpX15sOd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45b6aad362f95796783f581c17edf4c54dcff535ac21d94df04f99ba276ae050",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

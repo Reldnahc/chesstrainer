@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "With this capture, a bishop pair's gone. The side that lost the bishop is left without one for each square color."
+    },
+    "takeId": null
+  },
+  "requestHash": "e656fc9a16816b47458d7285fc3e21ab58c4e8dcd9e4bb011ee25075dbf84dbe",
+  "recordedAt": "2026-10-02T02:24:34.617Z",
+  "sha256": "c3a7e38829665eacaf3a766d6637921c16f29eb1294dae6f2cb31d6810b46a78",
+  "bytes": 21881,
+  "requestId": "81ihoXlzNDPguh8ja2Ix",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32f5f7df2aba8b84ae31125ccd5f49bfcda552d0303c016b65129918441bcdef",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

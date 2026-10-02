@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "By the end of the saved line, the side that played this move has gained material compared with where it started."
+    },
+    "takeId": null
+  },
+  "requestHash": "07b0c9e5b0521afa7cc65b69d857f8bf365f633c0df5ceee5e4ca3d2efa2b1a7",
+  "recordedAt": "2026-10-02T02:43:04.320Z",
+  "sha256": "3f4c839694fad1e3bc7c70fa9dc4b9e5025b0d7df95a45e468ee543251e5fb96",
+  "bytes": 20524,
+  "requestId": "bmA4DTqzh6JApSsRbDme",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f5070ae25b3c2e034fad5355a73a85d37b93e87051e1ef9af056300cf57c92d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

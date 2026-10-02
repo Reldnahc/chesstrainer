@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-isolated-actual-natural-strong",
+      "label": "Combo positional isolated actual natural strong",
+      "text": "An isolated pawn's the result, with no friendly pawn on either neighboring file. The human-move model would predict the move, and the engine judges it strong, though it would pick another."
+    },
+    "takeId": null
+  },
+  "requestHash": "91335c22b4cf45394d2b5fbd0dff2c58e5515d77051b7d26c0a48cd4d54ff80c",
+  "recordedAt": "2026-10-02T02:35:44.212Z",
+  "sha256": "e2990283291a0fbb686a47a4288db809e807d93d6f7b9bc4c88a80f986c7611f",
+  "bytes": 34472,
+  "requestId": "7toKmq2VxZOe8qYpXCUP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c25c37ad24e0b81e0550efe30c138482a0c02dc272d14663d583ac1fecba4283",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-deflection-missed-hard-defense-missed",
+      "label": "Combo tactic deflection missed hard defense missed",
+      "text": "The only playable move we found used a deflection, drawing a defender off its post. This one went elsewhere, and the human-move model reckons that deflection took some finding. Find the defender it would've pulled away."
+    },
+    "takeId": null
+  },
+  "requestHash": "1be0e07e0bed98ef835bbdb51e7d056355b64168fbbdad0df28030bf0315a11f",
+  "recordedAt": "2026-10-02T02:34:29.889Z",
+  "sha256": "1efa7c6e16660bac7ff11c522b29d16a4d75e42546255e51c72219472e1b1135",
+  "bytes": 39776,
+  "requestId": "kuCWpfTJwTCa2LzkmEUU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dcd063eb2898916828ece93956a045026ea16a31ab41e955b80490b83fdf1af2",
+    "bytes": 205679
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

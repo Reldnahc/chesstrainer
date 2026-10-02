@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "So there's a fork on offer for them now, one of their pieces able to reach several targets together. Find that piece first, then count what it could hit."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd3137d076a4ca3efe485f98629dd16c91f3f33b20026abe19c7445417bef6ec",
+  "recordedAt": "2026-10-02T02:23:04.690Z",
+  "sha256": "29dd1a4506704179c1e2c3c61679a41c62c69ce85d0f29fb36dc5713f7b4f56f",
+  "bytes": 28122,
+  "requestId": "dxj5N59kFIB4bYygnYG3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26c8261b5f49d9ef3e3d43392159376f91bf850366636ddd57f75fdd98194d77",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

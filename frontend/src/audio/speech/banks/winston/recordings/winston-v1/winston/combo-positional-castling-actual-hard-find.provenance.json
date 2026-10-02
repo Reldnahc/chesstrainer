@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-castling-actual-hard-find",
+      "label": "Combo positional castling actual hard find",
+      "text": "There we are. King and rook move together as the king castles. It's the engine's best, and in this position the human-move model and the alternatives point to a hard find."
+    },
+    "takeId": null
+  },
+  "requestHash": "52ffe3c8439960f281f7e570fc4b909155caea18b1e79634c77fc3d66662d210",
+  "recordedAt": "2026-10-02T02:36:11.714Z",
+  "sha256": "8801879e6e2a8116ee579b74fec51052ba108b585d6ed70dfd16d143f6511612",
+  "bytes": 34031,
+  "requestId": "miCSVoK6w6mN4prK0j54",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d39773a4f82fa1fa643ed3eb348ace2f1b85ac770a12d8285ecc35874ff0abec",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

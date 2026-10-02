@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Another move would have walked the passed pawn a step further forward. It's worth seeing where it could have stood."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff9e5e63a7a9e3b7aa2572449722796b75d680ddd0ac6f895f27bbd964ca7c6e",
+  "recordedAt": "2026-10-02T02:41:40.753Z",
+  "sha256": "a05ed3b05e77af261dbbcb9cbca0ed7758f00d7cd1003bfdd1a4015a76456cb2",
+  "bytes": 19906,
+  "requestId": "ho5XnWCJCDiXZcxNMF8V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6d0a8a63620109b3fd0bbe2386d65cde65c12867a389b8e8c9c82a8ae04f599",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

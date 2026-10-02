@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-recovery-assisted-unusual-strong",
+      "label": "Combo recovery assisted unusual strong",
+      "text": "The other side's errors opened a way back, and this takes it: the position's playable again. Well out of the way for the human-move model, and strong by the engine's search. Look back at where the other side slipped."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd468541a4a2683a24212af7cf31abdfd6586fd51d3a827f0b2a8e0f63bec9c5",
+  "recordedAt": "2026-10-02T02:37:58.359Z",
+  "sha256": "332661d7e7791c709855616bf58a064d345e292a4d2a9ccba28c25eb06003e61",
+  "bytes": 37643,
+  "requestId": "MT5hPE7hUvZLQ5GD9QvR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc329a67dde663e57cbd85b1a62b07eeddaa7ea7603aaeea85109041a37fdee9",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

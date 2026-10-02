@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "When did the position start to sag? Not in one move. This is one of several little concessions that have worn it down together."
+    },
+    "takeId": null
+  },
+  "requestHash": "01457545949e2e37b5e665d419dcd1d7ff4d1ffc7c4f049073821cd15cb9df42",
+  "recordedAt": "2026-10-02T02:42:49.438Z",
+  "sha256": "056aff8400a27aae9b6c3cb40c26f50646cc605c14733281c454b5b9f8fdac71",
+  "bytes": 24777,
+  "requestId": "jFYZ72DL56AvwOhdCbhC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7be0ef53c19e94c2056bcf19fa29765d5fad9e4963349717afde535679165b6",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

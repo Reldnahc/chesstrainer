@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-discovered-attack-played-natural-strong",
+      "label": "Combo tactic discovered attack played natural strong",
+      "text": "A blocker steps out of the way here, opening a discovered attack. The human-move model expects it, and the engine calls it strong, though another move ranks higher for it. Check which line opens behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e731a8a275b6142f33a3fb1f790a0e3fe8e7ae73f6f43c77beb58016a043952",
+  "recordedAt": "2026-10-02T02:33:45.340Z",
+  "sha256": "edf5073777076b910c5790d943d9e30e1fb45bf0d4fa0dbdaf3f5f1f42622aa7",
+  "bytes": 38610,
+  "requestId": "G6H8OcPlVqIB6wlxCvw6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fa8941f6c43593a682bab05e54111db73b0476b567f986cf4791f1cac631568",
+    "bytes": 200664
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

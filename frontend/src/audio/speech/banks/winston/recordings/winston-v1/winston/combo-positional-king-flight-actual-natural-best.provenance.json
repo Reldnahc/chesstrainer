@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-king-flight-actual-natural-best",
+      "label": "Combo positional king flight actual natural best",
+      "text": "The king gains a square it can legally step to. It's a likely move, as the human-move model sees it, and the engine puts it first."
+    },
+    "takeId": null
+  },
+  "requestHash": "e22e79c5ceed3b54f8e78ee60060a6d687650c8f66d2738664269f19842a8b9c",
+  "recordedAt": "2026-10-02T02:36:07.641Z",
+  "sha256": "832b98633d869da27d0c39b9fcb78692a188e07063dac2e04613b4ed78f9e03d",
+  "bytes": 25131,
+  "requestId": "gvndyoSmAjewXyrtc9n6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5194023dc6c61fbf14557e74d90677e8c32fac828841b48270fd507770bacd7d",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

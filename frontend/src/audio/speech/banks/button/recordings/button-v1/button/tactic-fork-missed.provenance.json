@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-fork-missed",
+      "label": "Tactic fork missed",
+      "text": "Another move had a fork in it, one piece reaching several targets together. This move walks past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c89c57911582fe960421501ce99029b551cf4a319d164c7ae325a6350743f6ab",
+  "recordedAt": "2026-10-02T02:40:30.328Z",
+  "sha256": "f941087ec870e883dbd8aaf50bc4afd9b3c7f72f9edd95b0fbedf62556cedacc",
+  "bytes": 22550,
+  "requestId": "niQIvMxJsbpJIie8mVW5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d43dc259d2987a3cbc6a4cfb5d2c20091c8fa60766981dad0d1e7378faf5c9fe",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

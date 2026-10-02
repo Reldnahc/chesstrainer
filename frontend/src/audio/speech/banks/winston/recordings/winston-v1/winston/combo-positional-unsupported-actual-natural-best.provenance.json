@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-unsupported-actual-natural-best",
+      "label": "Combo positional unsupported actual natural best",
+      "text": "Now then, the engine's best move here leaves a piece without a defender, and the human-move model expects it. A missing defender, by itself, doesn't mean the piece can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "829f4e0dca91e7f59af2ed630068557209ebb83a4f020274de2e1588b6336d91",
+  "recordedAt": "2026-10-02T02:35:59.313Z",
+  "sha256": "894f171bfb5b661addfe8c1c5a5502343475d78066d9d8a180fe6bce3f6cc8be",
+  "bytes": 33281,
+  "requestId": "rd0PoC1KmHmqN4VVuT4k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31a67c94d20172da97f558a9bd961977e516a91199e4c7472caaf2fe879b7af0",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

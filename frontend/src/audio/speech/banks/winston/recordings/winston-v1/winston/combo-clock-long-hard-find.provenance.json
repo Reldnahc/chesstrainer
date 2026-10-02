@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-clock-long-hard-find",
+      "label": "Combo clock long hard find",
+      "text": "There, that time was well spent. A good deal of it went into this move, and it landed on the engine's best. The human-move model puts it among the hard ones."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ea8af06523c1f1bf06d37d9dda446de54a90632f51bf04f39cb02f2788caa49",
+  "recordedAt": "2026-10-02T02:37:17.846Z",
+  "sha256": "c6799d11eae0a1c2efd1ec52cae672e8b5adce22a951bc25ca2d2f70df96a049",
+  "bytes": 31170,
+  "requestId": "ShdF6jcNVAW5YAXMhVaQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3a031f0e68df54cabb1b757ac056ff22c6199f5ea78aef06485aa5aea28e026",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

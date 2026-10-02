@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "No simple tactical reason turns up in the saved line. Step through it and compare the replies; no positional explanation has been guessed at."
+    },
+    "takeId": null
+  },
+  "requestHash": "dde56b77478bb548d33906b49c239fdacf9da1fe5add05320b28cc30f3605b40",
+  "recordedAt": "2026-10-02T02:44:27.488Z",
+  "sha256": "d50a28bcf6e5f4e9941c052d4c89dbe2797353665eea05ead2726761b1ec053b",
+  "bytes": 29212,
+  "requestId": "zRiXFF67I0SmoQD4Yi3f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "08a200bce1e452530c5c6184ed5a452e2994763f2bf070abbf8e57739bfd931f",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

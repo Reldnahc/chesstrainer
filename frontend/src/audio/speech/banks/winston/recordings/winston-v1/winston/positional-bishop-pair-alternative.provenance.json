@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "A different move would've taken a bishop, leaving the other side without its pair."
+    },
+    "takeId": null
+  },
+  "requestHash": "8066152bb478d8167946c9328e16de9f93747fc48d3e03649d854313bef855f8",
+  "recordedAt": "2026-10-02T02:24:35.721Z",
+  "sha256": "0bb3cc5e367f2460529fdfb42aac52a6c06e650d42454957817dc3f86738b46e",
+  "bytes": 14918,
+  "requestId": "FLkkAtSdVf05enra2RNu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44e098ba540a1d09ebf8af07e8c4fffee0b0d905d003bcdac29ce94503ffcc01",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

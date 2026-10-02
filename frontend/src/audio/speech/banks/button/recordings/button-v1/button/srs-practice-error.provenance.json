@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "srs-practice-error",
+      "label": "Srs practice error",
+      "text": "That attempt came back empty. Go back to the move and try once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "83a3396552a59fffc2885c13ce132089cff437bd85e2f221522a5e1c914c535e",
+  "recordedAt": "2026-10-02T02:43:00.293Z",
+  "sha256": "895d9424d0847282f55888f8d6be0e0c128d27c5c7702b4b937da6a6d47f5610",
+  "bytes": 15369,
+  "requestId": "HIY9WHwHqDyM5xuQss4Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a40241ccc0abaf2aa336152ad1cb3070c088585574f0e3a2cbb0e72b5ddb305",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

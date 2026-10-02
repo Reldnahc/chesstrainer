@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "This takes a piece, and it's checkmate as well, with nowhere left for the king to go."
+    },
+    "takeId": null
+  },
+  "requestHash": "affff0b4e5b76ff1ba93894fa89af299dc95534faf10c1bc4191bed477f9bd8c",
+  "recordedAt": "2026-10-02T02:29:47.735Z",
+  "sha256": "c7f14340491b058059be6c933e9ea8df403dc0a61ebfd5c608e9d27529ef9510",
+  "bytes": 17108,
+  "requestId": "uw4aKo5MRcaoWdBxU0g2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0636abcb72831f8f829042f0d5720142d658f745561bb1e3cea8e7b54ad8589",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

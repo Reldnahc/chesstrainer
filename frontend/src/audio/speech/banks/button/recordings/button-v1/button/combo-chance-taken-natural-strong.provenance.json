@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-chance-taken-natural-strong",
+      "label": "Combo chance taken natural strong",
+      "text": "This uses the chance the opponent's last move offered, with a move the human-move model reaches for easily. Strong to the engine, which ranks another move first."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f4587ffebb4e30d3e9ce11942533acb64081d4c3af05b27fc11b8545d675534",
+  "recordedAt": "2026-10-02T02:51:49.089Z",
+  "sha256": "fd995f7fe7d8e6c5b58367c051c1d2dfe31fe1f11e2ce96ab636a6899b997107",
+  "bytes": 32676,
+  "requestId": "L59Mtj5S78r6Tt6Yowxt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df670f104405e02ed61223f3cbca4490b80c5b07802c8e06d1bfdd26a4e4244d",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

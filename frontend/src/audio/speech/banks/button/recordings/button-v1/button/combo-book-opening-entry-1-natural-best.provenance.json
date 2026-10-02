@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-1-natural-best",
+      "label": "Combo book opening entry 1 natural best",
+      "text": "Funny how the familiar move and the best one turn out to be the same here. A book move that the human-move model finds natural, and the engine ranks it first."
+    },
+    "takeId": null
+  },
+  "requestHash": "c60e47e8244168e412a367f214cfda0a147089e6a7b53f7fc730892c1cc53cfe",
+  "recordedAt": "2026-10-02T02:52:16.454Z",
+  "sha256": "982bf394458d70498835ad74a79670c61c55fb3e8bbbb9ec8de57443f87313db",
+  "bytes": 31622,
+  "requestId": "p2hTGkwjCWwwUAzu2CYw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d5eb21ec69675f773f283b3ab10412497b78e4c8558e49e7a5c3b7acaadc12e",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

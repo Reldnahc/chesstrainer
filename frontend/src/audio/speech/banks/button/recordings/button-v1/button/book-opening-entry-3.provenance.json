@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "Book, this one, sitting on a recognized opening line."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc1aecde3d0628dd252cb8903e3342a9e42c218db1db31b420c4f4e9d2e775d1",
+  "recordedAt": "2026-10-02T02:44:58.009Z",
+  "sha256": "569a93b7652fe5a6c41ee8a79241bbd25f8412b0db13ae2dd293657c08ea3a13",
+  "bytes": 13042,
+  "requestId": "iIlzSVhlUm9oi9NWIUNf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6490e3b95c62e51e6e1f2c0e8f6b8182081c248c2d34b9ef83c084c3926fd5b6",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

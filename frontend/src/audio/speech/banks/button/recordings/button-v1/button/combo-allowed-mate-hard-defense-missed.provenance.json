@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-allowed-mate-hard-defense-missed",
+      "label": "Combo allowed mate hard defense missed",
+      "text": "Everything around the king comes loose after this. It lets the other side force checkmate. One move among those checked kept the position playable, and the human-move model suggests it was hard to find. We can go back to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "545cddc302f181051ee01b44834d70e9e2f09e0c48dd48dca20a099cd5c06f67",
+  "recordedAt": "2026-10-02T02:50:20.954Z",
+  "sha256": "3546928071661c0f77934f165d14565b7207e66628b10974bf075603eaf1088c",
+  "bytes": 43733,
+  "requestId": "CwOZnOOyWKTy0gu5CROf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c21d295476e37234110f7d6df7f1bf1217b0b248e7fdec1c8f1bb55d7b801bb",
+    "bytes": 227831
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

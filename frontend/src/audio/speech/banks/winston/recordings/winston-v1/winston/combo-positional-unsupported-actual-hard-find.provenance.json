@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-unsupported-actual-hard-find",
+      "label": "Combo positional unsupported actual hard find",
+      "text": "This leaves a piece undefended, which on its own doesn't mean it can be won. It's still the engine's best move, and the human-move model reckons it was a hard one to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "60e44f0bb0931312f4aa4f39201b117e515aec205b8addc2803760bf5b41ef50",
+  "recordedAt": "2026-10-02T02:35:54.675Z",
+  "sha256": "876c717f9fdeb2452f9582d7f9964aac034204b61bfe93f61935b559decf6819",
+  "bytes": 33188,
+  "requestId": "2h8gWnuXe7sWm3pg1VCR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8be857ad2ef7a14ccf097501fc0a2157aa29d5adb000c7cf1e0e0d8ff171ec81",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

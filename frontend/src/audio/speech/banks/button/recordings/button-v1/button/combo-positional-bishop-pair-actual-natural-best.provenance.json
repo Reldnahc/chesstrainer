@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-bishop-pair-actual-natural-best",
+      "label": "Combo positional bishop pair actual natural best",
+      "text": "One bishop gone, and its partner left to cover a single color. This capture breaks up the opposing bishop pair. It's natural to the human-move model and the engine's first pick."
+    },
+    "takeId": null
+  },
+  "requestHash": "94f9962b7afbb567d8fef798750c4dd85fa6eb1ffc1f2acb4351a29803b71ede",
+  "recordedAt": "2026-10-02T02:50:09.043Z",
+  "sha256": "eeaa1dac293b5c35db36895d2b420697d5c8aeea19e674616b1570efcfedb2a1",
+  "bytes": 35609,
+  "requestId": "jYSqp7A7Fjl81wGM725m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "811aaaf223529ce9e939028bce0231472308513ec3c897e6383201b928b81985",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

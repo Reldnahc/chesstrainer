@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-support-actual-natural-strong",
+      "label": "Combo positional support actual natural strong",
+      "text": "This adds a defender to a piece that had none. The human-move model has it as an ordinary choice, and the engine finds it strong, with a different first choice of its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1eea7b4a2578e4ab6ee34fdfe996561cd5fe1152624f077e332741789b366fe",
+  "recordedAt": "2026-10-02T02:35:52.578Z",
+  "sha256": "4115f23db87cac53f5bd9c2bf5a7ca768246c93f063dc601315c7ba4599c30cb",
+  "bytes": 31953,
+  "requestId": "0EWiaZEHRdMlJS4EYJey",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "79b5e32ce2136c69f0e8bdec0524f1822136feee611dba98c40d1e7014ad18ce",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

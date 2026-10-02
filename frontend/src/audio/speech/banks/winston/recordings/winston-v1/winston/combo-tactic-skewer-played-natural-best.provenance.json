@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-skewer-played-natural-best",
+      "label": "Combo tactic skewer played natural best",
+      "text": "There's a skewer here: move the front piece, and the one behind is exposed. It comes easily, going by the human-move model, and the engine puts it first. See what's standing behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "000952fb42d69469daa27f9591e6c7c4ed70e2858a3b871e483221a7a23ce570",
+  "recordedAt": "2026-10-02T02:32:42.591Z",
+  "sha256": "113269accd9ac2fe24114da4dcd5bf8b065303e3f2d2da7495cfbb1c50339fd6",
+  "bytes": 34939,
+  "requestId": "elBD9AyoH7NbydQFsg1f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a1ae5d10d38718284a51e5dff5499474654c53f58fa721600be9f0df980389f",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

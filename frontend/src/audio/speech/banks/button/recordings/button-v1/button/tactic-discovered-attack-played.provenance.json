@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played",
+      "label": "Tactic discovered attack played",
+      "text": "Sometimes the most interesting piece is the one that moves out of the way. One piece steps aside and uncovers an attack from another behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "bde4ca7a3e7ecc2a55211114060c2cca51004257e2186aef5fd6e409ed3123fe",
+  "recordedAt": "2026-10-02T02:40:58.681Z",
+  "sha256": "b309673090f24b399d5f8814696479376e79d991293a9ea9f0debd9783d1dce7",
+  "bytes": 28013,
+  "requestId": "AGBLahrwzrBge2eBY4sy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d11a63b9fb540b681661faadcd0ac2187ed355b4823945030110d3a0925f141",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

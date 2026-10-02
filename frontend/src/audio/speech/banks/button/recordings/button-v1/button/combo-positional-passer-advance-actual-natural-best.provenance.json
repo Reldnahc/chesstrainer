@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-passer-advance-actual-natural-best",
+      "label": "Combo positional passer advance actual natural best",
+      "text": "The pawn was already passed, and this carries it a step further. Natural to the human-move model, and the engine's top choice."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e2d4bb325ab9a334547e12406cd6ddc83cbfc221b1ae62b9c4d97e20a3fd273",
+  "recordedAt": "2026-10-02T02:49:20.514Z",
+  "sha256": "deefec8d7625c0e50c05433d4608f3097e3388709c0ac73addb6c0ab1aa8298a",
+  "bytes": 25625,
+  "requestId": "meRBF2S7yGOMxQgHyVRC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e3e12c01050d6e08713cf89206a14ddd2c12b417941d92b237942cfa9b6b93a",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

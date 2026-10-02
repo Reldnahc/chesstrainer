@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "One of their pieces is screening another along a line. This allows a discovered attack: the front piece moves aside and uncovers a threat from the one behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b55abee18b2bb1adefc8a8979099759fac5cd5fe6302c0d7f4bbc04a5ef6a58",
+  "recordedAt": "2026-10-02T02:41:00.559Z",
+  "sha256": "422a1d75ddedb2b1a87757d69f3aa79aa61665e38332a2aad540dde9d66e8f8c",
+  "bytes": 31437,
+  "requestId": "nYVM7GezZcA4spbXa7K4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69e8b5083f9d46946cce31a55000acc7ba0cf7fd622f7f645414ec811d86f268",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

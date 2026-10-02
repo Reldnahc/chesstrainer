@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "The engine hasn't left me enough to explain this position."
+    },
+    "takeId": null
+  },
+  "requestHash": "63f4fd3c1d6eb12945f0650e68f626c6093f85b92de4f1745135da7c18d3e129",
+  "recordedAt": "2026-10-02T02:44:50.961Z",
+  "sha256": "50a649c3d1927776f5da18e4cb55699befffcb0208ddc4b142d718edb62793d7",
+  "bytes": 11085,
+  "requestId": "96s6E6sO9Vhlg1MHd9YR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c18364b87c87c3da2fd31dc31f3347905b7d07641586e1a1c6d07b90c617b810",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

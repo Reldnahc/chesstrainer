@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-deflection-played-hard-find",
+      "label": "Combo tactic deflection played hard find",
+      "text": "Well found. A defender's pulled off its post, and what it covered is open: that's the deflection. The engine's best move, and a long way from obvious by the human-move model's reckoning."
+    },
+    "takeId": null
+  },
+  "requestHash": "90382c70481679fa0676891cfc930b57e795db0a2c530302db226768bcc69bb3",
+  "recordedAt": "2026-10-02T02:34:14.644Z",
+  "sha256": "a3ac6b18cbb9bed2e47d6b3a920ef26c66ef8ebf6792eceb2707ead994a04d7f",
+  "bytes": 36403,
+  "requestId": "8dUQoNTlrd0dXfbZfGxr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18b56b7f06327abfffa06cd8bd4ccacd94e26d1de1de63717721ac5b7450f2a1",
+    "bytes": 189379
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

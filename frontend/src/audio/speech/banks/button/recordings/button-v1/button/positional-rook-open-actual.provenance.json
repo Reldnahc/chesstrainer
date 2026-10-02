@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "A rook likes a clear lane. This one now sits on an open file, with no pawns of either color in its way."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c2955f68ab487816e5155aaa6dd27e1e4ad6da3fb9bd96aa3e1a903714a39b5",
+  "recordedAt": "2026-10-02T02:41:28.377Z",
+  "sha256": "fbfbb6dc32dd2726a59f769c3d79ea4dc42f4db4e7038b673f83d5af19ae4486",
+  "bytes": 23745,
+  "requestId": "uHDJWW5Iu9u39Y2mLshY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44b91477bf5a28efba255641b681be04db920a3a02615d6b166b08f0ca0f5f44",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

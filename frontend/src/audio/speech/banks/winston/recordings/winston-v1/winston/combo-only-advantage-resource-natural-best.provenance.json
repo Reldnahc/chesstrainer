@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-only-advantage-resource-natural-best",
+      "label": "Combo only advantage resource natural best",
+      "text": "The human-move model calls this move natural, and the engine puts it first. Nothing else we checked kept the advantage. One worth remembering."
+    },
+    "takeId": null
+  },
+  "requestHash": "a50ce77891270d8ab2c69bd02aaee688f132a12bb4e0159e54ef0132d85001a3",
+  "recordedAt": "2026-10-02T02:36:53.911Z",
+  "sha256": "0b718a05f5309e23b76951e12a5760a1c1049ca0f632366ef5c19fbf070a6eaf",
+  "bytes": 28511,
+  "requestId": "yv9SkVMVPzkKQAdwln8V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "baed846866013ac2eba1adc85e1bb2f11a7ecc283efdd5f95b3209512ed7e596",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-promotion-awareness-missed-natural-error",
+      "label": "Combo tactic promotion awareness missed natural error",
+      "text": "Another move would have sent a pawn toward the last rank and promotion. The move played comes naturally to the human-move model, but it lets that chance go."
+    },
+    "takeId": null
+  },
+  "requestHash": "698c41deed0360ef0c333fd0db1a71f714027eda481f03046ebff46146f9b2df",
+  "recordedAt": "2026-10-02T02:47:24.366Z",
+  "sha256": "9d114c272ece8305dc7eba45b254c6ce19272e78b73f049c0f95f52728d2c34f",
+  "bytes": 30245,
+  "requestId": "l7nixImSJTz3YvKGlTzL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0dad94983532608afae0e79e56e2271bcc154f51fbfe99765c2c077288f3a53",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

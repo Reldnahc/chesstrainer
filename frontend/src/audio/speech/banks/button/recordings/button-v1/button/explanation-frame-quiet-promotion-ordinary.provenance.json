@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "The pawn finishes its walk to the last rank and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "16a3aecc476825bbce2bfb55d2d4d49e0ff714e17d50d1c743b2313fd3ca014c",
+  "recordedAt": "2026-10-02T02:43:20.952Z",
+  "sha256": "e8c24c0bff6b28db51809cbc8c862e12173078b78013c77d9a43c0668c619099",
+  "bytes": 12929,
+  "requestId": "44k8Yu8QIk6ocbc9euYK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89290407c07be8a90e3d4d2fd60185122599e9a08f3f2bf1187dcc1a67224943",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

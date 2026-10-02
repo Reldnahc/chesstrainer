@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "This matches one of the saved answers. For this exercise, those saved answers decide what counts."
+    },
+    "takeId": null
+  },
+  "requestHash": "c540962f2eca5fb267d4f1c6c50ad5b64a49dfa82926b27e896fea930e091cc4",
+  "recordedAt": "2026-10-02T02:43:11.657Z",
+  "sha256": "18f85e3d27b84ab35deb7a5736d35e0de564a5d4acf91de7ecc9f63fa6289a63",
+  "bytes": 21741,
+  "requestId": "Z8q6JtWSWxH6OCiOyo8O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "583079420af2fded4d75467c731007601867eb9a22caef95852cb18a2fd42195",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

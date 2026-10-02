@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "draw",
+      "label": "Draw",
+      "text": "So the game ends level, in a draw. There may still be a decision or two worth going back to."
+    },
+    "takeId": null
+  },
+  "requestHash": "82a14e1cbc7af3a763db63ee911e1d0e73cf51be1b15c4c8a25278a1a7fe532f",
+  "recordedAt": "2026-10-02T02:29:15.751Z",
+  "sha256": "aab959c93c6748fce17f8cff16c81d56c6dbf5a19be3ae20dd560b6d448f023d",
+  "bytes": 19201,
+  "requestId": "nd9cxS7qgO3QO6gAnSM7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4164dc6aa5e805ad612375dda09c7f0a5f807f9f2ba4e3a53c51a4cbb4a07fba",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

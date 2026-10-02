@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-hanging-piece-allowed-hard-defense-missed",
+      "label": "Combo tactic hanging piece allowed hard defense missed",
+      "text": "A piece is left with nobody guarding it, and the other side can take it. One move among those checked kept the position playable, and this wasn't it; the human-move model suggests that move was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "7af2bcde279544089f924ccd57163a7999fb0505e264d02da749df3529ce7e0a",
+  "recordedAt": "2026-10-02T02:48:39.334Z",
+  "sha256": "2ffd60642d33feacb879aa90b9e61dacd60aeb5684c38378bbf8853e6c4a4eea",
+  "bytes": 40905,
+  "requestId": "ibgsKOsdp7kAn2ZNoGzW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "241d80ff3a346a88c8ddc6ef958582a6fd5b36e3d84948bc93fbafc0bd72c4d4",
+    "bytes": 212367
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

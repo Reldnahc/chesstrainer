@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "This one looks familiar. The same issue has shown up earlier in this game. Line those moments up; they share a warning."
+    },
+    "takeId": null
+  },
+  "requestHash": "82c709d8db75b4e4966a511ce40936a62578d8a3b5587102970865b9ea09459f",
+  "recordedAt": "2026-10-02T02:42:46.500Z",
+  "sha256": "c874d47c4a996d1d41a6517b9478b5dbdd01c6f67ffedb6043327093af866b50",
+  "bytes": 24708,
+  "requestId": "EpA3uYRFEpiGg7f0SgzS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7332023c26b260456e453fefd7fbe6502f589218ca41478b9627d40d7c706dd5",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "Take your time, there's no hurry. Work it through before you move."
+    },
+    "takeId": null
+  },
+  "requestHash": "87dde697e3d1eb969678ae9d32cd660ec2b3016a478b0cae056200995ce3e3ce",
+  "recordedAt": "2026-10-02T02:31:09.698Z",
+  "sha256": "1de75dca51c745eba118fbc3bd3f55ca2073ec447c89ec980d4486c50aea11bc",
+  "bytes": 13313,
+  "requestId": "KflFPUhXVBfs6DBehUnR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03a8a2e095ea9d1003253465453de7cc8503a35c0ab8feacbcdc9ca9ee6fd774",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

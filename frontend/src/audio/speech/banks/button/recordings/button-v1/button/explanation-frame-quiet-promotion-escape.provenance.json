@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "The pawn arrives on the last rank, promotes, and in doing so lifts its king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ea497d2172d2382750fe0f8bcd4ce56d587174d5c2d203c03ef774addb38002",
+  "recordedAt": "2026-10-02T02:43:25.206Z",
+  "sha256": "c23b0f07a25053f30ee0a027a0272cd48ec37102fcefc0a6267faab73d468c70",
+  "bytes": 20245,
+  "requestId": "tmlkbijocZpYdAhggZDa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7cdd902f3102248d576b237c4a560e350aaac8db6d2ed8196a3e43cf69c84d4f",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

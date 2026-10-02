@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, glance around for enemy pieces that nobody is guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "f993df2276b8835afe5217def93cb16e5f2b0799a05dd32846db9c366182cef6",
+  "recordedAt": "2026-10-02T02:44:07.615Z",
+  "sha256": "b64dc779b3081522d81bf4ca448e2be4c386723808716b34c26b9750296bba77",
+  "bytes": 17132,
+  "requestId": "B3CkJ75dbqSKCn2RjpDf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3542668216a185568d247a673df208ce896b8787fe6c16b919911e4316f30010",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

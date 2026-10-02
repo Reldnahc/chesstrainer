@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-pin-allowed-hard-defense-missed",
+      "label": "Combo tactic pin allowed hard defense missed",
+      "text": "A line toward the king is opening. This lets the other side pin a piece to its king. Only one move among those checked kept the position playable, and the human-move model rates it as hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2d4ccd1719bae1d9df1a4207a20a4b0dfa6bbdbbe95b02dedf61fa82a6488d6",
+  "recordedAt": "2026-10-02T02:46:17.098Z",
+  "sha256": "9bd4b58e9651d814d513e229e9173d1e3ef47bf96251fa2f7fc6c08e89e9d106",
+  "bytes": 40138,
+  "requestId": "y22TmrVB7tKqWBfNgHIo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d52c413ff3eaded124304d6603162f9755aa18b7c9b155fdb799d345853ec3f5",
+    "bytes": 207351
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

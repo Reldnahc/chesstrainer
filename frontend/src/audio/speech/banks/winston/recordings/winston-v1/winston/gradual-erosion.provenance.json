@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "This is one more small concession. None of them alone did all the damage, but together they've worn the position down. Look at the run of them, not only this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e467d2104c8289841d22fb4dc5678131245ff68cdbf04cf0612f40a8f39b00aa",
+  "recordedAt": "2026-10-02T02:29:07.958Z",
+  "sha256": "4ff1d3ed96a5c6ad1d46d20b330aa1b8737ed8220353471afcea85f8a909a14b",
+  "bytes": 32754,
+  "requestId": "y2pEPQPMTyn4ItC02qUT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9c481d2cbe5011793db2c3c7849609569af116b00abbed447acd3c617584859",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-recovery-assisted-hard-find",
+      "label": "Combo recovery assisted hard find",
+      "text": "Well now, after the setback, and with help from the other side's errors, the engine's best move makes the position playable again. The human-move model rates it a difficult find."
+    },
+    "takeId": null
+  },
+  "requestHash": "263d40d84d531e8646adb73721f7e4673f7e49d433bb42a103a6150fb9fa2bc1",
+  "recordedAt": "2026-10-02T02:37:55.872Z",
+  "sha256": "bf3236d8836ba060311afc2662e851351e0cf74e982a4c61f3c1d95890c0995f",
+  "bytes": 34228,
+  "requestId": "SHKWSUeub0XG9EjnFzyc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7894d3e94ab28b1108bb242d7e19b8408c8666f3b84f0a591209e56d3859636",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

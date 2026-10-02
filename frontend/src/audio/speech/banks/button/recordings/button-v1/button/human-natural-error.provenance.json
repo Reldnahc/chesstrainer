@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "human-natural-error",
+      "label": "Human natural error",
+      "text": "The kind of move a hand reaches for. The human-move model finds it natural, but the engine finds something stronger. Both things are true at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba30b1024e02135f609ac739f281bc9fa2748658160a3793148f96e87e5b9702",
+  "recordedAt": "2026-10-02T02:42:20.668Z",
+  "sha256": "8334a13f46fc6056603c991daa4572f0fcbc77a7c73c4aa3aa1b87b799c57157",
+  "bytes": 30451,
+  "requestId": "Do4Qo3nAxPw2Zq6j37Yw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d547a5bceed4c96192f3dd562dbf2fd4411436c4006ef2b6a045f338c88f799e",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

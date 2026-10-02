@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "This move isn't accepted for the exercise, and the moves shown don't give a clear tactical reason. Give the position one more steady look."
+    },
+    "takeId": null
+  },
+  "requestHash": "194832f5a0e63916100b0ff2cb0969aba9f624d873201024242071068071f983",
+  "recordedAt": "2026-10-02T02:29:29.760Z",
+  "sha256": "8d3e54e746952f45127140d84ad5937fb231d838a8b43abc77382dca4178a602",
+  "bytes": 26412,
+  "requestId": "ceRfY9oPtzS0bPKj5LsN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bc3eb94b832fd86a337952a566b767662caf95a37f54afcd6fc9d8bd533539b",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

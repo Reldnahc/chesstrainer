@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "Here the game moves beyond the line our opening book knows. Well now, from this point on it's the board itself we read, one move at a time."
+    },
+    "takeId": null
+  },
+  "requestHash": "029c247ea1e257968167f70648647209774a988e6fe1c760f53e95377ddf01f8",
+  "recordedAt": "2026-10-02T02:28:54.354Z",
+  "sha256": "95c4b6b446e1f6c74407a1e7660f0e8dbf4fd56a5f170085e408a559a5f45c18",
+  "bytes": 29105,
+  "requestId": "18l1SFLtElo2fnabIoBj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "657c551d43b7a0f401e310bca461799d19569e5a389e727c28c9a14605b88462",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

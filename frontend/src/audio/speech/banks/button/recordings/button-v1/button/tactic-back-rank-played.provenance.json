@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "A king can be walled in by its own pieces. That's the pattern here: a back-rank mate, with nowhere for the king to step."
+    },
+    "takeId": null
+  },
+  "requestHash": "db52b1c5245acd797be3eda573bd3d749ce7bd2d20d2edc04ff55a8f4d4640bb",
+  "recordedAt": "2026-10-02T02:40:48.701Z",
+  "sha256": "dc0439e23f751ef2a677e88bf1288614d3da79d086f23baa53cbf2ddaa19e07c",
+  "bytes": 25889,
+  "requestId": "1NQrR3V5ytTCPW938kH3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eba7a6b5e6b170e0ee467eea152735c504b7949a677fc1abf95446657cb1221d",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

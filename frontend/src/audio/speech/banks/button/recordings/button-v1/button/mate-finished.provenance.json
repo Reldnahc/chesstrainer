@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate. The king has no legal escape left, and the attack has reached its end."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ba9f14f1a65a5253d754d34636be31422f4604c1f2c9be6ce6972fdd00ffaa9",
+  "recordedAt": "2026-10-02T02:42:54.178Z",
+  "sha256": "d269134be72ffb30546ce6f67812f2a441daf93243a21598db1c03f21c0ee1ce",
+  "bytes": 18076,
+  "requestId": "BSyWhmSOZETmvE8kp5m8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8731660980242d7791279afc08e0f8d4ad9bee8113d94907d0c14518f96d048",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

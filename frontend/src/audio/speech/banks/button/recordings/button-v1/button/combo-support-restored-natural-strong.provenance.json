@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-support-restored-natural-strong",
+      "label": "Combo support restored natural strong",
+      "text": "The once-unguarded piece has someone beside it again. The move is natural to the human-move model and strong, though the engine prefers another."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7e1c29607dab50c9d1b84a2a66853f76d68368d52c47a03f5371dd9fa0a05d4",
+  "recordedAt": "2026-10-02T02:52:00.570Z",
+  "sha256": "c0abaeccac3b2bd9c335284c222daca0708167850136dc053e14f6b7654383cc",
+  "bytes": 28647,
+  "requestId": "d7PKZDWuAAWQxvmBo5wn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4683bc3943f15a0e1fa711d0d158b44ca83ccae1ab9a8d40f9987f53155419a9",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

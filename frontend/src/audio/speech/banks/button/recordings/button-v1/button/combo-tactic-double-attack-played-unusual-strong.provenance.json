@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-double-attack-played-unusual-strong",
+      "label": "Combo tactic double attack played unusual strong",
+      "text": "Unusual to the human-move model, and strong to the engine. The move holds a double attack, two threats made at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "44be4a61a1898112af06647c8d9698310687fd7dd17688284a083f664239c73a",
+  "recordedAt": "2026-10-02T02:47:49.829Z",
+  "sha256": "51ad427bb54db4062ad2fc9855c7d3f7cdbddf9fbcd5e5b43d0698308e24c2f2",
+  "bytes": 26851,
+  "requestId": "Mk2jw1BUr1aBouTLSyRC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8defdea82aa95cb8eb17b33dfbc838bfd86f1a8357f6247a26ad6313f6f302c5",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

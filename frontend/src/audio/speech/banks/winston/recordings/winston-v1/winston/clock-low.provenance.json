@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "clock-low",
+      "label": "Clock low",
+      "text": "There was very little time on the clock before this move. Worth bearing in mind when you look back at it."
+    },
+    "takeId": null
+  },
+  "requestHash": "917cc421438414a2c98e996123a8ca0465dfdca3ce895fa44f2a5430612546e9",
+  "recordedAt": "2026-10-02T02:28:48.641Z",
+  "sha256": "580e806d21573908e5f605bac8f36b63930da48528ad406362293befff86dfbb",
+  "bytes": 18060,
+  "requestId": "7Gdhv1DgO8i5z8kR7SuI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "155ebd0440542c778b62d7a9f3b29fd37410dc2121e8bb7ca96dc57ab6a15d9a",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

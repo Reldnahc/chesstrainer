@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "Hm, two worries could arrive together. This gives the other side a chance at a double attack, two threats made with one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "eae1e14af461da6139d92e4eda36f57cfab46466d8d1b9371fb47ace6a91cca1",
+  "recordedAt": "2026-10-02T02:41:07.384Z",
+  "sha256": "9f7a3973131111c5b27823712bc3504236e712e70bdf31ff99bfd589ebbfbcc3",
+  "bytes": 26784,
+  "requestId": "u4S9m1jsL9WpseDgSfX9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fa222fb988b2341e7d351a86a8efdc36072644ce968a77fd47aa75f4e6e76ed",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "The opening book has room for this move. It belongs to a known line."
+    },
+    "takeId": null
+  },
+  "requestHash": "f26109ab4f00d62110d2be72b576e1d4051545f602fd8485b322922069192c63",
+  "recordedAt": "2026-10-02T02:44:57.159Z",
+  "sha256": "c3cb5ba796d6f60a18b68585b2911703b634296b22bb6200b8eeffaddc81b252",
+  "bytes": 15182,
+  "requestId": "zLf8uaxyGqIEHHbyjWQ8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4da0d0c1f3ba420205762ccc6e2428c63f726a77e363b86e069aff049a2738a5",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

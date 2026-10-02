@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-actual",
+      "label": "Positional support actual",
+      "text": "A small connection forms. A piece that had no defender now has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b28b8c5bcbf758f154290798bdf973ba2b3c92ac41fe952529c343f914f2c34",
+  "recordedAt": "2026-10-02T02:41:45.010Z",
+  "sha256": "887fb7332142368b699299fd0ece7af83f38ed8d3d612fd10f7e4657a4bc3296",
+  "bytes": 16382,
+  "requestId": "9Z9B5oKRM3t0F7Fdw7XD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35bddb85ecbe6dcd02a3bf3d64359cc1a2a09682685d7916cf164bf257019805",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

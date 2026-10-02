@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-double-attack-played-hard-find",
+      "label": "Combo tactic double attack played hard find",
+      "text": "Two threats growing from one stem. That's a double attack here, the engine's best move, and a difficult one to find by the human-move model and the alternatives."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9b12191ca2f02b8b9aa3885d4a71874f676dfa4c8eceef58e685dda8c0bebfb",
+  "recordedAt": "2026-10-02T02:47:48.019Z",
+  "sha256": "214910a1e600d2a342e43c3faa548539f29fca7e919112e56f005dd826dd7ae8",
+  "bytes": 32238,
+  "requestId": "9UnwQStmsXXTmCpMYrtf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b5aea30b3b7b9e8702b5c701e2ecf48350193157aadfedd8dbd6f0ac1d0475b",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

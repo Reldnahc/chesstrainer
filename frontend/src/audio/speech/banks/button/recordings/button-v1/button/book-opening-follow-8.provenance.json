@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "Book again. Recognized, which is a different thing from right."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ca3ad567b70a4b681101721949851d5b07d95afc8c0724ec886776e18ff26ac",
+  "recordedAt": "2026-10-02T02:45:03.880Z",
+  "sha256": "3ff5a2b7a2453cb2ecdbe0ce5c78e64ec143ded1df03c872499f48bc84a13092",
+  "bytes": 14597,
+  "requestId": "H3IqgqTyOVaMK45g0lXX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ef0a2794c70a72b27870035aae1d67ece12d034a08626163e9e2a810a620f97",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

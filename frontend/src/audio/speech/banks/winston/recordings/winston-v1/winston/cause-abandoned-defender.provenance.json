@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "That's a piece without its only real defender, then. This move takes the guard away, and the other side can now capture what it was guarding. Before a defender moves, check what it was looking after."
+    },
+    "takeId": null
+  },
+  "requestHash": "28f7ca86533e803a8b0a3275f9cbd6d405aaba687cf6269f23dac33e12f50fde",
+  "recordedAt": "2026-10-02T02:24:00.916Z",
+  "sha256": "9eac2ec6f787921853fd1982758d4be8b7d1314eb88cc3245703c6fba73c6ee9",
+  "bytes": 35309,
+  "requestId": "PXnj9ZglH3bla54J3P84",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bd3de269c6a4b309852df65c42637485bdf86d15f2ba3ee374ba39d8369c159",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

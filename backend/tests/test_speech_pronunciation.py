@@ -40,6 +40,36 @@ def test_regular_suffixes_retain_dictionary_base_and_record_the_generic_rule(
     pronunciation.validate(pronunciation.evidence([result]), f"a {word} matters")
 
 
+@pytest.mark.parametrize(
+    ("word", "dictionary", "base", "rule", "phones"),
+    [
+        ("castled", {"castle": "K AE S AH L"}, "castle", "past-ed", "K AE S AH L D"),
+        ("reloaded", {"reload": "R IY L OW D"}, "reload", "past-ed", "R IY L OW D IH D"),
+        ("hoped", {"hope": "HH OW P", "hop": "HH AA P"}, "hope", "past-ed", "HH OW P T"),
+        ("reloading", {"reload": "R IY L OW D"}, "reload", "progressive-ing", "R IY L OW D IH NG"),
+        ("coding", {"code": "K OW D", "cod": "K AA D"}, "code", "progressive-ing", "K OW D IH NG"),
+        ("castling", {"castle": "K AE S AH L"}, "castle", "progressive-ing", "K AE S L IH NG"),
+    ],
+)
+def test_regular_past_and_progressive_restore_silent_e_before_bare_stems(
+    word, dictionary, base, rule, phones
+):
+    result = pronunciation.pronunciation(word, dictionary.get)
+
+    assert (result["base"], result["rule"], result["phones"]) == (base, rule, phones.split())
+    pronunciation.validate(pronunciation.evidence([result]), f"a {word} matters")
+
+
+def test_earlier_revision_evidence_stays_valid_but_cannot_claim_newer_rules():
+    cats = pronunciation.pronunciation("cats", {"cat": "K AE T"}.get)
+    castled = pronunciation.pronunciation("castled", {"castle": "K AE S AH L"}.get)
+    old = {**pronunciation.evidence([cats]), "revision": "regular-english-morphology-v1"}
+
+    pronunciation.validate(old, "cats castled")
+    with pytest.raises(ValueError, match="newer than its revision"):
+        pronunciation.validate({**old, "derivations": [castled]}, "cats castled")
+
+
 def test_negative_prefix_retains_the_complete_base_pronunciation():
     assert pronunciation.pronunciation("unhappy", {"happy": "HH AE P IY"}.get) == {
         "word": "unhappy",
@@ -62,7 +92,9 @@ def test_each_sibilant_ending_inserts_a_vowel_before_possessive_suffix(ending):
     assert result["phones"][-2:] == ["IH", "Z"]
 
 
-@pytest.mark.parametrize("word", ["cats", "boss's", "unhappy", "liftable", "fictional", "blorf"])
+@pytest.mark.parametrize(
+    "word", ["cats", "boss's", "unhappy", "liftable", "fictional", "castled", "castling", "blorf"]
+)
 def test_unknown_base_never_gets_guessed(word):
     assert pronunciation.pronunciation(word, lambda _base: None) is None
 

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-hanging-piece-allowed-natural-error",
+      "label": "Combo tactic hanging piece allowed natural error",
+      "text": "Well, there's a piece with no guard now, and the other side can take it. The human-move model calls the move natural, but that doesn't put a defender back. Find which piece it is."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b5635aa796e16c9408932ff86610535a31de7c3826bd1f4c4c2aa8d9674a626",
+  "recordedAt": "2026-10-02T02:34:46.348Z",
+  "sha256": "625eb21d35cf5b69131ac32a9adde2d940c9cb64ae9198114519d89852ad66cb",
+  "bytes": 33127,
+  "requestId": "Q6Ay2EfMlhOnGtrAlHog",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba083b13e8c654aa0684422727e68ad05019bf9657cdfd2685632b91cda652c9",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

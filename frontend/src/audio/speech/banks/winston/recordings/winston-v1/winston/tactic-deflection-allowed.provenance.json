@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "That gives the other side a deflection to use, drawing a defender off what it guards. Have a look at what that defender's covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e278f6f7bfc34c53942836947d12fdfc3b791d08c9743d68f4ee7cfdf32107d",
+  "recordedAt": "2026-10-02T02:23:51.586Z",
+  "sha256": "9dc76c8442c5e95441c4964a4afdd6270c76c3c83370a97bb09e2d39ba538220",
+  "bytes": 24673,
+  "requestId": "8AfEKQAEQTR4GrVcUc0l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6035b3114c1dabac1051099c516927a88be9f004fe920d21a390d6aca09e283c",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

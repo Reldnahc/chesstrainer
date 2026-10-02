@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side can play the reply marked on the board. Try it and see what grows from there."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b784e028f172311253b600f1cec9be18ad5169fd4ca369d72deb8a3f0a14aec",
+  "recordedAt": "2026-10-02T02:44:04.851Z",
+  "sha256": "de4f1955076d6095779a2f20c545934d8ff43556a1c3d7e58376a049a655ffb6",
+  "bytes": 18214,
+  "requestId": "31dBI4By2WtKIgKgfl5z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2191964bbff37ea0175b15cbf32d7b9978b5b8f0a86857a5aa72ee3961ff849",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

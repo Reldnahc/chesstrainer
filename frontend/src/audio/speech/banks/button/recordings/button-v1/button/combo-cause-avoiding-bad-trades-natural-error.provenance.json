@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-cause-avoiding-bad-trades-natural-error",
+      "label": "Combo cause avoiding bad trades natural error",
+      "text": "Reaching for the capture is natural, by the human-move model. But the reply takes back a more valuable piece. Count the whole exchange, not just the first capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "c59e8c0e2f23787acaf06dae214483357e37cab3618abe228a95694e1d24b47b",
+  "recordedAt": "2026-10-02T02:45:51.927Z",
+  "sha256": "747b68124285480a8f146d7f575e605014bb4307fe52bca416aa5ab7827b5409",
+  "bytes": 32675,
+  "requestId": "qWahxRWzA4P8v2hftGs1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a9ff084cd95ac5b7a21537ae55023229987e8c8098e12a3fb1cbf6d64e95057",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

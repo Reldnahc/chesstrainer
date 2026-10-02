@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape",
+      "label": "Explanation frame capture promotion escape",
+      "text": "The pawn takes a piece on the last rank and promotes, which also gets its king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a64cea2c96c1cd86da90caca372877c955632e40de46f4ccf12e96987203c51f",
+  "recordedAt": "2026-10-02T02:29:55.473Z",
+  "sha256": "bddf06a20e9c0b337ce78d70c78e20122d25bed867e5cf89d3e9a479987bcdd5",
+  "bytes": 18037,
+  "requestId": "8T4aciTyt9fhOikqq0uv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "550d6d7c601ebd3462592ce6e628d314795199b080c9391d85c86021184acfa8",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

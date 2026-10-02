@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before you move, check whether any of your pieces could be taken with nothing useful to take back."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7ec42e8a52498390fd510e76080dab785d42297395c335cfa467ef5b9b806d0",
+  "recordedAt": "2026-10-02T02:44:06.366Z",
+  "sha256": "58b81ed14a3388713443cf0babbe8b0bad71dcb1e6a5472e2b0dc1f39d8a1d3c",
+  "bytes": 18611,
+  "requestId": "bYFASyGoz1PfyK8116t8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10643afbfcf8f1d1beb8111295483de4639eaf0fa341de0cf37ea6f455adb0dc",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "A pawn can grow into something else entirely. The idea is to bring it all the way to the last rank, where it promotes into a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "04c8188e13643451186e0fb861207e1ee5462d89928a5dda6009020e2b863294",
+  "recordedAt": "2026-10-02T02:40:54.077Z",
+  "sha256": "2ca312806180869f1b0b1fab8a71943513b8c94bc6ae55d4fed18ea1f638b6cd",
+  "bytes": 27316,
+  "requestId": "zYXc0QJtQnaHRknGMlcl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5b44a0a3fca754c2f7c106140e4b0b90e5f8cb1660b21b17bdc4e2cdc990fd4",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

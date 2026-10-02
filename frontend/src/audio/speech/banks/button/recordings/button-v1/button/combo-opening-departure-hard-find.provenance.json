@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-opening-departure-hard-find",
+      "label": "Combo opening departure hard find",
+      "text": "Here the game steps off the book, on the engine's best move. The human-move model and the alternatives suggest a hard one to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "86ebc1eafaea4f966c8c27a6b33492eb78997c3900d8b2e18d7e9401fdd1fb16",
+  "recordedAt": "2026-10-02T02:51:17.015Z",
+  "sha256": "43873cdbaab244df63ee2dd9fa23f98bbea76f6fc280cb9d0bc87e2ce33c611a",
+  "bytes": 28261,
+  "requestId": "2nDRQSQCB14FrELHOGoj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a56a86c8512e023b9199f15d975fcf5179cf22ca21f17430a45a0ca901ad03c7",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "The warning came with the opponent's last move, and this lets it stand. A piece can be captured now; begin with what their last move attacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2c1b0a9297fa45d72ada16777b7887aa12ae740f2279d3995252422d8b10e8d",
+  "recordedAt": "2026-10-02T02:24:02.599Z",
+  "sha256": "2a605ac66282482e4151ed5f582d88b4040ee7b929e11f8457995001cc9b8650",
+  "bytes": 27238,
+  "requestId": "PgthQ0iignFfPV8bWCm0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc7138532bc5cbca95110458d0717a0fab6a30fcdecb3c0ab4f7af6de19a68fa",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

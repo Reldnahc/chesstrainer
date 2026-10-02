@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "Half a lane is still a lane. The rook sits on a semi-open file now: none of its own pawns there, but at least one enemy pawn ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0716ff455c95b17b4e32ac18b532205056b5e07be65defe8bece6d8b29d4fdd",
+  "recordedAt": "2026-10-02T02:41:31.496Z",
+  "sha256": "5c9069ef89262bca21135c82e81b4cb453ca62d7b4217af2e38ffffbabf1aa93",
+  "bytes": 29375,
+  "requestId": "blicLXYvxvEFAE34YE1D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c742f2f17395031e222018f64d8431012e48ac8a2a40349711157440054e411",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

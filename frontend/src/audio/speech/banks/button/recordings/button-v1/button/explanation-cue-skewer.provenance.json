@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Look past the first target. An attack along a line might reach a valuable piece standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b026c98a2781941b104b086511d7d335a2044751729e08e569dc7337eb9abad",
+  "recordedAt": "2026-10-02T02:44:11.519Z",
+  "sha256": "0d8ff1b45d48bda347e9454e18aecb40876651cf0fc8611b69b85110b66be786",
+  "bytes": 20312,
+  "requestId": "R0IW4FuxmTYs1ngpN6Jz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83eba1f0b9a6ca0e95069987f889136cb6bd4474191fdc54d827d981f4cd2a3b",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-clock-fast-hard-find",
+      "label": "Combo clock fast hard find",
+      "text": "Quickly done, and not an easy one. It came with time to spare, it's the engine's best, and the human-move model and the alternatives suggest it was hard to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "7dbe352c2a27f6ba2855ee44a9ca063d5513513fcc51d458cab2e3e4d3c501e8",
+  "recordedAt": "2026-10-02T02:50:52.430Z",
+  "sha256": "d2023e1e14f57e314ee87f031c7212ea0695f329dde5079da3468fb37cf21ad4",
+  "bytes": 33277,
+  "requestId": "kjxmFbJV9O6NlWKm3WWK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abb026d3c4e0ad1afcbb06e175f9c14e0a120047b0da286bdb45a0dedd911e5f",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

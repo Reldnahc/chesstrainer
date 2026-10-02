@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, take a moment to look for loose enemy pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e8692f624a77789d557f13ccc01ffc32ed2f263e2425cff00f804ce4d0c7f41",
+  "recordedAt": "2026-10-02T02:30:27.479Z",
+  "sha256": "ceb759f290555caa41890053cf594ccbafba50d7994f5ddc16700d926dda95be",
+  "bytes": 14290,
+  "requestId": "hJKmv4KkKip5TPgZ0TLY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e79189249c19254ec8b9b62dec6673652ec49172432e9a3cfe8ab41399503fd",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

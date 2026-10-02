@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "The other choice was to castle, moving the king and rook together in one go."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc3d042975ceeeda910d6f77c683e9e0c57fe9248d6efc040989b7b74d4cd604",
+  "recordedAt": "2026-10-02T02:41:54.947Z",
+  "sha256": "bd71bc1c4d36b1d783c88b26c713fc9edc6afa1ac20c92c9297abf552437b424",
+  "bytes": 16222,
+  "requestId": "l3kGjlKQ4JJEgU2ljhIz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f71361835bf12ac30b5162d0319f197f6f206d94b1298fd4d768bd54f77e747",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

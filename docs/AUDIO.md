@@ -468,7 +468,7 @@ preview bytes and source identity to saved ElevenLabs voices. These immutable
 approvals survive a fresh clone without local draft files; the service rejects
 changing or clearing them. Corrupt/missing lock data fails closed and mismatched
 recordings show a stale warning. Locking selects a voice design; it does not
-record or install a full dialogue bank. Walter and Rivet now have production banks.
+record or install a full dialogue bank. Walter, Rivet, Winston and Button now have production banks.
 
 Both studios use the same development-only persistence service and fixed
 `data/voice-casting` directory. Choices survive reloads and studio restarts and

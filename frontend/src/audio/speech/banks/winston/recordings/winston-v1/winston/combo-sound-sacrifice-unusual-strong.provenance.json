@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-sound-sacrifice-unusual-strong",
+      "label": "Combo sound sacrifice unusual strong",
+      "text": "The human-move model doesn't see this sacrifice coming, and the engine rates it strong. Taking the material doesn't refute it, not in the line we checked. Follow what happens after the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "10376bc321ec4e29bdc2bbee1d1b8c7e6d3d5353b54ddc4686928cecfc3d9c6e",
+  "recordedAt": "2026-10-02T02:36:45.530Z",
+  "sha256": "82a4f88f1322c7a5418282511f476e0cc544dcfc7ff9fde5f2fff1356dcd6cb9",
+  "bytes": 35281,
+  "requestId": "WRfSZh7kWqJNH8yEQwI6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ddf67482bccdc2a6d44289205e22a1ceeb04acd690f3484645560f3ee1270dc",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

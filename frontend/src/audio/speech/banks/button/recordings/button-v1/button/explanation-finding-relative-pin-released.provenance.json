@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "A relative pin came undone with the opponent's previous move, freeing the attacking piece. The target stayed where it stood after the next move, and in the shown line it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "864a19fc994fdb9711a9e96f762171465879c86173a18e3a35779867b81612f8",
+  "recordedAt": "2026-10-02T02:44:03.507Z",
+  "sha256": "166379ef77d867dafc86d2834b939c345b0ea8bd8baf7789a930db6d4180217b",
+  "bytes": 35454,
+  "requestId": "CylBnRM10q1ED1OOeZP7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c472c5b87338b10a9a897feb8b3976bd2324942d800e524ba26627fbc950cc13",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

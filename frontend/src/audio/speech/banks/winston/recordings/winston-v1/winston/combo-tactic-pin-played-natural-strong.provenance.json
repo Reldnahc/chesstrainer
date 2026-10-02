@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-pin-played-natural-strong",
+      "label": "Combo tactic pin played natural strong",
+      "text": "Now then, there's a pin to the king here, so that piece has to stay on its line. The human-move model would predict the move, and the engine rates it strong, though it has a different first choice. Find the piece that's stuck."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d128ac5c89a8e7ddd82034918db0f0723069ee20f3d002c1950697391b53d7a",
+  "recordedAt": "2026-10-02T02:32:24.756Z",
+  "sha256": "16a023dc9ee81dc805446798679e8edf6bb0f14c54ad5b6564eb9f257aad3523",
+  "bytes": 39865,
+  "requestId": "SO8i6dRG3XddWQFUnQ5Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0692221c5d6fe5b9be3a36e8eb5b821aec3705cbaf61afcc46d9b474b569026",
+    "bytes": 209859
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-5-natural-strong",
+      "label": "Combo book opening follow 5 natural strong",
+      "text": "Still inside the opening book. The move's natural to the human-move model, and the engine counts it strong, though not its first choice. Have a look at that first choice as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "2aaef95c287b65f4070f2598ecda2bf4dccf754fdf126a6b7311593f811c7f6b",
+  "recordedAt": "2026-10-02T02:39:51.804Z",
+  "sha256": "16fe5e717e0988de8a85f24459e03d793ea897e600a99ca4a9f3dd876ff64637",
+  "bytes": 31896,
+  "requestId": "aiR8DZ1Df2kN1OeGoP6D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e79563348e82533fdf5deef9e0fd9360eaa7960d7965eebe055fd6b2ee7e5f9",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-played-natural-strong",
+      "label": "Combo tactic removing defender played natural strong",
+      "text": "Capturing a defender is the idea, and what it protected could lose that cover. It's natural, as the human-move model sees it, and strong for the engine, though the engine would still play something else first."
+    },
+    "takeId": null
+  },
+  "requestHash": "39efb35ffe701566ade53b86064ae1872d9b87c442f00af60e216c96eff8cc74",
+  "recordedAt": "2026-10-02T02:33:00.506Z",
+  "sha256": "daa88eb1811c52771a1d2123b72f3c3d23616940ecf5a369c7fadaef992488d1",
+  "bytes": 37362,
+  "requestId": "UJHzgw75aJBZyIhT5Hsc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07a9e7ec5fe4c5f57132d1b893e8d338e1fcf683d23322062f7eb9006deb67cc",
+    "bytes": 194395
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

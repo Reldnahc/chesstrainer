@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Everything around the king gives way after this. The other side can now force checkmate. Let's follow how the attack gets through."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b832106cc38927828f1f4cf51e5e75c42406cc4015c49b5c0caf6ad13b3b4df",
+  "recordedAt": "2026-10-02T02:42:02.367Z",
+  "sha256": "74377ba13288f03b40605d00c2dc9232fbf5fa123cc85c1e364d713617834fa0",
+  "bytes": 25278,
+  "requestId": "okOlANB7ay7nzXGakRWo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93c5bf59800e16d9d4466dc1baac3ef648bef628c61d5fcbf224d5e620ddb10e",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

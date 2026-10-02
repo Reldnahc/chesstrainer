@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Spend a moment with the move, then go on to the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "e093b6e19918c1ab2c0f42067727651a1d5ee1aac1cd1918f79f257d52d0624d",
+  "recordedAt": "2026-10-02T02:43:14.043Z",
+  "sha256": "4e3936a986cfe659508db449ef9321be043d79e183857168a5b85e98fcd17fea",
+  "bytes": 12975,
+  "requestId": "mgdN0loInxH9GMtrRHyV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5f1551914f99d87e0020c23d00c456cab940cba5a7c45f8eadb01e8ce7cd457",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

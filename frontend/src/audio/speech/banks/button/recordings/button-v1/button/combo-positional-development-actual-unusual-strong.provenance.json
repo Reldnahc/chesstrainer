@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-development-actual-unusual-strong",
+      "label": "Combo positional development actual unusual strong",
+      "text": "A minor piece steps off its starting square. The human-move model finds the choice unusual; the engine rates it strong. Odd and good can live in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "9276d9c43565f57cb93858d39afcbd4d0dc7a04fbd9d5ad67d7b252fc9af3ac0",
+  "recordedAt": "2026-10-02T02:48:43.679Z",
+  "sha256": "09f0bbc12872c3bb3dafaa599cd8fc8819d566e71c530d938dd5ea9106a44931",
+  "bytes": 34951,
+  "requestId": "p5gQCCAg2rRksdyKtebT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18f7aaabca0833da982112e493e992db587462446e7ee4a983d784c95ab77d5d",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

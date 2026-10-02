@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "The king castles, the rook moves across, and that's checkmate: the opposing king's got no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b213912e19c37814bbcbe3f197c5f4ff5521a7f148d0ac21fa9a8829edf76ba",
+  "recordedAt": "2026-10-02T02:29:58.265Z",
+  "sha256": "c39637573927156267df26ae93774f1ef26a55eaf1c97708432342c3ca3dd7d8",
+  "bytes": 21907,
+  "requestId": "ItB0PDrT5hh7e0jIDaJs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "904e6634f518c53a0cab8b756e7a4c6139b6468d3d10a3d1b897e1efc67c5005",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

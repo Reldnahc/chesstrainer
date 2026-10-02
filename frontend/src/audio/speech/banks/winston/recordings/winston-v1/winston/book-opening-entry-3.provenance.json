@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "This move comes out of a recognized opening, and that's where we are."
+    },
+    "takeId": null
+  },
+  "requestHash": "67842e0e19cc59e3eeac0d85fe7f6eed65d06b2827b4aaf963847a5c25a85c6e",
+  "recordedAt": "2026-10-02T02:31:17.349Z",
+  "sha256": "f29f7be49c9a8eae48bf1b5ab69dd91ca59b32c105e7a720c369e8041ae56c41",
+  "bytes": 13647,
+  "requestId": "Wds4nibYSrEI1gT3HvcG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a072480789c2697ae56bc3318f5f65ffac1dcf3fecbfee9e32a891fb7c7bdb9",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

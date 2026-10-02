@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-rank defender moves, look at where your king could escape to."
+    },
+    "takeId": null
+  },
+  "requestHash": "6070aaab5d71dbb32cf2bda99b7da20c2c26d98c0f68d7c6653d9db78a6d6196",
+  "recordedAt": "2026-10-02T02:30:34.838Z",
+  "sha256": "b7c485ca30999dd1c80140dd9a20ac88742292c1e03ad8a3e18e2a02f6c7dece",
+  "bytes": 14371,
+  "requestId": "4JMKQLWCR2XH893ME9Fs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed37e97fa05a662df882e2b9ce8304cd72e3c4811c2f7d01629d2b7f00d0ed37",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

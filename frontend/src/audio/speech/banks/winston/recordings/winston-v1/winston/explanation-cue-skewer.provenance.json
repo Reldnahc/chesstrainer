@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Watch for an attack that goes through the first target to a valuable piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ede99a4ec01b58aaf06d53268fc23a456ef95a333723f9a03106f8874059023",
+  "recordedAt": "2026-10-02T02:30:30.712Z",
+  "sha256": "13fa902360b737b96f829ef1bf86eb47031b4e3d435ee1fb9e4641d3555350d3",
+  "bytes": 15450,
+  "requestId": "P13aeF8jij1YmsfVQGFu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09716f6bfb25bfa03f672f54bac17d7b74dabd00b52de406693c66a0386f8d72",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

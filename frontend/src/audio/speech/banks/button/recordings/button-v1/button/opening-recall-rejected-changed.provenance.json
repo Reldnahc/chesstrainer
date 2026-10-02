@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "That move isn't in your chosen opening lines. Have another try. This saved attempt won't change the review schedule for the study you updated."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4c3be6efd522724406e233ed0afa5478c356ff57fa45fea34997177606c35bd",
+  "recordedAt": "2026-10-02T02:44:37.229Z",
+  "sha256": "83498b09ee23814d83a23150363d705f1dd97e4fc17005c6adf8fc98bdd013c7",
+  "bytes": 27252,
+  "requestId": "YHfh6MINHa15jZtEs09x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34d5cf48613b44fe34a7deb591bb9c83038670dd46e4403e62e10c4c272dcdd6",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-6-hard-defense-found",
+      "label": "Combo book opening follow 6 hard defense found",
+      "text": "One more book move, and it keeps the position from sagging. Nothing else checked kept it playable, and the human-move model rates it as hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "429d043938fdf5c7822b7651f6acc53da1f2938249f944ebe7d1f836b4bea39f",
+  "recordedAt": "2026-10-02T02:53:25.138Z",
+  "sha256": "b87d5f4b94424e5df06680658f91353d72e47e7e082346a764d1426d2ec11faa",
+  "bytes": 30427,
+  "requestId": "OwPShWHWs7n0xWFGIBdv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02017c9e7f4a1f21583f5030aaf954296e476625bb3569dac3e4c007f09a3a8e",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

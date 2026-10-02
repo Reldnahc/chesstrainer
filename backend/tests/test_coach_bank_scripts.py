@@ -1,4 +1,4 @@
-"""Complete authored spoken scripts for voices whose banks are not yet recorded."""
+"""Complete authored spoken scripts owned by Winston's and Button's banks."""
 
 import json
 import re
@@ -9,6 +9,7 @@ import pytest
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
 # Each new voice owns one complete script source; Walter/Rivet text fields stay theirs.
 AUTHORED = [("capybara", "winston"), ("mushroom", "button"), ("ghost", "wisp"), ("slime", "pip"), ("alien", "ziggy"), ("living-pawn", "percy")]
+REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = ["ziggy"]
 
@@ -18,10 +19,25 @@ def read(path):
 
 
 def active_reference_texts():
+    # Walter's and Rivet's banks; the authored voices' own manifests are checked below.
+    authored = {voice for _, voice in AUTHORED}
     texts = set()
     for bank in read("banks/registry.json")["banks"]:
-        texts.update(row["text"] for row in read(bank["manifestPath"])["recordings"])
+        if bank["voiceId"] not in authored:
+            texts.update(row["text"] for row in read(bank["manifestPath"])["recordings"])
     return texts
+
+
+@pytest.mark.parametrize(("coach", "voice"), REGISTERED)
+def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
+    entry = [bank for bank in read("banks/registry.json")["banks"] if bank["voiceId"] == voice]
+    assert entry == [{"coachId": coach, "voiceId": voice, "manifestPath": f"banks/{voice}/manifest.json"}]
+    manifest = read(entry[0]["manifestPath"])
+    assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
+    scripts = read(f"banks/{voice}/scripts.json")["records"]
+    assert [(row["id"], row["group"], row["text"]) for row in manifest["recordings"]] == [
+        (row["id"], row["group"], row["text"]) for row in scripts
+    ]
 
 
 @pytest.mark.parametrize(("coach", "voice"), AUTHORED)

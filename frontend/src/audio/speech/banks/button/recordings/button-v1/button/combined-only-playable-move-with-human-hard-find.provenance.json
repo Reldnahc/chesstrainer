@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combined-only-playable-move-with-human-hard-find",
+      "label": "Combined only playable move with human hard find",
+      "text": "One move was propping up the whole position, and this was it. Of the moves checked, this alone kept it playable, and everything else was losing. The human-move model suggests it was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "07ce530245d6acfeec279f5c6b991b5558c74cdc621dfaeb63392cb2a65c36c3",
+  "recordedAt": "2026-10-02T02:45:22.769Z",
+  "sha256": "8e09a3840213f76850aaf67e04ef3df8ee819c3d8c76fd1411fb04a07002f225",
+  "bytes": 40311,
+  "requestId": "7SKPEHtewOwgXPUrL4J9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6da1c33f9a0aeca67e8f16eccf339feeaddec66c7129ea71e77f185f6f67f484",
+    "bytes": 212367
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

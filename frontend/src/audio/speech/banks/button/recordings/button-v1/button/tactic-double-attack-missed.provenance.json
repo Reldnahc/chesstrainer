@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A stronger move held two attacks at once. This move doesn't use the pairing."
+    },
+    "takeId": null
+  },
+  "requestHash": "e8f0026efb00dce7e010ad9c1e72d55533b4b4a20386cc52a3602f5f99f1e8cc",
+  "recordedAt": "2026-10-02T02:41:08.504Z",
+  "sha256": "4438a44f009bf77f7017f608a405c0fa6ce95b3bad5a7194f189200de158a0b8",
+  "bytes": 17187,
+  "requestId": "tLHyF7YhYjuwczYc4OwB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7eeb907218b62a0946fb1fb63c3f82d434466772ac516e120ecf91cfa7188576",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

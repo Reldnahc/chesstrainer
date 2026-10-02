@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combined-immediate-capture-with-human-natural-error",
+      "label": "Combined immediate capture with human natural error",
+      "text": "Ordinary on the outside. The human-move model finds this move natural, yet the other side can capture something straight away. Begin with that reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "f513bfe89b43164dc130d18f18ed26fd9080d834ef5dbd7d3e02d165cecca839",
+  "recordedAt": "2026-10-02T02:45:10.666Z",
+  "sha256": "dcda7ab22a4a68549eedba85fffe070b82ffbfb16fb97c6d095a85f0ef1fe2b6",
+  "bytes": 31032,
+  "requestId": "S0y4ucF1QT3GVlGisJUt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83f3065c9b1427c4c8c73e14414b93a1c604afd106adf7ce642e86cba718bc21",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

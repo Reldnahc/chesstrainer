@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed",
+      "label": "Tactic skewer allowed",
+      "text": "Pieces lined up are pleasant until someone looks down the line. This lets the other side try a skewer, where moving the front piece could expose the one behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee92ef3af6b0ba82378ebce34653a2d372b061f14c12e5809d6eb0d9953a1f38",
+  "recordedAt": "2026-10-02T02:40:40.418Z",
+  "sha256": "fd0f8ed12e774b5d826fdc627b6cf696b3d4f756c614c5588abfb5993915bf38",
+  "bytes": 31762,
+  "requestId": "LqvsD3E6Yeg6JCBroz4B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02a9119e913ccd49cb344c01d77e78a8fd0926856cb38bba07540e8e7b6c4141",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

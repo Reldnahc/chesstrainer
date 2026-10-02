@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "puzzle-playback",
+      "label": "Puzzle playback",
+      "text": "Here's the verified line, playing through on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "432c92c1ef1bf5b426c2b5ba9077b8ef15c50263565e1bee6056cab505290b91",
+  "recordedAt": "2026-10-02T02:31:02.052Z",
+  "sha256": "5c20ff6812a00208cb13fb95e991fad7d67fe1367f2370a3dba132e377770468",
+  "bytes": 10411,
+  "requestId": "8kD3JaptppSRwqcWlnmr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bc146c4b014761f0fb4ca1519cce74f236a3bbae412cd0694e24af12c1559d4",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

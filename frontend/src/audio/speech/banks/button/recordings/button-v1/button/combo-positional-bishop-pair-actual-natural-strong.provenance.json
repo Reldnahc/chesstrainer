@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-bishop-pair-actual-natural-strong",
+      "label": "Combo positional bishop pair actual natural strong",
+      "text": "The opposing bishops are no longer a pair after this capture. Natural to the human-move model, strong to the engine, though it ranks another move first."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4ffb731bf28b5d14096a2887e63928a64a1fec2ca95e8291055504e6367354f",
+  "recordedAt": "2026-10-02T02:50:10.867Z",
+  "sha256": "eabd53a5abf3a75eb0f8d35328e20d040f4b15bfa115da70fa3fe2de6a552dff",
+  "bytes": 31129,
+  "requestId": "BMgoBxzRojgifq45sYfY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e308fb4ac41aebaad3866cbc71f6da1253f8f7094ae29b8ce4641c0201ae993",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

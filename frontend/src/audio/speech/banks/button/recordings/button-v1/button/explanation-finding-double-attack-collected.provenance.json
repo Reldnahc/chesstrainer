@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "The first piece attacks something and opens a line for another. In the example, that second piece captures its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0904fda1b681d076a675753b9e7955d2bb13d47a23fc6465c86554a8b216e19",
+  "recordedAt": "2026-10-02T02:43:56.855Z",
+  "sha256": "695301ee258b96082697c261c04fea95e12b87a38a4b50e881a8822c6e8558fe",
+  "bytes": 25152,
+  "requestId": "aa3GZ3cLDU4joWg3sYpT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ee7d9ff5f2b62195d369dfa2398f7f5711813ffacbb29f493c5c2aaa716426a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

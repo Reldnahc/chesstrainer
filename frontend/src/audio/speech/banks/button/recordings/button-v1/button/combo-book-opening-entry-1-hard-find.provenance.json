@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-1-hard-find",
+      "label": "Combo book opening entry 1 hard find",
+      "text": "A book move, and the engine's own first pick. Being known doesn't make a move easy to see, and the human-move model counts this one as a hard find."
+    },
+    "takeId": null
+  },
+  "requestHash": "e83e36a7361f48b183f30f005d2c6f5c165be891b7afa9458cafa7f0a50afd10",
+  "recordedAt": "2026-10-02T02:52:12.757Z",
+  "sha256": "269875c05b13527a54145c3d67fab5fe4ae06b8516bf51e03c09b233fac84af6",
+  "bytes": 31983,
+  "requestId": "n4xqk7CnVliZDrHPJRJ0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "462dcd0396f3d8f4856e4a299e6a1a4bde863eeab4a90ed33b8eddcbe1626089",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

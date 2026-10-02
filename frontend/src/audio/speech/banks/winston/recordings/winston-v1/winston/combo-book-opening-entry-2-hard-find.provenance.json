@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-2-hard-find",
+      "label": "Combo book opening entry 2 hard find",
+      "text": "We're in a known opening line, and this is the engine's best move. The human-move model had it down as a hard find, so that's well found."
+    },
+    "takeId": null
+  },
+  "requestHash": "2476cd7bde8adc301c6125754a12efec33cad5e3392f668e3b897b5cd691f574",
+  "recordedAt": "2026-10-02T02:38:45.512Z",
+  "sha256": "adb23851420c4eff1937453e4761cbdf95eebed77a93f8c714f0331ff31ee323",
+  "bytes": 28196,
+  "requestId": "xAfmOynmbAwhUXPUxu0z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da0ad0715c7adc84a42b64e062be5f35aab326c9cb2777036c744eb5163568e5",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

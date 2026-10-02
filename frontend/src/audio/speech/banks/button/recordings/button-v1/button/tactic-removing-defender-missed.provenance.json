@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "Another move could have captured a defender. That would have pulled the protection out from under whatever it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "db2ba6b6d85e687b53d12b063339763ab6aabd8c1e2ea3716d22f4527f18cb81",
+  "recordedAt": "2026-10-02T02:40:47.055Z",
+  "sha256": "6254f1dec857271435034da1caa782205e0969e85f6086304f35397970244aae",
+  "bytes": 20821,
+  "requestId": "OmXFIhMeNa7GeSZph01h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "750d3f66a9496b62f16cfb63942496cd4fb0d3f8c8b31d190e9c0a004d1e45b0",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

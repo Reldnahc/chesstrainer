@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before moving a defender, look at which pieces would be left without its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e71176b66fdc99586f346704b6c52aab36cfa3f550590a9c6bf77f031133fde",
+  "recordedAt": "2026-10-02T02:44:18.424Z",
+  "sha256": "badfcc7c08376febf43c0c68c239339889bc43c46b74e9170087c232fe9f6597",
+  "bytes": 17102,
+  "requestId": "z8o9MJw3cjrLicvHZkTS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "454982046c6319098c3f4c121e83d8475f269bfa173467f20502b307eaee38db",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

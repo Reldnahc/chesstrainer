@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "A stronger move had a skewer growing in it. The front piece would have had to step aside, exposing the piece standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa146568d52bb42dcabd1d24e047d1f04e2f5a0b843d413595ac9069088c095f",
+  "recordedAt": "2026-10-02T02:40:42.048Z",
+  "sha256": "2c309441c5c476801da995d383a2939ff2139f69f2002493cd03f982e9ab507d",
+  "bytes": 24637,
+  "requestId": "MdHnILkjihU3lh0Hxj4R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5bbfbc66061b6af28e25f5a6305c9201f2103a834d651e9a77cc0a10ed77fb46",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

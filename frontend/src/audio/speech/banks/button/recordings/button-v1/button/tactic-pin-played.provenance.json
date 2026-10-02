@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "Notice the piece that can't step away. It's pinned to its king: leaving the line would expose the king, so it simply isn't allowed to move off it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4f9c923e5ec2fdf17a61ec0fcfa1dbd4850b254bc7290e4f0f6e0bb2dd86935",
+  "recordedAt": "2026-10-02T02:40:32.380Z",
+  "sha256": "9d271a24ceb0e99aafe805dbb595f786c771fa3fe8ee88f2b7d02ecc6e79a03d",
+  "bytes": 30002,
+  "requestId": "AfD4uVi6kfG7dBtYXLn7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff36d23e6fff7acbdb4a5f141ae8ee8235b3aa830738d0859f006d104740a86f",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

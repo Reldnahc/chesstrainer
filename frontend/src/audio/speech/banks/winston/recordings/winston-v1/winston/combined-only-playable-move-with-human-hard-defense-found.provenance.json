@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combined-only-playable-move-with-human-hard-defense-found",
+      "label": "Combined only playable move with human hard defense found",
+      "text": "There, that holds. Every other move we checked was losing, and this alone kept the position playable. The human-move model has it down as a hard resource, and you found it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7492935c62f1e2a82ee6156feaddf8e5f31977f2505dc9396a0f8ebfbee8723f",
+  "recordedAt": "2026-10-02T02:31:37.521Z",
+  "sha256": "0440d5b6537c2e9e97cf01922368ad0e570c9ea70cd5c94497654373b81b704d",
+  "bytes": 33889,
+  "requestId": "KMF0FBuODvpVNeBkXibE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60a59b40eca9900113460d5f35cc07fb25ea148527bf0064c24c927027657373",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

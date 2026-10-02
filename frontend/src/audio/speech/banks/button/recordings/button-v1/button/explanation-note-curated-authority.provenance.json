@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "The saved answers decide this exercise. A different legal move isn't necessarily bad chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc16425d7b0ba10e0fda63b84bfb064016b98854aae1bab0ab0a7ff2baa90fe6",
+  "recordedAt": "2026-10-02T02:44:22.703Z",
+  "sha256": "394af52d8fb4e6f560c30aa5b8999450d19e41a2fe4a93ce9cb58be17e3699e9",
+  "bytes": 21416,
+  "requestId": "nhKAsUDfhTnsS35QUVkZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "61917fd3055809330b78d62d33f8c05ec1687769f0a6aa26b65c84324fa99dc0",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

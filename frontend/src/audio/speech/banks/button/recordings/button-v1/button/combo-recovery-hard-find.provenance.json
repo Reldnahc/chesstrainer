@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-recovery-hard-find",
+      "label": "Combo recovery hard find",
+      "text": "After the earlier stumble, the position is propped back up. This is the engine's best move, and the human-move model and the alternatives suggest it was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ca2054df684b172805376b07c1d17581d922d8d2b69faae3ac683b3eacafca2",
+  "recordedAt": "2026-10-02T02:51:26.652Z",
+  "sha256": "bbb80f5898fb892ad06c8ca678e28e4beb685e641a5b00b03eb5274122f358e8",
+  "bytes": 33880,
+  "requestId": "jrpw3dHiwpV5bU0rYLUd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97933cab7981478dc122ff708e12fba62b783b2cd592d8801464683b16cfe550",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

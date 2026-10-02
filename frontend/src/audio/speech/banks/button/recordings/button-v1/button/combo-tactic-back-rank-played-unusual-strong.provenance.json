@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-back-rank-played-unusual-strong",
+      "label": "Combo tactic back rank played unusual strong",
+      "text": "The pieces meant to shelter the king are hemming it in. This points toward a back-rank mate, with the king boxed in by its own pieces. The human-move model wouldn't expect it, but the engine rates it strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ec100796687de578c5181963bb8e4f5cb1aa85d32a89e4d3c60b5636ac378ef",
+  "recordedAt": "2026-10-02T02:47:04.595Z",
+  "sha256": "eba9c64d3709d2fee7abb58b07d14df8d63796c6dce21cdd6891873460a54027",
+  "bytes": 39909,
+  "requestId": "ZGW4JeNBIceRVXSxFqrp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97bc9bc08d8181b0bef83ae4d7ae7aa7999564c0e77e6550c5e9eaafaba16803",
+    "bytes": 207351
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

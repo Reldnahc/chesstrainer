@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "Another move could've taken an undefended piece, and this one lets it go. Before settling on a move, it's worth a quick look for anything unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "c638c7286fa48d7f44169efbbe9b8141cdcab4e151191a96191949b7b62bdc3f",
+  "recordedAt": "2026-10-02T02:23:56.943Z",
+  "sha256": "af4780c65ef76e99dc32c5c1cc117af109d4394aace70e6f9f9c247f005a32ab",
+  "bytes": 28727,
+  "requestId": "eChXlnh9OTdoWNpj8I74",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ac393bc58c052db89e3912cf59a15e769ff647e1db6036454ab184f70821624",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

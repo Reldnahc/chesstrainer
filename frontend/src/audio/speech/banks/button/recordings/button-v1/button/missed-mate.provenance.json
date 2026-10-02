@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "Another move had a forced checkmate in it. This move lets the mate slip away. We can go back and find it together."
+    },
+    "takeId": null
+  },
+  "requestHash": "6dfd1d3345e90e3fa91ad68ed9fd0aa1567ad14e3a6e6bb781787c7a25e2414f",
+  "recordedAt": "2026-10-02T02:42:04.009Z",
+  "sha256": "048d1a52d979ed7345d819d43811f3b6ea5917b0ed29b0245f7b5e72678b8328",
+  "bytes": 23816,
+  "requestId": "PKy8B7zTvV7wm71wQlge",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abdaf98dc1679d6ead9e0c85991b9e983f25afb6be1caf35f0b3221e710faa45",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

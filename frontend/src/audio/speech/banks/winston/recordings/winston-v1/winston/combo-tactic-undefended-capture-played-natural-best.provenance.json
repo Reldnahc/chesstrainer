@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-undefended-capture-played-natural-best",
+      "label": "Combo tactic undefended capture played natural best",
+      "text": "A simple one, this: a loose piece can be taken. It comes easily, going by the human-move model, and the engine's search has it on top."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8253477a3ec6781828ec1162eec9a32ae4964a92200c75c07bd8c61dc93cb46",
+  "recordedAt": "2026-10-02T02:34:36.133Z",
+  "sha256": "0ae38558260973bc8a333f2b967979bc1c556a0acee1329fbfd8f6dbb166964b",
+  "bytes": 27669,
+  "requestId": "7IYAtB5Q63Ec3wnJAKAn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6437381bbb9a94812a9bc7af80aa8eecd77b5a92b1b3ae12720fbbdb3288482",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

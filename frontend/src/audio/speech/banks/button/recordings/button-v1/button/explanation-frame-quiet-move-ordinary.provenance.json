@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "Here's the next move. Notice what's different now."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c362189dca9ddd3481f426ad308d75af1ce62be368230e28c03cc7a74a0ab71",
+  "recordedAt": "2026-10-02T02:43:18.493Z",
+  "sha256": "211caf40488f365e857f8d9c667cf566b4298fc64ab6e78f31edb29f2ccd2ab4",
+  "bytes": 11264,
+  "requestId": "ByDFxXX0kxlELKqcBttQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b674ca5185b94b8220553fcf2bad45b218cf02a8bd83b60a41e05fdf34ae6023",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

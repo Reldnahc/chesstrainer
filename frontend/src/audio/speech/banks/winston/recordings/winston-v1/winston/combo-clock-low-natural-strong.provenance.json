@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-clock-low-natural-strong",
+      "label": "Combo clock low natural strong",
+      "text": "Little time remained on the clock here. The human-move model sees an expected move, and the engine rates it strong, though it has another first choice. Have a look at that one when you've a moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "15596e37cdae6f4201be3a959d8519c465ac97ab74fe7331ec6e88c962e2e90d",
+  "recordedAt": "2026-10-02T02:37:08.073Z",
+  "sha256": "180a8f63a934ec97572dff30f60a149d712dd6135a8cc2c17e84b95595fe26c2",
+  "bytes": 33816,
+  "requestId": "G1THG1ONqQ38GY4gQ46M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72776c87f785a4a267da565d6e8a7052755eba1eb6699fa285a55ca4eee850e7",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "The moving piece steps out of the way, and the piece behind it gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "46be84ec0ecbd119134620e7649439e0b93719d934206905e673519981b86707",
+  "recordedAt": "2026-10-02T02:30:15.217Z",
+  "sha256": "46e0abbd8272f37943a7ad98c23ae800ca64285f328c54889ddfd8f50eaab075",
+  "bytes": 13705,
+  "requestId": "YZqvXGNeTFwAPctrbnQU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "810891d43fee7fa3677cf29d02df5550e24038995b143a3b5820a18ef5268ba3",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

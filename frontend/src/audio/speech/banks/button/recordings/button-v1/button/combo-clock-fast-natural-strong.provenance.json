@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-clock-fast-natural-strong",
+      "label": "Combo clock fast natural strong",
+      "text": "Quickly played, with time available. Natural by the human-move model and strong by the engine, which ranks a different move first."
+    },
+    "takeId": null
+  },
+  "requestHash": "4db62eab90b1fd1eccbe673f37f60da88e70f7720bd9677f718601a52592b1eb",
+  "recordedAt": "2026-10-02T02:50:57.636Z",
+  "sha256": "b488a2c78c2f23368e5e11ccf5ff7ffb11a25a07e86209b2125bae601a3ca070",
+  "bytes": 27157,
+  "requestId": "cXIYvaZaVnmGm1OjfT9i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "14b39049c24204911cf8b714dd6fce562b2910852b482969ad1f91b3ebf9a0ef",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

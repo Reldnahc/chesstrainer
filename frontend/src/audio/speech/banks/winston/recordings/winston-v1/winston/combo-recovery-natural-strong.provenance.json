@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-recovery-natural-strong",
+      "label": "Combo recovery natural strong",
+      "text": "This brings the position back to playable after the earlier setback. It's the sort of move the human-move model predicts; the engine finds it strong, while preferring another."
+    },
+    "takeId": null
+  },
+  "requestHash": "76aa2427185516c5ed537387197c295d34451ba46ac3bc4d27a926840d17c236",
+  "recordedAt": "2026-10-02T02:37:53.856Z",
+  "sha256": "ff03f10a6b1a28b9fb86ed28996e4e6a141db087d5ac453d8ca51a15827594a2",
+  "bytes": 32241,
+  "requestId": "ObjUU8XSvKcOV2zrrq63",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3798271c52cb8bb19cbc8810d7cdad9756494785f2fdc7d7ed65c3b185364197",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

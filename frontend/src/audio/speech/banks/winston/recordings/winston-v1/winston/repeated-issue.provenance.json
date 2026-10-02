@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "We've met this same issue earlier in this game. Set those moments in a row and find the warning sign they have in common."
+    },
+    "takeId": null
+  },
+  "requestHash": "a71e4101cb02ade987fb41fab0d81f59ba636d6c6dd15c3ca5c2495c354c386d",
+  "recordedAt": "2026-10-02T02:29:04.460Z",
+  "sha256": "f1bc44077635f16ef927c026765f3b622ebffdb66a586f3a5fe4bfb018503483",
+  "bytes": 22022,
+  "requestId": "lpinNbXNdMgTebxmRKjw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "87c9f70183fcaa384406df929b835bd700bb5d436d8491305cc8d156fa9f2600",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

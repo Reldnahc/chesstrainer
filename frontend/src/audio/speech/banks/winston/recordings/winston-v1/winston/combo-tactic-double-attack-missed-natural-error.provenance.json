@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-double-attack-missed-natural-error",
+      "label": "Combo tactic double attack missed natural error",
+      "text": "Another move offered two attacks at once. The human-move model would see this one coming, but it lets that double threat pass. Go back and find the move that made both threats."
+    },
+    "takeId": null
+  },
+  "requestHash": "d884ece88c06f5815b00b700994b8933db9e1c59a32561936c04be420dfba490",
+  "recordedAt": "2026-10-02T02:34:10.673Z",
+  "sha256": "3ac672b63eb71e76825870f106b28919ba2edab2483ff726d1aa162cd2a5ba2e",
+  "bytes": 33958,
+  "requestId": "poNzgNFAlgZZlgUR4H21",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eecdd24e558c586e1f79f115da51324a44673e4dd982bd951d7fc880b2b64b63",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

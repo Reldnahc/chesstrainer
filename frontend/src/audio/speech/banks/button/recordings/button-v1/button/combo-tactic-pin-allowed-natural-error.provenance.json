@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-pin-allowed-natural-error",
+      "label": "Combo tactic pin allowed natural error",
+      "text": "A piece may soon be stuck where it stands. The other side gets a chance at a pin to the king, and a pinned piece can't leave that line without exposing its king. The human-move model finds this move natural all the same."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1fd1ffd85681ae0f497969e68acff50bf7bb1738f819809cb955db750076fad",
+  "recordedAt": "2026-10-02T02:46:13.228Z",
+  "sha256": "db0635190ac1c1c497b6a18c55cca3a2415e4e13ac4a69f1c017232b956c48e9",
+  "bytes": 42910,
+  "requestId": "fnlDY8fvtLXLsfR7fCsa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a01d3882f2fefc137a69e4f7b324e46eec4ba7131f56813da11c2e863787a398",
+    "bytes": 223652
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

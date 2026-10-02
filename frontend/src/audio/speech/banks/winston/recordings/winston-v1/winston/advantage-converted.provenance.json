@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "The advantage held all the way through to the recorded win. Steady work, that; follow the stretch and see how it was kept."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b2b02d2f6599ba0ac58f6fcd534c49341fef229ede8cb018e25daa2375643eb",
+  "recordedAt": "2026-10-02T02:29:09.626Z",
+  "sha256": "703da8d02ec7bd665cbf5f7e83969e510431ec183d2f34230a5d9b9caddaf5a4",
+  "bytes": 23336,
+  "requestId": "y3f37UVxjlJJjnqMRl9c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f775b3bed6712e96e1e57c60ba18a688cb6c96df280b0920ba3f05788f9459b",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-missed-hard-defense-missed",
+      "label": "Combo tactic removing defender missed hard defense missed",
+      "text": "The only playable move we found would've captured a defender and taken its protection away. Going by the human-move model, it wasn't easy to see. Begin with what that defender guarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "75223cef87080c73553ca877aba77c7eb38cd2d355d5cc1bfa5da9b94f53dcda",
+  "recordedAt": "2026-10-02T02:33:08.887Z",
+  "sha256": "595f89ad1401d2a11ec5bb966dc4acde0492ba512c1d14fa935586ff9729afe4",
+  "bytes": 35900,
+  "requestId": "rveWLQucO86i21z0t9a9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01823baad21dc7f8c4ea727960327a60ee09e19f60c1c25dbf42a89b71b4a29e",
+    "bytes": 186871
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

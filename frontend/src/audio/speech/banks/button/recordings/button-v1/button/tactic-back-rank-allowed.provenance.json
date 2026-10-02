@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "Things have gotten a little crowded around the king. This gives the other side a route to a back-rank mate, where the king's own pieces block its escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "cddcc157b6251debf6f1b4f5922734f755acc7725d9616764d6fe5d297df8294",
+  "recordedAt": "2026-10-02T02:40:50.443Z",
+  "sha256": "9b4ef61799c0fc09d099c6caa1b79441dcaf5417cebafc3634b0624f438b874f",
+  "bytes": 28351,
+  "requestId": "LcVbxiKgNdnW2XgmgNbG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55e5eda63e10e903da47ea63c7f72534a385e6251e4436d461e0426994a514ad",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

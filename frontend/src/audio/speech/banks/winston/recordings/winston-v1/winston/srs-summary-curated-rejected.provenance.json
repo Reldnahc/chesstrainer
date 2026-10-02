@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "It's not among the saved answers for the exercise. That doesn't make it bad chess; it's just not what this exercise is asking for."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b69ccc7e0d7b8afda186c4044c097a5a0f9efad9ca5f781da2e2c595ede34e0",
+  "recordedAt": "2026-10-02T02:29:32.830Z",
+  "sha256": "a8e5a3cab500cec128a95b9e54f6b7d5ddd46d47af4a7a855cf9e4b94d7cba11",
+  "bytes": 24472,
+  "requestId": "YBIBTSYTyeve5SdtkbWs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d8957d0eeabb9c44f48b3e2dfb7c78ce539241f43f56221c428a1d0ad5fd116",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

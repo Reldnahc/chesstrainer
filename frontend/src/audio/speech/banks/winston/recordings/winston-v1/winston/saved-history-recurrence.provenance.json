@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "The same trouble shows up in other saved games of yours as well. Look at those with this one and find what they share."
+    },
+    "takeId": null
+  },
+  "requestHash": "774ec9ce41f5daa43f079a82035ec5fa57254659e9e4df56aec13df3e2ea2ec0",
+  "recordedAt": "2026-10-02T02:29:11.191Z",
+  "sha256": "e290618ca16302855e17b093994937b87de6dee0b93ca31dbebb48e8d2104280",
+  "bytes": 20951,
+  "requestId": "20fIuobUAZrwDIEr1Hp9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be3838ef41c574e0497f2ac30375f441f34a0f09d26c5b463a209ceba6361219",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

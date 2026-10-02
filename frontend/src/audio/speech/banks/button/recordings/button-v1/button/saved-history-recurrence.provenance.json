@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "This issue turns up in other saved games too. Gather those examples together; the shared shape is easier to see when they sit in one place."
+    },
+    "takeId": null
+  },
+  "requestHash": "84cf35662cf5b611ea53d78f9f096f339514917e2027f6a7771c339b8b095927",
+  "recordedAt": "2026-10-02T02:42:52.842Z",
+  "sha256": "1c76830a97862d3f9f9611c14fa40132ab9342d1d9fca35a849af4d6c1e892eb",
+  "bytes": 28882,
+  "requestId": "pUuZU1rs2BPvgHj4UPZV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48d3a5d848cdd632062021e09ac5ea3b0342bb5cee35363f95812f642eecb7c5",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

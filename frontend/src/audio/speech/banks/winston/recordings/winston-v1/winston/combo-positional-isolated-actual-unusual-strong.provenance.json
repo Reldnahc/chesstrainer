@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-isolated-actual-unusual-strong",
+      "label": "Combo positional isolated actual unusual strong",
+      "text": "Well now, an isolated pawn's left here, without a friendly pawn on the files beside it. The human-move model wasn't expecting the move; strong, though, as far as the engine's concerned. Look at the files on either side of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7913b26ceee1a56f6d0e767892324d6363053727a2f1128f4fc14fc4c6d7ef9d",
+  "recordedAt": "2026-10-02T02:35:40.418Z",
+  "sha256": "09705c0ccff5c774f6d180056aeb085c0d97a6d71687e4e467739086b7b566ed",
+  "bytes": 40798,
+  "requestId": "cSqlrAFcdpSVIyp7TOR7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97741dfd9daf1fc880f788af121d187baeed2f8be0a7a1a222ad7a400e3135ce",
+    "bytes": 212367
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-5-natural-best",
+      "label": "Combo book opening follow 5 natural best",
+      "text": "We're still inside the opening book. By the human-move model, it's a natural one, and it's the engine's best."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea1e7531ca58ced32dd2dc5ddd35fa930417e891f8d70e444ed6dc83fa2b67dc",
+  "recordedAt": "2026-10-02T02:39:49.711Z",
+  "sha256": "a8e6a3f7b6f1f1cb7fc02a0da69da963b78b0081d6debb1b39478a5dc5cba1f3",
+  "bytes": 21745,
+  "requestId": "oQY5qoLef82ahx5KyorR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19b23abdec42bce9251010c7e1ed0282ed3af0d63a49355d80767566260100f1",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

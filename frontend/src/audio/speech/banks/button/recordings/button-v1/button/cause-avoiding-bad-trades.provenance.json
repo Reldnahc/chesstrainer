@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "A capture is only the first half of a conversation. This one invites a recapture of a more valuable piece, so count both sides before taking."
+    },
+    "takeId": null
+  },
+  "requestHash": "54b3b920526a57bb1e25c7028c8f246ac06a4effa3ae3de4fe5546abf29aa002",
+  "recordedAt": "2026-10-02T02:41:24.125Z",
+  "sha256": "56dea60b3253e33dbcb428a7a9824f9834b4761d8328a8f472045cb86e0baaf8",
+  "bytes": 30027,
+  "requestId": "Q6mneCJoaetALLNFwXyF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0873c124223cd1ca1ebaf644ec5cf6d581709482901c57eb5b6c5c538de0a44b",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

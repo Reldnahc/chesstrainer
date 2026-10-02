@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "It's a pin to the king that does the work here. The pinned piece has to stay on its line, since stepping off would expose its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "5c92bbeb92fd2e7ee769eaf5ba73a343c1cb90562cf8fcd97fc6ee8ab37e57d3",
+  "recordedAt": "2026-10-02T02:23:08.837Z",
+  "sha256": "dd507a14e0383eb4646613c5d7a2df1308be35a0dfde72fc4318eb418b91754b",
+  "bytes": 24635,
+  "requestId": "7vLs0YrjLqFfFRQlJgch",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ecc45cc916707ec4644c8954dddb66130fc594dd43a9c2720318581709d85cbc",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

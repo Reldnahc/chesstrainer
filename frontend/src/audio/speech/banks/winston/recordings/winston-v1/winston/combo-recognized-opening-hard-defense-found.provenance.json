@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-recognized-opening-hard-defense-found",
+      "label": "Combo recognized opening hard defense found",
+      "text": "There, that holds. This known opening move is doing real defensive work: only it, of the moves we searched, kept the position playable, and the human-move model has it down as a hard find."
+    },
+    "takeId": null
+  },
+  "requestHash": "26c5c3d783241368e9bb6ce8a0b9aa4f5808eddba5f6dfb233c090644d3c7819",
+  "recordedAt": "2026-10-02T02:37:35.641Z",
+  "sha256": "259b7f4f84da052fd4ef8182d52388afb42953e2124cbbc09ba9fd118040ad0a",
+  "bytes": 38071,
+  "requestId": "1A7HTIpPqWmHGyh7waPg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9824a3b9d72c2943e6d487bc0bd2c44370ab33d6452cb5aef61188bf75e2f93",
+    "bytes": 199410
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

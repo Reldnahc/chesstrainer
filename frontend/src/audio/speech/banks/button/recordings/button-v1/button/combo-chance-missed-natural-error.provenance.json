@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-chance-missed-natural-error",
+      "label": "Combo chance missed natural error",
+      "text": "Something was left lying about by the opponent's last move. This one doesn't pick it up. It's a natural response by the human-move model, but the engine finds a stronger one."
+    },
+    "takeId": null
+  },
+  "requestHash": "6481978790dca09b3c0dd773a915032294262a27b6f0e8ebff165c9972ec4524",
+  "recordedAt": "2026-10-02T02:51:51.084Z",
+  "sha256": "05fb18c925b4634353a3449bfd4fabce40a3f39d8836937d002188f6fa5c0dce",
+  "bytes": 34859,
+  "requestId": "uR1ZUTKpP2yBjjbI64GJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a142c3f53cb3a347ba60d4165f438f86b3f91bcd9bc88c5c97920d30a088085",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

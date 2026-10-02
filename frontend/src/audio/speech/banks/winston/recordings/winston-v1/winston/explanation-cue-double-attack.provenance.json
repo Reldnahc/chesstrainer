@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Look for a single move that carries two threats; checks and freshly opened lines count too."
+    },
+    "takeId": null
+  },
+  "requestHash": "c626e1b84ed022a48fbe7c16ae8d8d36079fe65ad5954f2d8dd04a9d1bff6092",
+  "recordedAt": "2026-10-02T02:30:33.810Z",
+  "sha256": "466d2bbfba76a3219da37f8951d4028d274608c207b6d75756765a18222cd9cc",
+  "bytes": 19355,
+  "requestId": "1Ld5MqER9Wuwi9m3Kimy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76e35242a665861380bd5ecc8d72c705fa3a9b3032864521a1aa121248b69230",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-immediate-capture-hard-defense-missed",
+      "label": "Combo immediate capture hard defense missed",
+      "text": "Something is within the other side's reach straight away. They can capture right now. One move among those checked kept the position playable, and the human-move model suggests it was a difficult one to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "e12d66c08d85fe253d93a24aa6a009f18850bef9462c6ec53c65220a125e98f4",
+  "recordedAt": "2026-10-02T02:50:38.728Z",
+  "sha256": "9ad254ea7d5192c013b1a26c2432328814d01dda4cf5911071d2746a0a2c28fa",
+  "bytes": 38952,
+  "requestId": "emoNY4YlQlpLTq3fqSLO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c4abb8d2c6864f97be18edc99141ea2ff4473d8d3d19d5fd6fd99088075c3e8",
+    "bytes": 198156
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

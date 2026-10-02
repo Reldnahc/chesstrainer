@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-rook-semi-open-actual-hard-find",
+      "label": "Combo positional rook semi open actual hard find",
+      "text": "The rook stands on a semi-open file: enemy pawns there, none of its own. The engine's best, and by the human-move model, a hard move to see; nicely found."
+    },
+    "takeId": null
+  },
+  "requestHash": "c35f8a5585a3352a68fda036a6ebd65f402e503af00246932b9648ad64803cc7",
+  "recordedAt": "2026-10-02T02:35:08.158Z",
+  "sha256": "b2bb79f2074adc6521c3af79521c56d8d68cd6ca72fa5ce34d39ed24a1aa029e",
+  "bytes": 33860,
+  "requestId": "c0sOVgaBlYzvvjVdZxGk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "523f841b25e6cb771463177f6cae7563b613efe8eca958098f22071c774adc3c",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

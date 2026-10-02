@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "The moving piece steps aside, and check arrives from another piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "01aec41f2e1db25a8fe7ece3ae32b2f5e4a3cc57a4c31e193400d70ae460cf7e",
+  "recordedAt": "2026-10-02T02:43:54.127Z",
+  "sha256": "6cbe1ed75b1cce6285452822120f2e0f171a06cf2841c14921d14a77ac7c3c36",
+  "bytes": 15654,
+  "requestId": "MBY0LfcNrJhbPfI2zEm5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8968698b94fda583395237c17aff577325b7f8aeb960a6ead6ddb43431977a8d",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

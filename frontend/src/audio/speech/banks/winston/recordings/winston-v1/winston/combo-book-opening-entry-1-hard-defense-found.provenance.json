@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-1-hard-defense-found",
+      "label": "Combo book opening entry 1 hard defense found",
+      "text": "There, that holds. This book move carries real defensive weight: of the moves we searched, it alone kept the position playable, and the human-move model suggests it was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "a3c5acf38294f3daf7156595bba4fc6d6d40923e05ba855b7992b0eda8c7f6f0",
+  "recordedAt": "2026-10-02T02:38:43.788Z",
+  "sha256": "f27aa83f3f34bf337cfe208fe51bd5334ac8ff964fda7cc3ef3a177fba5ff0ed",
+  "bytes": 34767,
+  "requestId": "yiUJwhHsl01xqS2ufJiD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd121e145d6d4c8395745a956712f16468a48b0279daced8adb7b72283f7e3f0",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

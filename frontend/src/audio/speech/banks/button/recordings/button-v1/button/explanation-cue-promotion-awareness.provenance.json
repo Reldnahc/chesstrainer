@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count how many moves the pawn needs to promote, and check the forcing pawn pushes."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf262ecaa6aa1a52361edf2b0966df3ed06d58a9ad1f3b25ef50fc67ca119b47",
+  "recordedAt": "2026-10-02T02:44:17.229Z",
+  "sha256": "83e9803ac29b6e7bb45df7cbe4f66dd83388201839df34d38c45573a5eaf6b35",
+  "bytes": 17346,
+  "requestId": "yoNY0uEZLlGPVwqsVFk7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2261bcc235bffac5c5ddd4110855e4efb9f8cbea07fc955afe93ec5d654cddaf",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

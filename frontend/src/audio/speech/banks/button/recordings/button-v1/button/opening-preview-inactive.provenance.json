@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls will ask for moves from the side you chose. Where studies share a position, they share one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd0c6500c483b9da63f9c90bd1ba52e0523fe9d1e3db8f055e8148a4abca2518",
+  "recordedAt": "2026-10-02T02:44:41.739Z",
+  "sha256": "ef1a577c60a4fe68dac82fe6880325d236ed5597009722d7a25b8bb396764b42",
+  "bytes": 23576,
+  "requestId": "ES2LgOAGeDmae7kJN4Gh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20e757de1bc1b3fc38386656d3a68ce8103b5df363f09df8c00859c2f9bf6914",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-chance-missed-hard-defense-missed",
+      "label": "Combo chance missed hard defense missed",
+      "text": "The opportunity from the opponent's last move goes unused. The only playable move we found was a different one, and the human-move model suggests it was hard to spot. Go back to that move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4fee3757ec6ff60cfab0d27935d5aaf45ba885aa31dd253d7b8b0e56c9946d68",
+  "recordedAt": "2026-10-02T02:38:16.486Z",
+  "sha256": "6276fcfe84456584ff9a259bcb45b522ba848d95a3bb0d3a6f580af6a4c913bc",
+  "bytes": 35804,
+  "requestId": "1h6AsTSKjJlSaxVHdHpe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fa0740a04e43164c217c2d1b47a2b3f3d533538d69a2da4686bdfc8f198e3bf",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

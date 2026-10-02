@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-castling-actual-unusual-strong",
+      "label": "Combo positional castling actual unusual strong",
+      "text": "Castled, then, with the rook brought across. The human-move model wouldn't have predicted that here, and the engine marks it strong. Follow both pieces to their new places."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee4ab5e5e4d57769f8089bdd580a5329b7bf808c179553f2a806ccdf46a790ff",
+  "recordedAt": "2026-10-02T02:36:13.758Z",
+  "sha256": "abb5d30211f598c59b3e8a63ed6b1fa712b683ee0989a066f631fde30a661162",
+  "bytes": 32731,
+  "requestId": "vM6iFeieUc15OkaxMYQ5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01885bd04b33295c10f8fb28d13425e082fef50266fb9dfc7955552280e1b77e",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

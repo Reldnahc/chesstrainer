@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-recovery-assisted-hard-find",
+      "label": "Combo recovery assisted hard find",
+      "text": "Some of the mending came from the other side. Their errors helped, and this move, the engine's own first pick, makes the position playable again. The human-move model counts it as a hard find."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b199180f9e4f4a6f77cb2e268fd16987bee7087786f16f5b10d9446d3b6d5a3",
+  "recordedAt": "2026-10-02T02:51:34.588Z",
+  "sha256": "d8991d6f6dc14b59754ca8de97290755cfd25a2c38d0d21c38edad5109ecb95e",
+  "bytes": 37940,
+  "requestId": "Nia1u9U1O7AYmD47Lr9C",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e691023d83374243f4b596b67f6470841573af8ee4da29f1d16c836b7cacd49",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

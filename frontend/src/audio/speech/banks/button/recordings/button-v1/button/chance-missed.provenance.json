@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "chance-missed",
+      "label": "Chance missed",
+      "text": "The opponent's last move left something loose, and this move leaves it lying there. What might have picked it up?"
+    },
+    "takeId": null
+  },
+  "requestHash": "194284e0f150980bc88b90070504463a07f2a6b15b0d244dedcaa16c8dc4e398",
+  "recordedAt": "2026-10-02T02:42:44.870Z",
+  "sha256": "249efa3857c5c1cd99c0adebaf27be14e77c13231cf9750f6f490f64c66fd76e",
+  "bytes": 22848,
+  "requestId": "CSwlgxzMBOKtdDDdarta",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2e3b8448c27376e4799a76aacdc541b136cff900431ceee3f238e2ab7a9f86c",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

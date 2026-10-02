@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "One piece, several errands. That's a fork: a single attacker reaching more than one target at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "40e8a4e5712437cf8d384682f4c06b192e8c366fe0f513574197cd783fcdd033",
+  "recordedAt": "2026-10-02T02:40:26.797Z",
+  "sha256": "3c9fc57e36a318e4a44221f4740ccdacd26452057df79f233c5ff82b34497144",
+  "bytes": 23853,
+  "requestId": "dGFri8rns8LFndcAHb9D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03b6ef65471887a95b4931011cf0c59ff34e4c038e419fad4091c5aa328223a0",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

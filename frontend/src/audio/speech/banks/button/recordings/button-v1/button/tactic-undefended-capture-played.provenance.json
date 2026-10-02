@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played",
+      "label": "Tactic undefended capture played",
+      "text": "A piece standing all alone is a nice thing to find. The idea is simply to take an undefended piece, so check for loose ones before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "544917971a5739b552f0b1f1950179328290a032a40e44f6119b7d306b28f899",
+  "recordedAt": "2026-10-02T02:41:15.261Z",
+  "sha256": "e0b66fdfd5096f1ff3dc74e6e6a4c82cd5d851c88d0f9c80cba5ca9e55b2758f",
+  "bytes": 29654,
+  "requestId": "39WRRiydx54LD8rOivdE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f10e013a7df56a45305a67043696cae12c1faf2f4a20b7951119dfcd30fea485",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

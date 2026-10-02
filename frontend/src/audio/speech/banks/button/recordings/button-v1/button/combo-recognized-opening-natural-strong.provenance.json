@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-recognized-opening-natural-strong",
+      "label": "Combo recognized opening natural strong",
+      "text": "A recognized opening move that comes easily to the human-move model. Strong to the engine, which has one move it prefers. A name in the book doesn't make a move the best."
+    },
+    "takeId": null
+  },
+  "requestHash": "da1578ad1b2c301671b48f126d4a1bc0221c0ed5bdc07744323710fee6a8d6d1",
+  "recordedAt": "2026-10-02T02:51:13.337Z",
+  "sha256": "9e7da2785ab5f679fe3aea5c20bfce0ea77090227d6174711f34185fa1d007d3",
+  "bytes": 35212,
+  "requestId": "8YwCcTm0UAT9IuH48vFL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd47a1ad0a952445ad2fd46c477dd295eac27f16ed8e53cff8a883028afb4e1b",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

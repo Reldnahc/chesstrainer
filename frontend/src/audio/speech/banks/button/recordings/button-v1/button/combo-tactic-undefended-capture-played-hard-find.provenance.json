@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-undefended-capture-played-hard-find",
+      "label": "Combo tactic undefended capture played hard find",
+      "text": "Nobody was watching that piece, and you noticed. The idea is to take an undefended piece. The engine ranks it best, and the human-move model suggests it wasn't easy to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "975e950614c263d608af625c67970088deb9c904631f799346fecf628a3e56c2",
+  "recordedAt": "2026-10-02T02:48:23.361Z",
+  "sha256": "b4ce39e07f06831d383b8b5aaecd3b27a00f69dfef6aad891b91269e2114015f",
+  "bytes": 37052,
+  "requestId": "nqT3rGsYNbxoLN6tovRA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fe4829255a6919c492a425b7e26a671d88e02ee342f16c7fb21fcf97ac31260",
+    "bytes": 190633
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

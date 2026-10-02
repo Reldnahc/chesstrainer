@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-promotion-awareness-missed-hard-defense-missed",
+      "label": "Combo tactic promotion awareness missed hard defense missed",
+      "text": "Here a pawn could have held the whole position up. The only move checked that kept it playable sent that pawn toward promotion; it went unplayed, and the human-move model rates it as hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "b6acaebc9b3c86f57a0414689492c8f50f64008c148c9e9cf5eb952668d8ba88",
+  "recordedAt": "2026-10-02T02:47:26.791Z",
+  "sha256": "824c1414895ba53bd4610efa7ddf6bcc644ce826f31b7a8eb77bb221d37eb3a8",
+  "bytes": 39867,
+  "requestId": "aD9s8O60oPIrx5zEprZU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74e15bfa79ffa3d1abe7ab659f2c6d8f6278fd5e41233224e4a3e86ce7204ed0",
+    "bytes": 205679
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

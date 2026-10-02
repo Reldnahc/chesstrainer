@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "On to the next move, then. Have a quiet look at what's different now."
+    },
+    "takeId": null
+  },
+  "requestHash": "690b283ff25d77d6eae0cb0c7d561b6bbe6519b8319c40858e46269609e354ff",
+  "recordedAt": "2026-10-02T02:29:38.608Z",
+  "sha256": "0e01205eb981b808a05c942e5cd583fac01cc5eb45aee8e4d59c09a1aec17f7b",
+  "bytes": 13456,
+  "requestId": "tfpet7ncdnh9NQ4ZbpLJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77605f0ae6c4ee6f50ce9977dac11199e9eda8205b983f2baa567ce7a8684f0b",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

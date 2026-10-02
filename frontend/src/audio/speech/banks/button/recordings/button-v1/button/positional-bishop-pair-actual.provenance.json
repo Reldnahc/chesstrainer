@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "A pair comes apart. This capture breaks up the bishop pair, so that side no longer has a bishop on each square color."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7f3dcfbed7c476b01908e01cfbd03fca015b10ad44aaa1ef7021163accf272d",
+  "recordedAt": "2026-10-02T02:41:56.791Z",
+  "sha256": "54148307b068578a9c2db08fa586f0b65c3b09ec0054987bd566b7c9566f6570",
+  "bytes": 24617,
+  "requestId": "EKwZt5SgK4tih54iowkd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0dcb7b00fb26132a9be2d7ee7bd8c69876724ef4c3675f925fdc6e522afa3fa",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

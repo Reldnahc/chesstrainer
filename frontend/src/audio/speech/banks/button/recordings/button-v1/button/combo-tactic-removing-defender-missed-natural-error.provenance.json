@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-missed-natural-error",
+      "label": "Combo tactic removing defender missed natural error",
+      "text": "Another move could have captured a defender and pulled away the protection it gave. The move played comes naturally to the human-move model, but leaves that defender where it stands."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3355f15cf30a40080217945f67fafd06d9c41f090ebac6ace8a622842fb18c5",
+  "recordedAt": "2026-10-02T02:46:57.301Z",
+  "sha256": "21efdff4ce08dca4fbc9acf8381d78dd2f82d7592665fa35a881f15744b78553",
+  "bytes": 34150,
+  "requestId": "gcJOVo9F9WYIRS9S6rr8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "978dd354d9fdc2a40cc2f04fadf2f131a2a938049edee13520a1b43a34779cc4",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

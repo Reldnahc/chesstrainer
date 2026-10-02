@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-advantage-converted-natural-strong",
+      "label": "Combo advantage converted natural strong",
+      "text": "Held together right to the end. The advantage lasted to the win; this move comes easily to the human-move model, and it's strong to the engine, which has one move it prefers."
+    },
+    "takeId": null
+  },
+  "requestHash": "c54a58e62b6bf47900d2fc34ed3f9969c24a6831b33259e3c045c1661ab1985f",
+  "recordedAt": "2026-10-02T02:52:10.870Z",
+  "sha256": "9045125779768fc7a298ed3c266ef465c9e3a757f59010e866ca4059002c7fe4",
+  "bytes": 35627,
+  "requestId": "tf2Z2PILjVhXdw3pXR8V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80a398224b03ca8e7020c5e8aa723f46643aaa61805a24160388cef12fff4d2a",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

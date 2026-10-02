@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "What was that piece leaning on? This move pulls away its only real defender, and now the other side can capture the piece it was holding up."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a2a8025585945bc528091d15d7a2d29df43fc9b445d4ca1ca2a5426e0050799",
+  "recordedAt": "2026-10-02T02:41:20.504Z",
+  "sha256": "639f7704081600425a8569f07b8e0adfa5853c3add32a03f63d8ef47d2bad25b",
+  "bytes": 28232,
+  "requestId": "FDrFvZ01pjqDKcCuUjSh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5649786c23521ccade7ddfb7509d501df0a3e7d0d7f8a96fb1ade5abb7073097",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

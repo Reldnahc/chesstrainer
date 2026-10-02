@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-unsupported-actual-unusual-strong",
+      "label": "Combo positional unsupported actual unusual strong",
+      "text": "One piece has lost its company. Undefended, though that alone doesn't prove it can be taken. A surprise to the human-move model, and strong to the engine."
+    },
+    "takeId": null
+  },
+  "requestHash": "873a9aa24b2b6679f5629cd150243a27045bb455d129392ad15a8d21e3c8bd76",
+  "recordedAt": "2026-10-02T02:49:42.934Z",
+  "sha256": "d281cdc98c25f511f6b198c5014d70bf6389a6569b0b00e095851369720f3f59",
+  "bytes": 32703,
+  "requestId": "dN3h7jbFgY8ihYCBUoyU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ce8400cccbabdacea745adac70f34eff2b64c592552fefc805ec4030946dce8",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-passer-advance-actual-natural-strong",
+      "label": "Combo positional passer advance actual natural strong",
+      "text": "The pawn was already passed, and now it steps forward. It's an expected move by the human-move model, and strong, though the engine has another first choice. Follow the pawn to where it stands now."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0feb5eeadad92245ebb4990a3d515909042038293ecbd2bdd2347ed1e75e024",
+  "recordedAt": "2026-10-02T02:35:35.123Z",
+  "sha256": "336c96f14edab2b4e62406199856787efd0143231fdf835f941ba967dc4c01ad",
+  "bytes": 37909,
+  "requestId": "MJgBY3lrOBCND2OQyP9P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcec42ae75cfaab464e91bf8208f9bb89a7082220c8e31c9e536de95bf6cd95b",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

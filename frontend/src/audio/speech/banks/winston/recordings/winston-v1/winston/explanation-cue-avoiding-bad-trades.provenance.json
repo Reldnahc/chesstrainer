@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Weigh what you capture against what their recapture would take from you."
+    },
+    "takeId": null
+  },
+  "requestHash": "00fbe12df2e53f8538421bb4ba83e99b9498b9f7d902cd40e1d93ab43d840bd1",
+  "recordedAt": "2026-10-02T02:30:37.752Z",
+  "sha256": "c51c44d51a151d2c19196ecec091a37a26755d1735b1f29981f46868aab47a50",
+  "bytes": 13215,
+  "requestId": "YU1dIcuVDDVL9QMclBos",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c427b83501bf4da30a702c903b9ebb737d1452785f55c653fbb981fed5de59a3",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

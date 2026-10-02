@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative",
+      "label": "Positional unsupported alternative",
+      "text": "Another move would have left a piece without a defender. That alone wouldn't mean it could be taken for free."
+    },
+    "takeId": null
+  },
+  "requestHash": "04cf43e3697c4d0866870148edefff52120c5769049718a8ee6e60e452bb138e",
+  "recordedAt": "2026-10-02T02:41:49.921Z",
+  "sha256": "0dfe72427f2a0eed4b463a2ceffafe0f97f858a1e47a7cee9a5529e0d876330e",
+  "bytes": 19857,
+  "requestId": "oDVlahqDgjGtPazzCWaf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "671eb19fbdcb9a798ca3943f9fea7ae45d68b4ee8cb957a5903100830828ad70",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

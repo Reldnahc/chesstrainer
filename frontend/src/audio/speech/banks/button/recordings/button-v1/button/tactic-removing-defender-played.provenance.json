@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "Everything leans on something. Here the idea is to capture a defender, so look at what it was holding up and what loses protection once it's gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c207deee7503485426b5b7e9d04f4103673a70c17f487946167d37b772dfe15",
+  "recordedAt": "2026-10-02T02:40:43.777Z",
+  "sha256": "d6222992c95138c8d678d9a00ec668f0e92e060db9893a194b49815f17ff6661",
+  "bytes": 29688,
+  "requestId": "Wjirr8k2If2tf854yzeV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "669036d7f0c7000e6a3a80bcd0f3dbc1f9de39c0d48977abbb833cf304134df1",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

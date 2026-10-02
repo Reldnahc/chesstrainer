@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn promotes here, and the example also shows a net material gain for that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "3953b4ae06296fe35b4975f2ab8c46a56f97dc526c2219fd8121fe1d28d0c65c",
+  "recordedAt": "2026-10-02T02:30:19.025Z",
+  "sha256": "708138ce47f488aedbce9a6baa0e41826c2e441a997ea020ddc60e9adb9044d6",
+  "bytes": 17216,
+  "requestId": "KqiHi5rxnSstE5CLNYyl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48319aa18166be839770da65341eeb69a90f896e67e423fe960470bb8f34107c",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

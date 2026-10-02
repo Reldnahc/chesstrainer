@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-promotion-awareness-missed-natural-error",
+      "label": "Combo tactic promotion awareness missed natural error",
+      "text": "Another move offered a route to promotion. The human-move model calls this one natural, but it lets the chance pass. Trace the pawn's way to the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "afffafc5915951b40b9183b5379b4006f10295ad67583c1f7c4f33820ec931b8",
+  "recordedAt": "2026-10-02T02:33:34.350Z",
+  "sha256": "8413201dc12078f24addf24fa7490b987add076035a3e5eb2c0393ca4c68dd41",
+  "bytes": 31275,
+  "requestId": "oxKnge9TLPgyR32ENMBT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "094e82947ae4fbfc6cf5e1a6f7ecf5c3bb7e8316045dd359ab8642005f4c9bbc",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

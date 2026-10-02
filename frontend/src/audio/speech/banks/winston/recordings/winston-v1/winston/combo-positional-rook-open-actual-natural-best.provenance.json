@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-rook-open-actual-natural-best",
+      "label": "Combo positional rook open actual natural best",
+      "text": "So the rook is on an open file, with no pawns of either color anywhere on it. The human-move model expects the move, and it's top of the engine's list."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1f42a970441bd4e906edccf164aa353624112dc6ab4384bf753de6fc5ed3fce",
+  "recordedAt": "2026-10-02T02:35:03.479Z",
+  "sha256": "db3c01ef86384bf4df5ab8a485a78e97953febcea20a61e6c05e275cd355c8d7",
+  "bytes": 30732,
+  "requestId": "Qg12Dq2HwWxdPqeWGag3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bfd061a0a6197a2d9b4b098c51962d8c85ae6539824c8f95b85e7bac046778f",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

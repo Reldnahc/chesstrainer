@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "Once the front piece steps off, the one it was shielding is captured, right along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b09a94bfcefd2f8fa6a518acfda35f65f3fb6b4a274dccf64191f81d4585bd7b",
+  "recordedAt": "2026-10-02T02:43:47.117Z",
+  "sha256": "9aaf8c6d1020cc980e866bc6cbd62e8d6314d80cb1776d7705789c222bbc58f9",
+  "bytes": 19194,
+  "requestId": "BhNOpIVeeLL30RHtrDin",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1c0751ba39287b9c858d8744228f99db2bef555589f6931e21e25742b665ae1b",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

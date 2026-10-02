@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-unsupported-actual-unusual-strong",
+      "label": "Combo positional unsupported actual unusual strong",
+      "text": "A piece is left without a defender, though that alone doesn't prove it can be won. Off the human-move model's radar, this, and strong by the engine's search. Check whether anything can actually reach that piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8c735d64e5cceffd10e1ed09c86f80ca88b4ddc34e98cef6f64226375a385ee",
+  "recordedAt": "2026-10-02T02:35:57.219Z",
+  "sha256": "bcc9b5a3eb692564f2f6f9f764c2ed5b7922248099335aa642341d721aa6c15e",
+  "bytes": 40715,
+  "requestId": "NhA8IdllmifbJDFJZNjc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c9393b54cb35245c7cc577fdd8cee0a0e0c81119a26ee14e684bebc74a581c4",
+    "bytes": 213621
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

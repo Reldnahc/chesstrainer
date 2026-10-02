@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-6-natural-strong",
+      "label": "Combo book opening follow 6 natural strong",
+      "text": "The book keeps going. Natural to the human-move model, and strong, though the engine's favorite is elsewhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "63545763bd052fc04c6e3925dfd1c42b8e88aa784bcfb35d67e829d6e331ee7a",
+  "recordedAt": "2026-10-02T02:53:23.027Z",
+  "sha256": "9598a84402a6f2a8a074bcad0409e04c2b7b41be7ad0b4029f0ce3acb968b191",
+  "bytes": 23842,
+  "requestId": "LAUqpN44z7sN2yigTSKA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf1c5a78e0610698649e8fd8ae51c1326ce6ebc630d9badf3f870ae80114833a",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

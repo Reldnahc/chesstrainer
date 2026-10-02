@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "The idea's to capture a defender. Once it's gone, whatever it was guarding can lose its protection, so look at what depended on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea1a38578d06630a3b8f08fec3eefa2d34caca48279c38a179394157c6d66fca",
+  "recordedAt": "2026-10-02T02:23:20.031Z",
+  "sha256": "11f3a6d8d14b3761f0b6b339b661e2724e2631a1e9b1638da0b03c2f3b67aaf1",
+  "bytes": 24873,
+  "requestId": "hstVwxhfzO3JBjssNSEy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "acda271376b8586e4a1aece7c2d2d2ff4a5bac3f3ad8e93d622e63553fd9bdbb",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

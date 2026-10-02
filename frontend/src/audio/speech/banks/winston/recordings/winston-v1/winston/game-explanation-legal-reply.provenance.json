@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side can play that marked reply. Go on, play it on the board and see what it does."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fea85b1a3fc3f4c0fbe9366f804238950e5366798103cd2db1ed7aeb6c79f21",
+  "recordedAt": "2026-10-02T02:30:25.340Z",
+  "sha256": "924a73976eb46e7593b101aea215024c96d3ad2c1517e43e2a625eec5d42c030",
+  "bytes": 17483,
+  "requestId": "issEDCUOxznqrddO7rIP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce4291096f55e3fb7479d51c5f6890df19cf0969b7d009c72ebcea8c4946ffb3",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

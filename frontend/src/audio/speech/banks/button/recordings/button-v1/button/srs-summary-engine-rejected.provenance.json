@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "This move isn't accepted for the exercise. The moves shown don't give a clear tactical reason why."
+    },
+    "takeId": null
+  },
+  "requestHash": "106811c8bfad533a5708230d6a6606f3d0fcebed94a10eefa173a81e52e34722",
+  "recordedAt": "2026-10-02T02:43:10.320Z",
+  "sha256": "6135a7db4dd908ed4548ecaafa24fa993d48de17f413495b63408b305899371d",
+  "bytes": 20767,
+  "requestId": "et5gy1bAyb0SQl1IAPQJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f83f3a4c39041fa957b66aad1f92c2b6f82a212acecde13d40eee7ac7619f6d",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

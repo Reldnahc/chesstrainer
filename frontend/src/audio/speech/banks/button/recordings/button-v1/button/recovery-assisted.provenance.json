@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "After the earlier setback, the position is upright again, partly thanks to the other side's errors. This move makes it playable once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6995f6ba040d1c2a4d0e50ff3e2fc730c10e2e6c29e400de9b6cea33340a04a",
+  "recordedAt": "2026-10-02T02:42:42.291Z",
+  "sha256": "b177d5f461df125b950c171feb5f9b9095731a3e3907ff2064bcc128c77513cd",
+  "bytes": 27689,
+  "requestId": "aC9yK0uukubqftASt6zz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18baf1451a68896b4103f0dced16a78a6fb7d7dc1832fb51677e63f1ccf34df8",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

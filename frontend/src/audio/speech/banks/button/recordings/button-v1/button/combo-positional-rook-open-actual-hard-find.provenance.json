@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-positional-rook-open-actual-hard-find",
+      "label": "Combo positional rook open actual hard find",
+      "text": "The rook has found a clear lane, an open file with no pawns of either color. Hard to pick out, though, by the human-move model and the other moves checked."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8914d0eebf4aec90d91712e2a3c950df8cc1713f8ad0cc9395d9415a858f0f7",
+  "recordedAt": "2026-10-02T02:48:49.436Z",
+  "sha256": "2794c784722fa503d1d2e75a333ad8e68d4e9670dd38c6f6609f74fb3afeac3b",
+  "bytes": 29981,
+  "requestId": "J7VRwYNNYxNdNJVFg8BX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ef77df34ec3d36310dc991dd59e5e7f690aa4abc113469b4d540b31dc552f8a",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

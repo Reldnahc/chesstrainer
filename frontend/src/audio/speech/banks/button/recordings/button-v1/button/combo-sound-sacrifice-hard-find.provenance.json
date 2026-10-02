@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-sound-sacrifice-hard-find",
+      "label": "Combo sound sacrifice hard find",
+      "text": "Here's an offer that doesn't fall apart when someone accepts it. In the line checked, taking the sacrifice doesn't refute it, and the human-move model and the alternatives suggest it was hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "883c464f1866808f2f6e09ebdda5be00041ca573d038001a9b10fbde4255c531",
+  "recordedAt": "2026-10-02T02:50:25.886Z",
+  "sha256": "ddf3a3d818f4c0f5da90bb258044db476b43b8bccd54bdde02e62e04b7950913",
+  "bytes": 38477,
+  "requestId": "Si2VpofGbrF4tfWHL6p7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d9d115384008be0f02bd5f3048ae316bdf5264ec218344ebd5fd5bfa8e91415",
+    "bytes": 200664
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

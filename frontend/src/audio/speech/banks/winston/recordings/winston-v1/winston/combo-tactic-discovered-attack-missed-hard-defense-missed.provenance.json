@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-discovered-attack-missed-hard-defense-missed",
+      "label": "Combo tactic discovered attack missed hard defense missed",
+      "text": "The only playable move we found used a discovered attack, a piece stepping aside to open another's line. The human-move model rates it a difficult find. Look behind that piece when you go back."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f94c1d36770e2f76daeb811617bf69d0a026b6b1d2262bbca272546785bfd55",
+  "recordedAt": "2026-10-02T02:33:54.449Z",
+  "sha256": "a70d8593a65414efdd6a6f23fa10730bcaf8ba2c620079f99049d19ef10ebf3d",
+  "bytes": 36576,
+  "requestId": "W4cwF8VjVXqslX0Ccy5E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5300dd063bca7b8c47ef008f71e235a9b31bcb15c455be2e6f1ebdbc0ff11f8",
+    "bytes": 191887
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

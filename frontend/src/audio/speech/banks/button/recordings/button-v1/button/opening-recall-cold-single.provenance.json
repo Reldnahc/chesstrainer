@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Bring back a move from your chosen study material."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e0d13dbe6fd5c36a0947029dbf1dd952683a644df88db258cf0ec23edf68173",
+  "recordedAt": "2026-10-02T02:44:34.418Z",
+  "sha256": "7560b6724aebca7c82a04eee2b7181bdc5f09b7c571bb995aa48bdf778d1dc46",
+  "bytes": 10668,
+  "requestId": "3SA3lqKCS7DfDYHf5uYo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "422765846bc707a0c86036fcd5375da89bd40d7b99894731fbc734ef040f8fc6",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

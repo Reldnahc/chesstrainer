@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "The rook sits on a semi-open file now. None of its own pawns are there, but at least one enemy pawn still is."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc014e8b2e2415a6ab8fe8d0962ce308ed1a8e964e7c37a283141e6af89b2a0b",
+  "recordedAt": "2026-10-02T02:24:11.240Z",
+  "sha256": "0cf7175d27a445170adfc73e05ae85eabbb498e543040972c526c0f2dbbfdf48",
+  "bytes": 22836,
+  "requestId": "zlqHwpTOhVGSA0We9Sw5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25d932b36a9aacb52a25b6dcf92485d39185de017753871653cb7623c0917237",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

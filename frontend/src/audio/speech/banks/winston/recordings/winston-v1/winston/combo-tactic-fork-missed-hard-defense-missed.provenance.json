@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-fork-missed-hard-defense-missed",
+      "label": "Combo tactic fork missed hard defense missed",
+      "text": "The only playable move we found had a fork in it, one piece reaching several targets. This move went elsewhere, and the human-move model suggests that fork was hard to spot. Count what the piece could have hit."
+    },
+    "takeId": null
+  },
+  "requestHash": "c054bf9ca72d998d3954e8a2fc39536ca6f4ae2652faa866d8910f87b31d9cf9",
+  "recordedAt": "2026-10-02T02:32:20.469Z",
+  "sha256": "1d3213e2b3e0f44973f3dc568233504a1340013c9a7bc776d79492072d0f311a",
+  "bytes": 38758,
+  "requestId": "8xxyTGPWoAjid7Qnoawi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad5f8ecb134570602f1ea8bd6e14963edf5a5138faf42060dcb6e215cdeb4e04",
+    "bytes": 201918
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

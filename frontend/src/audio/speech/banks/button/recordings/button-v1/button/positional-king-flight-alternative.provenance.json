@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Another move would have opened a new flight square for the king. It's worth seeing what would have cleared the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "291169ea25d84f6a6c97398d0053ecc2dc785303f3b06283b248271d249d05f2",
+  "recordedAt": "2026-10-02T02:41:52.351Z",
+  "sha256": "c7de8ec7d698ea9274c4e523270add1d74cb8ae3c66e68292e4c61798a453d0d",
+  "bytes": 19133,
+  "requestId": "ZZ8plJvq81eF8vGyRQWx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b15f90ff62298a3f0ca57cc53abc0a9745ee9206f4c5e8b6e92f3216490ad084",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

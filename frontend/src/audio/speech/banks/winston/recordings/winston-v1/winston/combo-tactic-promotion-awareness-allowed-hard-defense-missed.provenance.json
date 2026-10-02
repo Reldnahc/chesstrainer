@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-promotion-awareness-allowed-hard-defense-missed",
+      "label": "Combo tactic promotion awareness allowed hard defense missed",
+      "text": "This gives the other side a route to promotion. Only one move we checked held, and it was hard to see, by the human-move model's estimate. Follow the pawn's route to the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "363f3e45fd82115f01e1451e4013e0ae46e1a004969013cb1c57b5d8feed8e0c",
+  "recordedAt": "2026-10-02T02:33:32.427Z",
+  "sha256": "5dc424af7c95e2bdcdcb1e5a25176d65d466dd561841c306b303f28976ba1046",
+  "bytes": 33267,
+  "requestId": "MlvhiqdLkwereGoFn4Xv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1181bf5d3605e629dcec5447ef9166ba43fb58435283bd0f259bfdb0e767ace6",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

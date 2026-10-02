@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "A piece is left undefended by this. That's worth knowing, though it doesn't mean the piece can actually be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "57f1b081387a3b75693f0f8bb3091799454f92e82f5d66c2a75b483031ef957f",
+  "recordedAt": "2026-10-02T02:24:26.697Z",
+  "sha256": "dfecd8d9218057bd238258a52076fce9ec53be2d8cfa13de6f6f345c91cfedfb",
+  "bytes": 21496,
+  "requestId": "IwRgh1VhSIdBaYF21suk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "858a28a752761050a9c864cabdd1839e6f95c49979c34ea87faeaf64f334ea2d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

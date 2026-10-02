@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "See whether a forcing exchange could draw a defender off something else it's guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "df42eb3c11d4041c53f36cb6a967e714ec1d73fda50cd58c2f4d72f942dac211",
+  "recordedAt": "2026-10-02T02:30:38.757Z",
+  "sha256": "4da3fae327f671f2e8fa3ea3111e41e142eedbe397f5d83fbcc11c52ac41845a",
+  "bytes": 15320,
+  "requestId": "1poJHPCYC3forHbvRZZp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5f1afc2722d6abc0377ef4e48f33d0d6615f4ff3f6db2f28fbbf0f7754b9ee6",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

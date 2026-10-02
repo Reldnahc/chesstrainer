@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Take a moment, and recall a move from your selected study material."
+    },
+    "takeId": null
+  },
+  "requestHash": "afedb86f4962627d76cb11c33c33c752a958b40883552f969eef93b9c6904cbc",
+  "recordedAt": "2026-10-02T02:30:52.993Z",
+  "sha256": "3001c6ea8869a377a339831dc97b159f2d06b2644803057b770092cc4bc28d33",
+  "bytes": 13036,
+  "requestId": "PwjWTUixfI9V3vRNGMJ7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5aa2f668cac33de243d34cfe85d6f684ff55f2486a564880acf204100ef549a0",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

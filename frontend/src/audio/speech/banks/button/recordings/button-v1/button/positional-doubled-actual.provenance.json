@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Two pawns of the same color now share one file. Those are doubled pawns, one standing in front of the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2643d4e3f789c7fd6dffb7b4cd7f0663dbe71c99a63f9fb4aa152b30ff8ff3e",
+  "recordedAt": "2026-10-02T02:41:59.379Z",
+  "sha256": "728121deae304939f96f797b00fad2c2a6624fc2ebf995bfb6466b206e04a7f0",
+  "bytes": 23875,
+  "requestId": "ny0cINTDzmqKZCzegNns",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e263664678a2b6f9d9950ec6fbce2059749de0eef29b74ffbe644808fd6c998",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-tactic-undefended-capture-played-unusual-strong",
+      "label": "Combo tactic undefended capture played unusual strong",
+      "text": "There's an undefended piece to take here. The human-move model wasn't expecting the move, and strong is how the engine's search has it. Find the piece with nothing guarding it."
+    },
+    "takeId": null
+  },
+  "requestHash": "26a21a82603fc6094edaf4598c5587942ba329a230c12c83451488b05364ba1a",
+  "recordedAt": "2026-10-02T02:34:34.447Z",
+  "sha256": "62ac54954c9ad8aeebdb1c3a13a5ccc6c829036384291f1da0a12c434d542fa3",
+  "bytes": 32476,
+  "requestId": "H4H6qfcbYOaqYilMeDAU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "753e729002311d695ce62da3a6de79ebcdf14e72d43f64807b02a45d618fdb9a",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

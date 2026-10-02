@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "The saved answers set the terms for this exercise. A different legal move could still be perfectly good chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "5d8538929face921c496b90fd8a26e8efa98524d82598632a856639d86b2af7a",
+  "recordedAt": "2026-10-02T02:30:40.207Z",
+  "sha256": "7dcf0d115b2b3b3c613d68587cb8566a35fa55b76a2e7f5df0101d05c375e5e7",
+  "bytes": 21508,
+  "requestId": "P7s0OJkJEmaOqqcB8Xxl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdc4aff221941678b7a5915c0bd23b817cabb4bd46a230954af0f6b33deb9314",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

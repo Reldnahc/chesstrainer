@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-unsupported-actual-natural-strong",
+      "label": "Combo positional unsupported actual natural strong",
+      "text": "This leaves a piece undefended; that alone doesn't prove a loss. The human-move model sees an ordinary move, and the engine has it down as strong, though it would play another first. See what could attack that piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "231291390d70fefb8def4f64c104c58b9157b2bdf772e82ca8a63cdecbf1eda9",
+  "recordedAt": "2026-10-02T02:36:01.700Z",
+  "sha256": "75ae1c2b901dbe9401dcfc05703aef982ca3ed6f036b7b161c5367debb781859",
+  "bytes": 40209,
+  "requestId": "zMXQnAvyl5sglqulpQ8Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a93c54d86a2ad379ff4ed72ae193ced610c6951bc6db71612d750c1ae2c15759",
+    "bytes": 211113
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

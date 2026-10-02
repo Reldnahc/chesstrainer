@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "And that's checkmate, with no legal escape left for the king. A good place to finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "0146cd4bfea0be30d34046411ef87c3d2b3d0e03ea7fdfab75c5d791fa68f0a5",
+  "recordedAt": "2026-10-02T02:29:12.574Z",
+  "sha256": "51ae350d1bbf41d6b6a2ec969fe0a3cf234fde117969a6c452d7a4939af618da",
+  "bytes": 17189,
+  "requestId": "QE1zIKkBkW8yMqkR17KU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6d6524713522dba72f7302f80b469ca61064130752d80b129fffe5371563eff",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

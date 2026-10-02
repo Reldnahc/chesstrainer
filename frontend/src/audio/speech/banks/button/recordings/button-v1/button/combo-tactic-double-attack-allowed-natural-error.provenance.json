@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-double-attack-allowed-natural-error",
+      "label": "Combo tactic double attack allowed natural error",
+      "text": "Two problems could turn up together. The other side gets a chance at a double attack. An easy move to reach for, the human-move model says, but both threats would still need an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "1888d96e08cd9b6a90414dedb6f9763b28cc9f7666332fb4e80dda9beb990058",
+  "recordedAt": "2026-10-02T02:47:57.668Z",
+  "sha256": "691de5a6dc5d754d8bcd07e744578de834f88e9b715e5faa04cd7ea8d484c4f8",
+  "bytes": 35668,
+  "requestId": "Wr00W6G5u1NhE58YFj4T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "224a50554198839adfb705fe18e8d8f3d19ce0ad4d7ae9e24ef14c9cb446acbf",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "You found the whole solution after a retry. The record keeps both the earlier miss and the finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "075c81f6d55984c5cc0f2e9087e9bed490f7b3661b512292d28d9a3d56f2b256",
+  "recordedAt": "2026-10-02T02:44:45.852Z",
+  "sha256": "44c0f1a8c6f49506416e3cd9ee34360c836aa7c40bbc8a1dce48743d1c8d738c",
+  "bytes": 20133,
+  "requestId": "CC8xW6GCsV5Fi2DimJkA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c17dfc4a7175821b6118206c8f190ef5f7465d828b1468b73c112de09b60b7bd",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

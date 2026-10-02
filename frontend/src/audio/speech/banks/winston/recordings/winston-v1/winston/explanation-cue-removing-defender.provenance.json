@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Before trading off a defender, look at what it's protecting right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d2a8688152991849492cc3e916767cf3a5720b477ee0a5b610eb402b4aa78fc",
+  "recordedAt": "2026-10-02T02:30:31.658Z",
+  "sha256": "42093d620c63f32746a2b23a0d813de867b935525b3beb74bab558092d52192f",
+  "bytes": 13631,
+  "requestId": "f5cUaHuNBD7rH3aadPHe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba213ab34b69f3a2c6f03ecfde6a3c2375e7b37a8332b586a6603aca0a8cbf78",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

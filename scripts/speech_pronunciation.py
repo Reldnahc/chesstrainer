@@ -7,7 +7,13 @@ derived word records the dictionary base and rule; unsupported words still fail.
 import re
 from collections.abc import Callable
 
-REVISION = "regular-english-morphology-v1"
+REVISION = "regular-english-morphology-v2"
+V1_RULES = frozenset(
+    ("possessive", "plural-or-third-person", "negative-un", "able", "adjectival-al")
+)
+# Archives keep the revision they were generated with. v2 only appends rules, so a
+# word v1 could derive still derives identically; v1 evidence may use only v1 rules.
+REVISIONS = {"regular-english-morphology-v1": V1_RULES, REVISION: None}
 SIBILANTS = frozenset(("S", "Z", "SH", "ZH", "CH", "JH"))
 VOICELESS = frozenset(("P", "T", "K", "F", "TH"))
 
@@ -24,6 +30,11 @@ def candidates(word: str) -> list[tuple[str, str]]:
         values.append(("able", word[:-4]))
     if word.endswith("al") and len(word) > 4:
         values.append(("adjectival-al", word[:-2]))
+    # Silent-e restoration is tried first: "coding" is "code", never "cod".
+    if word.endswith("ed") and len(word) > 4:
+        values.extend((("past-ed", word[:-1]), ("past-ed", word[:-2])))
+    if word.endswith("ing") and len(word) > 5:
+        values.extend((("progressive-ing", word[:-3] + "e"), ("progressive-ing", word[:-3])))
     return values
 
 
@@ -48,6 +59,23 @@ def pronunciation(word: str, lookup: Callable[[str], str | None]) -> dict | None
             result = ["AH", "N", *phones]
         elif rule == "able":
             result = [*phones, "AH", "B", "AH", "L"]
+        elif rule == "past-ed":
+            suffix = (
+                ["IH", "D"]
+                if phones[-1] in ("T", "D")
+                else ["T"]
+                if phones[-1] in VOICELESS | {"S", "SH", "CH"}
+                else ["D"]
+            )
+            result = [*phones, *suffix]
+        elif rule == "progressive-ing":
+            # A syllabic final -le loses its schwa before the vowel: castle -> castling.
+            stem = (
+                phones[:-2] + ["L"]
+                if base.endswith("le") and phones[-2:] == ["AH", "L"]
+                else phones
+            )
+            result = [*stem, "IH", "NG"]
         else:
             result = [*phones, "AH", "L"]
         return {"word": word, "rule": rule, "base": base, "basePhones": phones, "phones": result}
@@ -65,7 +93,7 @@ def evidence(derivations: list[dict]) -> dict:
 def validate(value: dict, transcript: str) -> None:
     if (
         not isinstance(value, dict)
-        or value.get("revision") != REVISION
+        or value.get("revision") not in REVISIONS
         or value.get("source") != "pinned PocketSphinx CMU dictionary"
     ):
         raise ValueError("Unknown automatic pronunciation rules")
@@ -87,6 +115,9 @@ def validate(value: dict, transcript: str) -> None:
         ):
             raise ValueError("Automatic pronunciation differs from transcript")
         seen.add(word)
+        allowed = REVISIONS[value["revision"]]
+        if allowed is not None and entry.get("rule") not in allowed:
+            raise ValueError("Automatic pronunciation rule is newer than its revision")
         expected = pronunciation(
             word, lambda candidate: " ".join(phones) if candidate == base else None
         )

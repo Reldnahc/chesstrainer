@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "The king castles, with the rook crossing over beside it. Both pieces have moved, so follow each of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "22b4babf8eee7f896893653480602d552f330b5542e59c1da1d2ac6c2c7c08bb",
+  "recordedAt": "2026-10-02T02:24:31.994Z",
+  "sha256": "dcbabb24804ea006808221884c2c8313e5ebd257ad0bef3998f29c22b9d9ba6d",
+  "bytes": 21278,
+  "requestId": "AWxyhgpmDNeKavsa0zof",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a86ddb97c1f1a7c275f3377bd3497e99d9d0ef77e3a659d0edaff15b4dd29a2",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

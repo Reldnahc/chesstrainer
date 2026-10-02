@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "The saved line doesn't give a simple tactical reason. Step through it and weigh the replies; we haven't assumed a positional explanation either."
+    },
+    "takeId": null
+  },
+  "requestHash": "e168608f2c4a9d5659257e3805c553b9bdf0c512a93640a1b9ed984b7797830e",
+  "recordedAt": "2026-10-02T02:30:44.975Z",
+  "sha256": "a40fd31311c38fcb408bc0900a42b96f5d0cbcf32f3b14d881d7f373b47f276c",
+  "bytes": 26582,
+  "requestId": "8bZHATGn7gsDiMNzmdx1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d7b5c64240ca6b18cd0b5739bb995d4918ae32737c324c81fd10cd91b026a9e",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

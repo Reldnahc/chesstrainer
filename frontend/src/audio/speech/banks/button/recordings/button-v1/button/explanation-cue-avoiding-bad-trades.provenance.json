@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "A trade has two halves: what you take, and what the recapture takes from you. Count both."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec013d8153d234bf8356ad3f478b60740c01ac28719249b0e8249f8c75846ac2",
+  "recordedAt": "2026-10-02T02:44:19.794Z",
+  "sha256": "ccad43f13c8fda3bdbc7d0ec44d8246687faa42066874498a63175d537774282",
+  "bytes": 20908,
+  "requestId": "GzbnXZjBgqKzLKd8Z5l3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a99d0e3f00ad2e1dd24f35ca971a3bc0a2a76ea54588c3ee61d0401c652d8522",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-allowed-hard-defense-missed",
+      "label": "Combo tactic removing defender allowed hard defense missed",
+      "text": "The other side can now capture a defender, and whatever it guards could lose protection. Among the moves checked, one kept the position playable, and the human-move model says it wasn't easy to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a0cac7b102ef05050e9730873c01f05fcedd900fcf12fb7d549e93fb5a55a75",
+  "recordedAt": "2026-10-02T02:46:55.013Z",
+  "sha256": "784782880f4634ed2d0ea0118f75ea449849becd2d91fd354fcfa338280f228e",
+  "bytes": 39194,
+  "requestId": "RZgrgGKgPkyqb8KgAtPo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95e536b988ff95fcaa5a640dfe04dcc0ec30bc8e8d25b04d36467605ba9a2c4a",
+    "bytes": 203172
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

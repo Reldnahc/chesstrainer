@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-cause-opponent-threat-recognition-natural-error",
+      "label": "Combo cause opponent threat recognition natural error",
+      "text": "The opponent's last move had laid a hand on something. This one is easy to reach for, the human-move model says, but it leaves that threat unanswered, and a piece can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a5144fd27f30ab72c6edd26161e561480024d61a90c752bbc86a411e3e891c0",
+  "recordedAt": "2026-10-02T02:45:46.886Z",
+  "sha256": "eaf76b61ad33dc54617e3c5f94ad39f744142e744008b890229de9a84ef676a7",
+  "bytes": 37545,
+  "requestId": "YEygya2zRLlrSPUPNXIi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06ef181d86d93982e14f2c3889b742c89a398c6d4c4b033f7f13ff24ecc63464",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

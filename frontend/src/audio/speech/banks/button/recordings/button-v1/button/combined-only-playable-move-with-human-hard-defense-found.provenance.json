@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combined-only-playable-move-with-human-hard-defense-found",
+      "label": "Combined only playable move with human hard defense found",
+      "text": "A very small gap, and you went right through it. Nothing else checked kept the position playable; those moves were losing. The human-move model rates this one as hard to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2236218c5277ebc6e63378d2263f36d8354a185a2b7ad0b0fae120bf5063723",
+  "recordedAt": "2026-10-02T02:45:20.271Z",
+  "sha256": "2513643af21e6ac71bd7bd38121ad0d4be4cd59f03cf8ef2e9fe4bb4754ac581",
+  "bytes": 35460,
+  "requestId": "K3kNJ7Yxr2MRlfpH1nNF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5790f5ea7a126b8521befe53854de6531205bf916749464561f260ec45a50952",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

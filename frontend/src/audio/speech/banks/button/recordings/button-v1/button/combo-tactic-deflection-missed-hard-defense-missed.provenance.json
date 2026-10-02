@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "combo-tactic-deflection-missed-hard-defense-missed",
+      "label": "Combo tactic deflection missed hard defense missed",
+      "text": "One defender could have been tempted off its post. Among the moves checked, only that deflection kept the position playable; it was missed, and the human-move model suggests it was a difficult find."
+    },
+    "takeId": null
+  },
+  "requestHash": "6fadf6d4f5d7d5534e77f2d8bd73bbf5721d3375eb1ecf3bddc6429f4927fca2",
+  "recordedAt": "2026-10-02T02:48:21.156Z",
+  "sha256": "016d5311242785bb3f43c6b95449e08bac5349d8152bf2addd254449ebb0ee91",
+  "bytes": 38714,
+  "requestId": "Uoibtaqg7IXqHhHrDdjK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f1952080505e9ca6cdcd8c994a3d3c60bcab9fc9c2792fa95cc6aa7f3b4a17c",
+    "bytes": 199410
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

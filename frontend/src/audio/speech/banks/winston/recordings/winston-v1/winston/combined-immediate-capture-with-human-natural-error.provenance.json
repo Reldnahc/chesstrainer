@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combined-immediate-capture-with-human-natural-error",
+      "label": "Combined immediate capture with human natural error",
+      "text": "The human-move model expects a move like this, and the trouble's in the reply: the other side can capture straight away. Look at what that reply takes."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a658c8de306470b0d0d35fb9520ac8f9d0f729dcd59b73fda607bb09c9ac61a",
+  "recordedAt": "2026-10-02T02:31:28.600Z",
+  "sha256": "563ad38bc937b8d2d452941e6221c0197e3df0b16c75a1eca2c071afd1b93a73",
+  "bytes": 28610,
+  "requestId": "eCKLcqiwEFoBMeujamid",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6d35d8bbc504307c8a943afffa38b314fc49e1593bac6aa28fe0d8ae7319d93",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

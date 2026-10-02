@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture",
+      "label": "Explanation finding pin prevents capture",
+      "text": "This piece is pinned to its king, so it can't make the marked capture; stepping off the line would leave the king exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "c628256b0a9c91cdb239aa54c382071b22bbbea281c2b06904c85ef41f37e3e7",
+  "recordedAt": "2026-10-02T02:30:01.608Z",
+  "sha256": "fc3f49e73a390598029a6929d4f2996589964883e76a7c0440618c19d2d6e5b8",
+  "bytes": 22486,
+  "requestId": "yoPcGHax35zDWTiyr1Al",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd4b49a41910b1846647604b8fae0e67623df473bbdbb62937f90443683aaa4e",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

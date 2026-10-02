@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Moves from this line will count in mixed Due. In dedicated practice, it's this line on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "22dd1325a5386ed301026e051481a09774c26161fdb21bb7efdb6ee6038a39bc",
+  "recordedAt": "2026-10-02T02:30:58.529Z",
+  "sha256": "296598105cab5ce48360f06c419243257d932ecbceb1f63915cd294505607bd2",
+  "bytes": 19659,
+  "requestId": "wk5AT7FHgQk2QrEFl7Fc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bba6cb932a2d0cb341e1360bae40865c10845e69f1ffa0a79f5a983f993949d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-2-hard-find",
+      "label": "Combo book opening follow 2 hard find",
+      "text": "Well found. This one's book too, and the engine's best, and it was still a hard find, going by the human-move model."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb391aa53b07eb397f5b11c567df6197d684e50373b8afb1cf907c3b26daf571",
+  "recordedAt": "2026-10-02T02:39:16.751Z",
+  "sha256": "d85f173066c8d6e76af2193be5b28799e958960b3c7d725a1ffb582999dea2f1",
+  "bytes": 24040,
+  "requestId": "QFpd0yZM7BDWQ0BU0OG7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cafd910d8b8830b4d6d81aeb24fb5d4e796e558b2aabbb3275496c458c2168f2",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

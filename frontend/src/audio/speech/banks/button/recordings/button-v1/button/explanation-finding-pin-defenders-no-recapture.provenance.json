@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The capture works because the defenders are pinned to their king; recapturing would expose it. The shown line includes a material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "b871f0871c25aa5e371fe5bd72804ce4e31b4837649673cd069af69296f33b7a",
+  "recordedAt": "2026-10-02T02:43:44.265Z",
+  "sha256": "517b0f5162ac86846ac1bc19b258f836439370b551ae8b1b5ab5f1136e644405",
+  "bytes": 28269,
+  "requestId": "SAb9Hcl1AYHf3dyOijwr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "387d30e8ee9099434cf650fb725cfe872330073d5f1b9db35eb158efc7ed3184",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

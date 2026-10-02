@@ -1,7 +1,7 @@
 # Recorded coach bank authoring
 
-Walter's bank lives in this directory. Rivet's bank lives under `../banks/rivet`;
-both use the same production registry, meaning catalogue, validator and runtime.
+Walter's bank lives in this directory. Rivet's, Winston's and Button's banks live
+under `../banks/<voice>`; all use the same production registry, meaning catalogue, validator and runtime.
 For the full character workflow, start with the
 [coach creation guide](../../../../../docs/COACH_CREATION_GUIDE.md). This page
 covers reproducible recordings and generated mouth timing; the
@@ -71,13 +71,29 @@ manifest and matching authored script files contain the current text; the
 revision ledger records old/new text and editorial reasons. Superseded Rivet
 recordings are preserved by Git history rather than left under production asset globs.
 
+## Winston and Button banks
+
+Winston (`banks/winston`, coach `capybara`, locked voice "Welsh companion") and
+Button (`banks/button`, coach `mushroom`, locked voice "Woody contralto") are
+registered production banks covering all 438 catalogue meanings. Each owns its
+full authored text in `scripts.json`, including combinations, instead of adding
+columns to the Walter/Rivet files; the manifest records exactly those scripts.
+`backend/tests/test_coach_bank_scripts.py` checks catalogue coverage, the
+spoken-text rules and that each registered manifest matches its scripts.
+
+Both were recorded in one pass of 44 bounded plans (22 per coach, 120,354 input
+characters) with `eleven_v4` and the Walter/Rivet settings, under
+`recordings/<voice>-v1/`. ElevenLabs history billed 14,551 credits (0.121 per character)
+during the Eleven v4 launch discount. Their scripts needed regular `-ed`/`-ing`
+inflections ("castled", "castling", "reloading"), now covered by morphology
+revision v2; earlier archives keep revision v1.
+
 ## Authored banks awaiting recording
 
-Winston (`banks/winston/scripts.json`, coach `capybara`), Button
-(`banks/button/scripts.json`, coach `mushroom`), Pip
-(`banks/pip/scripts.json`, coach `slime`), Ziggy
-(`banks/ziggy/scripts.json`, coach `alien`) and Percy
-(`banks/percy/scripts.json`, coach `living-pawn`) each have complete authored
+Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
+(`banks/ziggy/scripts.json`, coach `alien`), Percy
+(`banks/percy/scripts.json`, coach `living-pawn`) and Wisp
+(`banks/wisp/scripts.json`, coach `ghost`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
@@ -85,20 +101,19 @@ coverage and the spoken-text rules, including that Ziggy, whose personality asks
 no questions, asks none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
 scripts and a bank is recorded and registered.
-Wisp (`banks/wisp/scripts.json`, coach `ghost`) has the same authored,
-unrecorded status and the same checks.
 
 ### Bank status
 
-One row per coach whose scripts exist but are not yet a registered production
-bank. "Review passed" means the character review approved the scripts for
+One row per coach whose scripts have been authored for a production bank.
+"Review passed" means the character review approved the scripts for
 recording; it is not the owner's recording approval. Add a row when a coach's
-scripts pass review, and remove it once the bank is registered.
+scripts pass review, and record the commits once the bank is recorded and
+registered.
 
 | Coach (id) | Scripts | Review passed | Recorded | Registered |
 |---|---|---|---|---|
-| Winston (`capybara`) | Written, 438 | Not tracked here | No | No |
-| Button (`mushroom`) | Written, 438 | Not tracked here | No | No |
+| Winston (`capybara`) | Written, 438 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `32abf9c` | Yes, `12a01f7` |
+| Button (`mushroom`) | Written, 438 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `83dd5df` | Yes, `12a01f7` |
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
 | Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
 | Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
@@ -170,7 +185,7 @@ automatically writes a finished personality or turns all coach prose into speech
    below validates every *registered recording*, but deliberately allows a
    partial bank. Compare the bank's IDs against the reachable shared catalogue
    and add/update script-consistency and selection tests before calling it
-   complete. Walter and Rivet currently cover all 438 meanings; that number is
+   complete. Walter, Rivet, Winston and Button currently cover all 438 meanings; that number is
    not a substitute for checking the catalogue. Exercise actual game/practice
    playback, late Maia results, manual replay, cancellation and cold positions.
    Use Recorded coach comparison in the Audio Studio for editorial/listening

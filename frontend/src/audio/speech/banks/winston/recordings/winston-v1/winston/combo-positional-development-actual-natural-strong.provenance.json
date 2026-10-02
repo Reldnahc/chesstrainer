@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "combo-positional-development-actual-natural-strong",
+      "label": "Combo positional development actual natural strong",
+      "text": "A minor piece is off its starting square and into the game. An ordinary choice by the human-move model, and a strong one, though not the engine's first pick. See what the engine's move does differently."
+    },
+    "takeId": null
+  },
+  "requestHash": "f95ae5d17f2cbeab40a9be577e54d510760c92da103346018b313bd0f80ddf22",
+  "recordedAt": "2026-10-02T02:34:56.882Z",
+  "sha256": "3b559577155a9f8640ebc0f000a6b862ee54b43ab7deb079b760a74c750a2342",
+  "bytes": 36811,
+  "requestId": "mpSoJAPa0jjpdxRVjDUG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2449131ca19c1c4102b1968661e733aabf070bde6f45b70ecd584903ec32592",
+    "bytes": 189379
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

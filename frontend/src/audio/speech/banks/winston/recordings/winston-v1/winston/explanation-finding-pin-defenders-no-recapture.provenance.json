@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The capture works because the defenders are pinned to their king and can't take back. In the line shown, that leads to a material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "33bf5d8e905b348841012f004e2157de6b4296b653119137688202c13531760d",
+  "recordedAt": "2026-10-02T02:30:05.231Z",
+  "sha256": "4f2a04abec1431330c2ca594c80f5150a809ab75cfeb04627863d84b2764e6e2",
+  "bytes": 25377,
+  "requestId": "oNjBtgoCycbSgYtMDnfW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a346281174d106a0361a5e41c83e530d39ccffdcfdefa5c52e3594d16c9a81c",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
