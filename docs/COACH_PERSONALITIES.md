@@ -136,11 +136,21 @@ Waffles (corgi) has opted in too, with his forms in the shared tactic and openin
 blocks: a short command or reaction, the consequence, then the next order, in light
 field-manual language with no questions and difficulty always credited to the
 human-move model. Waffles stays silent until a bank is registered.
+Celeste (unicorn) has followed in `characters/unicorn.ts`: a brief genuine
+reaction, a flowing description of what the move joins, frees or breaks, then
+one gentle lesson, with delight kept for sound sacrifices, hidden tactics and
+narrow defenses, kind but clear correction and no questions. Celeste also stays
+silent until a bank is registered.
+Jun (`man-expert`) has opted in as well, in `characters/expert.ts`: the fact,
+its exact consequence and the supported resource, in clipped technical labels
+(absolute pin, theory, net material, flight square), with sparse approval for
+precision, no emotion that depends on which side moved, and no questions. Jun
+also stays silent until a bank is registered.
 Monty (gorilla) has opted in as well, with his forms in `characters/groundedQuiet.ts`
 and the shared tactic and opening blocks: one big concrete problem in plain
 words, the simple reason, then the result, with earnest, sparse approval and no
 questions. Monty also stays silent until a bank is registered.
-The other 12 voices retain their current wording and deterministic variants.
+The other 10 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

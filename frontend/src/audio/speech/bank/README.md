@@ -102,12 +102,14 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/ember/scripts.json`, coach `dragon`), Scout
 (`banks/scout/scripts.json`, coach `dog-collie`), Juniper
 (`banks/juniper/scripts.json`, coach `cat-black`), Waffles
-(`banks/waffles/scripts.json`, coach `dog-corgi`) and Monty
+(`banks/waffles/scripts.json`, coach `dog-corgi`), Celeste
+(`banks/celeste/scripts.json`, coach `unicorn`), Jun
+(`banks/jun/scripts.json`, coach `man-expert`) and Monty
 (`banks/monty/scripts.json`, coach `gorilla`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper and Monty,
+coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun and Monty,
 whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
 scripts and a bank is recorded and registered.
@@ -137,6 +139,8 @@ registered.
 | Scout (`dog-collie`) | Written, 438 | Yes, 2026-10-02, at commit `3354f70` | No | No |
 | Juniper (`cat-black`) | Written, 438 | Yes, 2026-10-02, at commit `38d3920` | No | No |
 | Waffles (`dog-corgi`) | Written, 438 | Yes, 2026-10-02, at commit `49dd577` | No | No |
+| Celeste (`unicorn`) | Written, 438 | Yes, 2026-10-02, at commit `eddc967` | No | No |
+| Jun (`man-expert`) | Written, 438 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
 
 ## Adding or revising a production bank
 
