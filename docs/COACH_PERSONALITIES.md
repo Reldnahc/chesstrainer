@@ -141,12 +141,20 @@ reaction, a flowing description of what the move joins, frees or breaks, then
 one gentle lesson, with delight kept for sound sacrifices, hidden tactics and
 narrow defenses, kind but clear correction and no questions. Celeste also stays
 silent until a bank is registered.
+Jun (`man-expert`) has opted in as well, in `characters/expert.ts`: the fact,
+its exact consequence and the supported resource, in clipped technical labels
+(absolute pin, theory, net material, flight square), with sparse approval for
+precision, no emotion that depends on which side moved, and no questions. Jun
+also stays silent until a bank is registered.
+Fergus (frog) has opted in too, with his forms in `characters/groundedQuiet.ts`:
+one flat report of the fact with a dry, side-neutral tail at most, no questions
+and no exclamation marks. Fergus also stays silent until a bank is registered.
 Femi (human host) has opted in too, with his forms in the shared tactic and opening
-blocks: a club analyst's reaction across the table, the catch named plainly, then
+blocks: a club analyst's reaction across the table, a "hold that thought" at the problem, then
 the concrete reply put on the board, with occasional questions, book moves called
 "prep" or "main line", and difficulty always credited to the human-move model.
 Femi stays silent until a bank is registered.
-The other 11 voices retain their current wording and deterministic variants.
+The other 9 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

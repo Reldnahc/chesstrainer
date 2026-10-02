@@ -90,6 +90,21 @@ export const collieTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "{move} sets off a {motif}.", consequence: "{capture} nets a {piece}."},
 });
 
+export const frogTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} brings a {motif} into being, already in place.",
+    played_possible: "{move} may lead to a {motif}, if the replies cooperate.",
+    allowed_immediate: "{opponent} has {action}, and with it a {motif}, as it happens.",
+    allowed_possible: "{opponent} might get a {motif} later, replies permitting, or not.",
+    missed_immediate: "A {motif} came straight away with {best}, unplayed.",
+    missed_possible: "{best} might have led to a {motif}, eventually, maybe.",
+  },
+  fork: {actual: "All of the {targets} are attacked now, and by the same piece.", possible: "In theory, the {targets} would be attacked at once, and all from a single piece."},
+  material: "A {gain} may be on the table, if both sides play along.",
+  capture: {candidate: "{capture} would follow and remove a {piece}, quietly.", followup: "Possibly {capture} follows, taking a {piece}."},
+  playedCapture: {fact: "{move} has a {motif} attached.", consequence: "{capture} then removes a {piece}, without ceremony."},
+});
+
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Position after {move}: a {motif} is present.",
@@ -253,6 +268,21 @@ export const unicornTacticalTemplates = authorTacticalWordings({
   material: "A {gain} may be waiting at the far end, if the moves still to come unfold that way.",
   capture: {candidate: "{capture} would neatly claim a {piece}.", followup: "Should the story go that way, {capture} may follow and claim a {piece}."},
   playedCapture: {fact: "{move} brings a {motif} to life.", consequence: "{capture} claims a {piece}."},
+});
+
+export const expertTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "With {move}, a {motif} is in effect immediately.",
+    played_possible: "{move} prepares a {motif}, conditional on the replies.",
+    allowed_immediate: "{opponent} replies {action}, and that executes a {motif}.",
+    allowed_possible: "A {motif} becomes available to {opponent} later, subject to the replies.",
+    missed_immediate: "Unplayed resource: {best}, with an immediate {motif}.",
+    missed_possible: "{best} offered a route to a {motif}, subject to the replies.",
+  },
+  fork: {actual: "Fork: one piece attacks the {targets} simultaneously.", possible: "Projected fork: the {targets} would be attacked in parallel from one square."},
+  material: "Projected net material: a {gain} may be available at the end, pending both sides' choices.",
+  capture: {candidate: "Available capture: {capture}, winning a {piece}.", followup: "If the line runs that way, {capture} may follow, winning a {piece}."},
+  playedCapture: {fact: "{move} executes a {motif}.", consequence: "Material result: {capture}, and the {piece} is gone."},
 });
 
 export const hostTacticalTemplates = authorTacticalWordings({
