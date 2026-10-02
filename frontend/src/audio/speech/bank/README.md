@@ -81,6 +81,8 @@ Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
 coverage and the spoken-text rules. Neither is registered: no recordings,
 alignment or tracks exist yet, so both coaches stay silent until the owner
 approves the scripts and a bank is recorded and registered.
+Wisp (`banks/wisp/scripts.json`, coach `ghost`) has the same authored,
+unrecorded status and the same checks.
 
 ## Adding or revising a production bank
 
