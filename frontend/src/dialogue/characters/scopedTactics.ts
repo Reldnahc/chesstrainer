@@ -71,6 +71,6 @@ export const alienTacticalTemplates = authorTacticalWordings({
   },
   fork: {actual: "A single piece now has the {targets} under attack.", possible: "The {targets} would be attacked simultaneously."},
   material: "A {gain} may be the outcome, though each side still has choices first.",
-  capture: {candidate: "{capture} would remove a {piece}.", followup: "One line of play goes on with {capture}, removing a {piece}."},
-  playedCapture: {fact: "{move} carries a {motif}.", consequence: "{capture} removes a {piece}."},
+  capture: {candidate: "With {capture}, a {piece} would fall.", followup: "One line of play goes on with {capture}, removing a {piece}."},
+  playedCapture: {fact: "{move} contains a {motif}.", consequence: "{capture} removes a {piece}."},
 });

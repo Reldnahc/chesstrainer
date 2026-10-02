@@ -44,7 +44,7 @@ export const alien: CoachPersonality = {
     ],
     cause_abandoned_defender: [{observation: "A convincing move on its own, yet it breaks a connection.", fact: "{move} draws off the only unpinned defender of {side}'s {piece} on {square}.", consequence: "{opponent} can reply {reply}, capturing it."}],
     cause_opponent_threat_recognition: [{observation: "The important move here came from the other side.", fact: "The opponent's previous move set up an attack on {side}'s {piece} on {square}, and {move} leaves it standing there.", consequence: "{opponent} can reply {reply}, capturing it."}],
-    cause_avoiding_bad_trades: [{observation: "An exchange is only finished once the recapture is counted.", fact: "{move} trades {side}'s {piece} for a {captured}.", consequence: "{opponent} can recapture with {reply}."}],
+    cause_avoiding_bad_trades: [{observation: "An exchange is only finished once the recapture is counted.", fact: "{move} gives up {side}'s {piece} in exchange for a {captured}.", consequence: "{opponent} can recapture with {reply}."}],
     sacrifice: [
       {observation: "The material looks lost, and yet it is not.", fact: "The sacrifice can be accepted and still stands."},
       {fact: "Taking the offered material does not break this sacrifice.", observation: "Here the count of pieces tells less than the position does."},
@@ -116,7 +116,7 @@ export const alien: CoachPersonality = {
       "Checkmate, with every legal escape closed to the king. A complete result, and a satisfying one to observe.",
     ],
     mate_loss: ["Checkmate. Your king has no legal escape. The decisions worth investigating come earlier than this."],
-    draw: ["The game ends drawn. A settled result, with plenty of decisions inside it still worth examining."],
+    draw: ["Drawn, in the end. A settled result, with plenty of decisions inside it still worth examining."],
     retry: ["That attempt does not stand up to the reply. Try another move.", "Not this one. Choose again, and watch what the reply does."],
     recovered: [{observation: "Second attempt, different outcome.", fact: "This time it works. {detail}"}],
     accepted: [{observation: "That is the supported point.", fact: "{detail}"}, "Noted, and correct. {detail}"],
