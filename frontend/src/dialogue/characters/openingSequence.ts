@@ -167,3 +167,17 @@ export const kittenOpeningTemplates = {
   "book-opening-follow-7": ["{opening} still has more pages."],
   "book-opening-follow-8": ["The pages of {opening} keep turning; that's a map, not a report card."],
 } as const;
+
+export const puppyOpeningTemplates = {
+  "book-opening-entry-1": ["Ooh, a book move, straight out of {opening}!"],
+  "book-opening-entry-2": ["I recognize this one: {opening}!"],
+  "book-opening-entry-3": ["Yay, {opening} has this exact move!"],
+  "book-opening-follow-1": ["Book move, still, in {opening}!"],
+  "book-opening-follow-2": ["{opening} has an answer for this one too!"],
+  "book-opening-follow-3": ["Even the reply is part of {opening}."],
+  "book-opening-follow-4": ["The {opening} road keeps going!"],
+  "book-opening-follow-5": ["Still following the {opening} map!"],
+  "book-opening-follow-6": ["One more move from {opening}!"],
+  "book-opening-follow-7": ["More pages of {opening} to read!"],
+  "book-opening-follow-8": ["Still deep in {opening} land! That tells us where we are, not whether the move is the right one."],
+} as const;

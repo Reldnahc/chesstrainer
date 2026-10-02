@@ -119,7 +119,11 @@ Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
 one suspicious detail, asks a quick question, then answers it with the supported
 fact, with delight saved for sneaky tricks and difficulty always attributed to
 the human-move model. Pickle also stays silent until a bank is registered.
-The other 17 voices retain their current wording and deterministic variants.
+Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
+the concrete reply in plain words, then one small habit to carry forward, with
+ownership words kept to the learner's own moments. Biscuit also stays silent
+until a bank is registered.
+The other 16 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

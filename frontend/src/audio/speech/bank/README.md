@@ -97,8 +97,9 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/orin/scripts.json`, coach `wizard`), Felix
 (`banks/felix/scripts.json`, coach `cat-tuxedo`), Bandit
 (`banks/bandit/scripts.json`, coach `raccoon`), Alfie
-(`banks/alfie/scripts.json`, coach `dog-gentle`) and Pickle
-(`banks/pickle/scripts.json`, coach `cat-kitten`) each have complete authored
+(`banks/alfie/scripts.json`, coach `dog-gentle`), Pickle
+(`banks/pickle/scripts.json`, coach `cat-kitten`) and Biscuit
+(`banks/biscuit/scripts.json`, coach `dog-puppy`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue

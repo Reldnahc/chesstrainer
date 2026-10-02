@@ -179,3 +179,18 @@ export const kittenTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would snatch a {piece}.", followup: "Down the road, {capture} might snatch a {piece}."},
   playedCapture: {fact: "{move} springs a sneaky {motif}.", consequence: "{capture} snatches a {piece}."},
 });
+
+export const puppyTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Woo, {move} puts a {motif} right there on the board!",
+    played_possible: "{move} could set up a {motif} later on, as long as the replies play along.",
+    allowed_immediate: "Uh oh, {opponent} has {action} available, and that brings a {motif}.",
+    allowed_possible: "Later on, {opponent} might get to use a {motif}, if the replies go their way.",
+    missed_immediate: "Aw, {best} was carrying a {motif}, all ready.",
+    missed_possible: "{best} might have led to a {motif}, if the replies had cooperated.",
+  },
+  fork: {actual: "Wow, one piece is going after the {targets} all at the same time!", possible: "The {targets} would be attacked, and one eager piece would be doing all of it."},
+  material: "A {gain} may be the reward at the end, though both sides still get to choose their moves.",
+  capture: {candidate: "{capture} would gobble up a {piece}.", followup: "Later on, {capture} could gobble up a {piece}."},
+  playedCapture: {fact: "{move} brings a fun {motif} with it.", consequence: "{capture} gobbles up a {piece}."},
+});
