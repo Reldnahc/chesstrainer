@@ -161,7 +161,7 @@ export const velvetOpeningTemplates = {
   "book-opening-follow-1": ["Still the book's ground: {opening}."],
   "book-opening-follow-2": ["And this one is known, too, in {opening}."],
   "book-opening-follow-3": ["For the reply as well, {opening} has a page."],
-  "book-opening-follow-4": ["Familiar ground still, within {opening}."],
+  "book-opening-follow-4": ["Still walking the book's path, within {opening}."],
   "book-opening-follow-5": ["Here too, {opening} has a record of the move."],
   "book-opening-follow-6": ["{opening} walks along beside us here."],
   "book-opening-follow-7": ["Known, again: {opening}."],
