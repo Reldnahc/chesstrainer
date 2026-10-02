@@ -209,3 +209,17 @@ export const velvetOpeningTemplates = {
   "book-opening-follow-7": ["Known, again: {opening}."],
   "book-opening-follow-8": ["Known once more, in {opening}. Being in the book says where we are, nothing more."],
 } as const;
+
+export const unicornOpeningTemplates = {
+  "book-opening-entry-1": ["We've stepped into a recognized opening: {opening}."],
+  "book-opening-entry-2": ["A graceful book move, part of {opening}."],
+  "book-opening-entry-3": ["This move has its own page in the story of {opening}."],
+  "book-opening-follow-1": ["Still in harmony with {opening}."],
+  "book-opening-follow-2": ["And this move belongs to {opening} as well."],
+  "book-opening-follow-3": ["The reply, too, keeps step with {opening}."],
+  "book-opening-follow-4": ["The melody of {opening} flows onward."],
+  "book-opening-follow-5": ["{opening} still recognizes this move."],
+  "book-opening-follow-6": ["{opening} keeps walking alongside the game."],
+  "book-opening-follow-7": ["This step, too, is written into {opening}."],
+  "book-opening-follow-8": ["Once more a move of {opening}. A name in the book tells us where we are, not how well the move was chosen."],
+} as const;
