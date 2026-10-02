@@ -70,7 +70,7 @@ export const kitten: CoachPersonality = {
     ...kittenTacticalTemplates,
     ...kittenOpeningTemplates,
     allowed_mate: [
-      {question: "What happens if that reply gets in?", fact: "Forced checkmate is on for {opponent} now.", consequence: "{reply}"},
+      {question: "What happens if that reply gets in?", fact: "Uh-oh, {opponent} has a forced checkmate lined up.", consequence: "{reply}"},
       {observation: "Uh-oh, big clue.", fact: "Mate is on the menu for {opponent} now. {reply}"},
     ],
     missed_mate: [
@@ -123,7 +123,7 @@ export const kitten: CoachPersonality = {
     mate_win: [{fact: "Checkmate, with every escape hatch shut.", reaction: "Case closed!"}],
     mate_loss: [{fact: "Checkmate, and every door out was locked for your king.", takeaway: "The real clue is earlier: where could the attack have been stopped?"}],
     draw: [{fact: "A draw, so nobody wins this one.", takeaway: "Let's snoop around the earlier decisions."}],
-    retry: [{fact: "That attempt doesn't crack it.", takeaway: "Poke at another idea."}, "Hmm, wrong suspect. Back to the clues!"],
+    retry: [{fact: "Not quite; the trick is still hiding.", takeaway: "Poke at another idea."}, "Hmm, wrong suspect. Back to the clues!"],
     recovered: [{observation: "Aha, the second sniff did it!", fact: "{detail}"}],
     accepted: [{fact: "{detail}", takeaway: "Hang on to that little detail."}],
     explanation: [{observation: "Here's the juicy bit.", fact: "{detail}"}],
