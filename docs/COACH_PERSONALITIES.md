@@ -153,11 +153,16 @@ Arjun (`man-partner`) has opted in too, in `characters/partner.ts`: an occasiona
 genuine question that reveals the mechanism, then the idea, then a comparison of
 candidates side by side, with delight kept for unusual resources and no claim
 beyond the supported line. Arjun also stays silent until a bank is registered.
+Femi (human host) has opted in too, with his forms in the shared tactic and opening
+blocks: a club analyst's reaction across the table, a "hold that thought" at the problem, then
+the concrete reply put on the board, with occasional questions, book moves called
+"prep" or "main line", and difficulty always credited to the human-move model.
+Femi stays silent until a bank is registered.
 Monty (gorilla) has opted in as well, with his forms in `characters/groundedQuiet.ts`
 and the shared tactic and opening blocks: one big concrete problem in plain
 words, the simple reason, then the result, with earnest, sparse approval and no
 questions. Monty also stays silent until a bank is registered.
-The other 8 voices retain their current wording and deterministic variants.
+The other 7 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
