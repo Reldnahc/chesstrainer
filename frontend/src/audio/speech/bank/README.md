@@ -99,7 +99,7 @@ scripts pass review, and remove it once the bank is registered.
 | Button (`mushroom`) | Written, 438 | Not tracked here | No | No |
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
 | Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
-| Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `f379a89` | No | No |
+| Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `08dfff9` | No | No |
 
 ## Adding or revising a production bank
 
