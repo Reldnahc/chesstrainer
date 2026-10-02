@@ -547,7 +547,7 @@
     {
       "id": "explanation-frame-quiet-move-ordinary",
       "group": "srs_explanations",
-      "text": "Next move on the board. Watch what it changes."
+      "text": "Next move on the board. Let's see what it shifts."
     },
     {
       "id": "explanation-frame-quiet-move-check",
@@ -662,7 +662,7 @@
     {
       "id": "explanation-finding-king-skewer-collected",
       "group": "srs_explanations",
-      "text": "Out of check the king goes, off the line, and then the same attacker takes what was behind it."
+      "text": "The king has to get out of check and off the line, and then the same attacker takes what was behind it."
     },
     {
       "id": "explanation-finding-sole-defender-captured",
@@ -1109,7 +1109,7 @@
       "group": "game_review",
       "primary": "tactic-fork-played",
       "secondary": "human-natural-best",
-      "text": "Fork: one piece, several targets. The human-move model reckons it's the natural move, and the engine has it on top. Easy call."
+      "text": "Yep, that's a fork, one piece hitting a few targets. The human-move model reckons it's the natural move, and the engine has it on top. Easy call."
     },
     {
       "id": "combo-tactic-fork-played-natural-strong",
@@ -1235,7 +1235,7 @@
       "group": "game_review",
       "primary": "tactic-removing-defender-played",
       "secondary": "human-hard-find",
-      "text": "That's the clever bit: take the defender, and its charge loses protection. Best in the engine's search, and a real find, going by the human-move model."
+      "text": "That's the clever bit: take the defender, and its charge loses protection. Nothing in the search ranks higher, and it's a real find, going by the human-move model."
     },
     {
       "id": "combo-tactic-removing-defender-played-unusual-strong",
@@ -1543,7 +1543,7 @@
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-hard-find",
-      "text": "That piece had nobody guarding it, and this move takes it. Best in the engine's search, and a real find, going by the human-move model."
+      "text": "That piece had nobody guarding it, and this move takes it. Nothing in the search ranks higher, and it's a real find, going by the human-move model."
     },
     {
       "id": "combo-tactic-undefended-capture-played-unusual-strong",
@@ -1739,7 +1739,7 @@
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-hard-find",
-      "text": "This leaves a pawn on its own, with no friendly pawn on either neighboring file: isolated. Best in the engine's search, and a real find, going by the human-move model."
+      "text": "This leaves a pawn on its own, with no friendly pawn on either neighboring file: isolated. Nothing in the search ranks higher, and it's a real find, going by the human-move model."
     },
     {
       "id": "combo-positional-isolated-actual-unusual-strong",
@@ -1907,7 +1907,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-hard-find",
-      "text": "Doubled pawns now, two of one color lined up on a file. Best in the engine's search, and a real find, going by the human-move model."
+      "text": "Doubled pawns now, two of one color lined up on a file. Nothing in the search ranks higher, and it's a real find, going by the human-move model."
     },
     {
       "id": "combo-positional-doubled-actual-unusual-strong",
@@ -2012,7 +2012,7 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-unusual-strong",
-      "text": "Very little time on the clock, and an unexpected choice. Not what the human-move model would predict, and the engine still signs it off as strong."
+      "text": "Clock nearly gone, and an unexpected choice. Not what the human-move model would predict, and the engine still signs it off as strong."
     },
     {
       "id": "combo-clock-low-natural-best",
@@ -2033,7 +2033,7 @@
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-hard-find",
-      "text": "Played quickly, with time in hand. First choice for the engine, and the human-move model says it wasn't an easy find."
+      "text": "Fast hands, and the clock was nowhere near empty. First choice for the engine, and the human-move model says it wasn't an easy find."
     },
     {
       "id": "combo-clock-fast-unusual-strong",
@@ -2124,7 +2124,7 @@
       "group": "game_review",
       "primary": "opening-departure",
       "secondary": "human-hard-find",
-      "text": "We're out of prep here. Best in the engine's search, and a real find, going by the human-move model."
+      "text": "We're out of prep here. Nothing in the search ranks higher, and it's a real find, going by the human-move model."
     },
     {
       "id": "combo-opening-departure-unusual-strong",
@@ -2306,7 +2306,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-hard-find",
-      "text": "Standard prep so far. Best in the engine's search, and a real find, going by the human-move model."
+      "text": "Standard prep so far. Nothing in the search ranks higher, and it's a real find, going by the human-move model."
     },
     {
       "id": "combo-book-opening-entry-1-unusual-strong",
@@ -2516,7 +2516,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-hard-find",
-      "text": "The prep keeps rolling. Best in the engine's search, and a real find, going by the human-move model."
+      "text": "The prep keeps rolling. Nothing in the search ranks higher, and it's a real find, going by the human-move model."
     },
     {
       "id": "combo-book-opening-follow-4-unusual-strong",
@@ -2670,14 +2670,14 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
-      "text": "The main line holds. The human-move model sees it as the normal move, and the engine rates it the best one available."
+      "text": "Main line again, nothing fancy. The human-move model sees it as the normal move, and the engine rates it the best one available."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
-      "text": "Still on the main line. If you ask the human-move model, it's the normal move; the engine rates it strong but has a different top choice."
+      "text": "We're still walking the main line. If you ask the human-move model, it's the normal move; the engine rates it strong but has a different top choice."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",
