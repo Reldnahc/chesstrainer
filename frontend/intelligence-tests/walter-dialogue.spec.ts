@@ -16,6 +16,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   alien: {version: "alien-2", actual: "under attack", possible: "would be attacked simultaneously"},
   "living-pawn": {version: "living-pawn-2", actual: "all at once", possible: "would be attacked"},
   wizard: {version: "wizard-2", actual: "the fork in its plainest form", possible: "would be attacked at once"},
+  "cat-tuxedo": {version: "tuxedo-4", actual: "under fire", possible: "would be attacked, and a single piece"},
   raccoon: {version: "raccoon-2", actual: "has its eye on", possible: "would be attacked, every one of them"},
 };
 

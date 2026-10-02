@@ -101,12 +101,17 @@ his forms in `characters/wizard.ts` and the shared tactic and opening blocks: a
 short principle or named pattern, its application to the move, then the
 consequence, with restrained approval and no questions. Orin also stays silent
 until a bank is registered.
+Felix (tuxedo cat) has opted in with all 29 forms, the opening phrases and the
+full claim set: the concrete consequence first, then a terse explanation, with
+rare, understated approval, dry humor kept to practical costs, no questions and
+difficulty always attributed to the human-move model. Felix also stays silent
+until a bank is registered.
 Bandit (raccoon) has opted in as well, with its forms in `characters/scopedTactics.ts`
 and `characters/openingSequence.ts`: it spots what is on offer first, says plainly
 why it is there to take, and treats loose pieces and scrappy, effective chess as
 the good stuff, without pretending material is all that matters. Bandit stays
 silent until a bank is registered.
-The other 20 voices retain their current wording and deterministic variants.
+The other 19 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
