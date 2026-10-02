@@ -21,6 +21,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   "cat-tuxedo": {version: "tuxedo-4", actual: "under fire", possible: "would be attacked, and a single piece"},
   raccoon: {version: "raccoon-2", actual: "has its eye on", possible: "would be attacked, every one of them"},
   "dog-gentle": {version: "professor-4", actual: "attacks the", possible: "would be attacked"},
+  dragon: {version: "dragon-2", actual: "under one piece's attack", possible: "From a single square"},
 };
 
 test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {

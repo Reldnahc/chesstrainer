@@ -119,12 +119,17 @@ Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
 one suspicious detail, asks a quick question, then answers it with the supported
 fact, with delight saved for sneaky tricks and difficulty always attributed to
 the human-move model. Pickle also stays silent until a bank is registered.
+Ember (dragon) has opted in as well, with its scoped and opening forms in the
+shared `scopedTactics.ts` and `openingSequence.ts` blocks: a firm verdict first,
+then the concrete reason and its consequence, with sparing, earned approval for
+forcing play and exact defense and no questions. Ember also stays silent until a
+bank is registered.
 Juniper (black cat) has followed in `characters/velvet.ts`:
 a small exposed detail first, a beat, then a gentle conclusion, with the
 occasional first-person "I noticed", soft encouragement and no questions. As a
 one-claim voice, she drops a lower-priority Book recognition like Pip. Juniper
 also stays silent until a bank is registered.
-The other 16 voices retain their current wording and deterministic variants.
+The other 15 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
