@@ -237,3 +237,17 @@ export const unicornOpeningTemplates = {
   "book-opening-follow-7": ["This step, too, is written into {opening}."],
   "book-opening-follow-8": ["Once more a move of {opening}. A name in the book tells us where we are, not how well the move was chosen."],
 } as const;
+
+export const expertOpeningTemplates = {
+  "book-opening-entry-1": ["Opening theory begins: {opening}."],
+  "book-opening-entry-2": ["Catalogued theory move, {opening}."],
+  "book-opening-entry-3": ["Theory entry on record: {opening}."],
+  "book-opening-follow-1": ["{opening}: theory continues."],
+  "book-opening-follow-2": ["Also catalogued under {opening}."],
+  "book-opening-follow-3": ["The reply is catalogued in {opening} as well."],
+  "book-opening-follow-4": ["Zero deviation so far from {opening}."],
+  "book-opening-follow-5": ["Listed in {opening}."],
+  "book-opening-follow-6": ["The {opening} line holds."],
+  "book-opening-follow-7": ["{opening}, still catalogued."],
+  "book-opening-follow-8": ["Still {opening}. Book status locates the game; it does not evaluate the move."],
+} as const;
