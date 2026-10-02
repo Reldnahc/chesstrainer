@@ -225,6 +225,21 @@ export const velvetTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "{move} hides a {motif}.", consequence: "A {piece} is gone after {capture}."},
 });
 
+export const corgiTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} puts a {motif} on the board. Operation underway.",
+    played_possible: "{move} lays the groundwork for a {motif}, pending the replies.",
+    allowed_immediate: "Alert: {opponent} can reply {action}, arming a {motif}.",
+    allowed_possible: "Later on, a {motif} could open for {opponent}; the replies will decide whether it materializes.",
+    missed_immediate: "{best} had a {motif} on the launch pad.",
+    missed_possible: "{best} might have opened a {motif}, pending the replies.",
+  },
+  fork: {actual: "One piece now has the {targets} in its sights.", possible: "The {targets} would be attacked, all from one post."},
+  material: "A {gain} may be in it, but both sides still have orders to give.",
+  capture: {candidate: "{capture} would knock out a {piece}.", followup: "Down the line, {capture} could remove a {piece}."},
+  playedCapture: {fact: "{move} puts a {motif} into operation.", consequence: "{capture} sends a {piece} off the field."},
+});
+
 export const unicornTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "After {move}, a lovely {motif} is woven into the position.",
@@ -235,7 +250,7 @@ export const unicornTacticalTemplates = authorTacticalWordings({
     missed_possible: "With kinder replies, {best} might have blossomed into a {motif}.",
   },
   fork: {actual: "A single piece reaches gracefully toward the {targets} at once.", possible: "From one graceful piece, the {targets} would be attacked in unison."},
-  material: "A {gain} could be waiting at the far end, if the moves still to come unfold that way.",
+  material: "A {gain} may be waiting at the far end, if the moves still to come unfold that way.",
   capture: {candidate: "{capture} would gracefully claim a {piece}.", followup: "Should the story go that way, {capture} may follow and claim a {piece}."},
   playedCapture: {fact: "{move} brings a {motif} to life.", consequence: "{capture} claims a {piece}."},
 });

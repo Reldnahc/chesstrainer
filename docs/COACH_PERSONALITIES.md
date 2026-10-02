@@ -132,12 +132,16 @@ a small exposed detail first, a beat, then a gentle conclusion, with the
 occasional first-person "I noticed", soft encouragement and no questions. As a
 one-claim voice, she drops a lower-priority Book recognition like Pip. Juniper
 also stays silent until a bank is registered.
+Waffles (corgi) has opted in too, with his forms in the shared tactic and opening
+blocks: a short command or reaction, the consequence, then the next order, in light
+field-manual language with no questions and difficulty always credited to the
+human-move model. Waffles stays silent until a bank is registered.
 Celeste (unicorn) has followed in `characters/unicorn.ts`: a brief genuine
 reaction, a flowing description of what the move joins, frees or breaks, then
 one gentle lesson, with delight kept for sound sacrifices, hidden tactics and
 narrow defenses, kind but clear correction and no questions. Celeste also stays
 silent until a bank is registered.
-The other 13 voices retain their current wording and deterministic variants.
+The other 12 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

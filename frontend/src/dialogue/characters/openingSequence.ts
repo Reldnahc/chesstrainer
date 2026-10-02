@@ -210,11 +210,25 @@ export const velvetOpeningTemplates = {
   "book-opening-follow-8": ["Known once more, in {opening}. Being in the book says where we are, nothing more."],
 } as const;
 
+export const corgiOpeningTemplates = {
+  "book-opening-entry-1": ["Straight from the manual: {opening}."],
+  "book-opening-entry-2": ["This move is in the field manual, under {opening}."],
+  "book-opening-entry-3": ["Recognized opening, on record as {opening}."],
+  "book-opening-follow-1": ["Still following the manual: {opening}."],
+  "book-opening-follow-2": ["Another move from the manual, in {opening}."],
+  "book-opening-follow-3": ["The manual covers the reply as well: {opening}."],
+  "book-opening-follow-4": ["The manual keeps going through {opening}."],
+  "book-opening-follow-5": ["Formation holds, still within {opening}."],
+  "book-opening-follow-6": ["{opening} keeps marching."],
+  "book-opening-follow-7": ["The drill continues in {opening}."],
+  "book-opening-follow-8": ["Manual entry again: {opening}. A listing, not a ruling."],
+} as const;
+
 export const unicornOpeningTemplates = {
   "book-opening-entry-1": ["We've stepped into a recognized opening: {opening}."],
   "book-opening-entry-2": ["A graceful book move, part of {opening}."],
   "book-opening-entry-3": ["This move has its own page in the story of {opening}."],
-  "book-opening-follow-1": ["Still in harmony with {opening}."],
+  "book-opening-follow-1": ["The game moves on in harmony with {opening}."],
   "book-opening-follow-2": ["And this move belongs to {opening} as well."],
   "book-opening-follow-3": ["The reply, too, keeps step with {opening}."],
   "book-opening-follow-4": ["The melody of {opening} flows onward."],
