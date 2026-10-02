@@ -9,12 +9,14 @@ import {capybara} from "../src/dialogue/characters/groundedQuiet";
 import {mushroom} from "../src/dialogue/characters/mushroom";
 import {ghost} from "../src/dialogue/characters/ghost";
 import {slime} from "../src/dialogue/characters/slime";
+import {alien} from "../src/dialogue/characters/alien";
 import {factualParts, validWording} from "../src/dialogue/composition";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
 
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot},
   {id: "capybara", personality: capybara}, {id: "mushroom", personality: mushroom}, {id: "ghost", personality: ghost},
-  {id: "slime", personality: slime}];
+  {id: "slime", personality: slime},
+  {id: "alien", personality: alien}];
 function item(role: "played" | "allowed" | "missed", timing: TacticalPresentation["timing"], effect: TacticalPresentation["effect"]): Claim {
   return {...claim(`tactic_${role}`, {move: "Nf3", best: "Ng5", opponent: "Black", motif: "pin", detail: "Original prose remains intact."},
     90, [{source: "stockfish", id: "search", field: "findings"}], ["event"]),

@@ -92,7 +92,11 @@ reaction, then one plain fact in short everyday words, with an occasional Dublin
 turn of phrase and no questions. As a one-claim voice, Pip drops a lower-priority
 Book recognition rather than adding it after a correction. Like Winston and
 Button, Wisp and Pip stay silent until a bank is registered.
-The other 24 voices retain their current wording and deterministic variants.
+Ziggy (alien) has followed with all 29 forms, the opening phrases and the full
+claim set: a curious outsider's observation first, then the plain fact, with no
+questions and difficulty always attributed to the human-move model. Ziggy also
+stays silent until a bank is registered.
+The other 23 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

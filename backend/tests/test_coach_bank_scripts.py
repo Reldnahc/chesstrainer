@@ -8,7 +8,9 @@ import pytest
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
 # Each new voice owns one complete script source; Walter/Rivet text fields stay theirs.
-AUTHORED = [("capybara", "winston"), ("mushroom", "button"), ("ghost", "wisp"), ("slime", "pip")]
+AUTHORED = [("capybara", "winston"), ("mushroom", "button"), ("ghost", "wisp"), ("slime", "pip"), ("alien", "ziggy")]
+# Voices whose written personality sets questionFrequency to "none".
+QUESTIONLESS = ["ziggy"]
 
 
 def read(path):
@@ -66,3 +68,9 @@ def test_difficulty_is_attributed_to_the_human_model(coach, voice):
     # Spoken right after "the engine's best", bare "evidence" sounds like engine judgement.
     for row in read(f"banks/{voice}/scripts.json")["records"]:
         assert not re.search(r"\b(?:the|model) evidence\b", row["text"], flags=re.IGNORECASE), row["id"]
+
+
+@pytest.mark.parametrize("voice", QUESTIONLESS)
+def test_question_free_voices_ask_no_spoken_questions(voice):
+    for row in read(f"banks/{voice}/scripts.json")["records"]:
+        assert "?" not in row["text"], row["id"]
