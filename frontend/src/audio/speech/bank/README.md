@@ -119,6 +119,7 @@ registered.
 | Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
 | Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
 | Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `b0b8439` | No | No |
+| Orin (`wizard`) | Written, 438 | Yes, 2026-10-02, at commit `f9e8a4f` | No | No |
 
 ## Adding or revising a production bank
 
