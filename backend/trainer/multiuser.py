@@ -61,7 +61,7 @@ def configure_accounts(app, settings):
                         status_code=403,
                     )
                 if not public and not secrets.compare_digest(
-                    request.headers.get("x-csrf-token", ""), csrf_token(token)
+                    request.headers.get("x-csrf-token", "").encode(), csrf_token(token).encode()
                 ):
                     return JSONResponse(
                         {"detail": "Refresh the page before trying again."}, status_code=403

@@ -21,7 +21,7 @@ def configure_http(app: FastAPI, settings: Settings):
                 token
                 and request.url.path != "/api/auth/me"
                 and not secrets.compare_digest(
-                    request.headers.get("authorization", ""), f"Bearer {token}"
+                    request.headers.get("authorization", "").encode(), f"Bearer {token}".encode()
                 )
             ):
                 return JSONResponse(
