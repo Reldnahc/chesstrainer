@@ -22,7 +22,7 @@ export const captain: CoachPersonality = {
   templates: {
     ...captainTacticalTemplates,
     ...captainOpeningTemplates,
-    allowed_mate: [{reaction: "This one decides the game.", fact: "This move hands {opponent} a mating sequence that cannot be stopped.", consequence: "{reply}", takeaway: "Every move, check the forcing replies first."}],
+    allowed_mate: [{reaction: "This one decides the game.", fact: "This move hands {opponent} a forced mate that cannot be stopped.", consequence: "{reply}", takeaway: "Every move, check the forcing replies first."}],
     missed_mate: [{reaction: "Mate was there to be had.", fact: "{best} forced mate, and this move lets the chance pass.", takeaway: "When a king is short of squares, look at every check."}],
     tactic_played: [{reaction: "That is how it is done.", fact: "{move} leads into a strongest line containing a {motif}.", consequence: "{detail}", takeaway: "Learn the pattern, and the move comes with it."}],
     tactic_allowed: [{reaction: "Count the other side's turn.", fact: "{opponent} gets a {motif} once the strongest line is played out.", consequence: "{detail}", takeaway: "Look at the board from across the table before committing."}],
