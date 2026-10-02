@@ -187,7 +187,7 @@
     {
       "id": "positional-rook-open-alternative",
       "group": "game_review",
-      "text": "With a different move, a rook could have occupied a file empty of pawns of both colors."
+      "text": "With a different move, a rook could have occupied an open file, one without a single pawn on it."
     },
     {
       "id": "positional-rook-semi-open-actual",
@@ -262,7 +262,7 @@
     {
       "id": "positional-castling-actual",
       "group": "game_review",
-      "text": "The king castles, and the rook crosses over beside it. Two pieces relocated in one move."
+      "text": "The king castles, and the rook settles on the king's other side. Two pieces relocated in one move."
     },
     {
       "id": "positional-castling-alternative",
@@ -622,12 +622,12 @@
     {
       "id": "explanation-frame-castle-check",
       "group": "srs_explanations",
-      "text": "The king castles, the rook crosses over, and the move gives check as well."
+      "text": "The king castles, the rook jumps to its new square, and the move gives check as well."
     },
     {
       "id": "explanation-frame-castle-mate",
       "group": "srs_explanations",
-      "text": "The king castles, the rook crosses over, and it is checkmate, with no legal escape for the opposing king. A rare way to finish, and a memorable one."
+      "text": "The king castles, the rook takes its new square, and it is checkmate, with no legal escape for the opposing king. A rare way to finish, and a memorable one."
     },
     {
       "id": "explanation-finding-fork-collected",
@@ -927,7 +927,7 @@
     {
       "id": "book-opening-follow-1",
       "group": "game_review",
-      "text": "Still inside the catalogued opening."
+      "text": "Still within opening theory."
     },
     {
       "id": "book-opening-follow-2",
@@ -942,7 +942,7 @@
     {
       "id": "book-opening-follow-4",
       "group": "game_review",
-      "text": "The catalogued line goes on."
+      "text": "Theory continues with this move."
     },
     {
       "id": "book-opening-follow-5",
@@ -962,7 +962,7 @@
     {
       "id": "book-opening-follow-8",
       "group": "game_review",
-      "text": "The catalogue matches again. It lists what was played, not whether it was right."
+      "text": "A theory move again. Theory records what has been played, not whether it was right."
     },
     {
       "id": "combined-allowed-mate-with-human-natural-error",
@@ -1634,7 +1634,7 @@
       "group": "game_review",
       "primary": "positional-rook-open-actual",
       "secondary": "human-unusual-strong",
-      "text": "The rook reaches an open file, empty of pawns. The human-move model did not expect it, yet the engine counts it strong."
+      "text": "The rook reaches an open file, no pawn on it of either color. The human-move model did not expect it, yet the engine counts it strong."
     },
     {
       "id": "combo-positional-rook-open-actual-natural-best",
@@ -1851,7 +1851,7 @@
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-hard-find",
-      "text": "The king castles, the rook crossing to its side. The engine ranks this best, and yet the human-move model and the alternatives suggest it was hard to find. Castling, hard to find. Curious."
+      "text": "King and rook change places by castling. The engine ranks this best, and yet the human-move model and the alternatives suggest it was hard to find. Castling, hard to find. Curious."
     },
     {
       "id": "combo-positional-castling-actual-unusual-strong",
@@ -2103,7 +2103,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-natural-best",
-      "text": "A catalogued opening move, natural to the human-move model and the engine's best."
+      "text": "A move from opening theory, natural to the human-move model and the engine's best."
     },
     {
       "id": "combo-recognized-opening-natural-strong",
@@ -2138,7 +2138,7 @@
       "group": "game_review",
       "primary": "opening-departure",
       "secondary": "human-natural-best",
-      "text": "The first move outside the catalogued opening, and a natural one to the human-move model. The engine ranks it first as well."
+      "text": "The first move outside opening theory, and a natural one to the human-move model. The engine ranks it first as well."
     },
     {
       "id": "combo-opening-departure-natural-strong",
@@ -2320,28 +2320,28 @@
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-natural-best",
-      "text": "An opening-catalogue move that is natural to the human-move model and the engine's best. Three sources, one answer."
+      "text": "An opening move with a name, natural to the human-move model, and the engine's best. Three sources, one answer."
     },
     {
       "id": "combo-book-opening-entry-1-natural-strong",
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-natural-strong",
-      "text": "A catalogued opening move, natural by the human-move model, strong by the engine, though the engine prefers another."
+      "text": "A named opening move, natural by the human-move model, strong by the engine, though the engine prefers another."
     },
     {
       "id": "combo-book-opening-entry-1-hard-defense-found",
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-hard-defense-found",
-      "text": "This catalogued opening move carried real weight: nothing else searched kept the position playable. A hard find, by the human-move model."
+      "text": "This opening move carried real weight: nothing else searched kept the position playable. A hard find, by the human-move model."
     },
     {
       "id": "combo-book-opening-entry-2-hard-find",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-find",
-      "text": "A known line, a catalogued move, and the engine's top choice. The human-move model and the alternatives still rate it hard to find."
+      "text": "A known line, a theory move, and the engine's top choice. The human-move model and the alternatives still rate it hard to find."
     },
     {
       "id": "combo-book-opening-entry-2-unusual-strong",
@@ -2397,7 +2397,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-strong",
-      "text": "Book, from a catalogued line. Natural by the human-move model, and strong, though the engine's favorite is another move."
+      "text": "Book, from a line theory knows well. Natural by the human-move model, and strong, though the engine's favorite is another move."
     },
     {
       "id": "combo-book-opening-entry-3-hard-defense-found",
@@ -2411,7 +2411,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-find",
-      "text": "Still inside the catalogued opening, and this is the engine's best move. By the human-move model and the alternatives, it was hard to see."
+      "text": "Still within opening theory, and this is the engine's best move. By the human-move model and the alternatives, it was hard to see."
     },
     {
       "id": "combo-book-opening-follow-1-unusual-strong",
@@ -2425,21 +2425,21 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-best",
-      "text": "Still inside the catalogued opening, with the natural move by the human-move model, which is also the engine's best."
+      "text": "Still within opening theory, with the natural move by the human-move model, which is also the engine's best."
     },
     {
       "id": "combo-book-opening-follow-1-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-strong",
-      "text": "Still inside the catalogue's line. Natural to the human-move model, strong to the engine, though not its first choice."
+      "text": "Theory still covers this one. Natural to the human-move model, strong to the engine, though not its first choice."
     },
     {
       "id": "combo-book-opening-follow-1-hard-defense-found",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-defense-found",
-      "text": "Still inside the catalogued opening, and yet this was the only searched move that kept the position playable. A hard find, by the human-move model."
+      "text": "Still within opening theory, and yet this was the only searched move that kept the position playable. A hard find, by the human-move model."
     },
     {
       "id": "combo-book-opening-follow-2-hard-find",
@@ -2460,21 +2460,21 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-best",
-      "text": "Another catalogued move, natural by the human-move model's estimate and the engine's best."
+      "text": "Theory has this one too, natural by the human-move model's estimate and the engine's best."
     },
     {
       "id": "combo-book-opening-follow-2-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-strong",
-      "text": "Another catalogue entry. The human-move model finds it natural, and the engine finds it strong, while preferring another."
+      "text": "A theory move again. The human-move model finds it natural, and the engine finds it strong, while preferring another."
     },
     {
       "id": "combo-book-opening-follow-2-hard-defense-found",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-hard-defense-found",
-      "text": "The catalogue lists this move, and here it was the only searched move that kept the position playable. The human-move model marks it as a difficult find."
+      "text": "Theory lists this move, and here it was the only searched move that kept the position playable. The human-move model marks it as a difficult find."
     },
     {
       "id": "combo-book-opening-follow-3-hard-find",
@@ -2488,7 +2488,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-unusual-strong",
-      "text": "A book reply that the human-move model finds unusual. Strong, by the engine's measure. The catalogue knew it; the model did not expect it. I like that."
+      "text": "A book reply that the human-move model finds unusual. Strong, by the engine's measure. Theory knew it; the model did not expect it. I like that."
     },
     {
       "id": "combo-book-opening-follow-3-natural-best",
@@ -2516,49 +2516,49 @@
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-hard-find",
-      "text": "The catalogued line goes on with the engine's best move, one the human-move model counts as hard to find."
+      "text": "Theory continues with the engine's best move, one the human-move model counts as hard to find."
     },
     {
       "id": "combo-book-opening-follow-4-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-unusual-strong",
-      "text": "The catalogued line continues with a move the human-move model finds unusual and the engine finds strong."
+      "text": "The theoretical line goes on with a move the human-move model finds unusual and the engine finds strong."
     },
     {
       "id": "combo-book-opening-follow-4-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-natural-best",
-      "text": "The catalogued line continues with a move the human-move model finds natural and the engine ranks best."
+      "text": "Theory continues with a move the human-move model finds natural and the engine ranks best."
     },
     {
       "id": "combo-book-opening-follow-4-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-natural-strong",
-      "text": "The catalogued line goes on with a natural move by the human-move model. Strong, with another move ranked first by the engine."
+      "text": "Opening theory continues with a natural move by the human-move model. Strong, with another move ranked first by the engine."
     },
     {
       "id": "combo-book-opening-follow-4-hard-defense-found",
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-hard-defense-found",
-      "text": "The catalogued line goes on, and this move alone, of those searched, kept the position playable. Difficult to find, according to the human-move model."
+      "text": "Theory goes on, and this move alone, of those searched, kept the position playable. Difficult to find, according to the human-move model."
     },
     {
       "id": "combo-book-opening-follow-5-hard-find",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-hard-find",
-      "text": "Still matching the catalogue, and still the engine's best. A hard find, according to the human-move model."
+      "text": "Charted ground still, and still the engine's best. A hard find, according to the human-move model."
     },
     {
       "id": "combo-book-opening-follow-5-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-unusual-strong",
-      "text": "Still matching the catalogue, though the human-move model finds the move unusual. The engine considers it strong."
+      "text": "Still charted, though the human-move model finds the move unusual. The engine considers it strong."
     },
     {
       "id": "combo-book-opening-follow-5-natural-best",
@@ -2579,7 +2579,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-hard-defense-found",
-      "text": "Still matching the catalogue, and here the only searched move that kept the position playable. Hard to find, the human-move model suggests."
+      "text": "Charted ground, and here the only searched move that kept the position playable. Hard to find, the human-move model suggests."
     },
     {
       "id": "combo-book-opening-follow-6-hard-find",
@@ -2600,7 +2600,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-best",
-      "text": "Another catalogued step, natural to the human-move model and best for the engine. The easy answer was the right one."
+      "text": "Another charted step, natural to the human-move model and best for the engine. The easy answer was the right one."
     },
     {
       "id": "combo-book-opening-follow-6-natural-strong",
@@ -2614,7 +2614,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-hard-defense-found",
-      "text": "A step along the catalogued line, and the only move the engine found that kept the position playable. The human-move model rates it hard to find, and here it is."
+      "text": "A step through charted ground, and the only move the engine found that kept the position playable. The human-move model rates it hard to find, and here it is."
     },
     {
       "id": "combo-book-opening-follow-7-hard-find",
@@ -2656,35 +2656,35 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-find",
-      "text": "The catalogue matches again, and this is the engine's best. The human-move model and the alternatives still mark it as difficult. Familiar to the catalogue, difficult in practice."
+      "text": "A theory move again, and the engine's best. The human-move model and the alternatives still mark it as difficult. Familiar to theory, difficult in practice."
     },
     {
       "id": "combo-book-opening-follow-8-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-unusual-strong",
-      "text": "The catalogue matches again, though the human-move model finds the move unusual. Strong, for the engine."
+      "text": "Theory again, though the human-move model finds the move unusual. Strong, for the engine."
     },
     {
       "id": "combo-book-opening-follow-8-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
-      "text": "The catalogue matches again, with a move natural to the human-move model and best for the engine."
+      "text": "Theory again, with a move natural to the human-move model and best for the engine."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
-      "text": "Another catalogue match. Natural to the human-move model, and strong in the engine's eyes, though another move is its first choice."
+      "text": "Another theory move. Natural to the human-move model, and strong in the engine's eyes, though another move is its first choice."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-defense-found",
-      "text": "The catalogue matches again, and this was the only move the engine found that kept the position playable. By the human-move model, a difficult move to see."
+      "text": "Theory again, and this was the only move the engine found that kept the position playable. By the human-move model, a difficult move to see."
     }
   ]
 }
