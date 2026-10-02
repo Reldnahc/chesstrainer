@@ -128,7 +128,10 @@ for (const coachId of ["classic", "robot"] as const) {
     await expect(chip(page)).toHaveCount(0);
     await update(page, {speechEventId: "position-coach:before-human"});
     await tick(page, 250);
-    await expect.poll(() => state(page).then(value => [value.observedCoach, value.observed])).toEqual([coachId, BASE]);
+    // The plain bubble's recorded sentences play back to back as one playback.
+    await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(new RegExp(`^${BASE}([+]|$)`));
+    const plain = (await state(page)).observed!, parts = plain.split("+");
+    expect((await state(page)).observedCoach).toBe(coachId);
     expect(await counts(page)).toEqual({starts: 1, stops: 0});
 
     await update(page, {game: enrichedGame});
@@ -138,8 +141,8 @@ for (const coachId of ["classic", "robot"] as const) {
     await inspectPreparedInsight(page);
     await tick(page, 1000);
     expect(await counts(page)).toEqual({starts: 1, stops: 0});
-    expect((await state(page)).observed).toBe(BASE);
-    expect(fixture.assets).toHaveLength(1);
+    expect((await state(page)).observed).toBe(plain);
+    expect(fixture.assets).toHaveLength(parts.length);
 
     await page.evaluate(() => (window as unknown as HarnessWindow).fakeSpeechAudio.finish());
     await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
@@ -147,9 +150,9 @@ for (const coachId of ["classic", "robot"] as const) {
     await expect.poll(() => state(page).then(value => [value.observedCoach, value.observed])).toEqual([coachId, combined]);
     await tick(page, 500);
     expect((await counts(page)).starts).toBe(2);
-    expect(fixture.assets).toHaveLength(2);
+    expect(fixture.assets).toHaveLength(parts.length + 1);
     expect(fixture.assets[0]).toBe(await recordingUrl(page, coachId, BASE));
-    expect(fixture.assets[1]).toBe(await recordingUrl(page, coachId, combined));
+    expect(fixture.assets.at(-1)).toBe(await recordingUrl(page, coachId, combined));
     expect(fixture.writes).toEqual([]);
   });
 }
@@ -164,3 +167,20 @@ for (const coachId of ["classic", "robot"] as const) {
       await expect(region(page).getByRole("button", {name: "Listen to additional explanation"})).toHaveCount(0);
     });
 }
+
+test("classic: two recorded sentences play back to back as one playback behind one Stop", async ({page}) => {
+  const fixture = await mount(page, "classic", withoutHuman(enrichedGame));
+  const listen = region(page).getByRole("button", {name: /^Listen/});
+  await expect(listen).toHaveCount(1);
+  await listen.click();
+  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^cause-abandoned-defender\+/);
+  const [first, second] = (await state(page)).observed!.split("+");
+  await tick(page, 500);
+  expect(await counts(page)).toEqual({starts: 1, stops: 0});
+  expect(fixture.assets.sort()).toEqual([await recordingUrl(page, "classic", first),
+    await recordingUrl(page, "classic", second)].sort());
+  await region(page).getByRole("button", {name: "Stop coach voice", exact: true}).click();
+  await tick(page, 500);
+  expect(await counts(page)).toEqual({starts: 1, stops: 1});
+  await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(1);
+});

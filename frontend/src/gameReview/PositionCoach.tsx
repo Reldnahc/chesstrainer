@@ -84,10 +84,12 @@ export default function PositionCoach({
   const selection = {...speechContext, intent: displayedIntent, utterance};
   const speech = selectGameSpeech(selection, explaining ? undefined : insight);
   const {primaryId} = speech;
+  // Late Maia must not cut off the bubble's own line that is already playing.
+  const plainId = explaining ? null : selectGameSpeech(selection).recordingId;
   const recordingId = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance,
     automaticEventId: speechEventId, ready: !speechPending,
-    manualRecordingIds: primaryId ? [primaryId] : []});
+    manualRecordingIds: [primaryId, plainId].filter((id): id is string => !!id)});
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}

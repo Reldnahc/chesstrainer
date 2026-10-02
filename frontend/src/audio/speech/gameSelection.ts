@@ -5,6 +5,7 @@ import {humanClaims, humanInsightIntent, humanInsightLabels, type HumanInsightPr
 import {object, strings} from "../../dialogue/eventClaims";
 import type {Claim, CoachUtterance, DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
+import {sequenceRecordingId} from "./sequence";
 import registry from "./banks/registry.json" with {type: "json"};
 import catalogue from "./meanings.json" with {type: "json"};
 
@@ -228,10 +229,10 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
 }
 
-/** A move has exactly one coach clip. One whole recording can cover the bubble's
- * explanation and the visible Maia insight; a later claim without a combined
- * recording stays unvoiced rather than becoming a second clip. Their display
- * order and the bubble's sentence limit are not evidence boundaries. */
+/** A move has exactly one coach clip. A combined recording covers the bubble's
+ * explanation and the visible Maia insight. Otherwise a second bubble sentence
+ * with its own recording joins the first as one back-to-back playback, never a
+ * separate clip. Display order and the sentence limit are not evidence boundaries. */
 export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsightPresentation) {
   const primaryId = selectGameRecording({...context, claimIndex: 0});
   let recordingId = primaryId;
@@ -248,7 +249,12 @@ export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsi
         && same(insight.intent, humanInsightIntent(context.intent))
         ? selectGameRecording({...context, ...insight, surface: "human-insight", claimIndex: 0}) : null;
     }
-    recordingId = (objectiveId && humanId && combinations.get(`${objectiveId}:${humanId}`)) || primaryId;
+    const combined = objectiveId && humanId ? combinations.get(`${objectiveId}:${humanId}`) : undefined;
+    // A rendered Maia sentence is voiced only through the validated human claim.
+    const second = claims[1];
+    const secondId = combined || !second ? null
+      : humanInsightLabels[second.code] ? humanId : selectGameRecording({...context, claimIndex: 1});
+    recordingId = combined ?? (secondId && secondId !== primaryId ? sequenceRecordingId([primaryId, secondId]) : primaryId);
   }
   return {recordingId, primaryId};
 }

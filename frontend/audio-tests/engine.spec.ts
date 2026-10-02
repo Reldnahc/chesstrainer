@@ -48,6 +48,14 @@ class FakeContext {
   createGain() { const gain = new FakeGain(); this.gains.push(gain); return gain; }
   createBufferSource() { const source = new FakeSource(); this.sources.push(source); return source; }
   decodeAudioData(bytes: ArrayBuffer) { this.decodes++; return this.decode(bytes); }
+  createBuffer(numberOfChannels: number, length: number, sampleRate: number) {
+    return pcm(sampleRate, ...Array.from({length: numberOfChannels}, () => new Array<number>(length).fill(0)));
+  }
+}
+function pcm(sampleRate: number, ...channels: number[][]): AudioBuffer {
+  const data = channels.map(values => Float32Array.from(values));
+  return {sampleRate, length: data[0].length, duration: data[0].length / sampleRate,
+    numberOfChannels: data.length, getChannelData: (channel: number) => data[channel]} as unknown as AudioBuffer;
 }
 function deferred<T>() {
   let resolve!: (value: T) => void;
@@ -999,4 +1007,21 @@ test("reentrant disposal from the speech terminal callback disconnects the retir
   f.engine.stopAll();
   expect(f.context.state).toBe("closed");
   expect(f.context.sources.filter(source => source.connected)).toEqual([]);
+});
+
+test("a recorded sequence plays its sentences back to back as one playback with one Stop", async () => {
+  const f = fixture();
+  const parts: Record<string, AudioBuffer> = {"/first.opus": pcm(10, [1, 1]), "/second.opus": pcm(10, [2, 2, 2])};
+  f.load(async url => new TextEncoder().encode(url).buffer as ArrayBuffer);
+  f.context.decode = async bytes => parts[new TextDecoder().decode(bytes)];
+  await f.engine.unlock();
+  f.engine.playRecordedSpeech(recording("sequence", {url: "/first.opus",
+    sequence: {urls: ["/first.opus", "/second.opus"], gapSeconds: .2}}));
+  await flush();
+  expect(f.started()).toEqual(["sequence"]);
+  expect(f.context.sources).toHaveLength(1);
+  expect([...f.context.sources[0].buffer!.getChannelData(0)]).toEqual([1, 1, 0, 0, 2, 2, 2]);
+  f.engine.cancel("coach");
+  expect(f.context.sources[0].stops).toHaveLength(1);
+  expect(f.events.filter(event => event.type === "cancelled").map(event => event.eventId)).toEqual(["sequence"]);
 });

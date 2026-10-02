@@ -68,7 +68,8 @@ for (const coach of coaches) {
       expect(current.utterance.renderedClaims!.some(item => humanInsightLabels[item.code])).toBe(false);
       const selected = selectGameSpeech(current);
       expect(selected.primaryId).toMatch(/^cause-/);
-      expect(selected.recordingId).toBe(selected.primaryId);
+      const second = selectGameRecording({...current, claimIndex: 1});
+      expect(selected.recordingId).toBe(second ? `${selected.primaryId}+${second}` : selected.primaryId);
       const intent = humanInsightIntent(current.intent);
       const utterance = renderDialogue(intent, coach);
       const combined = catalogue.meanings.find(item => "primary" in item && item.primary === selected.primaryId
@@ -78,8 +79,8 @@ for (const coach of coaches) {
     });
 
   test(`${coach.id}: one move offers one clip, with or without a Maia reading`, () => {
-    // Both reported bubbles render the cause plus a second claim that has its
-    // own recording. That recording must not become a second clip for the move.
+    // Both reported bubbles render the cause plus a second claim. Neither reading
+    // may offer the second claim as a separate clip beside the move's own line.
     const name = "cause-abandoned_defender-white";
     const plain = structuredClone(games[name]), report = plain.frames[1].report!;
     report.human = null;
@@ -87,7 +88,10 @@ for (const coach of coaches) {
     report.intelligence!.events = report.intelligence!.events.filter(event => event.kind !== "human_contrast");
     const withoutMaia = context(name, coach, plain);
     expect(withoutMaia.utterance.renderedClaims!.map(item => item.code)).toEqual(["cause_abandoned_defender", expect.any(String)]);
-    expect(selectGameSpeech(withoutMaia)).toEqual({primaryId: "cause-abandoned-defender", recordingId: "cause-abandoned-defender"});
+    // A recorded second sentence joins the first as one back-to-back playback.
+    const second = selectGameRecording({...withoutMaia, claimIndex: 1});
+    expect(selectGameSpeech(withoutMaia)).toEqual({primaryId: "cause-abandoned-defender",
+      recordingId: second ? `cause-abandoned-defender+${second}` : "cause-abandoned-defender"});
 
     const withMaia = context(name, coach);
     expect(withMaia.utterance.renderedClaims!.map(item => item.code)).toEqual(["cause_abandoned_defender", expect.any(String)]);
@@ -130,7 +134,7 @@ for (const coach of coaches) {
         recordingId: "evaluation-loss"});
       const fresh = context("evaluation-natural", coach, current.game);
       expect(fresh.intent.claims.some(item => humanInsightLabels[item.code])).toBe(false);
-      expect(selectGameSpeech(fresh).recordingId).toBe("evaluation-loss");
+      expect(selectGameSpeech(fresh).recordingId).toBe("evaluation-loss+recognized-opening");
     }
   });
 
@@ -140,7 +144,7 @@ for (const coach of coaches) {
     const current = context("evaluation-natural", coach, game);
     expect(current.intent.subject).toBe("opponent");
     expect(current.intent.claims.some(item => humanInsightLabels[item.code])).toBe(false);
-    expect(selectGameSpeech(current).recordingId).toBe("evaluation-loss");
+    expect(selectGameSpeech(current).recordingId).toBe("evaluation-loss+recognized-opening");
   });
 
   test(`${coach.id}: the separate human insight speaks only its selected human claim`, () => {

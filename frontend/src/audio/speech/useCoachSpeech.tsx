@@ -5,6 +5,7 @@ import type { CoachUtterance } from '../../dialogue/model';
 import { useOptionalAudioPreferences, useCurrentSpeechPlayback, useScopedSpeech } from '../AudioProvider';
 import type { SpeechPlayback } from '../model';
 import { coachRecording, coachMouthTrack, loadedCoachMouthTrack, hasCoachVoice } from './voiceBank';
+import { SEQUENCE_GAP_SECONDS } from './sequence';
 import CoachSpeechButton from './CoachSpeechButton';
 
 export type CoachSpeechPresentation = {
@@ -120,6 +121,7 @@ export function useCoachSpeech({ scopeKey, recordingId, utterance, automaticEven
       const eventId = `voice:${++sequence.current}:${id}`;
       setActive({ id, eventId, track });
       submit({ url: recording.url, recordingId: id, eventId, interruptCurrent: !automatic,
+        ...(recording.parts ? { sequence: { urls: recording.parts.map(part => part.url), gapSeconds: SEQUENCE_GAP_SECONDS } } : {}),
         utterance: recordedUtterance(current.coachId, id, recording.text, current.utterance) });
     } catch {
       // A missing local asset cannot compromise written feedback. A later

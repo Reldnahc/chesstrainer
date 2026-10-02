@@ -6,7 +6,7 @@ import {robot} from "../src/dialogue/characters/robot";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {renderDialogue} from "../src/dialogue/neutral";
 import {humanInsightIntent, humanInsightLabels, type HumanInsightPresentation} from "../src/dialogue/humanClaims";
-import {selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import meanings from "../src/audio/speech/meanings.json" with {type: "json"};
 
@@ -35,7 +35,9 @@ for (const coachId of ["classic", "robot"]) {
       const displayed = context.utterance.renderedClaims![0].code;
       expect(displayed).toMatch(/^cause_/);
       expect(base.primaryId).toBe(displayed.replaceAll("_", "-"));
-      expect(base.recordingId).toBe(base.primaryId);
+      // A second recorded bubble sentence follows the first in the same playback.
+      const second = selectGameRecording({...context, claimIndex: 1});
+      expect(base.recordingId).toBe(second ? `${base.primaryId}+${second}` : base.primaryId);
       const combined = meanings.meanings.find(item => "primary" in item && item.primary === base.primaryId
         && item.secondary === "human-natural-error");
       expect(combined).toBeDefined();

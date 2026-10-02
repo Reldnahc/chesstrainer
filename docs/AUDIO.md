@@ -333,9 +333,12 @@ is recast as an objective Best move.
 `PreparedSpeechClip` and `playRecordedSpeech` use the existing cancellable speech
 bus, with priority/interruptibility and quieter effects while narration plays.
 The shared `useCoachSpeech` adapter submits only the current supported recording.
-A game-review move has exactly one coach clip and one Listen control. With a Maia
-reading it is the Maia-aware combined recording when one exists. A second claim
-with no combined recording stays unvoiced; it never becomes a second clip.
+A game-review move has exactly one coach playback and one Listen/Stop control.
+With a Maia reading it is the Maia-aware combined recording when one exists.
+Otherwise, when both bubble sentences have recordings, the two existing clips are
+joined into one buffer with a 250 ms gap (`audio/speech/sequence.ts`), and the
+second clip's mouth timing is offset by the first clip plus the gap. Stop ends
+both, and nothing overlaps. No extra recordings are needed for these pairs.
 Selection and lifecycle checks happen again after asynchronous mouth/audio loads.
 Navigation, retry, changing coach, mute, hidden tabs and unmounting invalidate
 obsolete work. No playback backlog accumulates. Initial hydration, restored
