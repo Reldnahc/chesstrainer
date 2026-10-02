@@ -403,3 +403,18 @@ export const sparkTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "Snap: {capture}, and that {piece} is history.", followup: "Further down the road, {capture} could gobble a {piece}."},
   playedCapture: {fact: "{move} lights the fuse on a {motif}.", consequence: "Next, {capture} swallows the {piece}."},
 });
+
+export const youngBoyTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Ooh, look: as soon as {move} lands, there's a {motif}.",
+    played_possible: "{move} gets a {motif} ready for later, as long as the replies let it happen.",
+    allowed_immediate: "Look, {opponent} can answer {action}, and that brings a {motif} with it.",
+    allowed_possible: "Later, depending on the replies, a {motif} might open up for {opponent}.",
+    missed_immediate: "A {motif} was hiding right inside {best}.",
+    missed_possible: "Hmm, {best} had a {motif} tucked away for later, if the replies cooperated.",
+  },
+  fork: {actual: "One piece jumps in and pokes at the {targets} all at once.", possible: "Land one piece on the right spot, and the {targets} would be attacked from a single square."},
+  material: "There may be a {gain} at the end of this, but lots of moves still have to happen first.",
+  capture: {candidate: "Look, {capture} is available, and it would grab a {piece}.", followup: "If the line goes that way, {capture} could come next and snag a {piece}."},
+  playedCapture: {fact: "{move} starts a {motif} rolling.", consequence: "After that, {capture} grabs a {piece} too."},
+});

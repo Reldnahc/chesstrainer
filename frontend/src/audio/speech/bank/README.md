@@ -118,7 +118,8 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/monty/scripts.json`, coach `gorilla`), Ingrid
 (`banks/ingrid/scripts.json`, coach `woman-blonde`), Biscuit
 (`banks/biscuit/scripts.json`, coach `dog-puppy`), Réka
-(`banks/reka/scripts.json`, coach `woman-spark`) and Tamar
+(`banks/reka/scripts.json`, coach `woman-spark`), Mateo
+(`banks/mateo/scripts.json`, coach `human-boy`) and Tamar
 (`banks/tamar/scripts.json`, coach `woman-captain`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
@@ -163,6 +164,7 @@ registered.
 | Ingrid (`woman-blonde`) | Written, 438 | Yes, 2026-10-02, at commit `5268032` | No | No |
 | Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
 | Réka (`woman-spark`) | Written, 438 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
+| Mateo (`human-boy`) | Written, 438 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
 
 ## Adding or revising a production bank
 

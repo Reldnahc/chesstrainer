@@ -22,7 +22,7 @@ export const analyst: CoachPersonality = {
   templates: {
     ...analystTacticalTemplates,
     ...analystOpeningTemplates,
-    allowed_mate: [{ fact: "What has changed is decisive: checkmate is now forced for {opponent}.", consequence: "{reply}" }],
+    allowed_mate: [{ fact: "What has changed is decisive: {opponent} now has a forced checkmate.", consequence: "{reply}" }],
     missed_mate: [{ fact: "Before this move, {best} forced mate.", consequence: "After it, that mate no longer exists." }],
     tactic_played: [{ fact: "After {move}, the searched line contains a {motif}.", consequence: "{detail}" }],
     tactic_allowed: [{ fact: "A {motif} has become available to {opponent} in the strongest line.", consequence: "{detail}" }],
