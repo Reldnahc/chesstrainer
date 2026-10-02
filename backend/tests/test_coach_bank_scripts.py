@@ -32,6 +32,7 @@ AUTHORED = [
     ("woman-analyst", "marisol"),
     ("gorilla", "monty"),
     ("woman-blonde", "ingrid"),
+    ("dog-puppy", "biscuit"),
     ("human-boy", "mateo"),
 ]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]

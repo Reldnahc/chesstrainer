@@ -171,12 +171,16 @@ Ingrid (`woman-blonde`) has opted in too, in `characters/blonde.ts`: a relaxed,
 unhurried opener, the concrete fact said plainly, then one manageable next idea,
 with reassurance kept to the player's own moments and always beside a chess point,
 and no questions. Ingrid also stays silent until a bank is registered.
+Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
+the concrete reply in plain words, then one small habit to carry forward, with
+ownership words kept to the learner's own moments. Biscuit also stays silent
+until a bank is registered.
 Mateo (`human-boy`) has opted in as well, in `characters/youngBoy.ts`: a short
 burst of excitement aimed at the tactic itself, sometimes a "wait" or "look at
 this", then one plain, complete chess fact, with an occasional question whose
 answer is on the board. His cheering and sympathy stay on the player's own
 moments. Mateo also stays silent until a bank is registered.
-The other 4 voices retain their current wording and deterministic variants.
+The other 3 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
