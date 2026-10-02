@@ -117,7 +117,7 @@
     {
       "id": "tactic-double-attack-allowed",
       "group": "game_review",
-      "text": "With this, the other side gets two attacks out of a single move. A double attack like that needs a reply that covers both."
+      "text": "With this, the other side gets a double attack. Any reply has to cover both targets."
     },
     {
       "id": "tactic-double-attack-missed",
@@ -352,7 +352,7 @@
     {
       "id": "human-unusual-strong",
       "group": "game_review",
-      "text": "The human-move model does not expect this move. Even so, the engine has it as strong. Rare does not mean wrong."
+      "text": "This move surprises the human-move model. Even so, the engine has it as strong. Rare does not mean wrong."
     },
     {
       "id": "human-hard-defense-missed",
@@ -477,7 +477,7 @@
     {
       "id": "srs-practice-error",
       "group": "srs_explanations",
-      "text": "No result came back for that try. Go back to the move and play it again."
+      "text": "That try did not get checked. Go back to the move and play it again."
     },
     {
       "id": "srs-summary-mate-for-mover",
@@ -1116,7 +1116,7 @@
       "group": "game_review",
       "primary": "tactic-fork-played",
       "secondary": "human-natural-strong",
-      "text": "A fork, with a lone attacker hitting more than one thing. The human-move model calls it natural. The engine has it down as strong, with one move above it."
+      "text": "A fork, with a lone attacker hitting more than one thing. The human-move model figured on this move. The engine has it down as strong, with one move above it."
     },
     {
       "id": "combo-tactic-fork-allowed-hard-defense-missed",
@@ -1214,7 +1214,7 @@
       "group": "game_review",
       "primary": "tactic-skewer-allowed",
       "secondary": "human-hard-defense-missed",
-      "text": "Two pieces stand in a row, and the other side can now skewer them. A single checked move held, and the human-move model has it down as hard to dig up. That move is worth some study."
+      "text": "Two pieces stand in a row, ready for a skewer by the other side. A single checked move held, and the human-move model has it down as hard to dig up. That move is worth some study."
     },
     {
       "id": "combo-tactic-skewer-missed-natural-error",
@@ -1340,7 +1340,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-natural-strong",
-      "text": "This is about the pawn, and how close it is to promotion. The human-move model calls the move natural. By the engine's count it is strong, just not first."
+      "text": "This is about the pawn, and how close it is to promotion. The human-move model expects this one. By the engine's count it is strong, just not first."
     },
     {
       "id": "combo-tactic-promotion-awareness-allowed-natural-error",
@@ -1445,7 +1445,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-natural-best",
-      "text": "One move makes two attacks, and both need an answer. The human-move model calls it natural, and the engine puts it at the top."
+      "text": "A double attack, and both targets need an answer. The human-move model calls it natural, and the engine puts it at the top."
     },
     {
       "id": "combo-tactic-double-attack-played-natural-strong",
@@ -1459,14 +1459,14 @@
       "group": "game_review",
       "primary": "tactic-double-attack-allowed",
       "secondary": "human-natural-error",
-      "text": "The human-move model calls this a natural pick, and it hands the other side two attacks from one move. A reply has to cover both."
+      "text": "The human-move model calls this a natural pick, and it hands the other side a double attack. A reply has to cover both."
     },
     {
       "id": "combo-tactic-double-attack-allowed-hard-defense-missed",
       "group": "game_review",
       "primary": "tactic-double-attack-allowed",
       "secondary": "human-hard-defense-missed",
-      "text": "Now the other side gets two attacks in one move. Just one checked move held, and it was missed. The human-move model puts it among the hard ones."
+      "text": "The other side gets to hit two things with one piece. Just one checked move held, and it was missed. Few players would spot it, by the human-move model's count."
     },
     {
       "id": "combo-tactic-double-attack-missed-natural-error",
@@ -1508,7 +1508,7 @@
       "group": "game_review",
       "primary": "tactic-deflection-played",
       "secondary": "human-natural-strong",
-      "text": "A deflection: a guard is hauled away, and its post sits empty. The human-move model calls it natural. Strong by the engine, with one move ranked ahead."
+      "text": "A deflection: a guard is hauled away, and its post sits empty. A predictable pick for the human-move model. Strong by the engine, with one move ranked ahead."
     },
     {
       "id": "combo-tactic-deflection-allowed-natural-error",
@@ -1690,7 +1690,7 @@
       "group": "game_review",
       "primary": "positional-passed-actual",
       "secondary": "human-unusual-strong",
-      "text": "No enemy pawn is left in front of this pawn or on the files next to it, so it is passed. The human-move model rates the move unusual. Strong, by the engine."
+      "text": "No enemy pawn is left in front of this pawn or on the files next to it, so it is passed. The human-move model rates the move unusual. Plain verdict from the engine: strong."
     },
     {
       "id": "combo-positional-passed-actual-natural-best",
@@ -1732,7 +1732,7 @@
       "group": "game_review",
       "primary": "positional-passer-advance-actual",
       "secondary": "human-natural-strong",
-      "text": "The passer gains a row. The human-move model calls it natural. Strong by the engine, with one move ranked ahead."
+      "text": "The passer gains a row. The human-move model saw this one coming. Strong by the engine, with one move ranked ahead."
     },
     {
       "id": "combo-positional-isolated-actual-hard-find",
@@ -1760,7 +1760,7 @@
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-natural-strong",
-      "text": "A pawn is left by itself now. The human-move model calls the move natural. The engine has it down as strong, with one move above it."
+      "text": "A pawn is left by itself now. For the human-move model, an easy move to predict. The engine has it down as strong, with one move above it."
     },
     {
       "id": "combo-positional-support-actual-hard-find",
@@ -1844,7 +1844,7 @@
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-natural-strong",
-      "text": "Fresh space opens up for the king. The human-move model calls the move natural. By the engine's count it is strong, just not first."
+      "text": "Fresh space opens up for the king. The human-move model expects this one. By the engine's count it is strong, just not first."
     },
     {
       "id": "combo-positional-castling-actual-hard-find",
@@ -2054,7 +2054,7 @@
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-natural-strong",
-      "text": "Fast, and the clock had more to give. The human-move model calls it natural. By the engine's count it is strong, just not first."
+      "text": "Played fast, and seconds were left over. The human-move model had this pick pegged. By the engine's count it is strong, just not first."
     },
     {
       "id": "combo-clock-long-hard-find",
@@ -2082,7 +2082,7 @@
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-natural-strong",
-      "text": "Big chunk of time on the clock for this one. The human-move model calls the move natural. The engine has it as strong, a step below its top choice."
+      "text": "Big chunk of time on the clock for this one. For the human-move model, an easy move to predict. The engine has it as strong, a step below its top choice."
     },
     {
       "id": "combo-recognized-opening-hard-find",
@@ -2152,7 +2152,7 @@
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-hard-find",
-      "text": "After the earlier setback, this move, the engine's top one, gets the game playable again. The human-move model puts it among the hard ones. Good."
+      "text": "After the earlier setback, this move, the engine's top one, gets the game playable again. Few players would spot it, by the human-move model's count. Good."
     },
     {
       "id": "combo-recovery-unusual-strong",
@@ -2201,7 +2201,7 @@
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-strong",
-      "text": "The other side's mistakes gave some help, and the game is back to playable. The human-move model calls the move natural. Strong, says the engine, though it likes another move a bit more."
+      "text": "The other side's mistakes gave some help, and the game is back to playable. The human-move model expects this one. Strong, says the engine, though it likes another move a bit more."
     },
     {
       "id": "combo-chance-taken-hard-find",
@@ -2348,7 +2348,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-unusual-strong",
-      "text": "Opening books carry this move, though the human-move model rates it unusual. Strong, by the engine."
+      "text": "Opening books carry this move, though the human-move model rates it unusual. The engine still grades the move strong."
     },
     {
       "id": "combo-book-opening-entry-2-natural-best",
@@ -2411,7 +2411,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-find",
-      "text": "Still book, and the engine's first choice too. The human-move model puts it among the hard ones."
+      "text": "Still book, and the engine's first choice too. Few players would spot it, by the human-move model's count."
     },
     {
       "id": "combo-book-opening-follow-1-unusual-strong",
@@ -2453,7 +2453,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-unusual-strong",
-      "text": "Book again, though the human-move model rates it unusual. Strong, by the engine."
+      "text": "Book again, though the human-move model rates it unusual. Strong, all the same, on the engine's scale."
     },
     {
       "id": "combo-book-opening-follow-2-natural-best",
@@ -2502,7 +2502,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-natural-strong",
-      "text": "Both sides are still in theory with the reply. The human-move model calls it natural. Strong is the engine's call, with another reply rated higher."
+      "text": "Both sides are still in theory with the reply. A predictable pick for the human-move model. Strong is the engine's call, with another reply rated higher."
     },
     {
       "id": "combo-book-opening-follow-3-hard-defense-found",
@@ -2593,7 +2593,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-unusual-strong",
-      "text": "Yet another one from the book, though the human-move model rates it unusual. Strong, by the engine."
+      "text": "Yet another one from the book, though the human-move model rates it unusual. Strong in the engine's book all the same."
     },
     {
       "id": "combo-book-opening-follow-6-natural-best",
@@ -2621,7 +2621,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-hard-find",
-      "text": "The opening books still cover this, and it is the engine's top move. The human-move model puts it among the hard ones."
+      "text": "The opening books still cover this, and it is the engine's top move. Few players would spot it, by the human-move model's count."
     },
     {
       "id": "combo-book-opening-follow-7-unusual-strong",
@@ -2642,7 +2642,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-strong",
-      "text": "Still covered by the opening books. The human-move model calls it natural. The engine calls it strong; one move rates a bit higher."
+      "text": "Still covered by the opening books. The human-move model saw this one coming. The engine calls it strong; one move rates a bit higher."
     },
     {
       "id": "combo-book-opening-follow-7-hard-defense-found",
