@@ -127,6 +127,7 @@ registered.
 | Felix (`cat-tuxedo`) | Written, 438 | Yes, 2026-10-02, at commit `5669e4e` | No | No |
 | Bandit (`raccoon`) | Written, 438 | Yes, 2026-10-02, at commit `b232f5a` | No | No |
 | Alfie (`dog-gentle`) | Written, 438 | Yes, 2026-10-02, at commit `5b3a4af` | No | No |
+| Pickle (`cat-kitten`) | Written, 438 | Yes, 2026-10-02, at commit `6597a26` | No | No |
 
 ## Adding or revising a production bank
 
