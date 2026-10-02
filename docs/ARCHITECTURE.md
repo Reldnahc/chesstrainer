@@ -42,7 +42,7 @@ Whole-game review and training analysis are separately requested from the game.
 | multiuser.py | Cookie authentication, account/profile endpoints and request authentication; no child applications |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
 | jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
-| backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
+| backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |

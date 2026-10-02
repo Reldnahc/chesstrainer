@@ -78,6 +78,7 @@ installations additionally require `ACCOUNTS_ENABLED=true` for accounts. See
 | `FORWARDED_ALLOW_IPS` | `127.0.0.1` | Proxy addresses trusted for `X-Forwarded-For`. Set to your reverse proxy so sign-in limits apply per visitor. |
 | `CHESSCOM_USER_AGENT` | Fieldwork identification | Optional identification for public Chess.com API calls; no Chess.com password needed. |
 | `LAN_ACCESS_TOKEN` | empty | Optional shared token for local mode; unused in account mode. |
+| `ALLOWED_HOSTS` | empty | Local mode: extra host names the API answers to. LAN IP addresses, localhost, short names and `.local`/`.lan` names need no entry. |
 
 In account mode, slots times threads bounds native search threads; slots times hash
 MB estimates search-table RAM, plus app/engine overhead. Local mode uses separate

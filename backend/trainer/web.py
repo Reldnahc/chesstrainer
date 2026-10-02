@@ -1,5 +1,6 @@
 """LAN access, error translation and same-origin frontend delivery."""
 
+import ipaddress
 import secrets
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -11,11 +12,51 @@ from fastapi.staticfiles import StaticFiles
 from trainer.config import Settings
 from trainer.engine import EngineUnavailable
 
+PRIVATE_SUFFIXES = (".local", ".localhost", ".lan", ".home", ".home.arpa", ".internal")
+
+
+def host_allowed(host: str, settings: Settings) -> bool:
+    """Accept LAN-style hosts only, so a public DNS name cannot be rebound to this server.
+
+    IP literals, localhost, single-label names and private-use suffixes need no
+    configuration; any other name must be listed in ALLOWED_HOSTS.
+    """
+    if not host:
+        return True  # Browsers always send Host; only HTTP/1.0 tools omit it.
+    try:
+        hostname = urlsplit("//" + host).hostname
+    except ValueError:
+        return False
+    if not hostname:
+        return False
+    hostname = hostname.rstrip(".")
+    try:
+        ipaddress.ip_address(hostname)
+        return True
+    except ValueError:
+        pass
+    allowed = {name.strip().lower() for name in settings.allowed_hosts.split(",") if name.strip()}
+    allowed.add(settings.server_host.strip().lower())
+    return (
+        hostname in allowed
+        or hostname == "localhost"
+        or "." not in hostname
+        or hostname.endswith(PRIVATE_SUFFIXES)
+    )
+
 
 def configure_http(app: FastAPI, settings: Settings):
     @app.middleware("http")
     async def local_access(request: Request, call_next):
         if request.url.path.startswith("/api/") and not settings.accounts_enabled:
+            if not host_allowed(request.headers.get("host", ""), settings):
+                return JSONResponse(
+                    {
+                        "detail": "Open Fieldwork by its LAN address, or add this host name "
+                        "to ALLOWED_HOSTS on the server."
+                    },
+                    status_code=403,
+                )
             token = settings.lan_access_token.get_secret_value()
             if (
                 token
