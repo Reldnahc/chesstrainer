@@ -27,6 +27,7 @@ AUTHORED = [
     ("unicorn", "celeste"),
     ("man-expert", "jun"),
     ("frog", "fergus"),
+    ("man-partner", "arjun"),
 ]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
 # Voices whose written personality sets questionFrequency to "none".

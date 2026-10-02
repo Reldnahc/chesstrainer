@@ -284,3 +284,18 @@ export const expertTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "Available capture: {capture}, winning a {piece}.", followup: "If the line runs that way, {capture} may follow, winning a {piece}."},
   playedCapture: {fact: "{move} executes a {motif}.", consequence: "Material result: {capture}, and the {piece} is gone."},
 });
+
+export const partnerTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Test {move}, and a {motif} shows up straight away.",
+    played_possible: "{move} sets up a {motif} as a candidate idea, if the replies cooperate.",
+    allowed_immediate: "Try {action} for {opponent}, and a {motif} appears.",
+    allowed_possible: "Later, {opponent} may get a {motif} as a candidate, should the replies cooperate.",
+    missed_immediate: "Put {best} on the board instead, and a {motif} is right there.",
+    missed_possible: "{best} is a candidate worth testing: given suitable replies, a {motif} could follow.",
+  },
+  fork: {actual: "Test it: one piece now hits the {targets} together.", possible: "Run the line, and the {targets} would be attacked side by side from one piece."},
+  material: "Run the experiment to the end and a {gain} may be the outcome, with choices for both sides along the way.",
+  capture: {candidate: "Try {capture}, and a {piece} leaves the board.", followup: "Should the replies go that route, {capture} may come next and collect a {piece}."},
+  playedCapture: {fact: "Follow {move} through and a {motif} comes out of it.", consequence: "Then {capture} wins a {piece}."},
+});
