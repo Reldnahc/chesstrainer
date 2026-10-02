@@ -111,11 +111,19 @@ and `characters/openingSequence.ts`: it spots what is on offer first, says plain
 why it is there to take, and treats loose pieces and scrappy, effective chess as
 the good stuff, without pretending material is all that matters. Bandit stays
 silent until a bank is registered.
+Alfie (golden retriever) has opted in as well, with his forms in
+`characters/professor.ts`: a short principle, this position's fact, then one
+connection to keep, explaining the mechanism patiently when correcting. Alfie
+also stays silent until a bank is registered.
+Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
+one suspicious detail, asks a quick question, then answers it with the supported
+fact, with delight saved for sneaky tricks and difficulty always attributed to
+the human-move model. Pickle also stays silent until a bank is registered.
 Waffles (corgi) has opted in too, with his forms in the shared tactic and opening
 blocks: a short command or reaction, the consequence, then the next order, in light
 field-manual language with no questions and difficulty always credited to the
 human-move model. Waffles stays silent until a bank is registered.
-The other 18 voices retain their current wording and deterministic variants.
+The other 16 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

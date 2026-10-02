@@ -40,7 +40,7 @@ export const tuxedo: CoachPersonality = {
     best: ["Strong, with almost nothing conceded.", "Strong, and economical about it."],
     good: ["It does its job and keeps most of the value.", "Sound work. Most of the value is still there."],
     human_natural_error: ["The human-move model calls it natural. The engine sends the bill. Tempting moves have replies too."],
-    difficult_defense: ["Holding the position took {best}, and the human-move model rates that defense hard to find."],
+    difficult_defense: ["{best} would have held the position; the human-move model rates that defense hard to find. Expensive to miss."],
     human_challenging: ["{best} was the answer here. The human-move model rates it hard to find, so it repays a second look."],
     human_defense_found: ["{best} held the position, and the human-move model rates it a hard defense to find. Precise work."],
     human_rare: ["Not one the human-move model expects. It holds against the engine's reply anyway."],

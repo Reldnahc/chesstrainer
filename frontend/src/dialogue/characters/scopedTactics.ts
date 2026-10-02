@@ -60,6 +60,21 @@ export const livingPawnTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "{move} goes to work with a {motif}.", consequence: "{capture} takes a {piece} off the board."},
 });
 
+export const professorTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} is played for a {motif}, which is in place as soon as the move is made.",
+    played_possible: "{move} prepares a possible {motif}, though whether it arrives is up to the replies.",
+    allowed_immediate: "{opponent} has {action} as an answer, and the reason that matters is a {motif}.",
+    allowed_possible: "{opponent} may later be able to use a {motif}, if the replies in between allow it.",
+    missed_immediate: "{best} would have brought a {motif} straight away, which is why it's the move to compare.",
+    missed_possible: "{best} could have prepared a {motif}, though it would still have depended on the replies.",
+  },
+  fork: {actual: "One piece attacks the {targets} together, so a single reply may not save them all.", possible: "In that case the {targets} would be attacked together, and one reply might not cover them all."},
+  material: "A {gain} may be possible at the end of it, but only if the later choices on both sides allow it.",
+  capture: {candidate: "That opens the way for {capture}, which would capture a {piece}.", followup: "If play continues that way, {capture} may follow, capturing a {piece}."},
+  playedCapture: {fact: "{move} rests on a {motif}.", consequence: "That is how {capture} comes to capture a {piece}."},
+});
+
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Position after {move}: a {motif} is present.",
@@ -148,6 +163,21 @@ export const raccoonTacticalTemplates = authorTacticalWordings({
   material: "There may be a {gain} to collect at the end, though nothing's collected until both sides have made their moves.",
   capture: {candidate: "{capture} would snag a {piece} on the spot.", followup: "If things go that way, {capture} could collect a {piece} later."},
   playedCapture: {fact: "{move} cashes in on a {motif}.", consequence: "With {capture}, a {piece} goes in the bag."},
+});
+
+export const kittenTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Ooh, after {move} there's a {motif} sitting right on the board.",
+    played_possible: "{move} could set up a {motif} later, if the replies cooperate.",
+    allowed_immediate: "Psst: {opponent} has {action} ready, and it springs a {motif}.",
+    allowed_possible: "A {motif} might be lurking for {opponent} later, depending on the replies.",
+    missed_immediate: "{best} was hiding a {motif} up its sleeve.",
+    missed_possible: "{best} might have sprung a {motif}, if the replies played along.",
+  },
+  fork: {actual: "One sneaky piece is poking at the {targets} together.", possible: "The {targets} would be attacked, and it would take only one sneaky piece."},
+  material: "A {gain} may be the prize at the end of the trail, but both sides still get their say.",
+  capture: {candidate: "{capture} would snatch a {piece}.", followup: "Down the road, {capture} might snatch a {piece}."},
+  playedCapture: {fact: "{move} springs a sneaky {motif}.", consequence: "{capture} snatches a {piece}."},
 });
 
 export const corgiTacticalTemplates = authorTacticalWordings({

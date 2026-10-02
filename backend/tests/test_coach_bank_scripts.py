@@ -18,6 +18,8 @@ AUTHORED = [
     ("wizard", "orin"),
     ("cat-tuxedo", "felix"),
     ("raccoon", "bandit"),
+    ("dog-gentle", "alfie"),
+    ("cat-kitten", "pickle"),
     ("dog-corgi", "waffles"),
 ]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
