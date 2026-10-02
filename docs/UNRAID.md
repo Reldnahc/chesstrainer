@@ -92,5 +92,6 @@ docker exec fieldwork python scripts/backup.py export /data/backup.zip
 ```
 
 Copy backups off the server; they contain private accounts and sessions. Stop the
-app before restoring, never overwrite a live database, and retain a matching backup
-if downgrading. See [Docker installation](DOCKER.md) for other hosts or optional Compose.
+app before restoring, never overwrite a live database, remove any leftover
+`trainer.sqlite3-wal`/`-shm` files before restoring to the same name (the restore
+refuses to run while they exist), and retain a matching backup if downgrading. See [Docker installation](DOCKER.md) for other hosts or optional Compose.

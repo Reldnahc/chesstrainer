@@ -2,6 +2,8 @@
 
 import argparse
 import json
+import os
+import shutil
 import sqlite3
 import tempfile
 import zipfile
@@ -9,6 +11,21 @@ from contextlib import closing
 from pathlib import Path
 
 from trainer.config import Settings
+
+SIDECARS = ("-wal", "-shm", "-journal")
+
+
+def write_atomically(write, destination: Path):
+    """Write through a partial file so an interrupted copy never leaves a truncated target."""
+    partial = destination.with_name(destination.name + ".partial")
+    if partial.exists():
+        raise ValueError(f"Remove the leftover partial file first: {partial}")
+    try:
+        write(partial)
+        os.replace(partial, destination)
+    except BaseException:
+        partial.unlink(missing_ok=True)
+        raise
 
 
 def export_backup(destination: Path, settings: Settings):
@@ -23,12 +40,17 @@ def export_backup(destination: Path, settings: Settings):
         with closing(sqlite3.connect(f"{source.as_uri()}?mode=ro", uri=True)) as original:
             with closing(sqlite3.connect(snapshot)) as backup:
                 original.backup(backup)
-        with zipfile.ZipFile(destination, "x", compression=zipfile.ZIP_DEFLATED) as archive:
-            archive.write(snapshot, "trainer.sqlite3")
-            archive.writestr(
-                "manifest.json", json.dumps({"format": 1, "application": "local-chess-trainer"})
-            )
-            archive.writestr("settings.json", json.dumps(settings.public(), indent=2))
+
+        def write_archive(path):
+            with zipfile.ZipFile(path, "x", compression=zipfile.ZIP_DEFLATED) as archive:
+                archive.write(snapshot, "trainer.sqlite3")
+                archive.writestr(
+                    "manifest.json",
+                    json.dumps({"format": 1, "application": "local-chess-trainer"}),
+                )
+                archive.writestr("settings.json", json.dumps(settings.public(), indent=2))
+
+        write_atomically(write_archive, destination)
     return destination
 
 
@@ -36,6 +58,20 @@ def restore_backup(archive_path: Path, destination: Path):
     if destination.exists():
         raise ValueError(
             "Restore destination exists. Stop the server and choose a NEW database path."
+        )
+    # SQLite pairs a -wal/-shm file with a database by name alone. Leftovers from an
+    # interrupted server would be replayed over the restored pages, silently mixing data.
+    leftovers = [
+        path.name
+        for path in (destination.with_name(destination.name + suffix) for suffix in SIDECARS)
+        if path.exists()
+    ]
+    if leftovers:
+        raise ValueError(
+            "Restore destination has leftover SQLite sidecar files ("
+            + ", ".join(leftovers)
+            + "). SQLite would replay them over the restored database. Stop the server and "
+            "move them away, or choose a NEW database path."
         )
     with zipfile.ZipFile(archive_path) as archive:
         manifest = json.loads(archive.read("manifest.json"))
@@ -48,8 +84,6 @@ def restore_backup(archive_path: Path, destination: Path):
         with tempfile.TemporaryDirectory() as directory:
             temporary = Path(directory) / "check.sqlite3"
             with archive.open(info) as source, temporary.open("wb") as output:
-                import shutil
-
                 shutil.copyfileobj(source, output)
             with closing(sqlite3.connect(f"{temporary.as_uri()}?mode=ro", uri=True)) as check:
                 if check.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
@@ -58,10 +92,12 @@ def restore_backup(archive_path: Path, destination: Path):
                     raise ValueError("Backup contains invalid foreign-key references")
                 check.execute("SELECT version_num FROM alembic_version").fetchone()
             destination.parent.mkdir(parents=True, exist_ok=True)
-            with temporary.open("rb") as source, destination.open("xb") as output:
-                import shutil
 
-                shutil.copyfileobj(source, output)
+            def write_database(path):
+                with temporary.open("rb") as source, path.open("xb") as output:
+                    shutil.copyfileobj(source, output)
+
+            write_atomically(write_database, destination)
     return destination
 
 
