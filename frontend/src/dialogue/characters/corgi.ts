@@ -11,7 +11,7 @@ export const corgi: CoachPersonality = {
     ...corgiTacticalTemplates,
     ...corgiOpeningTemplates,
     allowed_mate: [
-      {reaction: "Code red.", fact: "{opponent} can force checkmate now.", consequence: "{reply}"},
+      {reaction: "Priority alert.", fact: "{opponent} can force checkmate now.", consequence: "{reply}"},
       {fact: "Forced checkmate is now on for {opponent}. {reply}", takeaway: "Retrace the defense."},
     ],
     missed_mate: [

@@ -1039,7 +1039,7 @@
       "group": "game_review",
       "primary": "tactic-fork-played",
       "secondary": "human-unusual-strong",
-      "text": "Fork. A lone attacker, and a handful of targets. The human-move model rates it an unusual pick, and the engine marks it strong. Rare, and still right."
+      "text": "Fork. A lone attacker, and a handful of targets. The human-move model had not guessed it, and the engine rates the fork strong regardless. Rare, and still right."
     },
     {
       "id": "combined-tactic-fork-played-with-human-hard-find",
@@ -1137,7 +1137,7 @@
       "group": "game_review",
       "primary": "tactic-fork-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "Of the checked moves, only a fork held, one piece on several targets. It was missed, and the human-move model says it was a hard find. Track down the piece that does it."
+      "text": "Of the checked moves, only a fork held, one piece on several targets. Nobody grabbed it, and plenty of people miss that one, the human-move model says. Track down the piece that does it."
     },
     {
       "id": "combo-tactic-pin-played-natural-best",
@@ -1179,7 +1179,7 @@
       "group": "game_review",
       "primary": "tactic-pin-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "A pin against the king was the only checked move that held. It was missed, and the human-move model says it was a hard one to spot. Hard defenses are still worth learning."
+      "text": "A pin against the king was the only checked move that held. Nobody played it, and the human-move model counts it as one people overlook. Hard defenses are still worth learning."
     },
     {
       "id": "combo-tactic-skewer-played-hard-find",
@@ -1270,7 +1270,7 @@
       "group": "game_review",
       "primary": "tactic-removing-defender-allowed",
       "secondary": "human-hard-defense-missed",
-      "text": "A defender can now be knocked out by the other side. Just one checked move held, and it was not the one played. The human-move model says it was a hard find."
+      "text": "A defender can now be knocked out by the other side. Just one checked move held, and it was not the one played. People often overlook a move like that, going by the human-move model."
     },
     {
       "id": "combo-tactic-removing-defender-missed-natural-error",
@@ -1326,14 +1326,14 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-unusual-strong",
-      "text": "Simple point: this pawn is heading for promotion. Not a move the human-move model expects, but the engine marks it strong."
+      "text": "Simple point: this pawn is heading for promotion. The human-move model would not guess it, yet the engine gives that push a strong grade."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-natural-best",
       "group": "game_review",
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-natural-best",
-      "text": "The pawn heads for the last row and promotion. The human-move model calls it natural; the engine likes it best of all. Keep that pawn moving."
+      "text": "The pawn heads for the last row and promotion. Plenty of players would push it too, by the human-move model, and the engine likes it best of all. Keep that pawn moving."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-natural-strong",
@@ -1368,7 +1368,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "Of the checked moves, only a pawn push toward promotion held. It was missed, and the human-move model says it was a hard find."
+      "text": "Of the checked moves, only a pawn push toward promotion held. That push went unplayed, and the human-move model ranks it with the tough finds."
     },
     {
       "id": "combo-tactic-discovered-attack-played-hard-find",
@@ -1424,14 +1424,14 @@
       "group": "game_review",
       "primary": "tactic-discovered-attack-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "Of the checked moves, only a discovered attack held. It was missed, and the human-move model says it was a hard thing to see."
+      "text": "Of the checked moves, only a discovered attack held. It slipped by, and the human-move model agrees it hides well."
     },
     {
       "id": "combo-tactic-double-attack-played-hard-find",
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-hard-find",
-      "text": "Double attack, and the engine's top move. The human-move model and the checked moves say it was a tricky one to find. Strong."
+      "text": "Double attack, and the engine's top move. The human-move model and the checked moves say it was a tricky one to find. Good spotting."
     },
     {
       "id": "combo-tactic-double-attack-played-unusual-strong",
@@ -1487,14 +1487,14 @@
       "group": "game_review",
       "primary": "tactic-deflection-played",
       "secondary": "human-hard-find",
-      "text": "Deflection: the defender is hauled off, and what it covered is bare. The engine's top move, and by the human-move model a hard find. Strong."
+      "text": "Deflection: the defender is hauled off, and what it covered is bare. The engine's top move, and by the human-move model a hard find. Found the hard way, and right."
     },
     {
       "id": "combo-tactic-deflection-played-unusual-strong",
       "group": "game_review",
       "primary": "tactic-deflection-played",
       "secondary": "human-unusual-strong",
-      "text": "A defender gets dragged off what it protects. The human-move model rates that unusual, and the engine marks it strong."
+      "text": "A defender gets dragged off what it protects. The human-move model calls that a rare choice, and the engine gives it a strong grade anyway."
     },
     {
       "id": "combo-tactic-deflection-played-natural-best",
@@ -1543,7 +1543,7 @@
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-hard-find",
-      "text": "This move collects a piece that had no protection. The engine's top move, and the human-move model says it was a hard thing to see. Spotted, and taken."
+      "text": "This move collects a piece that had no protection. The engine's top move, and one the human-move model expects people to overlook. Spotted, and taken."
     },
     {
       "id": "combo-tactic-undefended-capture-played-unusual-strong",
@@ -1718,7 +1718,7 @@
       "group": "game_review",
       "primary": "positional-passer-advance-actual",
       "secondary": "human-unusual-strong",
-      "text": "The passer moves one row up the board. The human-move model rates that unusual, and the engine marks it strong."
+      "text": "The passer moves one row up the board. Few would push it, by the human-move model, but the engine gives the push a strong grade."
     },
     {
       "id": "combo-positional-passer-advance-actual-natural-best",
@@ -1732,7 +1732,7 @@
       "group": "game_review",
       "primary": "positional-passer-advance-actual",
       "secondary": "human-natural-strong",
-      "text": "The passer gains a row. The human-move model saw this one coming. Strong by the engine, with one move ranked ahead."
+      "text": "The passer gains a row. The human-move model expected that push. Strong by the engine, with one move ranked ahead."
     },
     {
       "id": "combo-positional-isolated-actual-hard-find",
@@ -1802,7 +1802,7 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-unusual-strong",
-      "text": "One piece is loose now, though that alone proves nothing about winning it. Not a move the human-move model expects, but the engine marks it strong."
+      "text": "One piece is loose now, though that alone proves nothing about winning it. Not a move the human-move model expects, but the engine still gives it a strong grade."
     },
     {
       "id": "combo-positional-unsupported-actual-natural-best",
@@ -1851,7 +1851,7 @@
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-hard-find",
-      "text": "Castling. A normal move, yet here the human-move model says it was a hard find. Timing matters."
+      "text": "Castling. A normal-looking move, yet the human-move model thinks people often miss it here. Timing matters."
     },
     {
       "id": "combo-positional-castling-actual-unusual-strong",
@@ -1949,7 +1949,7 @@
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-hard-find",
-      "text": "Material goes, and the idea holds: if it is grabbed, the checked line still works. The human-move model and the checked moves say it was a hard thing to see. Strong."
+      "text": "Material goes, and the idea holds: if it is grabbed, the checked line still works. The human-move model and the checked moves say it was a hard thing to see. The idea stands up to the grab."
     },
     {
       "id": "combo-sound-sacrifice-unusual-strong",
@@ -2005,7 +2005,7 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-hard-find",
-      "text": "The clock was nearly out, and still this is the engine's top move. The human-move model and the checked moves both point to a hard find. Strong."
+      "text": "The clock was nearly out, and still this is the engine's top move. The human-move model and the checked moves both point to a hard find. Short on time, and still found."
     },
     {
       "id": "combo-clock-low-unusual-strong",
@@ -2089,7 +2089,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-hard-find",
-      "text": "The opening books have this move, and it is the engine's top move. Even so, the human-move model says it was a hard one to spot."
+      "text": "The opening books have this move, and it is the engine's top move. Even so, the human-move model thinks plenty of players would miss it."
     },
     {
       "id": "combo-recognized-opening-unusual-strong",
@@ -2243,7 +2243,7 @@
       "group": "game_review",
       "primary": "chance-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "The opponent slipped up with the last move, and this does not take advantage. Only a different move, of those checked, kept the game playable, and the human-move model says it was a hard find."
+      "text": "The opponent slipped up with the last move, and this does not take advantage. Only a different move, of those checked, kept the game playable, and that move is one the human-move model expects people to miss."
     },
     {
       "id": "combo-support-restored-hard-find",
@@ -2264,7 +2264,7 @@
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-natural-best",
-      "text": "This piece had no guard earlier, and now it does. The human-move model calls it natural; the engine likes it best of all."
+      "text": "This piece had no guard earlier, and now it does. Plenty of players would do the same, by the human-move model, and the engine likes it best of all."
     },
     {
       "id": "combo-support-restored-natural-strong",
@@ -2439,7 +2439,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-defense-found",
-      "text": "Still book, and everything depends on this move. Every other checked move lost, and the human-move model says it was a hard find."
+      "text": "Still book, and everything depends on this move. Every other checked move lost, and the human-move model ranks that defense as one people struggle with."
     },
     {
       "id": "combo-book-opening-follow-2-hard-find",
@@ -2642,7 +2642,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-strong",
-      "text": "Still covered by the opening books. The human-move model saw this one coming. The engine calls it strong; one move rates a bit higher."
+      "text": "Still covered by the opening books. This was the move the human-move model had in mind. The engine calls it strong; one move rates a bit higher."
     },
     {
       "id": "combo-book-opening-follow-7-hard-defense-found",
@@ -2656,7 +2656,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-find",
-      "text": "Book again, and the engine's top move. Known, but still tough: the human-move model says it was a hard find."
+      "text": "Book again, and the engine's top move. Known, but still tough: plenty of players would not find it, says the human-move model."
     },
     {
       "id": "combo-book-opening-follow-8-unusual-strong",
@@ -2677,7 +2677,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
-      "text": "Book again. Natural, as the human-move model sees it. The engine marks it strong but likes another move more; no book settles that question."
+      "text": "Book again. Natural, as the human-move model sees it. The engine grades it strong but likes another move more; no book settles that question."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",

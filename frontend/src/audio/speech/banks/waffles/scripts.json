@@ -302,7 +302,7 @@
     {
       "id": "sound-sacrifice",
       "group": "game_review",
-      "text": "Bold, and it holds! Even accepted, the sacrifice survives the line we checked."
+      "text": "Sacrifice on the board, and it holds. Even accepted, the sacrifice survives the line we checked."
     },
     {
       "id": "only-playable-move",
@@ -1396,7 +1396,7 @@
       "group": "game_review",
       "primary": "tactic-discovered-attack-played",
       "secondary": "human-natural-strong",
-      "text": "A blocker steps aside to uncover an attack from the piece behind it. Human-move model's report: natural. Engine's report: strong, with a different move in first place."
+      "text": "A blocker steps aside to uncover an attack from the piece behind it. Intel from the human-move model: natural. The engine's assessment: strong, with a different move in first place."
     },
     {
       "id": "combo-tactic-discovered-attack-allowed-natural-error",
@@ -1599,21 +1599,21 @@
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-hard-find",
-      "text": "From its starting square, a minor piece enters service. Engine's report: best. Human-move model's report: hard to find. Top marks!"
+      "text": "From its starting square, a minor piece enters service. Engine ranking: best. Human-move model intel: hard to find. Top marks!"
     },
     {
       "id": "combo-positional-development-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-unusual-strong",
-      "text": "A minor piece leaves the barracks. A surprise to the human-move model, and a strong move to the engine. Approved."
+      "text": "A minor piece leaves the barracks. A surprise to the human-move model, and a strong move to the engine."
     },
     {
       "id": "combo-positional-development-actual-natural-best",
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-natural-best",
-      "text": "A knight or bishop joins the action from its starting square. The human-move model logs it as natural, and the engine puts it at the top of the list. Approved."
+      "text": "A knight or bishop joins the action from its starting square. The human-move model logs it as natural, and the engine puts it at the top of the list."
     },
     {
       "id": "combo-positional-development-actual-natural-strong",
@@ -1662,21 +1662,21 @@
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-unusual-strong",
-      "text": "A semi-open file for the rook, with an enemy pawn on it and none of its own. Human-move model's report: unexpected. Engine's report: strong. Bold works!"
+      "text": "A semi-open file for the rook, with an enemy pawn on it and none of its own. Logged by the human-move model as unexpected; cleared as strong by the engine. Bold works!"
     },
     {
       "id": "combo-positional-rook-semi-open-actual-natural-best",
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-natural-best",
-      "text": "The rook is on a semi-open file, enemy pawns only. Human-move model's report: natural. Engine's report: best. Approved."
+      "text": "The rook is on a semi-open file, enemy pawns only. Briefing: natural for the human-move model for the human-move model, and the engine's orders read best."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-natural-strong",
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-natural-strong",
-      "text": "Semi-open file under the rook's command, with no pawns of its own color on it. Human-move model's report: natural. Engine's report: strong, with a different move in first place."
+      "text": "Semi-open file under the rook's command, with no pawns of its own color on it. Field notes: intel says natural, and the engine's ranking says strong, with a different move in first place."
     },
     {
       "id": "combo-positional-passed-actual-hard-find",
@@ -1767,21 +1767,21 @@
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-hard-find",
-      "text": "Reinforcements arrive for a piece that had no defender. Engine's report: best. Human-move model's report: hard to find. Top marks!"
+      "text": "Reinforcements arrive for a piece that had no defender. Two dispatches: best from the engine, hard to find from the human-move model. Top marks!"
     },
     {
       "id": "combo-positional-support-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-unusual-strong",
-      "text": "A piece that had nothing guarding it now has an escort. A surprise to the human-move model, and a strong move to the engine. Approved."
+      "text": "A piece that had nothing guarding it now has an escort. A surprise to the human-move model, and a strong move to the engine."
     },
     {
       "id": "combo-positional-support-actual-natural-best",
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-natural-best",
-      "text": "A guard is assigned to an unprotected piece. The human-move model logs it as natural, and the engine puts it at the top of the list. Approved."
+      "text": "A guard is assigned to an unprotected piece. The human-move model logs it as natural, and the engine puts it at the top of the list."
     },
     {
       "id": "combo-positional-support-actual-natural-strong",
@@ -1830,21 +1830,21 @@
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-unusual-strong",
-      "text": "An exit route opens for the king. Human-move model's report: unexpected. Engine's report: strong. Bold works! Check what cleared it."
+      "text": "An exit route opens for the king. Dispatch received: unexpected on the human-move model's wire, strong on the engine's. Bold works! Check what cleared it."
     },
     {
       "id": "combo-positional-king-flight-actual-natural-best",
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-natural-best",
-      "text": "The king picks up a legal square it didn't have. Human-move model's report: natural. Engine's report: best. Approved."
+      "text": "The king picks up a legal square it didn't have. Intel from the human-move model: natural. The engine's assessment: best."
     },
     {
       "id": "combo-positional-king-flight-actual-natural-strong",
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-natural-strong",
-      "text": "New ground for the king: one more legal square. Human-move model's report: natural. Engine's report: strong, with a different move in first place."
+      "text": "New ground for the king: one more legal square. Logged by the human-move model as natural; cleared as strong, with a different move in first place by the engine."
     },
     {
       "id": "combo-positional-castling-actual-hard-find",
@@ -1949,21 +1949,21 @@
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-hard-find",
-      "text": "Bold sacrifice, and it holds in the line we checked, even when accepted. Engine's report: best. Human-move model's report: hard to find. Top marks!"
+      "text": "A sacrifice, and it holds in the line we checked, even when accepted. Sitrep: best from the engine, hard to find from the human-move model. Top marks!"
     },
     {
       "id": "combo-sound-sacrifice-unusual-strong",
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-unusual-strong",
-      "text": "Sacrifice deployed! Take the material, and in the line we checked, the idea still stands. A surprise to the human-move model, and a strong move to the engine. Approved."
+      "text": "Sacrifice deployed! Take the material, and in the line we checked, the idea still stands. A surprise to the human-move model, and a strong move to the engine."
     },
     {
       "id": "combo-sound-sacrifice-natural-best",
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-natural-best",
-      "text": "Material given up, and the idea survives the capture in the line we checked. The human-move model logs it as natural, and the engine puts it at the top of the list. Approved."
+      "text": "Material given up, and the idea survives the capture in the line we checked. The human-move model logs it as natural, and the engine puts it at the top of the list."
     },
     {
       "id": "combo-sound-sacrifice-natural-strong",
@@ -1984,7 +1984,7 @@
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-natural-best",
-      "text": "This move alone held the advantage; nothing else we checked did. Human-move model's report: natural. Engine's report: best. Approved."
+      "text": "This move alone held the advantage; nothing else we checked did. Briefing: natural for the human-move model for the human-move model, and the engine's orders read best."
     },
     {
       "id": "combo-immediate-capture-hard-defense-missed",
@@ -2005,7 +2005,7 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-hard-find",
-      "text": "Almost no time on the clock, and this still got found. The engine ranks it first, and the human-move model and the other searched moves mark it a hard find."
+      "text": "Almost no time on the clock, and this still got found. The engine's number one, and both the human-move model and the searched alternatives flag it as hard to find."
     },
     {
       "id": "combo-clock-low-unusual-strong",
@@ -2019,7 +2019,7 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-natural-best",
-      "text": "Short clock, steady hand. The human-move model saw it coming, and the engine ranks it first. Orders confirmed."
+      "text": "Short clock, steady hand. No surprise to the human-move model, and first on the engine's board. Orders confirmed."
     },
     {
       "id": "combo-clock-low-natural-strong",
@@ -2033,56 +2033,56 @@
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-hard-find",
-      "text": "Fast execution, and clock left in reserve. Best by the engine's ranking, and hard to spot by the human-move model's intel. Good hunting!"
+      "text": "Fast execution, and clock left in reserve. Engine says best; intel from the human-move model flags it hard to spot. Good hunting!"
     },
     {
       "id": "combo-clock-fast-unusual-strong",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-unusual-strong",
-      "text": "Snap decision, with time still banked. Human-move model's report: unexpected. Engine's report: strong. Bold works!"
+      "text": "Snap decision, with time still banked. Field notes: intel says unexpected, and the engine's ranking says strong. Bold works!"
     },
     {
       "id": "combo-clock-fast-natural-best",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-natural-best",
-      "text": "Quick decision, time left over. Natural on the human-move model's intel, and best on the engine's. Textbook. No hesitation needed."
+      "text": "Quick decision, time left over. Human-move model intel: natural. Engine ranking: best. No hesitation needed."
     },
     {
       "id": "combo-clock-fast-natural-strong",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-natural-strong",
-      "text": "Quick call, with clock still banked. Human-move model's report: natural. Engine's report: strong, with a different move in first place."
+      "text": "Quick call, with clock still banked. Dispatch received: natural on the human-move model's wire, strong, with a different move in first place on the engine's."
     },
     {
       "id": "combo-clock-long-hard-find",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-hard-find",
-      "text": "A long briefing on the clock, and it found the answer. First on the engine's list, and the human-move model logs it as hard to find. Time well invested."
+      "text": "A long briefing on the clock, and it found the answer. Ranked first by the engine, and flagged hard to find in the human-move model's log. Time well invested."
     },
     {
       "id": "combo-clock-long-unusual-strong",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-unusual-strong",
-      "text": "This one took a long think. The human-move model never saw it coming, and the engine still passes it as strong."
+      "text": "This one took a long think. Missing from the human-move model's forecasts, and passed as strong by the engine."
     },
     {
       "id": "combo-clock-long-natural-best",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-natural-best",
-      "text": "This move consumed plenty of clock. Both reports agree: natural to the human-move model, best for the engine."
+      "text": "This move consumed plenty of clock. Reports line up: natural per the human-move model's intel, best per the engine's ranking."
     },
     {
       "id": "combo-clock-long-natural-strong",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-natural-strong",
-      "text": "This one used a long stretch of clock. In the human-move model's log, it's natural. The engine rates it strong but keeps a different move in front."
+      "text": "This one used a long stretch of clock. Logged as natural by the human-move model. Strong on the engine's sheet, though another move leads the column."
     },
     {
       "id": "combo-recognized-opening-hard-find",
@@ -2103,7 +2103,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-natural-best",
-      "text": "Opening move on record, but the verdict comes from the search. The human-move model logs it as natural, and the engine puts it at the top of the list. Approved."
+      "text": "Opening move on record, but the verdict comes from the search. The human-move model logs it as natural, and the engine puts it at the top of the list."
     },
     {
       "id": "combo-recognized-opening-natural-strong",
@@ -2152,21 +2152,21 @@
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-hard-find",
-      "text": "Back in the fight after the earlier setback: the position is playable again. Engine's report: best. Human-move model's report: hard to find. Top marks!"
+      "text": "Back in the fight after the earlier setback: the position is playable again. Engine ranking: best. Human-move model intel: hard to find."
     },
     {
       "id": "combo-recovery-unusual-strong",
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-unusual-strong",
-      "text": "After the earlier setback, the position is back in playable shape. A surprise to the human-move model, and a strong move to the engine. Approved."
+      "text": "After the earlier setback, the position is back in playable shape. A surprise to the human-move model, and a strong move to the engine."
     },
     {
       "id": "combo-recovery-natural-best",
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-natural-best",
-      "text": "Back in playable shape after the setback. Human-move model's report: natural. Engine's report: best. Approved. Now press on."
+      "text": "Back in playable shape after the setback. Intel from the human-move model: natural. The engine's assessment: best. Now press on."
     },
     {
       "id": "combo-recovery-natural-strong",
@@ -2180,7 +2180,7 @@
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-hard-find",
-      "text": "With help from the other side's errors, this move gets the position back to playable. The engine ranks it first, and the human-move model and the other searched moves mark it a hard find."
+      "text": "With help from the other side's errors, this move gets the position back to playable. The engine's number one, and both the human-move model and the searched alternatives flag it as hard to find."
     },
     {
       "id": "combo-recovery-assisted-unusual-strong",
@@ -2194,7 +2194,7 @@
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-best",
-      "text": "The other side's errors sent reinforcements, and the position is playable again. The human-move model saw it coming, and the engine ranks it first. Orders confirmed."
+      "text": "The other side's errors sent reinforcements, and the position is playable again. Predicted by the human-move model, and top of the engine's list."
     },
     {
       "id": "combo-recovery-assisted-natural-strong",
@@ -2208,28 +2208,28 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-hard-find",
-      "text": "The opponent's last move offered a chance, and this one seizes it on the spot. Best by the engine's ranking, and hard to spot by the human-move model's intel. Good hunting!"
+      "text": "The opponent's last move offered a chance, and this one seizes it on the spot. Engine says best; intel from the human-move model flags it hard to spot."
     },
     {
       "id": "combo-chance-taken-unusual-strong",
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-unusual-strong",
-      "text": "The opponent left a chance last move, and this seizes it. Human-move model's report: unexpected. Engine's report: strong. Bold works!"
+      "text": "The opponent left a chance last move, and this seizes it. Logged by the human-move model as unexpected; cleared as strong by the engine."
     },
     {
       "id": "combo-chance-taken-natural-best",
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-best",
-      "text": "Chance seized from the opponent's last move. Natural on the human-move model's intel, and best on the engine's. Textbook."
+      "text": "Chance seized from the opponent's last move. Human-move model intel: natural. Engine ranking: best."
     },
     {
       "id": "combo-chance-taken-natural-strong",
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-strong",
-      "text": "The opponent's last move left a chance, and this move puts it to work. Human-move model's report: natural. Engine's report: strong, with a different move in first place."
+      "text": "The opponent's last move left a chance, and this move puts it to work. Briefing: natural for the human-move model for the human-move model, and the engine's orders read strong, with a different move in first place."
     },
     {
       "id": "combo-chance-missed-natural-error",
@@ -2250,28 +2250,28 @@
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-hard-find",
-      "text": "That piece stood unguarded before. It's covered now. First on the engine's list, and the human-move model logs it as hard to find."
+      "text": "That piece stood unguarded before. It's covered now. Ranked first by the engine, and flagged hard to find in the human-move model's log."
     },
     {
       "id": "combo-support-restored-unusual-strong",
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-unusual-strong",
-      "text": "That earlier unguarded piece is back in formation. The human-move model never saw it coming, and the engine still passes it as strong."
+      "text": "That earlier unguarded piece is back in formation. Off the human-move model's map, yet the engine clears it as strong."
     },
     {
       "id": "combo-support-restored-natural-best",
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-natural-best",
-      "text": "The piece left unguarded earlier has an escort again. Both reports agree: natural to the human-move model, best for the engine."
+      "text": "The piece left unguarded earlier has an escort again. Reports line up: natural per the human-move model's intel, best per the engine's ranking."
     },
     {
       "id": "combo-support-restored-natural-strong",
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-natural-strong",
-      "text": "Reinforcements reach the piece left unguarded earlier. In the human-move model's log, it's natural. The engine rates it strong but keeps a different move in front."
+      "text": "Reinforcements reach the piece left unguarded earlier. Logged as natural by the human-move model. Strong on the engine's sheet, though another move leads the column."
     },
     {
       "id": "combo-advantage-converted-hard-find",
@@ -2292,7 +2292,7 @@
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-natural-best",
-      "text": "The edge held to the very end, and the win came. The human-move model logs it as natural, and the engine puts it at the top of the list. Approved."
+      "text": "The edge held to the very end, and the win came. The human-move model logs it as natural, and the engine puts it at the top of the list."
     },
     {
       "id": "combo-advantage-converted-natural-strong",
@@ -2341,21 +2341,21 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-find",
-      "text": "This move is in the field manual. Engine's report: best. Human-move model's report: hard to find. Top marks!"
+      "text": "This move is in the field manual. Two dispatches: best from the engine, hard to find from the human-move model."
     },
     {
       "id": "combo-book-opening-entry-2-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-unusual-strong",
-      "text": "Field manual material. A surprise to the human-move model, and a strong move to the engine. Approved."
+      "text": "Field manual material. A surprise to the human-move model, and a strong move to the engine."
     },
     {
       "id": "combo-book-opening-entry-2-natural-best",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-best",
-      "text": "A known opening line, proceeding as planned. Human-move model's report: natural. Engine's report: best. Approved."
+      "text": "A known opening line, proceeding as planned. Field notes: intel says natural, and the engine's ranking says best."
     },
     {
       "id": "combo-book-opening-entry-2-natural-strong",
@@ -2376,7 +2376,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-hard-find",
-      "text": "Recognized opening line, logged in the manual. The engine ranks it first, and the human-move model and the other searched moves mark it a hard find."
+      "text": "Recognized opening line, logged in the manual. The engine's number one, and both the human-move model and the searched alternatives flag it as hard to find."
     },
     {
       "id": "combo-book-opening-entry-3-unusual-strong",
@@ -2390,7 +2390,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-best",
-      "text": "Book move, from a recognized line. The human-move model saw it coming, and the engine ranks it first. Orders confirmed."
+      "text": "Book move, from a recognized line. No surprise to the human-move model, and first on the engine's board."
     },
     {
       "id": "combo-book-opening-entry-3-natural-strong",
@@ -2411,28 +2411,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-find",
-      "text": "Still following the manual. Best by the engine's ranking, and hard to spot by the human-move model's intel. Good hunting!"
+      "text": "Still following the manual. Engine says best; intel from the human-move model flags it hard to spot."
     },
     {
       "id": "combo-book-opening-follow-1-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-unusual-strong",
-      "text": "The manual still covers this. Human-move model's report: unexpected. Engine's report: strong. Bold works!"
+      "text": "The manual still covers this. Dispatch received: unexpected on the human-move model's wire, strong on the engine's."
     },
     {
       "id": "combo-book-opening-follow-1-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-best",
-      "text": "Still following the manual, and steady. Natural on the human-move model's intel, and best on the engine's. Textbook."
+      "text": "Still following the manual, and steady. Human-move model intel: natural. Engine ranking: best."
     },
     {
       "id": "combo-book-opening-follow-1-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-strong",
-      "text": "Manual still in hand. Human-move model's report: natural. Engine's report: strong, with a different move in first place."
+      "text": "Manual still in hand. Intel from the human-move model: natural. The engine's assessment: strong, with a different move in first place."
     },
     {
       "id": "combo-book-opening-follow-1-hard-defense-found",
@@ -2446,28 +2446,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-hard-find",
-      "text": "Next move from the manual. First on the engine's list, and the human-move model logs it as hard to find."
+      "text": "Next move from the manual. Ranked first by the engine, and flagged hard to find in the human-move model's log."
     },
     {
       "id": "combo-book-opening-follow-2-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-unusual-strong",
-      "text": "Another one from the manual. The human-move model never saw it coming, and the engine still passes it as strong."
+      "text": "Another one from the manual. Missing from the human-move model's forecasts, and passed as strong by the engine."
     },
     {
       "id": "combo-book-opening-follow-2-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-best",
-      "text": "Manual still in use. Carry on. Both reports agree: natural to the human-move model, best for the engine."
+      "text": "Manual still in use. Carry on. Reports line up: natural per the human-move model's intel, best per the engine's ranking."
     },
     {
       "id": "combo-book-opening-follow-2-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-strong",
-      "text": "Manual move again. In the human-move model's log, it's natural. The engine rates it strong but keeps a different move in front."
+      "text": "Manual move again. Logged as natural by the human-move model. Strong on the engine's sheet, though another move leads the column."
     },
     {
       "id": "combo-book-opening-follow-2-hard-defense-found",
@@ -2495,7 +2495,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-natural-best",
-      "text": "A book reply. The human-move model logs it as natural, and the engine puts it at the top of the list. Approved."
+      "text": "A book reply. The human-move model logs it as natural, and the engine puts it at the top of the list."
     },
     {
       "id": "combo-book-opening-follow-3-natural-strong",
@@ -2551,21 +2551,21 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-hard-find",
-      "text": "Formation holds, still in the book. Engine's report: best. Human-move model's report: hard to find. Top marks!"
+      "text": "Formation holds, still in the book. Engine ranking: best. Human-move model intel: hard to find."
     },
     {
       "id": "combo-book-opening-follow-5-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-unusual-strong",
-      "text": "The book formation stays intact. A surprise to the human-move model, and a strong move to the engine. Approved."
+      "text": "The book formation stays intact. A surprise to the human-move model, and a strong move to the engine."
     },
     {
       "id": "combo-book-opening-follow-5-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-best",
-      "text": "The book formation holds. Human-move model's report: natural. Engine's report: best. Approved."
+      "text": "The book formation holds. Logged by the human-move model as natural; cleared as best by the engine."
     },
     {
       "id": "combo-book-opening-follow-5-natural-strong",
@@ -2586,7 +2586,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-hard-find",
-      "text": "Still marching to the book's beat. The engine ranks it first, and the human-move model and the other searched moves mark it a hard find."
+      "text": "Still marching to the book's beat. The engine's number one, and both the human-move model and the searched alternatives flag it as hard to find."
     },
     {
       "id": "combo-book-opening-follow-6-unusual-strong",
@@ -2600,7 +2600,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-best",
-      "text": "Still in step with the book. The human-move model saw it coming, and the engine ranks it first. Orders confirmed."
+      "text": "Still in step with the book. Predicted by the human-move model, and top of the engine's list."
     },
     {
       "id": "combo-book-opening-follow-6-natural-strong",
@@ -2621,28 +2621,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-hard-find",
-      "text": "The drill continues. Best by the engine's ranking, and hard to spot by the human-move model's intel. Good hunting!"
+      "text": "The drill continues. Engine says best; intel from the human-move model flags it hard to spot."
     },
     {
       "id": "combo-book-opening-follow-7-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-unusual-strong",
-      "text": "The drill continues. Human-move model's report: unexpected. Engine's report: strong. Bold works!"
+      "text": "The drill continues. Briefing: unexpected for the human-move model for the human-move model, and the engine's orders read strong."
     },
     {
       "id": "combo-book-opening-follow-7-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-best",
-      "text": "The drill continues. Natural on the human-move model's intel, and best on the engine's. Textbook."
+      "text": "The drill continues. Human-move model intel: natural. Engine ranking: best."
     },
     {
       "id": "combo-book-opening-follow-7-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-strong",
-      "text": "The drill continues. Human-move model's report: natural. Engine's report: strong, with a different move in first place."
+      "text": "The drill continues. Field notes: intel says natural, and the engine's ranking says strong, with a different move in first place."
     },
     {
       "id": "combo-book-opening-follow-7-hard-defense-found",
@@ -2656,28 +2656,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-find",
-      "text": "Next move from the manual. First on the engine's list, and the human-move model logs it as hard to find. Knowing the line and finding the move are two different jobs."
+      "text": "Next move from the manual. Ranked first by the engine, and flagged hard to find in the human-move model's log. Knowing the line and finding the move are two different jobs."
     },
     {
       "id": "combo-book-opening-follow-8-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-unusual-strong",
-      "text": "Manual entry, once more. The human-move model never saw it coming, and the engine still passes it as strong."
+      "text": "Manual entry, once more. Off the human-move model's map, yet the engine clears it as strong."
     },
     {
       "id": "combo-book-opening-follow-8-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
-      "text": "Another entry in the manual. Both reports agree: natural to the human-move model, best for the engine."
+      "text": "Another entry in the manual. Reports line up: natural per the human-move model's intel, best per the engine's ranking."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
-      "text": "The manual covers this one as well. In the human-move model's log, it's natural. The engine rates it strong but keeps a different move in front."
+      "text": "The manual covers this one as well. Logged as natural by the human-move model. Strong on the engine's sheet, though another move leads the column."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",

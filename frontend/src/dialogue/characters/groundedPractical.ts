@@ -26,7 +26,7 @@ export const raccoon: CoachPersonality = {
       "{best} had a forced mate ready to collect. This move walks off without it.",
     ],
     tactic_played: [
-      {reaction: "Now that's grabbing the chance!", fact: "{move} cashes in on a {motif} in the searched line.", consequence: "{detail}"},
+      {reaction: "Now that's a tactic with a payoff.", fact: "{move} cashes in on a {motif} in the searched line.", consequence: "{detail}"},
       {fact: "{move} uses a {motif}, and it works in the searched line.", consequence: "{detail}", question: "See what it picks up?"},
     ],
     tactic_allowed: [
@@ -45,7 +45,7 @@ export const raccoon: CoachPersonality = {
       "Take the offer, and the idea still works in the searched line. That's a sacrifice with a point.",
     ],
     only_move: [
-      {reaction: "One way out, and this move found it!", fact: "Only this move, out of everything searched, kept the position playable."},
+      {reaction: "One way out, and this is it.", fact: "Only this move, out of everything searched, kept the position playable."},
       "Every other searched move was losing, and this one kept things playable.",
     ],
     decisive_resource: ["Everything else that was searched gave back the decisive advantage. This move held on to it."],
@@ -53,7 +53,7 @@ export const raccoon: CoachPersonality = {
     reply_check: ["The strongest answer for {opponent} is {reply}, with check. Sort out the king before anything else."],
     alternative: ["Stockfish would take {best} instead: {evaluation} for the mover. See what that move gets that this one doesn't."],
     loss: [
-      {reaction: "Ouch, that's pricey.", fact: "This one costs {loss} pawns of evaluation next to the best move.", takeaway: "Look at the reply to see where the value went."},
+      {reaction: "Let's see what this one cost.", fact: "This one costs {loss} pawns of evaluation next to the best move.", takeaway: "Look at the reply to see where the value went."},
       "Next to the best move, {loss} pawns of evaluation get handed over here. Follow the reply to see where they went.",
     ],
     best: [
@@ -135,14 +135,14 @@ export const livingPawn: CoachPersonality = {
   templates: {
     ...livingPawnTacticalTemplates,
     ...livingPawnOpeningTemplates,
-    allowed_mate: [{reaction: "Oh, this one hurts.", fact: "{opponent} has a forced checkmate now.", consequence: "{reply}", takeaway: "Check the king's escape squares before every move."}],
-    missed_mate: [{reaction: "Aw, the finish was right there!", fact: "{best} kept a forced mate, and this move lets it go.", takeaway: "When mate is available, nothing else on the board matters."}],
+    allowed_mate: [{reaction: "This one settles everything.", fact: "{opponent} has a forced checkmate now.", consequence: "{reply}", takeaway: "Check the king's escape squares before every move."}],
+    missed_mate: [{reaction: "There was mate to be had.", fact: "{best} kept a forced mate, and this move lets it go.", takeaway: "When mate is available, nothing else on the board matters."}],
     tactic_played: [
       {reaction: "Now that's a piece earning its square!", fact: "{move} brings a {motif} into the searched line.", consequence: "{detail}"},
       {fact: "{move} puts a {motif} to work in the searched line.", consequence: "{detail}", question: "Which piece is doing the heavy lifting?"},
     ],
     tactic_allowed: [
-      {reaction: "Uh-oh, somebody left a gap.", fact: "{opponent} picks up a {motif} in the strongest line.", consequence: "{detail}", takeaway: "Before moving, check what their pieces can reach."},
+      {reaction: "There's a gap in the guard here.", fact: "{opponent} picks up a {motif} in the strongest line.", consequence: "{detail}", takeaway: "Before moving, check what their pieces can reach."},
       {fact: "That gives {opponent} a {motif} in the strongest line.", consequence: "{detail}"},
     ],
     tactic_missed: [
@@ -153,17 +153,17 @@ export const livingPawn: CoachPersonality = {
     cause_opponent_threat_recognition: [{reaction: "That threat needed an answer.", fact: "{move} leaves {side}'s {piece} on {square} under the attack the opponent's preceding move set up.", consequence: "{opponent} can capture it with {reply}.", takeaway: "Every new attack gives a piece a new job."}],
     cause_avoiding_bad_trades: [{reaction: "Whoa, count the whole trade!", fact: "{move} gives up {side}'s {piece} for a {captured}.", consequence: "{opponent} can recapture with {reply}.", takeaway: "An exchange isn't finished until every recapture is counted."}],
     sacrifice: [{reaction: "Talk about giving everything for the cause!", fact: "The sacrifice stays sound in the searched line, even when the opponent takes it."}],
-    only_move: [{reaction: "That's what I call showing up!", fact: "Of the searched moves, only this one kept the position playable.", takeaway: "Remember this one; it was the only piece of work that held."}],
+    only_move: [{reaction: "Only one move answers the call here.", fact: "Of the searched moves, only this one kept the position playable.", takeaway: "Remember this one; it was the only piece of work that held."}],
     decisive_resource: ["Of every searched move, only this one kept the decisive advantage. That move carried the whole load."],
     reply_capture: ["{opponent} has {reply} ready, and it takes {side}'s {piece}. That piece needed looking after."],
     reply_check: ["{opponent}'s strongest answer is {reply}, with check. The king's safety goes to the top of the list."],
     alternative: ["Stockfish would rather play {best}: {evaluation} for the mover. Try it and see what that move does differently."],
     loss: [
-      {reaction: "Oof, that costs something.", fact: "This gives up {loss} pawns of evaluation compared with the best move.", takeaway: "Look at the reply and see what it can now attack."},
+      {reaction: "Some value slips off the board here.", fact: "This gives up {loss} pawns of evaluation compared with the best move.", takeaway: "Look at the reply and see what it can now attack."},
       "Against the best move, this one costs {loss} pawns of evaluation. Play out the reply and see what it does.",
     ],
     best: [
-      {reaction: "Yes! Every piece pulling its weight.", fact: "A strong move. Nothing the position offered goes to waste."},
+      {reaction: "Every piece pulling its weight.", fact: "A strong move. Nothing the position offered goes to waste."},
       "Strong! Every piece stays right where it's useful.",
     ],
     good: [
@@ -198,7 +198,7 @@ export const livingPawn: CoachPersonality = {
     development: [{reaction: "Another piece reports for work!", fact: "{lead}develops the {piece} from its starting square."}],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. A rook likes a file where it can actually work."],
     passed: [{reaction: "Oh, a passed pawn! Whoever owns it, that pawn has a future.", fact: "{lead}leaves {side} with passed pawns on {squares}; no enemy pawn stands ahead on those or the neighboring files."}],
-    passer_advance: [{reaction: "Keep going, little one!", fact: "{lead}pushes the passed pawn on to {square}."}],
+    passer_advance: [{reaction: "Onward goes the little one.", fact: "{lead}pushes the passed pawn on to {square}."}],
     isolated: ["{lead}leaves {side} with isolated pawns on {squares}, with no friendly pawn on either neighboring file. Speaking as a pawn, that's a lonely spot."],
     support: [{reaction: "Good, somebody's got its back.", fact: "{lead}gives the {piece} on {square} a defender."}],
     unsupported: ["{lead}leaves the {piece} on {square} without a defender. That doesn't mean it's lost, but nobody's covering it now."],
