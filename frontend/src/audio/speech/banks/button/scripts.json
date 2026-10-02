@@ -132,7 +132,7 @@
     {
       "id": "tactic-deflection-allowed",
       "group": "game_review",
-      "text": "Watch what that defender is propping up. The other side has a chance to draw it away, a deflection, and whatever it guards could be left uncovered."
+      "text": "How much rests on that one defender? The other side has a chance to draw it away, a deflection, and whatever it guards could be left uncovered."
     },
     {
       "id": "tactic-deflection-missed",
@@ -157,7 +157,7 @@
     {
       "id": "cause-abandoned-defender",
       "group": "game_review",
-      "text": "Something came loose here. This move pulls away the only real defender of a piece, and now the other side can capture the piece it was holding up."
+      "text": "What was that piece leaning on? This move pulls away its only real defender, and now the other side can capture the piece it was holding up."
     },
     {
       "id": "cause-opponent-threat-recognition",
@@ -222,7 +222,7 @@
     {
       "id": "positional-isolated-actual",
       "group": "game_review",
-      "text": "A pawn without neighbors. This leaves an isolated pawn, with no friendly pawn on either file beside it to lean on."
+      "text": "What does a pawn lean on when it has no neighbors? This leaves an isolated pawn, with no friendly pawn on either file beside it."
     },
     {
       "id": "positional-isolated-alternative",
@@ -242,7 +242,7 @@
     {
       "id": "positional-unsupported-actual",
       "group": "game_review",
-      "text": "This leaves a piece with nobody behind it. Undefended is worth noticing, though by itself it doesn't mean the piece can be won."
+      "text": "What is this piece resting on now? Nothing at all. Undefended is worth noticing, though by itself it doesn't mean the piece can be won."
     },
     {
       "id": "positional-unsupported-alternative",
@@ -422,7 +422,7 @@
     {
       "id": "chance-missed",
       "group": "game_review",
-      "text": "The opponent's last move left something lying about. This move doesn't pick it up."
+      "text": "What came loose in the opponent's last move? Something this move doesn't pick up."
     },
     {
       "id": "repeated-issue",
@@ -432,12 +432,12 @@
     {
       "id": "support-restored",
       "group": "game_review",
-      "text": "A piece that was left alone earlier has a defender again. Its protection has been mended."
+      "text": "Remember the piece that was left alone earlier? It has a defender again. Its protection has been mended."
     },
     {
       "id": "gradual-erosion",
       "group": "game_review",
-      "text": "No single big crack, just small ones adding up. This is one of several little concessions that have worn the position down together."
+      "text": "When did the position start to sag? Not in one move. This is one of several little concessions that have worn it down together."
     },
     {
       "id": "advantage-converted",
@@ -1116,7 +1116,7 @@
       "group": "game_review",
       "primary": "tactic-fork-played",
       "secondary": "human-natural-strong",
-      "text": "A fork sits in this one, one piece reaching several targets. Natural to the human-move model, and strong to the engine, which has one move it prefers."
+      "text": "A fork sits in this one, one piece reaching several targets. Something the human-move model would reach for, and strong to the engine, which has one move it prefers."
     },
     {
       "id": "combo-tactic-fork-allowed-hard-defense-missed",
@@ -1263,7 +1263,7 @@
       "group": "game_review",
       "primary": "tactic-removing-defender-allowed",
       "secondary": "human-natural-error",
-      "text": "Pieces lean on their defenders, and one of those defenders is now within reach. The other side can capture it and leave whatever it guards unprotected. The human-move model finds this move natural, but that's what it costs."
+      "text": "Which pieces were leaning on that defender? It's within reach of the other side now. The other side can capture it and leave whatever it guards unprotected. The human-move model finds this move natural, but that's what it costs."
     },
     {
       "id": "combo-tactic-removing-defender-allowed-hard-defense-missed",
@@ -1620,7 +1620,7 @@
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-natural-strong",
-      "text": "A minor piece leaves its starting square and joins in. Natural to the human-move model; strong to the engine, which ranks one move above it."
+      "text": "A minor piece leaves its starting square and joins in. A move the human-move model would reach for without fuss; the engine finds it strong, with one move ranked above it."
     },
     {
       "id": "combo-positional-rook-open-actual-hard-find",
@@ -1760,7 +1760,7 @@
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-natural-strong",
-      "text": "A pawn standing by itself, with no friendly pawn on either neighboring file. The move is natural to the human-move model and strong to the engine, which still prefers another."
+      "text": "A pawn standing by itself, with no friendly pawn on either neighboring file. The human-move model would play it readily, and the engine rates it strong, though it prefers another."
     },
     {
       "id": "combo-positional-support-actual-hard-find",
@@ -1872,7 +1872,7 @@
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-natural-strong",
-      "text": "The king moves over, and the rook comes to stand beside it. Castling, natural to the human-move model and strong to the engine, though it prefers a different move."
+      "text": "The king moves over, and the rook comes to stand beside it. Castling, a move the human-move model expects, and strong to the engine, though it prefers a different move."
     },
     {
       "id": "combo-positional-bishop-pair-actual-hard-find",
@@ -1928,7 +1928,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-natural-strong",
-      "text": "Two pawns, one file, one behind the other: doubled. The move is natural to the human-move model and strong to the engine, which ranks a different move first."
+      "text": "Two pawns, one file, one behind the other: doubled. The human-move model finds it an easy move to make, and the engine rates it strong, ranking a different move first."
     },
     {
       "id": "combo-allowed-mate-hard-defense-missed",
@@ -2026,7 +2026,7 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-natural-strong",
-      "text": "The clock was nearly empty. The move is natural to the human-move model and strong to the engine, though it prefers another."
+      "text": "The clock was nearly empty, and the hand went to a move the human-move model expects. The engine rates it strong, though it prefers another."
     },
     {
       "id": "combo-clock-fast-hard-find",
@@ -2082,7 +2082,7 @@
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-natural-strong",
-      "text": "Turned over for a long while on the clock. The move is natural to the human-move model and strong to the engine, which still prefers another."
+      "text": "Turned over for a long while on the clock. The human-move model would expect it, and the engine finds it strong, though something else holds up a little better."
     },
     {
       "id": "combo-recognized-opening-hard-find",
@@ -2229,7 +2229,7 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-strong",
-      "text": "This uses the chance the opponent's last move offered. Natural to the human-move model, strong to the engine, which ranks another move first."
+      "text": "This uses the chance the opponent's last move offered, with a move the human-move model reaches for easily. Strong to the engine, which ranks another move first."
     },
     {
       "id": "combo-chance-missed-natural-error",
@@ -2432,7 +2432,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-strong",
-      "text": "Still recognized by the book. Natural to the human-move model, strong to the engine, which ranks another move first."
+      "text": "Still recognized by the book. A move the human-move model expects, and strong to the engine, which ranks another move first."
     },
     {
       "id": "combo-book-opening-follow-1-hard-defense-found",
@@ -2572,7 +2572,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-strong",
-      "text": "Still book. Natural to the human-move model, strong to the engine, with another move ranked above it."
+      "text": "Still book. The human-move model expects it, and the engine finds it strong, with another move ranked above it."
     },
     {
       "id": "combo-book-opening-follow-5-hard-defense-found",
