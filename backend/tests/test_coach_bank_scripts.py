@@ -1,0 +1,54 @@
+"""Complete authored spoken scripts for voices whose banks are not yet recorded."""
+
+import json
+import re
+from pathlib import Path
+
+import pytest
+
+SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
+# Each new voice owns one complete script source; Walter/Rivet text fields stay theirs.
+AUTHORED = [("capybara", "winston"), ("mushroom", "button")]
+
+
+def read(path):
+    return json.loads((SPEECH / path).read_text(encoding="utf-8"))
+
+
+def active_reference_texts():
+    texts = set()
+    for bank in read("banks/registry.json")["banks"]:
+        texts.update(row["text"] for row in read(bank["manifestPath"])["recordings"])
+    return texts
+
+
+@pytest.mark.parametrize(("coach", "voice"), AUTHORED)
+def test_authored_scripts_cover_the_catalogue_exactly(coach, voice):
+    scripts = read(f"banks/{voice}/scripts.json")
+    assert scripts["coachId"] == coach and scripts["voiceId"] == voice
+    catalogue = read("meanings.json")["meanings"]
+    rows = scripts["records"]
+    assert [row["id"] for row in rows] == [row["id"] for row in catalogue]
+    for row, meaning in zip(rows, catalogue, strict=True):
+        assert row["group"] == meaning["group"]
+        assert row.get("primary") == meaning.get("primary")
+        assert row.get("secondary") == meaning.get("secondary")
+
+
+@pytest.mark.parametrize(("coach", "voice"), AUTHORED)
+def test_authored_scripts_are_complete_distinct_spoken_text(coach, voice):
+    rows = read(f"banks/{voice}/scripts.json")["records"]
+    texts = [row["text"] for row in rows]
+    assert len(texts) == len(set(texts))
+    assert not set(texts) & active_reference_texts()
+    for row in rows:
+        text = row["text"]
+        assert 1 <= len(text) <= 1000, row["id"]
+        assert text.strip() == text and text.endswith((".", "?", "!")), row["id"]
+        assert not re.search(r"\bseparate(?:ly)?\b", text, flags=re.IGNORECASE), row["id"]
+        assert not re.search(r"\b(?:in|this|the) continuation\b", text, flags=re.IGNORECASE), row["id"]
+        if not row["id"].startswith("book-opening-") and not row.get("primary", "").startswith("book-opening-"):
+            assert "continuation" not in text.lower(), row["id"]
+        assert not any(marker in text for marker in ("{", "}", "TODO", "TBD")), row["id"]
+        # Recordings serve many positions; squares and move numbers stay in the bubble.
+        assert not re.search(r"\b[a-h][1-8]\b|\d", text), row["id"]
