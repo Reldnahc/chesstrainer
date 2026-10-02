@@ -262,7 +262,7 @@
     {
       "id": "positional-castling-actual",
       "group": "game_review",
-      "text": "The king castles. The rook crosses over to stand beside it."
+      "text": "The king steps aside to castle, and the rook crosses over to stand beside it."
     },
     {
       "id": "positional-castling-alternative",
@@ -272,7 +272,7 @@
     {
       "id": "positional-bishop-pair-actual",
       "group": "game_review",
-      "text": "This capture breaks a bishop pair. That side no longer has a bishop for each square color."
+      "text": "This capture breaks a bishop pair. One color of square is now left without that side's bishop."
     },
     {
       "id": "positional-bishop-pair-alternative",
@@ -312,7 +312,7 @@
     {
       "id": "only-advantage-resource",
       "group": "game_review",
-      "text": "Only this move kept the advantage. The other moves that were checked were losing."
+      "text": "This was the lone keeper of the advantage. The other moves that were checked were losing."
     },
     {
       "id": "immediate-capture",
@@ -412,7 +412,7 @@
     {
       "id": "recovery-assisted",
       "group": "game_review",
-      "text": "The position is playable again after the earlier setback. The other side's errors helped make that possible."
+      "text": "Earlier the position slipped; now it can be held again. The other side's errors helped make that possible."
     },
     {
       "id": "chance-taken",
@@ -432,7 +432,7 @@
     {
       "id": "support-restored",
       "group": "game_review",
-      "text": "The piece left unguarded earlier has a defender again."
+      "text": "The piece left alone before has a guardian once more."
     },
     {
       "id": "gradual-erosion",
@@ -612,7 +612,7 @@
     {
       "id": "explanation-frame-capture-promotion-mate",
       "group": "srs_explanations",
-      "text": "The pawn captures, reaches the last rank and promotes. It is checkmate; the king cannot escape."
+      "text": "The pawn captures, reaches the last rank and promotes. Checkmate comes with it; the king cannot escape."
     },
     {
       "id": "explanation-frame-capture-promotion-escape",
@@ -627,7 +627,7 @@
     {
       "id": "explanation-frame-castle-mate",
       "group": "srs_explanations",
-      "text": "The king castles and the rook crosses over. It is checkmate; the other king has no legal escape."
+      "text": "The king castles and the rook crosses over. Checkmate, softly; the other king is out of escapes."
     },
     {
       "id": "explanation-finding-fork-collected",
@@ -797,7 +797,7 @@
     {
       "id": "explanation-note-no-simple-reason",
       "group": "srs_explanations",
-      "text": "The saved line shows no simple tactical reason. Step through it and compare the replies. No positional explanation has been assumed."
+      "text": "The saved line shows no simple tactical reason. Trace it gently, reply by reply. No positional explanation has been assumed."
     },
     {
       "id": "explanation-note-saved-policy",
@@ -927,7 +927,7 @@
     {
       "id": "book-opening-follow-1",
       "group": "game_review",
-      "text": "Still in the book."
+      "text": "Even here, the book whispers along."
     },
     {
       "id": "book-opening-follow-2",
@@ -1032,7 +1032,7 @@
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-hard-find",
-      "text": "No other searched move kept the advantage; each was losing. This one did, and the human-move model and the alternatives place it among the hard finds."
+      "text": "Nothing else in the search held the advantage; each was losing. This one did, and the human-move model and the alternatives place it among the hard finds."
     },
     {
       "id": "combined-tactic-fork-played-with-human-unusual-strong",
@@ -1816,7 +1816,7 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-natural-strong",
-      "text": "A piece is left without a defender; that is not proof it can be won. The human-move model predicts it. The engine rates it strong, not first."
+      "text": "One piece is left to fend for itself; that is not proof it can be won. The human-move model predicts it. The engine rates it strong, not first."
     },
     {
       "id": "combo-positional-king-flight-actual-hard-find",
@@ -2250,7 +2250,7 @@
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-hard-find",
-      "text": "The piece left unguarded earlier has a defender again. This is the engine's best move, and by the human-move model, it was hard to find."
+      "text": "The piece left alone before has a guardian once more. This is the engine's best move, and by the human-move model, it was hard to find."
     },
     {
       "id": "combo-support-restored-unusual-strong",
@@ -2425,14 +2425,14 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-best",
-      "text": "Still in the book. The human-move model finds it natural, and the engine ranks it best."
+      "text": "Even here, the book whispers along. The human-move model finds it natural, and the engine ranks it best."
     },
     {
       "id": "combo-book-opening-follow-1-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-strong",
-      "text": "Still in the book. The human-move model expects this move; the engine rates it strong, while preferring another."
+      "text": "Even here, the book whispers along. The human-move model expects this move; the engine rates it strong, while preferring another."
     },
     {
       "id": "combo-book-opening-follow-1-hard-defense-found",

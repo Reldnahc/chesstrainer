@@ -342,7 +342,7 @@
     {
       "id": "good-choice",
       "group": "game_review",
-      "text": "A sound move. It keeps much of what the position offered, even if the engine has another first choice."
+      "text": "A solid decision. It keeps much of what the position offered, even if the engine has another first choice."
     },
     {
       "id": "human-natural-error",
@@ -472,7 +472,7 @@
     {
       "id": "srs-retry",
       "group": "srs_explanations",
-      "text": "That attempt does not stand up. Look again and try another move."
+      "text": "That attempt does not stand up. Re-examine the board and attempt a different move."
     },
     {
       "id": "srs-practice-error",
@@ -547,7 +547,7 @@
     {
       "id": "explanation-frame-quiet-move-ordinary",
       "group": "srs_explanations",
-      "text": "The next move. Observe what has changed."
+      "text": "Movement detected. Observe what has changed."
     },
     {
       "id": "explanation-frame-quiet-move-check",
@@ -732,7 +732,7 @@
     {
       "id": "explanation-cue-pin",
       "group": "srs_explanations",
-      "text": "Before moving a pinned piece, see what stands behind it: your king, or a more valuable piece."
+      "text": "Behind every pinned piece is something it protects: perhaps the king, perhaps a piece worth more. Inspect that before moving it."
     },
     {
       "id": "explanation-cue-skewer",
@@ -1179,7 +1179,7 @@
       "group": "game_review",
       "primary": "tactic-pin-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "Among the searched moves, the only one that held would have tied an enemy piece to its king with a pin. It went unplayed; the human-move model counts it a difficult find."
+      "text": "Among the searched moves, the only one that held would have tied an enemy piece to its king with a pin. That option was never selected; the human-move model counts it a difficult find."
     },
     {
       "id": "combo-tactic-skewer-played-hard-find",
@@ -1284,7 +1284,7 @@
       "group": "game_review",
       "primary": "tactic-removing-defender-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "One searched move kept the position playable, and it captured a defender, stripping away its protection. It was not played; a hard find, by the human-move model."
+      "text": "One searched move kept the position playable, and it captured a defender, stripping away its protection. That option was left untouched; a hard find, by the human-move model."
     },
     {
       "id": "combo-tactic-back-rank-played-hard-find",
@@ -1578,7 +1578,7 @@
       "group": "game_review",
       "primary": "tactic-undefended-capture-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "Among the searched moves, one alone held the position, and it would have taken a piece nobody was defending. It went unplayed; people rarely spot it, by the human-move model's measure."
+      "text": "Among the searched moves, one alone held the position, and it would have taken a piece nobody was defending. That capture was left unexecuted; people rarely spot it, by the human-move model's measure."
     },
     {
       "id": "combo-tactic-hanging-piece-allowed-natural-error",
@@ -1984,7 +1984,7 @@
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-natural-best",
-      "text": "Only this move kept the advantage; every other searched move lost. And it is natural for the human-move model, and the engine's best."
+      "text": "No alternative preserved the advantage; the searched rivals were all losing. And it is natural for the human-move model, and the engine's best."
     },
     {
       "id": "combo-immediate-capture-hard-defense-missed",
@@ -2117,7 +2117,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-hard-defense-found",
-      "text": "An opening move that carried the whole position. Nothing else searched kept it playable, and the human-move model marks it as hard to spot. You found it."
+      "text": "An opening move that carried the whole position. Nothing else searched kept it playable, and the human-move model marks it as hard to spot. You located it."
     },
     {
       "id": "combo-opening-departure-hard-find",
@@ -2355,7 +2355,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-best",
-      "text": "A known opening line, a natural move by the human-move model, and the engine's best. Everything agrees here."
+      "text": "A known opening line, a natural move by the human-move model, and the engine's best. All indicators agree."
     },
     {
       "id": "combo-book-opening-entry-2-natural-strong",
