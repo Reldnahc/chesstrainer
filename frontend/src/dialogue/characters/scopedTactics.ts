@@ -63,7 +63,7 @@ export const livingPawnTacticalTemplates = authorTacticalWordings({
 export const professorTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "{move} is played for a {motif}, which is in place as soon as the move is made.",
-    played_possible: "{move} prepares a possible {motif}, though whether it arrives depends on the replies.",
+    played_possible: "{move} prepares a possible {motif}, though whether it arrives is up to the replies.",
     allowed_immediate: "{opponent} has {action} as an answer, and the reason that matters is a {motif}.",
     allowed_possible: "{opponent} may later be able to use a {motif}, if the replies in between allow it.",
     missed_immediate: "{best} would have brought a {motif} straight away, which is why it's the move to compare.",
