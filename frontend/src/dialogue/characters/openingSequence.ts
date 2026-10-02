@@ -293,3 +293,17 @@ export const hostOpeningTemplates = {
   "book-opening-follow-7": ["Still the main line of {opening}."],
   "book-opening-follow-8": ["Main line of {opening}, still; a location, not a grade."],
 } as const;
+
+export const sparkOpeningTemplates = {
+  "book-opening-entry-1": ["Repertoire time, courtesy of {opening}."],
+  "book-opening-entry-2": ["Straight out of the repertoire, {opening}."],
+  "book-opening-entry-3": ["A repertoire line with a name: {opening}."],
+  "book-opening-follow-1": ["{opening}, and the repertoire rolls on."],
+  "book-opening-follow-2": ["Another repertoire move from {opening}."],
+  "book-opening-follow-3": ["The reply is repertoire too, still {opening}."],
+  "book-opening-follow-4": ["{opening} keeps flowing."],
+  "book-opening-follow-5": ["No detours yet; this is {opening}."],
+  "book-opening-follow-6": ["The repertoire covers this, in {opening}."],
+  "book-opening-follow-7": ["Cruising the main road of {opening}."],
+  "book-opening-follow-8": ["Still {opening}: a pin on the map, not a verdict on the move."],
+} as const;

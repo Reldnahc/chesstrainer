@@ -158,7 +158,12 @@ blocks: a club analyst's reaction across the table, a "hold that thought" at the
 the concrete reply put on the board, with occasional questions, book moves called
 "prep" or "main line", and difficulty always credited to the human-move model.
 Femi stays silent until a bank is registered.
-The other 8 voices retain their current wording and deterministic variants.
+Réka (`woman-spark`) has opted in too, in `characters/spark.ts`: a quick reaction to
+the pattern, the tactical punchline, then its supported consequence, with her own
+"eyes up" warning, "repertoire" for book moves, delight such as "Zing!" kept for
+the learner's own clips, and difficulty credited to the human-move model. Réka
+stays silent until a bank is registered.
+The other 7 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
