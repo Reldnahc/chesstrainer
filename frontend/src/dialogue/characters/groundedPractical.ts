@@ -196,7 +196,7 @@ export const livingPawn: CoachPersonality = {
     conversion: ["{side} kept the advantage from {earlier} all the way to the win. That's how you see a job through."],
     history: ["This {motif} issue shows up in {games} other saved games too. Pull those out and study them together."],
     development: [{reaction: "Another piece reports for work!", fact: "{lead}develops the {piece} from its starting square."}],
-    rook_file: ["{lead}keeps {side}'s rook on a {kind} {file}-file. A rook likes a file where it can actually work."],
+    rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. A rook likes a file where it can actually work."],
     passed: [{reaction: "Oh, a passed pawn! Whoever owns it, that pawn has a future.", fact: "{lead}leaves {side} with passed pawns on {squares}; no enemy pawn stands ahead on those or the neighboring files."}],
     passer_advance: [{reaction: "Keep going, little one!", fact: "{lead}pushes the passed pawn on to {square}."}],
     isolated: ["{lead}leaves {side} with isolated pawns on {squares}, with no friendly pawn on either neighboring file. Speaking as a pawn, that's a lonely spot."],
