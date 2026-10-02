@@ -67,7 +67,9 @@ function GameRecallPanel({
     recordingId,
     ready: !!position && !busy && !session.loading && !explaining,
     // Counter-reply previews settle before speaking one primary description.
-    automaticEventId: !session.gradingError && feedback && feedback.grade !== "revealed"
+    automaticEventId: session.gradingError ? null
+      : !feedback ? session.openEventId
+      : feedback.grade !== "revealed"
       && session.feedbackEventId !== dismissedSpeechEvent
       && (feedback.completed || preview === "reply" || !feedback.counter_reply)
       ? session.feedbackEventId : null,

@@ -162,6 +162,35 @@ test("SRS speaks one fresh visible counter reply and leaves cold restored cards 
   await unchanged(page, 1);
 });
 
+test("SRS speaks the ready line on the session's first cold card and the retry line when a card returns", async ({page}, info) => {
+  const seed = async (key: string) => {
+    const response = await page.request.post(`/__test/review-explanation-fixture/voice-open-${key}-${info.project.name}`);
+    expect(response.ok()).toBe(true);
+    return await response.json() as {exercise_id: string; wrong: string; best: string};
+  };
+  const first = await seed("first");
+  await seed("second");
+  await openInApp(page, `/study/due?exercise=${first.exercise_id}`);
+  await expect(page.getByRole("button", {name: "Reveal move", exact: true})).toBeVisible();
+  await spoken(page, "srs-cold", 1);
+  await unchanged(page, 1);
+  await move(page, first.wrong);
+  await spoken(page, "explanation-frame-capture-move-check", 2);
+  await unchanged(page, 2);
+  // The failed card coming back is a fresh retry, so it speaks again
+  // (opening it in-app starts a new document, so the count restarts).
+  await openInApp(page, `/study/due?exercise=${first.exercise_id}`);
+  await expect(page.locator('.board-shell [data-square="a1"] [data-piece="wR"]')).toBeVisible();
+  await spoken(page, "srs-retry", 1);
+  await move(page, first.best);
+  await spoken(page, "srs-summary-material-gain", 2);
+  await page.getByRole("button", {name: "Next position"}).click();
+  await expect(page.getByRole("button", {name: "Reveal move", exact: true})).toBeVisible();
+  await page.waitForTimeout(800);
+  // Later cold cards in the same session stay Listen-only.
+  expect((await speechActivity(page)).started.filter(id => id.includes("srs-cold"))).toHaveLength(0);
+});
+
 test("Show why has one primary frame and explicit summary and note playback that stop on close", async ({page}, info) => {
   const response = await page.request.post(`/__test/review-explanation-fixture/voice-explain-${info.project.name}`);
   expect(response.ok()).toBe(true);
