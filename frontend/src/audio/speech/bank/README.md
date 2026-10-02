@@ -173,6 +173,7 @@ registered.
 | Tala (`human-girl`) | Written, 438 | Yes, 2026-10-02, at commit `ed96ae2` | No | No |
 | Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | No | No |
 | Lesson prompts (`lessons` group), coaches 1–10 (Alfie to Fergus) | Written, 9 each | Yes, 2026-10-02, at commit `88b9b84` | No | No |
+| Lesson prompts (`lessons` group), coaches 11–20 (Ingrid to Pip) | Written, 9 each | Yes, 2026-10-02, at commit `899fc94` | No | No |
 
 The opener row is a cast-wide meaning added after the banks above. Each authored
 `scripts.json` now holds 439 rows, and Walter's and Rivet's lines sit in
