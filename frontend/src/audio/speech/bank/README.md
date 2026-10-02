@@ -98,7 +98,7 @@ scripts pass review, and remove it once the bank is registered.
 | Winston (`capybara`) | Written, 438 | Not tracked here | No | No |
 | Button (`mushroom`) | Written, 438 | Not tracked here | No | No |
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
-| Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `7350fd1` | No | No |
+| Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
 
 ## Adding or revising a production bank
 
