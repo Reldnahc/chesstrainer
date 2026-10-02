@@ -73,13 +73,14 @@ MP3s are preserved by Git history rather than left under production asset globs.
 
 ## Authored banks awaiting recording
 
-Winston (`banks/winston/scripts.json`, coach `capybara`) and Button
-(`banks/button/scripts.json`, coach `mushroom`) each have complete authored
+Winston (`banks/winston/scripts.json`, coach `capybara`), Button
+(`banks/button/scripts.json`, coach `mushroom`) and Percy
+(`banks/percy/scripts.json`, coach `living-pawn`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules. Neither is registered: no recordings,
-alignment or tracks exist yet, so both coaches stay silent until the owner
+coverage and the spoken-text rules. None is registered: no recordings,
+alignment or tracks exist yet, so these coaches stay silent until the owner
 approves the scripts and a bank is recorded and registered.
 
 ## Adding or revising a production bank
