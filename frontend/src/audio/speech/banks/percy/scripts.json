@@ -17,7 +17,7 @@
     {
       "id": "tactic-fork-missed",
       "group": "game_review",
-      "text": "Another move had a fork in it, one piece going after several targets at once. This move lets that chance go by. Go find the piece that could have done it."
+      "text": "There was a fork in a different move, one piece going after several targets at once. This move lets that chance go by. Go find the piece that could have done it."
     },
     {
       "id": "tactic-pin-played",
@@ -97,17 +97,17 @@
     {
       "id": "tactic-discovered-attack-played",
       "group": "game_review",
-      "text": "A discovered attack! One piece steps out of the way, and the piece behind it suddenly has a clear line to attack. Two pieces working together."
+      "text": "A discovered attack! One piece slides out of the way, and the piece behind it suddenly has a clear line to attack. Two pieces working together."
     },
     {
       "id": "tactic-discovered-attack-allowed",
       "group": "game_review",
-      "text": "This allows a discovered attack. One of their pieces could move off the line and let the piece behind it attack. Figure out which line it would open up."
+      "text": "Here's a discovered attack handed to the other side. One of their pieces could move off the line and let the piece behind it attack. Figure out which line it would open up."
     },
     {
       "id": "tactic-discovered-attack-missed",
       "group": "game_review",
-      "text": "Another move had a discovered attack in it: the front piece steps off, and the one hiding behind it gets to swing. This move skips right past it."
+      "text": "A discovered attack was waiting in a different move: the front piece steps off, and the one hiding behind it gets to swing. This move skips right past it."
     },
     {
       "id": "tactic-double-attack-played",
@@ -117,12 +117,12 @@
     {
       "id": "tactic-double-attack-allowed",
       "group": "game_review",
-      "text": "This gives the other side a double attack, two threats at the same time. Both need an answer, so spot them both before choosing a reply."
+      "text": "Now the other side has a double attack, two threats at the same time. Both need an answer, so spot them both before choosing a reply."
     },
     {
       "id": "tactic-double-attack-missed",
       "group": "game_review",
-      "text": "A stronger move made two attacks at once, and this one passes it up. Look at that other move and you'll see both threats."
+      "text": "A stronger move carried two threats at once, and this one passes it up. Look at that other move and you'll see both threats."
     },
     {
       "id": "tactic-deflection-played",
@@ -207,7 +207,7 @@
     {
       "id": "positional-passed-alternative",
       "group": "game_review",
-      "text": "Another move would have made a passed pawn, free of enemy pawns ahead on its file and both neighbors. I'd have loved to see that."
+      "text": "A different move would have created a passed pawn, free of enemy pawns ahead on its file and both neighbors. I'd have loved to see that."
     },
     {
       "id": "positional-passer-advance-actual",
@@ -237,7 +237,7 @@
     {
       "id": "positional-support-alternative",
       "group": "game_review",
-      "text": "Another move would have given an undefended piece a defender, so it wasn't left out there by itself."
+      "text": "Another move would have put a defender behind a piece that had none, so it wasn't left out there by itself."
     },
     {
       "id": "positional-unsupported-actual",
@@ -322,7 +322,7 @@
     {
       "id": "reply-check",
       "group": "game_review",
-      "text": "The strongest reply comes with check, so the king's safety jumps to the top of the list."
+      "text": "Their strongest answer is a check, so the king's safety jumps to the top of the list."
     },
     {
       "id": "stronger-alternative",
@@ -452,7 +452,7 @@
     {
       "id": "mate-finished",
       "group": "game_review",
-      "text": "Checkmate! What a team effort. The king has no legal escape left."
+      "text": "Checkmate! What a team effort. There's nowhere legal left for the king to go."
     },
     {
       "id": "mate-defense-ended",
@@ -477,7 +477,7 @@
     {
       "id": "srs-practice-error",
       "group": "srs_explanations",
-      "text": "Hmm, nothing came back from that attempt. Give the move another go."
+      "text": "Hmm, I got nothing back on that attempt. Give the move another go."
     },
     {
       "id": "srs-summary-mate-for-mover",
@@ -637,7 +637,7 @@
     {
       "id": "explanation-finding-pin-prevents-capture",
       "group": "srs_explanations",
-      "text": "That piece can't make the capture, because it's pinned to its king. Stepping off the line would expose the king, so it can't leave that line."
+      "text": "That piece can't make the capture, because it's pinned to its king. Moving off would expose its own king, so it can't leave that line."
     },
     {
       "id": "explanation-finding-pin-restricts-escape",
@@ -662,7 +662,7 @@
     {
       "id": "explanation-finding-king-skewer-collected",
       "group": "srs_explanations",
-      "text": "The king has to step out of check and off the line, and then the same attacker takes the piece that was standing behind it."
+      "text": "Check forces the king off the line, and then the same attacker takes the piece that was standing behind it."
     },
     {
       "id": "explanation-finding-sole-defender-captured",
@@ -732,7 +732,7 @@
     {
       "id": "explanation-cue-pin",
       "group": "srs_explanations",
-      "text": "Before you move a pinned piece, see what it's shielding: your king, or something more valuable."
+      "text": "Before you move a pinned piece, see what it's shielding: your king, or a piece worth more."
     },
     {
       "id": "explanation-cue-skewer",
@@ -797,7 +797,7 @@
     {
       "id": "explanation-note-no-simple-reason",
       "group": "srs_explanations",
-      "text": "No simple tactical reason turns up in the saved line, and I'm not inventing a positional one. Step through it and compare the replies yourself."
+      "text": "The saved line doesn't hand us a simple tactical reason, and I'm not inventing a positional one. Step through it and compare the replies yourself."
     },
     {
       "id": "explanation-note-saved-policy",
@@ -907,12 +907,12 @@
     {
       "id": "game-browse-instructions",
       "group": "operational",
-      "text": "Choose a move to look at, or try a different piece on the board."
+      "text": "Pick any move to look at, or move a piece to test your own idea."
     },
     {
       "id": "book-opening-entry-1",
       "group": "game_review",
-      "text": "Hey, this one's in the book. It's a move from a recognized opening."
+      "text": "Hey, this one's in the book. Recognized opening, right there on file."
     },
     {
       "id": "book-opening-entry-2",
@@ -1018,14 +1018,14 @@
       "group": "game_review",
       "primary": "only-playable-move",
       "secondary": "human-hard-find",
-      "text": "One move kept the position playable, and this was it; every other move we checked was losing. It's the engine's best, and the human-move model says it's a tough one to dig up. Remember it."
+      "text": "Exactly one move kept things playable, and this was it; every other move we checked was losing. It's the engine's best, and the human-move model says it's a tough one to dig up. Remember it."
     },
     {
       "id": "combined-only-advantage-resource-with-human-hard-defense-found",
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-hard-defense-found",
-      "text": "You found it! Of every move we checked, only this one kept the advantage; the rest were losing. The human-move model rates that a tough resource to find, which makes it even sweeter."
+      "text": "You found it! Of every move we checked, this was the lone one that kept the advantage; the rest were losing. The human-move model rates that a tough resource to find, which makes it even sweeter."
     },
     {
       "id": "combined-only-advantage-resource-with-human-hard-find",
@@ -1130,7 +1130,7 @@
       "group": "game_review",
       "primary": "tactic-fork-missed",
       "secondary": "human-natural-error",
-      "text": "Aw, another move had a fork in it, one piece attacking several targets at once. The human-move model expects this move, and the fork just sits there unused."
+      "text": "Aw, a different move had a fork waiting, one piece going after several targets. The human-move model expects this move, and the fork just sits there unused."
     },
     {
       "id": "combo-tactic-fork-missed-hard-defense-missed",
@@ -1438,7 +1438,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-unusual-strong",
-      "text": "A double attack: one move, two threats, and only one reply to deal with them. The human-move model didn't have this one in mind, but the engine rates it strong."
+      "text": "A double attack: one move, two threats, and only one reply to deal with them. The human-move model didn't have this one in mind, but the engine still calls it a strong move."
     },
     {
       "id": "combo-tactic-double-attack-played-natural-best",
@@ -1536,7 +1536,7 @@
       "group": "game_review",
       "primary": "tactic-deflection-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "The only playable move we found was a deflection, pulling a defender off the piece it was protecting. It went unplayed, and the human-move model rates it a tough find."
+      "text": "The only playable move we found was a deflection, pulling a defender off the piece it was protecting. Nobody played it, and the human-move model says it was a tough find."
     },
     {
       "id": "combo-tactic-undefended-capture-played-hard-find",
@@ -1613,7 +1613,7 @@
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-natural-best",
-      "text": "Knight or bishop, off the starting square and ready to work. The human-move model would reach for it, and the engine ranks it top of the list. Fundamentals, done right!"
+      "text": "Knight or bishop, off the starting square and ready to work. The human-move model would go for it, and the engine ranks it top of the list. Fundamentals, done right!"
     },
     {
       "id": "combo-positional-development-actual-natural-strong",
@@ -1774,14 +1774,14 @@
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-unusual-strong",
-      "text": "An undefended piece finally gets some backup. The human-move model didn't have this one in mind, but the engine rates it strong."
+      "text": "An undefended piece finally gets some backup. The human-move model didn't have this one in mind, but the engine still calls it a strong move."
     },
     {
       "id": "combo-positional-support-actual-natural-best",
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-natural-best",
-      "text": "An undefended piece gets a defender. The regular choice for the human-move model, and the engine wouldn't change a thing: it's the best. That's looking out for your teammates!"
+      "text": "Somebody finally covers that undefended piece. The regular choice for the human-move model, and the engine wouldn't change a thing: it's the best. That's looking out for your teammates!"
     },
     {
       "id": "combo-positional-support-actual-natural-strong",
@@ -1921,7 +1921,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-natural-best",
-      "text": "This leaves two pawns of one color stacked on a single file. The human-move model would reach for it, and the engine ranks it top of the list. Sometimes pawns have to share."
+      "text": "This leaves two pawns of one color stacked on a single file. The human-move model would go for it, and the engine ranks it top of the list. Sometimes pawns have to share."
     },
     {
       "id": "combo-positional-doubled-actual-natural-strong",
@@ -1977,7 +1977,7 @@
       "group": "game_review",
       "primary": "only-playable-move",
       "secondary": "human-natural-best",
-      "text": "Only this move kept the position playable; every other one we checked was losing. The human-move model's natural pick and the engine's best are one and the same."
+      "text": "This was the only move keeping the position playable; every other one we checked was losing. The human-move model's natural pick and the engine's best are one and the same."
     },
     {
       "id": "combo-only-advantage-resource-natural-best",
@@ -2005,14 +2005,14 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-hard-find",
-      "text": "Hardly any time on the clock, and you still came up with it! Top of the engine's list, and the human-move model doesn't call it easy. That's grace under pressure."
+      "text": "The clock was nearly out, and you still came up with it! Top of the engine's list, and the human-move model doesn't call it easy. That's grace under pressure."
     },
     {
       "id": "combo-clock-low-unusual-strong",
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-unusual-strong",
-      "text": "The clock was almost empty, and you still went somewhere the human-move model wouldn't. The engine rates it strong. Cool head!"
+      "text": "The clock was almost empty, and you still went somewhere the human-move model wouldn't. The engine still says strong. Cool head!"
     },
     {
       "id": "combo-clock-low-natural-best",
@@ -2075,7 +2075,7 @@
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-natural-best",
-      "text": "A long think on the clock. The regular choice for the human-move model, and the engine wouldn't change a thing: it's the best."
+      "text": "You took your time on this one. The regular choice for the human-move model, and the engine wouldn't change a thing: it's the best."
     },
     {
       "id": "combo-clock-long-natural-strong",
@@ -2096,7 +2096,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-unusual-strong",
-      "text": "A recognized opening move, and here's the funny part. The human-move model didn't have this one in mind, but the engine rates it strong. Theory and habit don't always line up."
+      "text": "A recognized opening move, and here's the funny part. The human-move model didn't have this one in mind, but the engine still calls it a strong move. Theory and habit don't always line up."
     },
     {
       "id": "combo-recognized-opening-natural-best",
@@ -2117,14 +2117,14 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-hard-defense-found",
-      "text": "What a stand, right out of the opening! A known move with a big job. Every other searched move was losing, and this one held. The human-move model calls that a hard find."
+      "text": "What a stand, right out of the opening! A known move with a big job. All the other searched moves were losing, and this one held. The human-move model calls that a hard find."
     },
     {
       "id": "combo-opening-departure-hard-find",
       "group": "game_review",
       "primary": "opening-departure",
       "secondary": "human-hard-find",
-      "text": "Here the game steps off the book, and it does it in style. That's the engine's best, and the human-move model and the alternatives we checked put it on the hard end."
+      "text": "This is where the game leaves the book, and it does it in style. That's the engine's best, and the human-move model and the alternatives we checked put it on the hard end."
     },
     {
       "id": "combo-opening-departure-unusual-strong",
@@ -2208,7 +2208,7 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-hard-find",
-      "text": "The opponent's last move left an opening, and this move goes right through it. The engine ranks it best, and the human-move model says this one hides well. That's how you answer a mistake!"
+      "text": "The opponent left a door open last move, and this move goes right through it. The engine ranks it best, and the human-move model says this one hides well. That's how you answer a mistake!"
     },
     {
       "id": "combo-chance-taken-unusual-strong",
@@ -2222,7 +2222,7 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-best",
-      "text": "The opponent left something on the last move, and this makes it count. The human-move model would reach for it, and the engine ranks it top of the list."
+      "text": "The opponent left something on the last move, and this makes it count. The human-move model would go for it, and the engine ranks it top of the list."
     },
     {
       "id": "combo-chance-taken-natural-strong",
@@ -2383,7 +2383,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-unusual-strong",
-      "text": "It's listed in a recognized opening. The human-move model didn't have this one in mind, but the engine rates it strong."
+      "text": "It's listed in a recognized opening. The human-move model didn't have this one in mind, but the engine still calls it a strong move."
     },
     {
       "id": "combo-book-opening-entry-3-natural-best",
@@ -2474,7 +2474,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-hard-defense-found",
-      "text": "Another book move, and it's carrying the defense. Every other searched move was losing, and this one held. The human-move model calls that a hard find."
+      "text": "Another book move, and it's carrying the defense. All the other searched moves were losing, and this one held. The human-move model calls that a hard find."
     },
     {
       "id": "combo-book-opening-follow-3-hard-find",
@@ -2600,7 +2600,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-best",
-      "text": "Still on file, and still going. The human-move model would reach for it, and the engine ranks it top of the list."
+      "text": "Still on file, and still going. The human-move model would go for it, and the engine ranks it top of the list."
     },
     {
       "id": "combo-book-opening-follow-6-natural-strong",
@@ -2649,7 +2649,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-hard-defense-found",
-      "text": "Book again, and this is the move that saved the day. Every other searched move was losing, and this one held. The human-move model calls that a hard find."
+      "text": "Book again, and this is the move that saved the day. All the other searched moves were losing, and this one held. The human-move model calls that a hard find."
     },
     {
       "id": "combo-book-opening-follow-8-hard-find",
