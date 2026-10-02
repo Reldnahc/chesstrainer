@@ -109,8 +109,9 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/arjun/scripts.json`, coach `man-partner`), Femi
 (`banks/femi/scripts.json`, coach `man-host`), Marisol
 (`banks/marisol/scripts.json`, coach `woman-analyst`), Monty
-(`banks/monty/scripts.json`, coach `gorilla`) and Ingrid
-(`banks/ingrid/scripts.json`, coach `woman-blonde`) each have complete authored
+(`banks/monty/scripts.json`, coach `gorilla`), Ingrid
+(`banks/ingrid/scripts.json`, coach `woman-blonde`) and Biscuit
+(`banks/biscuit/scripts.json`, coach `dog-puppy`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
@@ -152,6 +153,7 @@ registered.
 | Marisol (`woman-analyst`) | Written, 438 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
 | Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
 | Ingrid (`woman-blonde`) | Written, 438 | Yes, 2026-10-02, at commit `5268032` | No | No |
+| Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
 
 ## Adding or revising a production bank
 
