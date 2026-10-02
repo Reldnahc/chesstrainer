@@ -54,6 +54,8 @@ jobs:
 
   docker:
     needs: correctness
+    # Manual runs from another branch are tested but must never replace the latest image.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
