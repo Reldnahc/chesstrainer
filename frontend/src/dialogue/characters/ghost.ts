@@ -21,17 +21,17 @@ export const ghostTacticalTemplates = authorTacticalWordings({
 /** Whole sentences for the shared recognition/sequence meanings. A recorded
  * opening says where the game is, never that a move was good. */
 export const ghostOpeningTemplates = {
-  "book-opening-entry-1": ["This move is on record, in {opening}."],
+  "book-opening-entry-1": ["This move belongs to a known opening: {opening}."],
   "book-opening-entry-2": ["A known opening takes shape: {opening}."],
-  "book-opening-entry-3": ["The record recognizes this move. It belongs to {opening}."],
-  "book-opening-follow-1": ["Still in the record: {opening}."],
-  "book-opening-follow-2": ["The record holds this move too, in {opening}."],
+  "book-opening-entry-3": ["The book knows this move. It belongs to {opening}."],
+  "book-opening-follow-1": ["Still in the book: {opening}."],
+  "book-opening-follow-2": ["The book holds this move too, in {opening}."],
   "book-opening-follow-3": ["The reply is known as well: {opening}."],
   "book-opening-follow-4": ["The known line goes on through {opening}."],
   "book-opening-follow-5": ["Still on recorded ground, in {opening}."],
-  "book-opening-follow-6": ["Another recorded move. {opening} continues."],
-  "book-opening-follow-7": ["The record has not ended yet: {opening}."],
-  "book-opening-follow-8": ["Again, a recorded move in {opening}."],
+  "book-opening-follow-6": ["Another known move. {opening} continues."],
+  "book-opening-follow-7": ["The book has not ended yet: {opening}."],
+  "book-opening-follow-8": ["Again, a book move in {opening}."],
 } as const;
 
 export const ghost: CoachPersonality = {
@@ -63,7 +63,7 @@ export const ghost: CoachPersonality = {
       "{best} held a forced mate. After the played move, it is gone.",
     ],
     tactic_played: [
-      {observation: "There is more here than the move itself.", fact: "{move} carries a {motif} in the searched line.", consequence: "{detail}"},
+      {observation: "This move holds more than it shows.", fact: "{move} carries a {motif} in the searched line.", consequence: "{detail}"},
       {fact: "The point of {move} is a {motif}.", consequence: "{detail}"},
     ],
     tactic_allowed: [
@@ -89,7 +89,7 @@ export const ghost: CoachPersonality = {
       "Taking the offer does not refute it. The sacrifice stands.",
     ],
     only_move: [
-      {observation: "Only one way through remained.", fact: "Among the searched moves, this alone kept the position playable."},
+      {observation: "Little room remained.", fact: "Among the searched moves, this alone kept the position playable."},
       {fact: "The other searched moves lost. This one held."},
     ],
     decisive_resource: ["Among the searched moves, only this one kept the decisive advantage. Every other choice let it go."],
@@ -112,7 +112,7 @@ export const ghost: CoachPersonality = {
     uncertain_reason: ["{best} was the stronger move. The reason has not shown itself yet."],
     book: ["The name of this opening: {opening}."],
     book_sound: ["This move belongs to {opening}, a line on record."],
-    departure: ["The recorded opening ends here. What follows is the board alone."],
+    departure: ["The known opening ends here. What follows is the board alone."],
     recovery: ["After {earlier}, the position is playable again.{help}", "The error at {earlier} is behind it. This makes the position playable again.{help}"],
     repeated: ["This {motif} issue has come back. {count} times now, in the reviewed game."],
     history: ["This {motif} issue has been here before, in {games} other saved games."],
@@ -144,7 +144,7 @@ export const ghost: CoachPersonality = {
     explanation: ["Follow the line through. {detail}", "Watch what changes as it plays out. {detail}"],
     cold: ["Everything needed is on the board. Choose your move.", "The position is set. Take it in, then move."],
     thinking: ["Following the move to its strongest reply…"],
-    unavailable: ["The engine has left nothing to go on here. The board is yours to explore, but I cannot explain this position yet."],
+    unavailable: ["The engine has left nothing to go on here. The board is open to you, but I cannot explain this position yet."],
     variation: ["Down this other line, {detail}"],
     practice_error: ["Nothing came back from that attempt. Try the move again."],
     explanation_summary: ["What remains, when the line is done: {detail}"],
