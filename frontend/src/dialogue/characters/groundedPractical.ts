@@ -67,7 +67,7 @@ export const livingPawn: CoachPersonality = {
   templates: {
     ...livingPawnTacticalTemplates,
     ...livingPawnOpeningTemplates,
-    allowed_mate: [{reaction: "Oh, this one hurts.", fact: "{opponent} can force checkmate from here.", consequence: "{reply}", takeaway: "Next time, check what every defender near the king is guarding before it moves."}],
+    allowed_mate: [{reaction: "Oh, this one hurts.", fact: "{opponent} can force checkmate from here.", consequence: "{reply}", takeaway: "Check the king's escape squares before every move."}],
     missed_mate: [{reaction: "Aw, the finish was right there!", fact: "{best} kept a forced mate, and this move lets it go.", takeaway: "When mate is available, nothing else on the board matters."}],
     tactic_played: [
       {reaction: "Now that's a piece earning its square!", fact: "{move} brings a {motif} into the searched line.", consequence: "{detail}"},
@@ -92,7 +92,7 @@ export const livingPawn: CoachPersonality = {
     alternative: ["Stockfish would rather play {best}: {evaluation} for the mover. Try it and see what that move does differently."],
     loss: [
       {reaction: "Oof, that costs something.", fact: "This gives up {loss} pawns of evaluation compared with the best move.", takeaway: "Look at the reply and see what it can now attack."},
-      "Against the best move, this one costs {loss} pawns of evaluation. Check the reply to see which piece came up short.",
+      "Against the best move, this one costs {loss} pawns of evaluation. Play out the reply and see what it does.",
     ],
     best: [
       {reaction: "Yes! Every piece pulling its weight.", fact: "A strong move. Nothing the position offered goes to waste."},
@@ -129,7 +129,7 @@ export const livingPawn: CoachPersonality = {
     history: ["This {motif} issue shows up in {games} other saved games too. Pull those out and study them together."],
     development: [{reaction: "Another piece reports for work!", fact: "{lead}develops the {piece} from its starting square."}],
     rook_file: ["{lead}puts {side}'s rook on a {kind} {file}-file. A rook likes a file where it can actually work."],
-    passed: [{reaction: "Oh, a passed pawn! Now we're talking!", fact: "{lead}leaves {side} with passed pawns on {squares}; no enemy pawn stands ahead on those or the neighboring files."}],
+    passed: [{reaction: "Oh, a passed pawn! Whoever owns it, that pawn has a future.", fact: "{lead}leaves {side} with passed pawns on {squares}; no enemy pawn stands ahead on those or the neighboring files."}],
     passer_advance: [{reaction: "Keep going, little one!", fact: "{lead}pushes the passed pawn on to {square}."}],
     isolated: ["{lead}leaves {side} with isolated pawns on {squares}, with no friendly pawn on either neighboring file. Speaking as a pawn, that's a lonely spot."],
     support: [{reaction: "Good, somebody's got its back.", fact: "{lead}gives the {piece} on {square} a defender."}],
@@ -143,7 +143,7 @@ export const livingPawn: CoachPersonality = {
     draw: ["It's a draw. The result's settled, but there's still plenty to learn from the moves that got here."],
     cold: ["Look over the position and see what each piece is doing. Then pick your move."],
     thinking: ["Checking what your move does and how the opponent answers…"],
-    unavailable: ["The engine couldn't check this position, so I can't tell you what each move does yet. The board's still yours to explore."],
+    unavailable: ["The engine couldn't check this position, so I can't tell you what each move does yet. Go ahead and try some moves anyway."],
     practice_error: ["Hmm, nothing came back from that attempt. Give the move another go."],
     retry: [
       {reaction: "Not quite, but don't quit on it.", fact: "That move doesn't solve the position.", takeaway: "Look again at what each piece is doing."},
