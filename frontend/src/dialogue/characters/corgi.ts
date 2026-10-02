@@ -72,7 +72,7 @@ export const corgi: CoachPersonality = {
     book_sound: ["Known route: {opening}.", "The manual recognizes {opening} here."],
     departure: ["End of the manual. From here, the game is in open country."],
     recovery: [{reaction: "Back in the fight!", fact: "After {earlier}, the position is back in playable shape.{help}", takeaway: "Press on."}],
-    punishment: ["Chance seized! The opponent gave {side} an opening at {earlier}, and this move uses it."],
+    punishment: ["Chance seized! This move exploits the opening the opponent handed {side} at {earlier}."],
     missed_punishment: ["Chance passed up. {side} got an opening from the opponent at {earlier}, and this move lets it go."],
     repeated: ["The {motif} issue has turned up {count} times in the reviewed game. Put it on the drill list."],
     support_restored: ["Support restored! At {earlier} the {piece} stood unguarded; now someone's guarding it."],

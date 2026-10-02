@@ -222,5 +222,5 @@ export const corgiTacticalTemplates = authorTacticalWordings({
   fork: {actual: "One piece now has the {targets} in its sights.", possible: "The {targets} would be attacked, all from one post."},
   material: "A {gain} may be in it, but both sides still have orders to give.",
   capture: {candidate: "{capture} would knock out a {piece}.", followup: "Down the line, {capture} could remove a {piece}."},
-  playedCapture: {fact: "{move} puts a {motif} into operation.", consequence: "{capture} takes a {piece} off the field."},
+  playedCapture: {fact: "{move} puts a {motif} into operation.", consequence: "{capture} sends a {piece} off the field."},
 });
