@@ -48,8 +48,13 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         manifest = read(path)
         records = {row["id"]: row for row in manifest["recordings"]}
         assert manifest["coachId"] == coach
-        assert original.keys() | extras.keys() == catalogue.keys()
-        assert records.keys() == catalogue.keys() - AWAITING_RECORDING
+        # Generic lesson prompts and AWAITING_RECORDING meanings may be authored first.
+        unrecorded = (catalogue.keys() | extras.keys()) - records.keys()
+        assert all(
+            catalogue[key]["group"] == "lessons" or key in AWAITING_RECORDING for key in unrecorded
+        )
+        assert records.keys() == original.keys() | (extras.keys() & records.keys())
+        assert records.keys() <= catalogue.keys()
         for key, row in records.items():
             assert row["group"] == catalogue[key]["group"]
             if key in extras:

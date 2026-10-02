@@ -259,7 +259,8 @@ square names, player names, opening names or evaluation numbers. The bubble and
 board keep those precise details. This is intentional editorial compression, not
 permission to lose the responsible side, make an unplayed alternative factual,
 upgrade a possible resource to a forced result, or turn a human-model estimate
-into chess truth. Lessons remain text-only.
+into chess truth. Lesson teaching text stays written; only the nine generic
+lesson prompts are voiced.
 
 When a supported objective explanation and the matching visible human insight
 coexist, `selectGameSpeech` can select one authored whole recording for that pair.

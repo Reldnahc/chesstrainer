@@ -172,11 +172,16 @@ registered.
 | Tamar (`woman-captain`) | Written, 438 | Yes, 2026-10-02, at commit `129a272` | No | No |
 | Tala (`human-girl`) | Written, 438 | Yes, 2026-10-02, at commit `ed96ae2` | No | No |
 | Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | No | No |
+| Lesson prompts (`lessons` group), coaches 1–10 (Alfie to Fergus) | Written, 9 each | Yes, 2026-10-02, at commit `88b9b84` | No | No |
 
 The opener row is a cast-wide meaning added after the banks above. Each authored
 `scripts.json` now holds 439 rows, and Walter's and Rivet's lines sit in
 `banks/pilot-additions.json`. Registered banks keep their 438 takes until the
 opener is recorded.
+
+The lesson-prompt rows cover the nine generic `lessons` meanings. Each batch of
+coaches adds its own row as it lands; a coach's lesson lines stay silent until
+they are recorded.
 
 ## Adding or revising a production bank
 
@@ -197,7 +202,7 @@ automatically writes a finished personality or turns all coach prose into speech
    IDs/groups and exact objective/human pairs, not character-specific prose.
    Trace eligibility through `gameSelection.ts`, `practiceSelection.ts`, the
    producer and dialogue claims. Retain cold-practice gates, the four silent
-   states and the lesson exclusion. New characterization normally changes
+   states and the lesson rule (generic prompts only). New characterization normally changes
    scripts only, not those facts or selection rules. Adding a genuinely new
    semantic meaning needs producer/selector regression coverage.
 3. **Write and review complete scripts.** Use the character bible plus the

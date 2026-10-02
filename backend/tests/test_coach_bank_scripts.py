@@ -69,10 +69,16 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     manifest = read(entry[0]["manifestPath"])
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
-    assert [(row["id"], row["group"], row["text"]) for row in manifest["recordings"]] == [
-        (row["id"], row["group"], row["text"])
+    recorded = {row["id"] for row in manifest["recordings"]}
+    # Generic lesson prompts and AWAITING_RECORDING meanings may be authored before
+    # they are recorded; they stay silent until their clip is added.
+    assert all(
+        row["group"] == "lessons" or row["id"] in AWAITING_RECORDING
         for row in scripts
-        if row["id"] not in AWAITING_RECORDING
+        if row["id"] not in recorded
+    )
+    assert [(row["id"], row["group"], row["text"]) for row in manifest["recordings"]] == [
+        (row["id"], row["group"], row["text"]) for row in scripts if row["id"] in recorded
     ]
 
 

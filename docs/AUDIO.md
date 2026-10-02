@@ -162,8 +162,10 @@ Still keeps the portrait still without muting audio.
 
 Audio summarizes the supported idea while exact moves, squares, scores, names and
 historical counts stay written. It is not a verbatim reading of every paragraph.
-Unsupported or freeform text remains written. All lessons remain excluded: course
-additions, hints, game annotations and edits do not require maintaining voice assets.
+Unsupported or freeform text remains written. Lessons voice only nine generic
+prompts (wrong, correct, revealed, follow the line, play your studied move,
+alternative, chapter complete, full game and error), one per lesson command; course
+additions, hints, game annotations and edits still do not require voice assets.
 
 ### Bank and authoring
 

@@ -114,3 +114,23 @@ export function puzzleRecording({session, error, playing, retrying}: {
   if (retrying) return "puzzle-rejected";
   return session.feedback?.grade === "correct" ? "puzzle-next-move" : "puzzle-cold";
 }
+
+type LessonSessionView = Schema["LessonSessionView"];
+type LessonCommand = Schema["LessonCommand"]["action"];
+
+/** One recording per lesson command response, chosen from the command and its
+ * result. Generic framing only: authored step text, hints and notes stay written. */
+export function lessonRecording({action, before, after}: {
+  action: LessonCommand; before: LessonSessionView; after: LessonSessionView;
+}): string | null {
+  if (before.status !== "completed" && after.status === "completed" && action !== "show_move") return "lesson-chapter-complete";
+  if (action === "move") return after.feedback?.kind === "incorrect" ? "lesson-wrong-move"
+    : after.feedback?.kind === "correct" ? "lesson-correct-move" : null;
+  if (action === "show_move") return after.feedback?.kind === "revealed" ? "lesson-move-revealed" : null;
+  if (action === "enter_branch") return after.branch ? "lesson-branch-entered" : null;
+  if (action === "open_game") return after.game ? "lesson-game-opened" : null;
+  if (after.game || after.status === "completed") return null;
+  if (after.playback.length) return action === "continue" ? "lesson-guided-playback" : null;
+  return after.step.kind === "rehearsal" && after.actions.includes("move")
+    && ["continue", "back", "return_branch", "close_game"].includes(action) ? "lesson-rehearsal-prompt" : null;
+}

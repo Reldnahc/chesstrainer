@@ -3,9 +3,12 @@ import { api, read, type Promotion, type Schema } from "../api";
 import { useAudioScope } from "../audio/AudioProvider";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
+import { lessonRecording } from "../audio/speech/practiceSelection";
 
 export type LessonSession = Schema["LessonSessionView"];
 export type LessonAction = Schema["LessonCommand"]["action"];
+/** A fresh lesson command response and the one generic clip it may play. */
+export type LessonSpeech = { eventId: string; recordingId: string | null };
 
 const LESSON_MOVE_INTERVAL_MS = 1200;
 
@@ -14,6 +17,8 @@ export function useLessonSession(id: string) {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [speech, setSpeech] = useState<LessonSpeech | null>(null);
+  const speechEvents = useRef(0);
   const generation = useRef(0);
   const request = useRef<AbortController | null>(null);
   const locked = useRef(false);
@@ -28,6 +33,7 @@ export function useLessonSession(id: string) {
     locked.current = true;
     setLoading(true);
     setError("");
+    setSpeech(null);
     reset();
     try {
       const result = await read(api.GET("/api/study/lesson-sessions/{session_id}", {
@@ -57,6 +63,7 @@ export function useLessonSession(id: string) {
       }));
       if (generation.current !== version) return;
       setSession(result);
+      setSpeech({ eventId: `lesson:${++speechEvents.current}:${action}`, recordingId: lessonRecording({ action, before: session, after: result }) });
       playback.play(result.playback);
       const eventId = `revision:${result.revision}`;
       if (!result.playback.length && (action === "move" || result.fen !== session.fen)) {
@@ -73,13 +80,16 @@ export function useLessonSession(id: string) {
       }
     } catch (e) {
       // A command may have committed despite a lost response. Reconcile first.
-      if (generation.current === version) setError((e as Error).message);
+      if (generation.current === version) {
+        setError((e as Error).message);
+        setSpeech({ eventId: `lesson:${++speechEvents.current}:error`, recordingId: "lesson-error" });
+      }
     } finally {
       if (generation.current === version) { locked.current = false; setBusy(false); }
     }
   }
   return {
-    session, loading, busy, error, command, reload: load, playback,
+    session, loading, busy, error, command, reload: load, playback, speech,
     disabled: busy || playback.playing || !!error,
     gameNavigationDisabled: busy || !!error,
     answer: (from: string, to: string, promotion?: Promotion) => command("move", { uci: from + to + (promotion || "") }),

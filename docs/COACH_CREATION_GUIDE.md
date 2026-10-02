@@ -177,7 +177,12 @@ possible gains stay possible; only-move claims remain bounded by the searched
 choices. Book recordings must not invent development advice. Avoid ambiguous
 “separate”/“separately” in spoken scripts, whose pronunciation caused actual
 recording problems. Prefer direct teaching over repeated engine-report framing.
-Lessons remain text only; do not quietly expand this bank into lesson narration.
+Lessons stay text only apart from the nine generic `lessons` prompts in
+`meanings.json` (wrong move, correct move, move revealed, follow the line, play your
+studied move, exploring an alternative, chapter complete, full game opened, lesson
+error). They frame the learner's own action in the coach's voice and must work for
+any course: no opening names, moves, step content, hints or claims about why a
+move is right. Do not expand the bank into course narration.
 
 ## 5. Approve the voice and record bounded batches
 
