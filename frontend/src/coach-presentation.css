@@ -159,10 +159,24 @@
   display: flex;
   flex-direction: column;
 }
+.coach-message:has(> .coach-insight) {
+  /* The insight shares the explanation's last visible line instead of taking
+     a row of the fixed bubble: a zero-width float pushes it to the bottom. */
+  --coach-insight-height: 20px;
+  container-type: size;
+}
+.coach-insight-spacer {
+  float: right;
+  width: 0;
+  height: calc(100cqh - var(--coach-insight-height));
+}
 .coach-insight {
+  float: right;
+  clear: right;
   display: flex;
-  justify-content: flex-end;
-  flex-shrink: 0;
+  align-items: flex-end;
+  height: var(--coach-insight-height);
+  margin-left: 10px;
 }
 .coach-insight:empty {
   display: none;
@@ -246,9 +260,8 @@
   margin-left: auto;
 }
 .human-insight-trigger span {
-  white-space: normal;
+  white-space: nowrap;
   line-height: 13px;
-  text-wrap: balance;
 }
 .human-insight-trigger svg { flex-shrink: 0; }
 .human-insight-trigger:hover { text-decoration: underline; }

@@ -67,9 +67,11 @@ export default function ReviewCoach({
             tabIndex={0}
             aria-label="Coach explanation"
           >
+            {/* Floated to the bubble's bottom-right so the explanation wraps
+                beside the insight instead of giving up a whole line to it. */}
+            {insight && <><span className="coach-insight-spacer" aria-hidden="true" /><div className="coach-insight">{insight}</div></>}
             {children}
           </div>
-          {insight && <div className="coach-insight">{insight}</div>}
         </div>
       </div>
       <div className="coach-actions">{actions}</div>
