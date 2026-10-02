@@ -167,3 +167,31 @@ export const raccoonOpeningTemplates = {
   "book-opening-follow-7": ["One more known step down {opening}."],
   "book-opening-follow-8": ["The book's not out of moves yet: {opening}."],
 } as const;
+
+export const kittenOpeningTemplates = {
+  "book-opening-entry-1": ["Ooh, I know this trail! It's {opening}."],
+  "book-opening-entry-2": ["Name tag on this move: {opening}."],
+  "book-opening-entry-3": ["Seen it before! {opening} includes this move."],
+  "book-opening-follow-1": ["The book hasn't left our side: {opening}."],
+  "book-opening-follow-2": ["{opening} has this one on its pages too."],
+  "book-opening-follow-3": ["Look, the reply is book too, straight out of {opening}."],
+  "book-opening-follow-4": ["The trail through {opening} keeps on going."],
+  "book-opening-follow-5": ["We're still inside the map of {opening}."],
+  "book-opening-follow-6": ["Yet another book move from {opening}."],
+  "book-opening-follow-7": ["{opening} still has more pages."],
+  "book-opening-follow-8": ["The pages of {opening} keep turning; that's a map, not a report card."],
+} as const;
+
+export const dragonOpeningTemplates = {
+  "book-opening-entry-1": ["The opening is known to theory: {opening}."],
+  "book-opening-entry-2": ["This move stands in established theory, as {opening}."],
+  "book-opening-entry-3": ["This move carries a name in theory: {opening}. A name is not a plan."],
+  "book-opening-follow-1": ["Theory still holds here: {opening}."],
+  "book-opening-follow-2": ["Another established move in {opening}."],
+  "book-opening-follow-3": ["The game keeps to the theory of {opening}."],
+  "book-opening-follow-4": ["Still within the known lines of {opening}."],
+  "book-opening-follow-5": ["{opening} continues, move for move."],
+  "book-opening-follow-6": ["The established line runs on: {opening}."],
+  "book-opening-follow-7": ["Theory has not run out yet in {opening}."],
+  "book-opening-follow-8": ["One more move that theory already knows, in {opening}."],
+} as const;
