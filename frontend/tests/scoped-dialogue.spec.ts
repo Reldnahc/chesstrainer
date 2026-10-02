@@ -23,6 +23,7 @@ import {unicorn} from "../src/dialogue/characters/unicorn";
 import {expert} from "../src/dialogue/characters/expert";
 import {frog} from "../src/dialogue/characters/groundedQuiet";
 import {gorilla} from "../src/dialogue/characters/groundedQuiet";
+import {partner} from "../src/dialogue/characters/partner";
 import {factualParts, validWording} from "../src/dialogue/composition";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
 
@@ -43,7 +44,8 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
   {id: "unicorn", personality: unicorn},
   {id: "man-expert", personality: expert},
   {id: "frog", personality: frog},
-  {id: "gorilla", personality: gorilla}];
+  {id: "gorilla", personality: gorilla},
+  {id: "man-partner", personality: partner}];
 function item(role: "played" | "allowed" | "missed", timing: TacticalPresentation["timing"], effect: TacticalPresentation["effect"]): Claim {
   return {...claim(`tactic_${role}`, {move: "Nf3", best: "Ng5", opponent: "Black", motif: "pin", detail: "Original prose remains intact."},
     90, [{source: "stockfish", id: "search", field: "findings"}], ["event"]),
