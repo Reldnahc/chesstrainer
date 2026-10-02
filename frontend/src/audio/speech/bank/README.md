@@ -73,13 +73,14 @@ MP3s are preserved by Git history rather than left under production asset globs.
 
 ## Authored banks awaiting recording
 
-Winston (`banks/winston/scripts.json`, coach `capybara`) and Button
-(`banks/button/scripts.json`, coach `mushroom`) each have complete authored
+Winston (`banks/winston/scripts.json`, coach `capybara`), Button
+(`banks/button/scripts.json`, coach `mushroom`) and Pip
+(`banks/pip/scripts.json`, coach `slime`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules. Neither is registered: no recordings,
-alignment or tracks exist yet, so both coaches stay silent until the owner
+coverage and the spoken-text rules. None is registered: no recordings,
+alignment or tracks exist yet, so these coaches stay silent until the owner
 approves the scripts and a bank is recorded and registered.
 Wisp (`banks/wisp/scripts.json`, coach `ghost`) has the same authored,
 unrecorded status and the same checks.
@@ -96,6 +97,7 @@ scripts pass review, and remove it once the bank is registered.
 | Winston (`capybara`) | Written, 438 | Not tracked here | No | No |
 | Button (`mushroom`) | Written, 438 | Not tracked here | No | No |
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
+| Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
 
 ## Adding or revising a production bank
 
