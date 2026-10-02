@@ -106,7 +106,8 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/celeste/scripts.json`, coach `unicorn`), Jun
 (`banks/jun/scripts.json`, coach `man-expert`), Fergus
 (`banks/fergus/scripts.json`, coach `frog`), Arjun
-(`banks/arjun/scripts.json`, coach `man-partner`) and Marisol
+(`banks/arjun/scripts.json`, coach `man-partner`), Femi
+(`banks/femi/scripts.json`, coach `man-host`) and Marisol
 (`banks/marisol/scripts.json`, coach `woman-analyst`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
@@ -145,6 +146,7 @@ registered.
 | Jun (`man-expert`) | Written, 438 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
 | Fergus (`frog`) | Written, 438 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
 | Arjun (`man-partner`) | Written, 438 | Yes, 2026-10-02, at commit `91cda3c` | No | No |
+| Femi (`man-host`) | Written, 438 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
 
 ## Adding or revising a production bank
 
