@@ -59,22 +59,14 @@ test("a later background report does not narrate an earlier visit to an unreview
   } finally { release(); }
 });
 
-test("human insight narration needs an explicit press and closing its popover stops it", async ({page}) => {
+test("the human insight popover is silent and has no voice control", async ({page}) => {
   await voiceGame(page, humanGames.unusual_strong, 1);
   await page.getByRole("button", {name: "Maia: Unusual but strong", exact: true}).click();
   const insight = page.getByRole("dialog", {name: "Maia insight"});
   await expect(insight).toBeVisible();
-  await expect(insight.getByRole("button", {name: "Listen to human-move insight", exact: true})).toBeVisible();
-  expect((await speechActivity(page)).started).toEqual([]);
-  await insight.getByRole("button", {name: "Listen to human-move insight", exact: true}).click();
-  await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
-  expect((await speechActivity(page)).started[0]).toContain("/human-unusual-strong-");
-  await page.keyboard.press("Escape");
-  await expect(insight).not.toBeVisible();
-  await expect.poll(async () => (await speechActivity(page)).stopped.length).toBeGreaterThan(0);
-  await page.getByRole("button", {name: "Maia: Unusual but strong", exact: true}).click();
+  await expect(insight.getByRole("button", {name: /listen|stop/i})).toHaveCount(0);
   await page.waitForTimeout(400);
-  expect((await speechActivity(page)).started).toHaveLength(1);
+  expect((await speechActivity(page)).started).toEqual([]);
 });
 
 test("a variation waits for its own analysis and leaving it cancels the pending narration", async ({page}) => {

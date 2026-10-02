@@ -143,7 +143,7 @@ recording IDs; they never parse prose or generate chess reasoning. Fresh action
 identity owns automatic playback, while explicit replay can read supported
 visible feedback. `useCoachSpeech` cancels stale requests and supplies the shared
 portrait with the engine clock and a lazily loaded mouth track. A read-only
-playback observer lets an open insight popover animate that same portrait without
+playback observer lets another speech surface animate that same portrait without
 sharing cancellation ownership. `audio_voice` persists Off, On request or
 Automatic alongside existing preferences. Unsupported coaches, missing legacy
 facts and lessons remain silent; written feedback remains authoritative.

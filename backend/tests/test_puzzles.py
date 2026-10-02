@@ -107,6 +107,7 @@ def test_disabled_starter_pack_leaves_an_honest_empty_library(settings):
             "sources": [],
             "themes": [],
             "retry_available": 0,
+            "solved_puzzles": 0,
             "resume": [],
             "stats": {"solved": 0, "clean": 0, "failed_then_solved": 0, "revealed": 0},
         }
@@ -177,6 +178,31 @@ def test_multistep_retry_resume_and_no_scheduling_side_effects(settings):
         with app.state.sessions() as db:
             assert db.scalar(select(func.count()).select_from(PuzzleAttempt)) == 4
             assert db.get(PuzzleSession, session_id).first_response_ms == 1200
+
+
+def test_solved_puzzles_counts_each_installed_puzzle_once(settings):
+    app = app_with(settings, definition(), definition(key="p002"))
+
+    def begin(client, key, request_id):
+        response = client.post(
+            "/api/puzzle-sessions",
+            json={"provider_id": "test-fixtures", "key": key, "version": "test-v1",
+                  "request_id": request_id},
+        )
+        assert response.status_code == 200, response.text
+        return response.json()
+
+    with TestClient(app) as client:
+        for attempt in ("first", "repeat"):
+            state = begin(client, "p001", attempt)
+            for uci in LINE[::2]:
+                state = move(client, state, uci).json()
+            assert state["status"] == "solved"
+        assert reveal(client, begin(client, "p002", "shown")).json()["status"] == "revealed"
+        library = client.get("/api/puzzles").json()
+        assert library["available"] == 2
+        assert library["solved_puzzles"] == 1
+        assert library["stats"]["solved"] == 2
 
 
 def test_reveal_is_idempotent_and_replays_only_remaining_continuation(settings):

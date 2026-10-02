@@ -89,9 +89,7 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
         current.manualRecordingIds.map(id => React.createElement(CoachSpeechButton,
           {key: id, voice, recordingId: id, label: `Listen to ${id}`}))),
       React.createElement("p", {"data-testid": "written-feedback"}, utterance.text),
-      game && intent && frame?.report && React.createElement(HumanInsight, {presentation: insight, report: frame.report,
-        speechScopeKey: "human-insight:1", speechContext: {game, report: frame.report, frame, ply: 1},
-        onManualSpeech: () => voice.consumeAutomatic(current.automaticEventId)}));
+      game && intent && frame?.report && React.createElement(HumanInsight, {presentation: insight, report: frame.report}));
   }
   const render = () => mounted.render(React.createElement(CoachProvider, null,
     React.createElement(AudioProvider, null, React.createElement(Experience, {selection}))));
