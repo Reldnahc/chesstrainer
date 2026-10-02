@@ -228,12 +228,12 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
 }
 
-/** One whole recording can cover the bubble's explanation and the visible Maia
- * insight. Their display order and the bubble's sentence limit are not evidence
- * boundaries. Late evidence never grants a second automatic narration turn. */
+/** A move has exactly one coach clip. One whole recording can cover the bubble's
+ * explanation and the visible Maia insight; a later claim without a combined
+ * recording stays unvoiced rather than becoming a second clip. Their display
+ * order and the bubble's sentence limit are not evidence boundaries. */
 export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsightPresentation) {
   const primaryId = selectGameRecording({...context, claimIndex: 0});
-  let secondaryId = context.surface === "human-insight" ? null : selectGameRecording({...context, claimIndex: 1});
   let recordingId = primaryId;
   if (primaryId && context.surface !== "human-insight" && ["game", "variation"].includes(context.intent.mode)) {
     const claims = context.utterance.renderedClaims ?? [];
@@ -248,15 +248,9 @@ export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsi
         && same(insight.intent, humanInsightIntent(context.intent))
         ? selectGameRecording({...context, ...insight, surface: "human-insight", claimIndex: 0}) : null;
     }
-    const combined = objectiveId && humanId ? combinations.get(`${objectiveId}:${humanId}`) : undefined;
-    if (combined) {
-      recordingId = combined;
-      // The Maia-aware recording already says both claims. Offering either
-      // half again as a separate clip would replay a line the move just spoke.
-      if (secondaryId === objectiveId || secondaryId === humanId) secondaryId = null;
-    }
+    recordingId = (objectiveId && humanId && combinations.get(`${objectiveId}:${humanId}`)) || primaryId;
   }
-  return {recordingId, primaryId, secondaryId};
+  return {recordingId, primaryId};
 }
 
 /** Historical Walter-only consumers; new code selects meaning independently of voice. */

@@ -153,3 +153,14 @@ for (const coachId of ["classic", "robot"] as const) {
     expect(fixture.writes).toEqual([]);
   });
 }
+
+for (const coachId of ["classic", "robot"] as const) {
+  for (const [reading, game] of [["with Maia", enrichedGame], ["without Maia", withoutHuman(enrichedGame)]] as const)
+    test(`${coachId}: one move shows one Listen control ${reading}`, async ({page}) => {
+      await mount(page, coachId, game);
+      expect((await state(page)).renderedCodes).toEqual(["cause_abandoned_defender", expect.any(String)]);
+      await expect(chip(page)).toHaveCount(reading === "with Maia" ? 1 : 0);
+      await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(1);
+      await expect(region(page).getByRole("button", {name: "Listen to additional explanation"})).toHaveCount(0);
+    });
+}

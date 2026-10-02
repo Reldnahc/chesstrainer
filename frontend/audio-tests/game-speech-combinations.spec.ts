@@ -5,7 +5,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
-import {selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
@@ -57,7 +57,7 @@ for (const coach of coaches) {
       expect.objectContaining({source: "stockfish"}),
     ]));
     // The whole recording replaces both halves; neither is offered again on its own.
-    expect(selectGameSpeech(current)).toEqual({primaryId, secondaryId: null,
+    expect(selectGameSpeech(current)).toEqual({primaryId,
       recordingId: `combined-${primaryId}-with-${secondaryId}`});
   });
 
@@ -69,7 +69,6 @@ for (const coach of coaches) {
       const selected = selectGameSpeech(current);
       expect(selected.primaryId).toMatch(/^cause-/);
       expect(selected.recordingId).toBe(selected.primaryId);
-      expect(selected.secondaryId?.startsWith("human-") ?? false).toBe(false);
       const intent = humanInsightIntent(current.intent);
       const utterance = renderDialogue(intent, coach);
       const combined = catalogue.meanings.find(item => "primary" in item && item.primary === selected.primaryId
@@ -78,6 +77,26 @@ for (const coach of coaches) {
       expect(selectGameSpeech(current, {intent, utterance}).recordingId).toBe(combined!.id);
     });
 
+  test(`${coach.id}: one move offers one clip, with or without a Maia reading`, () => {
+    // Both reported bubbles render the cause plus a second claim that has its
+    // own recording. That recording must not become a second clip for the move.
+    const name = "cause-abandoned_defender-white";
+    const plain = structuredClone(games[name]), report = plain.frames[1].report!;
+    report.human = null;
+    report.practical = null;
+    report.intelligence!.events = report.intelligence!.events.filter(event => event.kind !== "human_contrast");
+    const withoutMaia = context(name, coach, plain);
+    expect(withoutMaia.utterance.renderedClaims!.map(item => item.code)).toEqual(["cause_abandoned_defender", expect.any(String)]);
+    expect(selectGameSpeech(withoutMaia)).toEqual({primaryId: "cause-abandoned-defender", recordingId: "cause-abandoned-defender"});
+
+    const withMaia = context(name, coach);
+    expect(withMaia.utterance.renderedClaims!.map(item => item.code)).toEqual(["cause_abandoned_defender", expect.any(String)]);
+    expect(selectGameRecording({...withMaia, claimIndex: 1})).toBeTruthy();
+    const intent = humanInsightIntent(withMaia.intent);
+    expect(selectGameSpeech(withMaia, {intent, utterance: renderDialogue(intent, coach)})).toEqual({
+      primaryId: "cause-abandoned-defender", recordingId: "combo-cause-abandoned-defender-natural-error"});
+  });
+
   test(`${coach.id}: a visible hard-defense assessment selects its authored whole recording`, () => {
     const current = context("unsupported-defensive-pair", coach);
     expect(current.utterance.renderedClaims!.map(item => item.code)).toEqual(["loss", "difficult_defense"]);
@@ -85,14 +104,14 @@ for (const coach of coaches) {
       && item.secondary === "human-hard-defense-missed");
     expect(combined).toBeDefined();
     expect(selectGameSpeech(current)).toEqual({primaryId: "evaluation-loss",
-      secondaryId: null, recordingId: combined!.id});
+      recordingId: combined!.id});
   });
 
   test(`${coach.id}: a human-only explanation does not invent the absent Best fallback`, () => {
     const current = context("human-without-objective", coach);
     expect(current.intent.claims.map(item => item.code)).toEqual(["human_rare"]);
     expect(selectGameSpeech(current)).toEqual({primaryId: "human-unusual-strong",
-      secondaryId: null, recordingId: "human-unusual-strong"});
+      recordingId: "human-unusual-strong"});
   });
 
   test(`${coach.id}: stale or mismatched policy cannot join a still-valid objective claim`, () => {
@@ -107,7 +126,7 @@ for (const coach of coaches) {
       const current = context("evaluation-natural", coach);
       mutate(current);
       // Keep the previously visible utterance to simulate a stale UI snapshot.
-      expect(selectGameSpeech(current)).toEqual({primaryId: "evaluation-loss", secondaryId: null,
+      expect(selectGameSpeech(current)).toEqual({primaryId: "evaluation-loss",
         recordingId: "evaluation-loss"});
       const fresh = context("evaluation-natural", coach, current.game);
       expect(fresh.intent.claims.some(item => humanInsightLabels[item.code])).toBe(false);
@@ -129,7 +148,7 @@ for (const coach of coaches) {
     const intent = humanInsightIntent(current.intent);
     const utterance = renderDialogue(intent, coach);
     expect(selectGameSpeech({...current, intent, utterance, surface: "human-insight"})).toEqual({
-      primaryId: "human-natural-error", secondaryId: null, recordingId: "human-natural-error",
+      primaryId: "human-natural-error", recordingId: "human-natural-error",
     });
   });
 
@@ -138,7 +157,7 @@ for (const coach of coaches) {
     for (const blocked of [{...current, pending: true}, {...current, error: true},
       {...current, frame: {...current.frame!, fen: games["fork-hard_find"].frames[1].fen}},
       {...current, utterance: {...current.utterance, intentId: "previous-position"}}]) {
-      expect(selectGameSpeech(blocked)).toEqual({primaryId: null, secondaryId: null, recordingId: null});
+      expect(selectGameSpeech(blocked)).toEqual({primaryId: null, recordingId: null});
     }
   });
 }
