@@ -96,8 +96,11 @@ Winston and Button, Wisp, Pip and Percy stay silent until a bank is registered.
 Ziggy (alien) has followed with all 29 forms, the opening phrases and the full
 claim set: a curious outsider's observation first, then the plain fact, with no
 questions and difficulty always attributed to the human-move model. Ziggy also
-stays silent until a bank is registered.
-The other 22 voices retain their current wording and deterministic variants.
+stays silent until a bank is registered. Alfie (golden retriever) has opted in
+as well: a short principle, this position's fact, then one connection to keep,
+explaining the mechanism patiently when correcting. Alfie also stays silent
+until a bank is registered.
+The other 21 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
