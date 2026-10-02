@@ -10,12 +10,16 @@ import {newCastPersonalities} from "../src/dialogue/characters/newCast";
 import {velvet} from "../src/dialogue/characters/velvet";
 import {expert} from "../src/dialogue/characters/expert";
 import {captain} from "../src/dialogue/characters/captain";
-import {alienOpeningTemplates, capybaraOpeningTemplates, captainOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {partner} from "../src/dialogue/characters/partner";
+import {analyst} from "../src/dialogue/characters/analyst";
+import {blonde} from "../src/dialogue/characters/blonde";
+import {alienOpeningTemplates, analystOpeningTemplates, blondeOpeningTemplates, capybaraOpeningTemplates, captainOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, puppyOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
 import {collie} from "../src/dialogue/characters/collie";
 import {corgi} from "../src/dialogue/characters/corgi";
+import {host} from "../src/dialogue/characters/host";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -195,6 +199,12 @@ const openingCoaches = [
   {id: "unicorn", personality: newCastPersonalities.unicorn, authored: unicornOpeningTemplates, voiced: false},
   {id: "man-expert", personality: expert, authored: expertOpeningTemplates, voiced: false},
   {id: "frog", personality: newCastPersonalities.frog, authored: frogOpeningTemplates, voiced: false},
+  {id: "gorilla", personality: newCastPersonalities.gorilla, authored: gorillaOpeningTemplates, voiced: false},
+  {id: "man-partner", personality: partner, authored: partnerOpeningTemplates, voiced: false},
+  {id: "man-host", personality: host, authored: hostOpeningTemplates, voiced: false},
+  {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates, voiced: false},
+  {id: "woman-blonde", personality: blonde, authored: blondeOpeningTemplates, voiced: false},
+  {id: "dog-puppy", personality: newCastPersonalities["dog-puppy"], authored: puppyOpeningTemplates, voiced: false},
   {id: "woman-captain", personality: captain, authored: captainOpeningTemplates, voiced: false},
 ] as const;
 

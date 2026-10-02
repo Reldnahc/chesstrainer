@@ -105,12 +105,18 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/waffles/scripts.json`, coach `dog-corgi`), Celeste
 (`banks/celeste/scripts.json`, coach `unicorn`), Jun
 (`banks/jun/scripts.json`, coach `man-expert`), Fergus
-(`banks/fergus/scripts.json`, coach `frog`) and Tamar
+(`banks/fergus/scripts.json`, coach `frog`), Arjun
+(`banks/arjun/scripts.json`, coach `man-partner`), Femi
+(`banks/femi/scripts.json`, coach `man-host`), Marisol
+(`banks/marisol/scripts.json`, coach `woman-analyst`), Monty
+(`banks/monty/scripts.json`, coach `gorilla`), Ingrid
+(`banks/ingrid/scripts.json`, coach `woman-blonde`), Biscuit
+(`banks/biscuit/scripts.json`, coach `dog-puppy`) and Tamar
 (`banks/tamar/scripts.json`, coach `woman-captain`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus and Tamar,
+coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol, Monty, Ingrid and Tamar,
 whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
 scripts and a bank is recorded and registered.
@@ -143,6 +149,12 @@ registered.
 | Celeste (`unicorn`) | Written, 438 | Yes, 2026-10-02, at commit `eddc967` | No | No |
 | Jun (`man-expert`) | Written, 438 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
 | Fergus (`frog`) | Written, 438 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
+| Arjun (`man-partner`) | Written, 438 | Yes, 2026-10-02, at commit `91cda3c` | No | No |
+| Femi (`man-host`) | Written, 438 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
+| Marisol (`woman-analyst`) | Written, 438 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
+| Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
+| Ingrid (`woman-blonde`) | Written, 438 | Yes, 2026-10-02, at commit `5268032` | No | No |
+| Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
 
 ## Adding or revising a production bank
 

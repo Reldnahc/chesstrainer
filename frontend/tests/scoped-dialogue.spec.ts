@@ -14,7 +14,7 @@ import {livingPawn, raccoon} from "../src/dialogue/characters/groundedPractical"
 import {wizard} from "../src/dialogue/characters/wizard";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
-import {kitten} from "../src/dialogue/characters/groundedPets";
+import {kitten, puppy} from "../src/dialogue/characters/groundedPets";
 import {dragon} from "../src/dialogue/characters/dragon";
 import {collie} from "../src/dialogue/characters/collie";
 import {velvet} from "../src/dialogue/characters/velvet";
@@ -22,6 +22,11 @@ import {corgi} from "../src/dialogue/characters/corgi";
 import {unicorn} from "../src/dialogue/characters/unicorn";
 import {expert} from "../src/dialogue/characters/expert";
 import {frog} from "../src/dialogue/characters/groundedQuiet";
+import {gorilla} from "../src/dialogue/characters/groundedQuiet";
+import {partner} from "../src/dialogue/characters/partner";
+import {host} from "../src/dialogue/characters/host";
+import {analyst} from "../src/dialogue/characters/analyst";
+import {blonde} from "../src/dialogue/characters/blonde";
 import {captain} from "../src/dialogue/characters/captain";
 import {factualParts, validWording} from "../src/dialogue/composition";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
@@ -43,6 +48,12 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
   {id: "unicorn", personality: unicorn},
   {id: "man-expert", personality: expert},
   {id: "frog", personality: frog},
+  {id: "gorilla", personality: gorilla},
+  {id: "man-partner", personality: partner},
+  {id: "man-host", personality: host},
+  {id: "woman-analyst", personality: analyst},
+  {id: "woman-blonde", personality: blonde},
+  {id: "dog-puppy", personality: puppy},
   {id: "woman-captain", personality: captain}];
 function item(role: "played" | "allowed" | "missed", timing: TacticalPresentation["timing"], effect: TacticalPresentation["effect"]): Claim {
   return {...claim(`tactic_${role}`, {move: "Nf3", best: "Ng5", opponent: "Black", motif: "pin", detail: "Original prose remains intact."},

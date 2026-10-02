@@ -278,3 +278,87 @@ export const expertOpeningTemplates = {
   "book-opening-follow-7": ["{opening}, still catalogued."],
   "book-opening-follow-8": ["Still {opening}. Book status locates the game; it does not evaluate the move."],
 } as const;
+
+export const gorillaOpeningTemplates = {
+  "book-opening-entry-1": ["Simple point: this is a book move, from {opening}."],
+  "book-opening-entry-2": ["Simple point: {opening}, a line theory knows."],
+  "book-opening-entry-3": ["Book. This is {opening}, by theory's name."],
+  "book-opening-follow-1": ["Still book: {opening}."],
+  "book-opening-follow-2": ["{opening} again, and the move is from the book."],
+  "book-opening-follow-3": ["The answer comes out of {opening} too."],
+  "book-opening-follow-4": ["{opening}, and theory carries on with it."],
+  "book-opening-follow-5": ["Still {opening}, and still book."],
+  "book-opening-follow-6": ["{opening} keeps on, straight from the book."],
+  "book-opening-follow-7": ["Still {opening}, still in the books."],
+  "book-opening-follow-8": ["Book again, in {opening}. A name for the move is not a grade for it."],
+} as const;
+
+export const partnerOpeningTemplates = {
+  "book-opening-entry-1": ["This candidate takes us into {opening}."],
+  "book-opening-entry-2": ["A candidate borrowed from {opening}."],
+  "book-opening-entry-3": ["There's an entry for this candidate in {opening}."],
+  "book-opening-follow-1": ["We're still exploring {opening}."],
+  "book-opening-follow-2": ["Here too, {opening} has the move ready."],
+  "book-opening-follow-3": ["Even the reply is a candidate {opening} already covers."],
+  "book-opening-follow-4": ["The {opening} line keeps unfolding."],
+  "book-opening-follow-5": ["{opening} already knows this one."],
+  "book-opening-follow-6": ["There's still more of {opening} to explore."],
+  "book-opening-follow-7": ["Back to {opening} for this one."],
+  "book-opening-follow-8": ["Still {opening}. The book says where we are, not which candidate is strongest."],
+} as const;
+
+export const hostOpeningTemplates = {
+  "book-opening-entry-1": ["Standard prep, and it's {opening}."],
+  "book-opening-entry-2": ["That's known material: {opening}."],
+  "book-opening-entry-3": ["A recognized line from prep: {opening}."],
+  "book-opening-follow-1": ["We're still in prep: {opening}."],
+  "book-opening-follow-2": ["{opening} prep, one more move of it."],
+  "book-opening-follow-3": ["The answer's from prep too: {opening}."],
+  "book-opening-follow-4": ["The prep rolls on in {opening}."],
+  "book-opening-follow-5": ["No surprises yet; we're in {opening}."],
+  "book-opening-follow-6": ["Prep still covers this, in {opening}."],
+  "book-opening-follow-7": ["Still the main line of {opening}."],
+  "book-opening-follow-8": ["Main line of {opening}, still; a location, not a grade."],
+} as const;
+
+export const analystOpeningTemplates = {
+  "book-opening-entry-1": ["With this move, the game is in {opening}."],
+  "book-opening-entry-2": ["No change of course; this move keeps the game in {opening}."],
+  "book-opening-entry-3": ["{opening} contains this move."],
+  "book-opening-follow-1": ["The game has not left {opening}."],
+  "book-opening-follow-2": ["This one also belongs to {opening}."],
+  "book-opening-follow-3": ["Even the reply stays within {opening}."],
+  "book-opening-follow-4": ["Nothing has changed: the game remains in {opening}."],
+  "book-opening-follow-5": ["{opening} has this move too."],
+  "book-opening-follow-6": ["So far, {opening} is unchanged."],
+  "book-opening-follow-7": ["Again, {opening}."],
+  "book-opening-follow-8": ["Still {opening}. Being there locates the game; its quality is a matter for the engine."],
+} as const;
+
+export const blondeOpeningTemplates = {
+  "book-opening-entry-1": ["With this, the game settles into {opening}."],
+  "book-opening-entry-2": ["Comfortable book territory, under the name {opening}."],
+  "book-opening-entry-3": ["The opening book files this under {opening}."],
+  "book-opening-follow-1": ["Still steadily in {opening}."],
+  "book-opening-follow-2": ["{opening} has this one covered too."],
+  "book-opening-follow-3": ["Even the reply sits inside {opening}."],
+  "book-opening-follow-4": ["The {opening} line rolls along."],
+  "book-opening-follow-5": ["{opening} is familiar with this move as well."],
+  "book-opening-follow-6": ["Still on comfortable {opening} ground."],
+  "book-opening-follow-7": ["{opening} again, nice and familiar."],
+  "book-opening-follow-8": ["More {opening}. Being in the book places the game; it isn't a grade."],
+} as const;
+
+export const puppyOpeningTemplates = {
+  "book-opening-entry-1": ["Ooh, a book move, straight out of {opening}!"],
+  "book-opening-entry-2": ["Ooh, I know this one, it's {opening}!"],
+  "book-opening-entry-3": ["Yay, {opening} has this exact move!"],
+  "book-opening-follow-1": ["Book move, still, in {opening}!"],
+  "book-opening-follow-2": ["{opening} has an answer for this one too!"],
+  "book-opening-follow-3": ["Even the reply is part of {opening}."],
+  "book-opening-follow-4": ["Down the {opening} road we trot!"],
+  "book-opening-follow-5": ["Nose to the {opening} map, still!"],
+  "book-opening-follow-6": ["Yet another {opening} move, yay!"],
+  "book-opening-follow-7": ["More pages of {opening} to read!"],
+  "book-opening-follow-8": ["Still deep in {opening} land! Think of it as a dot on the map, not a grade for the move."],
+} as const;

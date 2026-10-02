@@ -149,11 +149,37 @@ also stays silent until a bank is registered.
 Fergus (frog) has opted in too, with his forms in `characters/groundedQuiet.ts`:
 one flat report of the fact with a dry, side-neutral tail at most, no questions
 and no exclamation marks. Fergus also stays silent until a bank is registered.
+Arjun (`man-partner`) has opted in too, in `characters/partner.ts`: an occasional
+genuine question that reveals the mechanism, then the idea, then a comparison of
+candidates side by side, with delight kept for unusual resources and no claim
+beyond the supported line. Arjun also stays silent until a bank is registered.
+Femi (human host) has opted in too, with his forms in the shared tactic and opening
+blocks: a club analyst's reaction across the table, a "hold that thought" at the problem, then
+the concrete reply put on the board, with occasional questions, book moves called
+"prep" or "main line", and difficulty always credited to the human-move model.
+Femi stays silent until a bank is registered.
+Marisol (`woman-analyst`) has opted in as well, in `characters/analyst.ts`: a
+compact before-and-after observation of exactly what the move changed, then its
+consequence, with the human-move model's and the engine's readings kept apart,
+rare factual approval and no questions. Marisol also stays silent until a bank is
+registered.
+Monty (gorilla) has opted in as well, with his forms in `characters/groundedQuiet.ts`
+and the shared tactic and opening blocks: one big concrete problem in plain
+words, the simple reason, then the result, with earnest, sparse approval and no
+questions. Monty also stays silent until a bank is registered.
+Ingrid (`woman-blonde`) has opted in too, in `characters/blonde.ts`: a relaxed,
+unhurried opener, the concrete fact said plainly, then one manageable next idea,
+with reassurance kept to the player's own moments and always beside a chess point,
+and no questions. Ingrid also stays silent until a bank is registered.
+Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
+the concrete reply in plain words, then one small habit to carry forward, with
+ownership words kept to the learner's own moments. Biscuit also stays silent
+until a bank is registered.
 Tamar (`woman-captain`) has opted in as well, in `characters/captain.ts`: a
 firm verdict, the concrete reason, then one habit to build, with open mentor
 pride kept to the learner's own moves, plain-clip lines that name no owner,
 and no questions. Tamar also stays silent until a bank is registered.
-The other 9 voices retain their current wording and deterministic variants.
+The other 3 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
