@@ -1,4 +1,5 @@
 import { openWalterStudio, mountWalterStudio } from "./fixtures/openAudioFixture";
+import { pauseAfterLoad } from "./fixtures/clock";
 import { expect, test, type Page } from "@playwright/test";
 import { walterClips, walterCollections, walterScripts, walterVoices } from "../src/audio/speech/walterPilot";
 
@@ -170,7 +171,7 @@ test("In context plays the approved move before speech and waits 350 millisecond
   await captureNativeStarts(page);
   await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
   await openWalterStudio(page);
-  await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
+  await pauseAfterLoad(page);
   await panel(page).getByRole("button", { name: "In context", exact: true }).click();
   await expect(page.locator('[data-event-type="started"][data-cue="move"]')).toHaveCount(1);
   await expect(speechEvents(page, "started")).toHaveCount(0);
@@ -200,7 +201,7 @@ for (const outcome of ["played", "cancelled", "failed"] as const) {
     await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
     try {
       await openWalterStudio(page);
-      await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
+      await pauseAfterLoad(page);
       await playVoice(page).click();
       await expect(speechEvents(page, "started")).toHaveCount(1);
       await page.getByRole("button", { name: "Stop all", exact: true }).click();
@@ -240,7 +241,7 @@ test("a suppressed context move never queues Walter's speech", async ({ page }) 
   await captureNativeStarts(page);
   await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
   await openWalterStudio(page);
-  await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
+  await pauseAfterLoad(page);
   await page.getByRole("button", { name: "Mute audio", exact: true }).click();
   await panel(page).getByRole("button", { name: "In context", exact: true }).click();
   await expect(page.locator('[data-event-type="suppressed"][data-cue="move"][data-reason="muted"]')).toHaveCount(1);
