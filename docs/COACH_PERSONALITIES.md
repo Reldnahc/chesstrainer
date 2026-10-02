@@ -146,7 +146,11 @@ its exact consequence and the supported resource, in clipped technical labels
 (absolute pin, theory, net material, flight square), with sparse approval for
 precision, no emotion that depends on which side moved, and no questions. Jun
 also stays silent until a bank is registered.
-The other 11 voices retain their current wording and deterministic variants.
+Arjun (`man-partner`) has opted in too, in `characters/partner.ts`: an occasional
+genuine question that reveals the mechanism, then the idea, then a comparison of
+candidates side by side, with delight kept for unusual resources and no claim
+beyond the supported line. Arjun also stays silent until a bank is registered.
+The other 10 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

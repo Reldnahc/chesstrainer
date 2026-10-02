@@ -251,3 +251,17 @@ export const expertOpeningTemplates = {
   "book-opening-follow-7": ["{opening}, still catalogued."],
   "book-opening-follow-8": ["Still {opening}. Book status locates the game; it does not evaluate the move."],
 } as const;
+
+export const partnerOpeningTemplates = {
+  "book-opening-entry-1": ["This candidate takes us into {opening}."],
+  "book-opening-entry-2": ["A candidate borrowed from {opening}."],
+  "book-opening-entry-3": ["There's an entry for this candidate in {opening}."],
+  "book-opening-follow-1": ["We're still exploring {opening}."],
+  "book-opening-follow-2": ["{opening} offers this candidate as well."],
+  "book-opening-follow-3": ["Even the reply is a candidate {opening} already covers."],
+  "book-opening-follow-4": ["The {opening} line keeps unfolding."],
+  "book-opening-follow-5": ["One more candidate {opening} already knows."],
+  "book-opening-follow-6": ["There's still more of {opening} to explore."],
+  "book-opening-follow-7": ["Back to {opening} for this one."],
+  "book-opening-follow-8": ["Still {opening}. The book says where we are, not which candidate is strongest."],
+} as const;

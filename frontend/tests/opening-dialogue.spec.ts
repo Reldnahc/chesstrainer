@@ -9,7 +9,8 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
 import {velvet} from "../src/dialogue/characters/velvet";
 import {expert} from "../src/dialogue/characters/expert";
-import {alienOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, expertOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {partner} from "../src/dialogue/characters/partner";
+import {alienOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, expertOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
@@ -193,6 +194,7 @@ const openingCoaches = [
   {id: "dog-corgi", personality: corgi, authored: corgiOpeningTemplates, voiced: false},
   {id: "unicorn", personality: newCastPersonalities.unicorn, authored: unicornOpeningTemplates, voiced: false},
   {id: "man-expert", personality: expert, authored: expertOpeningTemplates, voiced: false},
+  {id: "man-partner", personality: partner, authored: partnerOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {
