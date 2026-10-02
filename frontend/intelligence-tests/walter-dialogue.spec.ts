@@ -24,6 +24,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   dragon: {version: "dragon-2", actual: "under one piece's attack", possible: "From a single square"},
   "dog-collie": {version: "collie-5", actual: "under attack together", possible: "would be attacked by one piece"},
   "dog-corgi": {version: "corgi-4", actual: "in its sights", possible: "would be attacked, all from one post"},
+  "man-host": {version: "host-4", actual: "hit at once by one piece", possible: "would be attacked by it in one go"},
 };
 
 test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {

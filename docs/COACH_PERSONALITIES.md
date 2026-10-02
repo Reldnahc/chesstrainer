@@ -136,7 +136,12 @@ Waffles (corgi) has opted in too, with his forms in the shared tactic and openin
 blocks: a short command or reaction, the consequence, then the next order, in light
 field-manual language with no questions and difficulty always credited to the
 human-move model. Waffles stays silent until a bank is registered.
-The other 13 voices retain their current wording and deterministic variants.
+Femi (human host) has opted in too, with his forms in the shared tactic and opening
+blocks: a club analyst's reaction across the table, the catch named plainly, then
+the concrete reply put on the board, with occasional questions, book moves called
+"prep" or "main line", and difficulty always credited to the human-move model.
+Femi stays silent until a bank is registered.
+The other 12 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

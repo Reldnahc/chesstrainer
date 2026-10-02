@@ -239,3 +239,18 @@ export const corgiTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would knock out a {piece}.", followup: "Down the line, {capture} could remove a {piece}."},
   playedCapture: {fact: "{move} puts a {motif} into operation.", consequence: "{capture} sends a {piece} off the field."},
 });
+
+export const hostTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "After {move}, look: a {motif} is live.",
+    played_possible: "{move} opens the door to a {motif}, though the replies settle it.",
+    allowed_immediate: "This is the catch: {opponent} can answer {action}, which brings a {motif}.",
+    allowed_possible: "Later, {opponent} could find a {motif} here; that hangs on the replies.",
+    missed_immediate: "Put {best} next to this move: it had a {motif}.",
+    missed_possible: "With {best}, a {motif} was possible, though the replies would decide.",
+  },
+  fork: {actual: "That's the {targets} hit at once by one piece.", possible: "One piece, and the {targets} would be attacked by it in one go."},
+  material: "There may be a {gain} waiting, though plenty depends on what both sides play next.",
+  capture: {candidate: "With {capture}, the {piece} comes off.", followup: "Play it on, and {capture} might pick off a {piece} down the road."},
+  playedCapture: {fact: "{move} has a {motif} built in.", consequence: "Then {capture} removes the {piece}."},
+});

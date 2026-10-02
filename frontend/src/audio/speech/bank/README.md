@@ -101,8 +101,9 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/pickle/scripts.json`, coach `cat-kitten`), Ember
 (`banks/ember/scripts.json`, coach `dragon`), Scout
 (`banks/scout/scripts.json`, coach `dog-collie`), Juniper
-(`banks/juniper/scripts.json`, coach `cat-black`) and Waffles
-(`banks/waffles/scripts.json`, coach `dog-corgi`) each have complete authored
+(`banks/juniper/scripts.json`, coach `cat-black`), Waffles
+(`banks/waffles/scripts.json`, coach `dog-corgi`) and Femi
+(`banks/femi/scripts.json`, coach `man-host`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue

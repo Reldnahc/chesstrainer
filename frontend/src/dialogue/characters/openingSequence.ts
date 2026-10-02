@@ -223,3 +223,17 @@ export const corgiOpeningTemplates = {
   "book-opening-follow-7": ["The drill continues in {opening}."],
   "book-opening-follow-8": ["Manual entry again: {opening}. A listing, not a ruling."],
 } as const;
+
+export const hostOpeningTemplates = {
+  "book-opening-entry-1": ["Standard prep, and it's {opening}."],
+  "book-opening-entry-2": ["That's known material: {opening}."],
+  "book-opening-entry-3": ["A recognized line from prep: {opening}."],
+  "book-opening-follow-1": ["We're still in prep: {opening}."],
+  "book-opening-follow-2": ["{opening} prep, one more move of it."],
+  "book-opening-follow-3": ["The answer's from prep too: {opening}."],
+  "book-opening-follow-4": ["The prep rolls on in {opening}."],
+  "book-opening-follow-5": ["No surprises yet; we're in {opening}."],
+  "book-opening-follow-6": ["Prep still covers this, in {opening}."],
+  "book-opening-follow-7": ["Still the main line of {opening}."],
+  "book-opening-follow-8": ["Main line of {opening}, still; a location, not a grade."],
+} as const;
