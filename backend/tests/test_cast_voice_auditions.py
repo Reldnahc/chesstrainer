@@ -60,7 +60,7 @@ def asset(plan, key=KEYS[0], kind="archive"):
     coach, direction = key.split(":")
     if kind == "archive":
         return plan.parent / "alignment" / coach / f"{direction}.json"
-    extension = "mp3" if kind == "audio" else "provenance.json"
+    extension = "opus" if kind == "audio" else "provenance.json"
     return plan.parent / "recordings" / coach / f"{direction}.{extension}"
 
 
@@ -94,7 +94,7 @@ def forbid_native_work(monkeypatch):
 
 @pytest.fixture
 def saved_cast(tmp_path, monkeypatch):
-    """Real MP3/transcript/phone evidence; synthetic design identity only."""
+    """Real Opus/transcript/phone evidence; synthetic design identity only."""
     originals = [
         read_json(ROOT / SPEECH / "alignment" / f"{name}-forced.json")
         for name in ("sound-sacrifice", "allowed-mate")
@@ -135,7 +135,9 @@ def saved_cast(tmp_path, monkeypatch):
     for coach, original in zip(plan["coaches"], originals, strict=True):
         for direction in coach["directions"]:
             key = f"{coach['coachId']}:{direction['id']}"
-            audio = (ROOT / original["provenance"]["recording"]["path"]).read_bytes()
+            recording = ROOT / original["provenance"]["recording"]["path"]
+            audio = recording.read_bytes()
+            encoded = read_json(recording.with_suffix(".provenance.json"))
             audio_path = asset(plan_path, key, "audio")
             audio_path.parent.mkdir(parents=True, exist_ok=True)
             audio_path.write_bytes(audio)
@@ -147,6 +149,8 @@ def saved_cast(tmp_path, monkeypatch):
                 "sha256": alignment.digest(audio),
                 "bytes": len(audio),
                 "recordedAt": "2026-10-01T00:00:00.000Z",
+                "providerAudio": encoded["providerAudio"],
+                "encoding": encoded["encoding"],
                 "requestId": None,
                 "selected": {
                     "generatedVoiceId": f"fixture-{coach['coachId']}-{direction['id']}",
@@ -368,7 +372,7 @@ def test_check_validates_manifest_identity_and_complete_coverage(saved_cast, mut
     elif mutation == "unplanned":
         first["id"] = "ghost:gentle"
     elif mutation == "audio-path":
-        first["audioPath"] = "../outside.mp3"
+        first["audioPath"] = "../outside.opus"
     else:
         first["generatedVoiceId"] = "another-provider-voice"
     write_json(path, manifest)

@@ -72,7 +72,7 @@ async function applicationFixture(t, imported, dynamic = false) {
   const root = await mkdtemp(join(tmpdir(), "fieldwork-production-boundary-"));
   t.after(() => rm(root, { recursive: true, force: true }));
   const contents = imported.endsWith(".json") ? '{"recordings":[]}'
-    : imported.endsWith(".mp3") ? "mock audio" : "export default 'voice';";
+    : imported.endsWith(".opus") ? "mock audio" : "export default 'voice';";
   for (const [path, content] of Object.entries({
     "index.html": '<script type="module" src="/main.js"></script>',
     "main.js": dynamic ? `import('./${imported}').then(value => {globalThis.voice = value.default;});`
@@ -98,7 +98,7 @@ for (const imported of [
   "src/audio/speech/castAuditions.ts",
   "src/audio/speech/cast-auditions/manifest.json",
   "src/audio/speech/cast-auditions/tracks.json",
-  "src/audio/speech/cast-auditions/recordings/cat-1.mp3",
+  "src/audio/speech/cast-auditions/recordings/cat-1.opus",
   "src/audio/studio/shared-player.js",
   "src/coach/studio/inspector.js",
 ]) for (const dynamic of [false, true]) {
@@ -112,7 +112,7 @@ for (const imported of [
 test("application retains production speech and similarly named non-studio modules", async (t) => {
   for (const imported of [
     "src/audio/speech/bank/tracks.json",
-    "src/audio/speech/bank/recordings/walter/line.mp3",
+    "src/audio/speech/bank/recordings/walter/line.opus",
     "src/audio/studio-settings.js",
   ]) {
     const source = await applicationFixture(t, imported);

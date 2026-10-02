@@ -18,7 +18,7 @@ test("listening does not vote; an explicit choice saves exact identity, notes an
   await expect(choose(page)).toBeEnabled();
   await expect(panel(page)).toContainText(`0 chosen · 0 keep looking · ${plan.coaches.length} to decide`);
   await direction(page).selectOption(first.directions[1].id);
-  const mediaRequest = page.waitForRequest(request => new URL(request.url()).pathname.endsWith(".mp3"));
+  const mediaRequest = page.waitForRequest(request => new URL(request.url()).pathname.endsWith(".opus"));
   await panel(page).getByRole("button", {name: "Play candidate", exact: true}).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
   expect(new URL((await mediaRequest).url()).searchParams.get("casting"))

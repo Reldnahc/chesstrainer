@@ -79,7 +79,7 @@ test("original and revised recordings use their own URL, identity and visible mo
     await expect(portrait(page).locator(".walter-aligned-mouth")).toBeVisible();
     expect((await state(page)).recordingId).toBe(id);
   }
-  expect(audio).toEqual(["/__wording-fixture/fork/original.mp3", "/__wording-fixture/fork/revised.mp3"]);
+  expect(audio).toEqual(["/__wording-fixture/fork/original.opus", "/__wording-fixture/fork/revised.opus"]);
   expect((await state(page)).starts).toBe(2);
   expect((await state(page)).stops).toBe(1);
   await page.getByRole("button", {name: "Stop all", exact: true}).click();
@@ -127,7 +127,7 @@ test("late original clip details cannot replace revised text or mouth timing", a
   await tick(page);
   await expect(portrait(page)).toHaveAttribute("data-mouth-shape", "tongue");
   expect((await state(page)).recordingId).toBe("fork:revised");
-  expect(audio).toEqual(["/__wording-fixture/fork/revised.mp3"]);
+  expect(audio).toEqual(["/__wording-fixture/fork/revised.opus"]);
 });
 
 test("an unavailable version stays disabled while the available counterpart can still play", async ({page}) => {

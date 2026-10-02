@@ -214,6 +214,18 @@ synthesis. The development-only `scripts/record_coach_speech.mjs` uses explicit
 paid generation, sequential plans of at most 20 requests, hash-verified reuse and
 no automatic paid retries. Its only credential source is the process environment.
 Each recording retains the exact voice/model/settings, text, request and file hash.
+
+Committed speech is mono Ogg Opus at about 24 kbps (48 kHz, libsndfile
+compression level 0.93), roughly a fifth of the provider's 128 kbps MP3 with the
+same timeline. ElevenLabs' smallest Opus output is 32 kbps, so the recorder still
+requests `mp3_44100_128` and `scripts/encode_coach_speech.py` encodes it before
+anything is written; the provider MP3 never reaches a bank. Each sidecar keeps the
+provider request, records the MP3's fingerprint as `providerAudio` and the
+encoding settings as `encoding`, and its `sha256`/`bytes` bind the committed Opus
+file. Bank and audition checks reject any clip that is not this exact encoding or
+exceeds its bitrate. Browsers decode it through Web Audio; Safari needs 18.4 or
+later. A recorded bank costs about 13 MB, and the source download lists recorded
+audio by hash instead of storing a second copy.
 Avoid “separate” and “separately” in new spoken scripts: the selected voices do
 not reliably deliver the intended pronunciation. Choose natural wording such as
 “distinct,” “different,” or “distinguish,” preserving the supported meaning. A

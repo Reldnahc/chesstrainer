@@ -101,7 +101,9 @@ so a local write failure does not require another purchase. An incomplete attemp
 blocks subsequent POSTs: inspect it and recover the saved result or explicitly
 decide what to do, rather than blindly retrying. An output-level lock also prevents
 concurrent cooperating authoring runs. Neither raw provider errors nor credentials
-are printed or saved. Original MP3/provenance pairs are never overwritten; the
+are printed or saved. The paid provider MP3 stays with its attempt under `.tools`;
+the audition itself is saved as Opus, the same encoding as the banks. Recording/provenance
+pairs are never overwritten; the
 generated manifest is atomically rebuilt from verified pairs after each success.
 
 ## Verification
@@ -124,7 +126,7 @@ approved set with the standard library alone. `--generate` reuses the existing
 offline PocketSphinx pipeline; optional coach/direction filters allow preparation
 while a batch is in progress. `alignment/<coach>/<direction>.json` preserves the
 automatic word and phoneme evidence; `tracks.json` is the compact runtime
-projection. Request, sidecar and MP3 fingerprints bind each track to its clip.
+projection. Request, sidecar and Opus fingerprints bind each track to its clip.
 See the [alignment tooling](../alignment/README.md) for native dependencies.
 
 All 87 recorded directions have verified automatic tracks. The unchanged clips

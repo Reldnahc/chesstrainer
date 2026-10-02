@@ -12,9 +12,11 @@ from pathlib import Path
 
 if __package__:
     from . import align_coach_speech as alignment
+    from .encode_coach_speech import check_encoded
     from .prepare_coach_voice_bank import compact_track, slug
 else:
     import align_coach_speech as alignment
+    from encode_coach_speech import check_encoded
     from prepare_coach_voice_bank import compact_track, slug
 
 PLAN = alignment.SPEECH / "cast-auditions/design-plan.json"
@@ -141,7 +143,7 @@ def recording_source(
     plan_path: Path, request: dict, item: dict
 ) -> tuple[alignment.SpeechSource, dict]:
     coach, direction = request["coachId"], request["directionId"]
-    relative = f"recordings/{coach}/{direction}.mp3"
+    relative = f"recordings/{coach}/{direction}.opus"
     audio = asset_path(plan_path.parent, relative)
     sidecar = audio.with_suffix(".provenance.json")
     recorded = read_json(sidecar, 32768)
@@ -198,7 +200,7 @@ def recording_source(
     # The shared aligner expects a normalized script-shaped source. Validate the
     # real design request above and bind its untouched sidecar into the archive.
     normalized = {**recorded, "request": {"script": script}}
-    alignment.source_inputs(script, audio, normalized)
+    check_encoded(alignment.source_inputs(script, audio, normalized), recorded, duration)
     fingerprint = {
         "requestSha256": recorded["requestHash"],
         "provenancePath": sidecar.relative_to(alignment.ROOT).as_posix(),

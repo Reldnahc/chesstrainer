@@ -1,5 +1,6 @@
 """Whole voice banks publish only complete, source-verified automatic mouth tracks."""
 
+import hashlib
 import json
 import os
 from copy import deepcopy
@@ -8,6 +9,7 @@ from pathlib import Path
 import pytest
 
 from scripts import align_coach_speech as alignment
+from scripts import encode_coach_speech as encode
 from scripts import prepare_coach_voice_bank as bank
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -32,7 +34,7 @@ def request_digest(request):
 
 @pytest.fixture
 def saved_bank(tmp_path, monkeypatch):
-    """Real MP3s, requests and phone evidence; only their archive identities move."""
+    """Real recordings, requests and phone evidence; only their archive identities move."""
     manifest = read_json(REPO_ROOT / SPEECH_PATH / "bank/manifest.json")
     manifest["recordings"] = [item for item in manifest["recordings"] if item["id"] in FIXTURE_IDS]
     manifest_path = tmp_path / SPEECH_PATH / "bank/manifest.json"
@@ -162,7 +164,7 @@ def test_manifest_cannot_redefine_the_speech_asset_root(saved_bank):
 def test_nested_bank_rejects_global_escape_and_other_bank_archives(registered_banks, field):
     walter, rivet, _ = registered_banks
     item = read_json(rivet)["recordings"][0]
-    item[field] = "../../../outside.mp3"
+    item[field] = "../../../outside.opus"
     with pytest.raises(ValueError, match="speech asset directory"):
         bank.paths(item, rivet)
     item = read_json(rivet)["recordings"][0]
@@ -318,7 +320,7 @@ def test_manifest_rejects_ambiguous_identity_and_unsafe_output_paths(saved_bank,
     elif mutation == "text-type":
         first["text"] = ["Unusable transcript"]
     elif mutation == "audio-escape":
-        first["audioPath"] = "../../outside.mp3"
+        first["audioPath"] = "../../outside.opus"
     elif mutation == "sidecar-escape":
         first["sidecarPath"] = "../../outside.provenance.json"
     elif mutation == "alignment-escape":
@@ -381,6 +383,42 @@ def test_source_rejects_stale_and_validly_rehashed_but_wrong_requests(saved_bank
 
     with pytest.raises(ValueError):
         bank.recording_source(manifest, item, saved_bank)
+
+
+@pytest.mark.parametrize(
+    "mutation", ["no-encoding", "codec", "bitrate-setting", "no-provider-audio", "provider-mp3"]
+)
+def test_bank_accepts_only_the_committed_opus_encoding(saved_bank, mutation):
+    manifest = bank.load_manifest(saved_bank)
+    item = manifest["recordings"][0]
+    path = item_path(saved_bank, "sidecarPath")
+    sidecar = read_json(path)
+    if mutation == "no-encoding":
+        del sidecar["encoding"]
+    elif mutation == "codec":
+        sidecar["encoding"]["format"] = "mp3"
+    elif mutation == "bitrate-setting":
+        sidecar["encoding"]["compressionLevel"] = 0.5
+    elif mutation == "no-provider-audio":
+        del sidecar["providerAudio"]
+    elif mutation == "provider-mp3":
+        # A provider MP3 renamed into place, with fingerprints updated to match.
+        audio = b"ID3" + bytes(4096)
+        item_path(saved_bank, "audioPath").write_bytes(audio)
+        sidecar["sha256"] = hashlib.sha256(audio).hexdigest()
+        sidecar["bytes"] = len(audio)
+    write_json(path, sidecar)
+
+    with pytest.raises(ValueError, match="Opus"):
+        bank.recording_source(manifest, item, saved_bank)
+
+
+def test_bank_rejects_opus_above_the_committed_bitrate(saved_bank):
+    audio = item_path(saved_bank, "audioPath").read_bytes()
+    sidecar = read_json(item_path(saved_bank, "sidecarPath"))
+    encode.check_encoded(audio, sidecar, 2.0)
+    with pytest.raises(ValueError, match="bitrate"):
+        encode.check_encoded(audio + bytes(20_000), sidecar, 2.0)
 
 
 def test_actual_audio_changes_cannot_reuse_old_fingerprints(saved_bank):

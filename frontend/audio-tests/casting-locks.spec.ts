@@ -57,7 +57,7 @@ test("locking every other coach leaves puppy and slime as the silent pending-fir
   const recordings: string[] = [];
   page.on("request", request => {
     const url = new URL(request.url());
-    if (url.pathname.endsWith(".mp3") && !url.searchParams.has("import")) recordings.push(request.url());
+    if (url.pathname.endsWith(".opus") && !url.searchParams.has("import")) recordings.push(request.url());
   });
   await page.goto("/");
   if (info.project.name === "mobile") await page.setViewportSize({width: 320, height: 780});
@@ -184,7 +184,7 @@ for (const state of ["playing", "loading"] as const) {
     const held = new Promise<void>(resolve => {release = resolve;});
     let requested!: () => void;
     const requesting = new Promise<void>(resolve => {requested = resolve;});
-    if (state === "loading") await page.route(url => url.pathname.endsWith(".mp3") && !url.searchParams.has("import"), async route => {
+    if (state === "loading") await page.route(url => url.pathname.endsWith(".opus") && !url.searchParams.has("import"), async route => {
       requested(); await held; await route.continue();
     }, {times: 1});
     try {

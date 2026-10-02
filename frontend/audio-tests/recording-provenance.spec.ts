@@ -48,6 +48,16 @@ test("contrasting Walter examples use the chosen refinement and exact audited sc
   expect(output.trim()).toBe("Dry run: 0 new requests, 0 characters, 8 verified recordings reused.");
 });
 
+// Each provider preview was re-encoded to Opus; its sidecar binds both files.
+function expectEncodedPreview(name: string, preview: {bytes: number; sha256: string}) {
+  const audio = readFileSync(new URL(`../src/audio/speech/recordings/${name}.opus`, import.meta.url));
+  const sidecar = JSON.parse(readFileSync(new URL(`../src/audio/speech/recordings/${name}.provenance.json`, import.meta.url), "utf8"));
+  expect(sidecar.providerAudio).toEqual({sha256: preview.sha256, bytes: preview.bytes});
+  expect(sidecar.encoding.format).toBe("ogg-opus");
+  expect(audio.length).toBe(sidecar.bytes);
+  expect(createHash("sha256").update(audio).digest("hex")).toBe(sidecar.sha256);
+}
+
 test("custom Walter previews retain one original design request and unchanged audio provenance", () => {
   expect(design.provider).toBe("elevenlabs");
   expect(design.endpoint).toBe("/v1/text-to-voice/design");
@@ -60,9 +70,7 @@ test("custom Walter previews retain one original design request and unchanged au
   expect(design.previews.map(preview => preview.id)).toEqual(["custom-1", "custom-2", "custom-3"]);
   expect(new Set(design.previews.map(preview => preview.generatedVoiceId)).size).toBe(3);
   for (const preview of design.previews) {
-    const audio = readFileSync(new URL(`../src/audio/speech/recordings/custom-v1/${preview.id}.mp3`, import.meta.url));
-    expect(audio.length).toBe(preview.bytes);
-    expect(createHash("sha256").update(audio).digest("hex")).toBe(preview.sha256);
+    expectEncodedPreview(`custom-v1/${preview.id}`, preview);
     expect(preview.durationSeconds).toBeGreaterThan(0);
     expect(preview.mediaType).toBe("audio/mpeg");
   }
@@ -90,9 +98,7 @@ for (const batch of [
     expect(take.request.auto_generate_text).toBe(false);
     expect(take.previews).toHaveLength(batch.previewCount);
     for (const preview of take.previews) {
-      const audio = readFileSync(new URL(`../src/audio/speech/recordings/${batch.directory}/${preview.id}.mp3`, import.meta.url));
-      expect(audio.length).toBe(preview.bytes);
-      expect(createHash("sha256").update(audio).digest("hex")).toBe(preview.sha256);
+      expectEncodedPreview(`${batch.directory}/${preview.id}`, preview);
       expect(preview.durationSeconds).toBeGreaterThan(0);
       expect(preview.mediaType).toBe("audio/mpeg");
     }

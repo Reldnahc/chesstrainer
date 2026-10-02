@@ -7,7 +7,7 @@ import type {CastingChoice, CastingLock, CastingRecording} from "../../src/audio
 export function castingStore(initial: Record<string, CastingChoice> = {}) {
   const candidates: Record<string, Record<string, CastingRecording>> = {};
   for (const recording of manifest.recordings) {
-    const source = JSON.parse(readFileSync(resolve("src/audio/speech/cast-auditions", recording.audioPath.replace(/\.mp3$/, ".provenance.json")), "utf8"));
+    const source = JSON.parse(readFileSync(resolve("src/audio/speech/cast-auditions", recording.audioPath.replace(/\.opus$/, ".provenance.json")), "utf8"));
     (candidates[recording.coachId] ??= {})[recording.directionId] = {
       id: recording.id, fingerprint: `fingerprint:${source.sha256}`,
       audioSha256: source.sha256, generatedVoiceId: recording.generatedVoiceId,

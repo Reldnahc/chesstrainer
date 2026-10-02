@@ -7,8 +7,8 @@ import type {WordingCatalog, WordingExample} from "./WalterWordingReview";
 
 // Archived recordings are imported only by the development studio entry point.
 const originals = import.meta.glob<string>([
-  "../speech/recordings/walter-language-v1/walter/*.mp3",
-  "../speech/recordings/walter-contrasts-v1/walter/*.mp3",
+  "../speech/recordings/walter-language-v1/walter/*.opus",
+  "../speech/recordings/walter-contrasts-v1/walter/*.opus",
 ], {eager: true, query: "?url", import: "default"});
 const originalHashes = import.meta.glob<string>([
   "../speech/recordings/walter-language-v1/walter/*.provenance.json",
@@ -46,7 +46,7 @@ export const walterWordingCatalog: WordingCatalog = {
     if (!recording || recording.text !== change.previousText) return;
     const path = recording.audioPath.startsWith("../") ? `../speech/${recording.audioPath.slice(3)}` : `../speech/bank/${recording.audioPath}`;
     const url = originals[path];
-    const sha = originalHashes[path.replace(/\.mp3$/, ".provenance.json")];
+    const sha = originalHashes[path.replace(/\.opus$/, ".provenance.json")];
     if (!url || !sha) return;
     const tracks = (await import("../speech/bank/revisions/walter-language-v1-tracks.json")).default as Record<string, SpeechMouthTrack>;
     const track = Object.hasOwn(tracks, id) ? tracks[id] : undefined;

@@ -34,7 +34,7 @@ async function mount(page: Page, options: {selection?: Partial<Selection>; voice
     else if (options.deferPreferences) await gate;
     await route.fulfill({json: coach});
   });
-  await page.route(/\.mp3(?:\?.*)?$/, async route => {
+  await page.route(/\.opus(?:\?.*)?$/, async route => {
     // Vite also requests asset URL modules as scripts; those are not recordings.
     if (route.request().resourceType() !== "fetch") return route.fallback();
     assets.push(route.request().url());
@@ -88,7 +88,7 @@ test("Walter's complete manifest resolves local URLs and aligned mouth tracks", 
   expect(new Set(bank.map(record => record.id)).size).toBe(walterManifest.recordings.length);
   for (const record of bank) {
     expect(new URL(record.url, page.url()).origin).toBe(new URL(page.url()).origin);
-    expect(record.url).toMatch(/\.mp3(?:\?|$)/);
+    expect(record.url).toMatch(/\.opus(?:\?|$)/);
     expect(record.text.trim().length).toBeGreaterThan(0);
     expect(record.track?.durationSeconds, record.id).toBeGreaterThan(0);
     expect(record.track?.cues.length, record.id).toBeGreaterThan(0);
@@ -275,7 +275,7 @@ test("missing recording bytes leave feedback usable and an explicit retry can re
   page.on("pageerror", error => errors.push(error.message));
   const fixture = await mount(page, {failFirstAsset: true});
   const copy = await page.getByTestId("written-feedback").textContent();
-  const failed = page.waitForResponse(response => response.url().includes(`${FIRST}.mp3`) && response.status() === 404);
+  const failed = page.waitForResponse(response => response.url().includes(`${FIRST}.opus`) && response.status() === 404);
   await speak(page);
   await (await failed).finished();
   await expect.poll(() => fixture.assets.length).toBe(1);

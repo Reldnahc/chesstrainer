@@ -86,7 +86,7 @@ async function catalogAt(root) {
     const direction = coach?.directions.get(item.directionId);
     if (!direction) continue; // Removed directions are not silently selectable.
     if (seen.has(item.id) || item.id !== `${item.coachId}:${item.directionId}` ||
-        item.audioPath !== `recordings/${item.coachId}/${item.directionId}.mp3` ||
+        item.audioPath !== `recordings/${item.coachId}/${item.directionId}.opus` ||
         typeof item.generatedVoiceId !== 'string' || !item.generatedVoiceId || item.text !== coach.text) {
       throw fail(500, 'catalog_error', 'A recording does not match the current casting plan.');
     }

@@ -21,7 +21,7 @@ def saved_track(request):
     script_id = request.param
     plan = json.loads((ROOT / PLAN_PATH).read_text(encoding="utf-8"))
     script = next(script for script in plan["scripts"] if script["id"] == script_id)
-    recording = SPEECH / "recordings/walter-contrasts-v1/walter" / f"{script_id}.mp3"
+    recording = SPEECH / "recordings/walter-contrasts-v1/walter" / f"{script_id}.opus"
     recorded = json.loads(recording.with_suffix(".provenance.json").read_text(encoding="utf-8"))
     track = json.loads((SPEECH / "alignment" / f"{script_id}.json").read_text(encoding="utf-8"))
     return track, script, recording, recorded
@@ -173,7 +173,7 @@ def test_saved_tracks_match_unchanged_recordings_and_exact_plan_text(saved_track
 
 @pytest.mark.parametrize(
     ("field", "value"),
-    [("path", "frontend/src/audio/speech/other.mp3"), ("sha256", "0" * 64), ("bytes", 1)],
+    [("path", "frontend/src/audio/speech/other.opus"), ("sha256", "0" * 64), ("bytes", 1)],
 )
 def test_saved_tracks_reject_stale_recording_fingerprints(saved_track, field, value):
     track, *_ = saved_track

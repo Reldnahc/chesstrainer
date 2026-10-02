@@ -51,7 +51,7 @@ remain visible rather than hidden with per-clip edits.
 
 ## Provenance and offline reproduction
 
-Each JSON retains the original MP3 path, SHA-256 and size, exact plan text and its
+Each JSON retains the recording's path, SHA-256 and size, exact plan text and its
 UTF-8 SHA-256, decoder/conversion details and a cue fingerprint. Forced tracks also
 retain exact model/dictionary file hashes, the complete path-normalized decoder
 configuration and its hash, 16 kHz resampling metadata, raw word/phone frames and
@@ -73,7 +73,7 @@ From the repository root, after the optional packages are locally installed:
 .venv/Scripts/python.exe -m pytest backend/tests/test_speech_alignment.py backend/tests/test_speech_forced_alignment.py -q
 ```
 
-`--generate` defaults to `--method forced`. The original MP3 is decoded without
+`--generate` defaults to `--method forced`. The committed Opus recording is decoded without
 trimming or gain changes into mono PCM16 at its original rate. Python 3.12's
 `audioop.ratecv` resamples only the analysis input to 16 kHz with its documented
 default weights; its exact PCM hash/frame count is retained. Original audio plays

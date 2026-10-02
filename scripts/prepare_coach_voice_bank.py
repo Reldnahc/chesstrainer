@@ -13,8 +13,10 @@ from pathlib import Path
 
 if __package__:
     from . import align_coach_speech as alignment
+    from .encode_coach_speech import check_encoded
 else:
     import align_coach_speech as alignment
+    from encode_coach_speech import check_encoded
 
 MANIFEST = alignment.SPEECH / "bank/manifest.json"
 SHAPES = dict(
@@ -45,7 +47,7 @@ def paths(item: dict, manifest_path: Path) -> tuple[Path, Path, Path]:
             raise ValueError("Voice bank paths must remain inside the speech asset directory")
         values.append(value)
     audio, sidecar, archive = values
-    if audio.suffix != ".mp3" or sidecar != audio.with_suffix(".provenance.json"):
+    if audio.suffix != ".opus" or sidecar != audio.with_suffix(".provenance.json"):
         raise ValueError("Voice bank audio and sidecar paths do not match")
     if archive != bank / "alignment" / f"{item['id']}.json":
         raise ValueError("Voice alignment path must be bank/alignment/<id>.json")
@@ -226,7 +228,7 @@ def recording_source(manifest: dict, item: dict, manifest_path: Path) -> alignme
     script = request.get("script", {})
     if script.get("id") != item["id"] or script.get("text") != item["text"]:
         raise ValueError("Recorded script differs from bank manifest")
-    alignment.source_inputs(script, audio, recorded)
+    check_encoded(alignment.source_inputs(script, audio, recorded), recorded)
     return alignment.SpeechSource(
         script,
         audio,
@@ -296,6 +298,7 @@ def prepare_bank(
         else:
             result["missing"].append(item["id"])
             continue
+        check_encoded(audio.read_bytes(), source.recorded, track["metadata"]["duration"])
         runtime[item["id"]] = compact_track(track)
     result["ready"] = len(runtime)
     if result["missing"]:

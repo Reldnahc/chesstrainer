@@ -4,10 +4,14 @@ import { mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile } from "node:
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { runCli, validatePlan } from "./record_coach_speech.mjs";
+import { ENCODING, runCli, validatePlan } from "./record_coach_speech.mjs";
 
 const KEY = "test-only-secret-never-print";
 const audio = Buffer.from("ID3-test-recording");
+// A stand-in for the Python encoder: a recognisable Ogg Opus header around the input.
+const toOpus = mp3 => Buffer.concat([Buffer.from("OggS"), Buffer.alloc(24), Buffer.from("OpusHead"), Buffer.alloc(40), mp3]);
+const encoded = toOpus(audio);
+const fakeEncoder = { check: async () => true, encode: async mp3 => ({ encoding: { ...ENCODING, encoder: "test" }, audio: toOpus(mp3) }) };
 const plan = () => ({
   schemaVersion: 1, provider: "elevenlabs", modelId: "eleven_v4", outputFormat: "mp3_44100_128",
   settings: { stability: .5, similarity_boost: .75, speed: .95 },
@@ -37,7 +41,7 @@ async function fixture(t, input = plan()) {
     fetch: fn => { fetchImpl = fn; },
     file: name => path.join(output, "a", name),
     run: (args = [], options = {}) => runCli(["--plan", inputFile, "--output", output, ...args], {
-      fetchImpl: (...args) => fetchImpl(...args), stdout: message => messages.push(message),
+      fetchImpl: (...args) => fetchImpl(...args), encoder: fakeEncoder, stdout: message => messages.push(message),
       stderr: message => messages.push(message), ...options,
     }),
   };
@@ -71,19 +75,21 @@ test("generation uses fixed endpoint and explicit settings, with verifiable priv
   assert.equal(request.redirect, "error");
   assert.equal(request.headers["xi-api-key"], KEY);
   assert.deepEqual(JSON.parse(request.body), { text: plan().scripts[0].text, model_id: "eleven_v4", voice_settings: plan().settings });
-  assert.deepEqual(await readFile(f.file("defense.mp3")), audio);
+  assert.deepEqual(await readFile(f.file("defense.opus")), encoded);
   const raw = await readFile(f.file("defense.provenance.json"), "utf8");
   const saved = JSON.parse(raw);
-  assert.equal(saved.sha256, createHash("sha256").update(audio).digest("hex"));
+  assert.equal(saved.sha256, createHash("sha256").update(encoded).digest("hex"));
+  assert.deepEqual(saved.providerAudio, { format: "mp3_44100_128", sha256: createHash("sha256").update(audio).digest("hex"), bytes: audio.length });
+  assert.deepEqual(saved.encoding, { ...ENCODING, encoder: "test" });
   assert.equal(saved.requestHash, createHash("sha256").update(JSON.stringify(saved.request)).digest("hex"));
   assert.deepEqual(saved.request.script, plan().scripts[0]);
   assert.deepEqual(saved.request.voice, plan().voices[0]);
-  assert.equal(saved.bytes, audio.length);
+  assert.equal(saved.bytes, encoded.length);
   assert.equal(saved.requestId, "request_123");
   assert.ok(Number.isFinite(Date.parse(saved.recordedAt)));
   assert.ok(!raw.includes(KEY));
   assert.ok(!f.messages.join("\n").includes(KEY));
-  assert.deepEqual((await readdir(path.join(f.output, "a"))).sort(), ["defense.mp3", "defense.provenance.json"]);
+  assert.deepEqual((await readdir(path.join(f.output, "a"))).sort(), ["defense.opus", "defense.provenance.json"]);
 });
 
 test("verified recordings are reused without a key or network even with --generate", async t => {
@@ -118,11 +124,11 @@ test("stale plans and altered bytes refuse overwrite; explicit new take creates 
   await writeFile(f.inputFile, JSON.stringify(changed));
   assert.equal(await f.run(["--generate"]), 1);
   assert.equal(f.requests.length, 1);
-  assert.deepEqual(await readFile(f.file("defense.mp3")), audio);
+  assert.deepEqual(await readFile(f.file("defense.opus")), encoded);
   assert.equal(await f.run(["--generate", "--take", "take-2"]), 0);
-  assert.deepEqual(await readFile(path.join(f.output, "take-2", "a", "defense.mp3")), audio);
+  assert.deepEqual(await readFile(path.join(f.output, "take-2", "a", "defense.opus")), encoded);
   await writeFile(f.inputFile, JSON.stringify(plan()));
-  await writeFile(f.file("defense.mp3"), Buffer.from("ID3-tampered-audio"));
+  await writeFile(f.file("defense.opus"), toOpus(Buffer.from("ID3-tampered-audio")));
   assert.equal(await f.run(), 1);
   assert.equal(f.requests.length, 2);
 });
@@ -132,7 +138,7 @@ test("every selected destination is preflighted before any paid request", async 
   input.scripts.push({ id: "second", label: "Second", text: "A different line." });
   const f = await fixture(t, input);
   await mkdir(path.join(f.output, "a"), { recursive: true });
-  await writeFile(f.file("second.mp3"), audio);
+  await writeFile(f.file("second.opus"), encoded);
   assert.equal(await f.run(["--generate"]), 1);
   assert.equal(f.requests.length, 0);
 });
@@ -158,6 +164,38 @@ test("filters select exact known IDs and requests remain sequential", async t =>
   assert.equal(calls, 3);
   assert.equal(await f.run(["--generate", "--voice", "missing"]), 1);
   assert.equal(calls, 3);
+});
+
+test("an unavailable encoder stops generation before any paid request", async t => {
+  const f = await fixture(t);
+  assert.equal(await f.run(["--generate"], { encoder: { ...fakeEncoder, check: async () => false } }), 1);
+  assert.equal(f.requests.length, 0);
+  assert.match(f.messages.join("\n"), /Opus encoder is unavailable/);
+});
+
+test("a failed or wrong-format encoding saves nothing, not even the provider MP3", async t => {
+  const wrong = [
+    async () => null,
+    async mp3 => ({ encoding: { ...ENCODING, compressionLevel: .5 }, audio: toOpus(mp3) }),
+    async mp3 => ({ encoding: { ...ENCODING }, audio: mp3 }),
+  ];
+  for (const encode of wrong) {
+    const f = await fixture(t);
+    assert.equal(await f.run(["--generate"], { encoder: { check: async () => true, encode } }), 1);
+    assert.equal(f.requests.length, 1);
+    assert.deepEqual(await readdir(path.join(f.output, "a")), []);
+  }
+});
+
+test("a recording that was never encoded is refused instead of reused", async t => {
+  const f = await fixture(t);
+  assert.equal(await f.run(["--generate"]), 0);
+  const sidecar = f.file("defense.provenance.json");
+  const saved = JSON.parse(await readFile(sidecar, "utf8"));
+  delete saved.encoding;
+  await writeFile(sidecar, JSON.stringify(saved));
+  assert.equal(await f.run(), 1);
+  assert.match(f.messages.at(-1), /not encoded as the banks' Opus/);
 });
 
 test("plans reject unsafe paths, unknown fields, unbounded requests and invalid settings", () => {
@@ -238,7 +276,7 @@ test("existing locks and directory links prevent spending or writes outside outp
   const linked = path.join(f.root, "linked");
   await symlink(f.output, linked, process.platform === "win32" ? "junction" : "dir");
   assert.equal(await runCli(["--plan", f.inputFile, "--output", linked, "--generate"], {
-    fetchImpl: () => assert.fail("No request through a link"), stdout: () => {}, stderr: () => {},
+    fetchImpl: () => assert.fail("No request through a link"), encoder: fakeEncoder, stdout: () => {}, stderr: () => {},
   }), 1);
 });
 

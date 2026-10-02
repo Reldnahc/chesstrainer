@@ -37,7 +37,7 @@ test("all bank families use one compact selector and play local aligned Walter r
   await expect(panel(page).getByRole("group", { name: "Voice candidate", exact: true }).getByRole("button"))
     .toHaveText(["Walter · Older teacher"]);
   await expect(play(page)).toBeEnabled();
-  expect(requests.filter(url => /\.mp3$/.test(url))).toEqual([]);
+  expect(requests.filter(url => /\.opus$/.test(url))).toEqual([]);
   await expect(starts(page)).toHaveCount(0);
 
   const categories = [...new Set(walterBankScripts.map(script => script.category))];
@@ -65,7 +65,7 @@ test("changing bank examples cancels a loading recording and keeps the next trac
   const held = new Promise<void>(resolve => { release = resolve; });
   let requested!: () => void;
   const requesting = new Promise<void>(resolve => { requested = resolve; });
-  await page.route(/tactic-fork-played\.mp3$/, async route => {
+  await page.route(/tactic-fork-played\.opus$/, async route => {
     requested();
     await held;
     await route.continue();
