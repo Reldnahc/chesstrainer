@@ -73,7 +73,7 @@
       "primary": "allowed-mate",
       "secondary": "human-natural-error",
       "walterText": "A natural-looking choice, but this is where the defense gives way: the other side can force checkmate. Let's follow the attack and see where it breaks through.",
-      "rivetText": "Issue: forced mate for the opponent. The human model finds this move natural."
+      "rivetText": "Issue: forced mate for the opponent. Human-model classification: natural."
     },
     {
       "id": "combined-missed-mate-with-human-natural-error",
@@ -153,7 +153,7 @@
       "primary": "tactic-fork-played",
       "secondary": "human-unusual-strong",
       "walterText": "The human model finds this choice unusual, but the engine supports it. The idea to follow is a fork, where the same piece can attack several targets.",
-      "rivetText": "Fork resource found. The same piece can attack several targets. The human model finds the choice unusual; the engine finds it strong."
+      "rivetText": "Fork resource found. The same piece can attack several targets. Human-model reading: unusual. Engine rating: strong."
     },
     {
       "id": "combined-tactic-fork-played-with-human-hard-find",
@@ -161,7 +161,7 @@
       "primary": "tactic-fork-played",
       "secondary": "human-hard-find",
       "walterText": "This was a hard move to find, with a fork as the idea to follow. Look for how the same piece can attack several targets at once.",
-      "rivetText": "Resource: a fork. One piece can threaten several targets at once. The engine ranks this move best; the human model and searched alternatives suggest it was difficult to find."
+      "rivetText": "Resource: a fork. One piece can threaten several targets at once. The engine ranks this move best. Human-model and search data both flag it as hard to locate."
     },
     {
       "id": "combined-tactic-pin-played-with-human-unusual-strong",
@@ -169,7 +169,7 @@
       "primary": "tactic-pin-played",
       "secondary": "human-unusual-strong",
       "walterText": "Unusual in the human model, this choice holds up in the engine's search. The idea is a pin to the king: a pinned piece cannot leave that line and expose its king.",
-      "rivetText": "Pin resource found. A piece pinned to its king cannot leave the line and expose it. The human model calls the choice unusual; the engine supports its strength."
+      "rivetText": "Pin resource found. A piece pinned to its king cannot leave the line and expose it. Input A, human model: unusual. Input B, engine: strong."
     },
     {
       "id": "combined-tactic-pin-played-with-human-hard-find",
