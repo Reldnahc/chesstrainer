@@ -143,14 +143,14 @@ registered.
 | Winston (`capybara`) | Written, 438 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `32abf9c` | Yes, `12a01f7` |
 | Button (`mushroom`) | Written, 438 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `83dd5df` | Yes, `12a01f7` |
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
-| Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
+| Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
 | Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
-| Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `b0b8439` | No | No |
+| Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
 | Orin (`wizard`) | Written, 438 | Yes, 2026-10-02, at commit `f9e8a4f` | No | No |
 | Felix (`cat-tuxedo`) | Written, 438 | Yes, 2026-10-02, at commit `5669e4e` | No | No |
-| Bandit (`raccoon`) | Written, 438 | Yes, 2026-10-02, at commit `b232f5a` | No | No |
+| Bandit (`raccoon`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
 | Alfie (`dog-gentle`) | Written, 438 | Yes, 2026-10-02, at commit `5b3a4af` | No | No |
-| Pickle (`cat-kitten`) | Written, 438 | Yes, 2026-10-02, at commit `6597a26` | No | No |
+| Pickle (`cat-kitten`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
 | Ember (`dragon`) | Written, 438 | Yes, 2026-10-02, at commit `ee90487` | No | No |
 | Scout (`dog-collie`) | Written, 438 | Yes, 2026-10-02, at commit `3354f70` | No | No |
 | Juniper (`cat-black`) | Written, 438 | Yes, 2026-10-02, at commit `38d3920` | No | No |
