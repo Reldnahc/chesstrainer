@@ -409,7 +409,9 @@ headings, badges, scheduling receipts, settings or provenance help.
 
 Production selection consumes structured facts at their existing authority
 boundary. Cold SRS may speak neutral task instructions, never themes, evaluations,
-best moves or future continuation facts. Authorized attempt/reveal feedback may
+best moves or future continuation facts. Opening an untouched puzzle in-app speaks
+its neutral ready line once; reloads and puzzles with moves stay silent until Listen.
+Authorized attempt/reveal feedback may
 select supported explanations; a reveal is never praised as an unassisted success.
 Restoring saved feedback does not create a new narration event. Opening acceptance
 means selected repertoire membership; puzzle acceptance means the authored answer.
