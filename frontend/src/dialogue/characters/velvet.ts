@@ -28,7 +28,7 @@ export const velvet: CoachPersonality = {
       {observation: "I noticed something tidy.", fact: "Look inside {move}: in the searched line, there's a {motif}.", consequence: "{detail}"},
       {fact: "A {motif}, tucked into {move}.", consequence: "{detail}"},
     ],
-    tactic_allowed: [{observation: "Something opens up for them.", fact: "Along the strongest line, a {motif} falls to {opponent}.", consequence: "{detail}"}],
+    tactic_allowed: [{observation: "Something opens up for them.", fact: "Along the strongest line, {opponent} comes upon a {motif}.", consequence: "{detail}"}],
     tactic_missed: [{observation: "Another move held more.", fact: "With {best}, a {motif} was waiting.", consequence: "{detail}"}],
     cause_abandoned_defender: [{observation: "A guard has gone.", fact: "I watched {move} leave {side}'s {piece} on {square} without its only unpinned defender.", consequence: "{opponent} can capture it with {reply}."}],
     cause_opponent_threat_recognition: [{observation: "The threat was already there.", fact: "An attack on {side}'s {piece} on {square} began with the opponent's preceding move, and it survives {move}.", consequence: "{opponent} can capture it with {reply}."}],
