@@ -90,6 +90,21 @@ export const collieTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "{move} sets off a {motif}.", consequence: "{capture} nets a {piece}."},
 });
 
+export const frogTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} brings a {motif} into being, already in place.",
+    played_possible: "{move} may lead to a {motif}, if the replies cooperate.",
+    allowed_immediate: "{opponent} has {action}, and with it a {motif}, as it happens.",
+    allowed_possible: "{opponent} might get a {motif} later, replies permitting, or not.",
+    missed_immediate: "{best} had a {motif} ready, immediately.",
+    missed_possible: "{best} might have led to a {motif}, eventually, maybe.",
+  },
+  fork: {actual: "The {targets} are all under attack from one piece now.", possible: "The {targets} would be attacked by one piece, in theory."},
+  material: "A {gain} may be on the table, if both sides play along.",
+  capture: {candidate: "{capture} would then quietly take a {piece}.", followup: "Possibly {capture} follows, taking a {piece}."},
+  playedCapture: {fact: "{move} comes with a {motif}.", consequence: "{capture} takes a {piece}, quietly."},
+});
+
 export const robotTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Position after {move}: a {motif} is present.",

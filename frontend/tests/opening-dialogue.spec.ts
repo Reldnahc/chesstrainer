@@ -7,7 +7,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {alienOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, dragonOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, dragonOpeningTemplates, frogOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
@@ -186,6 +186,7 @@ const openingCoaches = [
   {id: "cat-kitten", personality: newCastPersonalities["cat-kitten"], authored: kittenOpeningTemplates, voiced: false},
   {id: "dragon", personality: newCastPersonalities.dragon, authored: dragonOpeningTemplates, voiced: false},
   {id: "dog-collie", personality: collie, authored: collieOpeningTemplates, voiced: false},
+  {id: "frog", personality: newCastPersonalities.frog, authored: frogOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {

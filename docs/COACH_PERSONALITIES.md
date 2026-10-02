@@ -126,8 +126,11 @@ forcing play and exact defense and no questions. Ember also stays silent until a
 bank is registered.
 Scout (border collie) has opted in too, with his forms in `characters/collie.ts`:
 a quick pattern call, the concrete fact, then one short task to train it, with
-no questions. Scout also stays silent until a bank is registered.
-The other 15 voices retain their current wording and deterministic variants.
+no questions. Scout also stays silent until a bank is registered. Fergus (frog)
+has opted in too, with his forms in `characters/groundedQuiet.ts`: one flat
+report of the fact with a dry, side-neutral tail at most, no questions and no
+exclamation marks. Fergus also stays silent until a bank is registered.
+The other 14 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
