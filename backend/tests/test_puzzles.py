@@ -99,11 +99,14 @@ def retained_learning(app):
         }
 
 
-def test_production_starts_empty_without_acquisition(settings):
+def test_disabled_starter_pack_leaves_an_honest_empty_library(settings):
+    settings.puzzle_starter_pack = False
     with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
         assert client.get("/api/puzzles").json() == {
             "available": 0,
             "sources": [],
+            "themes": [],
+            "retry_available": 0,
             "resume": [],
             "stats": {"solved": 0, "clean": 0, "failed_then_solved": 0, "revealed": 0},
         }

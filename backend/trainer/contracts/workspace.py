@@ -87,6 +87,8 @@ class WorkspaceSettings(EngineHealth):
     provider_timeout_seconds: float
     provider_max_response_bytes: int
     provider_max_scan_games: int
+    puzzle_starter_pack: bool
+    puzzle_pack_path: str | None
     lan_token_configured: bool
     coverage: Coverage
     classification_provider: str

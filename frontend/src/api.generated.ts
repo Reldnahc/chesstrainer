@@ -2990,9 +2990,13 @@ export interface components {
             available: number;
             /** Resume */
             resume: components["schemas"]["PuzzleResume"][];
+            /** Retry Available */
+            retry_available: number;
             /** Sources */
             sources: components["schemas"]["PuzzleProviderInfo"][];
             stats: components["schemas"]["PuzzleStats"];
+            /** Themes */
+            themes: components["schemas"]["PuzzleThemeCount"][];
         };
         /** PuzzleMove */
         PuzzleMove: {
@@ -3021,17 +3025,25 @@ export interface components {
         };
         /** PuzzleProviderInfo */
         PuzzleProviderInfo: {
+            /** Attribution */
+            attribution: string | null;
             /** Count */
             count: number;
             /** Id */
             id: string;
             /** Name */
             name: string;
+            /** Rating Max */
+            rating_max: number | null;
+            /** Rating Min */
+            rating_min: number | null;
             /**
              * Source
              * @enum {string}
              */
             source: "generic" | "games";
+            /** Url */
+            url: string | null;
         };
         /** PuzzleResume */
         PuzzleResume: {
@@ -3106,6 +3118,13 @@ export interface components {
             revealed: number;
             /** Solved */
             solved: number;
+        };
+        /** PuzzleThemeCount */
+        PuzzleThemeCount: {
+            /** Count */
+            count: number;
+            /** Id */
+            id: string;
         };
         /** RefinementInfo */
         RefinementInfo: {
@@ -3604,6 +3623,10 @@ export interface components {
             provider_timeout_seconds: number;
             /** Public Origin */
             public_origin: string;
+            /** Puzzle Pack Path */
+            puzzle_pack_path: string | null;
+            /** Puzzle Starter Pack */
+            puzzle_starter_pack: boolean;
             /** Retire After Days */
             retire_after_days: number;
             /** Review Refinement Depth */
@@ -5218,6 +5241,10 @@ export interface operations {
         parameters: {
             query?: {
                 source?: ("generic" | "games") | null;
+                min_rating?: number | null;
+                max_rating?: number | null;
+                theme?: string | null;
+                mode?: "new" | "retry";
             };
             header?: never;
             path?: never;

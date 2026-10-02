@@ -16,6 +16,7 @@ from trainer.human_models.service import HumanModels
 from trainer.jobs import JobRunner
 from trainer.local_classifier import LocalClassifier
 from trainer.multiuser import configure_accounts
+from trainer.puzzles.packs import production_providers
 from trainer.puzzles.providers import PuzzleProviders
 from trainer.retirement import retire_existing
 from trainer.routes import (
@@ -51,10 +52,12 @@ def create_app(
     start_engine=True,
     human_provider=None,
     provider_factories=None,
-    puzzle_providers=(),
+    puzzle_providers=None,
     lesson_providers=None,
 ):
     settings = (settings or Settings()).for_runtime()
+    if puzzle_providers is None:
+        puzzle_providers = production_providers(settings)
     courses = CourseProviders(bundled_providers() if lesson_providers is None else lesson_providers)
     sql_engine, sessions = database(settings.database_path)
     health = EngineHealth()
@@ -136,7 +139,8 @@ def create_app(
     app.include_router(sync.create_router())
     app.include_router(games.create_router(settings=settings, engine_factory=engine_factory))
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
-    app.include_router(puzzles.create_router(providers=PuzzleProviders(puzzle_providers)))
+    app.state.puzzle_providers = PuzzleProviders(puzzle_providers)
+    app.include_router(puzzles.create_router(providers=app.state.puzzle_providers))
     app.include_router(study_lessons.create_router(providers=courses))
     app.include_router(opening_studies.create_router(providers=courses, scheduler=scheduler))
     app.include_router(classification.create_router(settings=settings, classifier=classifier))

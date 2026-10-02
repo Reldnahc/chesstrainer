@@ -64,6 +64,8 @@ class Settings(BaseSettings):
     provider_timeout_seconds: float = Field(default=20, gt=0, le=60)
     provider_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
     provider_max_scan_games: int = Field(default=10000, ge=1000, le=100000)
+    puzzle_starter_pack: bool = True
+    puzzle_pack_path: Path | None = None
 
     def for_runtime(self):
         """Validate installation settings, including callers that mutate Settings."""

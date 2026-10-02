@@ -1,4 +1,4 @@
-"""Small local provider boundary; no production packs or acquisition in this phase."""
+"""Small local provider boundary; packs and fixtures are installed explicitly, never fetched."""
 
 from collections.abc import Iterable
 from typing import Protocol
@@ -24,20 +24,46 @@ class PuzzleProviders:
         self.providers = tuple(providers)
         if len({provider.id for provider in self.providers}) != len(self.providers):
             raise ValueError("Duplicate puzzle provider ID")
+        self._by_id = {provider.id: provider for provider in self.providers}
 
-    def catalog(self, db: Session):
+    @staticmethod
+    def _checked(provider, definition) -> PuzzleDefinition:
+        # A constructed definition already replayed its line; raw records validate here.
+        if not isinstance(definition, PuzzleDefinition):
+            definition = PuzzleDefinition.model_validate(definition)
+        if definition.source != provider.source:
+            raise ValueError("Inconsistent puzzle provider catalogue")
+        return definition
+
+    def provider_catalog(self, provider, db):
+        seen = set()
+        for definition in provider.catalog(db):
+            definition = self._checked(provider, definition)
+            identity = (definition.key, definition.version)
+            if identity in seen:
+                raise ValueError("Inconsistent puzzle provider catalogue")
+            seen.add(identity)
+            yield definition
+
+    def catalog(self, db):
         for provider in self.providers:
-            seen = set()
-            for definition in provider.catalog(db):
-                # Validate even a provider returning raw records or constructed models.
-                record = (
-                    definition.model_dump()
-                    if isinstance(definition, PuzzleDefinition)
-                    else definition
-                )
-                definition = PuzzleDefinition.model_validate(record)
-                identity = (definition.key, definition.version)
-                if identity in seen or definition.source != provider.source:
-                    raise ValueError("Inconsistent puzzle provider catalogue")
-                seen.add(identity)
+            for definition in self.provider_catalog(provider, db):
                 yield provider, definition
+
+    def find(self, db, provider_id: str, key: str, version: str):
+        """Exact definition lookup; providers with an index avoid a catalogue scan."""
+        provider = self._by_id.get(provider_id)
+        if provider is None:
+            return None
+        finder = getattr(provider, "find", None)
+        if finder is not None:
+            definition = finder(db, key, version)
+            return None if definition is None else self._checked(provider, definition)
+        return next(
+            (
+                definition
+                for definition in self.provider_catalog(provider, db)
+                if (definition.key, definition.version) == (key, version)
+            ),
+            None,
+        )

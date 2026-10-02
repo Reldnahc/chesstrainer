@@ -1,0 +1,59 @@
+{
+  "format": "lichess-csv-v1",
+  "id": "lichess-starter",
+  "name": "Lichess starter pack",
+  "version": "2026-10-v1",
+  "license": "CC0-1.0",
+  "attribution": "Lichess puzzle database (CC0)",
+  "url": "https://database.lichess.org/#puzzles",
+  "puzzle_url": "https://lichess.org/training/{id}",
+  "file": "puzzles.csv",
+  "sha256": "55ed03e4d8a383d606890d1d946986d764e54a0c6ead32150079628228908a6c",
+  "count": 1000,
+  "build": {
+    "tool": "scripts/build_puzzle_pack.py",
+    "sampling": "band-reservoir-v1",
+    "seed": 0,
+    "input_file": "lichess_db_puzzle.csv.zst",
+    "input_sha256": "95fd454bec9efe8f940d5863d5db4c57474f281a865834997bd8cb5d6a149bb9",
+    "rows_scanned": 6100952,
+    "rows_eligible": 1963973,
+    "bands": [
+      {
+        "min": 400,
+        "max": 1000,
+        "weight": 35,
+        "eligible": 158029,
+        "chosen": 350
+      },
+      {
+        "min": 1000,
+        "max": 1400,
+        "weight": 30,
+        "eligible": 621434,
+        "chosen": 300
+      },
+      {
+        "min": 1400,
+        "max": 1800,
+        "weight": 20,
+        "eligible": 665804,
+        "chosen": 200
+      },
+      {
+        "min": 1800,
+        "max": 2400,
+        "weight": 15,
+        "eligible": 518706,
+        "chosen": 150
+      }
+    ],
+    "filters": {
+      "min_popularity": 90,
+      "min_plays": 500,
+      "max_solution_plies": 9,
+      "max_rating_deviation": 90
+    },
+    "rejected_rows": {}
+  }
+}

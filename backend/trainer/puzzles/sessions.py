@@ -1,5 +1,7 @@
 """Durable puzzle commands. Opponent replies commit with the learner move."""
 
+import random
+
 import chess
 from fastapi import HTTPException
 from sqlalchemy import func, select, update
@@ -10,6 +12,7 @@ from trainer.contracts.puzzles import (
     PuzzleCompletion,
     PuzzleFeedback,
     PuzzleKey,
+    PuzzleQuery,
     PuzzleSessionView,
 )
 from trainer.models import PuzzleAttempt, PuzzleSession, now
@@ -62,14 +65,82 @@ def session_view(db, session, *, playback=(), feedback=None):
     ).model_dump(mode="json")
 
 
+# Length and provenance tags describe the dataset, not a tactical idea worth choosing.
+META_THEMES = frozenset(
+    {"short", "long", "veryLong", "oneMove", "master", "masterVsMaster", "superGM"}
+)
+RECENT_REPEAT_WINDOW = 20
+
+
+def _history(db):
+    """Latest session per puzzle identity (provider and key) plus the recent start order."""
+    latest, recent = {}, []
+    rows = db.execute(
+        select(
+            PuzzleSession.provider_id,
+            PuzzleSession.puzzle_key,
+            PuzzleSession.status,
+            PuzzleSession.failed,
+        ).order_by(PuzzleSession.started_at.desc(), PuzzleSession.id.desc())
+    )
+    for provider_id, key, status, failed in rows:
+        identity = (provider_id, key)
+        if identity not in latest:
+            latest[identity] = (status, failed)
+            if len(recent) < RECENT_REPEAT_WINDOW:
+                recent.append(identity)
+    return latest, set(recent)
+
+
+def _needs_retry(outcome):
+    status, failed = outcome
+    return status == "revealed" or (status == "solved" and failed)
+
+
+def _matches(definition, query):
+    if query.source is not None and definition.source != query.source:
+        return False
+    if query.theme is not None and query.theme not in definition.themes:
+        return False
+    if query.min_rating is not None or query.max_rating is not None:
+        if definition.rating is None:
+            return False
+        if query.min_rating is not None and definition.rating < query.min_rating:
+            return False
+        if query.max_rating is not None and definition.rating > query.max_rating:
+            return False
+    return True
+
+
 def library(db, providers):
-    sources = {}
-    for provider, _ in providers.catalog(db):
+    sources, themes = {}, {}
+    latest, _ = _history(db)
+    retry_available = 0
+    for provider, definition in providers.catalog(db):
         info = sources.setdefault(
             provider.id,
-            {"id": provider.id, "name": provider.name, "source": provider.source, "count": 0},
+            {
+                "id": provider.id,
+                "name": provider.name,
+                "source": provider.source,
+                "count": 0,
+                "attribution": getattr(provider, "attribution", None),
+                "url": getattr(provider, "url", None),
+                "rating_min": None,
+                "rating_max": None,
+            },
         )
         info["count"] += 1
+        if definition.rating is not None:
+            low, high = info["rating_min"], info["rating_max"]
+            info["rating_min"] = definition.rating if low is None else min(low, definition.rating)
+            info["rating_max"] = definition.rating if high is None else max(high, definition.rating)
+        for theme in definition.themes:
+            if theme not in META_THEMES:
+                themes[theme] = themes.get(theme, 0) + 1
+        outcome = latest.get((provider.id, definition.key))
+        if outcome is not None and _needs_retry(outcome):
+            retry_available += 1
     resume = db.execute(
         select(
             PuzzleSession.id,
@@ -94,6 +165,11 @@ def library(db, providers):
     return {
         "available": sum(info["count"] for info in sources.values()),
         "sources": list(sources.values()),
+        "themes": [
+            {"id": theme, "count": count}
+            for theme, count in sorted(themes.items(), key=lambda item: (-item[1], item[0]))
+        ],
+        "retry_available": retry_available,
         "resume": [
             {
                 "id": row.id,
@@ -113,26 +189,34 @@ def library(db, providers):
     }
 
 
-def next_puzzle(db, providers, source=None):
-    seen = {
-        tuple(row)
-        for row in db.execute(
-            select(
-                PuzzleSession.provider_id,
-                PuzzleSession.puzzle_key,
-                PuzzleSession.definition_version,
-            ).distinct()
-        )
-    }
+def next_puzzle(db, providers, query=None, *, rng=random):
+    """Choose a matching puzzle. New mode prefers unseen, then avoids recent repeats;
+    retry mode offers puzzles whose latest finished attempt was revealed or failed."""
+    query = query or PuzzleQuery()
+    latest, recent = _history(db)
     candidates = [
-        PuzzleKey(provider_id=provider.id, key=definition.key, version=definition.version)
+        (provider, definition)
         for provider, definition in providers.catalog(db)
-        if source is None or definition.source == source
+        if _matches(definition, query)
     ]
-    return next(
-        (item for item in candidates if (item.provider_id, item.key, item.version) not in seen),
-        candidates[0] if candidates else None,
-    )
+    if query.mode == "retry":
+        pool = [
+            item
+            for item in candidates
+            if (outcome := latest.get((item[0].id, item[1].key))) is not None
+            and _needs_retry(outcome)
+        ]
+    else:
+        unseen = [item for item in candidates if (item[0].id, item[1].key) not in latest]
+        pool = (
+            unseen
+            or [item for item in candidates if (item[0].id, item[1].key) not in recent]
+            or candidates
+        )
+    if not pool:
+        return None
+    provider, definition = rng.choice(pool)
+    return PuzzleKey(provider_id=provider.id, key=definition.key, version=definition.version)
 
 
 def start_session(db, providers, request):
@@ -144,14 +228,7 @@ def start_session(db, providers, request):
         if (previous.provider_id, previous.puzzle_key, previous.definition_version) != identity:
             raise HTTPException(409, "Request ID already used for another puzzle")
         return session_view(db, previous)
-    definition = next(
-        (
-            item
-            for provider, item in providers.catalog(db)
-            if (provider.id, item.key, item.version) == identity
-        ),
-        None,
-    )
+    definition = providers.find(db, request.provider_id, request.key, request.version)
     if definition is None:
         raise HTTPException(404, "Puzzle definition not found")
     session = PuzzleSession(

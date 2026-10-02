@@ -5693,6 +5693,10 @@
             "title": "Resume",
             "type": "array"
           },
+          "retry_available": {
+            "title": "Retry Available",
+            "type": "integer"
+          },
           "sources": {
             "items": {
               "$ref": "#/components/schemas/PuzzleProviderInfo"
@@ -5702,11 +5706,20 @@
           },
           "stats": {
             "$ref": "#/components/schemas/PuzzleStats"
+          },
+          "themes": {
+            "items": {
+              "$ref": "#/components/schemas/PuzzleThemeCount"
+            },
+            "title": "Themes",
+            "type": "array"
           }
         },
         "required": [
           "available",
           "sources",
+          "themes",
+          "retry_available",
           "resume",
           "stats"
         ],
@@ -5798,6 +5811,17 @@
       "PuzzleProviderInfo": {
         "additionalProperties": false,
         "properties": {
+          "attribution": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution"
+          },
           "count": {
             "title": "Count",
             "type": "integer"
@@ -5810,6 +5834,28 @@
             "title": "Name",
             "type": "string"
           },
+          "rating_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating Max"
+          },
+          "rating_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rating Min"
+          },
           "source": {
             "enum": [
               "generic",
@@ -5817,13 +5863,28 @@
             ],
             "title": "Source",
             "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
           }
         },
         "required": [
           "id",
           "name",
           "source",
-          "count"
+          "count",
+          "attribution",
+          "url",
+          "rating_min",
+          "rating_max"
         ],
         "title": "PuzzleProviderInfo",
         "type": "object"
@@ -6038,6 +6099,25 @@
           "revealed"
         ],
         "title": "PuzzleStats",
+        "type": "object"
+      },
+      "PuzzleThemeCount": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "count"
+        ],
+        "title": "PuzzleThemeCount",
         "type": "object"
       },
       "RefinementInfo": {
@@ -7559,6 +7639,21 @@
             "title": "Public Origin",
             "type": "string"
           },
+          "puzzle_pack_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Puzzle Pack Path"
+          },
+          "puzzle_starter_pack": {
+            "title": "Puzzle Starter Pack",
+            "type": "boolean"
+          },
           "retire_after_days": {
             "title": "Retire After Days",
             "type": "integer"
@@ -7704,6 +7799,8 @@
           "provider_timeout_seconds",
           "provider_max_response_bytes",
           "provider_max_scan_games",
+          "puzzle_starter_pack",
+          "puzzle_pack_path",
           "lan_token_configured",
           "coverage",
           "classification_provider",
@@ -9677,6 +9774,75 @@
                 }
               ],
               "title": "Source"
+            }
+          },
+          {
+            "in": "query",
+            "name": "min_rating",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 4000,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Rating"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max_rating",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 4000,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Rating"
+            }
+          },
+          {
+            "in": "query",
+            "name": "theme",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 50,
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z0-9_]+$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Theme"
+            }
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "required": false,
+            "schema": {
+              "default": "new",
+              "enum": [
+                "new",
+                "retry"
+              ],
+              "title": "Mode",
+              "type": "string"
             }
           }
         ],

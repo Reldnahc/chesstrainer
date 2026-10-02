@@ -7,6 +7,17 @@ from pydantic import Field
 from trainer.contracts.common import Color, Contract, LegalMove
 
 PuzzleSource = Literal["generic", "games"]
+PuzzleMode = Literal["new", "retry"]
+
+
+class PuzzleQuery(Contract):
+    """Selection preferences; the server still chooses among matching puzzles."""
+
+    source: PuzzleSource | None = None
+    min_rating: int | None = Field(default=None, ge=0, le=4000)
+    max_rating: int | None = Field(default=None, ge=0, le=4000)
+    theme: str | None = Field(default=None, min_length=1, max_length=50, pattern="^[A-Za-z0-9_]+$")
+    mode: PuzzleMode = "new"
 
 
 class PuzzleKey(Contract):
@@ -84,6 +95,15 @@ class PuzzleProviderInfo(Contract):
     name: str
     source: PuzzleSource
     count: int
+    attribution: str | None
+    url: str | None
+    rating_min: int | None
+    rating_max: int | None
+
+
+class PuzzleThemeCount(Contract):
+    id: str
+    count: int
 
 
 class PuzzleStats(Contract):
@@ -96,5 +116,7 @@ class PuzzleStats(Contract):
 class PuzzleLibrary(Contract):
     available: int
     sources: list[PuzzleProviderInfo]
+    themes: list[PuzzleThemeCount]
+    retry_available: int
     resume: list[PuzzleResume]
     stats: PuzzleStats

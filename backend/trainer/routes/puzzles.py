@@ -1,14 +1,16 @@
 """Puzzle practice is a separate account-owned domain from Review and FSRS."""
 
-from fastapi import APIRouter
+from typing import Annotated
+
+from fastapi import APIRouter, Query
 
 from trainer.contracts.puzzles import (
     PuzzleCommand,
     PuzzleKey,
     PuzzleLibrary,
     PuzzleMove,
+    PuzzleQuery,
     PuzzleSessionView,
-    PuzzleSource,
     PuzzleStart,
 )
 from trainer.puzzles import sessions
@@ -24,9 +26,9 @@ def create_router(*, providers) -> APIRouter:
             return sessions.library(db, providers)
 
     @router.get("/api/puzzles/next", response_model=PuzzleKey | None)
-    def next_puzzle(workspace: CurrentWorkspace, source: PuzzleSource | None = None):
+    def next_puzzle(workspace: CurrentWorkspace, query: Annotated[PuzzleQuery, Query()]):
         with workspace.sessions() as db:
-            return sessions.next_puzzle(db, providers, source)
+            return sessions.next_puzzle(db, providers, query)
 
     @router.post("/api/puzzle-sessions", response_model=PuzzleSessionView)
     def start(workspace: CurrentWorkspace, data: PuzzleStart):

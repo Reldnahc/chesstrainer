@@ -38,6 +38,7 @@ select = ["E4", "E7", "E9", "F", "I"]
 
 [tool.setuptools.package-data]
 "trainer.human_models" = ["manifest.json"]
+"trainer.puzzles.starter_pack" = ["puzzles.csv", "manifest.json", "COPYING.txt", "README.md"]
 "trainer._vendor.maia3" = ["LICENSE", "README.md"]
 "trainer._vendor.lichess_puzzler" = ["LICENSE", "UPSTREAM.json", "README.md"]
 "trainer._vendor.lichess_accuracy" = ["LICENSE.*", "README.md"]
