@@ -457,7 +457,7 @@
     {
       "id": "mate-defense-ended",
       "group": "game_review",
-      "text": "Checkmate. Nowhere is left for that king to stand. The defense broke earlier, so go back and find that spot."
+      "text": "Checkmate. That king has no move left. The defense broke earlier, so go back and find that spot."
     },
     {
       "id": "draw",
@@ -587,7 +587,7 @@
     {
       "id": "explanation-frame-capture-move-check",
       "group": "srs_explanations",
-      "text": "Capture and check together. Both happen in one move."
+      "text": "Capture and check together. The piece takes, and the king is attacked."
     },
     {
       "id": "explanation-frame-capture-move-mate",
@@ -1193,7 +1193,7 @@
       "group": "game_review",
       "primary": "tactic-skewer-played",
       "secondary": "human-unusual-strong",
-      "text": "A skewer: the front piece gets hit, and the piece behind it is open once the front one moves. The human-move model rates it an unusual pick. The engine marks it strong."
+      "text": "A skewer: the front piece gets hit, and the piece behind it is open once the front one moves. The human-move model rates it an unusual pick. Strong, says the engine, all the same."
     },
     {
       "id": "combo-tactic-skewer-played-natural-best",
@@ -1438,7 +1438,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-unusual-strong",
-      "text": "Two attacks, and it only took one move. The human-move model rates it an unusual pick, and the engine's call on it is strong."
+      "text": "Double attack. The defense cannot cover everything at once. The human-move model rates it an unusual pick, and the engine's call on it is strong."
     },
     {
       "id": "combo-tactic-double-attack-played-natural-best",
@@ -1452,7 +1452,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-natural-strong",
-      "text": "Double attack: one move, and the board has two threats on it. For the human-move model, this is a natural pick. The engine has it as strong, a step below its top choice."
+      "text": "Double attack. Both targets are hit, and the defense has to pick. For the human-move model, this is a natural pick. The engine has it as strong, a step below its top choice."
     },
     {
       "id": "combo-tactic-double-attack-allowed-natural-error",
@@ -2523,7 +2523,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-unusual-strong",
-      "text": "Still the known line, through a move the human-move model rates unusual. The engine marks it strong."
+      "text": "Still the known line, through a move the human-move model rates unusual. Strong, on the engine's grading."
     },
     {
       "id": "combo-book-opening-follow-4-natural-best",
