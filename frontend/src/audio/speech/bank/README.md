@@ -84,6 +84,19 @@ approves the scripts and a bank is recorded and registered.
 Wisp (`banks/wisp/scripts.json`, coach `ghost`) has the same authored,
 unrecorded status and the same checks.
 
+### Bank status
+
+One row per coach whose scripts exist but are not yet a registered production
+bank. "Review passed" means the character review approved the scripts for
+recording; it is not the owner's recording approval. Add a row when a coach's
+scripts pass review, and remove it once the bank is registered.
+
+| Coach (id) | Scripts | Review passed | Recorded | Registered |
+|---|---|---|---|---|
+| Winston (`capybara`) | Written, 438 | Not tracked here | No | No |
+| Button (`mushroom`) | Written, 438 | Not tracked here | No | No |
+| Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
+
 ## Adding or revising a production bank
 
 All paths below are relative to `frontend/src/audio/speech`, unless stated
