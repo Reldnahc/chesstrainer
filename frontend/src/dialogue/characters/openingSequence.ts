@@ -226,7 +226,7 @@ export const corgiOpeningTemplates = {
 
 export const unicornOpeningTemplates = {
   "book-opening-entry-1": ["We've stepped into a recognized opening: {opening}."],
-  "book-opening-entry-2": ["A graceful book move, part of {opening}."],
+  "book-opening-entry-2": ["A book move, part of {opening}, and a fitting one."],
   "book-opening-entry-3": ["This move has its own page in the story of {opening}."],
   "book-opening-follow-1": ["The game moves on in harmony with {opening}."],
   "book-opening-follow-2": ["And this move belongs to {opening} as well."],
