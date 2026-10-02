@@ -171,6 +171,14 @@ def main():
                         "UPDATE users SET disabled=? WHERE id=?",
                         (int(args.action == "disable"), user["id"]),
                     )
+                    if args.action == "enable":
+                        # The scheduler skips disabled owners, so work interrupted
+                        # while the account was disabled is never recovered otherwise.
+                        db.execute(
+                            "UPDATE analysis_jobs SET status='queued' "
+                            "WHERE user_id=? AND status='running'",
+                            (user["id"],),
+                        )
                 db.execute("DELETE FROM auth_sessions WHERE user_id=?", (user["id"],))
         print(f"{args.action} completed for {args.username}")
     except (ValueError, sqlite3.Error) as exc:
