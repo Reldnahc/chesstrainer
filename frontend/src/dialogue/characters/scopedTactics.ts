@@ -149,3 +149,18 @@ export const raccoonTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would snag a {piece} on the spot.", followup: "If things go that way, {capture} could collect a {piece} later."},
   playedCapture: {fact: "{move} cashes in on a {motif}.", consequence: "With {capture}, a {piece} goes in the bag."},
 });
+
+export const corgiTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "{move} puts a {motif} on the board. Operation underway.",
+    played_possible: "{move} lays the groundwork for a {motif}, pending the replies.",
+    allowed_immediate: "Alert: {opponent} can reply {action}, arming a {motif}.",
+    allowed_possible: "Later on, a {motif} could open for {opponent}; the replies will decide whether it materializes.",
+    missed_immediate: "{best} had a {motif} on the launch pad.",
+    missed_possible: "{best} might have opened a {motif}, pending the replies.",
+  },
+  fork: {actual: "One piece now has the {targets} in its sights.", possible: "The {targets} would be attacked, all from one post."},
+  material: "A {gain} may be in it, but both sides still have orders to give.",
+  capture: {candidate: "{capture} would knock out a {piece}.", followup: "Down the line, {capture} could remove a {piece}."},
+  playedCapture: {fact: "{move} puts a {motif} into operation.", consequence: "{capture} takes a {piece} off the field."},
+});

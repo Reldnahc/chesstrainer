@@ -111,7 +111,11 @@ and `characters/openingSequence.ts`: it spots what is on offer first, says plain
 why it is there to take, and treats loose pieces and scrappy, effective chess as
 the good stuff, without pretending material is all that matters. Bandit stays
 silent until a bank is registered.
-The other 19 voices retain their current wording and deterministic variants.
+Waffles (corgi) has opted in too, with his forms in the shared tactic and opening
+blocks: a short command or reaction, the consequence, then the next order, in light
+field-manual language with no questions and difficulty always credited to the
+human-move model. Waffles stays silent until a bank is registered.
+The other 18 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

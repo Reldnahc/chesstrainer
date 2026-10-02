@@ -139,3 +139,17 @@ export const raccoonOpeningTemplates = {
   "book-opening-follow-7": ["One more known step down {opening}."],
   "book-opening-follow-8": ["The book's not out of moves yet: {opening}."],
 } as const;
+
+export const corgiOpeningTemplates = {
+  "book-opening-entry-1": ["Straight from the manual: {opening}."],
+  "book-opening-entry-2": ["This move is in the field manual, under {opening}."],
+  "book-opening-entry-3": ["Recognized opening, on record as {opening}."],
+  "book-opening-follow-1": ["Still following the manual: {opening}."],
+  "book-opening-follow-2": ["Another move from the manual, in {opening}."],
+  "book-opening-follow-3": ["The reply is in the manual too: {opening}."],
+  "book-opening-follow-4": ["The manual keeps going through {opening}."],
+  "book-opening-follow-5": ["Formation holds, still within {opening}."],
+  "book-opening-follow-6": ["{opening} keeps marching."],
+  "book-opening-follow-7": ["The drill continues in {opening}."],
+  "book-opening-follow-8": ["Manual entry again: {opening}. A listing, not a ruling."],
+} as const;
