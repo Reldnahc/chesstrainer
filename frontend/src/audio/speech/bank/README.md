@@ -147,7 +147,7 @@ registered.
 | Fergus (`frog`) | Written, 438 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
 | Arjun (`man-partner`) | Written, 438 | Yes, 2026-10-02, at commit `91cda3c` | No | No |
 | Femi (`man-host`) | Written, 438 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
-| Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `f71c48f` | No | No |
+| Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `89a44c5` | No | No |
 
 ## Adding or revising a production bank
 
