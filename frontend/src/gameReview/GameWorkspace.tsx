@@ -216,6 +216,7 @@ export default function GameWorkspace({
           reviewStarting={reviewStarting}
           speechPending={moving || !frame || (!!speechNavigation?.awaitAnalysis && !saved && !currentAnalysis && !frame.termination && !analysis.error)}
           speechEventId={speechNavigation?.eventId}
+          speechOpening={!!speechNavigation?.opening}
           onExplain={() =>
             analysis.error ? analysis.retry() : exploration.toggleExplanation()
           }

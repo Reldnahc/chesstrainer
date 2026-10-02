@@ -5697,6 +5697,10 @@
             "title": "Retry Available",
             "type": "integer"
           },
+          "solved_puzzles": {
+            "title": "Solved Puzzles",
+            "type": "integer"
+          },
           "sources": {
             "items": {
               "$ref": "#/components/schemas/PuzzleProviderInfo"
@@ -5720,6 +5724,7 @@
           "sources",
           "themes",
           "retry_available",
+          "solved_puzzles",
           "resume",
           "stats"
         ],

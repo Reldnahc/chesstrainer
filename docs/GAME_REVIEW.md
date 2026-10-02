@@ -144,7 +144,8 @@ Natural mistakes, hard finds, unusual strong moves, natural
 best choices and difficult defenses get plain-language labels. Tap the insight for
 the selected coach's reaction to the highest-priority insight, a short explanation
 of what that label means for the played/best move and how human predictions differ
-from engine strength, one short uncertainty note, and an About Maia link. It uses existing
+from engine strength, one short uncertainty note, and an About Maia link. The popover
+has no voice control; the move's one coach playback already covers Maia. It uses existing
 evidence, stays visible even when the bubble prioritizes tactics or opening text,
 and closes when changing positions. It adds no dashboard or analysis request.
 Objective labels and evaluations remain independent of this estimate.

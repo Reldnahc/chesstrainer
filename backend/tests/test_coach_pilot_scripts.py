@@ -5,6 +5,8 @@ import re
 from pathlib import Path
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
+# Written for both voices and recorded with the next voice pass; remove once recorded.
+AWAITING_RECORDING = {"game-review-opened"}
 
 
 def read(path):
@@ -48,9 +50,11 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         manifest = read(path)
         records = {row["id"]: row for row in manifest["recordings"]}
         assert manifest["coachId"] == coach
-        # Generic lesson prompts may be authored before they are recorded.
+        # Generic lesson prompts and AWAITING_RECORDING meanings may be authored first.
         unrecorded = (catalogue.keys() | extras.keys()) - records.keys()
-        assert all(catalogue[key]["group"] == "lessons" for key in unrecorded)
+        assert all(
+            catalogue[key]["group"] == "lessons" or key in AWAITING_RECORDING for key in unrecorded
+        )
         assert records.keys() == original.keys() | (extras.keys() & records.keys())
         assert records.keys() <= catalogue.keys()
         for key, row in records.items():
