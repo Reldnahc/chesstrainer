@@ -1312,7 +1312,7 @@
       "group": "game_review",
       "primary": "tactic-back-rank-played",
       "secondary": "human-natural-strong",
-      "text": "A back-rank mating pattern forms. High natural rating from the human-move model. Engine verdict: strong, with a different top move."
+      "text": "A back-rank mating pattern forms. Predicted with high confidence by the human-move model. Engine verdict: strong, with a different top move."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-hard-find",
@@ -1620,7 +1620,7 @@
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-natural-strong",
-      "text": "One more minor piece is active. Natural, by the human-move model's prediction. Engine: strong. Top move: another."
+      "text": "One more minor piece is active. Natural, by the human-move model's prediction. Engine grade: strong. Top move: another."
     },
     {
       "id": "combo-positional-rook-open-actual-hard-find",
@@ -1648,7 +1648,7 @@
       "group": "game_review",
       "primary": "positional-rook-open-actual",
       "secondary": "human-natural-strong",
-      "text": "A rook now controls the open file. Human-move model: high natural rating. Engine: strong, with its top pick elsewhere."
+      "text": "A rook now controls the open file. Human-move model: high natural rating. Search evaluation: strong, with its top pick elsewhere."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-hard-find",
@@ -1718,7 +1718,7 @@
       "group": "game_review",
       "primary": "positional-passer-advance-actual",
       "secondary": "human-unusual-strong",
-      "text": "The passed pawn moves one step closer to promotion. Few players would choose it, by the human-move model's estimate. Engine verdict: strong."
+      "text": "The passed pawn moves one step closer to promotion. Few players would choose it, by the human-move model's estimate. Engine assessment: strong."
     },
     {
       "id": "combo-positional-passer-advance-actual-natural-best",
@@ -1732,7 +1732,7 @@
       "group": "game_review",
       "primary": "positional-passer-advance-actual",
       "secondary": "human-natural-strong",
-      "text": "This advances the passed pawn. High natural rating from the human-move model. Engine verdict: strong, with a different top move."
+      "text": "This advances the passed pawn. Natural, with high confidence, per the human-move model. Search result: strong, with a different top move."
     },
     {
       "id": "combo-positional-isolated-actual-hard-find",
@@ -1886,7 +1886,7 @@
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-unusual-strong",
-      "text": "A bishop is captured, and the opposing pair is broken. Human-move model: unlikely. Engine: strong. The low prediction does not reduce its value."
+      "text": "A bishop is captured, and the opposing pair is broken. Human-move model: unlikely. Engine grade: strong. The low prediction does not reduce its value."
     },
     {
       "id": "combo-positional-bishop-pair-actual-natural-best",
@@ -1900,7 +1900,7 @@
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-natural-strong",
-      "text": "The opposing side loses its bishop pair. Natural, by the human-move model's prediction. Engine: strong. Top move: another."
+      "text": "The opposing side loses its bishop pair. Natural, by the human-move model's prediction. Search evaluation: strong. Top move: another."
     },
     {
       "id": "combo-positional-doubled-actual-hard-find",
@@ -1928,7 +1928,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-natural-strong",
-      "text": "The pawns are now doubled. Human-move model: high natural rating. Engine: strong, with its top pick elsewhere."
+      "text": "The pawns are now doubled. Prediction: highly natural. Engine grade: strong, with its top pick elsewhere."
     },
     {
       "id": "combo-allowed-mate-hard-defense-missed",
@@ -2033,14 +2033,14 @@
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-hard-find",
-      "text": "Fast, with a time reserve intact. The human-move model gives it little chance of being found. Engine verdict: best. Found."
+      "text": "Fast, with a time reserve intact. The human-move model gives it little chance of being found. Engine assessment: best. Found."
     },
     {
       "id": "combo-clock-fast-unusual-strong",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-unusual-strong",
-      "text": "A fast move, with a large time reserve left. Few players would choose it, by the human-move model's estimate. Engine verdict: strong."
+      "text": "A fast move, with a large time reserve left. Few players would choose it, by the human-move model's estimate. Search result: strong."
     },
     {
       "id": "combo-clock-fast-natural-best",
@@ -2054,7 +2054,7 @@
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-natural-strong",
-      "text": "Played at speed, with ample time remaining. High natural rating from the human-move model. Engine verdict: strong, with a different top move."
+      "text": "Played at speed, with ample time remaining. Predicted with high confidence by the human-move model. Engine finding: strong, with a different top move."
     },
     {
       "id": "combo-clock-long-hard-find",
@@ -2110,7 +2110,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-natural-strong",
-      "text": "Recognized theory. High natural rating from the human-move model; strong on the engine's assessment, not its top selection. A theory move is not automatically the best move."
+      "text": "Recognized theory. Predicted with high confidence by the human-move model; strong on the engine's assessment, not its top selection. A theory move is not automatically the best move."
     },
     {
       "id": "combo-recognized-opening-hard-defense-found",
@@ -2215,7 +2215,7 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-unusual-strong",
-      "text": "The opportunity from the opponent's last move is taken by an unexpected route. Human-move model: unlikely. Engine: strong. The low prediction does not reduce its value."
+      "text": "The opportunity from the opponent's last move is taken by an unexpected route. Human-move model rating: unlikely. Engine grade: strong. The low prediction does not reduce its value."
     },
     {
       "id": "combo-chance-taken-natural-best",
@@ -2229,7 +2229,7 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-strong",
-      "text": "This uses the opponent's last-move error. Natural, by the human-move model's prediction. Engine: strong. Top move: another."
+      "text": "This uses the opponent's last-move error. Natural, by the human-move model's prediction. Search evaluation: strong. Top move: another."
     },
     {
       "id": "combo-chance-missed-natural-error",
@@ -2271,7 +2271,7 @@
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-natural-strong",
-      "text": "The piece left without a defender earlier has one again. Human-move model: high natural rating. Engine: strong, with its top pick elsewhere."
+      "text": "The piece left without a defender earlier has one again. Prediction: highly natural. Search evaluation: strong, with its top pick elsewhere."
     },
     {
       "id": "combo-advantage-converted-hard-find",
@@ -2299,7 +2299,7 @@
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-natural-strong",
-      "text": "Part of the conversion that produced the win. On the human-move model's list of likely moves. Engine assessment: strong; preferred move: a different one."
+      "text": "Part of the conversion that produced the win. On the human-move model's list of likely moves. Engine finding: strong; preferred move: a different one."
     },
     {
       "id": "combo-book-opening-entry-1-hard-find",
@@ -2320,7 +2320,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-natural-best",
-      "text": "First theory move of the game. High natural rating from the human-move model, first place in the engine's ranking."
+      "text": "First theory move of the game. Predicted with high confidence by the human-move model, first place in the engine's ranking."
     },
     {
       "id": "combo-book-opening-entry-1-natural-strong",
@@ -2341,14 +2341,14 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-find",
-      "text": "A known opening move, and a difficult one to see. The human-move model gives it little chance of being found. Engine verdict: best. Found."
+      "text": "A known opening move, and a difficult one to see. The human-move model gives it little chance of being found. Search result: best. Found."
     },
     {
       "id": "combo-book-opening-entry-2-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-unusual-strong",
-      "text": "This move is listed in a known opening. Few players would choose it, by the human-move model's estimate. Engine verdict: strong."
+      "text": "This move is listed in a known opening. Few players would choose it, by the human-move model's estimate. Engine finding: strong."
     },
     {
       "id": "combo-book-opening-entry-2-natural-best",
@@ -2362,7 +2362,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-strong",
-      "text": "This move is listed in a known opening. High natural rating from the human-move model. Engine verdict: strong, with a different top move."
+      "text": "This move is listed in a known opening. Natural, with high confidence, per the human-move model. Search result: strong, with a different top move."
     },
     {
       "id": "combo-book-opening-entry-2-hard-defense-found",
@@ -2432,7 +2432,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-strong",
-      "text": "The game remains in the book. High natural rating from the human-move model; strong on the engine's assessment, not its top selection."
+      "text": "The game remains in the book. Predicted with high confidence by the human-move model; strong on the engine's assessment, not its top selection."
     },
     {
       "id": "combo-book-opening-follow-1-hard-defense-found",
@@ -2558,7 +2558,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-unusual-strong",
-      "text": "An entry for this move exists in the book too. Human-move model: unlikely. Engine: strong. The low prediction does not reduce its value."
+      "text": "An entry for this move exists in the book too. Human-move model rating: unlikely. Engine grade: strong. The low prediction does not reduce its value."
     },
     {
       "id": "combo-book-opening-follow-5-natural-best",
@@ -2572,7 +2572,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-strong",
-      "text": "Theory records this move as standard. Natural, by the human-move model's prediction. Engine: strong. Top move: another."
+      "text": "Theory records this move as standard. Natural, by the human-move model's prediction. Search evaluation: strong. Top move: another."
     },
     {
       "id": "combo-book-opening-follow-5-hard-defense-found",
@@ -2607,7 +2607,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-strong",
-      "text": "No deviation from the book yet. Human-move model: high natural rating. Engine: strong, with its top pick elsewhere."
+      "text": "No deviation from the book yet. Prediction: highly natural. Engine grade: strong, with its top pick elsewhere."
     },
     {
       "id": "combo-book-opening-follow-6-hard-defense-found",
@@ -2642,7 +2642,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-strong",
-      "text": "This one is recorded in the book as well. On the human-move model's list of likely moves. Engine assessment: strong; preferred move: a different one."
+      "text": "This one is recorded in the book as well. On the human-move model's list of likely moves. Engine finding: strong; preferred move: a different one."
     },
     {
       "id": "combo-book-opening-follow-7-hard-defense-found",
@@ -2670,7 +2670,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
-      "text": "Still theory. High natural rating from the human-move model, first place in the engine's ranking. The engine evaluates; the book merely catalogues."
+      "text": "Still theory. Predicted with high confidence by the human-move model, first place in the engine's ranking. The engine evaluates; the book merely catalogues."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",

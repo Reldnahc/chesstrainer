@@ -72,7 +72,7 @@
     {
       "id": "tactic-back-rank-allowed",
       "group": "game_review",
-      "text": "Back-rank danger. The king is boxed in by its own pieces, and this move opens a route to a back-rank mate for the other side. Make an escape square before it's needed."
+      "text": "Back-rank pattern. The king is boxed in by its own pieces, and this move opens a route to a back-rank mate for the other side. Make an escape square before it's needed."
     },
     {
       "id": "tactic-back-rank-missed",
@@ -1382,7 +1382,7 @@
       "group": "game_review",
       "primary": "tactic-discovered-attack-played",
       "secondary": "human-unusual-strong",
-      "text": "Discovered attack. Two reads on it: the human-move model says long shot, the engine says strong."
+      "text": "Discovered attack. Cross-check: the human-move model says long shot, the engine says strong."
     },
     {
       "id": "combo-tactic-discovered-attack-played-natural-best",
@@ -1543,28 +1543,28 @@
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-hard-find",
-      "text": "Loose piece, collected, and it's the engine's best. Two reads on it: the human-move model and the moves we checked both say hard to find."
+      "text": "Loose piece, collected, and it's the engine's best. Side by side: the human-move model and the moves we checked both say hard to find."
     },
     {
       "id": "combo-tactic-undefended-capture-played-unusual-strong",
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-unusual-strong",
-      "text": "Loose piece, collected. Two verdicts: the human-move model says long shot, the engine says strong."
+      "text": "Loose piece, collected. Cross-check: the human-move model says long shot, the engine says strong."
     },
     {
       "id": "combo-tactic-undefended-capture-played-natural-best",
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-natural-best",
-      "text": "Loose piece, collected. Both reads are in: the human-move model says likely, the engine says best."
+      "text": "Loose piece, collected. Cross-check: the human-move model says likely, the engine says best."
     },
     {
       "id": "combo-tactic-undefended-capture-played-natural-strong",
       "group": "game_review",
       "primary": "tactic-undefended-capture-played",
       "secondary": "human-natural-strong",
-      "text": "Loose piece, collected. Two reads on it: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Loose piece, collected. The data: the human-move model says natural, the engine says strong, with another move above it."
     },
     {
       "id": "combo-tactic-undefended-capture-missed-natural-error",
@@ -1655,35 +1655,35 @@
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-hard-find",
-      "text": "Rook on a semi-open file, the engine's top choice. Two verdicts: the human-move model and the moves we checked both say hard to find."
+      "text": "Rook on a semi-open file, the engine's top choice. Side by side: the human-move model and the moves we checked both say hard to find."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-unusual-strong",
-      "text": "Semi-open file, and the rook takes it. Both reads are in: the human-move model says long shot, the engine says strong."
+      "text": "Semi-open file, and the rook takes it. Cross-check: the human-move model says long shot, the engine says strong."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-natural-best",
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-natural-best",
-      "text": "Semi-open file, and the rook takes it. Two reads on it: the human-move model says likely, the engine says best."
+      "text": "Semi-open file, and the rook takes it. Cross-check: the human-move model says likely, the engine says best."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-natural-strong",
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-natural-strong",
-      "text": "Semi-open file, and the rook takes it. Two verdicts: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Semi-open file, and the rook takes it. Pattern check: the human-move model says natural, the engine says strong, with another move above it."
     },
     {
       "id": "combo-positional-passed-actual-hard-find",
       "group": "game_review",
       "primary": "positional-passed-actual",
       "secondary": "human-hard-find",
-      "text": "Passed pawn created, and it's the engine's best. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Passed pawn created, and the engine puts it on top. Hard to find, by the human-move model's read and the alternatives we checked."
     },
     {
       "id": "combo-positional-passed-actual-unusual-strong",
@@ -1739,14 +1739,14 @@
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-hard-find",
-      "text": "Isolated pawn, but it's still the engine's best. Both reads are in: the human-move model and the moves we checked say hard to find. Structure isn't everything."
+      "text": "Isolated pawn, but it's still the engine's best. Side by side: the human-move model and the moves we checked say hard to find. Structure isn't everything."
     },
     {
       "id": "combo-positional-isolated-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-unusual-strong",
-      "text": "Isolated pawn. Two reads on it: the human-move model says long shot, the engine says strong."
+      "text": "Isolated pawn. Evidence in from both sides of the lab: long shot for the human-move model, strong for the engine."
     },
     {
       "id": "combo-positional-isolated-actual-natural-best",
@@ -1760,49 +1760,49 @@
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-natural-strong",
-      "text": "Isolated pawn. Two verdicts: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Isolated pawn. Evidence in from both sides of the lab: natural for the human-move model, strong, with another move above it for the engine."
     },
     {
       "id": "combo-positional-support-actual-hard-find",
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-hard-find",
-      "text": "Cover added, with the engine's top move. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Cover added, with the engine's top move. The human-move model and the alternatives we checked agree: hard to find."
     },
     {
       "id": "combo-positional-support-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-unusual-strong",
-      "text": "Cover added. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Cover added. A long shot on the human-move model's data; the engine's grade came back strong."
     },
     {
       "id": "combo-positional-support-actual-natural-best",
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-natural-best",
-      "text": "Cover added. The human-move model's read is likely, the engine's is best."
+      "text": "Cover added. Likely on the human-move model's data; best on the engine's."
     },
     {
       "id": "combo-positional-support-actual-natural-strong",
       "group": "game_review",
       "primary": "positional-support-actual",
       "secondary": "human-natural-strong",
-      "text": "Cover added. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Cover added. Natural to the human-move model's data; strong for the engine, which has another move on top."
     },
     {
       "id": "combo-positional-unsupported-actual-hard-find",
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-hard-find",
-      "text": "Unguarded piece, still the engine's best. Hard to find, by the human-move model's read and the moves we checked. Undefended isn't lost."
+      "text": "Unguarded piece, still the engine's best. Hard to find, say the human-move model and every move we compared. Undefended isn't lost."
     },
     {
       "id": "combo-positional-unsupported-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-unusual-strong",
-      "text": "Unguarded piece. A long shot by the human-move model's read, strong by the engine's. Test what can reach that piece."
+      "text": "Unguarded piece. Low odds from the human-move model, a strong grade from the engine. Test what can reach that piece."
     },
     {
       "id": "combo-positional-unsupported-actual-natural-best",
@@ -1816,105 +1816,105 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-natural-strong",
-      "text": "Unguarded piece. Natural by the human-move model's read, strong by the engine's, which still has a different top pick. That piece isn't automatically lost."
+      "text": "Unguarded piece. Natural per the human-move model, strong per the engine, though not the engine's first pick. That piece isn't automatically lost."
     },
     {
       "id": "combo-positional-king-flight-actual-hard-find",
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-hard-find",
-      "text": "Escape square open, with the engine's best. Both reads are in: the human-move model and the moves we checked say hard to find."
+      "text": "Escape square open, with the engine's best. The data: the human-move model and the moves we checked say hard to find."
     },
     {
       "id": "combo-positional-king-flight-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-unusual-strong",
-      "text": "Escape square open. Two reads on it: the human-move model says long shot, the engine says strong."
+      "text": "Escape square open. Side by side, the human-move model has long shot and the engine has strong."
     },
     {
       "id": "combo-positional-king-flight-actual-natural-best",
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-natural-best",
-      "text": "Escape square open. Two verdicts: the human-move model says likely, the engine says best."
+      "text": "Escape square open. Side by side, the human-move model has likely and the engine has best."
     },
     {
       "id": "combo-positional-king-flight-actual-natural-strong",
       "group": "game_review",
       "primary": "positional-king-flight-actual",
       "secondary": "human-natural-strong",
-      "text": "Escape square open. Both reads are in: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Escape square open. Evidence in from both sides of the lab: natural for the human-move model, strong, with another move above it for the engine."
     },
     {
       "id": "combo-positional-castling-actual-hard-find",
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-hard-find",
-      "text": "Castled, and it's the engine's best. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Castled, and the engine ranks it first. Hard to find, going by the human-move model and the checked alternatives."
     },
     {
       "id": "combo-positional-castling-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-unusual-strong",
-      "text": "Castled. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Castled. Unlikely per the human-move model, and strong per the engine."
     },
     {
       "id": "combo-positional-castling-actual-natural-best",
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-natural-best",
-      "text": "Castled. The human-move model's read is likely, the engine's is best."
+      "text": "Castled. The data lines up: likely per the human-move model, best per the engine."
     },
     {
       "id": "combo-positional-castling-actual-natural-strong",
       "group": "game_review",
       "primary": "positional-castling-actual",
       "secondary": "human-natural-strong",
-      "text": "Castled. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Castled. Expected on the human-move model's data; the engine's grade is strong, with a different move heading its list."
     },
     {
       "id": "combo-positional-bishop-pair-actual-hard-find",
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-hard-find",
-      "text": "Bishop pair broken, with the engine's top move. Hard to find, by the human-move model's read and the moves we checked."
+      "text": "Bishop pair broken, with the engine's top move. The data on this one, from the human-move model and the checked moves: hard to find."
     },
     {
       "id": "combo-positional-bishop-pair-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-unusual-strong",
-      "text": "Bishop pair broken. A long shot by the human-move model's read, strong by the engine's."
+      "text": "Bishop pair broken. Hardly predicted by the human-move model, yet the engine logs it as strong."
     },
     {
       "id": "combo-positional-bishop-pair-actual-natural-best",
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-natural-best",
-      "text": "Bishop pair broken. Likely by the human-move model's read, best by the engine's."
+      "text": "Bishop pair broken. The human-move model's data says likely, and the engine picks it first."
     },
     {
       "id": "combo-positional-bishop-pair-actual-natural-strong",
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-natural-strong",
-      "text": "Bishop pair broken. Natural by the human-move model's read, strong by the engine's, which still has a different top pick."
+      "text": "Bishop pair broken. A natural choice on the human-move model's data, and strong on the engine's, which prefers another."
     },
     {
       "id": "combo-positional-doubled-actual-hard-find",
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-hard-find",
-      "text": "Doubled pawns, but it's still the engine's best. Two reads on it: the human-move model and the moves we checked both say hard to find."
+      "text": "Doubled pawns, but it's still the engine's best. On the study sheet: the human-move model and the moves we checked both say hard to find."
     },
     {
       "id": "combo-positional-doubled-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-unusual-strong",
-      "text": "Doubled pawns. Two verdicts: the human-move model says long shot, the engine says strong."
+      "text": "Doubled pawns. Logged for study: long shot per the human-move model, strong per the engine."
     },
     {
       "id": "combo-positional-doubled-actual-natural-best",
@@ -1928,7 +1928,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-natural-strong",
-      "text": "Doubled pawns. Both reads are in: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Doubled pawns. Side by side, the human-move model has natural and the engine has strong, with another move above it."
     },
     {
       "id": "combo-allowed-mate-hard-defense-missed",
@@ -1949,42 +1949,42 @@
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-hard-find",
-      "text": "Sacrifice holds, and it's the engine's best. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Sacrifice holds, and the engine puts it on top. The human-move model and the alternatives we checked agree: hard to find."
     },
     {
       "id": "combo-sound-sacrifice-unusual-strong",
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-unusual-strong",
-      "text": "Sacrifice holds in the line we checked. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Sacrifice holds in the line we checked. A long shot on the human-move model's data; the engine's grade came back strong."
     },
     {
       "id": "combo-sound-sacrifice-natural-best",
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-natural-best",
-      "text": "Sacrifice holds in the line we checked. The human-move model's read is likely, the engine's is best."
+      "text": "Sacrifice holds in the line we checked. Likely on the human-move model's data; best on the engine's."
     },
     {
       "id": "combo-sound-sacrifice-natural-strong",
       "group": "game_review",
       "primary": "sound-sacrifice",
       "secondary": "human-natural-strong",
-      "text": "Sacrifice holds in the line we checked. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Sacrifice holds in the line we checked. Natural to the human-move model's data; strong for the engine, which has another move on top."
     },
     {
       "id": "combo-only-playable-move-natural-best",
       "group": "game_review",
       "primary": "only-playable-move",
       "secondary": "human-natural-best",
-      "text": "Only move, and the obvious one. Nothing else we checked held. The human-move model's read is likely, the engine's is best."
+      "text": "Only move, and the obvious one. Nothing else we checked held. The data lines up: likely per the human-move model, best per the engine."
     },
     {
       "id": "combo-only-advantage-resource-natural-best",
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-natural-best",
-      "text": "Precision delivered. Among the moves we checked, only this one kept the edge. Likely by the human-move model's read, best by the engine's."
+      "text": "Precision delivered. Among the moves we checked, only this one kept the edge. Expected by the human-move model and first in the engine's search."
     },
     {
       "id": "combo-immediate-capture-hard-defense-missed",
@@ -2005,112 +2005,112 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-hard-find",
-      "text": "Clock nearly empty, and you still found the engine's best. Hard to find, by the human-move model's read and the moves we checked. That's composure."
+      "text": "Clock nearly empty, and you still found the engine's best. Hard to find, say the human-move model and every move we compared. That's composure."
     },
     {
       "id": "combo-clock-low-unusual-strong",
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-unusual-strong",
-      "text": "Clock nearly empty, and the choice was unexpected. A long shot by the human-move model's read, strong by the engine's."
+      "text": "Clock nearly empty, and the choice was unexpected. Low odds from the human-move model, a strong grade from the engine."
     },
     {
       "id": "combo-clock-low-natural-best",
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-natural-best",
-      "text": "Clock nearly empty. Likely by the human-move model's read, best by the engine's. Solid under pressure."
+      "text": "Clock nearly empty. The human-move model's data says likely, and the engine picks it first. Solid under pressure."
     },
     {
       "id": "combo-clock-low-natural-strong",
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-natural-strong",
-      "text": "Clock nearly empty. Natural by the human-move model's read, strong by the engine's, which still has a different top pick."
+      "text": "Clock nearly empty. Natural per the human-move model, strong per the engine, though not the engine's first pick."
     },
     {
       "id": "combo-clock-fast-hard-find",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-hard-find",
-      "text": "Fast, and it's the engine's best. Two verdicts: the human-move model and the moves we checked both say hard to find."
+      "text": "Fast, and the engine ranks it first. The data: the human-move model and the checked moves both rate it hard to find."
     },
     {
       "id": "combo-clock-fast-unusual-strong",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-unusual-strong",
-      "text": "Fast move. Both reads are in: the human-move model says long shot, the engine says strong."
+      "text": "Fast move. Logged for study: long shot per the human-move model, strong per the engine."
     },
     {
       "id": "combo-clock-fast-natural-best",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-natural-best",
-      "text": "Fast move. Two reads on it: the human-move model says likely, the engine says best. Speed well spent."
+      "text": "Fast move. Logged for study: likely per the human-move model, best per the engine. Speed well spent."
     },
     {
       "id": "combo-clock-fast-natural-strong",
       "group": "game_review",
       "primary": "clock-fast",
       "secondary": "human-natural-strong",
-      "text": "Fast move. Two verdicts: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Fast move. The pattern file says natural on the human-move model and strong, with another move above it on the engine."
     },
     {
       "id": "combo-clock-long-hard-find",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-hard-find",
-      "text": "Long think, paid off with the engine's best. Hard to find, by the human-move model's read and the alternatives we checked. That clock was an investment."
+      "text": "Long think, paid off with the engine's best. Hard to find, going by the human-move model and the checked alternatives. That clock was an investment."
     },
     {
       "id": "combo-clock-long-unusual-strong",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-unusual-strong",
-      "text": "Long think, unexpected landing. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Long think, unexpected landing. Unlikely per the human-move model, and strong per the engine."
     },
     {
       "id": "combo-clock-long-natural-best",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-natural-best",
-      "text": "Long think, clean result. The human-move model's read is likely, the engine's is best."
+      "text": "Long think, clean result. Likely on the human-move model's data; best on the engine's."
     },
     {
       "id": "combo-clock-long-natural-strong",
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-natural-strong",
-      "text": "Long think. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Long think. Expected on the human-move model's data; the engine's grade is strong, with a different move heading its list."
     },
     {
       "id": "combo-recognized-opening-hard-find",
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-hard-find",
-      "text": "Opening identified, and it's the engine's best. Hard to find, by the human-move model's read and the moves we checked."
+      "text": "Opening identified, and the engine puts it on top. The data on this one, from the human-move model and the checked moves: hard to find."
     },
     {
       "id": "combo-recognized-opening-unusual-strong",
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-unusual-strong",
-      "text": "Opening identified. A long shot by the human-move model's read, strong by the engine's. Theory and instinct can split."
+      "text": "Opening identified. Hardly predicted by the human-move model, yet the engine logs it as strong. Theory and instinct can split."
     },
     {
       "id": "combo-recognized-opening-natural-best",
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-natural-best",
-      "text": "Opening identified. Likely by the human-move model's read, best by the engine's."
+      "text": "Opening identified. Expected by the human-move model and first in the engine's search."
     },
     {
       "id": "combo-recognized-opening-natural-strong",
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-natural-strong",
-      "text": "Opening identified. Natural by the human-move model's read, strong by the engine's, which still has a different top pick. The book doesn't settle that."
+      "text": "Opening identified. A natural choice on the human-move model's data, and strong on the engine's, which prefers another. The book doesn't settle that."
     },
     {
       "id": "combo-recognized-opening-hard-defense-found",
@@ -2124,112 +2124,112 @@
       "group": "game_review",
       "primary": "opening-departure",
       "secondary": "human-hard-find",
-      "text": "Book's done, with the engine's best. Both reads are in: the human-move model and the moves we checked say hard to find."
+      "text": "Book's done, with the engine's best. On the study sheet: the human-move model and the moves we checked say hard to find."
     },
     {
       "id": "combo-opening-departure-unusual-strong",
       "group": "game_review",
       "primary": "opening-departure",
       "secondary": "human-unusual-strong",
-      "text": "Book's done on a long shot. Two reads on it: the human-move model says long shot, the engine says strong."
+      "text": "Book's done on a long shot. The pattern file says long shot on the human-move model and strong on the engine."
     },
     {
       "id": "combo-opening-departure-natural-best",
       "group": "game_review",
       "primary": "opening-departure",
       "secondary": "human-natural-best",
-      "text": "Book's done on solid ground. Two verdicts: the human-move model says likely, the engine says best."
+      "text": "Book's done on solid ground. Two sources agree on the facts: the human-move model says likely, the engine says best."
     },
     {
       "id": "combo-opening-departure-natural-strong",
       "group": "game_review",
       "primary": "opening-departure",
       "secondary": "human-natural-strong",
-      "text": "Book's done. Both reads are in: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Book's done. The pattern file says natural on the human-move model and strong, with another move above it on the engine."
     },
     {
       "id": "combo-recovery-hard-find",
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-hard-find",
-      "text": "Recovered, with the engine's best. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Recovered, with the engine's best. The human-move model and the alternatives we checked agree: hard to find."
     },
     {
       "id": "combo-recovery-unusual-strong",
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-unusual-strong",
-      "text": "Recovered. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Recovered. A long shot on the human-move model's data; the engine's grade came back strong."
     },
     {
       "id": "combo-recovery-natural-best",
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-natural-best",
-      "text": "Recovered. The human-move model's read is likely, the engine's is best."
+      "text": "Recovered. The data lines up: likely per the human-move model, best per the engine."
     },
     {
       "id": "combo-recovery-natural-strong",
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-natural-strong",
-      "text": "Recovered. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Recovered. Natural to the human-move model's data; strong for the engine, which has another move on top."
     },
     {
       "id": "combo-recovery-assisted-hard-find",
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-hard-find",
-      "text": "Recovered, with help from the other side's errors, and this is the engine's best. Hard to find, by the human-move model's read and the moves we checked."
+      "text": "Recovered, with help from the other side's errors, and this is the engine's best. Hard to find, say the human-move model and every move we compared."
     },
     {
       "id": "combo-recovery-assisted-unusual-strong",
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-unusual-strong",
-      "text": "Recovered, with help from their errors. A long shot by the human-move model's read, strong by the engine's."
+      "text": "Recovered, with help from their errors. Low odds from the human-move model, a strong grade from the engine."
     },
     {
       "id": "combo-recovery-assisted-natural-best",
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-best",
-      "text": "Recovered, with help from their errors. Likely by the human-move model's read, best by the engine's."
+      "text": "Recovered, with help from their errors. The human-move model's data says likely, and the engine picks it first."
     },
     {
       "id": "combo-recovery-assisted-natural-strong",
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-strong",
-      "text": "Recovered, with help from their errors. Natural by the human-move model's read, strong by the engine's, which still has a different top pick."
+      "text": "Recovered, with help from their errors. Natural per the human-move model, strong per the engine, though not the engine's first pick."
     },
     {
       "id": "combo-chance-taken-hard-find",
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-hard-find",
-      "text": "Opportunity taken, with the engine's best. Two reads on it: the human-move model and the moves we checked both say hard to find."
+      "text": "Opportunity taken, with the engine's best. Evidence logged: the human-move model and the moves we compared put it on the hard-to-find shelf."
     },
     {
       "id": "combo-chance-taken-unusual-strong",
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-unusual-strong",
-      "text": "Opportunity taken, in an unexpected way. Two verdicts: the human-move model says long shot, the engine says strong."
+      "text": "Opportunity taken, in an unexpected way. Evidence logged: the human-move model says long shot, the engine says strong."
     },
     {
       "id": "combo-chance-taken-natural-best",
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-best",
-      "text": "Opportunity taken. Both reads are in: the human-move model says likely, the engine says best."
+      "text": "Opportunity taken. Two sources agree on the facts: the human-move model says likely, the engine says best."
     },
     {
       "id": "combo-chance-taken-natural-strong",
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-strong",
-      "text": "Opportunity taken. Two reads on it: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Opportunity taken. Two sources agree on the facts: the human-move model says natural, the engine says strong, with another move above it."
     },
     {
       "id": "combo-chance-missed-natural-error",
@@ -2250,84 +2250,84 @@
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-hard-find",
-      "text": "Cover restored, with the engine's top move. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Cover restored, with the engine's top move. Hard to find, going by the human-move model and the checked alternatives."
     },
     {
       "id": "combo-support-restored-unusual-strong",
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-unusual-strong",
-      "text": "Cover restored. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Cover restored. Unlikely per the human-move model, and strong per the engine."
     },
     {
       "id": "combo-support-restored-natural-best",
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-natural-best",
-      "text": "Cover restored. The human-move model's read is likely, the engine's is best."
+      "text": "Cover restored. Likely on the human-move model's data; best on the engine's."
     },
     {
       "id": "combo-support-restored-natural-strong",
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-natural-strong",
-      "text": "Cover restored. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Cover restored. Expected on the human-move model's data; the engine's grade is strong, with a different move heading its list."
     },
     {
       "id": "combo-advantage-converted-hard-find",
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-hard-find",
-      "text": "Conversion complete, and this was the engine's best along the way. Hard to find, by the human-move model's read and the moves we checked."
+      "text": "Conversion complete, and this was the engine's best along the way. The data on this one, from the human-move model and the checked moves: hard to find."
     },
     {
       "id": "combo-advantage-converted-unusual-strong",
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-unusual-strong",
-      "text": "Conversion complete. A long shot by the human-move model's read, strong by the engine's."
+      "text": "Conversion complete. Hardly predicted by the human-move model, yet the engine logs it as strong."
     },
     {
       "id": "combo-advantage-converted-natural-best",
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-natural-best",
-      "text": "Conversion complete. Likely by the human-move model's read, best by the engine's. Steady execution."
+      "text": "Conversion complete. Expected by the human-move model and first in the engine's search. Steady execution."
     },
     {
       "id": "combo-advantage-converted-natural-strong",
       "group": "game_review",
       "primary": "advantage-converted",
       "secondary": "human-natural-strong",
-      "text": "Conversion complete. Natural by the human-move model's read, strong by the engine's, which still has a different top pick."
+      "text": "Conversion complete. A natural choice on the human-move model's data, and strong on the engine's, which prefers another."
     },
     {
       "id": "combo-book-opening-entry-1-hard-find",
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-hard-find",
-      "text": "Book move, engine's top choice. Two verdicts: the human-move model and the moves we checked both say hard to find."
+      "text": "Book move, engine's top choice. On the study sheet: the human-move model and the checked moves both rate it hard to find."
     },
     {
       "id": "combo-book-opening-entry-1-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-unusual-strong",
-      "text": "Book move, off the expected path. Both reads are in: the human-move model says long shot, the engine says strong."
+      "text": "Book move, off the expected path. Pattern check: the human-move model says long shot, the engine says strong."
     },
     {
       "id": "combo-book-opening-entry-1-natural-best",
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-natural-best",
-      "text": "Book move. Two reads on it: the human-move model says likely, the engine says best."
+      "text": "Book move. Evidence logged: the human-move model says likely, the engine says best."
     },
     {
       "id": "combo-book-opening-entry-1-natural-strong",
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-natural-strong",
-      "text": "Book move. Two verdicts: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Book move. Evidence in from both sides of the lab: natural for the human-move model, strong, with another move above it for the engine."
     },
     {
       "id": "combo-book-opening-entry-1-hard-defense-found",
@@ -2341,28 +2341,28 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-find",
-      "text": "Recognized line, engine's top choice. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Recognized line, engine's top choice. The human-move model and the alternatives we checked agree: hard to find."
     },
     {
       "id": "combo-book-opening-entry-2-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-unusual-strong",
-      "text": "Recognized line. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Recognized line. A long shot on the human-move model's data; the engine's grade came back strong."
     },
     {
       "id": "combo-book-opening-entry-2-natural-best",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-best",
-      "text": "Recognized line. The human-move model's read is likely, the engine's is best."
+      "text": "Recognized line. The data lines up: likely per the human-move model, best per the engine."
     },
     {
       "id": "combo-book-opening-entry-2-natural-strong",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-strong",
-      "text": "Recognized line. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Recognized line. Natural to the human-move model's data; strong for the engine, which has another move on top."
     },
     {
       "id": "combo-book-opening-entry-2-hard-defense-found",
@@ -2376,28 +2376,28 @@
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-hard-find",
-      "text": "On record in opening theory, and the engine's top move. Hard to find, by the human-move model's read and the moves we checked."
+      "text": "On record in opening theory, and the engine's top move. Hard to find, say the human-move model and every move we compared."
     },
     {
       "id": "combo-book-opening-entry-3-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-unusual-strong",
-      "text": "On record in opening theory. A long shot by the human-move model's read, strong by the engine's."
+      "text": "On record in opening theory. Low odds from the human-move model, a strong grade from the engine."
     },
     {
       "id": "combo-book-opening-entry-3-natural-best",
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-best",
-      "text": "On record in opening theory. Likely by the human-move model's read, best by the engine's."
+      "text": "On record in opening theory. The human-move model's data says likely, and the engine picks it first."
     },
     {
       "id": "combo-book-opening-entry-3-natural-strong",
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-strong",
-      "text": "On record in opening theory. Natural by the human-move model's read, strong by the engine's, which still has a different top pick."
+      "text": "On record in opening theory. Natural per the human-move model, strong per the engine, though not the engine's first pick."
     },
     {
       "id": "combo-book-opening-entry-3-hard-defense-found",
@@ -2411,28 +2411,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-hard-find",
-      "text": "Next book move, engine's top choice. Both reads are in: the human-move model and the moves we checked say hard to find."
+      "text": "Next book move, engine's top choice. Evidence logged: the human-move model and the moves we checked say hard to find."
     },
     {
       "id": "combo-book-opening-follow-1-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-unusual-strong",
-      "text": "Next move, also in the book. Two reads on it: the human-move model says long shot, the engine says strong."
+      "text": "Next move, also in the book. Evidence in from both sides of the lab: long shot for the human-move model, strong for the engine."
     },
     {
       "id": "combo-book-opening-follow-1-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-best",
-      "text": "Next book move. Two verdicts: the human-move model says likely, the engine says best."
+      "text": "Next book move. Side by side, the human-move model has likely and the engine has best."
     },
     {
       "id": "combo-book-opening-follow-1-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-natural-strong",
-      "text": "Next book move. Both reads are in: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Next book move. Evidence in from both sides of the lab: natural for the human-move model, strong, with another move above it for the engine."
     },
     {
       "id": "combo-book-opening-follow-1-hard-defense-found",
@@ -2446,28 +2446,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-hard-find",
-      "text": "Recognized line, still, with the engine's best. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Recognized line, still, with the engine's best. Hard to find, going by the human-move model and the checked alternatives."
     },
     {
       "id": "combo-book-opening-follow-2-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-unusual-strong",
-      "text": "Recognized line, still. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Recognized line, still. Unlikely per the human-move model, and strong per the engine."
     },
     {
       "id": "combo-book-opening-follow-2-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-best",
-      "text": "Recognized line, still. The human-move model's read is likely, the engine's is best."
+      "text": "Recognized line, still. Likely on the human-move model's data; best on the engine's."
     },
     {
       "id": "combo-book-opening-follow-2-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-strong",
-      "text": "Recognized line, still. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Recognized line, still. Expected on the human-move model's data; the engine's grade is strong, with a different move heading its list."
     },
     {
       "id": "combo-book-opening-follow-2-hard-defense-found",
@@ -2481,28 +2481,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-hard-find",
-      "text": "Book reply, engine's top choice. Hard to find, by the human-move model's read and the moves we checked."
+      "text": "Book reply, engine's top choice. The data on this one, from the human-move model and the checked moves: hard to find."
     },
     {
       "id": "combo-book-opening-follow-3-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-unusual-strong",
-      "text": "Book reply, unexpected pick. A long shot by the human-move model's read, strong by the engine's."
+      "text": "Book reply, unexpected pick. Hardly predicted by the human-move model, yet the engine logs it as strong."
     },
     {
       "id": "combo-book-opening-follow-3-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-natural-best",
-      "text": "Book reply. Likely by the human-move model's read, best by the engine's."
+      "text": "Book reply. Expected by the human-move model and first in the engine's search."
     },
     {
       "id": "combo-book-opening-follow-3-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-3",
       "secondary": "human-natural-strong",
-      "text": "Book reply. Natural by the human-move model's read, strong by the engine's, which still has a different top pick."
+      "text": "Book reply. A natural choice on the human-move model's data, and strong on the engine's, which prefers another."
     },
     {
       "id": "combo-book-opening-follow-3-hard-defense-found",
@@ -2516,28 +2516,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-hard-find",
-      "text": "Line holds with the engine's best. Two reads on it: the human-move model and the moves we checked both say hard to find."
+      "text": "Line holds with the engine's best. Pattern check: the human-move model and the moves we compared put it on the hard-to-find shelf."
     },
     {
       "id": "combo-book-opening-follow-4-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-unusual-strong",
-      "text": "Line holds. Two verdicts: the human-move model says long shot, the engine says strong."
+      "text": "Line holds. Logged for study: long shot per the human-move model, strong per the engine."
     },
     {
       "id": "combo-book-opening-follow-4-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-natural-best",
-      "text": "Line holds. Both reads are in: the human-move model says likely, the engine says best."
+      "text": "Line holds. Side by side, the human-move model has likely and the engine has best."
     },
     {
       "id": "combo-book-opening-follow-4-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-4",
       "secondary": "human-natural-strong",
-      "text": "Line holds. Two reads on it: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Line holds. Next to each other, the human-move model has natural and the engine has strong, with another move above it."
     },
     {
       "id": "combo-book-opening-follow-4-hard-defense-found",
@@ -2551,28 +2551,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-hard-find",
-      "text": "Logged as book, and it's the engine's best. Hard to find, by the human-move model's read and the alternatives we checked."
+      "text": "Logged as book, and the engine ranks it first. The human-move model and the alternatives we checked agree: hard to find."
     },
     {
       "id": "combo-book-opening-follow-5-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-unusual-strong",
-      "text": "Logged as book. The human-move model's read is a long shot, the engine's is strong."
+      "text": "Logged as book. A long shot on the human-move model's data; the engine's grade came back strong."
     },
     {
       "id": "combo-book-opening-follow-5-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-best",
-      "text": "Logged as book. The human-move model's read is likely, the engine's is best."
+      "text": "Logged as book. The data lines up: likely per the human-move model, best per the engine."
     },
     {
       "id": "combo-book-opening-follow-5-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-strong",
-      "text": "Logged as book. The human-move model's read is natural, the engine's is strong, though it ranks something else higher."
+      "text": "Logged as book. Natural to the human-move model's data; strong for the engine, which has another move on top."
     },
     {
       "id": "combo-book-opening-follow-5-hard-defense-found",
@@ -2586,28 +2586,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-hard-find",
-      "text": "In the book, and top of the engine's list. Hard to find, by the human-move model's read and the moves we checked."
+      "text": "In the book, and top of the engine's list. Hard to find, say the human-move model and every move we compared."
     },
     {
       "id": "combo-book-opening-follow-6-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-unusual-strong",
-      "text": "In the book, off the expected path. A long shot by the human-move model's read, strong by the engine's."
+      "text": "In the book, off the expected path. Low odds from the human-move model, a strong grade from the engine."
     },
     {
       "id": "combo-book-opening-follow-6-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-best",
-      "text": "In the book. Likely by the human-move model's read, best by the engine's. Instinct and search line up."
+      "text": "In the book. The human-move model's data says likely, and the engine picks it first. Instinct and search line up."
     },
     {
       "id": "combo-book-opening-follow-6-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-natural-strong",
-      "text": "In the book. Natural by the human-move model's read, strong by the engine's, which still has a different top pick."
+      "text": "In the book. Natural per the human-move model, strong per the engine, though not the engine's first pick."
     },
     {
       "id": "combo-book-opening-follow-6-hard-defense-found",
@@ -2621,28 +2621,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-hard-find",
-      "text": "Theory holds, and it's the engine's top pick. Two verdicts: the human-move model and the moves we checked both say hard to find."
+      "text": "Theory holds, and it's the engine's top pick. Evidence logged: the human-move model and the checked moves both rate it hard to find."
     },
     {
       "id": "combo-book-opening-follow-7-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-unusual-strong",
-      "text": "Theory holds. Both reads are in: the human-move model says long shot, the engine says strong."
+      "text": "Theory holds. Logged for study: long shot per the human-move model, strong per the engine."
     },
     {
       "id": "combo-book-opening-follow-7-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-best",
-      "text": "Theory holds. Two reads on it: the human-move model says likely, the engine says best."
+      "text": "Theory holds. Logged for study: likely per the human-move model, best per the engine."
     },
     {
       "id": "combo-book-opening-follow-7-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-strong",
-      "text": "Theory holds. Two verdicts: the human-move model says natural, the engine says strong, with another move above it."
+      "text": "Theory holds. The pattern file says natural on the human-move model and strong, with another move above it on the engine."
     },
     {
       "id": "combo-book-opening-follow-7-hard-defense-found",
@@ -2656,28 +2656,28 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-find",
-      "text": "Theory once more, engine's top choice. Hard to find, by the human-move model's read and the alternatives we checked. Knowing the line isn't finding the move."
+      "text": "Theory once more, engine's top choice. Hard to find, going by the human-move model and the checked alternatives. Knowing the line isn't finding the move."
     },
     {
       "id": "combo-book-opening-follow-8-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-unusual-strong",
-      "text": "Theory once more. The human-move model's read is a long shot, the engine's is strong. Theory and instinct don't always match."
+      "text": "Theory once more. Unlikely per the human-move model, and strong per the engine. Theory and instinct don't always match."
     },
     {
       "id": "combo-book-opening-follow-8-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
-      "text": "Theory once more. The human-move model's read is likely, the engine's is best."
+      "text": "Theory once more. Likely on the human-move model's data; best on the engine's."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
-      "text": "Theory once more. The human-move model's read is natural, the engine's is strong, though it ranks something else higher. The book doesn't decide that."
+      "text": "Theory once more. Expected on the human-move model's data; the engine's grade is strong, with a different move heading its list. The book doesn't decide that."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",
