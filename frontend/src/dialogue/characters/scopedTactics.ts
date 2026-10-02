@@ -423,7 +423,7 @@ export const girlTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Riddle answered: {move} unleashes a {motif} on the spot.",
     played_possible: "{move} plants the seed of a {motif}, if the replies cooperate.",
-    allowed_immediate: "Red flag: with {action}, {opponent} springs a {motif}.",
+    allowed_immediate: "Puzzle piece: with {action}, {opponent} springs a {motif}.",
     allowed_possible: "Somewhere down the line, {opponent} could find a {motif}; the replies get the final say.",
     missed_immediate: "Hint for next time: {best} had a {motif} ready immediately.",
     missed_possible: "{best} could have grown into a {motif}, depending on the replies.",
