@@ -159,8 +159,14 @@ class JobPipeline:
 
     def run_enrichment(self):
         try:
-            with self.runner.import_lock, self.sessions() as db:
-                tasks = plan_probes(db, self.job_id, self.settings, self.engine())
+            with self.sessions() as db:
+                tasks = plan_probes(
+                    db,
+                    self.job_id,
+                    self.settings,
+                    self.engine(),
+                    write_lock=self.runner.import_lock,
+                )
             for task in tasks:
                 if not self.games.submit(self.probe, task):
                     break
