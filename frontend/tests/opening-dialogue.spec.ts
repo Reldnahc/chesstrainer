@@ -7,7 +7,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, professorOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, professorOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {professor} from "../src/dialogue/characters/professor";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
@@ -177,6 +177,7 @@ const openingCoaches = [
   {id: "slime", personality: newCastPersonalities.slime, authored: slimeOpeningTemplates, voiced: false},
   {id: "alien", personality: newCastPersonalities.alien, authored: alienOpeningTemplates, voiced: false},
   {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
+  {id: "wizard", personality: newCastPersonalities.wizard, authored: wizardOpeningTemplates, voiced: false},
   {id: "dog-gentle", personality: professor, authored: professorOpeningTemplates, voiced: false},
 ] as const;
 
