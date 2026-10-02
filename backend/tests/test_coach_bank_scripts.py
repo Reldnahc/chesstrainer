@@ -52,3 +52,17 @@ def test_authored_scripts_are_complete_distinct_spoken_text(coach, voice):
         assert not any(marker in text for marker in ("{", "}", "TODO", "TBD")), row["id"]
         # Recordings serve many positions; squares and move numbers stay in the bubble.
         assert not re.search(r"\b[a-h][1-8]\b|\d", text), row["id"]
+
+
+def test_authored_voices_never_share_a_script():
+    banks = [{row["text"] for row in read(f"banks/{voice}/scripts.json")["records"]} for _, voice in AUTHORED]
+    for index, texts in enumerate(banks):
+        for other in banks[index + 1:]:
+            assert not texts & other
+
+
+@pytest.mark.parametrize(("coach", "voice"), AUTHORED)
+def test_difficulty_is_attributed_to_the_human_model(coach, voice):
+    # Spoken right after "the engine's best", bare "evidence" sounds like engine judgement.
+    for row in read(f"banks/{voice}/scripts.json")["records"]:
+        assert not re.search(r"\b(?:the|model) evidence\b", row["text"], flags=re.IGNORECASE), row["id"]
