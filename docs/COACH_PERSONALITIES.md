@@ -163,7 +163,11 @@ compact before-and-after observation of exactly what the move changed, then its
 consequence, with the human-move model's and the engine's readings kept apart,
 rare factual approval and no questions. Marisol also stays silent until a bank is
 registered.
-The other 7 voices retain their current wording and deterministic variants.
+Ingrid (`woman-blonde`) has opted in too, in `characters/blonde.ts`: a relaxed,
+unhurried opener, the concrete fact said plainly, then one manageable next idea,
+with reassurance kept to the player's own moments and always beside a chess point,
+and no questions. Ingrid also stays silent until a bank is registered.
+The other 6 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

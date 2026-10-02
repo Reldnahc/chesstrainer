@@ -107,12 +107,13 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/jun/scripts.json`, coach `man-expert`), Fergus
 (`banks/fergus/scripts.json`, coach `frog`), Arjun
 (`banks/arjun/scripts.json`, coach `man-partner`), Femi
-(`banks/femi/scripts.json`, coach `man-host`) and Marisol
-(`banks/marisol/scripts.json`, coach `woman-analyst`) each have complete authored
+(`banks/femi/scripts.json`, coach `man-host`), Marisol
+(`banks/marisol/scripts.json`, coach `woman-analyst`) and Ingrid
+(`banks/ingrid/scripts.json`, coach `woman-blonde`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus and Marisol,
+coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol and Ingrid,
 whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
 scripts and a bank is recorded and registered.
