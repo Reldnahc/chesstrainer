@@ -100,7 +100,7 @@ export const alienOpeningTemplates = {
 
 export const raccoonOpeningTemplates = {
   "book-opening-entry-1": ["This one's a known route: {opening}."],
-  "book-opening-entry-2": ["Known ground, and it comes with a name: {opening}."],
+  "book-opening-entry-2": ["Well-travelled route, and it comes with a name: {opening}."],
   "book-opening-entry-3": ["The book's got this move marked down, under {opening}."],
   "book-opening-follow-1": ["Same known route: {opening}."],
   "book-opening-follow-2": ["Covered by the book as well: {opening}."],
