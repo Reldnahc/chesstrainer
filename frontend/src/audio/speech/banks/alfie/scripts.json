@@ -42,7 +42,7 @@
     {
       "id": "tactic-skewer-allowed",
       "group": "game_review",
-      "text": "When two pieces share a line, an attack on the first can reach the second. The other side now has a skewer: if the front piece moves, the piece behind it could be exposed. Shared lines like that are worth checking before each move."
+      "text": "When two pieces share a line, an attack on the first can reach the second. The other side now has a skewer: if the front piece gives way, the piece behind it could come under attack. Shared lines like that are worth checking before each move."
     },
     {
       "id": "tactic-skewer-missed",
@@ -107,7 +107,7 @@
     {
       "id": "tactic-discovered-attack-missed",
       "group": "game_review",
-      "text": "Another move offered a discovered attack: one piece moving aside so the piece behind it could attack. Here the line stays shut. When two of your pieces share a line, moving the front one is worth considering."
+      "text": "One of the other candidates was a discovered attack: one piece moving aside so the piece behind it could attack. Here the line stays shut. When two of your pieces share a line, moving the front one is worth considering."
     },
     {
       "id": "tactic-double-attack-played",
@@ -167,7 +167,7 @@
     {
       "id": "cause-avoiding-bad-trades",
       "group": "game_review",
-      "text": "An exchange has two halves: what you take and what comes back. Here the capture is answered by a recapture that takes a more valuable piece. So count the whole exchange, recapture included, before judging the first capture."
+      "text": "Every exchange comes in two halves: what you take and what comes back. Here the capture is answered by a recapture that takes a more valuable piece. So count the whole exchange, recapture included, before judging the first capture."
     },
     {
       "id": "positional-development-actual",
@@ -432,7 +432,7 @@
     {
       "id": "support-restored",
       "group": "game_review",
-      "text": "Earlier, a piece was left unguarded; now it has a defender once more. Comparing the two positions shows exactly where its protection came back from."
+      "text": "The unguarded piece from earlier has a defender now. Comparing the two positions shows exactly where its protection came back from."
     },
     {
       "id": "gradual-erosion",
@@ -1011,7 +1011,7 @@
       "group": "game_review",
       "primary": "only-playable-move",
       "secondary": "human-hard-defense-found",
-      "text": "Only this move held the position together; every other one we checked was losing. The human-move model rates it a hard defense to find, and it was found. It's worth filing away as an example of patient defense."
+      "text": "This move alone held the position together; the rest we checked were losing. The human-move model rates it a hard defense to find, and it was found. It's worth filing away as an example of patient defense."
     },
     {
       "id": "combined-only-playable-move-with-human-hard-find",
@@ -2089,7 +2089,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-hard-find",
-      "text": "This move belongs to a recognized opening line, and it's the engine's best. Being known doesn't make it easy: the human-move model and the alternatives we checked suggest it was hard to find."
+      "text": "This move belongs to a recognized opening line, and it's the engine's best. A recognized line, and still not simple to find: the human-move model and the alternatives we checked suggest it was hard to find."
     },
     {
       "id": "combo-recognized-opening-unusual-strong",
@@ -2334,7 +2334,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-hard-defense-found",
-      "text": "This book move is doing real defensive work. Only it, among the searched moves, kept the position playable, and the human-move model rates it hard to find."
+      "text": "This book move has a defensive job to do here. Only it, among the searched moves, kept the position playable, and the human-move model rates it hard to find."
     },
     {
       "id": "combo-book-opening-entry-2-hard-find",
