@@ -321,3 +321,17 @@ export const analystOpeningTemplates = {
   "book-opening-follow-7": ["Again, {opening}."],
   "book-opening-follow-8": ["Still {opening}. Being there locates the game; its quality is a matter for the engine."],
 } as const;
+
+export const blondeOpeningTemplates = {
+  "book-opening-entry-1": ["With this, the game settles into {opening}."],
+  "book-opening-entry-2": ["Comfortable book territory, under the name {opening}."],
+  "book-opening-entry-3": ["The opening book files this under {opening}."],
+  "book-opening-follow-1": ["Still steadily in {opening}."],
+  "book-opening-follow-2": ["{opening} has this one covered too."],
+  "book-opening-follow-3": ["Even the reply sits inside {opening}."],
+  "book-opening-follow-4": ["The {opening} line rolls along."],
+  "book-opening-follow-5": ["{opening} is familiar with this move as well."],
+  "book-opening-follow-6": ["Still on comfortable {opening} ground."],
+  "book-opening-follow-7": ["{opening} again, nice and familiar."],
+  "book-opening-follow-8": ["More {opening}. Being in the book places the game; it isn't a grade."],
+} as const;
