@@ -79,6 +79,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
       if (!controller.signal.aborted) { setBusy(null); beginRequest.current = null; }
     }
   }
+  const unsolved = puzzles ? Math.max(0, puzzles.available - puzzles.solved_puzzles) : null;
   const available = source ? puzzles?.sources.filter(item => item.source === source).reduce((sum, item) => sum + item.count, 0) : puzzles?.available;
   return <>
     <PageTitle eyebrow="YOUR NEXT MOVE" title={mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"} />
@@ -100,7 +101,9 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
       </section>
       <section className="panel study-option">
         <Puzzle aria-hidden="true" size={22} /><h2>Puzzles</h2>
-        <p>{puzzles?.available ? `${puzzles.available} puzzles available for calculation practice.` : "No puzzle collections are installed yet."}</p>
+        <p>{!puzzles ? "Calculation practice from installed collections." : puzzles.available
+          ? `${puzzles.solved_puzzles} ${puzzles.solved_puzzles === 1 ? "puzzle" : "puzzles"} solved.` : "No puzzle collections are installed yet."}</p>
+        <p className="study-count">{unsolved ?? "—"} <span>{unsolved === 1 ? "Unsolved puzzle" : "Unsolved puzzles"}</span></p>
         <ActionLink variant="secondary" href={studyPaths.puzzles}>{puzzles?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></ActionLink>
       </section>
     </div>}

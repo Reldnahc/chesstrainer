@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("puzzle and opening statistics retain labels, zeroes and shared definition-list layout", async ({page}) => {
   await page.route("**/api/puzzles", route => route.fulfill({json: {
-    available: 0, retry_available: 0, sources: [], resume: [], stats: {clean: 2, failed_then_solved: 0, revealed: 1},
+    available: 0, retry_available: 0, solved_puzzles: 0, sources: [], resume: [], stats: {clean: 2, failed_then_solved: 0, revealed: 1},
   }}));
   await page.route("**/api/opening-studies", route => route.fulfill({json: {
     active_studies: 1, learning_positions: 3, due_positions: 0,
