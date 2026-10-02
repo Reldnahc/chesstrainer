@@ -429,6 +429,16 @@ Production selection consumes structured facts at their existing authority
 boundary. Cold SRS may speak neutral task instructions, never themes, evaluations,
 best moves or future continuation facts. Opening an untouched puzzle in-app speaks
 its neutral ready line once; reloads and puzzles with moves stay silent until Listen.
+In due review and opening recall, the first cold card of a session speaks its
+ready line and any card returning after a failure speaks its retry line; later
+cold cards and restored attempts stay silent until Listen, so a long queue does
+not repeat the same sentence.
+Opening an untouched game review in-app at its start speaks the coach's fact-free
+greeting once and shows it in the bubble; the first navigation replaces it, and
+restored later moves stay silent.
+`game-review-opened` is written for every coach but awaits recording, so the shared
+catalogue holds 439 meanings while each registered bank keeps its 438 takes. The
+bank tests list it as awaiting recording until those takes land.
 Authorized attempt/reveal feedback may
 select supported explanations; a reveal is never praised as an unassisted success.
 Restoring saved feedback does not create a new narration event. Opening acceptance
