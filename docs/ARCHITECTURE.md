@@ -316,6 +316,9 @@ mode and belong to the job in local mode. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
+Cancellation is read from the job row: task boundaries check it exactly, while loops
+waiting for a lock, a pooled process or a running native search re-check it at most
+every 250 ms.
 
 Full-game review jobs instead parallelize independent move evidence, with at most
 `min(STOCKFISH_WORKERS, ENGINE_SLOTS)` outstanding moves. The coordinator commits

@@ -2,6 +2,7 @@
 
 from queue import Empty, Queue
 
+from trainer.cancellation import throttled
 from trainer.search_limits import EngineCancelled
 
 
@@ -23,7 +24,7 @@ class EnginePool:
                 self.settings = settings
 
             def run(self, method, *args, **kwargs):
-                cancelled = kwargs.get("cancelled")
+                cancelled = throttled(kwargs.get("cancelled"))
                 while True:
                     if cancelled and cancelled():
                         raise EngineCancelled()

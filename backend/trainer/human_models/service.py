@@ -5,6 +5,7 @@ from time import monotonic
 
 from sqlalchemy import select
 
+from trainer.cancellation import throttled
 from trainer.chess_core import digest
 from trainer.human_models.context import request_for
 from trainer.human_models.evidence import policy_summary
@@ -61,9 +62,10 @@ class HumanModels:
         owner = sessions.kw["info"]["user_id"]
         lock = self._locks[int(digest([owner, key])[:4], 16) % len(self._locks)]
         deadline = monotonic() + self.settings.human_model_timeout
+        waiting = throttled(cancelled)
         try:
             while not lock.acquire(timeout=0.05):
-                if cancelled():
+                if waiting():
                     raise HumanCancelled("cancelled")
                 if monotonic() >= deadline:
                     raise HumanUnavailable("cache_busy")

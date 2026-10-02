@@ -10,6 +10,7 @@ from queue import Empty, Full, Queue
 from time import monotonic
 from typing import Protocol
 
+from trainer.cancellation import throttled
 from trainer.human_models.preset import provenance
 from trainer.human_models.types import HumanPolicy, HumanReadiness, ModelProvenance
 
@@ -168,8 +169,9 @@ class MaiaProvider:
         if self.provenance.inference.get("torch") == "unavailable":
             raise HumanUnavailable("runtime_unavailable")
         deadline = monotonic() + self.settings.human_model_timeout
+        waiting = throttled(cancelled)
         while True:
-            if cancelled() or self._closed.is_set():
+            if waiting() or self._closed.is_set():
                 raise HumanCancelled("cancelled")
             if monotonic() >= deadline:
                 raise HumanUnavailable("busy")
@@ -181,10 +183,13 @@ class MaiaProvider:
                 break
             except Empty:
                 continue
+        with self._guard:
+            cooling = monotonic() < self._retry_after
+        if cooling:
+            # Another request's failure started the cooldown; keep this healthy worker.
+            self.available.put(worker)
+            raise HumanUnavailable("cooldown")
         try:
-            with self._guard:
-                if monotonic() < self._retry_after:
-                    raise HumanUnavailable("cooldown")
             if worker is None:
                 with self._guard:
                     if self._closed.is_set():
