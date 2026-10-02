@@ -74,7 +74,8 @@ MP3s are preserved by Git history rather than left under production asset globs.
 ## Authored banks awaiting recording
 
 Winston (`banks/winston/scripts.json`, coach `capybara`), Button
-(`banks/button/scripts.json`, coach `mushroom`) and Percy
+(`banks/button/scripts.json`, coach `mushroom`), Pip
+(`banks/pip/scripts.json`, coach `slime`) and Percy
 (`banks/percy/scripts.json`, coach `living-pawn`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
@@ -97,6 +98,7 @@ scripts pass review, and remove it once the bank is registered.
 | Winston (`capybara`) | Written, 438 | Not tracked here | No | No |
 | Button (`mushroom`) | Written, 438 | Not tracked here | No | No |
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
+| Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
 | Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `f379a89` | No | No |
 
 ## Adding or revising a production bank

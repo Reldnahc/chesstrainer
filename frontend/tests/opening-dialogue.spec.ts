@@ -7,7 +7,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
@@ -173,6 +173,7 @@ const openingCoaches = [
   {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: false},
   {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: false},
   {id: "ghost", personality: newCastPersonalities.ghost, authored: ghostOpeningTemplates, voiced: false},
+  {id: "slime", personality: newCastPersonalities.slime, authored: slimeOpeningTemplates, voiced: false},
   {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
 ] as const;
 
@@ -263,9 +264,11 @@ for (const coach of openingCoaches) {
       expect(intent.claims.find(item => item.code === primaryCode)!.priority).toBeGreaterThan(book.priority);
       expect(intent.claims.some(item => ["book_sound", "best", "good"].includes(item.code))).toBe(false);
       const output = renderDialogue(intent, coach);
-      expect(output.renderedClaims?.map(item => item.code)).toEqual([primaryCode, "book"]);
+      // A one-claim voice drops the lower-priority recognition instead of promoting it.
+      const single = coach.personality.maxClaims === 1;
+      expect(output.renderedClaims?.map(item => item.code)).toEqual(single ? [primaryCode] : [primaryCode, "book"]);
       const authored = coach.authored[bookRecordingId(book.opening!) as keyof typeof coach.authored][0];
-      expect(output.text.endsWith(authored.replace("{opening}", "Named line"))).toBe(true);
+      expect(output.text.endsWith(authored.replace("{opening}", "Named line"))).toBe(!single);
       expect(output.text).not.toMatch(/\b(well judged|nicely|sound choice|strong choice|good move)\b/i);
       expect(output.text).not.toMatch(/\b(this|that|your move) (is|was) (the )?best\b/i);
       expect(report.label).toBe("Book");

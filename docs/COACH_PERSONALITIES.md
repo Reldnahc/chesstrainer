@@ -87,10 +87,13 @@ Button approaches the same fact from a slightly odd, gentle angle. Their written
 opt-in precedes recorded banks, so they remain silent until a bank is registered.
 Wisp (ghost) has also opted in, with its forms kept in `characters/ghost.ts`: it
 names what is already on the board or waiting for a reply, in short sentences
-with no questions. Percy (living pawn) has opted in too: an earnest reaction,
-then the job a piece did or dropped. Like Winston and Button, Wisp and Percy stay
-silent until a bank is registered.
-The other 24 voices retain their current wording and deterministic variants.
+with no questions. Pip (slime) has done the same: a small happy or gentle
+reaction, then one plain fact in short everyday words, with an occasional Dublin
+turn of phrase and no questions. As a one-claim voice, Pip drops a lower-priority
+Book recognition rather than adding it after a correction. Percy (living pawn)
+has opted in too: an earnest reaction, then the job a piece did or dropped. Like
+Winston and Button, Wisp, Pip and Percy stay silent until a bank is registered.
+The other 23 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
