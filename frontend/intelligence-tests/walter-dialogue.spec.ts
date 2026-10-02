@@ -15,6 +15,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   slime: {version: "slime-2", actual: "attacked in one go", possible: "would be attacked in one go"},
   alien: {version: "alien-2", actual: "under attack", possible: "would be attacked simultaneously"},
   "living-pawn": {version: "living-pawn-2", actual: "all at once", possible: "would be attacked"},
+  "cat-black": {version: "velvet-4", actual: "in its reach at once", possible: "one piece doing all the watching"},
   wizard: {version: "wizard-2", actual: "the fork in its plainest form", possible: "would be attacked at once"},
 };
 

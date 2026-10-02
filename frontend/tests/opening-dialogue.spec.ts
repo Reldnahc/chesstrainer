@@ -7,7 +7,8 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {velvet} from "../src/dialogue/characters/velvet";
+import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
@@ -177,6 +178,7 @@ const openingCoaches = [
   {id: "alien", personality: newCastPersonalities.alien, authored: alienOpeningTemplates, voiced: false},
   {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
   {id: "wizard", personality: newCastPersonalities.wizard, authored: wizardOpeningTemplates, voiced: false},
+  {id: "cat-black", personality: velvet, authored: velvetOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {
