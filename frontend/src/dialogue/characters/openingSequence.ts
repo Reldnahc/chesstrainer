@@ -63,9 +63,9 @@ export const slimeOpeningTemplates = {
   "book-opening-follow-1": ["Still in the book, still {opening}."],
   "book-opening-follow-2": ["And another known move, in {opening}."],
   "book-opening-follow-3": ["On we go, still following {opening}."],
-  "book-opening-follow-4": ["The book has this one as well: {opening}."],
+  "book-opening-follow-4": ["The book's got this one too: {opening}."],
   "book-opening-follow-5": ["Yep, this move's listed too, in {opening}."],
   "book-opening-follow-6": ["The opening book keeps up with us here: {opening}."],
   "book-opening-follow-7": ["Still on the known track with {opening}."],
-  "book-opening-follow-8": ["Another step the book knows, in {opening}."],
+  "book-opening-follow-8": ["Another move straight out of {opening}."],
 } as const;
