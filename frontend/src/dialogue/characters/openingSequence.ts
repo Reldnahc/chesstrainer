@@ -305,5 +305,5 @@ export const puppyOpeningTemplates = {
   "book-opening-follow-5": ["Nose to the {opening} map, still!"],
   "book-opening-follow-6": ["Yet another {opening} move, yay!"],
   "book-opening-follow-7": ["More pages of {opening} to read!"],
-  "book-opening-follow-8": ["Still deep in {opening} land! That's a map pin, not a grade for the move."],
+  "book-opening-follow-8": ["Still deep in {opening} land! Think of it as a dot on the map, not a grade for the move."],
 } as const;
