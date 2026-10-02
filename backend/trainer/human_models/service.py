@@ -20,6 +20,8 @@ class HumanModels:
         self.provider = provider or MaiaProvider(settings)
         self.configuration_key = digest(self.provider.provenance.model_dump(mode="json"))
         self._locks = tuple(threading.Lock() for _ in range(128))
+        # A prediction failed in this process since the runtime last produced a policy.
+        self._failed = False
 
     def snapshot(self):
         return self.provider.snapshot()
@@ -27,11 +29,22 @@ class HumanModels:
     def can_attempt(self):
         return self.snapshot().status in {"ready", "unchecked"}
 
+    def retries_saved_failures(self):
+        """Retry saved failures once the runtime is ready, or until it fails in this process.
+
+        A broken checkpoint would otherwise rewrite every saved failure on each game
+        open, only to fail again after its cooldown.
+        """
+        status = self.snapshot().status
+        return status == "ready" or (status == "unchecked" and not self._failed)
+
     def needs_refresh(self, evidence, parsed, actor, fallback):
         if not self.can_attempt():
             return False
         from trainer.game_library import pgn_rating
 
+        if (evidence or {}).get("status") == "unavailable" and not self.retries_saved_failures():
+            return False
         return (
             not evidence
             or evidence.get("status") != "available"
@@ -80,6 +93,7 @@ class HumanModels:
                 # Never hold a database transaction across native inference.
                 if not saved:
                     policy = self.provider.predict(request, cancelled)
+                    self._failed = False
                 legal = {move.uci() for move in board.legal_moves}
                 predicted = {row.uci for row in policy.moves}
                 if not predicted <= legal or policy.complete and predicted != legal:
@@ -109,6 +123,7 @@ class HumanModels:
         except HumanCancelled:
             return HumanEvidence(status="cancelled", **base).model_dump(mode="json")
         except (HumanUnavailable, ValueError, OSError):
+            self._failed = True
             return HumanEvidence(
                 status="unavailable", unavailable_reason="human_model_unavailable", **base
             ).model_dump(mode="json")
