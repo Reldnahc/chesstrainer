@@ -18,6 +18,7 @@ import {kitten, puppy} from "../src/dialogue/characters/groundedPets";
 import {dragon} from "../src/dialogue/characters/dragon";
 import {collie} from "../src/dialogue/characters/collie";
 import {velvet} from "../src/dialogue/characters/velvet";
+import {corgi} from "../src/dialogue/characters/corgi";
 import {factualParts, validWording} from "../src/dialogue/composition";
 import {practiceIntent} from "../src/dialogue/practiceIntent";
 
@@ -34,6 +35,7 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
   {id: "dragon", personality: dragon},
   {id: "dog-collie", personality: collie},
   {id: "cat-black", personality: velvet},
+  {id: "dog-corgi", personality: corgi},
   {id: "dog-puppy", personality: puppy}];
 function item(role: "played" | "allowed" | "missed", timing: TacticalPresentation["timing"], effect: TacticalPresentation["effect"]): Claim {
   return {...claim(`tactic_${role}`, {move: "Nf3", best: "Ng5", opponent: "Black", motif: "pin", detail: "Original prose remains intact."},
