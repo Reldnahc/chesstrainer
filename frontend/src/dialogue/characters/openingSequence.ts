@@ -160,7 +160,7 @@ export const kittenOpeningTemplates = {
   "book-opening-entry-3": ["Seen it before! {opening} includes this move."],
   "book-opening-follow-1": ["The book hasn't left our side: {opening}."],
   "book-opening-follow-2": ["{opening} has this one on its pages too."],
-  "book-opening-follow-3": ["The reply is book material too, in {opening}."],
+  "book-opening-follow-3": ["Look, the reply is book too, straight out of {opening}."],
   "book-opening-follow-4": ["The trail through {opening} keeps on going."],
   "book-opening-follow-5": ["We're still inside the map of {opening}."],
   "book-opening-follow-6": ["Yet another book move from {opening}."],

@@ -175,7 +175,7 @@ export const kittenTacticalTemplates = authorTacticalWordings({
     missed_possible: "{best} might have sprung a {motif}, if the replies played along.",
   },
   fork: {actual: "One sneaky piece is poking at the {targets} together.", possible: "The {targets} would be attacked, and it would take only one sneaky piece."},
-  material: "A {gain} may be waiting at the end, if both sides' choices let it happen.",
+  material: "A {gain} may be the prize at the end of the trail, but both sides still get their say.",
   capture: {candidate: "{capture} would snatch a {piece}.", followup: "Down the road, {capture} might snatch a {piece}."},
   playedCapture: {fact: "{move} springs a sneaky {motif}.", consequence: "{capture} snatches a {piece}."},
 });
