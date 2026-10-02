@@ -1,10 +1,10 @@
 import type { CSSProperties, ReactNode } from "react";
 import { ArtworkSvg, BodyRig, HeadRig } from "../../ArtworkRig";
 import type { CoachArtworkProps } from "../../model";
-import HumanFeatures from "../../human/HumanFeatures";
+import HumanFeatures, { type HumanFaceStyle } from "../../human/HumanFeatures";
 import HumanSpeechMouth, { type HumanSpeechPalette } from "../../human/HumanSpeechMouth";
 import Arm from "../../human/Arm";
-import { handPoses, poses, type Pose } from "../../human/poses";
+import { handPoses, poses, withRestingGesture, type Gesture, type Pose } from "../../human/poses";
 import Accents from "../../studies/Accents";
 import Book from "../../studies/Book";
 import "../../studies/motion.css";
@@ -17,6 +17,8 @@ export type YouthLook = {
   cuff: string;
   hair: string;
   speech: HumanSpeechPalette;
+  face: HumanFaceStyle;
+  resting: Gesture;
   clothing: ReactNode;
   backHair?: ReactNode;
   frontHair: ReactNode;
@@ -30,7 +32,7 @@ export default function YouthCoach({
   expression,
   look,
 }: Pick<CoachArtworkProps, "expression"> & { look: YouthLook }) {
-  const source = poses[expression];
+  const source = withRestingGesture(poses[expression], expression, look.resting);
   const pose: Pose = {
     ...source,
     eye: source.eye + 0.35,
@@ -91,6 +93,7 @@ export default function YouthCoach({
             browColor={look.hair}
             noseColor={look.shade}
             mouthColor={youthMouthColor}
+            face={look.face}
             mouth={<HumanSpeechMouth pose={pose} expression={expression}
               mouthColor={youthMouthColor} palette={look.speech} />}
           />

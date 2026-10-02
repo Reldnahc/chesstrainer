@@ -67,6 +67,37 @@ voice casting, follow that home. Walter keeps his approved voice.
 | Mateo | `human-boy` | Buenos Aires, Argentina |
 | Tala | `human-girl` | Manila, Philippines |
 
+### Human faces and resting stances
+
+The humans share one face rig (`human/HumanFeatures.tsx`) but not one face.
+Each of the nine newer humans passes a `HumanFaceStyle` that sets eye shape
+(round, almond, upturned or downturned), size, iris colour, resting upper lid,
+lash line, smiling lower lids, catchlights, lid creases, brow weight, arch, angle
+and a habitual raised brow, and the nose. Walter passes nothing and keeps the
+original face. Eye centres, blink, gaze, the closed-eye shapes and the speech
+mouth on Walter's coordinates stay shared, so reaction, idle and speech rigs work
+unchanged. A resting lid clears completely as an expression widens the eyes, so
+shock still reads as shock.
+
+| Coach | Eyes and brows | Nose | Neutral/idle stance |
+|---|---|---|---|
+| Walter | original round eyes behind his glasses | hook | open palms (`rest`) |
+| Femi | warm almond, lower lids lift when he smiles, heavy soft brows | broad | waving (`wave`) |
+| Jun | narrow, lightly hooded, fine corner lines, level brows | hook | hands clasped (`clasp`) |
+| Arjun | big round curious eyes, one brow raised | long | palm offered (`present`) |
+| Tamar | upturned almond with a flicked lash line, angled brows | hook | arms folded (`fold`) |
+| Marisol | lowered lids, thin level brows, burgundy cat-eye frames | long | fingers steepled (`steeple`) |
+| Réka | wide round eyes, lash line, high arched brows | button | one fist up (`fist`) |
+| Ingrid | soft downturned blue-grey eyes, light sloped brows | hook | open palms (`rest`) |
+| Mateo | the biggest round eyes, thick high brows | button | fists ready (`ready`) |
+| Tala | sharp upturned eyes, lash line, one brow raised | button | hands on hips (`hips`) |
+
+The stance replaces only the `neutral` and `idle` gesture; every other expression
+keeps its shared gesture. The four women also have their own face outlines:
+Réka rounder, Marisol longer and narrower, Ingrid softer at the jaw.
+A new human should choose its own face style and stance rather than reuse another
+coach's combination.
+
 Pickle has a kitten-specific silhouette: a large round head, low-set round eyes,
 tiny muzzle, short seated body and soft paws. Cheek/chin hand positions fit that
 face without obscuring the eyes. The shared paw rig accepts optional positions;

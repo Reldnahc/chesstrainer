@@ -20,7 +20,7 @@ export default function Arm({
   const left = side === "left";
   const shoulder = left ? 18 : 62;
   const elbow = left ? 10 : 70;
-  const fist = gesture === "fist" || gesture === "win";
+  const fist = gesture === "fist" || gesture === "win" || gesture === "ready";
   return (
     <g className={`coach-arm coach-arm-${side}`}>
       <g className={`coach-idle-${left ? "leftArm" : "rightArm"}`}>
