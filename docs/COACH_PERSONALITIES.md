@@ -149,11 +149,15 @@ also stays silent until a bank is registered.
 Fergus (frog) has opted in too, with his forms in `characters/groundedQuiet.ts`:
 one flat report of the fact with a dry, side-neutral tail at most, no questions
 and no exclamation marks. Fergus also stays silent until a bank is registered.
+Arjun (`man-partner`) has opted in too, in `characters/partner.ts`: an occasional
+genuine question that reveals the mechanism, then the idea, then a comparison of
+candidates side by side, with delight kept for unusual resources and no claim
+beyond the supported line. Arjun also stays silent until a bank is registered.
 Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
 the concrete reply in plain words, then one small habit to carry forward, with
 ownership words kept to the learner's own moments. Biscuit also stays silent
 until a bank is registered.
-The other 9 voices retain their current wording and deterministic variants.
+The other 8 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
