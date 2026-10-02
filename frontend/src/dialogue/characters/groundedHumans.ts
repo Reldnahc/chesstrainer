@@ -27,7 +27,7 @@ export const youngGirl: CoachPersonality = {
     ],
     tactic_played: [
       {question: "What does this move set up?", fact: "Riddle answered: following the engine's line, {move} creates a {motif}.", consequence: "{detail}"},
-      {observation: "Circle {move}.", fact: "That's where the {motif} starts, following the engine's line.", consequence: "{detail}"},
+      {observation: "Circle this one.", fact: "{move} is where the {motif} starts, following the engine's line.", consequence: "{detail}"},
     ],
     tactic_allowed: [
       {question: "Which trick opens up for them?", fact: "Following the engine's line, {opponent} gets a {motif}.", consequence: "{detail}"},
