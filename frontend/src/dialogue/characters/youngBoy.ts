@@ -22,7 +22,7 @@ export const youngBoy: CoachPersonality = {
   templates: {
     ...youngBoyTacticalTemplates,
     ...youngBoyOpeningTemplates,
-    allowed_mate: [{ reaction: "Look at the king.", fact: "From here, {opponent} has a forced mate lined up.", consequence: "{reply}", question: "Which squares does the king still have after that reply?" }],
+    allowed_mate: [{ reaction: "Look at the king.", fact: "From here on, {opponent} can deliver a forced mate.", consequence: "{reply}", question: "Which squares does the king still have after that reply?" }],
     missed_mate: [{ reaction: "Oh, there was a mate!", fact: "{best} forced checkmate, and this move goes a different direction." }],
     tactic_played: [{ reaction: "Ooh, look at this!", fact: "Keep following the searched line after {move}, and out pops a {motif}.", consequence: "{detail}" }],
     tactic_allowed: [{ reaction: "Hmm, check the reply.", fact: "The strongest reply lets {opponent} set up a {motif}.", consequence: "{detail}", question: "Can the reply be spotted on the board?" }],
