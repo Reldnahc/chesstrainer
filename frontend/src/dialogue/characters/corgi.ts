@@ -81,7 +81,7 @@ export const corgi: CoachPersonality = {
     history: ["Drill list: the {motif} issue also appears in {games} other saved games."],
     development: [{reaction: "Unit deployed!", fact: "{lead}develops the {piece} from its original square."}],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Clear lines are worth holding."],
-    passed: ["{lead}leaves {side} with passed pawns on {squares}. No enemy pawn ahead on those or neighboring files. Mark them."],
+    passed: ["{lead}leaves {side} with passed pawns on {squares}, the road clear of enemy pawns on those and neighboring files. Mark them."],
     passer_advance: ["Forward march: {lead}advances the passed pawn to {square}."],
     isolated: ["{lead}leaves {side} with isolated pawns on {squares}, no backup on either neighboring file."],
     support: ["Reinforcements: {lead}protects the {piece} on {square}."],
