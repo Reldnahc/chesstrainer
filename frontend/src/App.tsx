@@ -29,6 +29,7 @@ import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
 import { useCoachPreferences } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
+import { useAudioPreferences } from "./audio/AudioProvider";
 const tabs = [
   ["Home", House],
   ["Study", Focus],
@@ -40,6 +41,7 @@ export default function App() {
   const account = useAccount();
   const { retry: reloadCoachPreferences } = useCoachPreferences();
   const { retry: reloadMotionPreferences } = useMotionPreferences();
+  const { retry: reloadAudioPreferences } = useAudioPreferences();
   const route = useRoute();
   const { tab, focusSkill, exercise } = route;
   const [error, setError] = useState("");
@@ -143,6 +145,7 @@ export default function App() {
                 sessionStorage.setItem("lan-token", token);
                 reloadCoachPreferences();
                 reloadMotionPreferences();
+                reloadAudioPreferences();
                 setConnection(false);
                 setRefresh((v) => v + 1);
                 setError("");
