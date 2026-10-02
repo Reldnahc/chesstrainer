@@ -7,8 +7,8 @@
   },
   "mouthCues": [
     {"start":0.0,"end":0.11,"value":"X"},
-    {"start":0.11,"end":0.16,"value":"C"},
-    {"start":0.16,"end":0.24,"value":"B"},
+    {"start":0.11,"end":0.17,"value":"C"},
+    {"start":0.17,"end":0.24,"value":"B"},
     {"start":0.24,"end":0.32,"value":"C"},
     {"start":0.32,"end":0.38,"value":"B"},
     {"start":0.38,"end":0.44,"value":"E"},
@@ -16,19 +16,19 @@
     {"start":0.54,"end":0.64,"value":"E"},
     {"start":0.64,"end":0.71,"value":"B"},
     {"start":0.71,"end":0.77,"value":"A"},
-    {"start":0.77,"end":0.9,"value":"F"},
-    {"start":0.9,"end":0.98,"value":"G"},
-    {"start":0.98,"end":1.12,"value":"B"},
-    {"start":1.12,"end":1.29,"value":"E"},
-    {"start":1.29,"end":1.68,"value":"X"}
+    {"start":0.77,"end":0.89,"value":"F"},
+    {"start":0.89,"end":0.98,"value":"G"},
+    {"start":0.98,"end":1.13,"value":"B"},
+    {"start":1.13,"end":1.48,"value":"E"},
+    {"start":1.48,"end":1.68,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "book-opening-follow-2",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/bank/recordings/walter-pilot-v1/walter/book-opening-follow-2.mp3",
-      "sha256": "4b9dc0d96bac9b6586a9fb64a13e8b69ae2a804088132c2eb869699c970bb63d",
-      "bytes": 28047
+      "path": "frontend/src/audio/speech/bank/recordings/walter-pilot-v1/walter/book-opening-follow-2.opus",
+      "sha256": "2990414662ad87f3051052b1e856ed6df7edf544e94059114a06f9b3f1b5fae4",
+      "bytes": 5832
     },
     "script": {
       "planPath": "frontend/src/audio/speech/bank/manifest.json",
@@ -156,25 +156,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 74088,
+      "frames": 80640,
       "durationSeconds": 1.68,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "13518f807423c2d9a04e0bcc3715db840018a703fc63b94c34201bd8ace6f505"
+      "wavSha256": "8edffaba1988c93b806d65282cba4674ddf7424ea1cf3c173b356ffc51b3f6b6"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 26880,
       "durationSeconds": 1.68,
       "trimmed": false,
-      "pcmSha256": "8ab34d7109f81a51ac2a69c16b1d5e59adaefe9a0b41d8deffab28677f0dd40f"
+      "pcmSha256": "7be65211c9b868890f89a56b8a5605e01fbc37baaa460ef5b9eca9e8bea73f11"
     },
     "alignment": {
       "frameRate": 100,
@@ -200,12 +200,12 @@
             {
               "phone": "AH",
               "startFrame": 11,
-              "durationFrames": 5
+              "durationFrames": 6
             },
             {
               "phone": "N",
-              "startFrame": 16,
-              "durationFrames": 8
+              "startFrame": 17,
+              "durationFrames": 7
             },
             {
               "phone": "AH",
@@ -259,19 +259,19 @@
             {
               "phone": "UW",
               "startFrame": 77,
-              "durationFrames": 13
+              "durationFrames": 12
             },
             {
               "phone": "V",
-              "startFrame": 90,
-              "durationFrames": 8
+              "startFrame": 89,
+              "durationFrames": 9
             }
           ]
         },
         {
           "word": "here",
           "startFrame": 98,
-          "durationFrames": 31,
+          "durationFrames": 50,
           "phones": [
             {
               "phone": "HH",
@@ -281,30 +281,30 @@
             {
               "phone": "IY",
               "startFrame": 106,
-              "durationFrames": 6
+              "durationFrames": 7
             },
             {
               "phone": "R",
-              "startFrame": 112,
-              "durationFrames": 17
+              "startFrame": 113,
+              "durationFrames": 35
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 129,
-          "durationFrames": 38,
+          "startFrame": 148,
+          "durationFrames": 19,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 129,
-              "durationFrames": 38
+              "startFrame": 148,
+              "durationFrames": 19
             }
           ]
         }
       ]
     },
-    "alignmentSha256": "09184c2f3e8f6e5cc02e52e7c6d468c62700455d6b354105df5d77c313f3f798",
+    "alignmentSha256": "17d3867919528e9f30d9747109535316b442b0453db0d8d895dca5d9710fc0d5",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -372,6 +372,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "0535e1e28ce97c0bc4d10dc93e1bbaaf583e82016ba1f2e109f5809ecac5c4be"
+    "cueSha256": "c297b53ded57aacf87867ec442879055eacc4250f5a4ffec2a82cc0bc6a93f7e"
   }
 }

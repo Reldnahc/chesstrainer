@@ -9,14 +9,14 @@
     {"start":0.0,"end":0.12,"value":"F"},
     {"start":0.12,"end":0.2,"value":"E"},
     {"start":0.2,"end":0.46,"value":"B"},
-    {"start":0.46,"end":0.59,"value":"H"},
-    {"start":0.59,"end":0.87,"value":"B"},
+    {"start":0.46,"end":0.6,"value":"H"},
+    {"start":0.6,"end":0.87,"value":"B"},
     {"start":0.87,"end":0.97,"value":"E"},
     {"start":0.97,"end":1.07,"value":"F"},
     {"start":1.07,"end":1.15,"value":"B"},
     {"start":1.15,"end":1.23,"value":"E"},
-    {"start":1.23,"end":1.31,"value":"F"},
-    {"start":1.31,"end":1.38,"value":"A"},
+    {"start":1.23,"end":1.32,"value":"F"},
+    {"start":1.32,"end":1.38,"value":"A"},
     {"start":1.38,"end":1.41,"value":"C"},
     {"start":1.41,"end":1.65,"value":"B"},
     {"start":1.65,"end":1.73,"value":"C"},
@@ -30,9 +30,9 @@
     "sourceScriptId": "book-opening-follow-1",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/bank/recordings/walter-pilot-v1/walter/book-opening-follow-1.mp3",
-      "sha256": "19e6cbd03a04ee91ff9e2592a9b0b508e014e284be611e6e8c9c346bf4fa267d",
-      "bytes": 40586
+      "path": "frontend/src/audio/speech/bank/recordings/walter-pilot-v1/walter/book-opening-follow-1.opus",
+      "sha256": "602aac53243f33649d60cf9cc8ea734d2688901d862e589dfed7b66d9e076ff9",
+      "bytes": 8886
     },
     "script": {
       "planPath": "frontend/src/audio/speech/bank/manifest.json",
@@ -160,25 +160,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 109368,
+      "frames": 119040,
       "durationSeconds": 2.48,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "c0a2b2bf5e44ac0d183069d06e3b74c222305579acce3c9f180604718f94d24b"
+      "wavSha256": "f158969f5a277aafcfd04d3d8e9269baefc6a1699f57003567307b0b63ece4f5"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 39680,
       "durationSeconds": 2.48,
       "trimmed": false,
-      "pcmSha256": "62d81599ad2fc15da7a984b9d6f10501a976494cdc9d11c2e64383e9ba951e82"
+      "pcmSha256": "16486ce4131cb16b6fbd612e427e80c505c540f6925bfa8b5e5ea8a753b62a4b"
     },
     "alignment": {
       "frameRate": 100,
@@ -204,7 +204,7 @@
         {
           "word": "still",
           "startFrame": 20,
-          "durationFrames": 39,
+          "durationFrames": 40,
           "phones": [
             {
               "phone": "S",
@@ -224,36 +224,36 @@
             {
               "phone": "L",
               "startFrame": 46,
-              "durationFrames": 13
+              "durationFrames": 14
             }
           ]
         },
         {
           "word": "in",
-          "startFrame": 59,
-          "durationFrames": 14,
+          "startFrame": 60,
+          "durationFrames": 15,
           "phones": [
             {
               "phone": "IH",
-              "startFrame": 59,
+              "startFrame": 60,
               "durationFrames": 5
             },
             {
               "phone": "N",
-              "startFrame": 64,
-              "durationFrames": 9
+              "startFrame": 65,
+              "durationFrames": 10
             }
           ]
         },
         {
           "word": "known",
-          "startFrame": 73,
-          "durationFrames": 42,
+          "startFrame": 75,
+          "durationFrames": 40,
           "phones": [
             {
               "phone": "N",
-              "startFrame": 73,
-              "durationFrames": 14
+              "startFrame": 75,
+              "durationFrames": 12
             },
             {
               "phone": "OW",
@@ -275,12 +275,12 @@
             {
               "phone": "OW",
               "startFrame": 115,
-              "durationFrames": 16
+              "durationFrames": 17
             },
             {
               "phone": "P",
-              "startFrame": 131,
-              "durationFrames": 7
+              "startFrame": 132,
+              "durationFrames": 6
             },
             {
               "phone": "AH",
@@ -353,7 +353,7 @@
         }
       ]
     },
-    "alignmentSha256": "be54e0e5b24b97b382c0f788fbcd75903aae7c47197a5ff97d6ebba8d7422a95",
+    "alignmentSha256": "98c480fe532223818603852ad2edf79af516444d6d1ab5d524723e642816301b",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -421,6 +421,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "f346d3f7ec5a84fdddfa023d1f81cb3b44019561718b114a22443c2139ec5920"
+    "cueSha256": "658a41d3f1fb480d22952f52ffbbbb811ba390db51031ec856f0385b4ccb1a2a"
   }
 }

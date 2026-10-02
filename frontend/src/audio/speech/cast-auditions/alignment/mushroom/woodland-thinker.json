@@ -34,8 +34,8 @@
     {"start":2.84,"end":2.88,"value":"C"},
     {"start":2.88,"end":2.95,"value":"B"},
     {"start":2.95,"end":3.02,"value":"C"},
-    {"start":3.02,"end":3.08,"value":"B"},
-    {"start":3.08,"end":3.11,"value":"E"},
+    {"start":3.02,"end":3.07,"value":"B"},
+    {"start":3.07,"end":3.11,"value":"E"},
     {"start":3.11,"end":3.2,"value":"F"},
     {"start":3.2,"end":3.25,"value":"C"},
     {"start":3.25,"end":3.5,"value":"B"},
@@ -43,34 +43,34 @@
     {"start":3.54,"end":3.59,"value":"B"},
     {"start":3.59,"end":3.68,"value":"G"},
     {"start":3.68,"end":3.72,"value":"H"},
-    {"start":3.72,"end":3.91,"value":"B"},
-    {"start":3.91,"end":3.99,"value":"A"},
+    {"start":3.72,"end":3.92,"value":"B"},
+    {"start":3.92,"end":3.99,"value":"A"},
     {"start":3.99,"end":4.04,"value":"H"},
     {"start":4.04,"end":4.11,"value":"C"},
-    {"start":4.11,"end":4.33,"value":"B"},
-    {"start":4.33,"end":4.93,"value":"X"},
-    {"start":4.93,"end":4.99,"value":"F"},
-    {"start":4.99,"end":5.17,"value":"B"},
-    {"start":5.17,"end":5.25,"value":"A"},
+    {"start":4.11,"end":4.34,"value":"B"},
+    {"start":4.34,"end":4.92,"value":"X"},
+    {"start":4.92,"end":4.99,"value":"F"},
+    {"start":4.99,"end":5.18,"value":"B"},
+    {"start":5.18,"end":5.25,"value":"A"},
     {"start":5.25,"end":5.35,"value":"F"},
     {"start":5.35,"end":5.39,"value":"G"},
-    {"start":5.39,"end":5.45,"value":"B"},
-    {"start":5.45,"end":5.5,"value":"C"},
+    {"start":5.39,"end":5.46,"value":"B"},
+    {"start":5.46,"end":5.5,"value":"C"},
     {"start":5.5,"end":5.61,"value":"F"},
     {"start":5.61,"end":5.74,"value":"C"},
     {"start":5.74,"end":5.88,"value":"B"},
-    {"start":5.88,"end":6.27,"value":"X"},
-    {"start":6.27,"end":6.32,"value":"B"},
-    {"start":6.32,"end":6.35,"value":"C"},
+    {"start":5.88,"end":6.25,"value":"X"},
+    {"start":6.25,"end":6.31,"value":"B"},
+    {"start":6.31,"end":6.35,"value":"C"},
     {"start":6.35,"end":6.44,"value":"B"},
     {"start":6.44,"end":6.48,"value":"C"},
-    {"start":6.48,"end":6.53,"value":"B"},
-    {"start":6.53,"end":6.6,"value":"C"},
-    {"start":6.6,"end":6.75,"value":"B"},
-    {"start":6.75,"end":6.79,"value":"C"},
+    {"start":6.48,"end":6.52,"value":"B"},
+    {"start":6.52,"end":6.6,"value":"C"},
+    {"start":6.6,"end":6.76,"value":"B"},
+    {"start":6.76,"end":6.79,"value":"C"},
     {"start":6.79,"end":7.1,"value":"B"},
-    {"start":7.1,"end":7.15,"value":"C"},
-    {"start":7.15,"end":7.24,"value":"A"},
+    {"start":7.1,"end":7.16,"value":"C"},
+    {"start":7.16,"end":7.24,"value":"A"},
     {"start":7.24,"end":7.39,"value":"B"},
     {"start":7.39,"end":7.46,"value":"E"},
     {"start":7.46,"end":7.62,"value":"B"}
@@ -79,9 +79,9 @@
     "sourceScriptId": "mushroom--woodland-thinker",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/cast-auditions/recordings/mushroom/woodland-thinker.mp3",
-      "sha256": "f57c1528ef1a15c70354ac987b2f91fdd3f052c3c872b2005085357a8411227c",
-      "bytes": 122089
+      "path": "frontend/src/audio/speech/cast-auditions/recordings/mushroom/woodland-thinker.opus",
+      "sha256": "90bca576927cb799493e67daaaaec47ad75e3d4b8892190b8fe9a134c2892892",
+      "bytes": 23915
     },
     "script": {
       "planPath": "frontend/src/audio/speech/cast-auditions/design-plan.json",
@@ -209,25 +209,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 336384,
-      "durationSeconds": 7.627755102040816,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "frames": 366132,
+      "durationSeconds": 7.62775,
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "206525fcb49723d92b5ccab4e67c65b63221a7b36987117ae29d88372f67d49c"
+      "wavSha256": "b23767915afd379ca52e595163068c93c845d8fd3a736e862ddaa98bd184aae2"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 122044,
       "durationSeconds": 7.62775,
       "trimmed": false,
-      "pcmSha256": "fd805ec7de60d2509e161c1ad0b22c5912b9a4ea1e3021a7794f94b028dd99e1"
+      "pcmSha256": "e8e6bbf8fc2a7a2588a4ac3f6feb73bcce0e858702878fa7f9dadc2e7bf217ae"
     },
     "alignment": {
       "frameRate": 100,
@@ -273,12 +273,12 @@
             {
               "phone": "IH",
               "startFrame": 37,
-              "durationFrames": 3
+              "durationFrames": 4
             },
             {
               "phone": "NG",
-              "startFrame": 40,
-              "durationFrames": 8
+              "startFrame": 41,
+              "durationFrames": 7
             }
           ]
         },
@@ -307,7 +307,7 @@
         {
           "word": "loose",
           "startFrame": 71,
-          "durationFrames": 31,
+          "durationFrames": 32,
           "phones": [
             {
               "phone": "L",
@@ -322,19 +322,19 @@
             {
               "phone": "S",
               "startFrame": 90,
-              "durationFrames": 12
+              "durationFrames": 13
             }
           ]
         },
         {
           "word": "there",
-          "startFrame": 102,
-          "durationFrames": 29,
+          "startFrame": 103,
+          "durationFrames": 28,
           "phones": [
             {
               "phone": "DH",
-              "startFrame": 102,
-              "durationFrames": 7
+              "startFrame": 103,
+              "durationFrames": 6
             },
             {
               "phone": "EH",
@@ -486,12 +486,12 @@
             {
               "phone": "DH",
               "startFrame": 302,
-              "durationFrames": 6
+              "durationFrames": 5
             },
             {
               "phone": "ER",
-              "startFrame": 308,
-              "durationFrames": 3
+              "startFrame": 307,
+              "durationFrames": 4
             }
           ]
         },
@@ -520,7 +520,7 @@
         {
           "word": "safely",
           "startFrame": 335,
-          "durationFrames": 43,
+          "durationFrames": 44,
           "phones": [
             {
               "phone": "S",
@@ -545,36 +545,36 @@
             {
               "phone": "IY",
               "startFrame": 372,
-              "durationFrames": 6
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "in",
-          "startFrame": 378,
+          "startFrame": 379,
           "durationFrames": 13,
           "phones": [
             {
               "phone": "IH",
-              "startFrame": 378,
-              "durationFrames": 5
+              "startFrame": 379,
+              "durationFrames": 4
             },
             {
               "phone": "N",
               "startFrame": 383,
-              "durationFrames": 8
+              "durationFrames": 9
             }
           ]
         },
         {
           "word": "place",
-          "startFrame": 391,
+          "startFrame": 392,
           "durationFrames": 42,
           "phones": [
             {
               "phone": "P",
-              "startFrame": 391,
-              "durationFrames": 8
+              "startFrame": 392,
+              "durationFrames": 7
             },
             {
               "phone": "L",
@@ -589,31 +589,31 @@
             {
               "phone": "S",
               "startFrame": 419,
-              "durationFrames": 14
+              "durationFrames": 15
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 433,
-          "durationFrames": 60,
+          "startFrame": 434,
+          "durationFrames": 58,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 433,
-              "durationFrames": 60
+              "startFrame": 434,
+              "durationFrames": 58
             }
           ]
         },
         {
           "word": "when(3)",
-          "startFrame": 493,
-          "durationFrames": 12,
+          "startFrame": 492,
+          "durationFrames": 14,
           "phones": [
             {
               "phone": "W",
-              "startFrame": 493,
-              "durationFrames": 6
+              "startFrame": 492,
+              "durationFrames": 7
             },
             {
               "phone": "IH",
@@ -623,36 +623,36 @@
             {
               "phone": "N",
               "startFrame": 502,
-              "durationFrames": 3
-            }
-          ]
-        },
-        {
-          "word": "it",
-          "startFrame": 505,
-          "durationFrames": 12,
-          "phones": [
-            {
-              "phone": "IH",
-              "startFrame": 505,
-              "durationFrames": 8
-            },
-            {
-              "phone": "T",
-              "startFrame": 513,
               "durationFrames": 4
             }
           ]
         },
         {
+          "word": "it",
+          "startFrame": 506,
+          "durationFrames": 12,
+          "phones": [
+            {
+              "phone": "IH",
+              "startFrame": 506,
+              "durationFrames": 6
+            },
+            {
+              "phone": "T",
+              "startFrame": 512,
+              "durationFrames": 6
+            }
+          ]
+        },
+        {
           "word": "moved",
-          "startFrame": 517,
+          "startFrame": 518,
           "durationFrames": 28,
           "phones": [
             {
               "phone": "M",
-              "startFrame": 517,
-              "durationFrames": 8
+              "startFrame": 518,
+              "durationFrames": 7
             },
             {
               "phone": "UW",
@@ -667,19 +667,19 @@
             {
               "phone": "D",
               "startFrame": 539,
-              "durationFrames": 6
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "away",
-          "startFrame": 545,
-          "durationFrames": 43,
+          "startFrame": 546,
+          "durationFrames": 42,
           "phones": [
             {
               "phone": "AH",
-              "startFrame": 545,
-              "durationFrames": 5
+              "startFrame": 546,
+              "durationFrames": 4
             },
             {
               "phone": "W",
@@ -696,29 +696,29 @@
         {
           "word": "<sil>",
           "startFrame": 588,
-          "durationFrames": 39,
+          "durationFrames": 37,
           "phones": [
             {
               "phone": "SIL",
               "startFrame": 588,
-              "durationFrames": 39
+              "durationFrames": 37
             }
           ]
         },
         {
           "word": "the",
-          "startFrame": 627,
-          "durationFrames": 8,
+          "startFrame": 625,
+          "durationFrames": 10,
           "phones": [
             {
               "phone": "DH",
-              "startFrame": 627,
-              "durationFrames": 5
+              "startFrame": 625,
+              "durationFrames": 6
             },
             {
               "phone": "AH",
-              "startFrame": 632,
-              "durationFrames": 3
+              "startFrame": 631,
+              "durationFrames": 4
             }
           ]
         },
@@ -740,27 +740,27 @@
             {
               "phone": "N",
               "startFrame": 648,
-              "durationFrames": 5
+              "durationFrames": 4
             },
             {
               "phone": "EH",
-              "startFrame": 653,
-              "durationFrames": 7
+              "startFrame": 652,
+              "durationFrames": 8
             },
             {
               "phone": "K",
               "startFrame": 660,
-              "durationFrames": 7
+              "durationFrames": 6
             },
             {
               "phone": "SH",
-              "startFrame": 667,
-              "durationFrames": 8
+              "startFrame": 666,
+              "durationFrames": 10
             },
             {
               "phone": "AH",
-              "startFrame": 675,
-              "durationFrames": 4
+              "startFrame": 676,
+              "durationFrames": 3
             },
             {
               "phone": "N",
@@ -792,12 +792,12 @@
             {
               "phone": "AH",
               "startFrame": 710,
-              "durationFrames": 5
+              "durationFrames": 6
             },
             {
               "phone": "P",
-              "startFrame": 715,
-              "durationFrames": 9
+              "startFrame": 716,
+              "durationFrames": 8
             },
             {
               "phone": "IY",
@@ -818,7 +818,7 @@
         }
       ]
     },
-    "alignmentSha256": "20a8b6e1fd023d291062647b2fcd68f2ae4b332f3d422fa32fed61624a4837e6",
+    "alignmentSha256": "0b6837ea5176121cb7d4fd34f68befce7a9152f45bc06984abba3f6e64c496a2",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -886,11 +886,11 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "cb09ddc68acc0d5d36effc0125464b1ebbf6b870d50978737e32559ad9bcf0b3",
+    "cueSha256": "8c50429004bf237990d3225dfc25efd9accf0d36f7f567e17a3b68b6246abded",
     "voiceDesign": {
       "requestSha256": "d5336c6beb2b14632daf63387e0a3126f6692937d221c8fd4e8ade43411570fb",
       "provenancePath": "frontend/src/audio/speech/cast-auditions/recordings/mushroom/woodland-thinker.provenance.json",
-      "provenanceSha256": "0008fea1a808b75bd707324d82a632602a4e133443952c4e63c85e5ea2ee1f97",
+      "provenanceSha256": "feada934aab7b42b90c612d31bd65d09b7f57240373d83dae8d0f148c5855af1",
       "generatedVoiceId": "2trPVLzyYKu1WRW9QIoI",
       "directionId": "woodland-thinker"
     }

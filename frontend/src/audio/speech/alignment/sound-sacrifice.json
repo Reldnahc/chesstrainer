@@ -28,8 +28,8 @@
     {"start":2.94,"end":3.01,"value":"C"},
     {"start":3.01,"end":3.22,"value":"B"},
     {"start":3.22,"end":3.3,"value":"A"},
-    {"start":3.3,"end":3.71,"value":"B"},
-    {"start":3.71,"end":4.12,"value":"X"},
+    {"start":3.3,"end":3.69,"value":"B"},
+    {"start":3.69,"end":4.12,"value":"X"},
     {"start":4.12,"end":4.26,"value":"B"},
     {"start":4.26,"end":4.33,"value":"C"},
     {"start":4.33,"end":4.68,"value":"B"},
@@ -37,30 +37,32 @@
     {"start":4.89,"end":4.96,"value":"G"},
     {"start":4.96,"end":5.03,"value":"B"},
     {"start":5.03,"end":5.11,"value":"A"},
-    {"start":5.11,"end":5.15,"value":"C"},
-    {"start":5.15,"end":5.54,"value":"B"},
-    {"start":5.54,"end":5.68,"value":"C"},
-    {"start":5.68,"end":5.89,"value":"B"},
-    {"start":5.89,"end":5.96,"value":"C"},
-    {"start":5.96,"end":6.1,"value":"D"},
-    {"start":6.1,"end":6.38,"value":"B"},
-    {"start":6.38,"end":6.45,"value":"G"},
-    {"start":6.45,"end":6.59,"value":"F"},
-    {"start":6.59,"end":7.15,"value":"B"},
-    {"start":7.15,"end":7.22,"value":"C"},
-    {"start":7.22,"end":7.57,"value":"B"},
-    {"start":7.57,"end":7.64,"value":"H"},
-    {"start":7.64,"end":7.78,"value":"D"},
-    {"start":7.78,"end":7.99,"value":"B"},
-    {"start":7.99,"end":8.24,"value":"X"}
+    {"start":5.11,"end":5.16,"value":"C"},
+    {"start":5.16,"end":5.55,"value":"B"},
+    {"start":5.55,"end":5.62,"value":"C"},
+    {"start":5.62,"end":5.9,"value":"B"},
+    {"start":5.9,"end":5.97,"value":"C"},
+    {"start":5.97,"end":6.04,"value":"D"},
+    {"start":6.04,"end":6.32,"value":"B"},
+    {"start":6.32,"end":6.46,"value":"G"},
+    {"start":6.46,"end":6.6,"value":"F"},
+    {"start":6.6,"end":6.81,"value":"B"},
+    {"start":6.81,"end":6.88,"value":"C"},
+    {"start":6.88,"end":7.16,"value":"B"},
+    {"start":7.16,"end":7.23,"value":"C"},
+    {"start":7.23,"end":7.58,"value":"B"},
+    {"start":7.58,"end":7.65,"value":"H"},
+    {"start":7.65,"end":7.79,"value":"D"},
+    {"start":7.79,"end":8.0,"value":"B"},
+    {"start":8.0,"end":8.24,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "sound-sacrifice",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/recordings/walter-contrasts-v1/walter/sound-sacrifice.mp3",
-      "sha256": "8e5ab385e08838304f28808a5247f8bcb16465209640328ea91c8ded3431609f",
-      "bytes": 132955
+      "path": "frontend/src/audio/speech/recordings/walter-contrasts-v1/walter/sound-sacrifice.opus",
+      "sha256": "8972f94822560615f70afa77644fffb796c0516cde7d8a5363ff9dd9ace12047",
+      "bytes": 26138
     },
     "script": {
       "planPath": "frontend/src/audio/speech/walter-contrasts-plan.json",
@@ -95,15 +97,15 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 363384,
+      "frames": 395520,
       "durationSeconds": 8.24,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "3bd04bc426abbb497b00fee1eba619bc36a4ba8d828725af1e8e9f69a4fd4a79"
+      "wavSha256": "e5ab698019b0c511db56e5162c7188ce7178b5e992287e52ed52a9e301790ffd"
     },
-    "cueSha256": "5414f497f1f9c26d9bc56f26213b9e4d52ce0cdbae6e46a9108a4c3bfe7f1d92"
+    "cueSha256": "11ba8da292bf5db691dde4d47b73568244b90eb17e09351e448cd8918ded3747"
   }
 }

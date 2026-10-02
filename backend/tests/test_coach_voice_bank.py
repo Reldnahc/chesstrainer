@@ -416,9 +416,10 @@ def test_bank_accepts_only_the_committed_opus_encoding(saved_bank, mutation):
 def test_bank_rejects_opus_above_the_committed_bitrate(saved_bank):
     audio = item_path(saved_bank, "audioPath").read_bytes()
     sidecar = read_json(item_path(saved_bank, "sidecarPath"))
-    encode.check_encoded(audio, sidecar, 2.0)
+    duration = read_json(item_path(saved_bank, "alignmentPath"))["metadata"]["duration"]
+    encode.check_encoded(audio, sidecar, duration)
     with pytest.raises(ValueError, match="bitrate"):
-        encode.check_encoded(audio + bytes(20_000), sidecar, 2.0)
+        encode.check_encoded(audio + bytes(int(2_000 * duration) + 2_000), sidecar, duration)
 
 
 def test_actual_audio_changes_cannot_reuse_old_fingerprints(saved_bank):

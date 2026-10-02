@@ -21,12 +21,12 @@
     {"start":1.7,"end":1.75,"value":"D"},
     {"start":1.75,"end":2.0,"value":"B"},
     {"start":2.0,"end":2.07,"value":"F"},
-    {"start":2.07,"end":2.15,"value":"C"},
-    {"start":2.15,"end":2.33,"value":"E"},
-    {"start":2.33,"end":2.77,"value":"X"},
-    {"start":2.77,"end":2.83,"value":"B"},
-    {"start":2.83,"end":2.87,"value":"C"},
-    {"start":2.87,"end":2.99,"value":"A"},
+    {"start":2.07,"end":2.14,"value":"C"},
+    {"start":2.14,"end":2.34,"value":"E"},
+    {"start":2.34,"end":2.77,"value":"X"},
+    {"start":2.77,"end":2.82,"value":"B"},
+    {"start":2.82,"end":2.88,"value":"C"},
+    {"start":2.88,"end":2.99,"value":"A"},
     {"start":2.99,"end":3.04,"value":"C"},
     {"start":3.04,"end":3.17,"value":"E"},
     {"start":3.17,"end":3.22,"value":"B"},
@@ -39,28 +39,28 @@
     {"start":4.26,"end":4.42,"value":"F"},
     {"start":4.42,"end":4.74,"value":"B"},
     {"start":4.74,"end":4.84,"value":"C"},
-    {"start":4.84,"end":5.1,"value":"B"},
-    {"start":5.1,"end":5.17,"value":"A"},
+    {"start":4.84,"end":5.09,"value":"B"},
+    {"start":5.09,"end":5.17,"value":"A"},
     {"start":5.17,"end":5.22,"value":"C"},
     {"start":5.22,"end":5.43,"value":"B"},
-    {"start":5.43,"end":5.48,"value":"C"},
-    {"start":5.48,"end":5.53,"value":"G"},
+    {"start":5.43,"end":5.47,"value":"C"},
+    {"start":5.47,"end":5.53,"value":"G"},
     {"start":5.53,"end":5.59,"value":"C"},
     {"start":5.59,"end":5.65,"value":"B"},
     {"start":5.65,"end":5.72,"value":"H"},
     {"start":5.72,"end":5.76,"value":"C"},
     {"start":5.76,"end":5.82,"value":"A"},
     {"start":5.82,"end":5.85,"value":"C"},
-    {"start":5.85,"end":5.96,"value":"H"},
-    {"start":5.96,"end":6.16,"value":"X"}
+    {"start":5.85,"end":5.98,"value":"H"},
+    {"start":5.98,"end":6.16,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "positional-king-flight-actual",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/banks/rivet/recordings/rivet-pilot-v1/rivet/positional-king-flight-actual.mp3",
-      "sha256": "78a9ecfc05dd5d8c88de9140526ec83942ede59e5fbda5f0b0582be7a33ee5b3",
-      "bytes": 99518
+      "path": "frontend/src/audio/speech/banks/rivet/recordings/rivet-pilot-v1/rivet/positional-king-flight-actual.opus",
+      "sha256": "fda6afb23167cd04f031220881c43d41e1071474bbdf45e8ace27ab0728b206e",
+      "bytes": 19584
     },
     "script": {
       "planPath": "frontend/src/audio/speech/banks/rivet/manifest.json",
@@ -188,25 +188,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 271656,
+      "frames": 295680,
       "durationSeconds": 6.16,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "6e62768ff5d3e3627890e48bba675d459fb963c4c7a4122fc593f87abf1da03e"
+      "wavSha256": "201ce7f2ed42d23eb2ea9a314635d8a4e17adb62cdc100af322d4c7c82ba08c9"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 98560,
       "durationSeconds": 6.16,
       "trimmed": false,
-      "pcmSha256": "b4d682320b176e64cef8d8e6a8f0707606792df1ea857d586cbbbae48888c811"
+      "pcmSha256": "efa6cded6c8832d115c7b7387c49eb81e919cba5084d2ff9ac8f700aa9c4525c"
     },
     "alignment": {
       "frameRate": 100,
@@ -232,7 +232,7 @@
         {
           "word": "king",
           "startFrame": 16,
-          "durationFrames": 39,
+          "durationFrames": 38,
           "phones": [
             {
               "phone": "K",
@@ -242,24 +242,24 @@
             {
               "phone": "IH",
               "startFrame": 30,
-              "durationFrames": 6
+              "durationFrames": 7
             },
             {
               "phone": "NG",
-              "startFrame": 36,
-              "durationFrames": 19
+              "startFrame": 37,
+              "durationFrames": 17
             }
           ]
         },
         {
           "word": "gains",
-          "startFrame": 55,
-          "durationFrames": 40,
+          "startFrame": 54,
+          "durationFrames": 41,
           "phones": [
             {
               "phone": "G",
-              "startFrame": 55,
-              "durationFrames": 7
+              "startFrame": 54,
+              "durationFrames": 8
             },
             {
               "phone": "EY",
@@ -269,12 +269,12 @@
             {
               "phone": "N",
               "startFrame": 78,
-              "durationFrames": 7
+              "durationFrames": 6
             },
             {
               "phone": "Z",
-              "startFrame": 85,
-              "durationFrames": 10
+              "startFrame": 84,
+              "durationFrames": 11
             }
           ]
         },
@@ -325,7 +325,7 @@
         {
           "word": "flight",
           "startFrame": 151,
-          "durationFrames": 35,
+          "durationFrames": 36,
           "phones": [
             {
               "phone": "F",
@@ -345,24 +345,24 @@
             {
               "phone": "T",
               "startFrame": 181,
-              "durationFrames": 5
+              "durationFrames": 6
             }
           ]
         },
         {
           "word": "square",
-          "startFrame": 186,
+          "startFrame": 187,
           "durationFrames": 47,
           "phones": [
             {
               "phone": "S",
-              "startFrame": 186,
-              "durationFrames": 9
+              "startFrame": 187,
+              "durationFrames": 7
             },
             {
               "phone": "K",
-              "startFrame": 195,
-              "durationFrames": 5
+              "startFrame": 194,
+              "durationFrames": 6
             },
             {
               "phone": "W",
@@ -372,24 +372,24 @@
             {
               "phone": "EH",
               "startFrame": 207,
-              "durationFrames": 8
+              "durationFrames": 7
             },
             {
               "phone": "R",
-              "startFrame": 215,
-              "durationFrames": 18
+              "startFrame": 214,
+              "durationFrames": 20
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 233,
-          "durationFrames": 44,
+          "startFrame": 234,
+          "durationFrames": 43,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 233,
-              "durationFrames": 44
+              "startFrame": 234,
+              "durationFrames": 43
             }
           ]
         },
@@ -401,22 +401,22 @@
             {
               "phone": "K",
               "startFrame": 277,
-              "durationFrames": 6
+              "durationFrames": 5
             },
             {
               "phone": "AH",
-              "startFrame": 283,
-              "durationFrames": 4
+              "startFrame": 282,
+              "durationFrames": 6
             },
             {
               "phone": "M",
-              "startFrame": 287,
+              "startFrame": 288,
               "durationFrames": 7
             },
             {
               "phone": "P",
-              "startFrame": 294,
-              "durationFrames": 5
+              "startFrame": 295,
+              "durationFrames": 4
             },
             {
               "phone": "EH",
@@ -485,12 +485,12 @@
             {
               "phone": "N",
               "startFrame": 372,
-              "durationFrames": 11
+              "durationFrames": 10
             },
             {
               "phone": "Z",
-              "startFrame": 383,
-              "durationFrames": 7
+              "startFrame": 382,
+              "durationFrames": 8
             }
           ]
         },
@@ -553,7 +553,7 @@
         {
           "word": "change",
           "startFrame": 463,
-          "durationFrames": 47,
+          "durationFrames": 46,
           "phones": [
             {
               "phone": "CH",
@@ -573,19 +573,19 @@
             {
               "phone": "JH",
               "startFrame": 502,
-              "durationFrames": 8
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "made",
-          "startFrame": 510,
-          "durationFrames": 21,
+          "startFrame": 509,
+          "durationFrames": 22,
           "phones": [
             {
               "phone": "M",
-              "startFrame": 510,
-              "durationFrames": 7
+              "startFrame": 509,
+              "durationFrames": 8
             },
             {
               "phone": "EY",
@@ -619,17 +619,17 @@
         {
           "word": "available",
           "startFrame": 543,
-          "durationFrames": 53,
+          "durationFrames": 55,
           "phones": [
             {
               "phone": "AH",
               "startFrame": 543,
-              "durationFrames": 5
+              "durationFrames": 4
             },
             {
               "phone": "V",
-              "startFrame": 548,
-              "durationFrames": 5
+              "startFrame": 547,
+              "durationFrames": 6
             },
             {
               "phone": "EY",
@@ -659,25 +659,25 @@
             {
               "phone": "L",
               "startFrame": 585,
-              "durationFrames": 11
+              "durationFrames": 13
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 596,
-          "durationFrames": 19,
+          "startFrame": 598,
+          "durationFrames": 17,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 596,
-              "durationFrames": 19
+              "startFrame": 598,
+              "durationFrames": 17
             }
           ]
         }
       ]
     },
-    "alignmentSha256": "6269dfdc02122419f1e17ee7dd691af96d57ad1fb600ebceee55b8e8f21fa554",
+    "alignmentSha256": "635bda9c0f0b524596652e5c450be1486d0cd46a0fe37282aed08fdfc4305bd7",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -745,6 +745,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "9131ed1d4b510ccbb395f424103bfa6373cb3de717f633e07be4bbc8fef6732c"
+    "cueSha256": "b9e033d26f220586d36ef1448b2d368c6dbd6a3029465fcea1d1ddb944b4d562"
   }
 }
