@@ -266,6 +266,20 @@ export const expertOpeningTemplates = {
   "book-opening-follow-8": ["Still {opening}. Book status locates the game; it does not evaluate the move."],
 } as const;
 
+export const gorillaOpeningTemplates = {
+  "book-opening-entry-1": ["Simple point: this is a book move, from {opening}."],
+  "book-opening-entry-2": ["Simple point: {opening}, a line theory knows."],
+  "book-opening-entry-3": ["Book. This is {opening}, by theory's name."],
+  "book-opening-follow-1": ["Still book: {opening}."],
+  "book-opening-follow-2": ["{opening} again, and the move is from the book."],
+  "book-opening-follow-3": ["The answer comes out of {opening} too."],
+  "book-opening-follow-4": ["{opening}, and theory carries on with it."],
+  "book-opening-follow-5": ["Still {opening}, and still book."],
+  "book-opening-follow-6": ["{opening} keeps on, straight from the book."],
+  "book-opening-follow-7": ["Still {opening}, still in the books."],
+  "book-opening-follow-8": ["Book again, in {opening}. A name for the move is not a grade for it."],
+} as const;
+
 export const partnerOpeningTemplates = {
   "book-opening-entry-1": ["This candidate takes us into {opening}."],
   "book-opening-entry-2": ["A candidate borrowed from {opening}."],

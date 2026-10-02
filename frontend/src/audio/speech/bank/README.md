@@ -108,12 +108,13 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/fergus/scripts.json`, coach `frog`), Arjun
 (`banks/arjun/scripts.json`, coach `man-partner`), Femi
 (`banks/femi/scripts.json`, coach `man-host`), Marisol
-(`banks/marisol/scripts.json`, coach `woman-analyst`) and Ingrid
+(`banks/marisol/scripts.json`, coach `woman-analyst`), Monty
+(`banks/monty/scripts.json`, coach `gorilla`) and Ingrid
 (`banks/ingrid/scripts.json`, coach `woman-blonde`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol and Ingrid,
+coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol, Monty and Ingrid,
 whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
 scripts and a bank is recorded and registered.
@@ -149,6 +150,7 @@ registered.
 | Arjun (`man-partner`) | Written, 438 | Yes, 2026-10-02, at commit `91cda3c` | No | No |
 | Femi (`man-host`) | Written, 438 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
 | Marisol (`woman-analyst`) | Written, 438 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
+| Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
 
 ## Adding or revising a production bank
 

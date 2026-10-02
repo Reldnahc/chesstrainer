@@ -26,6 +26,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   "cat-tuxedo": {version: "tuxedo-4", actual: "under fire", possible: "would be attacked, and a single piece"},
   raccoon: {version: "raccoon-2", actual: "has its eye on", possible: "would be attacked, every one of them"},
   "dog-gentle": {version: "professor-4", actual: "attacks the", possible: "would be attacked"},
+  gorilla: {version: "gorilla-2", actual: "under its hit at once", possible: "every one, from a single square"},
   dragon: {version: "dragon-2", actual: "under one piece's attack", possible: "From a single square"},
   "dog-collie": {version: "collie-5", actual: "under attack together", possible: "would be attacked by one piece"},
   "dog-corgi": {version: "corgi-4", actual: "in its sights", possible: "would be attacked, all from one post"},
