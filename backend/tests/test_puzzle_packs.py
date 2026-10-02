@@ -124,8 +124,12 @@ def test_bundled_starter_pack_is_pinned_valid_and_served_by_default(settings):
     assert "CC0" in directory.joinpath("COPYING.txt").read_text(encoding="utf-8")
     recorded = json.loads(directory.joinpath("manifest.json").read_text(encoding="utf-8"))
     assert recorded["build"]["input_sha256"] and recorded["build"]["bands"]
+    verification = manifest.verification
+    assert verification and verification["engine"].startswith("Stockfish")
+    assert verification["verified"] == verification["passed"] + len(verification["removed"])
     definitions = packs.starter_pack().load()
-    assert len(definitions) == manifest.count >= 500
+    assert len(definitions) == manifest.count == verification["passed"] >= 500
+    assert not {d.key for d in definitions} & set(verification["removed"])
     assert all(d.rating is not None and d.provenance.url for d in definitions)
     assert len({d.key for d in definitions}) == len(definitions)
     bands = [

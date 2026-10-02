@@ -56,13 +56,36 @@ records how the rows were chosen. A pack with a changed file, bad row, duplicate
 or wrong count is refused whole; definitions validate once per process and
 session start uses an indexed lookup.
 
-The bundled starter pack (`starter_pack/`, CC0, 1,000 puzzles) is weighted toward
+The bundled starter pack (`starter_pack/`, CC0, 972 puzzles) is weighted toward
 lower ratings with solver lines of at most nine plies; its README records the
 sampling. `scripts/build_puzzle_pack.py` rebuilds or enlarges a pack from a
 downloaded dataset under a new version. `PUZZLE_PACK_PATH` adds a larger
 installed pack, verified at startup. Saved solves keep their own snapshots across
 pack revisions. Lichess themes and ratings are external labels; Fieldwork makes
-no claim about a puzzle's pedagogical value beyond legal replay.
+no claim about a puzzle's pedagogical value.
+
+#### Engine verification
+
+`scripts/verify_puzzle_pack.py` is the evidence that a pack's solutions hold up
+under Fieldwork's own engine, not only Lichess's generator and votes. For every
+solver decision it runs bounded native Stockfish at one root and limit, as the
+review pipeline does, and requires that the solution scores within 50 cp of the
+engine's best move, that every other move is at least 100 cp worse (a second
+mate of equal or shorter length fails, a slower one is a warning), and that the
+line ends at least 150 cp ahead or in mate. Opponent replies are not graded.
+Results stream to ignored `data/puzzle-verification/<run>/results.jsonl` with
+`report.json` and `report.md`; `--resume` continues an interrupted run,
+`--record` writes the summary, engine, depth, thresholds and failed IDs into
+`manifest.json`, and `--prune` removes failed rows and re-pins the CSV.
+
+The 2026-10-v1 starter pack was verified whole with Stockfish 18 at depth 18:
+972 of 1,000 passed. The 28 removed puzzles were not wrong but ambiguous for
+this player, which accepts only the pinned line: 27 had a second mate in one
+(for example either rook capturing, or a rook underpromotion beside the queen
+promotion), and one had an alternative within 4 cp. Lichess accepts any mate in
+one there; Fieldwork's `line-v1` definitions do not yet carry accepted
+alternatives, so those puzzles are excluded rather than mis-graded. Passing
+means engine agreement at that depth, not pedagogical value.
 
 ### Selection
 

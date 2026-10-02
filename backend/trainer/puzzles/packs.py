@@ -45,6 +45,8 @@ class PackManifest(Contract):
     sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     count: int = Field(ge=1)
     build: dict[str, object] = {}
+    # Engine evidence written by scripts/verify_puzzle_pack.py --record; see STUDY.md.
+    verification: dict[str, object] | None = None
 
 
 def definition_from_row(

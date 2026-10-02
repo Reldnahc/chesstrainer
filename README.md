@@ -6,7 +6,7 @@ Start with **Study → Openings** for Italian Game courses for White and Black o
 King’s Gambit course for White, or browse the opening catalogue and choose lines
 to remember. Lessons and line rehearsal save their own progress; only scheduled
 **Due** attempts advance FSRS. **Study → Puzzles** practices a bundled, offline
-selection of 1,000 CC0 Lichess puzzles by difficulty and theme, with a retry mode
+selection of 972 engine-verified CC0 Lichess puzzles by difficulty and theme, with a retry mode
 for puzzles you revealed or failed; a larger installed pack is optional.
 
 The shared [animated coach](docs/COACH.md) reacts to your moves and practice, with

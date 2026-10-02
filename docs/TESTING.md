@@ -135,7 +135,11 @@ Run the complete suite for interface refactors. Normal tests use isolated databa
 
 ## Study frameworks
 
-`test_puzzle_packs.py` covers Lichess-layout row conversion for both colors,
+`test_verify_puzzle_pack.py` drives the pack verifier with scripted engine
+answers: best-move tolerance, uniqueness margin, equal versus slower alternative
+mates, forced single moves, losing endings, hash-checked input, and manifest
+recording with pruning; one `stockfish`-marked case runs the native engine on a
+real fork. `test_puzzle_packs.py` covers Lichess-layout row conversion for both colors,
 hash-pinned pack loading that rejects a changed file, bad row, duplicate or wrong
 count, the bundled starter pack's validity and rating weighting, the installed
 pack setting's startup verification, and selection: unseen first, difficulty and
