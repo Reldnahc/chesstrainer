@@ -379,7 +379,7 @@ export const youngBoyTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "Ooh, look: as soon as {move} lands, there's a {motif}.",
     played_possible: "{move} gets a {motif} ready for later, as long as the replies let it happen.",
-    allowed_immediate: "Wait, {opponent} can answer {action}, and that brings a {motif} with it.",
+    allowed_immediate: "Look, {opponent} can answer {action}, and that brings a {motif} with it.",
     allowed_possible: "Later, depending on the replies, a {motif} might open up for {opponent}.",
     missed_immediate: "A {motif} was hiding right inside {best}.",
     missed_possible: "Hmm, {best} had a {motif} tucked away for later, if the replies cooperated.",

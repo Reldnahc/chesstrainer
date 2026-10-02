@@ -22,12 +22,12 @@
     {
       "id": "tactic-pin-played",
       "group": "game_review",
-      "text": "A pin! The piece in front can't step off the line, because its own king is standing right behind it."
+      "text": "A pin! The piece in front can't step off the line, because its own king is standing behind it on that line."
     },
     {
       "id": "tactic-pin-allowed",
       "group": "game_review",
-      "text": "Wait, there's a pin coming. After this move, a piece in front of its king can get stuck there, and stepping off the line wouldn't be legal."
+      "text": "Hmm, there's a pin coming. After this move, a piece in front of its king can get stuck there, and stepping off the line wouldn't be legal."
     },
     {
       "id": "tactic-pin-missed",
@@ -72,12 +72,12 @@
     {
       "id": "tactic-back-rank-allowed",
       "group": "game_review",
-      "text": "Wait, look at the back rank. After this move the king can't get off it, and the other side has a mate along that row."
+      "text": "See that back rank? After this move the king can't get off it, and the other side has a mate along that row."
     },
     {
       "id": "tactic-back-rank-missed",
       "group": "game_review",
-      "text": "The enemy king was stuck on its back row behind its own pawns, and there was mate right there. Set it up and play the mate yourself, it's really cool."
+      "text": "The enemy king was stuck on its back row behind its own pieces, and there was mate right there. Set it up and play the mate yourself, it's really cool."
     },
     {
       "id": "tactic-promotion-awareness-played",
@@ -112,17 +112,17 @@
     {
       "id": "tactic-double-attack-played",
       "group": "game_review",
-      "text": "Ooh, a double attack, two threats from just one move! A single reply rarely covers both of them."
+      "text": "Ooh, a double attack, two targets hit at the same moment! A single reply rarely covers both of them."
     },
     {
       "id": "tactic-double-attack-allowed",
       "group": "game_review",
-      "text": "Wait, see the double attack? After this, the other side gets one move that makes two threats together."
+      "text": "Ooh, see the double attack? After this, the other side gets one move that makes two threats together."
     },
     {
       "id": "tactic-double-attack-missed",
       "group": "game_review",
-      "text": "Two threats in one go were waiting in the stronger move. This one only makes one, and that's the difference."
+      "text": "Two threats in one go were waiting in the stronger move. This one doesn't, and that's the difference."
     },
     {
       "id": "tactic-deflection-played",
@@ -132,7 +132,7 @@
     {
       "id": "tactic-deflection-allowed",
       "group": "game_review",
-      "text": "Watch out, a defender can be tempted off the piece or square it's covering. What job is it doing right now?"
+      "text": "Look, there's a defender here that can be lured away from what it's guarding. What job is it doing right now?"
     },
     {
       "id": "tactic-deflection-missed",
@@ -152,7 +152,7 @@
     {
       "id": "tactic-hanging-piece-allowed",
       "group": "game_review",
-      "text": "Wait, one piece has nothing guarding it now, and the other side is free to just take it."
+      "text": "Look, one piece has nothing guarding it now, and the other side is free to just take it."
     },
     {
       "id": "cause-abandoned-defender",
@@ -702,7 +702,7 @@
     {
       "id": "explanation-finding-undefended-capture-gain",
       "group": "srs_explanations",
-      "text": "An unguarded piece gets taken, and the side that took it ends this example ahead in material."
+      "text": "A piece with no guard comes off the board, and the side that took it ends this example ahead in material."
     },
     {
       "id": "explanation-finding-relative-pin-released",
@@ -997,7 +997,7 @@
       "group": "game_review",
       "primary": "tactic-fork-allowed",
       "secondary": "human-natural-error",
-      "text": "The human-move model rates this a common choice, but wait: an enemy piece now has a jump that forks a bunch of targets. Can you find which piece?"
+      "text": "The human-move model rates this a common choice, but look: an enemy piece now has a jump that forks a bunch of targets. Can you find which piece?"
     },
     {
       "id": "combined-tactic-skewer-allowed-with-human-natural-error",
@@ -1067,7 +1067,7 @@
       "group": "game_review",
       "primary": "cause-abandoned-defender",
       "secondary": "human-natural-error",
-      "text": "Lots of players would move that piece, the human-move model says. But wait, it was the only real guard of another piece, and now that piece can be taken."
+      "text": "Lots of players would move that piece, the human-move model says. Hmm, but it was the only real guard of another piece, and now that piece can be taken."
     },
     {
       "id": "combo-cause-abandoned-defender-hard-defense-missed",
@@ -1088,7 +1088,7 @@
       "group": "game_review",
       "primary": "cause-opponent-threat-recognition",
       "secondary": "human-hard-defense-missed",
-      "text": "The threat from the opponent's last move is still aimed at a piece. Wait, a different move would have held, and the human-move model calls that defense a tricky one. Good one to learn!"
+      "text": "The threat from the opponent's last move is still aimed at a piece. Ah, a different move would have held, and the human-move model calls that defense a tricky one. Good one to learn!"
     },
     {
       "id": "combo-cause-avoiding-bad-trades-natural-error",
@@ -1263,7 +1263,7 @@
       "group": "game_review",
       "primary": "tactic-removing-defender-allowed",
       "secondary": "human-natural-error",
-      "text": "It's a normal move by the human-move model, but wait: a defender is now open to being captured, and the piece it covers would lose its help."
+      "text": "It's a normal move by the human-move model, but here's the catch: a defender is now open to being captured, and the piece it covers would lose its help."
     },
     {
       "id": "combo-tactic-removing-defender-allowed-hard-defense-missed",
@@ -1354,7 +1354,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-allowed",
       "secondary": "human-hard-defense-missed",
-      "text": "Uh-oh for the defense: one enemy pawn has an easier walk to promoting now. Wait, a different move would have held, and the human-move model calls that defense a tricky one. Good one to learn!"
+      "text": "Uh-oh for the defense: one enemy pawn has an easier walk to promoting now. Ah, a different move would have held, and the human-move model calls that defense a tricky one. Good one to learn!"
     },
     {
       "id": "combo-tactic-promotion-awareness-missed-natural-error",
@@ -1431,14 +1431,14 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-hard-find",
-      "text": "Two threats from just one move, and only one can get answered at a time. The human-move model calls it tricky, the engine calls it its favorite, and it still got spotted. That's the coolest part!"
+      "text": "Two targets hit at the same moment, and one reply rarely covers both. The human-move model calls it tricky, the engine calls it its favorite, and it still got spotted. That's the coolest part!"
     },
     {
       "id": "combo-tactic-double-attack-played-unusual-strong",
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-unusual-strong",
-      "text": "A surprising move that makes two threats at once. Weird for the human-move model, strong for the engine, and nobody copied that from anybody."
+      "text": "A surprising move that hits two things at the same moment. Weird for the human-move model, strong for the engine, and nobody copied that from anybody."
     },
     {
       "id": "combo-tactic-double-attack-played-natural-best",
@@ -1459,7 +1459,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-allowed",
       "secondary": "human-natural-error",
-      "text": "The human-move model rates this a common choice, but wait: the other side gets a single move with two threats packed inside."
+      "text": "The human-move model rates this a common choice, though check it out: the other side gets a single move with two threats packed inside."
     },
     {
       "id": "combo-tactic-double-attack-allowed-hard-defense-missed",
@@ -1585,7 +1585,7 @@
       "group": "game_review",
       "primary": "tactic-hanging-piece-allowed",
       "secondary": "human-natural-error",
-      "text": "It's a normal move by the human-move model, but wait: after it, one piece has nothing guarding it, and the other side can take it."
+      "text": "It's a normal move by the human-move model, but now a piece is left unprotected, free for the other side to grab."
     },
     {
       "id": "combo-tactic-hanging-piece-allowed-hard-defense-missed",
@@ -1935,7 +1935,7 @@
       "group": "game_review",
       "primary": "allowed-mate",
       "secondary": "human-hard-defense-missed",
-      "text": "Wait, now the other side has a forced mate. Oh, one checked move would have saved it, and the human-move model says most people miss that defense, so don't feel bad. The moves before this are the place to dig."
+      "text": "Hmm, a mate is locked in for the other side now. Oh, one checked move would have saved it, and the human-move model says most people miss that defense, so don't feel bad. The moves before this are the place to dig."
     },
     {
       "id": "combo-missed-mate-hard-defense-missed",
@@ -1991,7 +1991,7 @@
       "group": "game_review",
       "primary": "immediate-capture",
       "secondary": "human-hard-defense-missed",
-      "text": "Uh-oh, right on the next move, the other side gets to take something. Wait, a different move would have held, and the human-move model calls that defense a tricky one. Good one to learn!"
+      "text": "Uh-oh, right on the next move, the other side gets to take something. Ah, a different move would have held, and the human-move model calls that defense a tricky one. Good one to learn!"
     },
     {
       "id": "combo-evaluation-loss-hard-defense-missed",
@@ -2166,7 +2166,7 @@
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-natural-best",
-      "text": "After the earlier mistake, the game is back on track. Okay, so the human-move model says most people play this, and the engine searches everything and finds nothing better. Easy and right! That's what bouncing back looks like."
+      "text": "After the earlier mistake, things are rolling again. Okay, so the human-move model says most people play this, and the engine searches everything and finds nothing better. Easy and right! That's what bouncing back looks like."
     },
     {
       "id": "combo-recovery-natural-strong",
