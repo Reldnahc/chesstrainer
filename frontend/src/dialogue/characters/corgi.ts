@@ -24,7 +24,7 @@ export const corgi: CoachPersonality = {
     ],
     tactic_allowed: [
       {reaction: "Alert!", fact: "The strongest line arms {opponent} with a {motif}.", consequence: "{detail}", takeaway: "Check what the other side can hit before moving."},
-      {fact: "{opponent} has a {motif} lined up in the strongest line.", consequence: "{detail}"},
+      {fact: "In the strongest line, {opponent} ends up with a {motif} ready.", consequence: "{detail}"},
     ],
     tactic_missed: [
       {reaction: "Opportunity passed by. Regroup.", fact: "{best} had the {motif} primed.", consequence: "{detail}"},
@@ -42,11 +42,11 @@ export const corgi: CoachPersonality = {
       "All other searched moves lost; this one stood firm.",
     ],
     decisive_resource: ["Only this searched move kept the decisive advantage. Every other one gave it up."],
-    reply_capture: ["Incoming: {opponent} has {reply}, capturing {side}'s {piece}."],
+    reply_capture: ["Incoming: {reply} lets {opponent} capture {side}'s {piece}."],
     reply_check: ["Check on the way! {opponent} answers best with {reply}."],
     alternative: ["The engine's orders were {best}: {evaluation} for the mover."],
     loss: [
-      {reaction: "That costs.", fact: "{loss} pawns of evaluation given up against the best move.", takeaway: "Inspect the stronger line."},
+      {reaction: "That costs.", fact: "Cost report: {loss} pawns of evaluation against the best move.", takeaway: "Inspect the stronger line."},
       "Next to the best move, this costs {loss} pawns of evaluation. Check the reply.",
     ],
     best: [
@@ -75,7 +75,7 @@ export const corgi: CoachPersonality = {
     punishment: ["Chance seized! The opponent gave {side} an opening at {earlier}, and this move uses it."],
     missed_punishment: ["Chance passed up. {side} got an opening from the opponent at {earlier}, and this move lets it go."],
     repeated: ["The {motif} issue has turned up {count} times in the reviewed game. Put it on the drill list."],
-    support_restored: ["Support restored! At {earlier} the {piece} stood unguarded; now it has a defender."],
+    support_restored: ["Support restored! At {earlier} the {piece} stood unguarded; now someone's guarding it."],
     erosion: ["Another small concession. Since {earlier}, they've added up and worn the position down."],
     conversion: ["Advantage converted! {side} held the edge from {earlier} all the way to the win."],
     history: ["Drill list: the {motif} issue also appears in {games} other saved games."],

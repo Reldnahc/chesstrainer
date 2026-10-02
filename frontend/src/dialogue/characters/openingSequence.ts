@@ -188,7 +188,7 @@ export const corgiOpeningTemplates = {
   "book-opening-entry-3": ["Recognized opening, on record as {opening}."],
   "book-opening-follow-1": ["Still following the manual: {opening}."],
   "book-opening-follow-2": ["Another move from the manual, in {opening}."],
-  "book-opening-follow-3": ["The reply is in the manual too: {opening}."],
+  "book-opening-follow-3": ["The manual covers the reply as well: {opening}."],
   "book-opening-follow-4": ["The manual keeps going through {opening}."],
   "book-opening-follow-5": ["Formation holds, still within {opening}."],
   "book-opening-follow-6": ["{opening} keeps marching."],

@@ -72,7 +72,7 @@
     {
       "id": "tactic-back-rank-allowed",
       "group": "game_review",
-      "text": "Back rank alert! The other side gets a route to mate there, with the king trapped behind its own pieces."
+      "text": "Back rank under threat! The other side gets a route to mate there, with the king trapped behind its own pieces."
     },
     {
       "id": "tactic-back-rank-missed",
@@ -82,7 +82,7 @@
     {
       "id": "tactic-promotion-awareness-played",
       "group": "game_review",
-      "text": "The mission is promotion: get a pawn to the last rank and turn it into a new piece. Track its route up the board."
+      "text": "The mission is promotion: a pawn reaches the last rank and earns a new rank as a piece. Track its route up the board."
     },
     {
       "id": "tactic-promotion-awareness-allowed",
@@ -97,7 +97,7 @@
     {
       "id": "tactic-discovered-attack-played",
       "group": "game_review",
-      "text": "Discovered attack, launched! One piece steps out of the way, and the piece behind it goes on the attack. Two units in action off a single order."
+      "text": "Discovered attack, launched! The blocker moves off, and the piece behind it goes on the attack. Two units in action off a single order."
     },
     {
       "id": "tactic-discovered-attack-allowed",
@@ -112,7 +112,7 @@
     {
       "id": "tactic-double-attack-played",
       "group": "game_review",
-      "text": "Double attack, two fronts open! Two threats from one move, and both demand an answer."
+      "text": "Double attack deployed! Two fronts, one order, and both demand an answer."
     },
     {
       "id": "tactic-double-attack-allowed",
@@ -187,7 +187,7 @@
     {
       "id": "positional-rook-open-alternative",
       "group": "game_review",
-      "text": "Another move would have left a rook on an open file, empty of pawns."
+      "text": "Another move would have handed a rook an open file, empty of pawns."
     },
     {
       "id": "positional-rook-semi-open-actual",
@@ -207,7 +207,7 @@
     {
       "id": "positional-passed-alternative",
       "group": "game_review",
-      "text": "A passed pawn was available through another move, clear of enemy pawns ahead on its file and both neighbors."
+      "text": "Another move had a passed pawn on offer, with no enemy pawns ahead on its file or either flank."
     },
     {
       "id": "positional-passer-advance-actual",
@@ -217,7 +217,7 @@
     {
       "id": "positional-passer-advance-alternative",
       "group": "game_review",
-      "text": "Another move would have pushed the passed pawn farther up the board."
+      "text": "Another move would have sent the passed pawn on another advance."
     },
     {
       "id": "positional-isolated-actual",
@@ -227,7 +227,7 @@
     {
       "id": "positional-isolated-alternative",
       "group": "game_review",
-      "text": "Another move would have left an isolated pawn, with no friendly pawn on either flank."
+      "text": "Another move would have cut a pawn off from support on both flanks: isolated."
     },
     {
       "id": "positional-support-actual",
@@ -252,7 +252,7 @@
     {
       "id": "positional-king-flight-actual",
       "group": "game_review",
-      "text": "The king gains a legal escape square it didn't have. An exit route is always worth having."
+      "text": "New exit for the king, a legal square it lacked a move ago. Always worth having."
     },
     {
       "id": "positional-king-flight-alternative",
@@ -282,7 +282,7 @@
     {
       "id": "positional-doubled-actual",
       "group": "game_review",
-      "text": "This leaves doubled pawns: same color, same file, one in front of the other."
+      "text": "Doubled pawns on the field: same color, same file, one in front of the other."
     },
     {
       "id": "positional-doubled-alternative",
@@ -307,7 +307,7 @@
     {
       "id": "only-playable-move",
       "group": "game_review",
-      "text": "Held the line! Nothing else we checked kept the position playable; every other choice lost."
+      "text": "Held the line! This was the lone move we checked that stayed playable; every other choice lost."
     },
     {
       "id": "only-advantage-resource",
@@ -502,7 +502,7 @@
     {
       "id": "srs-summary-engine-accepted",
       "group": "srs_explanations",
-      "text": "Cleared for this exercise. No clear tactical reason shows in these moves, so none is claimed."
+      "text": "Cleared for this exercise. The moves shown don't reveal a clear tactical reason, and none is invented here."
     },
     {
       "id": "srs-summary-engine-rejected",
@@ -512,7 +512,7 @@
     {
       "id": "srs-summary-curated-accepted",
       "group": "srs_explanations",
-      "text": "Match confirmed: that's one of this exercise's saved answers. Those saved answers set what passes."
+      "text": "Match confirmed: the move is on this exercise's saved list. Those saved answers set what passes."
     },
     {
       "id": "srs-summary-curated-rejected",
@@ -577,7 +577,7 @@
     {
       "id": "explanation-frame-quiet-promotion-escape",
       "group": "srs_explanations",
-      "text": "The pawn promotes on the last rank, and its own king is out of check."
+      "text": "Promotion on the last rank, and the promoting side's king is out of check."
     },
     {
       "id": "explanation-frame-capture-move-ordinary",
@@ -752,7 +752,7 @@
     {
       "id": "explanation-cue-double-attack",
       "group": "srs_explanations",
-      "text": "Two threats from one move: that's what to search for. A check or a newly opened line counts as a threat."
+      "text": "Hunt for one order that opens two fronts. A check or a freshly opened line counts as a front."
     },
     {
       "id": "explanation-cue-back-rank",
@@ -792,7 +792,7 @@
     {
       "id": "explanation-note-material-scope",
       "group": "srs_explanations",
-      "text": "Material changes cover only the line shown, counted from its start. The piece values behind that count are in the written explanation."
+      "text": "Material changes cover only the line shown, counted from its start. The written explanation names the piece values used in that count."
     },
     {
       "id": "explanation-note-no-simple-reason",
@@ -887,7 +887,7 @@
     {
       "id": "puzzle-next-move",
       "group": "puzzles",
-      "text": "Affirmative! Onward to the next move."
+      "text": "Affirmative! Advance to the next move."
     },
     {
       "id": "puzzle-cold",
@@ -990,7 +990,7 @@
       "group": "game_review",
       "primary": "evaluation-loss",
       "secondary": "human-natural-error",
-      "text": "The human-move model rates this natural, and the engine finds a stronger move. This one gives up value; the reply shows where."
+      "text": "The human-move model rates this natural, and the engine finds a stronger move. This one gives up value, and the reply pinpoints it."
     },
     {
       "id": "combined-tactic-fork-allowed-with-human-natural-error",
@@ -1172,7 +1172,7 @@
       "group": "game_review",
       "primary": "tactic-pin-missed",
       "secondary": "human-natural-error",
-      "text": "A stronger move could have pinned a piece to its king. The human-move model calls this one natural, and the pin never happens."
+      "text": "A stronger move had a pin to the king in reserve. The human-move model calls this one natural, and the pin never happens."
     },
     {
       "id": "combo-tactic-pin-missed-hard-defense-missed",
@@ -1214,7 +1214,7 @@
       "group": "game_review",
       "primary": "tactic-skewer-allowed",
       "secondary": "human-hard-defense-missed",
-      "text": "This opens a skewer for the other side: once the front piece moves, the rear piece is open to attack. One checked move would have held, and the human-move model logs that defense as hard to find."
+      "text": "A skewer is armed for the other side: once the front piece moves, the rear piece is open to attack. One checked move would have held, and the human-move model logs that defense as hard to find."
     },
     {
       "id": "combo-tactic-skewer-missed-natural-error",
@@ -1284,7 +1284,7 @@
       "group": "game_review",
       "primary": "tactic-removing-defender-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "The only playable move we found captured a defender and stripped its protection. Nobody gave that order, and the human-move model says it was hard to spot."
+      "text": "Our only playable move was the capture of a defender, stripping its protection. Nobody gave that order, and the human-move model says it was hard to spot."
     },
     {
       "id": "combo-tactic-back-rank-played-hard-find",
@@ -1298,7 +1298,7 @@
       "group": "game_review",
       "primary": "tactic-back-rank-played",
       "secondary": "human-unusual-strong",
-      "text": "Back-rank mating idea: the king's own troops block its escape. A surprise to the human-move model, and a strong move to the engine. Approved."
+      "text": "Back rank locked down: the king's own troops wall off every exit. A surprise to the human-move model, and a strong move to the engine. Approved."
     },
     {
       "id": "combo-tactic-back-rank-played-natural-best",
@@ -1340,7 +1340,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-natural-strong",
-      "text": "The idea is promotion, with a pawn advancing on the last rank. Natural, per the human-move model's intel; strong, per the engine, which still prefers another move."
+      "text": "The idea is promotion, with a pawn advancing toward the last rank. Natural, per the human-move model's intel; strong, per the engine, which still prefers another move."
     },
     {
       "id": "combo-tactic-promotion-awareness-allowed-natural-error",
@@ -1368,7 +1368,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "A pawn advance toward promotion was the only playable move we found. That advance never happened, and the human-move model says it was hard to find."
+      "text": "Our only playable move was a pawn push toward promotion. That advance never happened, and the human-move model says it was hard to find."
     },
     {
       "id": "combo-tactic-discovered-attack-played-hard-find",
@@ -1403,7 +1403,7 @@
       "group": "game_review",
       "primary": "tactic-discovered-attack-allowed",
       "secondary": "human-natural-error",
-      "text": "The human-move model calls this natural, but a discovered attack opens for the other side. One of their pieces can step aside and let the one behind it strike."
+      "text": "The human-move model calls this natural, but a discovered attack opens for the other side. One of their pieces can clear the line and unmask the attacker behind it."
     },
     {
       "id": "combo-tactic-discovered-attack-allowed-hard-defense-missed",
@@ -1431,7 +1431,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-hard-find",
-      "text": "Two threats from one move, and both demand an answer. First on the engine's list, and the human-move model logs it as hard to find."
+      "text": "Two fronts, one order: each threat demands an answer. First on the engine's list, and the human-move model logs it as hard to find."
     },
     {
       "id": "combo-tactic-double-attack-played-unusual-strong",
@@ -1445,14 +1445,14 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-natural-best",
-      "text": "One move, two threats: double attack on the board. The human-move model saw it coming, and the engine ranks it first. Orders confirmed."
+      "text": "Two fronts opened at once: double attack on the board. The human-move model saw it coming, and the engine ranks it first. Orders confirmed."
     },
     {
       "id": "combo-tactic-double-attack-played-natural-strong",
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-natural-strong",
-      "text": "A double attack, with two threats in play at once. In the human-move model's log, it's natural. The engine rates it strong but keeps a different move in front."
+      "text": "Double attack, two fronts at once. In the human-move model's log, it's natural. The engine rates it strong but keeps a different move in front."
     },
     {
       "id": "combo-tactic-double-attack-allowed-natural-error",
@@ -1655,7 +1655,7 @@
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-hard-find",
-      "text": "The rook's file is semi-open: no pawns of its own color on it, at least one enemy pawn ahead. Best by the engine's ranking, and hard to spot by the human-move model's intel. Good hunting!"
+      "text": "Rook on a semi-open file: no pawns of its own color on it, at least one enemy pawn ahead. Best by the engine's ranking, and hard to spot by the human-move model's intel. Good hunting!"
     },
     {
       "id": "combo-positional-rook-semi-open-actual-unusual-strong",
@@ -1711,7 +1711,7 @@
       "group": "game_review",
       "primary": "positional-passer-advance-actual",
       "secondary": "human-hard-find",
-      "text": "Forward march: the passed pawn advances again. The engine's top pick, and the human-move model says it was well camouflaged."
+      "text": "Forward march: another square for the passed pawn. The engine's top pick, and the human-move model says it was well camouflaged."
     },
     {
       "id": "combo-positional-passer-advance-actual-unusual-strong",
@@ -1795,7 +1795,7 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-hard-find",
-      "text": "Nobody defends this piece now, though that alone doesn't mean it can be won. The engine ranks it first, and the human-move model and the other searched moves mark it a hard find."
+      "text": "This piece is unguarded now, which alone doesn't mean it can be won. The engine ranks it first, and the human-move model and the other searched moves mark it a hard find."
     },
     {
       "id": "combo-positional-unsupported-actual-unusual-strong",
@@ -1907,7 +1907,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-hard-find",
-      "text": "This leaves doubled pawns, one in front of the other on one file. The engine puts it first, and by the human-move model's intel, it was a tough find. Outstanding work!"
+      "text": "Doubled up: two pawns in single file, one behind the other. The engine puts it first, and by the human-move model's intel, it was a tough find. Outstanding work!"
     },
     {
       "id": "combo-positional-doubled-actual-unusual-strong",
@@ -1921,7 +1921,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-natural-best",
-      "text": "Two pawns of one color end up on one file. Both reports agree: natural to the human-move model, best for the engine. Sometimes the structure is worth the cost."
+      "text": "One file, two pawns of the same color: doubled. Both reports agree: natural to the human-move model, best for the engine. Sometimes the structure is worth the cost."
     },
     {
       "id": "combo-positional-doubled-actual-natural-strong",
@@ -2341,7 +2341,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-find",
-      "text": "This move is in the field manual. Engine's report: best. Human-move model's report: hard to find. Top marks! Known is not the same as easy."
+      "text": "This move is in the field manual. Engine's report: best. Human-move model's report: hard to find. Top marks!"
     },
     {
       "id": "combo-book-opening-entry-2-unusual-strong",
