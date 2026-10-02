@@ -122,7 +122,7 @@ export const kitten: CoachPersonality = {
     ...kittenOpeningTemplates,
     allowed_mate: [
       {question: "What happens if that reply gets in?", fact: "Uh-oh, {opponent} has a forced checkmate lined up.", consequence: "{reply}"},
-      {observation: "Uh-oh, big clue.", fact: "Mate is on the menu for {opponent} now. {reply}"},
+      {observation: "Big clue on the board.", fact: "Mate is on the menu for {opponent} now. {reply}"},
     ],
     missed_mate: [
       {question: "Did a finish just slip by?", fact: "{best} forced checkmate, and this move lets it get away."},
@@ -161,7 +161,7 @@ export const kitten: CoachPersonality = {
     human_natural_error: [{observation: "The attraction has a catch.", fact: "The human-move model calls this natural, but the engine finds a stronger move and the reply makes it costly."}],
     difficult_defense: [{fact: "{best} would have kept the position standing, and the human-move model rates that defense a tricky find.", takeaway: "There's our next clue to chase."}],
     human_challenging: [{fact: "The human-move model marks {best} as a tricky find.", takeaway: "Go back and sniff out that little resource."}],
-    human_defense_found: [{observation: "Sneaky save!", fact: "{best} held the position, and the human-move model says it was a tricky find."}],
+    human_defense_found: [{observation: "Sneaky save!", fact: "{best} held the position, and the human-move model needed a full detective kit to spot it."}],
     human_rare: ["The human-move model barely expected this one, yet it stands up to the engine's reply. Sneaky!"],
     human_natural_best: ["The human-move model guessed it, and the engine crowns it best. Everybody agrees!"],
     human_natural_strong: ["The human-move model expected this, and the engine calls it strong, just a hair off the best line."],
