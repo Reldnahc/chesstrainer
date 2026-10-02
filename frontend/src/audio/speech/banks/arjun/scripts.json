@@ -192,7 +192,7 @@
     {
       "id": "positional-rook-semi-open-actual",
       "group": "game_review",
-      "text": "This idea parks the rook on a semi-open file, clear of its own pawns, with at least one enemy pawn further along."
+      "text": "This move parks the rook on a semi-open file, clear of its own pawns, with at least one enemy pawn further along."
     },
     {
       "id": "positional-rook-semi-open-alternative",
@@ -212,7 +212,7 @@
     {
       "id": "positional-passer-advance-actual",
       "group": "game_review",
-      "text": "One more square for the passed pawn to cover is behind it now. How many are left, and who can stop it?"
+      "text": "The passed pawn is a square closer to the end of its run. How many are left, and who can stop it?"
     },
     {
       "id": "positional-passer-advance-alternative",
@@ -242,7 +242,7 @@
     {
       "id": "positional-unsupported-actual",
       "group": "game_review",
-      "text": "After this option, a certain piece has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the piece can be won."
+      "text": "After this move, a certain piece has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the piece can be won."
     },
     {
       "id": "positional-unsupported-alternative",
@@ -482,7 +482,7 @@
     {
       "id": "srs-summary-mate-for-mover",
       "group": "srs_explanations",
-      "text": "According to the saved engine analysis, whoever played this idea can force checkmate."
+      "text": "According to the saved engine analysis, whoever played this move can force checkmate."
     },
     {
       "id": "srs-summary-mate-against-mover",
@@ -492,12 +492,12 @@
     {
       "id": "srs-summary-material-gain",
       "group": "srs_explanations",
-      "text": "Tally it up after the saved line, and the side that chose this option has more material."
+      "text": "Tally it up after the saved line, and the side that played this move has more material."
     },
     {
       "id": "srs-summary-material-loss",
       "group": "srs_explanations",
-      "text": "Tally it up after the saved line, and the side that chose this idea has less material."
+      "text": "Tally it up after the saved line, and the side that played this move has less material."
     },
     {
       "id": "srs-summary-engine-accepted",
@@ -507,7 +507,7 @@
     {
       "id": "srs-summary-engine-rejected",
       "group": "srs_explanations",
-      "text": "Not this option, according to the exercise, and nothing in the moves shown makes a clear tactical case. Try another one."
+      "text": "Not this move, according to the exercise, and nothing in the moves shown makes a clear tactical case. Try another one."
     },
     {
       "id": "srs-summary-curated-accepted",
@@ -517,7 +517,7 @@
     {
       "id": "srs-summary-curated-rejected",
       "group": "srs_explanations",
-      "text": "That idea isn't among the exercise's saved answers, though another legal move can still be good chess."
+      "text": "That move isn't among the exercise's saved answers, though another legal move can still be good chess."
     },
     {
       "id": "srs-fallback-study",
@@ -812,7 +812,7 @@
     {
       "id": "opening-recall-accepted",
       "group": "openings",
-      "text": "Right, that idea comes from your study material."
+      "text": "Right, that move comes from your study material."
     },
     {
       "id": "opening-recall-retry-fallback",
@@ -917,7 +917,7 @@
     {
       "id": "book-opening-entry-2",
       "group": "game_review",
-      "text": "This idea is borrowed from a known opening."
+      "text": "This move is borrowed from a known opening."
     },
     {
       "id": "book-opening-entry-3",
@@ -1025,14 +1025,14 @@
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-hard-defense-found",
-      "text": "Only this option keeps the advantage, while every other examined option loses, and the human-move model rates it a hard resource to find. Really well spotted."
+      "text": "The advantage survives through this move and no other, while every other examined option loses, and the human-move model rates it a hard resource to find. Really well spotted."
     },
     {
       "id": "combined-only-advantage-resource-with-human-hard-find",
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-hard-find",
-      "text": "The advantage stays alive through this idea alone; the others lose. Hard to find by the human-move model's measure, and the winner of the engine's comparison. A real discovery."
+      "text": "Keeping the advantage took exactly this move; the others lose. Hard to find by the human-move model's measure, and the winner of the engine's comparison. A real discovery."
     },
     {
       "id": "combined-tactic-fork-played-with-human-unusual-strong",
@@ -1046,14 +1046,14 @@
       "group": "game_review",
       "primary": "tactic-fork-played",
       "secondary": "human-hard-find",
-      "text": "A well-hidden fork, one piece reaching several targets. The human-move model and the searched alternatives call this idea difficult, and the engine puts it first."
+      "text": "A well-hidden fork, one piece reaching several targets. The human-move model and the searched alternatives call this move difficult, and the engine puts it first."
     },
     {
       "id": "combined-tactic-pin-played-with-human-unusual-strong",
       "group": "game_review",
       "primary": "tactic-pin-played",
       "secondary": "human-unusual-strong",
-      "text": "The pinned piece sits in front of its king and can't legally step off its line. The human-move model gives this idea a low chance of being played, while the engine's comparison finds it strong."
+      "text": "The pinned piece sits in front of its king and can't legally step off its line. The human-move model gives this move a low chance of being played, while the engine's comparison finds it strong."
     },
     {
       "id": "combined-tactic-pin-played-with-human-hard-find",
@@ -1242,7 +1242,7 @@
       "group": "game_review",
       "primary": "tactic-removing-defender-played",
       "secondary": "human-unusual-strong",
-      "text": "A defender is taken, leaving the piece it covered exposed. Few players would try it, the human-move model estimates, yet it passes the engine's test as strong."
+      "text": "A defender is taken, leaving the piece it covered exposed. Few players would try it, by the human-move model's estimate, yet it passes the engine's test as strong."
     },
     {
       "id": "combo-tactic-removing-defender-played-natural-best",
@@ -1319,7 +1319,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-hard-find",
-      "text": "A pawn moves toward promotion. Count the steps, and the race becomes clear. The engine prefers this option to every other, and the human-move model and searched alternatives say it's hard to see."
+      "text": "A pawn moves toward promotion. Count the steps, and the race becomes clear. The engine prefers this move to every other, and the human-move model and searched alternatives say it's hard to see."
     },
     {
       "id": "combo-tactic-promotion-awareness-played-unusual-strong",
@@ -1340,7 +1340,7 @@
       "group": "game_review",
       "primary": "tactic-promotion-awareness-played",
       "secondary": "human-natural-strong",
-      "text": "This idea nudges a pawn closer to queening. The human-move model sees an everyday, natural idea; the engine sees a strong one, though its own choice differs."
+      "text": "This move nudges a pawn closer to queening. The human-move model sees an everyday, natural idea; the engine sees a strong one, though its own choice differs."
     },
     {
       "id": "combo-tactic-promotion-awareness-allowed-natural-error",
@@ -1599,7 +1599,7 @@
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-hard-find",
-      "text": "Another minor piece comes into play. The human-move model and the searched alternatives call this idea difficult, and the engine puts it first. Quiet options can be the hardest to spot."
+      "text": "Another minor piece comes into play. The human-move model and the searched alternatives call this move difficult, and the engine puts it first. Quiet options can be the hardest to spot."
     },
     {
       "id": "combo-positional-development-actual-unusual-strong",
@@ -1634,7 +1634,7 @@
       "group": "game_review",
       "primary": "positional-rook-open-actual",
       "secondary": "human-unusual-strong",
-      "text": "An unexpected route to the open file for the rook. The human-move model gives this idea a low chance of being played, while the engine's comparison finds it strong."
+      "text": "An unexpected route to the open file for the rook. The human-move model gives this move a low chance of being played, while the engine's comparison finds it strong."
     },
     {
       "id": "combo-positional-rook-open-actual-natural-best",
@@ -1690,7 +1690,7 @@
       "group": "game_review",
       "primary": "positional-passed-actual",
       "secondary": "human-unusual-strong",
-      "text": "An unexpected idea that creates a passed pawn. Few players would try it, the human-move model estimates, yet it passes the engine's test as strong."
+      "text": "An unexpected idea that creates a passed pawn. Few players would try it, by the human-move model's estimate, yet it passes the engine's test as strong."
     },
     {
       "id": "combo-positional-passed-actual-natural-best",
@@ -1739,14 +1739,14 @@
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-hard-find",
-      "text": "An isolated pawn appears, with its neighboring files empty of friendly pawns. The engine prefers this option to every other, and the human-move model and searched alternatives say it's hard to see. Even the best move can cost some structure."
+      "text": "An isolated pawn appears, with its neighboring files empty of friendly pawns. The engine prefers this move to every other, and the human-move model and searched alternatives say it's hard to see. Even the best move can cost some structure."
     },
     {
       "id": "combo-positional-isolated-actual-unusual-strong",
       "group": "game_review",
       "primary": "positional-isolated-actual",
       "secondary": "human-unusual-strong",
-      "text": "This option isolates a pawn. The human-move model wouldn't predict this move, while the engine's comparison comes back strong."
+      "text": "This move isolates a pawn. The human-move model wouldn't predict this move, while the engine's comparison comes back strong."
     },
     {
       "id": "combo-positional-isolated-actual-natural-best",
@@ -1802,7 +1802,7 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-unusual-strong",
-      "text": "A piece is left undefended by this idea, though that by itself is no proof it can be won. This isn't where the human-move model looks first, and still the engine's test comes back strong."
+      "text": "A piece is left undefended by this move, though that by itself is no proof it can be won. This isn't where the human-move model looks first, and still the engine's test comes back strong."
     },
     {
       "id": "combo-positional-unsupported-actual-natural-best",
@@ -1879,7 +1879,7 @@
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-hard-find",
-      "text": "With this capture, the opposing bishop pair breaks up. The human-move model and the searched alternatives call this idea difficult, and the engine puts it first."
+      "text": "With this capture, the opposing bishop pair breaks up. The human-move model and the searched alternatives call this move difficult, and the engine puts it first."
     },
     {
       "id": "combo-positional-bishop-pair-actual-unusual-strong",
@@ -1914,7 +1914,7 @@
       "group": "game_review",
       "primary": "positional-doubled-actual",
       "secondary": "human-unusual-strong",
-      "text": "This option creates a doubled pawn. The human-move model gives this idea a low chance of being played, while the engine's comparison finds it strong."
+      "text": "This move creates a doubled pawn. The human-move model gives this move a low chance of being played, while the engine's comparison finds it strong."
     },
     {
       "id": "combo-positional-doubled-actual-natural-best",
@@ -1984,7 +1984,7 @@
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-natural-best",
-      "text": "Only this option keeps the advantage, while the other examined moves lose. The move a player reaches for first, by the human-move model, also survives every engine test as the best."
+      "text": "The advantage lives on through this move, while the other examined moves lose. The move a player reaches for first, by the human-move model, also survives every engine test as the best."
     },
     {
       "id": "combo-immediate-capture-hard-defense-missed",
@@ -2012,7 +2012,7 @@
       "group": "game_review",
       "primary": "clock-low",
       "secondary": "human-unusual-strong",
-      "text": "This move was played with almost no time on the clock. Few players would try it, the human-move model estimates, yet it passes the engine's test as strong."
+      "text": "This move was played with almost no time on the clock. Few players would try it, by the human-move model's estimate, yet it passes the engine's test as strong."
     },
     {
       "id": "combo-clock-low-natural-best",
@@ -2061,7 +2061,7 @@
       "group": "game_review",
       "primary": "clock-long",
       "secondary": "human-hard-find",
-      "text": "A long think, and the right idea came out of it. The engine prefers this option to every other, and the human-move model and searched alternatives say it's hard to see."
+      "text": "A long think, and the right idea came out of it. The engine prefers this move to every other, and the human-move model and searched alternatives say it's hard to see."
     },
     {
       "id": "combo-clock-long-unusual-strong",
@@ -2096,7 +2096,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-unusual-strong",
-      "text": "A recognized opening has a place for this option. Unexpected by the human-move model's standards, strong when the engine tests it. The book and the human-move model can see it differently."
+      "text": "This move fits into a recognized opening. Unexpected by the human-move model's standards, strong when the engine tests it. The book and the human-move model can see it differently."
     },
     {
       "id": "combo-recognized-opening-natural-best",
@@ -2152,7 +2152,7 @@
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-hard-find",
-      "text": "After the earlier error, this option brings back a playable position. The engine's top option, and one the human-move model and the searched alternatives say is hard to find. Nicely spotted."
+      "text": "After the earlier error, this move gets the game playable again. The engine's top option, and one the human-move model and the searched alternatives say is hard to find. Nicely spotted."
     },
     {
       "id": "combo-recovery-unusual-strong",
@@ -2187,14 +2187,14 @@
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-unusual-strong",
-      "text": "The other side's slips lent a hand, and this option makes the position playable again. The human-move model calls it improbable, while the engine's test comes back strong, and that gap is the interesting part to explore."
+      "text": "The other side's slips lent a hand, and this move makes the position playable again. The human-move model calls it improbable, while the engine's test comes back strong, and that gap is the interesting part to explore."
     },
     {
       "id": "combo-recovery-assisted-natural-best",
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-best",
-      "text": "With a hand from the other side's errors, this idea makes the position playable once again. Instinct and search land on the same option this time, since the human-move model expects it and nothing in the engine's comparison tops it."
+      "text": "With a hand from the other side's errors, this move makes the position playable once again. Instinct and search land on the same option this time, since the human-move model expects it and nothing in the engine's comparison tops it."
     },
     {
       "id": "combo-recovery-assisted-natural-strong",
@@ -2208,7 +2208,7 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-hard-find",
-      "text": "The opponent's last move cracked something open, and this move finds the way through. The human-move model and the searched alternatives call this idea difficult, and the engine puts it first."
+      "text": "The opponent's last move cracked something open, and this move finds the way through. The human-move model and the searched alternatives call this move difficult, and the engine puts it first."
     },
     {
       "id": "combo-chance-taken-unusual-strong",
@@ -2222,7 +2222,7 @@
       "group": "game_review",
       "primary": "chance-taken",
       "secondary": "human-natural-best",
-      "text": "The opponent's last move offered something, and this idea accepts. If we line up every option, the human-move model's favorite is also the engine's, which is a nice thing to discover."
+      "text": "The opponent's last move offered something, and this move takes the offer. If we line up every option, the human-move model's favorite is also the engine's, which is a nice thing to discover."
     },
     {
       "id": "combo-chance-taken-natural-strong",
@@ -2257,7 +2257,7 @@
       "group": "game_review",
       "primary": "support-restored",
       "secondary": "human-unusual-strong",
-      "text": "An unexpected idea restores protection to the piece left alone earlier. The human-move model gives this idea a low chance of being played, while the engine's comparison finds it strong."
+      "text": "An unexpected idea restores protection to the piece left alone earlier. The human-move model gives this move a low chance of being played, while the engine's comparison finds it strong."
     },
     {
       "id": "combo-support-restored-natural-best",
@@ -2313,7 +2313,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-1",
       "secondary": "human-unusual-strong",
-      "text": "The opening book contains this idea. Few players would try it, the human-move model estimates, yet it passes the engine's test as strong."
+      "text": "With this move, the opening book takes over. Few players would try it, by the human-move model's estimate, yet it passes the engine's test as strong."
     },
     {
       "id": "combo-book-opening-entry-1-natural-best",
@@ -2341,14 +2341,14 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-hard-find",
-      "text": "This option comes from a known opening, and it's hard to see. The human-move model gives this move a low chance of being found, with the engine choosing it ahead of everything else."
+      "text": "A known opening includes this move, though spotting it isn't easy. The human-move model gives this move a low chance of being found, with the engine choosing it ahead of everything else."
     },
     {
       "id": "combo-book-opening-entry-2-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-unusual-strong",
-      "text": "A known opening supplies this idea. Surprising to the human-move model yet sturdy under the engine's test, a reminder to keep unusual candidates on the list."
+      "text": "A known opening supplies this move. Surprising to the human-move model yet sturdy under the engine's test, a reminder to keep unusual candidates on the list."
     },
     {
       "id": "combo-book-opening-entry-2-natural-best",
@@ -2362,7 +2362,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-2",
       "secondary": "human-natural-strong",
-      "text": "This option appears in a known opening. A sturdy option. Natural by the human-move model, strong by the engine, whose preference lies with another idea."
+      "text": "A known opening has already charted this move. A sturdy option. Natural by the human-move model, strong by the engine, whose preference lies with another idea."
     },
     {
       "id": "combo-book-opening-entry-2-hard-defense-found",
@@ -2376,21 +2376,21 @@
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-hard-find",
-      "text": "The book makes space for this move. The engine prefers this option to every other, and the human-move model and searched alternatives say it's hard to see."
+      "text": "The book makes space for this move. The engine prefers this move to every other, and the human-move model and searched alternatives say it's hard to see."
     },
     {
       "id": "combo-book-opening-entry-3-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-unusual-strong",
-      "text": "This option has its spot in the book. The human-move model wouldn't predict this move, while the engine's comparison comes back strong."
+      "text": "In the book, this move has a spot of its own. The human-move model wouldn't predict this move, while the engine's comparison comes back strong."
     },
     {
       "id": "combo-book-opening-entry-3-natural-best",
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-best",
-      "text": "An idea lifted straight from the book. As moves go, this is both the expected one, by the human-move model, and the top one, by the engine."
+      "text": "A move lifted straight from the book. As moves go, this is both the expected one, by the human-move model, and the top one, by the engine."
     },
     {
       "id": "combo-book-opening-entry-3-natural-strong",
@@ -2418,7 +2418,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-1",
       "secondary": "human-unusual-strong",
-      "text": "The book has room for this option too. Unexpected by the human-move model's standards, strong when the engine tests it."
+      "text": "This move, too, fits inside the book. Unexpected by the human-move model's standards, strong when the engine tests it."
     },
     {
       "id": "combo-book-opening-follow-1-natural-best",
@@ -2446,7 +2446,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-hard-find",
-      "text": "The book offers this idea too. Not an obvious idea for the human-move model, and the engine's favorite. Well found."
+      "text": "The book offers this move too. Not an obvious idea for the human-move model, and the engine's favorite. Well found."
     },
     {
       "id": "combo-book-opening-follow-2-unusual-strong",
@@ -2460,7 +2460,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-2",
       "secondary": "human-natural-best",
-      "text": "The book supplies this option too. The intuitive option wins the comparison outright, natural to the human-move model and best in the engine's search."
+      "text": "The book supplies this move too. The intuitive option wins the comparison outright, natural to the human-move model and best in the engine's search."
     },
     {
       "id": "combo-book-opening-follow-2-natural-strong",
@@ -2551,7 +2551,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-hard-find",
-      "text": "One more move the book already knows. The human-move model and the searched alternatives call this idea difficult, and the engine puts it first."
+      "text": "One more move the book already knows. The human-move model and the searched alternatives call this move difficult, and the engine puts it first."
     },
     {
       "id": "combo-book-opening-follow-5-unusual-strong",
@@ -2565,14 +2565,14 @@
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-best",
-      "text": "Again an option the book recognizes. If we line up every option, the human-move model's favorite is also the engine's, which is a nice thing to discover."
+      "text": "Yet another move the book already lists. If we line up every option, the human-move model's favorite is also the engine's, which is a nice thing to discover."
     },
     {
       "id": "combo-book-opening-follow-5-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-5",
       "secondary": "human-natural-strong",
-      "text": "The book recognizes this idea too. Natural in the human-move model's eyes and strong in the engine's test, though the engine's own choice is a different one."
+      "text": "Here too the book lists the move. Natural in the human-move model's eyes and strong in the engine's test, though the engine's own choice is a different one."
     },
     {
       "id": "combo-book-opening-follow-5-hard-defense-found",
@@ -2593,7 +2593,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-6",
       "secondary": "human-unusual-strong",
-      "text": "There's still more book to explore here. The human-move model gives this idea a low chance of being played, while the engine's comparison finds it strong."
+      "text": "There's still more book to explore here. The human-move model gives this move a low chance of being played, while the engine's comparison finds it strong."
     },
     {
       "id": "combo-book-opening-follow-6-natural-best",
@@ -2642,7 +2642,7 @@
       "group": "game_review",
       "primary": "book-opening-follow-7",
       "secondary": "human-natural-strong",
-      "text": "The book had this option ready. Natural as the human-move model scores it and strong as the engine tests it, with the engine's favorite being another move."
+      "text": "The book had this move ready. Natural as the human-move model scores it and strong as the engine tests it, with the engine's favorite being another move."
     },
     {
       "id": "combo-book-opening-follow-7-hard-defense-found",
@@ -2663,14 +2663,14 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-unusual-strong",
-      "text": "A candidate the book lists again. Few players would try it, the human-move model estimates, yet it passes the engine's test as strong. Book, human-move model and engine each test something different."
+      "text": "A candidate the book lists again. Few players would try it, by the human-move model's estimate, yet it passes the engine's test as strong. Book, human-move model and engine each test something different."
     },
     {
       "id": "combo-book-opening-follow-8-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
-      "text": "The book again. Test it two ways and the answers match, natural for the human-move model and unbeaten in the engine's comparison. The engine judges the option; the book just records it."
+      "text": "The book again. Test it two ways and the answers match, natural for the human-move model and unbeaten in the engine's comparison. The engine weighs the move; the book just records it."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
