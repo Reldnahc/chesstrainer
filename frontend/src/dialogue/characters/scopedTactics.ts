@@ -105,6 +105,36 @@ export const alienTacticalTemplates = authorTacticalWordings({
   playedCapture: {fact: "{move} contains a {motif}.", consequence: "{capture} removes a {piece}."},
 });
 
+export const wizardTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "With {move}, a familiar pattern takes its place on the board: a {motif}.",
+    played_possible: "{move} prepares a {motif}, though the replies will decide whether the pattern completes.",
+    allowed_immediate: "{opponent} can answer with {action}, and the pattern waiting there is a {motif}.",
+    allowed_possible: "A {motif} may later become available to {opponent}; whether the pattern forms depends on the replies.",
+    missed_immediate: "The pattern lay in {best}: a {motif}.",
+    missed_possible: "{best} might have led to a {motif}, had the replies allowed the pattern to form.",
+  },
+  fork: {actual: "The {targets} fall under a single attacker, the fork in its plainest form.", possible: "From one square, the {targets} would be attacked at once."},
+  material: "A {gain} may be waiting where the pattern ends, though both sides still have moves to choose.",
+  capture: {candidate: "{capture} would take a {piece} from the board.", followup: "Should play continue that way, {capture} may follow, collecting a {piece}."},
+  playedCapture: {fact: "The pattern behind {move} is a {motif}.", consequence: "{capture} lifts a {piece} from the board."},
+});
+
+export const tuxedoTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "A {motif}, on the board as soon as {move} lands.",
+    played_possible: "{move} may lead to a {motif}. The replies get a vote first.",
+    allowed_immediate: "{action} is available to {opponent}, and a {motif} is ready to use.",
+    allowed_possible: "A {motif} may open up for {opponent} later, replies permitting.",
+    missed_immediate: "{best} came with a {motif}. This move leaves it lying there.",
+    missed_possible: "{best} might have produced a {motif}, had the replies cooperated.",
+  },
+  fork: {actual: "One piece now has the {targets} under fire.", possible: "The {targets} would be attacked, and a single piece would be doing it."},
+  material: "A {gain} may be the payoff, if both sides' next choices allow it.",
+  capture: {candidate: "{capture} would pocket a {piece}.", followup: "Further on, {capture} could pocket a {piece}."},
+  playedCapture: {fact: "{move} comes loaded with a {motif}.", consequence: "{capture} pockets a {piece}."},
+});
+
 export const dragonTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "{move} delivers a {motif}, and it stands on the board now.",

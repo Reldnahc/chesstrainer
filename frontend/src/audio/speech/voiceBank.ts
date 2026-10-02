@@ -62,6 +62,8 @@ export function coachRecording(coachId: string, id: string | null | undefined): 
 function sequenceTrack(tracks: Record<string, SpeechMouthTrack>, id: string): SpeechMouthTrack | undefined {
   const parts = id.split(SEQUENCE_SEPARATOR).map(part => Object.hasOwn(tracks, part) ? tracks[part] : undefined);
   if (!parts.every((part): part is SpeechMouthTrack => !!part)) return;
+  // A single sentence keeps its loaded track, so repeated reads stay the same object.
+  if (parts.length === 1) return parts[0];
   let offset = 0;
   const cues: SpeechMouthTrack['cues'][number][] = [];
   parts.forEach((part, index) => {

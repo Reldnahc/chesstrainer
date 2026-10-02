@@ -96,13 +96,22 @@ Winston and Button, Wisp, Pip and Percy stay silent until a bank is registered.
 Ziggy (alien) has followed with all 29 forms, the opening phrases and the full
 claim set: a curious outsider's observation first, then the plain fact, with no
 questions and difficulty always attributed to the human-move model. Ziggy also
-stays silent until a bank is registered.
+stays silent until a bank is registered. Orin (wizard) has done the same, with
+his forms in `characters/wizard.ts` and the shared tactic and opening blocks: a
+short principle or named pattern, its application to the move, then the
+consequence, with restrained approval and no questions. Orin also stays silent
+until a bank is registered.
+Felix (tuxedo cat) has opted in with all 29 forms, the opening phrases and the
+full claim set: the concrete consequence first, then a terse explanation, with
+rare, understated approval, dry humor kept to practical costs, no questions and
+difficulty always attributed to the human-move model. Felix also stays silent
+until a bank is registered.
 Ember (dragon) has opted in as well, with its scoped and opening forms in the
 shared `scopedTactics.ts` and `openingSequence.ts` blocks: a firm verdict first,
 then the concrete reason and its consequence, with sparing, earned approval for
 forcing play and exact defense and no questions. Ember also stays silent until a
 bank is registered.
-The other 21 voices retain their current wording and deterministic variants.
+The other 19 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

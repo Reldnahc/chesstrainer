@@ -98,6 +98,34 @@ export const alienOpeningTemplates = {
   "book-opening-follow-8": ["Deeper into {opening}, a move theory accounts for."],
 } as const;
 
+export const wizardOpeningTemplates = {
+  "book-opening-entry-1": ["The opening literature records this move under {opening}."],
+  "book-opening-entry-2": ["This move is in the book, and the position belongs to {opening}."],
+  "book-opening-entry-3": ["This move is written into the theory of {opening}."],
+  "book-opening-follow-1": ["The literature continues: {opening}."],
+  "book-opening-follow-2": ["Another page of {opening}."],
+  "book-opening-follow-3": ["The reply, too, is recorded theory in {opening}."],
+  "book-opening-follow-4": ["Still on the well-trodden road of {opening}."],
+  "book-opening-follow-5": ["{opening} continues along its recorded path."],
+  "book-opening-follow-6": ["The book keeps an entry for this move as well, in {opening}."],
+  "book-opening-follow-7": ["Still within the recorded theory of {opening}."],
+  "book-opening-follow-8": ["Another recorded move of {opening}. Its place in the book is a matter of record, not a verdict."],
+} as const;
+
+export const tuxedoOpeningTemplates = {
+  "book-opening-entry-1": ["This is book, filed under {opening}."],
+  "book-opening-entry-2": ["Known theory here: {opening}."],
+  "book-opening-entry-3": ["Theory has a name for this one: {opening}."],
+  "book-opening-follow-1": ["The theory runs on: {opening}."],
+  "book-opening-follow-2": ["Theory covers this one too, in {opening}."],
+  "book-opening-follow-3": ["The reply comes from theory too, in {opening}."],
+  "book-opening-follow-4": ["By the book, still inside {opening}."],
+  "book-opening-follow-5": ["Still on known moves within {opening}."],
+  "book-opening-follow-6": ["{opening} supplies another book move."],
+  "book-opening-follow-7": ["No departure yet from {opening}."],
+  "book-opening-follow-8": ["Theory still, in {opening}; a name, not a verdict."],
+} as const;
+
 export const dragonOpeningTemplates = {
   "book-opening-entry-1": ["The opening is known to theory: {opening}."],
   "book-opening-entry-2": ["This move stands in established theory, as {opening}."],

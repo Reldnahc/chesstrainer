@@ -35,19 +35,19 @@ export const dragon: CoachPersonality = {
       {fact: "{move} hits hard because of a {motif}. {detail}", takeaway: "Know exactly why it works, so you can do it again."},
     ],
     tactic_allowed: [
-      {reaction: "That reply cannot be waved away.", fact: "In the strongest line, {opponent} now gets a {motif}.", consequence: "{detail}"},
-      {fact: "A {motif} now falls to {opponent}. {detail}", takeaway: "Your calculation is not finished until the opponent's best answer is in it."},
+      {reaction: "That reply cannot be waved away.", fact: "With best play, a {motif} is waiting for {opponent}.", consequence: "{detail}"},
+      {fact: "{opponent} is given a {motif} by this. {detail}", takeaway: "Your calculation is not finished until the opponent's best answer is in it."},
     ],
     tactic_missed: [
       {reaction: "There was more on the board than this.", fact: "This move misses the {motif} that {best} offered.", consequence: "{detail}"},
       {fact: "The {motif} with {best} goes unused. {detail}", takeaway: "Look at the forcing moves first, every time."},
     ],
     cause_abandoned_defender: [
-      {reaction: "Every defender has a duty.", fact: "{move} strips {side}'s {piece} on {square} of its only unpinned defender.", consequence: "{opponent} then collects it with {reply}."},
-      {fact: "{move} abandons {side}'s {piece} on {square} by moving its only unpinned defender.", consequence: "{reply} lets {opponent} take it.", takeaway: "Know what a piece protects before you move it."},
+      {reaction: "Every defender has a duty.", fact: "{move} strips {side}'s {piece} on {square} of its only unpinned defender.", consequence: "{opponent} can collect it with {reply}."},
+      {fact: "{move} abandons {side}'s {piece} on {square} by moving its only unpinned defender.", consequence: "{opponent} can take it at once: {reply}.", takeaway: "Know what a piece protects before you move it."},
     ],
     cause_opponent_threat_recognition: [
-      {reaction: "The threat was already on the board.", fact: "{move} does not answer the attack on {side}'s {piece} on {square} that the opponent's preceding move created.", consequence: "{opponent} has {reply}, taking it.", takeaway: "Check what the last move threatens before you make your own."},
+      {reaction: "The threat was already on the board.", fact: "{move} does not answer the attack on {side}'s {piece} on {square} that the opponent's preceding move created.", consequence: "{opponent} can punish that with {reply}.", takeaway: "Check what the last move threatens before you make your own."},
     ],
     cause_avoiding_bad_trades: [
       {reaction: "Count an exchange to its last capture.", fact: "With {move}, {side}'s {piece} goes for a mere {captured}.", consequence: "{opponent} can recapture at once with {reply}."},
@@ -60,7 +60,7 @@ export const dragon: CoachPersonality = {
       {reaction: "Exact defense. I respect that.", fact: "This held; every other searched move lost."},
       {fact: "Every other searched move was losing; this one held.", takeaway: "Defending like that is a skill, not luck."},
     ],
-    decisive_resource: ["The decisive advantage survived only through this move. Every other searched move let it slip."],
+    decisive_resource: ["The decisive advantage lived or died on this move, and it lived. Every other searched move let it slip."],
     best: [
       {reaction: "Correctly played.", fact: "A strong move, and it gives up almost nothing of the position's value."},
       "Strong, and that is the standard: keep the position's value and give the opponent nothing.",

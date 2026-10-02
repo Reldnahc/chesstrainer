@@ -7,8 +7,9 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {alienOpeningTemplates, capybaraOpeningTemplates, dragonOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, capybaraOpeningTemplates, dragonOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
+import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -169,13 +170,15 @@ test("a variation never inherits the mainline's opening run", () => {
 const openingCoaches = [
   {id: "classic", personality: storyteller, authored: storytellerOpeningTemplates, voiced: true},
   {id: "robot", personality: newCastPersonalities.robot, authored: robotOpeningTemplates, voiced: true},
+  {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: true},
+  {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: true},
   // Written forms precede a registered bank; an unvoiced coach selects no recording.
-  {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: false},
-  {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: false},
   {id: "ghost", personality: newCastPersonalities.ghost, authored: ghostOpeningTemplates, voiced: false},
   {id: "slime", personality: newCastPersonalities.slime, authored: slimeOpeningTemplates, voiced: false},
   {id: "alien", personality: newCastPersonalities.alien, authored: alienOpeningTemplates, voiced: false},
   {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
+  {id: "wizard", personality: newCastPersonalities.wizard, authored: wizardOpeningTemplates, voiced: false},
+  {id: "cat-tuxedo", personality: tuxedo, authored: tuxedoOpeningTemplates, voiced: false},
   {id: "dragon", personality: newCastPersonalities.dragon, authored: dragonOpeningTemplates, voiced: false},
 ] as const;
 
