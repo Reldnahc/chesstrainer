@@ -16,15 +16,18 @@ export default function EvidenceDialog({
 }) {
   const [data, setData] = useState<Evidence | null>(null),
     [audit, setAudit] = useState<Schema["ClassificationAudit"] | null>(null);
+  const [rejecting, setRejecting] = useState(false);
   const dialog = useModalDialog(onClose);
   useEffect(() => {
+    let active = true;
     read(
       api.GET("/api/evidence/{decision_id}", {
         params: { path: { decision_id: id } },
       }),
     )
-      .then(setData)
-      .catch(fail);
+      .then((value) => { if (active) setData(value); })
+      .catch((e) => { if (active) fail(e); });
+    return () => { active = false; };
   }, [id, fail]);
   return (
     <dialog
@@ -97,7 +100,10 @@ export default function EvidenceDialog({
                 </Button>
                 <Button
                   variant="quiet" size="compact"
-                  onClick={() =>
+                  disabled={rejecting}
+                  onClick={() => {
+                    if (rejecting) return;
+                    setRejecting(true);
                     read(
                       api.POST("/api/classification-runs/{run_id}/reject", {
                         params: { path: { run_id: c.run_id } },
@@ -112,7 +118,8 @@ export default function EvidenceDialog({
                       )
                       .then(setData)
                       .catch(fail)
-                  }
+                      .finally(() => setRejecting(false));
+                  }}
                 >
                   Reject unsupported classification
                 </Button>
