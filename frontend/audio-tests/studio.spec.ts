@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { pauseAfterLoad } from "./fixtures/clock";
 import { cueCatalog, paletteCatalog, productionCuePalettes } from "../src/audio/catalog";
 import recordedSources from "../src/audio/assets/sources.json" with { type: "json" };
 import { retryContexts } from "../src/audio/studio/scenarios";
@@ -10,7 +11,7 @@ const startedEvents = (page: Page) => page.locator('[data-event-type="started"]'
 async function openWithClock(page: Page) {
   await page.clock.install({ time: new Date("2026-01-01T12:00:00Z") });
   await page.goto("/");
-  await page.clock.pauseAt(new Date("2026-01-01T12:00:01Z"));
+  await pauseAfterLoad(page);
 }
 async function setVisibility(page: Page, state: "hidden" | "visible") {
   await page.evaluate(value => {

@@ -170,9 +170,9 @@ test("a variation never inherits the mainline's opening run", () => {
 const openingCoaches = [
   {id: "classic", personality: storyteller, authored: storytellerOpeningTemplates, voiced: true},
   {id: "robot", personality: newCastPersonalities.robot, authored: robotOpeningTemplates, voiced: true},
+  {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: true},
+  {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: true},
   // Written forms precede a registered bank; an unvoiced coach selects no recording.
-  {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: false},
-  {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: false},
   {id: "ghost", personality: newCastPersonalities.ghost, authored: ghostOpeningTemplates, voiced: false},
   {id: "slime", personality: newCastPersonalities.slime, authored: slimeOpeningTemplates, voiced: false},
   {id: "alien", personality: newCastPersonalities.alien, authored: alienOpeningTemplates, voiced: false},

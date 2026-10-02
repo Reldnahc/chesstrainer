@@ -8,7 +8,15 @@ import pytest
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
 # Each new voice owns one complete script source; Walter/Rivet text fields stay theirs.
-AUTHORED = [("capybara", "winston"), ("mushroom", "button"), ("ghost", "wisp"), ("slime", "pip"), ("alien", "ziggy"), ("living-pawn", "percy"), ("cat-tuxedo", "felix")]
+AUTHORED = [
+    ("capybara", "winston"),
+    ("mushroom", "button"),
+    ("ghost", "wisp"),
+    ("slime", "pip"),
+    ("alien", "ziggy"),
+    ("living-pawn", "percy"),
+    ("cat-tuxedo", "felix"),
+]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = ["ziggy", "felix"]
@@ -31,7 +39,9 @@ def active_reference_texts():
 @pytest.mark.parametrize(("coach", "voice"), REGISTERED)
 def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     entry = [bank for bank in read("banks/registry.json")["banks"] if bank["voiceId"] == voice]
-    assert entry == [{"coachId": coach, "voiceId": voice, "manifestPath": f"banks/{voice}/manifest.json"}]
+    assert entry == [
+        {"coachId": coach, "voiceId": voice, "manifestPath": f"banks/{voice}/manifest.json"}
+    ]
     manifest = read(entry[0]["manifestPath"])
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
@@ -64,8 +74,12 @@ def test_authored_scripts_are_complete_distinct_spoken_text(coach, voice):
         assert 1 <= len(text) <= 1000, row["id"]
         assert text.strip() == text and text.endswith((".", "?", "!")), row["id"]
         assert not re.search(r"\bseparate(?:ly)?\b", text, flags=re.IGNORECASE), row["id"]
-        assert not re.search(r"\b(?:in|this|the) continuation\b", text, flags=re.IGNORECASE), row["id"]
-        if not row["id"].startswith("book-opening-") and not row.get("primary", "").startswith("book-opening-"):
+        assert not re.search(r"\b(?:in|this|the) continuation\b", text, flags=re.IGNORECASE), row[
+            "id"
+        ]
+        if not row["id"].startswith("book-opening-") and not row.get("primary", "").startswith(
+            "book-opening-"
+        ):
             assert "continuation" not in text.lower(), row["id"]
         assert not any(marker in text for marker in ("{", "}", "TODO", "TBD")), row["id"]
         # Recordings serve many positions; squares and move numbers stay in the bubble.
@@ -73,9 +87,12 @@ def test_authored_scripts_are_complete_distinct_spoken_text(coach, voice):
 
 
 def test_authored_voices_never_share_a_script():
-    banks = [{row["text"] for row in read(f"banks/{voice}/scripts.json")["records"]} for _, voice in AUTHORED]
+    banks = [
+        {row["text"] for row in read(f"banks/{voice}/scripts.json")["records"]}
+        for _, voice in AUTHORED
+    ]
     for index, texts in enumerate(banks):
-        for other in banks[index + 1:]:
+        for other in banks[index + 1 :]:
             assert not texts & other
 
 
@@ -83,7 +100,9 @@ def test_authored_voices_never_share_a_script():
 def test_difficulty_is_attributed_to_the_human_model(coach, voice):
     # Spoken right after "the engine's best", bare "evidence" sounds like engine judgement.
     for row in read(f"banks/{voice}/scripts.json")["records"]:
-        assert not re.search(r"\b(?:the|model) evidence\b", row["text"], flags=re.IGNORECASE), row["id"]
+        assert not re.search(r"\b(?:the|model) evidence\b", row["text"], flags=re.IGNORECASE), row[
+            "id"
+        ]
 
 
 @pytest.mark.parametrize("voice", QUESTIONLESS)

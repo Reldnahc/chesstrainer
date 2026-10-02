@@ -101,6 +101,7 @@ test("a variation waits for its own analysis and leaving it cancels the pending 
     expect((await speechActivity(page)).started).toEqual([]);
     await page.locator(".game-variation-row button").last().click();
     await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
-    expect((await speechActivity(page)).started[0]).toContain("recognized-opening");
+    // The variation's own report carries the Maia reading, so it speaks the combined line.
+    expect((await speechActivity(page)).started[0]).toContain("combo-book-opening-entry-3-unusual-strong");
   } finally { release(); }
 });

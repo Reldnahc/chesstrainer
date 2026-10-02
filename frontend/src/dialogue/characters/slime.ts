@@ -40,8 +40,8 @@ export const slime: CoachPersonality = {
       {fact: "A {motif} was ready to go with {best}. This move skips it.", consequence: "{detail}"},
     ],
     cause_abandoned_defender: [{reaction: "Oops!", fact: "{move} moves the only defender of {side}'s {piece} on {square} that wasn't pinned.", consequence: "Now {opponent} can take it with {reply}."}],
-    cause_opponent_threat_recognition: [{reaction: "Oh, careful.", fact: "{move} leaves {side}'s {piece} on {square} under attack. The opponent's move just before set that up.", consequence: "{opponent} can take it with {reply}."}],
-    cause_avoiding_bad_trades: [{reaction: "That trade doesn't add up.", fact: "{move} swaps {side}'s {piece} for a {captured}.", consequence: "Then {opponent} takes back with {reply}."}],
+    cause_opponent_threat_recognition: [{reaction: "Oh, careful.", fact: "{move} leaves {side}'s {piece} on {square} under attack. The opponent's preceding move set that up.", consequence: "{opponent} can take it with {reply}."}],
+    cause_avoiding_bad_trades: [{reaction: "That trade doesn't add up.", fact: "{move} swaps {side}'s {piece} for a {captured}.", consequence: "Then {opponent} can recapture with {reply}."}],
     sacrifice: [
       {reaction: "Go on!", fact: "This sacrifice still works if the opponent takes it."},
       {reaction: "Brave, and it holds up!", fact: "Even if the offer is accepted, the sacrifice still works."},

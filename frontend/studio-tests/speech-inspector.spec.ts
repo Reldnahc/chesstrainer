@@ -119,7 +119,7 @@ async function observeAudio(page: Page, phase: "load" | "decode" | "playing") {
     const fetch = window.fetch;
     window.fetch = async (...args) => {
       const response = await fetch(...args);
-      if (heldPhase === "load" && new URL(response.url).pathname.endsWith(".mp3") && !heldOnce) {
+      if (heldPhase === "load" && /\.(?:mp3|opus)$/.test(new URL(response.url).pathname) && !heldOnce) {
         const bytes = response.arrayBuffer.bind(response);
         response.arrayBuffer = async () => hold(await bytes());
       }
