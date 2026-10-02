@@ -14,7 +14,7 @@ import {partner} from "../src/dialogue/characters/partner";
 import {analyst} from "../src/dialogue/characters/analyst";
 import {blonde} from "../src/dialogue/characters/blonde";
 import {youngBoy} from "../src/dialogue/characters/youngBoy";
-import {alienOpeningTemplates, analystOpeningTemplates, blondeOpeningTemplates, capybaraOpeningTemplates, captainOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, puppyOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates, sparkOpeningTemplates, youngBoyOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, analystOpeningTemplates, blondeOpeningTemplates, capybaraOpeningTemplates, captainOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, hostOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, puppyOpeningTemplates, girlOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates, sparkOpeningTemplates, youngBoyOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
@@ -210,6 +210,7 @@ const openingCoaches = [
   {id: "woman-spark", personality: spark, authored: sparkOpeningTemplates, voiced: false},
   {id: "human-boy", personality: youngBoy, authored: youngBoyOpeningTemplates, voiced: false},
   {id: "woman-captain", personality: captain, authored: captainOpeningTemplates, voiced: false},
+  {id: "human-girl", personality: newCastPersonalities["human-girl"], authored: girlOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {

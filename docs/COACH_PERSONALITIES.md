@@ -189,7 +189,12 @@ Tamar (`woman-captain`) has opted in as well, in `characters/captain.ts`: a
 firm verdict, the concrete reason, then one habit to build, with open mentor
 pride kept to the learner's own moves, plain-clip lines that name no owner,
 and no questions. Tamar also stays silent until a bank is registered.
-The other voice retains its current wording and deterministic variants.
+Tala (young girl) has opted in as well, with her forms in `characters/groundedHumans.ts`
+and the shared tactic and opening blocks: a genuine question or one circled detail,
+the discovery, then its consequence, with competitive curiosity instead of scolding,
+no emotion that depends on which side moved, and ownership words kept to the
+learner's own moments. Tala also stays silent until a bank is registered.
+Every voice in the cast now has its own scoped wording.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

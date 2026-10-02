@@ -418,3 +418,18 @@ export const youngBoyTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "Look, {capture} is available, and it would grab a {piece}.", followup: "If the line goes that way, {capture} could come next and snag a {piece}."},
   playedCapture: {fact: "{move} starts a {motif} rolling.", consequence: "After that, {capture} grabs a {piece} too."},
 });
+
+export const girlTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Riddle answered: {move} unleashes a {motif} on the spot.",
+    played_possible: "{move} plants the seed of a {motif}, if the replies cooperate.",
+    allowed_immediate: "Puzzle piece: with {action}, {opponent} springs a {motif}.",
+    allowed_possible: "Somewhere down the line, {opponent} could find a {motif}; the replies get the final say.",
+    missed_immediate: "Hint for next time: {best} had a {motif} ready immediately.",
+    missed_possible: "{best} could have grown into a {motif}, depending on the replies.",
+  },
+  fork: {actual: "One piece now has the {targets} in range together, a fork.", possible: "The {targets} would be attacked, and a lone piece would be aiming at the whole group."},
+  material: "A {gain} may be waiting as the prize, though the replies still get a vote.",
+  capture: {candidate: "Circle this: {capture} would win a {piece}.", followup: "After that, {capture} could pick off a {piece}."},
+  playedCapture: {fact: "{move} sets a {motif} in motion.", consequence: "Follow-up: {capture} wins a {piece}."},
+});

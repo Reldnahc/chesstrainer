@@ -390,3 +390,17 @@ export const youngBoyOpeningTemplates = {
   "book-opening-follow-7": ["Another {opening} move."],
   "book-opening-follow-8": ["More {opening}. That's just where the game is, not a score for the move."],
 } as const;
+
+export const girlOpeningTemplates = {
+  "book-opening-entry-1": ["Opening detective mode: this one's {opening}."],
+  "book-opening-entry-2": ["Spotted it, {opening}!"],
+  "book-opening-entry-3": ["Circle the name: {opening}."],
+  "book-opening-follow-1": ["Still charted territory in {opening}."],
+  "book-opening-follow-2": ["{opening} has this move mapped as well."],
+  "book-opening-follow-3": ["The reply is charted in {opening} too."],
+  "book-opening-follow-4": ["{opening} keeps unfolding, move by move."],
+  "book-opening-follow-5": ["Step by step, we're still inside {opening}."],
+  "book-opening-follow-6": ["Another charted step of {opening}."],
+  "book-opening-follow-7": ["Theory from {opening} keeps going."],
+  "book-opening-follow-8": ["Deep inside {opening} still. That's a map pin, not a score for the move."],
+} as const;
