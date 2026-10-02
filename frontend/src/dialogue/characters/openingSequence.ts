@@ -226,14 +226,14 @@ export const corgiOpeningTemplates = {
 
 export const puppyOpeningTemplates = {
   "book-opening-entry-1": ["Ooh, a book move, straight out of {opening}!"],
-  "book-opening-entry-2": ["I recognize this one: {opening}!"],
+  "book-opening-entry-2": ["Ooh, I know this one, it's {opening}!"],
   "book-opening-entry-3": ["Yay, {opening} has this exact move!"],
   "book-opening-follow-1": ["Book move, still, in {opening}!"],
   "book-opening-follow-2": ["{opening} has an answer for this one too!"],
   "book-opening-follow-3": ["Even the reply is part of {opening}."],
-  "book-opening-follow-4": ["The {opening} road keeps going!"],
-  "book-opening-follow-5": ["Still following the {opening} map!"],
-  "book-opening-follow-6": ["One more move from {opening}!"],
+  "book-opening-follow-4": ["Down the {opening} road we trot!"],
+  "book-opening-follow-5": ["Nose to the {opening} map, still!"],
+  "book-opening-follow-6": ["Yet another {opening} move, yay!"],
   "book-opening-follow-7": ["More pages of {opening} to read!"],
-  "book-opening-follow-8": ["Still deep in {opening} land! That tells us where we are, not whether the move is the right one."],
+  "book-opening-follow-8": ["Still deep in {opening} land! That's a map pin, not a grade for the move."],
 } as const;
