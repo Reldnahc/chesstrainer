@@ -10,7 +10,9 @@
 .weakness { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .weakness-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 16px; }
 .weakness-heading h3 { margin: 0; font-size: 20px; overflow-wrap: anywhere; }
-.weakness-cue { margin: 0; color: #d4d8de; max-width: 64ch; }
+/* Every cue fits two lines at 64ch. Reserving both keeps cards the same height
+   whichever category is showing, whether or not this card's cue wraps. */
+.weakness-cue { margin: 0; color: #d4d8de; max-width: 64ch; min-height: 2lh; }
 .weakness .stat-list { margin-top: 0; }
 .weakness-practice { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: auto; }
 .weakness-practice p { margin: 0; }
