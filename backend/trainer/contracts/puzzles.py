@@ -118,5 +118,6 @@ class PuzzleLibrary(Contract):
     sources: list[PuzzleProviderInfo]
     themes: list[PuzzleThemeCount]
     retry_available: int
+    solved_puzzles: int
     resume: list[PuzzleResume]
     stats: PuzzleStats
