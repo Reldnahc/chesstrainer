@@ -97,7 +97,12 @@ Ziggy (alien) has followed with all 29 forms, the opening phrases and the full
 claim set: a curious outsider's observation first, then the plain fact, with no
 questions and difficulty always attributed to the human-move model. Ziggy also
 stays silent until a bank is registered.
-The other 22 voices retain their current wording and deterministic variants.
+Ember (dragon) has opted in as well, with its scoped and opening forms in the
+shared `scopedTactics.ts` and `openingSequence.ts` blocks: a firm verdict first,
+then the concrete reason and its consequence, with sparing, earned approval for
+forcing play and exact defense and no questions. Ember also stays silent until a
+bank is registered.
+The other 21 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

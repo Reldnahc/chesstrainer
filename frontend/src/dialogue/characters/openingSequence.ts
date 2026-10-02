@@ -97,3 +97,17 @@ export const alienOpeningTemplates = {
   "book-opening-follow-7": ["The game keeps tracing the documented line of {opening}."],
   "book-opening-follow-8": ["Deeper into {opening}, a move theory accounts for."],
 } as const;
+
+export const dragonOpeningTemplates = {
+  "book-opening-entry-1": ["The opening is known to theory: {opening}."],
+  "book-opening-entry-2": ["This move stands in established theory, as {opening}."],
+  "book-opening-entry-3": ["Theory has a name for this move: {opening}. A name is not a plan."],
+  "book-opening-follow-1": ["Theory still holds here: {opening}."],
+  "book-opening-follow-2": ["Another established move in {opening}."],
+  "book-opening-follow-3": ["The game keeps to the theory of {opening}."],
+  "book-opening-follow-4": ["Still within the known lines of {opening}."],
+  "book-opening-follow-5": ["{opening} continues, move for move."],
+  "book-opening-follow-6": ["The established line runs on: {opening}."],
+  "book-opening-follow-7": ["Theory has not run out yet in {opening}."],
+  "book-opening-follow-8": ["One more move that theory already knows, in {opening}."],
+} as const;
