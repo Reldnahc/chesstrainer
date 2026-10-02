@@ -5,6 +5,7 @@ from typing import Literal
 
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from sqlalchemy import select
+from starlette.concurrency import run_in_threadpool
 
 from trainer.chesscom import ChessComRequest
 from trainer.contracts.common import JobStarted
@@ -38,15 +39,22 @@ def create_router(*, settings) -> APIRouter:
         analyze: bool = Form(True),
     ):
         pgn = await read_pgn(file)
-        with workspace.mutation_lock, workspace.sessions() as db:
-            return import_games(
-                db,
-                Path(file.filename or "games.pgn").name,
-                pgn,
-                usernames.split(","),
-                None if side == "auto" else side,
-                queue_analysis=analyze,
-            )
+        filename = Path(file.filename or "games.pgn").name
+
+        def run_import():
+            # Parsing is CPU-bound and the account lock may be held by a running job.
+            # Neither may block the event loop, which would stall every account.
+            with workspace.mutation_lock, workspace.sessions() as db:
+                return import_games(
+                    db,
+                    filename,
+                    pgn,
+                    usernames.split(","),
+                    None if side == "auto" else side,
+                    queue_analysis=analyze,
+                )
+
+        return await run_in_threadpool(run_import)
 
     @router.post(
         "/api/imports/chesscom",
