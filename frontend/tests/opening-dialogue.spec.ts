@@ -7,7 +7,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {capybaraOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, storytellerOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -171,6 +171,7 @@ const openingCoaches = [
   // Written forms precede a registered bank; an unvoiced coach selects no recording.
   {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: false},
   {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: false},
+  {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {
