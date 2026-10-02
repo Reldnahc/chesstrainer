@@ -54,6 +54,10 @@ def paths(item: dict, manifest_path: Path) -> tuple[Path, Path, Path]:
     return audio, sidecar, archive
 
 
+# Generic lesson prompts are owner-approved; authored course narration stays written.
+LESSON_PROMPTS = "lessons"
+
+
 def load_manifest(path: Path) -> dict:
     path = path.resolve()
     if not path.is_relative_to(alignment.SPEECH.resolve()):
@@ -94,7 +98,7 @@ def load_manifest(path: Path) -> dict:
         if (
             not isinstance(item.get("group"), str)
             or not item["group"]
-            or "lesson" in item["group"].lower()
+            or ("lesson" in item["group"].lower() and item["group"] != LESSON_PROMPTS)
         ):
             raise ValueError("Voice bank recording group is outside non-lesson scope")
         for target in paths(item, path):
@@ -136,7 +140,7 @@ def registered_manifests(registry_path: Path | None = None) -> list[Path]:
             or meaning["id"] in silent
             or not isinstance(meaning.get("group"), str)
             or not meaning["group"]
-            or "lesson" in meaning["group"].lower()
+            or ("lesson" in meaning["group"].lower() and meaning["group"] != LESSON_PROMPTS)
         ):
             raise ValueError("Invalid or duplicate shared speech meaning")
         meanings[meaning["id"]] = meaning["group"]

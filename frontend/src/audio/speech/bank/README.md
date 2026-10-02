@@ -191,7 +191,7 @@ automatically writes a finished personality or turns all coach prose into speech
    IDs/groups and exact objective/human pairs, not character-specific prose.
    Trace eligibility through `gameSelection.ts`, `practiceSelection.ts`, the
    producer and dialogue claims. Retain cold-practice gates, the four silent
-   states and the lesson exclusion. New characterization normally changes
+   states and the lesson rule (generic prompts only). New characterization normally changes
    scripts only, not those facts or selection rules. Adding a genuinely new
    semantic meaning needs producer/selector regression coverage.
 3. **Write and review complete scripts.** Use the character bible plus the

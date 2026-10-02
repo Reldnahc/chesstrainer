@@ -18,7 +18,7 @@ Settings offers Automatic, On request and Off under Sound. The other coaches
 remain text-only. Playback uses bundled local
 recordings without provider access, API keys or runtime synthesis. Exact chess
 moves, squares and scores stay in writing while the voice explains the supported
-idea. All lessons remain excluded.
+idea. Lessons speak only nine generic prompts (see below); course text stays written.
 
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
 http://127.0.0.1:5176/. **Walter wording** compares eight representative examples
@@ -372,10 +372,18 @@ is not the same as an actual board checkmate. Model evidence stays an estimate.
 
 ## Whole-app dialogue inventory
 
-**All lesson narration remains deferred.** Authored passages, hints, annotated
-games, reveals and fixed lesson guidance stay written. A growing course catalogue
-must not require maintaining a voice library for every edit. The earlier lesson
-inventory remains in Git history at `054cd80`, outside this bank.
+**Lesson narration stays written; generic lesson prompts are voiced.** Authored
+passages, step titles, hints, game notes and choice feedback stay written, because a
+growing course catalogue must not require maintaining a voice library for every
+edit. On 2026-10-02 the owner approved nine reusable prompts that never change with
+a course, in the `lessons` group of [meanings.json](meanings.json): wrong move,
+correct move, move revealed, follow the line, play your studied move, exploring an
+alternative, chapter complete, full game opened and lesson error. Each lesson
+command response is one event that plays at most one of them
+(`lessonRecording` in [practiceSelection.ts](practiceSelection.ts)); hints and game
+navigation stay silent. A coach's lesson prompts may be authored before they are
+recorded and stay silent until then. The earlier lesson inventory remains in Git
+history at `054cd80`, outside this bank.
 
 The [full inventory](walter-full-dialogue-inventory.json) contains 185 audited
 meanings, with four deliberately silent transient/defensive states excluded from

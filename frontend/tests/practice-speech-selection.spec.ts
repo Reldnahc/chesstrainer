@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../src/api";
 import { explanationCueRecording, explanationFindingRecording, explanationFrameRecording, explanationNoteRecording,
-  explanationSummaryRecording, openingRecallRecording, practiceRecording, puzzleRecording } from "../src/audio/speech/practiceSelection";
+  explanationSummaryRecording, lessonRecording, openingRecallRecording, practiceRecording, puzzleRecording } from "../src/audio/speech/practiceSelection";
 
 const inventory = JSON.parse(readFileSync(new URL("../src/audio/speech/bank/manifest.json", import.meta.url), "utf8")) as {recordings: {id: string}[]};
 const bank = new Set(inventory.recordings.map(recording => recording.id));
@@ -149,4 +149,39 @@ test("puzzle guidance distinguishes all eight fixed states without inferring obj
   expect(select({...session, status: "solved"})).toBe("puzzle-solved-clean");
   expect(select({...session, status: "solved", failed: true})).toBe("puzzle-solved-after-retry");
   expect(select({...session, status: "revealed"})).toBe("puzzle-revealed");
+});
+
+test("each lesson command picks at most one generic prompt from its own action and result", () => {
+  const catalogue = JSON.parse(readFileSync(new URL("../src/audio/speech/meanings.json", import.meta.url), "utf8")) as {meanings: {id: string; group: string}[]};
+  const lessonIds = new Set(catalogue.meanings.filter(meaning => meaning.group === "lessons").map(meaning => meaning.id));
+  const step: Schema["LessonStepView"] = {id: "step", kind: "decision", phase: "ready", text: "Authored step text.", title: "Step",
+    annotations: {squares: [], arrows: []} as unknown as Schema["LessonStepView"]["annotations"]};
+  const before: Schema["LessonSessionView"] = {id: "lesson", revision: 1, status: "active", actions: ["move", "hint", "show_move"],
+    assisted: false, branch: null, chapter_id: "chapter", chapter_title: "Chapter", course_id: "course", course_revision: "1",
+    course_title: "Course", failed: false, feedback: null, fen: "start", game: null, history: [], legal_moves: [],
+    orientation: "white", playback: [], step};
+  const frame = {} as Schema["PuzzleFrame"];
+  const select = (action: Schema["LessonCommand"]["action"], after: Partial<Schema["LessonSessionView"]>, from = before) =>
+    lessonRecording({action, before: from, after: {...from, revision: from.revision + 1, ...after}});
+  const selected = [
+    select("move", {feedback: {kind: "incorrect", text: "Try again."}}),
+    select("move", {feedback: {kind: "correct", text: "That is the move in this line."}, playback: [frame]}),
+    select("show_move", {feedback: {kind: "revealed", text: "The lesson plays e4."}}),
+    select("continue", {playback: [frame], actions: []}),
+    select("continue", {step: {...step, kind: "rehearsal"}}),
+    select("enter_branch", {branch: {title: "Alternative"} as Schema["LessonSessionView"]["branch"]}),
+    select("move", {status: "completed", feedback: {kind: "correct", text: "Done."}}),
+    select("open_game", {game: {ply: 0} as Schema["LessonSessionView"]["game"]}),
+  ];
+  expect(selected).toEqual(["lesson-wrong-move", "lesson-correct-move", "lesson-move-revealed", "lesson-guided-playback",
+    "lesson-rehearsal-prompt", "lesson-branch-entered", "lesson-chapter-complete", "lesson-game-opened"]);
+  for (const id of [...selected, "lesson-error"]) expect(lessonIds.has(id!)).toBe(true);
+  expect(lessonIds.size).toBe(9);
+  // Hints, authored step text, game navigation and reveal-completions stay written.
+  expect(select("hint", {feedback: {kind: "hint", text: "Look at the centre."}})).toBeNull();
+  expect(select("continue", {})).toBeNull();
+  const inGame = {...before, game: {ply: 3} as Schema["LessonSessionView"]["game"], actions: ["game_seek", "close_game"] as Schema["LessonSessionView"]["actions"]};
+  expect(select("game_seek", {}, inGame)).toBeNull();
+  expect(select("show_move", {status: "completed", feedback: {kind: "revealed", text: "The lesson plays e4."}})).toBe("lesson-move-revealed");
+  expect(select("continue", {status: "completed"}, {...before, status: "completed"})).toBeNull();
 });

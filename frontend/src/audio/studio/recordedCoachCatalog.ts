@@ -6,6 +6,7 @@ import type {RecordedCoachCatalog, RecordingMeaning} from "./RecordedCoachCompar
 const groupLabels: Record<string, string> = {
   game_review: "Game review", srs_explanations: "Practice & explanations",
   openings: "Opening recall", puzzles: "Puzzles", operational: "Review guidance",
+  lessons: "Lesson prompts",
 };
 function meaningLabel(id: string): string {
   return id.replace(/^book-opening-entry-/, "Opening entry ")
