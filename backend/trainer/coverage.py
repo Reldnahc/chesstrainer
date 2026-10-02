@@ -2,7 +2,7 @@
 
 from collections import Counter, defaultdict
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from trainer.diagnosis_types import CUES, OUTCOME_SKILLS
 from trainer.models import ClassificationRun, Decision, SkillEvidence
@@ -22,19 +22,34 @@ def coverage(db):
             labels[decision_id].add(skill)
     outcomes = {key for key, skills in labels.items() if skills & OUTCOME_SKILLS}
     mechanisms = {key for key, skills in labels.items() if skills & MECHANISM_SKILLS}
-    latest = {}
-    for run in db.scalars(
-        select(ClassificationRun)
+    # Only each decision's latest local run matters. Rank in SQL rather than loading
+    # every historical run with its full response JSON on each request.
+    ranked = (
+        select(
+            ClassificationRun.decision_id,
+            ClassificationRun.status,
+            ClassificationRun.response,
+            func.row_number()
+            .over(
+                partition_by=ClassificationRun.decision_id,
+                order_by=(ClassificationRun.created_at.desc(), ClassificationRun.id),
+            )
+            .label("rank"),
+        )
         .where(ClassificationRun.provider == "local_rules")
-        .order_by(ClassificationRun.created_at.desc(), ClassificationRun.id)
+        .subquery()
+    )
+    latest = {}
+    for decision_id, status, response in db.execute(
+        select(ranked.c.decision_id, ranked.c.status, ranked.c.response).where(ranked.c.rank == 1)
     ):
-        if run.decision_id in ids:
-            latest.setdefault(run.decision_id, run)
+        if decision_id in ids:
+            latest[decision_id] = (status, response)
     reasons = Counter(
         reason
-        for run in latest.values()
-        if run.status == "completed"
-        for reason in (run.response or {}).get("abstention_reasons", [])
+        for status, response in latest.values()
+        if status == "completed"
+        for reason in (response or {}).get("abstention_reasons", [])
     )
     return {
         "total": len(ids),
