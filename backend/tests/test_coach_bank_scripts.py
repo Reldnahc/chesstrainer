@@ -21,11 +21,12 @@ AUTHORED = [
     ("dog-gentle", "alfie"),
     ("cat-kitten", "pickle"),
     ("dragon", "ember"),
+    ("dog-collie", "scout"),
     ("cat-black", "juniper"),
 ]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
 # Voices whose written personality sets questionFrequency to "none".
-QUESTIONLESS = ["ziggy", "orin", "felix", "ember", "juniper"]
+QUESTIONLESS = ["ziggy", "orin", "felix", "ember", "scout", "juniper"]
 
 
 def read(path):
