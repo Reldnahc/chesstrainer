@@ -85,23 +85,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/auth/profile": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Profile */
-        post: operations["profile_api_auth_profile_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/auth/signup": {
         parameters: {
             query?: never;
@@ -2895,14 +2878,6 @@ export interface components {
             /** Exercise Id */
             exercise_id: string;
         };
-        /** Profile */
-        Profile: {
-            /**
-             * Chesscom Username
-             * @default
-             */
-            chesscom_username: string;
-        };
         /** ProviderConnectionRequest */
         ProviderConnectionRequest: {
             /** Username */
@@ -3530,8 +3505,6 @@ export interface components {
             chesscom_max_response_bytes: number;
             /** Chesscom Timeout Seconds */
             chesscom_timeout_seconds: number;
-            /** Chesscom User Agent */
-            chesscom_user_agent: string;
             /** Classification Abstained */
             classification_abstained: number;
             /** Classification Available */
@@ -3567,8 +3540,6 @@ export interface components {
             /** Classification Workers */
             classification_workers: number;
             coverage: components["schemas"]["Coverage"];
-            /** Database Path */
-            database_path: string;
             /** Deep Depth */
             deep_depth: number;
             /** Deep Nodes */
@@ -3597,8 +3568,6 @@ export interface components {
             human_model_device: "cpu" | "cuda";
             /** Human Model Enabled */
             human_model_enabled: boolean;
-            /** Human Model Path */
-            human_model_path: string;
             /** Human Model Threads */
             human_model_threads: number;
             /** Human Model Timeout */
@@ -3623,8 +3592,6 @@ export interface components {
             provider_max_scan_games: number;
             /** Provider Timeout Seconds */
             provider_timeout_seconds: number;
-            /** Public Origin */
-            public_origin: string;
             /** Puzzle Pack Path */
             puzzle_pack_path: string | null;
             /** Puzzle Starter Pack */
@@ -3641,8 +3608,6 @@ export interface components {
             review_refinement_queries: number;
             /** Review Refinement Time */
             review_refinement_time: number;
-            /** Server Host */
-            server_host: string;
             /** Server Port */
             server_port: number;
             /** Session Secure */
@@ -3651,8 +3616,6 @@ export interface components {
             slow_answer_seconds: number;
             /** Stockfish Hash Mb */
             stockfish_hash_mb: number;
-            /** Stockfish Path */
-            stockfish_path: string;
             /** Stockfish Threads */
             stockfish_threads: number;
             /** Stockfish Workers */
@@ -3786,39 +3749,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AccountProfile"];
-                };
-            };
-        };
-    };
-    profile_api_auth_profile_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Profile"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AccountProfile"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

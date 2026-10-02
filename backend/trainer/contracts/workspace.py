@@ -32,15 +32,11 @@ class Stats(Contract):
 
 
 class WorkspaceSettings(EngineHealth):
-    server_host: str
     server_port: int
-    database_path: str
     accounts_enabled: bool
     session_secure: bool
-    public_origin: str
     engine_slots: int
     human_model_enabled: bool
-    human_model_path: str
     human_model_device: Literal["cpu", "cuda"]
     human_model_threads: int
     human_model_workers: int
@@ -50,7 +46,6 @@ class WorkspaceSettings(EngineHealth):
     review_refinement_depth: int
     review_refinement_time: float
     review_refinement_multipv: int
-    stockfish_path: str
     stockfish_threads: int
     stockfish_hash_mb: int
     stockfish_workers: int
@@ -83,7 +78,6 @@ class WorkspaceSettings(EngineHealth):
     max_import_bytes: int
     chesscom_timeout_seconds: float
     chesscom_max_response_bytes: int
-    chesscom_user_agent: str
     provider_timeout_seconds: float
     provider_max_response_bytes: int
     provider_max_scan_games: int

@@ -48,7 +48,13 @@ def export_backup(destination: Path, settings: Settings):
                     "manifest.json",
                     json.dumps({"format": 1, "application": "local-chess-trainer"}),
                 )
-                archive.writestr("settings.json", json.dumps(settings.public(), indent=2))
+                # The administrator's private reference copy: everything but the token.
+                archive.writestr(
+                    "settings.json",
+                    json.dumps(
+                        settings.model_dump(mode="json", exclude={"lan_access_token"}), indent=2
+                    ),
+                )
 
         write_atomically(write_archive, destination)
     return destination

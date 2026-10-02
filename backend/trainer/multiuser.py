@@ -17,7 +17,6 @@ from trainer.accounts import (
     password_hash,
     password_matches,
 )
-from trainer.chesscom import ChessComRequest
 from trainer.contracts.accounts import AccountProfile, Identity
 from trainer.contracts.common import Ok
 
@@ -25,10 +24,6 @@ from trainer.contracts.common import Ok
 class Credentials(BaseModel):
     username: str = Field(min_length=3, max_length=32)
     password: str = Field(min_length=10, max_length=128)
-
-
-class Profile(BaseModel):
-    chesscom_username: str = Field(default="", max_length=50)
 
 
 def configure_accounts(app, settings):
@@ -173,22 +168,6 @@ def configure_accounts(app, settings):
             COOKIE, path="/", secure=settings.session_secure, httponly=True, samesite="lax"
         )
         return {"ok": True}
-
-    @app.post("/api/auth/profile", response_model=AccountProfile, response_model_exclude_unset=True)
-    def profile(data: Profile, request: Request):
-        name = data.chesscom_username.strip()
-        if name:
-            name = ChessComRequest(username=name).username
-        with accounts.connect() as db:
-            db.execute(
-                "UPDATE users SET chesscom_username=? WHERE id=?", (name, request.state.user["id"])
-            )
-            db.execute(
-                "INSERT INTO provider_connections (user_id, provider, username) VALUES (?, 'chesscom', ?) ON CONFLICT(user_id, provider) DO UPDATE SET username=excluded.username",
-                (request.state.user["id"], name),
-            )
-        user = accounts.by_name(request.state.user["username"])
-        return {"user": accounts.public(user)}
 
     @app.post("/api/auth/onboarding/complete", response_model=AccountProfile)
     def complete_onboarding(request: Request):
