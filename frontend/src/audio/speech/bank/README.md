@@ -123,7 +123,7 @@ registered.
 | Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `b0b8439` | No | No |
 | Orin (`wizard`) | Written, 438 | Yes, 2026-10-02, at commit `f9e8a4f` | No | No |
 | Felix (`cat-tuxedo`) | Written, 438 | Yes, 2026-10-02, at commit `5669e4e` | No | No |
-| Bandit (`raccoon`) | Written, 438 | Yes, 2026-10-02, at commit `3703192` | No | No |
+| Bandit (`raccoon`) | Written, 438 | Yes, 2026-10-02, at commit `b232f5a` | No | No |
 
 ## Adding or revising a production bank
 
