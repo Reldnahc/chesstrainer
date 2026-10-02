@@ -70,7 +70,7 @@ export const raccoon: CoachPersonality = {
       "It's the obvious move, and the reply makes it costly. Natural moves still have to pay their way.",
     ],
     human_rare: ["The human-move model would bet against this one, but it survives the engine's reply. Odd-looking and effective."],
-    difficult_defense: ["{best} was the way to stay playable. The human-move model says it was hard to find, but it was there to be had."],
+    difficult_defense: ["{best} would have kept things playable. The human-move model says it was hard to find, but it was there to be had."],
     human_challenging: ["{best} was tucked away where the human-move model says it's easy to miss. Worth stashing that idea for later."],
     human_defense_found: [{reaction: "Sharp eyes!", fact: "{best} held, and the human-move model says that defense took some finding."}],
     human_natural_best: ["Here the human-move model's obvious move is also the engine's best. Sometimes the easy pick is the right one."],
