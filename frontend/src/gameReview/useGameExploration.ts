@@ -83,6 +83,9 @@ export function useGameExploration(
 
   useEffect(() => {
     if (!branch) return;
+    // play() and selectBranch() store the position they already hold; only
+    // positions this hook has not seen need a request.
+    if (branchPosition?.key === key) return;
     let active = true;
     const requestAction = actionVersion.current;
     read(
