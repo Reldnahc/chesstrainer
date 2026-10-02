@@ -12,7 +12,7 @@
     {
       "id": "tactic-fork-allowed",
       "group": "game_review",
-      "text": "Hmm, notice anything off? One of their pieces can now jump on several of our targets in one go. That's a fork waiting to happen."
+      "text": "Hmm, notice anything off? One of the other side's pieces can now jump on several targets in one go. That's a fork waiting to happen."
     },
     {
       "id": "tactic-fork-missed",
@@ -27,7 +27,7 @@
     {
       "id": "tactic-pin-allowed",
       "group": "game_review",
-      "text": "Suspicious line alert! The other side can pin one of our pieces to its king, and then that piece is frozen where it stands."
+      "text": "Suspicious line alert! A pin is on offer for the other side: one piece could get frozen in front of its king."
     },
     {
       "id": "tactic-pin-missed",
@@ -42,7 +42,7 @@
     {
       "id": "tactic-skewer-allowed",
       "group": "game_review",
-      "text": "Hmm, two of our pieces are lined up like ducks. The other side can skewer them: if the front one shuffles aside, the back one could be exposed."
+      "text": "Hmm, two pieces are lined up like ducks. The other side can skewer them: if the front one shuffles aside, the back one could be exposed."
     },
     {
       "id": "tactic-skewer-missed",
@@ -57,7 +57,7 @@
     {
       "id": "tactic-removing-defender-allowed",
       "group": "game_review",
-      "text": "Watch out! One of our defenders is open to capture now, and if it goes, whatever it was guarding goes unprotected too."
+      "text": "Watch out! Somebody's defender is a sitting target now, and if it goes, whatever it was guarding goes unprotected too."
     },
     {
       "id": "tactic-removing-defender-missed",
@@ -92,12 +92,12 @@
     {
       "id": "tactic-promotion-awareness-missed",
       "group": "game_review",
-      "text": "Ooh, a stronger move would have opened the way for one of our pawns to promote. This move kept that door shut."
+      "text": "Ooh, a stronger move would have opened the way for a pawn to promote. This move kept that door shut."
     },
     {
       "id": "tactic-discovered-attack-played",
       "group": "game_review",
-      "text": "Sneaky! One piece slides out of the way, and surprise, the piece behind it was aiming all along. That's how a discovered attack sneaks up on you!"
+      "text": "Sneaky! One piece slides out of the way, and surprise, the piece behind it was aiming all along. That's a discovered attack, sneaking up out of nowhere!"
     },
     {
       "id": "tactic-discovered-attack-allowed",
@@ -117,7 +117,7 @@
     {
       "id": "tactic-double-attack-allowed",
       "group": "game_review",
-      "text": "Hmm, one move from the other side could now carry two threats. A double attack like that leaves us answering twice."
+      "text": "Hmm, one move from the other side could now carry two threats. A double attack like that means answering twice."
     },
     {
       "id": "tactic-double-attack-missed",
@@ -962,7 +962,7 @@
     {
       "id": "book-opening-follow-8",
       "group": "game_review",
-      "text": "The pages keep turning. The book is a map, not a report card."
+      "text": "Page after page of book. The book is a map, not a report card."
     },
     {
       "id": "combined-allowed-mate-with-human-natural-error",
@@ -1529,7 +1529,7 @@
       "group": "game_review",
       "primary": "tactic-deflection-missed",
       "secondary": "human-natural-error",
-      "text": "Another move would have sweet-talked a defender off its post. The human-move model expects this move instead, so the defender keeps its job."
+      "text": "A defender could have been sweet-talked away by another move. The human-move model expects this move instead, so the defender keeps its job."
     },
     {
       "id": "combo-tactic-deflection-missed-hard-defense-missed",
@@ -2656,35 +2656,35 @@
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-find",
-      "text": "The pages keep turning, and the engine's best. Familiar pages, still a puzzle; the human-move model rates it a proper puzzler."
+      "text": "Page after page of book, and the engine's best. Familiar pages, still a puzzle; the human-move model rates it a proper puzzler."
     },
     {
       "id": "combo-book-opening-follow-8-unusual-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-unusual-strong",
-      "text": "The pages keep turning, with a move the human-move model didn't expect. The engine marks it strong all the same."
+      "text": "Page after page of book, with a move the human-move model didn't expect. The engine marks it strong all the same."
     },
     {
       "id": "combo-book-opening-follow-8-natural-best",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
-      "text": "The pages keep turning. The engine picks it first on its own search, and the human-move model expects it too."
+      "text": "Page after page of book. The engine picks it first on its own search, and the human-move model expects it too."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-strong",
-      "text": "The pages keep turning. The human-move model expects it, and the engine says strong but prefers another. Being in the book won't break that tie."
+      "text": "Page after page of book. The human-move model expects it, and the engine says strong but prefers another. Being in the book won't break that tie."
     },
     {
       "id": "combo-book-opening-follow-8-hard-defense-found",
       "group": "game_review",
       "primary": "book-opening-follow-8",
       "secondary": "human-hard-defense-found",
-      "text": "The pages keep turning, and this move carries the whole defense! Nothing else we checked held on, and the human-move model calls this defense a real head-scratcher."
+      "text": "Page after page of book, and this move carries the whole defense! Nothing else we checked held on, and the human-move model calls this defense a real head-scratcher."
     }
   ]
 }
