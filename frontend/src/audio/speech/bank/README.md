@@ -171,6 +171,12 @@ registered.
 | Mateo (`human-boy`) | Written, 438 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
 | Tamar (`woman-captain`) | Written, 438 | Yes, 2026-10-02, at commit `129a272` | No | No |
 | Tala (`human-girl`) | Written, 438 | Yes, 2026-10-02, at commit `ed96ae2` | No | No |
+| Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | No | No |
+
+The opener row is a cast-wide meaning added after the banks above. Each authored
+`scripts.json` now holds 439 rows, and Walter's and Rivet's lines sit in
+`banks/pilot-additions.json`. Registered banks keep their 438 takes until the
+opener is recorded.
 
 ## Adding or revising a production bank
 

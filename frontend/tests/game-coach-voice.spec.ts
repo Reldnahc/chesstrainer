@@ -3,6 +3,11 @@ import {humanGames} from "./human-fixtures";
 import type {Game} from "../src/gameReview/types";
 
 import {captureSpeech, speechActivity} from "./helpers/speech";
+import {selectGameOpener} from "../src/audio/speech/gameSelection";
+import walterBank from "../src/audio/speech/bank/manifest.json" with {type: "json"};
+import pilotAdditions from "../src/audio/speech/banks/pilot-additions.json" with {type: "json"};
+
+const walterOpener = walterBank.recordings.some(recording => recording.id === "game-review-opened");
 
 async function voiceGame(page: Page, game: Game, ply: number, voice = "automatic") {
   await captureSpeech(page);
@@ -97,4 +102,54 @@ test("a variation waits for its own analysis and leaving it cancels the pending 
     // The variation's own report carries the Maia reading, so it speaks the combined line.
     expect((await speechActivity(page)).started[0]).toContain("/combo-book-opening-entry-3-unusual-strong-");
   } finally { release(); }
+});
+
+test("only an untouched review at the start selects the fact-free opener", () => {
+  const game = humanGames.unusual_strong, frame = game.frames[0], report = game.frames[1].report;
+  expect(selectGameOpener({opening: true, ply: 0, frame})).toBe("game-review-opened");
+  for (const context of [
+    {opening: false, ply: 0, frame}, {opening: true, ply: 1, frame}, {opening: true, ply: 0, frame, variation: true},
+    {opening: true, ply: 0, frame, report}, {opening: true, ply: 0, frame, error: true}, {opening: true, ply: 0, frame: null},
+    {opening: true, ply: 0, frame: {...frame, termination: "checkmate"}},
+  ]) expect(selectGameOpener(context)).toBeNull();
+});
+
+test("a fresh review greets once and the first move replaces the greeting", async ({page}) => {
+  test.skip(!walterOpener, "Walter's game-review opener is written but not yet recorded.");
+  const game = humanGames.unusual_strong;
+  await captureSpeech(page);
+  await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: "classic", motion: "natural"}}));
+  await page.route("**/api/preferences/audio", route => route.fulfill({json: {
+    enabled: true, volume: .35, board: false, practice: false, voice: "automatic",
+  }}));
+  await page.route(`**/api/games/${game.id}`, route => route.fulfill({json: game}));
+  // A fresh document cannot autoplay. Open the review in-app after a real gesture,
+  // as from the game library.
+  await page.goto("/");
+  await page.getByRole("heading", {level: 1}).first().click();
+  await page.evaluate(href => {
+    history.pushState(null, "", href);
+    dispatchEvent(new PopStateEvent("popstate"));
+  }, `/games/${game.id}?ply=0`);
+  await expect(page.locator(".move-playback-counter")).toHaveText("0 / 1");
+  await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
+  expect((await speechActivity(page)).started[0]).toContain("/game-review-opened-");
+  // The bubble shows the spoken greeting, then the move's own text replaces it.
+  const greeting = pilotAdditions.recordings.find(row => row.id === "game-review-opened")!.walterText;
+  const bubble = page.locator(".coach-message > [data-utterance]");
+  await expect(bubble).toHaveText(greeting);
+  await page.getByRole("button", {name: "Next move", exact: true}).click();
+  await expect(bubble).not.toHaveText(greeting);
+  await expect.poll(async () => (await speechActivity(page)).started.length).toBe(2);
+  expect((await speechActivity(page)).started[1]).toContain("/combo-recognized-opening-unusual-strong-");
+  await page.getByRole("button", {name: "Previous move", exact: true}).click();
+  await page.waitForTimeout(400);
+  expect((await speechActivity(page)).started).toHaveLength(2);
+});
+
+test("without a recorded greeting the start keeps its own bubble text", async ({page}) => {
+  test.skip(walterOpener, "Walter's greeting is recorded; the greeting test covers the bubble.");
+  await voiceGame(page, humanGames.unusual_strong, 0);
+  await expect(page.locator(".coach-message > [data-utterance]"))
+    .toHaveText("Select a move or move a piece to explore an alternative.");
 });

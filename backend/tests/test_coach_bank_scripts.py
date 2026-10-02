@@ -39,6 +39,9 @@ AUTHORED = [
     ("human-girl", "tala"),
 ]
 REGISTERED = [("capybara", "winston"), ("mushroom", "button")]
+# Written for every coach and recorded with the next voice pass. Registered banks
+# play nothing for these until their own takes land; remove an ID once recorded.
+AWAITING_RECORDING = {"game-review-opened"}
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = ["ziggy", "orin", "felix", "ember", "scout", "juniper", "waffles", "celeste", "jun", "fergus", "marisol", "monty", "ingrid", "tamar"]
 
@@ -67,7 +70,9 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
     assert [(row["id"], row["group"], row["text"]) for row in manifest["recordings"]] == [
-        (row["id"], row["group"], row["text"]) for row in scripts
+        (row["id"], row["group"], row["text"])
+        for row in scripts
+        if row["id"] not in AWAITING_RECORDING
     ]
 
 
