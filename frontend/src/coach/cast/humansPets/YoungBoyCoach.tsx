@@ -9,6 +9,12 @@ const look: YouthLook = {
   cuff: "#efd08c",
   hair: "#694133",
   speech: { cavity: "#532e26", lip: "#c2866a", tongue: "#cf8f84" },
+  resting: "ready",
+  // The biggest, roundest eyes in the cast under thick, high brows.
+  face: {
+    shape: "round", width: 4.7, height: 1.12, iris: "#6b4426", irisRadius: 2.8,
+    sparkle: true, brows: { weight: 3, arch: 1.3, offset: -0.6 }, nose: "button",
+  },
   clothing: (
     <>
       <path d="M12 104V86q0-16 20-17h16q20 1 20 17v18Z" fill="#c6914c" />
