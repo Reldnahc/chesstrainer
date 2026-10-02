@@ -106,7 +106,11 @@ full claim set: the concrete consequence first, then a terse explanation, with
 rare, understated approval, dry humor kept to practical costs, no questions and
 difficulty always attributed to the human-move model. Felix also stays silent
 until a bank is registered.
-The other 20 voices retain their current wording and deterministic variants.
+Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
+one suspicious detail, asks a quick question, then answers it with the supported
+fact, with delight saved for sneaky tricks and difficulty always attributed to
+the human-move model. Pickle also stays silent until a bank is registered.
+The other 19 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
