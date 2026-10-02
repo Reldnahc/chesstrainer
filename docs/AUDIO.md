@@ -422,8 +422,8 @@ bank uses its separate generated compact cue projection.
 The separate audio studio's **Cast voice auditions** selector compares three
 independently described custom voices for each of twenty-nine coaches (87 active
 recordings): the twenty nonhumans and the nine newer humans, each human voiced
-from their [chess home region](COACH.md#human-home-regions). All twenty nonhuman
-designs and eight humans are locked; Ingrid's third round is **Needs a voice**. **Locked
+from their [chess home region](COACH.md#human-home-regions). All twenty-nine
+designs are locked, so **Needs a voice** is empty. **Locked
 voices** permits read-only inspection. All thirty speaking rigs can be inspected
 independently. Walter keeps his separately approved voice.
 The coach studio's **Mouth shapes** view embeds the same audition panel for its

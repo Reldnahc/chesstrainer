@@ -2,7 +2,7 @@
 
 This is a development-only casting collection. `design-plan.json` has twenty-nine
 coaches with three independently written voice directions each: **87 active
-auditions**. Twenty-eight owner selections are saved in ElevenLabs and
+auditions**. All twenty-nine owner selections are saved in ElevenLabs and
 recorded in `locked-voices.json`, including Pip's second-round Warm Dublin
 companion and Biscuit's fifth-round **Talking puppy, soft**. A locked voice is an
 approved design, not a completed dialogue bank. The audition generator itself
@@ -15,7 +15,9 @@ Aires) and Tala (Bright Manila solver). The owner judged Ingrid's **Oslo easygoi
 very close; round one is archived in `archive/round-1-ingrid.json` and replaced by
 three close variations on it. Those (warm, bright and grounded, in
 `archive/round-2-ingrid.json`) did not sound like women, so round three states a
-woman's voice explicitly: **Oslo woman, warm**, **bright** and **soft**. Each direction is voiced from
+woman's voice explicitly: **Oslo woman, warm**, **bright** and **soft**. The owner
+chose and locked **Oslo woman, soft**. Ingrid's second and third rounds used **852
+credits** across six requests (33,857 → 34,709). All thirty voice slots are now used. Each direction is voiced from
 the coach's chess home region in [COACH.md](../../../../../docs/COACH.md#human-home-regions).
 Mateo's and Tala's briefs describe the sound of the character's own voice (high,
 light, small, bright) and never name an age: the provider rejects briefs about
