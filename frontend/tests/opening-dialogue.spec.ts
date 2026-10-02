@@ -7,9 +7,10 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, kittenOpeningTemplates, tuxedoOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {alienOpeningTemplates, capybaraOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
+import {professor} from "../src/dialogue/characters/professor";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -179,6 +180,8 @@ const openingCoaches = [
   {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
   {id: "wizard", personality: newCastPersonalities.wizard, authored: wizardOpeningTemplates, voiced: false},
   {id: "cat-tuxedo", personality: tuxedo, authored: tuxedoOpeningTemplates, voiced: false},
+  {id: "raccoon", personality: newCastPersonalities.raccoon, authored: raccoonOpeningTemplates, voiced: false},
+  {id: "dog-gentle", personality: professor, authored: professorOpeningTemplates, voiced: false},
   {id: "cat-kitten", personality: newCastPersonalities["cat-kitten"], authored: kittenOpeningTemplates, voiced: false},
 ] as const;
 

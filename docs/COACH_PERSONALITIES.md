@@ -106,11 +106,20 @@ full claim set: the concrete consequence first, then a terse explanation, with
 rare, understated approval, dry humor kept to practical costs, no questions and
 difficulty always attributed to the human-move model. Felix also stays silent
 until a bank is registered.
+Bandit (raccoon) has opted in as well, with its forms in `characters/scopedTactics.ts`
+and `characters/openingSequence.ts`: it spots what is on offer first, says plainly
+why it is there to take, and treats loose pieces and scrappy, effective chess as
+the good stuff, without pretending material is all that matters. Bandit stays
+silent until a bank is registered.
+Alfie (golden retriever) has opted in as well, with his forms in
+`characters/professor.ts`: a short principle, this position's fact, then one
+connection to keep, explaining the mechanism patiently when correcting. Alfie
+also stays silent until a bank is registered.
 Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
 one suspicious detail, asks a quick question, then answers it with the supported
 fact, with delight saved for sneaky tricks and difficulty always attributed to
 the human-move model. Pickle also stays silent until a bank is registered.
-The other 19 voices retain their current wording and deterministic variants.
+The other 17 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
