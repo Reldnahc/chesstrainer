@@ -157,7 +157,7 @@
     {
       "id": "cause-abandoned-defender",
       "group": "game_review",
-      "text": "Hold on, that piece was busy! This move takes away a piece's only real defender, and now the other side can capture what it was guarding. Before a defender moves, ask who it's protecting."
+      "text": "Hold on, that piece was busy! This move pulls the only real bodyguard off a piece, and the other side can grab what it was guarding. Before a defender moves, ask who it's protecting."
     },
     {
       "id": "cause-opponent-threat-recognition",
@@ -227,7 +227,7 @@
     {
       "id": "positional-isolated-alternative",
       "group": "game_review",
-      "text": "Another move would have left an isolated pawn, without a friendly pawn on either neighboring file."
+      "text": "Another move would have stranded a pawn, with no pawn of its color on the files next to it."
     },
     {
       "id": "positional-support-actual",
@@ -312,7 +312,7 @@
     {
       "id": "only-advantage-resource",
       "group": "game_review",
-      "text": "Only this move kept the advantage. Every other move we checked was losing. That move carried the whole load."
+      "text": "This move kept the advantage, and nothing else we tried did; every other move lost. That move carried the whole load."
     },
     {
       "id": "immediate-capture",
@@ -487,7 +487,7 @@
     {
       "id": "srs-summary-mate-against-mover",
       "group": "srs_explanations",
-      "text": "After this move, the saved engine analysis finds a forced checkmate for the other side."
+      "text": "Oof. The saved engine analysis says this move hands the other side a forced checkmate."
     },
     {
       "id": "srs-summary-material-gain",
@@ -777,7 +777,7 @@
     {
       "id": "explanation-cue-deflection",
       "group": "srs_explanations",
-      "text": "Check whether a forcing exchange could pull a defender away from something else it's guarding."
+      "text": "See if a forcing trade could drag a defender off its other job."
     },
     {
       "id": "explanation-note-curated-authority",
@@ -902,7 +902,7 @@
     {
       "id": "game-review-paused",
       "group": "operational",
-      "text": "We're on a break. Resume the review below, or move a piece and explore."
+      "text": "We're on a break. Hit resume below, or push a piece around and see what happens."
     },
     {
       "id": "game-browse-instructions",
@@ -1508,7 +1508,7 @@
       "group": "game_review",
       "primary": "tactic-deflection-played",
       "secondary": "human-natural-strong",
-      "text": "There's a deflection here, a defender drawn off the piece it was protecting. The human-move model expects it, and the engine rates it strong while preferring another move."
+      "text": "There's a deflection here, a defender drawn off the piece it was protecting. Plain natural to the human-move model, and strong for the engine, which still has a favorite of its own."
     },
     {
       "id": "combo-tactic-deflection-allowed-natural-error",
@@ -1816,7 +1816,7 @@
       "group": "game_review",
       "primary": "positional-unsupported-actual",
       "secondary": "human-natural-strong",
-      "text": "Nobody's protecting this piece now, though that by itself doesn't mean it's lost. The human-move model expects it, and the engine rates it strong while preferring another move."
+      "text": "Nobody's protecting this piece now, though that by itself doesn't mean it's lost. Plain natural to the human-move model, and strong for the engine, which still has a favorite of its own."
     },
     {
       "id": "combo-positional-king-flight-actual-hard-find",
@@ -2110,7 +2110,7 @@
       "group": "game_review",
       "primary": "recognized-opening",
       "secondary": "human-natural-strong",
-      "text": "A recognized opening move. The human-move model expects it, and the engine rates it strong while preferring another move. Having a name doesn't make a move the best."
+      "text": "A recognized opening move. Plain natural to the human-move model, and strong for the engine, which still has a favorite of its own. Having a name doesn't make a move the best."
     },
     {
       "id": "combo-recognized-opening-hard-defense-found",
@@ -2152,7 +2152,7 @@
       "group": "game_review",
       "primary": "recovery",
       "secondary": "human-hard-find",
-      "text": "Back on solid ground! After the earlier setback, the position is playable again. The engine picks it first, and the human-move model rates it a tough find."
+      "text": "Back on solid ground! The earlier setback is behind us, and we're playable again. The engine picks it first, and the human-move model rates it a tough find."
     },
     {
       "id": "combo-recovery-unusual-strong",
@@ -2194,7 +2194,7 @@
       "group": "game_review",
       "primary": "recovery-assisted",
       "secondary": "human-natural-best",
-      "text": "With a hand from the other side's errors, the position is playable again. Easy to reach for by the human-move model, and nothing beats it on the engine's list."
+      "text": "The other side's errors lent a hand, and now we're playable again. Easy to reach for by the human-move model, and nothing beats it on the engine's list."
     },
     {
       "id": "combo-recovery-assisted-natural-strong",
@@ -2243,7 +2243,7 @@
       "group": "game_review",
       "primary": "chance-missed",
       "secondary": "human-hard-defense-missed",
-      "text": "The opponent's last move offered a chance, and it goes unused. Only one move we found kept things playable, a different one, and the human-move model rates it hard to spot."
+      "text": "The opponent left a chance on the last move, and nobody picks it up. Only one move we found kept things playable, a different one, and the human-move model rates it hard to spot."
     },
     {
       "id": "combo-support-restored-hard-find",
@@ -2397,7 +2397,7 @@
       "group": "game_review",
       "primary": "book-opening-entry-3",
       "secondary": "human-natural-strong",
-      "text": "It's a book move. The human-move model expects it, and the engine rates it strong while preferring another move."
+      "text": "It's a book move. Plain natural to the human-move model, and strong for the engine, which still has a favorite of its own."
     },
     {
       "id": "combo-book-opening-entry-3-hard-defense-found",

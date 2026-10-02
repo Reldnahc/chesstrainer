@@ -11,6 +11,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   robot: {version: "robot-3", actual: "Attacked together", possible: "Potential simultaneous targets"},
   capybara: {version: "capybara-2", actual: "at the same time", possible: "would be attacked at the same time"},
   mushroom: {version: "mushroom-2", actual: "at once", possible: "would be attacked together"},
+  ghost: {version: "ghost-2", actual: "One attacker now touches", possible: "would be attacked by a single piece"},
   "living-pawn": {version: "living-pawn-2", actual: "all at once", possible: "would be attacked"},
 };
 

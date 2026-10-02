@@ -83,11 +83,14 @@ an available reply and a possible result in compact, orderly language. Their 29
 scoped forms retain the same evidence without forcing identical factual prose.
 Winston and Button have since authored all 29 forms and the opening phrases in
 their own voices: Winston calmly states the fact and a manageable next look;
-Button approaches the same fact from a slightly odd, gentle angle. Percy has
-done the same: an earnest reaction, then the job a piece did or dropped. Their
-written opt-in precedes recorded banks, so they remain silent until a bank is
-registered. The other 25 voices retain their current wording and deterministic
-variants.
+Button approaches the same fact from a slightly odd, gentle angle. Their written
+opt-in precedes recorded banks, so they remain silent until a bank is registered.
+Wisp (ghost) has also opted in, with its forms kept in `characters/ghost.ts`: it
+names what is already on the board or waiting for a reply, in short sentences
+with no questions. Percy (living pawn) has opted in too: an earnest reaction,
+then the job a piece did or dropped. Like Winston and Button, Wisp and Percy stay
+silent until a bank is registered.
+The other 24 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
