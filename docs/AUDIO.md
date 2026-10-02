@@ -361,7 +361,7 @@ document without a prior gesture stays silent, and the first navigation replaces
 the greeting with that move's own line. The greeting is the mainline start's own
 line, so returning there shows and speaks it again like any other position. While
 the greeting is the active line, the bubble shows its text. It is written for all 30 coaches and recorded for
-Walter, Rivet, Winston and Button; until a bank has its take, that coach stays
+Walter, Rivet, Winston, Button and Arjun; until a bank has its take, that coach stays
 silent there and keeps its own text.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
@@ -491,7 +491,7 @@ preview bytes and source identity to saved ElevenLabs voices. These immutable
 approvals survive a fresh clone without local draft files; the service rejects
 changing or clearing them. Corrupt/missing lock data fails closed and mismatched
 recordings show a stale warning. Locking selects a voice design; it does not
-record or install a full dialogue bank. Walter, Rivet, Winston and Button now have production banks.
+record or install a full dialogue bank. Walter, Rivet, Winston, Button and Arjun now have production banks.
 
 Both studios use the same development-only persistence service and fixed
 `data/voice-casting` directory. Choices survive reloads and studio restarts and

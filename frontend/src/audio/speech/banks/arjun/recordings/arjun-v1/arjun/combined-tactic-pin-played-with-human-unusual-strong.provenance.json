@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combined-tactic-pin-played-with-human-unusual-strong",
+      "label": "Combined tactic pin played with human unusual strong",
+      "text": "The pinned piece sits in front of its king and can't legally step off its line. The human-move model gives this move a low chance of being played, while the engine's comparison finds it strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "a21e2cea8a8c6640be0e450efa1d06430f6f22d7d32f2002bb9ad21847715386",
+  "recordedAt": "2026-10-02T23:42:26.034Z",
+  "sha256": "64c468b8edc68b7d2f8d7cd9de2079f57731b49513346c039b3813e444709222",
+  "bytes": 37489,
+  "requestId": "1ryYA5JEMnmr2jTocWHj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "445b8457ba001d760abb7a1e2273fb21ed719aa89ad1cf741580aab2a7222c4c",
+    "bytes": 193141
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

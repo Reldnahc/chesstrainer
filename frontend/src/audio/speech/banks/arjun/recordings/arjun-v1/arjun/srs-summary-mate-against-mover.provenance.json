@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "A forced mate, the saved engine analysis says, now belongs to the opponent of whoever played this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "c34dfbe7ba96de33728e6a85c31f51b1ff24169c16207bf1d74da64f5dd46e96",
+  "recordedAt": "2026-10-02T23:39:40.570Z",
+  "sha256": "ac447c1755088c0fbe4403ea6aa9a21bc12d87aa5b0be765ceb5e6610a2009a4",
+  "bytes": 21475,
+  "requestId": "aEvZX7Bvjp1rhLkcv70O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97fefd7b9c36c722212139d87fc91185fbe5c7fde5dbaff8a5ffe3bdfb14b957",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Castling was among the ideas, moving king and rook in one turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "f82d4b6e6d7bc93be41de06051d30f359a9fb6543b54bfbddcd3a7b8ce2f5b45",
+  "recordedAt": "2026-10-02T23:38:25.827Z",
+  "sha256": "2f45acd2013661bed7839e01e115727342ce2cc20da319fe9621ebf2a8185102",
+  "bytes": 15370,
+  "requestId": "9IEZJLgND9KG8juY7AqG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a9d168e65d7234f6757c2652e5ee776954fb5fdb179c6243d37d6f6ee8abdf8",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

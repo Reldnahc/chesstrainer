@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "There was a skewer hiding in the other candidate. Hit the front piece, and the one behind becomes the real target. That idea wasn't tried here."
+    },
+    "takeId": null
+  },
+  "requestHash": "c09c79ea23b3bee54fa88f7de1147fbc81c041cd337dec074455dd6bb47dc4c3",
+  "recordedAt": "2026-10-02T23:37:06.325Z",
+  "sha256": "6426bdc9ee8480634cded08e611e853cb083fb160196e3262e8df794dff5a232",
+  "bytes": 28878,
+  "requestId": "LFh2BByXBmYzarRocMB2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d9205501c1e5222279569ab2530b0e9036eaf79c91b29ebd3ae8315a338f1f6d",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

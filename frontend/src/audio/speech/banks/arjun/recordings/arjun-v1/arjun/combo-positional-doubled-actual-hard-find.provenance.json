@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-doubled-actual-hard-find",
+      "label": "Combo positional doubled actual hard find",
+      "text": "Doubled pawns now, one stacked behind another of the same color. A well-hidden move that the engine ranks first and the human-move model rarely sees coming."
+    },
+    "takeId": null
+  },
+  "requestHash": "82c214870600f635159bdd9cacf5faab35c76cfb71b87a1cf6428020be4d3157",
+  "recordedAt": "2026-10-02T23:47:08.061Z",
+  "sha256": "dddc020ebc7d5d0a15162a0372b4b86d49b83d891967a1a7859cfe08807d4b92",
+  "bytes": 32018,
+  "requestId": "T9fQpUys8cUFQxA7BiUx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0b14888b78b7164d35e3b6ac1e95c6faa84e54287936bff848b416016d0ad20",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

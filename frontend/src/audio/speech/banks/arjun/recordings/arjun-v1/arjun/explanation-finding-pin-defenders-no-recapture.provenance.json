@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Why does nobody recapture? The defenders are all pinned, each one shielding its king. That's what makes the capture work, and the line shown finishes ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c76fde8424d7486dbc987275307088137366ed2def66612c324f19842bca6c9",
+  "recordedAt": "2026-10-02T23:40:25.272Z",
+  "sha256": "c30a18d70ef4d511ca8498f32230e85882197bc370a65314800767cb69b01268",
+  "bytes": 35315,
+  "requestId": "PHJTG7Rp2hquBTDevIP0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24c153ba9a065b39545bae211c3e87a483a809735f3c2d70bbf7b98768187729",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

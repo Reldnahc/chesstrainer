@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Before capturing, weigh what you gain against what the recapture would take back."
+    },
+    "takeId": null
+  },
+  "requestHash": "1fcb5af4c71a69244b535390de3866957f30a49d19b42e452e1093d48821621a",
+  "recordedAt": "2026-10-02T23:41:04.087Z",
+  "sha256": "110cf97a9f7e7cce45d0747abe7a77bdeeefd2c9985564802518a969dada7916",
+  "bytes": 16853,
+  "requestId": "F8VxcQY4Tv3UMK7WRdBG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc0abdb3e86e7c223875563ec3395a22951c4aabaa0351c6b56396fd17ce06ec",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

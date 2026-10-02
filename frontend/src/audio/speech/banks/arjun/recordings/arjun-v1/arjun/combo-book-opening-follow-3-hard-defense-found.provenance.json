@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-3-hard-defense-found",
+      "label": "Combo book opening follow 3 hard defense found",
+      "text": "A book reply that keeps the position standing. Every other searched move fails and this one holds, a defense the human-move model expects few players to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "732934e648c97784aed07aa2fdeb2a7b6f11af65f6b84b9650e4910b62952bc8",
+  "recordedAt": "2026-10-02T23:51:33.601Z",
+  "sha256": "b2acbe014837882ebaa758842e4e529c391eefb83c28d83a6d2742541923306e",
+  "bytes": 32953,
+  "requestId": "uWls8PdQy28s0rMdywbm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d9bb78e9ca84e3d28fafa189cc8b1e3ee5aee8a618715f80c90997cf59229141",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-doubled-actual-natural-strong",
+      "label": "Combo positional doubled actual natural strong",
+      "text": "Doubled pawns result. As ideas go, it's the natural one for the human-move model and a strong one for the engine, which would pick something else."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fe0615a68ac98eff8d6a4f2d63370d2d44f5762434767b8e65f4ab6e893cd70",
+  "recordedAt": "2026-10-02T23:47:15.052Z",
+  "sha256": "9a635851f383242bdee0fd31dc10ee34526ec6bbd4e3f1f6d9324cd9d886e4d7",
+  "bytes": 29111,
+  "requestId": "o5ONF3uEq8vF1bQtxR41",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bcec2738b5b3791a936f56ffba3913d332a14804fd94e3098b8a4f691125ee2a",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

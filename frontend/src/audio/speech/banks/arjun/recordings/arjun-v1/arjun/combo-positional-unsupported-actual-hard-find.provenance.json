@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-unsupported-actual-hard-find",
+      "label": "Combo positional unsupported actual hard find",
+      "text": "A piece is left without its defender, which by itself isn't a loss. Not an obvious idea for the human-move model, and the engine's favorite. Well found."
+    },
+    "takeId": null
+  },
+  "requestHash": "a3c46876a415148e996f1720073b44372b1fd20400726af96c2b56a128771d69",
+  "recordedAt": "2026-10-02T23:46:28.248Z",
+  "sha256": "9343d6bb31c6daefede7d8b50075d824b07cca1b2e708132c311e722dccc7d18",
+  "bytes": 33981,
+  "requestId": "lBSwUo0JCxXHyrSjIvDi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f8bda702df345deeedd3fbe3a6ddca913c05030aeca3860ad27bb08612c8fe5",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

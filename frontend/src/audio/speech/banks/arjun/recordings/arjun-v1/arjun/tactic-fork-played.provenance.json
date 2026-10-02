@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "Interesting move: one piece lands where it touches several targets, and the reply can't comfortably cover them all. Worth replaying to see how it got there."
+    },
+    "takeId": null
+  },
+  "requestHash": "d7108297c4bdd4d8bfe014a55bf7e47c785bd885bdd70f0dd2235d4fa427b267",
+  "recordedAt": "2026-10-02T23:36:49.852Z",
+  "sha256": "3d3b2c0b9a7c29f2cec8e7ff197f5a7dc71d7222d92f65635fb2cff3e5c760f4",
+  "bytes": 29682,
+  "requestId": "W7vxDNnlK4WHu0jBkEYl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8b0add67444d65977e4b41a061b251e83fee40e7dc381e2bdd1b6b3b44aeb858",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

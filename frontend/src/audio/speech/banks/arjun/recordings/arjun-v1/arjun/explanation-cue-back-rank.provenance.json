@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-rank defender moves, does the king still have a square to escape to?"
+    },
+    "takeId": null
+  },
+  "requestHash": "0b4a1efdb99cfa56681a2cc1b7119b328b8a130fe144b9cae9beccb8374e7602",
+  "recordedAt": "2026-10-02T23:40:59.894Z",
+  "sha256": "a16af3fe4d207f742ad85adca37ec3a397b63ba5f1416486d080f8ab55f8f127",
+  "bytes": 16613,
+  "requestId": "Dpr0UiMWHRjWG05Nmgdh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2cad90e201c44657243c4585c7079251b79804b5ccfae7e453dd538c06c9498",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

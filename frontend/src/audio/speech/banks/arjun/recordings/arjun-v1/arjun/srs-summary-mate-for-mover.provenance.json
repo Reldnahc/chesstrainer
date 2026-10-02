@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "According to the saved engine analysis, whoever played this move can force checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "410355eaf2c6d2715f80b46f153e1cef7a620c48bdaab71fcfea0e5d633850ac",
+  "recordedAt": "2026-10-02T23:39:38.932Z",
+  "sha256": "6e05db8697b0a3d307842521c90a4a170ed83281bfa48463814f0a2c75748901",
+  "bytes": 17149,
+  "requestId": "yLtyITAORkGMCtiwVRdB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c998eee8459bb51a955e4502fbb42de3c09b491d50a818726ec48c731a453fd",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

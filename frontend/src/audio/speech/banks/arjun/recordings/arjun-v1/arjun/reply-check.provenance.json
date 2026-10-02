@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "What does the strongest reply look like? It's a check, so king safety comes before anything else in the comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "09bac91383340ae275bcedbbcc8133353990373bd1b93aff73b3e40ccb84d1bf",
+  "recordedAt": "2026-10-02T23:38:44.593Z",
+  "sha256": "394bee8738f2ea308c5d12c55454488b75bf62ffd851f3d209dbc6be10af75bb",
+  "bytes": 23180,
+  "requestId": "8qablW5RUCVUM85epbkM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9336f2e10cd885c7b1f6187af00b8e95428e3701ea232893879b7ea3b9fe3650",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

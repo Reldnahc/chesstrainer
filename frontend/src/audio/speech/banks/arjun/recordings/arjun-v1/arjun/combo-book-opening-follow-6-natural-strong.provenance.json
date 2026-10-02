@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-6-natural-strong",
+      "label": "Combo book opening follow 6 natural strong",
+      "text": "Still exploring ground the book has mapped. As ideas go, it's the natural one for the human-move model and a strong one for the engine, which would pick something else."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d2ad406dc57013627404555155f57fd4c9f5299bdf64130f4a833e73ce28bbf",
+  "recordedAt": "2026-10-02T23:52:06.155Z",
+  "sha256": "10b04b90f7e180f7fb4b3c7aff1043bb580f4d82e989ccb19ea87f5afa56f05f",
+  "bytes": 31923,
+  "requestId": "drchM0znjw1eBObm6o6l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2dea4dad346bd61aea7ab62af19de3d221e96ed3630860203d57c1dd38098a9e",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

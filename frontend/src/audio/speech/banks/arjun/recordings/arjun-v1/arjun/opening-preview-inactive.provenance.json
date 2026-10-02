@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Recalls that come due will ask for the side you chose. A position several active studies share appears on one card only."
+    },
+    "takeId": null
+  },
+  "requestHash": "003a6dcc699cf679a11a78651ed3eb367fe1735f10334187b952a55686f7d16b",
+  "recordedAt": "2026-10-02T23:41:28.911Z",
+  "sha256": "dbe4c25029af9f6a4ab3dceb1cf8727b65f116f694ec5be8873003fc40c90fd6",
+  "bytes": 27227,
+  "requestId": "Sr2K9AfybbHesuCAaoSH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e31874369f0e6f52073f93e365cfa8610dabece73e6be57f5c94e127d720989",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

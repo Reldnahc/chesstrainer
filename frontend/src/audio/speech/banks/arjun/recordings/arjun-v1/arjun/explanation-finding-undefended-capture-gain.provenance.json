@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "The captured piece had no protection, and the side that took it ends this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "67eb2bd508d2fcf3fda7a7c41f44fd8fd8e364eb3fce2fc36e8d7d2308cdf8ff",
+  "recordedAt": "2026-10-02T23:40:42.247Z",
+  "sha256": "44b67b1d53ed24bfb76f388545f82f3ddd189389b4d631f0c95dd3c5ceda0113",
+  "bytes": 20736,
+  "requestId": "84uT5V3Yqv1EIWHqTu0K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26bf90dc7ccbbf58ea69c139613975fd4356fde49424b5e2350f5b7ad40522ea",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

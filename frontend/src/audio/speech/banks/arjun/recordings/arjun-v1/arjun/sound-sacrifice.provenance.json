@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "A sacrifice that passes the test. What if the material is taken? The line that was checked says the idea still stands."
+    },
+    "takeId": null
+  },
+  "requestHash": "e13b55c78245e52498d1bf75e09ab276aec0dee647b9c0a3a128977aaf8c5bc3",
+  "recordedAt": "2026-10-02T23:38:36.927Z",
+  "sha256": "46a3579fcb386c620aceb19ae1df4daf4eaf9470788bf66d744dbf81f08e4698",
+  "bytes": 26347,
+  "requestId": "4WZZHqCxPg54JJle3DdU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89ca32f19325e5f315eaa8489c8259712d6a55d4a552a6913d03cd2baebc7a1d",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

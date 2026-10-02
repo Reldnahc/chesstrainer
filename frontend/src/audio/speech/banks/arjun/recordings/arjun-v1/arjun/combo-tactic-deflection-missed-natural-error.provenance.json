@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-deflection-missed-natural-error",
+      "label": "Combo tactic deflection missed natural error",
+      "text": "The other candidate deflects a defender. This one, a natural option in the human-move model's eyes, leaves it at its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "be8f4cdf63547ba38fbd4d0fc73a517afce14ee71d78db320da29c2a650eb3ea",
+  "recordedAt": "2026-10-02T23:45:00.265Z",
+  "sha256": "ed3b429377fe48bb69d24cbcdd5c852baa71df2c64c3f4ad4c416921c1215901",
+  "bytes": 25490,
+  "requestId": "AYJc0LVG18JIBna964Yk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "599e25db5c273e92ac7e9a6d12aa9a35486c52efc3a959d2ee90cb8c9f8547b8",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

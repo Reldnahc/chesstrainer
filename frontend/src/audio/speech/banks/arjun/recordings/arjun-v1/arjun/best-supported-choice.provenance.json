@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "best-supported-choice",
+      "label": "Best supported choice",
+      "text": "This candidate holds up well beside the engine's choices; hardly anything is conceded."
+    },
+    "takeId": null
+  },
+  "requestHash": "baca4d65f839f5d5f0eef205bc93ffe363095c69d802e166e980336aeb0ac61f",
+  "recordedAt": "2026-10-02T23:38:49.671Z",
+  "sha256": "16232457dfbcc3991187c14030bf1272c91218a49560ce808be17034c610fc93",
+  "bytes": 18270,
+  "requestId": "RMKvYp1yiLlEq8wNudf5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91ea8365cb93bc2aee963d80723b392c5c0000e1804e6a0928100b70d2ef837f",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

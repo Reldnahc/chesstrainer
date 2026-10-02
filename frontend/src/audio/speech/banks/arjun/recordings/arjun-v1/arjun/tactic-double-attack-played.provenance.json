@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "One option, and suddenly there are threats in two directions. Try every defense against it; one reply rarely handles both."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2161cb7b460a5d723e364bddeac8fca4143f660ac2e7061742f272afb0d7106",
+  "recordedAt": "2026-10-02T23:37:32.551Z",
+  "sha256": "359957f4c16e0ea5d21fc4e04bb098b529520da0b0ea6734d0a7684740286bd0",
+  "bytes": 27880,
+  "requestId": "00zrPcOBFnRNye7zwrWP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f4e348e62203fc4fd4d1620c9da23858926b5fefea23c572daa7febfce6300c",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

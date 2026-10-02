@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-passed-actual-natural-best",
+      "label": "Combo positional passed actual natural best",
+      "text": "Now there's a passed pawn in the position. Natural by the human-move model's lights, and the winner of the engine's comparison too."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a1436069e7e518447e5e6dcbeda5cd81a61a41a4a44601b9c15ad380624e356",
+  "recordedAt": "2026-10-02T23:45:55.433Z",
+  "sha256": "273449dd4092331a2ab8daa7ac42b9eefdda073f42414d52678ec4dd26a24362",
+  "bytes": 24742,
+  "requestId": "9yWUWNwLIIJesWI6bZZf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5d10c9977c7fdb75e9e7318657910e151f140478dcd5827c51dc1dd2fa4eb43",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

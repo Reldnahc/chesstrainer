@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-doubled-actual-natural-best",
+      "label": "Combo positional doubled actual natural best",
+      "text": "Two same-colored pawns end up stacked on a file. Instinct and search land on the same option this time, since the human-move model expects it and nothing in the engine's comparison tops it."
+    },
+    "takeId": null
+  },
+  "requestHash": "154b324960fc49a164efcdd211aeb5efc86177ea727f0bd133f3a2c40680a740",
+  "recordedAt": "2026-10-02T23:47:13.018Z",
+  "sha256": "80909bf78e6854974f174b6bd20d479bc25238acc1051f112526ebc55894100e",
+  "bytes": 36512,
+  "requestId": "VnMDpCHr3jsGODOKljya",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1201c417d3cc779ec7858b16b78ae9b3b2ea3da5511724952c26990fb82c656d",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

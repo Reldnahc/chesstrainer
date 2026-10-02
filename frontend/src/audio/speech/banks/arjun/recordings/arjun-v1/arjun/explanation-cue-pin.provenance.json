@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "When a piece is pinned, what's behind it, the king or a piece worth more? That decides how much it can move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ed6465d5f6b74f229ab30dfc59b97ee0c753d5f9ecd6a64320f09cd40269c06",
+  "recordedAt": "2026-10-02T23:40:53.076Z",
+  "sha256": "d52b60c85000c8a2d1594ea85c9c61fc1955c8c6d28a45ac4576266736838594",
+  "bytes": 22518,
+  "requestId": "BahTx5maCZfZczSViIRz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff89afb90a9a2aced8ec11cbe171fbd6c74c0cef746787fbc3cdb93d1f40cdc5",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

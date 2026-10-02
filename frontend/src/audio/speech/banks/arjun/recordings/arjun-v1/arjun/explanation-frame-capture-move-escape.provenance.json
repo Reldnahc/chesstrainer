@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "Taking a piece is also how the king gets out of check here."
+    },
+    "takeId": null
+  },
+  "requestHash": "3718173d23c0c4a3de1fd0fd8842b1e4d465612841186747b72845a0a62b54e5",
+  "recordedAt": "2026-10-02T23:40:09.617Z",
+  "sha256": "a9c23bde5e69fbd0df3cc9bf62f1738da38f9d768b46b0ee1b1022cf43720e9e",
+  "bytes": 12870,
+  "requestId": "ZlDb48T8j2ZWepmeYtFu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ee423f4980692457320acc466351b098af0d53029792aae6850071306879f6e",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

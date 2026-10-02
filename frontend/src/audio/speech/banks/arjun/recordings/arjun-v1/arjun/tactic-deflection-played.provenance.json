@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "A deflection. The defender gets pulled toward a new job, and the duty it was doing is left undone."
+    },
+    "takeId": null
+  },
+  "requestHash": "dace4f6d1535d8b268a9c9c49ce646c7489dfa6c63fddb448786e4c73f847709",
+  "recordedAt": "2026-10-02T23:37:38.084Z",
+  "sha256": "e1064e57277ccc6be0e6277fc1effa31d5cb3b749406bfc55918517ba7f2376e",
+  "bytes": 21469,
+  "requestId": "HJRV2JN0PQdK8T6u3Zur",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2be47be1686a2610c0562f237b07e6bbddd64a2c51cc76598a9cf5a2bb4713a7",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

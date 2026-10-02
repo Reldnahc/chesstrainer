@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-recognized-opening-hard-defense-found",
+      "label": "Combo recognized opening hard defense found",
+      "text": "Recognized opening theory, and the position's defense rests on this move. Every other searched move fails and this one holds, a defense the human-move model expects few players to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "13b48bf1b7feb3e8bc4afaee8f7233f5c7911570dd672aeb33bad6d62320f165",
+  "recordedAt": "2026-10-02T23:48:20.947Z",
+  "sha256": "e35e15e13b7e9bbed96240c991308434cf6f942c51c4446e937e673546092315",
+  "bytes": 38826,
+  "requestId": "g6oKhGBPMc9O6nVcJZyf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c20f5e977dab0093f24be7ce29ec2544c4312cbb72c9fc5dc4d49fdc5865be2",
+    "bytes": 200664
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

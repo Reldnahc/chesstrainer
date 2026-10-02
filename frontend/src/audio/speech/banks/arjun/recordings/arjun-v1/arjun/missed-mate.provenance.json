@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "A forced checkmate was available with another candidate, and this move doesn't play it. It's worth setting up that line and walking through it."
+    },
+    "takeId": null
+  },
+  "requestHash": "bcf50ad71734d92ae67ff050ef3d30aa2da1b42d3a3da5ccf832be5e1e911091",
+  "recordedAt": "2026-10-02T23:38:35.131Z",
+  "sha256": "0befd40e24a0711ddae70a3bc8a6c5f3119e4a0a16662b840a92e36c93e0af76",
+  "bytes": 26471,
+  "requestId": "d6x77WdXOs7seLiMn0vV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18603e8acfce86b66086ed77d020621ed22d8edb80fca0494c1d565c4c54839f",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Another candidate pushes the passed pawn further. This one leaves it where it is."
+    },
+    "takeId": null
+  },
+  "requestHash": "37afeda74376e726c8a90df3e1c40e14eb7a4ce31fefcb562fe82ab1406387f1",
+  "recordedAt": "2026-10-02T23:38:10.263Z",
+  "sha256": "ee3b1115a189dac4d76722b37248c5da4d28cf168cbeb7e3e94abc19d9ef15c9",
+  "bytes": 17410,
+  "requestId": "wDjGyN5gKvIxGyN7iMnm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0190b6d1dad1d01a9c24a6a2d2d005fe6c59bac054913c44f710ed6dbe936ec",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

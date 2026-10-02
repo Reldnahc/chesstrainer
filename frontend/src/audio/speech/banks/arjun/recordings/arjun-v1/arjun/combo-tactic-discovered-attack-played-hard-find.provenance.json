@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-discovered-attack-played-hard-find",
+      "label": "Combo tactic discovered attack played hard find",
+      "text": "The front piece clears the way, and the one behind it gets its chance to attack. Best in the engine's comparison and tricky in the human-move model's estimate, which is exactly what makes the find special."
+    },
+    "takeId": null
+  },
+  "requestHash": "df2fb51c919ba06cac38b3e46ac911ee0dcc79bbaf8b68bd6fa2856aad995f3e",
+  "recordedAt": "2026-10-02T23:44:11.870Z",
+  "sha256": "fef1d2ba4f6eaddee1f47b42c11bd96874d45efe524f939443e18697e67d0642",
+  "bytes": 39239,
+  "requestId": "WpVXTIKkTGCHWU2VRR6d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac43e1ad9c606d678d2770db3c2071152d9595831c2c320565c964bf53b25a5e",
+    "bytes": 201918
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

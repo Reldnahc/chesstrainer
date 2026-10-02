@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "Pinned against its own king, that piece is stuck. Ask what it would like to do next; leaving its line isn't one of its legal options."
+    },
+    "takeId": null
+  },
+  "requestHash": "20b0a07f3dd7f0d7eb980b80a9c6f5614ca4385b868bc78761f376d7443e96fb",
+  "recordedAt": "2026-10-02T23:36:56.458Z",
+  "sha256": "d34f7eca32abe9171b62c058044a70dc0d156638f78f64c3ab5aa904a54833d8",
+  "bytes": 26873,
+  "requestId": "shmCp4QiEOAj5YwWC1ZD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac192b193c5096ca788c2f91802a22120b55e3236543a215a90a09e05a734eac",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

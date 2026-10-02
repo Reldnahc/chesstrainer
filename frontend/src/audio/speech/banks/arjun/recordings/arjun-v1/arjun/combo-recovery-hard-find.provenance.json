@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-recovery-hard-find",
+      "label": "Combo recovery hard find",
+      "text": "After the earlier error, this move gets the game playable again. The engine's top option, and one the human-move model and the searched alternatives say is hard to find. Nicely spotted."
+    },
+    "takeId": null
+  },
+  "requestHash": "caf6415d62e21d53ddd4e1c1d00fca7454620b807f4e292c48ee93002a2bb9c4",
+  "recordedAt": "2026-10-02T23:48:32.682Z",
+  "sha256": "3a3075906b35cc65344dca435745b29c4876a53b15f4f742a94d16b9dd3cd0aa",
+  "bytes": 37396,
+  "requestId": "7ypwqKJ4l2jtgFSbSLRD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85211a0115eb71c62d85b2f719b10a5a033bd58102a1e2bb0a012e1f7e67e6ee",
+    "bytes": 193141
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

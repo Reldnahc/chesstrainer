@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "A capture onto the last rank, followed by promotion."
+    },
+    "takeId": null
+  },
+  "requestHash": "1aee662080d9fda25c68a599aecd76c30282ed9c97334497ed596b75bbdecb8b",
+  "recordedAt": "2026-10-02T23:40:10.769Z",
+  "sha256": "07f642f2e85d62f0adab3e36a44926f33f91ff915c7e7047b73c612c1d5bca04",
+  "bytes": 12099,
+  "requestId": "KkdQGEDSEJAQcupaZvG9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18810320b67ab6b0e956470152a3e6d7219d7e8b797a550bcf012f59c82e94e1",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

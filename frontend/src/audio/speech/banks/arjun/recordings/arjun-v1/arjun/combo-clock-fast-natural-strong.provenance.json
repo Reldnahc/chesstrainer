@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-clock-fast-natural-strong",
+      "label": "Combo clock fast natural strong",
+      "text": "A fast option, and time left over. A sturdy option. Natural by the human-move model, strong by the engine, whose preference lies with another idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "d6471e884928e392ce3f66cdebd8a4f1113cc9ee2fa6422a312c77bbd5efaae4",
+  "recordedAt": "2026-10-02T23:47:58.928Z",
+  "sha256": "7532ecbdbe4cec0969edc2f5fa78184868c4ca59f0f11ae729d33ef386aebd6c",
+  "bytes": 34492,
+  "requestId": "U31SJiIor6L2dbdSmytS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4384daa384c21662b631d3014bb87aaa07adfd39f5ea3a7e60cae312321ca653",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "opening-recall-accepted",
+      "label": "Opening recall accepted",
+      "text": "Right, that move comes from your study material."
+    },
+    "takeId": null
+  },
+  "requestHash": "446dbd812be6fd2ca1cd759cc824ccb0cec1ace091275e6f3d0364cd1c685202",
+  "recordedAt": "2026-10-02T23:41:17.141Z",
+  "sha256": "46785d43616260bb80d454776534e2e280a9693066c6c973f51af657818ec6ab",
+  "bytes": 10574,
+  "requestId": "2W7ewCmqICJzx01VQBAn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86de4a62b5011144f16f157ee73e41b734e8544d23cabe6fcedf238a6d53677d",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

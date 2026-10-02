@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-recognized-opening-hard-find",
+      "label": "Combo recognized opening hard find",
+      "text": "Even inside a recognized opening, this move is tricky to find. Best in the engine's comparison and tricky in the human-move model's estimate, which is exactly what makes the find special."
+    },
+    "takeId": null
+  },
+  "requestHash": "452a6696c1caac836dd2a5ef04cd20717ce8775631205450f4cddf5eedfd8977",
+  "recordedAt": "2026-10-02T23:48:10.595Z",
+  "sha256": "d900fb3ef71ed213f53fe95d4ee666176a292e90821170e87c7c8d411541f0c2",
+  "bytes": 38875,
+  "requestId": "vU7ywLLcDp7YObkawV07",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b09a3cab2bb92badd1e038ace27936e454f7ef280361fbcd42fe37d514557782",
+    "bytes": 199410
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

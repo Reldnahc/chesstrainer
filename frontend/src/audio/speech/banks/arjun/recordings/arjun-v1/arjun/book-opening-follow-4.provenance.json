@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "book-opening-follow-4",
+      "label": "Book opening follow 4",
+      "text": "The known line keeps unfolding."
+    },
+    "takeId": null
+  },
+  "requestHash": "39b057600a6a7dc00b298025168e536b8d2a15e86e515ee4420abc9c37609f74",
+  "recordedAt": "2026-10-02T23:41:49.940Z",
+  "sha256": "87252eaa3cc62ba5ec0e090323d5f4f70ba616ea45290fd97b3dd53fecf426dc",
+  "bytes": 8268,
+  "requestId": "zArihurZLPgj2EhD8v3b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03e30705730aab695cb7665f9ed1819e8f80a97c098dda500b9f69d729893723",
+    "bytes": 39332
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

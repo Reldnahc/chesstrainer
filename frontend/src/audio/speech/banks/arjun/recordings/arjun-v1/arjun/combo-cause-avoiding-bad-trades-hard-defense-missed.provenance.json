@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-cause-avoiding-bad-trades-hard-defense-missed",
+      "label": "Combo cause avoiding bad trades hard defense missed",
+      "text": "This capture runs into a more valuable recapture. Of the searched moves, only one kept things together, and the human-move model rates it as easy to overlook."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee1d328f15c8be4ccc32c032e54a70bc7abde14c12a69361865bd444d5a4da9f",
+  "recordedAt": "2026-10-02T23:42:41.931Z",
+  "sha256": "8269b0de07b71a711719036ccce3cbd15fb10fb342070ed70e283f722bdd13e8",
+  "bytes": 33398,
+  "requestId": "G6U1R9K1LSkN4dqj2q7q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "060baeb0902419b6858bf608858e6e376bb4f5ddbdb6bee0e6e3ed9ffa8916c6",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

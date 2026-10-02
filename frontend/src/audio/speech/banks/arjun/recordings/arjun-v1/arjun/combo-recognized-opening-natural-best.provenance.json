@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-recognized-opening-natural-best",
+      "label": "Combo recognized opening natural best",
+      "text": "A recognized opening move, though the search, not the book, is what rates it best. Two different tests, one winner: natural in the human-move model, first among the engine's choices."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d567d3eea7a3dc2b4ce28a28b8d00e6084cdc2588d6a5120ddac410fa977ac9",
+  "recordedAt": "2026-10-02T23:48:15.510Z",
+  "sha256": "23c1c0f5da8f7dd59fbb4cda6276919fc73e2a2d5e2cdaf38b7e9d9e8a52f2a2",
+  "bytes": 37890,
+  "requestId": "5UE0cFpwB8ra6ze6Vn72",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c55862ddd0254d2370683ac24084fd88088d24df7a3cb2371a679d927da6b1c3",
+    "bytes": 200664
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

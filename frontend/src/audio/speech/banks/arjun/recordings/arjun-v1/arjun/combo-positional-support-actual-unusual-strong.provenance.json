@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-support-actual-unusual-strong",
+      "label": "Combo positional support actual unusual strong",
+      "text": "An unguarded piece gets some cover. Unexpected by the human-move model's standards, strong when the engine tests it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c37439cdeb7a9fe1dd35113912ae9f092425a0072cc993a1f58f41afe06dc5cd",
+  "recordedAt": "2026-10-02T23:46:21.164Z",
+  "sha256": "779e69daf032b3ff970758e07b0b116fcc68f50953699b4148f0fa297025e1ee",
+  "bytes": 24112,
+  "requestId": "Hrr5BWHn2I5fCmGuvs79",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "341cbd022806b96c29051723408006499c33cbfa96b9f42905c8658394962fce",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

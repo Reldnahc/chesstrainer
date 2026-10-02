@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Shall we see how this game unfolded? Let's go through it together and compare the choices along the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdc2ff488449d50a20fff5c9fa9bb1e3b4602972cd5220e41307545c19c01f5c",
+  "recordedAt": "2026-10-02T23:52:34.464Z",
+  "sha256": "a23d2e619e481dc42de1e6808a15b13fa639f3582d9e5b111e4ed5be5c4ae0c5",
+  "bytes": 19577,
+  "requestId": "drPOYztwl8Z34BkGRw3A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4a59a321cc4d62983447974e1b00fbf44d3d970e54a4cbd75383a1cefa6635a",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

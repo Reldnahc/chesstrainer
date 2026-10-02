@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-castling-actual-unusual-strong",
+      "label": "Combo positional castling actual unusual strong",
+      "text": "Castling, with the rook leaping to the king's far side. The human-move model calls it improbable, while the engine's test comes back strong, and that gap is the interesting part to explore."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbbe5e9193fd18b44300363932e971501471a43dd829785911abb18dbeaf399c",
+  "recordedAt": "2026-10-02T23:46:50.686Z",
+  "sha256": "3843ed9cc00196fce411591e8aba92b3532e0aaa05133bd91ed23b28ce6ff127",
+  "bytes": 36723,
+  "requestId": "LyKRBG4HSUUcO0Uz2Fai",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0bd30d309a87778d37392dc3397628663630485dd2fa54685451c010383af83",
+    "bytes": 190633
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

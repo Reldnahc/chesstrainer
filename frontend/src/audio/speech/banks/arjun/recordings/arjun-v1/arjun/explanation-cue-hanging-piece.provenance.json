@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before choosing a move, ask whether any piece could be captured without a decent recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "c498bed16995927f9fe56bbc294d891da815742512670d6401ca9da8c87d199c",
+  "recordedAt": "2026-10-02T23:40:48.483Z",
+  "sha256": "dba11383c4452e2a575a1b13ac3a957832134ac447a146af9b00920e68bca2c2",
+  "bytes": 19403,
+  "requestId": "Ctne98Thm5IgV4ZG7Bg0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0ab6fa284eb72bc59b44aaa22699913ceee80622a997b6aadcf22bdecf77764",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-double-attack-played-natural-strong",
+      "label": "Combo tactic double attack played natural strong",
+      "text": "A double attack, two threats needing two answers. Natural to the human-move model and solid under the engine's test, even if the engine would play something different."
+    },
+    "takeId": null
+  },
+  "requestHash": "44289f6d82c92c378a937822282e329933fd3678535b711dd0c7b5b3513ad681",
+  "recordedAt": "2026-10-02T23:44:36.565Z",
+  "sha256": "a034cc31108de2b34daddb24329f3ba5c8261c72b1d6a0d6f97fcedda042f4b4",
+  "bytes": 32426,
+  "requestId": "GeAaE1wspNqroD5PMAJq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2cb2cb53fe81b79a09698e0a8aee9e6de472710caafba78855f376102a439edf",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

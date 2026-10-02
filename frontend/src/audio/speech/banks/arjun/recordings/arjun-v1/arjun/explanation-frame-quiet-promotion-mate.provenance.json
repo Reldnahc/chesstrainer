@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Promoting the pawn ends the game in checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d463713dce0302ba4ef31bbb0c89002f860bcdf15c05009911a34f40d26fd64",
+  "recordedAt": "2026-10-02T23:40:04.413Z",
+  "sha256": "799e18560651a6086dc2f1166cb787ab39c49c318bc0197d9d4ab4891b2c4d2c",
+  "bytes": 10703,
+  "requestId": "hhv2IYIMLnVYvDUHlPIo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78811ab2281fae136ba40bee99ef6b69a613c411a1a37e5c49b66490ba1c5044",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

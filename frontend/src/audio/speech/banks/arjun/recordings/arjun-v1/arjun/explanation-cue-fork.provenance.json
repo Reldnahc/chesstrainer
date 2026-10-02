@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Among the forcing ideas, is there one piece that could reach two valuable targets at once?"
+    },
+    "takeId": null
+  },
+  "requestHash": "43b7a14ceda7eec6c260626da82263f47ed72827304d5568a04811476e208c62",
+  "recordedAt": "2026-10-02T23:40:51.279Z",
+  "sha256": "7b4fe88360d549332c495c32c06e2887641e21172e68f009dac8d0bd5c6ee8ca",
+  "bytes": 18131,
+  "requestId": "24lxln6oGoKlzGF78Ngm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59fd37804b6badb206e015a2d371729f80ab48631b8c19f7c944560bb04e1554",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

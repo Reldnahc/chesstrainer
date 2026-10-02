@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-skewer-played-natural-best",
+      "label": "Combo tactic skewer played natural best",
+      "text": "Chase the front piece away, and what stood behind it is exposed. If we line up every option, the human-move model's favorite is also the engine's, which is a nice thing to discover."
+    },
+    "takeId": null
+  },
+  "requestHash": "b253aab4dda81476020897dfc9f8b14ee57a9be77ed5b7118fd5f3ebea37a482",
+  "recordedAt": "2026-10-02T23:43:14.785Z",
+  "sha256": "7a66f11d9324aaa1c634f7f0bc5da434ee9b97d22de53fd8027a0624228429ca",
+  "bytes": 35203,
+  "requestId": "mxMVx0zP4hJACQ2r76A9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "804bcc3c40c8dac5aa15f4cf11997eda0e5c3e852c3f3f15fed2e023af72abd3",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

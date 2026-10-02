@@ -1,6 +1,6 @@
 # Recorded coach bank authoring
 
-Walter's bank lives in this directory. Rivet's, Winston's and Button's banks live
+Walter's bank lives in this directory. Rivet's, Winston's, Button's and Arjun's banks live
 under `../banks/<voice>`; all use the same production registry, meaning catalogue, validator and runtime.
 For the full character workflow, start with the
 [coach creation guide](../../../../../docs/COACH_CREATION_GUIDE.md). This page
@@ -97,6 +97,17 @@ reworded lines, three for Button and three for Winston, with their previous text
 They were re-recorded with the same voices and settings under
 `recordings/<voice>-v2/`, and `scripts.json` and the manifest carry the new text.
 
+## Arjun bank
+
+Arjun (`banks/arjun`, coach `man-partner`, locked voice "Chennai club mentor") is
+a registered production bank covering all 448 catalogue meanings, including the
+game-review opener and lesson prompts, from his own `scripts.json`. It was recorded
+on October 2 in 23 bounded plans (57,994 input characters) with `eleven_v4` and the
+shared settings, under `recordings/arjun-v1/`. ElevenLabs history billed
+7,024 credits for the 448 matched request IDs; one request timed out uncharged and
+was made again. His script needed one new inflection ("steadies"), covered by
+morphology revision v4's `-ies` plural rule.
+
 ## Authored banks awaiting recording
 
 Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
@@ -114,8 +125,7 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/waffles/scripts.json`, coach `dog-corgi`), Celeste
 (`banks/celeste/scripts.json`, coach `unicorn`), Jun
 (`banks/jun/scripts.json`, coach `man-expert`), Fergus
-(`banks/fergus/scripts.json`, coach `frog`), Arjun
-(`banks/arjun/scripts.json`, coach `man-partner`), Femi
+(`banks/fergus/scripts.json`, coach `frog`), Femi
 (`banks/femi/scripts.json`, coach `man-host`), Marisol
 (`banks/marisol/scripts.json`, coach `woman-analyst`), Monty
 (`banks/monty/scripts.json`, coach `gorilla`), Ingrid
@@ -161,7 +171,7 @@ registered.
 | Celeste (`unicorn`) | Written, 438 | Yes, 2026-10-02, at commit `eddc967` | No | No |
 | Jun (`man-expert`) | Written, 438 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
 | Fergus (`frog`) | Written, 438 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
-| Arjun (`man-partner`) | Written, 438 | Yes, 2026-10-02, at commit `91cda3c` | No | No |
+| Arjun (`man-partner`) | Written, 448 | Yes, 2026-10-02, at commit `91cda3c` | Yes, 2026-10-02 | Yes, 2026-10-02 |
 | Femi (`man-host`) | Written, 438 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
 | Marisol (`woman-analyst`) | Written, 438 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
 | Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
@@ -252,7 +262,7 @@ automatically writes a finished personality or turns all coach prose into speech
    below validates every *registered recording*, but deliberately allows a
    partial bank. Compare the bank's IDs against the reachable shared catalogue
    and add/update script-consistency and selection tests before calling it
-   complete. Walter, Rivet, Winston and Button currently cover all 438 meanings; that number is
+   complete. Walter, Rivet, Winston, Button and Arjun currently cover all 448 meanings; that number is
    not a substitute for checking the catalogue. Exercise actual game/practice
    playback, late Maia results, manual replay, cancellation and cold positions.
    Use Recorded coach comparison in the Audio Studio for editorial/listening

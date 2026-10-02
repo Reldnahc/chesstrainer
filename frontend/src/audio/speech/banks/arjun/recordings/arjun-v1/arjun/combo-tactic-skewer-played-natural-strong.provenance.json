@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-skewer-played-natural-strong",
+      "label": "Combo tactic skewer played natural strong",
+      "text": "A skewer, lined up along one line. Natural as the human-move model scores it and strong as the engine tests it, with the engine's favorite being another move."
+    },
+    "takeId": null
+  },
+  "requestHash": "339513cf69a152f5ec0439892e30d8a44c55dbf8781789b3f955ce812d6176cf",
+  "recordedAt": "2026-10-02T23:43:17.005Z",
+  "sha256": "ec82890fab8e7a8d624edd507696808a77055442f6937fd8e6a07bbe53470dbe",
+  "bytes": 34285,
+  "requestId": "8MgK4jhFxArlOjdezi8O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e6ebfbde33d839007ab1abf8e86cee6f27a12cce3b212bcce96abc1567bc0e6",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-cause-opponent-threat-recognition-hard-defense-missed",
+      "label": "Combo cause opponent threat recognition hard defense missed",
+      "text": "The threat set up by the opponent's last move stands, and a piece can still be captured. The holding option was a different move, and the human-move model counts that defense difficult to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd3645f4d8a30a8d3110b3893515affec00c4051be27ee3ba488f1907f6eaabe",
+  "recordedAt": "2026-10-02T23:42:37.450Z",
+  "sha256": "e4dcf8a5ef4544a873303e972a1489dcd568ddd05bf1b60ed2d0e5f1b816b27b",
+  "bytes": 36577,
+  "requestId": "pUX844KGTttbeg1zZci7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56755cd2e7450a435414eb1524122543547899ab008cf655b626cd30823d6c00",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

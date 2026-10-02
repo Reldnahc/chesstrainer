@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "With this move the king has a fresh square to escape to. So which piece got out of the way?"
+    },
+    "takeId": null
+  },
+  "requestHash": "39ebf8351f4036ab20413b9b2d6dbd8d356c1896fb07f991582fabb7fe086695",
+  "recordedAt": "2026-10-02T23:38:21.091Z",
+  "sha256": "c208d5ba05e894562e1f8af2e8b05249beb1e93a557d6639a4b21ab67c175266",
+  "bytes": 19140,
+  "requestId": "NPYbioNpmgnEanrjZcY5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13fb5b8bf6104402991ce1feab7a01f639980808a50f4d8ffed165f5084f115c",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

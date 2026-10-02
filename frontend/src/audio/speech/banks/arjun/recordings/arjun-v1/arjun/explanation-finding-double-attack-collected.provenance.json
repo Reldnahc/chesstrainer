@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "One target is hit by the moving piece, another by the line it opens. In this case, it's the piece behind that collects."
+    },
+    "takeId": null
+  },
+  "requestHash": "73db2bd6d6ce360fd7ad872720fd1554b00da940db84ab3b157500b42224e8b4",
+  "recordedAt": "2026-10-02T23:40:39.319Z",
+  "sha256": "70103a64c49b500683ffb2c7bf98e98d4b823e4f3f3caaa02d41611ef0fbffcd",
+  "bytes": 24722,
+  "requestId": "3NRMdxpjpXLIQ6N0MSow",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18888f9b5e00e977631e21c0499cb01277221e092517d6b1673c833a8955ef36",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

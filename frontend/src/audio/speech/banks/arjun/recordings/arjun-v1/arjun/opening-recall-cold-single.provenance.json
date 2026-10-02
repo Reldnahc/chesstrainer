@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Which move comes next in your study material?"
+    },
+    "takeId": null
+  },
+  "requestHash": "b0626a4a935882c20a0abecc346cca5f0178b99c20c4236f32647463565c998b",
+  "recordedAt": "2026-10-02T23:41:20.575Z",
+  "sha256": "5946fe4b18dfdd9a8eee954054b063b536ff40628e5623280031cb989d26a4f1",
+  "bytes": 9572,
+  "requestId": "yafc3R9m38TTmhHsgDET",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42a31f64964e61b8d4415cc34de8c34738342252e87c9480fe97d3905351d094",
+    "bytes": 46019
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

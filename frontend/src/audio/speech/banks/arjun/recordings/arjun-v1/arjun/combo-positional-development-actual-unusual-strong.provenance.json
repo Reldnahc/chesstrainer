@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-development-actual-unusual-strong",
+      "label": "Combo positional development actual unusual strong",
+      "text": "An unexpected way to get a minor piece out. Not a move the human-move model expects, and yet the engine's test says strong. Unusual ideas deserve a look."
+    },
+    "takeId": null
+  },
+  "requestHash": "73d362b6cb92e48d7cc56b7531c22fcecf0c0613cc1ed3be96a89498ed455d75",
+  "recordedAt": "2026-10-02T23:45:25.114Z",
+  "sha256": "659a17fc93d8c1f373844a07269c958fc2d52a6b5ffa47cc3bd92f5f49a51e6e",
+  "bytes": 34819,
+  "requestId": "5tO4opskKyfEOXF3VW20",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6901c2deb293216c2bd85bb252333b1fd5f0a7c0905b2ae4704f8503a950a5c0",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

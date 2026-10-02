@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "Once the defender is pulled off its post, the piece it was minding gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "27e4077838c2985383692e7e5188a770d950655605f8408fc57f65cd8d562ed7",
+  "recordedAt": "2026-10-02T23:40:32.945Z",
+  "sha256": "e7d75eb50c48e08f739fad8d3446065e28a42beb0071f619c1309f10c305a68b",
+  "bytes": 16208,
+  "requestId": "qG3iTGc2neRQVdCYaQAz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2442633810f3ca75697ce6c75f56f521632dbc95b2549ca059d007b538a54172",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

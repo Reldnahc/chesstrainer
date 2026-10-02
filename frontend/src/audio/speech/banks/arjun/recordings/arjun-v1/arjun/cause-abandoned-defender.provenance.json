@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "What was this piece guarding before it moved? It was the only real defender of another piece, which is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9d18866801197dcbc798ee46c176ee81a08db9e199c14993be0fd59361e57d7",
+  "recordedAt": "2026-10-02T23:37:48.825Z",
+  "sha256": "9da73fa8f8f7c4d95d4eee21a3ca68745f1209b5a495e844724a232e92c43e56",
+  "bytes": 25650,
+  "requestId": "T75Uin7uESkST9uNu5OX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd164cdf13becdf49c9a08ec2d58c2a88524e6997960b7c5d08a11de6f74ca2c",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

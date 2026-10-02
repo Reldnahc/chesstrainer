@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "The attacked piece is pinned to its king, so its only legal moves are the ones that keep the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "051769c707074686bad18d884bcb4911dc24559ed87cb1c1286317fdc33b77ea",
+  "recordedAt": "2026-10-02T23:40:22.882Z",
+  "sha256": "d852382a0d027fcf80f2388c2aaeab18fee690874caddd825d40d0000ce8f20d",
+  "bytes": 21016,
+  "requestId": "ydR1pSdvHzGvQLHfasIe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4060cb6780ca04a7badcc7b9efb25c29456c38fc2b6bd083ca235d3f0cbd50ee",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

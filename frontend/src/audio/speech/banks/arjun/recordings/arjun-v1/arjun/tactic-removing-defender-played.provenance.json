@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "Follow the logic: take the defender first, and the piece it was looking after is suddenly on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2ffbf18e19acaeddf8d052c9cf2da3aaf9fd5843d30977367f9f14c00ef53ce",
+  "recordedAt": "2026-10-02T23:37:07.953Z",
+  "sha256": "333224c5bab0f327271ecf87d0c706a19cfdb1d5828c5302c0dc255c77dffa63",
+  "bytes": 20201,
+  "requestId": "8sM2OvC63JjNEWn4flec",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b2984da52827763e857cce50a525d8407e7a1b38058c2c445f98f1e7bbbdaee",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

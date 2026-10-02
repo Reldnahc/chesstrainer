@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-clock-low-hard-find",
+      "label": "Combo clock low hard find",
+      "text": "With very little time left, the right move was still found. Difficult to spot, as the human-move model scores it, and the best idea the engine found. Good exploring."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0038ce4e28d8b02b288e881cd880ca4fef8e099c5ebaa3f8a3f994e26ad69f4",
+  "recordedAt": "2026-10-02T23:47:42.877Z",
+  "sha256": "966ac076a2ce66bebeb0569618f83416a5a5890acc9d3856abd7582ea8f5bee5",
+  "bytes": 34692,
+  "requestId": "NtQifYTIgl0c6xRovV6b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7e680a9e24661e595217b8765f839a2b870fba679e59af526974e2cf44d628b",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

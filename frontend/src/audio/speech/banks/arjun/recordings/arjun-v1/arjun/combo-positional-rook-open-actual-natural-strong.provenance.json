@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-rook-open-actual-natural-strong",
+      "label": "Combo positional rook open actual natural strong",
+      "text": "An open file for the rook to work with. As ideas go, it's the natural one for the human-move model and a strong one for the engine, which would pick something else."
+    },
+    "takeId": null
+  },
+  "requestHash": "316e9d2372a23b3ae9b4a354f346059b8ce41488b1b600d2301b4b296b583ab5",
+  "recordedAt": "2026-10-02T23:45:39.001Z",
+  "sha256": "c39de87b934b17a1f843e7dbcd9d2980e1b3e3f87261387a6b6197f0e9ea0d37",
+  "bytes": 31760,
+  "requestId": "9LUZZO6KBZHuBIxeKN2s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "379bc99c29d39b5e4c5bc9e1fd1ee1d036c8d5318b634ab5f71b17cc9acc2846",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

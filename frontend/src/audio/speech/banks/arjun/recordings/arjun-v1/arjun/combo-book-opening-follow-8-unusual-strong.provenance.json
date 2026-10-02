@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-8-unusual-strong",
+      "label": "Combo book opening follow 8 unusual strong",
+      "text": "A candidate the book lists again. Few players would try it, by the human-move model's estimate, yet it passes the engine's test as strong. Book, human-move model and engine each test something different."
+    },
+    "takeId": null
+  },
+  "requestHash": "d94f9de181cef7a9d38d3e7b0c4ec3fb1fdfcc272ec1a4c603b36febafdcde81",
+  "recordedAt": "2026-10-02T23:52:25.029Z",
+  "sha256": "d39867572d8bc31b4297dfdb8680e441628cfda355260ac7d47018a8d66c4b39",
+  "bytes": 42538,
+  "requestId": "tupMXKZpnv1KTUWd5B3x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6aaddb0b09ac08e1df17e127f2570c2b7173a01a9c200bfd0e338b64758ae3ac",
+    "bytes": 224906
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

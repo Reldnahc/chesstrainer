@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-recovery-natural-strong",
+      "label": "Combo recovery natural strong",
+      "text": "After the earlier error, this move steadies the position again. This is a move the human-move model would anticipate, and the engine rates it strong while keeping a different one as its pick."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e4cee5708c87d49e460dca87b105b144b2487a09f81c644246a884e4b786029",
+  "recordedAt": "2026-10-02T23:48:41.187Z",
+  "sha256": "76a523d30c1f7404d5f0dd876994da0a8200e61793bca1ead9aec7c52d1bdb38",
+  "bytes": 35824,
+  "requestId": "Vrscaw0lXmNRnMQ1C7aw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd04b3bafa0ae93a5e70d9c2ea46815daec8927fa0634c97aaa4e0eb4bec8661",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

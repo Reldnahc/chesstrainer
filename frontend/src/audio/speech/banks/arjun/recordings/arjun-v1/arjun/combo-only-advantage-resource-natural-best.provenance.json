@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-only-advantage-resource-natural-best",
+      "label": "Combo only advantage resource natural best",
+      "text": "The advantage lives on through this move, while the other examined moves lose. The move a player reaches for first, by the human-move model, also survives every engine test as the best."
+    },
+    "takeId": null
+  },
+  "requestHash": "65213a5aa157fe73b139892794f5dc1a7c7b8f390bb67ed2486a81d9f12b1f6f",
+  "recordedAt": "2026-10-02T23:47:35.567Z",
+  "sha256": "702c9e537a826b65acfd302708e082bfa0b230e5790b180652c55a2306193274",
+  "bytes": 38376,
+  "requestId": "ygitaKMCHwDupNWJRn6p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db7ed8914f17afa6650fd8b22ae7c8f14cffb2b5afdeb34fd73716693daf789b",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

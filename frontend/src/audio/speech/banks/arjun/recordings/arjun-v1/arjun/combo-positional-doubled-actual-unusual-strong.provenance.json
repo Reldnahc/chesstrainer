@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-doubled-actual-unusual-strong",
+      "label": "Combo positional doubled actual unusual strong",
+      "text": "This move creates a doubled pawn. The human-move model gives this move a low chance of being played, while the engine's comparison finds it strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "031d77722e3ce9eab43294672f01b2e3ffada2163c5b8e4c4503959cceee8564",
+  "recordedAt": "2026-10-02T23:47:10.324Z",
+  "sha256": "ded053e51c75f5da0c6433c865670d9a99b41e49cd46cf8023c52c7e487584a2",
+  "bytes": 29467,
+  "requestId": "ch0WDxYunqegLrCaFMtn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d53974d2c4ff12a3b7f052db985688c39726f1e5401d24f19c21f8291819ca22",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

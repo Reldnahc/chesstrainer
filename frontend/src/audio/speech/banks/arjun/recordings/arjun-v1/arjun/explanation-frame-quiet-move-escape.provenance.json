@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "Out of check, the king is safe from it now."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f289e528eaaa82a950c6001fbeabc6beb6394cd682ff6df9f8888a09e874b2e",
+  "recordedAt": "2026-10-02T23:40:00.851Z",
+  "sha256": "56379cd3539a4bec07c725793132a38ca0f8f10518a4497883222a1ac4918ecc",
+  "bytes": 9843,
+  "requestId": "XC2fzNiximXIcqI86lpi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3288e7ed4ad0360d5524bce78a0dbd864aa04b6d2c24aa279c8dc5b8757e9bd4",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

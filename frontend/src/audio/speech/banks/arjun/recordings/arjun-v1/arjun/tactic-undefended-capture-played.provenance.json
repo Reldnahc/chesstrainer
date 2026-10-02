@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played",
+      "label": "Tactic undefended capture played",
+      "text": "That piece had nobody looking after it, and now it's captured. A simple idea, and a good habit to keep testing for."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb7155e4eed5011c4af74163b8f3af53fad0ad95ae0b7bfd49f493cf23831225",
+  "recordedAt": "2026-10-02T23:37:43.243Z",
+  "sha256": "f0b93a76ed39d44b24059dafea9de9ad4b7e79a3773ca106eb412bcd1ea0bb37",
+  "bytes": 25034,
+  "requestId": "UleFvgTDFKiZgOhhyNKz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce01484cb13b0eda2af253c8b21c3bd7a5459a03b6c014c9024f4503e3cb91fa",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-passer-advance-actual-natural-best",
+      "label": "Combo positional passer advance actual natural best",
+      "text": "The passed pawn continues its run. The move a player reaches for first, by the human-move model, also survives every engine test as the best."
+    },
+    "takeId": null
+  },
+  "requestHash": "98b76524bd002ffa3e12524addbbd9cfb1a9bb022f36deeb1eeef6cb965affb9",
+  "recordedAt": "2026-10-02T23:46:04.569Z",
+  "sha256": "c8d320cd9d8b892a905f6cb88d60b881208253e24bec487607a2a43d47ef77da",
+  "bytes": 30440,
+  "requestId": "wR4yW2WeZW3YOIdetIhR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2542fad9175d384f6b85f031be9ed4c49e377256e13b30863971ef39fcc5628",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
