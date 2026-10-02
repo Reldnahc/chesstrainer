@@ -97,6 +97,7 @@ scripts pass review, and remove it once the bank is registered.
 | Winston (`capybara`) | Written, 438 | Not tracked here | No | No |
 | Button (`mushroom`) | Written, 438 | Not tracked here | No | No |
 | Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
+| Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `9b38c4d` | No | No |
 
 ## Adding or revising a production bank
 
