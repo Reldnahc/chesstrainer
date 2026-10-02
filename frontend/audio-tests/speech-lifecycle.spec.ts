@@ -28,6 +28,14 @@ async function mountSpeech(page: Page, options: Partial<Options> = {}, feedCoach
     const {React, createRoot} = await import(`${root}/studio-tests/fixtures/runtime.ts`);
     const {CoachCharacter} = await import(`${root}/src/coach/CoachAvatar.tsx`);
     const {getCoach} = await import(`${root}/src/coach/registry.ts`);
+    // Every selectable coach now has a speaking rig, so "unsupported" is the man-expert
+    // with speech switched off, standing in for a future rig without a mouth.
+    const coachFor = (id: string) => {
+      if (id !== "unsupported") return getCoach(id);
+      const base = getCoach("man-expert");
+      return {...base, families: base.families.map((family: object) => ({...family, speech: false})),
+        capabilities: {...base.capabilities, speech: false}};
+    };
     let current: Options = {coach: "classic", feedId: "first", motion: "natural", ...options};
     const counts: Record<string, number> = {};
     const feeds = new Map<string, SpeechPlayback>();
@@ -47,7 +55,7 @@ async function mountSpeech(page: Page, options: Partial<Options> = {}, feedCoach
     const mounted = createRoot(container);
     let detached: HTMLElement | null = null;
     const render = () => mounted.render(React.createElement(CoachCharacter, {
-      coach: getCoach(current.coach), reaction: {state: "neutral", key: "lifecycle"},
+      coach: coachFor(current.coach), reaction: {state: "neutral", key: "lifecycle"},
       motion: current.motion, idle: false, speech: current.feedId ? feeds.get(current.feedId) : undefined,
     }));
     (window as unknown as HarnessWindow).speechHarness = {
@@ -75,7 +83,7 @@ const update = (page: Page, patch: Partial<Options>) => page.evaluate(
   patch => (window as unknown as HarnessWindow).speechHarness.update(patch), patch);
 
 for (const scenario of [
-  {name: "unsupported coach", coach: "man-expert", feedCoach: "man-expert"},
+  {name: "unsupported coach", coach: "unsupported", feedCoach: "man-expert"},
   {name: "mismatched coach identity", coach: "classic", feedCoach: "dog-collie"},
 ] as const) {
   test(`${scenario.name} never reads a speech feed or alters the static mouth`, async ({page}) => {

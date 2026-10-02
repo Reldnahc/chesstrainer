@@ -24,6 +24,14 @@ async function mountPreview(page: Page, options: Partial<Options> = {}) {
     const {React, createRoot} = await import(`${root}/studio-tests/fixtures/runtime.ts`);
     const {CoachCharacter} = await import(`${root}/src/coach/CoachAvatar.tsx`);
     const {getCoach} = await import(`${root}/src/coach/registry.ts`);
+    // Every selectable coach now has a speaking rig, so "unsupported" is the man-expert
+    // with speech switched off, standing in for a future rig without a mouth.
+    const coachFor = (id: string) => {
+      if (id !== 'unsupported') return getCoach(id);
+      const base = getCoach('man-expert');
+      return {...base, families: base.families.map((family: object) => ({...family, speech: false})),
+        capabilities: {...base.capabilities, speech: false}};
+    };
     let current: Options = {coach: 'classic', motion: 'still', preview: 'round', speech: false, feedCoach: 'classic', elapsed: .1, ...options};
     let reads = 0, requestedFrames = 0;
     const pendingFrames = new Set<number>();
@@ -52,7 +60,7 @@ async function mountPreview(page: Page, options: Partial<Options> = {}) {
     const mounted = createRoot(container);
     let detached: HTMLElement | null = null;
     const render = () => mounted.render(React.createElement(CoachCharacter, {
-      coach: getCoach(current.coach), reaction: {state: 'neutral', key: 'preview-lifecycle'},
+      coach: coachFor(current.coach), reaction: {state: 'neutral', key: 'preview-lifecycle'},
       idle: false, motion: current.motion, previewSpeechShape: current.preview ?? undefined,
       speech: current.speech ? feed(current.feedCoach) : undefined, speechTrack: track,
     }));
@@ -122,7 +130,7 @@ test('clearing, switching to an unsupported coach and unmounting remove every he
   await expect(portrait.locator('.walter-authored-mouth')).toBeVisible();
   await update(page, {preview: 'tongue'});
   await expect(portrait).toHaveAttribute('data-mouth-shape', 'tongue');
-  await update(page, {coach: 'man-expert'});
+  await update(page, {coach: 'unsupported'});
   await expect(portrait).toHaveAttribute('data-coach', 'man-expert');
   await expectReset(portrait);
   await update(page, {coach: 'classic'});
