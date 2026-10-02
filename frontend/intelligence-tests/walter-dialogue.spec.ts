@@ -15,6 +15,7 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   slime: {version: "slime-2", actual: "attacked in one go", possible: "would be attacked in one go"},
   alien: {version: "alien-2", actual: "under attack", possible: "would be attacked simultaneously"},
   "living-pawn": {version: "living-pawn-2", actual: "all at once", possible: "would be attacked"},
+  "cat-black": {version: "velvet-4", actual: "in its reach at once", possible: "would do all the watching"},
   wizard: {version: "wizard-2", actual: "the fork in its plainest form", possible: "would be attacked at once"},
   "cat-kitten": {version: "kitten-2", actual: "poking at", possible: "would be attacked, and it would take only one sneaky piece"},
   "cat-tuxedo": {version: "tuxedo-4", actual: "under fire", possible: "would be attacked, and a single piece"},
@@ -22,6 +23,8 @@ const scoped: Record<string, {version: string; actual: string; possible: string}
   "dog-gentle": {version: "professor-4", actual: "attacks the", possible: "would be attacked"},
   gorilla: {version: "gorilla-2", actual: "under its hit at once", possible: "by one and the same piece"},
   dragon: {version: "dragon-2", actual: "under one piece's attack", possible: "From a single square"},
+  "dog-collie": {version: "collie-5", actual: "under attack together", possible: "would be attacked by one piece"},
+  "dog-corgi": {version: "corgi-4", actual: "in its sights", possible: "would be attacked, all from one post"},
 };
 
 test("opted-in voices adopt scoped dialogue while the remaining cast keeps the same wording", async ({page}) => {

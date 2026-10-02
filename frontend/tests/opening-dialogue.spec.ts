@@ -7,10 +7,13 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {neutralPersonality} from "../src/dialogue/personality";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {newCastPersonalities} from "../src/dialogue/characters/newCast";
-import {alienOpeningTemplates, capybaraOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {velvet} from "../src/dialogue/characters/velvet";
+import {alienOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, gorillaOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
+import {collie} from "../src/dialogue/characters/collie";
+import {corgi} from "../src/dialogue/characters/corgi";
 import {selectGameRecording} from "../src/audio/speech/gameSelection";
 
 const catalogueVersion = "opening-catalogue-fixture-1";
@@ -184,6 +187,9 @@ const openingCoaches = [
   {id: "dog-gentle", personality: professor, authored: professorOpeningTemplates, voiced: false},
   {id: "cat-kitten", personality: newCastPersonalities["cat-kitten"], authored: kittenOpeningTemplates, voiced: false},
   {id: "dragon", personality: newCastPersonalities.dragon, authored: dragonOpeningTemplates, voiced: false},
+  {id: "dog-collie", personality: collie, authored: collieOpeningTemplates, voiced: false},
+  {id: "cat-black", personality: velvet, authored: velvetOpeningTemplates, voiced: false},
+  {id: "dog-corgi", personality: corgi, authored: corgiOpeningTemplates, voiced: false},
   {id: "gorilla", personality: newCastPersonalities.gorilla, authored: gorillaOpeningTemplates, voiced: false},
 ] as const;
 
