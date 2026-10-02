@@ -209,3 +209,18 @@ export const dragonTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} is there, and a {piece} would fall to it.", followup: "If play runs that way, a {piece} falls to {capture}."},
   playedCapture: {fact: "{move} is built on a {motif}.", consequence: "A {piece} falls to {capture}."},
 });
+
+export const velvetTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "I noticed it after {move}: a {motif}, sitting there on the board.",
+    played_possible: "{move} leaves room for a {motif} later, if the replies let it happen.",
+    allowed_immediate: "{opponent} can answer {action}, and with it comes a {motif}.",
+    allowed_possible: "Further on, the replies may let {opponent} find a {motif}.",
+    missed_immediate: "Inside {best}, quietly, sat a {motif}.",
+    missed_possible: "{best} might have grown into a {motif}, had the replies allowed.",
+  },
+  fork: {actual: "A single piece has the {targets} in its reach at once.", possible: "One piece would do all the watching: the {targets} would be attacked together from it."},
+  material: "Perhaps a {gain} at the end; it may be, but both sides still have moves to choose.",
+  capture: {candidate: "A {piece} is there for {capture} to take.", followup: "Should the moves run that way, {capture} may come next and take a {piece}."},
+  playedCapture: {fact: "{move} hides a {motif}.", consequence: "A {piece} is gone after {capture}."},
+});

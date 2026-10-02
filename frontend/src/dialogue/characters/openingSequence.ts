@@ -195,3 +195,17 @@ export const dragonOpeningTemplates = {
   "book-opening-follow-7": ["Theory has not run out yet in {opening}."],
   "book-opening-follow-8": ["One more move that theory already knows, in {opening}."],
 } as const;
+
+export const velvetOpeningTemplates = {
+  "book-opening-entry-1": ["This move is carried in the opening books, in {opening}."],
+  "book-opening-entry-2": ["A move from a known opening, this: {opening}."],
+  "book-opening-entry-3": ["The opening book keeps this move on its pages, under {opening}."],
+  "book-opening-follow-1": ["Still the book's ground: {opening}."],
+  "book-opening-follow-2": ["And this one is known, too, in {opening}."],
+  "book-opening-follow-3": ["For the reply as well, {opening} has a page."],
+  "book-opening-follow-4": ["Still walking the book's path, within {opening}."],
+  "book-opening-follow-5": ["Here too, {opening} has a record of the move."],
+  "book-opening-follow-6": ["{opening} walks along beside us here."],
+  "book-opening-follow-7": ["Known, again: {opening}."],
+  "book-opening-follow-8": ["Known once more, in {opening}. Being in the book says where we are, nothing more."],
+} as const;
