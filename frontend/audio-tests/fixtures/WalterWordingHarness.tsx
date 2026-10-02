@@ -40,7 +40,7 @@ export function mountWalterWording(options: WordingHarnessOptions = {}): Wording
     const example = examples.find(item => item.id === id);
     if (!example || options.unavailable?.includes(key)) return undefined;
     return {id: key, text: version === "original" ? example.previousText : example.text,
-      url: `/__wording-fixture/${id}/${version}.mp3`, track: {durationSeconds: 10,
+      url: `/__wording-fixture/${id}/${version}.opus`, track: {durationSeconds: 10,
         cues: [{start: 0, end: 5, shape: shapes[id][version]}, {start: 5, end: 10, shape: "rest"}]}};
   }};
   let player: StudioPlayer | undefined;
@@ -50,7 +50,7 @@ export function mountWalterWording(options: WordingHarnessOptions = {}): Wording
     return <main className="audio-studio">
       <StudioTransport player={current} />
       <WalterWordingReview player={current} catalog={catalog} />
-      <Button onClick={() => void current.playSpeech({url: "/__wording-fixture/other/revised.mp3",
+      <Button onClick={() => void current.playSpeech({url: "/__wording-fixture/other/revised.opus",
         voiceId: "other-cast-preview", voiceName: "Other preview", scriptId: "other", recordingId: "other:revised",
         coachName: "Other coach", utterance: {version: "coach-utterance-1", id: "other", intentId: "other", coachId: "robot",
           text: "Another preview.", speechText: "Another preview.", expression: "explaining", intensity: .4,

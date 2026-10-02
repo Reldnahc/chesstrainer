@@ -12,10 +12,10 @@
     {"start":0.54,"end":0.58,"value":"C"},
     {"start":0.58,"end":0.66,"value":"B"},
     {"start":0.66,"end":0.77,"value":"G"},
-    {"start":0.77,"end":0.98,"value":"E"},
-    {"start":0.98,"end":1.08,"value":"A"},
-    {"start":1.08,"end":1.22,"value":"B"},
-    {"start":1.22,"end":1.6,"value":"X"},
+    {"start":0.77,"end":0.99,"value":"E"},
+    {"start":0.99,"end":1.08,"value":"A"},
+    {"start":1.08,"end":1.21,"value":"B"},
+    {"start":1.21,"end":1.6,"value":"X"},
     {"start":1.6,"end":1.65,"value":"B"},
     {"start":1.65,"end":1.7,"value":"C"},
     {"start":1.7,"end":1.78,"value":"E"},
@@ -27,8 +27,8 @@
     {"start":2.64,"end":2.67,"value":"B"},
     {"start":2.67,"end":2.72,"value":"C"},
     {"start":2.72,"end":2.83,"value":"H"},
-    {"start":2.83,"end":2.92,"value":"B"},
-    {"start":2.92,"end":3.35,"value":"X"},
+    {"start":2.83,"end":2.88,"value":"B"},
+    {"start":2.88,"end":3.35,"value":"X"},
     {"start":3.35,"end":3.48,"value":"E"},
     {"start":3.48,"end":3.56,"value":"H"},
     {"start":3.56,"end":3.68,"value":"B"},
@@ -46,15 +46,15 @@
     {"start":4.81,"end":4.87,"value":"C"},
     {"start":4.87,"end":4.93,"value":"B"},
     {"start":4.93,"end":5.02,"value":"H"},
-    {"start":5.02,"end":5.05,"value":"C"},
-    {"start":5.05,"end":5.11,"value":"A"},
+    {"start":5.02,"end":5.06,"value":"C"},
+    {"start":5.06,"end":5.11,"value":"A"},
     {"start":5.11,"end":5.14,"value":"C"},
     {"start":5.14,"end":5.24,"value":"H"},
     {"start":5.24,"end":5.34,"value":"G"},
     {"start":5.34,"end":5.51,"value":"E"},
     {"start":5.51,"end":5.56,"value":"B"},
-    {"start":5.56,"end":5.6,"value":"G"},
-    {"start":5.6,"end":5.74,"value":"B"},
+    {"start":5.56,"end":5.61,"value":"G"},
+    {"start":5.61,"end":5.74,"value":"B"},
     {"start":5.74,"end":5.92,"value":"F"},
     {"start":5.92,"end":6.08,"value":"X"}
   ],
@@ -62,9 +62,9 @@
     "sourceScriptId": "draw",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/banks/rivet/recordings/rivet-pilot-v1/rivet/draw.mp3",
-      "sha256": "a77fe17409aafcd8aa382e29e5a1cd7f90313597d61cc45f59c833c86521f559",
-      "bytes": 98264
+      "path": "frontend/src/audio/speech/banks/rivet/recordings/rivet-pilot-v1/rivet/draw.opus",
+      "sha256": "52455315846b34c3627f2f76be5f435f610f6e2398e33965a18971f312a4952f",
+      "bytes": 18959
     },
     "script": {
       "planPath": "frontend/src/audio/speech/banks/rivet/manifest.json",
@@ -192,25 +192,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 268128,
+      "frames": 291840,
       "durationSeconds": 6.08,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "b4b9d5a8d92c23a78ed863f74cab193ec01a2d841083a3917d673dfd9b119d5a"
+      "wavSha256": "f014459b47a5515c6fc34ee7323f6cad71e789a84015c74b343edcb3c360f041"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 97280,
       "durationSeconds": 6.08,
       "trimmed": false,
-      "pcmSha256": "024f0224438b8b1c3b281e96022fc498dea70dd46060f85c545cc385d0a9eb74"
+      "pcmSha256": "008302e389bcc91ec24847e489114ebb64d73374e50dd14fac2304c4d194bf12"
     },
     "alignment": {
       "frameRate": 100,
@@ -241,7 +241,7 @@
         {
           "word": "confirmed",
           "startFrame": 43,
-          "durationFrames": 79,
+          "durationFrames": 78,
           "phones": [
             {
               "phone": "K",
@@ -266,29 +266,29 @@
             {
               "phone": "ER",
               "startFrame": 77,
-              "durationFrames": 21
+              "durationFrames": 22
             },
             {
               "phone": "M",
-              "startFrame": 98,
-              "durationFrames": 10
+              "startFrame": 99,
+              "durationFrames": 9
             },
             {
               "phone": "D",
               "startFrame": 108,
-              "durationFrames": 14
+              "durationFrames": 13
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 122,
-          "durationFrames": 38,
+          "startFrame": 121,
+          "durationFrames": 39,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 122,
-              "durationFrames": 38
+              "startFrame": 121,
+              "durationFrames": 39
             }
           ]
         },
@@ -366,7 +366,7 @@
         {
           "word": "settled",
           "startFrame": 240,
-          "durationFrames": 52,
+          "durationFrames": 48,
           "phones": [
             {
               "phone": "S",
@@ -396,19 +396,19 @@
             {
               "phone": "D",
               "startFrame": 283,
-              "durationFrames": 9
+              "durationFrames": 5
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 292,
-          "durationFrames": 43,
+          "startFrame": 288,
+          "durationFrames": 47,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 292,
-              "durationFrames": 43
+              "startFrame": 288,
+              "durationFrames": 47
             }
           ]
         },
@@ -546,12 +546,12 @@
             {
               "phone": "AH",
               "startFrame": 502,
-              "durationFrames": 3
+              "durationFrames": 4
             },
             {
               "phone": "B",
-              "startFrame": 505,
-              "durationFrames": 6
+              "startFrame": 506,
+              "durationFrames": 5
             },
             {
               "phone": "AH",
@@ -568,7 +568,7 @@
         {
           "word": "for(2)",
           "startFrame": 524,
-          "durationFrames": 18,
+          "durationFrames": 17,
           "phones": [
             {
               "phone": "F",
@@ -578,19 +578,19 @@
             {
               "phone": "ER",
               "startFrame": 534,
-              "durationFrames": 8
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "review",
-          "startFrame": 542,
-          "durationFrames": 50,
+          "startFrame": 541,
+          "durationFrames": 51,
           "phones": [
             {
               "phone": "R",
-              "startFrame": 542,
-              "durationFrames": 9
+              "startFrame": 541,
+              "durationFrames": 10
             },
             {
               "phone": "IY",
@@ -600,12 +600,12 @@
             {
               "phone": "V",
               "startFrame": 556,
-              "durationFrames": 4
+              "durationFrames": 5
             },
             {
               "phone": "Y",
-              "startFrame": 560,
-              "durationFrames": 14
+              "startFrame": 561,
+              "durationFrames": 13
             },
             {
               "phone": "UW",
@@ -628,7 +628,7 @@
         }
       ]
     },
-    "alignmentSha256": "7c2daf92f046ac811ee58894b20daa0c5e0025c5cf2c1c967f3d9f203066c2f6",
+    "alignmentSha256": "23405569ec5f60791cb920c2872f804b22e75e85f93dd2584fb7efe03d16040d",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -696,6 +696,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "2a2e25ae0573e71fa55704ecef64f7b6d1388acaa82e0868a177e8706eff8c13"
+    "cueSha256": "eec6b0fa91bade34ccedab60fac534420c8164d20d24adb6b5edf315cb98c057"
   }
 }

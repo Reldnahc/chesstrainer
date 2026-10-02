@@ -201,7 +201,8 @@ settings, scripts and versioned output paths. Default invocation is a dry run.
 Paid generation requires `--generate` and the process environment's
 `ELEVENLABS_API_KEY`; neither the app nor the container needs that secret.
 Plans are bounded to 20 voice/script pairs, 1,000 characters per script and
-10,000 characters in total. Preserve MP3/provenance pairs, request fingerprints and
+10,000 characters in total. The recorder encodes each take to the banks' Opus
+before saving it. Preserve Opus/provenance pairs, request fingerprints and
 actual provider usage. Do not infer credits from character counts or blindly retry
 interrupted purchases. Existing verified takes are reusable and never overwritten.
 

@@ -8,6 +8,12 @@ timing. See the [Walter manifest](bank/manifest.json), [Rivet manifest](banks/ri
 [offline verification instructions](bank/README.md) and
 [production playback policy](../../../../docs/AUDIO.md#recorded-coach-voices).
 
+Every recording below, including archived takes and design previews, was later
+re-encoded from the provider's MP3 to 24 kbps-class Ogg Opus with
+`scripts/encode_coach_speech.py`. The history that follows describes the
+provider files as they were recorded; each sidecar keeps that MP3's fingerprint
+as `providerAudio`, and its mouth timing was regenerated from the Opus file.
+
 Settings offers Automatic, On request and Off under Sound. The other coaches
 remain text-only. Playback uses bundled local
 recordings without provider access, API keys or runtime synthesis. Exact chess
@@ -269,7 +275,7 @@ This is generated audio, not recordings of an
 actor hired by Fieldwork or a voice cloned by this project. Provider descriptions
 are credited as descriptions, not presented as an independent listening review.
 
-The MP3s are separate media assets, not CC0 sound effects. Do not silently label
+The recordings are separate media assets, not CC0 sound effects. Do not silently label
 them with the application's source-code license. They are included for playback
 and redistribution with Fieldwork and its audition tool; installers need no
 ElevenLabs account or ongoing subscription to play these local files.

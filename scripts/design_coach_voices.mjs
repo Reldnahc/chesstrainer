@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { open, unlink, rename } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { authoringFiles as files } from './record_coach_speech.mjs';
+import { authoringFiles as files, pythonEncoder, speechEncoding } from './record_coach_speech.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_OUTPUT = path.join(ROOT, 'frontend/src/audio/speech/cast-auditions');
@@ -87,8 +87,8 @@ function jobFor(plan, coach, direction, args) {
   const request = requestFor(plan, coach, direction);
   const requestHash = hash(JSON.stringify(request));
   const base = path.join(args.output, 'recordings', coach.coachId, direction.id);
-  return { request, requestHash, audio: `${base}.mp3`, metadata: `${base}.provenance.json`,
-    audioPath: `recordings/${coach.coachId}/${direction.id}.mp3`,
+  return { request, requestHash, audio: `${base}.opus`, metadata: `${base}.provenance.json`,
+    audioPath: `recordings/${coach.coachId}/${direction.id}.opus`,
     attempt: path.join(args.attempts, `${coach.coachId}.${direction.id}.${requestHash}.attempt.json`) };
 }
 const safeId = (value, key = '') => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,128}$/.test(value) && (!key || !value.includes(key));
@@ -121,7 +121,8 @@ async function existing(job) {
   if (!audio || !raw) fail('Incomplete existing audition; inspect the saved attempt before continuing.');
   let saved;
   try { saved = JSON.parse(raw.toString('utf8')); } catch { fail('Invalid audition provenance.'); }
-  if (saved.schemaVersion !== 1 || saved.requestHash !== job.requestHash || JSON.stringify(saved.request) !== JSON.stringify(job.request) || saved.bytes !== audio.length || saved.sha256 !== hash(audio) || !mp3(audio)) fail('Existing audition differs from the plan or audio fingerprint.');
+  if (saved.schemaVersion !== 1 || saved.requestHash !== job.requestHash || JSON.stringify(saved.request) !== JSON.stringify(job.request) || saved.bytes !== audio.length || saved.sha256 !== hash(audio)) fail('Existing audition differs from the plan or audio fingerprint.');
+  if (!speechEncoding.bankEncoding(saved.encoding) || !speechEncoding.isOpus(audio)) fail('Existing audition is not encoded as Opus; convert it with scripts/encode_coach_speech.py.');
   const selected = saved.selected;
   candidateMetadata({ generated_voice_id: selected?.generatedVoiceId, media_type: selected?.mediaType, duration_secs: selected?.durationSeconds, language: selected?.language }, '');
   if (!Number.isInteger(selected.previewIndex) || selected.previewIndex < 0 || selected.previewIndex > 2 || selected.returnedPreviewCount !== 3 || (saved.requestId !== null && !safeId(saved.requestId))) fail('Invalid saved preview selection.');
@@ -186,7 +187,7 @@ async function publishManifest(args, plan, jobs) {
   const manifest = { schemaVersion: 1, provider: plan.provider, modelId: plan.modelId, recordings };
   await jsonFile(path.join(args.output, 'manifest.json'), manifest);
 }
-export async function runCli(argv, { fetchImpl = globalThis.fetch, stdout = console.log, stderr = console.error, signal } = {}) {
+export async function runCli(argv, { fetchImpl = globalThis.fetch, encoder = pythonEncoder, stdout = console.log, stderr = console.error, signal } = {}) {
   let lock;
   let lockPath;
   try {
@@ -223,6 +224,7 @@ export async function runCli(argv, { fetchImpl = globalThis.fetch, stdout = cons
     if (!args.generate) return 0;
     const key = process.env.ELEVENLABS_API_KEY;
     if (pending.length && !key?.trim()) fail('Set ELEVENLABS_API_KEY in the process environment before --generate.');
+    if (pending.length && !await encoder.check()) fail('The Opus encoder is unavailable; no requests were made. Set FIELDWORK_PYTHON and FIELDWORK_AUDIO_DEPS.');
     await files.directory(args.output, true); await files.directory(args.attempts, true);
     lockPath = path.join(args.output, '.design.lock'); lock = await open(lockPath, 'wx', 0o600);
     for (const job of pending) {
@@ -235,10 +237,14 @@ export async function runCli(argv, { fetchImpl = globalThis.fetch, stdout = cons
         Object.assign(attempt, { requestId, httpStatus, status: 'response-received' });
         await jsonFile(job.attempt, attempt);
       });
-      const metadata = { schemaVersion: 1, request: job.request, requestHash: job.requestHash, recordedAt: new Date().toISOString(), sha256: hash(result.audio), bytes: result.audio.length, requestId: result.requestId, selected: result.selected };
-      // Preserve the selected paid result before publishing; never repeat a POST to recover an I/O failure.
-      await files.publish({ audio: job.attempt.replace('.attempt.json', '.mp3'), metadata: job.attempt.replace('.attempt.json', '.provenance.json') }, result.audio, metadata);
-      await files.publish(job, result.audio, metadata);
+      const original = { schemaVersion: 1, request: job.request, requestHash: job.requestHash, recordedAt: new Date().toISOString(), sha256: hash(result.audio), bytes: result.audio.length, requestId: result.requestId, selected: result.selected };
+      // Preserve the selected paid MP3 outside the repository before encoding; never repeat a POST to recover a failure.
+      await files.publish({ audio: job.attempt.replace('.attempt.json', '.mp3'), metadata: job.attempt.replace('.attempt.json', '.provenance.json') }, result.audio, original);
+      const encoded = await encoder.encode(result.audio);
+      if (!encoded || !speechEncoding.bankEncoding(encoded.encoding) || !Buffer.isBuffer(encoded.audio) || !speechEncoding.isOpus(encoded.audio)) fail('Opus encoding failed; the paid MP3 is kept with its attempt and no retry was made.');
+      const metadata = { ...original, sha256: hash(encoded.audio), bytes: encoded.audio.length,
+        providerAudio: { format: job.request.outputFormat, sha256: original.sha256, bytes: original.bytes }, encoding: encoded.encoding };
+      await files.publish(job, encoded.audio, metadata);
       await jsonFile(job.attempt, { ...attempt, status: 'completed', sha256: metadata.sha256, selected: result.selected });
       await publishManifest(args, plan, allJobs);
       stdout(`Saved ${job.request.coachId}/${job.request.directionId}; one of three returned previews retained.`);

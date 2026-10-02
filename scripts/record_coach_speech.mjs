@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Development-only paid recording tool. API: https://elevenlabs.io/docs/api-reference/text-to-speech/convert
+import { spawnSync } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
 import { constants } from "node:fs";
 import { link, lstat, mkdir, open, unlink } from "node:fs/promises";
@@ -20,9 +21,16 @@ const HELP = `Usage: node scripts/record_coach_speech.mjs --plan FILE --output D
   --timeout-ms N        Per-request timeout, 1000-120000 ms (default 60000).
   --help               Show this help.
 Only process.env.ELEVENLABS_API_KEY supplies credentials. No key is needed for dry run/reuse.
-Output: DIR/VOICE/SCRIPT.mp3 and SCRIPT.provenance.json.
+Output: DIR/VOICE/SCRIPT.opus and SCRIPT.provenance.json. Each provider MP3 is encoded
+to the banks' 24 kbps-class Opus before anything is written; the MP3 is never saved.
+Encoding uses scripts/encode_coach_speech.py with FIELDWORK_PYTHON (default .venv)
+and FIELDWORK_AUDIO_DEPS (default .tools/audio-authoring), checked before any request.
 Limits: 20 voice/script pairs, 1000 characters per script, 10000 characters per plan.
 `;
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+// Must match scripts/encode_coach_speech.py; bank checks reject any other encoding.
+export const ENCODING = Object.freeze({ format: "ogg-opus", channels: 1, sampleRate: 48000, compressionLevel: 0.93 });
 
 class RecordingError extends Error {}
 const reject = message => { throw new RecordingError(message); };
@@ -139,8 +147,29 @@ function jobFor(plan, voice, script, output, take) {
   const base = path.join(output, voice.id, script.id);
   const request = { schemaVersion: 1, provider: plan.provider, modelId: plan.modelId,
     outputFormat: plan.outputFormat, settings: plan.settings, voice, script, takeId: take ?? null };
-  return { request, requestHash: hash(JSON.stringify(request)), audio: `${base}.mp3`, metadata: `${base}.provenance.json`, lock: `${base}.lock` };
+  return { request, requestHash: hash(JSON.stringify(request)), audio: `${base}.opus`, metadata: `${base}.provenance.json`, lock: `${base}.lock` };
 }
+const isOpus = bytes => bytes.length > 64 && bytes.subarray(0, 4).equals(Buffer.from("OggS")) &&
+  bytes.subarray(0, 64).includes(Buffer.from("OpusHead"));
+const bankEncoding = encoding => object(encoding) &&
+  Object.entries(ENCODING).every(([key, value]) => encoding[key] === value);
+function runEncoder(mode, input) {
+  const python = process.env.FIELDWORK_PYTHON ||
+    path.join(ROOT, ".venv", process.platform === "win32" ? "Scripts/python.exe" : "bin/python");
+  const deps = process.env.FIELDWORK_AUDIO_DEPS || path.join(ROOT, ".tools/audio-authoring");
+  const result = spawnSync(python, [path.join(ROOT, "scripts/encode_coach_speech.py"), mode, "--audio-deps", deps],
+    { input, maxBuffer: 4 * MAX_AUDIO_BYTES, timeout: 120000 });
+  if (result.error || result.status !== 0) return null;
+  try { return JSON.parse(result.stdout.toString("utf8")); } catch { return null; }
+}
+// The default encoder runs the shared Python step. Tests inject a fake one.
+export const pythonEncoder = {
+  async check() { return bankEncoding(runEncoder("--check")?.encoding); },
+  async encode(mp3) {
+    const result = runEncoder("--stdin", mp3);
+    return result && { encoding: result.encoding, audio: Buffer.from(result.audio ?? "", "base64") };
+  },
+};
 async function existing(job, ownLock = false) {
   await directory(path.dirname(job.audio));
   if (!ownLock && await statOrMissing(job.lock)) reject("Recording is locked by another or interrupted run; inspect it before continuing.");
@@ -153,6 +182,7 @@ async function existing(job, ownLock = false) {
   if (saved.schemaVersion !== 1 || saved.requestHash !== job.requestHash ||
     JSON.stringify(saved.request) !== JSON.stringify(job.request) ||
     saved.bytes !== audio.length || saved.sha256 !== hash(audio)) reject("Existing recording does not match the plan and hash; choose a new --take ID or output directory.");
+  if (!bankEncoding(saved.encoding) || !isOpus(audio)) reject("Existing recording is not encoded as the banks' Opus; convert it with scripts/encode_coach_speech.py.");
   return true;
 }
 async function publish(job, audio, metadata) {
@@ -175,6 +205,7 @@ async function publish(job, audio, metadata) {
 // Shared authoring I/O keeps other offline recording tools on the same bounded,
 // no-symlink, no-overwrite publication path. This does not expose paid requests.
 export const authoringFiles = { directory, readRegular, statOrMissing, publish };
+export const speechEncoding = { isOpus, bankEncoding };
 async function requestAudio(job, key, fetchImpl, timeoutMs, signal) {
   const controller = new AbortController();
   const cancel = () => controller.abort();
@@ -217,7 +248,7 @@ async function requestAudio(job, key, fetchImpl, timeoutMs, signal) {
   } finally { clearTimeout(timer); signal?.removeEventListener("abort", cancel); }
 }
 
-export async function runCli(argv, { fetchImpl = globalThis.fetch, stdout = console.log, stderr = console.error, signal } = {}) {
+export async function runCli(argv, { fetchImpl = globalThis.fetch, encoder = pythonEncoder, stdout = console.log, stderr = console.error, signal } = {}) {
   try {
     const args = options(argv);
     if (args.help) { stdout(HELP); return 0; }
@@ -240,6 +271,7 @@ export async function runCli(argv, { fetchImpl = globalThis.fetch, stdout = cons
     if (!args.generate || !pending.length) return 0;
     const key = process.env.ELEVENLABS_API_KEY;
     if (!key?.trim()) reject("Set ELEVENLABS_API_KEY in the process environment before --generate.");
+    if (!await encoder.check()) reject("The Opus encoder is unavailable; no requests were made. Set FIELDWORK_PYTHON and FIELDWORK_AUDIO_DEPS.");
     for (const job of pending) {
       if (signal?.aborted) reject("Recording cancelled; no further requests were made.");
       await directory(path.dirname(job.audio), true);
@@ -248,10 +280,14 @@ export async function runCli(argv, { fetchImpl = globalThis.fetch, stdout = cons
       const lock = await open(job.lock, "wx", 0o600);
       try {
         if (await existing(job, true)) continue;
-        const { audio, requestId } = await requestAudio(job, key, fetchImpl, args.timeoutMs, signal);
+        const { audio: mp3, requestId } = await requestAudio(job, key, fetchImpl, args.timeoutMs, signal);
         if (signal?.aborted) reject("Recording cancelled; no further files were published.");
-        await publish(job, audio, { schemaVersion: 1, request: job.request, requestHash: job.requestHash,
-          recordedAt: new Date().toISOString(), sha256: hash(audio), bytes: audio.length, requestId });
+        const encoded = await encoder.encode(mp3);
+        if (!encoded || !bankEncoding(encoded.encoding) || !Buffer.isBuffer(encoded.audio) || !isOpus(encoded.audio) ||
+          encoded.audio.length > MAX_AUDIO_BYTES) reject("Opus encoding failed after a charged request; nothing was saved and no retry was made.");
+        await publish(job, encoded.audio, { schemaVersion: 1, request: job.request, requestHash: job.requestHash,
+          recordedAt: new Date().toISOString(), sha256: hash(encoded.audio), bytes: encoded.audio.length, requestId,
+          providerAudio: { format: job.request.outputFormat, sha256: hash(mp3), bytes: mp3.length }, encoding: encoded.encoding });
         stdout(`Saved ${job.request.voice.id}/${job.request.script.id}.`);
       } finally { await lock.close(); await unlink(job.lock); }
     }

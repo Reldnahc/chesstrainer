@@ -5,10 +5,13 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validatePlan, requestFor, selectPreview, runCli } from './design_coach_voices.mjs';
+import { ENCODING } from './record_coach_speech.mjs';
 
 const KEY = 'mock_private_api_key_12345';
 const TEXT = 'Notice what the defender was doing. Once it moves away, the other side can take the piece. Always check what gets left behind.';
 const AUDIO = Buffer.concat([Buffer.from('ID3'), Buffer.alloc(96, 17)]);
+const toOpus = mp3 => Buffer.concat([Buffer.from('OggS'), Buffer.alloc(24), Buffer.from('OpusHead'), Buffer.alloc(40), mp3]);
+const encoder = { check: async () => true, encode: async mp3 => ({ encoding: { ...ENCODING, encoder: 'test' }, audio: toOpus(mp3) }) };
 const plan = () => ({ schemaVersion: 1, provider: 'elevenlabs', method: 'voice-design', modelId: 'eleven_ttv_v3', outputFormat: 'mp3_44100_128',
   coaches: [{ coachId: 'robot', name: 'Rivet', group: 'scifi', text: TEXT, directions: [
     { id: 'retro-terminal', label: 'Retro terminal', prompt: 'A clear mechanical teaching voice with precise stepped pitches.' },
@@ -31,7 +34,7 @@ async function fixture(t, value = plan()) {
   const previous = process.env.ELEVENLABS_API_KEY;
   process.env.ELEVENLABS_API_KEY = KEY;
   t.after(() => { if (previous === undefined) delete process.env.ELEVENLABS_API_KEY; else process.env.ELEVENLABS_API_KEY = previous; });
-  return { root, file, output, attempts, args, out, errors, options: { stdout: value => out.push(value), stderr: value => errors.push(value) } };
+  return { root, file, output, attempts, args, out, errors, options: { encoder, stdout: value => out.push(value), stderr: value => errors.push(value) } };
 }
 
 test('checked-in approved plan has twenty-nine distinct coaches and eighty-seven deterministically seeded directions', async () => {
@@ -110,13 +113,14 @@ test('one design POST follows a durable attempt and publishes one matching local
   assert.equal(await runCli([...f.args, '--generate'], { ...f.options, fetchImpl }), 0);
   assert.equal(calls, 1);
   const base = path.join(f.output, 'recordings/robot/retro-terminal');
-  assert.deepEqual(await readFile(base + '.mp3'), AUDIO);
+  assert.deepEqual(await readFile(base + '.opus'), toOpus(AUDIO));
   const metadata = await readJson(base + '.provenance.json');
   assert.equal(metadata.selected.generatedVoiceId, 'generated_1'); assert.equal(metadata.selected.previewIndex, 1);
   assert.equal(metadata.requestId, 'design_request_123'); assert.equal(metadata.request.body.text, TEXT);
+  assert.equal(metadata.providerAudio.bytes, AUDIO.length); assert.equal(metadata.encoding.format, 'ogg-opus');
   const manifest = await readJson(path.join(f.output, 'manifest.json'));
   assert.equal(manifest.recordings.length, 1);
-  assert.deepEqual(manifest.recordings[0], { id: 'robot:retro-terminal', coachId: 'robot', directionId: 'retro-terminal', label: 'Retro terminal', text: TEXT, audioPath: 'recordings/robot/retro-terminal.mp3', durationSeconds: 9.1, generatedVoiceId: 'generated_1', requestId: 'design_request_123' });
+  assert.deepEqual(manifest.recordings[0], { id: 'robot:retro-terminal', coachId: 'robot', directionId: 'retro-terminal', label: 'Retro terminal', text: TEXT, audioPath: 'recordings/robot/retro-terminal.opus', durationSeconds: 9.1, generatedVoiceId: 'generated_1', requestId: 'design_request_123' });
   const attempts = await readdir(f.attempts);
   assert.equal(attempts.filter(name => name.endsWith('.mp3')).length, 1);
   assert.equal((await readJson(path.join(f.attempts, attempts.find(name => name.endsWith('.attempt.json'))))).status, 'completed');
@@ -145,7 +149,7 @@ test('provider transcript changes fail before audio publication and block paid r
   assert.equal(await runCli([...f.args, '--generate'], { ...f.options, fetchImpl }), 1);
   assert.equal(await runCli([...f.args, '--generate'], { ...f.options, fetchImpl }), 1);
   assert.equal(calls, 1); assert.match(f.errors[0], /text differs/);
-  assert.equal(await exists(path.join(f.output, 'recordings/robot/retro-terminal.mp3')), false);
+  assert.equal(await exists(path.join(f.output, 'recordings/robot/retro-terminal.opus')), false);
 });
 test('header values containing a credential are never persisted', async t => {
   const f = await fixture(t);
@@ -162,7 +166,7 @@ test('credential-bearing generated voice IDs are rejected before persistence', a
 test('stale unselected files prevent the selected paid request during full preflight', async t => {
   const f = await fixture(t);
   await mkdir(path.join(f.output, 'recordings/robot'), { recursive: true });
-  await writeFile(path.join(f.output, 'recordings/robot/heavy-servo.mp3'), AUDIO);
+  await writeFile(path.join(f.output, 'recordings/robot/heavy-servo.opus'), toOpus(AUDIO));
   assert.equal(await runCli([...f.args, '--generate'], { ...f.options, fetchImpl: () => assert.fail('invalid output must prevent spending') }), 1);
   assert.equal(await exists(f.attempts), false);
 });
@@ -198,7 +202,7 @@ test('oversized streamed JSON is cancelled before parsing or publishing preview 
   const body = new ReadableStream({ start(controller) { controller.enqueue(new Uint8Array(16 * 1024 * 1024 + 1)); }, cancel() { cancelled = true; } });
   assert.equal(await runCli([...f.args, '--generate'], { ...f.options, fetchImpl: async () => new Response(body, { headers: { 'content-type': 'application/json' } }) }), 1);
   assert.equal(cancelled, true); assert.match(f.errors[0], /size limit/);
-  assert.equal(await exists(path.join(f.output, 'recordings/robot/retro-terminal.mp3')), false);
+  assert.equal(await exists(path.join(f.output, 'recordings/robot/retro-terminal.opus')), false);
 });
 test('a cooperating run lock prevents any request and is not removed by a competing run', async t => {
   const f = await fixture(t); await mkdir(f.output);

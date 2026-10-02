@@ -30,7 +30,7 @@ async function fixture(t, coachIds = ['dog-gentle', 'cat-black']) {
   })) };
   const manifest = { schemaVersion: 1, provider: 'test-provider', modelId: 'test-model', recordings: plan.coaches.map(coach => ({
     id: `${coach.coachId}:warm`, coachId: coach.coachId, directionId: 'warm', text: coach.text,
-    generatedVoiceId: `${coach.coachId}-voice-1`, audioPath: `recordings/${coach.coachId}/warm.mp3`,
+    generatedVoiceId: `${coach.coachId}-voice-1`, audioPath: `recordings/${coach.coachId}/warm.opus`,
   })) };
   const locks = { schemaVersion: 1, provider: 'elevenlabs', voices: [] };
   const writeLocks = () => writeFile(join(catalogRoot, 'locked-voices.json'), JSON.stringify(locks));
@@ -167,7 +167,7 @@ test('candidate-set identity requires complete auditions and ignores ordering or
   const original = f.candidateSetFingerprints['dog-gentle'];
   f.plan.coaches[0].directions.push({ id: 'clear', prompt: 'Clear and bright.' });
   const additional = { ...f.manifest.recordings[0], id: 'dog-gentle:clear', directionId: 'clear',
-    audioPath: 'recordings/dog-gentle/clear.mp3', generatedVoiceId: 'clear-voice' };
+    audioPath: 'recordings/dog-gentle/clear.opus', generatedVoiceId: 'clear-voice' };
   f.manifest.recordings.push(additional);
   await f.writeCatalog();
   assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], undefined);
@@ -182,7 +182,7 @@ test('candidate-set identity requires complete auditions and ignores ordering or
   f.manifest.recordings.reverse();
   await f.writeCatalog();
   assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], complete);
-  await writeFile(join(f.catalogRoot, 'recordings/cat-black/warm.mp3'), 'other coach changed');
+  await writeFile(join(f.catalogRoot, 'recordings/cat-black/warm.opus'), 'other coach changed');
   assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], complete);
   await rm(join(f.catalogRoot, additional.audioPath));
   assert.equal((await f.call()).value.candidateSetFingerprints['dog-gentle'], undefined);

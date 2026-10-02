@@ -14,10 +14,10 @@
     {"start":0.59,"end":0.74,"value":"C"},
     {"start":0.74,"end":0.79,"value":"A"},
     {"start":0.79,"end":0.87,"value":"B"},
-    {"start":0.87,"end":0.93,"value":"E"},
-    {"start":0.93,"end":1.02,"value":"B"},
-    {"start":1.02,"end":1.09,"value":"C"},
-    {"start":1.09,"end":1.22,"value":"A"},
+    {"start":0.87,"end":0.94,"value":"E"},
+    {"start":0.94,"end":1.02,"value":"B"},
+    {"start":1.02,"end":1.1,"value":"C"},
+    {"start":1.1,"end":1.22,"value":"A"},
     {"start":1.22,"end":1.65,"value":"B"},
     {"start":1.65,"end":1.79,"value":"C"},
     {"start":1.79,"end":1.88,"value":"B"},
@@ -26,8 +26,8 @@
     {"start":2.01,"end":2.04,"value":"C"},
     {"start":2.04,"end":2.13,"value":"A"},
     {"start":2.13,"end":2.21,"value":"E"},
-    {"start":2.21,"end":2.3,"value":"F"},
-    {"start":2.3,"end":2.42,"value":"B"},
+    {"start":2.21,"end":2.29,"value":"F"},
+    {"start":2.29,"end":2.42,"value":"B"},
     {"start":2.42,"end":2.48,"value":"D"},
     {"start":2.48,"end":2.57,"value":"B"},
     {"start":2.57,"end":2.6,"value":"C"},
@@ -36,16 +36,16 @@
     {"start":2.85,"end":3.03,"value":"B"},
     {"start":3.03,"end":3.13,"value":"E"},
     {"start":3.13,"end":3.23,"value":"C"},
-    {"start":3.23,"end":3.49,"value":"B"},
-    {"start":3.49,"end":3.68,"value":"X"}
+    {"start":3.23,"end":3.48,"value":"B"},
+    {"start":3.48,"end":3.68,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "explanation-frame-capture-promotion-ordinary",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/bank/recordings/walter/explanation-frame-capture-promotion-ordinary.mp3",
-      "sha256": "e12397f3bf055a04bf41d782820c80b7f8706c801c344af6920e1ab4e3d3ca79",
-      "bytes": 59812
+      "path": "frontend/src/audio/speech/bank/recordings/walter/explanation-frame-capture-promotion-ordinary.opus",
+      "sha256": "2f11de9b7246037eba5b48e01b18cc6e9486acad18e868988e6a4ca7d027b12b",
+      "bytes": 12256
     },
     "script": {
       "planPath": "frontend/src/audio/speech/bank/manifest.json",
@@ -173,25 +173,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 162288,
+      "frames": 176640,
       "durationSeconds": 3.68,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "a5982ce907632a387f3a7cf4dc5c1a0436027a73047b642ea409ea8123bfa41f"
+      "wavSha256": "3120e71dc64ee2b7ad3c642688d7e32d1f581c639d0cc9fa71a583e4c0df2bce"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 58880,
       "durationSeconds": 3.68,
       "trimmed": false,
-      "pcmSha256": "c1cc9d2a42f1851fb53ab07036893dbf2b69d4c8723f0b0185a98c12aa29bfc2"
+      "pcmSha256": "a5d5768b7fe718441579106f5a0b9a2b78fc3c82ff5b7c050f3df89428a0e22e"
     },
     "alignment": {
       "frameRate": 100,
@@ -264,36 +264,36 @@
             {
               "phone": "ER",
               "startFrame": 87,
-              "durationFrames": 6
+              "durationFrames": 7
             },
             {
               "phone": "Z",
-              "startFrame": 93,
-              "durationFrames": 9
+              "startFrame": 94,
+              "durationFrames": 8
             }
           ]
         },
         {
           "word": "a",
           "startFrame": 102,
-          "durationFrames": 7,
+          "durationFrames": 8,
           "phones": [
             {
               "phone": "AH",
               "startFrame": 102,
-              "durationFrames": 7
+              "durationFrames": 8
             }
           ]
         },
         {
           "word": "piece",
-          "startFrame": 109,
-          "durationFrames": 56,
+          "startFrame": 110,
+          "durationFrames": 55,
           "phones": [
             {
               "phone": "P",
-              "startFrame": 109,
-              "durationFrames": 13
+              "startFrame": 110,
+              "durationFrames": 12
             },
             {
               "phone": "IY",
@@ -357,12 +357,12 @@
             {
               "phone": "OW",
               "startFrame": 213,
-              "durationFrames": 17
+              "durationFrames": 16
             },
             {
               "phone": "T",
-              "startFrame": 230,
-              "durationFrames": 5
+              "startFrame": 229,
+              "durationFrames": 6
             },
             {
               "phone": "S",
@@ -435,7 +435,7 @@
         {
           "word": "rank",
           "startFrame": 303,
-          "durationFrames": 46,
+          "durationFrames": 45,
           "phones": [
             {
               "phone": "R",
@@ -455,25 +455,25 @@
             {
               "phone": "K",
               "startFrame": 335,
-              "durationFrames": 14
+              "durationFrames": 13
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 349,
-          "durationFrames": 18,
+          "startFrame": 348,
+          "durationFrames": 19,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 349,
-              "durationFrames": 18
+              "startFrame": 348,
+              "durationFrames": 19
             }
           ]
         }
       ]
     },
-    "alignmentSha256": "f7fae26680b2a805c17b1e731b5ccb00b13b7fd06d5e6d6edffe9f7b7f2cd5cd",
+    "alignmentSha256": "316673228b6ec1805b49584b3bc40db0aad566abe15282a5d496e0cb4fa9d8cd",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -541,6 +541,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "2a287c443d86f5c1a8a22d5bc4a593c875a23e82d7974b7054aedf5c3d595fab"
+    "cueSha256": "68abf3d09694422b1a5dac43a3a39270f70bdadd1f64e33e3c629d9060a97f56"
   }
 }

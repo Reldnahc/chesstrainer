@@ -96,7 +96,7 @@ test("the same recording ID uses each coach's own audio, portrait and exact mout
     }
     expect(await state(page)).toMatchObject({coachId: id, recordingId: entry});
   }
-  expect(audio).toEqual([`/__recorded-comparison-fixture/classic/${entry}.mp3`, `/__recorded-comparison-fixture/robot/${entry}.mp3`]);
+  expect(audio).toEqual([`/__recorded-comparison-fixture/classic/${entry}.opus`, `/__recorded-comparison-fixture/robot/${entry}.opus`]);
   expect(await state(page)).toMatchObject({starts: 2, stops: 1});
   await page.getByRole("button", {name: "Stop all", exact: true}).click();
   await expect(portrait(page)).toHaveAttribute("data-speaking", "false");
@@ -134,7 +134,7 @@ test("a combined meaning plays one whole recording and changing collection cance
   await play(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
   expect((await state(page)).starts).toBe(1);
-  expect(audio).toEqual(["/__recorded-comparison-fixture/classic/fork-with-maia.mp3"]);
+  expect(audio).toEqual(["/__recorded-comparison-fixture/classic/fork-with-maia.opus"]);
   await page.evaluate(() => (window as unknown as HarnessWindow).comparisonHarness.audio.finish());
   await page.clock.runFor(11_000);
   expect((await state(page)).starts).toBe(1);
@@ -152,7 +152,7 @@ test("an old audio request completing after Rivet starts cannot reclaim the same
   let fulfilled = false;
   let releaseOld!: () => void;
   const held = new Promise<void>(resolve => {releaseOld = resolve;});
-  await page.route(url => url.pathname === `/__recorded-comparison-fixture/classic/${entry}.mp3`, async route => {
+  await page.route(url => url.pathname === `/__recorded-comparison-fixture/classic/${entry}.opus`, async route => {
     requested = true;
     await held;
     await route.fulfill({contentType: "audio/mpeg", body: Buffer.from([1, 2, 3, 4])});
@@ -194,7 +194,7 @@ test("late Walter track loading cannot replace Rivet's track for the same meanin
   await tick(page);
   await expect(portrait(page)).toHaveAttribute("data-mouth-shape", "tongue");
   expect(await state(page)).toMatchObject({coachId: "robot", recordingId: follow});
-  expect(audio).toEqual([`/__recorded-comparison-fixture/robot/${follow}.mp3`]);
+  expect(audio).toEqual([`/__recorded-comparison-fixture/robot/${follow}.opus`]);
 });
 
 test("missing recordings or mouth tracks disable only the selected coach and meaning", async ({page}) => {

@@ -7,11 +7,11 @@
   },
   "mouthCues": [
     {"start":0.0,"end":0.28,"value":"B"},
-    {"start":0.28,"end":0.35,"value":"A"},
-    {"start":0.35,"end":0.52,"value":"F"},
-    {"start":0.52,"end":0.57,"value":"G"},
-    {"start":0.57,"end":0.61,"value":"C"},
-    {"start":0.61,"end":0.73,"value":"H"},
+    {"start":0.28,"end":0.34,"value":"A"},
+    {"start":0.34,"end":0.52,"value":"F"},
+    {"start":0.52,"end":0.59,"value":"G"},
+    {"start":0.59,"end":0.62,"value":"C"},
+    {"start":0.62,"end":0.73,"value":"H"},
     {"start":0.73,"end":0.79,"value":"D"},
     {"start":0.79,"end":0.85,"value":"F"},
     {"start":0.85,"end":0.92,"value":"B"},
@@ -23,8 +23,8 @@
     {"start":1.42,"end":1.46,"value":"C"},
     {"start":1.46,"end":1.68,"value":"B"},
     {"start":1.68,"end":1.77,"value":"C"},
-    {"start":1.77,"end":1.85,"value":"B"},
-    {"start":1.85,"end":1.92,"value":"A"},
+    {"start":1.77,"end":1.84,"value":"B"},
+    {"start":1.84,"end":1.92,"value":"A"},
     {"start":1.92,"end":1.98,"value":"C"},
     {"start":1.98,"end":2.38,"value":"B"},
     {"start":2.38,"end":2.41,"value":"C"},
@@ -38,12 +38,12 @@
     {"start":3.73,"end":4.19,"value":"B"},
     {"start":4.19,"end":4.28,"value":"E"},
     {"start":4.28,"end":4.38,"value":"F"},
-    {"start":4.38,"end":4.48,"value":"B"},
-    {"start":4.48,"end":4.56,"value":"A"},
+    {"start":4.38,"end":4.47,"value":"B"},
+    {"start":4.47,"end":4.56,"value":"A"},
     {"start":4.56,"end":5.07,"value":"B"},
     {"start":5.07,"end":5.14,"value":"C"},
-    {"start":5.14,"end":5.21,"value":"B"},
-    {"start":5.21,"end":5.25,"value":"C"},
+    {"start":5.14,"end":5.2,"value":"B"},
+    {"start":5.2,"end":5.25,"value":"C"},
     {"start":5.25,"end":5.37,"value":"F"},
     {"start":5.37,"end":5.44,"value":"C"},
     {"start":5.44,"end":5.7,"value":"B"},
@@ -53,17 +53,17 @@
     {"start":5.86,"end":6.01,"value":"B"},
     {"start":6.01,"end":6.09,"value":"F"},
     {"start":6.09,"end":6.14,"value":"C"},
-    {"start":6.14,"end":6.28,"value":"E"},
-    {"start":6.28,"end":6.47,"value":"B"},
+    {"start":6.14,"end":6.29,"value":"E"},
+    {"start":6.29,"end":6.47,"value":"B"},
     {"start":6.47,"end":6.64,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "tactic-back-rank-allowed",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/bank/recordings/walter/tactic-back-rank-allowed.mp3",
-      "sha256": "274de7ccb95c758160ffcf9ca93f8fe1d44292aeed7afdae8f1694552c79bb10",
-      "bytes": 107459
+      "path": "frontend/src/audio/speech/recordings/walter-language-v1/walter/tactic-back-rank-allowed.opus",
+      "sha256": "c8fa469d30e7e1b492cc560d37d9648f508c4cdfedcb5c52e23b2d58759c8845",
+      "bytes": 21365
     },
     "script": {
       "planPath": "frontend/src/audio/speech/bank/manifest.json",
@@ -191,25 +191,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 292824,
+      "frames": 318720,
       "durationSeconds": 6.64,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "33267c28b336bbfb0d40d611765a2ff1633b73e8821e505aeb52422ba40d7610"
+      "wavSha256": "a7c2562f5b8e4f4dde4e2be02ce4103820779f9964b42a877858419782f8b41f"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 106240,
       "durationSeconds": 6.64,
       "trimmed": false,
-      "pcmSha256": "b544287be039fc26597a19769972c9970fa6f4e2dc10dde3c5ffc728ad14f8ff"
+      "pcmSha256": "532320dede2b3e93de49f8684b7f741681a299dde1fdad831cc08ea0ca5ffc86"
     },
     "alignment": {
       "frameRate": 100,
@@ -240,39 +240,39 @@
         {
           "word": "move",
           "startFrame": 28,
-          "durationFrames": 29,
+          "durationFrames": 31,
           "phones": [
             {
               "phone": "M",
               "startFrame": 28,
-              "durationFrames": 7
+              "durationFrames": 6
             },
             {
               "phone": "UW",
-              "startFrame": 35,
-              "durationFrames": 17
+              "startFrame": 34,
+              "durationFrames": 18
             },
             {
               "phone": "V",
               "startFrame": 52,
-              "durationFrames": 5
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "allows",
-          "startFrame": 57,
-          "durationFrames": 35,
+          "startFrame": 59,
+          "durationFrames": 33,
           "phones": [
             {
               "phone": "AH",
-              "startFrame": 57,
-              "durationFrames": 4
+              "startFrame": 59,
+              "durationFrames": 3
             },
             {
               "phone": "L",
-              "startFrame": 61,
-              "durationFrames": 12
+              "startFrame": 62,
+              "durationFrames": 11
             },
             {
               "phone": "AW",
@@ -323,7 +323,7 @@
         {
           "word": "rank",
           "startFrame": 135,
-          "durationFrames": 21,
+          "durationFrames": 23,
           "phones": [
             {
               "phone": "R",
@@ -343,19 +343,19 @@
             {
               "phone": "K",
               "startFrame": 151,
-              "durationFrames": 5
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "checkmate",
-          "startFrame": 156,
-          "durationFrames": 55,
+          "startFrame": 158,
+          "durationFrames": 53,
           "phones": [
             {
               "phone": "CH",
-              "startFrame": 156,
-              "durationFrames": 12
+              "startFrame": 158,
+              "durationFrames": 10
             },
             {
               "phone": "EH",
@@ -365,12 +365,12 @@
             {
               "phone": "K",
               "startFrame": 177,
-              "durationFrames": 8
+              "durationFrames": 7
             },
             {
               "phone": "M",
-              "startFrame": 185,
-              "durationFrames": 7
+              "startFrame": 184,
+              "durationFrames": 8
             },
             {
               "phone": "EY",
@@ -392,12 +392,12 @@
             {
               "phone": "IH",
               "startFrame": 211,
-              "durationFrames": 5
+              "durationFrames": 6
             },
             {
               "phone": "N",
-              "startFrame": 216,
-              "durationFrames": 7
+              "startFrame": 217,
+              "durationFrames": 6
             }
           ]
         },
@@ -544,7 +544,7 @@
         {
           "word": "own",
           "startFrame": 419,
-          "durationFrames": 29,
+          "durationFrames": 28,
           "phones": [
             {
               "phone": "OW",
@@ -554,19 +554,19 @@
             {
               "phone": "N",
               "startFrame": 438,
-              "durationFrames": 10
+              "durationFrames": 9
             }
           ]
         },
         {
           "word": "pieces(2)",
-          "startFrame": 448,
-          "durationFrames": 49,
+          "startFrame": 447,
+          "durationFrames": 50,
           "phones": [
             {
               "phone": "P",
-              "startFrame": 448,
-              "durationFrames": 8
+              "startFrame": 447,
+              "durationFrames": 9
             },
             {
               "phone": "IY",
@@ -576,12 +576,12 @@
             {
               "phone": "S",
               "startFrame": 468,
-              "durationFrames": 10
+              "durationFrames": 9
             },
             {
               "phone": "IH",
-              "startFrame": 478,
-              "durationFrames": 8
+              "startFrame": 477,
+              "durationFrames": 9
             },
             {
               "phone": "Z",
@@ -593,7 +593,7 @@
         {
           "word": "take",
           "startFrame": 497,
-          "durationFrames": 24,
+          "durationFrames": 23,
           "phones": [
             {
               "phone": "T",
@@ -608,19 +608,19 @@
             {
               "phone": "K",
               "startFrame": 514,
-              "durationFrames": 7
+              "durationFrames": 6
             }
           ]
         },
         {
           "word": "away",
-          "startFrame": 521,
-          "durationFrames": 23,
+          "startFrame": 520,
+          "durationFrames": 24,
           "phones": [
             {
               "phone": "AH",
-              "startFrame": 521,
-              "durationFrames": 4
+              "startFrame": 520,
+              "durationFrames": 5
             },
             {
               "phone": "W",
@@ -694,12 +694,12 @@
             {
               "phone": "R",
               "startFrame": 614,
-              "durationFrames": 14
+              "durationFrames": 15
             },
             {
               "phone": "Z",
-              "startFrame": 628,
-              "durationFrames": 19
+              "startFrame": 629,
+              "durationFrames": 18
             }
           ]
         },
@@ -717,7 +717,7 @@
         }
       ]
     },
-    "alignmentSha256": "883310bfb72bf1da793a3860ee0752d253b400d7fa20abf4f7f2185dfcfb6ea2",
+    "alignmentSha256": "6e948f3b5803225621ff5e29a85511488bfe7ff8f4db8d092309392384782e30",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -785,6 +785,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "890994389a63e2faefad837847006a8d35603977b8964548a6463de339ad9f27"
+    "cueSha256": "f98e4f57101d71bb4a974fae67782eb7e6c9df5afa6f22955f7f01c11d35d579"
   }
 }

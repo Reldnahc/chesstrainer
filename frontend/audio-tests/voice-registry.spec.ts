@@ -39,7 +39,7 @@ test("registered voices resolve their own complete recordings and lazy mouth tra
     for (const record of bank.all) {
       expect(catalogue.meanings.some(meaning => meaning.id === record.id)).toBe(true);
       expect(record.text.trim()).not.toBe("");
-      expect(record.url).toMatch(/\.mp3(?:\?|$)/);
+      expect(record.url).toMatch(/\.opus(?:\?|$)/);
     }
   }
   const firstUrls = result.records.map(bank => bank.all[0].url);

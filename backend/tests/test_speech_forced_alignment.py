@@ -28,7 +28,7 @@ def saved_forced(request):
     plan = json.loads(alignment.PLAN.read_text("utf-8"))
     script = next(script for script in plan["scripts"] if script["id"] == script_id)
     track = json.loads((alignment.OUTPUT / f"{script_id}-forced.json").read_text("utf-8"))
-    recording = alignment.RECORDINGS / f"{script_id}.mp3"
+    recording = alignment.RECORDINGS / f"{script_id}.opus"
     recorded = json.loads(recording.with_suffix(".provenance.json").read_text("utf-8"))
     return track, script, recording, recorded, alignment.PLAN.relative_to(alignment.ROOT).as_posix()
 
@@ -263,7 +263,7 @@ def test_changed_generic_mapping_is_rejected(saved_forced):
         ("frames", 1),
         ("channels", 2),
         ("sampleRate", 8000),
-        ("sourceSampleRate", 48000),
+        ("sourceSampleRate", 44100),
         ("durationSeconds", 1),
         ("trimmed", True),
         ("pcmSha256", "bad"),

@@ -103,27 +103,27 @@ export const walterCollections: readonly WalterCollection[] = [
 export const walterClips: readonly WalterClip[] = [
   ...contrastVoices.flatMap(voice => contrastPlan.scripts.map(script => ({
     voiceId: voice.id, scriptId: `contrast-${script.id}`,
-    url: new URL(`./recordings/walter-contrasts-v1/${voice.id}/${script.id}.mp3`, import.meta.url).href,
+    url: new URL(`./recordings/walter-contrasts-v1/${voice.id}/${script.id}.opus`, import.meta.url).href,
   }))),
   ...olderTeacherPreviews.map(preview => ({
     voiceId: preview.id, scriptId: "mentor-defense", durationSeconds: preview.durationSeconds,
-    url: new URL(`./recordings/older-teacher-v1/${preview.id}.mp3`, import.meta.url).href,
+    url: new URL(`./recordings/older-teacher-v1/${preview.id}.opus`, import.meta.url).href,
   })),
   ...mentorPreviews.map(preview => ({
     voiceId: preview.id, scriptId: "mentor-defense", durationSeconds: preview.durationSeconds,
-    url: new URL(`./recordings/mentor-v1/${preview.id}.mp3`, import.meta.url).href,
+    url: new URL(`./recordings/mentor-v1/${preview.id}.opus`, import.meta.url).href,
   })),
   ...refinementPreviews.map(preview => ({
     voiceId: preview.id, scriptId: shortPlan.scripts[0].id, durationSeconds: preview.durationSeconds,
-    url: new URL(`./recordings/refinements-v1/${preview.id}.mp3`, import.meta.url).href,
+    url: new URL(`./recordings/refinements-v1/${preview.id}.opus`, import.meta.url).href,
   })),
   ...customPreviews.map(preview => ({
     voiceId: preview.id, scriptId: "voice-design-preview", durationSeconds: preview.durationSeconds,
-    url: new URL(`./recordings/custom-v1/${preview.id}.mp3`, import.meta.url).href,
+    url: new URL(`./recordings/custom-v1/${preview.id}.opus`, import.meta.url).href,
   })),
   ...originalVoices.flatMap(voice => originalScripts.map(script => ({
     voiceId: voice.id, scriptId: script.id,
-    url: new URL(`./recordings/pilot-v1/${voice.id}/${script.id}.mp3`, import.meta.url).href,
+    url: new URL(`./recordings/pilot-v1/${voice.id}/${script.id}.opus`, import.meta.url).href,
   }))),
 ];
 

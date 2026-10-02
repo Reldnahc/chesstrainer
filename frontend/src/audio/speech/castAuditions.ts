@@ -15,7 +15,7 @@ type CastManifest = {schemaVersion: number; provider: string; modelId: string; r
 
 // Development entry points alone import this module. Draft auditions can be
 // inspected while recordings are being prepared, without pretending they exist.
-const media = import.meta.glob<string>("./cast-auditions/recordings/**/*.mp3", {eager: true, query: "?url", import: "default"});
+const media = import.meta.glob<string>("./cast-auditions/recordings/**/*.opus", {eager: true, query: "?url", import: "default"});
 const hashes = import.meta.glob<string>("./cast-auditions/recordings/**/*.provenance.json", {eager: true, import: "sha256"});
 const tracks = import.meta.glob<Record<string, SpeechMouthTrack>>("./cast-auditions/tracks.json", {import: "default"});
 const plan: CastPlan = designPlan;
@@ -29,7 +29,7 @@ export const castAuditionCoaches = plan.coaches.flatMap(item => {
 export function castRecording(coachId: string, directionId: string) {
   const recording = manifest.recordings.find(item => item.coachId === coachId && item.directionId === directionId);
   const url = recording && media[`./cast-auditions/${recording.audioPath}`];
-  const audioSha256 = recording && hashes[`./cast-auditions/${recording.audioPath.replace(/\.mp3$/, ".provenance.json")}`];
+  const audioSha256 = recording && hashes[`./cast-auditions/${recording.audioPath.replace(/\.opus$/, ".provenance.json")}`];
   if (!recording || !url || !audioSha256) return undefined;
   // The studio's decoded-audio cache must follow the same bytes that are approved.
   const versionedUrl = `${url}${url.includes("?") ? "&" : "?"}casting=${audioSha256}`;

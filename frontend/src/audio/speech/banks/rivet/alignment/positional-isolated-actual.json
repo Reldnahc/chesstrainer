@@ -9,9 +9,9 @@
     {"start":0.0,"end":0.1,"value":"X"},
     {"start":0.1,"end":0.16,"value":"C"},
     {"start":0.16,"end":0.23,"value":"B"},
-    {"start":0.23,"end":0.3,"value":"X"},
-    {"start":0.3,"end":0.37,"value":"D"},
-    {"start":0.37,"end":0.55,"value":"B"},
+    {"start":0.23,"end":0.29,"value":"X"},
+    {"start":0.29,"end":0.36,"value":"D"},
+    {"start":0.36,"end":0.55,"value":"B"},
     {"start":0.55,"end":0.58,"value":"C"},
     {"start":0.58,"end":0.68,"value":"H"},
     {"start":0.68,"end":0.75,"value":"C"},
@@ -27,24 +27,24 @@
     {"start":2.07,"end":2.11,"value":"C"},
     {"start":2.11,"end":2.18,"value":"A"},
     {"start":2.18,"end":2.23,"value":"C"},
-    {"start":2.23,"end":2.52,"value":"B"},
-    {"start":2.52,"end":2.57,"value":"C"},
-    {"start":2.57,"end":2.71,"value":"B"},
-    {"start":2.71,"end":3.14,"value":"X"},
+    {"start":2.23,"end":2.51,"value":"B"},
+    {"start":2.51,"end":2.56,"value":"C"},
+    {"start":2.56,"end":2.7,"value":"B"},
+    {"start":2.7,"end":3.14,"value":"X"},
     {"start":3.14,"end":3.26,"value":"B"},
     {"start":3.26,"end":3.33,"value":"D"},
     {"start":3.33,"end":3.46,"value":"B"},
     {"start":3.46,"end":3.55,"value":"E"},
-    {"start":3.55,"end":3.62,"value":"B"},
-    {"start":3.62,"end":3.68,"value":"C"},
+    {"start":3.55,"end":3.61,"value":"B"},
+    {"start":3.61,"end":3.68,"value":"C"},
     {"start":3.68,"end":3.75,"value":"B"},
     {"start":3.75,"end":3.81,"value":"A"},
-    {"start":3.81,"end":3.91,"value":"E"},
-    {"start":3.91,"end":4.04,"value":"B"},
+    {"start":3.81,"end":3.9,"value":"E"},
+    {"start":3.9,"end":4.04,"value":"B"},
     {"start":4.04,"end":4.15,"value":"G"},
-    {"start":4.15,"end":4.24,"value":"D"},
-    {"start":4.24,"end":4.34,"value":"B"},
-    {"start":4.34,"end":4.46,"value":"H"},
+    {"start":4.15,"end":4.25,"value":"D"},
+    {"start":4.25,"end":4.35,"value":"B"},
+    {"start":4.35,"end":4.46,"value":"H"},
     {"start":4.46,"end":4.52,"value":"B"},
     {"start":4.52,"end":4.57,"value":"C"},
     {"start":4.57,"end":4.7,"value":"B"},
@@ -52,8 +52,8 @@
     {"start":4.76,"end":4.92,"value":"B"},
     {"start":4.92,"end":4.98,"value":"C"},
     {"start":4.98,"end":5.11,"value":"G"},
-    {"start":5.11,"end":5.16,"value":"E"},
-    {"start":5.16,"end":5.21,"value":"C"},
+    {"start":5.11,"end":5.17,"value":"E"},
+    {"start":5.17,"end":5.21,"value":"C"},
     {"start":5.21,"end":5.31,"value":"B"},
     {"start":5.31,"end":5.36,"value":"H"},
     {"start":5.36,"end":5.43,"value":"B"},
@@ -66,9 +66,9 @@
     "sourceScriptId": "positional-isolated-actual",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/banks/rivet/recordings/rivet-pilot-v1/rivet/positional-isolated-actual.mp3",
-      "sha256": "458a722797925254d7572b7505b079864edb5f070b127804e3b77d554be698f8",
-      "bytes": 97010
+      "path": "frontend/src/audio/speech/banks/rivet/recordings/rivet-pilot-v1/rivet/positional-isolated-actual.opus",
+      "sha256": "7dbdf3fedad189ba280ba404a1d5b4abecc95243c224a342b9e578862c88a19f",
+      "bytes": 19309
     },
     "script": {
       "planPath": "frontend/src/audio/speech/banks/rivet/manifest.json",
@@ -196,25 +196,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 264600,
+      "frames": 288000,
       "durationSeconds": 6.0,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "a8f779966541d37179d73e37305e541c87eabbf5a5a4e2c82915667d248785a7"
+      "wavSha256": "14001ed463be96caa5e80f47e338a4ef38b12eb79e01f0a52da5e2399d6c9ec9"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 96000,
       "durationSeconds": 6.0,
       "trimmed": false,
-      "pcmSha256": "674f55217a417fc7b683958ca59f75150d41b58ab55b2c6c9e240ac3e6a6f7fb"
+      "pcmSha256": "37313ab349701df8e2869895f9368a63754a83e1610333ffd372dd6835a70f3c"
     },
     "alignment": {
       "frameRate": 100,
@@ -252,24 +252,24 @@
         {
           "word": "<sil>",
           "startFrame": 23,
-          "durationFrames": 7,
+          "durationFrames": 6,
           "phones": [
             {
               "phone": "SIL",
               "startFrame": 23,
-              "durationFrames": 7
+              "durationFrames": 6
             }
           ]
         },
         {
           "word": "isolated(2)",
-          "startFrame": 30,
-          "durationFrames": 64,
+          "startFrame": 29,
+          "durationFrames": 65,
           "phones": [
             {
               "phone": "AY",
-              "startFrame": 30,
-              "durationFrames": 14
+              "startFrame": 29,
+              "durationFrames": 15
             },
             {
               "phone": "S",
@@ -358,12 +358,12 @@
             {
               "phone": "N",
               "startFrame": 179,
-              "durationFrames": 9
+              "durationFrames": 8
             },
             {
               "phone": "Z",
-              "startFrame": 188,
-              "durationFrames": 6
+              "startFrame": 187,
+              "durationFrames": 7
             }
           ]
         },
@@ -404,7 +404,7 @@
         {
           "word": "position",
           "startFrame": 211,
-          "durationFrames": 60,
+          "durationFrames": 59,
           "phones": [
             {
               "phone": "P",
@@ -429,29 +429,29 @@
             {
               "phone": "SH",
               "startFrame": 241,
-              "durationFrames": 11
+              "durationFrames": 10
             },
             {
               "phone": "AH",
-              "startFrame": 252,
+              "startFrame": 251,
               "durationFrames": 5
             },
             {
               "phone": "N",
-              "startFrame": 257,
+              "startFrame": 256,
               "durationFrames": 14
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 271,
-          "durationFrames": 43,
+          "startFrame": 270,
+          "durationFrames": 44,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 271,
-              "durationFrames": 43
+              "startFrame": 270,
+              "durationFrames": 44
             }
           ]
         },
@@ -490,12 +490,12 @@
             {
               "phone": "N",
               "startFrame": 355,
-              "durationFrames": 7
+              "durationFrames": 6
             },
             {
               "phone": "EY",
-              "startFrame": 362,
-              "durationFrames": 13
+              "startFrame": 361,
+              "durationFrames": 14
             },
             {
               "phone": "B",
@@ -505,17 +505,17 @@
             {
               "phone": "ER",
               "startFrame": 381,
-              "durationFrames": 10
+              "durationFrames": 9
             },
             {
               "phone": "IH",
-              "startFrame": 391,
+              "startFrame": 390,
               "durationFrames": 3
             },
             {
               "phone": "NG",
-              "startFrame": 394,
-              "durationFrames": 10
+              "startFrame": 393,
+              "durationFrames": 11
             }
           ]
         },
@@ -532,12 +532,12 @@
             {
               "phone": "AY",
               "startFrame": 415,
-              "durationFrames": 19
+              "durationFrames": 20
             },
             {
               "phone": "L",
-              "startFrame": 434,
-              "durationFrames": 12
+              "startFrame": 435,
+              "durationFrames": 11
             }
           ]
         },
@@ -574,12 +574,12 @@
             {
               "phone": "N",
               "startFrame": 482,
-              "durationFrames": 4
+              "durationFrames": 5
             },
             {
               "phone": "Z",
-              "startFrame": 486,
-              "durationFrames": 6
+              "startFrame": 487,
+              "durationFrames": 5
             }
           ]
         },
@@ -608,12 +608,12 @@
             {
               "phone": "R",
               "startFrame": 511,
-              "durationFrames": 5
+              "durationFrames": 6
             },
             {
               "phone": "EH",
-              "startFrame": 516,
-              "durationFrames": 5
+              "startFrame": 517,
+              "durationFrames": 4
             },
             {
               "phone": "N",
@@ -673,7 +673,7 @@
         }
       ]
     },
-    "alignmentSha256": "e1f545edd4653e21925fb14ede47c81b93f5eb11962677e935bc6dbbd1e86707",
+    "alignmentSha256": "872084bba2ba39c1364e32f42f69518b183431bcfc685850547d0f030a7ba7b2",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -741,6 +741,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "72cf11553232a48f4f1a70672ab12392e75a4e0c4b8fcf77299aa89ceb8fdf02"
+    "cueSha256": "26c3e19bd60ce4aed8daaffe37926294356bfd3460ba383174922b3201e201a2"
   }
 }

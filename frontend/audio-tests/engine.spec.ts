@@ -760,7 +760,7 @@ test("explicit recorded speech waits for usable audio and a cancelled or failed 
   expect(f.started()).toEqual(["primary"]);
   expect(f.context.sources[0].stops).toEqual([]);
   f.load(async () => { throw new Error("recording unavailable"); });
-  f.engine.playRecordedSpeech({...recording("failed-manual", {url: "/unavailable.mp3"}), scope: "insight", interruptCurrent: true});
+  f.engine.playRecordedSpeech({...recording("failed-manual", {url: "/unavailable.opus"}), scope: "insight", interruptCurrent: true});
   await flush();
   expect(f.events.at(-1)).toMatchObject({eventId: "failed-manual", type: "error"});
   expect(f.context.sources[0].stops).toEqual([]);

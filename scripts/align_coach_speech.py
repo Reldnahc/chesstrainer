@@ -223,7 +223,7 @@ def decode(recording: Path, wav_path: Path, audio_deps: Path) -> dict:
         "sampleWidthBytes": 2,
         "frames": len(pcm),
         "durationSeconds": len(pcm) / rate,
-        "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+        "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
         "trimmed": False,
         "resampled": False,
         "wavSha256": digest(wav_path.read_bytes()),
@@ -231,7 +231,7 @@ def decode(recording: Path, wav_path: Path, audio_deps: Path) -> dict:
 
 
 def generate(script: dict, tool: Path, work: Path, audio_deps: Path) -> dict:
-    recording = RECORDINGS / f"{script['id']}.mp3"
+    recording = RECORDINGS / f"{script['id']}.opus"
     recorded = json.loads(recording.with_suffix(".provenance.json").read_text("utf-8"))
     original = source_inputs(script, recording, recorded)
     working = work / script["id"]
@@ -281,7 +281,7 @@ def generate(script: dict, tool: Path, work: Path, audio_deps: Path) -> dict:
 
 
 def generate_forced(script: dict, work: Path, audio_deps: Path, phoneme_deps: Path) -> dict:
-    recording = RECORDINGS / f"{script['id']}.mp3"
+    recording = RECORDINGS / f"{script['id']}.opus"
     recorded = json.loads(recording.with_suffix(".provenance.json").read_text("utf-8"))
     source = SpeechSource(
         script,
@@ -450,7 +450,7 @@ def main() -> None:
             )
     else:
         for script in scripts:
-            recording = RECORDINGS / f"{script['id']}.mp3"
+            recording = RECORDINGS / f"{script['id']}.opus"
             for suffix in ("", "-forced"):
                 track = json.loads((OUTPUT / f"{script['id']}{suffix}.json").read_text("utf-8"))
                 expected_tool = "PocketSphinx" if suffix else "Rhubarb Lip Sync"

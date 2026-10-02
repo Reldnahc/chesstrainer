@@ -79,7 +79,7 @@ async function mount(page: Page, coachId: "classic" | "robot", game: Game) {
   page.on("request", request => {if (request.method() !== "GET") writes.push(request.url());});
   await page.route("**/api/preferences/audio", route => route.fulfill({json: {...defaultAudioPreferences, voice: "automatic"}}));
   await page.route("**/api/preferences/coach", route => route.fulfill({json: {coach_id: coachId, motion: "natural"}}));
-  await page.route(/\.mp3(?:\?.*)?$/, route => {
+  await page.route(/\.opus(?:\?.*)?$/, route => {
     if (route.request().resourceType() !== "fetch") return route.fallback();
     assets.push(route.request().url());
     return route.fulfill({contentType: "audio/mpeg", body: Buffer.from([1, 2, 3, 4])});

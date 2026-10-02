@@ -19,7 +19,7 @@ async function mountProvider(page: Page) {
     const {AudioProvider, useAudioPreferences, useScopedSpeech, useCurrentSpeechPlayback, AudioSettings} = await import(`${root}/audio-tests/fixtures/speechRuntime.ts`);
     const {makeIntent, claim} = await import(`${root}/src/dialogue/model.ts`);
     const {renderNeutral} = await import(`${root}/src/dialogue/neutral.ts`);
-    const {default: url} = await import(`${root}/src/audio/speech/recordings/walter-contrasts-v1/walter/sound-sacrifice.mp3?url`);
+    const {default: url} = await import(`${root}/src/audio/speech/recordings/walter-contrasts-v1/walter/sound-sacrifice.opus?url`);
     const utterance = {...renderNeutral(makeIntent("provider-test", "good", "game", "good", [claim("good")])), coachId: "classic"};
     const container = document.createElement("div");
     container.id = "speech-provider-harness";

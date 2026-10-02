@@ -42,7 +42,7 @@ test("every approved coach has three complete aligned directions, with any defer
       expect(recording, `${candidate.coachId}/${direction.id}`).toBeTruthy();
       expect(recording.id).toBe(`${candidate.coachId}:${direction.id}`);
       expect(recording.text).toBe(candidate.text);
-      expect(recording.audioPath).toBe(`recordings/${candidate.coachId}/${direction.id}.mp3`);
+      expect(recording.audioPath).toBe(`recordings/${candidate.coachId}/${direction.id}.opus`);
       expect(existsSync(resolve(root, recording.audioPath))).toBe(true);
       expect(recording.durationSeconds).toBeGreaterThan(0);
       const track = tracks[recording.id];
@@ -80,7 +80,7 @@ test("the compact cast selector starts silent, exposes every direction, and stay
   await expect(speechEvents(page, "started")).toHaveCount(0);
   expect(requests.filter(url => {
     const request = new URL(url);
-    return request.pathname.endsWith(".mp3") && !request.searchParams.has("import");
+    return request.pathname.endsWith(".opus") && !request.searchParams.has("import");
   })).toEqual([]);
   const origin = new URL(page.url()).origin;
   expect(requests.filter(url => new URL(url).origin !== origin || new URL(url).pathname.startsWith("/api/"))).toEqual([]);

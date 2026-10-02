@@ -34,7 +34,7 @@ export function mountRecordedCoachComparison(options: ComparisonHarnessOptions =
       const meaning = meanings.find(item => item.id === id);
       if (!meaning || options.missingRecordings?.includes(`${coachId}:${id}`)) return undefined;
       return {id, text: `${coachId === "classic" ? "Walter" : "Rivet"}: ${meaning.label}.`,
-        url: `/__recorded-comparison-fixture/${coachId}/${id}.mp3`};
+        url: `/__recorded-comparison-fixture/${coachId}/${id}.opus`};
     },
     async loadTrack(coachId, id) {
       const key = `${coachId}:${id}`;
@@ -53,7 +53,7 @@ export function mountRecordedCoachComparison(options: ComparisonHarnessOptions =
     return <main className="audio-studio">
       <StudioTransport player={current} />
       <RecordedCoachComparison player={current} catalog={catalog} />
-      <Button onClick={() => void current.playSpeech({url: "/__recorded-comparison-fixture/other/preview.mp3",
+      <Button onClick={() => void current.playSpeech({url: "/__recorded-comparison-fixture/other/preview.opus",
         voiceId: "another-preview", voiceName: "Another preview", scriptId: "other", recordingId: "other",
         coachName: "Other coach", utterance: {version: "coach-utterance-1", id: "other", intentId: "other", coachId: "robot",
           text: "Another preview.", speechText: "Another preview.", expression: "explaining", intensity: .4,

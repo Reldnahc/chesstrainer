@@ -8,8 +8,8 @@
   "mouthCues": [
     {"start":0.0,"end":0.07,"value":"X"},
     {"start":0.07,"end":0.12,"value":"C"},
-    {"start":0.12,"end":0.33,"value":"B"},
-    {"start":0.33,"end":0.52,"value":"E"},
+    {"start":0.12,"end":0.32,"value":"B"},
+    {"start":0.32,"end":0.52,"value":"E"},
     {"start":0.52,"end":0.76,"value":"B"},
     {"start":0.76,"end":0.87,"value":"E"},
     {"start":0.87,"end":1.11,"value":"B"},
@@ -29,16 +29,16 @@
     {"start":2.55,"end":2.68,"value":"C"},
     {"start":2.68,"end":2.76,"value":"A"},
     {"start":2.76,"end":2.79,"value":"C"},
-    {"start":2.79,"end":3.0,"value":"B"},
-    {"start":3.0,"end":3.2,"value":"X"}
+    {"start":2.79,"end":3.02,"value":"B"},
+    {"start":3.02,"end":3.2,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "best-supported-choice",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/bank/recordings/walter-pilot-v1/walter/best-supported-choice.mp3",
-      "sha256": "892f3d603a585d2931a62719ee2a667b843c64ec9e165f9df90acc71eb750dff",
-      "bytes": 52288
+      "path": "frontend/src/audio/speech/bank/recordings/walter-pilot-v1/walter/best-supported-choice.opus",
+      "sha256": "2e71f01fd19c6a5dd4a485bec42cfdb304cdc8c39bc7d7a685f5e2c776cdcd91",
+      "bytes": 10903
     },
     "script": {
       "planPath": "frontend/src/audio/speech/bank/manifest.json",
@@ -166,25 +166,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 141120,
+      "frames": 153600,
       "durationSeconds": 3.2,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "d861e8ec4aba77ee0272b91192cc85d97e20c21d979375822acd68a5cd476aec"
+      "wavSha256": "0fbdece2e467ed934cfd179cd7ddb5937112c64742a0f18fda406a1df990f078"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 51200,
       "durationSeconds": 3.2,
       "trimmed": false,
-      "pcmSha256": "97863189226be4aebb03e8f1138baa0c6d3c5eb0a9da4c044f0cad8a7cdfdc0f"
+      "pcmSha256": "e1f26e7aafa60def062933b2c84e1b09d97d034c5b4602e25607cc9778e50f57"
     },
     "alignment": {
       "frameRate": 100,
@@ -227,12 +227,12 @@
             {
               "phone": "T",
               "startFrame": 26,
-              "durationFrames": 7
+              "durationFrames": 6
             },
             {
               "phone": "R",
-              "startFrame": 33,
-              "durationFrames": 9
+              "startFrame": 32,
+              "durationFrames": 10
             },
             {
               "phone": "AO",
@@ -391,7 +391,7 @@
         {
           "word": "examined",
           "startFrame": 234,
-          "durationFrames": 66,
+          "durationFrames": 68,
           "phones": [
             {
               "phone": "IH",
@@ -431,25 +431,25 @@
             {
               "phone": "D",
               "startFrame": 291,
-              "durationFrames": 9
+              "durationFrames": 11
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 300,
-          "durationFrames": 19,
+          "startFrame": 302,
+          "durationFrames": 17,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 300,
-              "durationFrames": 19
+              "startFrame": 302,
+              "durationFrames": 17
             }
           ]
         }
       ]
     },
-    "alignmentSha256": "867746cf4b69a5629a76c9b31604aea8e9c315614f524a6c7af5672435dcc35a",
+    "alignmentSha256": "573402f1393931c56595a8a461bd3574f143d6e438b4e24f79cc47fe67b70266",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -517,6 +517,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "5abfe453290f09d1b4a13ce93726f1176177640818464f4edb42b5f26f858fb8"
+    "cueSha256": "a5bdc221728b19e3036948b06cefb3f1ef3ccca6337f0232f25d09e819e4b2bd"
   }
 }

@@ -69,7 +69,7 @@ all 181 original recordings. The revision restores his compact pattern-first
 voice without changing supported meanings or Walter's scripts. The active
 manifest and matching authored script files contain the current text; the
 revision ledger records old/new text and editorial reasons. Superseded Rivet
-MP3s are preserved by Git history rather than left under production asset globs.
+recordings are preserved by Git history rather than left under production asset globs.
 
 ## Authored banks awaiting recording
 
@@ -141,11 +141,13 @@ automatically writes a finished personality or turns all coach prose into speech
    characters per script and 10,000 characters total. Dry-run first; `--generate`
    explicitly spends provider credits. Never print or commit the process-only
    API key. Use a new take directory for changed text, inspect failed/incomplete
-   attempts, and do not repeat paid requests blindly. Preserve MP3/provenance
-   pairs and record actual settled provider usage separately from character
-   counts. See [recording CLI instructions](../README.md#record-selected-examples).
+   attempts, and do not repeat paid requests blindly. The recorder encodes each
+   provider MP3 to the banks' Opus before saving and refuses to start if the
+   encoder is unavailable; see [encoding](../../../../../docs/AUDIO.md). Preserve
+   Opus/provenance pairs and record actual settled provider usage separately from
+   character counts. See [recording CLI instructions](../README.md#record-selected-examples).
 5. **Bind the exact artifacts in a manifest.** Prefer
-   `banks/<voice>/manifest.json`, with active MP3s and provenance under its
+   `banks/<voice>/manifest.json`, with active Opus recordings and provenance under its
    `recordings/` directory and `alignment/<meaning-id>.json`. Match the selected
    coach ID, local voice ID, provider voice, model, settings, script, IDs and
    paths exactly. Revisions get an old/new script ledger; changing a transcript
@@ -160,7 +162,7 @@ automatically writes a finished personality or turns all coach prose into speech
 7. **Register only the intended bank.** Add its coach/voice/manifest mapping to
    `banks/registry.json`. `voiceBank.ts` already discovers
    `banks/*/manifest.json`, `banks/*/tracks.json` and
-   `banks/*/recordings/**/*.mp3`; keep that layout instead of adding bespoke
+   `banks/*/recordings/**/*.opus`; keep that layout instead of adding bespoke
    loader code. Game selection and shared playback read the registry. The
    studio's `recordedCoachCatalog.ts` automatically offers selectable coaches
    with recordings. Another coach's voice is never a fallback.

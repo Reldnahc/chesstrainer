@@ -24,7 +24,23 @@
   },
   "requestHash": "06647bc7a2c68af504de6d5f4f3d56773d1f424308bd4ed6a2dfb64f4ffc02db",
   "recordedAt": "2026-10-01T20:21:31.777Z",
-  "sha256": "30430a6f85fa63a6a3082091845f1bff07274a4fc96dc6646230317fbbc2dde2",
-  "bytes": 166391,
-  "requestId": "3RvQav0FRohwCMavWUs4"
+  "sha256": "664ba09338eaf4d905a96e8954177f6f1d18fc0bff6492bf1fef89ce872980c1",
+  "bytes": 31555,
+  "requestId": "3RvQav0FRohwCMavWUs4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30430a6f85fa63a6a3082091845f1bff07274a4fc96dc6646230317fbbc2dde2",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
 }

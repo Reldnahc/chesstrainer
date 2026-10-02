@@ -27,6 +27,7 @@ def test_only_listed_public_files_are_archived_reproducibly(tmp_path, monkeypatc
         "frontend/node_modules/dependency.js": "DEPENDENCY",
         "untracked.txt": "PRIVATE_NOTE",
         "backend/trainer/_vendor/lichess_puzzler/LICENSE": "upstream license",
+        "frontend/src/audio/speech/bank/recordings/walter/line.opus": "SERVED_AUDIO",
     }
     for name, content in files.items():
         path = tmp_path / name
@@ -43,9 +44,12 @@ def test_only_listed_public_files_are_archived_reproducibly(tmp_path, monkeypatc
         ".env.example",
         "backend/trainer/_vendor/lichess_puzzler/LICENSE",
     }
+    # Served recordings are fingerprinted, not stored a second time.
+    assert list(manifest["media"]) == ["frontend/src/audio/speech/bank/recordings/walter/line.opus"]
     with zipfile.ZipFile(output) as archive:
         assert json.loads(archive.read("fieldwork/SOURCE_SNAPSHOT.json")) == manifest
         assert all(b"PRIVATE_" not in archive.read(n) for n in archive.namelist())
+        assert all(b"SERVED_AUDIO" not in archive.read(n) for n in archive.namelist())
     before = output.read_bytes()
     source.build_archive(tmp_path, output)
     assert output.read_bytes() == before

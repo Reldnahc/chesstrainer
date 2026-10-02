@@ -6,32 +6,32 @@
     "duration": 9.16
   },
   "mouthCues": [
-    {"start":0.0,"end":0.17,"value":"F"},
-    {"start":0.17,"end":0.23,"value":"C"},
-    {"start":0.23,"end":0.36,"value":"B"},
+    {"start":0.0,"end":0.16,"value":"F"},
+    {"start":0.16,"end":0.22,"value":"C"},
+    {"start":0.22,"end":0.36,"value":"B"},
     {"start":0.36,"end":0.45,"value":"F"},
     {"start":0.45,"end":0.53,"value":"C"},
     {"start":0.53,"end":0.68,"value":"B"},
-    {"start":0.68,"end":0.78,"value":"H"},
-    {"start":0.78,"end":0.89,"value":"E"},
+    {"start":0.68,"end":0.79,"value":"H"},
+    {"start":0.79,"end":0.89,"value":"E"},
     {"start":0.89,"end":0.94,"value":"B"},
     {"start":0.94,"end":1.01,"value":"C"},
-    {"start":1.01,"end":1.66,"value":"B"},
-    {"start":1.66,"end":1.89,"value":"X"},
+    {"start":1.01,"end":1.65,"value":"B"},
+    {"start":1.65,"end":1.89,"value":"X"},
     {"start":1.89,"end":1.93,"value":"B"},
     {"start":1.93,"end":2.02,"value":"F"},
-    {"start":2.02,"end":2.17,"value":"B"},
-    {"start":2.17,"end":2.23,"value":"D"},
-    {"start":2.23,"end":2.32,"value":"E"},
+    {"start":2.02,"end":2.16,"value":"B"},
+    {"start":2.16,"end":2.22,"value":"D"},
+    {"start":2.22,"end":2.32,"value":"E"},
     {"start":2.32,"end":2.53,"value":"B"},
     {"start":2.53,"end":2.59,"value":"C"},
     {"start":2.59,"end":2.67,"value":"B"},
-    {"start":2.67,"end":2.71,"value":"A"},
-    {"start":2.71,"end":2.96,"value":"B"},
-    {"start":2.96,"end":3.13,"value":"D"},
-    {"start":3.13,"end":3.31,"value":"F"},
-    {"start":3.31,"end":3.57,"value":"X"},
-    {"start":3.57,"end":3.7,"value":"B"},
+    {"start":2.67,"end":2.72,"value":"A"},
+    {"start":2.72,"end":2.97,"value":"B"},
+    {"start":2.97,"end":3.14,"value":"D"},
+    {"start":3.14,"end":3.31,"value":"F"},
+    {"start":3.31,"end":3.59,"value":"X"},
+    {"start":3.59,"end":3.7,"value":"B"},
     {"start":3.7,"end":3.76,"value":"E"},
     {"start":3.76,"end":3.83,"value":"F"},
     {"start":3.83,"end":3.88,"value":"A"},
@@ -41,8 +41,8 @@
     {"start":4.51,"end":4.6,"value":"B"},
     {"start":4.6,"end":4.69,"value":"G"},
     {"start":4.69,"end":4.77,"value":"C"},
-    {"start":4.77,"end":4.89,"value":"B"},
-    {"start":4.89,"end":4.98,"value":"E"},
+    {"start":4.77,"end":4.9,"value":"B"},
+    {"start":4.9,"end":4.98,"value":"E"},
     {"start":4.98,"end":5.02,"value":"A"},
     {"start":5.02,"end":5.14,"value":"F"},
     {"start":5.14,"end":5.23,"value":"G"},
@@ -57,29 +57,29 @@
     {"start":6.01,"end":6.07,"value":"C"},
     {"start":6.07,"end":6.14,"value":"B"},
     {"start":6.14,"end":6.22,"value":"E"},
-    {"start":6.22,"end":6.34,"value":"B"},
-    {"start":6.34,"end":6.38,"value":"D"},
-    {"start":6.38,"end":6.55,"value":"B"},
-    {"start":6.55,"end":6.61,"value":"C"},
+    {"start":6.22,"end":6.33,"value":"B"},
+    {"start":6.33,"end":6.38,"value":"D"},
+    {"start":6.38,"end":6.54,"value":"B"},
+    {"start":6.54,"end":6.61,"value":"C"},
     {"start":6.61,"end":6.76,"value":"B"},
     {"start":6.76,"end":6.82,"value":"C"},
     {"start":6.82,"end":6.93,"value":"B"},
     {"start":6.93,"end":7.01,"value":"C"},
-    {"start":7.01,"end":7.45,"value":"B"},
-    {"start":7.45,"end":7.69,"value":"X"},
+    {"start":7.01,"end":7.44,"value":"B"},
+    {"start":7.44,"end":7.69,"value":"X"},
     {"start":7.69,"end":7.9,"value":"B"},
     {"start":7.9,"end":8.02,"value":"E"},
     {"start":8.02,"end":8.14,"value":"F"},
-    {"start":8.14,"end":9.01,"value":"B"},
-    {"start":9.01,"end":9.16,"value":"X"}
+    {"start":8.14,"end":8.95,"value":"B"},
+    {"start":8.95,"end":9.16,"value":"X"}
   ],
   "provenance": {
     "sourceScriptId": "human-boy--bright-buenos-aires",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/cast-auditions/recordings/human-boy/bright-buenos-aires.mp3",
-      "sha256": "ccded3fc63ee4082c2140958a88aa20dcbf8d82e55e9fdc4d2e8a572156781cb",
-      "bytes": 146748
+      "path": "frontend/src/audio/speech/cast-auditions/recordings/human-boy/bright-buenos-aires.opus",
+      "sha256": "c06bb0820225d9f9c2283778fa0f245f3dc799f2c1962deba56aa1bda38f0028",
+      "bytes": 29437
     },
     "script": {
       "planPath": "frontend/src/audio/speech/cast-auditions/design-plan.json",
@@ -207,25 +207,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 404352,
-      "durationSeconds": 9.168979591836734,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "frames": 440111,
+      "durationSeconds": 9.168979166666666,
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "e169e2b58101a795908cd292e0a009756e7182a0cac63321b5b9e1c65d807c72"
+      "wavSha256": "472acb291c4f58590a30b5ce46e440dc5847bfce86b8744c3447f8450a912860"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 146704,
       "durationSeconds": 9.169,
       "trimmed": false,
-      "pcmSha256": "179518aae7949d1c1e06769d5f8a96274dce99ce01250f6122fcfff8160910cb"
+      "pcmSha256": "bbcb9277c113c588db52ee112b875819cfde69ee9d80be06bc7f4d302cbdca84"
     },
     "alignment": {
       "frameRate": 100,
@@ -239,12 +239,12 @@
             {
               "phone": "W",
               "startFrame": 0,
-              "durationFrames": 17
+              "durationFrames": 16
             },
             {
               "phone": "EY",
-              "startFrame": 17,
-              "durationFrames": 12
+              "startFrame": 16,
+              "durationFrames": 13
             },
             {
               "phone": "T",
@@ -266,12 +266,12 @@
             {
               "phone": "EY",
               "startFrame": 45,
-              "durationFrames": 16
+              "durationFrames": 17
             },
             {
               "phone": "T",
-              "startFrame": 61,
-              "durationFrames": 7
+              "startFrame": 62,
+              "durationFrames": 6
             }
           ]
         },
@@ -283,12 +283,12 @@
             {
               "phone": "L",
               "startFrame": 68,
-              "durationFrames": 10
+              "durationFrames": 11
             },
             {
               "phone": "UH",
-              "startFrame": 78,
-              "durationFrames": 11
+              "startFrame": 79,
+              "durationFrames": 10
             },
             {
               "phone": "K",
@@ -317,7 +317,7 @@
         {
           "word": "this",
           "startFrame": 104,
-          "durationFrames": 62,
+          "durationFrames": 61,
           "phones": [
             {
               "phone": "DH",
@@ -332,19 +332,19 @@
             {
               "phone": "S",
               "startFrame": 145,
-              "durationFrames": 21
+              "durationFrames": 20
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 166,
-          "durationFrames": 23,
+          "startFrame": 165,
+          "durationFrames": 24,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 166,
-              "durationFrames": 23
+              "startFrame": 165,
+              "durationFrames": 24
             }
           ]
         },
@@ -378,17 +378,17 @@
             {
               "phone": "G",
               "startFrame": 210,
-              "durationFrames": 7
+              "durationFrames": 6
             },
             {
               "phone": "AA",
-              "startFrame": 217,
+              "startFrame": 216,
               "durationFrames": 6
             },
             {
               "phone": "R",
-              "startFrame": 223,
-              "durationFrames": 9
+              "startFrame": 222,
+              "durationFrames": 10
             },
             {
               "phone": "D",
@@ -437,12 +437,12 @@
             {
               "phone": "P",
               "startFrame": 267,
-              "durationFrames": 4
+              "durationFrames": 5
             },
             {
               "phone": "IY",
-              "startFrame": 271,
-              "durationFrames": 11
+              "startFrame": 272,
+              "durationFrames": 10
             },
             {
               "phone": "S",
@@ -459,36 +459,36 @@
             {
               "phone": "N",
               "startFrame": 288,
-              "durationFrames": 8
+              "durationFrames": 9
             },
             {
               "phone": "AW",
-              "startFrame": 296,
-              "durationFrames": 35
+              "startFrame": 297,
+              "durationFrames": 34
             }
           ]
         },
         {
           "word": "<sil>",
           "startFrame": 331,
-          "durationFrames": 26,
+          "durationFrames": 28,
           "phones": [
             {
               "phone": "SIL",
               "startFrame": 331,
-              "durationFrames": 26
+              "durationFrames": 28
             }
           ]
         },
         {
           "word": "nobody(2)",
-          "startFrame": 357,
-          "durationFrames": 68,
+          "startFrame": 359,
+          "durationFrames": 66,
           "phones": [
             {
               "phone": "N",
-              "startFrame": 357,
-              "durationFrames": 13
+              "startFrame": 359,
+              "durationFrames": 11
             },
             {
               "phone": "OW",
@@ -508,12 +508,12 @@
             {
               "phone": "D",
               "startFrame": 397,
-              "durationFrames": 5
+              "durationFrames": 4
             },
             {
               "phone": "IY",
-              "startFrame": 402,
-              "durationFrames": 23
+              "startFrame": 401,
+              "durationFrames": 24
             }
           ]
         },
@@ -562,17 +562,17 @@
             {
               "phone": "N",
               "startFrame": 477,
-              "durationFrames": 6
+              "durationFrames": 7
             },
             {
               "phone": "D",
-              "startFrame": 483,
+              "startFrame": 484,
               "durationFrames": 6
             },
             {
               "phone": "ER",
-              "startFrame": 489,
-              "durationFrames": 9
+              "startFrame": 490,
+              "durationFrames": 8
             }
           ]
         },
@@ -684,39 +684,39 @@
         {
           "word": "side",
           "startFrame": 622,
-          "durationFrames": 27,
+          "durationFrames": 28,
           "phones": [
             {
               "phone": "S",
               "startFrame": 622,
-              "durationFrames": 12
+              "durationFrames": 11
             },
             {
               "phone": "AY",
-              "startFrame": 634,
-              "durationFrames": 9
+              "startFrame": 633,
+              "durationFrames": 10
             },
             {
               "phone": "D",
               "startFrame": 643,
-              "durationFrames": 6
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "can(2)",
-          "startFrame": 649,
-          "durationFrames": 18,
+          "startFrame": 650,
+          "durationFrames": 17,
           "phones": [
             {
               "phone": "K",
-              "startFrame": 649,
-              "durationFrames": 6
+              "startFrame": 650,
+              "durationFrames": 4
             },
             {
               "phone": "AH",
-              "startFrame": 655,
-              "durationFrames": 6
+              "startFrame": 654,
+              "durationFrames": 7
             },
             {
               "phone": "N",
@@ -777,7 +777,7 @@
         {
           "word": "it",
           "startFrame": 717,
-          "durationFrames": 28,
+          "durationFrames": 27,
           "phones": [
             {
               "phone": "IH",
@@ -787,19 +787,19 @@
             {
               "phone": "T",
               "startFrame": 731,
-              "durationFrames": 14
+              "durationFrames": 13
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 745,
-          "durationFrames": 24,
+          "startFrame": 744,
+          "durationFrames": 25,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 745,
-              "durationFrames": 24
+              "startFrame": 744,
+              "durationFrames": 25
             }
           ]
         },
@@ -823,7 +823,7 @@
         {
           "word": "sneaky",
           "startFrame": 814,
-          "durationFrames": 87,
+          "durationFrames": 81,
           "phones": [
             {
               "phone": "S",
@@ -833,40 +833,40 @@
             {
               "phone": "N",
               "startFrame": 824,
-              "durationFrames": 9
+              "durationFrames": 10
             },
             {
               "phone": "IY",
-              "startFrame": 833,
-              "durationFrames": 15
+              "startFrame": 834,
+              "durationFrames": 13
             },
             {
               "phone": "K",
-              "startFrame": 848,
+              "startFrame": 847,
               "durationFrames": 7
             },
             {
               "phone": "IY",
-              "startFrame": 855,
-              "durationFrames": 46
+              "startFrame": 854,
+              "durationFrames": 41
             }
           ]
         },
         {
           "word": "<sil>",
-          "startFrame": 901,
-          "durationFrames": 15,
+          "startFrame": 895,
+          "durationFrames": 21,
           "phones": [
             {
               "phone": "SIL",
-              "startFrame": 901,
-              "durationFrames": 15
+              "startFrame": 895,
+              "durationFrames": 21
             }
           ]
         }
       ]
     },
-    "alignmentSha256": "42db01baf00077ee4f60d6b035a2278157c31cf0768555bb0382ad353c54b898",
+    "alignmentSha256": "16aefaded0c23f2f4773cf387d7187494d556626a65f32a7eb19422817aa20ef",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -934,11 +934,11 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "d04604b84e9024fe719c98e1d6558d2dc60a215994af8fdb74d72711a5d4e44d",
+    "cueSha256": "e2c5a488ace0d97489989db112f22d85ec0045283ef68dd54eb8114ed0314d58",
     "voiceDesign": {
       "requestSha256": "6b2c5b291a5ab3f89284aa61283678cf23226d20d73c52a26c8a39a683b4e714",
       "provenancePath": "frontend/src/audio/speech/cast-auditions/recordings/human-boy/bright-buenos-aires.provenance.json",
-      "provenanceSha256": "0379a0460bf53e3bf6c86fc6fb597e44af334c5a92a895e1e5fbcb53222ea273",
+      "provenanceSha256": "1e01ed7c9dc37624f3df9657ca84394a7426672b1322e2d3f183ad0ae36f7735",
       "generatedVoiceId": "sisE7AvFF6RKOoYwIHZi",
       "directionId": "bright-buenos-aires"
     }

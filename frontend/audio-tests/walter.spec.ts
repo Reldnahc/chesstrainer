@@ -3,7 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 import { walterClips, walterCollections, walterScripts, walterVoices } from "../src/audio/speech/walterPilot";
 
 // Vite's ?import&url requests are tiny JavaScript URL modules, not audio loads.
-const recordingPattern = /\.mp3$/;
+const recordingPattern = /\.opus$/;
 const panel = (page: Page) => page.getByRole("region", { name: "Find Walter’s voice", exact: true });
 const voiceChoices = (page: Page) => panel(page).getByRole("group", { name: "Voice candidate", exact: true });
 const collectionChoices = (page: Page) => panel(page).getByRole("group", { name: "Voice collection", exact: true });

@@ -8,14 +8,14 @@
   "mouthCues": [
     {"start":0.0,"end":0.12,"value":"B"},
     {"start":0.12,"end":0.19,"value":"C"},
-    {"start":0.19,"end":0.27,"value":"B"},
-    {"start":0.27,"end":0.38,"value":"G"},
+    {"start":0.19,"end":0.26,"value":"B"},
+    {"start":0.26,"end":0.38,"value":"G"},
     {"start":0.38,"end":0.52,"value":"E"},
     {"start":0.52,"end":0.76,"value":"B"},
     {"start":0.76,"end":0.83,"value":"A"},
     {"start":0.83,"end":0.99,"value":"F"},
-    {"start":0.99,"end":1.05,"value":"G"},
-    {"start":1.05,"end":1.21,"value":"B"},
+    {"start":0.99,"end":1.04,"value":"G"},
+    {"start":1.04,"end":1.21,"value":"B"},
     {"start":1.21,"end":1.27,"value":"C"},
     {"start":1.27,"end":1.31,"value":"B"},
     {"start":1.31,"end":1.37,"value":"C"},
@@ -34,11 +34,11 @@
     {"start":2.6,"end":2.72,"value":"B"},
     {"start":2.72,"end":2.79,"value":"D"},
     {"start":2.79,"end":2.86,"value":"E"},
-    {"start":2.86,"end":2.93,"value":"B"},
-    {"start":2.93,"end":2.99,"value":"C"},
+    {"start":2.86,"end":2.94,"value":"B"},
+    {"start":2.94,"end":2.99,"value":"C"},
     {"start":2.99,"end":3.12,"value":"B"},
-    {"start":3.12,"end":3.16,"value":"C"},
-    {"start":3.16,"end":3.23,"value":"B"},
+    {"start":3.12,"end":3.17,"value":"C"},
+    {"start":3.17,"end":3.23,"value":"B"},
     {"start":3.23,"end":3.44,"value":"F"},
     {"start":3.44,"end":3.49,"value":"C"},
     {"start":3.49,"end":3.79,"value":"B"},
@@ -48,9 +48,9 @@
     "sourceScriptId": "explanation-cue-fork",
     "manualTimingEdits": false,
     "recording": {
-      "path": "frontend/src/audio/speech/bank/recordings/walter/explanation-cue-fork.mp3",
-      "sha256": "694baa2fac4ce1391ac20fc852c5d04a46c414709ba2c9db24d1b8323f3101d8",
-      "bytes": 63991
+      "path": "frontend/src/audio/speech/bank/recordings/walter/explanation-cue-fork.opus",
+      "sha256": "ee3fbb724ca1af7b9263a5ed78af768141a8aef9d816818969eb434d0f1b29ba",
+      "bytes": 13293
     },
     "script": {
       "planPath": "frontend/src/audio/speech/bank/manifest.json",
@@ -178,25 +178,25 @@
       "numpyVersion": "2.2.6",
       "inputChannels": 1,
       "channels": 1,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "sampleWidthBytes": 2,
-      "frames": 172872,
+      "frames": 188160,
       "durationSeconds": 3.92,
-      "method": "float64 MP3 decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
       "trimmed": false,
       "resampled": false,
-      "wavSha256": "283b0053fd61c60d0a20a0effd4417f9c7c6555da0687b8726cfbb21866787ee"
+      "wavSha256": "894eb8b01af073cfb57e3cd9edce92df8203a9f3e9bf75ba5c3d0d57ec1cc1a3"
     },
     "resampling": {
       "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
-      "sourceSampleRate": 44100,
+      "sourceSampleRate": 48000,
       "sampleRate": 16000,
       "sampleWidthBytes": 2,
       "channels": 1,
       "frames": 62720,
       "durationSeconds": 3.92,
       "trimmed": false,
-      "pcmSha256": "c445898d7c1b7fcbf1d4df86f64d0918f767f02edee645e005ce4f49a5e4be69"
+      "pcmSha256": "fc3b021d235f1c59e0df97331da65d69ae71d4331816460c37b240ccb1a8d1e4"
     },
     "alignment": {
       "frameRate": 100,
@@ -205,7 +205,7 @@
         {
           "word": "check",
           "startFrame": 0,
-          "durationFrames": 27,
+          "durationFrames": 26,
           "phones": [
             {
               "phone": "CH",
@@ -220,19 +220,19 @@
             {
               "phone": "K",
               "startFrame": 19,
-              "durationFrames": 8
+              "durationFrames": 7
             }
           ]
         },
         {
           "word": "forcing",
-          "startFrame": 27,
-          "durationFrames": 49,
+          "startFrame": 26,
+          "durationFrames": 50,
           "phones": [
             {
               "phone": "F",
-              "startFrame": 27,
-              "durationFrames": 11
+              "startFrame": 26,
+              "durationFrames": 12
             },
             {
               "phone": "AO",
@@ -264,7 +264,7 @@
         {
           "word": "moves",
           "startFrame": 76,
-          "durationFrames": 40,
+          "durationFrames": 41,
           "phones": [
             {
               "phone": "M",
@@ -279,24 +279,24 @@
             {
               "phone": "V",
               "startFrame": 99,
-              "durationFrames": 6
+              "durationFrames": 5
             },
             {
               "phone": "Z",
-              "startFrame": 105,
-              "durationFrames": 11
+              "startFrame": 104,
+              "durationFrames": 13
             }
           ]
         },
         {
           "word": "that",
-          "startFrame": 116,
-          "durationFrames": 15,
+          "startFrame": 117,
+          "durationFrames": 14,
           "phones": [
             {
               "phone": "DH",
-              "startFrame": 116,
-              "durationFrames": 5
+              "startFrame": 117,
+              "durationFrames": 4
             },
             {
               "phone": "AE",
@@ -424,12 +424,12 @@
             {
               "phone": "G",
               "startFrame": 286,
-              "durationFrames": 7
+              "durationFrames": 8
             },
             {
               "phone": "AH",
-              "startFrame": 293,
-              "durationFrames": 6
+              "startFrame": 294,
+              "durationFrames": 5
             },
             {
               "phone": "T",
@@ -451,12 +451,12 @@
             {
               "phone": "AE",
               "startFrame": 312,
-              "durationFrames": 4
+              "durationFrames": 5
             },
             {
               "phone": "T",
-              "startFrame": 316,
-              "durationFrames": 7
+              "startFrame": 317,
+              "durationFrames": 6
             }
           ]
         },
@@ -501,7 +501,7 @@
         }
       ]
     },
-    "alignmentSha256": "7b772a54405a11e7f993323e0af41973e12125640b81865f09a186b4226c959b",
+    "alignmentSha256": "02c4ec23d68ab3838aca3368aa0ada8cc0aca6232567fddd7f8e871ff5275360",
     "mapping": {
       "revision": "arpabet-mouth-v1",
       "phoneShapes": {
@@ -569,6 +569,6 @@
       "uncoveredFinalFrames": "rest; at most two analysis frames",
       "perClipOverrides": false
     },
-    "cueSha256": "386a69b44ce34c180c155816c084bac697ba677f5319e696690b760bb01ee35f"
+    "cueSha256": "d0046268e28909e82153ad0b2c9c5793abc6aca7a85593b4792a43cf35aa4630"
   }
 }
