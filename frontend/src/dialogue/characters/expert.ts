@@ -64,7 +64,7 @@ export const expert: CoachPersonality = {
     conversion: ["Advantage held from {earlier} through to the win by {side}, without being returned."],
     development: [{fact: "{lead}activates the {piece} from its original square."}],
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file."],
-    passed: [{fact: "{lead}produces passed pawns for {side} on {squares}. Criterion met: no enemy pawn ahead on those files or the adjacent ones."}],
+    passed: [{fact: "{lead}leaves {side} with passed pawns on {squares}. Criterion met: no enemy pawn ahead on those files or the adjacent ones."}],
     passer_advance: [{fact: "{lead}brings the passed pawn one step nearer promotion, onto {square}."}],
     isolated: ["{lead}produces isolated pawns for {side} on {squares}: the adjacent files hold no friendly pawn."],
     support: ["{lead}gives the {piece} on {square} a defender it lacked."],
