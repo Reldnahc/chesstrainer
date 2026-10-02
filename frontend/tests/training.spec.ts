@@ -406,7 +406,7 @@ test('review explanations replay the submitted move and return without another r
   await play(fixture.wrong);
   await expect(page.getByRole('heading', {name: 'Mistake.', exact: true})).toBeVisible();
   const originalBoard = await documentBox(board);
-  const originalHeader = await page.locator('header').boundingBox();
+  const originalHeader = await documentBox(page.locator('header'));
   await page.getByRole('button', {name: "Show me why"}).click();
   const dialog = page.getByRole('region', {name: 'Move explanation'});
   await expect(dialog.locator('.explanation-caption')).toContainText('In this line, White loses 5 points of material.');
@@ -423,7 +423,8 @@ test('review explanations replay the submitted move and return without another r
   const shownBoard = await documentBox(board);
   expect(shownBoard).toEqual(originalBoard);
   await expect(board).toHaveCSS('outline-style', 'none');
-  expect(await page.locator('header').boundingBox()).toEqual(originalHeader);
+  // The phone header scrolls with the page, so compare its place in the document.
+  expect(await documentBox(page.locator('header'))).toEqual(originalHeader);
   await expect(page.locator('.board-shell')).toHaveCount(1);
   if (testInfo.project.name === 'mobile') {
     const control = (await documentBox(returnButton))!;
