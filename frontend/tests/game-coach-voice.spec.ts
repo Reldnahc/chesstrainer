@@ -5,6 +5,7 @@ import type {Game} from "../src/gameReview/types";
 import {captureSpeech, speechActivity} from "./helpers/speech";
 import {selectGameOpener} from "../src/audio/speech/gameSelection";
 import walterBank from "../src/audio/speech/bank/manifest.json" with {type: "json"};
+import pilotAdditions from "../src/audio/speech/banks/pilot-additions.json" with {type: "json"};
 
 const walterOpener = walterBank.recordings.some(recording => recording.id === "game-review-opened");
 
@@ -141,10 +142,22 @@ test("a fresh review greets once and the first move replaces the greeting", asyn
   await expect(page.locator(".move-playback-counter")).toHaveText("0 / 1");
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
   expect((await speechActivity(page)).started[0]).toContain("/game-review-opened-");
+  // The bubble shows the spoken greeting, then the move's own text replaces it.
+  const greeting = pilotAdditions.recordings.find(row => row.id === "game-review-opened")!.walterText;
+  const bubble = page.locator(".coach-message > [data-utterance]");
+  await expect(bubble).toHaveText(greeting);
   await page.getByRole("button", {name: "Next move", exact: true}).click();
+  await expect(bubble).not.toHaveText(greeting);
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(2);
   expect((await speechActivity(page)).started[1]).toContain("/combo-recognized-opening-unusual-strong-");
   await page.getByRole("button", {name: "Previous move", exact: true}).click();
   await page.waitForTimeout(400);
   expect((await speechActivity(page)).started).toHaveLength(2);
+});
+
+test("without a recorded greeting the start keeps its own bubble text", async ({page}) => {
+  test.skip(walterOpener, "Walter's greeting is recorded; the greeting test covers the bubble.");
+  await voiceGame(page, humanGames.unusual_strong, 0);
+  await expect(page.locator(".coach-message > [data-utterance]"))
+    .toHaveText("Select a move or move a piece to explore an alternative.");
 });

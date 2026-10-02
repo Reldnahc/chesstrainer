@@ -96,6 +96,9 @@ export default function PositionCoach({
     error: !!errorAtPosition || game.job?.status === "failed"});
   const opener = openerId && coachRecording(utterance.coachId, openerId) ? openerId : null;
   const recordingId = opener ?? selected;
+  // While the greeting is the active line, the bubble shows what the coach says.
+  const greetingText = opener ? coachRecording(utterance.coachId, opener)?.text : undefined;
+  const greeting = greetingText ? {...utterance, id: `${utterance.id}:greeting`, text: greetingText, speechText: greetingText} : utterance;
   // A game can load before saved voice preferences. Holding the greeting until
   // they arrive keeps it a fresh event rather than consumed hydration.
   const preferencesReady = !!useOptionalCoachPreferences()?.ready && !!useOptionalAudioPreferences()?.ready;
@@ -165,7 +168,7 @@ export default function PositionCoach({
         speechContext={speechContext} speechScopeKey={`game:${positionKey}:human`}
         onManualSpeech={() => voice.consumeAutomatic(speechEventId)} />}
     >
-      <DialogueText utterance={utterance} />
+      <DialogueText utterance={greeting} />
       {errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}
     </ReviewCoach>
   );
