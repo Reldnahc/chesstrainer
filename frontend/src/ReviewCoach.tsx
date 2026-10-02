@@ -20,6 +20,7 @@ export default function ReviewCoach({
   messageResetKey,
   speech,
   voice,
+  compactLabel = false,
 }: {
   title: ReactNode;
   badge?: ReactNode;
@@ -34,6 +35,8 @@ export default function ReviewCoach({
   messageResetKey?: string;
   speech?: SpeechPlayback;
   voice?: CoachSpeechPresentation;
+  /** Size the title row to its text when the mode never shows an evaluation or voice control. */
+  compactLabel?: boolean;
 }) {
   const message = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -42,7 +45,7 @@ export default function ReviewCoach({
     if (messageResetKey !== undefined && message.current) message.current.scrollTop = 0;
   }, [messageResetKey]);
   return (
-    <section className="review-coach" aria-label="Chess coach">
+    <section className={compactLabel ? "review-coach review-coach--compact-label" : "review-coach"} aria-label="Chess coach">
       <div className="coach-portrait">
         {character ?? <CoachAvatar reaction={reaction} speech={voice?.speech ?? speech} speechTrack={voice?.speechTrack} />}
         {portraitCaption && (

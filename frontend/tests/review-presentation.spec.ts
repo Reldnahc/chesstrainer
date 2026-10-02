@@ -199,7 +199,7 @@ test('SRS shares animated coaching, stable actions and reduced-motion feedback w
     expect((await geometry(button)).width).toBeCloseTo(buttonWidth, 1);
   }
   expect(original.actions.top).toBeGreaterThanOrEqual(original.bubble.top + original.bubble.height);
-  expect(original.bubble.height).toBeLessThanOrEqual(136);
+  expect(original.bubble.height).toBeLessThanOrEqual(156);
   await expect(bubble.locator('.evaluation-score')).toHaveCount(0); // Cold SRS never reveals an evaluation.
   const beforeReviews = (await (await page.request.get('/api/stats')).json()).reviews;
   await page.screenshot({path: `test-results/srs-shared-cold-${testInfo.project.name}.png`, fullPage: true});

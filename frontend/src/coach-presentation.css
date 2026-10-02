@@ -1,6 +1,6 @@
 /* Coach feedback presentation shared with both development tools. */
 .review-coach {
-  --coach-height: 116px;
+  --coach-height: 136px;
   --coach-avatar-width: 92.8px;
   display: grid;
   grid-template-columns: var(--coach-avatar-width) minmax(0, 1fr);
@@ -50,6 +50,11 @@
   border-radius: 10px;
   padding: 12px 14px;
   background: #242d28;
+}
+.review-coach--compact-label .coach-speech {
+  /* Lessons have no evaluation or voice control, so the title row fits the
+     title and leaves the rest of the fixed bubble to the explanation. */
+  grid-template-rows: auto minmax(0, 1fr);
 }
 .coach-speech::before {
   content: "";
@@ -338,7 +343,7 @@
 }
 @media (max-width: 760px) {
   .review-coach {
-    --coach-height: 136px;
+    --coach-height: 156px;
     --coach-avatar-width: 52.5px;
     gap: 8px;
   }
@@ -370,7 +375,7 @@
 }
 @container (max-width: 440px) {
   .review-coach {
-    --coach-height: 136px;
+    --coach-height: 156px;
     --coach-avatar-width: 52.5px;
     gap: 8px;
   }

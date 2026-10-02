@@ -132,7 +132,7 @@ select the first/last reviewed move. The graph has no separate move/navigation
 footer; use scrubbing or the main game controls to reach any ply, including positions
 still being reviewed. The coach keeps its label, message area, and action
 row in stable slots; longer explanations scroll inside the bubble. The desktop
-bubble and illustrated coach share a 116px height; narrow layouts use a 136px
+bubble and illustrated coach share a 136px height; narrow layouts use a 156px
 bubble with a smaller portrait. Actions stay outside the bubble in both review modes.
 On learner moves, a compact **Maia** insight sits at the bottom-right inside the
 existing fixed-height coach bubble when saved human evidence supports one. Best
