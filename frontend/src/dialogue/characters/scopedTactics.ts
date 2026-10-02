@@ -104,3 +104,18 @@ export const alienTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "With {capture}, a {piece} would fall.", followup: "One line of play goes on with {capture}, removing a {piece}."},
   playedCapture: {fact: "{move} contains a {motif}.", consequence: "{capture} removes a {piece}."},
 });
+
+export const wizardTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "With {move}, a familiar pattern takes its place on the board: a {motif}.",
+    played_possible: "{move} prepares a {motif}, though the replies will decide whether the pattern completes.",
+    allowed_immediate: "{opponent} can answer with {action}, and the pattern waiting there is a {motif}.",
+    allowed_possible: "A {motif} may later become available to {opponent}; whether the pattern forms depends on the replies.",
+    missed_immediate: "The pattern lay in {best}: a {motif}.",
+    missed_possible: "{best} might have led to a {motif}, had the replies allowed the pattern to form.",
+  },
+  fork: {actual: "One piece now strikes the {targets} together, the fork in its plainest form.", possible: "From one square, the {targets} would be attacked at once."},
+  material: "There may be a {gain} where the pattern ends, though both sides still have moves to choose.",
+  capture: {candidate: "{capture} would take a {piece} from the board.", followup: "Should play continue that way, {capture} may follow, collecting a {piece}."},
+  playedCapture: {fact: "The pattern behind {move} is a {motif}.", consequence: "{capture} lifts a {piece} from the board."},
+});
