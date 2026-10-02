@@ -124,7 +124,11 @@ shared `scopedTactics.ts` and `openingSequence.ts` blocks: a firm verdict first,
 then the concrete reason and its consequence, with sparing, earned approval for
 forcing play and exact defense and no questions. Ember also stays silent until a
 bank is registered.
-The other 16 voices retain their current wording and deterministic variants.
+Monty (gorilla) has opted in as well, with his forms in `characters/groundedQuiet.ts`
+and the shared tactic and opening blocks: one big concrete problem in plain
+words, the simple reason, then the result, with earnest, sparse approval and no
+questions. Monty also stays silent until a bank is registered.
+The other 15 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

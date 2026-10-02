@@ -181,3 +181,17 @@ export const dragonOpeningTemplates = {
   "book-opening-follow-7": ["Theory has not run out yet in {opening}."],
   "book-opening-follow-8": ["One more move that theory already knows, in {opening}."],
 } as const;
+
+export const gorillaOpeningTemplates = {
+  "book-opening-entry-1": ["Simple point: this is a book move, from {opening}."],
+  "book-opening-entry-2": ["Opening books carry this move. The line is {opening}."],
+  "book-opening-entry-3": ["Book. Theory files this move under {opening}."],
+  "book-opening-follow-1": ["Still book: {opening}."],
+  "book-opening-follow-2": ["{opening} again, one more book move."],
+  "book-opening-follow-3": ["The answer comes out of {opening} too."],
+  "book-opening-follow-4": ["{opening}, still the known line."],
+  "book-opening-follow-5": ["More book from {opening}."],
+  "book-opening-follow-6": ["The book keeps going with {opening}."],
+  "book-opening-follow-7": ["The opening books still cover this part of {opening}."],
+  "book-opening-follow-8": ["Book again, in {opening}. Theory names the move; it does not grade it."],
+} as const;
