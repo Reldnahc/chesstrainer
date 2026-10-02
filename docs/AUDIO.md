@@ -321,8 +321,8 @@ is recast as an objective Best move.
 `PreparedSpeechClip` and `playRecordedSpeech` use the existing cancellable speech
 bus, with priority/interruptibility and quieter effects while narration plays.
 The shared `useCoachSpeech` adapter submits only the current supported recording.
-A game-review move has one Listen control and one spoken line: a second rendered
-claim never gets its own control, because a supported pairing is one combined clip.
+When a Maia-aware combined recording covers both visible claims, neither half is
+offered again as its own clip, so a move never repeats a line it just spoke.
 Selection and lifecycle checks happen again after asynchronous mouth/audio loads.
 Navigation, retry, changing coach, mute, hidden tabs and unmounting invalidate
 obsolete work. No playback backlog accumulates. Initial hydration, restored
