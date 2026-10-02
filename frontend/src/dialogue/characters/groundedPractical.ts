@@ -67,15 +67,15 @@ export const livingPawn: CoachPersonality = {
   templates: {
     ...livingPawnTacticalTemplates,
     ...livingPawnOpeningTemplates,
-    allowed_mate: [{reaction: "Oh, this one hurts.", fact: "{opponent} can force checkmate from here.", consequence: "{reply}", takeaway: "Check the king's escape squares before every move."}],
+    allowed_mate: [{reaction: "Oh, this one hurts.", fact: "{opponent} has a forced checkmate now.", consequence: "{reply}", takeaway: "Check the king's escape squares before every move."}],
     missed_mate: [{reaction: "Aw, the finish was right there!", fact: "{best} kept a forced mate, and this move lets it go.", takeaway: "When mate is available, nothing else on the board matters."}],
     tactic_played: [
       {reaction: "Now that's a piece earning its square!", fact: "{move} brings a {motif} into the searched line.", consequence: "{detail}"},
       {fact: "{move} puts a {motif} to work in the searched line.", consequence: "{detail}", question: "Which piece is doing the heavy lifting?"},
     ],
     tactic_allowed: [
-      {reaction: "Uh-oh, somebody left a gap.", fact: "{opponent} gets a {motif} in the strongest line.", consequence: "{detail}", takeaway: "Before moving, check what their pieces can reach."},
-      {fact: "This hands {opponent} a {motif} in the strongest line.", consequence: "{detail}"},
+      {reaction: "Uh-oh, somebody left a gap.", fact: "{opponent} picks up a {motif} in the strongest line.", consequence: "{detail}", takeaway: "Before moving, check what their pieces can reach."},
+      {fact: "That gives {opponent} a {motif} in the strongest line.", consequence: "{detail}"},
     ],
     tactic_missed: [
       {reaction: "There was a job nobody took here.", fact: "{best} had a {motif}, and this move passes it up.", consequence: "{detail}"},
@@ -114,7 +114,7 @@ export const livingPawn: CoachPersonality = {
     human_natural_best: ["The natural move and the engine's best are the same one here. I love it when the obvious job is the right job."],
     human_natural_strong: ["Natural, and strong too. The engine liked another move a bit more, but this one does plenty."],
     clock_low: ["{side} had just {seconds} seconds before this move. That's a lot of pressure on one decision."],
-    clock_fast: ["{side} took {elapsed} seconds, with {seconds} still on the clock. Quick off the mark."],
+    clock_fast: ["{side} needed only {elapsed} seconds, with {seconds} left over. Quick off the mark."],
     clock_long: ["{side} spent {elapsed} seconds on this one. A serious think."],
     book: ["This follows {opening}. Now we know which opening we're standing in."],
     book_sound: ["The move is part of {opening}, a recognized opening line."],
@@ -144,7 +144,7 @@ export const livingPawn: CoachPersonality = {
     cold: ["Look over the position and see what each piece is doing. Then pick your move."],
     thinking: ["Checking what your move does and how the opponent answers…"],
     unavailable: ["The engine couldn't check this position, so I can't tell you what each move does yet. Go ahead and try some moves anyway."],
-    practice_error: ["Hmm, nothing came back from that attempt. Give the move another go."],
+    practice_error: ["Hmm, I got nothing back on that attempt. Give the move another go."],
     retry: [
       {reaction: "Not quite, but don't quit on it.", fact: "That move doesn't solve the position.", takeaway: "Look again at what each piece is doing."},
       "That one doesn't solve it. Take another look; the answer's still on the board.",

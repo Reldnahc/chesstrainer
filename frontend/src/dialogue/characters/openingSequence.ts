@@ -83,3 +83,17 @@ export const slimeOpeningTemplates = {
   "book-opening-follow-7": ["Still on the known track with {opening}."],
   "book-opening-follow-8": ["Another move straight out of {opening}."],
 } as const;
+
+export const alienOpeningTemplates = {
+  "book-opening-entry-1": ["The catalogue has a name for this move: {opening}."],
+  "book-opening-entry-2": ["Opening theory gives this move a name: {opening}."],
+  "book-opening-entry-3": ["This move appears in the opening catalogue as {opening}."],
+  "book-opening-follow-1": ["Still within opening theory: {opening}."],
+  "book-opening-follow-2": ["The catalogue follows this move too, under {opening}."],
+  "book-opening-follow-3": ["Opening theory knew this one as well: {opening}."],
+  "book-opening-follow-4": ["The theoretical line continues: {opening}."],
+  "book-opening-follow-5": ["Charted ground still, in {opening}."],
+  "book-opening-follow-6": ["Once more, a move with an entry under {opening}."],
+  "book-opening-follow-7": ["The game keeps tracing the documented line of {opening}."],
+  "book-opening-follow-8": ["Deeper into {opening}, a move theory accounts for."],
+} as const;
