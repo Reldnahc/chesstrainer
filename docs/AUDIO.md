@@ -355,11 +355,13 @@ obsolete work. No playback backlog accumulates. Initial hydration, restored
 feedback, coach changes and background refinement are not fresh narration events.
 Opening an untouched review in-app at its starting position is the one exception:
 it speaks the coach's fact-free `game-review-opened` greeting once, after saved
-voice preferences load. A restored later move, a branch, a review error or a fresh
+voice preferences load and the review session has restarted (restarting begins a
+new analysis epoch, which would otherwise cancel the greeting). A restored later move, a branch, a review error or a fresh
 document without a prior gesture stays silent, and the first navigation replaces
 the greeting with that move's own line. While the greeting is the active line,
-the bubble shows its text. It is written for all 30 coaches and awaits recording;
-until a bank has its take, that coach stays silent there and keeps its own text.
+the bubble shows its text. It is written for all 30 coaches and recorded for
+Walter, Rivet, Winston and Button; until a bank has its take, that coach stays
+silent there and keeps its own text.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
 evidence can update visible text and the preferred recording without replaying

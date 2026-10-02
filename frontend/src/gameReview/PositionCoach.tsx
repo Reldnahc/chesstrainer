@@ -99,11 +99,13 @@ export default function PositionCoach({
   // While the greeting is the active line, the bubble shows what the coach says.
   const greetingText = opener ? coachRecording(utterance.coachId, opener)?.text : undefined;
   const greeting = greetingText ? {...utterance, id: `${utterance.id}:greeting`, text: greetingText, speechText: greetingText} : utterance;
-  // A game can load before saved voice preferences. Holding the greeting until
-  // they arrive keeps it a fresh event rather than consumed hydration.
+  // A game can load before saved voice preferences, and opening a finished
+  // review restarts its session, which begins a new analysis epoch and so a new
+  // speech scope. Holding the greeting until both settle keeps it a fresh event
+  // rather than consumed hydration or a line cancelled by the scope change.
   const preferencesReady = !!useOptionalCoachPreferences()?.ready && !!useOptionalAudioPreferences()?.ready;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
-    automaticEventId: speechOpening && !preferencesReady ? null : speechEventId, ready: !speechPending,
+    automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId, ready: !speechPending,
     manualRecordingIds: [primaryId, plainId].filter((id): id is string => !!id)});
   return (
     <ReviewCoach

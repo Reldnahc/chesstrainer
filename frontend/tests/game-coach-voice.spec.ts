@@ -123,6 +123,11 @@ test("a fresh review greets once and the first move replaces the greeting", asyn
     enabled: true, volume: .35, board: false, practice: false, voice: "automatic",
   }}));
   await page.route(`**/api/games/${game.id}`, route => route.fulfill({json: game}));
+  // Opening a finished review restarts its session, as a real server accepts.
+  await page.route(`**/api/games/${game.id}/review`, async route => {
+    await new Promise(resolve => setTimeout(resolve, 100));
+    await route.fulfill({json: {job_id: game.job!.id, status: "completed"}});
+  });
   // A fresh document cannot autoplay. Open the review in-app after a real gesture,
   // as from the game library.
   await page.goto("/");
@@ -134,6 +139,8 @@ test("a fresh review greets once and the first move replaces the greeting", asyn
   await expect(page.locator(".move-playback-counter")).toHaveText("0 / 1");
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
   expect((await speechActivity(page)).started[0]).toContain("/game-review-opened-");
+  await page.waitForTimeout(400);
+  expect((await speechActivity(page)).stopped).toHaveLength(0);
   // The bubble shows the spoken greeting, then the move's own text replaces it.
   const greeting = pilotAdditions.recordings.find(row => row.id === "game-review-opened")!.walterText;
   const bubble = page.locator(".coach-message > [data-utterance]");
