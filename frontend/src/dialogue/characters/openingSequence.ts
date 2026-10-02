@@ -56,6 +56,20 @@ export const robotOpeningTemplates = {
   "book-opening-follow-8": ["Opening match maintained with this move: {opening}."],
 } as const;
 
+export const slimeOpeningTemplates = {
+  "book-opening-entry-1": ["This one's in the opening book: {opening}."],
+  "book-opening-entry-2": ["We've a name for this opening: {opening}."],
+  "book-opening-entry-3": ["This move comes straight from the opening book. It's part of {opening}."],
+  "book-opening-follow-1": ["Still in the book, still {opening}."],
+  "book-opening-follow-2": ["And another known move, in {opening}."],
+  "book-opening-follow-3": ["On we go, still following {opening}."],
+  "book-opening-follow-4": ["The book's got this one too: {opening}."],
+  "book-opening-follow-5": ["Yep, this move's listed too, in {opening}."],
+  "book-opening-follow-6": ["The opening book keeps up with us here: {opening}."],
+  "book-opening-follow-7": ["Still on the known track with {opening}."],
+  "book-opening-follow-8": ["Another move straight out of {opening}."],
+} as const;
+
 export const alienOpeningTemplates = {
   "book-opening-entry-1": ["The catalogue has a name for this move: {opening}."],
   "book-opening-entry-2": ["Opening theory gives this move a name: {opening}."],

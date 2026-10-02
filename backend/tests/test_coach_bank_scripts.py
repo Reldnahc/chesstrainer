@@ -8,7 +8,7 @@ import pytest
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
 # Each new voice owns one complete script source; Walter/Rivet text fields stay theirs.
-AUTHORED = [("capybara", "winston"), ("mushroom", "button"), ("ghost", "wisp"), ("alien", "ziggy")]
+AUTHORED = [("capybara", "winston"), ("mushroom", "button"), ("ghost", "wisp"), ("slime", "pip"), ("alien", "ziggy")]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = ["ziggy"]
 
