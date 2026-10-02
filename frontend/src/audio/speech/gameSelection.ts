@@ -157,12 +157,12 @@ function legalReplyRecording(item: Claim, {frame, report}: WalterGameSpeechConte
   return "game-explanation-legal-reply";
 }
 
-/** One greeting when an untouched review opens at the start. It carries no game
- * facts, so it never stands in for a move, a variation, an error or a result. */
-export function selectGameOpener({opening, ply, variation = false, report, frame, error}: {
-  opening: boolean; ply: number; variation?: boolean; report?: Report | null; frame?: Position | null; error?: boolean;
+/** The mainline start's greeting. It carries no game facts, so it never stands
+ * in for a move, a variation, an error or a result. */
+export function selectGameOpener({ply, variation = false, report, frame, error}: {
+  ply: number; variation?: boolean; report?: Report | null; frame?: Position | null; error?: boolean;
 }): string | null {
-  return opening && ply === 0 && !variation && !report && !error && !!frame && !frame.termination
+  return ply === 0 && !variation && !report && !error && !!frame && !frame.termination
     ? "game-review-opened" : null;
 }
 

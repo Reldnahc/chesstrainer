@@ -104,17 +104,16 @@ test("a variation waits for its own analysis and leaving it cancels the pending 
   } finally { release(); }
 });
 
-test("only an untouched review at the start selects the fact-free opener", () => {
+test("only the mainline start selects the fact-free opener", () => {
   const game = humanGames.unusual_strong, frame = game.frames[0], report = game.frames[1].report;
-  expect(selectGameOpener({opening: true, ply: 0, frame})).toBe("game-review-opened");
+  expect(selectGameOpener({ply: 0, frame})).toBe("game-review-opened");
   for (const context of [
-    {opening: false, ply: 0, frame}, {opening: true, ply: 1, frame}, {opening: true, ply: 0, frame, variation: true},
-    {opening: true, ply: 0, frame, report}, {opening: true, ply: 0, frame, error: true}, {opening: true, ply: 0, frame: null},
-    {opening: true, ply: 0, frame: {...frame, termination: "checkmate"}},
+    {ply: 1, frame}, {ply: 0, frame, variation: true}, {ply: 0, frame, report}, {ply: 0, frame, error: true},
+    {ply: 0, frame: null}, {ply: 0, frame: {...frame, termination: "checkmate"}},
   ]) expect(selectGameOpener(context)).toBeNull();
 });
 
-test("a fresh review greets once and the first move replaces the greeting", async ({page}) => {
+test("a fresh review greets, the first move replaces it and returning to the start greets again", async ({page}) => {
   test.skip(!walterOpener, "Walter's game-review opener is written but not yet recorded.");
   const game = humanGames.unusual_strong;
   await captureSpeech(page);
@@ -149,9 +148,11 @@ test("a fresh review greets once and the first move replaces the greeting", asyn
   await expect(bubble).not.toHaveText(greeting);
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(2);
   expect((await speechActivity(page)).started[1]).toContain("/combo-recognized-opening-unusual-strong-");
+  // The start keeps one line: returning there shows and speaks the greeting again.
   await page.getByRole("button", {name: "Previous move", exact: true}).click();
-  await page.waitForTimeout(400);
-  expect((await speechActivity(page)).started).toHaveLength(2);
+  await expect(bubble).toHaveText(greeting);
+  await expect.poll(async () => (await speechActivity(page)).started.length).toBe(3);
+  expect((await speechActivity(page)).started[2]).toContain("/game-review-opened-");
 });
 
 test("without a recorded greeting the start keeps its own bubble text", async ({page}) => {
