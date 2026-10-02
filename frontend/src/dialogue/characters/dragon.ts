@@ -28,7 +28,7 @@ export const dragon: CoachPersonality = {
     ],
     missed_mate: [
       {reaction: "A forced finish existed, and it was let go.", fact: "The forced mate ran through {best}, and this move abandons it."},
-      {fact: "Mate was there by force with {best}. Here that finish is thrown away.", takeaway: "When the enemy king is trapped, calculate every check to the end."},
+      {fact: "Mate by force ran through {best}. Here that finish is thrown away.", takeaway: "When the enemy king is trapped, calculate every check to the end."},
     ],
     tactic_played: [
       {reaction: "This move has teeth.", fact: "{move} is armed with a {motif} in the engine's line.", consequence: "{detail}"},
@@ -43,18 +43,18 @@ export const dragon: CoachPersonality = {
       {fact: "The {motif} with {best} goes unused. {detail}", takeaway: "Look at the forcing moves first, every time."},
     ],
     cause_abandoned_defender: [
-      {reaction: "Every defender has a duty.", fact: "{move} strips {side}'s {piece} on {square} of its only unpinned defender.", consequence: "{opponent} can collect it with {reply}."},
+      {reaction: "Every defender has a duty.", fact: "{side}'s {piece} on {square} had only one unpinned defender, and {move} drags it away.", consequence: "{opponent} can win it outright with {reply}."},
       {fact: "{move} abandons {side}'s {piece} on {square} by moving its only unpinned defender.", consequence: "{opponent} can take it at once: {reply}.", takeaway: "Know what a piece protects before you move it."},
     ],
     cause_opponent_threat_recognition: [
-      {reaction: "The threat was already on the board.", fact: "{move} does not answer the attack on {side}'s {piece} on {square} that the opponent's preceding move created.", consequence: "{opponent} can punish that with {reply}.", takeaway: "Check what the last move threatens before you make your own."},
+      {reaction: "The threat was already on the board.", fact: "{move} ignores the attack on {side}'s {piece} on {square}, set up by the opponent's preceding move.", consequence: "{opponent} can punish that with {reply}.", takeaway: "Check what the last move threatens before you make your own."},
     ],
     cause_avoiding_bad_trades: [
       {reaction: "Count an exchange to its last capture.", fact: "With {move}, {side}'s {piece} goes for a mere {captured}.", consequence: "{opponent} can recapture at once with {reply}."},
     ],
     sacrifice: [
-      {reaction: "A bold offer, and a sound one.", fact: "Accepted or not, the sacrifice is sound."},
-      {fact: "Accepting it changes nothing; the idea survives.", takeaway: "Material given for a real reason is not material wasted."},
+      {reaction: "A bold offer, and a sound one.", fact: "Take the material, and in the searched line the offer is justified."},
+      {fact: "Accept it, and the searched line still backs the idea.", takeaway: "Material given for a real reason is not material wasted."},
     ],
     only_move: [
       {reaction: "Exact defense. I respect that.", fact: "This held; every other searched move lost."},
@@ -67,7 +67,7 @@ export const dragon: CoachPersonality = {
     ],
     good: ["Sound, not best. The bulk of the position's value survives.", "A sound move; it gives away only a little. Not the sharpest, but sound."],
     loss: [
-      {fact: "The cost is {loss} pawns of evaluation against the best move.", takeaway: "Find what the reply exploits, and you will know the cost."},
+      {fact: "Against the best move, the price is {loss} pawns of evaluation.", takeaway: "Find what the reply exploits, and you will know the cost."},
       "{loss} pawns of evaluation separate this from the best move. That gap is the price of this choice.",
     ],
     alternative: ["The stronger choice was {best}, at {evaluation} for the mover. Set it beside the move that was played."],
@@ -96,7 +96,7 @@ export const dragon: CoachPersonality = {
     rook_file: ["{lead}leaves {side}'s rook on a {kind} {file}-file. Know what that file offers the rook."],
     passed: ["{lead}leaves {side} with passed pawns on {squares}; their paths and the neighboring files ahead are free of enemy pawns."],
     passer_advance: ["{lead}advances the passed pawn to {square}, one step nearer promotion."],
-    isolated: ["{lead}isolates {side}'s pawns on {squares}; no friendly pawn stands on a neighboring file to support them."],
+    isolated: ["{lead}isolates {side}'s pawns on {squares}, with the files on both sides empty of friendly pawns."],
     support: ["{lead}covers the {piece} on {square}; it is no longer alone."],
     unsupported: ["{lead}strands the {piece} on {square}; nothing guards it now. That alone does not lose it; calculate the capture before you decide."],
     flights: ["{lead}gives the king a legal flight square on {squares}."],
@@ -105,7 +105,7 @@ export const dragon: CoachPersonality = {
     doubled: ["{lead}doubles up {side}'s pawns; files {files} are affected. Two pawns on one file cannot guard each other."],
     clock_low: ["Only {seconds} seconds remained for {side} at this point. Judge it with that pressure in view."],
     clock_fast: ["{side} took {elapsed} seconds here and still had {seconds} seconds left. Speed has to be paid for with accuracy."],
-    clock_long: ["{side} spent a full {elapsed} seconds here. Long thought is worth it when it finds the answer."],
+    clock_long: ["{elapsed} seconds of thought went into this move for {side}. Long thought is worth it when it finds the answer."],
     mate_win: ["Checkmate; the attack is finished and the king is out of moves.", "Mate, and every square is shut. A finish worth respecting."],
     mate_loss: ["Mate against your king; every square is shut. Return to the defense and find where it gave way."],
     draw: ["A draw. A result does not grade the moves; review them anyway."],

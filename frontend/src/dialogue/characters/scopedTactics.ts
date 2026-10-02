@@ -175,7 +175,7 @@ export const dragonTacticalTemplates = authorTacticalWordings({
     missed_possible: "{best} could have built toward a {motif}, replies permitting.",
   },
   fork: {actual: "The {targets} now sit under one piece's attack.", possible: "From a single square, the {targets} would be attacked by that one piece."},
-  material: "A {gain} may be the reward, but only if both sides' next choices allow it.",
+  material: "A {gain} may be there in the end, but the remaining choices on both sides decide that.",
   capture: {candidate: "{capture} is there, and a {piece} would fall to it.", followup: "If play runs that way, a {piece} falls to {capture}."},
   playedCapture: {fact: "{move} is built on a {motif}.", consequence: "A {piece} falls to {capture}."},
 });

@@ -152,7 +152,7 @@
     {
       "id": "tactic-hanging-piece-allowed",
       "group": "game_review",
-      "text": "A piece is left hanging, and the other side can help itself. Every piece must be accounted for before a move is made."
+      "text": "A piece is left hanging, and the other side can take it for free. Every piece must be accounted for before a move is made."
     },
     {
       "id": "cause-abandoned-defender",
@@ -172,7 +172,7 @@
     {
       "id": "positional-development-actual",
       "group": "game_review",
-      "text": "Development: a minor piece is off its home square and working. A piece left at home does no work."
+      "text": "Development: a minor piece is out and in the fight. A piece left at home does no work."
     },
     {
       "id": "positional-development-alternative",
@@ -197,7 +197,7 @@
     {
       "id": "positional-rook-semi-open-alternative",
       "group": "game_review",
-      "text": "A semi-open file was available for a rook with a different move: none of its own pawns there, but an enemy pawn to press."
+      "text": "A semi-open file was available for a rook with a different move: clear of friendly pawns, with an enemy pawn as a target."
     },
     {
       "id": "positional-passed-actual",
@@ -547,7 +547,7 @@
     {
       "id": "explanation-frame-quiet-move-ordinary",
       "group": "srs_explanations",
-      "text": "Here is the next move. See exactly what it changes."
+      "text": "The next move is on the board. See exactly what it changes."
     },
     {
       "id": "explanation-frame-quiet-move-check",
@@ -577,7 +577,7 @@
     {
       "id": "explanation-frame-quiet-promotion-escape",
       "group": "srs_explanations",
-      "text": "The pawn promotes, and in the same move its own king steps out of check."
+      "text": "Promotion, and with it the king is released from check."
     },
     {
       "id": "explanation-frame-capture-move-ordinary",
@@ -782,7 +782,7 @@
     {
       "id": "explanation-note-curated-authority",
       "group": "srs_explanations",
-      "text": "The saved answers are the standard here. A different legal move can still be good chess; it simply is not what this exercise asks for."
+      "text": "The saved answers are the standard here. Other legal moves may be perfectly good chess; it simply is not what this exercise asks for."
     },
     {
       "id": "explanation-note-strong-replies",
@@ -1109,7 +1109,7 @@
       "group": "game_review",
       "primary": "tactic-fork-played",
       "secondary": "human-natural-best",
-      "text": "A fork: one attacker, and more targets than the defense can protect at once. The human-move model calls it natural, and no move beats it in the engine's search. The obvious move and the right move are the same here."
+      "text": "A fork: one attacker, and several targets for the defense to worry about. The human-move model calls it natural, and no move beats it in the engine's search. The obvious move and the right move are the same here."
     },
     {
       "id": "combo-tactic-fork-played-natural-strong",
@@ -1431,7 +1431,7 @@
       "group": "game_review",
       "primary": "tactic-double-attack-played",
       "secondary": "human-hard-find",
-      "text": "Two threats at once, and only one can be met. A double attack, and the engine's best. The human-move model and the searched alternatives say it was hard to find. That is forcing chess."
+      "text": "Two threats at once, and the defense has to answer both. A double attack, and the engine's best. The human-move model and the searched alternatives say it was hard to find. That is forcing chess."
     },
     {
       "id": "combo-tactic-double-attack-played-unusual-strong",
@@ -1599,7 +1599,7 @@
       "group": "game_review",
       "primary": "positional-development-actual",
       "secondary": "human-hard-find",
-      "text": "A minor piece comes off its starting square and into play. The human-move model and the alternatives checked mark this as a hard move to find. Good development is not always the obvious kind."
+      "text": "Development, with a minor piece brought out. The human-move model and the alternatives checked mark this as a hard move to find. Good development is not always the obvious kind."
     },
     {
       "id": "combo-positional-development-actual-unusual-strong",
@@ -1683,7 +1683,7 @@
       "group": "game_review",
       "primary": "positional-passed-actual",
       "secondary": "human-hard-find",
-      "text": "A passed pawn now: its path and both neighboring files ahead are clear of enemy pawns. The human-move model marks the move as hard to find. A passed pawn is worth the effort."
+      "text": "The pawn is passed: its path and both neighboring files ahead are clear of enemy pawns. The human-move model marks the move as hard to find. A passed pawn is worth the effort."
     },
     {
       "id": "combo-positional-passed-actual-unusual-strong",
@@ -1893,7 +1893,7 @@
       "group": "game_review",
       "primary": "positional-bishop-pair-actual",
       "secondary": "human-natural-best",
-      "text": "The opponent loses the bishop pair with this capture. It is natural to the human-move model and the engine's first choice. Now build on it."
+      "text": "The opponent loses the bishop pair with this capture. It is natural to the human-move model and the engine's first choice. Now exploit it."
     },
     {
       "id": "combo-positional-bishop-pair-actual-natural-strong",
