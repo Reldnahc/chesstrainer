@@ -13,7 +13,9 @@ club analyst), Jun (Senior master), Arjun (Chennai club mentor), Tamar (Tbilisi
 mentor), Marisol (Havana observer), Réka (Budapest attacker), Mateo (Bright Buenos
 Aires) and Tala (Bright Manila solver). The owner judged Ingrid's **Oslo easygoing**
 very close; round one is archived in `archive/round-1-ingrid.json` and replaced by
-three close variations on it (warm, bright and grounded). Each direction is voiced from
+three close variations on it. Those (warm, bright and grounded, in
+`archive/round-2-ingrid.json`) did not sound like women, so round three states a
+woman's voice explicitly: **Oslo woman, warm**, **bright** and **soft**. Each direction is voiced from
 the coach's chess home region in [COACH.md](../../../../../docs/COACH.md#human-home-regions).
 Mateo's and Tala's briefs describe the sound of the character's own voice (high,
 light, small, bright) and never name an age: the provider rejects briefs about
