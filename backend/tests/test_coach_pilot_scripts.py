@@ -5,6 +5,8 @@ import re
 from pathlib import Path
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
+# Written for both voices and recorded with the next voice pass; remove once recorded.
+AWAITING_RECORDING = {"game-review-opened"}
 
 
 def read(path):
@@ -46,7 +48,8 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         manifest = read(path)
         records = {row["id"]: row for row in manifest["recordings"]}
         assert manifest["coachId"] == coach
-        assert records.keys() == original.keys() | extras.keys() == catalogue.keys()
+        assert original.keys() | extras.keys() == catalogue.keys()
+        assert records.keys() == catalogue.keys() - AWAITING_RECORDING
         for key, row in records.items():
             assert row["group"] == catalogue[key]["group"]
             if key in extras:

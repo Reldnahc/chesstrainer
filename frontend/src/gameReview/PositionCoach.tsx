@@ -12,9 +12,11 @@ import { useDialogue } from "../dialogue/useDialogue";
 import {humanInsightIntent} from "../dialogue/humanClaims";
 import DialogueText from "../dialogue/DialogueText";
 import HumanInsight from "./HumanInsight";
-import {selectGameSpeech} from "../audio/speech/gameSelection";
+import {selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import {coachRecording} from "../audio/speech/voiceBank";
+import {useOptionalAudioPreferences} from "../audio/AudioProvider";
+import {useOptionalCoachPreferences} from "../coach/CoachProvider";
 
 export default function PositionCoach({
   game,
@@ -35,6 +37,7 @@ export default function PositionCoach({
   variation,
   speechPending = false,
   speechEventId,
+  speechOpening = false,
 }: {
   game: Game;
   report?: Report | null;
@@ -54,6 +57,7 @@ export default function PositionCoach({
   variation: boolean;
   speechPending?: boolean;
   speechEventId?: string;
+  speechOpening?: boolean;
 }) {
   const reaction = gameReaction({
     key: positionKey,
@@ -86,9 +90,17 @@ export default function PositionCoach({
   const {primaryId} = speech;
   // Late Maia must not cut off the bubble's own line that is already playing.
   const plainId = explaining ? null : selectGameSpeech(selection).recordingId;
-  const recordingId = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
-  const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance,
-    automaticEventId: speechEventId, ready: !speechPending,
+  const selected = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
+  // The greeting is its own recording, so the bubble's no-report prose does not gate it.
+  const openerId = selectGameOpener({opening: speechOpening && !speechPending, ply, variation, report, frame,
+    error: !!errorAtPosition || game.job?.status === "failed"});
+  const opener = openerId && coachRecording(utterance.coachId, openerId) ? openerId : null;
+  const recordingId = opener ?? selected;
+  // A game can load before saved voice preferences. Holding the greeting until
+  // they arrive keeps it a fresh event rather than consumed hydration.
+  const preferencesReady = !!useOptionalCoachPreferences()?.ready && !!useOptionalAudioPreferences()?.ready;
+  const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
+    automaticEventId: speechOpening && !preferencesReady ? null : speechEventId, ready: !speechPending,
     manualRecordingIds: [primaryId, plainId].filter((id): id is string => !!id)});
   return (
     <ReviewCoach
