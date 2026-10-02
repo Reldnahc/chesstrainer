@@ -71,7 +71,7 @@
       "primary": "tactic-fork-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "The defense that could have held was hard to find. This move instead gives the other side a chance to set up a fork. Let's look back for the only playable choice we found.",
-      "rivetText": "Issue: the opponent can work toward a fork, attacking several targets with one piece. Playable defenses found: one. It was missed. Human-model detection estimate: low."
+      "rivetText": "Issue: the opponent can work toward a fork, attacking several targets with one piece. Playable defenses found: one. Defense status: missed. Human-model detection estimate: low."
     },
     {
       "id": "combo-tactic-fork-missed-natural-error",
@@ -239,7 +239,7 @@
       "primary": "tactic-removing-defender-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "This gives the other side a chance to capture a defender. The move that could have held was difficult to find, but it was the only playable option we found. Compare it before moving on.",
-      "rivetText": "Issue: the opponent can target a defender for capture. What it guards could lose protection. Only one alternative stayed playable in the search. It was missed. Find-rate forecast: low."
+      "rivetText": "Issue: the opponent can target a defender for capture. What it guards could lose protection. Only one alternative stayed playable in the search. Defense status: missed. Find-rate forecast: low."
     },
     {
       "id": "combo-tactic-removing-defender-missed-natural-error",
@@ -607,7 +607,7 @@
       "primary": "tactic-hanging-piece-allowed",
       "secondary": "human-hard-defense-missed",
       "walterText": "This offers the other side a chance to capture an undefended piece. The only playable defense we found was difficult to see. Compare that resource before following the capture idea.",
-      "rivetText": "Issue: a loose piece could be captured by the opponent. The search found only one alternative that kept the position playable. It was missed. Defensive find-rate forecast: low."
+      "rivetText": "Issue: a loose piece could be captured by the opponent. The search found only one alternative that kept the position playable. Defense status: missed. Defensive find-rate forecast: low."
     },
     {
       "id": "combo-positional-development-actual-hard-find",
@@ -703,7 +703,7 @@
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-natural-strong",
       "walterText": "A rook is on a semi-open file, with enemy pawns there but none of its own. The move looks natural to the human-move model and is strong by the engine's measure, although the engine prefers another choice.",
-      "rivetText": "Rook file status: half-open, with enemy pawns and no friendly pawns. Human-model bit: natural. Engine index: strong. Engine first choice: a different move."
+      "rivetText": "File reading: half-open, with enemy pawns and no friendly pawns. Human-model bit: natural. Engine index: strong. Engine first choice: a different move."
     },
     {
       "id": "combo-positional-passed-actual-hard-find",
@@ -711,7 +711,7 @@
       "primary": "positional-passed-actual",
       "secondary": "human-hard-find",
       "walterText": "This move leaves a passed pawn with no enemy pawn ahead on its file or neighboring files. The human-move model and examined alternatives suggest the move was hard to find. Take a moment to look back at the choice.",
-      "rivetText": "Passed pawn created. Enemy pawns able to stop it by pawn: zero. Find difficulty: high, per human-model and search data."
+      "rivetText": "Status: passed pawn. Enemy pawns able to stop it by pawn: zero. Find difficulty: high, per human-model and search data."
     },
     {
       "id": "combo-positional-passed-actual-unusual-strong",
@@ -775,7 +775,7 @@
       "primary": "positional-isolated-actual",
       "secondary": "human-hard-find",
       "walterText": "An isolated pawn now has no friendly pawn on either neighboring file. The human-move model and examined alternatives suggest this move was hard to find. Take a moment over the change in structure.",
-      "rivetText": "Isolated pawn created. Friendly pawns on adjacent files: zero. Difficulty rating, per the human-move model and examined alternatives: high."
+      "rivetText": "Status: isolated pawn. Friendly pawns on adjacent files: zero. Difficulty rating, per the human-move model and examined alternatives: high."
     },
     {
       "id": "combo-positional-isolated-actual-unusual-strong",
@@ -999,7 +999,7 @@
       "primary": "allowed-mate",
       "secondary": "human-hard-defense-missed",
       "walterText": "This lets the other side force checkmate. We found one playable defense, but the human-move model and the alternatives suggest it was hard to find. Go back to that choice before following the finish.",
-      "rivetText": "Issue: forced mate for the opponent. A defense existed, but only one searched move stayed playable. It was missed. Human-model evidence suggests a difficult resource."
+      "rivetText": "Issue: forced mate for the opponent. A defense existed, but only one searched move stayed playable. Defense status: missed. Human-model evidence suggests a difficult resource."
     },
     {
       "id": "combo-missed-mate-hard-defense-missed",
@@ -1839,7 +1839,7 @@
       "primary": "book-opening-follow-8",
       "secondary": "human-natural-best",
       "walterText": "Another book move, and independently the engine's best. The human model sees it as natural too. The search supplies that evaluation, rather than the opening label.",
-      "rivetText": "Book move, confirmed again. Natural in the human model and best in the engine search. The played move satisfies both checks."
+      "rivetText": "Opening database match: repeated. Natural in the human model and best in the engine search. The played move satisfies both checks."
     },
     {
       "id": "combo-book-opening-follow-8-natural-strong",
