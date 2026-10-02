@@ -116,6 +116,6 @@ export const raccoonTacticalTemplates = authorTacticalWordings({
   },
   fork: {actual: "One piece now has its eye on the {targets} at once.", possible: "The {targets} would be attacked, every one of them by the same piece."},
   material: "There may be a {gain} to collect at the end, though nothing's collected until both sides have made their moves.",
-  capture: {candidate: "{capture} would pick off a {piece}.", followup: "If things go that way, {capture} could collect a {piece} later."},
-  playedCapture: {fact: "{move} cashes in on a {motif}.", consequence: "{capture} collects a {piece}."},
+  capture: {candidate: "{capture} would snag a {piece} on the spot.", followup: "If things go that way, {capture} could collect a {piece} later."},
+  playedCapture: {fact: "{move} cashes in on a {motif}.", consequence: "With {capture}, a {piece} goes in the bag."},
 });
