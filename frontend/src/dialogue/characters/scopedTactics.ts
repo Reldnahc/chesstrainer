@@ -115,7 +115,7 @@ export const wizardTacticalTemplates = authorTacticalWordings({
     missed_possible: "{best} might have led to a {motif}, had the replies allowed the pattern to form.",
   },
   fork: {actual: "One piece now strikes the {targets} together, the fork in its plainest form.", possible: "From one square, the {targets} would be attacked at once."},
-  material: "There may be a {gain} where the pattern ends, though both sides still have moves to choose.",
+  material: "A {gain} may be waiting where the pattern ends, though both sides still have moves to choose.",
   capture: {candidate: "{capture} would take a {piece} from the board.", followup: "Should play continue that way, {capture} may follow, collecting a {piece}."},
   playedCapture: {fact: "The pattern behind {move} is a {motif}.", consequence: "{capture} lifts a {piece} from the board."},
 });

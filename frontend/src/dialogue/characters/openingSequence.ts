@@ -105,7 +105,7 @@ export const wizardOpeningTemplates = {
   "book-opening-follow-1": ["The literature continues: {opening}."],
   "book-opening-follow-2": ["Another page of {opening}."],
   "book-opening-follow-3": ["The reply, too, is recorded theory in {opening}."],
-  "book-opening-follow-4": ["Still on charted ground in {opening}."],
+  "book-opening-follow-4": ["Still on the well-trodden road of {opening}."],
   "book-opening-follow-5": ["{opening} continues along its recorded path."],
   "book-opening-follow-6": ["The book keeps an entry for this move as well, in {opening}."],
   "book-opening-follow-7": ["Still within the recorded theory of {opening}."],
