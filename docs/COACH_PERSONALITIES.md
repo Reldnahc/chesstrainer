@@ -149,7 +149,11 @@ also stays silent until a bank is registered.
 Fergus (frog) has opted in too, with his forms in `characters/groundedQuiet.ts`:
 one flat report of the fact with a dry, side-neutral tail at most, no questions
 and no exclamation marks. Fergus also stays silent until a bank is registered.
-The other 10 voices retain their current wording and deterministic variants.
+Tamar (`woman-captain`) has opted in as well, in `characters/captain.ts`: a
+firm verdict, the concrete reason, then one habit to build, with open mentor
+pride kept to the learner's own moves, plain-clip lines that name no owner,
+and no questions. Tamar also stays silent until a bank is registered.
+The other 9 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet

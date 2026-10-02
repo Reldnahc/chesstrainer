@@ -104,12 +104,13 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/juniper/scripts.json`, coach `cat-black`), Waffles
 (`banks/waffles/scripts.json`, coach `dog-corgi`), Celeste
 (`banks/celeste/scripts.json`, coach `unicorn`), Jun
-(`banks/jun/scripts.json`, coach `man-expert`) and Fergus
-(`banks/fergus/scripts.json`, coach `frog`) each have complete authored
+(`banks/jun/scripts.json`, coach `man-expert`), Fergus
+(`banks/fergus/scripts.json`, coach `frog`) and Tamar
+(`banks/tamar/scripts.json`, coach `woman-captain`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste and Jun,
+coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus and Tamar,
 whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
 scripts and a bank is recorded and registered.

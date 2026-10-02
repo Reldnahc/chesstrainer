@@ -97,6 +97,19 @@ export const frogOpeningTemplates = {
   "book-opening-follow-7": ["{opening}, continuing without incident."],
   "book-opening-follow-8": ["Still {opening}. It names the line and nothing else."],
 } as const;
+export const captainOpeningTemplates = {
+  "book-opening-entry-1": ["Know the territory: this is {opening}."],
+  "book-opening-entry-2": ["The opening on the board is {opening}. Learn its plans."],
+  "book-opening-entry-3": ["Book move; the book's name for it is {opening}."],
+  "book-opening-follow-1": ["{opening} keeps going, and the ground is familiar."],
+  "book-opening-follow-2": ["{opening} continues. Keep its main ideas in mind."],
+  "book-opening-follow-3": ["{opening} accounts for the reply as well."],
+  "book-opening-follow-4": ["{opening} has this move in its repertoire too."],
+  "book-opening-follow-5": ["{opening} holds for one more move."],
+  "book-opening-follow-6": ["The game stays inside {opening}."],
+  "book-opening-follow-7": ["{opening}, and the script continues."],
+  "book-opening-follow-8": ["Still {opening}. The name marks the road and passes no judgment on the move."],
+} as const;
 
 export const robotOpeningTemplates = {
   "book-opening-entry-1": ["Opening match: {opening}."],
