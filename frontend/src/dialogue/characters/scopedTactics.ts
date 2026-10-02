@@ -164,3 +164,18 @@ export const raccoonTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "{capture} would snag a {piece} on the spot.", followup: "If things go that way, {capture} could collect a {piece} later."},
   playedCapture: {fact: "{move} cashes in on a {motif}.", consequence: "With {capture}, a {piece} goes in the bag."},
 });
+
+export const kittenTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "Ooh, after {move} there's a {motif} sitting right on the board.",
+    played_possible: "{move} could set up a {motif} later, if the replies cooperate.",
+    allowed_immediate: "Psst: {opponent} has {action} ready, and it springs a {motif}.",
+    allowed_possible: "A {motif} might be lurking for {opponent} later, depending on the replies.",
+    missed_immediate: "{best} was hiding a {motif} up its sleeve.",
+    missed_possible: "{best} might have sprung a {motif}, if the replies played along.",
+  },
+  fork: {actual: "One sneaky piece is poking at the {targets} together.", possible: "The {targets} would be attacked, and it would take only one sneaky piece."},
+  material: "A {gain} may be the prize at the end of the trail, but both sides still get their say.",
+  capture: {candidate: "{capture} would snatch a {piece}.", followup: "Down the road, {capture} might snatch a {piece}."},
+  playedCapture: {fact: "{move} springs a sneaky {motif}.", consequence: "{capture} snatches a {piece}."},
+});
