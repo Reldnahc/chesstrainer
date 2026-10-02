@@ -163,6 +163,8 @@ export const raccoonTacticalTemplates = authorTacticalWordings({
   material: "There may be a {gain} to collect at the end, though nothing's collected until both sides have made their moves.",
   capture: {candidate: "{capture} would snag a {piece} on the spot.", followup: "If things go that way, {capture} could collect a {piece} later."},
   playedCapture: {fact: "{move} cashes in on a {motif}.", consequence: "With {capture}, a {piece} goes in the bag."},
+});
+
 export const velvetTacticalTemplates = authorTacticalWordings({
   scope: {
     played_immediate: "I noticed it after {move}: a {motif}, sitting there on the board.",
@@ -172,8 +174,8 @@ export const velvetTacticalTemplates = authorTacticalWordings({
     missed_immediate: "Inside {best}, quietly, sat a {motif}.",
     missed_possible: "{best} might have grown into a {motif}, had the replies allowed.",
   },
-  fork: {actual: "A single piece has the {targets} in its reach at once.", possible: "The {targets} would be attacked at once, one piece doing all the watching."},
+  fork: {actual: "A single piece has the {targets} in its reach at once.", possible: "One piece would do all the watching: the {targets} would be attacked together from it."},
   material: "Perhaps a {gain} at the end; it may be, but both sides still have moves to choose.",
-  capture: {candidate: "A {piece} is there for {capture} to take.", followup: "If play goes that way, {capture} may come next and take a {piece}."},
+  capture: {candidate: "A {piece} is there for {capture} to take.", followup: "Should the moves run that way, {capture} may come next and take a {piece}."},
   playedCapture: {fact: "{move} hides a {motif}.", consequence: "A {piece} is gone after {capture}."},
 });

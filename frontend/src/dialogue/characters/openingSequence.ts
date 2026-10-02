@@ -152,6 +152,8 @@ export const raccoonOpeningTemplates = {
   "book-opening-follow-6": ["The book still has this covered: {opening}."],
   "book-opening-follow-7": ["One more known step down {opening}."],
   "book-opening-follow-8": ["The book's not out of moves yet: {opening}."],
+} as const;
+
 export const velvetOpeningTemplates = {
   "book-opening-entry-1": ["This move is carried in the opening books, in {opening}."],
   "book-opening-entry-2": ["A move from a known opening, this: {opening}."],
