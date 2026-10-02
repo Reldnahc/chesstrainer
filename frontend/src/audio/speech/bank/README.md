@@ -137,6 +137,7 @@ registered.
 | Scout (`dog-collie`) | Written, 438 | Yes, 2026-10-02, at commit `3354f70` | No | No |
 | Juniper (`cat-black`) | Written, 438 | Yes, 2026-10-02, at commit `38d3920` | No | No |
 | Waffles (`dog-corgi`) | Written, 438 | Yes, 2026-10-02, at commit `49dd577` | No | No |
+| Celeste (`unicorn`) | Written, 438 | Yes, 2026-10-02, at commit `eddc967` | No | No |
 
 ## Adding or revising a production bank
 
