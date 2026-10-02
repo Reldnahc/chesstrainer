@@ -10,7 +10,8 @@ import {newCastPersonalities} from "../src/dialogue/characters/newCast";
 import {velvet} from "../src/dialogue/characters/velvet";
 import {expert} from "../src/dialogue/characters/expert";
 import {partner} from "../src/dialogue/characters/partner";
-import {alienOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
+import {analyst} from "../src/dialogue/characters/analyst";
+import {alienOpeningTemplates, analystOpeningTemplates, capybaraOpeningTemplates, collieOpeningTemplates, corgiOpeningTemplates, dragonOpeningTemplates, expertOpeningTemplates, frogOpeningTemplates, livingPawnOpeningTemplates, mushroomOpeningTemplates, partnerOpeningTemplates, kittenOpeningTemplates, professorOpeningTemplates, raccoonOpeningTemplates, robotOpeningTemplates, slimeOpeningTemplates, storytellerOpeningTemplates, tuxedoOpeningTemplates, unicornOpeningTemplates, velvetOpeningTemplates, wizardOpeningTemplates} from "../src/dialogue/characters/openingSequence";
 import {ghostOpeningTemplates} from "../src/dialogue/characters/ghost";
 import {tuxedo} from "../src/dialogue/characters/tuxedo";
 import {professor} from "../src/dialogue/characters/professor";
@@ -196,6 +197,7 @@ const openingCoaches = [
   {id: "man-expert", personality: expert, authored: expertOpeningTemplates, voiced: false},
   {id: "frog", personality: newCastPersonalities.frog, authored: frogOpeningTemplates, voiced: false},
   {id: "man-partner", personality: partner, authored: partnerOpeningTemplates, voiced: false},
+  {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates, voiced: false},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {

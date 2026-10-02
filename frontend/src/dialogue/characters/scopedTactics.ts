@@ -299,3 +299,18 @@ export const partnerTacticalTemplates = authorTacticalWordings({
   capture: {candidate: "Try {capture}, and a {piece} leaves the board.", followup: "Should the replies go that route, {capture} may come next and collect a {piece}."},
   playedCapture: {fact: "Follow {move} through and a {motif} comes out of it.", consequence: "Then {capture} wins a {piece}."},
 });
+
+export const analystTacticalTemplates = authorTacticalWordings({
+  scope: {
+    played_immediate: "What {move} changes: a {motif} is now in effect.",
+    played_possible: "After {move}, a {motif} becomes possible, depending on the replies.",
+    allowed_immediate: "After {action}, {opponent} would have a {motif}.",
+    allowed_possible: "Depending on the replies, {opponent} may later gain a {motif}.",
+    missed_immediate: "With {best}, a {motif} would have been on the board.",
+    missed_possible: "With {best}, a {motif} could have followed, subject to the replies.",
+  },
+  fork: {actual: "One piece now stands against the {targets} at once.", possible: "One piece, one square, and the {targets} would be attacked together from there."},
+  material: "A {gain} may be the end result, though both sides still have choices before then.",
+  capture: {candidate: "If {capture} is played, a {piece} comes off the board.", followup: "If the line continues that way, {capture} may be next, taking a {piece}."},
+  playedCapture: {fact: "{move} has brought a {motif} into the position.", consequence: "After {capture}, a {piece} is gone."},
+});
