@@ -149,7 +149,7 @@ registered.
 | Arjun (`man-partner`) | Written, 438 | Yes, 2026-10-02, at commit `91cda3c` | No | No |
 | Femi (`man-host`) | Written, 438 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
 | Marisol (`woman-analyst`) | Written, 438 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
-| Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `89a44c5` | No | No |
+| Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
 
 ## Adding or revising a production bank
 
