@@ -192,7 +192,7 @@
     {
       "id": "positional-rook-semi-open-actual",
       "group": "game_review",
-      "text": "Half-open file: that is where this rook now stands. Its own pawns are off that file, and an enemy pawn is still sitting there in front of it."
+      "text": "Big change for this rook: its file is half open now. Its own pawns are gone from it, and an enemy pawn still sits up ahead."
     },
     {
       "id": "positional-rook-semi-open-alternative",
@@ -307,7 +307,7 @@
     {
       "id": "only-playable-move",
       "group": "game_review",
-      "text": "Simple point: every other checked move lost. This was the one move left standing. Good defense."
+      "text": "Simple point: anything else that was checked goes down. This was the one move left standing. Good defense."
     },
     {
       "id": "only-advantage-resource",
@@ -1025,14 +1025,14 @@
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-hard-defense-found",
-      "text": "Big picture: this move is the only reason the advantage lasted; every other checked move lost. The human-move model says that resource was hard to find. Found anyway."
+      "text": "Big picture: this move is the only reason the advantage lasted; all the alternatives went under. The human-move model says that resource was hard to find. Found anyway."
     },
     {
       "id": "combined-only-advantage-resource-with-human-hard-find",
       "group": "game_review",
       "primary": "only-advantage-resource",
       "secondary": "human-hard-find",
-      "text": "The advantage hung on this move alone; every other checked move lost. The human-move model and the checked moves say it was a hard find. Strong."
+      "text": "The advantage hung on this move alone; anything else checked would have gone down. The human-move model and the checked moves say it was a hard find. Strong."
     },
     {
       "id": "combined-tactic-fork-played-with-human-unusual-strong",
@@ -1669,7 +1669,7 @@
       "group": "game_review",
       "primary": "positional-rook-semi-open-actual",
       "secondary": "human-natural-best",
-      "text": "Half-open file: the rook's own pawns are off it, an enemy pawn ahead. The human-move model calls it natural, and the engine puts it at the top."
+      "text": "Rook's file, half open: the rook's own pawns are off it, an enemy pawn ahead. The human-move model calls it natural, and the engine puts it at the top."
     },
     {
       "id": "combo-positional-rook-semi-open-actual-natural-strong",
