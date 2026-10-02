@@ -47,7 +47,7 @@ export const wizard: CoachPersonality = {
       {fact: "{move} strips {side}'s {piece} on {square} of the only unpinned defender it had.", consequence: "{opponent} can collect it at once with {reply}.", takeaway: "Before a defender moves, list what it was holding."},
     ],
     cause_opponent_threat_recognition: [
-      {observation: "Every move asks a question, and the opponent's last one asked it plainly.", fact: "The opponent's preceding move created an attack on {side}'s {piece} on {square}, and {move} leaves it unanswered.", consequence: "{opponent} can then capture it with {reply}."},
+      {observation: "Every move asks a question, and the opponent's last one asked it plainly.", fact: "{move} leaves unanswered the attack on {side}'s {piece} on {square} that the opponent's preceding move created.", consequence: "{opponent} can then capture it with {reply}."},
     ],
     cause_avoiding_bad_trades: [
       {observation: "An exchange is judged after the recapture, not before.", fact: "{move} trades {side}'s {piece} away for a {captured}.", consequence: "{opponent} can answer with the recapture {reply}."},
@@ -124,7 +124,7 @@ export const wizard: CoachPersonality = {
     cold: ["Study the position before you act, and only then decide on a move."],
     thinking: ["Weighing the move against the strongest reply before drawing any lesson…"],
     unavailable: ["The engine has given me nothing to go on for this position, so I will not guess at a lesson. You may still explore the board freely."],
-    practice_error: ["That attempt went unanswered. Make the move a second time."],
+    practice_error: ["That attempt went unanswered. Play the move again, and we shall see."],
     retry: [
       {observation: "The pattern is still in the position.", fact: "That attempt does not survive the reply.", takeaway: "Survey what every piece is holding."},
       "That attempt falls short of the answer. Return to the position and look for the pattern it contains.",
