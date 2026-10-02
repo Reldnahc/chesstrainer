@@ -8,6 +8,8 @@ export type SpeechNavigation = {
   key: string;
   eventId: string;
   awaitAnalysis: boolean;
+  /** The review was just opened at its untouched start, not navigated to. */
+  opening?: boolean;
 };
 
 /** Owns variation history and navigation without mutating the original game. */
@@ -65,6 +67,15 @@ export function useGameExploration(
   }, []);
   useEffect(() => {
     if (game) setOrientation(game.orientation);
+  }, [game?.id]);
+  // Opening an untouched review at the start is one fresh greeting event. A
+  // restored later ply or a branch stays silent; any navigation replaces it.
+  const opened = useRef<string | null>(null);
+  useEffect(() => {
+    if (!game || opened.current === game.id) return;
+    opened.current = game.id;
+    if (selection.ply === 0 && selection.branch === null && actionVersion.current === 0)
+      setSpeechNavigation({key: "0:", eventId: `${id}:open`, awaitAnalysis: false, opening: true});
   }, [game?.id]);
   useEffect(() => {
     if (game && !branch) rememberGamePly(id, cursor.ply);

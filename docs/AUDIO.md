@@ -322,9 +322,11 @@ prefixes and variations use generic recognition. The variant is stable for a
 position across visits and refinement; a confirmed run cycles without adjacent
 repeats. Neither recognition nor repetition establishes objective move quality.
 
-The bank includes secondary meanings, but unopened human-insight popovers,
-explanation findings and note disclosures do not automatically speak. Their
-explicit listening actions use the currently visible supported selection. Practice
+The bank includes secondary meanings, but explanation findings and note
+disclosures do not automatically speak. Their explicit listening actions use the
+currently visible supported selection. The Maia insight popover has no voice
+control; human-insight recordings play only inside the move's single bubble
+playback. Practice
 producers provide structured summary, move-frame and finding facts; selectors do
 not parse English or infer tactics from ratings or facial expressions.
 
@@ -350,9 +352,15 @@ Selection and lifecycle checks happen again after asynchronous mouth/audio loads
 Navigation, retry, changing coach, mute, hidden tabs and unmounting invalidate
 obsolete work. No playback backlog accumulates. Initial hydration, restored
 feedback, coach changes and background refinement are not fresh narration events.
-An explicit human-insight Listen/Stop consumes the main coach's pending automatic
-opportunity for that navigation action, including work awaiting mouth tracks or
-audio decoding. Simply opening the explanation does not consume it. Late Maia
+Opening an untouched review in-app at its starting position is the one exception:
+it speaks the coach's fact-free `game-review-opened` greeting once, after saved
+voice preferences load. A restored later move, a branch, a review error or a fresh
+document without a prior gesture stays silent, and the first navigation replaces
+the greeting with that move's own line. While the greeting is the active line,
+the bubble shows its text. It is written for all 30 coaches and awaits recording;
+until a bank has its take, that coach stays silent there and keeps its own text.
+Opening the Maia insight popover neither plays nor consumes the main coach's
+pending automatic opportunity. Late Maia
 evidence can update visible text and the preferred recording without replaying
 speech or interrupting an already playing, still-supported clip. Removing its
 support cancels it. Changing Automatic to On request also revokes automatic work.
