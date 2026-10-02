@@ -92,8 +92,9 @@ revision v2; earlier archives keep revision v1.
 
 Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/ziggy/scripts.json`, coach `alien`), Percy
-(`banks/percy/scripts.json`, coach `living-pawn`) and Wisp
-(`banks/wisp/scripts.json`, coach `ghost`) each have complete authored
+(`banks/percy/scripts.json`, coach `living-pawn`), Wisp
+(`banks/wisp/scripts.json`, coach `ghost`) and Bandit
+(`banks/bandit/scripts.json`, coach `raccoon`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue

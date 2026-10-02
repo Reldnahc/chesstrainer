@@ -97,3 +97,17 @@ export const alienOpeningTemplates = {
   "book-opening-follow-7": ["The game keeps tracing the documented line of {opening}."],
   "book-opening-follow-8": ["Deeper into {opening}, a move theory accounts for."],
 } as const;
+
+export const raccoonOpeningTemplates = {
+  "book-opening-entry-1": ["This one's a known route: {opening}."],
+  "book-opening-entry-2": ["Known ground, and it comes with a name: {opening}."],
+  "book-opening-entry-3": ["The book's got this move marked down, under {opening}."],
+  "book-opening-follow-1": ["Still on the known route: {opening}."],
+  "book-opening-follow-2": ["The book covers this one too: {opening}."],
+  "book-opening-follow-3": ["Same route, next move: {opening}."],
+  "book-opening-follow-4": ["Nothing new yet; this is still {opening}."],
+  "book-opening-follow-5": ["The known route keeps going through {opening}."],
+  "book-opening-follow-6": ["The book still has this covered: {opening}."],
+  "book-opening-follow-7": ["One more known step down {opening}."],
+  "book-opening-follow-8": ["The book's not out of moves yet: {opening}."],
+} as const;
