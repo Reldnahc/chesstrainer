@@ -72,7 +72,7 @@ export const professorTacticalTemplates = authorTacticalWordings({
   fork: {actual: "One piece attacks the {targets} together, so a single reply may not save them all.", possible: "In that case the {targets} would be attacked together, and one reply might not cover them all."},
   material: "A {gain} may be possible at the end of it, but only if the later choices on both sides allow it.",
   capture: {candidate: "That opens the way for {capture}, which would capture a {piece}.", followup: "If play continues that way, {capture} may follow, capturing a {piece}."},
-  playedCapture: {fact: "{move} is built on a {motif}.", consequence: "That is how {capture} comes to capture a {piece}."},
+  playedCapture: {fact: "{move} rests on a {motif}.", consequence: "That is how {capture} comes to capture a {piece}."},
 });
 
 export const robotTacticalTemplates = authorTacticalWordings({

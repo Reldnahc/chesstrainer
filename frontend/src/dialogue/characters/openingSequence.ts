@@ -58,8 +58,8 @@ export const livingPawnOpeningTemplates = {
 
 export const professorOpeningTemplates = {
   "book-opening-entry-1": ["This move belongs to {opening}, a line the opening book recognizes."],
-  "book-opening-entry-2": ["The opening book places this move in {opening}."],
-  "book-opening-entry-3": ["Here the game follows {opening}, so we're on a known path for now."],
+  "book-opening-entry-2": ["{opening} is where the opening book files this move."],
+  "book-opening-entry-3": ["Here the game follows {opening}, so it's on familiar ground for now."],
   "book-opening-follow-1": ["The next move stays within {opening}."],
   "book-opening-follow-2": ["Still {opening}, one move further along."],
   "book-opening-follow-3": ["This reply is also part of {opening}."],
