@@ -99,7 +99,8 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/bandit/scripts.json`, coach `raccoon`), Alfie
 (`banks/alfie/scripts.json`, coach `dog-gentle`), Pickle
 (`banks/pickle/scripts.json`, coach `cat-kitten`), Ember
-(`banks/ember/scripts.json`, coach `dragon`) and Waffles
+(`banks/ember/scripts.json`, coach `dragon`), Scout
+(`banks/scout/scripts.json`, coach `dog-collie`) and Waffles
 (`banks/waffles/scripts.json`, coach `dog-corgi`) each have complete authored
 scripts for all current catalogue meanings, marked `authored-unrecorded`. They
 own their full text, including combinations, instead of adding columns to the
@@ -131,6 +132,7 @@ registered.
 | Alfie (`dog-gentle`) | Written, 438 | Yes, 2026-10-02, at commit `5b3a4af` | No | No |
 | Pickle (`cat-kitten`) | Written, 438 | Yes, 2026-10-02, at commit `6597a26` | No | No |
 | Ember (`dragon`) | Written, 438 | Yes, 2026-10-02, at commit `ee90487` | No | No |
+| Scout (`dog-collie`) | Written, 438 | Yes, 2026-10-02, at commit `3354f70` | No | No |
 
 ## Adding or revising a production bank
 

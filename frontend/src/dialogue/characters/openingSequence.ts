@@ -70,6 +70,20 @@ export const professorOpeningTemplates = {
   "book-opening-follow-8": ["Still {opening}. Knowing the line tells us where the game is, which is a different thing from judging the move."],
 } as const;
 
+export const collieOpeningTemplates = {
+  "book-opening-entry-1": ["Book move, logged: this is {opening}."],
+  "book-opening-entry-2": ["Opening identified as {opening}."],
+  "book-opening-entry-3": ["Recognized line on the board: {opening}."],
+  "book-opening-follow-1": ["Next move, still {opening}."],
+  "book-opening-follow-2": ["{opening}, next move on record."],
+  "book-opening-follow-3": ["Reply logged in {opening} as well."],
+  "book-opening-follow-4": ["On track with {opening}."],
+  "book-opening-follow-5": ["Another step of {opening} confirmed."],
+  "book-opening-follow-6": ["Theory holds: still {opening}."],
+  "book-opening-follow-7": ["{opening} again on this move."],
+  "book-opening-follow-8": ["Still tracking {opening}. That locates the game and says nothing about the move's value."],
+} as const;
+
 export const robotOpeningTemplates = {
   "book-opening-entry-1": ["Opening match: {opening}."],
   "book-opening-entry-2": ["This move is in the opening record: {opening}."],

@@ -124,11 +124,14 @@ shared `scopedTactics.ts` and `openingSequence.ts` blocks: a firm verdict first,
 then the concrete reason and its consequence, with sparing, earned approval for
 forcing play and exact defense and no questions. Ember also stays silent until a
 bank is registered.
+Scout (border collie) has opted in too, with his forms in `characters/collie.ts`:
+a quick pattern call, the concrete fact, then one short task to train it, with
+no questions. Scout also stays silent until a bank is registered.
 Waffles (corgi) has opted in too, with his forms in the shared tactic and opening
 blocks: a short command or reaction, the consequence, then the next order, in light
 field-manual language with no questions and difficulty always credited to the
 human-move model. Waffles stays silent until a bank is registered.
-The other 15 voices retain their current wording and deterministic variants.
+The other 14 voices retain their current wording and deterministic variants.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
 for a verified consecutive run. Every phrase has a complete Walter and Rivet
