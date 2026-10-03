@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and the rook lands on a square that checks the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c7b52aa63e8ff37e363d1be85671fee0b6d41d8a757d7e75289e7319d1d29cf",
+  "recordedAt": "2026-10-03T06:18:22.928Z",
+  "sha256": "a9154eeaaa7595d54125a3163177e5ac4749c57a0d61810180b5d4e8ae3decbf",
+  "bytes": 13656,
+  "requestId": "LkGj57DHGqh7X2QleVHH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b36c00b3189b2dbf0c9eb9d63507d99c8878821a5f64ce15de1adbd5305ca35e",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

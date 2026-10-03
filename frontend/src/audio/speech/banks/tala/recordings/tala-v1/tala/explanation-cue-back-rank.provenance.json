@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Quick check before a back-rank defender moves: does the king still have a way out?"
+    },
+    "takeId": null
+  },
+  "requestHash": "f6f2f3fe32ffb229dfd945a9b4ff5fca0530a684ba74af753db960033264bff7",
+  "recordedAt": "2026-10-03T06:18:12.157Z",
+  "sha256": "7111b02637cf7ba45ff144740ce2985585f3a04947d8f1762bdb9903a1eebea0",
+  "bytes": 16577,
+  "requestId": "aIpCyMavLmA8sr4HhazF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "743cb2a1d2b78c9d1c941125d6ee37cdc5654e6594afb74b611eeeb12f52e590",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

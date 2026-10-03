@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The defender gets dragged away from its post, so the piece it was guarding falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e68a11e18bbd7021193ae0b407f391df99042467dd160d0b84f22c7819ee1e6",
+  "recordedAt": "2026-10-03T06:18:15.633Z",
+  "sha256": "4fc31d8d82bb458ac7c9ee4ff0e2f2bb84ac80f780e9dfae57ade35a8772bd1b",
+  "bytes": 17101,
+  "requestId": "8LN8wFYWLgCLvEwhQNkg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d21cfde00595661ed68efeacad3037e7a7bb0d1caa0f5a27104b7ed2682ca2c7",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

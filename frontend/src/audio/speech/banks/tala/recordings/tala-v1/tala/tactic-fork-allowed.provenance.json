@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "Puzzle piece: after this move, one enemy piece can land on a square that hits several targets together. Forks grow out of squares like that."
+    },
+    "takeId": null
+  },
+  "requestHash": "19ea2c3bb6cd0e521f16a3f4f083bcff8e5f3b852db447660275aed11483d558",
+  "recordedAt": "2026-10-03T06:17:29.781Z",
+  "sha256": "516875ec537a34aacd361adf55911963c2736d464670d2dce5b467b5b2872ad7",
+  "bytes": 28204,
+  "requestId": "vBBDIICwyXsIh62lvYuC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55b4cb451109366ec3951bed12eeb4f85a3fabbab7f1322a8037fa389bdfff0c",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

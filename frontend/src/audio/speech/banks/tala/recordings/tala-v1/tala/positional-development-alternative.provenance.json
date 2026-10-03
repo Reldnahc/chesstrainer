@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "A different move would have woken up a minor piece and got it out from its original square."
+    },
+    "takeId": null
+  },
+  "requestHash": "55d15d13c32360712366a9c50ffc07dac81e93b55ff590a7729981e91769d6d6",
+  "recordedAt": "2026-10-03T06:18:00.030Z",
+  "sha256": "c8e466bb39ea51232f5badba43adb9e18268af265701f49b3a0ff9d57b58901c",
+  "bytes": 17192,
+  "requestId": "HQIn8V6dffCQAYhCEO9N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18a837310044737529901b3a5023c831809fe74fe602f6cd05a0c0c2e1a6155a",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

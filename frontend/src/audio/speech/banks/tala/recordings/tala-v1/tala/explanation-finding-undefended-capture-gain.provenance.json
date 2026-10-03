@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "That piece had no defender, so it's captured, and in this example the capturing side comes out ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "c266c32ccb87876e20d30f4b6835a8f42e171a0c0ba9055462cda628668edd4d",
+  "recordedAt": "2026-10-03T06:18:24.966Z",
+  "sha256": "a33e99b22a0dcb13ed5d020d77b898f2a5cf12744ea2aaef22f8a39c1e17ec44",
+  "bytes": 21652,
+  "requestId": "aPu1vdjVT0GLDv8mWN8v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2737658b9e9ae9aa4d314d93f33cdce175be38903adb0439a2341097235b345",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

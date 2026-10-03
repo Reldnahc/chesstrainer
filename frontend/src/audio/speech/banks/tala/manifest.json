@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "human-girl",
+  "voiceId": "tala",
+  "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Riddle: how many targets can one piece hit? Here, several at once. That's a fork, and usually only one target gets away.",
+      "audioPath": "recordings/tala-v1/tala/tactic-fork-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Puzzle piece: after this move, one enemy piece can land on a square that hits several targets together. Forks grow out of squares like that.",
+      "audioPath": "recordings/tala-v1/tala/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Which move had the fork? Wrong suspect: a different move put one piece on several targets at once.",
+      "audioPath": "recordings/tala-v1/tala/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "Why can't that piece move? Somewhere behind it on the same line sits its king. Pinned, neat and tidy.",
+      "audioPath": "recordings/tala-v1/tala/tactic-pin-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Spot the line: the other side can now freeze one of the pieces in front of its own king, and that piece would be glued to it.",
+      "audioPath": "recordings/tala-v1/tala/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Missed clue: another move set up a pin, sticking a piece in front of its own king. This one leaves that idea alone.",
+      "audioPath": "recordings/tala-v1/tala/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Front piece attacked, so it steps aside, and what's waiting behind it? A second victim. Skewer!",
+      "audioPath": "recordings/tala-v1/tala/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Zoom in on that line: two pieces stacked on it, and now the other side can skewer them. Chase the front one, and the back one hangs.",
+      "audioPath": "recordings/tala-v1/tala/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "The kicker was a skewer: a different move would have chased the front piece off its line and left the one behind it hanging.",
+      "audioPath": "recordings/tala-v1/tala/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "Riddle time: the guard on that piece just got captured. So who's on duty now? Nobody.",
+      "audioPath": "recordings/tala-v1/tala/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Notice the guard: a defender can be captured by the other side now, and whatever it protects would lose its cover.",
+      "audioPath": "recordings/tala-v1/tala/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Which move takes out the defender? Another culprit entirely; this move leaves that guard on duty.",
+      "audioPath": "recordings/tala-v1/tala/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Where can that king run? Nowhere; its own pieces block it in. This move aims right at the back rank.",
+      "audioPath": "recordings/tala-v1/tala/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "Zoom in on the king's exits: its own pieces block them, and a back-rank mate is now in reach for the other side.",
+      "audioPath": "recordings/tala-v1/tala/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "X marks the back rank: another move had mate against a king walled in by its own pieces. Here, the move points elsewhere.",
+      "audioPath": "recordings/tala-v1/tala/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "How far to the last rank? Hardly any squares left. Once that pawn arrives, it becomes a new piece.",
+      "audioPath": "recordings/tala-v1/tala/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "Pawn race: one of their pawns has an open road to the last rank now, and promotion is a real threat.",
+      "audioPath": "recordings/tala-v1/tala/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "Missed clue: a stronger move would have cleared a pawn's road to the last rank. This move keeps that pawn stuck behind the traffic.",
+      "audioPath": "recordings/tala-v1/tala/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Which piece was the real attacker? The hidden one! Its blocker slides away, and the attack behind it switches on.",
+      "audioPath": "recordings/tala-v1/tala/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Zoom in: two of their pieces share a line, and if the front one steps aside, the one behind it attacks. Discovered attack incoming.",
+      "audioPath": "recordings/tala-v1/tala/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "The hidden attacker stayed hidden: in a different move, one piece would have stepped aside to let the one behind it strike.",
+      "audioPath": "recordings/tala-v1/tala/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "One move, a pair of riddles for the defense, and usually just one gets answered. Double attack!",
+      "audioPath": "recordings/tala-v1/tala/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "Here's the kicker: one reply now gives the other side two threats at once, and parrying both is tricky.",
+      "audioPath": "recordings/tala-v1/tala/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move made two threats at once, a double attack, and this move leaves it on the table.",
+      "audioPath": "recordings/tala-v1/tala/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "What was that defender's job? Guarding a key square. Lure it away, and the square opens up. Deflection!",
+      "audioPath": "recordings/tala-v1/tala/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "Spot the busy piece: that defender has an important job, and the other side can now drag it away from its post.",
+      "audioPath": "recordings/tala-v1/tala/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Which move pulled the defender off its job? Another one, not this. Here, the defender keeps guarding.",
+      "audioPath": "recordings/tala-v1/tala/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Count the guards on that piece: zero. So it comes off the board for free.",
+      "audioPath": "recordings/tala-v1/tala/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "Which move grabbed the loose piece? Look elsewhere: that piece had zero defenders. Quick check before every move: anything loose?",
+      "audioPath": "recordings/tala-v1/tala/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Count the defenders on that piece: zero. It's simply there for the other side to take.",
+      "audioPath": "recordings/tala-v1/tala/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Found the detail! One defender was holding that piece up, and this move marches it off duty, so the other side can capture. Quick check before a defender moves: what's it holding up?",
+      "audioPath": "recordings/tala-v1/tala/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/tala-v1/tala/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "Rewind one move and it clicks: their last move made a threat, nobody dealt with it, and now a piece can be captured. First question every turn: what's their threat?",
+      "audioPath": "recordings/tala-v1/tala/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/tala-v1/tala/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "That first capture looks tasty, but here's the kicker: the recapture wins back more. Tally both sides of every trade before diving in.",
+      "audioPath": "recordings/tala-v1/tala/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/tala-v1/tala/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Telltale sign of a good start: a minor piece steps out from where it began.",
+      "audioPath": "recordings/tala-v1/tala/positional-development-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "A different move would have woken up a minor piece and got it out from its original square.",
+      "audioPath": "recordings/tala-v1/tala/positional-development-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "Not a single pawn on that file, from either side. The rook gets every square of it.",
+      "audioPath": "recordings/tala-v1/tala/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "A different move could have given a rook a totally pawn-free file.",
+      "audioPath": "recordings/tala-v1/tala/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Scan the rook's file: zero pawns of its own, one or more of the enemy's. Semi-open!",
+      "audioPath": "recordings/tala-v1/tala/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "A different move had a semi-open file ready for a rook, no pawns of its own, at least one enemy pawn on it.",
+      "audioPath": "recordings/tala-v1/tala/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "Can any enemy pawn stop it? Not on its file, and not on the files beside it. Passed pawn!",
+      "audioPath": "recordings/tala-v1/tala/positional-passed-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "A different move would have made a passed pawn, one that no enemy pawn could block or take on the way up.",
+      "audioPath": "recordings/tala-v1/tala/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "One more square for the passed pawn, creeping toward the far end of the board.",
+      "audioPath": "recordings/tala-v1/tala/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "A different move would have marched the passed pawn one step closer to queening.",
+      "audioPath": "recordings/tala-v1/tala/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "Look left, look right: no friendly pawn next door on either side. That pawn's an island.",
+      "audioPath": "recordings/tala-v1/tala/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "A different move would have cut a pawn off from its friends, with no pawn of its color next door on either side.",
+      "audioPath": "recordings/tala-v1/tala/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A loose end gets tied up: the lonely piece picks up a protector.",
+      "audioPath": "recordings/tala-v1/tala/positional-support-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "A different move would have given an unguarded piece some protection.",
+      "audioPath": "recordings/tala-v1/tala/positional-support-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Mental note: this piece is out there with no guard now. Not lost, but worth tracking.",
+      "audioPath": "recordings/tala-v1/tala/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "A different move would have left a piece unguarded, though being unguarded doesn't make it winnable.",
+      "audioPath": "recordings/tala-v1/tala/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "Telltale sign of safety: the king picks up another square it can legally use.",
+      "audioPath": "recordings/tala-v1/tala/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "A different move would have given the king another legal hidey-hole.",
+      "audioPath": "recordings/tala-v1/tala/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castling: two squares for the king, and the rook jumps over to land right next to it.",
+      "audioPath": "recordings/tala-v1/tala/positional-castling-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was on the table too, moving king and rook to new squares in a single turn.",
+      "audioPath": "recordings/tala-v1/tala/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "Pair broken: after this capture, one side's remaining bishops stick to a single color.",
+      "audioPath": "recordings/tala-v1/tala/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "A different move would have nabbed one of the bishops, breaking up the other side's pair.",
+      "audioPath": "recordings/tala-v1/tala/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Telltale sign: same color, same file, two pawns in a column. Doubled.",
+      "audioPath": "recordings/tala-v1/tala/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "A different move would have put two same-colored pawns on one file, one in front of the other.",
+      "audioPath": "recordings/tala-v1/tala/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Spotlight on the king: after this, the other side gets a mating attack that can't be stopped. Where did its safety slip away? Let's trace it back.",
+      "audioPath": "recordings/tala-v1/tala/allowed-mate.opus",
+      "sidecarPath": "recordings/tala-v1/tala/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "X marks the spot: a forced checkmate was ready, and this move slides right past it. Want to find the mating line?",
+      "audioPath": "recordings/tala-v1/tala/missed-mate.opus",
+      "sidecarPath": "recordings/tala-v1/tala/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "A sacrifice that holds up! The material is there for the taking, yet in the line we checked, the idea survives the capture.",
+      "audioPath": "recordings/tala-v1/tala/sound-sacrifice.opus",
+      "sidecarPath": "recordings/tala-v1/tala/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "One key, one lock: of the moves we checked, every other one was losing, and only this keeps the position playable.",
+      "audioPath": "recordings/tala-v1/tala/only-playable-move.opus",
+      "sidecarPath": "recordings/tala-v1/tala/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "The one move that keeps the edge: the rest we checked were losing, and this one held on.",
+      "audioPath": "recordings/tala-v1/tala/only-advantage-resource.opus",
+      "sidecarPath": "recordings/tala-v1/tala/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "First, the reply: something is up for grabs for the other side immediately.",
+      "audioPath": "recordings/tala-v1/tala/immediate-capture.opus",
+      "sidecarPath": "recordings/tala-v1/tala/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "Here's the kicker: the best reply gives check, so the king's safety is the first problem to solve.",
+      "audioPath": "recordings/tala-v1/tala/reply-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine is cheering for a different idea here. Line the two up on the board and see which replies hurt.",
+      "audioPath": "recordings/tala-v1/tala/stronger-alternative.opus",
+      "sidecarPath": "recordings/tala-v1/tala/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "A small leak: next to the engine's best, this gives up a little value. Follow the reply, and the gap shows up.",
+      "audioPath": "recordings/tala-v1/tala/evaluation-loss.opus",
+      "sidecarPath": "recordings/tala-v1/tala/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong move! The engine finds barely anything that beats it.",
+      "audioPath": "recordings/tala-v1/tala/best-supported-choice.opus",
+      "sidecarPath": "recordings/tala-v1/tala/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Solid. The engine slightly prefers a different move, but the bulk of the value is kept.",
+      "audioPath": "recordings/tala-v1/tala/good-choice.opus",
+      "sidecarPath": "recordings/tala-v1/tala/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Mental note: seconds, not minutes, were left before this move.",
+      "audioPath": "recordings/tala-v1/tala/clock-low.opus",
+      "sidecarPath": "recordings/tala-v1/tala/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Snap decision, and the clock wasn't even under pressure.",
+      "audioPath": "recordings/tala-v1/tala/clock-fast.opus",
+      "sidecarPath": "recordings/tala-v1/tala/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "The clock kept ticking and ticking on this decision. Mental note for the review.",
+      "audioPath": "recordings/tala-v1/tala/clock-long.opus",
+      "sidecarPath": "recordings/tala-v1/tala/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This move is part of a recognized opening line, so we have a map for now.",
+      "audioPath": "recordings/tala-v1/tala/recognized-opening.opus",
+      "sidecarPath": "recordings/tala-v1/tala/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Here the game walks off the end of the book. Everything after this is fresh.",
+      "audioPath": "recordings/tala-v1/tala/opening-departure.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "You worked your way back! Setback fixed, and the game is playable again thanks to this move. That's persistence.",
+      "audioPath": "recordings/tala-v1/tala/recovery.opus",
+      "sidecarPath": "recordings/tala-v1/tala/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "Playable again! The other side made errors, and you used them to climb back in.",
+      "audioPath": "recordings/tala-v1/tala/recovery-assisted.opus",
+      "sidecarPath": "recordings/tala-v1/tala/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "Aha, the opponent's last move left an opening, and you jumped on it instantly. Nice catch.",
+      "audioPath": "recordings/tala-v1/tala/chance-taken.opus",
+      "sidecarPath": "recordings/tala-v1/tala/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move left an opening, but this move doesn't use it. Rewind once: can you spot what was there?",
+      "audioPath": "recordings/tala-v1/tala/chance-missed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Same pattern, second time: this kind of mistake already came up earlier in the game. Let's study both moments together.",
+      "audioPath": "recordings/tala-v1/tala/repeated-issue.opus",
+      "sidecarPath": "recordings/tala-v1/tala/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Problem patched: the piece that was unprotected earlier is guarded again.",
+      "audioPath": "recordings/tala-v1/tala/support-restored.opus",
+      "sidecarPath": "recordings/tala-v1/tala/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "No single blunder, just small concessions stacking up, and this is another. Let's review the whole stretch.",
+      "audioPath": "recordings/tala-v1/tala/gradual-erosion.opus",
+      "sidecarPath": "recordings/tala-v1/tala/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "Edge kept, game won. Nicely finished, all the way to the end.",
+      "audioPath": "recordings/tala-v1/tala/advantage-converted.opus",
+      "sidecarPath": "recordings/tala-v1/tala/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "Heads up: this exact issue shows up across your other saved games as well. Learn to spot it once, and it gets easier everywhere.",
+      "audioPath": "recordings/tala-v1/tala/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/tala-v1/tala/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate! The king is trapped, and you solved the whole thing.",
+      "audioPath": "recordings/tala-v1/tala/mate-finished.opus",
+      "sidecarPath": "recordings/tala-v1/tala/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. Out of legal moves, the king's done. The defensive answer came earlier, so let's go find it.",
+      "audioPath": "recordings/tala-v1/tala/mate-defense-ended.opus",
+      "sidecarPath": "recordings/tala-v1/tala/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "Draw. The interesting decisions are still hiding in the earlier moves.",
+      "audioPath": "recordings/tala-v1/tala/draw.opus",
+      "sidecarPath": "recordings/tala-v1/tala/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "New position. Look at everything first, then make your move.",
+      "audioPath": "recordings/tala-v1/tala/srs-cold.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Nah, try again. Look closer: what did that move miss?",
+      "audioPath": "recordings/tala-v1/tala/srs-retry.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "That attempt vanished without a result. Replay the move for another go.",
+      "audioPath": "recordings/tala-v1/tala/srs-practice-error.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Spoiler alert from the saved engine analysis: whoever just moved can force checkmate.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Spoiler alert, courtesy of the saved engine analysis: this move lets the opponent deliver a checkmate that can't be avoided.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Scoreboard check: tally the pieces at the end of the saved line, and whoever made this move is ahead.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Scoreboard check: tally the pieces at the end of the saved line, and whoever made this move is behind.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "Accepted! The moves shown don't spell out a clear tactical reason, and we won't pretend they do.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "Not accepted for this exercise, and the moves shown don't make the tactical reason clear.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Match! That's a saved answer, and saved answers are the only ones that score here.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "The saved list doesn't have this move. Could be fine chess; this exercise wants a specific answer.",
+      "audioPath": "recordings/tala-v1/tala/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Study this move up close, then move on to the next position.",
+      "audioPath": "recordings/tala-v1/tala/srs-fallback-study.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good move. Make a note of why it works.",
+      "audioPath": "recordings/tala-v1/tala/srs-fallback-good.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Saved! No change to your review schedule.",
+      "audioPath": "recordings/tala-v1/tala/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved! It's staying in relearning for a while, though.",
+      "audioPath": "recordings/tala-v1/tala/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/tala-v1/tala/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Square one: here's how things looked before these moves.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-original.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Next move. Spot what's different?",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check! The king's problem comes first.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The king finds its way out of check.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn arrives on the last rank, and it's promoted on the spot.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "New piece on the last rank, and it arrives with check. Neat!",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Promotion, and it's checkmate on the spot.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Promotion, and the same move rescues its own king from check.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Capture! A piece comes off.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "Take, and check! Double duty from one move.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "Take, and that's the game: checkmate.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "Grab a piece, dodge the check: this capture does both.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Grab on the last rank, and the pawn becomes a new piece right there.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn captures, promotes, and checks, three things in one move.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Three in one: grab, promote, checkmate, all with a single pawn move.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Capture-and-promote, and its own king gets out of check too.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling, and the rook lands on a square that checks the king.",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling, and the other king is checkmated. Didn't see that coming!",
+      "audioPath": "recordings/tala-v1/tala/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "See the fork in action: several targets attacked, then one captured. Tally it up, and this example ends with extra material.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "No capture possible: that piece is pinned, with its king farther along the line behind it.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece can't run, because it's pinned and its king still needs the shield.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Capture back? Impossible, since the defenders are all stuck shielding their king. In the line shown, that side wins material.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece can't leave its post in front of the king. A few moves on, it's captured.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Front piece out of the way, back piece captured on the very same line. Skewer complete.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The king is in check, so it steps aside, and the same attacker grabs what was hiding behind it.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "Part one: bye-bye, lone defender. Part two, later in the line: the piece it protected goes too.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender gets dragged away from its post, so the piece it was guarding falls.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "A blocker moves aside, which opens a line for a different piece to capture.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "The blocker hops aside, and boom, the piece behind it is giving check.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check! Blocking can't help against two attackers, so the king itself has to move.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "Double trouble: the moving piece makes one attack, a hidden piece makes another, and the hidden one is the attack that cashes in.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and by this example's last move, that side is still up on material.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "That piece had no defender, so it's captured, and in this example the capturing side comes out ahead.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "Backstory first: the attacking piece got unpinned. It had been in a relative pin, and the opponent's previous move broke it. The target never moved after that, and the line shown captures it.",
+      "audioPath": "recordings/tala-v1/tala/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "Nothing illegal about the marked reply, so the other side may go for it. Go ahead and test it, then see where it leads.",
+      "audioPath": "recordings/tala-v1/tala/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/tala-v1/tala/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Quick check before every move: could any of your pieces be taken without a good recapture?",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, scan for enemy pieces standing there with no defender.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Search for forcing moves where a single piece could land on two valuable targets.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "A pinned piece wants to move? First peek at what it's shielding: the king, or something worth more than itself.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Spotlight on lines: an attack can go through the first target and land on a bigger prize behind it.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Circle every defender before you trade it off, and ask what it's guarding right now.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a blocking piece moves, trace every line that just got uncovered.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Circle any move that loads two threats at once. Checks and freshly opened lines are on that list as well.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Quick check before a back-rank defender moves: does the king still have a way out?",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Pawn race? Count the moves each pawn needs to promote, and look hard at every forcing push.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Quick check before a defender moves: make a list of its jobs, because those are exactly what it leaves behind.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Do the math on the whole trade: what you take first, plus what the recapture takes back.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Underline this habit: a forcing trade can tug a defender off one job so another job goes undone.",
+      "audioPath": "recordings/tala-v1/tala/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "Only the saved answers get the checkmark here. Other legal tries aren't necessarily mistakes.",
+      "audioPath": "recordings/tala-v1/tala/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "This line is played against strong replies, but don't assume every reply was forced.",
+      "audioPath": "recordings/tala-v1/tala/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes are counted only inside the line shown, from its starting position. Curious how each piece was valued? The written explanation has the numbers.",
+      "audioPath": "recordings/tala-v1/tala/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "Nothing simple and tactical is proven by the saved line. Walk through each reply and compare; no positional theory is being slipped in, either.",
+      "audioPath": "recordings/tala-v1/tala/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "Which answer policy applies? The exercise's saved one, named in the written notes.",
+      "audioPath": "recordings/tala-v1/tala/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/tala-v1/tala/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Answer unlocked: the full opening line you're studying.",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Right! That's one of your study moves.",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Pick one of your study moves for this spot.",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "A few different moves from your opening lines work here. Pick any one you remember!",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Exactly one move from your study material fits this position. Which one?",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Hmm, that one's not on your study list. Try again.",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Hmm, not in your chosen lines. Try again; this saved attempt won't change anything on the changed study's schedule.",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Hmm, not in your chosen lines. Try again; since this position is retired, its dates stay frozen.",
+      "audioPath": "recordings/tala-v1/tala/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Moves from this line count in Mixed Due, while dedicated practice sticks to this one line.",
+      "audioPath": "recordings/tala-v1/tala/opening-preview-active.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls only quiz moves from your chosen side, and any position shared by active studies uses just one card.",
+      "audioPath": "recordings/tala-v1/tala/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/tala-v1/tala/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Quick reload of the saved session needed, then it's your move.",
+      "audioPath": "recordings/tala-v1/tala/puzzle-error.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Eyes up! The verified line, coming right up on the board.",
+      "audioPath": "recordings/tala-v1/tala/puzzle-playback.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Marked as a revealed attempt. The solution is below if you'd like another run through it.",
+      "audioPath": "recordings/tala-v1/tala/puzzle-revealed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Got there on attempt two! Both tries get logged, miss and finish.",
+      "audioPath": "recordings/tala-v1/tala/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Solved, not one wrong move. Clean!",
+      "audioPath": "recordings/tala-v1/tala/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Not it. Your correct moves so far are saved, though.",
+      "audioPath": "recordings/tala-v1/tala/puzzle-rejected.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Correct! Next move, let's go.",
+      "audioPath": "recordings/tala-v1/tala/puzzle-next-move.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "No rush. Work it all out in your head, then play.",
+      "audioPath": "recordings/tala-v1/tala/puzzle-cold.opus",
+      "sidecarPath": "recordings/tala-v1/tala/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine hasn't given me enough here for a real explanation. Explore the board as much as you like.",
+      "audioPath": "recordings/tala-v1/tala/game-unavailable.opus",
+      "sidecarPath": "recordings/tala-v1/tala/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Pause button pressed on the review. Resume below when you like, or poke around the board.",
+      "audioPath": "recordings/tala-v1/tala/game-review-paused.opus",
+      "sidecarPath": "recordings/tala-v1/tala/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Tap any move to inspect it, or slide a piece to try something of your own.",
+      "audioPath": "recordings/tala-v1/tala/game-browse-instructions.opus",
+      "sidecarPath": "recordings/tala-v1/tala/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Book move! Sure enough, a recognized opening has it.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "Here we go, a named opening. I like knowing where we are.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Circle this one as theory: opening detectives know it by name.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Another book move, right on schedule.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Page turned, and this move is in there too.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply? Theory too.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Theory, theory, still theory.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "We're still walking the opening's charted path.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Book move, one more for the list.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "We're still inside the book's pages.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Still charted territory. That tells us where we are on the map, not how well the move scores.",
+      "audioPath": "recordings/tala-v1/tala/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/tala-v1/tala/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "A whole game full of clues. Let's step through and see which moves are hiding something.",
+      "audioPath": "recordings/tala-v1/tala/game-review-opened.opus",
+      "sidecarPath": "recordings/tala-v1/tala/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Nope, legal but the wrong answer for this lesson. Want one more guess?",
+      "audioPath": "recordings/tala-v1/tala/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Solved! You found the lesson's answer.",
+      "audioPath": "recordings/tala-v1/tala/lesson-correct-move.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "Answer reveal: the lesson plays the move on the board.",
+      "audioPath": "recordings/tala-v1/tala/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Watch closely while the lesson plays out its line.",
+      "audioPath": "recordings/tala-v1/tala/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Quiz time! Which move did you study here?",
+      "audioPath": "recordings/tala-v1/tala/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "A side puzzle! Explore this branch, then find your way back to the main line.",
+      "audioPath": "recordings/tala-v1/tala/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter cracked, and it's all saved!",
+      "audioPath": "recordings/tala-v1/tala/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The whole game is open. Step through it and hunt for details.",
+      "audioPath": "recordings/tala-v1/tala/lesson-game-opened.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Mystery glitch! A reload puts the clues back in order.",
+      "audioPath": "recordings/tala-v1/tala/lesson-error.opus",
+      "sidecarPath": "recordings/tala-v1/tala/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

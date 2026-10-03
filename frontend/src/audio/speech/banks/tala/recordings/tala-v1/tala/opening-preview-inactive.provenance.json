@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls only quiz moves from your chosen side, and any position shared by active studies uses just one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "08936ec12394e0ae67aacd4e71d76e9922ee27de3917844828a21780eed986f1",
+  "recordedAt": "2026-10-03T06:18:13.965Z",
+  "sha256": "e5681dae4802efe6f8d870c9ee023f648240de83c860c85fa619f84261d6b88a",
+  "bytes": 26215,
+  "requestId": "FIqlmgb2bSWCQngdfCLB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eee6ce09c3ef73fed2f7d86a3cec365fa16dbcc33df9bae56a8941c632de6330",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

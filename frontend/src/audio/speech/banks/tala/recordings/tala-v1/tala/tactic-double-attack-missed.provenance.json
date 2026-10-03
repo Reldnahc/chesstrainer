@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A stronger move made two threats at once, a double attack, and this move leaves it on the table."
+    },
+    "takeId": null
+  },
+  "requestHash": "d30cc78ea4c041a01fc43ff742205b805fa953f041678e8702f807c0f939945b",
+  "recordedAt": "2026-10-03T06:17:39.350Z",
+  "sha256": "82974e0045ee2e08ebf7745a03fe1dedc1ac4032920f9adccb6342b6a82cc0d3",
+  "bytes": 21110,
+  "requestId": "5tW47yf9ZZrxrLMdD6wf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a027c452e65d402acf1ad709b1ab9478106030236dd63a94c3517a274206c84",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

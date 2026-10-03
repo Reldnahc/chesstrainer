@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "Spoiler alert, courtesy of the saved engine analysis: this move lets the opponent deliver a checkmate that can't be avoided."
+    },
+    "takeId": null
+  },
+  "requestHash": "30753b498df148b010907d9c26e95d9d285c028ccf61fd0f422cb7f3057099fa",
+  "recordedAt": "2026-10-03T06:17:55.799Z",
+  "sha256": "b520ff121ecf545f282bdcbfbf9c5dea73cd4524055cfa2641c1ea61af088d07",
+  "bytes": 25990,
+  "requestId": "Kg04bEKZsOdKS6TPI3Up",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d91f3e528f6f93de3ed25d410bf950e359d2970077781353402c6bff0b391842",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

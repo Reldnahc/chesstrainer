@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "Double trouble: the moving piece makes one attack, a hidden piece makes another, and the hidden one is the attack that cashes in."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ab788670533a9ecc9d1f7f1342b154c313b05b03fde7819d852226a93e4cd44",
+  "recordedAt": "2026-10-03T06:18:21.699Z",
+  "sha256": "e097254726b6a75a2a24311b62d0b54010219d5e08de21d59738afd4eccaf8af",
+  "bytes": 26997,
+  "requestId": "bjuPX7BoaXRwV9eeywgX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "899e5ed6499900c34edad3dfc1f172e1a3a28fee238b9e37631a6571d0b3e5e8",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

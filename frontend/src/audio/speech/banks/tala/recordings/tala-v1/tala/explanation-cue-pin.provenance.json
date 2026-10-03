@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "A pinned piece wants to move? First peek at what it's shielding: the king, or something worth more than itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "397ec2536109e45d6a8455b4331616f8456ae13480aff0802dddb1219d3c2372",
+  "recordedAt": "2026-10-03T06:18:35.294Z",
+  "sha256": "1ecd302e6516f7cf9ef212f8084217d290242c1f2f27df78570c0d91ae278d71",
+  "bytes": 24173,
+  "requestId": "5FS3CYKnovtLl6IXTSpy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd8ddb8f17669bda1eb2d905167680186b2b916783e6a3735d1f2275c02d980e",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

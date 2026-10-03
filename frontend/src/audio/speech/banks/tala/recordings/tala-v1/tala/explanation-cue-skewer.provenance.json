@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Spotlight on lines: an attack can go through the first target and land on a bigger prize behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d365c3b784a2f718b6cf67ce83e461fa0f82d23f93ff6ebc8bc83fd65bc71fb",
+  "recordedAt": "2026-10-03T06:18:36.906Z",
+  "sha256": "888dc5f39f34e47a4797aa543f792cac0a0bc822cc350d86a74b5bab7e31cd76",
+  "bytes": 22393,
+  "requestId": "R52lhNwxfmr7bKQNhP89",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "987dcf4e4b63febe97bc544786adb16c1d8641709a0060959be91ff5061d842d",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

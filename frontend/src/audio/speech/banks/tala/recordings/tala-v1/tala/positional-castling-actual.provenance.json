@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "Castling: two squares for the king, and the rook jumps over to land right next to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1793991e718c4d01cfe6e423214c99c5355b7beb323c0aa7a4aeffb890cc379e",
+  "recordedAt": "2026-10-03T06:17:50.098Z",
+  "sha256": "75347926352e796e90468006eb522f19564892bbefe456214e4be0d6e4553c2c",
+  "bytes": 18532,
+  "requestId": "Q12uxNxOb8e6qRFwsmXR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf4ca7bff362778e71eccf0c9c83e6f889075a23c860f8014d8c3bd1618a19bc",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

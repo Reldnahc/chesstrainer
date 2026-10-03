@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "Still charted territory. That tells us where we are on the map, not how well the move scores."
+    },
+    "takeId": null
+  },
+  "requestHash": "3dc7ea710901d117af0ffedc54469ddfa627b1cae442f1b2629b0bf0a4a6f729",
+  "recordedAt": "2026-10-03T06:18:15.724Z",
+  "sha256": "9aa52fea34b6cb8df943844d7551f6cf9adbdb685d3e2226751c2cf33cd6fcf5",
+  "bytes": 20738,
+  "requestId": "ETnvi29GtZEs7hvIRAbv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0937f9a0c82fb2743db66a0e1108e812b054bd1c1c2a6432c3f4a09acac408ad",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

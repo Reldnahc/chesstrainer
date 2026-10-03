@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "Missed clue: a stronger move would have cleared a pawn's road to the last rank. This move keeps that pawn stuck behind the traffic."
+    },
+    "takeId": null
+  },
+  "requestHash": "54d37f5f0886319a1247f49285e8ead5ffcc3d970c6eff83e1e9eda3fa093c27",
+  "recordedAt": "2026-10-03T06:17:59.227Z",
+  "sha256": "c2c64a3b03f023d0b01ece064fbd55bfa9521bb03378a66f94902ac4348b580d",
+  "bytes": 26739,
+  "requestId": "iB13T9gLKx6B8DphafPG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb8c2defde43baef3381afe0a6321e3404e47ca893c2e9fbc56a4513192a5938",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

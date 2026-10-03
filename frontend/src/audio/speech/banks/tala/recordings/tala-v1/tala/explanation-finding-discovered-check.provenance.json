@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "The blocker hops aside, and boom, the piece behind it is giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "97cac8f34868cae568c7efa2c74c4a3bad3d347d5f032193d4119f9d655269e2",
+  "recordedAt": "2026-10-03T06:18:18.226Z",
+  "sha256": "85b828f4c9877dbcfd8dbf8267583fd7a0f61af2b40ce0225bd8b7a8953587c7",
+  "bytes": 16731,
+  "requestId": "Xt9msRAqucDCToP4Hl3S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "303b0d8b7f6a40b9d1db5168b9a1e095af6009ce8dedbf5446631bd486338a8a",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

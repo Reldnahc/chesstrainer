@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "Here the game walks off the end of the book. Everything after this is fresh."
+    },
+    "takeId": null
+  },
+  "requestHash": "fba8e3b46a17e6b06b463723e0d0b57c15bb4855a800b71ed847e7f29d6f5f32",
+  "recordedAt": "2026-10-03T06:17:53.707Z",
+  "sha256": "9e285eb23f0a60cb6cb88e81478edbf13545afd700910740142c568a951ff7bb",
+  "bytes": 16534,
+  "requestId": "UwlO8xxdLacw5RC6uzmN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a6b3d4eb5a8c5a3de05c51b69a1f23ef37af4a626bd05f044324f1142823b0a",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

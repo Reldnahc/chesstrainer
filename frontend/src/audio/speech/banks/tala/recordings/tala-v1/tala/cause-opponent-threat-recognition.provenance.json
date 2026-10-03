@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "Rewind one move and it clicks: their last move made a threat, nobody dealt with it, and now a piece can be captured. First question every turn: what's their threat?"
+    },
+    "takeId": null
+  },
+  "requestHash": "a52cbeae350ac0bc5667b00ba8842850936b298ca7267129596b5e741fedc5cd",
+  "recordedAt": "2026-10-03T06:17:55.065Z",
+  "sha256": "ba6f20c151de04382b18121e1f8f9b5f7680f3abd2690428c29d836c2263b29d",
+  "bytes": 35632,
+  "requestId": "wsxxAOc0xKNbU9lDHd1B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64ef5e58418dde312186cfc2bff346f639835772da8b6763e0c318d97e19e17f",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

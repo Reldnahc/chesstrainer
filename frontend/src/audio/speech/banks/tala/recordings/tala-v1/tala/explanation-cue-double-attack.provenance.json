@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Circle any move that loads two threats at once. Checks and freshly opened lines are on that list as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8c75ae9c03a54a640bbb422e15b7b277d454d991637ddbd6be26d9efb652a7a",
+  "recordedAt": "2026-10-03T06:18:10.674Z",
+  "sha256": "697709297bfdabfa91ba0647dda35aceae3de296c8239b1ff34b6ad7db6a6b3c",
+  "bytes": 22260,
+  "requestId": "Dl8kDdmlFvXTQKJm10Bm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf53e896e76f7ed12e477e1c8f5936d19ef46951bf1226eeb0f4dd4e41f85aae",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

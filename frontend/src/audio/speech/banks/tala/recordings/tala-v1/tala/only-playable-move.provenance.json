@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "One key, one lock: of the moves we checked, every other one was losing, and only this keeps the position playable."
+    },
+    "takeId": null
+  },
+  "requestHash": "0305c13793d52f7debde0bf5e09d479309538f92e6f8dff72528acfa94384c80",
+  "recordedAt": "2026-10-03T06:17:36.633Z",
+  "sha256": "7caf7bf595bb9b5fbbda9f27707f967de9f07d196dd5582f9cf84000ec35cb76",
+  "bytes": 25522,
+  "requestId": "VyGgE9XXttTJW2cCFWd8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b80c451a116db81784247e65c7c16aefdc60104253dd103e38ea5d930d72831c",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

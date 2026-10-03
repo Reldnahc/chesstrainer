@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "Heads up: this exact issue shows up across your other saved games as well. Learn to spot it once, and it gets easier everywhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "dce0e32cf64f61ac40ed20485fa31dcecd5929c1bb583eb1e6d0c396c080b388",
+  "recordedAt": "2026-10-03T06:17:44.223Z",
+  "sha256": "7f9fa967fa17f54bac8ed3b20d647fd7f2c680c481822fa6b9cee05ddb1f1026",
+  "bytes": 26907,
+  "requestId": "rbCF9EVhGdJteD4GMhoi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "08a39ee3ef4f8f16541e2b9dd2369f7dc7596247b88c66dfeadfc143525b26e2",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

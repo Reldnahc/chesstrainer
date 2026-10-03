@@ -62,6 +62,7 @@ REGISTERED = [
     ("slime", "pip"),
     ("woman-spark", "reka"),
     ("dog-collie", "scout"),
+    ("human-girl", "tala"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

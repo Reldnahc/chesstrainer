@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-missed",
+      "label": "Tactic deflection missed",
+      "text": "Which move pulled the defender off its job? Another one, not this. Here, the defender keeps guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "e340d907a8edbc93074fae1dcb9f73abe9c856394671c301fae7fc371d36aa73",
+  "recordedAt": "2026-10-03T06:17:44.869Z",
+  "sha256": "e268497fd3f9eed062e20bdc5d58199d83d1a40b305ccc25a8e2027a34d18719",
+  "bytes": 23741,
+  "requestId": "E0zUc3EMrVzu6Cd55C5F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e1813468aa822fb261050ef9d2e8b7f2dfab4eed980578b4a1673f5e47d277d",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

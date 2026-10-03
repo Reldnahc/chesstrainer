@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Promotion, and it's checkmate on the spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "07ab17525302c47b770fbe8c44889981c8a2a47149c9ed107021a47068aa5f22",
+  "recordedAt": "2026-10-03T06:18:11.350Z",
+  "sha256": "dcd613b1b7eacf861645545f77dc098e3a413e25272f95f6800a25e6847eade6",
+  "bytes": 11044,
+  "requestId": "yD7lofNfyRKa8wGQIY0W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23351ba279615efe02ed899405309311ebc37d23ed47b02589ede9c7f7cead44",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

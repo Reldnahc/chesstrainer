@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn promotes, and by this example's last move, that side is still up on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "55330e69de059bd0bea0acf5fd14479cbd994077d323aa1a7acd8e84230de16a",
+  "recordedAt": "2026-10-03T06:18:23.350Z",
+  "sha256": "2d49763388631a312cfed7eed930e89a671a3a8a02dd9630ed2881764911a1ce",
+  "bytes": 20562,
+  "requestId": "r2o0H5zOtFDbyudGC5sa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c194af93dcec090bf1ffd87bfbea3bafe43fc856dc77cae77fd81a50d8705923",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

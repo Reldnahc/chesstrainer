@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "How far to the last rank? Hardly any squares left. Once that pawn arrives, it becomes a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b73020267b0eb6fbdd44d208c7f9c47d009a3b40f5da4df42098bf9f7a06788",
+  "recordedAt": "2026-10-03T06:17:55.388Z",
+  "sha256": "92d327a40ca5b51142acb10343c0fcacce108b973cb93ba0616228b72fa31d1f",
+  "bytes": 22234,
+  "requestId": "dqpnKjUpptLCodSpkkHG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fdd7c7635323470687671f6863e48619e28dc9d50eaab927088e854e9d18bf38",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

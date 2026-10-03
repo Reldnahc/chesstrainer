@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Pawn race? Count the moves each pawn needs to promote, and look hard at every forcing push."
+    },
+    "takeId": null
+  },
+  "requestHash": "be1f9cfbd44a686c9489b6f2228b944542351d1bf28410eccdbd3c3e18549ff1",
+  "recordedAt": "2026-10-03T06:18:13.623Z",
+  "sha256": "cf1da6da03c12de5aea773465bb7ac098af7ec8ed4d986ebc0362abdd3877baf",
+  "bytes": 21187,
+  "requestId": "nVqJ7ci6l5Sxfsen1Tzm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ca517dd89d699edc4c98e8c461ab446e4a9a917f14de5f90b4c6e80a5f8a927",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

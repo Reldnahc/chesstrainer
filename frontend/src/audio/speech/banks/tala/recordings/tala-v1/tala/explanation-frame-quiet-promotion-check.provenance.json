@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-check",
+      "label": "Explanation frame quiet promotion check",
+      "text": "New piece on the last rank, and it arrives with check. Neat!"
+    },
+    "takeId": null
+  },
+  "requestHash": "01fdbe4486c79c900fc74b590ff6fee034797819cf09cf9a99bd8a4bae008f9f",
+  "recordedAt": "2026-10-03T06:18:10.390Z",
+  "sha256": "3f28a4078e56497099a779b1b76cdd9e109f49cc05ec4e238e6c38b1c44d3933",
+  "bytes": 14492,
+  "requestId": "RYx1TfvNR3sSjS3Yrn69",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a2b9c85e5b8a26ac35a4cb4c57b19f1543ec11c5168e96c8672b66eb1b4b84c",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

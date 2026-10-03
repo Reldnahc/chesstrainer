@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "Scoreboard check: tally the pieces at the end of the saved line, and whoever made this move is ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "fba2e0dc5d1bd60ec57e855a060bf21dda100e54d9c8ad9966f5729094be7105",
+  "recordedAt": "2026-10-03T06:17:57.379Z",
+  "sha256": "86191393eba43a3d5ee7226233d31467684fddafd78618d63629925ea8b4e6a6",
+  "bytes": 20940,
+  "requestId": "P9ZLkLMUlP8Ag72b7JRt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56a75d8c4943eee435487bc6e311babd90164d5be550f701fcaf69e721c408a1",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

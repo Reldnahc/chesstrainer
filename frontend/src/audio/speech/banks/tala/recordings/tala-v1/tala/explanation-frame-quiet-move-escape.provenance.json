@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "The king finds its way out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb23699c1a6e46412490efc44a042dd6365d6b4626f4e678f42774db73f931dc",
+  "recordedAt": "2026-10-03T06:18:07.970Z",
+  "sha256": "216e0053e949e6be286d8efe7aafdcfb2a8fc676b6bc4b8a2422aae14358f504",
+  "bytes": 8994,
+  "requestId": "VoeNmqWoj0OEPayNerOj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06cd7fc3b5b4968d0dac4d7379821449859c84d3ca06fd54686f64b03868f261",
+    "bytes": 43511
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

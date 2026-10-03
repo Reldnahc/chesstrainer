@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "The pinned piece can't leave its post in front of the king. A few moves on, it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "6458326d809e8c259ffee834b806d095a4561fcfacca89447afac8e23ea2353e",
+  "recordedAt": "2026-10-03T06:18:09.182Z",
+  "sha256": "ffff5031b2c0ae333cb32b3e8d2881267e485de9b1c81a78becae3c186d695ca",
+  "bytes": 18323,
+  "requestId": "ZFSCVwQ2ohn1sF1fwVTQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72e661ce40b1764273f5c7e2fbe50947e3f343c3d1af593b54d9d4288f166509",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

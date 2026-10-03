@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "Take, and that's the game: checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab6f4436407c10d08ce2fb2b5be44fced055a4cfef2420553b9850d6cdbc8510",
+  "recordedAt": "2026-10-03T06:18:15.456Z",
+  "sha256": "344cb315ca210b9ef13ad1ef7cfbd45031653c4065e6147d64bd09173fe729c4",
+  "bytes": 10154,
+  "requestId": "9WB8kDONd4dWUsWeOiNa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c5178a588f63a3507db4f28e220b7999ad47f3fef44d4bc2be597972e1726ed",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

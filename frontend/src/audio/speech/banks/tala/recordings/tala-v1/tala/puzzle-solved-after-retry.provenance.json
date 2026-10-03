@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "Got there on attempt two! Both tries get logged, miss and finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "80995d1e4f0382808d2757f1ee99420926eef22ca5350f83aac620b8b11af4b1",
+  "recordedAt": "2026-10-03T06:18:19.266Z",
+  "sha256": "e70c671bc048e9876dd8f309d20e38fecd548fc7b67a78e76fb455e2cc835b13",
+  "bytes": 16882,
+  "requestId": "7LThTRBTcprjcJzY8kPo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1244f1b81e8423bc8718d07868442f1cad6e84439a0dff557f797ea5944223e1",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

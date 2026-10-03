@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "Pawn race: one of their pawns has an open road to the last rank now, and promotion is a real threat."
+    },
+    "takeId": null
+  },
+  "requestHash": "2bd4cf8e51cffe451fafa28ba4379db559f2f80e1fae40253851a69d2abda7a8",
+  "recordedAt": "2026-10-03T06:17:57.210Z",
+  "sha256": "2b47867e6f8fb4840c7d399b9426658e5852d72405e8b18675ea3ec70b4ae1c0",
+  "bytes": 22881,
+  "requestId": "25yJ6eGqX3NwKKadOqYN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae1103b2010cc5500bd8eda82fc323db51b2dc6cce6069eeeb8d60d7142aca6c",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "Backstory first: the attacking piece got unpinned. It had been in a relative pin, and the opponent's previous move broke it. The target never moved after that, and the line shown captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "99ad189efd886e4c42a726c44b12b021597effddbbe9b904135a8b6833d52cfd",
+  "recordedAt": "2026-10-03T06:18:27.604Z",
+  "sha256": "bdd9f33ff5b23cd4c12a7de809bc1d19d6e0ee9659bbc45b8c52cf03b18af049",
+  "bytes": 39653,
+  "requestId": "k8vb3seYGPBFO4EEnctI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5331c72f9bec8ed4f4646a00ee99810f77a929c6bb4914da64599ca0cc26e769",
+    "bytes": 205679
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

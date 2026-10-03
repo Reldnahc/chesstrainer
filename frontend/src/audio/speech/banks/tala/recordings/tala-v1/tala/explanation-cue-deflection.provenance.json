@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Underline this habit: a forcing trade can tug a defender off one job so another job goes undone."
+    },
+    "takeId": null
+  },
+  "requestHash": "718c796078ea4b635040248ecc5d72731d8a39883684434fff21fb7cef325763",
+  "recordedAt": "2026-10-03T06:18:18.726Z",
+  "sha256": "1c03a69e898a542a3fabb003f69f4c5c758b1f8c7e1251d9dcb8aa90c8e7f514",
+  "bytes": 23142,
+  "requestId": "FxeGP3KDUBostr5imei1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "899ffea38c2b89999787fe382e05783f7c843e86b922cd3afd13790f73e7f0ed",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

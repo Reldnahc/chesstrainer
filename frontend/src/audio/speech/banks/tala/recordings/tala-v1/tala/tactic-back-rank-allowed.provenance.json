@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "Zoom in on the king's exits: its own pieces block them, and a back-rank mate is now in reach for the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "ace5b2877b3ea4d0e9a6f45d225b36772f1f8991f3b845871dbe6bfefbd95f88",
+  "recordedAt": "2026-10-03T06:17:51.525Z",
+  "sha256": "dd67c07867c7b2e6f4cdd61f892799e677746eb0e02ad484beaa84a9fdad8e8a",
+  "bytes": 24190,
+  "requestId": "vbiDOQ3KFk0RHomAUlPO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2515a04fc3ba8863881098ef0e98fdfb665e80757bc89d00b165b91a491a2ed",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

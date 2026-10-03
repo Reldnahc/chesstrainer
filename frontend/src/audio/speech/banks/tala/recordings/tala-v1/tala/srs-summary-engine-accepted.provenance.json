@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "Accepted! The moves shown don't spell out a clear tactical reason, and we won't pretend they do."
+    },
+    "takeId": null
+  },
+  "requestHash": "9117eadb183c8106ca9e0a3bf2d8a5ec53d36ee1cc402bef923f5f3b753fedd3",
+  "recordedAt": "2026-10-03T06:18:00.833Z",
+  "sha256": "ed1c2c3568affcdb9dfdf90e6ea6b3c37afe5578d0e1a1ab756a17a4a3a8674e",
+  "bytes": 20825,
+  "requestId": "vQKmaxXMvoojKaAdlQKe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c017faa65b7183c0a7faa8bd228adfd568d380f472699f479665ffb81df86fc1",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

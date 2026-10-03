@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "Riddle time: the guard on that piece just got captured. So who's on duty now? Nobody."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd0f0bc2daf09a3ce430736bbfd1cd90c408e029a1d9ded30153bd5ee3c01eee",
+  "recordedAt": "2026-10-03T06:17:44.703Z",
+  "sha256": "d61e13f3b5dd00df29aa05314d41ac53747f64e8310dd789fa4918fea6553d43",
+  "bytes": 22113,
+  "requestId": "lwwM68SZOddx3jzx6Uqu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c107aa990c831a358f899f6e42f86ddba2e0fb11709941426dd34b95fa53a73e",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

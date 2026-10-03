@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "Edge kept, game won. Nicely finished, all the way to the end."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a93bf6f7c524444347290c13989d93c9e3244b6a6144469e463a094b0bb257d",
+  "recordedAt": "2026-10-03T06:17:42.299Z",
+  "sha256": "a9e9a2911f7626ae875caf51f035c0ccea6f8acf10142251f1235085fb457479",
+  "bytes": 17685,
+  "requestId": "nbhLsWLgiMouFI9pY3tY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e80a50aeb3df9ccd39bdc95cff941ddeaade2950b186e556abaee983f35451c",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

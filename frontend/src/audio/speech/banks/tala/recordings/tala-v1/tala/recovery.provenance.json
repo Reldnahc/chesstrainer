@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "You worked your way back! Setback fixed, and the game is playable again thanks to this move. That's persistence."
+    },
+    "takeId": null
+  },
+  "requestHash": "fcdb4a3b711021d10a638af3b04fe2f7153f23f5fd672fdb01ae3e1ac1e613f3",
+  "recordedAt": "2026-10-03T06:17:55.628Z",
+  "sha256": "9d0a5ffd9dc06d4e36667ba9398db5f8a6e91876a9c275b4d84f852d311ad13b",
+  "bytes": 25213,
+  "requestId": "XWLjGuHV4wxW3wzQM5Pf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f6f52da3f8bcc898f1552cf0891693d55685fa36866f41f580562b7eb85e8c0",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

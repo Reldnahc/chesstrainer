@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture",
+      "label": "Explanation finding pin prevents capture",
+      "text": "No capture possible: that piece is pinned, with its king farther along the line behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e59516f8042f44e7385f1f517e24227bb6dcfadcd71fa056129949e66007557b",
+  "recordedAt": "2026-10-03T06:18:27.892Z",
+  "sha256": "d46ea8040091f1ace116873e93d97114cf08e97be670fe2a26f069ad1b4f9fbd",
+  "bytes": 20146,
+  "requestId": "eL9RUaiaJdmqaCdIVd9X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d2c33ef29827de823185e1a83c176b198fbc73ee3b4396877c97c093a3c75b9",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

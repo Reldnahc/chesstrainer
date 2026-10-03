@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "Nothing simple and tactical is proven by the saved line. Walk through each reply and compare; no positional theory is being slipped in, either."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef3d0a595363c98fb4b97c1e5644429a25e35bd7904679aad9453134567664d1",
+  "recordedAt": "2026-10-03T06:18:25.899Z",
+  "sha256": "2056c805e4769b0f989b1036c0cc549483ef31a594c4b5619ebee9a521b0b8b4",
+  "bytes": 29536,
+  "requestId": "d0X9khfknFKdPGIB3wkd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c87793b910a92d02274d6da0dc0841e0067efe265accd90915c51af782b25a47",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

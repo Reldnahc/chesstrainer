@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "Can any enemy pawn stop it? Not on its file, and not on the files beside it. Passed pawn!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2995330ec007ed093b55db772b5344570ca74becd94169d96ff5dda4b3946a4e",
+  "recordedAt": "2026-10-03T06:18:07.732Z",
+  "sha256": "43b85f2279e1042064c9bbe8b2c00e9c8e2779a87b7abeac5791b55dc01b87c8",
+  "bytes": 22084,
+  "requestId": "8vCVwvgYSRi5wfTvez4T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d00135805e454ed30b30513685c0b46ddea449067ba9821bce40807c09c61865",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "No rush. Work it all out in your head, then play."
+    },
+    "takeId": null
+  },
+  "requestHash": "09905e1038a3b09dcbe3de9c87e83581c5a4e68704ae86daa11f4ee59337dc91",
+  "recordedAt": "2026-10-03T06:18:23.320Z",
+  "sha256": "cbf2884e2b46d0dcbea8e5a48954c0fef7fec7b9934057ff899d93d24786854c",
+  "bytes": 11839,
+  "requestId": "yj3JEwmEIj17c9jkNXTt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf1dde37e2c2ab31f3d843eb9cf118f9c1ffbfe753916f29b5a93ff385e33fd3",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

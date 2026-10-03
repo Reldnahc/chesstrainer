@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Double check! Blocking can't help against two attackers, so the king itself has to move."
+    },
+    "takeId": null
+  },
+  "requestHash": "89e644e443f7d1afcd7b7e1b051f121a491eaab163a34885998f6d09bfc7a637",
+  "recordedAt": "2026-10-03T06:18:19.718Z",
+  "sha256": "4999a3e5c685c796966e5067c5188bb58062fe29d2ea42a7f00f3e4a156ec436",
+  "bytes": 20255,
+  "requestId": "24pKTdcwuhZD9stFEMGw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89f3f71e275f6d4896f666a394ec47e5680916c6910418e85f9834b7386793b3",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

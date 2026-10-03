@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "Here's the kicker: one reply now gives the other side two threats at once, and parrying both is tricky."
+    },
+    "takeId": null
+  },
+  "requestHash": "62da1c309e47f0eb5186dcf1383797563723d4adcc95d213efbd8eabaa36875f",
+  "recordedAt": "2026-10-03T06:17:37.585Z",
+  "sha256": "0d9e728c8739ed7d58124b5bb9f1031c85414b45fd1116da199b39256375e78a",
+  "bytes": 23494,
+  "requestId": "9w9Enb3lTzNB8emg4qwl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2abc3eda6d13348cb24eb342f7e717b88d1fdec5966df119698a2a35384982d3",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

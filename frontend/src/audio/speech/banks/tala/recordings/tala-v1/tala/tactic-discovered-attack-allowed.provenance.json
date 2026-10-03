@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "Zoom in: two of their pieces share a line, and if the front one steps aside, the one behind it attacks. Discovered attack incoming."
+    },
+    "takeId": null
+  },
+  "requestHash": "cad469c061a1d6a1979109dde766014906a565abd4b0b5863a9e3ca71b8faf53",
+  "recordedAt": "2026-10-03T06:18:03.266Z",
+  "sha256": "2116d4d503577deaa58067e0b357132289032b06cd721b15757bb341bb6fc7e5",
+  "bytes": 29120,
+  "requestId": "G5q7T8FWm0EgXdBH501a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "490236e06afd2f7d2599d240edd83c4f9bdd9a867e50cc13a7c4c2cfe1c03bcc",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

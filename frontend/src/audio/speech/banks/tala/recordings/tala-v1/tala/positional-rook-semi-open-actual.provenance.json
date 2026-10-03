@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "Scan the rook's file: zero pawns of its own, one or more of the enemy's. Semi-open!"
+    },
+    "takeId": null
+  },
+  "requestHash": "9296014eb09cdd6b2495c605995ea64560b2c81b77347305d3ec458c603ec331",
+  "recordedAt": "2026-10-03T06:18:04.259Z",
+  "sha256": "a2fffefd1800e3ab12587609bf6e46abd589afcfa66b5008e1bbf1a6a78f5484",
+  "bytes": 20265,
+  "requestId": "vyAtQDArkwZM71rlnO3N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7ec455528385db0ebe9d3e31b02ad6801fecfb0004882f2e9df1505f73443b0",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

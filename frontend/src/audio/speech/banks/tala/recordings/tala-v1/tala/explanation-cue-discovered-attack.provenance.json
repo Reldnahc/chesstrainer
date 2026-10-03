@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a blocking piece moves, trace every line that just got uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2102434edb0c6443dd4692ac7781b41e3cfd0fd4a90e0144d74febad32bcf21",
+  "recordedAt": "2026-10-03T06:18:09.085Z",
+  "sha256": "19ce142eca76571b6035f00d314d8f359f14b0a4aa089bd4e350bb868546ac6c",
+  "bytes": 15561,
+  "requestId": "CWoqGzRnx3256QNGsm57",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9642ad782ffe2b89e799277bdaecde756bcff2150311d8f34ccfc19cc55cbe0b",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

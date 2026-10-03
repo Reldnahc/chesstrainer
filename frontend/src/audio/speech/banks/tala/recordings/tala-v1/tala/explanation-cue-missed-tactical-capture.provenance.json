@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, scan for enemy pieces standing there with no defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc449323b0aa7286a88a9fcde51c369ba4ca7e7ac1f9d8e5fad495ac81423331",
+  "recordedAt": "2026-10-03T06:18:32.135Z",
+  "sha256": "feef47cfd7bbec7f80043e18fca7127c17585883f3bc1e71dfb389af77f9cf68",
+  "bytes": 17326,
+  "requestId": "XEfQsw5kHkM8BNUIY5ym",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef9fa998bd17deabdab9296d56e194c7ed4e64512dcf7b45a0d59ee4265cb35f",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

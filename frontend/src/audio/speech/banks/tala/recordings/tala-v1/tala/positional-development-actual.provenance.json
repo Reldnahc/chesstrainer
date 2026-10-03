@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "Telltale sign of a good start: a minor piece steps out from where it began."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f40bcd6d58e69754da7cdf055aae2e694a6d566f2f3f9da8f6cbebde0d7a111",
+  "recordedAt": "2026-10-03T06:17:58.450Z",
+  "sha256": "c928073f42db704fa0456aa6b253fd0bbe88a122974acc838e61485f13e8a46f",
+  "bytes": 17187,
+  "requestId": "kQ5CemS3FF7YMG0Wl19Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ec91e024d4326c8c35f4250e60e20e3f11a2dd0ac08912daa45b85afb057b74",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Quick check before every move: could any of your pieces be taken without a good recapture?"
+    },
+    "takeId": null
+  },
+  "requestHash": "e306cc6f9925935e43c2d9f3b0674e74bed27baf6849dff48488822194ee4671",
+  "recordedAt": "2026-10-03T06:18:30.720Z",
+  "sha256": "3daaf736a75afd0cde7d504a173e4e6a9b0ddc9376b568551964d88fe86a5329",
+  "bytes": 17935,
+  "requestId": "JutQqBN4WoxtqXamLBJA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4675ea0d106185f1ef52f5e577e2be5fd604ba8b12f3c0b671a956540f96f1a3",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

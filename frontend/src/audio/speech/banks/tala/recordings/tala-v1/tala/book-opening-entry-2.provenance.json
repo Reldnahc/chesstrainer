@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "Here we go, a named opening. I like knowing where we are."
+    },
+    "takeId": null
+  },
+  "requestHash": "79030296da5d24bfd2ddbc4bd51dc1bd0350a7c5b3a40d62676efaa2b8052205",
+  "recordedAt": "2026-10-03T06:18:30.199Z",
+  "sha256": "b09600a7a7e105875983503d53e69e1fb786ab9785480c2749f142a64e182705",
+  "bytes": 14426,
+  "requestId": "xtmbTv1zX76d0OIK2l3g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73226f3b71efbff768a69c16a1d899d9f8c86dc38026a0fe5fcdf8f0cb67ba17",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

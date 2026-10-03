@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "Look left, look right: no friendly pawn next door on either side. That pawn's an island."
+    },
+    "takeId": null
+  },
+  "requestHash": "651b44c85f84989daf20805b0b456bad6f2a171707569f79d8f0d7d57a77e32e",
+  "recordedAt": "2026-10-03T06:17:38.998Z",
+  "sha256": "4e5073b780968468ab8389da8ee0f5533e7ae50cce9368af3a1764e560c69297",
+  "bytes": 21263,
+  "requestId": "0REeZMmJO4Kzn6Y8bSU1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7a267c4d2cf11071b7b9cf1673e1985b84e71414e3ba5024142f3e6cf72810e",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Quick check before a defender moves: make a list of its jobs, because those are exactly what it leaves behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "0c34ee34cf9f295f4ee2fb8bec610e2ccc8adc395e724a35f6316910c6c38690",
+  "recordedAt": "2026-10-03T06:18:15.355Z",
+  "sha256": "a819cefbc198426f24f46152da831c18e5ef4c490f5a4a0fc03ecd00ccf5f84e",
+  "bytes": 22992,
+  "requestId": "CamQaEcR6Ktsov4pxnMK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2951ef6649b245c2b6c73b9ed13d6fd496d0077845eb327eebb26441dd6cb020",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "Riddle: how many targets can one piece hit? Here, several at once. That's a fork, and usually only one target gets away."
+    },
+    "takeId": null
+  },
+  "requestHash": "206c1641b449af76e70f9078d63a781358ca935e7ed1fbc763f3d673c47523cc",
+  "recordedAt": "2026-10-03T06:17:27.544Z",
+  "sha256": "c7ece3ca5667e0bde6a8cae280b554fbc68988512f58fca1ee0a36878cf698cb",
+  "bytes": 30242,
+  "requestId": "nC6NN6e8NKyV1j8ghlQb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f35b9ffb49fb67267177d7e86c1a88be357d1bd56fbf7dc857af19239bda85f",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
