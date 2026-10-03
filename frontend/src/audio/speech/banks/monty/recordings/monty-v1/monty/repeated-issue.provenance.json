@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "Bottom line: this game has run into the same problem once already. Lay the two moments next to each other and find the common thread."
+    },
+    "takeId": null
+  },
+  "requestHash": "b733336ab38b7fe9e21175cdb0ed16c6a4cadff8b6d91100b8752c62cbbc4541",
+  "recordedAt": "2026-10-03T06:10:33.629Z",
+  "sha256": "1c69f9881f2caf5942555a05781ad5b5e54ee6cda4318157b034b1210711b8dd",
+  "bytes": 27174,
+  "requestId": "7Zu0AZWuU0ml0W9bSAGP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca02b7478d21daf7d1bf1f67d1decea81c785b15ef06ec77b3f1720f422765bb",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

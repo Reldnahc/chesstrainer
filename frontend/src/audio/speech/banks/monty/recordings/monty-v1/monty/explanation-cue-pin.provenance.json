@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Before moving a pinned piece, look past it down the line: the king may be there, or a bigger piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "3552316c8fa3a0fb60d05f45228680e643aedbb1bae9f9a90c62d08abb4211b1",
+  "recordedAt": "2026-10-03T06:11:09.085Z",
+  "sha256": "fd6a6ac6f179d05018e0dd57ddf0fe2d5b29dec2db1f5c917262d5182039cffd",
+  "bytes": 21216,
+  "requestId": "d2bzwSSuzXrF6H4a1cY1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35a1dde81261ac1c8fd52290df6dd3817008c02314795f40f9c64e6ad4f77d4a",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

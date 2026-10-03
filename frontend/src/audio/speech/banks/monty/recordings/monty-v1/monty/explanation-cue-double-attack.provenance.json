@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Some moves carry two threats at once. Look hard for those. Checks and opened lines both count as threats."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7faea629d3d6416d80c84b6802c0c1668c6110181b82f4146dd39aed4895bbf",
+  "recordedAt": "2026-10-03T06:10:42.592Z",
+  "sha256": "05e18343d7f5445bc65433749955ccbdb064fcaadd183080df4ddef94d42712a",
+  "bytes": 23444,
+  "requestId": "8wA3xAap0uXpaEFSdPnO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "beb9033d68fb84e2104d80b4531e147565d8bcabc604e9839104abbf1de00b0a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

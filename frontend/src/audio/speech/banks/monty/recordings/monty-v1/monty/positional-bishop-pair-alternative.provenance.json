@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "With a different move, a bishop capture would have broken up the opponent's pair."
+    },
+    "takeId": null
+  },
+  "requestHash": "8054c1702fdd29bc41bd4d712b05e664d6f8e01a26652984066b3da2031ad328",
+  "recordedAt": "2026-10-03T06:10:26.208Z",
+  "sha256": "548561bbf141af565828794df8e53c83059f8e8ca90517d3f97b95a5a777bcf7",
+  "bytes": 15088,
+  "requestId": "HXHAenuXdIBvM4oYneLd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f45542657773fc379004fdb118bae412f8c55782957aaf877cdbe5da3c7b9630",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

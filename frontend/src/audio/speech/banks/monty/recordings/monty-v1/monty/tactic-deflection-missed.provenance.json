@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-deflection-missed",
+      "label": "Tactic deflection missed",
+      "text": "Dragging a defender off its post was the better move. That chance to deflect it is left on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "1990cbf684fb065eca06ebc9eec080bd64bcc3e173a5544aefdbbaea8eca1bd3",
+  "recordedAt": "2026-10-03T06:10:12.228Z",
+  "sha256": "135be53d971d2719ae10b679de985a0bbaeee3c00e66b0f81d0ba0e4638e5c20",
+  "bytes": 20502,
+  "requestId": "cWTS3T5Bdsh68FMnIjAE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb44e009ceb759737ed0403d0171291958eb55195793fb3040fdd3ff9711d2bc",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

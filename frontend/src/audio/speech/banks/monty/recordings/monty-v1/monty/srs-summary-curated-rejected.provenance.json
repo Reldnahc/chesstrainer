@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "Simple point: the exercise did not save this move as an answer. It is not bad chess for that. This exercise simply wants something else."
+    },
+    "takeId": null
+  },
+  "requestHash": "c52711c52d8bf8cd7e06259e7ef23bdca5c540f79f751381bdb89ab41a942dd3",
+  "recordedAt": "2026-10-03T06:11:00.061Z",
+  "sha256": "508e8dffe02411ee029e36024ab1ff3047debba250dfbb513b8ee5fa68121602",
+  "bytes": 28640,
+  "requestId": "NaZBH0GtYJVFICQWGL5Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca50da234b5a1e9bb1a2706991d5c1d9439a6c4d6a64459355e1db8b798c5e9d",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "Plain fact: the exercise lists this move among its saved answers. In this exercise, that list is the rule."
+    },
+    "takeId": null
+  },
+  "requestHash": "f612d1a1e511a8bfa06f55e8795611c8e7c4abf5713e3b57227efed70020367a",
+  "recordedAt": "2026-10-03T06:10:57.969Z",
+  "sha256": "7f925783aadff8c075df5be44f9130023ded4c3e770a63fd67b1ec411a650fb4",
+  "bytes": 24820,
+  "requestId": "jWu5zMHYVTSGIUnnghew",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9afa7b173dd01f66947c99fcd2525a656d6d4487c810087580362b5717725f4",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

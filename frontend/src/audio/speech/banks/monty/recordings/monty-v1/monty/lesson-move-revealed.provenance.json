@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "lesson-move-revealed",
+      "label": "Lesson move revealed",
+      "text": "Answer shown on the board. Look at it, then go on."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e0686a66df0890875491147b6eed8bcf342bfa8eab2e2dadf18949ee828d454",
+  "recordedAt": "2026-10-03T06:11:13.986Z",
+  "sha256": "d472290d9debec3a8018b81a2675f3aa4f5be1bc0524586b244c3f2a0f20c1ee",
+  "bytes": 11846,
+  "requestId": "U7MWtpTDuraSL4B5copW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58e952e7dee598ea32bdc26217c9d4c3e217ddd50406de7106da3d3af0fc786e",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

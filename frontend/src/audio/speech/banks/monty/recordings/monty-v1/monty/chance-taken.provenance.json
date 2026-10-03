@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "The opponent made a slip on the last move, and this move cashes in. Good."
+    },
+    "takeId": null
+  },
+  "requestHash": "c49863054dec684e71d671db80e0e80a1c3d9e9f8b8c7e3bd667ca5b031f6a1b",
+  "recordedAt": "2026-10-03T06:10:29.848Z",
+  "sha256": "bebe3d359f8ec4f2da583aec05eee7ec4ae0d4df4d224b7a43faf5d6bce78cb1",
+  "bytes": 16883,
+  "requestId": "yXY1XSPW4beJwD6uGeY9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a6fd9366b8c1568ef6275df6f546b58d97b4768b4f6c86300e71c90a1f6c0ea",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

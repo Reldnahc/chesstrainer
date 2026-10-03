@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-isolated-alternative",
+      "label": "Positional isolated alternative",
+      "text": "A different move would have left a pawn standing by itself with no friendly pawn next door on either side."
+    },
+    "takeId": null
+  },
+  "requestHash": "36e4634bd4ec700fffd8ec1ae4cc5d674064269823debc675dd9c1f40bfd048d",
+  "recordedAt": "2026-10-03T06:10:10.369Z",
+  "sha256": "a59110da50925c27568026a496e77f2582b4b79d9afc339b746adcd71a00e6d0",
+  "bytes": 21258,
+  "requestId": "JBe1JA2rgbOGNCvMnMJX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9becc3c534c36c1cc89b4227260c5215ac0f031bc9f635a3b5a9c60fd42e0a95",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

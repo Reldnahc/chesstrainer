@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "An attack can go straight through the first piece. Look for a valuable piece lined up behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b8579d3407e7d6196990aa82d0c8108c50128eecf699ebcd14577e8e1a7d2db",
+  "recordedAt": "2026-10-03T06:11:10.645Z",
+  "sha256": "bcee6953276c11a07fef364d2584efdfecea214d1477dc3e0f1c9cc4d7cbc642",
+  "bytes": 18987,
+  "requestId": "q4Yf3FRUCf8Xp5EpchBi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29b1afaa7dd7e9263fe753d1996b4c1ba60c8422327b0aba9fd6969072598ac6",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "One piece, two victims. This is a fork: a single piece goes after several targets, and one move may not be enough to save them all."
+    },
+    "takeId": null
+  },
+  "requestHash": "66b77ad3e3e528564ccbb7a4d5a7c328d41fd37b95034c09737f5fdb9e9ebc5f",
+  "recordedAt": "2026-10-03T06:10:00.166Z",
+  "sha256": "377cb019454cbf2cce86d4a831e2d087dadcbcdfcd61ff65f097f56212b0e9cc",
+  "bytes": 30946,
+  "requestId": "3pAVHuXiEi9Ee8Gy8KI8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "def8e7e2e353c9774d797c293c4e1a13f7aa121acb8b399fdd46f13d13ec57da",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

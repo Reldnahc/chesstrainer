@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "lesson-correct-move",
+      "label": "Lesson correct move",
+      "text": "Right move. That is the one the chapter wants."
+    },
+    "takeId": null
+  },
+  "requestHash": "c399024da902423d7706b54ecc95674a4ca581f56338a1368f1bc8bd027b225f",
+  "recordedAt": "2026-10-03T06:11:12.819Z",
+  "sha256": "fefc6325392b79140272eb3a41a63434532dc57eb462513098b59eaa26f663b9",
+  "bytes": 10889,
+  "requestId": "jbhBJmp3YByXGss0Mbly",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f90a9388329bda33b108091c8ea70c52e859a2d0d1f8cb648d11198fd106c4f",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

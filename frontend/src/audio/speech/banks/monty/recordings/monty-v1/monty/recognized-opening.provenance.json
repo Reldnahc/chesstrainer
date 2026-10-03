@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "recognized-opening",
+      "label": "Recognized opening",
+      "text": "Simple point: this one is straight out of opening theory. A known line is one thing. Understanding the position is another."
+    },
+    "takeId": null
+  },
+  "requestHash": "58651a3bdb003cd1b791298fd6d9ecf30a42ff6e3bf735b0fcebd6b9a4c24fc5",
+  "recordedAt": "2026-10-03T06:10:22.724Z",
+  "sha256": "4a141fe7aca1c8057f208e0e4955a4dbfe23c096d4fd25640ce2ac74ad31bd43",
+  "bytes": 25670,
+  "requestId": "lbg3bVDVcKBDeOBHCN8U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "719d93fcf46c066179c409227dd9a417274bc3524ca19ba3c89773c9b015c829",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

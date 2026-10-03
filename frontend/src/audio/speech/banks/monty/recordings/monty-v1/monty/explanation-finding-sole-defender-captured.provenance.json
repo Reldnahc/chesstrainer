@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "First the guard goes, and it was the only guard. The piece it was protecting falls later in these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "431a92f25d8391202210e0aaeb3d23ceda926db9b9d07ed81d55f2bbe1bf5736",
+  "recordedAt": "2026-10-03T06:10:47.812Z",
+  "sha256": "fafd098ec99e984ef58b2e7024fd75c0935460cb53d3082e84de902f232e6b5b",
+  "bytes": 21909,
+  "requestId": "lHA3voGhM9C5dxeJm4FS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb5b7677e2febbfc0462c416f3b55940930163e5419d0474c2eae1449bdcc8d1",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

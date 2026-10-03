@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Material goes, and the idea holds. If the material is grabbed, the checked line still works. That is strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "78a5489efd79cdc8ca3f07224882e33d6fb0c8c8981ccaf1ece492fbdf914aa1",
+  "recordedAt": "2026-10-03T06:10:35.742Z",
+  "sha256": "7fbda366a38b5a1df575efbeb25fa3529d152aba2766d90cc46e563502cd918b",
+  "bytes": 26046,
+  "requestId": "KPq3zgA6BBfJYuq289CO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65c1bc8315d6c967d3f1c286e336c719e493d65815a4d96bb000788e2cb0323b",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

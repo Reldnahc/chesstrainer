@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "Move the front piece, and check comes from behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc54e86aa733eea793e9e4b1df672ceb2d6f19694c40675e103bc8ae6a0a535e",
+  "recordedAt": "2026-10-03T06:10:51.767Z",
+  "sha256": "670019bc7475273def53f70200f5f3b49f4cea888baf8e58a0c994d4a925fb98",
+  "bytes": 11492,
+  "requestId": "NTwb1Ahnn8eB5UE8iJiw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e03720a41bbab9470beff44cd1008531475a3fa163fe9bce1911567b23463da3",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

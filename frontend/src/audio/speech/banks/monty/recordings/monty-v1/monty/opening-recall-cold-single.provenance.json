@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Only one move here comes from your study material. Find it."
+    },
+    "takeId": null
+  },
+  "requestHash": "da76c977a36a513d2285c2e224a2c69a3525957c6daa42b8eee13ef009633883",
+  "recordedAt": "2026-10-03T06:11:05.117Z",
+  "sha256": "18035bef72d006e6532f2db57bc8d320aa883bddddf8e9dd9911f93178c0db85",
+  "bytes": 13156,
+  "requestId": "dkdTZgrkVSrNu3AADbUX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62c76bef8579244bd652602466a8472d6dbfa7481c02f4b202c7961d9bcf02d7",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

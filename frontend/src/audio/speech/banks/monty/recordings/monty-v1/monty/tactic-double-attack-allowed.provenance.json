@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "With this, the other side gets a double attack. Any reply has to cover both targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "dfb5402fccbc721d6f5983453ba06301ec17211f5d5fc8f661f20941a0b47975",
+  "recordedAt": "2026-10-03T06:10:04.607Z",
+  "sha256": "e5f247c0eba80759f25527b301183adb0eb05b59e2b1c7618c25ceac41df9034",
+  "bytes": 19315,
+  "requestId": "MZPNyRDcWcpuMiHLcD40",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e9596ec6647f8635040e30203bb01e15fde8f0c090ede412c3eacc29eca9fa0",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

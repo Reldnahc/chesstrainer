@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "mate-defense-ended",
+      "label": "Mate defense ended",
+      "text": "Checkmate. That king has no move left. The defense broke earlier, so go back and find that spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "af6a41982722ae985aa598cd73494d56ce336f9e1262d585517d22dab4bea9ef",
+  "recordedAt": "2026-10-03T06:10:41.690Z",
+  "sha256": "cd434acbcea7250e72151cda04d3a7d3e37d5c2b94dbd19800d87361318a7eba",
+  "bytes": 21593,
+  "requestId": "jKrJUH3jmuMSheRtqihj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9955f86539fb03f19a559343692490c7fee832d59be59f43cb8966fd186c3ee4",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

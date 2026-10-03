@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "That piece was loose, so it goes. This example ends with the capturing side holding extra material."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2898322d008c5ff34454c68bfa803a492fd11008b8d14f2650292d782074e50",
+  "recordedAt": "2026-10-03T06:10:58.999Z",
+  "sha256": "13de0b12215619b914e8f11e7726e199a666d8599de12823c1e4ef6e74fb8635",
+  "bytes": 22284,
+  "requestId": "Nq9dfmWUGoNxUkEx6oQo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4855998ddff718128da6645d75d2b68efca57121a3091e56c803b74e444f13d5",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

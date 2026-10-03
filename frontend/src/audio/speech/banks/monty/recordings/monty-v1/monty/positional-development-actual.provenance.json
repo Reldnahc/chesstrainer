@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "Bottom line: a minor piece is out of its starting spot and ready to work."
+    },
+    "takeId": null
+  },
+  "requestHash": "579237154f94bf7825edb0e5b86e9e86c7b609098b34b79085f2ba4bbbb39db2",
+  "recordedAt": "2026-10-03T06:10:24.486Z",
+  "sha256": "0afe94d7d67152e199636563d13ac52e3a5cef5fae5ec136f867816edf7d18ce",
+  "bytes": 16444,
+  "requestId": "q5wCRcQCYjFipkpRv19W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40e33b8eba3b7f05afbea539750f3e4d1bd707a01379b04fa96b23ed6f4a312c",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

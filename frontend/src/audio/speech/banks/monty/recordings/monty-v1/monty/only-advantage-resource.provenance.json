@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Plain fact: no other checked move kept the edge. With anything else, the advantage was gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0db1cf52c13642353954e06128010b357805d5f5ab7ce01680d5909368622bc",
+  "recordedAt": "2026-10-03T06:10:06.881Z",
+  "sha256": "aa7a2aae5fb8f8f205352299dfe599093cf765f0d41bbf2b361f5832f6ffdc36",
+  "bytes": 20006,
+  "requestId": "cJbhb6ymfBzpKzha2vyh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85e4872bba6d59b30f489a1ef43a2b66be611c4ba690f1fd6536d88f68ad5c15",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

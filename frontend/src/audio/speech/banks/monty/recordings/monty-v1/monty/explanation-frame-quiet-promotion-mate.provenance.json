@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Up to the last row, and the pawn is promoted. That is checkmate, and the king is trapped."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2fac0c834de9b61052dd641216555f14747f96b4f7ee7466c3349b04ad0a14f",
+  "recordedAt": "2026-10-03T06:10:44.049Z",
+  "sha256": "58419af7bb4d0f83bb653f3dada0aeb7defd92224a4004f1de1018df29a6a902",
+  "bytes": 20760,
+  "requestId": "c6QeTAXNjvXvwEnyDQMq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0d3857b6bd25a451b49e19dbe85847b036f7201caa6d5fed0e225f6c92aee73",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

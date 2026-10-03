@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "Big picture: no friendly pawn is near this one any more. With no friendly pawn on the files beside it, no pawn can help guard it."
+    },
+    "takeId": null
+  },
+  "requestHash": "47ae15d87fdf963f57d3c7a932a30eb617c7a293d4a2f9224496d5362df6716a",
+  "recordedAt": "2026-10-03T06:10:08.694Z",
+  "sha256": "33f4306ddb4b6a5087e7a08b4e4df543cb10be23247e244408b79d2696180106",
+  "bytes": 27734,
+  "requestId": "i8iS3nmzkGjFdZczrXck",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebf8c71fd97b4d141d09d950eff9f6275cb21ebbf970a94a3390bc93413c177e",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

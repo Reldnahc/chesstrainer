@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Bottom line: doubled pawns. That side has two pawns on a single file now, stacked up, and neither can guard the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "000ffd37709644b5c0e3dce82083283c8f6e6c393d92da9c0d2a45b641f31ea6",
+  "recordedAt": "2026-10-03T06:10:28.454Z",
+  "sha256": "edb2fe0cd5ccff1f40842820c26091cdc293eda40084111873c55e09c21f06cd",
+  "bytes": 27189,
+  "requestId": "jJEmM4QH4kVSYYDQJ6lh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d22c53dd45396d274e2976322e468967eff09cfe1038f81fc5854165d0603b1",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

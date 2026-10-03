@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "A different move would have set a rook on a half-open file, its own pawns gone and an enemy pawn still there to aim at."
+    },
+    "takeId": null
+  },
+  "requestHash": "029ab870010dbfb66fa88be2fe7b4bf0c5daf201a75e7b4ccd25f502d66695fd",
+  "recordedAt": "2026-10-03T06:10:32.128Z",
+  "sha256": "2ace104ba055182f2665a9e8052970783558f890ddd97104fde2f48ac1013f90",
+  "bytes": 23563,
+  "requestId": "EQZCeHxxq3S9txx877do",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc11928de0ca61678c199381e832c73f07327db28dbf1d9cb8f2aebf174fb84d",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

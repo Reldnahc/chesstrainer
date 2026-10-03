@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before every move, find any piece of yours that could be taken for nothing."
+    },
+    "takeId": null
+  },
+  "requestHash": "730da1ac365709f14cfc0cda08618f38ffb56a513ac34ee46f7255255f14cda7",
+  "recordedAt": "2026-10-03T06:11:04.868Z",
+  "sha256": "400af1df662f2990bcb0dcb96ede7a798d9ad2b3245291a6961fc9a33eb09cea",
+  "bytes": 16247,
+  "requestId": "noQCEMVzZpOWop7YXhvu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "922ef45ec165849bf01b2fb09eadc26e1567199c40fa727759e274233a4d2701",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "A single move, aimed at two things. That is a double attack, and the defense has to deal with both of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "391f88d61e6f153f05e51029f443e1e067dc61ab81ea1f807f5a95f87025b7b4",
+  "recordedAt": "2026-10-03T06:10:03.132Z",
+  "sha256": "764ff19149c03d285bbdb0573c419138fae9a95e500602886e98777512a9410a",
+  "bytes": 23103,
+  "requestId": "ytlY5Ic8vC5pe5GcUKVX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91c36c818d4d8566f649a346334aa615cd463d90a1fadb4a358d82437a94e5a1",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

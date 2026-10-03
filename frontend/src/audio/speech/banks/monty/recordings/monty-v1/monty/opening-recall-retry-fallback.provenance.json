@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "opening-recall-retry-fallback",
+      "label": "Opening recall retry fallback",
+      "text": "The answer is somewhere in your picked study lines. One of those moves fits here."
+    },
+    "takeId": null
+  },
+  "requestHash": "d68201874f5df526e9224c0e690b047026e6ad5e66db16d4e3e045f764970bee",
+  "recordedAt": "2026-10-03T06:11:02.666Z",
+  "sha256": "70e7d11532769044d207eeb061930c49a5dd5f92473abaeab38f6cfe150adf8e",
+  "bytes": 17135,
+  "requestId": "ca8YOwXewcR0Y1b1jTi0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4eb5ee978b883a6adb9336750574d8039297ab991638281b84fe239e13ff3a1",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

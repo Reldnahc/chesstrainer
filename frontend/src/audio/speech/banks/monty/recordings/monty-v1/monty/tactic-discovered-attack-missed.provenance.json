@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "There was a discovered attack in the better move. Clear the blocker away, and the back piece attacks as well. Not played here."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4626bca50e158f69101445987149e8774d3484dc8b2a89958e40bcdb626c327",
+  "recordedAt": "2026-10-03T06:10:01.239Z",
+  "sha256": "194cb843754090cc5665115f098c2e528c1480a41297e117b487170603338635",
+  "bytes": 24263,
+  "requestId": "DWHk1UcTkGqU9L6TF3uZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5bb2876c32067ce0eff05859fc3a118615b22e29fb43a855afbaeac166f829cf",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

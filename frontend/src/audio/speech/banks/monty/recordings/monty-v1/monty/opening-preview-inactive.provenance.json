@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "The recall schedule tests the side you picked. One card covers a position that several active studies share."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3fdaa70d2e98f82e4d1b8fa42e0a812098192e0414f495d33a2dbb1fa3211f3",
+  "recordedAt": "2026-10-03T06:10:46.798Z",
+  "sha256": "502b71afec64cc613dd9c687b46152b91885bbaac6985273a83d9a9a2449b489",
+  "bytes": 22330,
+  "requestId": "N2xUFIqSYvG5xbLb037Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f1c3f8f8a9099ac959ccd1dcf71c737cc7074c1d45fa2e2934920bceaa1443a",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

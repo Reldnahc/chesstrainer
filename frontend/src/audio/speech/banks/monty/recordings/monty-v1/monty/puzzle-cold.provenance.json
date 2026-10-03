@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "No rush. Think it through, then move."
+    },
+    "takeId": null
+  },
+  "requestHash": "97c3a7851dee3ccb53af366fa9dae3fa7e040fd3a3891f4aaa2ecf5db89137b2",
+  "recordedAt": "2026-10-03T06:10:56.420Z",
+  "sha256": "772ac66e77fc60fc28ecbe27e12976d1adc5eb1726d1c0ecee80f8f7b736f0b6",
+  "bytes": 10252,
+  "requestId": "JPorKObU0qqfSjzf3hX2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e3be51c4f225d7c77596eaa2a5ecf8343f3aa6e5522c9ee7e76749bd676fe53",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

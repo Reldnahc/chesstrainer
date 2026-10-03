@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "A defender about to move: first count what it guards. All of that loses its guard when it leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "5910dca7ec8682fe1f5ab1ab1fb265807065eeb8c094922292a1746786d094c0",
+  "recordedAt": "2026-10-03T06:10:47.225Z",
+  "sha256": "e1a99980869b29a18d6b2b53880e3f3982785db844c7cd0f3054844a2c2831a5",
+  "bytes": 21140,
+  "requestId": "3NeIAoF5wtXPzYTbHz9c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b84c814de46f600994808182bd9a844a26779179b814c38e5d40ec98901990fb",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

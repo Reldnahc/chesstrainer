@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "Second try, and solved. Both go on your record: the miss, then the finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e5a764598825ca9b309b0ef7f5c95c10f5ddfd483c0578db80db18b52f6d323",
+  "recordedAt": "2026-10-03T06:10:51.743Z",
+  "sha256": "c0d9f7cdafc7ea9dc145784922c3ff9b7a049e341984070ba0458cbec874eed2",
+  "bytes": 18084,
+  "requestId": "pqLs11pKVLswiXuU2FW2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "895b3d5977ac1e1d34886b93084f5dc18dafc9cc2a6f39f91cfc342927ff6d8f",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "The attacked piece has its king behind it, so it is pinned. Its only moves are ones that still cover the king, so running is hard."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8c95a4c793d043c48ff7067b0923f8f4b60e42f4a7376106973ff4bad99f859",
+  "recordedAt": "2026-10-03T06:10:38.473Z",
+  "sha256": "8b9974eda5e44fcf0ce0148c9185d7488a1c8551eb5bf4e27f08aaa03476d732",
+  "bytes": 27523,
+  "requestId": "ZFVfXV9ib6vgKycth5Xu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f5e8e2870dd8d85bbf86c5f6f90e14eed7cb482bab1919869a5c2dbe411519c",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

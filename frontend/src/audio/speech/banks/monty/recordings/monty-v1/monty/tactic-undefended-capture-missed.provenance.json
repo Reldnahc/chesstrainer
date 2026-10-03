@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "The better move takes a piece with no guard on it. The move played leaves it sitting there. Loose pieces come first."
+    },
+    "takeId": null
+  },
+  "requestHash": "24f4fb41964dcd51c89e7603c956a0723b68a6e4b7595f6e26f353718cf2e2e9",
+  "recordedAt": "2026-10-03T06:10:15.339Z",
+  "sha256": "34b1ffab3ca1b929260d5ba1f2be7e9b085ba575a3db485166c1f1442d4bd552",
+  "bytes": 23589,
+  "requestId": "QMJdPiG9QbqM16iz6hDr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b4865cedb8f3cba0205e9561e7d9966929ad5147144fd5b99da9518327cc35d",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "support-restored",
+      "label": "Support restored",
+      "text": "Big picture: the earlier loose piece is safe behind a guard now. Good."
+    },
+    "takeId": null
+  },
+  "requestHash": "52727788a6f3c0a67d64a03313948eebb5addc1cf5f2cf68095ca908c81612bc",
+  "recordedAt": "2026-10-03T06:10:34.982Z",
+  "sha256": "f18a0a0f2a86397a217c68ffe3b0da7a5e4f7e1090029c6c748b1c8bae69d1cc",
+  "bytes": 16268,
+  "requestId": "uz9pPdKsCfh4XPLlaXBa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5b327ae4c23b4aeaf2537ce89b5a51646d67b0b9665acc5dd785190b7332a5e",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Two at once: that is what the better move hit. A double attack was there, and the move played makes no such threat."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b8e2a778b05890b55626984c3585a31fb6e235775fd93d3cebd04c4ddb45532",
+  "recordedAt": "2026-10-03T06:10:06.718Z",
+  "sha256": "c5c072e495f1fb3161fc69ccfda1f29c1e43760041bc9bcfa8eadc30ce5f9f69",
+  "bytes": 24431,
+  "requestId": "L2t9XZluBI1NXF4MTejJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "050acdd111163086a23e4838585d9425797322de64018d546f849c8d22dca3c0",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

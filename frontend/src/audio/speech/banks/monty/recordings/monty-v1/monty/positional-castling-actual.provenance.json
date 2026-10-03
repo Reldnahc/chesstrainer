@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "Castling: the king tucks away to the side, and the rook comes over next to it, all in a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "51cb99e45cb6898eae5552ccfb747fb98e3c2e8d16afec6a7ea6fd440cf7a2fb",
+  "recordedAt": "2026-10-03T06:10:20.979Z",
+  "sha256": "8d7d69b3cfc64bd5a1dd182064c1a16f226344c9112e03e624a059dd03539e00",
+  "bytes": 21681,
+  "requestId": "VNyWrqTUJ54NKT7defaC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a0b7d19d9a4ac9e41b4cdd1b3b7549fc786ada2dd29df8bb593fc41d91e539f",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

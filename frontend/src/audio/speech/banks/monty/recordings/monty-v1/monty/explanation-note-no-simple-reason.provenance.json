@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "No single simple tactic explains the saved line. Run through it move by move and compare how the replies differ. No positional reason is assumed either."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a598cc461a1426e57f4dd383b8f519d573e6a8d164823601de5390dd1cc6fa8",
+  "recordedAt": "2026-10-03T06:10:57.530Z",
+  "sha256": "bbb7756757fb18966460f0a6ecb7f2021f69e293499b98e437201edf64cea1f7",
+  "bytes": 32363,
+  "requestId": "YjdrS2bQQaxifwgzYVGb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4627821b6bf663c8d5a3fb3c7f13729e8a782bf18cfc787cf65f78ddd7d49eef",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

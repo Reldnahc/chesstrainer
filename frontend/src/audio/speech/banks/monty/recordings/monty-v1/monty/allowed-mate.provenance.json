@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "This is the big problem: from this point, mate by force belongs to the other side. Track back to where the defense broke."
+    },
+    "takeId": null
+  },
+  "requestHash": "885aebe5b1e1a609a225d5227182db49930272e8cc0232818c442c3e2f1541e4",
+  "recordedAt": "2026-10-03T06:10:31.869Z",
+  "sha256": "83d745f4159417e0d2b2347982c43151b982e171d2c72ee3be17ddcdce928d96",
+  "bytes": 25471,
+  "requestId": "BMbaE1QHXSVMzyfFMjgf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "129d7e72a62c0f9bb8028506c7cc0f887aa9d86da64f8424218f6747c13ff089",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

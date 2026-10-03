@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "lesson-rehearsal-prompt",
+      "label": "Lesson rehearsal prompt",
+      "text": "Your turn. Remember the move you studied here."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d2ba41be3d5fc46f37b49af5f8107140cbbfebe16138f013f9330e48f0d4dd6",
+  "recordedAt": "2026-10-03T06:11:16.296Z",
+  "sha256": "4b6885a4170f74fd18706d4dc1f41cda7c49cec1543a852def112944a0358b67",
+  "bytes": 10284,
+  "requestId": "5puuIIYdBLZPS0te9bFP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bfb55a89fbd17ffea9a241e0469737491331e84af1b7f3f016ea80414705d39",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

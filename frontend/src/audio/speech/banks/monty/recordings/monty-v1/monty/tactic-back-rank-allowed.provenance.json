@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "Simple problem: the king has no air. Its own pieces box it in on the back row, and the other side can aim for mate there."
+    },
+    "takeId": null
+  },
+  "requestHash": "71a55084bc17f9095a7b0b71a0c8fc0b41de91595b2dc9a9e3e65bb75b4efd5a",
+  "recordedAt": "2026-10-03T06:10:27.940Z",
+  "sha256": "e0ac04f3f5458f2d0ae6545520e26745715c2451feb8a4fa58d352ff59b4336b",
+  "bytes": 26257,
+  "requestId": "YEfYRvbE7GK875d4VoZt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a276678d493c36765823dcc6350565f55276b4b94c494392307c173f45f182f5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

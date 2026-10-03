@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "Simple point: the king gets elbow room, one more legal square. Good to have that room."
+    },
+    "takeId": null
+  },
+  "requestHash": "716c360beba11496b80a58c33b7b7881331753c31bdffb64a68fc5cb9ec793e9",
+  "recordedAt": "2026-10-03T06:10:18.186Z",
+  "sha256": "21b1fe1fb03a00a90895bebb267103cf965419e71aeceff81e332fa28bddea90",
+  "bytes": 19890,
+  "requestId": "Z90Aw37dxdhMe0wJod2O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b995eca59e37923eb432b1aa0f18487b849274b493124a897098fbd3e8a2b06d",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

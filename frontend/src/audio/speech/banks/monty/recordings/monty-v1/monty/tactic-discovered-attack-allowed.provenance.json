@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "Their front piece is standing in the way of a piece behind it, and this move lets it step aside so the back one can attack. Discovered attacks begin exactly like this."
+    },
+    "takeId": null
+  },
+  "requestHash": "5bc9c17246c476854983ab0c19961a468dd9e62250b77902176eeedba537712f",
+  "recordedAt": "2026-10-03T06:10:40.616Z",
+  "sha256": "98d823c588c1844c8b545f8af58e203dfa56ddb70731f8ef52a390ccacce266e",
+  "bytes": 31544,
+  "requestId": "hUDSDr5FI95FZjHvufuZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fedb0442718bf4559acef752940ad9d587484380811340d1961d3b41a5495742",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

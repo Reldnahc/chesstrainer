@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "Simple problem: something is loose, and the reply takes it at once. Look at the reply and find the loose piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "9183c88076d5433e025a144fcc5df4b79ae95961182d90c8f75b913839bfd52c",
+  "recordedAt": "2026-10-03T06:10:08.881Z",
+  "sha256": "a444cd68eb1694a052195954d0c3ae26e07e6d33b22723a86621db68e62d8582",
+  "bytes": 24420,
+  "requestId": "HGMOeKIvm41P9HxabzcY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afc8534ff0db009e84d17631d2dd7d293f7b311d5e5b5599de81eec479f1c723",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

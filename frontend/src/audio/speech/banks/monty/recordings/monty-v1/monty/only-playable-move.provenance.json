@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "Simple point: anything else that was checked goes down. This was the one move left standing. Good defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "a44abc541b07664af54d41b490abb6272db2250054ff5cce20726da63c08ec6b",
+  "recordedAt": "2026-10-03T06:10:05.121Z",
+  "sha256": "82dcb3068549b7a07b7171f3e05e432149fdd9d8dae63b0d400ba197b1523fcc",
+  "bytes": 22823,
+  "requestId": "Pp803IBcNEmc2YtFgPmy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c07b38f1b84cc9e686e0b82fc0ac4d5c9507d5094f82265d92368851f2cfa0d4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

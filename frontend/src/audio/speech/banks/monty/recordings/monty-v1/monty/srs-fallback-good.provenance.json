@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Good move. Hold on to the why, too."
+    },
+    "takeId": null
+  },
+  "requestHash": "3523cf5d1e9fdd0f6ef8f8c9786cae23bee201460966985370b9ab9e9f9407db",
+  "recordedAt": "2026-10-03T06:11:02.259Z",
+  "sha256": "692c2d8b388f36d68e0d0367a01dcd2b2c522e8f854f4c4c6a34db538d7bb8fa",
+  "bytes": 10049,
+  "requestId": "PisexGgVowNnPnsjoBC3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55b3de46a423b0cf6fb1d8821180e5692908dbb07485d2e313378fd5992bc713",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

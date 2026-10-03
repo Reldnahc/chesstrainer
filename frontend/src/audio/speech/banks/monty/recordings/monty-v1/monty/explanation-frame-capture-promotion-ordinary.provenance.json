@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "One pawn move does it all: a capture, and a promotion on the last row."
+    },
+    "takeId": null
+  },
+  "requestHash": "645557529f7379a47ed9c148c13882b182aa292dff5c1523fa61749fc6c5fe90",
+  "recordedAt": "2026-10-03T06:10:52.107Z",
+  "sha256": "459338f7bf1976799e92ffc747d9700adfa2829d92bcc4e2254d6992cb870fd0",
+  "bytes": 16811,
+  "requestId": "FqbVsWnpxsfK06akGLcH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7586314cec3f6ec43ac18875a1ad193e4b1895f6286b9015701879e2d6d3e184",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

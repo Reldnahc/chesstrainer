@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-passed-alternative",
+      "label": "Positional passed alternative",
+      "text": "Another move would have turned a pawn into a passer, its own file and both side files clear of enemy pawns ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "192ebf8f612be4d6dc590d9e92c235767dddcce57ac5eddc445c0e4c9df7804d",
+  "recordedAt": "2026-10-03T06:10:03.252Z",
+  "sha256": "e89a0b8b3737792dd32daa0515ce93f7a5682eb7655d55d1e5b846c53f239f95",
+  "bytes": 23743,
+  "requestId": "qnqqcSWvS2y3PonH5WZ4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03477bd3e4b08bd871ed8decb5bac092f85c877e543ff0c4f41b5163743f3936",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

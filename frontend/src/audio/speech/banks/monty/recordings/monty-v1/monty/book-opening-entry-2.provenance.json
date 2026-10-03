@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "Plain fact: this is a move theory has seen many times."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d9325ea434a13a4c356670ca8d340b9a7e18ddea904daafc641509d3e848af8",
+  "recordedAt": "2026-10-03T06:11:02.464Z",
+  "sha256": "5bd9f9ef47f23324f7a6ae3ec61874dea6caceb15898fdd53ad99d4c64068b10",
+  "bytes": 13540,
+  "requestId": "HvL06uVEJ601agFhJLmg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1579e80e927615c8c139ee09f262b29f78540b52bc4fbdd523ce8f8415d7d0ba",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

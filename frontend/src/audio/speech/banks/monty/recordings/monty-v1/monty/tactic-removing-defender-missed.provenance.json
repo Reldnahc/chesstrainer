@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "The better move went after the defender. Without it, the piece it guarded would have stood with no help. As played, that defender is still standing guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7b2728f02dc7a34258a681457aad35083d5383c4dff2e4affcbcf327e47ff69",
+  "recordedAt": "2026-10-03T06:10:23.538Z",
+  "sha256": "dc57bd2966aa905f9b5019a64e825565cfb167cc793b1f35290a06a0732722c1",
+  "bytes": 30379,
+  "requestId": "TBR8WZTDOJQttrg0vxux",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8bce7bd94e1fd30a47360447ed6e3a39f177cb8ef01193dec337ee3a1c3e5fc",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

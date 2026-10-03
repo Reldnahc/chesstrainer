@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check. The king is under attack, and that comes before everything."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e77c58174506180d47c659004fd053a8009406da8b5ac0f5a727187d6326685",
+  "recordedAt": "2026-10-03T06:10:39.152Z",
+  "sha256": "5c7d010f3c28e4da2b40875b444999659d35f996d1bc5d07b5483dfc8c7d3187",
+  "bytes": 15163,
+  "requestId": "JTOOKI45QZVbzbygi6NB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39bda44a24f93a62af632edb0dcc711f67cf7ea9bcf57b212003b6dddcca453f",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

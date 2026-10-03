@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling ends the game with checkmate. The enemy king is caught with no way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "584746a7706da10db92b27a20385ac9f1c5cc9d915e05ca70fa7ed0418ccd797",
+  "recordedAt": "2026-10-03T06:11:00.534Z",
+  "sha256": "9aba01779ddf9ec7e546e8f3963bb218b2602e325cc5dcb9e8dba64f9ff13fe0",
+  "bytes": 17896,
+  "requestId": "Jx8qcweMmrkWbQyjSvMS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4fc3330269eb868cab856645e7eed4f72e4d6a28af26bd1845fd484e11d3f959",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

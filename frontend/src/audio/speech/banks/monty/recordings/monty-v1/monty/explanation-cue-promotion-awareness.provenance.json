@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count the pawn's moves to promotion, and look at every forcing pawn push."
+    },
+    "takeId": null
+  },
+  "requestHash": "b805e9eb0fd651148b8f42f4af7dbaae944dfdb9120e651cf8785667a8062b60",
+  "recordedAt": "2026-10-03T06:10:45.592Z",
+  "sha256": "33e2d31af16e3145a5d770e2f991dea2ba8ff6e98fc3030b73ba5a3d42c738da",
+  "bytes": 15831,
+  "requestId": "i5ApDHSdYFfQAr18mqIY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb6b7b38367deb5fe012ab842cbd52ff0e71c7f5767b1e1be7f4892a19fd3273",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

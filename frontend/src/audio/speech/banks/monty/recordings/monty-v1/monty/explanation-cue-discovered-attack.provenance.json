@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "A blocker that moves opens up whatever line is behind it. Follow it to the end."
+    },
+    "takeId": null
+  },
+  "requestHash": "45397bd6eb7a74063e9292c3a7186bd23f77a28d0588dac6c81d03827606b5a9",
+  "recordedAt": "2026-10-03T06:10:40.791Z",
+  "sha256": "1ccebd3d23c6dfe20f77d9aba0b032e041e38ba98e6b0350b0dd968112a53cb2",
+  "bytes": 17014,
+  "requestId": "wlZsz5NpJux5mgJmRUqp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e28a1e27cb6ac1110ebafd78a0efbe3e3805df03f7f010760783ab020b29fc3",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

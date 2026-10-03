@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Any move in this line is good enough for mixed Due. Dedicated practice sticks to this single line."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b33ab8f0b6f3c39ab69b7e7ef3190f8ddc71590b38d07d0f276144d8b8fb193",
+  "recordedAt": "2026-10-03T06:10:45.164Z",
+  "sha256": "7e2fe47e2c4f205ef9d65a47bac9c99f2317206adaec8dd2936a467e883d2f2f",
+  "bytes": 20185,
+  "requestId": "hBe13RaAG9diwobCTbWI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ae511e3b7e59fad21a2a4d0b6c3ea362fc09b0e97ff20e3dac73b25b2168676",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

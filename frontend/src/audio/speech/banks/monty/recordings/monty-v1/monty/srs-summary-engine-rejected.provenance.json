@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "Wrong answer for this exercise. There is no clear tactical reason in these moves either way."
+    },
+    "takeId": null
+  },
+  "requestHash": "60e49fb3838f1194f0c618f24e62c297bba316df3156daa17419978be543d9e8",
+  "recordedAt": "2026-10-03T06:10:56.213Z",
+  "sha256": "c30a5fe459e6dd2397410e7caa709d96df509084471e54a1a6dc47c3bf466651",
+  "bytes": 19679,
+  "requestId": "Og6lZNVgEHzi0OzPCTx2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77dd98b7de49aba14b7814a32218fe41251db346421e73cfd3251925593f6272",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

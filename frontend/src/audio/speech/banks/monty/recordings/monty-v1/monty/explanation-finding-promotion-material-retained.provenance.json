@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn is promoted, and in this example that side ends the line with extra material."
+    },
+    "takeId": null
+  },
+  "requestHash": "60aeef27f67381e02ec41490a27ac548a1f5dcdd2738ac9319e14dce54c602a2",
+  "recordedAt": "2026-10-03T06:10:57.183Z",
+  "sha256": "d7c91904d51795b2b5bf08b3970a80a387cfc4d775cd41ba22322b1873e835fd",
+  "bytes": 19416,
+  "requestId": "J53TYM4A7YEL9V5G6eLO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46502737a72badb97f7176c34c4cebdfb67b7ea53a4ab021c4c15543ca776438",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

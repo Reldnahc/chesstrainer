@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "Simple problem: one piece has nobody guarding it, so the other side gets it for nothing."
+    },
+    "takeId": null
+  },
+  "requestHash": "eca3c3e8827f06bc8a32ebc94beca89af73d3d094bafbd5a29b26d82e005eb7c",
+  "recordedAt": "2026-10-03T06:10:16.970Z",
+  "sha256": "9ee3f6d0ede8a875eadc288ba836c23dac678208561390969f0fa63341ddbfb0",
+  "bytes": 18618,
+  "requestId": "pd0e3fu9v6oybos1Lzy9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b5c574fa859a272a27c53f2917884b582a1136955fa80d19b9cd1016fceaff5",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "The pawn makes it to the last row and is promoted, and that same move gets its king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae3df2c54bd00496c200196a75db8bb3ac22be6831f3f633dc5f06488ac83d90",
+  "recordedAt": "2026-10-03T06:10:45.833Z",
+  "sha256": "0409f29d207af4a6be88d6320920733d5b588f01de0e2dd20dd9079de27efd58",
+  "bytes": 19681,
+  "requestId": "OrfNhRArCF3kmsPmKAos",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "725bdb02bfe1bc72fc8ab88acb32be90f9e36018a0f997774987a883ee8ebab2",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

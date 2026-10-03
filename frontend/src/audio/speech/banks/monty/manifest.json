@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "gorilla",
+  "voiceId": "monty",
+  "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "One piece, two victims. This is a fork: a single piece goes after several targets, and one move may not be enough to save them all.",
+      "audioPath": "recordings/monty-v1/monty/tactic-fork-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Simple problem: this lets one of their pieces fork several targets. Before moving, look for the square where that piece could land.",
+      "audioPath": "recordings/monty-v1/monty/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Simple point: a fork was sitting right here, with one piece able to hit several targets, and the move played walks past it.",
+      "audioPath": "recordings/monty-v1/monty/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "The main thing is the pin. That piece has its own king behind it on that line, so it cannot leave the line, and it stays stuck.",
+      "audioPath": "recordings/monty-v1/monty/tactic-pin-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Simple problem: a pin against the king is now on offer for the other side, and a piece caught in it stays stuck in place.",
+      "audioPath": "recordings/monty-v1/monty/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "A pin against the king was the better move, because it would have nailed a piece to its line. Here that piece gets to move freely.",
+      "audioPath": "recordings/monty-v1/monty/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Big idea: a skewer. The front piece is hit, it has to get out of the way, and the piece behind it is left to be taken.",
+      "audioPath": "recordings/monty-v1/monty/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Two pieces are lined up on one line, and now a skewer is on for the other side. When the front piece shifts off, the back piece is a target.",
+      "audioPath": "recordings/monty-v1/monty/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A skewer was the better move: the front piece is hit, it steps away, and the one behind is left to be taken. So that chance is gone.",
+      "audioPath": "recordings/monty-v1/monty/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "The guard goes first. This move hits the defender, and whatever it was holding up is left with no help.",
+      "audioPath": "recordings/monty-v1/monty/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "One defender is holding things together, and now the other side gets to knock it out. Look at what that defender holds up before it is gone.",
+      "audioPath": "recordings/monty-v1/monty/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "The better move went after the defender. Without it, the piece it guarded would have stood with no help. As played, that defender is still standing guard.",
+      "audioPath": "recordings/monty-v1/monty/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Plain fact: its own pieces leave the king no air on the back row, and this move goes straight for it. That is mate on the back row in the making.",
+      "audioPath": "recordings/monty-v1/monty/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "Simple problem: the king has no air. Its own pieces box it in on the back row, and the other side can aim for mate there.",
+      "audioPath": "recordings/monty-v1/monty/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "The king was boxed in on its back row by its own pieces, so a back-rank mate was ready to go. The move played does something else.",
+      "audioPath": "recordings/monty-v1/monty/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "The big thing is the pawn. It is walking toward the last row, where it gets promoted, so follow that walk.",
+      "audioPath": "recordings/monty-v1/monty/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "One of their pawns now has a clear walk toward the last row, and if it gets there it is promoted. That pawn needs watching.",
+      "audioPath": "recordings/monty-v1/monty/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "The better move cleared a pawn's walk to the last row and a promotion. The move played leaves that pawn sitting still.",
+      "audioPath": "recordings/monty-v1/monty/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "The front piece clears out and a hidden attacker behind it comes alive. Big idea: a discovered attack, where moving one piece wakes up another.",
+      "audioPath": "recordings/monty-v1/monty/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Their front piece is standing in the way of a piece behind it, and this move lets it step aside so the back one can attack. Discovered attacks begin exactly like this.",
+      "audioPath": "recordings/monty-v1/monty/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "There was a discovered attack in the better move. Clear the blocker away, and the back piece attacks as well. Not played here.",
+      "audioPath": "recordings/monty-v1/monty/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "A single move, aimed at two things. That is a double attack, and the defense has to deal with both of them.",
+      "audioPath": "recordings/monty-v1/monty/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "With this, the other side gets a double attack. Any reply has to cover both targets.",
+      "audioPath": "recordings/monty-v1/monty/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "Two at once: that is what the better move hit. A double attack was there, and the move played makes no such threat.",
+      "audioPath": "recordings/monty-v1/monty/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "This move drags a defender off its post, so whatever it was guarding has no cover now. Plain deflection.",
+      "audioPath": "recordings/monty-v1/monty/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "A single defender carries a lot here, and the other side can now drag it away and leave that work undone. Deflection is the name for that.",
+      "audioPath": "recordings/monty-v1/monty/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Dragging a defender off its post was the better move. That chance to deflect it is left on the board.",
+      "audioPath": "recordings/monty-v1/monty/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Simple point: it was loose, and this move takes it.",
+      "audioPath": "recordings/monty-v1/monty/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "The better move takes a piece with no guard on it. The move played leaves it sitting there. Loose pieces come first.",
+      "audioPath": "recordings/monty-v1/monty/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Simple problem: one piece has nobody guarding it, so the other side gets it for nothing.",
+      "audioPath": "recordings/monty-v1/monty/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Simple problem: this moves the only real defender away from a piece. That piece can now be collected.",
+      "audioPath": "recordings/monty-v1/monty/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/monty-v1/monty/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "With its last move, the opponent made a threat, and this move does nothing about it; a piece hangs because of it. The other side's move always gets looked at first.",
+      "audioPath": "recordings/monty-v1/monty/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/monty-v1/monty/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "This capture starts a bad trade. The recapture takes back a bigger piece. Count a trade all the way to its last capture.",
+      "audioPath": "recordings/monty-v1/monty/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/monty-v1/monty/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Bottom line: a minor piece is out of its starting spot and ready to work.",
+      "audioPath": "recordings/monty-v1/monty/positional-development-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Development was there with a different move.",
+      "audioPath": "recordings/monty-v1/monty/positional-development-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "Big plus for the rook: the file it stands on has no pawns of either color, so it has a clear road.",
+      "audioPath": "recordings/monty-v1/monty/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "A different move would have put a rook on a file empty of pawns.",
+      "audioPath": "recordings/monty-v1/monty/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Big change for this rook: its file is half open now. Its own pawns are gone from it, and an enemy pawn still sits up ahead.",
+      "audioPath": "recordings/monty-v1/monty/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "A different move would have set a rook on a half-open file, its own pawns gone and an enemy pawn still there to aim at.",
+      "audioPath": "recordings/monty-v1/monty/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "Big thing: a passed pawn. No enemy pawn waits ahead to stop it, on its own file or either side file.",
+      "audioPath": "recordings/monty-v1/monty/positional-passed-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have turned a pawn into a passer, its own file and both side files clear of enemy pawns ahead.",
+      "audioPath": "recordings/monty-v1/monty/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "Up goes the passed pawn, a row closer to promotion. It was free already; now it has less distance left.",
+      "audioPath": "recordings/monty-v1/monty/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "With a different move, the passer would have gone up one more row.",
+      "audioPath": "recordings/monty-v1/monty/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "Big picture: no friendly pawn is near this one any more. With no friendly pawn on the files beside it, no pawn can help guard it.",
+      "audioPath": "recordings/monty-v1/monty/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "A different move would have left a pawn standing by itself with no friendly pawn next door on either side.",
+      "audioPath": "recordings/monty-v1/monty/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Simple point: a loose piece now has protection. It is not hanging any more.",
+      "audioPath": "recordings/monty-v1/monty/positional-support-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "A different move would have given cover to a loose piece.",
+      "audioPath": "recordings/monty-v1/monty/positional-support-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Plain fact: this piece has lost its guard. Weak spot, yes; lost piece, no.",
+      "audioPath": "recordings/monty-v1/monty/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "Another move would have taken the last guard away from a piece. A loose piece is a target, not a lost piece.",
+      "audioPath": "recordings/monty-v1/monty/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "Simple point: the king gets elbow room, one more legal square. Good to have that room.",
+      "audioPath": "recordings/monty-v1/monty/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "A different move would have given the king more breathing room.",
+      "audioPath": "recordings/monty-v1/monty/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castling: the king tucks away to the side, and the rook comes over next to it, all in a single move.",
+      "audioPath": "recordings/monty-v1/monty/positional-castling-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was there instead, king tucked away and rook brought out on the same move.",
+      "audioPath": "recordings/monty-v1/monty/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "After this capture, that side's two bishops are not a pair any more. That side is left without one bishop for the light squares and one for the dark.",
+      "audioPath": "recordings/monty-v1/monty/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "With a different move, a bishop capture would have broken up the opponent's pair.",
+      "audioPath": "recordings/monty-v1/monty/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Bottom line: doubled pawns. That side has two pawns on a single file now, stacked up, and neither can guard the other.",
+      "audioPath": "recordings/monty-v1/monty/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "Doubled pawns would have come from a different move, two pawns of one color stacked up.",
+      "audioPath": "recordings/monty-v1/monty/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "This is the big problem: from this point, mate by force belongs to the other side. Track back to where the defense broke.",
+      "audioPath": "recordings/monty-v1/monty/allowed-mate.opus",
+      "sidecarPath": "recordings/monty-v1/monty/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "Big picture: mate by force was there, and the move played skips it. When the king is trapped, look at every check first.",
+      "audioPath": "recordings/monty-v1/monty/missed-mate.opus",
+      "sidecarPath": "recordings/monty-v1/monty/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Material goes, and the idea holds. If the material is grabbed, the checked line still works. That is strong.",
+      "audioPath": "recordings/monty-v1/monty/sound-sacrifice.opus",
+      "sidecarPath": "recordings/monty-v1/monty/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Simple point: anything else that was checked goes down. This was the one move left standing. Good defense.",
+      "audioPath": "recordings/monty-v1/monty/only-playable-move.opus",
+      "sidecarPath": "recordings/monty-v1/monty/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Plain fact: no other checked move kept the edge. With anything else, the advantage was gone.",
+      "audioPath": "recordings/monty-v1/monty/only-advantage-resource.opus",
+      "sidecarPath": "recordings/monty-v1/monty/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Simple problem: something is loose, and the reply takes it at once. Look at the reply and find the loose piece.",
+      "audioPath": "recordings/monty-v1/monty/immediate-capture.opus",
+      "sidecarPath": "recordings/monty-v1/monty/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "Check is the best answer. When the king is attacked, that is the first thing to deal with.",
+      "audioPath": "recordings/monty-v1/monty/reply-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine has a different move on top. Play that one as well, then see how the replies differ.",
+      "audioPath": "recordings/monty-v1/monty/stronger-alternative.opus",
+      "sidecarPath": "recordings/monty-v1/monty/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "The engine has a better move than this one. The cost shows up in the reply.",
+      "audioPath": "recordings/monty-v1/monty/evaluation-loss.opus",
+      "sidecarPath": "recordings/monty-v1/monty/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong. Out of everything the engine weighed, this move gives up next to nothing.",
+      "audioPath": "recordings/monty-v1/monty/best-supported-choice.opus",
+      "sidecarPath": "recordings/monty-v1/monty/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "This is sound. The engine likes another move more, but the value of the position mostly stays.",
+      "audioPath": "recordings/monty-v1/monty/good-choice.opus",
+      "sidecarPath": "recordings/monty-v1/monty/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Next to nothing left on the clock for this one. Little time makes every move harder.",
+      "audioPath": "recordings/monty-v1/monty/clock-low.opus",
+      "sidecarPath": "recordings/monty-v1/monty/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Played fast, while there was still time on the clock.",
+      "audioPath": "recordings/monty-v1/monty/clock-fast.opus",
+      "sidecarPath": "recordings/monty-v1/monty/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "This move cost a lot of thinking time. That is fine when it finds something.",
+      "audioPath": "recordings/monty-v1/monty/clock-long.opus",
+      "sidecarPath": "recordings/monty-v1/monty/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "Simple point: this one is straight out of opening theory. A known line is one thing. Understanding the position is another.",
+      "audioPath": "recordings/monty-v1/monty/recognized-opening.opus",
+      "sidecarPath": "recordings/monty-v1/monty/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "This is the move where known opening theory runs out. From now on, the players are working it out for themselves.",
+      "audioPath": "recordings/monty-v1/monty/opening-departure.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "The earlier setback is fixed; this move gets the game back on track. Good. Keep building from here.",
+      "audioPath": "recordings/monty-v1/monty/recovery.opus",
+      "sidecarPath": "recordings/monty-v1/monty/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "Some of the other side's mistakes helped, and the game is playable again after the earlier setback. Take that, but do not count on it.",
+      "audioPath": "recordings/monty-v1/monty/recovery-assisted.opus",
+      "sidecarPath": "recordings/monty-v1/monty/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent made a slip on the last move, and this move cashes in. Good.",
+      "audioPath": "recordings/monty-v1/monty/chance-taken.opus",
+      "sidecarPath": "recordings/monty-v1/monty/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent just blundered, and nobody makes them pay here. When they slip, look for the punishment.",
+      "audioPath": "recordings/monty-v1/monty/chance-missed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Bottom line: this game has run into the same problem once already. Lay the two moments next to each other and find the common thread.",
+      "audioPath": "recordings/monty-v1/monty/repeated-issue.opus",
+      "sidecarPath": "recordings/monty-v1/monty/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Big picture: the earlier loose piece is safe behind a guard now. Good.",
+      "audioPath": "recordings/monty-v1/monty/support-restored.opus",
+      "sidecarPath": "recordings/monty-v1/monty/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Not one big mistake. A few small slips have added up, and this move is one more of those.",
+      "audioPath": "recordings/monty-v1/monty/gradual-erosion.opus",
+      "sidecarPath": "recordings/monty-v1/monty/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage was kept, move after move, until the game was won. That is how to finish.",
+      "audioPath": "recordings/monty-v1/monty/advantage-converted.opus",
+      "sidecarPath": "recordings/monty-v1/monty/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "Simple point: the saved games have this problem in them more than once. That makes it worth real study.",
+      "audioPath": "recordings/monty-v1/monty/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/monty-v1/monty/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. Nowhere left for that king to go. Finished.",
+      "audioPath": "recordings/monty-v1/monty/mate-finished.opus",
+      "sidecarPath": "recordings/monty-v1/monty/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. That king has no move left. The defense broke earlier, so go back and find that spot.",
+      "audioPath": "recordings/monty-v1/monty/mate-defense-ended.opus",
+      "sidecarPath": "recordings/monty-v1/monty/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "A draw. The result is settled, but the moves are still worth a look.",
+      "audioPath": "recordings/monty-v1/monty/draw.opus",
+      "sidecarPath": "recordings/monty-v1/monty/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Look at the board, then pick a move.",
+      "audioPath": "recordings/monty-v1/monty/srs-cold.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Not quite. Back to the board; a different move this time.",
+      "audioPath": "recordings/monty-v1/monty/srs-retry.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "That try did not get checked. Go back to the move and play it again.",
+      "audioPath": "recordings/monty-v1/monty/srs-practice-error.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Saved engine analysis: the side that played this move has a forced mate in hand.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Saved engine analysis: after this move, mate is forced against the side that played it.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "At the last move of the saved line, count the material. The side that played this move has more than it had at the start.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "At the last move of the saved line, count the material. The side that played this move has less than it had at the start.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "This exercise takes the move as correct. No clear tactical reason here, and no made-up one either.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "Wrong answer for this exercise. There is no clear tactical reason in these moves either way.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Plain fact: the exercise lists this move among its saved answers. In this exercise, that list is the rule.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "Simple point: the exercise did not save this move as an answer. It is not bad chess for that. This exercise simply wants something else.",
+      "audioPath": "recordings/monty-v1/monty/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Look at this move until it makes sense. Then move on.",
+      "audioPath": "recordings/monty-v1/monty/srs-fallback-study.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good move. Hold on to the why, too.",
+      "audioPath": "recordings/monty-v1/monty/srs-fallback-good.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Practice saved, and the schedule for review is untouched.",
+      "audioPath": "recordings/monty-v1/monty/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. This recall still stays on the relearning list for now.",
+      "audioPath": "recordings/monty-v1/monty/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/monty-v1/monty/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Start here, with the position before any of the moves we look at.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-original.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Next move. See what changed.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. The king is under attack, and that comes before everything.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "This move ends the check on the king.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Up to the last row, and the pawn is promoted.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "Up to the last row, and the pawn is promoted with check.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Up to the last row, and the pawn is promoted. That is checkmate, and the king is trapped.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn makes it to the last row and is promoted, and that same move gets its king out of check.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "Capture and check together. The piece takes, and the king is attacked.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "Something is captured, and it is checkmate. The king cannot get away.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "A capture, and the capture is what gets the king out of check.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "One pawn move does it all: a capture, and a promotion on the last row.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn captures as it reaches the last row, is promoted, and gives check.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "One pawn move does it all: a capture, and a promotion on the last row. Checkmate follows, with the king trapped.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "One pawn move does it all: a capture, and a promotion on the last row. That same move lifts the check on its king.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, and the rook gives check from its new square.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling ends the game with checkmate. The enemy king is caught with no way out.",
+      "audioPath": "recordings/monty-v1/monty/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Here the fork collects. One piece goes after several targets, takes one, and this example comes out ahead in material.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "Pinned to its king, that piece may not make the capture shown, because stepping off the line would give the king away.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece has its king behind it, so it is pinned. Its only moves are ones that still cover the king, so running is hard.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Not one defender may take back, because each of them is pinned to its king. That makes the capture work, and material is won in the line shown.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "With its king behind it, the pinned piece is nailed to that line. As these moves go on, it gets taken.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Bottom line: once the front piece is gone from the line, whatever was behind it is captured.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check. The king must move out of the way. Then the same attacker wins what was behind the king.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "First the guard goes, and it was the only guard. The piece it was protecting falls later in these moves.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "First the defender gets dragged away, then the piece it was protecting gets taken.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "Front piece moves, the line clears, and the back piece makes a capture along it.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "Move the front piece, and check comes from behind it.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Two checks land on the king in the same move: double check. Nothing but a king move will do against that.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "One piece moves and attacks, and the line it leaves lets a second attacker in. Here, that second attacker takes what it was aiming at.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn is promoted, and in this example that side ends the line with extra material.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "That piece was loose, so it goes. This example ends with the capturing side holding extra material.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "Big picture: the attacking piece was under a relative pin, and the opponent's last move freed it. The target did not move, so in the line shown it is taken.",
+      "audioPath": "recordings/monty-v1/monty/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "Nothing in the rules stops the other side from playing that marked move. Try that reply on the board and judge what follows.",
+      "audioPath": "recordings/monty-v1/monty/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/monty-v1/monty/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before every move, find any piece of yours that could be taken for nothing.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Loose enemy pieces get checked before any quiet move.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Go through every forcing move hunting for a fork on two valuable targets.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before moving a pinned piece, look past it down the line: the king may be there, or a bigger piece.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "An attack can go straight through the first piece. Look for a valuable piece lined up behind it.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "A defender about to be traded: see what it guards first.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "A blocker that moves opens up whatever line is behind it. Follow it to the end.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Some moves carry two threats at once. Look hard for those. Checks and opened lines both count as threats.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "A back-row defender leaving means the king may lose its air. Check for an escape square first.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the pawn's moves to promotion, and look at every forcing pawn push.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "A defender about to move: first count what it guards. All of that loses its guard when it leaves.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "A trade gets counted to the very end, every capture on both sides.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "A forcing trade may drag a defender away from a second job it has. Watch for it.",
+      "audioPath": "recordings/monty-v1/monty/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "This one is measured against the saved answers. Moves outside that list may still be fine chess.",
+      "audioPath": "recordings/monty-v1/monty/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "The replies in these moves are strong ones. A strong reply is not always the only reply.",
+      "audioPath": "recordings/monty-v1/monty/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Only the line shown is counted for material, starting where it starts. Piece values for that count are in the written notes.",
+      "audioPath": "recordings/monty-v1/monty/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "No single simple tactic explains the saved line. Run through it move by move and compare how the replies differ. No positional reason is assumed either.",
+      "audioPath": "recordings/monty-v1/monty/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The saved answer setting decides this explanation. Which one is set is in the written notes.",
+      "audioPath": "recordings/monty-v1/monty/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/monty-v1/monty/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here comes your study line, move by move.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Right. It belongs to the line you are learning.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "The answer is somewhere in your picked study lines. One of those moves fits here.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Several moves from your picked opening lines are fine here. Any of them counts.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Only one move here comes from your study material. Find it.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Not in the opening lines you picked. Try again.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Not one of your picked opening moves. Try again. The study was changed, and its review dates stay where they are.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Not one of your picked opening moves. Try again. Because this position is retired, nothing about its schedule moves.",
+      "audioPath": "recordings/monty-v1/monty/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Any move in this line is good enough for mixed Due. Dedicated practice sticks to this single line.",
+      "audioPath": "recordings/monty-v1/monty/opening-preview-active.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "The recall schedule tests the side you picked. One card covers a position that several active studies share.",
+      "audioPath": "recordings/monty-v1/monty/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/monty-v1/monty/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Simple fix: the session has to be reloaded before the next move.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-error.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Here the board runs the checked line.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-playback.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Answer shown, and this try is saved that way. Play it through below.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-revealed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Second try, and solved. Both go on your record: the miss, then the finish.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Not one wrong move from start to finish. Good.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Not the puzzle's move. Moves played right before it are kept.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-rejected.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Right move. The puzzle is not done yet. Another move is waiting.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-next-move.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "No rush. Think it through, then move.",
+      "audioPath": "recordings/monty-v1/monty/puzzle-cold.opus",
+      "sidecarPath": "recordings/monty-v1/monty/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "Not enough from the engine on this one, so I have no explanation to give.",
+      "audioPath": "recordings/monty-v1/monty/game-unavailable.opus",
+      "sidecarPath": "recordings/monty-v1/monty/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Review on pause. Start it again below, or push a piece around to look.",
+      "audioPath": "recordings/monty-v1/monty/game-review-paused.opus",
+      "sidecarPath": "recordings/monty-v1/monty/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Pick a move to review it, or try a move of your own.",
+      "audioPath": "recordings/monty-v1/monty/game-browse-instructions.opus",
+      "sidecarPath": "recordings/monty-v1/monty/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Simple point: book move.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "Plain fact: this is a move theory has seen many times.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Book. Theory has written this one down.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Still book.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Book again for this one.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "Both sides are still in theory with the reply.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Known line, still going.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "More book.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "The book again, one more time.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Still covered by the opening books.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Book again. Book does not mean good.",
+      "audioPath": "recordings/monty-v1/monty/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/monty-v1/monty/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "This is the beginning. Go forward, and we'll look at the big ideas.",
+      "audioPath": "recordings/monty-v1/monty/game-review-opened.opus",
+      "sidecarPath": "recordings/monty-v1/monty/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "That one is not what this chapter teaches. Check the board and pick a new one.",
+      "audioPath": "recordings/monty-v1/monty/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Right move. That is the one the chapter wants.",
+      "audioPath": "recordings/monty-v1/monty/lesson-correct-move.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "Answer shown on the board. Look at it, then go on.",
+      "audioPath": "recordings/monty-v1/monty/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Now the moves play by themselves. Just watch them go.",
+      "audioPath": "recordings/monty-v1/monty/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Your turn. Remember the move you studied here.",
+      "audioPath": "recordings/monty-v1/monty/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "Different idea here. The main path still waits.",
+      "audioPath": "recordings/monty-v1/monty/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter done. Progress kept safe.",
+      "audioPath": "recordings/monty-v1/monty/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "All of the game is here now. Look around, then go back to the chapter.",
+      "audioPath": "recordings/monty-v1/monty/lesson-game-opened.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Simple fix: press reload, then carry on.",
+      "audioPath": "recordings/monty-v1/monty/lesson-error.opus",
+      "sidecarPath": "recordings/monty-v1/monty/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

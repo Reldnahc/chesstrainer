@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "book-opening-follow-6",
+      "label": "Book opening follow 6",
+      "text": "The book again, one more time."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce00651cae7e2097c9899f7f1b758c9a57b1c96cb54369fe205b60f2662e0108",
+  "recordedAt": "2026-10-03T06:11:07.185Z",
+  "sha256": "a4648f64948135a6ba643facca53dfb291d69c08ceb648d82d9355aca4a962eb",
+  "bytes": 8240,
+  "requestId": "m6NN39XsqGxDmQoBOkvf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe10f66bc223d0f05c57e469a930ab5ada5aa2a4a3bc8a18bcf942130a8b4cd4",
+    "bytes": 41839
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

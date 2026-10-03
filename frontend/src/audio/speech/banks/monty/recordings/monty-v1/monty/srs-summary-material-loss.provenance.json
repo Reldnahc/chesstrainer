@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "At the last move of the saved line, count the material. The side that played this move has less than it had at the start."
+    },
+    "takeId": null
+  },
+  "requestHash": "02cf5cc02c000046f840504111e9359ac5d65b384b749b74296c2589941c783d",
+  "recordedAt": "2026-10-03T06:10:53.091Z",
+  "sha256": "1b81cb23580b97ffec6b24d0691936d533be5bac1199c30db354938fdbde775a",
+  "bytes": 22994,
+  "requestId": "PQ5ooPWyNxsOunBq1Fgw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dde06dc97316718c489b95e386b1d1bd428d4c701cda55912f822da59e5754fd",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

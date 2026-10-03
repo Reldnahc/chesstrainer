@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "The advantage was kept, move after move, until the game was won. That is how to finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "deaf22ce8b2d17539cccf4f81b9ee7d6b278d8f433f4bcd6624d3875bb2e53fd",
+  "recordedAt": "2026-10-03T06:10:36.861Z",
+  "sha256": "7e66db0ce746e56bb4c9e29f7016b7f38f73f8819501f3985ba983ee658d6545",
+  "bytes": 21134,
+  "requestId": "2o8EVWAvpHvXj1Cn3sCn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e583028a902ce7063b73789e1c3957fa41900d4fa07e93031301afc8a39b4b82",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

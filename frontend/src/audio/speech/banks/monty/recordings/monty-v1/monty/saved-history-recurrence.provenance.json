@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "Simple point: the saved games have this problem in them more than once. That makes it worth real study."
+    },
+    "takeId": null
+  },
+  "requestHash": "a81abb70acff9dc11c36f43efcb2caebb1b514154b26f9f6521e5faec452ac56",
+  "recordedAt": "2026-10-03T06:10:38.727Z",
+  "sha256": "acf0d8dffc99fdd320e0410167c47b16373628ec9473c2aaa76f963257719273",
+  "bytes": 21059,
+  "requestId": "yANpFpKEP27V43AjY1eZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3de731a77ab628c3fe469f795ca30b7ef292e8b956155fb04fb5c90b0d7d46f",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "Big picture: mate by force was there, and the move played skips it. When the king is trapped, look at every check first."
+    },
+    "takeId": null
+  },
+  "requestHash": "af480feb7a736a87b37dfc40540e1e21a5a1941c5324bb1cd95ce3cc9fd01e73",
+  "recordedAt": "2026-10-03T06:10:33.870Z",
+  "sha256": "bd7e9fe827cd4259e91941ade2adfb72360dba9c820fc9ac8010e671c992112d",
+  "bytes": 25731,
+  "requestId": "G7V9RjkzgTlDOTSgWEdP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04a02740749e3ac0bbbfdbbaf4238b30462e74b7a43dee02ff6b837ad608669f",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

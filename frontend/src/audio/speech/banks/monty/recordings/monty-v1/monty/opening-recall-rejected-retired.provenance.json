@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "opening-recall-rejected-retired",
+      "label": "Opening recall rejected retired",
+      "text": "Not one of your picked opening moves. Try again. Because this position is retired, nothing about its schedule moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "bab68213fb191ea5465196fd504fbc63f722e2a6992a34a4dfa86bb0755e08c9",
+  "recordedAt": "2026-10-03T06:10:43.481Z",
+  "sha256": "34c9bc090d202481fd5af7b3482caddfcd1a457a62a06a6057076e10a0faa694",
+  "bytes": 24530,
+  "requestId": "qbVJmF5inCqOLZlZQFVi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "329f8abe036e98efac0de8a8da5c111838a85bf09d815b3444d4a5eed54c5503",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

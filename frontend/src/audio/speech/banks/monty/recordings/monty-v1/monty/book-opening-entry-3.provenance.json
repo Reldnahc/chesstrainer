@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "Book. Theory has written this one down."
+    },
+    "takeId": null
+  },
+  "requestHash": "970efd988e9844389da3a15ce854efb9aace67dd929c86fe5eea0ddac638d1ee",
+  "recordedAt": "2026-10-03T06:11:03.420Z",
+  "sha256": "051fab832d292cfbfbc0bada30d589be0a6a5caa1c8ac6d78b050749cf1a63a2",
+  "bytes": 10417,
+  "requestId": "smRc7doQBu5u7csviHGf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "013da57422708a5b6a1b4e91692576b332344c61168fd400f4272b2e373538c2",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

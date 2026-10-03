@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "This move ends the check on the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "33ab2ec113729027df11b3646269871e857a78c8337af1d0c1e053e775475616",
+  "recordedAt": "2026-10-03T06:10:40.096Z",
+  "sha256": "b4c80086f8469c511a74841d9f5f5f0cc0b1fda540b22dded89327b25883bf0b",
+  "bytes": 9007,
+  "requestId": "I6NUMf72dGBwODoIsVmq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0bd4c407f87b44b67a972bbbc6eff797e926db01d43a95bebac2b1be9b92af3b",
+    "bytes": 43511
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

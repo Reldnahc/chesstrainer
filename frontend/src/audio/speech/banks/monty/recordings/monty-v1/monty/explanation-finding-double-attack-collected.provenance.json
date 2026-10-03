@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "One piece moves and attacks, and the line it leaves lets a second attacker in. Here, that second attacker takes what it was aiming at."
+    },
+    "takeId": null
+  },
+  "requestHash": "669edc07a7cf5f847a73bd3fed4f9d3f935a6770460f84b9fb29e30fe4ea0ed7",
+  "recordedAt": "2026-10-03T06:10:55.621Z",
+  "sha256": "31cf409cfdb7e426e4f9fd9d17072f7d38332ecc8db2dcb865a6e5959ef75d05",
+  "bytes": 27054,
+  "requestId": "St5EVkOLW98hrzc9IhI8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "176da506853a416bf9067528618bf395d9d942937a4e1300f915c9dc55f1cb33",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

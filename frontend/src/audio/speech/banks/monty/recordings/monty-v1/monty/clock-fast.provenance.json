@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "clock-fast",
+      "label": "Clock fast",
+      "text": "Played fast, while there was still time on the clock."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ec47ee30872f01e0cbd7be38ed83064b37e08d983b1f38fd63411ede1dfdc76",
+  "recordedAt": "2026-10-03T06:10:19.364Z",
+  "sha256": "19bc90f249c72b60c27957935bc0ad3bd72968ba6b68ea2ede6654e8912ea2b0",
+  "bytes": 10894,
+  "requestId": "WGdhmVA5CkidpNT5rB15",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2be47fb3caa290a4d1522fbd7654708e35d96b8700630813f80eac08bf2650b",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

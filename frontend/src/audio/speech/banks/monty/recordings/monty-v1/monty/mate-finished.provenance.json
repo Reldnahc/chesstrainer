@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate. Nowhere left for that king to go. Finished."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d25b3452a618b39fe3c260c58658a70f508ac38229fd425bbfffae3f8df3fbd",
+  "recordedAt": "2026-10-03T06:10:39.941Z",
+  "sha256": "3f155a249c32fff77e635e839b3e323304d57faac00aa5704c37e2077f3db31f",
+  "bytes": 13292,
+  "requestId": "r1Tt0A8kpEhgAgm9U8gS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65b06f3586bfeedca9e7d060a80e0757defcff74116906ad1f08bacbe4a407a4",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

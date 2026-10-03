@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "A defender about to be traded: see what it guards first."
+    },
+    "takeId": null
+  },
+  "requestHash": "0398061c1c60f6179330024d517fddb5d5474819a08de81c12767de9e1776655",
+  "recordedAt": "2026-10-03T06:10:39.247Z",
+  "sha256": "98b4422606f3bfe86b160f92cdbe058d99b179d619ae88527d4d521589f36764",
+  "bytes": 13046,
+  "requestId": "rRySNPpbHH6dYodK8emJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f4062c6a224aee93a4129750efa995fb9a45cd24690e82d6cfc3240893a882b",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

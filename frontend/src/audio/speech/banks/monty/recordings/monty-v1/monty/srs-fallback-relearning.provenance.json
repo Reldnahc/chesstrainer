@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved. This recall still stays on the relearning list for now."
+    },
+    "takeId": null
+  },
+  "requestHash": "0224862b5a1dacbdee3fa829699a61e3fe7259aef7cca6958174b065101ddfc6",
+  "recordedAt": "2026-10-03T06:11:04.687Z",
+  "sha256": "7c202e5e7b90077f7115843aabbc92ccf7ce0a8881a0737554309fa481729b5b",
+  "bytes": 13759,
+  "requestId": "AA3GWnyLK41FrBTvzM6W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55111589effb1ef247eef89b2d76c5d6b0d69b8a48f9d7e8d8246eb721243e2b",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
