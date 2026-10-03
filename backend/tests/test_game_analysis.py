@@ -13,8 +13,10 @@ from trainer.models import (
     AnalysisJob,
     ChessComImport,
     Decision,
+    EngineAnalysis,
     Game,
     GameReview,
+    GameReviewMove,
     ProviderConnection,
 )
 
@@ -132,5 +134,21 @@ def test_game_analysis_runs_review_and_training_in_one_job(settings, stockfish_p
         game = client.get("/api/games").json()["items"][0]["id"]
         assert client.get(f"/api/games/{game}").json()["job"]["status"] == "completed"
         with app.state.sessions() as db:
-            assert db.scalar(select(func.count()).select_from(Decision)) == 2
+            decisions = db.scalars(select(Decision)).all()
+            assert len(decisions) == 2
+            # Training reuses the review's deep searches instead of triaging again.
+            for decision in decisions:
+                report = db.get(GameReviewMove, (decision.game_id, decision.ply)).report
+                assert decision.before_analysis_id == report["before_analysis_id"]
+                assert decision.deep
+                played = db.get(EngineAnalysis, decision.played_analysis_id)
+                assert played.candidates[0]["uci"] == decision.move_uci
+            assert (
+                db.scalar(
+                    select(func.count())
+                    .select_from(EngineAnalysis)
+                    .where(EngineAnalysis.config["depth"].as_integer() < settings.deep_depth)
+                )
+                == 0
+            )
         assert client.get("/api/analysis/queue").json()["completed"] == 1

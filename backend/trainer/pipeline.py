@@ -118,7 +118,7 @@ class JobPipeline:
                         if self.cancelled():
                             return
                         decision = analyze_decision(
-                            db, self.engine(), self.settings, game, ply, board, move
+                            db, self.engine, self.settings, game, ply, board, move
                         )
                         self.process_decision(db, decision, completion)
             success = True
