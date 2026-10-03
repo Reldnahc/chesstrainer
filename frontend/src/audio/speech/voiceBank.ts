@@ -1,5 +1,6 @@
 import registry from './banks/registry.json' with { type: 'json' };
 import type { SpeechMouthTrack } from '../../coach/speechMouth';
+import { recordingAssets as assets } from './recordingAssets';
 import { SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR } from './sequence';
 
 type BankManifest = {
@@ -12,14 +13,6 @@ const manifests = import.meta.glob<BankManifest>(['./bank/manifest.json', './ban
   {import: 'default', eager: true});
 const trackModules = import.meta.glob<Record<string, SpeechMouthTrack>>(
   ['./bank/tracks.json', './banks/*/tracks.json'], {import: 'default'});
-const assets = import.meta.glob<string>([
-  './bank/recordings/**/*.opus', './banks/*/recordings/**/*.opus',
-  // Only active contrasts ship. Superseded clips belong to the studio comparison.
-  './recordings/walter-contrasts-v1/walter/sound-sacrifice.opus',
-  './recordings/walter-contrasts-v1/walter/recovery.opus',
-  './recordings/walter-contrasts-v1/walter/positional-unsupported-actual.opus',
-  './recordings/walter-contrasts-v1/walter/only-playable-move.opus',
-], { query: '?url', import: 'default', eager: true });
 
 function assetKey(manifest: string, relative: string): string | null {
   if (/^[a-z]+:|^[/\\]/i.test(relative) || relative.includes('\\')) return null;
