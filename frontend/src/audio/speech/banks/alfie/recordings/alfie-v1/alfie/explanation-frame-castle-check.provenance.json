@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "The king castles, and the rook, on its new square, gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "d38ad58a26c881b4844f65cedf615288251f1c339bd4fbcdef55d3ef7665800a",
+  "recordedAt": "2026-10-03T05:07:28.323Z",
+  "sha256": "a8c8fbaa5db1c1d6ddde37610fe2b2de981ae64be74f566d52c97d696d9fd079",
+  "bytes": 14247,
+  "requestId": "6vE3udK2LZUJLTA3ZUa7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fee36b07bbf00baa94939cd76e21e9545ee76b601be336f0bda6c2a9c017c543",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

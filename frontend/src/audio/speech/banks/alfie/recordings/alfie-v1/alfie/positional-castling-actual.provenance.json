@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "Castling is the one move that relocates two pieces at once. Here the king castles and the rook moves next to it. Check both new squares when you compare positions."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3d99581f575228195c4eb33fd09799a17c6392a2ab6f1ca33ea6a0ff9ba48ce",
+  "recordedAt": "2026-10-03T05:05:25.338Z",
+  "sha256": "dbe11947e0f26682785e1036a438d463e14d08bddf7c7fdcff5431e9ba1df269",
+  "bytes": 33707,
+  "requestId": "g5bVKezHzPOu21YgZegK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55c6080ff0cd4c7efe78e726fffff7cb1c56c52c4e8e5f3fb3bf99c74258f39d",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

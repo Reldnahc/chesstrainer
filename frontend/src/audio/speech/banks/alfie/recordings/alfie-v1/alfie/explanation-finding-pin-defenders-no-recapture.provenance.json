@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Here the capture succeeds because its defenders are pinned to their king and can't take back. By the time the line shown is over, that side is ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "913271ff91d725151f63410966e4b2b37bae43fc73a5f3235a1ffc15b606b156",
+  "recordedAt": "2026-10-03T05:07:38.240Z",
+  "sha256": "18487ed757c0aefd5b48a1978f7c910c364a7ef458f821690c54ffd42590343e",
+  "bytes": 31677,
+  "requestId": "HIGu6HHbi9nuUU8Ca9EU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b867de3f1ab1fc8584aaa574a5f5ce44891cb62c22868eb2358866bb4545931",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

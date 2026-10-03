@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "lesson-guided-playback",
+      "label": "Lesson guided playback",
+      "text": "Follow each move as it appears, and notice what changes after every one."
+    },
+    "takeId": null
+  },
+  "requestHash": "c68f5ae8871b16c937f746daf965f452f56fc80288027d99e63213d143e919f1",
+  "recordedAt": "2026-10-03T05:09:23.350Z",
+  "sha256": "2efb2e468fa50f321c0477c5e0578978bb57b81c5e7dc33ef692c42a2414c6c9",
+  "bytes": 16352,
+  "requestId": "oJEMN4BKm1YXHRQLPGnc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52c6d79177dc539c6886edf8c050d56494c4623855908eb6dceb856882bd769f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

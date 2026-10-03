@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "stronger-alternative",
+      "label": "Stronger alternative",
+      "text": "Comparing two moves on the board teaches more than looking at either one alone. Here the engine would choose another move. Play both, and notice how the replies differ."
+    },
+    "takeId": null
+  },
+  "requestHash": "910dda915e270ae19c3a7af2aa9a482d7b1d246052607eed6fb365d0a111f6e8",
+  "recordedAt": "2026-10-03T05:05:57.253Z",
+  "sha256": "c30d5a94618512420f587d4c07d504f5bcf0a8b72c28c515217cb2d65bf12b59",
+  "bytes": 31624,
+  "requestId": "lrIeMOz73za8hfSJeae4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "438ef972e53da3ca8b0b946f141b0f2bce649918cf1658cd71291b06c02ce941",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

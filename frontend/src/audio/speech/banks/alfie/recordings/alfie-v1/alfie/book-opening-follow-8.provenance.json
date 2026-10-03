@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "This move is still listed in the book. Being in a known line describes where the game is; judging the move is another matter."
+    },
+    "takeId": null
+  },
+  "requestHash": "83c769c4bad23e55e45e55e8af6e8cec21b2edaa7555168f5250d33f2b03ea12",
+  "recordedAt": "2026-10-03T05:09:15.876Z",
+  "sha256": "7fc8810cf72d76c4285d2681dc171e8301dff9daaa5f0fc1f45d15708dbb1567",
+  "bytes": 25709,
+  "requestId": "QkbzqgjPVI7AkgMjpudE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77de5b47bcada9eaa18bdb91bc530b76b61a9aefe28790ded634992d67f9ad23",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

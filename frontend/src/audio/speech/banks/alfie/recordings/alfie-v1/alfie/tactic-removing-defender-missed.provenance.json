@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "Another move could have captured a defender, and what it was guarding would have lost its protection. Instead, that defender stays on the board. A defender is often the right target, because taking it weakens something else."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f8407733f04c1b84e83d0356d5fac602cd4c8c4504fde720ad3e0ab6e64c1b4",
+  "recordedAt": "2026-10-03T05:03:37.359Z",
+  "sha256": "279505d42f99e0d132150c02632457ec491d4db8eea3fa52c6443e046bb35205",
+  "bytes": 40660,
+  "requestId": "ZmNgE4JZMTmUDleco0rG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3c691da0f998ac5cc90b050faed6a517e829d6b71a997526eca92220255c7c7",
+    "bytes": 208605
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

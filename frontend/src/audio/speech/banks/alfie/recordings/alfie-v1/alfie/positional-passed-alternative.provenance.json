@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-passed-alternative",
+      "label": "Positional passed alternative",
+      "text": "Another move would have created a passed pawn, with no enemy pawn ahead on its file or the files beside it. A pawn like that can only be stopped by pieces, which is why it's worth noticing."
+    },
+    "takeId": null
+  },
+  "requestHash": "af744fb955bc7de562fec1a71b8afcf3b6539d5f1847b2a0d8f30ae89f99c6d0",
+  "recordedAt": "2026-10-03T05:04:58.955Z",
+  "sha256": "988a332a7f00c7e54ffe746c7ef19d1dbff393c4076861d5fd5d65c531a05ad8",
+  "bytes": 36840,
+  "requestId": "kEJ2srSeWujWugVDIumC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cea59500184adc1678d5e33b4aa5de78025f425e5081b072a692ac254ca9827d",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

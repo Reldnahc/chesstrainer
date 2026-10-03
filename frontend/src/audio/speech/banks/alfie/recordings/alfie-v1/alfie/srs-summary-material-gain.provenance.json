@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "When the saved line finishes, the side that made this move has gained material, measured from where the line started."
+    },
+    "takeId": null
+  },
+  "requestHash": "128f7f00e86d71ebc377a8c7f677c154849b95230fd696ce45be43bb00998f48",
+  "recordedAt": "2026-10-03T05:06:52.973Z",
+  "sha256": "159b778b9a8b400c6bcdec382bb1f4009b80fa4edaf6ce1940525ab820fb6e70",
+  "bytes": 21765,
+  "requestId": "EySsTmTzcAuFtlV6CaBc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3459c5e2b7388ebc150e1c765b979df29e9440ca8068c62cdacf6d87efc8a748",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

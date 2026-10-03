@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "The exercise doesn't accept this move. The moves shown don't establish a clear tactical reason, so I won't supply one that isn't there."
+    },
+    "takeId": null
+  },
+  "requestHash": "5cf9c6a6531589d32a5c6e7c9428b539c4100fbbea6a6dec3977a74a02b3bc5a",
+  "recordedAt": "2026-10-03T05:06:58.381Z",
+  "sha256": "783316770fe4f69700189ad98d00e0f492278dd4cd9a34435386e61cc4d84e80",
+  "bytes": 27548,
+  "requestId": "jBUOPqdvjHmpWItTfR9T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68e6b0d42965197e8823a46f1026b5b5a684e01063b9a08cbbc7fbf5db0f2f9c",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

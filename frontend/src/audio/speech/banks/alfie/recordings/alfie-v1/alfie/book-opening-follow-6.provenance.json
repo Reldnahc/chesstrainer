@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "book-opening-follow-6",
+      "label": "Book opening follow 6",
+      "text": "This one is also part of the recognized sequence."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1fe296b8b8f7a981ce9c2f75e9704743bb51b90aa5432ea14bff90452abb7de",
+  "recordedAt": "2026-10-03T05:09:12.962Z",
+  "sha256": "dd3ac5d17d17d72fa441a75b29bddf34091caf4ced9cd5d2232ceaf2f09f10b2",
+  "bytes": 10944,
+  "requestId": "7GJi7eJ9TVc1dwSCxdRB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d08e83b0be70d287f0d4ddf9180781ffb907bdb9702bdd3451d581fb6039a1d",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

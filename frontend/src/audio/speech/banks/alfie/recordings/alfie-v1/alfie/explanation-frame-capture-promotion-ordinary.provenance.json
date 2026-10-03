@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "When the pawn captures on the last rank, it also promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "371905ce92863e30feb224dd6c7bf913399020f0c31615193b936e9c3255d7f6",
+  "recordedAt": "2026-10-03T05:07:22.496Z",
+  "sha256": "6b4901a36a64906c6f9ef3bb2b19ac27234b45d7c27da99e0fa22f263730e546",
+  "bytes": 12661,
+  "requestId": "Dd0jlMSgKoUXNoeTk1pa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d0893f82e7f028a5e34272bd0afb629f54e6fd721187e5bf92eee6fac7b0b26",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

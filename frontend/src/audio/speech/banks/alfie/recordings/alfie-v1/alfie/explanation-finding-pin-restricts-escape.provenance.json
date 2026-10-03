@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "Because the attacked piece is pinned to its king, it can only move along the pin line, if it can move at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "d36082237e2f06ab1651db4762778d825c5b38101e9ef4c60abbb25b7fe58dd9",
+  "recordedAt": "2026-10-03T05:07:35.798Z",
+  "sha256": "400446d84697dab5dfc3b526051c845f5a2bd3527298024b8638135eef7cbec6",
+  "bytes": 21464,
+  "requestId": "4EGMAOu0tCFRIVj6qiE2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca1d39b41a8a7f366a7c5f93ca60a51e3950dcbfa76182655e1aef8235399a68",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

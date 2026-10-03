@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "Another move could have taken an undefended piece, and this move leaves it there. A quick scan for unguarded pieces is a sensible first step before anything more ambitious."
+    },
+    "takeId": null
+  },
+  "requestHash": "c55bb21a5dbb1d8c3ace748b4de6e11b9f5ef0003e7a3228e5fc7ca34d27cf4d",
+  "recordedAt": "2026-10-03T05:04:24.983Z",
+  "sha256": "b1d854b2df8b6d615b66f2d4a9f56d3540ec5214921c4a1d15bde2262baa3393",
+  "bytes": 33871,
+  "requestId": "PZ17V8OFzvB0U8fALmjb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d08a78b05d3457e2656ad509a27aa2cbd87fbe2570b4f185477aa2b1bc5f2ad6",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

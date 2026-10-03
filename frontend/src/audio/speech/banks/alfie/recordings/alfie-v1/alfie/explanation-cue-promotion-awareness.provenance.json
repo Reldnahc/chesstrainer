@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count the squares each advanced pawn needs to promote, and consider the pawn moves that force a reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b0aa134ad22634d31dc76e8cb7582db69df7be72bc130d11c1e64a0249af84c",
+  "recordedAt": "2026-10-03T05:08:17.201Z",
+  "sha256": "05793e42ecb573468f9176ee0290e70550628708eb79f164a5644d79156f422a",
+  "bytes": 20152,
+  "requestId": "Q8ZEAv2pekaf24mcJMIq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d261c836b35897252fe5d9731fb57024a8c414528e224cac80366c5c577a78dd",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

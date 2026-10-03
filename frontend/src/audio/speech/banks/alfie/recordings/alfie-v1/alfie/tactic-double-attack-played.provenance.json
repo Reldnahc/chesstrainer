@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "One move can make two threats, and a single reply often can't meet both. This move is built around exactly that kind of double attack. Name each threat in turn, then see why they work together."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2eedd03995bdce52a9d5eb6f5f68a7fd24462e1148e768830dc1316cc65dc05",
+  "recordedAt": "2026-10-03T05:04:07.052Z",
+  "sha256": "746e2792076b828fb7ee6f5c23868279168345488e3fbe35a6fe12cc7ab57220",
+  "bytes": 39565,
+  "requestId": "fRoAJH8P2kXaETwZ8Lem",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f02c8d3a04ad6f8c43d48ca0ceb2140c5be83437138fc17968a921fccc63960d",
+    "bytes": 203172
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

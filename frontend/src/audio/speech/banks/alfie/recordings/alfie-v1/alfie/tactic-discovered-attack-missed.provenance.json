@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "One of the other candidates was a discovered attack: one piece moving aside so the piece behind it could attack. Here that line never opens. When two pieces of one side share a line, moving the front one is worth considering."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8c27a0292f0ad4e3cefb63451ef1093f87ea51200a5bee271d65167421c1000",
+  "recordedAt": "2026-10-03T05:04:04.320Z",
+  "sha256": "84aa286ab2dbda15a95e1c046e22f04890b3e025c4b25a2f1f7f7c4f783c7a98",
+  "bytes": 44265,
+  "requestId": "VsmyPtgOqBAv3rmydTbv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a834d8e7d3347556239b883e0a91b14a3a21e781fb8fb61703a803c6384e63b",
+    "bytes": 227831
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

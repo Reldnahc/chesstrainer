@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "lesson-rehearsal-prompt",
+      "label": "Lesson rehearsal prompt",
+      "text": "From memory now, recall the line and play it."
+    },
+    "takeId": null
+  },
+  "requestHash": "038f32b09aee505094cc823104a1e1f6340444e691f60cac17d4cb01a90b7308",
+  "recordedAt": "2026-10-03T05:09:24.326Z",
+  "sha256": "ea653b45d67d1818e84814e1d18c7d581688a78355e45a366afaff69a00b70ac",
+  "bytes": 10858,
+  "requestId": "Rz0ynyTS7lNEWOQq9IjZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa4e625d15e39c301a2dd69194ab6e55895cb327f88113eb10bf07b0f3d03951",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "When a recall is scheduled, it asks only for moves by the side you selected. When your active studies share a position, that position uses a single card."
+    },
+    "takeId": null
+  },
+  "requestHash": "71c91785e2138658acc98b26fd0f70e51d722738875649c0c12ff0a02ec32523",
+  "recordedAt": "2026-10-03T05:08:47.467Z",
+  "sha256": "a870440d2a4b543ea9540d59ea5c71e622241408726ca552ebddd7124cefbebd",
+  "bytes": 29858,
+  "requestId": "7gKj5XHPQQE2hWywRlaG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9434ca97e0112f5c2e9f8cdcf98553d31e24130bded7c8cad59811c55cdb240",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

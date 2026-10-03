@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "An isolated pawn has no friendly pawn on either neighboring file, so no pawn is able to defend it. This move leaves one. Any protection for it would have to come from the pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "30c5380ccfe342d4e3da6b3576eade5f8c191e30ed3906e44c0a2a9c65cce4b6",
+  "recordedAt": "2026-10-03T05:05:06.397Z",
+  "sha256": "b1224cdf8964466a8b3188440f311b17c606852acfc3b07408cf3cbb09061423",
+  "bytes": 36359,
+  "requestId": "WmQghzIbEsvd7nf5nAw5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7498751f5d846d46ffeaf61b6f6ddddfd5a6db557856241e6ac3be01244232b0",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

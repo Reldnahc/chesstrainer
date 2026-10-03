@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Among the forcing moves, look for one piece that can attack two valuable targets together."
+    },
+    "takeId": null
+  },
+  "requestHash": "73451fe93efcb8b91d3a194b8f23b525702ebbd5dd5dab5784f799213355fd4b",
+  "recordedAt": "2026-10-03T05:08:05.782Z",
+  "sha256": "4633b8eb28890159badf4b2c2ea0c5a7e19d3df639bb20116dfb58a2b18e3fdb",
+  "bytes": 19150,
+  "requestId": "6hniNWldAHuE95xfsaCx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9df8223cf9562d8ecc82a927db599930446c797e0436bb28d8ee42a523e2d1ca",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

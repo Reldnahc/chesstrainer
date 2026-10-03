@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Look the position over carefully, piece by piece, and choose your move when it's clear to you."
+    },
+    "takeId": null
+  },
+  "requestHash": "26ec993f99c6a5206a12c87fdefcf59d97c9e9833549d10bb596f6ece476bf45",
+  "recordedAt": "2026-10-03T05:06:44.664Z",
+  "sha256": "6acdcd851c55adb6d32e47551ea9002fe3e0c77a8f370bc48225a7e4aaccdd81",
+  "bytes": 17996,
+  "requestId": "QYWYi5TwvpSRURJ6yRj4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8bb3bede115f1cb78fd328548fde9384601186353fe569caf94e2b021bdd9152",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

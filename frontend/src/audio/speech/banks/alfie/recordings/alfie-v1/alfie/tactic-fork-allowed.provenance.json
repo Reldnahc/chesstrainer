@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "Before each move, it helps to ask which squares the opponent's pieces can reach next. This move gives them a fork: a single piece of theirs can then reach several targets together. Spotting that piece first is the habit to build."
+    },
+    "takeId": null
+  },
+  "requestHash": "1308a07d4e4eb12a975ada71f21fae32e1c5677817873b106bfccc23b4f02587",
+  "recordedAt": "2026-10-03T05:03:08.968Z",
+  "sha256": "2cf69fcc5573e7cacd955f094917d6678f2fc850b2afd3bdce154b159c374665",
+  "bytes": 44012,
+  "requestId": "ao0Y3s6obFUFUvCeJHdN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7f855e8e48300b294562397dce62a52fcc491768ecd1d7aade644ce01cdabab",
+    "bytes": 226159
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

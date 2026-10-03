@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "lesson-game-opened",
+      "label": "Lesson game opened",
+      "text": "Now the whole game is available, from the first move to the last. Go slowly, and come back to the lesson when you're ready."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb4266a81dc5665192ddd1aad936d0dbd02f408425e1aa4c7364cb73871b58ed",
+  "recordedAt": "2026-10-03T05:09:29.018Z",
+  "sha256": "14c293634ba61bd589a73e421fa36c02bf2e66f14a145229311098bbb2cbcd76",
+  "bytes": 25314,
+  "requestId": "157JNWQxWYQx8DqD8Bz9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "485e7a941f012e109999c00c17e124c7ba7d2bb6748520ecc8ba0b94c59d3287",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "The enemy king had no square off its back rank, which made a back-rank mate idea possible here. In the game, the idea goes by. When a king has no escape square, checks along its back rank deserve a careful look."
+    },
+    "takeId": null
+  },
+  "requestHash": "30151e87cd1733a09d47ce2a5d964029d6f8bbd4631099bbf220ef7747890230",
+  "recordedAt": "2026-10-03T05:03:46.979Z",
+  "sha256": "1e743b3103c04037edd88d6a09b2165592b16388dcbfc44f82f4d8289122096b",
+  "bytes": 43926,
+  "requestId": "2LA5nRK1j1ofTiayjhiB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5cd16db42e9d1068389387f0ce6724de33b46a2377dd1bd20a1d235014ee7d4",
+    "bytes": 223652
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

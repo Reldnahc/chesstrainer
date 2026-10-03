@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "The moving piece makes one attack and uncovers a second from the piece behind it. In this example, the second attacker is the one that captures."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad4242a600c31efc9327cd8f751ac7e44052e5e7484c1fcc5588390f87394a40",
+  "recordedAt": "2026-10-03T05:07:53.459Z",
+  "sha256": "39c635e81aafbf56c2d6f696dc9ed574fa69bbf5f6e8f760085db76dc418c2ae",
+  "bytes": 27214,
+  "requestId": "G59u3WUdtJdVh3DtSV5w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6cf821e87599e08da9df718e5c877a6516089c9cb83cdf8f29a20f7a4477680",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected",
+      "label": "Explanation finding king skewer collected",
+      "text": "The king is in check and has to step off the line. The piece behind it is then exposed, and the same attacker takes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b73ec08802e5f4007da4866ddc2bfa7af13fd78b6dfcab6d44b8a7ed3c841ad",
+  "recordedAt": "2026-10-03T05:07:43.716Z",
+  "sha256": "c860aa2968694b3f3875ba6b6ef540508acbc727dd2aba4e288406bccf805c57",
+  "bytes": 24125,
+  "requestId": "yR4AxSrJ4V13ayOScgb2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25fd310251fd39a26a1b2ff22a380c343ecbe661b07e81b0c6ec9349ed0c8a79",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

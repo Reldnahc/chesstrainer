@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "Promoting on the last rank also gets the pawn's own king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "10d8bc8cd5f96a200e9d95f9619829196038dcf0c7e3e9fef137263df1b1d1d7",
+  "recordedAt": "2026-10-03T05:07:16.822Z",
+  "sha256": "bc0dc8de036c7d7ce21c0fb1df3d307c3a732d076587f56a5ca4c724d06ba1ff",
+  "bytes": 14968,
+  "requestId": "5bWn74mosMUvKO1gk3KS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d00f12d1f9cb0dc3b4421b3430ec3b213fe1c916300fab54d55a7b7ea1068391",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

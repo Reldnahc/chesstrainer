@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "dog-gentle",
+  "voiceId": "alfie",
+  "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "A fork works because one move can only answer so much. Here a single piece attacks several targets together, so one reply may not be enough to cover them all.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-fork-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Before each move, it helps to ask which squares the opponent's pieces can reach next. This move gives them a fork: a single piece of theirs can then reach several targets together. Spotting that piece first is the habit to build.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "A different move had a fork in it, one piece attacking several targets together. That idea goes unused in the game. When comparing candidates, a forcing move that hits two things deserves to be checked first.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "A pinned piece is tied to whatever stands behind it. This move pins a piece to its king, so it can't step off that line without exposing the king. That restriction is what the move is built on.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-pin-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Pieces lined up with their own king are always worth a second glance. This move lets the other side pin one of them, and a piece pinned to its king can't leave that line without exposing the king. It pays to check those lines before moving, not after.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "A piece could have been pinned to its king by a different move. Pinned that way, it couldn't have left its line without exposing the king, and that restriction would have been the point. Instead, no pin happens in the game.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Think of a skewer as a line attack read from front to back. The front piece is attacked first, and if it steps aside, the piece behind it is exposed on the same line. Notice how the order of the pieces on that line does the work.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "When two pieces share a line, an attack on the first can reach the second. The other side now has a skewer: if the front piece gives way, the piece behind it could come under attack. Shared lines like that are worth checking before each move.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A different move offered a skewer, attacking a front piece with another standing behind it on the same line. If the front piece had moved off that line, the piece standing behind it would have been exposed to the attack. In the game, that line is never used.",
+      "audioPath": "recordings/alfie-v1/retake-2/alfie/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/retake-2/alfie/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "A defender only protects something while it stays on the board. This move captures one, and whatever it was guarding may lose its protection. So the real target is what stood behind the defender.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Every defender is also a target. This move lets the other side capture one, and whatever it protects could then be left uncovered. Before moving, it's worth knowing which piece is holding things together.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Another move could have captured a defender, and what it was guarding would have lost its protection. Instead, that defender stays on the board. A defender is often the right target, because taking it weakens something else.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "A king behind its own pieces can find every escape square blocked by its own side. That's the back-rank mate idea in this move: the king is boxed in with no room to step out. Its own cover is what limits it.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "A king needs at least one free square off its back rank. This move lets the other side aim for a back-rank mate, because the king is hemmed in by its own pieces. The king's escape squares are the first thing to check here.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "The enemy king had no square off its back rank, which made a back-rank mate idea possible here. In the game, the idea goes by. When a king has no escape square, checks along its back rank deserve a careful look.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "A pawn that reaches the last rank becomes a new piece, which is why every step toward it matters. This move is about that route to promotion. Count the squares the pawn still needs, and what could stop it.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "An advanced pawn changes what every other piece has to do. After this move, the other side has a chance to promote, so one of their pawns may get through to the last rank. Count its steps first, then look for what could block it.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "A stronger move offered a route to promotion, a pawn heading for the last rank. Instead, the pawn stays where it stands. When a pawn is close, counting its steps should come before quieter plans.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Sometimes the most important piece in a move is the one that doesn't move. Here one piece steps out of the way and uncovers an attack from the piece behind it. So read the line it opens, not just the square it lands on.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "A piece that blocks another's line can uncover an attack just by moving. This move lets the other side do exactly that, a discovered attack from the piece behind. Check which lines their next move could open.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "One of the other candidates was a discovered attack: one piece moving aside so the piece behind it could attack. Here that line never opens. When two pieces of one side share a line, moving the front one is worth considering.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "One move can make two threats, and a single reply often can't meet both. This move is built around exactly that kind of double attack. Name each threat in turn, then see why they work together.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "When the opponent can make two threats at once, one answer may not cover both. This move gives them that double attack. So the useful check, before moving, is what their most forcing reply would attack.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move made two threats at once, and this move doesn't. Double attacks are worth looking for early, because one reply may not be able to handle both.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "A defender can only be in one place. This move pulls a defender away from its job, a deflection, and what it was guarding is left open. Look first at what the defender was covering, then at what drew it away.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "A defender with an important job can be lured away from it. That's exactly the deflection this move allows the other side. Ask what that defender is covering now, and what could pull it off.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Another move could have drawn a defender away from what it was guarding, a deflection. This move doesn't. The idea to keep: a defender that's drawn away leaves its job undone.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "The simplest gains come from pieces nobody is guarding. A piece with no defender at all is captured here. Checking for loose pieces first saves a lot of calculation later.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "Another move could have taken an undefended piece, and this move leaves it there. A quick scan for unguarded pieces is a sensible first step before anything more ambitious.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "A piece without a defender can be taken for nothing. This move leaves a piece in that state, and the other side can capture it. The habit that prevents this is simple: before each move, check what's unguarded.",
+      "audioPath": "recordings/alfie-v1/alfie/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "When a defender leaves its post, its protection leaves with it. This move takes away a piece's only real defender, so the other side can now capture what it was guarding. So before a defender moves, it's worth knowing what depends on it.",
+      "audioPath": "recordings/alfie-v1/alfie/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "Each opponent move can create a new threat, so it's worth asking what it changed. The opponent's previous move attacked a piece, and this move doesn't respond to that, so the piece can now be captured. Asking it after every opponent move is the habit to build.",
+      "audioPath": "recordings/alfie-v1/alfie/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "Every exchange comes in two halves: what is taken and what comes back. Here the capture is answered by a recapture that takes a more valuable piece. So count the whole exchange, recapture included, before judging the first capture.",
+      "audioPath": "recordings/alfie-v1/alfie/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "A piece on its starting square has few squares to work with. This move brings a minor piece off its original square and into play. Notice where it stands now and what it can reach.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-development-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "A minor piece could have been developed with a different move, coming off its starting square for the first time. That's worth comparing with the move played, especially in the early part of a game.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-development-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "A rook works best along a file that nothing blocks. This move leaves a rook on an open file, with no pawns of either color on it, so the whole file is available to it.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "A rook could have reached an open file, where neither side has a pawn, if a different move had been played. Rooks tend to be most useful on files like that, which is why the comparison matters.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "A semi-open file has none of a side's own pawns, but at least one enemy pawn. This move leaves a rook on a file like that, so it faces an enemy pawn rather than one of its own.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "A different move would have given a rook a semi-open file, clear of its own pawns yet still holding at least one enemy pawn. The difference lies in whose pawns stand on the file.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "A pawn is passed when no enemy pawn stands ahead of it on its own file or either neighboring file. This move leaves a pawn like that. No enemy pawn can stop it on the way forward, so only pieces can.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-passed-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have created a passed pawn, with no enemy pawn ahead on its file or the files beside it. A pawn like that can only be stopped by pieces, which is why it's worth noticing.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "A passed pawn matters more with every step it takes. This move brings an already passed pawn nearer the last rank. Count how many squares remain before it promotes.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "The passed pawn could have stepped forward with a different move. Comparing the two, notice how much closer to promotion it could have come.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "An isolated pawn has no friendly pawn on either neighboring file, so no pawn is able to defend it. This move leaves one. Any protection for it would have to come from the pieces.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "A different choice would have isolated a pawn, leaving it with no friendly pawn on either neighboring file. Without pawn neighbors, defending it would fall to the pieces.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A piece with a defender can't simply be taken for free. This move gives a piece support it didn't have, so a capture on that square could now be answered with a recapture.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-support-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have given a piece a defender, so it wouldn't have been standing unprotected. Support like that is worth comparing with what the played move did instead.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-support-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Having no defender describes a piece's situation; it doesn't mean the piece is lost. Once this move is made, one piece stands with no defender. Whether it can actually be won depends on what can reach it.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "Had a different move been played, one piece would have had no defender at all. That alone wouldn't mean the piece could be won, but it's a detail worth tracking.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "A king is safer with a square to step to. This move opens a legal flight square it didn't have before. Notice which piece moved out of its path.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "A different move would have opened a new legal square for the king. Check which piece would have had to move to make that room.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castling is the one move that relocates two pieces at once. Here the king castles and the rook moves next to it. Check both new squares when you compare positions.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-castling-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was available instead, and it would have moved king and rook together in one turn. Comparing it with the move played shows what each choice did for the king.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "Two bishops together cover both square colors. This capture breaks up a bishop pair, so one square color is now left without a bishop on that side.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "A different move would have taken a bishop, and with it the opposing bishop pair. That would have left the other side with bishops on only one square color.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Pawns on the same file can't protect each other. This move leaves doubled pawns, two of one color on a single file. Notice that the front pawn also blocks the one behind it.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "A different move would have doubled a side's pawns, putting two of one color on a single file. Pawns stacked like that can't defend each other, which is the detail to weigh.",
+      "audioPath": "recordings/alfie-v1/alfie/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "This move opens the way to a forced checkmate. The way to understand it is to take the attack one forcing move at a time. Start with the first check or capture, and find where the defense runs out.",
+      "audioPath": "recordings/alfie-v1/alfie/allowed-mate.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "When a forced checkmate exists, it outweighs every other idea on the board. There was one here, and this move lets it go. Look at the checks first; that's usually where a finish begins.",
+      "audioPath": "recordings/alfie-v1/alfie/missed-mate.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "A sacrifice is only sound if it holds up after the material is taken. This one does, in the line we checked. So the reason for it lies in what happens after the capture, not in the material count.",
+      "audioPath": "recordings/alfie-v1/alfie/sound-sacrifice.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Sometimes a position allows exactly one answer. This move alone held the position among those we checked, and each of the others was losing. It's worth keeping as a defensive example.",
+      "audioPath": "recordings/alfie-v1/alfie/only-playable-move.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "An advantage can slip away with a single imprecise move. Here, every alternative we checked was losing, and this move alone kept the advantage. Precision mattered here more than usual.",
+      "audioPath": "recordings/alfie-v1/alfie/only-advantage-resource.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "The first question after any move is what the reply can take. In this position, the other side has a capture at once. Start with that capture before looking at anything quieter.",
+      "audioPath": "recordings/alfie-v1/alfie/immediate-capture.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "A check must be answered before any other plan. The strongest reply here gives check, so that's where the analysis has to begin.",
+      "audioPath": "recordings/alfie-v1/alfie/reply-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "Comparing two moves on the board teaches more than looking at either one alone. Here the engine would choose another move. Play both, and notice how the replies differ.",
+      "audioPath": "recordings/alfie-v1/alfie/stronger-alternative.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "A move's cost is measured against what was available. The engine rates this one below its best option. To see why, compare the replies to each; the gap shows up there.",
+      "audioPath": "recordings/alfie-v1/alfie/evaluation-loss.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "This is a strong choice, judged against everything the engine examined. What makes it worth keeping is the reason behind it.",
+      "audioPath": "recordings/alfie-v1/alfie/best-supported-choice.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "This is sound, though the engine would choose differently. It keeps much of what the position offered, and comparing the two moves shows where the difference lies.",
+      "audioPath": "recordings/alfie-v1/alfie/good-choice.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Time pressure limits how much anyone can calculate. The clock shows very little time left before this move, and that's useful context when judging the decision.",
+      "audioPath": "recordings/alfie-v1/alfie/clock-low.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "This move came quickly, with time still left on the clock. Speed is fine when a position is simple, so it's worth asking whether this one was.",
+      "audioPath": "recordings/alfie-v1/alfie/clock-fast.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "A long think went into this move, by the clock. Spending time is reasonable at a critical moment, so it's worth noticing whether this was one.",
+      "audioPath": "recordings/alfie-v1/alfie/clock-long.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "Opening theory recognizes the line this move belongs to. Recognition tells us which line this is; it doesn't grade the move.",
+      "audioPath": "recordings/alfie-v1/alfie/recognized-opening.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Here the game leaves the line our opening book recognizes. From this point on, the decisions rest on the position itself, so the reasons behind each move matter more.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-departure.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "A setback isn't final while the position can still be held. The earlier setback no longer decides things, because this move makes the position playable. Connecting those two moments is the useful part of the lesson.",
+      "audioPath": "recordings/alfie-v1/alfie/recovery.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "Despite the earlier setback, there's a playable position again after this move. Errors by the other side helped make that possible, so the recovery belongs to both players' choices.",
+      "audioPath": "recordings/alfie-v1/alfie/recovery-assisted.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "An opponent's error only helps if the reply makes use of it. This move puts to use the opportunity the opponent's last move offered. Keeping those two moves together is what makes the lesson stick.",
+      "audioPath": "recordings/alfie-v1/alfie/chance-taken.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "There was an opportunity in the opponent's last move, and this move doesn't take it. Returning to the position before it, and asking what that move changed, is the way to find it.",
+      "audioPath": "recordings/alfie-v1/alfie/chance-missed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "We've seen this problem before in this game. When the same issue repeats, there's usually one habit underneath it, and comparing the moments helps find it.",
+      "audioPath": "recordings/alfie-v1/alfie/repeated-issue.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "The unguarded piece from earlier has a defender now. Comparing the two positions shows exactly where its protection came back from.",
+      "audioPath": "recordings/alfie-v1/alfie/support-restored.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Positions often slip through several small concessions rather than one big error. This is one of a series that has worsened the position together, so the sequence matters as much as this move.",
+      "audioPath": "recordings/alfie-v1/alfie/gradual-erosion.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "Keeping an advantage takes as much care as winning one. The reviewed moves held it all the way to the recorded win, and following that stretch shows how it was kept.",
+      "audioPath": "recordings/alfie-v1/alfie/advantage-converted.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "The same issue turns up in other saved games as well. A pattern across several games points to a habit, and a habit is something practice can change.",
+      "audioPath": "recordings/alfie-v1/alfie/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate: the king is attacked and has no legal escape. Reviewing the last few moves is a good way to keep the pattern.",
+      "audioPath": "recordings/alfie-v1/alfie/mate-finished.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "The king is checkmated, with no legal square left to escape to. The useful lesson lies earlier, at the point where the defense could still have changed course.",
+      "audioPath": "recordings/alfie-v1/alfie/mate-defense-ended.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "This game finishes as a draw. A result can be settled while the decisions inside the game still have something to teach.",
+      "audioPath": "recordings/alfie-v1/alfie/draw.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Look the position over carefully, piece by piece, and choose your move when it's clear to you.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-cold.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "As it stands, that try doesn't solve the position. Try to see why first, then pick a different move.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-retry.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "The attempt produced no result this time. It's fine to play the move again.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-practice-error.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "According to the saved engine analysis, this move leads to a forced checkmate for the side that played it. That's the main point to understand.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis shows a forced checkmate for the other side after this move. Everything else in the line matters less than that.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "When the saved line finishes, the side that made this move has gained material, measured from where the line started.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "At the finish of the saved line, the side that made this move is down material compared with where it started.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The exercise accepts this move. The moves shown don't establish a clear tactical reason, so there's no mechanism to point to here.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise doesn't accept this move. The moves shown don't establish a clear tactical reason, so I won't supply one that isn't there.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Your move is among the exercise's saved answers, and acceptance here depends only on those.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise's saved answers don't include this move. That says nothing about its chess quality; the exercise only accepts the moves it has saved.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Study this move until its purpose is clear, then go on to the next position.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-fallback-study.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "That's a good move, and the reason behind it is the part worth carrying forward.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-fallback-good.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Your practice has been saved, and your review schedule stays as it was.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "That one's solved, though the recall remains marked for relearning.",
+      "audioPath": "recordings/alfie-v1/alfie/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "We begin from this position, before any of the moves being examined.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-original.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Next comes this move. Notice what it changes before going further.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "This move gives check, so the reply has to deal with the king first.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "After this move, the king is no longer in check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "On reaching the last rank, the pawn promotes to a new piece.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "Once promoted, the new piece gives check at once.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn is promoted, and the new piece delivers checkmate, leaving the king nowhere legal to go.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Promoting on the last rank also gets the pawn's own king out of check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "This move removes a piece by capturing it.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "A piece is captured, and the same move gives check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "A piece is captured, and the move is checkmate, leaving the king with no legal escape.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "A piece is captured, and that capture also takes the king out of check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "When the pawn captures on the last rank, it also promotes.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "Capturing on the last rank, the pawn is promoted, and the new piece gives check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Capturing on the last rank, the pawn is promoted, and the result is checkmate, with no legal escape for the king.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Capturing on the last rank, the pawn is promoted, and in doing so it gets its king out of check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, and the rook, on its new square, gives check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "The king castles, and the rook on its new square delivers checkmate, with no legal escape for the opposing king.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "One piece attacks several targets, and in this example it goes on to take one of them. The line also ends with a net gain in material for that side.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "The marked capture isn't available: the piece is pinned to its king, and moving off the line would leave its own king in check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "Because the attacked piece is pinned to its king, it can only move along the pin line, if it can move at all.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Here the capture succeeds because its defenders are pinned to their king and can't take back. By the time the line shown is over, that side is ahead in material.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece can't step off its line without exposing the king, so it stays where it is. As the moves play out, it's captured there.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "When the front piece moves off the line, the piece behind it is exposed, and it's captured along that same line.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The king is in check and has to step off the line. The piece behind it is then exposed, and the same attacker takes it.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The capture sequence starts with the lone defender. With it gone, the piece it was guarding is taken next in these moves.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "Drawn away from what it was guarding, the defender leaves a piece unprotected, and that piece is then captured.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "Moving the blocking piece opens a line for the piece behind it, which then makes the capture.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "One piece moves out of the way, and the piece behind it now gives check.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "This is double check: two pieces check the king at once, so only a king move can answer it.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece makes one attack and uncovers a second from the piece behind it. In this example, the second attacker is the one that captures.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Here promotion goes together with a net material gain for that side, as the example finishes.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "Nothing defends that piece, so it can be taken without a recapture, and this example ends with that side ahead in material.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "The key change came from the opponent's previous move, which freed the attacking piece from a relative pin. The target was then left in place, and in the line shown it's captured.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side is entitled to play the reply marked on the board. Playing it out yourself is the clearest way to see what it does.",
+      "audioPath": "recordings/alfie-v1/alfie/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "A useful habit: before moving, find every piece of yours that could be captured with no good recapture.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before settling on a quiet move, scan for enemy pieces that nothing is guarding.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Among the forcing moves, look for one piece that can attack two valuable targets together.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "A pinned piece is shielding something. Before moving it, check whether that's your king or a more valuable piece.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "When an attack lands on one piece, look along the same line for a valuable piece standing behind it.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "A defender may be guarding more than it seems, so before exchanging it, list what it protects.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a piece blocks a line, ask what would be uncovered if it moved.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Look for a single move that makes two threats, remembering that checks and newly opened lines count as threats too.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before a back-rank defender leaves, make sure your king still has a square to escape to.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the squares each advanced pawn needs to promote, and consider the pawn moves that force a reply.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Every defender has a list of duties. Before moving one, check which pieces would lose its protection.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Weigh the first capture against the recapture that follows, since both belong to the same exchange.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "A forcing exchange can lure a defender off its other duties, so look for that before anything quieter.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "What counts here is set by the exercise's saved answers. Another legal move may still be perfectly reasonable chess.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "These moves show how play could go if the replies are strong. That's an illustration, not a claim that each reply is forced.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material is counted only within the line shown, starting from its first position. The written explanation lists the piece values behind that count.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line doesn't show a simple tactical reason, and no positional explanation has been assumed. Stepping through it and comparing the replies is the honest way to study it.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "Whichever answer policy was saved for this exercise is the one used here, and the written notes name it.",
+      "audioPath": "recordings/alfie-v1/alfie/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here's the opening line you're studying, laid out move by move. Take them in order, and notice how each one leads to the next.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "That's right; it matches the material you selected to study.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Choose one of the moves from your study lines and play it.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Several moves will count here, as long as they come from your selected opening lines.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Think back to your study material, and play the move it gives here.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Your selected opening lines don't include that move. Think it through and try again.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Your selected opening lines don't include that move, so try again. Because the study was changed, this saved attempt doesn't update its review schedule.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Your selected opening lines don't include that move, so give it another try. Since this position is retired, its review schedule won't change.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due will accept moves from this line, and dedicated practice will ask for it on its own.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-preview-active.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "When a recall is scheduled, it asks only for moves by the side you selected. When your active studies share a position, that position uses a single card.",
+      "audioPath": "recordings/alfie-v1/alfie/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Before another move, the saved session needs to be reloaded.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-error.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Watch the board as the verified line plays through, move by move.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-playback.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Since the solution was shown, this attempt counts as revealed. The solution is below whenever you'd like to replay it.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-revealed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "It took a second try, but the whole solution is found. Your record keeps both the earlier miss and the finish, which is an honest picture of the work.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "You solved it completely, without a wrong move along the way. That's careful work.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "This puzzle needs a different move. Your correct moves up to that point stay on record.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-rejected.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "That's the right move for this puzzle. Keep going and find the move after it.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-next-move.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Take all the time you need, and calculate the line through before you move.",
+      "audioPath": "recordings/alfie-v1/alfie/puzzle-cold.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "There isn't enough from the engine for me to explain this position properly. Moving the pieces yourself is still a fine way to explore it.",
+      "audioPath": "recordings/alfie-v1/alfie/game-unavailable.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "We've paused the review. You can resume it below, or move a piece to explore on your own.",
+      "audioPath": "recordings/alfie-v1/alfie/game-review-paused.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Choose a move to study, or move a piece to try an alternative of your own.",
+      "audioPath": "recordings/alfie-v1/alfie/game-browse-instructions.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "A book move: recognized opening theory includes this one.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "This move is one the opening book knows.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "This move is listed in opening theory, so the game is on familiar ground for now.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "This move is still one the book records.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Still a recognized line, one move further on.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply also comes from the book.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "The line from the book carries on with this move.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "The book's line still holds here.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "This one is also part of the recognized sequence.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "This one, too, has a place in the opening book.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "This move is still listed in the book. Being in a known line describes where the game is; judging the move is another matter.",
+      "audioPath": "recordings/alfie-v1/alfie/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Let's begin at the start and work through the game step by step. There's no hurry; we'll give each idea the time it deserves.",
+      "audioPath": "recordings/alfie-v1/alfie/game-review-opened.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Legal, yes, though the lesson has another move in mind. Try a different one.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Good; that matches what the lesson is teaching. Let's take the next step.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-correct-move.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "The lesson's own choice is now on the board. Look it over with care, then continue.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Follow each move as it appears, and notice what changes after every one.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "From memory now, recall the line and play it.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "We've stepped off the main path to look at an alternative. Study it calmly, and return when you're done.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter finished. Your work here is kept, so you can pick it up again later.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "Now the whole game is available, from the first move to the last. Go slowly, and come back to the lesson when you're ready.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-game-opened.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Something went wrong, so the lesson needs reloading before we continue.",
+      "audioPath": "recordings/alfie-v1/alfie/lesson-error.opus",
+      "sidecarPath": "recordings/alfie-v1/alfie/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

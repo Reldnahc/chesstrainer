@@ -38,7 +38,12 @@ AUTHORED = [
     ("woman-captain", "tamar"),
     ("human-girl", "tala"),
 ]
-REGISTERED = [("capybara", "winston"), ("mushroom", "button"), ("man-partner", "arjun")]
+REGISTERED = [
+    ("capybara", "winston"),
+    ("mushroom", "button"),
+    ("man-partner", "arjun"),
+    ("dog-gentle", "alfie"),
+]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [
     "ziggy",

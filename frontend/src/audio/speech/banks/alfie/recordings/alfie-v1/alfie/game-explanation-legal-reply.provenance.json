@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side is entitled to play the reply marked on the board. Playing it out yourself is the clearest way to see what it does."
+    },
+    "takeId": null
+  },
+  "requestHash": "392c6b6b8e71d038cc6c7166896f763cf8475f6b340618942577275aa024ca89",
+  "recordedAt": "2026-10-03T05:08:01.193Z",
+  "sha256": "fa1958f37e4f14c9ef041d4be1d8871b1363be44ed58993867bfae77d4ca2cfc",
+  "bytes": 24975,
+  "requestId": "fh3O1NuXsuOn1OnHCHUO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05874526611298f9c1f1df4e3665a946fafef085d3c194182f7dd7a0790d695a",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

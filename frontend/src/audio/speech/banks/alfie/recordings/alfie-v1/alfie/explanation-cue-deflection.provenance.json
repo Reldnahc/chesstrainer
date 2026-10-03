@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "A forcing exchange can lure a defender off its other duties, so look for that before anything quieter."
+    },
+    "takeId": null
+  },
+  "requestHash": "e96b7cbfab5518253d136e355ecc8aaed067346708eaee1c1606a1dd6b65b0f2",
+  "recordedAt": "2026-10-03T05:08:21.982Z",
+  "sha256": "d4597a4a86b2d27b7487ec0cb2bca34ee3f050f8727b73bbe1f4d15c51c45fd9",
+  "bytes": 20764,
+  "requestId": "tC7gQ1608FzoG3Py1jfJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1711e5f3bf6237519af3c366899bf09018db5fe02d6e6b61b7e0ae3de4176def",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

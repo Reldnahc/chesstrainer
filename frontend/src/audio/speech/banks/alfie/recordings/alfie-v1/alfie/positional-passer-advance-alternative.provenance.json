@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "The passed pawn could have stepped forward with a different move. Comparing the two, notice how much closer to promotion it could have come."
+    },
+    "takeId": null
+  },
+  "requestHash": "95cb07e04d1cd01d72ce7ceb6a7f0743f19cbf4eccfd802ad20192997635dcdc",
+  "recordedAt": "2026-10-03T05:05:03.504Z",
+  "sha256": "7165059f180bac512474b6b59972812f0c99af8c10bcbadc2d951a7cc6a3507e",
+  "bytes": 24126,
+  "requestId": "s9nbzmQmKiRiH1D3vovW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ddfabb70a7c44ddf92e2571ab9562ec4401faba52691921cbc8e137c9fdaf768",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

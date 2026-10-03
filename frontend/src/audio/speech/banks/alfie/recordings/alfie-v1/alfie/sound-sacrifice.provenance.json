@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "A sacrifice is only sound if it holds up after the material is taken. This one does, in the line we checked. So the reason for it lies in what happens after the capture, not in the material count."
+    },
+    "takeId": null
+  },
+  "requestHash": "fad1da6e169ce5072047ca65967e56808f886744555d6362062b4dc054c18f8e",
+  "recordedAt": "2026-10-03T05:05:44.514Z",
+  "sha256": "ba3aa537eea9efaf75099d5e9b8fd1224f9798384e924c1736aabdcbf4dfcfc0",
+  "bytes": 38582,
+  "requestId": "fNNnJSNEJ23xEu7MY4JG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3f33978a37c9af506758f03eecd990cf72e6575d348717d4a3d00b2fce3fcfd",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture",
+      "label": "Explanation finding pin prevents capture",
+      "text": "The marked capture isn't available: the piece is pinned to its king, and moving off the line would leave its own king in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4054bca1675cccf52ddc5169f6681bf2aae69a93485f654a256479f6af9fb9c",
+  "recordedAt": "2026-10-03T05:07:33.740Z",
+  "sha256": "bc20bb1e624ca8cbea3f1d035bbc93acdbfd4f72ef28dfc597e44064084df8db",
+  "bytes": 22950,
+  "requestId": "lRpNfEEyRpUcdyZ7OBBL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ab0c9f45691d3b2fb641d4634cbc2a050e2b2aca3b768a1681c918e8de0bbb5",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

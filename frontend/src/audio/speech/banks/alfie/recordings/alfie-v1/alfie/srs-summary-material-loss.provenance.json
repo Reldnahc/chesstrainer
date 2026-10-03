@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "At the finish of the saved line, the side that made this move is down material compared with where it started."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1c928a0776b3faf9c3b24d9d59e2bbe7ba1f8e7d883e92e984d298f530c4a52",
+  "recordedAt": "2026-10-03T05:06:54.599Z",
+  "sha256": "cda0720c56d8de78e379809a2290af25e0f1a718d11e513faac82670722a44cd",
+  "bytes": 20209,
+  "requestId": "wivS5HG5PFTq9whe3ZlO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f6b44ef87530c1d427770d060356330bddfb4c29eb23e304070e9fb86306e36",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

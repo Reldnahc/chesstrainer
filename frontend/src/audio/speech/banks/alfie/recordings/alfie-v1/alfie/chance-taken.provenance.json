@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "An opponent's error only helps if the reply makes use of it. This move puts to use the opportunity the opponent's last move offered. Keeping those two moves together is what makes the lesson stick."
+    },
+    "takeId": null
+  },
+  "requestHash": "66b5ba2acda08c1d423895220bb52a7c988983f201b8019cd5644134bfca7aef",
+  "recordedAt": "2026-10-03T05:06:22.937Z",
+  "sha256": "6731e9303e3a7b59a6e5588b47d6385826b947942ab511ecf84ec7f1b16fbdf6",
+  "bytes": 38332,
+  "requestId": "fQinJlpIbJOz1YNuqrzv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65135eacf1fcb8431b9c1a8bdd4e78c03a34d6d5062c8b77c8037ee9d2487178",
+    "bytes": 194395
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

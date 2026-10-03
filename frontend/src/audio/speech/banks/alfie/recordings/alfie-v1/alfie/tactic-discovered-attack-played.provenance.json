@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played",
+      "label": "Tactic discovered attack played",
+      "text": "Sometimes the most important piece in a move is the one that doesn't move. Here one piece steps out of the way and uncovers an attack from the piece behind it. So read the line it opens, not just the square it lands on."
+    },
+    "takeId": null
+  },
+  "requestHash": "c439e992171c58d1a488d40e34c128069fe3872ed441be48010ce5ef1256a908",
+  "recordedAt": "2026-10-03T05:03:58.181Z",
+  "sha256": "21b56d805fea0c9ae329a403373d8b0228909e7239464df7448d6c8c39fd4da8",
+  "bytes": 45089,
+  "requestId": "sVH06CVbXm6ZoltjUcKR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "202beb46cfc8bbc911cdee076ef2954a720bfcd7bbc8f343a485a2af4775faf4",
+    "bytes": 231593
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

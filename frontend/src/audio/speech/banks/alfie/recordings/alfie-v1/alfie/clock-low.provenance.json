@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "clock-low",
+      "label": "Clock low",
+      "text": "Time pressure limits how much anyone can calculate. The clock shows very little time left before this move, and that's useful context when judging the decision."
+    },
+    "takeId": null
+  },
+  "requestHash": "a85cad2dfe528196a6612dd235284c13558c235040d5b8cde40df8fef8a3d1b4",
+  "recordedAt": "2026-10-03T05:06:06.085Z",
+  "sha256": "a610358605bb57803e6e16d62ad37955e06897e6042d9a1db9797ac67b5243a1",
+  "bytes": 30634,
+  "requestId": "KXfc63nQ2qCLEPWcGeVc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d40f55d5b51b5804edd28b293f0553703a32ce306819ddabe3baaf63df3d382",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

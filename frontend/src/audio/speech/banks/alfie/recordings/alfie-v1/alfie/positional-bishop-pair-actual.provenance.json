@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "Two bishops together cover both square colors. This capture breaks up a bishop pair, so one square color is now left without a bishop on that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "f70ccef93a8829b4464ffe140d7eab3712f7d862ad896e192b63ae72deb3ac6f",
+  "recordedAt": "2026-10-03T05:05:29.694Z",
+  "sha256": "9e5fef8cf089968492bbb4c9003f2b2cbdc45903da50f910c14c85f0c8e63698",
+  "bytes": 30264,
+  "requestId": "G6pK98HfBr3t1x99Al6B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d208858ab75234d55ff6e6cf4ac565f8d4695cc50ab003241a3820e215b1cc14",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

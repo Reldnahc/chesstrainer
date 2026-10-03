@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A stronger move made two threats at once, and this move doesn't. Double attacks are worth looking for early, because one reply may not be able to handle both."
+    },
+    "takeId": null
+  },
+  "requestHash": "803a031b42f51ee896a4d605f2d45e9992246f3fa422efa23c12ff9bf221ea46",
+  "recordedAt": "2026-10-03T05:04:12.287Z",
+  "sha256": "50754e3fc220855583c1bc80c3cd92318f7e90563c2418dc2e876d91fceb33da",
+  "bytes": 31089,
+  "requestId": "Nt8V7giTR5EYCvlBofzt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7667a7c40cb86a07aa2aa37dd3682358a6aba14099b9a86b86173251bd479652",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

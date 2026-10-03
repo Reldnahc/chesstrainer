@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "good-choice",
+      "label": "Good choice",
+      "text": "This is sound, though the engine would choose differently. It keeps much of what the position offered, and comparing the two moves shows where the difference lies."
+    },
+    "takeId": null
+  },
+  "requestHash": "52981925b47854d06eb5b2fb4eaea543ee342f1c3fe1bb2ca8f7fd3c2feb8d9d",
+  "recordedAt": "2026-10-03T05:06:03.992Z",
+  "sha256": "bf5686c02b8daddd18292bc048b58c9f4e7f0a117195f6f4a485295a393fae2f",
+  "bytes": 28920,
+  "requestId": "PTd9aVJ8pBn51kdQtpTI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "effa0db6e572c33ddd77e7c87d9456696368e09b2017b8ae77ee5a0b975baf83",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

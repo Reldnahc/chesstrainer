@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "Here's the opening line you're studying, laid out move by move. Take them in order, and notice how each one leads to the next."
+    },
+    "takeId": null
+  },
+  "requestHash": "89cf92d9f431eca9b79379087d96f0f6a9abc49ae01b60f28b909794f6092927",
+  "recordedAt": "2026-10-03T05:08:33.871Z",
+  "sha256": "1e288e491f73032fd22e87990cb322c3c50506a6c88fcdc277cc6f6cd646fa5d",
+  "bytes": 25432,
+  "requestId": "4DPzBaINR6fXE8Nmwzet",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "226a3b21c955f39a5912daa4f4292c845d4e39eac6d42661e04f300a04c3414d",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

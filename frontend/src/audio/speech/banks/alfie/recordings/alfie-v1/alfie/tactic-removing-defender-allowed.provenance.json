@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "Every defender is also a target. This move lets the other side capture one, and whatever it protects could then be left uncovered. Before moving, it's worth knowing which piece is holding things together."
+    },
+    "takeId": null
+  },
+  "requestHash": "304c4df0f396f99e3adc0d4fa676011c2d29a5c47b80788dfdc3db6ad07c4648",
+  "recordedAt": "2026-10-03T05:03:34.545Z",
+  "sha256": "0b755d85c50c87fe1f8eeb2a0d71b449ca64d9977970702f9bf4a030fd68c782",
+  "bytes": 38762,
+  "requestId": "gIc1sHyo4xc8PFnMuVl8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "51ec3a8bbd9140f400a6018f1e007a4de25793821734f1d549d0c2482d8eec44",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "Capturing on the last rank, the pawn is promoted, and the result is checkmate, with no legal escape for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "00647c48a144edb64ebb940502ccbb7bb6cbf069dbf019469dda30d72d69581b",
+  "recordedAt": "2026-10-03T05:07:25.654Z",
+  "sha256": "78e7a0444f512a982e19dad61ab2df32959101b4df1ff58df804c0e67ebeb65a",
+  "bytes": 23451,
+  "requestId": "cmbuKfvoxb29Maq2b7Nm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a5d078e65d1d3b0f2239a821bb74ac927ac897fb925fffd7d7362789e758891",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

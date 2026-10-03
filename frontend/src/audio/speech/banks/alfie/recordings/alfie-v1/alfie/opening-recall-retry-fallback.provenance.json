@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "opening-recall-retry-fallback",
+      "label": "Opening recall retry fallback",
+      "text": "Choose one of the moves from your study lines and play it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee86b095a7c01123c6568a69b66d544a1dec7d9d99de4eee8088024dcc156f0c",
+  "recordedAt": "2026-10-03T05:08:35.888Z",
+  "sha256": "27ec888f3eabcc4b52063bb8766ed8b051e3aad50c1f0d1cc80f39796782358e",
+  "bytes": 11045,
+  "requestId": "7qOzTmSgSZsPi5yeXeaX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d486491587fbca322f27e1047621499be7139eefc9962575f586d409c490d489",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

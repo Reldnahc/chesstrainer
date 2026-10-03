@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "puzzle-error",
+      "label": "Puzzle error",
+      "text": "Before another move, the saved session needs to be reloaded."
+    },
+    "takeId": null
+  },
+  "requestHash": "7aad252b906790c6755010b046ab4fa21c62a3e5414e70f46ac89645d179b34a",
+  "recordedAt": "2026-10-03T05:08:48.510Z",
+  "sha256": "cc9626d28087634dbb481293f0ced4b975b5568e80db1b064a0ef096b7c71024",
+  "bytes": 13070,
+  "requestId": "dXdtvUko33V997qWD3TF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "252158387ed39f4432d158c4b7284f725366b817fbcd474f33125d1184011b47",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
