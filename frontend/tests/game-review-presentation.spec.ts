@@ -3,13 +3,15 @@ import walterBank from '../src/audio/speech/bank/manifest.json' with {type: 'jso
 
 const walter = (id: string) => id.split('+').map(part => walterBank.recordings.find(row => row.id === part)!.text).join(' ');
 
-/** The moves line sits outside the scrolling message, inside the bubble, fully visible. */
+/** The moves line sits outside the scrolling message, inside the bubble, fully
+ * visible, and the bubble has grown enough that the spoken line needs no scrolling. */
 async function movesLineLayout(page: Page) {
   return page.locator('.review-coach').evaluate(element => {
     const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
     const speech = box('.coach-speech'), message = box('.coach-message'), moves = box('.coach-moves-line');
     return {below: moves.top >= message.bottom - 0.5, inside: moves.left >= speech.left && moves.right <= speech.right + 0.5
-      && moves.bottom <= speech.bottom + 0.5, visible: moves.height > 0};
+      && moves.bottom <= speech.bottom + 0.5, visible: moves.height > 0,
+      scrolls: element.querySelector('.coach-message')!.scrollHeight > element.querySelector('.coach-message')!.clientHeight + 1};
   });
 }
 
@@ -38,10 +40,25 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   const moves = page.locator('.coach-moves-line');
   await expect(moves).toHaveText('Black’s strongest reply: Qh4#, forced mate');
   await expect(moves.locator('strong')).toHaveText('Qh4#');
-  expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+  expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
   if (info.project.name === 'desktop') {
-    await page.setViewportSize({width: 1366, height: 768});
-    expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+    for (const size of [{width: 1366, height: 768}, {width: 1366, height: 900}]) {
+      await page.setViewportSize(size);
+      // The board resizes to the new viewport; measure once it has settled.
+      let board = await page.locator('.board-shell').boundingBox();
+      await expect.poll(async () => {
+        const previous = board;
+        board = await page.locator('.board-shell').boundingBox();
+        return JSON.stringify(board) === JSON.stringify(previous);
+      }).toBe(true);
+      expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
+      // The bubble grows in the sidebar; the board beside it never moves.
+      await page.getByRole('button', {name: 'Previous move', exact: true}).click();
+      expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
+      await page.getByRole('button', {name: 'Next move', exact: true}).click();
+      await expect(move).toHaveAttribute('aria-current', 'step');
+      expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
+    }
   }
   await page.locator('.review-coach').screenshot({path: `test-results/coach-moves-line-${info.project.name}.png`});
   // "Show why" keeps the written explanation, so the moves line steps aside.

@@ -513,12 +513,20 @@ test('long coaching and immediate cues keep notation still, and the timeline fil
     graphTop: (await page.locator('.game-graph').boundingBox())!.y + await page.evaluate(() => window.scrollY),
   });
   const before = await dimensions();
+  const board = await page.locator('.board-shell').boundingBox();
   await page.getByRole('button', {name: '1. f3, Good', exact: true}).click();
   await expect(page.locator('.coach-message')).toContainText('pinned knight');
-  expect(await dimensions()).toEqual(before);
+  // The game review bubble grows with its message only up to its cap, then the
+  // long text scrolls inside it. Everything below shifts by exactly that growth;
+  // on desktop the board beside the sidebar never moves.
+  const cap = await page.locator('.coach-speech').evaluate(el => parseFloat(getComputedStyle(el).maxHeight));
+  const grown = await dimensions();
+  expect(grown.height).toBe(cap);
+  expect(grown.notationTop - before.notationTop).toBeCloseTo(grown.height - before.height, 0);
+  if (testInfo.project.name === 'desktop') expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
   expect(await page.locator('.coach-message').evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
   await page.getByRole('button', {name: 'Show why', exact: true}).click();
-  expect(await dimensions()).toEqual(before);
+  expect(await dimensions()).toEqual(grown);
   await page.getByRole('button', {name: 'Flip board', exact: true}).click();
   await expect(page.locator('.board-shell [data-pattern-square="e1"]')).toBeVisible();
   for (const width of testInfo.project.name === 'desktop' ? [1024, 1366, 1920] : [360, 390]) {

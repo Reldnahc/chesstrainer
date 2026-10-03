@@ -4,8 +4,10 @@ import type { CoachReaction } from "./coach/model";
 import type { SpeechPlayback } from "./audio/model";
 import type { CoachSpeechPresentation } from "./audio/speech/useCoachSpeech";
 
-// Both review modes use these fixed slots. Long explanations scroll inside the
-// bubble, so new feedback never moves the actions or the surrounding board.
+// Every mode uses these fixed slots. Long explanations scroll inside the
+// bubble, so new feedback never moves the actions or the surrounding board;
+// game review's `grow` lets its bubble grow from that height to a cap so a joined
+// spoken line and its moves line fit without inner scrolling.
 export default function ReviewCoach({
   title,
   badge,
@@ -22,6 +24,7 @@ export default function ReviewCoach({
   speech,
   voice,
   compactLabel = false,
+  grow = false,
 }: {
   title: ReactNode;
   badge?: ReactNode;
@@ -40,6 +43,8 @@ export default function ReviewCoach({
   voice?: CoachSpeechPresentation;
   /** Size the title row to its text when the mode never shows an evaluation or voice control. */
   compactLabel?: boolean;
+  /** Grow with the message from the shared height up to a cap (game review's spoken lines). */
+  grow?: boolean;
 }) {
   const message = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -48,7 +53,7 @@ export default function ReviewCoach({
     if (messageResetKey !== undefined && message.current) message.current.scrollTop = 0;
   }, [messageResetKey]);
   return (
-    <section className={compactLabel ? "review-coach review-coach--compact-label" : "review-coach"} aria-label="Chess coach">
+    <section className={["review-coach", compactLabel && "review-coach--compact-label", grow && "review-coach--grow"].filter(Boolean).join(" ")} aria-label="Chess coach">
       <div className="coach-portrait">
         {character ?? <CoachAvatar reaction={reaction} speech={voice?.speech ?? speech} speechTrack={voice?.speechTrack} />}
         {portraitCaption && (

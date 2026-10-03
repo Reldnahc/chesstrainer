@@ -123,6 +123,7 @@ export default function PositionCoach({
     manualRecordingIds: [primaryId, explaining ? null : speech.recordingId].filter((id): id is string => !!id)});
   return (
     <ReviewCoach
+      grow
       reaction={{...reaction, state: utterance.expression}}
       voice={voice}
       title={

@@ -74,17 +74,20 @@ test("without a spoken meaning the bubble keeps its written text and shows no mo
   await expect(movesLine(page)).toHaveCount(0);
 });
 
-test("a long moves line wraps inside the bubble beside the Maia chip without scrolling", async ({page}) => {
+test("a long moves line wraps inside the bubble beside the Maia chip, never squeezing the line below two lines", async ({page}) => {
   const game = structuredClone(games["cause-abandoned_defender-white"]);
-  game.frames[1].report!.opening = {version: "layout-fixture", eco: "C50",
-    name: "Italian Game: Two Knights Defense, Fried Liver Attack, Lolli Variation"};
+  // One of the longest catalogue names.
+  game.frames[1].report!.opening = {version: "layout-fixture", eco: "D49",
+    name: "Queen's Gambit Declined: Semi-Slav Defense, Meran Variation, Blumenfeld Variation, Rabinovich Variation"};
   await mount(page, "man-partner", game);
   await expect(bubble(page)).toHaveAttribute("data-spoken", /./);
   await expect(movesLine(page)).toHaveText(`${game.frames[1].report!.opening!.name} · Black’s strongest reply: Qxa1+`);
   const layout = await region(page).evaluate(element => {
     const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
     const moves = element.querySelector(".coach-moves-line")!, style = getComputedStyle(moves);
+    const message = element.querySelector(".coach-message")!;
     return {speech: box(".coach-speech"), message: box(".coach-message"), moves: box(".coach-moves-line"),
+      messageLine: parseFloat(getComputedStyle(message.querySelector("p")!).lineHeight),
       chip: box(".human-insight-trigger"), lineHeight: parseFloat(style.lineHeight),
       overflow: moves.scrollWidth - moves.clientWidth, ellipsis: style.textOverflow, whiteSpace: style.whiteSpace};
   });
@@ -94,6 +97,7 @@ test("a long moves line wraps inside the bubble beside the Maia chip without scr
   expect(layout.ellipsis).not.toBe("ellipsis");
   expect(layout.whiteSpace).not.toBe("nowrap");
   expect(layout.moves.top).toBeGreaterThanOrEqual(layout.message.bottom - 0.5);
+  expect(layout.message.height).toBeGreaterThanOrEqual(layout.messageLine * 2 - 0.5);
   for (const item of [layout.moves, layout.chip]) {
     expect(item.left).toBeGreaterThanOrEqual(layout.speech.left);
     expect(item.right).toBeLessThanOrEqual(layout.speech.right + 0.5);
@@ -114,4 +118,24 @@ test("the moves line names the engine's strongest reply, never the move actually
   await expect(movesLine(page)).not.toHaveAttribute("aria-live", /polite|assertive/);
   await expect(region(page).locator(".coach-moves-line[aria-live], .coach-moves-line [aria-live]")).toHaveCount(0);
   await expect(region(page).locator(".coach-message [aria-live=polite]")).toHaveCount(1);
+});
+
+test("the bubble grows to show a joined spoken line and its footer without inner scrolling, up to its cap", async ({page}) => {
+  // Arjun's joined pair plus the moves line and Maia chip: the shared minimum height scrolls it.
+  await mount(page, "man-partner", games["cause-abandoned_defender-white"]);
+  await expect(bubble(page)).toHaveAttribute("data-spoken", /\+/);
+  const layout = await region(page).evaluate(element => {
+    const speech = element.querySelector<HTMLElement>(".coach-speech")!, message = element.querySelector<HTMLElement>(".coach-message")!;
+    const style = getComputedStyle(speech);
+    return {height: speech.offsetHeight, min: parseFloat(style.minHeight), max: parseFloat(style.maxHeight),
+      overflow: message.scrollHeight - message.clientHeight};
+  });
+  const desktop = test.info().project.name === "desktop";
+  expect(layout.min).toBe(desktop ? 136 : 156);
+  expect(layout.max).toBe(desktop ? 240 : 256);
+  // The wide desktop harness fits it at the minimum; a phone needs the extra height.
+  if (desktop) expect(layout.height).toBeGreaterThanOrEqual(layout.min);
+  else expect(layout.height).toBeGreaterThan(layout.min);
+  expect(layout.height).toBeLessThanOrEqual(layout.max);
+  expect(layout.overflow).toBeLessThanOrEqual(1);
 });
