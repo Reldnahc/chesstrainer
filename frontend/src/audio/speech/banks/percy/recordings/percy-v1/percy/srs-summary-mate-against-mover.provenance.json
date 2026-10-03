@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "Oof. The saved engine analysis says this move hands the other side a forced checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "9aa60ce2ab3113885eb1c5ecd1d756026b6d3fb5cbc79c0c390fd0f70cbd9e9b",
+  "recordedAt": "2026-10-03T06:12:43.455Z",
+  "sha256": "20150e478963719114b7a26f3f0ce7fd93f2b3711b1e13f6d38032bebd1f5a7b",
+  "bytes": 19109,
+  "requestId": "FL9AWESSIaybhH9vLB7q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afa0a96e530e4220d83ebb0b0c2b599f6e8604da8a9cd26db5d658397ea8c2dd",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

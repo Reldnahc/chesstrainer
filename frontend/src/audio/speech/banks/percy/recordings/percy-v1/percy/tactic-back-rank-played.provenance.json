@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "A back-rank mate idea! The king's own pieces are blocking its escape, so the very pieces meant to keep it safe are boxing it in."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ea40a452e9c6ba3bbc035c05fe178d5692bf03dbc74c1905172d92143f15d99",
+  "recordedAt": "2026-10-03T06:12:45.337Z",
+  "sha256": "2382c9d194007156f8d5cce5db1da3765f7038edf8f57f819fda80894c0022d8",
+  "bytes": 26692,
+  "requestId": "Zsps0utMFFtIWFvBKqnx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e912733d98d711beebedd1bc3b05e9cca8994f7b900b53911412ab427c1756b0",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

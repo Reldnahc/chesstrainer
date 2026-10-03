@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "You've got this same issue in other saved games too. Pull those out and study them together; the common thread gets easier to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd6ca95b2d72f1c8a39ecd514d12fdf5941c5e2d79cf6af2b918e17e6cabbba7",
+  "recordedAt": "2026-10-03T06:12:31.197Z",
+  "sha256": "d35e67190d11d89c63ef4f0ac76754e4c262d0706fd79da186968746a60f3dc2",
+  "bytes": 24868,
+  "requestId": "vOo8IWbEdCoaXd6SXVn8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45e358e325f35833364c24d894844921bf51088500bb0ed1626f32a95e81af02",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

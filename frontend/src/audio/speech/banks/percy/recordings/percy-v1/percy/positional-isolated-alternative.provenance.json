@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-isolated-alternative",
+      "label": "Positional isolated alternative",
+      "text": "Another move would have left an isolated pawn, with no pawn of its color on the files next to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c732394337a8e873a9dbf9ae4d4e9ea20756dff32aaad2bb9dcafb59e42b13c3",
+  "recordedAt": "2026-10-03T06:12:32.776Z",
+  "sha256": "8de8e2162927a50f292c340b0c07a9e335b0e23e50419526f3210d60e16bf6c6",
+  "bytes": 18801,
+  "requestId": "SiOiKUQFbnc0c524lzvs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "143d13f88df44c1edbd59dfc4bf2a4f2151f12c64aada32e703c0064f6678acd",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

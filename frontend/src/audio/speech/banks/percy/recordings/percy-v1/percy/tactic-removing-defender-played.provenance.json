@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "Here's the idea: take out the guard. Whatever it was protecting loses its protection, so look at what that defender was responsible for."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b353c05470adb794d57f68bf8f55f8dde8d6389125e8e76a15b6a0d3c5450f1",
+  "recordedAt": "2026-10-03T06:12:39.611Z",
+  "sha256": "3c12561401713d2adb26bf2f9ac71f29392eb7ea9acbf2ccd508533ca0399389",
+  "bytes": 27084,
+  "requestId": "9LA11l9YVg2MZvhgZfUb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "869635347e2a4fbbf9121b2a028b9d352a263ddcdbaf3ca57f8f85824009d355",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "This leaves a defender open to capture. If it goes, whatever it guards could lose its protection, so check what it's covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7e73188023ea3651ad2330938a0288fc204eeb012bfa83b3057db86fe288df5",
+  "recordedAt": "2026-10-03T06:12:41.511Z",
+  "sha256": "45a460e7aecf7ecf17fbd7952c89842566bb58142bd2053486503a1362272af5",
+  "bytes": 26391,
+  "requestId": "XhbMq9PYPN0PBTzuZvUt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca555d769a978e160659a84bed679b9ee81db5c768505fe6d052351274c7190d",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

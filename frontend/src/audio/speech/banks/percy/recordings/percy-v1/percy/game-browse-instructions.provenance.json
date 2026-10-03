@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "game-browse-instructions",
+      "label": "Game browse instructions",
+      "text": "Pick any move to look at, or move a piece to test your own idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "78c5e7fcfede827d9499ac1109d361d23dde3f7cde0a237931bd59e800fd1a73",
+  "recordedAt": "2026-10-03T06:13:21.605Z",
+  "sha256": "b1fb387b3594487164a69aace3f652fee0abb8e4e0e40ab37755695d050c8035",
+  "bytes": 14280,
+  "requestId": "zQXNNpmaPLAhDdEsDGIS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "385c32f6b7e0a30c213a3a9c6066dd55bcfc8473ca10a9e98c3679a7aad69135",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

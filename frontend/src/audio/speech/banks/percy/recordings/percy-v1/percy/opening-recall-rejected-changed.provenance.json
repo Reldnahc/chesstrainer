@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "That move's not part of your chosen opening lines, so give it another shot. Since you changed the study, this saved attempt leaves its review schedule alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8e1d846b0d8a2025f8d90c441eecb35408e03ecc85f7cedb7180547c00a7dba",
+  "recordedAt": "2026-10-03T06:13:28.515Z",
+  "sha256": "5fb01fda4449164839028ab5c450f66a45d75c90e57b8f17b90b2173458fed9f",
+  "bytes": 28969,
+  "requestId": "F0zGNahWrlbWYUPlbCEK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ae2ae48bf2faf8592d1393ebb6c11170522630fd2c44a8842fe248a68789dfd",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

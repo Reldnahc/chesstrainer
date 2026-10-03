@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "Another move had a pawn marching for the last rank and a promotion. This move leaves that pawn where it is. Speaking as a pawn, I always notice those."
+    },
+    "takeId": null
+  },
+  "requestHash": "f805054bf436f15558ce89597afcae2eb8b526a21257226dac97eabfb3762e7a",
+  "recordedAt": "2026-10-03T06:12:55.471Z",
+  "sha256": "ca0db43a71e118361eb9ebb6fe4d98dbedf2db029f0dc54d058a978bafeb7f5b",
+  "bytes": 30112,
+  "requestId": "WICiu8T8DANd8PBzd9E3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "61c441d87b9898aca71545610a3d05d90e1c9b24df5d3868c17f07cd1b584478",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

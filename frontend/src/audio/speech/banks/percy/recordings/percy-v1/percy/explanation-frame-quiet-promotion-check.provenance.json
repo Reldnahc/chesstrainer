@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-check",
+      "label": "Explanation frame quiet promotion check",
+      "text": "The pawn reaches the last rank and promotes, and it gives check on arrival."
+    },
+    "takeId": null
+  },
+  "requestHash": "a453d962c075cf70ca17bfc56459d18b290d3d6ea305de94b29a455b6ef9ac39",
+  "recordedAt": "2026-10-03T06:13:06.160Z",
+  "sha256": "1b45aedf186e2c694b76e6b04747c0133d654725699c39f1f3bdaf9b5507dcef",
+  "bytes": 15891,
+  "requestId": "XmkNpFSwWlBUjJMG3eBy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1dbf2ab021d1c8f2adafcbd8330aba8de81ad0dee85d2c1b4bc9b162c9bf3006",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

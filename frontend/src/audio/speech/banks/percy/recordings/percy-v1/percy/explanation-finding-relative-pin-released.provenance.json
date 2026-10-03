@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "Thanks to the opponent's last move, the attacking piece wasn't stuck in a relative pin anymore. The target stayed put after that, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "4be7be3d878c760e4037bd7a9c9f45e20ce86cc1b8ed21ab6dbcfb12967738db",
+  "recordedAt": "2026-10-03T06:13:23.335Z",
+  "sha256": "1a5ecf5eb7dff3b718bdb3332785c972df3d12decdfad4c3380612a58c3990ec",
+  "bytes": 32045,
+  "requestId": "jsZC6HyRSrGTtr1ZRlB3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1db484507d99f4a31ba5ab57b44d522839e36e9667f086c9057ebc3600f0d082",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

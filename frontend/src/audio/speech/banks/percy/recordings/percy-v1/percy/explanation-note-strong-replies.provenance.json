@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "Here's how things could go if the other side answers well. Strong replies, sure, but not every one of them is forced."
+    },
+    "takeId": null
+  },
+  "requestHash": "294200e1433210dca9f20a98f0a7e7ad2503ebb61c82416e1d8f51a55663655a",
+  "recordedAt": "2026-10-03T06:13:15.081Z",
+  "sha256": "6bb6759d51b181d8f3db7d5147ebc305cef58bf959d8347c861449352f6b647e",
+  "bytes": 25381,
+  "requestId": "hrIzgVjGVOFqpREGHDL5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be09765e33d4fbd7660c2c73e426fb04568faf92e8fb96d18e6473295ed9d4ee",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

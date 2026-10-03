@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Talk about giving everything for the cause! The sacrifice holds up, even when the material is taken, in the line we checked. Play out the capture and watch the idea keep working."
+    },
+    "takeId": null
+  },
+  "requestHash": "a14cc51c38a4b3632cc521d630379faa51d4938fd37e53c5336dfece1f53401a",
+  "recordedAt": "2026-10-03T06:12:58.045Z",
+  "sha256": "5ebfe71b6055b9c994ef5c9f6d87b4217880fc539e3a5db6bdac4cd409754dcc",
+  "bytes": 33616,
+  "requestId": "tutV0CwcHZm0zunWIIhI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f31e8db85c89d0dc8080bf256a6b51e436371fbd2e7d3c36a18c5c0561ada072",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "In mixed Due, moves from this line count. In dedicated practice, it's this line only."
+    },
+    "takeId": null
+  },
+  "requestHash": "8576c075e7dc0c12f69ec6ab2cd683835e8e9e53dfca6986cad93a3e1866a101",
+  "recordedAt": "2026-10-03T06:13:04.339Z",
+  "sha256": "3a8bd8ca2611e0415ee3b3d121e6529aa801cf5cc2dfbb69b8a02b04f3e9dafc",
+  "bytes": 20049,
+  "requestId": "KwAxeSqqYvbSh3CXvjpa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48b0bceb13ef1677bb399f39712351e1043bb7f6f546bc18b9a89063dc7e4e37",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

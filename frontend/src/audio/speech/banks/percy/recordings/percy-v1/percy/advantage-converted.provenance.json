@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "The advantage held all the way to the win. That's how you see a job through. Walk back through that stretch and watch it hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c6f115c340f023eee603af726d14c1b528f5839628606192281f7b022021a0b",
+  "recordedAt": "2026-10-03T06:12:29.387Z",
+  "sha256": "b5e08bd6c6976323bab6912368db2f462046655ce9765e1912ef737e68fdbe6d",
+  "bytes": 24409,
+  "requestId": "e9d32WP8woej54Kn0ljX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e895c14ee2c4a8cf0d13e46cc56d0b2809fd020f309919edd62d344bffa7d12",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

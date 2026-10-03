@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "The moving piece makes one attack and opens a line for a second piece. That second piece is the one that captures here."
+    },
+    "takeId": null
+  },
+  "requestHash": "9554660fb690f92e9d90282daf6a15c95b6e585a8561d8f413ff9aa5052193c5",
+  "recordedAt": "2026-10-03T06:13:17.645Z",
+  "sha256": "567ad1179b79562086dc39fa2a3415bdceb291eac02359ce59ecdabffeb40d87",
+  "bytes": 22912,
+  "requestId": "w5fgbo0acal4X8VprwyE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "907cefa0c17da7f10080963085e35c6dafbb2a083dc0e9c5e5679ff57f9f8c2b",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

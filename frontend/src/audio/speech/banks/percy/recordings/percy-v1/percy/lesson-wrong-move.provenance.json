@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "lesson-wrong-move",
+      "label": "Lesson wrong move",
+      "text": "Not the move this chapter's after, but no quitting! One more march at it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7396e0ed613770f3b2986a785a2204f98a461cfcfc1241683fa9a05d9ea2dac9",
+  "recordedAt": "2026-10-03T06:13:08.933Z",
+  "sha256": "70a98c7e8b20a66c591e9b887dc5df6fe60ab9176de4f95e2cc34e5dd2e84819",
+  "bytes": 15796,
+  "requestId": "iB2S4L9xsBIumdLUTnhI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ff2a37149cbe632115f97e00c5d6b4f0fa0c58b3b683970332c568ebee93564",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

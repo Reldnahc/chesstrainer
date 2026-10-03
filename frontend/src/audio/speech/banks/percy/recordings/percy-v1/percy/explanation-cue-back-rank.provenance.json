@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before you move a piece off the back rank, make sure your king still has somewhere to run."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c7c7c11474b0001ea06aa54c77bd152d288ea3dc1f6ba67aea7d1761f0a8045",
+  "recordedAt": "2026-10-03T06:13:05.497Z",
+  "sha256": "b019d4ab5ee256fd40924378d02fafff76777e872fa8a0badb19d8b9f59f7cc7",
+  "bytes": 17114,
+  "requestId": "t3lHG7bgDGZdHgK8veKA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8697b5f7d43b35e462ce24716b65a342739fbc294d49252f9d98af2bae9067c7",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

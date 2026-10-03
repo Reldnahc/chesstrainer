@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "puzzle-playback",
+      "label": "Puzzle playback",
+      "text": "Watch the board: here comes the verified line."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d78ba2907b5c5ee93c10fbbe8365be2172c0ef4372a38c427e6f03594bb9ad7",
+  "recordedAt": "2026-10-03T06:13:08.032Z",
+  "sha256": "f90c4a51fefc2781b3936d0467830a90f7fc8bdb83fb635cef55df8cea333316",
+  "bytes": 10254,
+  "requestId": "DmPz5HUB7qVmXtUCOZEy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dad69534c5d28d44d60bd3045efc24e050a916b7439ccb6207dc8aa4b3c71592",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

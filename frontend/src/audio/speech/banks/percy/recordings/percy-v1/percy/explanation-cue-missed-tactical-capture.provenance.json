@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before you make a quiet move, take a lap around the board for unguarded enemy pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f26299dd3ee77b6fe81d44aa56a22ee17c95a5c53f13d27b6718467327fcaf0",
+  "recordedAt": "2026-10-03T06:13:28.040Z",
+  "sha256": "0eab997a67792c1fbd81f9af6d86d489a5ade847a44e45afad988c4ab6c66efb",
+  "bytes": 17809,
+  "requestId": "SmoX0MyLzaRpD4n6Ehjc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "440ed370ad009fefa1ab751523639a50db2e34298f1b0493a1573935069bffb3",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

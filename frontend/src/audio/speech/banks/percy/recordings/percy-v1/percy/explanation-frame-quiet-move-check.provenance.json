@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check! The king has to be dealt with before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0b3b77988ff0dfee6e47efce4938c20e08d1487d7b8ff00330e8ddb9a1125cb",
+  "recordedAt": "2026-10-03T06:13:02.140Z",
+  "sha256": "b68723e5b1a560e09cf0706328c98ebe4165e2c5f2d06638940e01be77802f75",
+  "bytes": 12590,
+  "requestId": "Q10VQ9dwHa161ktjhaDb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28f18ae66d61d259bf213630221fc96f4d132657e243e90e106ff750f88348df",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

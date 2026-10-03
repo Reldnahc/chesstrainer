@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "The blocker moves away, a line opens for the piece behind it, and that piece makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "a863acb91e6c19f9852638f1204e084d70e5c20abbbe11b6c980ad2ffcbe2495",
+  "recordedAt": "2026-10-03T06:13:13.513Z",
+  "sha256": "52909395164ca0330fcd978a18e33a98338cf258d5fc727933c991217686d2f9",
+  "bytes": 18831,
+  "requestId": "rII72vyxJF0WTBbDJuXY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25c06c06c511a70961be86fe2cffdd782c805025f1b655b536682770ba25fdec",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "The pawn makes it to the last rank, promotes, and delivers checkmate, with no legal escape for the king. What a way for a pawn to finish!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2db04091b2d3acd77d1ec1b7af6303986591c24a2e9eb37e69b12c43d642a9bc",
+  "recordedAt": "2026-10-03T06:13:08.354Z",
+  "sha256": "97617aed8ffe04ce5c3e53ec0666cd7aa966591bbb183a3a361480957a72b27b",
+  "bytes": 28556,
+  "requestId": "ZUbH51MarS6NAMLJlKxl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24049729aa36b765a360ed76bfe2c7b00da4420319e944486f2e7e59981c6c3f",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

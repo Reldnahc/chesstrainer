@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "puzzle-rejected",
+      "label": "Puzzle rejected",
+      "text": "Not the answer to this puzzle. Don't worry, everything you got right so far is still saved."
+    },
+    "takeId": null
+  },
+  "requestHash": "af18f5bd4c9aeba708a8315806fb09f7869d749b1ae0067c3a3a046a61afa922",
+  "recordedAt": "2026-10-03T06:13:15.014Z",
+  "sha256": "e85c95cf307b8d6fc505998b2125bb125a3452df7ab2e5c2189aaf96554c8767",
+  "bytes": 17397,
+  "requestId": "tSEbDkdZOneGRcVxdYrZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1972def530dbee63d90fe7c5427ecdc3fd40e2f761fc90a18945f60b66a1769a",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

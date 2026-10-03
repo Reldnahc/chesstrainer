@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "This move doesn't count for the exercise, and I can't point to a clear tactical reason in the moves shown. Take another honest look."
+    },
+    "takeId": null
+  },
+  "requestHash": "57622311bd5bfb83ee86924707c1f69569cbdda43c70df6f4b562259f6418b0a",
+  "recordedAt": "2026-10-03T06:12:50.403Z",
+  "sha256": "04c3acc881cb94802138cba26a7431d2c8046ab22fa39c59a87ac0f880fd1600",
+  "bytes": 24687,
+  "requestId": "VxSBtEHXokLJs8o7VBLo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94a63e6f1d0f83d54a0a4b9806ce647cbefe4b6b75910f328441cec45b68251c",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

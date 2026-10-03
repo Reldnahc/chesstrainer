@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Look over the position and see what each piece is doing. Then pick your move."
+    },
+    "takeId": null
+  },
+  "requestHash": "b16e701d3edbe765b59e254d90fa86e874aaa637f3b0a71cfad81f7f94306dea",
+  "recordedAt": "2026-10-03T06:12:37.567Z",
+  "sha256": "96b648686e3edff92819f95a861f8a43bdf0a692afe7bacb49998252524e3d5d",
+  "bytes": 15924,
+  "requestId": "zDX1iw7wfalZoMw8jXzg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1734451d8dc4792d60d0b1e002f86b9717e5fa397b6357f9fbc38c6d828a9d1e",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

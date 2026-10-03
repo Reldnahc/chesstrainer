@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "Oh, a passed pawn! Whoever owns it, that pawn has a future. No enemy pawn blocks it, on its own file or the two beside it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a43e0eec179d7a561a136ae3cb5e4501f035280e3b1f8c46e824fe44626ce276",
+  "recordedAt": "2026-10-03T06:12:59.346Z",
+  "sha256": "27a922b3b4d1123a0bfbeb6e04631f260078a8227dbe23062bb64399cbaf6bd6",
+  "bytes": 28254,
+  "requestId": "3dKpf8iosIF9xGe2f97Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eea251523e95c0497ece7e0b3f86cd560a3e42ea57f670ec177984208597d111",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

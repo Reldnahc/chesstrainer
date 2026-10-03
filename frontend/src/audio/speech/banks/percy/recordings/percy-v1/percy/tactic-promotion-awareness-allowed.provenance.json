@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "Watch those pawns of theirs! This hands the other side a shot at promotion, a pawn pushing for the last rank. Trace the route it would take."
+    },
+    "takeId": null
+  },
+  "requestHash": "41a1b4f95905e986cff7c0347027d16a2bb5fd0c89ef072afadbe4ef63a41b3d",
+  "recordedAt": "2026-10-03T06:12:53.394Z",
+  "sha256": "ac92753c48ada09d8d68db66ec598960b629fed59bdab0220d2db7de49357cad",
+  "bytes": 26590,
+  "requestId": "l3YFe9Ql0sk8g3dIFoXh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "310a35651a7fbfce4fc89c5e4d21253c39c1a764d9ece373f756bce0904c3c5b",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

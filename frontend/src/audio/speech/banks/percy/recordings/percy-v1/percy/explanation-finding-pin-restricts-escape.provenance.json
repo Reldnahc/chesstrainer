@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "The attacked piece is pinned to its king, so running isn't simple. Any move it makes has to keep the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "353f9ede11d10ae1fe325a170a022fac08dd14a6bd85354ef45d584dce2c7838",
+  "recordedAt": "2026-10-03T06:13:01.035Z",
+  "sha256": "137a0153e44665282620c050d9c7e4f4d355351d6395d6e4b59a9337dcffc285",
+  "bytes": 22867,
+  "requestId": "uljqKzLh6WA2XiR1LK24",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40c6d7315bd426fc4f1d2de8706639616e61504a39064726385cfbfd0de4b138",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

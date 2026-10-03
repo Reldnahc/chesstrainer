@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "This leaves a pawn isolated, with no pawn of its own color on either neighboring file. Take it from a pawn: that's a lonely place to stand."
+    },
+    "takeId": null
+  },
+  "requestHash": "7cc5bca1417cf6eb5f0f344ded6fc6943497c3540a09257b1a3b9af53c7da8c1",
+  "recordedAt": "2026-10-03T06:12:31.081Z",
+  "sha256": "9ce19278fabc14c43f55a39b98e961a858d190d12ed2ee7d5ad1a1ba4ddf1f7b",
+  "bytes": 28407,
+  "requestId": "kExxUVW48j9WQ7wl36ji",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e16c4dea38f180bcffcc860c673e6cbcbe17ba0ac2b298015905374eeab613ba",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

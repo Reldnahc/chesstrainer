@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "Back in business. After the earlier setback, the position is playable again, and the other side's errors helped make that happen."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d4de4e00f9aabda2d8fc06c1b19affd8b5edbe939fa5874decc4dfef1d93c5c",
+  "recordedAt": "2026-10-03T06:12:50.675Z",
+  "sha256": "a2b33f626ca381ae9ebec153d6057a297599753e34c2b812596bd9111ee6df71",
+  "bytes": 24922,
+  "requestId": "RuxVye13xjNGcbYQRD1P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de62c7d6ab501e23b0a2a94147a23df1390da5653397cf411450177d2480c82a",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

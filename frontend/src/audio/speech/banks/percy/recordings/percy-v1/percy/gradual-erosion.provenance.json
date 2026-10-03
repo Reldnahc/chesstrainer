@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Another small giveaway. None of them did it alone, but together they've worn the position down. Look at the whole run, not just this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c9dc1c8fe62a078b95f3cb8472e908b3fb83ce26ff0be0122d95de06c227bdd",
+  "recordedAt": "2026-10-03T06:12:59.861Z",
+  "sha256": "7ffdcaa0e6338dcd1ebcdbcb0f330c193b475c39893fe3b5d6c70ee0e7eeb569",
+  "bytes": 27723,
+  "requestId": "fQ8irWTZX7gZqSehYnh8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68abb0bf4ee456e5cb990256062241a97a90ca687a8a81cba36a2ddafe8cbd5b",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

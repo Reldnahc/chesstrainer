@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "lesson-guided-playback",
+      "label": "Lesson guided playback",
+      "text": "Moves are marching across the board by themselves. Watch every step."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d702d691a01af4f2cdac361d3969afef97d2d0c4690797d827a211b9410aed8",
+  "recordedAt": "2026-10-03T06:13:12.951Z",
+  "sha256": "3098453d3d0d3b3a5624700c52b7eb1d4a4627d77348e235fcd1fde31c0361a0",
+  "bytes": 15484,
+  "requestId": "qETjxLYL10yatSelxk8x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81c83be7e9099dbcac07cd4e2e86a16d880e1c6f703ad240668d9cadb5d2386a",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

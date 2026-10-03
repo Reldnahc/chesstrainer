@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "Nobody was watching that piece, so it gets taken. That side comes out ahead on material in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "37dbbfda8cc86b06980c094724be0d7e46e07bf10841459070b6c3cd36428052",
+  "recordedAt": "2026-10-03T06:13:21.039Z",
+  "sha256": "fae59f1a15aea050664decb61bec03e812eab05bf0d0ea617126385c4e420191",
+  "bytes": 21122,
+  "requestId": "UJlBlIBKN5HLM3jTUMS5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cbad7f7a1408eb472aa5372759e4f395cfc1c6598d8a81d75050104d9b7edf25",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

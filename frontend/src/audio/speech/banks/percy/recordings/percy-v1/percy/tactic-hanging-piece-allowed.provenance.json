@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "Spot the problem: one piece has no guard, so capturing it would cost the other side nothing. Which one is it?"
+    },
+    "takeId": null
+  },
+  "requestHash": "d6b27b2ef3aabf22b211d5585218ea72980e97282e04d4024d04ecace392f89f",
+  "recordedAt": "2026-10-03T06:12:40.255Z",
+  "sha256": "946a8446cb14c9e8b93fe8ae43b26d2ce1e994be8930cb2517beae98fca37ce8",
+  "bytes": 23257,
+  "requestId": "4us5fhVTF3IiZJLOOXiV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f993b671c9b1d13416ccf71e627062e5c8128e9ecf37df0f3ede88b538a6e57",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

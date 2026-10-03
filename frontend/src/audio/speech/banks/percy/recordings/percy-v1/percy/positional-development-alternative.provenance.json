@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "Another move would have put a minor piece to work, off its starting square. See which piece was waiting for that."
+    },
+    "takeId": null
+  },
+  "requestHash": "5d1f608c2cf08e5b8285456ddcdd4d04d1b0f10f0100534314e9305754dfeac1",
+  "recordedAt": "2026-10-03T06:12:50.580Z",
+  "sha256": "de1f92d2d361beb0bdf9feaf8f76d4f9852dd499edaf336fad490a12a0f4677e",
+  "bytes": 19979,
+  "requestId": "qcxPjEVxLzCu62H2pktZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5820768b241c9ce90a68fff6f0014591a8a817d0db9e24cbdce28a12cd2c44bf",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

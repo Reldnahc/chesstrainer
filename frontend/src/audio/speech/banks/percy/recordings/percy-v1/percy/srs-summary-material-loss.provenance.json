@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Count it up at the end of the saved line: the side that played this move has less material than when the line began."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2fbcd2416fbadaa8aea35050c03500325f456dce41a692f07da2f34ef387d33",
+  "recordedAt": "2026-10-03T06:12:46.771Z",
+  "sha256": "6ced550d9dd4f2b0cd9c6c61dcab751fcf37fa1802ab1ef5851db1fec3262c2b",
+  "bytes": 21538,
+  "requestId": "UyggbwMXMUW3jmL24Jua",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8468a5f3da771344901e8bea759ba4cd23d4384c20aa23fe21f157bf2066659",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

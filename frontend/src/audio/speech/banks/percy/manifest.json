@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "living-pawn",
+  "voiceId": "percy",
+  "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Now that's a hardworking piece! Fork time: one busy piece hitting a whole group of targets, and a single reply rarely gets them all out of the way.",
+      "audioPath": "recordings/percy-v1/percy/tactic-fork-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Pattern time: now the other side has a fork, a piece of theirs that can hit several targets at once. Find that piece, then count what it reaches.",
+      "audioPath": "recordings/percy-v1/percy/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "There was a fork in a different move, one piece going after several targets at once. This move lets that chance go by. Go find the piece that could have done it.",
+      "audioPath": "recordings/percy-v1/percy/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "A pin to the king! The pinned piece is stuck shielding its own king, because stepping off the line would expose it. Talk about being chained to your desk!",
+      "audioPath": "recordings/percy-v1/percy/tactic-pin-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Here's one to notice. The other side gets to pin a piece to its king, and once it's pinned, that piece is stuck on the line.",
+      "audioPath": "recordings/percy-v1/percy/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Another move could have pinned one of their pieces to its king. Pinned like that, it couldn't leave the line without exposing the king. This move lets that slide.",
+      "audioPath": "recordings/percy-v1/percy/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Ooh, a skewer! When the front piece moves, the piece hiding behind it is wide open.",
+      "audioPath": "recordings/percy-v1/percy/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "This opens up a skewer for the other side. When the front piece moves, whatever stands behind it on that line could be exposed.",
+      "audioPath": "recordings/percy-v1/percy/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A stronger move had a skewer: hit the front piece, and when it moves, the one behind it is exposed. This move doesn't use it.",
+      "audioPath": "recordings/percy-v1/percy/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "Here's the idea: take out the guard. Whatever it was protecting loses its protection, so look at what that defender was responsible for.",
+      "audioPath": "recordings/percy-v1/percy/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "This leaves a defender open to capture. If it goes, whatever it guards could lose its protection, so check what it's covering right now.",
+      "audioPath": "recordings/percy-v1/percy/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Another move could have captured a defender and stripped the protection from whatever it was guarding. This one passes that up.",
+      "audioPath": "recordings/percy-v1/percy/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "A back-rank mate idea! The king's own pieces are blocking its escape, so the very pieces meant to keep it safe are boxing it in.",
+      "audioPath": "recordings/percy-v1/percy/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "Now, the back rank. This gives the other side a route to a back-rank mate, with the king boxed in by its own pieces.",
+      "audioPath": "recordings/percy-v1/percy/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "A back-rank mate was on, with the enemy king trapped by its own pieces. This move lets it get away. Go back and find it.",
+      "audioPath": "recordings/percy-v1/percy/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "Oh, I love this one. The idea is promotion: get a pawn all the way to the last rank, where it becomes a brand new piece. Follow its route.",
+      "audioPath": "recordings/percy-v1/percy/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "Watch those pawns of theirs! This hands the other side a shot at promotion, a pawn pushing for the last rank. Trace the route it would take.",
+      "audioPath": "recordings/percy-v1/percy/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "Another move had a pawn marching for the last rank and a promotion. This move leaves that pawn where it is. Speaking as a pawn, I always notice those.",
+      "audioPath": "recordings/percy-v1/percy/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "A discovered attack! One piece slides out of the way, and the piece behind it suddenly has a clear line to attack. Two pieces working together.",
+      "audioPath": "recordings/percy-v1/percy/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Here's a discovered attack handed to the other side. One of their pieces could move off the line and let the piece behind it attack. Figure out which line it would open up.",
+      "audioPath": "recordings/percy-v1/percy/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "A discovered attack was waiting in a different move: the front piece steps off, and the one hiding behind it gets to swing. This move skips right past it.",
+      "audioPath": "recordings/percy-v1/percy/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Two threats, one move! That's a double attack, and one answer usually can't deal with both. Find each threat on the board.",
+      "audioPath": "recordings/percy-v1/percy/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "Now the other side has a double attack, two threats at the same time. Both need an answer, so spot them both before choosing a reply.",
+      "audioPath": "recordings/percy-v1/percy/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move carried two threats at once, and this one passes it up. Look at that other move and you'll see both threats.",
+      "audioPath": "recordings/percy-v1/percy/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "A deflection! A defender gets pulled away from what it was guarding, and the thing it was guarding is left wide open.",
+      "audioPath": "recordings/percy-v1/percy/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "This gives the other side a deflection. They can pull a defender off what it guards, so look at what that defender is covering right now.",
+      "audioPath": "recordings/percy-v1/percy/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Another move could have dragged a defender off what it was guarding. That deflection went unused. Look at what the defender had to cover.",
+      "audioPath": "recordings/percy-v1/percy/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Free for the taking! An undefended piece can be captured here. Always check for loose pieces before anything fancy.",
+      "audioPath": "recordings/percy-v1/percy/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "A piece with no guard was there for the taking with another move, and this one walks past it. Always check for loose pieces first.",
+      "audioPath": "recordings/percy-v1/percy/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Spot the problem: one piece has no guard, so capturing it would cost the other side nothing. Which one is it?",
+      "audioPath": "recordings/percy-v1/percy/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Hold on, that piece was busy! This move pulls the only real bodyguard off a piece, and the other side can grab what it was guarding. Before a defender moves, ask who it's protecting.",
+      "audioPath": "recordings/percy-v1/percy/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/percy-v1/percy/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "The opponent's last move made a threat, and this move doesn't answer it, so now a piece can be captured. What did their last move start attacking?",
+      "audioPath": "recordings/percy-v1/percy/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/percy-v1/percy/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "Whoa, count the whole trade! This capture gets answered by a recapture of a more valuable piece. An exchange isn't done until every recapture is counted.",
+      "audioPath": "recordings/percy-v1/percy/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/percy-v1/percy/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Another piece reports for work! A knight or bishop steps off its starting square. See where it lands.",
+      "audioPath": "recordings/percy-v1/percy/positional-development-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Another move would have put a minor piece to work, off its starting square. See which piece was waiting for that.",
+      "audioPath": "recordings/percy-v1/percy/positional-development-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "Open file for the rook! No pawns of either color on it, so the rook has the whole file to work with.",
+      "audioPath": "recordings/percy-v1/percy/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "A different move had an open file going for a rook, with not one pawn of either side standing on it.",
+      "audioPath": "recordings/percy-v1/percy/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Semi-open file for the rook! None of its own pawns are in the way, though at least one enemy pawn is still there.",
+      "audioPath": "recordings/percy-v1/percy/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have given a rook a semi-open file, with none of its own pawns there and an enemy pawn still in place.",
+      "audioPath": "recordings/percy-v1/percy/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "Oh, a passed pawn! Whoever owns it, that pawn has a future. No enemy pawn blocks it, on its own file or the two beside it.",
+      "audioPath": "recordings/percy-v1/percy/positional-passed-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "A different move would have created a passed pawn, free of enemy pawns ahead on its file and both neighbors. I'd have loved to see that.",
+      "audioPath": "recordings/percy-v1/percy/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "Keep going, little one! Already passed, and now one square closer to promoting. Watch how far it's come.",
+      "audioPath": "recordings/percy-v1/percy/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "Another move would have pushed the passed pawn closer to promotion. See how far it could have gotten.",
+      "audioPath": "recordings/percy-v1/percy/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "This leaves a pawn isolated, with no pawn of its own color on either neighboring file. Take it from a pawn: that's a lonely place to stand.",
+      "audioPath": "recordings/percy-v1/percy/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "Another move would have left an isolated pawn, with no pawn of its color on the files next to it.",
+      "audioPath": "recordings/percy-v1/percy/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Good, somebody's got its back. A piece that was out there with no protection now has a defender.",
+      "audioPath": "recordings/percy-v1/percy/positional-support-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have put a defender behind a piece that had none, so it wasn't left out there by itself.",
+      "audioPath": "recordings/percy-v1/percy/positional-support-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "This leaves a piece without a defender. That doesn't mean it can be won, but nobody's covering it now.",
+      "audioPath": "recordings/percy-v1/percy/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "Another move would have left a piece without protection, which by itself wouldn't mean it could be won.",
+      "audioPath": "recordings/percy-v1/percy/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king picks up a brand new escape square. Every king needs somewhere to go. Find the piece that made room.",
+      "audioPath": "recordings/percy-v1/percy/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "Another move would have given the king a new legal square to run to. Look at what would have cleared the way.",
+      "audioPath": "recordings/percy-v1/retake-2/percy/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/retake-2/percy/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castled! The king tucks over and the rook comes along. Two pieces, one move. Follow them both.",
+      "audioPath": "recordings/percy-v1/percy/positional-castling-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was the other option: king and rook both on the move in one turn.",
+      "audioPath": "recordings/percy-v1/percy/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "There goes the bishop pair! Whoever lost that bishop can't cover both square colors with bishops anymore.",
+      "audioPath": "recordings/percy-v1/percy/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "Another move would have grabbed a bishop and ended the other side's bishop pair.",
+      "audioPath": "recordings/percy-v1/percy/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "This leaves doubled pawns, two pawns of the same color on one file, getting in each other's way.",
+      "audioPath": "recordings/percy-v1/percy/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "Another move would have left doubled pawns, two of one color crowding onto one file.",
+      "audioPath": "recordings/percy-v1/percy/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Big moment for a king. This move hands the other side a forced checkmate. Let's trace their attack and find where the defense came apart.",
+      "audioPath": "recordings/percy-v1/percy/allowed-mate.opus",
+      "sidecarPath": "recordings/percy-v1/percy/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "The finish was right there! A forced checkmate was available, and this move lets it go. Go back one move and find it.",
+      "audioPath": "recordings/percy-v1/percy/missed-mate.opus",
+      "sidecarPath": "recordings/percy-v1/percy/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Talk about giving everything for the cause! The sacrifice holds up, even when the material is taken, in the line we checked. Play out the capture and watch the idea keep working.",
+      "audioPath": "recordings/percy-v1/percy/sound-sacrifice.opus",
+      "sidecarPath": "recordings/percy-v1/percy/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Exactly one move works here! Out of everything we checked, this was the only move that kept the position playable. The rest all went down.",
+      "audioPath": "recordings/percy-v1/percy/only-playable-move.opus",
+      "sidecarPath": "recordings/percy-v1/percy/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "This move kept the advantage, and nothing else we tried did; every other move lost. That move carried the whole load.",
+      "audioPath": "recordings/percy-v1/percy/only-advantage-resource.opus",
+      "sidecarPath": "recordings/percy-v1/percy/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Right away, the other side has something to capture. Check what that reply grabs before anything else.",
+      "audioPath": "recordings/percy-v1/percy/immediate-capture.opus",
+      "sidecarPath": "recordings/percy-v1/percy/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "Their strongest answer is a check, so the king's safety jumps to the top of the list.",
+      "audioPath": "recordings/percy-v1/percy/reply-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine would rather play a different move here. Try it on the board and see what it does that this one doesn't.",
+      "audioPath": "recordings/percy-v1/percy/stronger-alternative.opus",
+      "sidecarPath": "recordings/percy-v1/percy/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "That's a costly one. The engine likes its best move better than this one, and the reply shows why.",
+      "audioPath": "recordings/percy-v1/percy/evaluation-loss.opus",
+      "sidecarPath": "recordings/percy-v1/percy/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong! Out of everything the engine looked at, this holds up as a strong choice. Good, honest chess.",
+      "audioPath": "recordings/percy-v1/percy/best-supported-choice.opus",
+      "sidecarPath": "recordings/percy-v1/percy/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound move. The engine has a different first choice, but this one keeps most of what the position had.",
+      "audioPath": "recordings/percy-v1/percy/good-choice.opus",
+      "sidecarPath": "recordings/percy-v1/percy/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "There was hardly any time left on the clock before this move. That's a lot of pressure on one decision.",
+      "audioPath": "recordings/percy-v1/percy/clock-low.opus",
+      "sidecarPath": "recordings/percy-v1/percy/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Quick off the mark! That one got played in a hurry, and the clock still had time on it.",
+      "audioPath": "recordings/percy-v1/percy/clock-fast.opus",
+      "sidecarPath": "recordings/percy-v1/percy/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "A serious think on this one. The clock says this move got plenty of attention.",
+      "audioPath": "recordings/percy-v1/percy/clock-long.opus",
+      "sidecarPath": "recordings/percy-v1/percy/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "Hey, I know this one! It's a move from a recognized opening line.",
+      "audioPath": "recordings/percy-v1/percy/recognized-opening.opus",
+      "sidecarPath": "recordings/percy-v1/percy/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "This is where our opening book runs out of pages. From now on, the pieces are on their own.",
+      "audioPath": "recordings/percy-v1/percy/opening-departure.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Back on solid ground! After the earlier setback, this move makes the position playable again. Now let's make it count.",
+      "audioPath": "recordings/percy-v1/percy/recovery.opus",
+      "sidecarPath": "recordings/percy-v1/percy/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "Back in business. After the earlier setback, the position is playable again, and the other side's errors helped make that happen.",
+      "audioPath": "recordings/percy-v1/percy/recovery-assisted.opus",
+      "sidecarPath": "recordings/percy-v1/percy/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's last move left a door open, and this move walks right through. That's how you answer an opportunity.",
+      "audioPath": "recordings/percy-v1/percy/chance-taken.opus",
+      "sidecarPath": "recordings/percy-v1/percy/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move gave you something, and this move doesn't take it. Go back one move and find what this answer missed.",
+      "audioPath": "recordings/percy-v1/percy/chance-missed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Same problem again! This issue has come up earlier in this game. Stack those moments together; they've got a warning sign in common.",
+      "audioPath": "recordings/percy-v1/percy/repeated-issue.opus",
+      "sidecarPath": "recordings/percy-v1/percy/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Remember the piece that got left unguarded earlier? It's covered again. Back under protection, where it belongs.",
+      "audioPath": "recordings/percy-v1/percy/support-restored.opus",
+      "sidecarPath": "recordings/percy-v1/percy/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Another small giveaway. None of them did it alone, but together they've worn the position down. Look at the whole run, not just this move.",
+      "audioPath": "recordings/percy-v1/percy/gradual-erosion.opus",
+      "sidecarPath": "recordings/percy-v1/percy/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage held all the way to the win. That's how you see a job through. Walk back through that stretch and watch it hold.",
+      "audioPath": "recordings/percy-v1/percy/advantage-converted.opus",
+      "sidecarPath": "recordings/percy-v1/percy/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "You've got this same issue in other saved games too. Pull those out and study them together; the common thread gets easier to spot.",
+      "audioPath": "recordings/percy-v1/percy/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/percy-v1/percy/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate! What a team effort. There's nowhere legal left for the king to go.",
+      "audioPath": "recordings/percy-v1/percy/mate-finished.opus",
+      "sidecarPath": "recordings/percy-v1/percy/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. No legal escape for the king. It stings, but let's go back and find where the defense needed one more guard.",
+      "audioPath": "recordings/percy-v1/percy/mate-defense-ended.opus",
+      "sidecarPath": "recordings/percy-v1/percy/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "It's a draw. The result's settled, but there's still plenty to learn from the moves that got here.",
+      "audioPath": "recordings/percy-v1/percy/draw.opus",
+      "sidecarPath": "recordings/percy-v1/percy/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Look over the position and see what each piece is doing. Then pick your move.",
+      "audioPath": "recordings/percy-v1/percy/srs-cold.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Not quite, but don't quit on it. What's each piece doing right now? Try another move.",
+      "audioPath": "recordings/percy-v1/percy/srs-retry.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "Hmm, I got nothing back on that attempt. Give the move another go.",
+      "audioPath": "recordings/percy-v1/percy/srs-practice-error.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Here's the headline: the saved engine analysis finds a forced checkmate for whoever played this move.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Oof. The saved engine analysis says this move hands the other side a forced checkmate.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Count it up at the end of the saved line: the side that played this move has more material than when the line began.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Count it up at the end of the saved line: the side that played this move has less material than when the line began.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "This move counts for the exercise. The moves shown don't give a clear tactical reason, so I won't make one up.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "This move doesn't count for the exercise, and I can't point to a clear tactical reason in the moves shown. Take another honest look.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "That's one of the saved answers! This exercise goes by its saved answers.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "That's not one of this exercise's saved answers. Another legal move isn't automatically bad chess, though.",
+      "audioPath": "recordings/percy-v1/percy/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Take a good look at the move, then head on to the next position.",
+      "audioPath": "recordings/percy-v1/percy/srs-fallback-study.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good move! Hang on to the reason it works, not just the move itself.",
+      "audioPath": "recordings/percy-v1/percy/srs-fallback-good.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Practice saved, and your review schedule stays exactly where it was.",
+      "audioPath": "recordings/percy-v1/percy/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved! It stays marked for relearning for now, though.",
+      "audioPath": "recordings/percy-v1/percy/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/percy-v1/percy/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Okay, starting position. Nothing's moved yet.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-original.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Next move. What changed, and which piece just picked up a new job?",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check! The king has to be dealt with before anything else.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The king is out of check after this one.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the end of the board and promotes. Look at that, all grown up!",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the last rank and promotes, and it gives check on arrival.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn makes it to the last rank, promotes, and delivers checkmate, with no legal escape for the king. What a way for a pawn to finish!",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Promotion on the last rank, and as a bonus, its own king steps out of check.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture: one piece comes off the board.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "A capture and a check, both with the same move.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "This takes a piece, and it's checkmate too. The king's got no legal way out.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "Taking that piece also gets the king out of check.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn takes a piece on the last rank and promotes right there.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn captures onto the last rank, promotes, and gives check too.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures its way to the last rank, promotes, and that's mate. The king's got no legal move out.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn captures, promotes on the last rank, and gets its own king out of check, all in one move.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, the rook comes across, and the move gives check as well.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling, of all things, and it's checkmate! The opposing king has nowhere legal to go.",
+      "audioPath": "recordings/percy-v1/percy/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Watch one piece go after several targets, then grab one of them. This example ends with that side ahead on material, too.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "That piece can't make the capture, because it's pinned to its king. Moving off would expose its own king, so it can't leave that line.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece is pinned to its king, so running isn't simple. Any move it makes has to keep the king covered.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "The defenders can't take back, because they're pinned to their own king. That's why the capture works, and the line shown ends up winning material.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Watch the pinned piece closely. It can't leave the line without exposing its king, and before these moves are done, it gets captured.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Watch the front piece step off the line. Then the piece that was behind it gets captured along that same line.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check forces the king off the line, and then the same attacker takes the piece that was standing behind it.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The lone defender goes first, and then the piece it was protecting. Once that first piece is gone, nobody's protecting the second.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender gets lured off its post, and the piece it was protecting gets captured.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocker moves away, a line opens for the piece behind it, and that piece makes the capture.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "One piece moves aside, and the piece it was blocking delivers check.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check! Two pieces are checking the king at once.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece makes one attack and opens a line for a second piece. That second piece is the one that captures here.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Follow the pawn all the way to promotion. That side also comes out ahead on material in this example.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "Nobody was watching that piece, so it gets taken. That side comes out ahead on material in this example.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "Thanks to the opponent's last move, the attacking piece wasn't stuck in a relative pin anymore. The target stayed put after that, and in the line shown, it gets captured.",
+      "audioPath": "recordings/percy-v1/percy/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side is allowed to play that marked reply. Put it on the board and see where it leads.",
+      "audioPath": "recordings/percy-v1/percy/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/percy-v1/percy/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before you move, make sure none of your pieces can be taken for free, with no useful recapture.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before you make a quiet move, take a lap around the board for unguarded enemy pieces.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Check the forcing moves for one piece that can hit two valuable targets at once.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before you move a pinned piece, see what it's shielding: your king, or a piece worth more.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Don't stop at the first target. An attack down a line can reach something valuable sitting behind it.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before you trade off a defender, ask yourself: what's it protecting right now?",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a blocking piece moves, check which lines open up behind it.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Look for a single move that makes two threats, and count checks and newly opened lines too.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before you move a piece off the back rank, make sure your king still has somewhere to run.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the steps that pawn needs to reach promotion, and look at the pawn pushes that force a response.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, ask which pieces it's protecting and who'd be left uncovered.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Count what you take, then count what their recapture takes from you. Both halves of the trade matter.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "See if a forcing trade could drag a defender off its other job.",
+      "audioPath": "recordings/percy-v1/percy/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "This exercise plays by its saved answers. Another legal move could still be decent chess.",
+      "audioPath": "recordings/percy-v1/percy/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "Here's how things could go if the other side answers well. Strong replies, sure, but not every one of them is forced.",
+      "audioPath": "recordings/percy-v1/percy/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Any material change here only covers the line shown, counted from its first position. The written explanation has the piece values I counted with.",
+      "audioPath": "recordings/percy-v1/percy/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line doesn't hand us a simple tactical reason, and I'm not inventing a positional one. Step through it and compare the replies yourself.",
+      "audioPath": "recordings/percy-v1/percy/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "I'm going by the answer policy saved for this exercise. The written notes name the setting.",
+      "audioPath": "recordings/percy-v1/percy/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/percy-v1/percy/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here's your opening line, move by move.",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Yes! That's right out of your study material.",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Pick a move from your study lines.",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "A move from any of your chosen opening lines will do.",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Dig up a move from the material you chose to study.",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "That one's not in the opening lines you're studying. Try again!",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That move's not part of your chosen opening lines, so give it another shot. Since you changed the study, this saved attempt leaves its review schedule alone.",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That move's not part of your chosen opening lines, so give it another shot. And since this position is retired, nothing changes on its schedule.",
+      "audioPath": "recordings/percy-v1/percy/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "In mixed Due, moves from this line count. In dedicated practice, it's this line only.",
+      "audioPath": "recordings/percy-v1/percy/opening-preview-active.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls will ask for the moves of the side you picked, and when your active studies share a position, they share one card.",
+      "audioPath": "recordings/percy-v1/percy/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/percy-v1/percy/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "The saved session needs a reload before you make another move.",
+      "audioPath": "recordings/percy-v1/percy/puzzle-error.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Watch the board: here comes the verified line.",
+      "audioPath": "recordings/percy-v1/percy/puzzle-playback.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Okay, I've saved this attempt as revealed. Want to see it again? The solution's down below.",
+      "audioPath": "recordings/percy-v1/percy/puzzle-revealed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "You came back and found the whole solution after a retry! Your record shows the miss and the finish, both.",
+      "audioPath": "recordings/percy-v1/percy/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "The whole solution, without a single wrong move! Every piece went exactly where it needed to.",
+      "audioPath": "recordings/percy-v1/percy/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Not the answer to this puzzle. Don't worry, everything you got right so far is still saved.",
+      "audioPath": "recordings/percy-v1/percy/puzzle-rejected.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "That's the one! Keep it rolling: what's next?",
+      "audioPath": "recordings/percy-v1/percy/puzzle-next-move.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Take your time and work it out. Then make your move.",
+      "audioPath": "recordings/percy-v1/percy/puzzle-cold.opus",
+      "sidecarPath": "recordings/percy-v1/percy/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine didn't give me enough to explain this position, and I'm not going to guess.",
+      "audioPath": "recordings/percy-v1/percy/game-unavailable.opus",
+      "sidecarPath": "recordings/percy-v1/percy/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "We're on a break. Hit resume below, or push a piece around and see what happens.",
+      "audioPath": "recordings/percy-v1/percy/game-review-paused.opus",
+      "sidecarPath": "recordings/percy-v1/percy/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Pick any move to look at, or move a piece to test your own idea.",
+      "audioPath": "recordings/percy-v1/percy/game-browse-instructions.opus",
+      "sidecarPath": "recordings/percy-v1/percy/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Hey, this one's in the book. Recognized opening, right there on file.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "A known opening line. The book has this move on file.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Book move. It's listed in a recognized opening.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Still on file. This one's in the book as well.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Another listed move. The book's still with us.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "And the reply checks out with the book too.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Roll call continues: present and accounted for in the book.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Still by the book here.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "The book hasn't let go yet.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Right on schedule, another book move.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Listed again. Being in the book tells us where we are, not whether the move is any good.",
+      "audioPath": "recordings/percy-v1/percy/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/percy-v1/percy/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Every move in this game had a job to do. Let's see which ones did theirs!",
+      "audioPath": "recordings/percy-v1/percy/game-review-opened.opus",
+      "sidecarPath": "recordings/percy-v1/percy/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Not the move this chapter's after, but no quitting! One more march at it.",
+      "audioPath": "recordings/percy-v1/percy/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Bang on, that's the chapter's move! One square closer.",
+      "audioPath": "recordings/percy-v1/percy/lesson-correct-move.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "There's the chapter's answer, standing right on the board. Take a good look, then march on.",
+      "audioPath": "recordings/percy-v1/percy/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Moves are marching across the board by themselves. Watch every step.",
+      "audioPath": "recordings/percy-v1/percy/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Your move, pal! Dig up the one you studied for this position.",
+      "audioPath": "recordings/percy-v1/percy/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "We've stepped off onto a side road for a bit, then it's back to the main march.",
+      "audioPath": "recordings/percy-v1/percy/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter done! Your progress is kept, one more square forward.",
+      "audioPath": "recordings/percy-v1/percy/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The whole game, every square of it, is yours to poke through! Head back to the chapter whenever you like.",
+      "audioPath": "recordings/percy-v1/percy/lesson-game-opened.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Uh-oh, a little stumble. Reload the lesson, and the march continues.",
+      "audioPath": "recordings/percy-v1/percy/lesson-error.opus",
+      "sidecarPath": "recordings/percy-v1/percy/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

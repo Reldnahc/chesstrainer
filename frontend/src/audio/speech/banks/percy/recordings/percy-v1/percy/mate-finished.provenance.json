@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate! What a team effort. There's nowhere legal left for the king to go."
+    },
+    "takeId": null
+  },
+  "requestHash": "00287ef056f1bbc8813b291741c9092ab69d4dd93ace00be652e5010d89597ab",
+  "recordedAt": "2026-10-03T06:12:32.722Z",
+  "sha256": "e7689b549337f3c7367b4387ce478db17ac677e9593f2ed6609aa4602aab3113",
+  "bytes": 17048,
+  "requestId": "vLcqu92hvx0w3KI1wHtB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a3f135fb47b127751263616c2b6c0b881c89ecfc82da1f98e4010626e94a3b3",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

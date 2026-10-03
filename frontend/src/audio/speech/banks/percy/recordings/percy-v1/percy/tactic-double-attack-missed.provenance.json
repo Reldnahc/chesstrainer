@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A stronger move carried two threats at once, and this one passes it up. Look at that other move and you'll see both threats."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8cf027ced31c1227f3193a11f8ceacf72a693023115870deffa9f04ad718217",
+  "recordedAt": "2026-10-03T06:12:28.917Z",
+  "sha256": "5434a7e2d3daafbb0bcb4511c0ae9a27fdddf6fc82a3b8a3f0342643534c3ac9",
+  "bytes": 24551,
+  "requestId": "gnhTOhgRIjnOgCyM8XTp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38c4ab7c9de6bd0085e1e5c5604c7fb3fd635b8c76bab82e5a7a7e683b5cdc97",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

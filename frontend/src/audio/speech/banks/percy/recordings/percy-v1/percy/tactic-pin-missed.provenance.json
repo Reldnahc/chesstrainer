@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "Another move could have pinned one of their pieces to its king. Pinned like that, it couldn't leave the line without exposing the king. This move lets that slide."
+    },
+    "takeId": null
+  },
+  "requestHash": "c803f92719e465eef5df4d99b2f82ac26f9a35bd77d658303141410521d03263",
+  "recordedAt": "2026-10-03T06:12:32.223Z",
+  "sha256": "4b6b1f2487832546b33affda1d2240e50af8deeb1f9ec70b7a21e37cc4ef7311",
+  "bytes": 30441,
+  "requestId": "Et4mkJT22q5nAo2TyiJs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7043ea589baa038ff8d4d83a463ffdb0b3bea914dcc3cc52fa1caf00bdcc23ef",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "A deflection! A defender gets pulled away from what it was guarding, and the thing it was guarding is left wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc1abedb3524916751e708ed07281bbbf6b25b52d243166d67a0593911cf27b4",
+  "recordedAt": "2026-10-03T06:12:30.648Z",
+  "sha256": "a50134e4e6ab45c84e702de23af353230066860f2b67dd6d151be9d8a90957f8",
+  "bytes": 22443,
+  "requestId": "rbDIC9raI8IQjV8RcFyc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4794397c5056c230b39c14ba5254786f632f0760ade79c86d075b5704e4ba7b2",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

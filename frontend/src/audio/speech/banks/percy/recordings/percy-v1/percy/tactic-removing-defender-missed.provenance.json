@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "Another move could have captured a defender and stripped the protection from whatever it was guarding. This one passes that up."
+    },
+    "takeId": null
+  },
+  "requestHash": "0bf4feafb5d4da8ae656a7e71b0bcbb91ca6cd453b0b4e4fa3e163a9a86b3b44",
+  "recordedAt": "2026-10-03T06:12:43.430Z",
+  "sha256": "f7a64b0d32e90ab2e72d3653fc2587cde82ae0a0941bd518edf0136d852e6d25",
+  "bytes": 22498,
+  "requestId": "zwBqffdeqNgalpunuX8w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "242bf36371ca1de8c42083d6d3fa5f5cdbb1bda9217135585c273e8a12cf24cc",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

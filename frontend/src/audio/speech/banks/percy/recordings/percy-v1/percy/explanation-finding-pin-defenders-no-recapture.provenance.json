@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The defenders can't take back, because they're pinned to their own king. That's why the capture works, and the line shown ends up winning material."
+    },
+    "takeId": null
+  },
+  "requestHash": "741a844afdb5bdefc927ec1e89284973f197eb20ad79a674cda640ce3974c3cd",
+  "recordedAt": "2026-10-03T06:13:03.082Z",
+  "sha256": "dbf9b6decdf4fbe23f348ea52c139ad5e3ef00cfd9b73b372c7818e5a476e5ca",
+  "bytes": 26842,
+  "requestId": "slgvPk8puQMtQEWoi5GR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d927d265a3adfabaf71ee7581b990c42705affe6010b748d5fd724fccab372f0",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

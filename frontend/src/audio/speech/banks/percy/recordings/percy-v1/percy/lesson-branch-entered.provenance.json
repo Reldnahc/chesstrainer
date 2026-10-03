@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "We've stepped off onto a side road for a bit, then it's back to the main march."
+    },
+    "takeId": null
+  },
+  "requestHash": "975c20f8be9c9a46efa824a48d1b6b6be54f0ce4a221b34a5563edce9b6336d6",
+  "recordedAt": "2026-10-03T06:13:15.435Z",
+  "sha256": "a20383d30892a48b2e67f95e1f432927194e99f56f79d5c12d320b53bd260665",
+  "bytes": 15836,
+  "requestId": "dILZ4DWThkRc5RyPO2Dr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8100302863c101e0900af46119e911335c1d6aa17e2ee379b5d8d74da3d3785",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

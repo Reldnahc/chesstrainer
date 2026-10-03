@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "Follow the pawn all the way to promotion. That side also comes out ahead on material in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "210acce577add456575ff680c6b38a76f0840f4201c939a55e43f934d5585f02",
+  "recordedAt": "2026-10-03T06:13:19.313Z",
+  "sha256": "cdcd8dec3e0f4234d8d01813f95a562d7c7bd3120588be625cf22d9c0376704b",
+  "bytes": 19743,
+  "requestId": "bE4PdnS5ie39XTdvUf45",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0b3f8081eef82773b1c51e3d8345d7379d9add98962b6ad86457c5d0269ed7d",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

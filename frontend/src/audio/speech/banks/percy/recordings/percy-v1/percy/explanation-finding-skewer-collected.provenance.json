@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "Watch the front piece step off the line. Then the piece that was behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ed0d26fe6356cb615e0a59e67aaccc01ae872256141ca1c8489d8b6a61bce20",
+  "recordedAt": "2026-10-03T06:13:06.904Z",
+  "sha256": "d43b10dcb47484db35ac46495f8c9bd4cb26ced151e73c08c98f8269e8c67e43",
+  "bytes": 20545,
+  "requestId": "KgIQzzmTf1XemOKf8ZL9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "509ec8e91964cba7f01401e911adf43d42de3d9354111e658844269007cc514f",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

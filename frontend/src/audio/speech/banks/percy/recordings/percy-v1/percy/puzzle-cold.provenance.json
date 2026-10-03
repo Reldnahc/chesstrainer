@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "Take your time and work it out. Then make your move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2105c0f49945eb022f6f6db1ad84683d026eb6a88659e9bb3a62a0a8269ef2b3",
+  "recordedAt": "2026-10-03T06:13:17.332Z",
+  "sha256": "1005b72f10fe6f95f9728ee9897f12107f6b8e3f1bbf3f96a874080d86e01d07",
+  "bytes": 12367,
+  "requestId": "QM6Mes7PIBA71fo2SGlS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13f8cf5a385119c4cdb8920fdcef0d66eaaecd0ac0337f629a323d028055e13a",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

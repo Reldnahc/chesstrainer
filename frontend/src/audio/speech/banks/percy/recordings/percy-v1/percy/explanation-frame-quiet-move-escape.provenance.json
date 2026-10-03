@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "The king is out of check after this one."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c3ddb82be01a753d533e4e4ac151ff55ad7280275779027d65e47071ff6bd78",
+  "recordedAt": "2026-10-03T06:13:03.014Z",
+  "sha256": "9b757a8d1892a7c7b2904228ded536d68dbf19d4b35dba0e03cae417ca77f049",
+  "bytes": 8676,
+  "requestId": "fOX8FGsPG1lG9R94dZbV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4c28b0751d101a67cc81e1dd91d9920afebc41c3dd45c004bb556660142a7d8",
+    "bytes": 40586
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "Two threats, one move! That's a double attack, and one answer usually can't deal with both. Find each threat on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b762d8abcd42c114203433717efa27ec7f2751783f17d619266168b369f75a1",
+  "recordedAt": "2026-10-03T06:12:24.596Z",
+  "sha256": "2d614e24990ec994cb08e91654b42a333901e9648d664020df399734552f83d6",
+  "bytes": 26640,
+  "requestId": "IAtiadbTQGiNERBNY0Gs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "beeced3b8a54954bd2d642a630ac8ea17fb1fb51c71e93dfcaf022388a4bf096",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

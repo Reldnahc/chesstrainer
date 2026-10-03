@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "Another move would have grabbed a bishop and ended the other side's bishop pair."
+    },
+    "takeId": null
+  },
+  "requestHash": "1db85bdddb41f143649d869cff54e57f717d8acd954e99e26384b22e71fb68de",
+  "recordedAt": "2026-10-03T06:12:48.612Z",
+  "sha256": "fbee42c47359e2d5a9df8f77fad13d46ec133a956486a575b009c3fe54133ba9",
+  "bytes": 14774,
+  "requestId": "6dQEUOSpHvmjZpwoPv49",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b43eb6fd288f389b7c4a4d4f4e6922ffae27c6ab8897edcd1936b71936e2c951",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

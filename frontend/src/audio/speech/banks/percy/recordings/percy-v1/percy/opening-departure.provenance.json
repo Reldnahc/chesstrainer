@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "This is where our opening book runs out of pages. From now on, the pieces are on their own."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1adab6ede72b18569763c359e31604927ada480cf1acb6cd36ebfaa437b5e8e",
+  "recordedAt": "2026-10-03T06:12:46.462Z",
+  "sha256": "1c70e9fb9ec5011296bb3fbd6b36e01ffc5e61186e2338ab3bf8bf4f399e6cc6",
+  "bytes": 17649,
+  "requestId": "3nHd3UPGrTal7GOMZ4z8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "787d5b0ccc37116c15b6de239e255cf597b4df783343a2ebf0a50d0aae64dc8e",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

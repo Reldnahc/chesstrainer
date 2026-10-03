@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Every move in this game had a job to do. Let's see which ones did theirs!"
+    },
+    "takeId": null
+  },
+  "requestHash": "19f75d02a0e076f5e4f25fce29b69f3ff338cdfd5cc7f300e55f55f44d6342e3",
+  "recordedAt": "2026-10-03T06:13:07.532Z",
+  "sha256": "abf755ad0c55185412a825752795ecf2fa849746e6be933801bd8fb26278df37",
+  "bytes": 14656,
+  "requestId": "kFqBHsMprLBGk8gZ5095",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b008b90d91e1aa1ce991329bd21c8aac1e9e136f32efbb6be463e4b3238559e",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

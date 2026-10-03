@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "A discovered attack was waiting in a different move: the front piece steps off, and the one hiding behind it gets to swing. This move skips right past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4bd7e6e8becc03821f62f66b6663370f9bcc5e461ced79db09160a29e9c22751",
+  "recordedAt": "2026-10-03T06:12:22.775Z",
+  "sha256": "94001e67ff180240d1b09bfda10008c95044562bd904d4ff04005ad0ff7898b0",
+  "bytes": 28897,
+  "requestId": "xsAESvlAYAYzpveDY3oz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7a16ee2bba14dbe6ea265ec1462da2f9eb7d54ee87d77cf14d688fe43e70c02",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected",
+      "label": "Explanation finding king skewer collected",
+      "text": "Check forces the king off the line, and then the same attacker takes the piece that was standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f87c3c3f54f6f710ad3c843046115378470d90dbdc5674a5e94d787906e2b5b",
+  "recordedAt": "2026-10-03T06:13:08.639Z",
+  "sha256": "5ae85efc41a33e07bc40ff404b4912d35105f52f931e9d28e76ce7339a20bb85",
+  "bytes": 19440,
+  "requestId": "80msLKvPluFY65Pk3k0s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93d7a2c495dc1cff3e4b1817ac265a1739466148bc1c81de1921ae1538f34cbd",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

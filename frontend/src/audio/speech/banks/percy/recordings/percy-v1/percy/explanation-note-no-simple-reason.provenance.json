@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "The saved line doesn't hand us a simple tactical reason, and I'm not inventing a positional one. Step through it and compare the replies yourself."
+    },
+    "takeId": null
+  },
+  "requestHash": "68ce23ae50124fee587def59e0e564b208a4ea2daed075d92352311ba62c3d78",
+  "recordedAt": "2026-10-03T06:13:19.123Z",
+  "sha256": "3d6616602c4e9b484c55f8c6ca374deca2366362a83341d9118b95f7ef53c8a8",
+  "bytes": 26849,
+  "requestId": "3cbz8enQOkA88MwFViH3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09012a675b54d5afcd6cff8cd11edc3ba8d7e04b2b67e7f2d63eacf83b37ba82",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

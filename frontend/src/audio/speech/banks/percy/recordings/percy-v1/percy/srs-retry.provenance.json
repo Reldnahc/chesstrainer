@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "srs-retry",
+      "label": "Srs retry",
+      "text": "Not quite, but don't quit on it. What's each piece doing right now? Try another move."
+    },
+    "takeId": null
+  },
+  "requestHash": "c89b3f03ac9048b75b05a6959a2cefb1d30b03ccb63e4d7ca459ed5b205bba10",
+  "recordedAt": "2026-10-03T06:12:39.137Z",
+  "sha256": "b6cb1eb9d934c6a02498e20653c35c716f270e789a372b6c7645f2d7dade24b8",
+  "bytes": 18414,
+  "requestId": "IWcfTQ88ik2drwreGo8u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed5ec66a359c55a6741272e89c651313cbd6c163fe666b37f32b61f12f05e1d9",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

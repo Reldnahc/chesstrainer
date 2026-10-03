@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Check the forcing moves for one piece that can hit two valuable targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "514c34eb39d5f4708ec8ab399cc7b90756e3127f33cce4ef4676566463225d31",
+  "recordedAt": "2026-10-03T06:13:29.450Z",
+  "sha256": "2e19529b20e77f1a2c66a9a8aebb90077d99e355a0b6a634c45bb231221a7c68",
+  "bytes": 16287,
+  "requestId": "D6xFSIls0r3jqInJ0s3X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc7a6282f7308f96b172cd3e2de47eff9501255c8ed3a39362f47ccb61ff5269",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "See if a forcing trade could drag a defender off its other job."
+    },
+    "takeId": null
+  },
+  "requestHash": "154a4f78c792ce7bf5de4091d13a18175c47c98fb82b4099ada8bd083d54689b",
+  "recordedAt": "2026-10-03T06:13:11.556Z",
+  "sha256": "625421a0d4a68780e07069f36a5816301453fac9fda2713095614733db265280",
+  "bytes": 12976,
+  "requestId": "fsqpNOzOEbFA75wgpQvY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57fb330046840cca652ddc1883b962d2c9c79e32f34015b5a1caf1f1833297b3",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "Another piece reports for work! A knight or bishop steps off its starting square. See where it lands."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d56142b6eb546f386ecf6ef8a0df69c5a34911a1b6fc62c8265597b767ef673",
+  "recordedAt": "2026-10-03T06:12:48.944Z",
+  "sha256": "48308ff2f57355b2cbc222578016d04c8af230c60b3deb45c095040c1b7149ca",
+  "bytes": 20736,
+  "requestId": "ZXvdXsjfx07f9AenKmtg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "96aaaee6fae4d544c76bf6a3cff9185b43098abb158060a583ec19abf72f63cd",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

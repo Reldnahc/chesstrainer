@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "Now, the back rank. This gives the other side a route to a back-rank mate, with the king boxed in by its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "b21b1c04506e8213741677fd9c47b9db959e0fc5bb5c48bdd08b3e1f48b65976",
+  "recordedAt": "2026-10-03T06:12:47.273Z",
+  "sha256": "ee363e2ed854891e347e76073dfe3ecf723ddca59f5d47e5e2c8860a97d4f267",
+  "bytes": 23954,
+  "requestId": "12pWdd8Opj3YgtcMVYEb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0f4b91aa048eb8f418f314881cea5c5f837addc291f0f7e0770750820482c9a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

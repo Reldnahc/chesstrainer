@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-pin-allowed",
+      "label": "Tactic pin allowed",
+      "text": "Here's one to notice. The other side gets to pin a piece to its king, and once it's pinned, that piece is stuck on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "de77c526d28d5a4a461fea5923633be8f86311b206d5ac1e2b7ea6e8c0ec32ba",
+  "recordedAt": "2026-10-03T06:12:30.107Z",
+  "sha256": "cdadfb71d0de7383016f067f40e0123a22c463593128d5d0c78c589fb78ee3ef",
+  "bytes": 24249,
+  "requestId": "rnODthVwrvH7yZMxkuV2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b088972253c7f5f7261c9e52aba7a9070d7db3dda0e6d946ffb50c1869a317d",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

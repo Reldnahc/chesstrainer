@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "The opponent's last move left a door open, and this move walks right through. That's how you answer an opportunity."
+    },
+    "takeId": null
+  },
+  "requestHash": "f18169bd0523a26277a8a17372f8de823256a2986f012602cf599f11b01c3f91",
+  "recordedAt": "2026-10-03T06:12:52.365Z",
+  "sha256": "260ea3344aadd29a70e2fbcc724c8f14c73f8414cc1396a53f27f1fc9a0cf249",
+  "bytes": 22542,
+  "requestId": "YpUeI4oaerbIIOD9CMX4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f60992d483eb4f8efdb4bb12887c9823a4110d761135f38ac48447216fbb4283",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

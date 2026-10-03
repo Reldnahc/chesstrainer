@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "Hold on, that piece was busy! This move pulls the only real bodyguard off a piece, and the other side can grab what it was guarding. Before a defender moves, ask who it's protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "4374502733aaee80d56e38f38a686542f29e0e59494b24d24fe2578a0f9ccdea",
+  "recordedAt": "2026-10-03T06:12:42.979Z",
+  "sha256": "e0ca4dfc5d9953958885bd7e1e78729a9a77935d168fd95cc4588e0dd62179f6",
+  "bytes": 37234,
+  "requestId": "xtvMjjCH64PSOWzkX0xU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c80095eca0ec41f2c66f395fdc41f154149a5fd6a9c742456c2f11cff4235c4",
+    "bytes": 190633
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

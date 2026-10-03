@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "A capture: one piece comes off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc8d7b1d070649b9e77be6cf95f9ec71a280259498f9104a57af281af9ec6e58",
+  "recordedAt": "2026-10-03T06:13:10.881Z",
+  "sha256": "dff3c48914fb987b55815fe152dd0d0f802f46fe5527d5216187ebbbadbbded4",
+  "bytes": 10366,
+  "requestId": "mSZpkch1fXndonAgKz8i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a264243be2f747ba6e31295b474aef400c87969ef0c4477d9d90459e30258f5",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

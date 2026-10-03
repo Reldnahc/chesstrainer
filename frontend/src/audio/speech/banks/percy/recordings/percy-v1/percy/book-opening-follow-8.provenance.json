@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "Listed again. Being in the book tells us where we are, not whether the move is any good."
+    },
+    "takeId": null
+  },
+  "requestHash": "04af79a952ae9d85592374ed7e141f484986612f05b08668b49973aa76b183d9",
+  "recordedAt": "2026-10-03T06:13:06.120Z",
+  "sha256": "82714511e01ad2fae8c389f9d31215c8f3c40b92d418c2869cfdd86b6cc4fa51",
+  "bytes": 18429,
+  "requestId": "rju9NtQW6zoyiuz6GiSE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a66b0a86df809581617343a8b77f9ae0deba293206f3f0ba32f70fb036c3431",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "Same problem again! This issue has come up earlier in this game. Stack those moments together; they've got a warning sign in common."
+    },
+    "takeId": null
+  },
+  "requestHash": "670c3d1fe392caaba9a209bef818c26d743f2b6ad92bb05f9c5d5bff8461e6e1",
+  "recordedAt": "2026-10-03T06:12:56.311Z",
+  "sha256": "4a10ea95d551c4f1cf95181fa1fd272fe6e3c321bed70d3eee147b5f01ca9647",
+  "bytes": 25682,
+  "requestId": "JqgyewqQEe7AIPFlbE7o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3304aaa48c6a3cba27c91fd900e8ae67540fb853695a9cbc92b8ad3a98761fe3",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

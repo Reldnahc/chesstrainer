@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "There goes the bishop pair! Whoever lost that bishop can't cover both square colors with bishops anymore."
+    },
+    "takeId": null
+  },
+  "requestHash": "598f481ceb3c4b4f1df5b9a54474a5ad1ac8fafd709a56ecf2f0f4f57ed5dbc0",
+  "recordedAt": "2026-10-03T06:12:47.242Z",
+  "sha256": "d8d988780aef91ca692b551a0338249c307c9df9b580e46a073f55008e582eb8",
+  "bytes": 20661,
+  "requestId": "xlTyu92YprpLH8mSC1MR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fd92fdbeb9d83ca939c231ab48bea37975446e6fb3f1e40610ef2bc1d6592467",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

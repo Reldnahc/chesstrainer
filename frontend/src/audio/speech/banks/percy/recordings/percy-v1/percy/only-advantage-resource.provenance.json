@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "This move kept the advantage, and nothing else we tried did; every other move lost. That move carried the whole load."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f9de4fa62429b9edb8ebd9f71b5f545709b4a814ddc426b13a273c96234b8b2",
+  "recordedAt": "2026-10-03T06:12:29.132Z",
+  "sha256": "3833812dd663c5338380561d9899d72036fd7c3948a363c92001772468f45a43",
+  "bytes": 25544,
+  "requestId": "XpC9rIezzmP80y7E9KQj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "587cead6c935203b9e57856ca63106c8ae9932978aef07e54f66ec6655ef4c3c",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

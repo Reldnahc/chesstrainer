@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Good move! Hang on to the reason it works, not just the move itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8d7fe7c7dde99a9c5e7690a9f878c36e58e862cb11e20640dbb6f528d995a94",
+  "recordedAt": "2026-10-03T06:12:56.072Z",
+  "sha256": "9ff56566245c7931245b4c47ad4bed386869c4b1d964b61ce2f2807483fdba7f",
+  "bytes": 15646,
+  "requestId": "nmtW051GRmpqVEax8ilD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "823d5af69ea17e1d7744d6a814c964cb2048d0b02e8ef6e82dc093150b7f4cb7",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

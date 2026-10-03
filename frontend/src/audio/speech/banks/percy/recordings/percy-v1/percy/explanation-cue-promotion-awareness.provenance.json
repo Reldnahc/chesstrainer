@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count the steps that pawn needs to reach promotion, and look at the pawn pushes that force a response."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2a04154416c11a7cb6986d2797b39d97ab514d3a95db1c97043477675182798",
+  "recordedAt": "2026-10-03T06:13:07.270Z",
+  "sha256": "b6ad3b1b206dd8b9b99876b4bc7f0a08a4f0dba487a08e3b931af31085315169",
+  "bytes": 18871,
+  "requestId": "Eb2a606f6L1TpHfDOsN2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5d0386272a80c4a9ea2def14258aeb2b28d81b7bd00fde10e69751ac4e76e3e",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

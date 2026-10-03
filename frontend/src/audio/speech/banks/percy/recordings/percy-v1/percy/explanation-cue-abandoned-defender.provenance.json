@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before a defender moves, ask which pieces it's protecting and who'd be left uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "70a2df98c09887e77462441c01eece38cf315bcb103439d07cdf7585dde9c9cf",
+  "recordedAt": "2026-10-03T06:13:08.727Z",
+  "sha256": "9c566c9949ee6ec5021f0bb1954b26a3767bf5a5fb85da9379261b6139d30bf8",
+  "bytes": 17934,
+  "requestId": "EABOQQCOegrj5qRxyfLg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d8e20a0ef5b56f32975469c8cf324f408105c7d0a6ccb14699aee16a08fba16",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

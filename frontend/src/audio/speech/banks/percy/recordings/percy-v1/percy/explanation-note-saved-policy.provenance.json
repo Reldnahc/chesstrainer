@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-note-saved-policy",
+      "label": "Explanation note saved policy",
+      "text": "I'm going by the answer policy saved for this exercise. The written notes name the setting."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dd021f229dca56e68b55feadeba90fc64b555ed9f8731dc53e03dc2d1c288f0",
+  "recordedAt": "2026-10-03T06:13:20.647Z",
+  "sha256": "703bfa73d66385799f069c55f8e7c45cbca7889377824866c438e688a8800d23",
+  "bytes": 17866,
+  "requestId": "Yt5Xzse9OLVJpAJpYgZI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ff1d27c4d275bc50e87390e3e82c6614e7deaf6bd8c1244d80c0b3b3d8853d9",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

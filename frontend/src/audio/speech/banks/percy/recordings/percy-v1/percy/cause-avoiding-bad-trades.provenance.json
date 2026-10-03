@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "Whoa, count the whole trade! This capture gets answered by a recapture of a more valuable piece. An exchange isn't done until every recapture is counted."
+    },
+    "takeId": null
+  },
+  "requestHash": "09f4eb6e18e407eb2f9cb8e4fb75be57f857b826f615c2ded60a50a60a5f3109",
+  "recordedAt": "2026-10-03T06:12:47.315Z",
+  "sha256": "872fdb8848a7115329b87a9e2609ca5a006287145c7d43b39ca6c5b4bcd35215",
+  "bytes": 32103,
+  "requestId": "cLiL8CDSs33KpNkk1eZ3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b40833d430ac707714c3cfe005df5e4cb3b6eada5c3da08944ea102ff9d4a804",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

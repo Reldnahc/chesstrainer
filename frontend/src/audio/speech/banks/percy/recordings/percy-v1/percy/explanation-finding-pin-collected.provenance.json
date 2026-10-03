@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "Watch the pinned piece closely. It can't leave the line without exposing its king, and before these moves are done, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "0aa140f8e5807e65c8727445394e59ac15b0f932dd5e7052c3a6ce16e79ffbb8",
+  "recordedAt": "2026-10-03T06:13:05.158Z",
+  "sha256": "a3544c4d8688abf538ceabcb2aa16e33e34662ce5d135567f172afea28331219",
+  "bytes": 24997,
+  "requestId": "YNWqqTCia3Y5Pa5tYvWk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "095390a23bffe312dd1dd1782437bb355b91e82076836fd5ae1ba4b8b358b2c7",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
