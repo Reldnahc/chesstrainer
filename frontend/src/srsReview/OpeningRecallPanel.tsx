@@ -20,7 +20,8 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
       : feedback.grade !== "revealed" ? session.feedbackEventId : null,
   });
   // Each recall state has one coach sentence; the bubble shows the coach's spoken form of it.
-  const spoken = useSelectedCoachSpokenText(recordingId);
+  // A grading error keeps its written sentence, which a paraphrase can change.
+  const spoken = useSelectedCoachSpokenText(gradingError ? null : recordingId);
   if (!position?.opening) return null;
   const opening = feedback?.opening ?? position.opening;
   const completed = !!feedback?.completed;

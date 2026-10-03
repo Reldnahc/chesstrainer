@@ -53,7 +53,8 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   // content and stay written. A full game's fallback stays written too: only
   // opening it speaks, and seeking through it must not flip the sentence.
   const spokenFor = (id: string, when: boolean) => when && speech?.recordingId === id ? spoken : null;
-  const status = spokenFor("lesson-error", !!error) ?? (error ? "Reload the saved lesson before continuing." : null)
+  // An error keeps its written instruction, which a paraphrase can drop.
+  const status = (error ? "Reload the saved lesson before continuing." : null)
     ?? spokenFor("lesson-guided-playback", guidedPlayback) ?? (guidedPlayback ? "Watch how this position develops." : null)
     ?? (session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : null)
     ?? spokenFor("lesson-chapter-complete", finished) ?? (finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text);

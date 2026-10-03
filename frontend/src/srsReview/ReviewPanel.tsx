@@ -66,7 +66,8 @@ function GameRecallPanel({
   // Generic one-sentence states show the coach's spoken line. A frame annotation
   // or explanation summary names concrete moves and material the spoken line
   // leaves out, so those stay written.
-  const spoken = useSelectedCoachSpokenText(session.gradingError || !feedback
+  // A grading error keeps its written sentence, which a paraphrase can change.
+  const spoken = useSelectedCoachSpokenText(session.gradingError ? null : !feedback
     || recordingId?.startsWith("srs-fallback-") ? recordingId : null);
   const shown = spoken ? {...utterance, text: spoken, speechText: spoken} : utterance;
   const voice = useCoachSpeech({

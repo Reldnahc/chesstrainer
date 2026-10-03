@@ -303,10 +303,13 @@ text shows instead.
   scrolling message, and the bubble grows to fit a joined line (see
   [Game review](GAME_REVIEW.md) for the caps and measurements).
 - **Practice:** puzzles, opening recall, the opening line preview and Due's
-  generic states (cold, retry prompt, grading error, fallback completion) show
-  the spoken line for their selected recording. Lessons replace only the coach's
-  own sentences (wrong move, correct move outside a decision, guided playback,
-  chapter complete, error). Step text, hints, authored decision feedback, game
+  generic states (cold, retry prompt, fallback completion) show the spoken line
+  for their selected recording. Lessons replace only the coach's own sentences
+  (wrong move, correct move outside a decision, guided playback, chapter
+  complete). Error states (puzzle, lesson, Due and recall grading errors) keep
+  their written sentence, whose instruction or fact a paraphrase can drop, and a
+  solved puzzle keeps its saved record ("Saved as failed, then solved." / "Saved
+  as a clean solve.") written after the spoken line. Step text, hints, authored decision feedback, game
   notes and a revealed move's SAN are course content and stay written, as do
   Due frame annotations, explanation summaries and every Show why passage, which
   name concrete moves the spoken lines leave out.

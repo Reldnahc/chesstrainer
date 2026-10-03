@@ -128,8 +128,10 @@ test("puzzles retain retries, animate committed replies, resume and finish witho
   expect((await saved(page, puzzle.id)).revision).toBe(result.revision);
   await move(page, "g1f3");
   await expect(page.getByRole("heading", { name: "Puzzle solved." })).toBeVisible();
-  // The status shows the default coach's (Walter's) spoken line for a solve after a retry.
-  await expect(page.locator(".review-coach").getByRole("status")).toHaveText(walter("puzzle-solved-after-retry"));
+  // The status shows the default coach's (Walter's) spoken line for a solve after
+  // a retry, with the saved record kept in writing beside it.
+  await expect(page.locator(".review-coach").getByRole("status")).toHaveText(
+    `${walter("puzzle-solved-after-retry")} Saved as failed, then solved.`);
   await expect(page.getByRole("region", { name: "Puzzle solution" })).toBeVisible();
   await expect(page.locator(".puzzle-provenance").last()).not.toBeEmpty();
   const complete = await saved(page, puzzle.id);
