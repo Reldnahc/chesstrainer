@@ -34,6 +34,15 @@ def groups(paths, count):
     return [sorted(files) for _, files in buckets if files]
 
 
+def shard(paths, value):
+    """Keep one balanced slice of the files, so CI jobs can share the suite."""
+    current, total = (int(part) for part in value.split("/"))
+    if not 1 <= current <= total:
+        raise SystemExit(f"--shard must look like 1/2, got {value}")
+    plan = groups(paths, total)
+    return plan[current - 1] if current <= len(plan) else []
+
+
 def run(index, files, extra, temp):
     command = [
         sys.executable,
@@ -59,9 +68,12 @@ def main(argv=None):
         default=min(8, os.cpu_count() or 1),
         help="Parallel pytest processes (default: CPU count, at most 8)",
     )
+    parser.add_argument("--shard", help="Run one balanced slice of the files, such as 1/2")
     # Every other argument is passed to each pytest process (for example -q or -k).
     args, extra = parser.parse_known_args(argv)
     paths = sorted(TESTS.glob("test_*.py"))
+    if args.shard:
+        paths = shard(paths, args.shard)
     plan = groups(paths, max(1, args.processes))
     with tempfile.TemporaryDirectory(prefix="pytest-parallel-") as temp:
         with ThreadPoolExecutor(len(plan)) as pool:
