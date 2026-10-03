@@ -531,12 +531,12 @@ test("natural completion removes speech ducking and a throwing observer cannot b
   f.engine.dispose();
 });
 
-test("speech fades out over its last 20 ms so a provider end spike cannot thump", async () => {
+test("speech fades out over its last 30 ms so a provider end spike cannot thump", async () => {
   const f = fixture();
   await f.engine.unlock();
   f.engine.playPreparedSpeech({...speech("faded"), buffer: pcm(48000, new Array(48000).fill(0))});
   const voice = f.context.gains[3].gain;
-  expect(voice.schedule).toEqual([["set", 1, 3.98], ["ramp", 0, 4]]);
+  expect(voice.schedule).toEqual([["set", 1, 3.97], ["ramp", 0, 4]]);
   f.context.sources[0].finish();
   // Effects keep their full level, and a clip shorter than the fade is left alone.
   f.engine.play(move("board"));
