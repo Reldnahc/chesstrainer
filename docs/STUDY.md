@@ -44,9 +44,10 @@ active lines, including zero; merely viewing a lesson does not increase them.
 `backend/trainer/puzzles` owns validated `line-v1` definitions and a small provider
 protocol. Providers return locally available definitions visible to the bound
 account. No network acquisition runs when opening or solving a puzzle. Production
-serves hash-pinned local packs (below); game-derived generation remains separate
-future work. Tests inject their fixtures into the application explicitly, and
-`PUZZLE_STARTER_PACK=false` keeps a deliberately empty library.
+serves hash-pinned local packs (below) and puzzles mined from the account's own
+games ([Puzzles from your games](#puzzles-from-your-games)). Tests inject their
+fixtures into the application explicitly, and `PUZZLE_STARTER_PACK=false` keeps
+the library to the account's own puzzles.
 
 ### Puzzle packs
 
@@ -90,25 +91,75 @@ one there; Fieldwork's `line-v1` definitions do not yet carry accepted
 alternatives, so those puzzles are excluded rather than mis-graded. Passing
 means engine agreement at that depth, not pedagogical value.
 
+### Puzzles from your games
+
+`puzzles/generation.py` mines each analyzed game once per generator version
+(`games-v1`) for missed mates and missed wins. Candidates come from evidence the
+analysis job already saved: a training decision, or a full-game review move on a
+ply the training pipeline never judged, where the learner was to move, the best
+move was a forced mate the learner did not play, or the best move kept at least
++150 cp and the learner gave up at least 150 cp. Defensive resources are not
+mined yet. Nothing is searched when a page opens.
+
+For each candidate the line builder asks Stockfish for two lines at the learner's
+root (`PUZZLE_GENERATION_DEPTH` 18, at most `PUZZLE_GENERATION_TIME` seconds per
+search, through the shared engine cache). The best move is kept only if it is
+unique by the pack verifier's margins in `puzzles/verification.py`: at least
+100 cp better than the second line, or a mate with no equal or faster rival mate.
+The opponent then plays the engine's best defence, not the move played in the
+game. The line continues until the next learner move is no longer unique, the
+position is mate, or `PUZZLE_GENERATION_MAX_PLIES` is reached, and is cut after
+the last learner move. It needs at least two learner decisions and must end in
+mate or at least +150 cp with the opponent to move. A forced first move, a
+one-move tactic, an ambiguous root or a thin payoff abstains, and a position
+already serving a ready puzzle for the account abstains as a duplicate.
+
+Kept lines become `source="games"` definitions keyed `game_id:ply`, with the
+vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`,
+or `advantage`/`crushing`), length and phase themes, no rating, and provenance
+naming the matchup, date, move number and the move actually played. Each row in
+`game_puzzles` records its status, abstention reason, root and verification
+analysis IDs, engine, depth and thresholds; `game_puzzle_searches` records one
+search per game and version, including games where nothing qualified. The
+account-bound `GamePuzzleProvider` serves ready rows of the current version, so
+ownership filtering hides other accounts' puzzles and existing sessions keep
+their snapshots when a later generator version supersedes a row.
+
+Generation runs in two places. When `PUZZLE_GENERATION` is true, each analysis
+job mines a game right after its decisions commit, on the same engine. `POST
+/api/puzzles/generate` queues one `puzzle_generation` job (deduplicated while
+queued or running) that searches at most `PUZZLE_GENERATION_GAMES` unsearched
+analyzed games, newest first, with the usual progress, cancel and retry
+controls; a cancelled search keeps the candidates it judged and resumes later.
+The library's `generation` block reports analyzed, searched and unsearched
+games, puzzles, candidates, kept lines, the last search time and a running job.
+The Puzzles page shows this under a From your games source tab with the backfill
+action; the player shows only "From your games" until completion, then the
+provenance line and a link to that move in the game review. Generation writes
+no exercise, recall, FSRS or weakness evidence.
+
 ### Selection
 
-`GET /api/puzzles/next` accepts a source, rating bounds, one theme and a mode.
-New mode chooses randomly among matching puzzles the account has not started;
-once everything has been seen it skips the twenty most recently started puzzles
-before allowing repeats. Retry mode offers puzzles whose latest finished attempt
-was revealed or failed-then-solved, until a later clean solve; an unfinished
-retry is resumed, not re-offered. The puzzles page keeps the chosen difficulty
-band, theme and mode for the tab so Next puzzle continues the same practice.
-Rating bands are a convenience over the pack's own ratings, never a learner
-rating, and no selection writes FSRS, recall history or weakness evidence.
+`GET /api/puzzles/next` accepts a source, rating bounds, one theme, a goal
+(`mate`, or `material` for everything else) and a mode. New mode chooses
+randomly among matching puzzles the account has not started; once everything
+has been seen it skips the twenty most recently started puzzles before allowing
+repeats. Retry mode offers puzzles whose latest finished attempt was revealed or
+failed-then-solved, until a later clean solve; an unfinished retry is resumed,
+not re-offered. The puzzles page keeps the chosen difficulty band, goal, theme
+and mode for the tab so Next puzzle continues the same practice. Rating bands
+are a convenience over the pack's own ratings, never a learner rating; own-game
+puzzles carry no rating, so the page offers the goal filter instead of a band
+for that source and a band query never matches them. No selection writes FSRS,
+recall history or weakness evidence.
 
 A definition pins its initial FEN, learner color, complete solution, source,
 version and attribution. Every move must belong to python-chess's legal move set;
 null moves are not valid content. A solution starts and ends with a learner
 decision. Game-derived definitions additionally require two learner decisions.
-This validates replay, not the pedagogical quality or uniqueness of a future
-provider's puzzle. Future acquisition/generation must apply the stricter
-[deferred-content requirements](#deferred-content-requirements) below.
+This validates replay, not the pedagogical quality or uniqueness of a provider's
+puzzle; the own-game generator applies the stricter gates above, and any other
+acquisition must apply the [deferred-content requirements](#deferred-content-requirements) below.
 
 Starting a puzzle stores an immutable private snapshot. A move command includes a
 request ID and expected session revision. A successful learner move and its known
@@ -326,9 +377,14 @@ definitions, cold data, durable replay, duplicate and stale commands, concurrent
 tabs, account reads/writes and preservation of existing learning records.
 `test_puzzle_packs.py` covers Lichess-layout conversion, refused packs, the
 bundled starter pack, installed-pack startup verification and selection modes.
+`test_puzzle_generation.py` covers the own-game generator: line building and
+every abstention with scripted searches, candidate selection from saved scores,
+once-per-game persistence, the account-bound provider, both job paths through a
+fake engine, two-account privacy and one native Stockfish line.
 `frontend/tests/study-puzzles.spec.ts` exercises the production player through the
-test-only fixture provider on desktop and mobile. It covers retries, playback,
-reload, Still/device motion, promotion, coach changes and late-response cleanup.
+test-only fixture providers on desktop and mobile. It covers retries, playback,
+reload, Still/device motion, promotion, coach changes, late-response cleanup, and
+the own-game source tab, cold heading and solved provenance link.
 
 `test_study_lessons.py` validates content graphs, player transitions, ownership,
 idempotency and persistence. `test_lesson_journey.py` and `study-lessons.spec.ts`
@@ -342,10 +398,11 @@ development content through an environment switch.
 
 The lesson/opening/puzzle framework sprint is complete and the generic pack
 requirements below are implemented as described under [Puzzle packs](#puzzle-packs)
-and [Selection](#selection). Game-derived generation and additional courses are
-separate future work. The following requirements preserve the owner's decisions
-from the completed plan; they do not authorize implementing that work during
-maintenance.
+and [Selection](#selection). Game-derived generation of missed mates and wins is
+implemented as described under [Puzzles from your games](#puzzles-from-your-games);
+its remaining pieces and additional courses are separate future work. The
+following requirements preserve the owner's decisions from the completed plan;
+they do not authorize implementing that work during maintenance.
 
 ### Generic puzzle packs
 
@@ -386,18 +443,21 @@ Abstain when any gate lacks support. Stockfish and saved evidence own generated
 solutions; neither the coach nor the UI invents a continuation. The model must
 allow future solution graphs with multiple accepted solver moves.
 
-Generation should be explicit, bounded, persisted, cancellable, resumable and
-cacheable, rather than rerunning when the player opens a page. Updated engine or
-generator evidence creates or supersedes a definition version; it never rewrites
-completed puzzle history or active snapshots.
+Generation is explicit, bounded, persisted, cancellable, resumable and cacheable,
+never rerun when the player opens a page. Updated engine or generator evidence
+creates or supersedes a definition version; it never rewrites completed puzzle
+history or active snapshots. Source matchup/date, original move, exact game/ply
+link, themes, payoff and full solution unlock only after completion or reveal.
+Cold play must not expose future solution length or other tactical hints. Puzzle
+practice never updates FSRS, ordinary recall history or weakness evidence, and
+does not prove that training transferred into later games.
 
-A future queue should prefer unseen recent missed opportunities, deduplicate legal
-positions, avoid consecutive puzzles from one game when alternatives exist, and
-offer explicit retries of failures. Source matchup/date, original move, exact
-game/ply link, themes, payoff and full solution unlock only after completion or
-reveal. Cold play must not expose future solution length or other tactical hints.
-Puzzle practice never updates FSRS, ordinary recall history or weakness evidence,
-and does not prove that training transferred into later games.
+Still future work, in the order the prototype measurements suggest: defensive
+puzzles with their own payoff rule (hold at -100 cp or better while rivals lose
+at least 300 cp), accepted alternatives through a solution-graph format so an
+ambiguous first move need not abstain, Maia's difficulty band where human
+evidence exists, selection that avoids consecutive puzzles from one game, and a
+regeneration command for engine upgrades.
 
 ### Other deferred study work
 
