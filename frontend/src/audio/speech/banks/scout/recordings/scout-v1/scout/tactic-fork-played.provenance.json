@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "Fork in play. One piece hits several targets in the same move, and a single answer might not save them all. Spot the attacker, then count its targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f84dcb8c96ea62d37be91ec8b3da9f12c8f7c5c8df6fcfbdcf22a76748ddaa3",
+  "recordedAt": "2026-10-03T06:16:27.324Z",
+  "sha256": "f11e2ff471fa261c85013ef6ee857ef2845bdf929c1e1d55f171d3f771baf4f3",
+  "bytes": 30393,
+  "requestId": "yW75HRvJSQ9fmHRecqyh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eeb1244460ad0bde511ffa3c5af0c0d0c07a6eb000d7a863794cac7c2235645b",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "Skewer missed. A different move lined up an attack through a front piece to the one behind it. Find that line and run the idea again."
+    },
+    "takeId": null
+  },
+  "requestHash": "40e2fa07088d02547d95ee39552c64f3bbf5f0493ab373a32ad47ca05897cc1f",
+  "recordedAt": "2026-10-03T06:16:44.169Z",
+  "sha256": "acf105ba86c52d23d67b9b8ad265f6a8170082d59be118af911e2b3eb7f09f83",
+  "bytes": 25822,
+  "requestId": "QaQJPAtcNjbXKGMesvZt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11c2dccfae87ba7044ea5b34b63e6ab1651095d0ae208adfdee34e74fb7396e9",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "Out of check. The king is safe from that attack after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "f389c17b18041881ddadfcc2bb10f16e749a78b4dad1b33d01d67d39492992f3",
+  "recordedAt": "2026-10-03T06:17:08.731Z",
+  "sha256": "1a2cc87a7840a3868dd435b3c39fb4cf83c80b8a87d45264c6ddbdae9bb044c2",
+  "bytes": 13272,
+  "requestId": "mJl4iGykWWlbEseodK1I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fb4c1b08eb2463d15c29ebb41fdb516b6a5c5146a76fef4e21a5f515db12cde",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling into mate. The rook lands on its new square and the enemy king has no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3ad774e63929ebcc6949f4059d3d32d2efa5b42649da343392655397b5b1f0a",
+  "recordedAt": "2026-10-03T06:17:30.208Z",
+  "sha256": "21e3490951720a633c60f2be921d1bf8e6b2abe582a74579bc4c6e244ff5920b",
+  "bytes": 20204,
+  "requestId": "DOayVshnhr6DiN2RVXdJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5454e9ab726e937ffcdcb94ea75eaeb91b3a9f6769594d0e7049fa7575b7f55",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

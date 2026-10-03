@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "No simple tactical reason shows up in the saved line, and no positional reason has been assumed. Walk it move by move and weigh each reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "efd2c402e1dce997274968629367cbb81132867cb41b531ac5954f13b4060a0e",
+  "recordedAt": "2026-10-03T06:17:23.313Z",
+  "sha256": "32a5bd5cf7a4199cc41fdb8cba702775e11eaf05a6b505463cf6079585be3bde",
+  "bytes": 28473,
+  "requestId": "xuU6SgIf2R9SYoUhOAE3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a29013dbd5dfa0c28bf05889352b75a5908b5c8646f04438a446942b13cdf763",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

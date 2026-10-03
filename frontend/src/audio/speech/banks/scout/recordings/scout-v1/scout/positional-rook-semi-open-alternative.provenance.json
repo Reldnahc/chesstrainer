@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "Rook upgrade available. A different move would have put a rook where it has no pawns of its own ahead, only an enemy pawn. Compare the two placements."
+    },
+    "takeId": null
+  },
+  "requestHash": "b36be18910b7b724b3263c2531dacfc48894e65d11a69ae69b63d640013a5808",
+  "recordedAt": "2026-10-03T06:17:06.076Z",
+  "sha256": "6c0549d940a6cce59dc166d0b4f9f4eaa692ae1cd22f222d723ce7078b2ae04b",
+  "bytes": 29027,
+  "requestId": "ylG6VYv1UKW5wDJHvu2m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d46bc52a68a31a6cf94b2ba0e6a4247fc5c8b3b44f650eaf7f2adbe9323d586c",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

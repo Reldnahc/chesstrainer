@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "Recovered. Setback absorbed, and the position holds again. Line up the setback and the recovery side by side."
+    },
+    "takeId": null
+  },
+  "requestHash": "1bf43ec27e24b63408bc94f7beebc497c52eac608e23b8525e90173393010fe0",
+  "recordedAt": "2026-10-03T06:16:54.739Z",
+  "sha256": "0d583e609c22e82c21a5c6f2d698008eca6f2d98706e040f3ff9e9a6fcb15900",
+  "bytes": 23175,
+  "requestId": "lVDBY3xn7N1g0OH7ewVg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d80b705cade94ca7f056c2858d7065fd398cab6c5c9fdf7eb29e52c7a154226b",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

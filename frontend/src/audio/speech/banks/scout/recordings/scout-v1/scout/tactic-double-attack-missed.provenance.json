@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Double attack missed. Two threats were sitting in a stronger move. Forcing two-threat moves come first in the scan."
+    },
+    "takeId": null
+  },
+  "requestHash": "77ba34e6d3485e7260bbde03c7b4bbad8882e631cf85097652fbec3e004e181f",
+  "recordedAt": "2026-10-03T06:16:36.014Z",
+  "sha256": "da078b61f64a8ca8e1c3df1ef031dc00a25c30a8a355242eba106b11cbb70e67",
+  "bytes": 22314,
+  "requestId": "XAeFGequQkmr1pSm4tHb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d152b7649eca4eed1dc5b4b5ba77d7ef53004c96293d8dd04364833c46d81fb0",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

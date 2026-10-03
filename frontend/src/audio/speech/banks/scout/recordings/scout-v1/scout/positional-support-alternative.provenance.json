@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-alternative",
+      "label": "Positional support alternative",
+      "text": "Cover available. A different move would have put a guard next to a lone piece. Compare which pieces stay guarded each way."
+    },
+    "takeId": null
+  },
+  "requestHash": "9aa1a3523507004cea5667471d04138c3eab51128f81b819bc61a06b9fa01241",
+  "recordedAt": "2026-10-03T06:16:42.251Z",
+  "sha256": "788e8b5cb97a275e751c126b92bf7e72a74596fd563492cfc5e026210fd0fc15",
+  "bytes": 23973,
+  "requestId": "L7qFUwFV4BMo9vBT2hXD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1dcefb726ccff7e66c5489edf845f29f9c9f6f39969158db9d0117a8cd92a599",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "Promotion, out of check. Reaching the last rank also lifts the check on its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "38c05fe977942b13c5989b32b209fba0eb9f9938fb1784d965d9f82162ed98b1",
+  "recordedAt": "2026-10-03T06:17:14.623Z",
+  "sha256": "350782ef1a945601b95d84935f7e7bd3207902696f3da469eadc7876f40ec4d0",
+  "bytes": 18043,
+  "requestId": "8zD5gkS5tJMptoOFs8nm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e37553af9aa464df01960499ce7d3b9e7d9d3d0b874e98a1eda8f4c73fd27900",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

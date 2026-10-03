@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "Recovered, with help. The position is playable again after the earlier setback, and errors by the other side made that possible. Note both parts."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c771ba9921030ad0457ec5244878225a10fe1c8489c6c323444574fc29e42f0",
+  "recordedAt": "2026-10-03T06:16:56.796Z",
+  "sha256": "f4b4c0177e57a614243f9a088271aaf8e971bc2837f097e3a0151cd9ca8feb31",
+  "bytes": 29952,
+  "requestId": "oD9YHSvkXw2agEYBXYKl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f53167bd5bef946806e91076f9e62201dc193bc8b0fbc355a463193b0591c10",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

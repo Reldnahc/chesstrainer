@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Slow leak. This is another small concession, and together they've worn the position down. Pull the full sequence, not just this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "432b9e52faf863a4e6dbc9c19ed270cda5397b9ac46681ed9826e68ca8f26b16",
+  "recordedAt": "2026-10-03T06:17:05.764Z",
+  "sha256": "d35521ae6d736b8a22659390b7904d21fdb758b041aa8b3e22bebefb3f85bcc0",
+  "bytes": 26050,
+  "requestId": "yN1GDhY9ISlbiaqnXBWJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f719d3bd6a9a2da7b07822566d56f277bf729cba74e7f427a3faea73c467a1f",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

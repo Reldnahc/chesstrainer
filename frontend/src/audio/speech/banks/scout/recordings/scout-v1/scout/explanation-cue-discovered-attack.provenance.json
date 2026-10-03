@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a blocking piece moves, scan the lines it uncovers."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d782d52eb88b6d77489f4809e2c97cc9692fd5f3d8d02ea556d74d0af0442fb",
+  "recordedAt": "2026-10-03T06:17:08.830Z",
+  "sha256": "19251e49c55e482569978c032b84eeff10fa18a76c3dac921a0b4eade15b2ada",
+  "bytes": 12334,
+  "requestId": "eZZkLjn4ymIx5gYdD4t1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8325aeb142116bf5f81e057389a4bff649223bfb5b9a6de4d905c37d50e319bf",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

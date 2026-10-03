@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "No match. This move isn't one of the exercise's saved answers. That's a rule of the exercise, not a verdict on the chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "7057b9d3b57387073493904e0c1a2340f2904964d5a01c8eba06170d40b2f66e",
+  "recordedAt": "2026-10-03T06:16:59.675Z",
+  "sha256": "85550a34dd82d691663ab2a671e02f9cc6a5b6382a3ad663c932c46152443521",
+  "bytes": 24745,
+  "requestId": "vOHFwTVUJbrOpnAWyDCg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8742fe1e2e87181c1229736a9b3d147592b808675b7f74dd213d7a93fd7f48c",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

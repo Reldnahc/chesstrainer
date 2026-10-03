@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "mate-defense-ended",
+      "label": "Mate defense ended",
+      "text": "Checkmate, defense over. Zero legal squares left for the king. Find the earlier point where the defense could still have changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c24d08c7c77a1daea0e69f153b86e16882a096255d8e6e8a7bf40421de963f6",
+  "recordedAt": "2026-10-03T06:16:41.646Z",
+  "sha256": "1c7e9221d27ee9daf85d554c3e5539c19314964ccc8385e7417c9dfe33a94cc6",
+  "bytes": 24537,
+  "requestId": "Jo09i7NJppRiMIp9SWok",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffe621e85fe3097a10325766e3bbd1b7fd6fb19782fc4f09063e21628d3d414b",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

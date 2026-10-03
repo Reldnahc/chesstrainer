@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "Next up. Spot what this move changes."
+    },
+    "takeId": null
+  },
+  "requestHash": "c051512814523d9c1ffad5e3d59be119eadcba811d1a349a5e0070dce90e0431",
+  "recordedAt": "2026-10-03T06:17:06.568Z",
+  "sha256": "fd52fcbec4aef52978c857372a65bbe1fb37b5bb798d395d9e9a0554441cb744",
+  "bytes": 9909,
+  "requestId": "tdrhfnTHv4RSQNYn6RYR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02e7e3226a9f5aaf1fdb5d7ae523eb24690e8e3289c4587d393c8089c638d4b4",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

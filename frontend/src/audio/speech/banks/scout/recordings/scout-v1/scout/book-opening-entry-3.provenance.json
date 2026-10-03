@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "Opening theory, confirmed. This move is on record."
+    },
+    "takeId": null
+  },
+  "requestHash": "d33984d3d98b28cde4e04337fae082e1f3c096be9b4157561dcb3a63135bfc64",
+  "recordedAt": "2026-10-03T06:17:29.419Z",
+  "sha256": "12a40e4939c350c97db840695d9cbf87996454d8e40f8d95cc8529838637c9f4",
+  "bytes": 12338,
+  "requestId": "Hzu8KFh1beL3UrXYULML",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c36d29b4c0ea2267fdca2b61ff15311e55e417c20d746a1713e406ef6decd1e9",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

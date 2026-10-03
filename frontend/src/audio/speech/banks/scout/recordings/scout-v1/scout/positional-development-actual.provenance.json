@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "Piece in play. A minor piece is off its starting post and in the fight. Mark its new post and what it now reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "ebfc2c4f1a53568f85d8bc92891b039e8faba1921acb6c775bc6f614cbe9c580",
+  "recordedAt": "2026-10-03T06:16:55.951Z",
+  "sha256": "1f44878f19ca9efa44766ba8150f234e8b77d465418524eeb4adde0203d593a0",
+  "bytes": 23901,
+  "requestId": "rOG2BZvaad3GjjxgMPMn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c13d9405c3b977796c73de2ef6019e35adb3c0e2820ea24934af823c2144248",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

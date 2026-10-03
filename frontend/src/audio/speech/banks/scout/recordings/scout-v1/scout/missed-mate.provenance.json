@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "Mate missed. The board had a forced checkmate, and the game move skipped it. Rule one: check every check first."
+    },
+    "takeId": null
+  },
+  "requestHash": "5c3822175b83d03250f5d3c2184d7df61deb1c51bed84f4f635a0ff3dbb6f24e",
+  "recordedAt": "2026-10-03T06:17:04.219Z",
+  "sha256": "147b7ca9061a21fef4eacd516127f1e0de55ac8a754efd4fe4249c5d8ec64732",
+  "bytes": 24435,
+  "requestId": "4vbOJDLG5IvcYexDHcpU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8c5184e17bc9210d4ef7d658d34970a1cba2fe2669a9eb99c4df72d215823f5",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

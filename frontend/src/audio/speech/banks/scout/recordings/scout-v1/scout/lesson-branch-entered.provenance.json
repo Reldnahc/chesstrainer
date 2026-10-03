@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "Side trail open. Sweep it, then rejoin the main line."
+    },
+    "takeId": null
+  },
+  "requestHash": "2febd0e4b91371279df52ab1ea07cf75aa490195d7f3bf542ae759003bb107e3",
+  "recordedAt": "2026-10-03T06:17:21.124Z",
+  "sha256": "80938d52a6e0dd3b1c88b1d49d796b0f6e5d08cb197c00c21d9afcff837f5484",
+  "bytes": 12770,
+  "requestId": "YLS9xrZhfOyFQYCFrinN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27b02434cf35f81a90db063ef9f5889c707aa976033d18d34aba09970042e488",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

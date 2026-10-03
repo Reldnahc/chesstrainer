@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count every advanced pawn's steps to promotion, and check the pawn pushes that force a reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "37ad6bdb299b08663168432fe49dfa2b7764c103b3aaa025785a0da517333ecf",
+  "recordedAt": "2026-10-03T06:17:12.825Z",
+  "sha256": "e82b590f99650742db301c52878478ddbe392b22dc4eb8f9bd70c7b4feec2712",
+  "bytes": 18576,
+  "requestId": "ttoLwMlnsLLzzIiJm4k4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22dfcb79c17664ecaf641e28c6a718155da8aa0af5131caff1670d6c45b6a220",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

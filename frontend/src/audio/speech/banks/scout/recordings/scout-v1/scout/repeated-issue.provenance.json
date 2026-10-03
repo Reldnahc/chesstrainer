@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "Repeat pattern. This exact problem is back for another round in this game. Put the moments side by side and find the shared trigger."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbd306345a2fb5a78cdfbe1bd055fcdf98ad58c4fb48d57fdf43278c03460f81",
+  "recordedAt": "2026-10-03T06:17:02.467Z",
+  "sha256": "a7ef26637157423358b6cc73ecb405e1ba06873f3a4b0cb4dd1bd3ebac27e2e5",
+  "bytes": 25815,
+  "requestId": "WTtnszVgQnj0y689Wxdo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ae45dc5620c5363cf1dbc9a58175bd9507e28b1fc635cee5f81f2582f1c4a81",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "Saved answers rule this exercise. Other legal moves can still be playable chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "2500c2f93cc1f502e31f5dbfba33092983e89fc847ef3b2073880b9d0ccca237",
+  "recordedAt": "2026-10-03T06:17:17.526Z",
+  "sha256": "407390e1b33011985eab3d131c716e7f9624e227845289b9aea8b80ec837227b",
+  "bytes": 17739,
+  "requestId": "HAV3VRGokS96Zd15YMF7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c102e0a5ba2031cb47b838dcdc53119512051ed940dc4d6534ed00eb3ac7c16",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

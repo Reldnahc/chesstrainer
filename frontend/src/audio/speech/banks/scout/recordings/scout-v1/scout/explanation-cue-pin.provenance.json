@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Every pinned piece is covering for something. Confirm whether that's your king or a bigger piece before it moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "04595c2c6ca852cec5d10fde24f9274907cdfe28d5f3f79ee7f314ed2c1fae79",
+  "recordedAt": "2026-10-03T06:17:38.772Z",
+  "sha256": "0b21d086930fac817c5ca55aab7d0eb264f71732ad1b3ea536d7ad18843a6b21",
+  "bytes": 20729,
+  "requestId": "doEguvuOs037OR5T0VSX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "109838c83d53150c6bbd68fb2ccaa263730806afaf299beeb585fd529de81322",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

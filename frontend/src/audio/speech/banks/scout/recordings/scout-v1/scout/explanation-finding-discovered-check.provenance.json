@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "Discovered check. The front piece moves aside, and the one behind it checks the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ca4363ea876b073ef044fe7112a05b9ec96e3b1706cbb2cf94cb67c3904cd6e",
+  "recordedAt": "2026-10-03T06:17:22.080Z",
+  "sha256": "e763a68d6df7a06aa314b15d2c377a48f622296b12f81d9e599e756554da0243",
+  "bytes": 16740,
+  "requestId": "BlxYZ7c9wE4IVHhIxnIE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c47900a31c6576b2bc32a0a67cb70464882ce080e0f75f4f92a33c079ef2ab1a",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

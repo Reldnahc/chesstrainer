@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "Pin locked. A piece is held to its king now, and stepping off the line would expose that king. Mark the pinned piece and watch what it can no longer do."
+    },
+    "takeId": null
+  },
+  "requestHash": "488cb140ad6f4f6b250d6f7f9f4c86c412df3582b56c8879931d3262273a9f6e",
+  "recordedAt": "2026-10-03T06:16:33.449Z",
+  "sha256": "110f0b60a688b4ae537874eefd327310c52d35568debb85b21cf671c367ccb78",
+  "bytes": 29254,
+  "requestId": "VTVpfh6Ecyg3fI5jULiT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7af0e2c7f25e8045c0b692c71f968841466e0886ca5ef5666cf6c2a424fbb52",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

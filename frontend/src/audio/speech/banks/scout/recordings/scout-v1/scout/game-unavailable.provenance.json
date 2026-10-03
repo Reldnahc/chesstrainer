@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "Not enough engine data to explain this position. Explore it on the board instead."
+    },
+    "takeId": null
+  },
+  "requestHash": "a69c1180c7e8dfe904470e921f36f62ac5bad9b5286087c5a8ec56bb94b3fd1c",
+  "recordedAt": "2026-10-03T06:17:23.844Z",
+  "sha256": "2ed4d45c63898dc87f178c6bede22a2a5d2600e6d81e1d50d4bfa66ec6f3049b",
+  "bytes": 15739,
+  "requestId": "qRnKajMJzA8MP9kQH5jF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09b47a6b05d83fbc0d16818a050682e5c33a4ed1ef4db42150d00f9aabed6d52",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

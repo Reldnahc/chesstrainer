@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Doubled pawns. Two pawns of one color now share a file, and they can't protect each other. Log the structure change."
+    },
+    "takeId": null
+  },
+  "requestHash": "6af9728bb58bb7d682102fdd8351014ea2c2f7c440199057e9a3513802e2ee7f",
+  "recordedAt": "2026-10-03T06:16:58.465Z",
+  "sha256": "91e0880cc7bc069f2324e02faee2d4067eb107337ea57d73bac0228c454217eb",
+  "bytes": 23910,
+  "requestId": "vOKzC3YM4qpWDvtMYsT1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2e7aa0d14ed5f1cab216fe420971ea64e22f91c61756453cd7f21b2ad4f0ae2",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

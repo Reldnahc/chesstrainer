@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Study the move, then go straight to the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "143f95d84122d844c12fd412c1c7c4b703d951d604258e2daeb60d943184608f",
+  "recordedAt": "2026-10-03T06:17:00.668Z",
+  "sha256": "b80fc977002207fc47ad93d753cfa39b9e3c81b43edafb01fce51c566793772f",
+  "bytes": 11489,
+  "requestId": "egdzinI3x8GYNVU6dN42",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd1be639dd8b1243e9b40d91d6d6ff97d1c3f87a2d6a96bed624fcc3f490fe82",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

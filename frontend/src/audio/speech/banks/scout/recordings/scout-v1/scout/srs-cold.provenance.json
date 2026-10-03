@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Focus up. Read the position, find the key pattern, then make your move."
+    },
+    "takeId": null
+  },
+  "requestHash": "f161475e9cb61a8a8ee167c32ad426daf41fea82bb0b168123d685957a6b76cc",
+  "recordedAt": "2026-10-03T06:16:44.546Z",
+  "sha256": "2f66d7bfa31f7ac39ccd3353b16b1fcce3548e302f5a673e022c00774c623847",
+  "bytes": 16057,
+  "requestId": "6oXBI3LxGL5ZhjYH3swm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1eef1bf4e4466071e7024f42de4d73395ff0242538ff911cedf0869c6c69e4d5",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

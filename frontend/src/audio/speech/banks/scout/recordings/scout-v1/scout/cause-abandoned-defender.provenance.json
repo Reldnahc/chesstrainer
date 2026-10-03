@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "Guard pulled. This move takes away a piece's only real defender, and now the other side can capture what it was covering. Know a defender's job before it leaves its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a0fb0b5150938243d93c42ef0e38f94e9f91944ee52427f89878fca3968444f",
+  "recordedAt": "2026-10-03T06:16:50.001Z",
+  "sha256": "2e8350998708c9cee74ab556d956f6a6cfb09cd09a354847e92731220807e0e1",
+  "bytes": 32960,
+  "requestId": "4TIdfKHJcoOYCyjOuyqL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c70968df37835865273c6237572d82121b24d6f13210f5fc09a82f91933f128f",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "Here's the opening line you're drilling. Run the moves in order."
+    },
+    "takeId": null
+  },
+  "requestHash": "4bd6c64704bd74afcbc46384e68fa017d0a7aa7d7cdcbdd9d18f10142253abce",
+  "recordedAt": "2026-10-03T06:17:25.887Z",
+  "sha256": "d99056bdcc69be453f5011af182fe2aeb2f0a87f86f9b3db1b51b63adb6d0500",
+  "bytes": 12200,
+  "requestId": "4FkjVbl03D2TLO9g9pt5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba7e1b2ad90eaa5f3abb9ccc7e90cd7597a24b42226addd137495887ed87a79e",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

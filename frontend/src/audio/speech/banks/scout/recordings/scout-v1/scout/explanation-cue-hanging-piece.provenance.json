@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Scan first for any piece of yours that could be taken with no useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "3192287da17c1b5329edf3d7dd89bc2f7fbbab3becb37a8e3842e6ea2f99460f",
+  "recordedAt": "2026-10-03T06:17:34.595Z",
+  "sha256": "271964ab75d9910eb95931dd0c250e150abb545f01dba588f382dcb8546803e6",
+  "bytes": 16168,
+  "requestId": "ei83I9HEIuCR1qBS8zSb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f821b3e70fd283a67aa2d05dc758b8bdadf9dc24a3923b7af87f74a4baa256f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Promotion and mate. The new piece lands, and the king is out of legal squares."
+    },
+    "takeId": null
+  },
+  "requestHash": "4dea09eed2b00f4106defc442ba6f0474278666d2373475b2921fd1af8e93783",
+  "recordedAt": "2026-10-03T06:17:13.122Z",
+  "sha256": "4cd440bad70186d4e76c51bd0a7a531ce337d537bc764aa1d03bf4f999ad0a0f",
+  "bytes": 17219,
+  "requestId": "5cAyvAyVhebhNQV80Y2e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca47d81cfc565f41b2da870cf918b625335d2cc9f62ca8c7c76f6cd9aaa6f026",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

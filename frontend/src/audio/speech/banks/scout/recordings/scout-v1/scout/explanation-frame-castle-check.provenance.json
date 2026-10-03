@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling with check. The rook lands on its new square and attacks the enemy king."
+    },
+    "takeId": null
+  },
+  "requestHash": "234e0e5ac6cedc6b9b3a76081baf1aa49ca73e84f1607c29274867216953b855",
+  "recordedAt": "2026-10-03T06:17:28.537Z",
+  "sha256": "15cb028cd46d3038bb2fdc29b4f6ca2ce507521a33b096d4c8c1b47c8a1f100c",
+  "bytes": 16573,
+  "requestId": "WyECM7NcG24geB6zjOUK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84019593d68752841ae6998ffca94f5c29872fa359a2750a09ddabace3017efd",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

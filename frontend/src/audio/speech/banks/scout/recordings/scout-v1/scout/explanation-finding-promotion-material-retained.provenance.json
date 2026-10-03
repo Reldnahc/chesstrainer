@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "Promotion, and material up. Once the pawn promotes, this example finishes with a net material gain for that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1b0ebdef27a872a09e3bb935ec8780508638669416cbda5782f06ff74666264",
+  "recordedAt": "2026-10-03T06:17:27.713Z",
+  "sha256": "bf1e8a813d82d2fe9c361e1fd4ece59a9442830c2da85c7f0cbaf39bfc548cc8",
+  "bytes": 23766,
+  "requestId": "wTRJxd8uEC2ebaT704xM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "436ee4ccd613169ac8c3a4b07394ab236b52cb4a32697dd8312dd183be1d2e27",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

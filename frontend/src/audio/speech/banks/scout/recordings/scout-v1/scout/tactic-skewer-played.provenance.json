@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "Skewer on the line. The front piece takes the hit, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    "takeId": null
+  },
+  "requestHash": "624dffb79ec947ad79c572e0704ad22b9544fa7fbd2b89cc74a8f43893e1db49",
+  "recordedAt": "2026-10-03T06:16:39.919Z",
+  "sha256": "1b0f51fe095634e13cdcd5c9367d2cf85157e9414dbe59af4edb34a016c53abf",
+  "bytes": 26172,
+  "requestId": "YLkJAJEw0gkbLatp6fAn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1167d08b8db8644eec507841e6de1c0d58a62685da4f350b228af460d880fc9f",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

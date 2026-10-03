@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "Theory, one more time. Knowing the line places the game and says nothing about the move's value."
+    },
+    "takeId": null
+  },
+  "requestHash": "43fc533835e28ae1553201cfa7bbf0250f5124cfdfe1182d175f414385f0f5f4",
+  "recordedAt": "2026-10-03T06:17:13.559Z",
+  "sha256": "100b06a1cf4889734495b48bb00fa11f0da85743ab94bc5d02c548b4f454dd4d",
+  "bytes": 20043,
+  "requestId": "Xu96bSTj7pivT6cKODXC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "113e45cf2c936e3b2e9c4ebf13ba3f5685a3cb181f4036295e46935a71bb3ee1",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

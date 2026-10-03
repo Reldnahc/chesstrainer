@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "Match. This is one of the exercise's saved answers, and those answers decide what counts here."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d11591d6dd41338f4355721dc4169ae2f4e775aacbd5abedae2e4f024c59c0b",
+  "recordedAt": "2026-10-03T06:16:57.774Z",
+  "sha256": "0180644448e92c414220fa5b5fa7572d63b34c301c75d9e580642c82cf2b7f7f",
+  "bytes": 18608,
+  "requestId": "gn6SGolqJJhWPtX2lA8y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0102a045a41547b9d359c43f932c5f62fc03fa353d1d8c84c7be83e00d70303d",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

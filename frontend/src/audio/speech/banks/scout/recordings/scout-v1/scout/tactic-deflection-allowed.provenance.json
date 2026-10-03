@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "Deflection threat. After this move, the other side can drag a defender off duty. Map every defender's job."
+    },
+    "takeId": null
+  },
+  "requestHash": "e97a57663f810c236cd19d4cdcfcb51374b3f13cefd3cea5f4fdc5f23af59691",
+  "recordedAt": "2026-10-03T06:16:40.114Z",
+  "sha256": "721b287a26a28c9fb32694933609a6b765ac295d3eae5478c50b89e5a7796315",
+  "bytes": 23660,
+  "requestId": "3BaXz7Q7HS5m1nvYriPE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65effd20075bc1b588addbf0cabfa60813c4d1a4b66827f4d3e27d6ef60e8c01",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

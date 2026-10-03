@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-note-material-scope",
+      "label": "Explanation note material scope",
+      "text": "Material is scored only inside the line shown, counted from its first position. Piece values: see the written explanation."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2aa7af80ce7be1bfe712d3a981a5e956b51d652b0907c91387e956097eb4c1a",
+  "recordedAt": "2026-10-03T06:17:21.035Z",
+  "sha256": "7dc7719a313c34b25c6f47e425383a94f5267c9c92d434227402ca600266f016",
+  "bytes": 25678,
+  "requestId": "AAmjOctlOCBfowxWska4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca92aa18253028b33a7ca0115c1058f150072b485d08d919801c4e54cd016745",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

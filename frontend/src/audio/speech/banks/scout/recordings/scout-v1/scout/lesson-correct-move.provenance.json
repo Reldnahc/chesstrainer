@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "lesson-correct-move",
+      "label": "Lesson correct move",
+      "text": "On route. Right on the lesson's trail."
+    },
+    "takeId": null
+  },
+  "requestHash": "b58e78e135d30e94a81846c907c60115ca8be601cdc77467599768fe815b6a39",
+  "recordedAt": "2026-10-03T06:17:16.917Z",
+  "sha256": "a066efb79495af29f46d57211341ecdbaee5635f032e322517df395211b86f0c",
+  "bytes": 8776,
+  "requestId": "dByRR2LswHcI5HEc7lj5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a05f0064c56ebd2f05a31c20b3b0257260c8c134a3d787d1e90018571c19298c",
+    "bytes": 41839
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

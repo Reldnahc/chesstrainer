@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Material down. Through the saved line, the side that made this move ends behind where the line started."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1cc5bbd7213460d4b16de56bb66b05b76a7a0457bf04cdd87207e33a211f14e",
+  "recordedAt": "2026-10-03T06:16:53.109Z",
+  "sha256": "fc71400ad271196772241cfd42d6a78624efd3f3ed5e0f649e1cd6b7fc35fe87",
+  "bytes": 21082,
+  "requestId": "Un0xXlEG5IS5VKs5TzFS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e0d736bf4f52b746069b00d9aab255977ef9618ba2a85ce7c50e4bd698b0938",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

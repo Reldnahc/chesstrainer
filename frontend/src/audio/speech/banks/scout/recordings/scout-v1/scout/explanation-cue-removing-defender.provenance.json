@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Before you trade off a defender, list everything it's covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "284e14282f2f0e3d40ebb9608c4c1d28b653e3711bf2bfc346c32d418e485992",
+  "recordedAt": "2026-10-03T06:17:07.771Z",
+  "sha256": "6ce9b0d5889f4ce5094c0f15d1ed95d736e10668eb026f901f177975ce45d441",
+  "bytes": 12494,
+  "requestId": "qgLFMQKemQ0XF79vc17W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5325a4ba2971c772f228d33d5101cd294c871ed8872184f3b38cd712b53aaee7",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

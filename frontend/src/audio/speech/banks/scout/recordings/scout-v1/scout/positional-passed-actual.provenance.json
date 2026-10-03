@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "Passed pawn. No enemy pawn stands ahead of it on its file or the two beside it, so only pieces can stop it. Mark it and track its route."
+    },
+    "takeId": null
+  },
+  "requestHash": "1cfb5dd51f9ddcd2dc1eec245f8e6092daf9c5364167ddb639aada177ef034bc",
+  "recordedAt": "2026-10-03T06:17:08.063Z",
+  "sha256": "9bed59e070d761f8bfbe37b3e99c99e03b542af134c6705d14734c3931226b01",
+  "bytes": 28838,
+  "requestId": "bXTUZwGtIVHCkbWvT419",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50527c89662ba1341b893255b269a83b3daf3ae1e082ad1c04dfe0adccf9733b",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Mixed Due takes this line's moves. Dedicated practice drills it solo."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e1b5845d7ca7f00c71afff1efc49ea0739040b155eb3f5f08707cd256743278",
+  "recordedAt": "2026-10-03T06:17:11.483Z",
+  "sha256": "ba87d7f06fd75a8c1c823278ea2eeea63e909b34ac65284e7b347204ca8d628a",
+  "bytes": 16968,
+  "requestId": "IL3FA3gcSNMkZ7Lj4ntr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "96df3c5204614086be1b69032de6b2731f8872811f24e2f86b0870a045fe08ac",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

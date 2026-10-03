@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "Development available. A minor piece could have entered play with a different move. Weigh it against the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "f81d1a623a05dec3172c3527c9f94639989357092a40168481b539fc7628fe85",
+  "recordedAt": "2026-10-03T06:16:57.504Z",
+  "sha256": "8e5cd65eae151beec42061a25bdc90f6a72ae9a0eafcf7d901185ae1d0594a08",
+  "bytes": 21466,
+  "requestId": "7mRa4Wacto1GSv1lsYS2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e22209f7ce4cee0c1d2ce1c12c1fbd56454ec25a765dd29e6c85d17001ff812",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

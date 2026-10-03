@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate. Attacked king, zero legal squares. Run the final moves back once more to lock in the pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d24c8f519ac6ae27d1e5044cbb33392c33ceced8a1f72e5b03d7ca5c4ef4d8f",
+  "recordedAt": "2026-10-03T06:16:39.786Z",
+  "sha256": "78e29a2a573f4c3f091fe2681b98c583c84e193be2b82a11cbfd4d3b837e0d9f",
+  "bytes": 22786,
+  "requestId": "XYU2cFisWNCIENqxLkCo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f5d4c446dce462770331123160a46f1649df07a92e9712fee097480ccc79b87",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

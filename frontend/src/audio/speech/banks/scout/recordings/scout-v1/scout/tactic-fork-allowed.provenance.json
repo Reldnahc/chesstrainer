@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "Fork spotted, and it's theirs. After this, one of their pieces can reach several targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3524fa8cc54747cf71bd0505b137db7991d24d47a269b6d2b6bdd299a8fdf3d9",
+  "recordedAt": "2026-10-03T06:16:29.563Z",
+  "sha256": "94c3547c4a5e80742797903c7332ac9ff69c13654b964077a2aa8a2664dfaa82",
+  "bytes": 30251,
+  "requestId": "ZDhPDYb1w3Axa6SKZ6dw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cedabfd49344f070c0f358e80d4c560b95f8d92af4584e05b5a6c6cd31658429",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

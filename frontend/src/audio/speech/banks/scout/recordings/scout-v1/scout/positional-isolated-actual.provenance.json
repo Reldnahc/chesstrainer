@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "Isolated pawn. No friendly pawn sits on either neighboring file, so pawns can't defend it. Mark it as a structural target."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e7f72157b2c24c30aff91cd76cd47b004aa0b607b8c9286be883ea4bf173630",
+  "recordedAt": "2026-10-03T06:16:36.782Z",
+  "sha256": "6476c12059a7070d430c69aeda20ef7ea23d13c22c955b6877dc5f41c90d3bb4",
+  "bytes": 26309,
+  "requestId": "B35bwxVI1KY6PhgV3CFz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cc9329bab357e5689b09a6814402f6f429dd33e5a2ce82b38ce00c51e6e0303",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

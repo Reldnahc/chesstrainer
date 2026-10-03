@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Escape square available. Another move would have handed the king a fresh legal square. Identify the piece that had to shift."
+    },
+    "takeId": null
+  },
+  "requestHash": "0aa24a8973aff353f054bdbaa39eb8120fa8293deacea379887b6a86be9d1767",
+  "recordedAt": "2026-10-03T06:16:49.795Z",
+  "sha256": "3091a9fcdee78851b5404dece1d31d5475440d111e25605a92d4689b84530bc0",
+  "bytes": 23894,
+  "requestId": "SZ44gjVtcS4BBIgvzhda",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57e98ecb819ce0b7050a397e0b659ef4f983e7e5065d8c76dfd92f587505ba3c",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

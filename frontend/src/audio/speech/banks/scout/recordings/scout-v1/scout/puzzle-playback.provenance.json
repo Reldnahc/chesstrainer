@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "puzzle-playback",
+      "label": "Puzzle playback",
+      "text": "Playing the verified line now. Eyes on every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ccdc9c55803c793dddcf72acf15fb8ab65c7ef7e4c9e2b1b28e93ac89eed038",
+  "recordedAt": "2026-10-03T06:17:15.247Z",
+  "sha256": "e5617f593d4787819e88808439a7a3c4cca389bc033d1a05b0dfd4b0103aea2b",
+  "bytes": 12607,
+  "requestId": "B2bSW0durLWPc3APzFZD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64e2959085b606f2427ef25603879d4159b47514b6808532612ccde66b29edb1",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

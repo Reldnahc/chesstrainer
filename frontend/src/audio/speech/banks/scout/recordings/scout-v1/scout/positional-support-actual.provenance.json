@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-actual",
+      "label": "Positional support actual",
+      "text": "Cover added. Guard assigned to a piece that had none. Check the connection and keep it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b625ec7ceff5edc018b1bd5920dd7983ca7b540f672baf0bdee763db22efbe39",
+  "recordedAt": "2026-10-03T06:16:40.505Z",
+  "sha256": "07b5d4d4d251107fefc59cf5a138c21d257c654756eff4dfa8a36c38b0ad268b",
+  "bytes": 16923,
+  "requestId": "iNPYYprQKxQGDAaAhtAt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78e0595e0557bfac848858c01a846f5f2e56f57c255f2f187afb8192a2e622cc",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

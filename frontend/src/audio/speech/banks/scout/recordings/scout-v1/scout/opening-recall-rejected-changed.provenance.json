@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "Off your opening lines. Go again. The study changed, so this saved attempt leaves its review schedule as is."
+    },
+    "takeId": null
+  },
+  "requestHash": "bada6dfad336126f56e505c767882cf6d3da490d62f2e2d507dbf97470fb3d48",
+  "recordedAt": "2026-10-03T06:17:32.228Z",
+  "sha256": "e58a616ca4f183402fc9abfcb7a6b0953116215fc8d0b4ba9e6d8f934c1f3861",
+  "bytes": 23485,
+  "requestId": "U6evYPZeH5xbNGaS6Gar",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99570d749f5b571f222a1fbf34d5548e26950797cfb0dd8e2bfef85acff5ac93",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

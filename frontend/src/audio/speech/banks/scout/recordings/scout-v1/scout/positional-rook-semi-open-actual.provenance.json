@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "Rook lands where the file's semi-open. The rook has no pawns of its own in front, only an enemy pawn somewhere along the file. That enemy pawn is the thing to watch."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a70a8e51b658ad2f3ecce9c8744f22963b188950539ea3ad5db0ffa0525468d",
+  "recordedAt": "2026-10-03T06:17:04.002Z",
+  "sha256": "e6f6b743ffdf78a6ece7b72c6a55ccd004adf24192fe8b76ea17e5005add49ae",
+  "bytes": 32771,
+  "requestId": "YiTk0pwc3pWpv3NELBPw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "133d2b63b92ebb6a654d499868f7f93cdbc35f68c3e7fb7f5b5c95a041581992",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "chance-missed",
+      "label": "Chance missed",
+      "text": "Opportunity missed. The opponent's last move left a chance, and this one lets it slide. Rewind one move and find what changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "3efabe40279516001a3015f9a00e8f8c5e9d9f33ad1f16e0df839f21b508dfb9",
+  "recordedAt": "2026-10-03T06:17:00.582Z",
+  "sha256": "186d4b59982b915930903df64613f1140affc975cc49eb3d4aa23fead960cacd",
+  "bytes": 27490,
+  "requestId": "dwjr5m1ZXKTUQulX55aI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62a0bdea5b06dd7626e1303e1caf27188c9876f5c6de0db1877911b2fbdaa9a8",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

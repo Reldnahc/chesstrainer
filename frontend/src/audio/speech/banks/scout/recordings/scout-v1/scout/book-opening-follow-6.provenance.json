@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "book-opening-follow-6",
+      "label": "Book opening follow 6",
+      "text": "In the book, move after move."
+    },
+    "takeId": null
+  },
+  "requestHash": "97d2f8f339be8cf92f3201ea41e3bd801a0a2bd3b95f8405d5a099389608d29f",
+  "recordedAt": "2026-10-03T06:17:11.275Z",
+  "sha256": "2b71a7c91985df970d4ac577b73f741a994c87ac8c502ff15e818eaf486c9c76",
+  "bytes": 8824,
+  "requestId": "fEyTARSPM0s9SiwMN1Ww",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5931fca2668668bca33b01a963d338368955c26291a59fc3d1c3538d08b3f697",
+    "bytes": 43511
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "Deflection. A defender gets pulled off its post, and the thing it was covering opens up. Spot the defender's job, then the move that broke it."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc0f607c70e8bf9d41bdfa54d0113f4b9401c8a8d0efdffd4e855351df4e13fc",
+  "recordedAt": "2026-10-03T06:16:38.391Z",
+  "sha256": "28eb77787eed58818960eca7b606a362ec8169edde8fe8392499e64b1115b928",
+  "bytes": 27492,
+  "requestId": "F9Dke2pQlHyJV2tMPxsR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f7a748e7340d43c78fa8604b7e5c6e93676332ec2bd3d8fba3c891184819ec0",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

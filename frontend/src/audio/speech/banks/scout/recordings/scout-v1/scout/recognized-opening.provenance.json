@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "recognized-opening",
+      "label": "Recognized opening",
+      "text": "Opening identified. The line is on record. That says where the game is, not whether the move is good."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4001146e921e56cfd727985f15690c5845fa18f7fbead6b82aae87ba53f4797",
+  "recordedAt": "2026-10-03T06:16:51.089Z",
+  "sha256": "0d364292673fb3a54c74ade890d2c7de49ea06ea098ae40e98cbcc4e0960bdc7",
+  "bytes": 20917,
+  "requestId": "17Kxco86RkUS5aiNbwY0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4894ffe2730f495254256fadc47437a35e1bdb5c28f206ea35330c7b7f97ceef",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

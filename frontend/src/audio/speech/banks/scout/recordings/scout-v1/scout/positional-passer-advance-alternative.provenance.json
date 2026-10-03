@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Push available. The passed pawn could have marched with another move. Measure the distance it would have gained."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d0f9eaa8df51b6cb16626c62618d35e19e6330498bb89386eee1b7962dbb3ea",
+  "recordedAt": "2026-10-03T06:16:34.954Z",
+  "sha256": "d302ca3b2fd304bdf0a695ab41cc64bf1ad8fcc2e1e044f2194ba8a387d13653",
+  "bytes": 20125,
+  "requestId": "mVisbjzOL7Fp5roz143r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e41b17a7a27bb72a66dc0f551bfdb1b7495260346fcf0c917936992b256c601",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

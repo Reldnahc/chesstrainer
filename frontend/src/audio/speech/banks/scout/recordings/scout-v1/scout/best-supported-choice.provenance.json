@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "best-supported-choice",
+      "label": "Best supported choice",
+      "text": "Strong move. It holds up against everything the engine examined. Lock in why it works."
+    },
+    "takeId": null
+  },
+  "requestHash": "2de173ba0536b1edd255f6a79d94c803c6e21ea515f1b3e9ca9ac4b94d0cd603",
+  "recordedAt": "2026-10-03T06:16:43.004Z",
+  "sha256": "397e02447744fc438c71adc48a6c5f0ebb26d4548fc364c490d54fa976b18cb7",
+  "bytes": 18972,
+  "requestId": "5zk6FbIoOFUmuf1EDYfS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7470c0aad024040fbc784cdfbe5f1611ef7afa3c8b7f2c76ffbe327d010e69a5",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

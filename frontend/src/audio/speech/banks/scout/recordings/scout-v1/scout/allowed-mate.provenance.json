@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Mate allowed. Forced checkmate for the other side, straight from this move. Run the attack back one forcing move at a time and find where the defense broke."
+    },
+    "takeId": null
+  },
+  "requestHash": "14d0028f897b7eebff5ac0965cc50d77b45fa7685f9f99f6a492549f1eae0e02",
+  "recordedAt": "2026-10-03T06:17:02.424Z",
+  "sha256": "b25932ca4ada529912e7785f0e1971e2c0e5d268f670bb592aafccd6ffa7ad37",
+  "bytes": 30227,
+  "requestId": "tGoa41NYzQiMrgXkUHke",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c32e5f10747a948bf64be540290c6e868ae5fe1b3b9860e0549ad33b4acae85a",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

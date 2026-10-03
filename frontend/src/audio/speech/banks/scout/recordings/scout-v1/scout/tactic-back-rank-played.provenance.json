@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "Back-rank pattern. The enemy king sits behind its own pieces with nowhere to step, and this move goes straight at that weakness. Check the escape squares and confirm they're shut."
+    },
+    "takeId": null
+  },
+  "requestHash": "98a4ba44caa04e6977634440d73eafbf79faf0fc4a03ff5447f73160e2b1e700",
+  "recordedAt": "2026-10-03T06:16:52.816Z",
+  "sha256": "a2a03066e987f520ca24b3760f748e65a6eb195c9f1c06b6bb89f9d519403b11",
+  "bytes": 33546,
+  "requestId": "lw3Gk9YLznjVC8dQ6LFR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b8b2f3c4a1c5c01432d844a97fd0b263a48edfc74c79e80334bf6b2a0f46cb7",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

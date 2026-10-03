@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "Accepted. The exercise takes this move, but the moves shown don't give a clear tactical reason to point at."
+    },
+    "takeId": null
+  },
+  "requestHash": "258ffa9989c7dd7f481f5b95bdf31b85e68594d1aa0723eeb2366b4e6526c31c",
+  "recordedAt": "2026-10-03T06:16:54.655Z",
+  "sha256": "7ec79a2b197b455e8ddd7dee0ca42977f1040d20e427229b444f85b9c023b2f0",
+  "bytes": 21360,
+  "requestId": "DZJjUzvtlzlyQLv7m6D8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9bf2bf47a5d4c96eb375d92cc5a1de54769f3b24e09b1c016caa82d2ef258d2",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Sacrifice holds. Even when the material is taken, the idea survives in the searched line. Play the capture and follow what comes next."
+    },
+    "takeId": null
+  },
+  "requestHash": "c8a796abfe82a2797b67852f9bb8211af03e598337649c2b92a095889838aa5b",
+  "recordedAt": "2026-10-03T06:17:06.097Z",
+  "sha256": "7c9b7f1a9cbfe9fe90fe2e7caacbd0191cc663a42d1a3331fc3f77e73cfc8ae3",
+  "bytes": 27345,
+  "requestId": "HQQxo6k1wpyDsBgydAgx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae55debd840c92a361ffe4238fdc5ada030948d89a6f6da703b7261cda6df5c3",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
