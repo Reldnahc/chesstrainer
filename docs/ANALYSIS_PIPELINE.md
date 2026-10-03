@@ -20,9 +20,13 @@ Every decision commits before classification. FEN, game/ply reconstruction, play
 
 Game review has its own existing baseline: every move receives depth 16 / 0.8 s
 Stockfish work with two candidates and a restricted played-move search. It does
-not use the training triage pass above. The same per-game job then runs the
-training pass for that game, so its decisions, practice exercises and Weaknesses
-evidence exist once the review finishes ([Automatic game analysis](GAME_ANALYSIS.md)).
+not use the training triage pass above. The same per-game job then saves the
+learner's training decisions from the review's own baseline searches, so its
+decisions, practice exercises and Weaknesses evidence exist once the review
+finishes ([Automatic game analysis](GAME_ANALYSIS.md)). Those decisions are marked
+deep and run no triage. The only extra search is a restricted played-move search
+when the played move was the review's second candidate, at the review's limits.
+Unreviewed games (for example **Find training mistakes**) still triage as above.
 The review's progress counters describe only the review. Bounded [refinement](REVIEW_REFINEMENT.md) adds investigation to selected
 positions without replacing or reducing that baseline.
 
