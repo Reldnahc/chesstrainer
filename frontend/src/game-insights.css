@@ -1,6 +1,6 @@
 /* Insights > Overview: library-wide patterns. Shared panels, StatList, ChoiceGroup and outcome colours.
    Spacing rule: containers own the gaps; their children carry no outer margins. */
-.insights { display: grid; gap: 32px; }
+.insights { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
 .insights :where(h2, h3, h4, p, ul, dl, table) { margin: 0; }
 
 .insight-toolbar { display: flex; flex-wrap: wrap; gap: 16px 32px; }
@@ -8,7 +8,7 @@
 .insight-filter > span { font: 10px var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); min-width: 48px; }
 .insight-filter .choice-group button { min-height: 36px; padding: 6px 14px; font-size: 13px; }
 
-.insight-summary { display: grid; gap: 22px; padding: 28px; }
+.insight-summary { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 28px; }
 .insight-headlines { list-style: none; padding: 0; display: grid; gap: 10px; }
 .insight-headlines li {
   position: relative;
@@ -29,7 +29,7 @@
 }
 .insight-headlines-empty { color: var(--muted); }
 
-.insight-group { display: grid; gap: 16px; }
+.insight-group { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .insight-group > h2 {
   font: 11px var(--mono);
   letter-spacing: 1.3px;
