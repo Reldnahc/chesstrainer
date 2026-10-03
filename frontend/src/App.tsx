@@ -25,6 +25,7 @@ import Link from "./Link";
 import Button, { IconButton } from "./Button";
 import ActionLink from "./ActionLink";
 import Notice from "./Notice";
+import WelcomeBack from "./WelcomeBack";
 import appMark from "./assets/fieldwork.svg";
 import { useAccount } from "./AccountGate";
 import { useCoachPreferences } from "./coach/CoachProvider";
@@ -134,6 +135,7 @@ export default function App() {
             {error}
           </Notice>
         )}
+        {!connection && <WelcomeBack />}
         {connection ? (
           <section className="panel connection">
             <LockKeyhole />

@@ -190,7 +190,7 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
     {(error || Object.values(statuses).find(value => value.error)?.error) && <Notice announcement="alert" tone="error" appearance="inline" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</Notice>}
   </div>;
   return <section aria-label="Connected game accounts">
-    <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks your 100 most recent games every few minutes and analyzes new ones automatically, newest first. Older imported games are analyzed after them.</p>{connected && button}</div>
+    <div className="row-between connection-heading"><p className="small connection-description">Fieldwork watches for new games every 20 seconds and analyzes each one automatically, newest first. Older imported games are analyzed after your recent ones. Checks pause after a week without visiting.</p>{connected && button}</div>
     {connected && <AnalysisQueueStatus />}
     {loading && providers.length === 0 && <p role="status" className="small">Loading game connections…</p>}
     <div className="provider-connections">{providers.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>

@@ -17,7 +17,7 @@ status is returned.
 | DATABASE_PATH | data/trainer.sqlite3 |
 | STOCKFISH_PATH | stockfish |
 | STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..4 |
-| SYNC_INTERVAL_SECONDS | 300; seconds between server checks of each saved provider connection, 0 disables polling |
+| SYNC_INTERVAL_SECONDS | 20; seconds between server polling rounds (change checks, then syncs for changed connections), 0 disables polling |
 | HUMAN_MODEL_ENABLED | true; inference only when explicitly installed/cached |
 | HUMAN_MODEL_PATH | data/models/maia3-79m.pt; /data/models/maia3-79m.pt in Docker |
 | HUMAN_MODEL_DEVICE | cpu; optional administrator-provided cuda runtime |

@@ -113,8 +113,10 @@ immediate check, at most once per minute per connection. Multiple devices share
 the same checkpoint/cooldown. A failed provider request leaves saved games
 available and displays an error.
 
-Each sync scans the newest 100 completed standard-chess games across all time
-controls, whatever month they were played in. Every new game queues its own
+Each sync reads the 10 newest completed standard-chess games across all time
+controls, whatever month they were played in, and only runs when the provider
+reports a change. Accounts with no visits for 7 days stop being polled and see a
+welcome-back notice on return. Every new game queues its own
 analysis job. The Games library sorts by play time, with unknown dates last.
 Chess.com's published API is cached; a check does not guarantee immediate
 availability after a game.
