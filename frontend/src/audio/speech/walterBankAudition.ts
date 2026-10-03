@@ -1,5 +1,16 @@
 import manifest from "./bank/manifest.json" with { type: "json" };
-import type { WalterCollection, WalterScript } from "./walterPilot";
+import type { CoachExpression } from "../../coach/model";
+
+export type WalterCollection = { id: string; label: string; description: string; voiceIds: readonly string[]; scriptIds: readonly string[] };
+export type WalterScript = {
+  id: string;
+  label: string;
+  writtenText: string;
+  spokenText: string;
+  reaction: CoachExpression;
+  recordingId?: string;
+  category?: string;
+};
 
 const groupLabels: Record<string, string> = {
   game_review: "Game review",

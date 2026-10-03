@@ -4,9 +4,10 @@ Only Git-listed source (or an exported snapshot manifest) is eligible. Never wal
 the working directory to discover files: it also contains private games and data.
 No runtime API, database access or network connection is involved.
 
-Recorded audio under frontend/src/audio is listed by hash rather than embedded:
-the application already serves those exact files, so a second copy would double
-every coach voice bank in the image.
+Recorded audio the application serves (the registered voice banks and Walter's
+contrasting examples) is listed by hash rather than embedded: a second copy would
+double every coach voice bank in the image. Other committed audio is revision
+history, not an input to the build, and is neither listed nor embedded.
 """
 
 import hashlib
@@ -35,11 +36,38 @@ EXCLUDED = {
 }
 MEDIA_ROOT = PurePosixPath("frontend/src/audio")
 MEDIA_SUFFIXES = (".opus", ".mp3", ".wav")
+SPEECH = PurePosixPath("frontend/src/audio/speech")
+# Mirrors the production glob in frontend/src/audio/speech/voiceBank.ts.
+SERVED_SPEECH = (
+    SPEECH / "bank/recordings",
+    SPEECH / "banks",
+    SPEECH / "recordings/walter-contrasts-v1/walter",
+)
+SERVED_CONTRASTS = frozenset(
+    SPEECH / "recordings/walter-contrasts-v1/walter" / f"{clip}.opus"
+    for clip in (
+        "sound-sacrifice",
+        "recovery",
+        "positional-unsupported-actual",
+        "only-playable-move",
+        "human-unusual-strong",
+    )
+)
 
 
 def is_media(name: str) -> bool:
     relative = PurePosixPath(name)
     return relative.is_relative_to(MEDIA_ROOT) and relative.suffix.lower() in MEDIA_SUFFIXES
+
+
+def is_served(name: str) -> bool:
+    """Audio the built application loads; everything else under speech/ is history."""
+    relative = PurePosixPath(name)
+    if not relative.is_relative_to(SPEECH):
+        return True  # Sound effects under audio/assets are all bundled.
+    if relative.is_relative_to(SERVED_SPEECH[2]):
+        return relative in SERVED_CONTRASTS
+    return any(relative.is_relative_to(prefix) for prefix in SERVED_SPEECH[:2])
 
 
 def source_paths(root: Path) -> list[str]:
@@ -101,7 +129,8 @@ def build_archive(root: Path, output: Path) -> dict:
     for name in sorted(set(source_paths(root))):
         if path := safe_source(root, name):
             if is_media(name):
-                media[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+                if is_served(name):
+                    media[name] = hashlib.sha256(path.read_bytes()).hexdigest()
             else:
                 entries[name] = path.read_bytes()
     if not entries:
@@ -110,7 +139,8 @@ def build_archive(root: Path, output: Path) -> dict:
         "format": 1,
         "description": (
             "Public source checkout snapshot; private data and secrets excluded. "
-            "Recorded audio is listed under media by hash and is served by the application."
+            "Recorded audio the application serves is listed under media by hash; "
+            "superseded recordings kept as revision history are not part of the build."
         ),
         "files": {name: hashlib.sha256(data).hexdigest() for name, data in entries.items()},
         "media": media,

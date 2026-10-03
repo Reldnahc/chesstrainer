@@ -56,17 +56,15 @@ export function productionDevelopmentBoundaryPlugin(root = frontendRoot) {
   const directories = [
     "src/audio/studio",
     "src/coach/studio",
-    "src/audio/speech/cast-auditions",
   ].map((path) => normalized(resolve(root, path)) + "/");
-  const loader = normalized(resolve(root, "src/audio/speech/castAuditions.ts"));
   return {
     name: "fieldwork-production-development-boundary",
     generateBundle() {
       const dependencies = [...this.getModuleIds(), ...this.getWatchFiles()];
       const violations = [...new Set(dependencies.map(normalized).filter((id) =>
-        id === loader || directories.some((directory) => id.startsWith(directory))))];
+        directories.some((directory) => id.startsWith(directory))))];
       if (violations.length) {
-        this.error(`Application imports development-only voice assets or studio modules: ${violations.sort().join(", ")}. Keep auditions in standalone development entry points.`);
+        this.error(`Application imports development-only voice assets or studio modules: ${violations.sort().join(", ")}. Keep studio modules in standalone development entry points.`);
       }
     },
   };

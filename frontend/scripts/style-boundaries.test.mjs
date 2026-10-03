@@ -95,10 +95,6 @@ async function applicationFixture(t, imported, dynamic = false) {
 }
 
 for (const imported of [
-  "src/audio/speech/castAuditions.ts",
-  "src/audio/speech/cast-auditions/manifest.json",
-  "src/audio/speech/cast-auditions/tracks.json",
-  "src/audio/speech/cast-auditions/recordings/cat-1.opus",
   "src/audio/studio/shared-player.js",
   "src/coach/studio/inspector.js",
 ]) for (const dynamic of [false, true]) {

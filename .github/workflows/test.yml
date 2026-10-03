@@ -141,16 +141,6 @@ jobs:
       - name: Install Python runtime for the app or semantic fixtures
         if: matrix.python
         run: python -m venv .venv && .venv/bin/pip install -r requirements.lock && .venv/bin/pip install --no-deps -e .
-      - name: Verify cast voice authoring and saved choices offline
-        if: matrix.suite == 'audio-studio' && matrix.project == 'desktop'
-        env:
-          ELEVENLABS_API_KEY: ''
-        run: |
-          node --test scripts/design_coach_voices.test.mjs frontend/scripts/casting-server.test.mjs
-          .venv/bin/ruff check scripts/prepare_cast_voice_auditions.py backend/tests/test_cast_voice_auditions.py
-          .venv/bin/ruff format --check scripts/prepare_cast_voice_auditions.py backend/tests/test_cast_voice_auditions.py
-          .venv/bin/python -m pytest -q backend/tests/test_cast_voice_auditions.py
-          .venv/bin/python -B -S scripts/prepare_cast_voice_auditions.py --check
       - run: npm ci
         working-directory: frontend
       - uses: actions/download-artifact@v4

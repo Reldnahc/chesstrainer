@@ -213,18 +213,9 @@ def test_shared_player_dependencies_keep_both_studios_and_application_consumers(
 
 @pytest.mark.parametrize(
     "path",
-    [
-        *sorted(ci_plan.CAST_AUTHORING_FILES),
-        *sorted(ci_plan.SHARED_VOICE_STUDIO_FILES),
-        "frontend/src/audio/speech/cast-auditions/design-plan.json",
-        "frontend/src/audio/speech/cast-auditions/manifest.json",
-        "frontend/src/audio/speech/cast-auditions/tracks.json",
-        "frontend/src/audio/speech/cast-auditions/recordings/cat-kitten/soft.opus",
-        "frontend/src/audio/speech/cast-auditions/recordings/cat-kitten/soft.provenance.json",
-        "frontend/src/audio/speech/cast-auditions/alignment/cat-kitten-soft.json",
-    ],
+    sorted(ci_plan.SHARED_VOICE_STUDIO_FILES),
 )
-def test_cast_authoring_and_shared_studio_playback_only_select_their_consumers(path):
+def test_shared_studio_playback_only_selects_its_consumers(path):
     plan = ci_plan.select_checks(["docs/AUDIO.md", path])
     assert_selection(plan, build=True, suites=VOICE_STUDIO_SUITES)
     assert all(entry["api"] is False for entry in plan["matrix"]["include"])
@@ -239,8 +230,8 @@ def test_cast_authoring_and_shared_studio_playback_only_select_their_consumers(p
     )
 
 
-def test_cast_only_selection_cannot_hide_changed_production_or_shared_dependencies():
-    audition = "frontend/src/audio/speech/cast-auditions/manifest.json"
+def test_studio_only_selection_cannot_hide_changed_production_or_shared_dependencies():
+    audition = "frontend/src/audio/studio/StudioTransport.tsx"
     assert_selection(
         ci_plan.select_checks([audition, "frontend/src/audio/speech/bank/manifest.json"]),
         backend=True,
@@ -269,7 +260,7 @@ def test_locked_cast_voices_also_verify_registered_production_banks():
         ci_plan.select_checks([locked]), backend=True, build=True, suites=VOICE_STUDIO_SUITES
     )
     assert_selection(
-        ci_plan.select_checks([locked, "frontend/src/audio/speech/cast-auditions/manifest.json"]),
+        ci_plan.select_checks([locked, "frontend/src/audio/studio/StudioTransport.tsx"]),
         backend=True,
         build=True,
         suites=VOICE_STUDIO_SUITES,
@@ -281,27 +272,6 @@ def test_locked_cast_voices_also_verify_registered_production_banks():
         docker=True,
         suites=ALL_SUITES,
     )
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "frontend/scripts/casting-server.mjs",
-        "frontend/scripts/casting-server.d.mts",
-        "frontend/scripts/casting-server.test.mjs",
-    ],
-)
-def test_casting_server_changes_include_one_offline_test_runner_and_both_studios(path):
-    plan = ci_plan.select_checks([path])
-    assert_selection(plan, build=True, suites=VOICE_STUDIO_SUITES)
-    offline_runners = [
-        entry
-        for entry in plan["matrix"]["include"]
-        if entry["suite"] == "audio-studio" and entry["project"] == "desktop"
-    ]
-    assert len(offline_runners) == 1
-    assert offline_runners[0]["python"] is True
-    assert offline_runners[0]["api"] is False
 
 
 def test_unclassified_frontend_scripts_keep_full_correctness():
@@ -325,7 +295,7 @@ def test_unclassified_frontend_scripts_keep_full_correctness():
         "frontend/src/audio/speech/bank/recordings/walter/sound-sacrifice.opus",
         "frontend/src/audio/speech/bank/recordings/walter/sound-sacrifice.json",
         "frontend/src/audio/speech/bank/alignment/sound-sacrifice.json",
-        "frontend/src/audio/speech/recording-plan.json",
+        "frontend/src/audio/speech/walter-contrasts-plan.json",
         "frontend/src/audio/speech/voiceBank.ts",
     ],
 )
@@ -465,7 +435,7 @@ def test_type_tests_run_in_the_build():
 def test_selection_unions_paths_and_does_not_let_docs_hide_runtime_changes():
     paths = [
         "docs/TESTING.md",
-        "frontend/studio-tests/cast.spec.ts",
+        "frontend/studio-tests/full-cast.spec.ts",
         "backend/trainer/game_review.py",
     ]
     assert_selection(

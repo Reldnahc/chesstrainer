@@ -207,7 +207,7 @@ automatically writes a finished personality or turns all coach prose into speech
    registered bank must match its owner-approved `savedVoiceId` in
    `cast-auditions/locked-voices.json`. Walter uses `walter-selected-voice.json`.
    Preserve the approved source identity; do not invent a lock entry for an
-   unheard voice. Follow the [casting workflow](../cast-auditions/README.md) and
+   unheard voice. Follow the [cast voice locks](../../../../../docs/AUDIO.md#cast-voice-locks) and
    [media notice](../README.md#permissions-and-attribution). Recheck provider
    terms for new paid generation; do not treat historical approval as a license
    for a different voice or subscription tier.

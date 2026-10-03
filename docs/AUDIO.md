@@ -120,9 +120,8 @@ npm --prefix frontend run dev:audio
 ```
 
 Open **http://127.0.0.1:5176**. This is a separate Vite process with no application
-account/API connection and no production navigation route. A development-only
-endpoint saves casting decisions on the studio host. It uses the actual audio engine
-and the same nine approved defaults as the app.
+account/API connection and no production navigation route. It uses the actual audio
+engine and the same nine approved defaults as the app.
 
 - Play each sound alone; open its Source disclosure for the recording, author,
   edits and license. Exact recipes remain in the asset manifest.
@@ -380,8 +379,9 @@ Walter's voice is locked by the owner. Audio Studio's **Walter wording** section
 compares original and revised passages in that same voice, using the real portrait
 and automatic mouth timing. Choose eight representative examples or all 81 revised
 clips, then Original/Revised and Play or In context. This does not reopen voice
-casting or change account preferences. Earlier voice auditions and the old
-complete-bank selector remain isolated test fixtures.
+casting or change account preferences. The earlier voice auditions, the
+complete-bank selector and the cast audition studio were removed from the tree on
+2026-10-03; Git history retains them.
 
 The **Recorded coach comparison** panel compares Walter and Rivet for the same
 meaning, with Opening run, With Maia and All lines collections. It uses the same
@@ -421,31 +421,27 @@ channel energy that cannot cancel opposing stereo phases. There is no continuous
 running audio-side animation loop. The coach owns smoothing and artwork, described
 in [Animated coach](COACH.md#speaking-articulation).
 
-The Walter audition passes the matching live handle to the real shared portrait.
-Loading, the context move sound and its delay cannot start his mouth. Stop, mute,
-zero volume, example changes and hiding the page cancel both together. The local
-Coach motion selector uses the shared device/Animated/Still policy without
-changing account preferences. Existing prerecorded examples are unchanged; the complete bank also powers
-application narration. Lessons remain out of scope.
+The studio's Walter wording and recorded coach comparison panels drive the real
+shared portrait from the engine's live playback handle. Loading and the context
+move sound cannot start the mouth; Stop, mute, zero volume, example changes and
+hiding the page cancel speech and mouth together. Their local Coach motion
+selector uses the shared device/Animated/Still policy without changing account
+preferences. The complete bank also powers application narration. Lessons remain
+out of scope.
 
 ### Automatic lip-sync comparison (development only)
 
-The isolated Walter browser-test fixture retains **Compare lip sync**.
-**Sound sacrifice** and
-**Allowed checkmate** each drive two shared Walter portraits from one audio
-source: the first Rhubarb generator and the revised script-aligned generator.
-Both use identical mouth artwork, expression and playback smoothing, so this
-comparison isolates generation quality. Independent idle gestures are
-paused to make the comparison easier. Play voice, In context, Stop and the motion
-selector keep their existing behavior. No new recordings or paid generation
-were needed.
+`audio-tests/lip-sync.spec.ts` keeps the retained **Sound sacrifice** and
+**Allowed checkmate** comparison tracks (`speech/alignment/`): the first Rhubarb
+generator and the revised script-aligned generator for the same recordings. The
+interactive Compare lip sync panel was removed with the Walter audition on
+2026-10-03. No new recordings or paid generation were needed.
 
 The original Rhubarb Lip Sync 1.14.0 tracks remain unchanged. The revised generator
 uses PocketSphinx 5.1.1's public word/phoneme alignment API against the known script,
 then a shared English sound-to-mouth mapping. Generated artifacts retain word and
 phone evidence as well as mouth cues. No clip-specific timing fixes or artwork
-adjustments are used. The ordinary **Voice audition** still previews the simpler
-energy-driven mouth.
+adjustments are used.
 
 The improved method now generates the complete production bank. The
 [alignment README](../frontend/src/audio/speech/alignment/README.md) documents
@@ -454,87 +450,19 @@ The native tool, recognition resources and temporary WAVs stay outside Git and
 Docker. The two original comparison archives remain development-only; the production
 bank uses its separate generated compact cue projection.
 
-### Coach voice auditions
+### Cast voice locks
 
-The separate audio studio's **Cast voice auditions** selector compares three
-independently described custom voices for each of twenty-nine coaches (87 active
-recordings): the twenty nonhumans and the nine newer humans, each human voiced
-from their [chess home region](COACH.md#human-home-regions). All twenty-nine
-designs are locked, so **Needs a voice** is empty. **Locked
-voices** permits read-only inspection. All thirty speaking rigs can be inspected
-independently. Walter keeps his separately approved voice.
-The coach studio's **Mouth shapes** view embeds the same audition panel for its
-selected character. These tools share `useStudioPlayer`, `StudioTransport`,
-`CastVoiceAudition` and the existing audio engine. Selecting another character
-or direction cancels playback; all sound and mouth timing use the same source
-clock. Neither surface changes account preferences or installs a production voice.
-A recording whose automatic alignment failed still plays: once the track lookup
-finishes without a track, the portrait keeps the shared energy-driven mouth and the
-panel says that mouth timing is unavailable. Nothing is hand-timed.
-
-**Choose this voice** saves the currently auditioned direction as that coach's
-casting decision. **Keep looking** records that none of the present options fits;
-an optional note explains what to change. Listening or changing the candidate
-does not vote. The saved direction remains visible while comparing another one,
-and **Clear choice** returns the coach to undecided. The compact overview counts
-chosen, keep-looking and undecided coaches.
-
-A Keep looking decision belongs to the candidate set actually reviewed. When
-new recordings arrive, its notes remain but the new round awaits a fresh decision;
-legacy rejections without a set identity also need review. The browser must show
-the same recording identities as the service before rejecting the set, and a set
-changed during a save produces a conflict rather than approving unseen content.
-
-An explicit owner approval can promote a selected direction into the tracked
-`cast-auditions/locked-voices.json`. Its twenty entries bind exact approved
-preview bytes and source identity to saved ElevenLabs voices. These immutable
-approvals survive a fresh clone without local draft files; the service rejects
-changing or clearing them. Corrupt/missing lock data fails closed and mismatched
-recordings show a stale warning. Locking selects a voice design; it does not
-record or install a full dialogue bank. Walter, Rivet, Winston, Button and Arjun now have production banks.
-
-Both studios use the same development-only persistence service and fixed
-`data/voice-casting` directory. Choices survive reloads and studio restarts and
-are available from other LAN devices; browser local storage is not the source of
-truth. Per-coach records bind the decision to the recording's fingerprint, so a
-replaced candidate is flagged for review rather than silently approved. Failed
-loads or writes are visible. Choice files are ignored authoring data, not account
-preferences or production assets. A casting decision makes no ElevenLabs request,
-saves no provider voice slot and does not generate a bank.
-
-The running Vite studios provide this service; a static studio build alone does
-not save choices. Concurrent edits use per-coach revisions and exclusive locks.
-If a crashed save leaves a lock, the error identifies it: stop both studios,
-remove only that coach's named `.lock` file, then restart. Keep the `.json`
-decision files. Locks are never automatically evicted during another save.
-
-`audio/speech/cast-auditions/design-plan.json` records the short script and distinct
-casting prompts. `scripts/design_coach_voices.mjs` is an offline authoring tool:
-dry-run by default, explicit paid generation, bounded sequential requests, a
-durable attempt before each request, no automatic retries and no saved-voice API.
-It retains one preview per independent prompt, with request, generated voice ID,
-seed and audio fingerprint. Re-running verifies and reuses existing audio;
-incomplete paid attempts require inspection rather than another charge.
-
-Candidate media and generated alignment are development-only. The production
-application has Walter's and Rivet's completed voice banks; the other human voices are
-deliberately untouched. No installation or listening session contacts ElevenLabs.
-The selected generated voice ID can later be saved when the owner chooses a
-direction; auditioning does not consume a saved-voice slot per option.
-
-The first 48 auditions used **6,372 ElevenLabs credits** (usage 3,530 to 9,902).
-The final twelve used **1,593 credits** (9,902 to 11,495): **7,965 total** for all
-sixty. A subsequent Biscuit/Pip replacement round increased usage by **800
-credits** (11,495 to 12,295), totaling **8,765 casting credits**. It produced six
-new previews; one rejected request is included in that session's usage interval.
-Biscuit's third, fourth and fifth rounds each used **390 credits** (28,866 to
-29,256 to 29,646 to 30,036), bringing casting to **9,935 credits**. Every earlier
-round (Biscuit and Pip's first, Biscuit's second to fourth) retains its original source assets and
-archived briefs, outside the active manifest. Walter's completion batch used
-**1,948 credits** separately. Replaying either collection is local and free. Audition files are unchanged provider output,
-about 8–12 seconds, with no padding or manual timing edits. Use
-`npm --prefix frontend run dev:audio:lan` for the audio studio on port 5176, or
-`npm --prefix frontend run dev:coach:lan` for the mouth inspector on port 5174.
+Voice casting is complete. `audio/speech/cast-auditions/locked-voices.json` binds
+each cast coach's approved ElevenLabs voice (Walter's approval is
+`walter-selected-voice.json`); `scripts/prepare_coach_voice_bank.py --check`
+refuses a registered bank whose provider voice differs from its lock, and
+`scripts/record_coach_speech.mjs` records banks against those locks. The audition
+recordings, their alignment data, the cast audition studio, the casting server,
+`design_coach_voices.mjs` and `prepare_cast_voice_auditions.py` were removed from
+the tree on 2026-10-03, after casting finished; Git history retains them with
+their provenance. Casting used **9,935 ElevenLabs credits** in total, and Walter's
+completion batch used **1,948 credits** separately. Locking selects a voice design;
+it does not record or install a dialogue bank.
 
 ### Coverage
 
