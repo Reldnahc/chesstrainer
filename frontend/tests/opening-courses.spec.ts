@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
+import { expectNoNewDueReviews, settledDueReviews } from "./helpers/server";
 
 type CourseJourney = {
   id: string;
@@ -79,7 +80,7 @@ for (const content of courses) {
     try {
       expect((await page.request.put("/api/preferences/motion", { data: { motion: "still" } })).ok()).toBe(true);
       const before = await studyIds(page);
-      const dueBefore = await (await page.request.get("/api/review/count")).json();
+      const dueBefore = await settledDueReviews(page);
       const detail = await page.request.get(`/api/study/courses/${content.id}?revision=${content.revision}`);
       expect(detail.ok()).toBe(true);
       const course: Schema["LessonCourseView"] = await detail.json();
@@ -183,7 +184,7 @@ for (const content of courses) {
       await expect(page.getByRole("button", { name: "Hint", exact: true })).toHaveCount(0);
       await expect(page.locator(".coach-message")).toContainText("Play this line from memory.");
       expect(await studyIds(page)).toEqual(before);
-      expect(await (await page.request.get("/api/review/count")).json()).toEqual(dueBefore);
+      await expectNoNewDueReviews(page, dueBefore);
       expect(session.failed).toBe(false);
       expect(session.assisted).toBe(false);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -206,7 +207,7 @@ for (const content of courses) {
         expect(session.assisted).toBe(false);
         expect(session.history.slice(0, rehearsal.history.length)).toEqual(rehearsal.history);
         expect(await studyIds(page)).toEqual(before);
-        expect(await (await page.request.get("/api/review/count")).json()).toEqual(dueBefore);
+        await expectNoNewDueReviews(page, dueBefore);
         await page.getByRole("link", { name: "Choose a chapter", exact: true }).click();
       } else {
         await page.getByRole("link", { name: "Chapters", exact: true }).click();

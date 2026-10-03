@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
+import { expectNoNewDueReviews, settledDueReviews } from "./helpers/server";
 
 const courseId = "italian-foundations";
 const courseRevision = "2026-09-v2";
@@ -436,7 +437,7 @@ const continuationChapters: {
 for (const content of continuationChapters) {
   test(`${content.id} teaches the continuation and counterplay before anchored recall`, async ({ page }) => {
     const before = await studyIds(page);
-    const dueBefore = await (await page.request.get("/api/review/count")).json();
+    const dueBefore = await settledDueReviews(page);
     let session = await start(page, content.id);
     const anchorMoves = content.anchor;
     expect(session.history.map(frame => frame.uci)).toEqual(anchorMoves);
@@ -499,6 +500,6 @@ for (const content of continuationChapters) {
     expect(session.assisted).toBe(false);
     expect(session.history.slice(0, rehearsal.history.length)).toEqual(rehearsal.history);
     expect(await studyIds(page)).toEqual(before);
-    expect(await (await page.request.get("/api/review/count")).json()).toEqual(dueBefore);
+    await expectNoNewDueReviews(page, dueBefore);
   });
 }
