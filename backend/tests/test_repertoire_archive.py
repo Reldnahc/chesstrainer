@@ -20,10 +20,17 @@ def snapshot(path):
                 "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
             )
         ]
-        return {
-            table: db.execute(f'SELECT * FROM "{table}" ORDER BY rowid').fetchall()
-            for table in tables
-        }
+        return {table: rows(db, table) for table in tables}
+
+
+# Requests record account presence, which is not learning history.
+PRESENCE = {"last_seen_at", "away_since"}
+
+
+def rows(db, table):
+    columns = [row[1] for row in db.execute(f'PRAGMA table_info("{table}")')]
+    kept = ", ".join(f'"{column}"' for column in columns if column not in PRESENCE)
+    return db.execute(f'SELECT {kept} FROM "{table}" ORDER BY rowid').fetchall()
 
 
 def test_repertoire_removal_preserves_history_and_excludes_stale_sessions(settings):

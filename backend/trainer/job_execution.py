@@ -140,6 +140,8 @@ class JobExecution:
         """Training decisions (Weaknesses, practice) for the reviewed game."""
         with self.sessions() as db:
             game_id = db.scalar(select(GameReview.game_id).where(GameReview.job_id == job_id))
+        if game_id is None:
+            return  # The review saved no game, so there is nothing to train from.
         self.pipeline = JobPipeline(self, job_id, engine, counters=False)
         self.pipeline.run([game_id])
 

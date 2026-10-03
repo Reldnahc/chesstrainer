@@ -9,7 +9,7 @@ from alembic.config import Config
 from sqlalchemy import select, text
 from trainer.accounts import Accounts
 from trainer.db import database, migrate
-from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ReviewRefinement, uid
+from trainer.models import Game, GameReview, GameReviewMove, ReviewRefinement, uid
 from trainer.ownership import account_sessions
 from trainer.review_reports import effective_report
 
@@ -63,15 +63,20 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
         config.attributes["connection"] = connection
         command.upgrade(config, "39c94b22a711")
         connection.commit()
-    with sessions() as db:
-        # GameReview and Game have newer columns than this revision, so insert only
-        # the legacy shapes through a migration connection below.
-        job = AnalysisJob(kind="game_review", status="completed")
-        db.add(job)
-        db.commit()
-    game_id = uid()
+    # Every model here has newer columns than this revision, so insert only the
+    # legacy shapes through a migration connection.
+    job_id, game_id = uid(), uid()
     payload = {"before_analysis_id": "baseline", "depth": 16}
     with sql.begin() as connection:
+        connection.execute(
+            text(
+                "INSERT INTO analysis_jobs (id,kind,status,games_total,games_processed,"
+                "positions_triaged,deep_completed,mistakes_identified,classifications_completed,"
+                "cancel_requested,created_at,user_id) VALUES (:job,'game_review','completed',"
+                "0,0,0,0,0,0,0,:created,'local')"
+            ),
+            {"job": job_id, "created": datetime.now(timezone.utc).isoformat(" ")},
+        )
         connection.execute(
             text(
                 "INSERT INTO games (id,fingerprint,white,black,learner_color,pgn,created_at,user_id)"
@@ -83,7 +88,7 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
             text(
                 "INSERT INTO game_reviews (game_id,job_id,rating,user_id) VALUES (:game,:job,900,'local')"
             ),
-            {"game": game_id, "job": job.id},
+            {"game": game_id, "job": job_id},
         )
         connection.execute(
             text(
@@ -96,7 +101,7 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
         review = db.get(GameReview, game_id)
         row = db.get(GameReviewMove, (game_id, 1))
         assert (review.job_id, review.rating, review.revision, review.refinement_plan) == (
-            job.id,
+            job_id,
             900,
             0,
             None,

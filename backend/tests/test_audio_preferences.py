@@ -137,6 +137,13 @@ def test_concurrent_first_save_preserves_audio_coach_and_motion(sessions):
         assert audio_preferences(db).model_dump() == SAVED
 
 
+def legacy_users(connection, before):
+    """Later migrations add account columns; the existing ones must not change."""
+    columns = list(before[0].keys())
+    rows = connection.execute(text("SELECT * FROM users ORDER BY id")).mappings()
+    return [{column: row[column] for column in columns} for row in rows]
+
+
 def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(settings):
     from alembic import command
     from alembic.config import Config
@@ -170,10 +177,7 @@ def test_audio_migration_defaults_preserve_existing_accounts_and_preferences(set
             }
             assert motion_preferences(db).motion == "natural"
     with engine.connect() as connection:
-        assert (
-            connection.execute(text("SELECT * FROM users ORDER BY id")).mappings().all()
-            == before_users
-        )
+        assert legacy_users(connection, before_users) == [dict(row) for row in before_users]
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
         assert connection.exec_driver_sql("PRAGMA integrity_check").scalar() == "ok"
         config.attributes["connection"] = connection
@@ -222,10 +226,7 @@ def test_removing_rating_audio_preserves_saved_account_preferences(settings):
         assert "audio_review" not in {
             column["name"] for column in inspect(connection).get_columns("user_preferences")
         }
-        assert (
-            connection.execute(text("SELECT * FROM users ORDER BY id")).mappings().all()
-            == before_users
-        )
+        assert legacy_users(connection, before_users) == [dict(row) for row in before_users]
         assert (
             connection.execute(text("SELECT * FROM user_preferences ORDER BY user_id"))
             .mappings()

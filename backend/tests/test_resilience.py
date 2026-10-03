@@ -122,15 +122,14 @@ def test_async_api_import_to_review_reload(settings, stockfish_path):
             data={"usernames": "Learner"},
         )
         assert response.status_code == 200
-        job_id = response.json()["job_id"]
+        # The import only saves the game; its own analysis job then reviews and trains it.
         deadline = time.monotonic() + 25
         while time.monotonic() < deadline:
-            job = next(j for j in client.get("/api/jobs").json() if j["id"] == job_id)
-            if job["status"] in {"failed", "completed"}:
+            queue = client.get("/api/analysis/queue").json()
+            if queue["completed"] + queue["failed"]:
                 break
             time.sleep(0.1)
-        assert job["status"] == "completed", job
-        assert job["positions_triaged"] == 2 and job["mistakes_identified"] >= 1
+        assert (queue["completed"], queue["failed"]) == (1, 0), queue
         assert client.get("/api/stats").json()["reviews"] == 0
         next_id = client.get("/api/review/queue").json()[0]["exercise_id"]
         session = client.post(f"/api/review/{next_id}/start").json()

@@ -311,7 +311,8 @@ def test_failed_worker_drains_and_closes_processes_before_next_job(settings, ses
         def close(self):
             self.closed = True
 
-    def broken_analysis(*_):
+    def broken_analysis(db, engine, *_):
+        engine()  # Engines start lazily; start one so the drain has a process to close.
         raise EngineUnavailable("Fixture engine exited")
 
     monkeypatch.setattr("trainer.pipeline.analyze_decision", broken_analysis)

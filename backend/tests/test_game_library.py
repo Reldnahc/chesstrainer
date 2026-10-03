@@ -113,7 +113,12 @@ def test_history_metadata_accuracy_pagination_and_batched_reads(settings, monkey
         assert first["accuracy"] == data["items"][1]["accuracy"] == expected
         assert data["items"][2]["accuracy"] is None  # All plies, but paused.
         assert data["items"][3]["accuracy"] is None  # Never reviewed.
-        reads = [sql for sql in statements if sql.lstrip().upper().startswith("SELECT")]
+        # The account presence check reads users once per request window, not per page.
+        reads = [
+            sql
+            for sql in statements
+            if sql.lstrip().upper().startswith("SELECT") and "users.last_seen_at" not in sql
+        ]
         assert len(reads) == 3  # Page + batched score projection + total.
         assert "JSON_EXTRACT" in reads[1] and "actual_line" not in reads[1]
         assert "actual_line" not in response.text

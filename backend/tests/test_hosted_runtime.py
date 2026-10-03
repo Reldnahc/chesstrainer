@@ -161,10 +161,9 @@ def test_recovery_account_order_cancellation_and_fetch_lane(settings, sessions, 
                 client.post("/api/jobs/alice-first/cancel", headers=alice_headers).status_code
                 == 200
             )
+            # Per-game reviews have their own queue summary; the job list shows the rest.
             assert {job["id"] for job in client.get("/api/jobs", headers=alice_headers).json()} == {
-                "alice-first",
-                "alice-next",
-                "fetch",
+                "fetch"
             }
         finally:
             release.set()
