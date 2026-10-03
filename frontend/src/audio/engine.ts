@@ -72,8 +72,8 @@ const definitions = new Map(cueCatalog.map(cue => [cue.id, cue]));
 const FADE_SECONDS = .012;
 // Some provider recordings end on a sample spike after their trailing silence
 // (it is in the provider's MP3, not the encode). Speech fades out over its last
-// 20 ms, which is silence in nearly every clip, so the spike cannot thump.
-const SPEECH_END_FADE_SECONDS = .02;
+// 30 ms, which is silence in nearly every clip, so the spike cannot thump.
+const SPEECH_END_FADE_SECONDS = .03;
 const SEEN_LIMIT = 512;
 
 /** One context, bounded voices, and no playback backlog after suppression or cancellation. */
