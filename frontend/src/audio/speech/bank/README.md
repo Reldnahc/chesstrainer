@@ -70,9 +70,13 @@ and the five recorded banks, together with their clips, provenance and alignment
 speaks a Maia reading when it is the ply's whole content. Five standalone
 `human-*` meanings came back with their reviewed texts, and the five recorded
 banks' original clips, provenance, alignments and tracks were restored unchanged
-(their voice settings had not changed). The catalogue now has **200 meanings**:
-179 of the original 181, eleven opening variants, the game-review opener and nine
-lesson prompts.
+(their voice settings had not changed). The catalogue then had 200 meanings.
+
+**Clock observations retired (owner decision, 2026-10-03).** `clock-low`,
+`clock-fast` and `clock-long` were removed from the catalogue, every
+`scripts.json` and all 30 recorded banks with their clips, provenance and
+alignments. The catalogue now has **197 meanings**: 176 of the original 181,
+eleven opening variants, the game-review opener and nine lesson prompts.
 
 Rivet's [wording revision](../banks/rivet/revisions/wording-v2.json) reviewed all
 257 additions, replaced 197 complete recordings and retained 60 additions plus

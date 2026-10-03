@@ -315,7 +315,8 @@ incremental revisions use compatible adopted evidence. See
 Review/variation responses include versioned semantic `intelligence`: objective
 transitions, critical resources, sacrifice/tactic witnesses, honest human-policy
 contrasts and valid mainline clock/opening observations. These facts feed the
-[shared dialogue layer](COACH_DIALOGUE.md) without changing badges based on human or clock data.
+[shared dialogue layer](COACH_DIALOGUE.md) without changing badges based on human or clock data;
+the dialogue layer does not turn clock observations into coach lines.
 See [REVIEW_EVENTS.md](REVIEW_EVENTS.md). A good restricted-root alternative now
 also disproves an only-good-move Great claim; all comparisons remain Stockfish facts.
 ## Structured game context

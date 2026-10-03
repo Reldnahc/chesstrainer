@@ -168,10 +168,11 @@ Start from `audio/speech/meanings.json` and the production selectors
 `gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings
 and intentional silence before counting clips. Maia readings are spoken only as a ply's
 whole content, so the catalogue keeps five `human-*` meanings and no objective/Maia
-combinations (the other 248 Maia meanings were retired on 2026-10-02). The
-catalogue has 200 meanings: 179 original meanings, 11 varied opening meanings, the
-game-review opener and nine lesson prompts. Walter, Rivet, Winston, Button and Arjun
-have all 200 recorded; the other 25 banks have 195 until their five sole-content
+combinations (the other 248 Maia meanings were retired on 2026-10-02), and the
+three per-move clock observations were retired on 2026-10-03. The catalogue has
+197 meanings: 176 original meanings, 11 varied opening meanings, the game-review
+opener and nine lesson prompts. Walter, Rivet, Winston, Button and Arjun have all
+197 recorded; the other 25 banks have 192 until their five sole-content
 Maia lines are recorded. That is today's measured coverage, not a required
 count to copy into every future test or a budget ceiling.
 

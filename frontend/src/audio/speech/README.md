@@ -1,7 +1,7 @@
 # Recorded coach speech and authoring history
 
-Walter (`classic`) and Rivet (`robot`) each have a **192-recording voice bank**
-(182 non-lesson meanings, the game-review opener and nine generic lesson prompts), using their owner-selected **Older teacher** and **Retro speech terminal**
+Walter (`classic`) and Rivet (`robot`) each have a **195-recording voice bank**
+(185 non-lesson meanings, the game-review opener and nine generic lesson prompts), using their owner-selected **Older teacher** and **Retro speech terminal**
 voices. They share a catalogue of meanings, with separately authored character
 scripts and complete recordings. Every clip has automatically generated mouth
 timing. See the [Walter manifest](bank/manifest.json), [Rivet manifest](banks/rivet/manifest.json),
@@ -50,6 +50,7 @@ On 2026-10-02 all 253 Maia meanings (7 standalone readings and 246 combinations)
 were removed, taking the catalogue from 448 to 195 meanings. On 2026-10-03 five
 standalone readings returned with their reviewed texts (natural best, natural
 strong, unusual but strong, hard find, hard defense found), for 200 meanings.
+Later that day the three clock observations were retired, leaving 197.
 They cover a sound learner move with no other supported fact; a natural mistake
 or missed hard defense always comes with a stronger alternative, so those two stay
 retired. Beside an objective fact a Maia sentence adds nothing to speech: the
@@ -319,8 +320,7 @@ greeting once and shows it in the bubble; the first navigation replaces it,
 returning to the start shows and speaks it again, and restored later moves stay
 silent.
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
-Winston and Button, so each registered bank holds every catalogue meaning (192 after the
-2026-10-03 clock retirement).
+Winston and Button, so each registered bank holds all 195 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every
 request ID matched in the provider history and no retakes.
 Authorized attempt/reveal feedback may

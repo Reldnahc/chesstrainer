@@ -23,7 +23,7 @@ the durable sources; reading semantics requires no migration or engine/model.
 | `sacrifice` | Sound offer and explicit acceptance response | Existing Fieldwork sacrifice witness and acceptance analysis ID, under 50 cp loss and no newly lost/allowed mate |
 | `tactic` | Played, allowed, caused, missed or alternative motif in a verified line | Matching line root/first move, actor, valid witness plies and exact analysis/rule IDs; never attribute an alternative's tactic to the played move |
 | `human_contrast` | Natural error, unusual strong find, unusual model best choice | Compatible saved human evidence plus objective references; carries conditioning, domain, unvalidated calibration and confidence |
-| `clock_observation` | Low time, fast play with time, long think, accompanying evaluated error | Actual clock annotations/derivable values plus grading evidence; explicitly no psychological causation |
+| `clock_observation` | Low time, fast play with time, long think, accompanying evaluated error | Actual clock annotations/derivable values plus grading evidence; explicitly no psychological causation. Coaches do not voice or display it (retired 2026-10-03) |
 | `opening_departure` | First unmatched move in the initial catalogue sequence | Versioned bundled book and exact mainline/PGN reference; means outside the catalogue, not a mistake |
 | `check` | Giving check or answering check | Legally replayed actual move; checkmate supersedes generic check |
 | `finish` | Immediate checkmate, stalemate, insufficient material | python-chess actual transition; never inferred from a mate PV or declared PGN result |
