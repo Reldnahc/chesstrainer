@@ -40,7 +40,7 @@ test('pages use full laptop width and 80 percent on larger screens without shrin
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     // Navigating away must remove the review's minimum width. Every ordinary
     // page and the header use the same responsive width.
-    for (const name of ['Games', 'Weaknesses', 'Settings']) {
+    for (const name of ['Games', 'Insights', 'Settings']) {
       await page.getByRole('navigation').getByRole('link', {name, exact: true}).click();
       await expect(page.locator('main h1')).toBeVisible();
       expect(await main.evaluate(element => element.style.getPropertyValue('--review-min-width'))).toBe('');

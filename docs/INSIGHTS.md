@@ -1,6 +1,14 @@
 # Game insights
 
-**Games → Insights** (`/games/insights`) summarizes patterns across the learner's
+The Insights screen replaced Weaknesses on 2026-10-03 at the owner's request. It has
+two levels: Overview (`/insights`) and Weaknesses, whose compact category switch
+holds Tactical patterns (`/insights?section=patterns`, where the Weaknesses link
+lands) and Material & mate (`/insights?section=outcomes`). Library statistics
+and practice targets stay visibly separate. Old `/weaknesses` links,
+including `?category=outcomes`, and `/games/insights` redirect without an extra
+history entry.
+
+**Insights → Overview** (`/insights`) summarizes patterns across the learner's
 saved games. It is read-only: `GET /api/insights` recomputes everything from saved
 PGNs and completed original-game reviews on each request, stores nothing and
 never starts Stockfish. Filters choose a speed (from the speeds present) and a

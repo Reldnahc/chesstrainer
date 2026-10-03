@@ -30,6 +30,14 @@
   color: #ffb098;
   box-shadow: inset 0 -2px var(--accent);
 }
+.section-navigation--compact {
+  width: auto;
+  display: inline-flex;
+}
+.section-navigation--compact a {
+  padding: 8px 14px;
+  font-size: 13px;
+}
 @media (max-width: 760px) {
   .section-navigation {
     gap: 2px;
@@ -41,5 +49,9 @@
     text-align: center;
     font-size: 12px;
     line-height: 1.3;
+  }
+  .section-navigation--compact {
+    display: flex;
+    width: 100%;
   }
 }

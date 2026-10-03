@@ -71,8 +71,8 @@ function Panel({ id, title, meta, wide, children }: {
 }) {
   return <section className={`panel insight-panel${wide ? " insight-panel--wide" : ""}`} aria-labelledby={`insight-${id}`}>
     <div className="insight-heading">
-      <h2 id={`insight-${id}`}>{title}</h2>
-      {meta && <span className="small muted">{meta}</span>}
+      <h3 id={`insight-${id}`}>{title}</h3>
+      {meta && <span className="insight-meta">{meta}</span>}
     </div>
     {children}
   </section>;
@@ -119,7 +119,7 @@ function Outcomes({ label, items }: { label: string; items: { label: string; cou
 function GameLinks({ label, games, slip }: { label: string; games: InsightGame[]; slip?: boolean }) {
   if (!games.length) return null;
   return <div className="insight-games">
-    <h3>{label}</h3>
+    <h4>{label}</h4>
     <ul>
       {games.map(game => <li key={game.id}>
         <Link href={gameHref(game)}>
@@ -214,10 +214,20 @@ function Rhythm({ data }: { data: Insights }) {
         })}
       </div>)}
     </div>
-    <p className="small muted insight-note">Numbers are games played. Green cells scored 60% or more, red 40% or less. Local time.</p>
-    <div className="insight-subgrid">
+    <ul className="insight-heat-legend" aria-label="Cell colours">
+      <li><span className="insight-heat--good" aria-hidden="true" />Scored 60%+</li>
+      <li><span className="insight-heat--even" aria-hidden="true" />In between</li>
+      <li><span className="insight-heat--poor" aria-hidden="true" />Scored 40% or less</li>
+    </ul>
+    <p className="small muted insight-note">Each number is games played in that slot, in your local time.</p>
+  </Panel>;
+}
+
+function Endings({ data }: { data: Insights }) {
+  return <Panel id="endings" title="How games end" meta={recordText(data)}>
+    <div className="insight-stack">
       {(["win", "loss", "draw"] as const).map(outcome => data.endings[outcome].length > 0 && <div key={outcome}>
-        <h3>{{ win: "How you win", loss: "How you lose", draw: "How you draw" }[outcome]}</h3>
+        <h4>{{ win: "Wins", loss: "Losses", draw: "Draws" }[outcome]}</h4>
         <Bars label={`Game endings, ${outcome}s`} rows={data.endings[outcome].map(ending => ({
           label: endingLabels[ending.termination] ?? ending.termination, value: ending.games,
         }))} />
@@ -229,6 +239,7 @@ function Rhythm({ data }: { data: Insights }) {
 function Records({ data }: { data: Insights }) {
   const { records } = data;
   return <Panel id="records" title="Records and ratings">
+    <div className="insight-records">
     <StatList items={[
       { label: "Longest winning run", value: records.longest_win_streak },
       { label: "Longest losing run", value: records.longest_loss_streak },
@@ -250,6 +261,7 @@ function Records({ data }: { data: Insights }) {
         </div>;
       })}
     </div>}
+    </div>
   </Panel>;
 }
 
@@ -297,10 +309,10 @@ function Theory({ data }: { data: Insights }) {
 
 function Momentum({ data }: { data: Insights }) {
   const { conversion, escapes, slip_moves } = data.momentum;
-  return <Panel id="momentum" title="Winning and losing positions" meta={plural(data.momentum.reviewed_games, "reviewed game")} wide>
+  return <Panel id="momentum" title="Conversion and escapes" meta={plural(data.momentum.reviewed_games, "reviewed game")} wide>
     <div className="insight-subgrid">
       <div>
-        <h3>When you were clearly winning</h3>
+        <h4>When you were clearly winning</h4>
         {conversion.winning_games ? <Outcomes label="Clearly winning games" items={[
           { label: "Won", count: conversion.converted, tone: "win" },
           { label: "Drawn", count: conversion.drawn, tone: "draw" },
@@ -309,14 +321,14 @@ function Momentum({ data }: { data: Insights }) {
         <GameLinks label="Recent wins that slipped" games={conversion.slips} slip />
       </div>
       <div>
-        <h3>Where the win slipped</h3>
+        <h4>Where the win slipped</h4>
         <Bars label="Move where a winning position was lost for good" rows={slip_moves.map(bucket => ({
           label: `Moves ${bucket.label}`, value: bucket.games,
         }))} />
         <p className="small muted insight-note">The move after which the evaluation never returned to +3 for you.</p>
       </div>
       <div>
-        <h3>When you were clearly lost</h3>
+        <h4>When you were clearly lost</h4>
         {escapes.lost_games ? <Outcomes label="Clearly lost games" items={[
           { label: "Saved as a win", count: escapes.won, tone: "win" },
           { label: "Saved as a draw", count: escapes.drawn, tone: "draw" },
@@ -359,11 +371,11 @@ function MoveQuality({ data }: { data: Insights }) {
   const dip = [...scored].sort((a, b) => a.accuracy! - b.accuracy!)[0];
   return <Panel id="accuracy" title="Accuracy through the game" meta={plural(data.moves.reviewed_games, "reviewed game")}>
     {dip && <Lead>Your play dips most around moves <strong>{dip.label}</strong>, at {dip.accuracy!.toFixed(0)}% average move accuracy.</Lead>}
-    <h3>By move number</h3>
+    <h4>By move number</h4>
     <Bars label="Average move accuracy by move number" max={100} unit="%" rows={by_move.map(bucket => ({
       label: `Moves ${bucket.label}`, value: bucket.accuracy == null ? null : Math.round(bucket.accuracy), detail: plural(bucket.moves, "move"),
     }))} />
-    <h3>By phase</h3>
+    <h4>By phase</h4>
     <div className="insight-table-scroll">
       <table className="insight-table insight-table--compact">
         <thead><tr><th scope="col">Phase</th><th scope="col">Moves</th><th scope="col">Accuracy</th><th scope="col">Blunders per 100</th></tr></thead>
@@ -397,7 +409,7 @@ function Clock({ data }: { data: Insights }) {
     {clock.clocked_games ? <>
       <Lead>You were short of time in <strong>{clock.time_trouble_games} of {plural(clock.clocked_games, "clocked game")}</strong> ({percent(clock.time_trouble_games, clock.clocked_games)}%): 30 seconds or less, or a tenth of your starting time.</Lead>
       <StatList items={clock.think_seconds.map(bucket => ({ label: `Average think, moves ${bucket.label}`, value: fixed(bucket.seconds, 0, "s") }))} />
-      <h3>Blunder rate by time left</h3>
+      <h4>Blunder rate by time left</h4>
       <Bars label="Share of your clocked moves that were blunders, by time left" unit="%" rows={clock.blunders_by_clock.map(band => ({
         label: clockLabels[band.band], value: band.blunder_rate, detail: plural(band.moves, "move"),
       }))} />
@@ -454,42 +466,69 @@ export default function GameInsights() {
   if (!data) return <LoadingState presentation="panel">Reading your games…</LoadingState>;
   const speeds: Speed[] = ["all", ...data.speeds];
   const lines = headlines(data);
+  const finished = data.wins + data.draws + data.losses;
+  const reviewed = data.reviewed_games > 0;
   return <div className="insights">
-    <div className="insight-filters">
-      {speeds.length > 2 && <ChoiceGroup label="Speed" value={speed} onChange={setSpeed}
-        options={speeds.map(value => ({ value, label: speedLabels[value] }))} />}
-      <ChoiceGroup label="Period" value={days} onChange={setDays} options={periods} />
+    <div className="insight-toolbar">
+      {speeds.length > 2 && <div className="insight-filter"><span id="insight-speed">Speed</span>
+        <ChoiceGroup label="Speed" value={speed} onChange={setSpeed}
+          options={speeds.map(value => ({ value, label: speedLabels[value] }))} /></div>}
+      <div className="insight-filter"><span id="insight-period">Period</span>
+        <ChoiceGroup label="Period" value={days} onChange={setDays} options={periods} /></div>
     </div>
     {!data.games ? <EmptyState title="No games in this selection." icon={<ChartColumn />} actions={
       <ActionLink href={pagePaths.Settings}>Import games in Settings</ActionLink>}>
       Insights read your saved games. Try a longer period or another speed.
     </EmptyState> : <>
       <section className="panel insight-summary" aria-labelledby="insight-summary">
-        <div className="insight-heading">
-          <h2 id="insight-summary">At a glance</h2>
-          <span className="small muted">{plural(data.games, "game")} · {recordText(data)} · {data.reviewed_games} reviewed</span>
-        </div>
-        {lines.length ? <ul>{lines.map(line => <li key={line}>{line}</li>)}</ul>
-          : <p className="small muted">Review more games to see engine-based patterns here.</p>}
+        <h2 id="insight-summary" className="sr-only">At a glance</h2>
+        <StatList prominence="featured" items={[
+          { label: "Games", value: data.games },
+          { label: "Score", value: `${percent(data.wins + data.draws / 2, finished)}%` },
+          { label: "Record", value: recordText(data) },
+          { label: "Reviewed", value: data.reviewed_games },
+        ]} />
+        {lines.length ? <ul className="insight-headlines">{lines.map(line => <li key={line}>{line}</li>)}</ul>
+          : <p className="insight-headlines-empty">Review more games to see engine-based patterns here.</p>}
         {data.reviewed_games < data.games && <p className="small muted insight-note">
-          Results, dates, ratings, clocks and openings use every game. Evaluation-based sections use the {data.reviewed_games} games with a completed review; <Link href={gamesPath()}>review more games</Link> to sharpen them.
+          Results, dates, ratings, clocks and openings use every game. Evaluation-based panels use the {data.reviewed_games} reviewed {data.reviewed_games === 1 ? "game" : "games"}; <Link href={gamesPath()}>review more games</Link> to sharpen them.
         </p>}
       </section>
-      <div className="insight-grid">
-        <Rhythm data={data} />
+      <InsightGroup id="results" title="Results">
+        <div className="insight-pair">
+          <Rhythm data={data} />
+          <Endings data={data} />
+        </div>
         <Records data={data} />
         <Openings data={data} />
-        {data.reviewed_games > 0 && <>
-          <Momentum data={data} />
+      </InsightGroup>
+      {reviewed && <InsightGroup id="positions" title="Winning and losing positions">
+        <Momentum data={data} />
+        <div className="insight-pair">
           <Shapes data={data} />
+          <div className="insight-column">
+            <Punishment data={data} />
+            <Endgames data={data} />
+          </div>
+        </div>
+      </InsightGroup>}
+      <InsightGroup id="moves" title="Moves and time">
+        {reviewed ? <div className="insight-pair">
           <MoveQuality data={data} />
-          <Punishment data={data} />
-          <Theory data={data} />
-          <Endgames data={data} />
-          <Tilt data={data} />
-        </>}
-        <Clock data={data} />
-      </div>
+          <div className="insight-column">
+            <Clock data={data} />
+            <Tilt data={data} />
+            <Theory data={data} />
+          </div>
+        </div> : <Clock data={data} />}
+      </InsightGroup>
     </>}
   </div>;
+}
+
+function InsightGroup({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+  return <section className="insight-group" aria-labelledby={`insight-group-${id}`}>
+    <h2 id={`insight-group-${id}`}>{title}</h2>
+    {children}
+  </section>;
 }
