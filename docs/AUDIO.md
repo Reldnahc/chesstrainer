@@ -377,8 +377,8 @@ selected portrait's mouth following it. Loading or reloading Settings never play
 it, and a newer choice cancels the previous one. All 30 introductions are written
 and reviewed: `coach-introduction` is an operational meaning in `meanings.json`,
 with each authored voice's text in its `scripts.json` and Walter's and Rivet's in
-`banks/pilot-additions.json`. No coach has recorded it yet, so the bank tests allow
-it unrecorded and the picker stays silent until each clip is added.
+`banks/pilot-additions.json`. All 30 are recorded under each bank's
+`recordings/<voice>-intro-v1/`, and the bank tests require the clip.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
 evidence can update visible text (and so the bubble's objective recording) without
