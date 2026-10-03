@@ -16,7 +16,7 @@ The image runs Maia on CPU and downloads nothing extra. To use an NVIDIA GPU,
 install the NVIDIA Container Toolkit on the host, pass the GPU
 (`docker run --gpus all ...`, or the commented `deploy` block in `compose.yaml`)
 and set `HUMAN_MODEL_DEVICE=cuda`. The first start then downloads CUDA PyTorch
-(about 3 GB) into `/data/runtime` before the server starts, which can take a few
+(about 3 GB to download, 6.4 GB on disk) into `/data/runtime` before the server starts, which can take a few
 minutes and outlasts the health check's start period; later starts reuse it. See
 [HUMAN_MODELS.md](HUMAN_MODELS.md).
 
