@@ -33,6 +33,10 @@ def saved_forced(request):
     return track, script, recording, recorded, alignment.PLAN.relative_to(alignment.ROOT).as_posix()
 
 
+def test_accented_names_fold_to_plain_letters():
+    assert forced.normalize_text("Hi, I'm Réka!") == "hi i'm reka"
+
+
 def test_normalization_only_removes_punctuation_and_retains_word_order():
     assert (
         forced.normalize_text("It's fine—don’t hurry. A sound idea!")

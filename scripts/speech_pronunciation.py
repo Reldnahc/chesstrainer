@@ -28,17 +28,22 @@ REVISIONS = {
 }
 SIBILANTS = frozenset(("S", "Z", "SH", "ZH", "CH", "JH"))
 VOICELESS = frozenset(("P", "T", "K", "F", "TH"))
-# Reviewed CMU-style pronunciations for interjections and coinages in authored
-# scripts that no dictionary base or regular rule can produce.
+# Reviewed CMU-style pronunciations for interjections, coinages and coach names
+# in authored scripts that no dictionary base or regular rule can produce.
 LEXICON = {
     "eek": ("IY", "K"),
+    "femi": ("F", "EH", "M", "IY"),
     "hidey": ("HH", "AY", "D", "IY"),
     "oof": ("UW", "F"),
     "oopsie": ("UW", "P", "S", "IY"),
     "peekaboo": ("P", "IY", "K", "AH", "B", "UW"),
     "psst": ("P", "S", "T"),
+    "reka": ("R", "EY", "K", "AA"),
+    "tala": ("T", "AA", "L", "AH"),
+    "tamar": ("T", "AA", "M", "AA", "R"),
     "wheee": ("W", "IY"),
     "wonky": ("W", "AA", "NG", "K", "IY"),
+    "ziggy": ("Z", "IH", "G", "IY"),
 }
 
 
