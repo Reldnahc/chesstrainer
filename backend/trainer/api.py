@@ -24,6 +24,7 @@ from trainer.routes import (
     compatibility,
     games,
     imports,
+    insights,
     jobs,
     opening_studies,
     puzzles,
@@ -138,6 +139,7 @@ def create_app(
     app.include_router(jobs.create_router(runner=runner))
     app.include_router(sync.create_router())
     app.include_router(games.create_router(settings=settings, engine_factory=engine_factory))
+    app.include_router(insights.create_router())
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
     app.state.puzzle_providers = PuzzleProviders(puzzle_providers)
     app.include_router(puzzles.create_router(providers=app.state.puzzle_providers))

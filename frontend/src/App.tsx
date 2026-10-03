@@ -190,6 +190,7 @@ export default function App() {
               <GamesScreen
                 key={route.href}
                 page={route.page}
+                section={route.gamesSection}
                 selected={route.gameId}
                 initialPly={route.ply}
               />

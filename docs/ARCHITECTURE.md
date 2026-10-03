@@ -53,6 +53,7 @@ Whole-game review and training analysis are separately requested from the game.
 | routes/review.py | Cold/focused queues, session start, move/reveal/explanation requests and archived-session guards |
 | puzzles/ / routes/puzzles.py | Versioned provider definitions, hash-pinned local Lichess-layout packs (bundled starter pack plus optional installed pack), preference-aware selection, private session snapshots and atomic multi-move practice; no engine, network or scheduler dependency |
 | routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
+| routes/insights.py, game_insights.py | Read-only library insights recomputed from saved PGNs and completed reviews; see [Insights](INSIGHTS.md) |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
 | contracts/ | Explicit HTTP response schemas grouped by endpoint domain; reused chess evidence types retain their original owners |
@@ -86,6 +87,7 @@ lock, while other accounts have independent locks.
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
 | GameReview.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
+| GameInsights.tsx | Games → Insights panels over `/api/insights`; shared section navigation, choices, statistics and load states |
 | ReviewCoach.tsx | Common portrait with optional caption, speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
 | gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
 | gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |

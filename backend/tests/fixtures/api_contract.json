@@ -287,6 +287,25 @@
         "title": "BookOpening",
         "type": "object"
       },
+      "Bucket": {
+        "additionalProperties": false,
+        "properties": {
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "games"
+        ],
+        "title": "Bucket",
+        "type": "object"
+      },
       "Candidate": {
         "properties": {
           "depth": {
@@ -635,6 +654,43 @@
         "title": "ClassificationAudit",
         "type": "object"
       },
+      "ClockBand": {
+        "additionalProperties": false,
+        "properties": {
+          "band": {
+            "enum": [
+              "over_half",
+              "quarter",
+              "tenth",
+              "under_tenth"
+            ],
+            "title": "Band",
+            "type": "string"
+          },
+          "blunder_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Blunder Rate"
+          },
+          "moves": {
+            "title": "Moves",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "band",
+          "moves",
+          "blunder_rate"
+        ],
+        "title": "ClockBand",
+        "type": "object"
+      },
       "ClockFacts": {
         "additionalProperties": false,
         "properties": {
@@ -787,6 +843,41 @@
           }
         },
         "title": "ClockFacts",
+        "type": "object"
+      },
+      "ClockStory": {
+        "additionalProperties": false,
+        "properties": {
+          "blunders_by_clock": {
+            "items": {
+              "$ref": "#/components/schemas/ClockBand"
+            },
+            "title": "Blunders By Clock",
+            "type": "array"
+          },
+          "clocked_games": {
+            "title": "Clocked Games",
+            "type": "integer"
+          },
+          "think_seconds": {
+            "items": {
+              "$ref": "#/components/schemas/ThinkTime"
+            },
+            "title": "Think Seconds",
+            "type": "array"
+          },
+          "time_trouble_games": {
+            "title": "Time Trouble Games",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "clocked_games",
+          "time_trouble_games",
+          "think_seconds",
+          "blunders_by_clock"
+        ],
+        "title": "ClockStory",
         "type": "object"
       },
       "CoachPreferences": {
@@ -1124,6 +1215,43 @@
           "evidence"
         ],
         "title": "ContextNode",
+        "type": "object"
+      },
+      "Conversion": {
+        "additionalProperties": false,
+        "properties": {
+          "converted": {
+            "title": "Converted",
+            "type": "integer"
+          },
+          "drawn": {
+            "title": "Drawn",
+            "type": "integer"
+          },
+          "lost": {
+            "title": "Lost",
+            "type": "integer"
+          },
+          "slips": {
+            "items": {
+              "$ref": "#/components/schemas/InsightGame"
+            },
+            "title": "Slips",
+            "type": "array"
+          },
+          "winning_games": {
+            "title": "Winning Games",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "winning_games",
+          "converted",
+          "drawn",
+          "lost",
+          "slips"
+        ],
+        "title": "Conversion",
         "type": "object"
       },
       "Coverage": {
@@ -1464,6 +1592,125 @@
           "reasons"
         ],
         "title": "Domain",
+        "type": "object"
+      },
+      "EndgameRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "held": {
+            "title": "Held",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "rook",
+              "queen",
+              "minor",
+              "pawn"
+            ],
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "games",
+          "held"
+        ],
+        "title": "EndgameRecord",
+        "type": "object"
+      },
+      "Ending": {
+        "additionalProperties": false,
+        "properties": {
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "termination": {
+            "title": "Termination",
+            "type": "string"
+          }
+        },
+        "required": [
+          "termination",
+          "games"
+        ],
+        "title": "Ending",
+        "type": "object"
+      },
+      "Endings": {
+        "additionalProperties": false,
+        "properties": {
+          "draw": {
+            "items": {
+              "$ref": "#/components/schemas/Ending"
+            },
+            "title": "Draw",
+            "type": "array"
+          },
+          "loss": {
+            "items": {
+              "$ref": "#/components/schemas/Ending"
+            },
+            "title": "Loss",
+            "type": "array"
+          },
+          "win": {
+            "items": {
+              "$ref": "#/components/schemas/Ending"
+            },
+            "title": "Win",
+            "type": "array"
+          }
+        },
+        "required": [
+          "win",
+          "draw",
+          "loss"
+        ],
+        "title": "Endings",
+        "type": "object"
+      },
+      "Escapes": {
+        "additionalProperties": false,
+        "properties": {
+          "drawn": {
+            "title": "Drawn",
+            "type": "integer"
+          },
+          "lost_games": {
+            "title": "Lost Games",
+            "type": "integer"
+          },
+          "saves": {
+            "items": {
+              "$ref": "#/components/schemas/InsightGame"
+            },
+            "title": "Saves",
+            "type": "array"
+          },
+          "still_lost": {
+            "title": "Still Lost",
+            "type": "integer"
+          },
+          "won": {
+            "title": "Won",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "lost_games",
+          "won",
+          "drawn",
+          "still_lost",
+          "saves"
+        ],
+        "title": "Escapes",
         "type": "object"
       },
       "Evidence": {
@@ -3430,6 +3677,219 @@
         "title": "ImportError",
         "type": "object"
       },
+      "InsightGame": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "opponent": {
+            "title": "Opponent",
+            "type": "string"
+          },
+          "opponent_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Opponent Rating"
+          },
+          "played_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played On"
+          },
+          "ply": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ply"
+          },
+          "result": {
+            "enum": [
+              "win",
+              "draw",
+              "loss",
+              "unfinished"
+            ],
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "opponent",
+          "opponent_rating",
+          "result",
+          "played_on",
+          "ply"
+        ],
+        "title": "InsightGame",
+        "type": "object"
+      },
+      "Insights": {
+        "additionalProperties": false,
+        "properties": {
+          "clock": {
+            "$ref": "#/components/schemas/ClockStory"
+          },
+          "days": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Days"
+          },
+          "draws": {
+            "title": "Draws",
+            "type": "integer"
+          },
+          "endgames": {
+            "items": {
+              "$ref": "#/components/schemas/EndgameRecord"
+            },
+            "title": "Endgames",
+            "type": "array"
+          },
+          "endings": {
+            "$ref": "#/components/schemas/Endings"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "losses": {
+            "title": "Losses",
+            "type": "integer"
+          },
+          "momentum": {
+            "$ref": "#/components/schemas/Momentum"
+          },
+          "moves": {
+            "$ref": "#/components/schemas/MoveRates"
+          },
+          "openings": {
+            "items": {
+              "$ref": "#/components/schemas/OpeningRecord"
+            },
+            "title": "Openings",
+            "type": "array"
+          },
+          "punishment": {
+            "$ref": "#/components/schemas/Punishment"
+          },
+          "ratings": {
+            "items": {
+              "$ref": "#/components/schemas/RatingSeries"
+            },
+            "title": "Ratings",
+            "type": "array"
+          },
+          "records": {
+            "$ref": "#/components/schemas/Records"
+          },
+          "reviewed_games": {
+            "title": "Reviewed Games",
+            "type": "integer"
+          },
+          "rhythm": {
+            "$ref": "#/components/schemas/Rhythm"
+          },
+          "shapes": {
+            "items": {
+              "$ref": "#/components/schemas/Shape"
+            },
+            "title": "Shapes",
+            "type": "array"
+          },
+          "speed": {
+            "enum": [
+              "all",
+              "bullet",
+              "blitz",
+              "rapid",
+              "classical",
+              "daily"
+            ],
+            "title": "Speed",
+            "type": "string"
+          },
+          "speeds": {
+            "items": {
+              "enum": [
+                "bullet",
+                "blitz",
+                "rapid",
+                "classical",
+                "daily"
+              ],
+              "type": "string"
+            },
+            "title": "Speeds",
+            "type": "array"
+          },
+          "theory": {
+            "$ref": "#/components/schemas/Theory"
+          },
+          "tilt": {
+            "$ref": "#/components/schemas/Tilt"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          },
+          "wins": {
+            "title": "Wins",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "version",
+          "speed",
+          "days",
+          "speeds",
+          "games",
+          "reviewed_games",
+          "wins",
+          "draws",
+          "losses",
+          "rhythm",
+          "endings",
+          "records",
+          "ratings",
+          "openings",
+          "theory",
+          "momentum",
+          "shapes",
+          "moves",
+          "tilt",
+          "clock",
+          "punishment",
+          "endgames"
+        ],
+        "title": "Insights",
+        "type": "object"
+      },
       "Job": {
         "additionalProperties": false,
         "properties": {
@@ -4494,6 +4954,36 @@
         "title": "ModelProvenance",
         "type": "object"
       },
+      "Momentum": {
+        "additionalProperties": false,
+        "properties": {
+          "conversion": {
+            "$ref": "#/components/schemas/Conversion"
+          },
+          "escapes": {
+            "$ref": "#/components/schemas/Escapes"
+          },
+          "reviewed_games": {
+            "title": "Reviewed Games",
+            "type": "integer"
+          },
+          "slip_moves": {
+            "items": {
+              "$ref": "#/components/schemas/Bucket"
+            },
+            "title": "Slip Moves",
+            "type": "array"
+          }
+        },
+        "required": [
+          "reviewed_games",
+          "conversion",
+          "slip_moves",
+          "escapes"
+        ],
+        "title": "Momentum",
+        "type": "object"
+      },
       "MotionPreferences": {
         "additionalProperties": false,
         "properties": {
@@ -4509,6 +4999,37 @@
           }
         },
         "title": "MotionPreferences",
+        "type": "object"
+      },
+      "MoveBucket": {
+        "additionalProperties": false,
+        "properties": {
+          "accuracy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accuracy"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "moves": {
+            "title": "Moves",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "label",
+          "moves",
+          "accuracy"
+        ],
+        "title": "MoveBucket",
         "type": "object"
       },
       "MoveExplanation": {
@@ -4740,6 +5261,36 @@
           "limitations"
         ],
         "title": "MoveIntelligence",
+        "type": "object"
+      },
+      "MoveRates": {
+        "additionalProperties": false,
+        "properties": {
+          "by_move": {
+            "items": {
+              "$ref": "#/components/schemas/MoveBucket"
+            },
+            "title": "By Move",
+            "type": "array"
+          },
+          "by_phase": {
+            "items": {
+              "$ref": "#/components/schemas/PhaseRate"
+            },
+            "title": "By Phase",
+            "type": "array"
+          },
+          "reviewed_games": {
+            "title": "Reviewed Games",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "reviewed_games",
+          "by_move",
+          "by_phase"
+        ],
+        "title": "MoveRates",
         "type": "object"
       },
       "MoveRequest": {
@@ -5124,6 +5675,78 @@
         "title": "OpeningRecallContext",
         "type": "object"
       },
+      "OpeningRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "accuracy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accuracy"
+          },
+          "color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Color",
+            "type": "string"
+          },
+          "draws": {
+            "title": "Draws",
+            "type": "integer"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "losses": {
+            "title": "Losses",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "reviewed_games": {
+            "title": "Reviewed Games",
+            "type": "integer"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "wins": {
+            "title": "Wins",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "color",
+          "games",
+          "wins",
+          "draws",
+          "losses",
+          "score",
+          "accuracy",
+          "reviewed_games"
+        ],
+        "title": "OpeningRecord",
+        "type": "object"
+      },
       "OpeningStudyLibrary": {
         "additionalProperties": false,
         "properties": {
@@ -5365,6 +5988,54 @@
         "title": "PgnImportResult",
         "type": "object"
       },
+      "PhaseRate": {
+        "additionalProperties": false,
+        "properties": {
+          "accuracy": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accuracy"
+          },
+          "blunders_per_100": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Blunders Per 100"
+          },
+          "moves": {
+            "title": "Moves",
+            "type": "integer"
+          },
+          "phase": {
+            "enum": [
+              "opening",
+              "middlegame",
+              "endgame"
+            ],
+            "title": "Phase",
+            "type": "string"
+          }
+        },
+        "required": [
+          "phase",
+          "moves",
+          "accuracy",
+          "blunders_per_100"
+        ],
+        "title": "PhaseRate",
+        "type": "object"
+      },
       "PracticalAssessment": {
         "additionalProperties": false,
         "properties": {
@@ -5579,6 +6250,35 @@
           "username"
         ],
         "title": "ProviderImportRequest",
+        "type": "object"
+      },
+      "Punishment": {
+        "additionalProperties": false,
+        "properties": {
+          "opponent_errors": {
+            "title": "Opponent Errors",
+            "type": "integer"
+          },
+          "own_errors": {
+            "title": "Own Errors",
+            "type": "integer"
+          },
+          "punished": {
+            "title": "Punished",
+            "type": "integer"
+          },
+          "unpunished": {
+            "title": "Unpunished",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "opponent_errors",
+          "punished",
+          "own_errors",
+          "unpunished"
+        ],
+        "title": "Punishment",
         "type": "object"
       },
       "PuzzleCommand": {
@@ -6180,6 +6880,102 @@
         "title": "PuzzleThemeCount",
         "type": "object"
       },
+      "RatingPoint": {
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "rating": {
+            "title": "Rating",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "date",
+          "rating"
+        ],
+        "title": "RatingPoint",
+        "type": "object"
+      },
+      "RatingSeries": {
+        "additionalProperties": false,
+        "properties": {
+          "first": {
+            "title": "First",
+            "type": "integer"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "last": {
+            "title": "Last",
+            "type": "integer"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/RatingPoint"
+            },
+            "title": "Points",
+            "type": "array"
+          },
+          "site": {
+            "title": "Site",
+            "type": "string"
+          },
+          "speed": {
+            "title": "Speed",
+            "type": "string"
+          }
+        },
+        "required": [
+          "site",
+          "speed",
+          "games",
+          "first",
+          "last",
+          "points"
+        ],
+        "title": "RatingSeries",
+        "type": "object"
+      },
+      "Records": {
+        "additionalProperties": false,
+        "properties": {
+          "best_win": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InsightGame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_win_streak": {
+            "title": "Current Win Streak",
+            "type": "integer"
+          },
+          "longest_loss_streak": {
+            "title": "Longest Loss Streak",
+            "type": "integer"
+          },
+          "longest_win_streak": {
+            "title": "Longest Win Streak",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "longest_win_streak",
+          "longest_loss_streak",
+          "current_win_streak",
+          "best_win"
+        ],
+        "title": "Records",
+        "type": "object"
+      },
       "RefinementInfo": {
         "additionalProperties": false,
         "properties": {
@@ -6263,6 +7059,35 @@
           "rejected"
         ],
         "title": "Rejected",
+        "type": "object"
+      },
+      "Rematches": {
+        "additionalProperties": false,
+        "properties": {
+          "draws": {
+            "title": "Draws",
+            "type": "integer"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "losses": {
+            "title": "Losses",
+            "type": "integer"
+          },
+          "wins": {
+            "title": "Wins",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "games",
+          "wins",
+          "draws",
+          "losses"
+        ],
+        "title": "Rematches",
         "type": "object"
       },
       "ReviewCount": {
@@ -6931,6 +7756,68 @@
         "title": "ReviewedMove",
         "type": "object"
       },
+      "Rhythm": {
+        "additionalProperties": false,
+        "properties": {
+          "cells": {
+            "items": {
+              "$ref": "#/components/schemas/RhythmCell"
+            },
+            "title": "Cells",
+            "type": "array"
+          },
+          "dated_games": {
+            "title": "Dated Games",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "dated_games",
+          "cells"
+        ],
+        "title": "Rhythm",
+        "type": "object"
+      },
+      "RhythmCell": {
+        "additionalProperties": false,
+        "properties": {
+          "draws": {
+            "title": "Draws",
+            "type": "integer"
+          },
+          "losses": {
+            "title": "Losses",
+            "type": "integer"
+          },
+          "part": {
+            "enum": [
+              "night",
+              "morning",
+              "afternoon",
+              "evening"
+            ],
+            "title": "Part",
+            "type": "string"
+          },
+          "weekday": {
+            "title": "Weekday",
+            "type": "integer"
+          },
+          "wins": {
+            "title": "Wins",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "weekday",
+          "part",
+          "wins",
+          "draws",
+          "losses"
+        ],
+        "title": "RhythmCell",
+        "type": "object"
+      },
       "SacrificeEvidence": {
         "additionalProperties": false,
         "properties": {
@@ -6979,6 +7866,55 @@
           "value"
         ],
         "title": "Score",
+        "type": "object"
+      },
+      "Shape": {
+        "additionalProperties": false,
+        "properties": {
+          "draws": {
+            "title": "Draws",
+            "type": "integer"
+          },
+          "examples": {
+            "items": {
+              "$ref": "#/components/schemas/InsightGame"
+            },
+            "title": "Examples",
+            "type": "array"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "losses": {
+            "title": "Losses",
+            "type": "integer"
+          },
+          "shape": {
+            "enum": [
+              "wire_to_wire",
+              "back_and_forth",
+              "unsettled",
+              "slipped",
+              "comeback"
+            ],
+            "title": "Shape",
+            "type": "string"
+          },
+          "wins": {
+            "title": "Wins",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "shape",
+          "games",
+          "wins",
+          "draws",
+          "losses",
+          "examples"
+        ],
+        "title": "Shape",
         "type": "object"
       },
       "SkillPriority": {
@@ -7298,6 +8234,159 @@
           "evidence_ids"
         ],
         "title": "TeachingAudit",
+        "type": "object"
+      },
+      "Theory": {
+        "additionalProperties": false,
+        "properties": {
+          "average_cost_cp": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Average Cost Cp"
+          },
+          "average_exit_move": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Average Exit Move"
+          },
+          "costly_exits": {
+            "title": "Costly Exits",
+            "type": "integer"
+          },
+          "exits": {
+            "title": "Exits",
+            "type": "integer"
+          },
+          "openings": {
+            "items": {
+              "$ref": "#/components/schemas/TheoryOpening"
+            },
+            "title": "Openings",
+            "type": "array"
+          },
+          "reviewed_games": {
+            "title": "Reviewed Games",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "reviewed_games",
+          "exits",
+          "costly_exits",
+          "average_exit_move",
+          "average_cost_cp",
+          "openings"
+        ],
+        "title": "Theory",
+        "type": "object"
+      },
+      "TheoryOpening": {
+        "additionalProperties": false,
+        "properties": {
+          "cost_cp": {
+            "title": "Cost Cp",
+            "type": "integer"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "cost_cp",
+          "games"
+        ],
+        "title": "TheoryOpening",
+        "type": "object"
+      },
+      "ThinkTime": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seconds"
+          }
+        },
+        "required": [
+          "label",
+          "seconds"
+        ],
+        "title": "ThinkTime",
+        "type": "object"
+      },
+      "Tilt": {
+        "additionalProperties": false,
+        "properties": {
+          "after_loss": {
+            "$ref": "#/components/schemas/TiltRate"
+          },
+          "after_other": {
+            "$ref": "#/components/schemas/TiltRate"
+          },
+          "rematches_after_loss": {
+            "$ref": "#/components/schemas/Rematches"
+          }
+        },
+        "required": [
+          "after_loss",
+          "after_other",
+          "rematches_after_loss"
+        ],
+        "title": "Tilt",
+        "type": "object"
+      },
+      "TiltRate": {
+        "additionalProperties": false,
+        "properties": {
+          "blunders_per_100": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Blunders Per 100"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "games",
+          "blunders_per_100"
+        ],
+        "title": "TiltRate",
         "type": "object"
       },
       "TurningPoint": {
@@ -8732,6 +9821,84 @@
           }
         },
         "summary": "Import Provider"
+      }
+    },
+    "/api/insights": {
+      "get": {
+        "operationId": "insights_api_insights_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "speed",
+            "required": false,
+            "schema": {
+              "default": "all",
+              "enum": [
+                "all",
+                "bullet",
+                "blitz",
+                "rapid",
+                "classical",
+                "daily"
+              ],
+              "title": "Speed",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "days",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 3650,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Days"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "maximum": 840,
+              "minimum": -840,
+              "title": "Offset",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Insights"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Insights"
       }
     },
     "/api/jobs": {
