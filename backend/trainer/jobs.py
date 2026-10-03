@@ -101,7 +101,7 @@ class JobRunner:
             with self.queue.sessions() as db:
                 # A week without requests pauses polling until the learner returns.
                 owners = db.scalars(
-                    self.queue.owners().where(User.last_seen_at >= active_cutoff())
+                    self.queue.owners().where(User.last_seen_at >= active_cutoff(self.settings))
                 ).all()
             poll_connections(self, owners)
             # Rounds never overlap: a slow round is followed by the next at once.

@@ -51,7 +51,7 @@ def create_router():
 
     def queue_sync(workspace, provider):
         with workspace.mutation_lock, workspace.sessions() as db:
-            if queue(db, provider) is None:
+            if queue(db, provider, workspace.settings) is None:
                 raise HTTPException(422, f"Save your {get_provider(provider).name} username first.")
             return status(db, *connection(db, provider), provider)
 

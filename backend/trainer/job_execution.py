@@ -78,7 +78,7 @@ class JobExecution:
                     else:
                         with self.import_lock, self.sessions() as db:
                             db.get(AnalysisJob, job_id).status = "completed"
-                            queue_library(db)
+                            queue_library(db, self.settings)
                             db.commit()
                     return
             with self.sessions() as db:

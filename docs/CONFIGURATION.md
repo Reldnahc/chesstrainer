@@ -18,6 +18,11 @@ status is returned.
 | STOCKFISH_PATH | stockfish |
 | STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..4 |
 | SYNC_INTERVAL_SECONDS | 60; seconds from the start of one server polling round (change checks, then syncs for changed connections) to the next, 0 disables polling. A longer round starts the next one immediately. |
+| SYNC_GAMES | 10 (1..1000); newest games a sync reads once a provider reports a change |
+| SYNC_LICHESS_BATCH | 300 (1..300); Lichess players per change-check request |
+| SYNC_FULL_SECONDS | 600; full sync per connection even without a change marker, 0 never forces one |
+| SYNC_AWAY_DAYS | 7 (1..365); days without a visit before polling pauses and a welcome back is shown |
+| ANALYSIS_RECENT_GAMES | 100 (1..10000); most recently played games analyzed at fresh priority before older games |
 | HUMAN_MODEL_ENABLED | true; inference only when explicitly installed/cached |
 | HUMAN_MODEL_PATH | data/models/maia3-79m.pt; /data/models/maia3-79m.pt in Docker |
 | HUMAN_MODEL_DEVICE | cpu; optional administrator-provided cuda runtime |

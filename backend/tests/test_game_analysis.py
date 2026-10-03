@@ -55,20 +55,20 @@ def claim_order(app):
     return order
 
 
-def test_newest_games_are_fresh_and_run_before_backfill_newest_first(settings, monkeypatch):
-    monkeypatch.setattr("trainer.game_analysis.RECENT_GAMES", 2)
+def test_newest_games_are_fresh_and_run_before_backfill_newest_first(settings):
+    settings.analysis_recent_games = 2
     app = create_app(settings, workers=False)
     with TestClient(app):
         games = seed_games(app, 4)
         with app.state.sessions() as db:
-            assert queue_library(db) == 4
+            assert queue_library(db, settings) == 4
             db.commit()
             levels = {
                 review.game_id: db.get(AnalysisJob, review.job_id).priority
                 for review in db.scalars(select(GameReview))
             }
             # Queuing again creates nothing new.
-            assert queue_library(db) == 0
+            assert queue_library(db, settings) == 0
         assert levels == {games[3]: FRESH, games[2]: FRESH, games[1]: BACKFILL, games[0]: BACKFILL}
         assert claim_order(app) == list(reversed(games))
 
@@ -182,7 +182,7 @@ def test_poller_skips_accounts_away_for_a_week_and_welcomes_them_back(settings):
         runner = app.state.runner
         with runner.queue.sessions() as db:
             active = db.scalars(
-                runner.queue.owners().where(User.last_seen_at >= active_cutoff())
+                runner.queue.owners().where(User.last_seen_at >= active_cutoff(settings))
             ).all()
         assert active == []
         presence.forget()
@@ -190,7 +190,7 @@ def test_poller_skips_accounts_away_for_a_week_and_welcomes_them_back(settings):
         assert away is not None
         with runner.queue.sessions() as db:
             assert db.scalars(
-                runner.queue.owners().where(User.last_seen_at >= active_cutoff())
+                runner.queue.owners().where(User.last_seen_at >= active_cutoff(settings))
             ).all() == ["local"]
         assert client.post("/api/welcome-back/dismiss").json() == {"away_since": None}
 
@@ -209,7 +209,7 @@ def test_game_analysis_runs_review_and_training_in_one_job(settings, stockfish_p
                 None,
                 queue_analysis=False,
             )
-            queue_library(db)
+            queue_library(db, settings)
             db.commit()
         job = app.state.runner.claim()
         app.state.runner.run_job(job)

@@ -54,7 +54,7 @@ def create_router(*, settings) -> APIRouter:
                     queue_analysis=False,
                 )
                 if result["imported"]:
-                    queue_library(db)
+                    queue_library(db, settings)
                     db.commit()
                 return result
 

@@ -105,7 +105,7 @@ def request_workspace(request: Request):
     else:
         user_id = "local"
     workspaces = request.app.state.workspaces
-    touch(workspaces.sql_engine, user_id)
+    touch(workspaces.sql_engine, user_id, request.app.state.settings)
     with workspaces.open(user_id) as workspace:
         yield workspace
 

@@ -15,8 +15,6 @@ from trainer.game_providers.base import (
 )
 
 GROUP_SIZE = 50
-# Lichess's users endpoint accepts up to 300 ids per request.
-LICHESS_BATCH = 300
 
 
 class LichessClient:
@@ -35,7 +33,7 @@ class LichessClient:
         self.client.close()
 
     def changed(self, usernames, states):
-        """One request per 300 players: compare game counts and total play time.
+        """One request per SYNC_LICHESS_BATCH players (300 by default): compare game counts and total play time.
 
         Lichess asks for one request at a time; its users endpoint takes many
         ids, so a whole polling round costs a single call for most hosts.
@@ -43,8 +41,9 @@ class LichessClient:
         """
         results = {}
         names = list(usernames)
-        for start in range(0, len(names), LICHESS_BATCH):
-            chunk = names[start : start + LICHESS_BATCH]
+        batch = self.settings.sync_lichess_batch
+        for start in range(0, len(names), batch):
+            chunk = names[start : start + batch]
             response = self.client.post(
                 "https://lichess.org/api/users",
                 content=",".join(chunk),

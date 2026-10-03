@@ -37,6 +37,16 @@ class Settings(BaseSettings):
     # Seconds from one polling round's start to the next; 0 disables. A round longer
     # than this (many Chess.com players) starts the next one right away.
     sync_interval_seconds: int = Field(default=60, ge=0, le=86400)
+    # Newest games each sync reads from a provider once a change is seen.
+    sync_games: int = Field(default=10, ge=1, le=1000)
+    # Lichess players per change-check request (its users endpoint allows 300).
+    sync_lichess_batch: int = Field(default=300, ge=1, le=300)
+    # Full sync per connection even without a change marker; 0 never forces one.
+    sync_full_seconds: int = Field(default=600, ge=0, le=86400)
+    # Days without a visit before polling pauses and a welcome back is shown.
+    sync_away_days: int = Field(default=7, ge=1, le=365)
+    # Most recently played games analyzed at fresh priority; older ones backfill.
+    analysis_recent_games: int = Field(default=100, ge=1, le=10000)
     human_model_enabled: bool = True
     human_model_path: Path = Path("data/models/maia3-79m.pt")
     human_model_device: Literal["cpu", "cuda"] = "cpu"

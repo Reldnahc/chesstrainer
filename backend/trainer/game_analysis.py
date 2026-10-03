@@ -7,7 +7,6 @@ from trainer.models import AnalysisJob, Game, GameReview
 # Lower runs sooner. A game the learner opens beats the poller's fresh games,
 # which beat older games brought in by a manual import.
 REQUESTED, FRESH, BACKFILL = 0, 10, 20
-RECENT_GAMES = 100
 DEFAULT_RATING = 1000
 
 
@@ -33,9 +32,9 @@ def queue_games(db, game_ids, priority):
     return created
 
 
-def recent_game_ids(db):
+def recent_game_ids(db, limit):
     return db.scalars(
-        select(Game.id).order_by(Game.played_at.desc().nulls_last(), Game.id).limit(RECENT_GAMES)
+        select(Game.id).order_by(Game.played_at.desc().nulls_last(), Game.id).limit(limit)
     ).all()
 
 
@@ -47,7 +46,7 @@ def unanalyzed_game_ids(db):
     ).all()
 
 
-def queue_library(db):
+def queue_library(db, settings):
     """Fresh priority for the newest games, backfill for everything else."""
-    created = queue_games(db, recent_game_ids(db), FRESH)
+    created = queue_games(db, recent_game_ids(db, settings.analysis_recent_games), FRESH)
     return created + queue_games(db, unanalyzed_game_ids(db), BACKFILL)

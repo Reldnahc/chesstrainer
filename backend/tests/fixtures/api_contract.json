@@ -8660,6 +8660,10 @@
             "title": "Accounts Enabled",
             "type": "boolean"
           },
+          "analysis_recent_games": {
+            "title": "Analysis Recent Games",
+            "type": "integer"
+          },
           "chesscom_max_response_bytes": {
             "title": "Chesscom Max Response Bytes",
             "type": "integer"
@@ -8931,8 +8935,24 @@
             "title": "Stockfish Workers",
             "type": "integer"
           },
+          "sync_away_days": {
+            "title": "Sync Away Days",
+            "type": "integer"
+          },
+          "sync_full_seconds": {
+            "title": "Sync Full Seconds",
+            "type": "integer"
+          },
+          "sync_games": {
+            "title": "Sync Games",
+            "type": "integer"
+          },
           "sync_interval_seconds": {
             "title": "Sync Interval Seconds",
+            "type": "integer"
+          },
+          "sync_lichess_batch": {
+            "title": "Sync Lichess Batch",
             "type": "integer"
           },
           "target_rating": {
@@ -8987,6 +9007,11 @@
           "stockfish_hash_mb",
           "stockfish_workers",
           "sync_interval_seconds",
+          "sync_games",
+          "sync_lichess_batch",
+          "sync_full_seconds",
+          "sync_away_days",
+          "analysis_recent_games",
           "triage_depth",
           "triage_time",
           "triage_nodes",

@@ -9,7 +9,6 @@ from sqlalchemy.orm import Session
 
 from trainer.models import User
 
-AWAY_AFTER = timedelta(days=7)
 # Requests within this window skip the database write entirely.
 TOUCH_EVERY_SECONDS = 600
 
@@ -21,12 +20,12 @@ def utc(value):
     return value if value is None or value.tzinfo else value.replace(tzinfo=timezone.utc)
 
 
-def active_cutoff():
-    return datetime.now(timezone.utc) - AWAY_AFTER
+def active_cutoff(settings):
+    return datetime.now(timezone.utc) - timedelta(days=settings.sync_away_days)
 
 
-def touch(sql_engine, user_id):
-    """Record a request; a return after AWAY_AFTER leaves a welcome-back note."""
+def touch(sql_engine, user_id, settings):
+    """Record a request; a return after SYNC_AWAY_DAYS leaves a welcome-back note."""
     now, key = time.monotonic(), (id(sql_engine), user_id)
     with _lock:
         if now - _touched.get(key, -TOUCH_EVERY_SECONDS) < TOUCH_EVERY_SECONDS:
@@ -36,7 +35,7 @@ def touch(sql_engine, user_id):
     with Session(sql_engine) as db:
         seen = utc(db.scalar(select(User.last_seen_at).where(User.id == user_id)))
         values = {"last_seen_at": current}
-        if seen is not None and current - seen >= AWAY_AFTER:
+        if seen is not None and current - seen >= timedelta(days=settings.sync_away_days):
             values["away_since"] = seen
         db.execute(update(User).where(User.id == user_id).values(**values))
         db.commit()

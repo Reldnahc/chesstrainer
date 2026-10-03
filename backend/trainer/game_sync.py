@@ -11,10 +11,12 @@ from trainer.models import AnalysisJob, ProviderCheckpoint, ProviderConnection, 
 
 log = logging.getLogger(__name__)
 
+
 # A sync reads the newest games, whatever month they were played in.
-SYNC_GAMES = 10
-SYNC_SCOPE = {"time_class": "all", "months": 0, "max_games": SYNC_GAMES}
-FULL_SYNC_SECONDS = 600
+def sync_scope(settings):
+    return {"time_class": "all", "months": 0, "max_games": settings.sync_games}
+
+
 SYNC_COUNTERS = (
     "archives_total",
     "archives_processed",
@@ -46,7 +48,7 @@ def connected_username(db, provider):
     return saved.username if saved else ""
 
 
-def queue_sync(db, provider, *, min_age=60):
+def queue_sync(db, provider, settings, *, min_age=60):
     """Queue (or reuse) this account's sync job; returns it, or None if unconnected."""
     name = connected_username(db, provider)
     if not name:
@@ -66,7 +68,7 @@ def queue_sync(db, provider, *, min_age=60):
         source.errors = []
         for key in SYNC_COUNTERS:
             setattr(source, key, 0)
-        for key, value in SYNC_SCOPE.items():
+        for key, value in sync_scope(settings).items():
             setattr(source, key, value)
         job.status, job.cancel_requested, job.error = "queued", False, None
         job.created_at = now()
@@ -74,7 +76,9 @@ def queue_sync(db, provider, *, min_age=60):
         job = AnalysisJob(kind="sync")
         db.add(job)
         db.flush()
-        db.add(ProviderImport(job_id=job.id, provider=provider, username=name, **SYNC_SCOPE))
+        db.add(
+            ProviderImport(job_id=job.id, provider=provider, username=name, **sync_scope(settings))
+        )
     db.commit()
     return job
 
@@ -127,7 +131,8 @@ def detect(runner, provider, users):
     changes = {}
     for name, (changed, state) in results.items():
         # A periodic full sync catches anything a change marker can miss.
-        due = now - states[name].get("synced_at", 0) >= FULL_SYNC_SECONDS
+        full = runner.settings.sync_full_seconds
+        due = bool(full) and now - states[name].get("synced_at", 0) >= full
         state = dict(state, synced_at=now if changed or due else states[name].get("synced_at", 0))
         changes[name] = (changed or due, state)
     return changes
@@ -142,4 +147,4 @@ def record(runner, owner, provider, state, changed):
             row.poll_state = state
             db.commit()
             if changed:
-                queue_sync(db, provider, min_age=0)
+                queue_sync(db, provider, runner.settings, min_age=0)
