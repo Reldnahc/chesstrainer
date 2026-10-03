@@ -108,9 +108,6 @@ export const alien: CoachPersonality = {
     castle: ["{lead}castles, bringing the king to {square} and moving the rook beside it."],
     bishops: ["{lead}splits up {side}'s opposite-colored bishops, ending the pair."],
     doubled: ["{lead}leaves {side} with doubled pawns on files {files}. Two pawns now share one file."],
-    clock_low: ["{side} moved with {seconds} seconds on the clock. That context belongs beside the move."],
-    clock_fast: ["{side} took {elapsed} seconds here, with {seconds} seconds still in hand."],
-    clock_long: ["{side} spent {elapsed} seconds on this move. A long deliberation, by any measure."],
     mate_win: [
       {observation: "Every exit closed.", fact: "Checkmate. The king has no legal escape."},
       "Checkmate, with every legal escape closed to the king. A complete result, and a satisfying one to observe.",

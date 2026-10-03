@@ -1734,48 +1734,6 @@
       ]
     },
     {
-      "id": "clock-low",
-      "family": "other",
-      "claimCodes": [
-        "clock_low"
-      ],
-      "status": "primary",
-      "text": "The recorded clock shows there was little time left before this move.",
-      "conditions": "clock event; before_band low or critical; priority54/75; numbers stay written; no causal attribution",
-      "sources": [
-        "frontend/src/dialogue/gameIntent.ts:75",
-        "backend/trainer/review_intelligence/clocks.py:49"
-      ]
-    },
-    {
-      "id": "clock-fast",
-      "family": "other",
-      "claimCodes": [
-        "clock_fast"
-      ],
-      "status": "primary",
-      "text": "The recorded clock shows a quick move with time still available.",
-      "conditions": "clock event; not low/critical; tempo fast_with_time = elapsed<=2 and before>=60",
-      "sources": [
-        "frontend/src/dialogue/gameIntent.ts:76",
-        "backend/trainer/review_intelligence/clocks.py:92"
-      ]
-    },
-    {
-      "id": "clock-long",
-      "family": "other",
-      "claimCodes": [
-        "clock_long"
-      ],
-      "status": "primary",
-      "text": "A substantial amount of recorded time went into this move.",
-      "conditions": "clock event; not low/critical; tempo long_think = elapsed>=30 and before unknown or elapsed>=15%before",
-      "sources": [
-        "frontend/src/dialogue/gameIntent.ts:77",
-        "backend/trainer/review_intelligence/clocks.py:94"
-      ]
-    },
-    {
       "id": "recognized-opening",
       "family": "other",
       "claimCodes": [

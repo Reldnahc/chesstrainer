@@ -6,7 +6,7 @@ export const dialoguePurposes = [
   "neutral", "thinking", "uncertain", "brilliant", "great", "best", "good", "book",
   "opening_departure", "inaccuracy", "mistake", "blunder", "missed", "difficult_defense",
   "only_move", "winning", "losing", "draw", "encouraging", "recovery", "explanation",
-  "repeated_motif", "time_trouble", "variation",
+  "repeated_motif", "variation",
 ] as const;
 export type DialoguePurpose = typeof dialoguePurposes[number];
 export type EvidenceRef = Schema["EvidenceReference"];

@@ -48,8 +48,7 @@ const simpleIds: Readonly<Record<string, string>> = {
   only_move: "only-playable-move", decisive_resource: "only-advantage-resource",
   reply_capture: "immediate-capture", reply_check: "reply-check", alternative: "stronger-alternative",
   loss: "evaluation-loss", best: "best-supported-choice", good: "good-choice",
-  clock_low: "clock-low", clock_fast: "clock-fast",
-  clock_long: "clock-long", book: "recognized-opening", book_sound: "recognized-opening",
+  book: "recognized-opening", book_sound: "recognized-opening",
   departure: "opening-departure", punishment: "chance-taken", missed_punishment: "chance-missed",
   repeated: "repeated-issue", support_restored: "support-restored", erosion: "gradual-erosion",
   conversion: "advantage-converted", history: "saved-history-recurrence",
@@ -229,7 +228,6 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
       && item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search") ? simpleIds[item.code] : null;
     if (["only_move", "decisive_resource"].includes(item.code)) return event.kind === "critical_resource" && event.confidence === "searched"
       && searchEvidence(item) && Number(event.facts.only_good_at_depth) > 0 ? simpleIds[item.code] : null;
-    if (item.code.startsWith("clock_")) return !variation && event.kind === "clock_observation" ? simpleIds[item.code] ?? null : null;
     if (item.code === "departure") return !variation && event.kind === "opening_departure" ? "opening-departure" : null;
     return null;
   }

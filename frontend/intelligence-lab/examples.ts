@@ -28,7 +28,6 @@ export const writingExamples: Example[] = [
   {purpose: "recovery", expression: "recovered", code: "recovery", slots: {earlier: "17. Qe2", help: " The opponent's errors helped make that possible."}},
   {purpose: "explanation", expression: "explaining", code: "explanation", slots: {detail: "The knight attacks the king and queen together."}},
   {purpose: "repeated_motif", expression: "explaining", code: "repeated", slots: {motif: "pin", count: 2}},
-  {purpose: "time_trouble", expression: "explaining", code: "clock_low", slots: {side: "White", seconds: "8.0"}},
   {purpose: "variation", expression: "explaining", code: "variation", slots: {detail: "Black can answer Nxe4, capturing the pawn."}},
   {purpose: "mistake", expression: "mistake", code: "human_natural_error", label: "natural Maia-supported mistake",
     supporting: [{code: "alternative", slots: {best: "Qf2", evaluation: "+0.2"}, priority: 42}]},
