@@ -45,6 +45,13 @@ class CoachPreferences(Contract):
     motion: CoachMotion = "system"
 
 
+class CoachPreferencesChange(Contract):
+    """Fields left out keep their saved value, so each control saves only itself."""
+
+    coach_id: CoachId | None = None
+    motion: CoachMotion | None = None
+
+
 class MotionPreferences(Contract):
     motion: MotionPreference = "system"
 

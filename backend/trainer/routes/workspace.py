@@ -3,13 +3,19 @@
 from fastapi import APIRouter
 from sqlalchemy import func, select
 
-from trainer.contracts.preferences import AudioPreferences, CoachPreferences, MotionPreferences
+from trainer.contracts.preferences import (
+    AudioPreferences,
+    CoachPreferences,
+    CoachPreferencesChange,
+    MotionPreferences,
+)
 from trainer.contracts.workspace import Health, Stats, WorkspaceSettings
 from trainer.coverage import coverage
 from trainer.human_models.types import HumanReadiness
 from trainer.models import ClassificationRun, Exercise, Review
 from trainer.preferences import (
     audio_preferences,
+    change_coach_preferences,
     coach_preferences,
     motion_preferences,
     save_audio_preferences,
@@ -35,6 +41,11 @@ def create_router(*, settings, health, classifier) -> APIRouter:
     def put_coach_preferences(value: CoachPreferences, workspace: CurrentWorkspace):
         with workspace.sessions() as db:
             return save_coach_preferences(db, value)
+
+    @router.patch("/api/preferences/coach", response_model=CoachPreferences)
+    def patch_coach_preferences(change: CoachPreferencesChange, workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
+            return change_coach_preferences(db, change)
 
     @router.get("/api/preferences/motion", response_model=MotionPreferences)
     def get_motion_preferences(workspace: CurrentWorkspace):

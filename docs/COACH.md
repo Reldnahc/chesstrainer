@@ -505,6 +505,10 @@ The studio is an authoring aid, not a substitute for these application checks.
 ## Account preferences
 
 `GET` / `PUT /api/preferences/coach` use the existing scoped workspace and database.
+Settings saves with `PATCH`, which changes only the fields sent: choosing a coach
+writes only `coach_id` and the coach-motion select writes only `motion`, each with
+its own saving and error state. A new coach shows as selected while it saves, and
+the picker and the motion select stay enabled; overlapping changes are queued.
 `user_preferences` holds at most one row per account, including the reserved local
 user. Missing rows read as `classic` with `system` motion; reading defaults never
 creates rows. Supported motion choices are `system` (Use device setting),

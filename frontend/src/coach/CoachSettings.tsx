@@ -2,19 +2,21 @@ import PreferenceStatus from "../PreferenceStatus";
 import { useState } from "react";
 import SettingsSection from "../SettingsSection";
 import { CoachCharacter } from "./CoachAvatar";
-import { useCoachPreferences } from "./CoachProvider";
+import { useCoachPreference } from "./CoachProvider";
 import { getCoach, selectableCoaches } from "./registry";
-import type { CoachPreferences } from "./model";
+import type { CoachId } from "./model";
 import "./settings.css";
 
 export default function CoachSettings() {
-  const { preferences, ready, saving, error, save, retry } =
-    useCoachPreferences();
+  const choice = useCoachPreference("coach_id");
+  const { value: motion } = useCoachPreference("motion");
+  const { ready, saving, error, retry } = choice;
   const [saved, setSaved] = useState(false);
-  const selected = getCoach(preferences.coach_id);
-  async function change(value: CoachPreferences) {
+  // A new choice shows as selected at once and the picker stays enabled while it saves.
+  const selected = getCoach(choice.value);
+  async function change(value: CoachId) {
     setSaved(false);
-    setSaved(await save(value));
+    setSaved(await choice.save(value));
   }
   return (
     <SettingsSection
@@ -28,7 +30,7 @@ export default function CoachSettings() {
           retry={retry} retryLabel="Reload preferences" />
       }
     >
-      <fieldset disabled={!ready || saving} className="coach-options">
+      <fieldset disabled={!ready} className="coach-options">
         <legend className="sr-only">Choose your coach</legend>
         {selectableCoaches.map((coach) => (
             <label
@@ -41,7 +43,7 @@ export default function CoachSettings() {
                 reaction={{ state: "neutral", key: "settings" }}
                 motion={
                   ready && selected.id === coach.id
-                    ? preferences.motion
+                    ? motion
                     : "still"
                 }
                 idle={selected.id === coach.id}
@@ -58,12 +60,7 @@ export default function CoachSettings() {
                 aria-describedby={`coach-description-${coach.id}`}
                 value={coach.id}
                 checked={selected.id === coach.id}
-                onChange={() =>
-                  change({
-                    ...preferences,
-                    coach_id: coach.id,
-                  })
-                }
+                onChange={() => change(coach.id)}
               />
             </label>
         ))}

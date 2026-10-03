@@ -234,7 +234,7 @@ test('Study progress and selected coach resume on another device without leaking
   await signup(page, username);
   await page.getByRole('link', {name: 'Settings', exact: true}).click();
   await settingsSection(page, 'Coach & animations');
-  const coachSave = page.waitForResponse(response => response.url().endsWith('/api/preferences/coach') && response.request().method() === 'PUT');
+  const coachSave = page.waitForResponse(response => response.url().endsWith('/api/preferences/coach') && response.request().method() === 'PATCH');
   await page.getByRole('radio', {name: 'Scout', exact: true}).click();
   expect((await coachSave).ok()).toBe(true);
   await expect(page.getByRole('radio', {name: 'Scout', exact: true})).toBeChecked();

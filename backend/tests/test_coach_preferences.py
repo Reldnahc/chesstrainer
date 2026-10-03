@@ -49,6 +49,27 @@ def test_local_defaults_save_restart_and_validation(settings):
         assert client.get(PATH).json() == saved
 
 
+def test_patch_changes_only_the_fields_sent(settings):
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        # A first change creates the row with the other field at its default.
+        assert client.patch(PATH, json={"coach_id": "dog-corgi"}).json() == {
+            "coach_id": "dog-corgi",
+            "motion": "system",
+        }
+        assert client.patch(PATH, json={"motion": "still"}).json() == {
+            "coach_id": "dog-corgi",
+            "motion": "still",
+        }
+        assert client.patch(PATH, json={"coach_id": "robot"}).json() == {
+            "coach_id": "robot",
+            "motion": "still",
+        }
+        assert client.patch(PATH, json={}).json() == {"coach_id": "robot", "motion": "still"}
+        for invalid in ({"coach_id": "invented"}, {"motion": "subtle"}, {"extra": True}):
+            assert client.patch(PATH, json=invalid).status_code == 422
+        assert client.get(PATH).json() == {"coach_id": "robot", "motion": "still"}
+
+
 def test_accounts_second_device_isolation_and_csrf(settings):
     settings.public_origin = "http://testserver"
     settings.accounts_enabled = True

@@ -648,7 +648,8 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /** Patch Coach Preferences */
+        patch: operations["patch_coach_preferences_api_preferences_coach_patch"];
         trace?: never;
     };
     "/api/preferences/motion": {
@@ -1447,6 +1448,16 @@ export interface components {
              * @enum {string}
              */
             motion: "system" | "natural" | "still";
+        };
+        /**
+         * CoachPreferencesChange
+         * @description Fields left out keep their saved value, so each control saves only itself.
+         */
+        CoachPreferencesChange: {
+            /** Coach Id */
+            coach_id?: ("classic" | "man-host" | "man-expert" | "man-partner" | "woman-captain" | "woman-analyst" | "woman-spark" | "woman-blonde" | "cat-tuxedo" | "cat-black" | "dog-gentle" | "dog-corgi" | "dog-collie" | "human-boy" | "human-girl" | "dog-puppy" | "cat-kitten" | "alien" | "unicorn" | "gorilla" | "robot" | "wizard" | "slime" | "dragon" | "ghost" | "raccoon" | "frog" | "capybara" | "mushroom" | "living-pawn") | null;
+            /** Motion */
+            motion?: ("system" | "natural" | "still") | null;
         };
         /** ColdPosition */
         ColdPosition: {
@@ -4842,6 +4853,39 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["CoachPreferences"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CoachPreferences"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    patch_coach_preferences_api_preferences_coach_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CoachPreferencesChange"];
             };
         };
         responses: {

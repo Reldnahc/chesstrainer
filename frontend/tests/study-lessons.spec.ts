@@ -90,7 +90,7 @@ test("the connected lesson preserves Back, guidance, branch return, full-game co
   await page.getByRole("link", { name: "Settings", exact: true }).click();
   await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
   const radio = page.getByRole("radio", { name: preferences.get(page)!.coach.coach_id === "dog-collie" ? "Walter" : "Scout", exact: true });
-  const preference = page.waitForResponse(response => response.url().endsWith("/api/preferences/coach") && response.request().method() === "PUT");
+  const preference = page.waitForResponse(response => response.url().endsWith("/api/preferences/coach") && response.request().method() === "PATCH");
   await radio.click();
   expect((await preference).ok()).toBe(true);
   await expect(radio).toBeChecked();
