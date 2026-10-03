@@ -54,6 +54,9 @@ class EnginePool:
             def analyze(self, *args, **kwargs):
                 return self.run("analyze", *args, **kwargs)
 
+            def play_limited(self, *args, **kwargs):
+                return self.run("play_limited", *args, **kwargs)
+
             def close(self):
                 pass  # The host owns pooled processes; handles own no native resources.
 

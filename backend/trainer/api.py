@@ -27,6 +27,7 @@ from trainer.routes import (
     insights,
     jobs,
     opening_studies,
+    play,
     puzzles,
     review,
     study_lessons,
@@ -141,6 +142,7 @@ def create_app(
     app.include_router(games.create_router(settings=settings, engine_factory=engine_factory))
     app.include_router(insights.create_router())
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
+    app.include_router(play.create_router(settings=settings))
     app.state.puzzle_providers = PuzzleProviders(puzzle_providers)
     app.include_router(
         puzzles.create_router(providers=app.state.puzzle_providers, settings=settings)

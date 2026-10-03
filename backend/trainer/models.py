@@ -217,6 +217,46 @@ class GameReviewMove(Owned, Base):
     revision: Mapped[int] = mapped_column(default=0, server_default="0")
 
 
+class PlayGame(Owned, Base):
+    """A game against the coach's bot. Finished games are saved into the library."""
+
+    __tablename__ = "play_games"
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    coach_id: Mapped[str]
+    coach_name: Mapped[str]
+    learner_color: Mapped[bool]
+    opponent_kind: Mapped[str]
+    opponent_rating: Mapped[int]
+    learner_rating: Mapped[int]
+    commentary: Mapped[str]
+    moves: Mapped[list] = mapped_column(JSON, default=list)
+    # Public move reports keyed by ply, produced on request or live during play.
+    reports: Mapped[dict] = mapped_column(JSON, default=dict)
+    status: Mapped[str] = mapped_column(default="active", index=True)
+    result: Mapped[str | None]
+    termination: Mapped[str | None]
+    saved_game_id: Mapped[str | None] = mapped_column(ForeignKey("games.id"))
+    losing_streak: Mapped[int] = mapped_column(default=0, server_default="0")
+    draw_declined: Mapped[bool] = mapped_column(default=False, server_default="0")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class PlayProfile(Owned, Base):
+    """The Maia rating that best predicts this account's own moves, with its evidence size."""
+
+    __tablename__ = "play_profiles"
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), primary_key=True)
+    status: Mapped[str] = mapped_column(default="computing")
+    fitted_rating: Mapped[int | None]
+    platform_rating: Mapped[int | None]
+    platform: Mapped[str | None]
+    positions: Mapped[int] = mapped_column(default=0, server_default="0")
+    games: Mapped[int] = mapped_column(default=0, server_default="0")
+    configuration_key: Mapped[str] = mapped_column(default="", server_default="")
+    computed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
 class Decision(Owned, Base):
     __tablename__ = "decisions"
     __table_args__ = (UniqueConstraint("game_id", "ply"),)
