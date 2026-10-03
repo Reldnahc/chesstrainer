@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "Passed pawn alert. Nothing enemy-pawn-shaped stands in front of it on its own file or the two files hugging it."
+    },
+    "takeId": null
+  },
+  "requestHash": "75b34998553b4fc16d8930e8fb32daf90512cb032360952390854a861646b394",
+  "recordedAt": "2026-10-03T06:16:03.043Z",
+  "sha256": "ebf5ad0fd3054dca62fccc85bd57dc179f162e96668fe1ad06fd5ab56b86c4c3",
+  "bytes": 22822,
+  "requestId": "SxRS364RGdN2gZPjC4Ac",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1433c5684e601b69e86a54f4e3b55ddf040a6ab5fd7d79da4de6f49dcd238426",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

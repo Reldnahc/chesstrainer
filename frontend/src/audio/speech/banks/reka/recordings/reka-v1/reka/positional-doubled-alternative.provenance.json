@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "A different move would have doubled pawns, a same-colored pair queuing up."
+    },
+    "takeId": null
+  },
+  "requestHash": "525dd3dd43369678f69b3320ef05fe84089fbb0e0503481d6b8ca85f189c3161",
+  "recordedAt": "2026-10-03T06:15:58.889Z",
+  "sha256": "3c24301dc752a9b91cbaf9225fdb1d8d937a576d266da87e97deffd5065bf1eb",
+  "bytes": 14616,
+  "requestId": "ZK4i2NaGg3NGMgo0fPJH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da454d28e50108fc5bb092cb748eb610cf3cdf6243d64d7b0e9e2558446771d8",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

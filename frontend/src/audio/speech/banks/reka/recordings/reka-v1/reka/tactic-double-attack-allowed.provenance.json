@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "Eyes up: the other side gets a double act, one move juggling two threats. Spot both before replying."
+    },
+    "takeId": null
+  },
+  "requestHash": "d088d9a1073777cdb959fae14f2b9201b972bdb8ee1cface97b68f925040d9ef",
+  "recordedAt": "2026-10-03T06:15:36.575Z",
+  "sha256": "6c33c01b9ada2f540a934ff6994c1d5773e00bb22c9efae7e3d3f9f077c11501",
+  "bytes": 22678,
+  "requestId": "bIWFyxyQKAQgcLwwb055",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb07b7ee88e5398c0e205678c89099c14d71c51479b1fb021eb67df2beaacb8a",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

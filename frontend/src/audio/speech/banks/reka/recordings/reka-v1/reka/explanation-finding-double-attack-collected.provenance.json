@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "The moving piece hits one target and pulls the curtain off a second attacker, and that second one grabs the loot."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b54a7e23679599ef83a61e37d0d64fa762e702108fa852d7a5026c45c85d1a0",
+  "recordedAt": "2026-10-03T06:16:20.690Z",
+  "sha256": "03cf45735c335d44e68fd9d25c693366512c59b744aab8689431ad05cc217cc3",
+  "bytes": 22444,
+  "requestId": "zT7SNUd6Pk82mqUksTgb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e035afcb748314f042a6281433c4138773683db376b177e175ef472c73d99022",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

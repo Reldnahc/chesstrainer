@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "Back-rank tripwire. The king's own pieces crowd its home row, so the mating net is set on that row."
+    },
+    "takeId": null
+  },
+  "requestHash": "39c290308d3bd664cd88d7e51de736dd0e13117181332d2f431e18b2eac6252e",
+  "recordedAt": "2026-10-03T06:15:49.270Z",
+  "sha256": "6222a1076a0f0615becdb12b405ba5000729cd67f7c1c1fecc7f0cc77218d90c",
+  "bytes": 22646,
+  "requestId": "tzl5hsw9ESwwm6LAqU4z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "328126c729d424d8d69a20e0e176c9fa763aef037bfcecc0075425efd1216950",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

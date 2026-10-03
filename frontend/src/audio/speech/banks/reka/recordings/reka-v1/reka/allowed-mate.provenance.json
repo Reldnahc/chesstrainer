@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Freeze frame. This opens a forced mate, so let's watch exactly how the attack crashes through."
+    },
+    "takeId": null
+  },
+  "requestHash": "1151f23b0a8a8cf0814567e2e9a6c95b7266ff6381553848a5df532ff11c5361",
+  "recordedAt": "2026-10-03T06:16:00.384Z",
+  "sha256": "7fee1c170e20622c79056e3e566cb6b9426fd232639d174538d2b09d2edbdb07",
+  "bytes": 19831,
+  "requestId": "SPMbRGwPbeGBaYNor9qs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcc1a7df84b277f5e258f6ebf3bedcc89f5851c1a743d02d815eb84720254f88",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

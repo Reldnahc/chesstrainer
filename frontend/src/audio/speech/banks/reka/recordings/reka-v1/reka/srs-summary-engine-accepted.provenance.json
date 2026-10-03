@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "Accepted for this one. The moves don't hand over a tactical reason, and I won't fake one."
+    },
+    "takeId": null
+  },
+  "requestHash": "05f8730396f595080760d0f366dbb5942f3eb63bf5f6927572b7537dedbb4998",
+  "recordedAt": "2026-10-03T06:15:57.429Z",
+  "sha256": "454eea00ecc0585788fbdb8cc5eccd0e51dd07e896977794016d32e19901ba34",
+  "bytes": 18289,
+  "requestId": "pSnAt2F1YMIAOpyAp96I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a05e6f6ff0cff576b9a17cea99dc4025928f7af1020a82c621af0d46d93c4799",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

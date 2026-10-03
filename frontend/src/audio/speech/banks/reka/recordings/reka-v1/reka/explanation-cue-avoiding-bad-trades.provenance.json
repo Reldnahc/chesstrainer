@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Tally what goes off the board, then tally what the recapture takes back."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e630390fb8a8c2512e892e7b13c9afa0dcd592b3b61f3b027888d3df4ca3a9f",
+  "recordedAt": "2026-10-03T06:16:13.248Z",
+  "sha256": "9ad254af40091a6a0d13d44518b5455b6be801d2b4ef6ee268dbf24b22444682",
+  "bytes": 15004,
+  "requestId": "FkaGbIC0vTLh4AnzXTrA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "903166cad87899235d360d26489657c1cf408843670af277c73c125e55d2964d",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

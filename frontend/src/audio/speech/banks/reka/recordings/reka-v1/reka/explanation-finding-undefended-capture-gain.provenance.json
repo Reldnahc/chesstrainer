@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "An unwatched piece gets gobbled, and the capturing side is up material when the example wraps up."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a9c64b7c3c3e3d3f3ba83d29300447f2fa295254051c5dafc0b9db26f4895ed",
+  "recordedAt": "2026-10-03T06:16:23.691Z",
+  "sha256": "1ab5ff1fb5535e047375f50c7f73fedda8e99734f2131e0c39597f4c8c927cca",
+  "bytes": 20344,
+  "requestId": "KdvouCviu5xiSSCeZngR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b79c0e059f810723901c312a5c161596c0a8045e2397b6caee0d870a679b3ae7",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "lesson-game-opened",
+      "label": "Lesson game opened",
+      "text": "Full game's up. Scroll through it at your own pace."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b5a5bdb18ba0705768b67f40de0a35ff83672bfe7d141bf2f56b5bf7f931580",
+  "recordedAt": "2026-10-03T06:16:22.797Z",
+  "sha256": "65072f67d3b62f6892a04fb286ada68a70258917ff4ce513a6335e38e73d66a5",
+  "bytes": 11122,
+  "requestId": "d6hMtGOEZqkjpbL0q4GA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f8852cd73d076750ba2620e818a9f971c192cac8958363903cc08a72cccbed7",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

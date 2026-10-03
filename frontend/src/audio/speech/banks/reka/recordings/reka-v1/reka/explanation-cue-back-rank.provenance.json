@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-rank defender moves, make sure the king keeps an escape square."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6119bceeadc5bf98d22e99cea06792f43743d0fc7186bcbf6bbc8b68d8744cb",
+  "recordedAt": "2026-10-03T06:16:09.778Z",
+  "sha256": "02a24ea489208af5b6763cc5071d3bf4bc699df262aff88ee09297f4700c9b8d",
+  "bytes": 16057,
+  "requestId": "R6TbJfks6tGdm0n5vZcO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b801af8e0f72516274a58f212a9eea2233e413c2a8da407f3cefa7f81e59c7c",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

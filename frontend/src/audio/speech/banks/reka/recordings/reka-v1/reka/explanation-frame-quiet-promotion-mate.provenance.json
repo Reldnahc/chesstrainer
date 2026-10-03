@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "The pawn hits the last rank, morphs into a fresh piece, and that's mate on the spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "b951fcc23ab8cd15234512c4057f2dcfd4125dc1fb1ed2f87ff3500f54321c12",
+  "recordedAt": "2026-10-03T06:16:09.710Z",
+  "sha256": "cf15bcf0c6424bc17a16b490fe5d8009fee194ce676cf83cffaef16a7f5a35ad",
+  "bytes": 18651,
+  "requestId": "U5yZ5yRcIB6zdMX0kH6l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c855dc6da2d7485cc96c509736356187edcccaeabe8bef79461e6f6f5f0b8a8",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn swaps itself for a new piece, and that side is still up material when the example wraps up."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0b538b58f09514fed2dafc5bd086d5003db8405c9e91e7371356070a1e76029",
+  "recordedAt": "2026-10-03T06:16:22.208Z",
+  "sha256": "70e00bdfd1a3e900877196b2fee79a69d272c5cd8165433f2dc5bf399d9a9989",
+  "bytes": 19946,
+  "requestId": "EokZ1uARranp4rqHm8T5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0006ab78444d482f0af0b69b4074d40d0cd169a6fbc575404afea9d5e7bd2ba",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

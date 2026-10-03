@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "On script: a move from an opening line with a name."
+    },
+    "takeId": null
+  },
+  "requestHash": "75e4ef58f4b489689845cf9fce1cae150bed2b5ce6e871259ac669491be9e6ac",
+  "recordedAt": "2026-10-03T06:16:25.202Z",
+  "sha256": "05c21378856620e45641483d702365f417ec4c6cdb14ecd442f1ae45ab13b3db",
+  "bytes": 11722,
+  "requestId": "N8QTK4sRQ4gpJ666SnXG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c005a84a7723cc38bd4ac375a9ddefe5bcbbebbb6c143603846aabfb9643fb01",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "Two threats juggled in one go, and that's the punchline. A single reply may not cover both."
+    },
+    "takeId": null
+  },
+  "requestHash": "506fee2c5981ed0543e17e838278b17b298d638ffb22d08233b819c24f2d1618",
+  "recordedAt": "2026-10-03T06:15:34.914Z",
+  "sha256": "8f2d97cd8498467e9f6c3aa1f06c9a9ee6352d13613e881f59ffeaf1785d9cfe",
+  "bytes": 21172,
+  "requestId": "ERm1bH1QngHED5jGhayY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fc066098bbc29f2b8e8724baf09506142334c6479c436f049cdb734755fc4ff",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

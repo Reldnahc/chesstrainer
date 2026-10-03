@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "The stronger move had a pin against the king up its sleeve, nailing a piece in place. Here the piece goes free."
+    },
+    "takeId": null
+  },
+  "requestHash": "e48a5f51d03a22acaeac95b3a3d19bd4c7d4705fb5fd3e1db6edbaa9d42ceb35",
+  "recordedAt": "2026-10-03T06:15:36.867Z",
+  "sha256": "c82fa4084085e86aab4fe0037af5997256da2cef19eceec1c8bc06c84c7697d7",
+  "bytes": 22639,
+  "requestId": "NboDaUMN08xs9Js51Nkb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa4bb124934b767e648e4d1f232e5d1500b73b9ae0fe323b30b97a2762622c9a",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

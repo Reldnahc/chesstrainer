@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, ask whether anything of yours could be gobbled without a decent recapture coming back."
+    },
+    "takeId": null
+  },
+  "requestHash": "db2e9a8797d49d86c5d27ef7af5d13441d6936814efa4562e18535e60fe11273",
+  "recordedAt": "2026-10-03T06:16:28.726Z",
+  "sha256": "4cfdaa6bb7e355097da9090875bc2a18ce7679b155036e05c11e361143084ec4",
+  "bytes": 20046,
+  "requestId": "naNWxJA9v5PStywaboqi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32d1bca33e11fa70b0924484d0a015c80985f2d52206625c781f27a87e555540",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "The stronger move had two threats ready to juggle. This one never stages that double act."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d14dc60a7f52739564390133a0e7562daa160dc58950a8c8f3382cf5ace58b9",
+  "recordedAt": "2026-10-03T06:15:38.126Z",
+  "sha256": "565475a19d19e1be61a7d15816c41f703935bce4c4434ac9786950fdd1d6d3e7",
+  "bytes": 19128,
+  "requestId": "rAzFvt2sTUEZFqxVJzaD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95c0f42e3d3a27455bef759a96ddd6376e1fafa6567191b6af719135c3334037",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

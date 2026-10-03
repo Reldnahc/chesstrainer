@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "Castling: king tucked into the corner side, rook hopping over beside it, all in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdaaa8c57d32f6abff6eff8d2ad353338a3edfcc333c7768e4c5ee4eab9bdf47",
+  "recordedAt": "2026-10-03T06:15:51.728Z",
+  "sha256": "c2dc97845e5cd826ae468b2e699f6e31a563ee8431a90b302b28e1c87d041a37",
+  "bytes": 20171,
+  "requestId": "iQR4Oo87vHud020Swn2O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8c4a86957c74be186c34a90e9644e0a737e52aceade7e09399158d306ad2701",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

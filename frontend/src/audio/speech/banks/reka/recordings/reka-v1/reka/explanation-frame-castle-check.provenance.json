@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, with the rook checking straight from its new home."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba1d422340d50df44de6ec0c0c42a63378444f77ab971ce2b5513f6ed250dd48",
+  "recordedAt": "2026-10-03T06:16:22.666Z",
+  "sha256": "035b07c351f729ebfef444a3dda8c708f147f5c06aae904b895fd0209188c88c",
+  "bytes": 12304,
+  "requestId": "Zmw08whKQlyuqRUJpFeK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed63e68f435c32cde1622541b0557ea82bb672df4037931f17f55ec7195a51d2",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

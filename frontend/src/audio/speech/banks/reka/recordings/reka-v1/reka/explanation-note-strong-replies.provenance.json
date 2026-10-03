@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "This is one road it might take against strong replies. Lots of those replies aren't the only choice."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c5e5a3c5bb1f768db12ec55c32df84851fcd6a27a1fa84fedda0065281f036c",
+  "recordedAt": "2026-10-03T06:16:17.296Z",
+  "sha256": "c939d19ce97a29a0d0a144976846178922b3dcfe0b6c10eac7f8407945a02217",
+  "bytes": 20182,
+  "requestId": "gwyckEF9jYPrLxY2kjfy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3de96e91c747e864d83909a614fb69b750b026075c81ca7493572e42fbd978be",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

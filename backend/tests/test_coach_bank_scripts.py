@@ -60,6 +60,7 @@ REGISTERED = [
     ("living-pawn", "percy"),
     ("cat-kitten", "pickle"),
     ("slime", "pip"),
+    ("woman-spark", "reka"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

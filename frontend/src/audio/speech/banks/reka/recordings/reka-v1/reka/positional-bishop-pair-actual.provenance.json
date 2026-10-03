@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "This capture breaks up the bishop duo, so that side has bishops on just one color now."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b5c91c162bcb048a236a6c1e5fce6fe08adb2511b49b6321151d76338954d66",
+  "recordedAt": "2026-10-03T06:15:54.865Z",
+  "sha256": "0b31cd7e39f88f0e30d6d0fa1510e0fd427c14192d34a1cfbf80779bddede352",
+  "bytes": 18465,
+  "requestId": "nnnlBATkCCivVCSinp9x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a88654825c0cb1e01a05dc7efbcdd0b0b01376a1b2cb262c9d52bc28312828e",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

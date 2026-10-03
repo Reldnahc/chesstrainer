@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Run the checks and captures looking for a single landing on two valuable targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "657ca871e99b2af850ea263a7d07c8b6525442b36724d438d7d53e7238382f95",
+  "recordedAt": "2026-10-03T06:16:31.304Z",
+  "sha256": "21acb26bb44c4796fef3b3572b33cb8e44b55008637d3b25a4804414a769a523",
+  "bytes": 16178,
+  "requestId": "6igYDGfLtAbgLIOX8SUf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8bd6c16f54c75dc1f5ca076ba69fb2852ba1a333f4f3c7ee05cb4990451f9d2",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

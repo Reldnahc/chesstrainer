@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "And we step off the repertoire map. Fresh territory from here."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a30a24e3311d3b0c2297ac983834bf82bd28c8ec67318652c5ae40906ccdefe",
+  "recordedAt": "2026-10-03T06:15:53.072Z",
+  "sha256": "0bbb413bf1bb8b86a14a40832399238fe05e0b66106b0529d2496ee6e5ef4b17",
+  "bytes": 12624,
+  "requestId": "RUZi6GKB4JMVqkHDv9m2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c37a6301df5a1905d9fd9f9f8578a810f055258c849557328c76d7f09b8789ad",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

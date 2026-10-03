@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "A knight or bishop pops off its home square and joins the party."
+    },
+    "takeId": null
+  },
+  "requestHash": "a71d27ada6e088873c5fab521b60f4468b3a396e64e263012123fede99d24cf1",
+  "recordedAt": "2026-10-03T06:15:54.447Z",
+  "sha256": "b837b526eefcb5c7ebdcc18d3c900b794aabc6ad4e10db0c36cd124938a55fa0",
+  "bytes": 13881,
+  "requestId": "yn0qeZ68CZAXc00tEyDL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7c1db0349e91ab38d0b3ee6373e24b2a7427d617d167a5183b8b585207b524f",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls quiz the moves of your chosen side, and a position that shows up across several active studies counts as one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "4016205a1b2ee8db287727d26a2289223fe07d53628e2fc0538fbe5ae3a39baa",
+  "recordedAt": "2026-10-03T06:16:10.136Z",
+  "sha256": "1143360b786f15c30fae59b7258c3d54aa88476e074a565044eff41994a39fd0",
+  "bytes": 25964,
+  "requestId": "W7wcWDdnz8TGDCuYQxGc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d779d59015b6f62d4f8e3f078d28867f859b5005d73ea85c7874a077d7dcb61",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

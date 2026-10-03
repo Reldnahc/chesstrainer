@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "This move gobbles something."
+    },
+    "takeId": null
+  },
+  "requestHash": "305ff9cc5d34142c61451f79c17ef3f9655f714cefb2fe36bae57fb30deafbd3",
+  "recordedAt": "2026-10-03T06:16:12.149Z",
+  "sha256": "638071d1d0ede9e5b3d9c80d231c22aff3ade067b11efa0ed0e74f90f2a2fa3a",
+  "bytes": 7467,
+  "requestId": "fx1zhPxPVHJcvbE8izZY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d02dfa72510f9ac15d77308ffeb8020196b12a0dd0916c7f696991ff18b93a87",
+    "bytes": 34316
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

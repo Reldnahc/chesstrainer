@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "Snap: that front piece can't budge without exposing its king to check. Nailed down."
+    },
+    "takeId": null
+  },
+  "requestHash": "777bbcd62d04652fea957989602f7449966440203dd8e7f0afd03cdbcfca7edf",
+  "recordedAt": "2026-10-03T06:15:33.466Z",
+  "sha256": "a694467dd9570a224238078ae6899a4a2e813901caef074276abd0067e20be23",
+  "bytes": 19440,
+  "requestId": "xXRtTXpgPbjpDNcrsPnZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46bbd3e7df4553e0950a0c4ff2a431272bc5c642dd944d6c77984d397174aad6",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

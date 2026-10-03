@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "A pawn ends up stranded, isolated, with no friendly pawn on the files at its elbows."
+    },
+    "takeId": null
+  },
+  "requestHash": "34169436cd9d84a75d57f5735e5b72d7cf423831534ad5095224a6c2ed815d8c",
+  "recordedAt": "2026-10-03T06:15:39.434Z",
+  "sha256": "c64302213fe554f22135824683657cb626fd6e8ca0e427633e573dbde3dedd7c",
+  "bytes": 19218,
+  "requestId": "jXU1VdgiYgo1gsZ7Dz7x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c670633d33a041f330a16b88b39fbfb1f8ec2852cab0e424cf73c991ca1623e",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

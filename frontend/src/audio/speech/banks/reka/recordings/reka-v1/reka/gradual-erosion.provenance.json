@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Another tiny leak. None sank the ship alone, but together they've drained plenty. Look at the whole stretch."
+    },
+    "takeId": null
+  },
+  "requestHash": "02d99c1f481e873904b0cedba94b6031c40383c6015275e834d37b612615bd0b",
+  "recordedAt": "2026-10-03T06:16:04.611Z",
+  "sha256": "86dbab6f02cf1f44dbd73809fc93495f026ead6d2f84f1c870adb7fe8db337a7",
+  "bytes": 24678,
+  "requestId": "x382rzhQcPukqc9zrAEr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e202b6c00f8f57f54cb7d39d5c1f2210ef66a2de61e53f0259a9a4eecc9b7bd9",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

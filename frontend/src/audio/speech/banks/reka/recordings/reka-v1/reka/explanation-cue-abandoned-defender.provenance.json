@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before a defender moves, list everything it's been guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f9d38ee705de8b55f3a356f0b075df9eb30bf2d3feeef1bc3ba404813b6955e",
+  "recordedAt": "2026-10-03T06:16:12.066Z",
+  "sha256": "12d0d48ba9cd9aa9647eefa3c856f1ee4598228fe4cbfe297ef945ec1b16e2ce",
+  "bytes": 12814,
+  "requestId": "hBpTmr3oYmiWOvdSIS9h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0ec2e6ae28fb9286e39fd4e64892816fb224482a0c6a3bd64cd5ddbb5fcee17",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

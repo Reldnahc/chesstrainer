@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "Decoy alert: the other side can tempt a defender off its post, and whatever it watches over might come loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "7df4cea14340bca5f36d56f250b84f49a2a9942122108d5d83aa6edf428f853b",
+  "recordedAt": "2026-10-03T06:15:41.355Z",
+  "sha256": "ecadb2fa332cec00ed17ebdfe1e2dd65e0b7d935798e495328f2d26ac2974c56",
+  "bytes": 22735,
+  "requestId": "IkYkBbM6PUkJO1a1ANqq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "63f06b9ef829ba7c03b516ffa226e535b3c278aecd4954527e23e388a63ede03",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

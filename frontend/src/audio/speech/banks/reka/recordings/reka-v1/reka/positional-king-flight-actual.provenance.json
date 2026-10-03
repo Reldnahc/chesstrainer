@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "The king gets a fresh escape hatch, a legal square that wasn't open before."
+    },
+    "takeId": null
+  },
+  "requestHash": "8453925b39605280babae7dee05618b63b3019a2ca8efecae3fc71d393801616",
+  "recordedAt": "2026-10-03T06:15:48.737Z",
+  "sha256": "5cccdc0724b6f032ec42e69037bc6670d39c591d51a0d5938665cf0fd1f36b35",
+  "bytes": 16078,
+  "requestId": "c6W9UYxpU87oTjijhQGS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a0c8c0d4c80e678e95d559eefd4ab6e4b0500c99fdf421224eeab92da7331fd",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

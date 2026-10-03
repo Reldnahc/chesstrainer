@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Quiet move coming? First sweep the board for unwatched enemy pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0e6f71c0b602f93a883b820c641aece294797528744079f15f72eca230c11c3",
+  "recordedAt": "2026-10-03T06:16:30.020Z",
+  "sha256": "9c85f1b03cb38a9f8570bb19d09170c20237587dcc366c0a289d91252d8045e8",
+  "bytes": 15585,
+  "requestId": "qnQJkKLLypfYNIEawYwy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03cd0162fbb55bd45c04d863be60c8d68f960c94594b4bb9fb0826cb923f33b0",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

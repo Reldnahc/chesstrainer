@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "good-choice",
+      "label": "Good choice",
+      "text": "Holds water. The engine leans toward something else, but the bulk of the value stays on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "cef40de00cf355df0391bafdfd7c84e22e0a7eaf840e55bceae4a1bc384c8810",
+  "recordedAt": "2026-10-03T06:15:48.142Z",
+  "sha256": "1116382c9caa1b3ba12184e7e222b2550e8a456f80a9aaef3ac2deaf932a6dec",
+  "bytes": 19863,
+  "requestId": "sdqaiw6cuEWbW6xjUIuV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0ead8f40547622babf260567d29616ded149024aeaa79c5e5f335a538580e6a",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

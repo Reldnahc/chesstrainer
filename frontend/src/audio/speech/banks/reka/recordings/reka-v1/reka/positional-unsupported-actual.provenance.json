@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "Little detail: a piece is now flapping in the wind, no defender at all. That alone doesn't mean it's winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c648af2921c84d10b1eb3b362de7df277489234ea62ec58330f9833b16bb2bf",
+  "recordedAt": "2026-10-03T06:15:45.515Z",
+  "sha256": "e1f2145d286de94ba41f5bf39491ebd34ca12591343a57ea5de9630b93c231b8",
+  "bytes": 23452,
+  "requestId": "anqIsWPdagcYoDr1T1dG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16329fd7535f9307846874adc0abb26ebe19ab57fec40393b5cbbc16ecf7fa85",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

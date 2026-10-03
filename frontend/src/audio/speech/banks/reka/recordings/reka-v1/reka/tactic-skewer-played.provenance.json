@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "Skewer, and a spicy one. Poke the big piece in front, and when it hops aside, the one hiding behind is left to the wolves."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce8d74cd5ffd547c59a99705242d9cde30c28ce4e3d7705fd86a8dc96745d69e",
+  "recordedAt": "2026-10-03T06:15:39.102Z",
+  "sha256": "906eac0992e4876e399485fbedb40a37d468fb379e540faabf894f7d78d53c70",
+  "bytes": 26426,
+  "requestId": "BJhsgBVAwtTQNhJEdpkl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3bff9d2c002fc4e5d506dcaedf0e831ca6b4e2d0cb581ddf8ebbfa7f8055a26f",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

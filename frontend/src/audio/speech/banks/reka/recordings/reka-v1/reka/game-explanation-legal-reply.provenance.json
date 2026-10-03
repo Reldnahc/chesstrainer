@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "Marked reply incoming: a legal option the other side can pick. Set it up and follow where it leads."
+    },
+    "takeId": null
+  },
+  "requestHash": "08fa9d91084e1bef1437a2a9a3a20faefa08e0bf39be92beda175df0e740b4f8",
+  "recordedAt": "2026-10-03T06:16:27.244Z",
+  "sha256": "d2bd0f60616f064bc993b89bde6c896ecfa7d56fc4a9b8994204a5d88fdaff10",
+  "bytes": 21737,
+  "requestId": "2C3XKkmVTh8Os2OWuPLJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "358eea44445934803680db6e83c111d039d8f4651765bd23dfdff869e6ab67ab",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

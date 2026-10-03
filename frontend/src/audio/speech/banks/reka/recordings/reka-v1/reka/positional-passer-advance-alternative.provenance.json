@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Another move gets the passer one notch nearer the promotion row."
+    },
+    "takeId": null
+  },
+  "requestHash": "f715b308070c817a4eb1474ce13f14154b6041da72a3a7c3fa5ed8fa36ca1666",
+  "recordedAt": "2026-10-03T06:15:37.868Z",
+  "sha256": "5fdcaf3e5d002a2ffb83298d194c9cbc0af252b2e0bebed414b741df0a97b61c",
+  "bytes": 13291,
+  "requestId": "P1p7yaMi1u5lhaRqK6Ql",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e1b57bfbfa0946b9f9653a5da0998641ce8a83fd3735690990d29081b2971bb1",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

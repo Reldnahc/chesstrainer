@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "lesson-wrong-move",
+      "label": "Lesson wrong move",
+      "text": "Legal, sure, but this lesson's heading somewhere else. Wind up and swing again."
+    },
+    "takeId": null
+  },
+  "requestHash": "d80b49698ec9c55998471794a01b586d9c7223018f5e2eedb32b76badf8950de",
+  "recordedAt": "2026-10-03T06:16:15.446Z",
+  "sha256": "05605b7e7ecee5f3e732e6955a4709b86a2f6b486bcc8531b06492564c62c839",
+  "bytes": 19662,
+  "requestId": "LVp5Ea9a2bpv5AqMQuG4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed395cdeb886488ccd1d64649dad33af520cd2e6b5f7995cd33668b2099bedb7",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

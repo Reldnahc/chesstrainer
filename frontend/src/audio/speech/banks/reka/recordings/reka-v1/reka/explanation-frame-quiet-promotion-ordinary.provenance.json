@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "The pawn reaches the last rank and swaps its pawn hat for a brand-new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "cba2106616b3fd03872b48ef849a9228faccf8e27cad82bbb33c19bc389448a0",
+  "recordedAt": "2026-10-03T06:16:06.708Z",
+  "sha256": "e4837cf2cf0288d946bad4dc117fc7e46f081e71a4456601068a7071c75b10e0",
+  "bytes": 16583,
+  "requestId": "9i1I0rKkoqUvwhTDGVOb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73bc5f26b91b73634dfe3ea17f06c8b4566ff65cabfdb5b70c3ee18855882b7a",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

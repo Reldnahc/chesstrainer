@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Every defender is nailed to its king, which rules out recapturing. Hence the capture sticks, and the line shown ends up material ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "472213706258922692693608871d8d7985e66c78b2557279c28e965cac233920",
+  "recordedAt": "2026-10-03T06:16:07.546Z",
+  "sha256": "e94796023259ef341622ee0504e3333dabccff8eff409cc9c466c455cbb3216a",
+  "bytes": 27823,
+  "requestId": "JGGKC5NOVfi7DGaEjEeD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7881c3b1180e2fef7295ee8d7ff7112020f987ef665e8495d4ebd23d919949d",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

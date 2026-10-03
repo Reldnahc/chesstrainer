@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a blocker steps off, chase whatever line it uncorks."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d501c4bd4a2df9dc03f32c84e6118a5bb484cced78939f24be1257cc9c5feac",
+  "recordedAt": "2026-10-03T06:16:06.797Z",
+  "sha256": "7a5bbf3c84fb1688a86b8d9defbdc5c50f7e7464c8c7aef6cda7fa7fc2b9c61a",
+  "bytes": 13189,
+  "requestId": "9lamkyxvPtfcSTNkwqLb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2389d518fca2bc73be3e453d4855c25260994acb66ff163d50730cd04cb9d363",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

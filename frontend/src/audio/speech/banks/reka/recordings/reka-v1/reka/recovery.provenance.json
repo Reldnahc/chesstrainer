@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "And we're off again! The earlier wobble is behind us, and the game is very much alive."
+    },
+    "takeId": null
+  },
+  "requestHash": "3abd9a9b9bf53af5662377f82feca048d200d0c7c51cc51bfd052f5f59b5f557",
+  "recordedAt": "2026-10-03T06:15:54.630Z",
+  "sha256": "39d8dcf25ea337cffc1f31b6f8fccd11749320ca3dfeb39ad58263ba5eee5c49",
+  "bytes": 19599,
+  "requestId": "pqmA60bnGGANXgBdDUHX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ac70939358e6ccbb72ba6167d814033017a54500511eacfa66e89e077c45e9c",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

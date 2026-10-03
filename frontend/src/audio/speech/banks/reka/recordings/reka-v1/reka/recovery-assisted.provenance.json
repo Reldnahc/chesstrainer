@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "Playable again after the wobble, with a little help from the other side's slips."
+    },
+    "takeId": null
+  },
+  "requestHash": "4519f865eebcc52e5c772addd7c75d81fc33fcf9de92fb5ab296e1a8da675fc3",
+  "recordedAt": "2026-10-03T06:15:56.067Z",
+  "sha256": "ec08359914158a3a74f5a98d2d4bee9ea43c83ed5214c31bb2bceeaf1bab772d",
+  "bytes": 15195,
+  "requestId": "zTlwZ3Uuck8sammOPPjr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c36cf49ab80c02788cd1a622a9ed9dc9b5defd96ad2b54044bacc4b327978fc",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

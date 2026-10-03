@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Before a pinned piece moves, peek at what it's screening: the king, or something pricier."
+    },
+    "takeId": null
+  },
+  "requestHash": "afbbcdfc01e196dcbdaaeb9cb1f52350bae7dff55bd429d1be18eaa0858d8c6d",
+  "recordedAt": "2026-10-03T06:16:32.826Z",
+  "sha256": "c6222449421f926ac04db363e12293478bec6b3b0291fb3c8cca75b8d499694b",
+  "bytes": 19072,
+  "requestId": "Gnu6Ik53w4qhnqt6R6lb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18bb5bc597868385899bf04d613ee2513b17a6f2768f535fcfb66f21506d81e3",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

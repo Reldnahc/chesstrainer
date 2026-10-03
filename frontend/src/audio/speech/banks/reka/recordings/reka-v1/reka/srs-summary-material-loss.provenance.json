@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Play the saved line to the very end, and the side that made this move finishes behind on material compared with the start."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b33179961962dbba3e6582e0e762b380a37177501de45a8869b0f7f720f1623",
+  "recordedAt": "2026-10-03T06:15:55.968Z",
+  "sha256": "6f5c0063109197e02d460af8843eeb603dcefddd7513b658da1c85ecc7c3417e",
+  "bytes": 23505,
+  "requestId": "UhOEs83siS9LJjlmC09H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5196f2181085e41939792bccbecc0258bdca098f7be3ca03f11727ede95d0253",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

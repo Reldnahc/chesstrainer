@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Over to you. Look hard, then commit to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b978d97f6d69bfaa4c078e35f2385c816ed9b5f3b9e76d72e158c4b14a47951f",
+  "recordedAt": "2026-10-03T06:15:46.632Z",
+  "sha256": "9ffb828ada64cfca7591a37d4e76b4420f2f626b3e5cd5877d86a294ee010e9d",
+  "bytes": 11729,
+  "requestId": "uM3xWPLKYbPrIM4eOeVW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c51cdf40712762d6f9eaf7986cd20cc2c8744c18ecbb33d1f89ade2d9e22d48c",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

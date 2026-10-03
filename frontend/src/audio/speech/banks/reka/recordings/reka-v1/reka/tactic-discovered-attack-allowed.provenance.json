@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "Eyes up: the other side has a slingshot ready, one piece zipping aside so the one behind can fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e93207e8596e32def7313123082325427605497dba2ecd6906cccf2b47ccfd4",
+  "recordedAt": "2026-10-03T06:16:00.686Z",
+  "sha256": "43d27d6e77bacf4464cfff893c6f5e86f49db8f08c9c0bd32e53939ee1d217b6",
+  "bytes": 21221,
+  "requestId": "2Deib3ciwh26s34hG5eR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dea7ee39b8ad9f7ca85888a16331e11ddedf70f68324a2f0aed15292b15fad72",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

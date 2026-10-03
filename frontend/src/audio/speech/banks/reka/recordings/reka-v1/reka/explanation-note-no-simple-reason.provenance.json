@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "No simple tactical reason falls out of the saved line, and dressing up a positional one isn't my style. Run it move by move and stack the replies up."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dee158ef34bdc4113df33e979650f6bf1d9dcf6dff161c41a1ec8e683dc94aa",
+  "recordedAt": "2026-10-03T06:16:21.164Z",
+  "sha256": "e07b5f25a18a1adc3b4ad2f59666d2bbed9ca3ea64c0551f53de54fd4171cece",
+  "bytes": 29852,
+  "requestId": "9YhDcWkMtRzAvcwd8hGP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9251f0c4589041f5024196cc0421607f2579569a70949fc5900efddf27dd9363",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

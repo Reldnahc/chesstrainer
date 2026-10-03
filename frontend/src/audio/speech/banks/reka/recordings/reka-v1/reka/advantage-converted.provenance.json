@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "The edge rode shotgun all the way to the win. Replay that stretch for the fun of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "550a37aee44789fff0c2394129b3ba17f53f634efba959d1b73c5cebc8733862",
+  "recordedAt": "2026-10-03T06:15:39.503Z",
+  "sha256": "f76476b126d1b7ae7b5d82c2c94df6ab4fb91b60316c79747683f90b61c83078",
+  "bytes": 15966,
+  "requestId": "MvpcKSjf3B3Y7YHvc3QM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fb65cb5530c7b31b2f5999ce3a4c20b15a2456b5b5e0eb3e21466bc840b24ce",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

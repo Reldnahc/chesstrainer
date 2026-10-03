@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played",
+      "label": "Tactic undefended capture played",
+      "text": "Free snack: that piece had no lookout, and this capture gobbles it up."
+    },
+    "takeId": null
+  },
+  "requestHash": "a26ba5e96603bb7ec3df5147c2dfd4138ac2ac86cb550390736ce419662eb4f0",
+  "recordedAt": "2026-10-03T06:15:44.398Z",
+  "sha256": "c44bfe93454e60bd954a220398ba7bbb63e393d6e303037a13a7443fa6090372",
+  "bytes": 16959,
+  "requestId": "1yejCXLqjmaEBB6QShUC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8c5c0c6e2bb6b94d7224d7f2334492312cafaa85ee6d1c9ddc050ee18838767",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

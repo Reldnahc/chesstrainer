@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "Cracked it on the retry! Both the miss and the crack get logged."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a82d35ca0ce0a0565017e363d1838be1d7e5dcf267ed89036b1fb40cae1a0ad",
+  "recordedAt": "2026-10-03T06:16:14.830Z",
+  "sha256": "eee5deff5cf1e2f78fc0bef4538930678a8537f82122348b423717cb3cf2bb48",
+  "bytes": 14126,
+  "requestId": "YHiASaRfqqngr16opGhp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7fbf615f71201ecdf5c1c6665fa512d1e5220244a973305b41120114f2b9837",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

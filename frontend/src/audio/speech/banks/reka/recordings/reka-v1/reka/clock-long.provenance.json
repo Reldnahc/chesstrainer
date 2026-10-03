@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "clock-long",
+      "label": "Clock long",
+      "text": "This one ate the clock for lunch."
+    },
+    "takeId": null
+  },
+  "requestHash": "e49b404b522e87e61f42fffff16ad70e5877e30a605ae5b49fd3d6a97550f997",
+  "recordedAt": "2026-10-03T06:15:50.967Z",
+  "sha256": "8adcd61c6e9ac6b124bec85b6c0377143f5440f6cbd7b0fee006f93ee5d98cdb",
+  "bytes": 8331,
+  "requestId": "YLgWXQo2CJzmJvHIg4cj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "373ca0721519014ab5c0cbc9dd2f5d331825cd98b4759f84d04681e6c29339cc",
+    "bytes": 39332
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

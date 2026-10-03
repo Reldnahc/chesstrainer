@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Soak up the move for a second, then it's on to the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "19e5e699d6c0f5940f30f4e3736d999fbe002aca79c0950443d4158c3de2e3d3",
+  "recordedAt": "2026-10-03T06:16:03.820Z",
+  "sha256": "63ccd2bdde009d0e438c54ced143b08c419eb5aa924000085fd74ff50f1a26b2",
+  "bytes": 13765,
+  "requestId": "kd6azcjdBKFpb7M2M9xJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e23cd92a91b56bb16ab0665ad9c980fd56b73752da0977b0f6e007beaf8137e",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

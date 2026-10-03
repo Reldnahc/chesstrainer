@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "Door left ajar on the opponent's last move, and this pounces straight through. Spicy!"
+    },
+    "takeId": null
+  },
+  "requestHash": "51e19b25f0ad00d80cbab0976e2c403146c6405715d39c64d0de5aa9b4b09a69",
+  "recordedAt": "2026-10-03T06:15:57.465Z",
+  "sha256": "e8e90b664c2cf01eba4868661597e1e98a3fbf354644fe8409380c43ad10e094",
+  "bytes": 19862,
+  "requestId": "OevfDZdLORbUg4hJSpAi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24a2e52662c898c179be72edb8ac6dfc1c044186cc41a5543f02bd2cabec0101",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

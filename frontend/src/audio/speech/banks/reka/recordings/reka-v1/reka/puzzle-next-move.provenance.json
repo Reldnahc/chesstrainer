@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "puzzle-next-move",
+      "label": "Puzzle next move",
+      "text": "Yep, keep rolling! And what's next?"
+    },
+    "takeId": null
+  },
+  "requestHash": "a8977c1a3d4fbeab86ec1fad141699329e40266d3ead0a5fe27bc9b6724b174c",
+  "recordedAt": "2026-10-03T06:16:18.089Z",
+  "sha256": "9dd3db480cb48daa0a1f15075526c1c9682bac92660e77026ed329e8b92a7c2e",
+  "bytes": 9993,
+  "requestId": "MgOgYRSOQN9mWdPp1C3B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4fdf6f1e527f52e527bc8c1ebd80ef8864265715c679844ada5bff074b9ef17",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

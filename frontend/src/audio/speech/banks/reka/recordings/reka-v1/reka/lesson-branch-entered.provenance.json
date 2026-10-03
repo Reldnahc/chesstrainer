@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "Detour time: poke around this side road, then hop back to the main line."
+    },
+    "takeId": null
+  },
+  "requestHash": "80a015559bcb9b1a5eb12b9c967c872ca113d353052aa1ef15a8d19070278da5",
+  "recordedAt": "2026-10-03T06:16:20.745Z",
+  "sha256": "089a9dc2942c523c6193fd8c550e2dcf5630cbd62db93f3c684f9fd66d5dec9d",
+  "bytes": 15615,
+  "requestId": "bDQSW8SDW84it1plja9A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9d58f3546300bebb6d9935ee3d7a8fbe545c3055b0d17d95f9b6ab7c2296142",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
