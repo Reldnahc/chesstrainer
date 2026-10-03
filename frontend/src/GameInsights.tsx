@@ -225,7 +225,7 @@ function Rhythm({ data }: { data: Insights }) {
 
 function Endings({ data }: { data: Insights }) {
   return <Panel id="endings" title="How games end" meta={recordText(data)}>
-    <div className="insight-subgrid">
+    <div className="insight-stack">
       {(["win", "loss", "draw"] as const).map(outcome => data.endings[outcome].length > 0 && <div key={outcome}>
         <h4>{{ win: "Wins", loss: "Losses", draw: "Draws" }[outcome]}</h4>
         <Bars label={`Game endings, ${outcome}s`} rows={data.endings[outcome].map(ending => ({
@@ -239,6 +239,7 @@ function Endings({ data }: { data: Insights }) {
 function Records({ data }: { data: Insights }) {
   const { records } = data;
   return <Panel id="records" title="Records and ratings">
+    <div className="insight-records">
     <StatList items={[
       { label: "Longest winning run", value: records.longest_win_streak },
       { label: "Longest losing run", value: records.longest_loss_streak },
@@ -260,6 +261,7 @@ function Records({ data }: { data: Insights }) {
         </div>;
       })}
     </div>}
+    </div>
   </Panel>;
 }
 
@@ -493,28 +495,32 @@ export default function GameInsights() {
         </p>}
       </section>
       <InsightGroup id="results" title="Results">
-        <div className="insight-columns">
+        <div className="insight-pair">
           <Rhythm data={data} />
-          <Records data={data} />
+          <Endings data={data} />
         </div>
-        <Endings data={data} />
+        <Records data={data} />
         <Openings data={data} />
       </InsightGroup>
       {reviewed && <InsightGroup id="positions" title="Winning and losing positions">
         <Momentum data={data} />
-        <div className="insight-columns">
+        <div className="insight-pair">
           <Shapes data={data} />
-          <Punishment data={data} />
-          <Endgames data={data} />
+          <div className="insight-column">
+            <Punishment data={data} />
+            <Endgames data={data} />
+          </div>
         </div>
       </InsightGroup>}
       <InsightGroup id="moves" title="Moves and time">
-        <div className="insight-columns">
-          {reviewed && <MoveQuality data={data} />}
-          <Clock data={data} />
-          {reviewed && <Tilt data={data} />}
-          {reviewed && <Theory data={data} />}
-        </div>
+        {reviewed ? <div className="insight-pair">
+          <MoveQuality data={data} />
+          <div className="insight-column">
+            <Clock data={data} />
+            <Tilt data={data} />
+            <Theory data={data} />
+          </div>
+        </div> : <Clock data={data} />}
       </InsightGroup>
     </>}
   </div>;
