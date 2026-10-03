@@ -11,7 +11,6 @@ import type { SoundCategory, SoundCue, SoundPalette } from "../model";
 import { auditionScenarios, retryContexts, type RetryContextId } from "./scenarios";
 import { useStudioPlayer } from "./useStudioPlayer";
 import StudioTransport from "./StudioTransport";
-import CastVoiceAudition from "./CastVoiceAudition";
 import WalterWordingReview from "./WalterWordingReview";
 import {walterWordingCatalog} from "./walterWording";
 import RecordedCoachComparison from "./RecordedCoachComparison";
@@ -82,7 +81,6 @@ export default function AudioStudio() {
 
     <WalterWordingReview player={player} catalog={walterWordingCatalog} />
 
-    <CastVoiceAudition player={player} />
 
     <div className="audio-studio-workspace">
       <section className="audio-studio-library" aria-labelledby="cue-library-heading">

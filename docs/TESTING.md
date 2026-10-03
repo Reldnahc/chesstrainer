@@ -181,9 +181,7 @@ select everything. Missing/unresolvable history also selects everything.
 | Shared standalone browser runtime and Vite path helpers | Build/types and coach/intelligence/audio browsers |
 | Shared audio engine, catalog, activity sampling, bundled sounds and source controls | Build/types, all browser suites, Docker |
 | Application audio preferences and controls | Build/types, application/accounts/intelligence/audio browsers, Docker |
-| Shared studio player, transport and cast audition UI/assets | Build/types and coach/audio browsers, including offline cast-authoring checks |
-| Cast Voice Design/alignment tools and their tests | Build/types and coach/audio browsers, including offline cast-authoring checks |
-| Casting choices development server, types and tests | Build/types and coach/audio browsers, including the saved-choice Node tests once |
+| Shared studio player and transport | Build/types and coach/audio browsers |
 | Bundled speech source, recordings, provenance and alignment archives | Backend including complete-bank verification, build/types, application/accounts/intelligence/audio browsers, Docker |
 | Account browser test/config | Build/types and accounts |
 | Other application browser tests/fixtures | Build/types and application/accounts/intelligence/audio browsers |
@@ -205,7 +203,7 @@ coach studio or audio studio. The audio studio also excludes board CSS. Its
 dedicated `audio-tests` directory keeps audio tests out of application test
 discovery; changes to cross-surface shared controls or unclassified providers
 still retain every browser suite. Audio-only changes do not select the coach
-artwork matrix. The shared cast player and audition assets select both studios;
+artwork matrix. The shared studio player selects both studios;
 the production audio engine also retains application and intelligence consumers.
 
 The application and coach studio suites each run in four isolated jobs
@@ -303,18 +301,6 @@ The standalone audio studio runs `npm run dev:audio` on port 5176 and its
 server, account, database or Stockfish. Audio changes are checked on desktop and
 mobile, and the full correctness plan always includes this suite.
 
-The Walter audition tests play every bundled voice/example through native browser
-decoding, verify silence on entry, preview isolation, cancellation of late loads,
-and move-before-speech ordering even when the move asset loads slowly. Its
-provenance tests run the offline Node authoring regressions and verify all stored
-requests and audio hashes against the recording plan, with the provider key removed
-from the subprocess environment. No paid generation is part of verification.
-Custom Voice Design previews and their short Voice Remix refinements are checked
-against separate exact request/hash manifests, including the selected source
-voice and shared short script. Collection switches cancel active/pending speech and expose only
-their available examples; the original recordings remain independently playable.
-Run the authoring tests alone with `node --test scripts/record_coach_speech.test.mjs`.
-
 Speech articulation has three complementary layers in `audio-tests`:
 `speech-activity.spec.ts` verifies PCM normalization, stereo/noise handling and
 absolute clock sampling; `engine.spec.ts` verifies handle lifetime, cache reuse,
@@ -362,25 +348,10 @@ current visible Maia insight without accepting another parent, coach or policy.
 `position-coach-speech.spec.ts` and `coach-speech.spec.ts` observe actual playback,
 including delayed Maia results, manual insight listening and cancellation.
 
-The audio desktop CI job runs the cast Voice Design and saved-choice safeguards
-once with `node --test scripts/design_coach_voices.test.mjs
-frontend/scripts/casting-server.test.mjs`, then the focused
-`backend/tests/test_cast_voice_auditions.py` tests and
-`python -B -S scripts/prepare_cast_voice_auditions.py --check`. The check verifies
-the complete approved audition set against its exact requests, recording
-hashes, alignment archives and compact tracks. The provider key is cleared, and
-no paid generation or native alignment runs in CI. Cast-only edits select both
-studios and the frontend build, including the production asset boundary.
-The casting server tests use temporary data and local HTTP fixtures; they do not
-read or write the owner's saved casting choices. Its Vite plugin and client
-choice controls select both studios, while either studio's own configuration
-retains only that studio's browser coverage and the build.
-
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.
-It also rejects direct or lazy application imports of either studio, the cast
-audition loader, or its development-only media/manifests/tracks, and verifies the
-real application graph. Production Walter recordings remain permitted. These
+It also rejects direct or lazy application imports of either studio and verifies
+the real application graph. Production Walter recordings remain permitted. These
 checks inspect runtime dependencies; the corresponding-source download can still
 contain committed authoring files. The checks resolve Vite dependency graphs
 without starting servers or

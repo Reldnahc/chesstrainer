@@ -22,29 +22,12 @@ APPLICATION_SUITES = API_SUITES | {"intelligence-lab"}
 # without starting an API server. Keep this separate from application consumers.
 PYTHON_SUITES = APPLICATION_SUITES | {"audio-studio"}
 VOICE_STUDIO_SUITES = {"coach-studio", "audio-studio"}
-# These authoring tools and development assets have no application consumers.
-# Audio CI runs their offline checks in addition to both studios' browsers.
-CAST_AUTHORING_FILES = {
-    "frontend/scripts/casting-server.mjs",
-    "frontend/scripts/casting-server.d.mts",
-    "frontend/scripts/casting-server.test.mjs",
-    "scripts/design_coach_voices.mjs",
-    "scripts/design_coach_voices.test.mjs",
-    "scripts/prepare_cast_voice_auditions.py",
-    "backend/tests/test_cast_voice_auditions.py",
-}
+# Shared studio playback has no application consumers; both studios exercise it.
 SHARED_VOICE_STUDIO_FILES = {
-    "frontend/src/audio/studio/useCastingChoices.ts",
-    "frontend/src/audio/studio/CastingChoice.tsx",
-    "frontend/src/audio/studio/CastingProgress.tsx",
     "frontend/src/audio/studio/useStudioPlayer.ts",
     "frontend/src/audio/studio/StudioTransport.tsx",
     "frontend/src/audio/studio/studio-transport.css",
     "frontend/src/audio/studio/voice-audition.css",
-    "frontend/src/audio/studio/CastVoiceAudition.tsx",
-    "frontend/src/audio/studio/CastVoiceAuditionPanel.tsx",
-    "frontend/src/audio/studio/cast-audition.css",
-    "frontend/src/audio/speech/castAuditions.ts",
 }
 ALL_AUDIO_CONSUMER_FILES = {
     "frontend/src/audio/engine.ts",
@@ -194,16 +177,10 @@ def select_checks(paths, full=False):
                 backend = build = True
                 suites.update(VOICE_STUDIO_SUITES)
                 reason("Locked cast voices require production bank verification and both studios.")
-            elif (
-                path in CAST_AUTHORING_FILES
-                or path in SHARED_VOICE_STUDIO_FILES
-                or path.startswith("frontend/src/audio/speech/cast-auditions/")
-            ):
+            elif path in SHARED_VOICE_STUDIO_FILES:
                 build = True
                 suites.update(VOICE_STUDIO_SUITES)
-                reason(
-                    "Cast audition authoring and shared studio playback require both voice studios."
-                )
+                reason("Shared studio playback requires both voice studios.")
             elif path in SHARED_FILES or path.startswith(SHARED_PREFIXES):
                 backend = build = docker = True
                 suites.update(SUITES)

@@ -23,7 +23,7 @@ as limits or assuming every character already meets the same spoken-writing bar.
 | Which chess facts may dialogue communicate? | [Evidence-led dialogue](COACH_DIALOGUE.md) |
 | How do I author and assess a distinct writing voice? | [Character writing](COACH_PERSONALITIES.md) |
 | How are recordings selected, played, cancelled and attributed? | [Audio](AUDIO.md#recorded-coach-voices) |
-| How do I cast and approve a voice? | [Cast auditions](../frontend/src/audio/speech/cast-auditions/README.md) |
+| How were voices cast and locked? | [Cast voice locks](AUDIO.md#cast-voice-locks) |
 | How do I build and verify a complete recorded bank? | [Bank authoring](../frontend/src/audio/speech/bank/README.md) |
 | What produces mouth timing, and what must be installed locally? | [Alignment tooling](../frontend/src/audio/speech/alignment/README.md) |
 | How do I inspect the actual sentence/evidence chain? | [Intelligence laboratory](INTELLIGENCE_LAB.md) |
@@ -186,13 +186,13 @@ move is right. Do not expand the bank into course narration.
 
 ## 5. Approve the voice and record bounded batches
 
-Use the [casting workflow](../frontend/src/audio/speech/cast-auditions/README.md)
-and [bank authoring reference](../frontend/src/audio/speech/bank/README.md).
-Compare distinct short voice directions, then obtain the owner's final choice
-before purchasing a full bank. Preserve any existing authorization; do not ask
-again for an already approved voice and recording scope. Use short auditions
-around 8–10 seconds, then contrasting praise/correction/quiet teaching examples
-to expose delivery weaknesses before bulk generation.
+Casting is complete: every cast coach's approved voice is recorded in
+`cast-auditions/locked-voices.json` (see [cast voice locks](AUDIO.md#cast-voice-locks))
+and the [bank authoring reference](../frontend/src/audio/speech/bank/README.md)
+covers recording. Preserve any existing authorization; do not ask again for an
+already approved voice and recording scope. A new coach needs an explicit
+owner-approved voice lock before a full bank is purchased; use contrasting
+praise/correction/quiet teaching examples to expose delivery weaknesses first.
 
 An audition vote, a saved provider voice and a registered production bank are
 different steps. Walter's approval is in `walter-selected-voice.json`; other

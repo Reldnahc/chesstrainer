@@ -19,7 +19,6 @@ import {
 import { useReducedMotion } from "../../useReducedMotion";
 import MotionSelect from "../../MotionSelect";
 import ChoiceGroup from "../../ChoiceGroup";
-import CastVoiceAuditionPanel from "../../audio/studio/CastVoiceAuditionPanel";
 import { ConceptComparison, BoardSizePreview } from "./PreviewPanels";
 import ExpressionCollection from "./ExpressionCollection";
 import CoachPicker from "./CoachPicker";
@@ -265,10 +264,9 @@ export default function CoachStudio() {
           Expressions stay visible; motion is paused.
         </p>
       )}
-      {view === "speech" ? <>
+      {view === "speech" ? (
         <SpeechInspector coach={selected} expression={expression} />
-        <CastVoiceAuditionPanel coachId={selected.id} expression={expression} motion={effectiveMotion} />
-      </> : <>
+      ) : <>
       <div className="studio-moment">
         <div>
           <span className="studio-counter">
