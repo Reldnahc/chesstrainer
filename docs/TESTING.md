@@ -208,19 +208,34 @@ the production audio engine also retains application and intelligence consumers.
 
 The application and coach studio suites each run in four isolated jobs
 (desktop/mobile, two file shards each). Accounts, intelligence and audio each have
-separate desktop and mobile jobs. Every job retains one Playwright worker, its own
-server and, when needed, its own database; do not run these commands concurrently against a
-shared checkout.
+separate desktop and mobile jobs. The studio suites (coach, intelligence, audio)
+test independent pages on stateless dev servers and run fully parallel: 3 workers
+on CI, 6 locally. The application suite starts one test server and database per
+worker (2 on CI, 4 locally; ports 8765 and 8771 upward) and keeps each file's
+tests in order within its worker. `PLAYWRIGHT_WORKERS` overrides either default;
+use it rather than `--workers`, because the application config starts one server
+per configured worker. Accounts keep one worker. Each suite owns fixed ports, so
+do not run the same suite twice at once, from one checkout or two.
 No test assertions or native-engine search budgets are reduced. The frontend
 build/type checks run once, and the browser jobs download that run's `dist`
 artifact. The coach studio installs neither Python dependencies nor Stockfish;
 intelligence and audio retain Python for semantic fixtures but do not install Stockfish.
 Application/account tests and backend integration tests retain real Stockfish.
 
-The full-cast expression/repertoire checks are separate cases per coach, using
-the existing account contract's selectable IDs and verifying equality with the
-browser registry. Each gets an isolated page and the normal test timeout; the
-cases can be sharded without increasing the worker count or dropping expressions.
+The full-cast expression/repertoire, idle rig and idle articulation checks are
+separate cases per coach, using the existing account contract's selectable IDs;
+a roster case in each file verifies equality with the studio cast and registry.
+Each gets an isolated page and the normal test timeout, so workers and shards can
+spread them without dropping expressions.
+
+The backend job runs `scripts/pytest_parallel.py -n 4`: the same suite as
+4 pytest processes over file groups balanced by `backend/tests/durations.json`.
+Stale durations only affect balance. Browser specs that load Python semantic
+fixtures cache their output under `frontend/node_modules/.cache` by a hash of
+the backend tree, locked requirements and interpreter, so workers and reruns do
+not start Python again. Vite dev servers substitute
+`src/audio/speech/recordingAssets.dev.ts`, which resolves recording URLs by path
+instead of serving one module per recording; builds keep the eager URL map.
 
 The stable **CI** check runs even when all heavy jobs are intentionally skipped.
 It requires every selected job to succeed, and rejects failures, cancellations,
@@ -239,11 +254,20 @@ history, API failures or an unresolvable baseline run full correctness. The
 baseline lookup alone has read access to Actions history. Manually running
 `build-and-push` defaults to full verification; `full=false` uses that verified
 release baseline. The release workflow skips the separate PR Docker-install job,
-then builds one image, runs local/account install smoke tests against it, and
-pushes that exact image under its commit and `latest` tags. Releases are
+then builds and smoke-tests the image in a job alongside correctness. Only after
+correctness passes does the publish job rebuild it from that warm cache, smoke-test
+it again and push it under its commit and `latest` tags. The release baseline job
+runs the same change selector, so releases that ship nothing new (tests, studios,
+documentation) skip both image jobs and keep the current image. Releases are
 serialized so concurrent builds do not race the `latest` update. Python/npm
 dependency downloads and Docker layers are cached; cache hits never replace
 test execution. QEMU is unnecessary for the existing native Linux image build.
+
+Before merging, `python scripts/test_affected.py` runs locally what CI would select
+for the branch against `main`, including uncommitted and untracked files: lint,
+formatting and parallel backend tests, the build or type checks, and the selected
+browser suites side by side. `--dry-run` prints the selection only, `--base`
+changes the comparison and `--project desktop` limits the browser viewports.
 
 Inspect selection locally without running suites:
 
@@ -271,7 +295,7 @@ npm ci
 npm run build
 npx playwright install chromium
 cd ..
-python -m pytest -q
+python scripts/pytest_parallel.py -q
 ruff check backend scripts migrations
 ruff format --check backend scripts migrations
 cd frontend
@@ -282,7 +306,7 @@ npx playwright test --config playwright.intelligence.config.ts
 npx playwright test --config playwright.audio.config.ts
 ```
 
-Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Tests run serially against the production build and a test server on 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
+Run all Playwright projects; a grep-filtered subset is not the full frontend suite. Application tests run against the production build with one test server per worker, starting at 127.0.0.1:8765. Reports/screenshots/traces are under frontend/test-results; an optional JSON reporter can preserve machine-readable results.
 
 Generated captures belong in ignored test output and must use isolated fixtures,
 not private games. Only deliberately selected, current images referenced by a
