@@ -22,6 +22,26 @@ def test_groups_cover_every_file_once_and_balance_recorded_durations(tmp_path, m
     ]
 
 
+def test_shards_partition_the_files_by_recorded_balance(tmp_path, monkeypatch):
+    durations = tmp_path / "durations.json"
+    durations.write_text('{"test_a.py": 9, "test_b.py": 5, "test_c.py": 4}', encoding="utf-8")
+    monkeypatch.setattr(pytest_parallel, "DURATIONS", durations)
+    paths = []
+    for name in ["test_a.py", "test_b.py", "test_c.py"]:
+        path = tmp_path / name
+        path.write_text("def test_x(): pass\n", encoding="utf-8")
+        paths.append(path)
+
+    halves = [pytest_parallel.shard(paths, value) for value in ("1/2", "2/2")]
+
+    assert [[path.name for path in half] for half in halves] == [
+        ["test_a.py"],
+        ["test_b.py", "test_c.py"],
+    ]
+    assert sorted(path.name for half in halves for path in half) == [p.name for p in paths]
+    assert pytest_parallel.shard(paths, "4/4") == []
+
+
 def test_more_processes_than_files_leave_no_empty_groups(tmp_path, monkeypatch):
     monkeypatch.setattr(pytest_parallel, "DURATIONS", tmp_path / "missing.json")
     path = tmp_path / "test_only.py"

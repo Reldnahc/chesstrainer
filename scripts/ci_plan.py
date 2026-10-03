@@ -17,6 +17,10 @@ SUITES = {
     "audio-studio": "playwright.audio.config.ts",
 }
 API_SUITES = {"local", "accounts"}
+# Jobs per viewport. The application suite balances whole files by recorded
+# duration; the coach studio shares its independent cases evenly (see
+# frontend/playwright.shared.ts). Keep the total near GitHub's concurrent-job limit.
+SHARDS = {"local": 4, "coach-studio": 3}
 APPLICATION_SUITES = API_SUITES | {"intelligence-lab"}
 # Intelligence and audio selection regressions execute Python semantic fixtures
 # without starting an API server. Keep this separate from application consumers.
@@ -130,7 +134,9 @@ def browser_matrix(suites):
             }
             for suite in suites
             for project in ("desktop", "mobile")
-            for shard in (("1/2", "2/2") if suite in {"local", "coach-studio"} else ("1/1",))
+            for shard in (
+                f"{index}/{SHARDS.get(suite, 1)}" for index in range(1, SHARDS.get(suite, 1) + 1)
+            )
         ]
     }
 

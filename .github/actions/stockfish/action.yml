@@ -1,0 +1,24 @@
+name: Stockfish
+description: Install the distribution's Stockfish package, downloaded once per runner image and cached
+runs:
+  using: composite
+  steps:
+    - name: Restore the package from cache
+      id: package
+      uses: actions/cache@v4
+      with:
+        path: ~/stockfish-deb
+        # The package version follows the runner image, so a new image downloads again.
+        key: stockfish-deb-${{ runner.os }}-${{ env.ImageOS }}-${{ env.ImageVersion }}
+    - name: Download the package
+      if: steps.package.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        mkdir -p ~/stockfish-deb && cd ~/stockfish-deb
+        sudo apt-get update
+        apt-get download stockfish
+    - name: Install the package without an index refresh
+      shell: bash
+      run: |
+        sudo dpkg -i ~/stockfish-deb/stockfish_*.deb || (sudo apt-get update && sudo apt-get install -y -f)
+        test -x /usr/games/stockfish

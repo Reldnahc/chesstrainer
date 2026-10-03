@@ -69,13 +69,17 @@ jobs:
   image:
     name: Build and smoke-test the image
     needs: release-base
-    # Runs alongside correctness so the gated publish below reuses a warm cache.
+    # Runs alongside correctness. The candidate is pushed by digest only, with no
+    # tag, so nothing pulls it by name until the publish job below tags it.
     # Missing plan output fails safe toward building.
     if: github.ref == 'refs/heads/main' && needs.release-base.outputs.docker != 'false'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       contents: read
+      packages: write
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -83,61 +87,57 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install httpx==0.28.1
       - uses: docker/setup-buildx-action@v3
-      - name: Build the release image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          load: true
-          tags: fieldwork:release-candidate
-          cache-from: type=gha,scope=fieldwork
-          cache-to: type=gha,scope=fieldwork,mode=max
-      - run: python scripts/smoke_install.py --image fieldwork:release-candidate
-
-  docker:
-    needs: [release-base, correctness, image]
-    # Manual runs from another branch are tested but must never replace the latest image.
-    # Changes that ship nothing new (tests, studios, docs) keep the current image.
-    if: github.ref == 'refs/heads/main' && needs.release-base.outputs.docker != 'false'
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: python -m pip install httpx==0.28.1
-      - name: Set up Buildx
-        uses: docker/setup-buildx-action@v3
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build the release image from the image job's cache
+      - name: Build the release candidate and push it by digest
+        id: build
         uses: docker/build-push-action@v6
         with:
           context: .
-          load: true
-          tags: |
-            ghcr.io/reldnahc/chesstrainer:latest
-            ghcr.io/reldnahc/chesstrainer:${{ github.sha }}
+          outputs: type=image,name=ghcr.io/reldnahc/chesstrainer,name-canonical=true,push-by-digest=true,push=true
           labels: |
             org.opencontainers.image.source=https://github.com/Reldnahc/chesstrainer
             org.opencontainers.image.revision=${{ github.sha }}
           cache-from: type=gha,scope=fieldwork
           cache-to: type=gha,scope=fieldwork,mode=max
-      - name: Smoke-test the exact image to be published
+      - name: Smoke-test the exact candidate by digest
         env:
-          IMAGE: ghcr.io/reldnahc/chesstrainer:${{ github.sha }}
-        run: python scripts/smoke_install.py --image "$IMAGE"
-      - name: Publish the tested image
-        env:
-          IMAGE: ghcr.io/reldnahc/chesstrainer:${{ github.sha }}
+          DIGEST: ${{ steps.build.outputs.digest }}
         run: |
-          docker push "$IMAGE"
-          docker push ghcr.io/reldnahc/chesstrainer:latest
+          test -n "$DIGEST"
+          docker pull "ghcr.io/reldnahc/chesstrainer@$DIGEST"
+          python scripts/smoke_install.py --image "ghcr.io/reldnahc/chesstrainer@$DIGEST"
+
+  docker:
+    name: Publish the tested image
+    needs: [release-base, correctness, image]
+    # Manual runs from another branch are tested but must never replace the latest image.
+    # Changes that ship nothing new (tests, studios, docs) keep the current image.
+    if: github.ref == 'refs/heads/main' && needs.release-base.outputs.docker != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Tag the smoke-tested digest as the commit and latest
+        env:
+          DIGEST: ${{ needs.image.outputs.digest }}
+          COMMIT_TAG: ghcr.io/reldnahc/chesstrainer:${{ github.sha }}
+        # The manifest is already in the registry, so this moves no layers and
+        # publishes byte for byte the image the smoke test ran.
+        run: |
+          test -n "$DIGEST"
+          docker buildx imagetools create --tag "$COMMIT_TAG" --tag ghcr.io/reldnahc/chesstrainer:latest \
+            "ghcr.io/reldnahc/chesstrainer@$DIGEST"
+          docker buildx imagetools inspect "$COMMIT_TAG" | grep -F "$DIGEST"

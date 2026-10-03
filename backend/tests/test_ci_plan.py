@@ -535,11 +535,13 @@ def test_full_override_covers_every_check(paths):
 
 def test_matrix_covers_every_viewport_and_application_coach_shard_with_runtime_dependencies():
     matrix = ci_plan.select_checks([], full=True)["matrix"]["include"]
-    assert len(matrix) == 14
-    assert len({(entry["suite"], entry["project"], entry["shard"]) for entry in matrix}) == 14
+    expected = 2 * sum(ci_plan.SHARDS.get(suite, 1) for suite in ALL_SUITES)
+    assert len(matrix) == expected == 20
+    assert len({(entry["suite"], entry["project"], entry["shard"]) for entry in matrix}) == expected
     for suite in ALL_SUITES:
         entries = [entry for entry in matrix if entry["suite"] == suite]
-        shards = ["1/2", "2/2"] if suite in {"local", "coach-studio"} else ["1/1"]
+        total = ci_plan.SHARDS.get(suite, 1)
+        shards = [f"{index}/{total}" for index in range(1, total + 1)]
         assert {(entry["project"], entry["shard"]) for entry in entries} == {
             (project, shard) for project in ["desktop", "mobile"] for shard in shards
         }
