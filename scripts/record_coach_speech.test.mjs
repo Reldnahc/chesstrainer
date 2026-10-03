@@ -291,3 +291,25 @@ test("pre-cancelled generation and invalid command options never make requests",
   assert.equal(f.requests.length, 0);
   assert.ok(!f.messages.join("\n").includes(KEY));
 });
+
+test("plans refuse retired Maia readings by ID or wording before any request", () => {
+  for (const script of [
+    { id: "human-natural-error", label: "Maia", text: "A natural move that turns out costly." },
+    { id: "combo-recognized-opening-natural-best", label: "Combo", text: "A known opening, played naturally." },
+    { id: "combined-allowed-mate-with-human-natural-error", label: "Combined", text: "This allows mate." },
+    { id: "allowed-mate", label: "Wording", text: "The human-move model rates this natural." },
+    { id: "allowed-mate", label: "Wording", text: "Maia expects most players to find it." },
+    { id: "allowed-mate", label: "Wording", text: "The human-model reading calls it natural." },
+  ]) assert.throws(() => validatePlan({ ...plan(), scripts: [script] }), /retired Maia reading/);
+  assert.equal(validatePlan(plan()).scripts.length, 1);
+});
+
+test("a plan with one Maia reading is refused whole, with no request or write", async t => {
+  const f = await fixture(t, { ...plan(), scripts: [...plan().scripts,
+    { id: "human-natural-error", label: "Maia", text: "A natural move that turns out costly." }] });
+  f.fetch(() => assert.fail("A refused plan must not call fetch"));
+  assert.notEqual(await f.run(["--generate"]), 0);
+  assert.match(f.messages.join("\n"), /retired Maia reading/);
+  assert.equal(f.requests.length, 0);
+  assert.deepEqual(await readdir(f.root), ["plan.json"]);
+});

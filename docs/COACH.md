@@ -249,7 +249,7 @@ recognition model. Lesson narration remains deferred.
 Speaking artwork and recorded speech are separate capabilities. A rig's `speech`
 flag enables mouth articulation; it does not make recordings available. The
 production voice registry currently supplies Walter (`classic`) and Rivet
-(`robot`), with 438 approved recordings each. The other speaking rigs remain
+(`robot`), with 195 approved recordings each. The other speaking rigs remain
 text-only in normal reviews until a complete bank is registered. See [recorded coach voices](AUDIO.md#recorded-coach-voices)
 for bank registration, writing, provenance, generation and alignment checks.
 

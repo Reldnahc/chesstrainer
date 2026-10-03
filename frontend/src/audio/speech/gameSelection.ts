@@ -1,13 +1,12 @@
 import type {Schema} from "../../api";
 import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
-import {humanClaims, humanInsightIntent, humanInsightLabels, type HumanInsightPresentation} from "../../dialogue/humanClaims";
+import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
 import type {Claim, CoachUtterance, DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {sequenceRecordingId} from "./sequence";
 import registry from "./banks/registry.json" with {type: "json"};
-import catalogue from "./meanings.json" with {type: "json"};
 
 export type GameSpeechContext = {
   game: Game;
@@ -20,15 +19,11 @@ export type GameSpeechContext = {
   /** An unresolved request for this position, not a background game review. */
   pending?: boolean;
   error?: boolean;
-  surface?: "bubble" | "human-insight";
   /** Explicit replay of another visible claim; never search for a fallback. */
   claimIndex?: number;
 };
 export type WalterGameSpeechContext = GameSpeechContext;
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
-type Meaning = {id: string; primary?: string; secondary?: string};
-const combinations = new Map((catalogue.meanings as Meaning[]).flatMap(meaning =>
-  meaning.primary && meaning.secondary ? [[`${meaning.primary}:${meaning.secondary}`, meaning.id]] : []));
 type Event = Schema["ReviewEvent"];
 const opposite = (side: "white" | "black") => side === "white" ? "black" : "white";
 const nonempty = (value: unknown): value is string => typeof value === "string" && value.trim().length > 0;
@@ -50,10 +45,7 @@ const simpleIds: Readonly<Record<string, string>> = {
   only_move: "only-playable-move", decisive_resource: "only-advantage-resource",
   reply_capture: "immediate-capture", reply_check: "reply-check", alternative: "stronger-alternative",
   loss: "evaluation-loss", best: "best-supported-choice", good: "good-choice",
-  human_natural_error: "human-natural-error", human_rare: "human-unusual-strong",
-  difficult_defense: "human-hard-defense-missed", human_challenging: "human-hard-find",
-  human_defense_found: "human-hard-defense-found", human_natural_best: "human-natural-best",
-  human_natural_strong: "human-natural-strong", clock_low: "clock-low", clock_fast: "clock-fast",
+  clock_low: "clock-low", clock_fast: "clock-fast",
   clock_long: "clock-long", book: "recognized-opening", book_sound: "recognized-opening",
   departure: "opening-departure", punishment: "chance-taken", missed_punishment: "chance-missed",
   repeated: "repeated-issue", support_restored: "support-restored", erosion: "gradual-erosion",
@@ -166,18 +158,19 @@ export function selectGameOpener({ply, variation = false, report, frame, error}:
     ? "game-review-opened" : null;
 }
 
-/** Facts select whole recordings; prose, portrait expression and grade never select audio. */
+/** Facts select whole recordings; prose, portrait expression and grade never select audio.
+ * A Maia (human-move model) claim is shown in the bubble and its badge but never voiced. */
 export function selectGameRecording(context: GameSpeechContext): string | null {
-  const {game, report, frame, ply, variation = false, intent, utterance, pending, error, surface = "bubble", claimIndex = 0} = context;
+  const {game, report, frame, ply, variation = false, intent, utterance, pending, error, claimIndex = 0} = context;
   if (pending || !frame || !nonempty(frame.fen) || !voicedCoaches.has(utterance.coachId)
     || utterance.intentId !== intent.id
-    || !Number.isInteger(claimIndex) || claimIndex < 0 || (surface === "human-insight" && claimIndex !== 0)) return null;
+    || !Number.isInteger(claimIndex) || claimIndex < 0) return null;
   const item = utterance.renderedClaims?.[claimIndex], trace = utterance.trace.variants[claimIndex];
   if (!item || !trace || trace.code !== item.code || !same(trace.sourceIds, item.sourceIds)
-    || !intent.claims.some(candidate => same(candidate, item))) return null;
+    || !intent.claims.some(candidate => same(candidate, item)) || humanInsightLabels[item.code]) return null;
   if (!variation && game.frames[ply]?.fen !== frame.fen) return null;
   const mode = variation ? "variation" : "game";
-  if (surface === "bubble" && claimIndex === 0 && !report && intent.mode === mode) {
+  if (claimIndex === 0 && !report && intent.mode === mode) {
     // These finite no-report messages are replayable, never automatically spoken.
     // The exact fresh branch excludes arbitrary legacy compatibility prose.
     const status = gameIntent({game, frame, ply, variation, error, pending: false,
@@ -189,7 +182,7 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
   }
   if (error || !utterance.autoSpeakSuitable) return null;
   if (intent.mode === "explanation") {
-    if (surface !== "bubble" || claimIndex !== 0) return null;
+    if (claimIndex !== 0) return null;
     const explanation = gameIntent({game, report, frame, ply, variation, explaining: true,
       key: "speech-explanation-validation", expression: intent.expression});
     return explanation.claims.some(candidate => same(candidate, item)) ? legalReplyRecording(item, context) : null;
@@ -204,9 +197,6 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     || (report.board_cues && report.board_cues.fen !== frame.fen)
     || (report.intelligence.ply !== null && report.intelligence.ply !== ply)) return null;
   const mover = opposite(frame.turn);
-  if (surface === "human-insight" && !humanInsightLabels[item.code]) return null;
-  if (humanInsightLabels[item.code]) return mover === game.orientation && searchEvidence(item)
-    && humanClaims(report, ply, mover).some(candidate => same(candidate, item)) ? simpleIds[item.code] ?? null : null;
   const event = eventFor(item, report);
   if (item.code.startsWith("tactic_") || item.code.startsWith("cause_"))
     return event ? tacticalRecording(item, event, mover, report) : null;
@@ -238,32 +228,20 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
 }
 
-/** A move has exactly one coach clip. A combined recording covers the bubble's
- * explanation and the visible Maia insight. Otherwise a second bubble sentence
- * with its own recording joins the first as one back-to-back playback, never a
- * separate clip. Display order and the sentence limit are not evidence boundaries. */
-export function selectGameSpeech(context: GameSpeechContext, insight?: HumanInsightPresentation) {
-  const primaryId = selectGameRecording({...context, claimIndex: 0});
+/** A move has exactly one coach clip. Maia sentences add nothing to it: the
+ * first other sentence leads, and a bubble with only a Maia claim is silent.
+ * A following bubble sentence with its own recording joins the lead as one
+ * back-to-back playback, never a separate clip. Display order and the sentence
+ * limit are not evidence boundaries. */
+export function selectGameSpeech(context: GameSpeechContext) {
+  const claims = context.utterance.renderedClaims ?? [];
+  const lead = claims.findIndex(item => !humanInsightLabels[item.code]);
+  const primaryId = lead < 0 ? null : selectGameRecording({...context, claimIndex: lead});
   let recordingId = primaryId;
-  if (primaryId && context.surface !== "human-insight" && ["game", "variation"].includes(context.intent.mode)) {
-    const claims = context.utterance.renderedClaims ?? [];
-    const objectiveIndex = claims.findIndex(item => !humanInsightLabels[item.code]);
-    const objectiveId = objectiveIndex < 0 ? null : selectGameRecording({...context, claimIndex: objectiveIndex});
-    const humanIndex = claims.findIndex(item => !!humanInsightLabels[item.code]);
-    let humanId = humanIndex < 0 ? null : selectGameRecording({...context, claimIndex: humanIndex});
-    if (insight) {
-      // Only the exact child presentation rendered alongside this parent may
-      // supply a fact omitted by the bubble. Stale or other-coach insights fail.
-      humanId = insight.utterance.coachId === context.utterance.coachId
-        && same(insight.intent, humanInsightIntent(context.intent))
-        ? selectGameRecording({...context, ...insight, surface: "human-insight", claimIndex: 0}) : null;
-    }
-    const combined = objectiveId && humanId ? combinations.get(`${objectiveId}:${humanId}`) : undefined;
-    // A rendered Maia sentence is voiced only through the validated human claim.
-    const second = claims[1];
-    const secondId = combined || !second ? null
-      : humanInsightLabels[second.code] ? humanId : selectGameRecording({...context, claimIndex: 1});
-    recordingId = combined ?? (secondId && secondId !== primaryId ? sequenceRecordingId([primaryId, secondId]) : primaryId);
+  const second = claims[lead + 1];
+  if (primaryId && second && !humanInsightLabels[second.code] && ["game", "variation"].includes(context.intent.mode)) {
+    const secondId = selectGameRecording({...context, claimIndex: lead + 1});
+    if (secondId && secondId !== primaryId) recordingId = sequenceRecordingId([primaryId, secondId]);
   }
   return {recordingId, primaryId};
 }

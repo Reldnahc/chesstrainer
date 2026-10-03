@@ -25,8 +25,7 @@ export function mountRecordedCoachComparison(options: ComparisonHarnessOptions =
     {id: "book-opening-follow-1", label: "Develop a piece", group: "Opening run"},
     {id: "book-opening-follow-2", label: "Continue development", group: "Opening run"},
     {id: "fork", label: "A fork", group: "Tactics"},
-    {id: "maia-response", label: "A human reply", group: "Human guidance"},
-    {id: "fork-with-maia", label: "A fork with Maia", group: "Combined", primary: "fork", secondary: "maia-response"},
+    {id: "sound-sacrifice", label: "A sound sacrifice", group: "Tactics"},
   ];
   const catalog: RecordedCoachCatalog = {
     coaches: ["classic", "robot"], meanings,

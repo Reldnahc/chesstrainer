@@ -8,6 +8,8 @@ import walterBank from "../src/audio/speech/bank/manifest.json" with {type: "jso
 import pilotAdditions from "../src/audio/speech/banks/pilot-additions.json" with {type: "json"};
 
 const walterOpener = walterBank.recordings.some(recording => recording.id === "game-review-opened");
+// Coaches never speak a Maia (human-move model) reading, alone or combined.
+const MAIA_AUDIO = /\/(?:human-|combo-|combined-)/;
 
 async function voiceGame(page: Page, game: Game, ply: number, voice = "automatic") {
   await captureSpeech(page);
@@ -31,8 +33,10 @@ test("game voice follows deliberate navigation and stays silent on initial load,
   await page.getByRole("button", {name: "Previous move", exact: true}).click();
   await page.getByRole("button", {name: "Next move", exact: true}).click();
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
-  // The bubble shows the opening and the Maia reading, so the move speaks their one combined clip.
-  expect((await speechActivity(page)).started[0]).toContain("/combo-recognized-opening-unusual-strong-");
+  // The bubble and badge show the Maia reading, but the move speaks only its opening line.
+  await expect(page.getByRole("button", {name: "Maia: Unusual but strong", exact: true})).toBeVisible();
+  expect((await speechActivity(page)).started[0]).toContain("/recognized-opening-");
+  expect((await speechActivity(page)).started[0]).not.toMatch(MAIA_AUDIO);
   await page.getByRole("button", {name: "Flip board", exact: true}).click();
   await page.waitForTimeout(400);
   expect((await speechActivity(page)).started).toHaveLength(1);
@@ -99,8 +103,9 @@ test("a variation waits for its own analysis and leaving it cancels the pending 
     expect((await speechActivity(page)).started).toEqual([]);
     await page.locator(".game-variation-row button").last().click();
     await expect.poll(async () => (await speechActivity(page)).started.length).toBe(1);
-    // The variation's own report carries the Maia reading, so it speaks the combined line.
-    expect((await speechActivity(page)).started[0]).toContain("/combo-book-opening-entry-3-unusual-strong-");
+    // The variation's own report carries the Maia reading, which is shown but never spoken.
+    expect((await speechActivity(page)).started[0]).toContain("/book-opening-entry-3-");
+    expect((await speechActivity(page)).started[0]).not.toMatch(MAIA_AUDIO);
   } finally { release(); }
 });
 
@@ -147,7 +152,8 @@ test("a fresh review greets, the first move replaces it and returning to the sta
   await page.getByRole("button", {name: "Next move", exact: true}).click();
   await expect(bubble).not.toHaveText(greeting);
   await expect.poll(async () => (await speechActivity(page)).started.length).toBe(2);
-  expect((await speechActivity(page)).started[1]).toContain("/combo-recognized-opening-unusual-strong-");
+  expect((await speechActivity(page)).started[1]).toContain("/recognized-opening-");
+  expect((await speechActivity(page)).started[1]).not.toMatch(MAIA_AUDIO);
   // The start keeps one line: returning there shows and speaks the greeting again.
   await page.getByRole("button", {name: "Previous move", exact: true}).click();
   await expect(bubble).toHaveText(greeting);

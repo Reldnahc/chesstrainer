@@ -4,6 +4,30 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Maia no longer spoken — October 2, 2026
+
+Owner decision: coaches never voice a Maia (human-move model) reading. The Maia
+badge, its popup and the written bubble sentence are unchanged. The 253 Maia
+meanings (7 standalone `human-*` readings and 246 objective/Maia combinations)
+were removed from `meanings.json` (448 to **195** meanings), every coach's
+`scripts.json`, `pilot-additions.json` and the five recorded banks (Walter, Rivet,
+Winston, Button, Arjun: **195** recordings each), with 1,264 clips, their
+provenance sidecars and 1,265 alignment archives; `maia-combinations.json` was
+deleted. No audio was recorded. The 25 coaches awaiting recording now need
+25 × 195 = **4,875 clips / 443,642 input characters**. `selectGameSpeech` skips
+Maia claims: the objective line plays alone, and a Maia-only bubble is silent.
+Earlier entries below describe the catalogue and combined speech as they were.
+
+Checks: `prepare_coach_voice_bank.py --check` (975 ready, none missing);
+`test_coach_pilot_scripts.py`, `test_coach_bank_scripts.py`,
+`test_coach_voice_bank.py`, `test_source_archive.py` and `test_speech_alignment.py`
+(273 passed); `tsc -b` and `npm run test:types`; audio specs
+`game-speech-maia-silence`, `game-speech-policy`, `game-speech-opening-policy`,
+`game-speech-positional-policy`, `game-speech-tactical-policy` and
+`game-speech-selection` (desktop, 339 passed), `position-coach-speech` and
+`recorded-coach-comparison` (desktop and mobile, 40 passed). Not run locally:
+`tests/game-coach-voice.spec.ts`, which needs a rebuilt application; left to CI.
+
 ## Rivet distinct-voice re-recording — October 2, 2026
 
 Re-recorded the **294** Rivet passages changed by the reviewed rewrite of his

@@ -1,7 +1,7 @@
 # Recorded coach speech and authoring history
 
-Walter (`classic`) and Rivet (`robot`) each have a **448-recording voice bank**
-(438 non-lesson meanings, the game-review opener and nine generic lesson prompts), using their owner-selected **Older teacher** and **Retro speech terminal**
+Walter (`classic`) and Rivet (`robot`) each have a **195-recording voice bank**
+(185 non-lesson meanings, the game-review opener and nine generic lesson prompts), using their owner-selected **Older teacher** and **Retro speech terminal**
 voices. They share a catalogue of meanings, with separately authored character
 scripts and complete recordings. Every clip has automatically generated mouth
 timing. See the [Walter manifest](bank/manifest.json), [Rivet manifest](banks/rivet/manifest.json),
@@ -31,14 +31,18 @@ wording comparison, not a voice picker. The earlier voice auditions and full-ban
 selector were removed from the tree on 2026-10-03; Git history retains them.
 
 **Recorded coach comparison** lets you switch between Walter and Rivet for the
-same meaning, including eleven opening variants and 246 combined objective
-and human-play explanations. These are whole recordings, never runtime sentence
-splicing. The objective explanation must actually render in the bubble; the
-human fact must render there or in the exact insight represented by its visible
-badge. Both pass current evidence checks. Later Maia data may update the bubble, but
-does not start a second automatic response for the same navigation action.
-An explicit Listen request from Maia's explanation consumes any pending automatic
-response for that action, including audio that is still loading.
+same meaning, including the eleven opening variants. These are whole recordings,
+never runtime sentence splicing.
+
+**Coaches never speak a Maia reading (owner decision, 2026-10-02).** The Maia
+badge, its popup and the written Maia sentence in the bubble are unchanged, but no
+`human-*` reading or objective/Maia combination is recorded or selected. The 253
+Maia meanings (7 standalone readings and 246 combinations) were removed from the
+catalogue, every script file and the recorded banks, which took the catalogue from
+448 to 195 meanings. A Maia sentence in the bubble adds nothing to speech: the
+objective line plays alone, and a bubble whose only claim is Maia stays silent.
+Later Maia data may update the bubble, but does not start a second automatic
+response for the same navigation action. Opening Maia's popup is silent.
 
 Book variety follows a verified contiguous sequence. Missing earlier evidence or
 exploring a variation uses generic recognition instead of inventing a sequence;
@@ -52,7 +56,8 @@ media and tracks are retained for comparison outside production imports.
 The 81 replacement recordings used **7,524 input characters / 907 credits**
 (settled provider counter 12,295 to 13,202). Same voice and settings, no retakes,
 splicing, padding or manual mouth timing. The subsequent Walter/Rivet pilot adds
-the shared opening/combined meanings and tightens two Walter statements about
+the shared opening/combined meanings (the combined ones were later removed with
+all Maia speech) and tightens two Walter statements about
 engine comparisons and a demonstrated capture; see
 [that revision](bank/revisions/walter-pilot-v1.json). Other cast banks remain deferred.
 
@@ -119,6 +124,10 @@ Offline verification:
 node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
 ```
 
+This historical plan includes the retired Maia contrast `human-unusual-strong`, so the
+recorder now refuses it as a whole (coaches no longer speak Maia lines). Its recorded
+contrasts stay verified by the bank checks; new plans must contain no Maia readings.
+
 The [whole-app recording inventory](#whole-app-dialogue-inventory) records the
 completed non-lesson scope and the deliberately silent exclusions.
 
@@ -178,7 +187,7 @@ $env:ELEVENLABS_API_KEY = [Environment]::GetEnvironmentVariable("ELEVENLABS_API_
 
 ```sh
 # Safe by default: inspect the plan and verified existing files without requests.
-node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
+node scripts/record_coach_speech.mjs --plan PLAN.json --output DIR
 ```
 
 An identical valid recording is reused. A changed request or mismatched file is
@@ -209,6 +218,9 @@ eligibility condition and primary/secondary designation.
 | Opening and clock context | 5 | 0 | 5 |
 | Relationships within/between games | 7 | 2 | 9 |
 | **Total** | **71** | **21** | **92** |
+
+This table is the original audit. The seven human-model insight recordings were
+removed on 2026-10-02 when Maia speech was retired, leaving 85 game meanings.
 
 The initial 71-primary pilot was a staging proposal, not the completed product
 scope. The owner later approved the full non-lesson bank. All 92 game meanings
@@ -241,7 +253,9 @@ history at `054cd80`, outside this bank.
 
 The [full inventory](walter-full-dialogue-inventory.json) contains 185 audited
 meanings, with four deliberately silent transient/defensive states excluded from
-the **original 181-recording bank** (now extended to 438 shared meanings):
+the **original 181-recording bank** (later extended to 438 shared meanings, and
+cut to 185 non-lesson meanings when the seven human-model insights and 246 Maia
+combinations were retired on 2026-10-02):
 
 | Coverage | Recordings |
 | --- | ---: |
@@ -292,7 +306,7 @@ greeting once and shows it in the bubble; the first navigation replaces it,
 returning to the start shows and speaks it again, and restored later moves stay
 silent.
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
-Winston and Button, so each registered bank holds all 448 catalogue meanings.
+Winston and Button, so each registered bank holds all 195 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every
 request ID matched in the provider history and no retakes.
 Authorized attempt/reveal feedback may

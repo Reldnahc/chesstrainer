@@ -25,15 +25,13 @@ def test_active_scripts_avoid_ambiguous_separate_pronunciation():
 
 
 def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meanings():
-    original = {
-        row["id"]: row
-        for row in read("bank/revisions/walter-language-v1-manifest.json")["recordings"]
-    }
+    revision = read("bank/revisions/walter-language-v1-manifest.json")["recordings"]
+    # Coaches no longer speak Maia (human-move model) readings. The historical
+    # revision keeps those rows; every other base meaning must survive.
+    original = {row["id"]: row for row in revision if not row["id"].startswith("human-")}
+    assert len(original) == len(revision) - 7
     base_rivet = {row["id"]: row for row in read("banks/rivet/scripts.json")["records"]}
-    additions = [
-        *read("banks/pilot-additions.json")["recordings"],
-        *read("banks/maia-combinations.json")["recordings"],
-    ]
+    additions = read("banks/pilot-additions.json")["recordings"]
     extras = {row["id"]: row for row in additions}
     assert len(extras) == len(additions)
     assert original.keys() == base_rivet.keys()
@@ -59,35 +57,21 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
                 assert row["text"] == extras[key][text_field]
             elif coach == "robot":
                 assert row["text"] == base_rivet[key]["text"]
-    pairs = set()
     for row in additions:
         assert row["walterText"] != row["rivetText"]
-        if "primary" in row:
-            pair = row["primary"], row["secondary"]
-            assert pair not in pairs
-            pairs.add(pair)
-            assert pair[0] in catalogue and "primary" not in catalogue[pair[0]]
-            assert pair[1] in original
-            assert pair[1].startswith("human-")
-            assert catalogue[row["id"]]["primary"] == pair[0]
-            assert catalogue[row["id"]]["secondary"] == pair[1]
+        assert "primary" not in row and "secondary" not in row
 
 
-def test_maia_passages_are_complete_distinct_scripts_for_both_characters():
-    rows = read("banks/maia-combinations.json")["recordings"]
-    for text_field in ("walterText", "rivetText"):
-        texts = [row[text_field] for row in rows]
-        assert len(texts) == len(set(texts))
-        for row, text in zip(rows, texts, strict=True):
-            assert 1 <= len(text) <= 1000
-            assert text.strip() == text and text.endswith((".", "?", "!"))
-            # A named opening continuation is real opening context. The vague
-            # tactical filler rejected by the owner is not that usage.
-            if not row["primary"].startswith("book-opening-"):
-                assert "continuation" not in text.lower()
-            assert "in this continuation" not in text.lower()
-            assert "in the continuation" not in text.lower()
-            assert not any(marker in text for marker in ("{", "}", "TODO", "TBD"))
-    for row in rows:
-        assert row["group"] == "game_review"
-        assert row["walterText"] != row["rivetText"]
+def test_no_maia_reading_is_a_spoken_meaning():
+    # Maia stays visible (badge, popup, written sentence) but is never voiced.
+    maia = re.compile(r"^(?:human-|combo-|combined-)")
+    catalogue = read("meanings.json")["meanings"]
+    assert not [row["id"] for row in catalogue if maia.match(row["id"])]
+    assert not [row for row in catalogue if "primary" in row or "secondary" in row]
+    assert not (SPEECH / "banks/maia-combinations.json").exists()
+    for bank in read("banks/registry.json")["banks"]:
+        manifest = read(bank["manifestPath"])
+        assert not [row["id"] for row in manifest["recordings"] if maia.match(row["id"])]
+    for scripts in sorted(SPEECH.glob("banks/*/scripts.json")):
+        rows = json.loads(scripts.read_text(encoding="utf-8"))["records"]
+        assert not [row["id"] for row in rows if maia.match(row["id"])], scripts.parent.name

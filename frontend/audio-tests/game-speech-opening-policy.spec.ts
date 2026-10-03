@@ -8,14 +8,15 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {bookRecordingId, deriveBookPresentation} from "../src/dialogue/openingPresentation";
 import {selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
-import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
 const games = semanticFixtures<Record<string, Game>>("review_speech_opening_fixtures.py");
 const states = ["hard-find", "unusual-strong", "natural-best", "natural-strong", "hard-defense-found"];
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
-const pairs = new Map<string, string>(catalogue.meanings.flatMap(item => "primary" in item && "secondary" in item
-  ? [[`${item.primary}:${item.secondary}`, item.id] as const] : []));
+// The Maia reading each fixture state shows in its badge; none is ever voiced.
+const shownCodes: Record<string, string> = {"hard-find": "human_challenging", "unusual-strong": "human_rare",
+  "natural-best": "human_natural_best", "natural-strong": "human_natural_strong", "hard-defense-found": "human_defense_found"};
+const unvoiced = (id: string | null) => !(id ?? "").split("+").some(part => /^(?:human-|combo-|combined-)/.test(part));
 
 function presentation(game: Game, ply: number, coach = coaches[0]) {
   const frame = game.frames[ply], report = frame.report!, key = `${game.id}:${ply}`;
@@ -29,7 +30,7 @@ function presentation(game: Game, ply: number, coach = coaches[0]) {
 }
 
 for (const coach of coaches) {
-  test(`${coach.id}: real recognized histories reach all eleven book slots with all five selected human assessments`, () => {
+  test(`${coach.id}: real recognized histories reach all eleven book slots and speak the book line beside each shown Maia reading`, () => {
     const observed = new Set<string>(), actors = new Set<string>();
     for (const state of states) {
       const slots = new Set<string>();
@@ -43,14 +44,15 @@ for (const coach of coaches) {
           const {context, insight} = presentation(game, ply, coach);
           const opening = deriveBookPresentation(context)!;
           expect(opening).toMatchObject({runStartPly: 1, runOrdinal: ply});
-          const objectiveId = bookRecordingId(opening), humanId = `human-${state}`;
+          const objectiveId = bookRecordingId(opening);
           expect(context.utterance.renderedClaims![0].code).toBe("book_sound");
           expect(selectGameRecording(context)).toBe(objectiveId);
-          expect(selectGameRecording({...context, ...insight, surface: "human-insight"})).toBe(humanId);
-          const pair = `${objectiveId}:${humanId}`, expected = pairs.get(pair);
-          expect(expected, pair).toBeDefined();
-          expect(selectGameSpeech(context, insight).recordingId).toBe(expected);
-          slots.add(objectiveId); observed.add(pair); actors.add(game.orientation);
+          expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[state]]);
+          const speech = selectGameSpeech(context);
+          expect(speech.primaryId).toBe(objectiveId);
+          expect(speech.recordingId!.split("+")[0]).toBe(objectiveId);
+          expect(unvoiced(speech.recordingId), speech.recordingId!).toBe(true);
+          slots.add(objectiveId); observed.add(`${objectiveId}:${state}`); actors.add(game.orientation);
         }
       }
       expect([...slots].sort()).toEqual([
@@ -62,7 +64,7 @@ for (const coach of coaches) {
     expect([...actors].sort()).toEqual(["black", "white"]);
   });
 
-  test(`${coach.id}: the first genuine book departure pairs its visible objective with each strong human assessment`, () => {
+  test(`${coach.id}: the first genuine book departure speaks its objective line after each shown strong Maia reading`, () => {
     const observed = new Set<string>();
     for (const state of states.filter(state => state !== "hard-defense-found")) {
       const game = games[`departure-${state}`], {context, insight} = presentation(game, 2, coach);
@@ -72,13 +74,12 @@ for (const coach of coaches) {
       const codes = context.utterance.renderedClaims!.map(item => item.code);
       expect(humanInsightLabels[codes[0]]).toBeTruthy();
       expect(codes[1]).toBe("departure");
+      expect(selectGameRecording(context)).toBeNull();
       expect(selectGameRecording({...context, claimIndex: 1})).toBe("opening-departure");
-      const humanId = `human-${state}`;
-      expect(selectGameRecording({...context, ...insight, surface: "human-insight"})).toBe(humanId);
-      const pair = `opening-departure:${humanId}`, expected = pairs.get(pair);
-      expect(expected, pair).toBeDefined();
-      expect(selectGameSpeech(context, insight).recordingId).toBe(expected);
-      observed.add(pair);
+      expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[state]]);
+      // The Maia sentence leads the bubble but adds nothing to speech.
+      expect(selectGameSpeech(context)).toEqual({primaryId: "opening-departure", recordingId: "opening-departure"});
+      observed.add(state);
     }
     expect(observed.size).toBe(4);
   });

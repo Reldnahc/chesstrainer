@@ -86,6 +86,9 @@ domain shift, missing ratings/history and incomplete policy retain uncertainty;
 estimates are never presented as measured player success rates. Provider naming
 falls back generically rather than calling a future provider Maia.
 
+The badge, popup and any Maia sentence in the bubble are written only: coaches
+never speak a Maia reading (owner decision, 2026-10-02).
+
 The popup is only a rendering of the existing intent and stored report. Changing
 coaches keeps its intent/evidence identity and performs no extra engine/model
 work. Cold SRS never renders this component. The intelligence laboratory can trace
@@ -262,15 +265,14 @@ upgrade a possible resource to a forced result, or turn a human-model estimate
 into chess truth. Lesson teaching text stays written; only the nine generic
 lesson prompts are voiced.
 
-When a supported objective explanation and the matching visible human insight
-coexist, `selectGameSpeech` can select one authored whole recording for that pair.
-The child insight must bind to the parent intent and selected coach. The lookup
-uses `meanings.json`; scripts are independently authored per voice in
-`banks/pilot-additions.json` and `banks/maia-combinations.json`. It does not append
-a generic Maia sentence to another clip. If the bank lacks that pair, it falls
-back to the supported primary recording. Late Maia evidence can update text or
-the next explicit playback choice, but does not authorize a second automatic
-spoken response for the same move.
+Human-model (Maia) claims never select a recording. `selectGameSpeech` skips a
+Maia sentence in the bubble: the objective line plays alone (with a following
+objective sentence joined back to back as usual), and a bubble whose only claim
+is Maia stays silent. The Maia badge supplies nothing to speech, and
+`meanings.json` has no `human-*` or objective/Maia combination meanings. Late Maia
+evidence can update text, and so the bubble's objective recording for the next
+explicit playback, but does not authorize a second automatic spoken response for
+the same move.
 
 `useCoachSpeech` consumes navigation/attempt event identity separately from
 utterance identity. Hydration, refinement, coach selection and completion of an
