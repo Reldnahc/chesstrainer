@@ -1,5 +1,8 @@
 import { test, expect, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
+import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
+
+const walter = (id: string) => walterBank.recordings.find(row => row.id === id)!.text;
 
 const preferences = new WeakMap<Page, { coach: Schema["CoachPreferences"]; motion: Schema["MotionPreferences"] }>();
 test.beforeEach(async ({ page }) => {
@@ -125,7 +128,8 @@ test("puzzles retain retries, animate committed replies, resume and finish witho
   expect((await saved(page, puzzle.id)).revision).toBe(result.revision);
   await move(page, "g1f3");
   await expect(page.getByRole("heading", { name: "Puzzle solved." })).toBeVisible();
-  await expect(page.locator(".review-coach").getByRole("status")).toContainText("failed, then solved");
+  // The status shows the default coach's (Walter's) spoken line for a solve after a retry.
+  await expect(page.locator(".review-coach").getByRole("status")).toHaveText(walter("puzzle-solved-after-retry"));
   await expect(page.getByRole("region", { name: "Puzzle solution" })).toBeVisible();
   await expect(page.locator(".puzzle-provenance").last()).not.toBeEmpty();
   const complete = await saved(page, puzzle.id);

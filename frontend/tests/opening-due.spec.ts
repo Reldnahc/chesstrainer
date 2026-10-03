@@ -1,5 +1,9 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { ColdPosition, Feedback, Schema } from "../src/api";
+import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
+
+// The bubble shows the default coach's (Walter's) spoken line for each recall state.
+const walter = (id: string) => walterBank.recordings.find(row => row.id === id)!.text;
 
 type RecallFixture = {
   exercise_id: string;
@@ -76,7 +80,7 @@ test("opening Due shows combined study context and accepts the repertoire union 
   await expect(page.getByRole("heading", { name: "Opening recalled." })).toBeVisible();
   const continuations = page.getByRole("region", { name: "Studied continuations" });
   for (const name of data.names) await expect(continuations).toContainText(name);
-  await expect(page.locator(".review-coach .move-status")).toHaveText("This matches your selected study material.");
+  await expect(page.locator(".review-coach .move-status")).toHaveText(walter("opening-recall-accepted"));
   await expect(page.locator(".review-coach")).not.toContainText(/relearning|Next review|recall saved/i);
   await expect(page.locator(".review-schedule")).toContainText("first attempt stays marked for relearning");
   expect(engineRequests).toEqual([]);
@@ -90,7 +94,7 @@ test("opening reveal and completed reload retain the same saved answer and sessi
   const result: Feedback = await (await revealed).json();
   expect(result.grade).toBe("revealed");
   await expect(page.getByRole("heading", { name: "Studied move revealed." })).toBeVisible();
-  await expect(page.locator(".review-coach .move-status")).toHaveText("Here is your studied continuation.");
+  await expect(page.locator(".review-coach .move-status")).toHaveText(walter("opening-recall-revealed"));
   await expect(page.locator(".review-coach")).not.toContainText(/relearning|Next review|recall saved/i);
   const before = await saved(page, data.session_id);
   expect(before.completed).toBe(true);

@@ -7,6 +7,7 @@ import type { CoachExpression } from "../coach/model";
 import type { ReviewSession } from "./useReviewSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { openingRecallRecording } from "../audio/speech/practiceSelection";
+import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 
 /** Curated recall has repertoire authority, never an objective move grade. */
 export default function OpeningRecallPanel({ session }: { session: ReviewSession }) {
@@ -18,6 +19,8 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
     automaticEventId: gradingError ? null : !feedback ? session.openEventId
       : feedback.grade !== "revealed" ? session.feedbackEventId : null,
   });
+  // Each recall state has one coach sentence; the bubble shows the coach's spoken form of it.
+  const spoken = useSelectedCoachSpokenText(recordingId);
   if (!position?.opening) return null;
   const opening = feedback?.opening ?? position.opening;
   const completed = !!feedback?.completed;
@@ -41,11 +44,11 @@ export default function OpeningRecallPanel({ session }: { session: ReviewSession
   const title = gradingError ? "Let’s try that again."
     : completed ? feedback.grade === "revealed" ? "Studied move revealed." : "Opening recalled."
     : failed ? "Try your studied move." : opening.prompt;
-  const message = gradingError ? "Your move could not be saved. Try again."
+  const message = spoken ?? (gradingError ? "Your move could not be saved. Try again."
     : completed ? feedback.grade === "revealed" ? "Here is your studied continuation." : "This matches your selected study material."
     : feedback?.message || (failed ? "Play a move from the study lines you selected."
       : opening.names.length > 1 ? "Any continuation from these selected lines is accepted."
-      : "Recall a move from your selected study material.");
+      : "Recall a move from your selected study material."));
   return <div className="practice-panel opening-recall-panel">
     <ReviewCoach title={<h2>{title}</h2>} voice={voice}
       reaction={{ state: expression, key: `${position.session_id}:${feedback?.attempt_id ?? "cold"}:${expression}` }}

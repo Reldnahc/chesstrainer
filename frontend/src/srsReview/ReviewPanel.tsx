@@ -19,6 +19,7 @@ import Button from "../Button";
 import { pagePaths, studyPaths } from "../navigation";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { practiceRecording } from "../audio/speech/practiceSelection";
+import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 
 type ReviewPanelProps = {
   session: ReviewSession;
@@ -62,6 +63,12 @@ function GameRecallPanel({
     hadFailure: session.hadFailure, expression: reaction.state, error: !!session.gradingError})
     : makeIntent("practice-empty", "neutral", "practice", "neutral", [claim("cold")]));
   const recordingId = practiceRecording({position, feedback, frame: previewFrame, error: !!session.gradingError});
+  // Generic one-sentence states show the coach's spoken line. A frame annotation
+  // or explanation summary names concrete moves and material the spoken line
+  // leaves out, so those stay written.
+  const spoken = useSelectedCoachSpokenText(session.gradingError || !feedback
+    || recordingId?.startsWith("srs-fallback-") ? recordingId : null);
+  const shown = spoken ? {...utterance, text: spoken, speechText: spoken} : utterance;
   const voice = useCoachSpeech({
     scopeKey: `practice:${position?.session_id}:${feedback?.attempt_id ?? "cold"}:${preview ?? "position"}:${previewFrame?.fen ?? ""}:${recordingId}`,
     recordingId,
@@ -201,7 +208,7 @@ function GameRecallPanel({
             }
           >
             {session.gradingError ? (
-              <DialogueText utterance={utterance} />
+              <DialogueText utterance={shown} />
             ) : feedback?.completed ? (
               <div role="status" aria-live="polite" aria-atomic="true">
                 <p>
@@ -213,16 +220,16 @@ function GameRecallPanel({
                         .join(", ")}
                   </strong>
                 </p>
-                <DialogueText utterance={utterance} />
+                <DialogueText utterance={shown} />
               </div>
             ) : previewFrame ? (
               <div role="status" aria-live="polite" aria-atomic="true">
-                <DialogueText utterance={utterance} />
+                <DialogueText utterance={shown} />
               </div>
             ) : (
               <MoveStatus
                 busy={busy}
-                text={utterance.text}
+                text={shown.text}
                 failed={position.failed || !!(feedback && !feedback.completed)}
               />
             )}
