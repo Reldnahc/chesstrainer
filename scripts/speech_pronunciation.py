@@ -87,17 +87,31 @@ def pronunciation(word: str, lookup: Callable[[str], str | None]) -> dict | None
     for rule, base in candidates(word):
         if rule == "lexicon":
             phones = list(LEXICON[word])
-            return {"word": word, "rule": rule, "base": base, "basePhones": phones, "phones": phones}
+            return {
+                "word": word,
+                "rule": rule,
+                "base": base,
+                "basePhones": phones,
+                "phones": phones,
+            }
         if rule == "compound":
             parts = [lookup(part) for part in base.split()]
             if not all(parts):
                 continue
             part_phones = [part.split() for part in parts]
-            if any(re.fullmatch(r"[A-Z]+", phone) is None for part in part_phones for phone in part):
+            if any(
+                re.fullmatch(r"[A-Z]+", phone) is None for part in part_phones for phone in part
+            ):
                 raise ValueError("Invalid source dictionary pronunciation")
             phones = [phone for part in part_phones for phone in part]
-            return {"word": word, "rule": rule, "base": base, "basePhones": phones,
-                    "partPhones": part_phones, "phones": phones}
+            return {
+                "word": word,
+                "rule": rule,
+                "base": base,
+                "basePhones": phones,
+                "partPhones": part_phones,
+                "phones": phones,
+            }
         value = lookup(base)
         if not value:
             continue
@@ -193,9 +207,11 @@ def validate(value: dict, transcript: str) -> None:
             known.update(zip(base.split(), entry["partPhones"], strict=False))
         expected = pronunciation(
             word,
-            lambda candidate: " ".join(known[candidate])
-            if candidate in known and isinstance(known[candidate], list)
-            else None,
+            lambda candidate: (
+                " ".join(known[candidate])
+                if candidate in known and isinstance(known[candidate], list)
+                else None
+            ),
         )
         if entry != expected:
             raise ValueError("Automatic pronunciation does not match its generic rule")

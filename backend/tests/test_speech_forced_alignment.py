@@ -250,7 +250,9 @@ def test_changed_phone_evidence_hash_is_rejected(saved_forced):
         alignment.check_track(*saved_forced)
 
 
-@pytest.mark.parametrize("reduced", [{"have": ["AH"]}, {"the": ["DH", "AH"]}, {"have": ["AH", "V"]}])
+@pytest.mark.parametrize(
+    "reduced", [{"have": ["AH"]}, {"the": ["DH", "AH"]}, {"have": ["AH", "V"]}]
+)
 def test_reduced_forms_must_be_the_known_weak_form_of_a_transcript_word(saved_forced, reduced):
     track, script, *_ = saved_forced
     if "have" in forced.normalize_text(script["text"]).split() and reduced == {"have": ["AH", "V"]}:

@@ -246,7 +246,8 @@ def validate_evidence(provenance: dict, text: str, duration: float, cues: list[d
                 raise ValueError("Aligned phones differ from the automatic pronunciation")
     reduced = provenance.get("reducedForms", {})
     if any(
-        word not in REDUCED_FORMS or tuple(phones) != REDUCED_FORMS[word]
+        word not in REDUCED_FORMS
+        or tuple(phones) != REDUCED_FORMS[word]
         or word not in normalize_text(text).split()
         for word, phones in reduced.items()
     ):
@@ -332,7 +333,9 @@ def run_worker(wav_path: Path, text_path: Path, deps: Path) -> dict:
     except RuntimeError:
         # Voices often contract "would have" to "would've". Retry once with the
         # reduced form as an alternate and record it, never a per-clip exception.
-        usable = {word: phones for word, phones in REDUCED_FORMS.items() if word in normalized.split()}
+        usable = {
+            word: phones for word, phones in REDUCED_FORMS.items() if word in normalized.split()
+        }
         if not usable:
             raise
         for word, phones in usable.items():

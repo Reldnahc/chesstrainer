@@ -56,7 +56,13 @@ def test_regular_suffixes_retain_dictionary_base_and_record_the_generic_rule(
         ("castling", {"castle": "K AE S AH L"}, "castle", "progressive-ing", "K AE S L IH NG"),
         ("snipped", {"snip": "S N IH P"}, "snip", "past-ed", "S N IH P T"),
         ("tidied", {"tidy": "T AY D IY"}, "tidy", "past-ied", "T AY D IY D"),
-        ("steadiest", {"steady": "S T EH D IY"}, "steady", "superlative-iest", "S T EH D IY AH S T"),
+        (
+            "steadiest",
+            {"steady": "S T EH D IY"},
+            "steady",
+            "superlative-iest",
+            "S T EH D IY AH S T",
+        ),
     ],
 )
 def test_regular_past_and_progressive_restore_silent_e_before_bare_stems(
