@@ -206,6 +206,8 @@ the existing [voice notices](AUDIO.md#locked-voice-and-permissions).
 
 Prepare reviewed plans for `scripts/record_coach_speech.mjs`: exact voice/model,
 settings, scripts and versioned output paths. Default invocation is a dry run.
+The recorder refuses retired Maia readings (`human-*`, `combo-*`, `combined-*` IDs
+or human-model wording); coaches no longer speak Maia lines.
 Paid generation requires `--generate` and the process environment's
 `ELEVENLABS_API_KEY`; neither the app nor the container needs that secret.
 Plans are bounded to 20 voice/script pairs, 1,000 characters per script and

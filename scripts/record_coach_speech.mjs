@@ -12,6 +12,10 @@ const MAX_AUDIO_BYTES = 5 * 1024 * 1024;
 const MAX_REQUESTS = 20;
 const MAX_TEXT = 1000;
 const MAX_CHARACTERS = 10000;
+// Coaches no longer speak Maia readings (owner decision, 2026-10-02). Refuse any
+// plan that would buy one, by retired meaning ID or by human-model wording.
+const RETIRED_MAIA_ID = /^(?:human-|combo-|combined-)/;
+const MAIA_WORDING = /\bmaia\b|\bhuman[- ]move\b|\bhuman model\b|\bmove model\b/i;
 const HELP = `Usage: node scripts/record_coach_speech.mjs --plan FILE --output DIR [--generate]
   Default: dry run; validates the entire plan and existing files without network or writes.
   --generate           Explicitly authorize paid, sequential ElevenLabs requests; no retries.
@@ -76,6 +80,8 @@ export function validatePlan(value) {
   });
   const scripts = value.scripts.map(script => {
     keys(script, ["id", "label", "text"]);
+    if (typeof script.id === "string" && RETIRED_MAIA_ID.test(script.id) || typeof script.text === "string" && MAIA_WORDING.test(script.text))
+      reject(`Script ${String(script.id)} is a retired Maia reading; coaches no longer speak Maia lines.`);
     return { id: slug(script.id), label: text(script.label, 160), text: text(script.text, MAX_TEXT) };
   });
   if (new Set(voices.map(voice => voice.id)).size !== voices.length ||

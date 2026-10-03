@@ -291,3 +291,14 @@ test("pre-cancelled generation and invalid command options never make requests",
   assert.equal(f.requests.length, 0);
   assert.ok(!f.messages.join("\n").includes(KEY));
 });
+
+test("plans refuse retired Maia readings by ID or wording before any request", () => {
+  for (const script of [
+    { id: "human-natural-error", label: "Maia", text: "A natural move that turns out costly." },
+    { id: "combo-recognized-opening-natural-best", label: "Combo", text: "A known opening, played naturally." },
+    { id: "combined-allowed-mate-with-human-natural-error", label: "Combined", text: "This allows mate." },
+    { id: "allowed-mate", label: "Wording", text: "The human-move model rates this natural." },
+    { id: "allowed-mate", label: "Wording", text: "Maia expects most players to find it." },
+  ]) assert.throws(() => validatePlan({ ...plan(), scripts: [script] }), /retired Maia reading/);
+  assert.equal(validatePlan(plan()).scripts.length, 1);
+});
